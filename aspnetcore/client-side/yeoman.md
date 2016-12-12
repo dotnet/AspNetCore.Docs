@@ -1,11 +1,14 @@
----
-title: Building Projects with Yeoman
-author: rick-anderson
+﻿---
+title: Building Projects with Yeoman | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: fda0c2a8-1743-4505-be1a-7f8ceeef8647
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/yeoman
 ---
@@ -13,7 +16,7 @@ uid: client-side/yeoman
 
 By [Steve Smith](http://ardalis.com), [Scott Addie](https://scottaddie.com), [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](http://blog.falafel.com/author/noel-rice/), and [Shayne Boyer](https://twitter.com/spboyer)
 
-[Yeoman](http://yeoman.io/) generates complete projects for a given set of client tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command line tool [yo](https://github.com/yeoman/yo) works alongside a Yeoman generator. Generators define the technologies that go into a project.
+[Yeoman](http://yeoman.io/) generates complete projects for a given set of client tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command-line tool [yo](https://github.com/yeoman/yo) works alongside a Yeoman generator. Generators define the technologies that go into a project.
 
 ## Install Node.js, npm, and Yeoman
 
@@ -21,17 +24,17 @@ To get started with Yeoman install [Node.js](https://nodejs.org/en/). The instal
 
 Follow the instructions on [http://yeoman.io/learning/](http://yeoman.io/learning/) to install [yo](https://github.com/yeoman/yo), bower, grunt, and gulp.
 
-````console
+```console
 npm install -g yo bower
-   ````
+   ```
 
 Note: If you get the error `npm ERR! Please try running this command again as root/Administrator.` on Mac OS, run the following command using [sudo](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html): `sudo npm install -g yo bower`
 
-From the command line, install the ASP.NET generator:
+From a command prompt, install the ASP.NET generator:
 
-````console
+```console
 npm install -g generator-aspnet
-   ````
+   ```
 
 > [!NOTE]
 > If you get a permission error, run the command under `sudo` as described above.
@@ -42,16 +45,16 @@ The `–g` flag installs the generator globally, so that it can be used from any
 
 Create a directory for your projects
 
-````console
+```console
 mkdir src
    cd src
-   ````
+   ```
 
 Run the ASP.NET generator for `yo`
 
-````console
+```console
 yo aspnet
-   ````
+   ```
 
 The generator displays a menu. Arrow down to the **Empty Web Application** project and tap **Enter**:
 
@@ -105,27 +108,27 @@ When all the dependencies are restored, press **F5** to run the project. The def
 
 You can prepare and host your web application using the [.NET Core](https://microsoft.com/net/core) command-line interface.
 
-From the command line, change the current directory to the folder containing the project (that is, the folder containing the *project.json* file):
+At a command prompt, change the current directory to the folder containing the project (that is, the folder containing the *project.json* file):
 
-````console
+```console
 cd src\MyWebApp
-   ````
+   ```
 
-From the command line, restore the project's NuGet package dependencies:
+Restore the project's NuGet package dependencies:
 
-````console
+```console
 dotnet restore
-   ````
+   ```
 
 Run the application:
 
-````console
+```console
 dotnet run
-   ````
+   ```
 
-The cross-platform [Kestrel](../fundamentals/servers.md#kestrel) web server will begin listening on port 5000.
+The cross-platform [Kestrel](../fundamentals/servers/kestrel.md) web server will begin listening on port 5000.
 
-Open a web browser, and navigate to http://localhost:5000.
+Open a web browser, and navigate to `http://localhost:5000`.
 
 ![image](yeoman/_static/yeoman-home-page_5000.png)
 
@@ -133,13 +136,13 @@ Open a web browser, and navigate to http://localhost:5000.
 
 You can add new generated files using Yeoman even after the project is created. Use [sub generators](https://www.github.com/omnisharp/generator-aspnet#sub-generators) to add any of the file types that make up your project. For example, to add a new class to your project, enter the `yo aspnet:Class` command followed by the name of the class. Execute the following command from the directory in which the file should be created:
 
-````console
+```console
 yo aspnet:Class Person
-   ````
+   ```
 
 The result is a file named Person.cs with a class named `Person`:
 
-````csharp
+```csharp
 using System;
    using System.Collections.Generic;
    using System.Linq;
@@ -154,11 +157,11 @@ using System;
            }
        }
    }
-   ````
+   ```
 
 ## Related Resources
 
-* [Servers (HttpPlatformHandler, Kestrel and WebListener)](../fundamentals/servers.md)
+* [Servers (Kestrel and WebListener)](../fundamentals/servers/index.md)
 
 * [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](../tutorials/your-first-mac-aspnet.md)
 

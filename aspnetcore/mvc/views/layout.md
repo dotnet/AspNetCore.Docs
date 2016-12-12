@@ -1,11 +1,14 @@
 ---
-title: Layout
-author: rick-anderson
+title: Layout | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 29f12d1f-9734-48bd-bf1a-cee53a8ab700
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/layout
 ---
@@ -51,11 +54,11 @@ A layout can optionally reference one or more *sections*, by calling `RenderSect
 
 An example `@section` definition in a view:
 
-````html
+```html
 @section Scripts {
      <script type="text/javascript" src="/scripts/main.js"></script>
    }
-   ````
+   ```
 
 In the code above, validation scripts are added to the `scripts` section on a view that includes a form. Other views in the same application might not require any additional scripts, and so wouldn't need to define a scripts section.
 
@@ -65,7 +68,7 @@ Sections defined in a view are available only in its immediate layout page. They
 
 By default, the body and all sections in a content page must all be rendered by the layout page. The Razor view engine enforces this by tracking whether the body and each section have been rendered.
 
-To instruct the view engine to ignore the body or sections, call the [`IgnoreBody`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Razor/RazorPage/index.html#Microsoft.AspNetCore.Mvc.Razor.RazorPage.IgnoreBody) and [`IgnoreSection`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Razor/RazorPage/index.html#Microsoft.AspNetCore.Mvc.Razor.RazorPage.IgnoreSection) methods.
+To instruct the view engine to ignore the body or sections, call the `IgnoreBody` and `IgnoreSection` methods.
 
 The body and every section in a Razor page must be either rendered or ignored.
 

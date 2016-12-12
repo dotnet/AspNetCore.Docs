@@ -1,11 +1,14 @@
 ---
-title: Limiting identity by scheme
+title: Limiting identity by scheme | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d3d6ca1b-b4b5-4bf7-898e-dcd90ec1bf8c
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/limitingidentitybyscheme
 ---
@@ -17,7 +20,7 @@ In some scenarios, such as Single Page Applications it is possible to end up wit
 
 Authentication schemes are named when authentication middleware is configured during authentication, for example
 
-````csharp
+```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions()
 {
     AuthenticationScheme = "Cookie",
@@ -31,7 +34,7 @@ app.UseBearerAuthentication(options =>
     options.AuthenticationScheme = "Bearer";
     options.AutomaticAuthenticate = false;
 });
-````
+```
 
 In this configuration two authentication middlewares have been added, one for cookies and one for bearer.
 
@@ -40,32 +43,32 @@ In this configuration two authentication middlewares have been added, one for co
 
 ## Selecting the scheme with the Authorize attribute
 
-As no authentication middleware is configured to automatically run and create an identity you must, at the point of authorization choose which middleware will be used. The simplest way to select the middleware you wish to authorize with is to use the [`ActiveAuthenticationSchemes`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizeAttribute/index.html#Microsoft.AspNetCore.Authorization.AuthorizeAttribute.ActiveAuthenticationSchemes) property. This property accepts a comma delimited list of Authentication Schemes to use. For example;
+As no authentication middleware is configured to automatically run and create an identity you must, at the point of authorization choose which middleware will be used. The simplest way to select the middleware you wish to authorize with is to use the `ActiveAuthenticationSchemes` property. This property accepts a comma delimited list of Authentication Schemes to use. For example;
 
-````csharp
+```csharp
 [Authorize(ActiveAuthenticationSchemes = "Cookie,Bearer")]
 public class MixedController : Controller
-````
+```
 
 In the example above both the cookie and bearer middlewares will run and have a chance to create and append an identity for the current user. By specifying a single scheme only the specified middleware will run;
 
-````csharp
+```csharp
 [Authorize(ActiveAuthenticationSchemes = "Bearer")]
-````
+```
 
 In this case only the middleware with the Bearer scheme would run, and any cookie based identities would be ignored.
 
 ## Selecting the scheme with policies
 
-If you prefer to specify the desired schemes in [policy](policies.md#security-authorization-policies-based) you can set the [`AuthenticationSchemes`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizationPolicyBuilder/index.html#Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes) collection when adding your policy.
+If you prefer to specify the desired schemes in [policy](policies.md#security-authorization-policies-based) you can set the `AuthenticationSchemes` collection when adding your policy.
 
-````csharp
+```csharp
 options.AddPolicy("Over18", policy =>
 {
     policy.AuthenticationSchemes.Add("Bearer");
     policy.RequireAuthenticatedUser();
     policy.Requirements.Add(new Over18Requirement());
 });
-````
+```
 
 In this example the Over18 policy will only run against the identity created by the `Bearer` middleware.

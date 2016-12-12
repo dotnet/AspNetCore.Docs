@@ -45,7 +45,8 @@ namespace TodoApi
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
 
                 //Set the comments path for the swagger json and ui.
-                options.IncludeXmlComments(basePath + "\\TodoApi.xml");
+                var xmlPath = Path.Combine(basePath, "TodoApi.xml"); 
+                options.IncludeXmlComments(xmlPath);
             });
         }
 

@@ -1,11 +1,14 @@
 ---
-title: Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio
+title: Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 6282a1d3-1796-4958-a2e6-afdf3364fcbf
+ms.technology: aspnet
 ms.prod: aspnet-core
 # Contoso University sample app
 
@@ -18,4 +21,4 @@ You can build the application by following the steps in [a series of tutorials](
 
 ## Download it
 
-Download the [completed project](https://github.com/aspnet/Docs/tree/master/aspnet/data/ef-mvc/intro/samples/cu-final) from GitHub by downloading or cloning the [aspnet/Docs repository](https://github.com/aspnet/Docs) and navigating to `aspnet\data\ef-mvc\intro\samples\cu-final` in your local file system.
+Download the [completed project](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final) from GitHub by downloading or cloning the [aspnet/Docs repository](https://github.com/aspnet/Docs) and navigating to `aspnet\data\ef-mvc\intro\samples\cu-final` in your local file system.

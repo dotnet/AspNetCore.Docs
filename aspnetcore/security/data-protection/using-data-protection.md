@@ -1,11 +1,14 @@
 ---
-title: Getting Started with the Data Protection APIs
+title: Getting Started with the Data Protection APIs | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 39b7a73c-29d4-4137-b311-49529adcf3cb
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/using-data-protection
 ---
@@ -23,7 +26,7 @@ At its simplest protecting data consists of the following steps:
 
 Most frameworks such as ASP.NET or SignalR already configure the data protection system and add it to a service container you access via dependency injection. The following sample demonstrates configuring a service container for dependency injection and registering the data protection stack, receiving the data protection provider via DI, creating a protector and protecting then unprotecting data
 
-[!code-none[Main](../../security/data-protection/using-data-protection/samples/protectunprotect.cs?highlight=26,34,35,36,37,38,39,40)]
+[!code-csharp[Main](../../security/data-protection/using-data-protection/samples/protectunprotect.cs?highlight=26,34,35,36,37,38,39,40)]
 
 When you create a protector you must provide one or more [Purpose Strings](consumer-apis/purpose-strings.md). A purpose string provides isolation between consumers, for example a protector created with a purpose string of "green" would not be able to unprotect data provided by a protector with a purpose of "purple".
 

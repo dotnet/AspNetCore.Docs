@@ -1,11 +1,14 @@
 ---
-title: Formatting Response Data
-author: rick-anderson
+title: Formatting Response Data | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: c056df45-d013-4826-91a1-4a092bae1ea5
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/models/formatting
 ---
@@ -15,7 +18,7 @@ By [Steve Smith](http://ardalis.com)
 
 ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/models/formatting/sample).
+[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/formatting/sample).
 
 ## Format-Specific Action Results
 
@@ -79,7 +82,7 @@ Content *negotiation* only takes place if an `Accept` header appears in the requ
 negotiation taking place - the server is determining what format it will use.
 
 > [!NOTE]
-> If the Accept header contains `/`, the Header will be ignored unless `RespectBrowserAcceptHeader` is set to true on `MvcOptions`.
+> If the Accept header contains `*/*`, the Header will be ignored unless `RespectBrowserAcceptHeader` is set to true on `MvcOptions`.
 
 ### Browsers and Content Negotiation
 
@@ -87,12 +90,12 @@ Unlike typical API clients, web browsers tend to supply `Accept` headers that in
 
 If you would prefer your application honor browser accept headers, you can configure this as part of MVC's configuration by setting `RespectBrowserAcceptHeader` to `true` in the `ConfigureServices` method in *Startup.cs*.
 
-````csharp
+```csharp
 services.AddMvc(options =>
 {
   options.RespectBrowserAcceptHeader = true; // false by default
 }
-````
+```
 
 ## Configuring Formatters
 
@@ -108,21 +111,21 @@ Add the XmlSerializerFormatters to MVC's configuration in *Startup.cs*:
 
 Alternately, you can add just the output formatter:
 
-````csharp
+```csharp
 services.AddMvc(options =>
 {
   options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
 });
-````
+```
 
 These two approaches will serialize results using `System.Xml.Serialization.XmlSerializer`. If you prefer, you can use the `System.Runtime.Serialization.DataContractSerializer` by adding its associated formatter:
 
-````csharp
+```csharp
 services.AddMvc(options =>
 {
   options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
 });
-````
+```
 
 Once you've added support for XML formatting, your controller methods should return the appropriate format based on the request's `Accept` header, as this Fiddler example demonstrates:
 
@@ -140,10 +143,10 @@ In this screenshot, you can see the request sets a header of `Accept: applicatio
 
 If you would like to restrict the response formats for a specific action you can, you can apply the `[Produces]` filter. The `[Produces]` filter specifies the response formats for a specific action (or controller). Like most [Filters](../controllers/filters.md), this can be applied at the action, controller, or global scope.
 
-````csharp
+```csharp
 [Produces("application/json")]
 public class AuthorsController
-````
+```
 
 The `[Produces]` filter will force all actions within the `AuthorsController` to return JSON-formatted responses, even if other formatters were configured for the application and the client provided an `Accept` header requesting a different, available format. See [Filters](../controllers/filters.md) to learn more, including how to apply filters globally.
 
@@ -151,13 +154,13 @@ The `[Produces]` filter will force all actions within the `AuthorsController` to
 
 Some special cases are implemented using built-in formatters. By default, `string` return types will be formatted as *text/plain* (*text/html* if requested via `Accept` header). This behavior can be removed by removing the `TextOutputFormatter`. You remove formatters in the `Configure` method in *Startup.cs* (shown below). Actions that have a model object return type will return a 204 No Content response when returning `null`. This behavior can be removed by removing the `HttpNoContentOutputFormatter`. The following code removes the `TextOutputFormatter` and *HttpNoContentOutputFormatter`*.
 
-````csharp
+```csharp
 services.AddMvc(options =>
 {
   options.OutputFormatters.RemoveType<TextOutputFormatter>();
   options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>();
 });
-````
+```
 
 Without the `TextOutputFormatter`, `string` return types return 406 Not Acceptable, for example. Note that if an XML formatter exists, it will format `string` return types if the `TextOutputFormatter` is removed.
 
@@ -167,13 +170,13 @@ Without the `HttpNoContentOutputFormatter`, null objects are formatted using the
 
 Clients can request a particular format as part of the URL, such as in the query string or part of the path, or by using a format-specific file extension such as .xml or .json. The mapping from request path should be specified in the route the API is using. For example:
 
-````csharp
+```csharp
 [FormatFilter]
 public class ProductsController
 {
   [Route("[controller]/[action]/{id}.{format?}")]
   public Product GetById(int id)
-````
+```
 
 This route would allow the requested format to be specified as an optional file extension. The `[FormatFilter]` attribute checks for the existence of the format value in the `RouteData` and will map the response format to the appropriate formatter when the response is created.
 

@@ -1,17 +1,20 @@
 ---
-title: Deploy an ASP.NET Core web app to Azure using Visual Studio
+title: Deploy an ASP.NET Core web app to Azure using Visual Studio | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 78571e4a-a143-452d-9cf2-0860f85972e6
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/publish-to-azure-webapp-using-vs
 ---
 # Deploy an ASP.NET Core web app to Azure using Visual Studio
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https://github.com/cesarbs)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Cesar Blum Silveira](https://github.com/cesarbs)
 
 ## Set up the development environment
 
@@ -72,13 +75,13 @@ You can fix the problem in two different ways:
 
 * Tap **Apply Migrations** and, once the page updates, refresh the page; or
 
-* Run the following from the command line in the project's directory:
+* Run the following from a command prompt in the project's directory:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet ef database update
-     ````
+     ```
 
 The app displays the email used to register the new user and a **Log off** link.
 
@@ -161,7 +164,7 @@ Visual Studio will publish your app to Azure and launch the cloud app in your br
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [7]}} -->
 
-````html
+```html
 @{
        ViewData["Title"] = "About";
    }
@@ -169,7 +172,7 @@ Visual Studio will publish your app to Azure and launch the cloud app in your br
    <h3>@ViewData["Message"]</h3>
 
    <p>My updated about page.</p>
-   ````
+   ```
 
 * Right-click on the project and tap **Publish...** again
 
@@ -195,6 +198,6 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 * [Getting started with ASP.NET Core MVC and Visual Studio](first-mvc-app/start-mvc.md)
 
-* [Introduction to ASP.NET Core](../intro.md)
+* [Introduction to ASP.NET Core](../index.md)
 
 * [Fundamentals](../fundamentals/index.md)

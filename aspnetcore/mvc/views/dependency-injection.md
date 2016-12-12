@@ -1,11 +1,14 @@
 ---
-title: Dependency injection into views
-author: rick-anderson
+title: Dependency injection into views | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 80fb9e43-e4db-4af2-b2a8-e1364a712f69
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/dependency-injection
 ---
@@ -15,7 +18,7 @@ By [Steve Smith](http://ardalis.com)
 
 ASP.NET Core supports [dependency injection](../../fundamentals/dependency-injection.md) into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. You should try to maintain [separation of concerns](http://deviq.com/separation-of-concerns) between your controllers and views. Most of the data your views display should be passed in from the controller.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/dependency-injection/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample)
 
 ## A Simple Example
 

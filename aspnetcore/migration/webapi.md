@@ -1,11 +1,14 @@
 ---
-title: Migrating from ASP.NET Web API
-author: rick-anderson
+title: Migrating from ASP.NET Web API | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4f0564b4-ed4e-4e1e-9755-c1144d21a0ef
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: migration/webapi
 ---
@@ -15,7 +18,7 @@ By [Steve Smith](http://ardalis.com) and [Scott Addie](https://scottaddie.com)
 
 Web APIs are HTTP services that reach a broad range of clients, including browsers and mobile devices. ASP.NET Core MVC includes support for building Web APIs providing a single, consistent way of building web applications. In this article, we demonstrate the steps required to migrate a Web API implementation from ASP.NET Web API to ASP.NET Core MVC.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/migration/webapi/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/migration/webapi/sample)
 
 ## Review ASP.NET Web API Project
 
@@ -70,20 +73,20 @@ Note the presence of *[controller]* on line 8. Attribute-based routing now suppo
 
 To migrate the Products API controller, we must first copy *ProductsController* to the new project. Then simply include the route attribute on the controller:
 
-````csharp
+```csharp
 [Route("api/[controller]")]
-````
+```
 
 You also need to add the `[HttpGet]` attribute to the two methods, since they both should be called via HTTP Get. Include the expectation of an "id" parameter in the attribute for `GetProduct()`:
 
-````csharp
+```csharp
 // /api/products
 [HttpGet]
 ...
 
 // /api/products/1
 [HttpGet("{id}")]
-````
+```
 
 At this point, routing is configured correctly; however, we can't yet test it. Additional changes must be made before *ProductsController* will compile.
 

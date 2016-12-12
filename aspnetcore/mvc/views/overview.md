@@ -1,11 +1,14 @@
 ---
-title: Views Overview
-author: rick-anderson
+title: Views Overview | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 668c320d-c050-45e3-8161-2f460dc93b2f
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/overview
 ---
@@ -43,7 +46,7 @@ This view focuses on just the portion of the output for which it is responsible.
 
 ## How do Controllers Specify Views?
 
-Views are typically returned from actions as a [`ViewResult`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewResult/index.html#Microsoft.AspNetCore.Mvc.ViewResult). Your action method can create and return a `ViewResult` directly, but more commonly if your controller inherits from [`Controller`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Controller/index.html#Microsoft.AspNetCore.Mvc.Controller), you'll simply use the `View` helper method, as this example demonstrates:
+Views are typically returned from actions as a `ViewResult`. Your action method can create and return a `ViewResult` directly, but more commonly if your controller inherits from `Controller`, you'll simply use the `View` helper method, as this example demonstrates:
 
 *HomeController.cs*
 
@@ -74,7 +77,7 @@ A view file path can be provided, instead of a view name. In this case, the *.cs
 > [Partial views](partial.md) and [view components](view-components.md) use similar (but not identical) discovery mechanisms.
 
 > [!NOTE]
-> You can customize the default convention regarding where views are located within the app by using a custom [`IViewLocationExpander`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Razor/IViewLocationExpander/index.html#Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander).
+> You can customize the default convention regarding where views are located within the app by using a custom `IViewLocationExpander`.
 
 >[!TIP]
 > View names may be case sensitive depending on the underlying file system. For compatibility across operating systems, always match case between controller and action names and associated view folders and filenames.
@@ -85,7 +88,7 @@ You can pass data to views using several mechanisms. The most robust approach is
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [1]}} -->
 
-````html
+```html
 @model WebApplication1.ViewModels.Address
    <h2>Contact</h2>
    <address>
@@ -94,13 +97,13 @@ You can pass data to views using several mechanisms. The most robust approach is
        <abbr title="Phone">P:</abbr>
        425.555.0100
    </address>
-   ````
+   ```
 
 Once a model has been specified for a view, the instance sent to the view can be accessed in a strongly-typed manner using `@Model` as shown above. To provide an instance of the model type to the view, the controller passes it as a parameter:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [13]}} -->
 
-````csharp
+```csharp
 public IActionResult Contact()
    {
        ViewData["Message"] = "Your contact page.";
@@ -115,13 +118,13 @@ public IActionResult Contact()
        };
        return View(viewModel);
    }
-   ````
+   ```
 
 There are no restrictions on the types that can be provided to a view as a model. We recommend passing Plain Old CLR Object (POCO) view models with little or no behavior, so that business logic can be encapsulated elsewhere in the app. An example of this approach is the *Address* viewmodel used in the example above:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [13]}} -->
 
-````csharp
+```csharp
 namespace WebApplication1.ViewModels
    {
        public class Address
@@ -133,7 +136,7 @@ namespace WebApplication1.ViewModels
            public string PostalCode { get; set; }
        }
    }
-   ````
+   ```
 
 > [!NOTE]
 > Nothing prevents you from using the same classes as your business model types and your display model types. However, keeping them separate allows your views to vary independently from your domain or persistence model, and can offer some security benefits as well (for models that users will send to the app using [model binding](../models/model-binding.md)).
@@ -146,7 +149,7 @@ In addition to strongly typed views, all views have access to a loosely typed co
 
 Set some values for `ViewData` in an action:
 
-````csharp
+```csharp
 public IActionResult SomeAction()
    {
        ViewData["Greeting"] = "Hello";
@@ -161,13 +164,13 @@ public IActionResult SomeAction()
 
        return View();
    }
-   ````
+   ```
 
 Work with the data in a view:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [3, 6]}} -->
 
-````html
+```html
 @{
        // Requires cast
        var address = ViewData["Address"] as Address;
@@ -180,13 +183,13 @@ Work with the data in a view:
        @address.Street<br />
        @address.City, @address.State @address.PostalCode
    </address>
-   ````
+   ```
 
 The `ViewBag` objects provides dynamic access to the objects stored in `ViewData`. This can be more convenient to work with, since it doesn't require casting. The same example as above, using `ViewBag` instead of a strongly typed `address` instance in the view:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [1, 4, 5, 6]}} -->
 
-````html
+```html
 @ViewBag.Greeting World!
 
    <address>
@@ -194,7 +197,7 @@ The `ViewBag` objects provides dynamic access to the objects stored in `ViewData
        @ViewBag.Address.Street<br />
        @ViewBag.Address.City, @ViewBag.Address.State @ViewBag.Address.PostalCode
    </address>
-   ````
+   ```
 
 > [!NOTE]
 > Since both refer to the same underlying `ViewData` collection, you can mix and match between `ViewData` and `ViewBag` when reading and writing values, if convenient.
@@ -205,14 +208,14 @@ Views that do not declare a model type but have a model instance passed to them 
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [13, 16, 17, 18]}} -->
 
-````html
+```html
 <address>
        @Model.Street<br />
        @Model.City, @Model.State @Model.PostalCode<br />
        <abbr title="Phone">P:</abbr>
        425.555.0100
    </address>
-   ````
+   ```
 
 This feature can offer some flexibility, but does not offer any compilation protection or IntelliSense. If the property doesn't exist, the page will fail at runtime.
 

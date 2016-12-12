@@ -6,15 +6,16 @@ using Microsoft.Extensions.Configuration;
 
 namespace CustomConfigurationProvider
 {
-    public class EntityFrameworkConfigurationProvider : ConfigurationProvider
+    public class EFConfigProvider : ConfigurationProvider
     {
-        public EntityFrameworkConfigurationProvider(Action<DbContextOptionsBuilder> optionsAction)
+        public EFConfigProvider(Action<DbContextOptionsBuilder> optionsAction)
         {
             OptionsAction = optionsAction;
         }
 
         Action<DbContextOptionsBuilder> OptionsAction { get; }
 
+        // Load config data from EF DB.
         public override void Load()
         {
             var builder = new DbContextOptionsBuilder<ConfigurationContext>();

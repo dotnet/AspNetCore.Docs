@@ -1,11 +1,14 @@
 ---
-title: Safe storage of app secrets during development
+title: Safe storage of app secrets during development | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: f85371b7-44cc-4592-ac8b-7029bdced911
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/app-secrets
 ---
@@ -13,7 +16,7 @@ uid: security/app-secrets
 
 <a name=security-app-secrets></a>
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Daniel Roth](https://github.com/danroth27)
 
 This document shows how you can use the Secret Manager tool to keep secrets out of your code. The most important point is you should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development and test mode. You can instead use the [configuration](../fundamentals/configuration.md) system to read these values from environment variables or from values stored using the Secret Manager tool. The Secret Manager tool helps prevent sensitive data from being checked into source control. The [configuration](../fundamentals/configuration.md) system can read secrets stored with the Secret Manager tool described in this article.
 
@@ -35,15 +38,15 @@ The Secret Manager tool provides a more general mechanism to store sensitive dat
 
 ### Installing the Secret Manager tool
 
-* Add ``Microsoft.Extensions.SecretManager.Tools`` to the ``tools`` section of the *project.json* file and run ``dotnet restore``. 
+* Add `Microsoft.Extensions.SecretManager.Tools` to the `tools` section of the *project.json* file and run `dotnet restore`. 
 
 * Test the Secret Manager tool by running the following command:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet user-secrets -h
-     ````
+     ```
 
 > [!NOTE]
 > When any of the tools are defined in the project.json file, you must be in the same directory in order to use the tooling commands.
@@ -56,28 +59,28 @@ The Secret Manager tool operates on project specific configuration settings that
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "json", "highlight_args": {"hl_lines": [2]}} -->
 
-````json
+```json
 {
 "userSecretsId": "aspnet-WebApp1-c23d27a4-eb88-4b18-9b77-2a93f3b15119",
 
 "dependencies": {
-````
+```
 
 * Use the Secret Manager tool to set a secret. For example, in a command window from the project directory enter the following:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet user-secrets set MySecret ValueOfMySecret
-     ````
+     ```
 
 You can run the secret manager tool from other directories, but you must use the `--project` option to pass in the path to the *project.json* file:
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
-dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1
-   ````
+```
+dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1\src\webapp1
+   ```
 
 You can also use the Secret Manager tool to list, remove and clear app secrets.
 
@@ -87,9 +90,9 @@ You access Secret Manager secrets through the configuration system. Add the `Mic
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "none", "highlight_args": {"hl_lines": [2]}} -->
 
-````none
+```none
   "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc2-final",
-   ````
+   ```
 
 Add the user secrets configuration source to the `Startup` method:
 
@@ -97,9 +100,9 @@ Add the user secrets configuration source to the `Startup` method:
 
 You can now access user secrets via the configuration API:
 
-````csharp
+```csharp
 string testConfig = Configuration["MySecret"];
-   ````
+   ```
 
 ## How the Secret Manager tool works
 

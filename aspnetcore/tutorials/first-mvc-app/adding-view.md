@@ -1,17 +1,18 @@
 ﻿---
-title: Adding a view
+title: Adding a view | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 6942432b-bac0-41e6-9ad7-cad313abf4db
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/adding-view
 ---
 # Adding a view
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this section you're going to modify the `HelloWorldController` class to use Razor view template files to cleanly encapsulate the process of generating HTML responses to a client.
 
@@ -73,11 +74,11 @@ Save your changes and tap the **About** link. Notice how each page displays the 
 Examine the *Views/_ViewStart.cshtml* file:
 
 
-````HTML
+```HTML
 @{
     Layout = "_Layout";
 }
-````
+```
 
 The *Views/_ViewStart.cshtml* file brings in the *Views/Shared/_Layout.cshtml* file to each view. You can use the `Layout` property to set a different layout view, or set it to `null` so no layout file will be used.
 
@@ -92,7 +93,7 @@ Open *Views/HelloWorld/Index.cshtml*. There are two places to make a change:
 You'll make them slightly different so you can see which bit of code changes which part of the app.
 
 
-````HTML
+```HTML
 @{
     ViewData["Title"] = "Movie List";
 }
@@ -100,14 +101,14 @@ You'll make them slightly different so you can see which bit of code changes whi
 <h2>My Movie List</h2>
 
 <p>Hello from our View Template!</p>
-````
+```
 
-`ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the [`ViewDataDictionary`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/ViewDataDictionary/index.html#Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary) to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
+`ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewData` dictionary to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
 
-````HTML
+```HTML
 <title>@ViewData["Title"] - Movie App</title>
-   ````
+   ```
 
 Save your change and refresh the page. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 
@@ -159,4 +160,6 @@ In the sample above, we used the `ViewData` dictionary to pass data from the con
 
 Well, that was a kind of an "M" for model, but not the database kind. Let's take what we've learned and create a database of movies.
 
->[&larr; **Previous**](adding-controller.md)     [**Next** &rarr;](adding-model.md)  
+>[!div class="step-by-step"]
+[Previous](adding-controller.md)
+[Next](adding-model.md)  

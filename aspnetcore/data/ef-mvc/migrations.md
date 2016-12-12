@@ -1,15 +1,19 @@
 ---
-title: Migrations
+title: Migrations - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 81f6c9c2-a819-4f3a-97a4-4b0503b56c26
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/migrations
 ---
-# Migrations
+
+# Migrations - EF Core with ASP.NET Core MVC tutorial
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -25,15 +29,15 @@ This method of keeping the database in sync with the data model works well until
 
 In the *appsettings.json* file, change the name of the database in the connection string to ContosoUniversity2 or some other name that you haven't used on the computer you're using.
 
-[!code-javascript[](intro/samples/cu/appsettings2.json?range=1-4)]
+[!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
 
 This change sets up the project so that the first migration will create a new database. This isn't required for getting started with migrations, but you'll see later why it's a good idea.
 
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
-> ````none
+> ```console
 > dotnet ef database drop -c SchoolContext
-> ````
+> ```
 > The following section explains how to run CLI commands.
 
 ## Create an initial migration
@@ -52,20 +56,20 @@ Before you enter a command, stop IIS Express for the site, or you may get an err
 
 After you have stopped IIS Express, enter the following command in the command window:
 
-````none
+```console
 dotnet ef migrations add InitialCreate -c SchoolContext
-````
+```
 
 You see output like the following in the command window:
 
-````none
+```text
 C:\ContosoUniversity\src\ContosoUniversity>dotnet ef migrations add InitialCreate -c SchoolContext
 Project ContosoUniversity (.NETCoreApp,Version=v1.0) was previously compiled. Skipping compilation.
 
 Done.
 
 To undo this action, use 'dotnet ef migrations remove'
-````
+```
 
 You have to include the `-c SchoolContext` parameter to specify the database context class, because the project has two context classes (the other one is for ASP.NET Identity).
 
@@ -87,24 +91,24 @@ Migrations also creates a "snapshot" of the current database schema in *Migratio
 
 [!code-csharp[Main](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
 
-Because this code has to reflect the database state after the latest migration,  you can't remove a migration just by deleting the file named  *<timestamp>_<migrationname>.cs*. If you delete that file, the remaining migrations will be out of sync with the database snapshot file. To delete the last migration that you added, use the [dotnet ef migrations remove](https://ef.readthedocs.io/en/latest/miscellaneous/cli/dotnet.html#dotnet-ef-migrations-remove) command.
+Because this code has to reflect the database state after the latest migration,  you can't remove a migration just by deleting the file named  *<timestamp>_<migrationname>.cs*. If you delete that file, the remaining migrations will be out of sync with the database snapshot file. To delete the last migration that you added, use the [dotnet ef migrations remove](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command.
 
 ## Apply the migration to the database
 
 In the command window, enter the following command to create the database and tables in it.
 
-````none
+```console
 dotnet ef database update -c SchoolContext
-````
+```
 
 The output from the command is similar to the `migrations add` command.
 
-````none
+```text
 C:\ContosoUniversity\src\ContosoUniversity>dotnet ef database update -c SchoolContext
 Project ContosoUniversity (.NETCoreApp,Version=v1.0) was previously compiled. Skipping compilation.
 
 Done.
-````
+```
 
 Use **SQL Server Object Explorer** to inspect the database as you did in the first tutorial.  You'll notice the addition of an __EFMigrationsHistory table that keeps track of which migrations have been applied to the database. View the data in that table and you'll see one entry for the first migration.
 
@@ -114,11 +118,11 @@ Run the application to verify that everything still works the same as before.
 
 ![Students Index page](migrations/_static/students-index.png)
 
-## Command line interface (CLI) vs. Package Manager Console (PMC)
+## Command-line interface (CLI) vs. Package Manager Console (PMC)
 
 The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. In this preview version of the tooling, the CLI commands are more stable than the PMC cmdlets, so this tutorial shows how to use the .NET Core CLI commands.
 
-For more information about the CLI commands, see [.NET Core CLI](https://ef.readthedocs.io/en/latest/miscellaneous/cli/dotnet.html). For information about the PMC commands, see [Package Manager Console (Visual Studio)](https://ef.readthedocs.io/en/latest/miscellaneous/cli/powershell.html).
+For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet). For information about the PMC commands, see [Package Manager Console (Visual Studio)](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell).
 
 ## Summary
 

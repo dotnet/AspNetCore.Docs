@@ -1,11 +1,14 @@
 ---
-title: Developing ASP.NET Core applications using dotnet watch
+title: Developing ASP.NET Core applications using dotnet watch | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 563ffb3f-d369-4aa5-bf0a-7300b4e7832c
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/dotnet-watch
 ---
@@ -23,7 +26,7 @@ In this tutorial we'll use an existing WebApi application that calculates the su
 
 ## Getting started
 
-Start by downloading [the sample application](https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/dotnet-watch/sample). It contains two projects, `WebApp` (a web application) and `WebAppTests` (unit tests for the web application)
+Start by downloading [the sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It contains two projects, `WebApp` (a web application) and `WebAppTests` (unit tests for the web application)
 
 In a console, open the folder where you downloaded the sample application and run:
 
@@ -33,7 +36,7 @@ In a console, open the folder where you downloaded the sample application and ru
 
 The console output will show messages similar to the ones below, indicating that the application is now running and waiting for requests:
 
-````bash
+```bash
 $ dotnet run
 Project WebApp (.NETCoreApp,Version=v1.0) will be compiled because inputs were modified
 Compiling WebApp for .NETCoreApp,Version=v1.0
@@ -48,7 +51,7 @@ Hosting environment: Production
 Content root path: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
-````
+```
 
 In a web browser, navigate to `http://localhost:5000/api/math/sum?a=4&b=5` and you should see the result `9`.
 
@@ -63,12 +66,12 @@ We'll fix that.
 
 The console output will show messages similar to the ones below:
 
-````bash
+```bash
 log  : Restoring packages for /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/project.json...
 log  : Restoring packages for tool 'Microsoft.DotNet.Watcher.Tools' in /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/project.json...
-log  : Installing Microsoft.DotNet.Watcher.Core 1.0.0-preview2-final.
-log  : Installing Microsoft.DotNet.Watcher.Tools 1.0.0-preview2-final.
-````
+log  : Installing Microsoft.DotNet.Watcher.Core ...
+log  : Installing Microsoft.DotNet.Watcher.Tools ...
+```
 
 ## Running `dotnet` commands using `dotnet watch`
 
@@ -85,7 +88,7 @@ Any `dotnet` command can be run with  `dotnet watch`:  For example:
 
 To run `WebApp` using the watcher, run `dotnet watch run` in the `WebApp` folder. The console output will show messages similar to the ones below, indicating that `dotnet watch` is now watching code files:
 
-````bash
+```bash
 user$ dotnet watch run
 [DotNetWatcher] info: Running dotnet with the following arguments: run
 [DotNetWatcher] info: dotnet process id: 39746
@@ -94,7 +97,7 @@ Hosting environment: Production
 Content root path: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
-````
+```
 
 ## Making changes with `dotnet watch`
 
@@ -108,7 +111,7 @@ Fix the code by replacing `a + b` with `a * b`.
 
 Save the file. The console output will show messages similar to the ones below, indicating that `dotnet watch` detected a file change and restarted the application.
 
-````bash
+```bash
 [DotNetWatcher] info: File changed: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/Controllers/MathController.cs
 [DotNetWatcher] info: Running dotnet with the following arguments: run
 [DotNetWatcher] info: dotnet process id: 39940
@@ -123,7 +126,7 @@ Hosting environment: Production
 Content root path: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
-````
+```
 
 Verify `http://localhost:5000/api/math/product?a=4&b=5` returns the correct result.
 
@@ -137,7 +140,7 @@ The file watcher can run other `dotnet` commands like `test` or `publish`.
 
     If you previously fixed the bug in the `MathController` then you'll see an output similar to the one below, otherwise you'll see a test failure:
     
-    ````bash
+    ```bash
     WebAppTests user$ dotnet watch test
     [DotNetWatcher] info: Running dotnet with the following arguments: test
     [DotNetWatcher] info: dotnet process id: 40193
@@ -153,15 +156,15 @@ The file watcher can run other `dotnet` commands like `test` or `publish`.
     SUMMARY: Total: 1 targets, Passed: 1, Failed: 0.
     [DotNetWatcher] info: dotnet exit code: 0
     [DotNetWatcher] info: Waiting for a file to change before restarting dotnet...
-    ````
+    ```
     
     Once all the tests run, the watcher will indicate that it's waiting for a file to change before restarting `dotnet test`.
 
 3. Open the controller file in *WebApp/Controllers/MathController.cs* and change some code. If you haven't fixed the product bug, do it now. Save the file.
 
-`dotnet watch` will detect the file change and rerun the tests. The console output will show messages similar to the one below:
+`dotnet watch` detects the file change and reruns the tests. The console output will show messages similar to the one below:
 
-````bash
+```bash
 [DotNetWatcher] info: File changed: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/Controllers/MathController.cs
 [DotNetWatcher] info: Running dotnet with the following arguments: test
 [DotNetWatcher] info: dotnet process id: 40233
@@ -189,4 +192,4 @@ SUMMARY: Total: 1 targets, Passed: 1, Failed: 0.
 [DotNetWatcher] info: dotnet exit code: 0
 
 [DotNetWatcher] info: Waiting for a file to change before restarting dotnet...
-````
+```

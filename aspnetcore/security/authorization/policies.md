@@ -1,11 +1,14 @@
 ---
-title: Custom Policy-Based Authorization
+title: Custom Policy-Based Authorization | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: e422a1b2-dc4a-4bcc-b8d9-7ee62009b6a3
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/policies
 ---
@@ -13,13 +16,13 @@ uid: security/authorization/policies
 
 <a name=security-authorization-policies-based></a>
 
-Underneath the covers the [role authorization](roles.md#security-authorization-role-based.md) and [claims authorization](claims.md#security-authorization-claims-based.md) make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure.
+Underneath the covers the [role authorization](roles.md#security-authorization-role-based) and [claims authorization](claims.md#security-authorization-claims-based) make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure.
 
 An authorization policy is made up of one or more requirements and registered at application startup as part of the Authorization service configuration, in `ConfigureServices` in the *Startup.cs* file.
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddMvc();
@@ -30,7 +33,7 @@ public void ConfigureServices(IServiceCollection services)
                           policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
     }
 });
-````
+```
 
 Here you can see an "Over21" policy is created with a single requirement, that of a minimum age, which is passed as a parameter to the requirement.
 
@@ -38,7 +41,7 @@ Policies are applied using the `Authorize` attribute by specifying the policy na
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 [Authorize(Policy="Over21")]
 public class AlcoholPurchaseRequirementsController : Controller
 {
@@ -50,7 +53,7 @@ public class AlcoholPurchaseRequirementsController : Controller
     {
     }
 }
-````
+```
 
 ## Requirements
 
@@ -58,7 +61,7 @@ An authorization requirement is a collection of data parameters that a policy ca
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 public class MinimumAgeRequirement : IAuthorizationRequirement
 {
     public MinimumAgeRequirement(int age)
@@ -68,7 +71,7 @@ public class MinimumAgeRequirement : IAuthorizationRequirement
 
     protected int MinimumAge { get; set; }
 }
-````
+```
 
 A requirement doesn't need to have data or properties.
 
@@ -76,7 +79,7 @@ A requirement doesn't need to have data or properties.
 
 ## Authorization Handlers
 
-An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided `AuthorizationContext` to decide if authorization is allowed. A requirement can have [multiple handlers](xref:security/authorization/policies#security-authorization-policies-based-multiple-handlers). Handlers must inherit `AuthorizationHandler<T>` where T is the requirement it handles.
+An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided `AuthorizationHandlerContext` to decide if authorization is allowed. A requirement can have [multiple handlers](policies.md#security-authorization-policies-based-multiple-handlers). Handlers must inherit `AuthorizationHandler<T>` where T is the requirement it handles.
 
 <a name=security-authorization-handler-example></a>
 
@@ -84,10 +87,10 @@ The minimum age handler might look like this:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
 {
-    protected override Task HandleRequirementAsync(AuthorizationContext context, MinimumAgeRequirement requirement)
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumAgeRequirement requirement)
     {
         if (!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth &&
                                    c.Issuer == "http://contoso.com"))
@@ -112,7 +115,7 @@ public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
         return Task.CompletedTask;
     }
 }
-````
+```
 
 In the code above we first look to see if the current user principal has a date of birth claim which has been issued by an Issuer we know and trust. If the claim is missing we can't authorize so we return. If we have a claim, we figure out how old the user is, and if they meet the minimum age passed in by the requirement then authorization has been successful. Once authorization is successful we call `context.Succeed()` passing in the requirement that has been successful as a parameter.
 
@@ -122,7 +125,7 @@ Handlers must be registered in the services collection during configuration, for
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 
 public void ConfigureServices(IServiceCollection services)
 {
@@ -136,13 +139,13 @@ public void ConfigureServices(IServiceCollection services)
 
     services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
 }
-````
+```
 
 Each handler is added to the services collection by using `services.AddSingleton<IAuthorizationHandler, YourHandlerClass>();` passing in your handler class.
 
 ## What should a handler return?
 
-You can see in our [handler example](xref:security/authorization/policies#security-authorization-handler-example) that the `Handle()` method has no return value, so how do we indicate success or failure?
+You can see in our [handler example](policies.md#security-authorization-handler-example) that the `Handle()` method has no return value, so how do we indicate success or failure?
 
 * A handler indicates success by calling `context.Succeed(IAuthorizationRequirement requirement)`, passing the requirement that has been successfully validated.
 
@@ -160,7 +163,7 @@ In cases where you want evaluation to be on an **OR** basis you implement multip
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 public class EnterBuildingRequirement : IAuthorizationRequirement
 {
 }
@@ -191,7 +194,7 @@ public class HasTemporaryStickerHandler : AuthorizationHandler<EnterBuildingRequ
         return Task.CompletedTask;
     }
 }
-````
+```
 
 Now, assuming both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration) when a policy evaluates the `EnterBuildingRequirement` if either handler succeeds the policy evaluation will succeed.
 
@@ -203,7 +206,7 @@ For example the previous `BadgeEntryHandler` could be rewritten as follows;
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 services.AddAuthorization(options =>
     {
         options.AddPolicy("BadgeEntry",
@@ -215,7 +218,7 @@ services.AddAuthorization(options =>
                           }));
     }
  }
-````
+```
 
 ## Accessing MVC Request Context In Handlers
 
@@ -227,11 +230,11 @@ The use of the `Resource` property is framework specific. Using information in t
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 var mvcContext = context.Resource as Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext;
 
 if (mvcContext != null)
 {
     // Examine MVC specific things like routing data.
 }
-````
+```

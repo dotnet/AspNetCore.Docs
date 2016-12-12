@@ -1,11 +1,16 @@
 ﻿---
-title: Publish to a Linux Production Environment
+title: Publish to a Linux Production Environment | Microsoft Docs
+description: Describes how to setup nginx as a reverse proxy on Ubuntu 14.04 to forward HTTP traffic to an ASP.NET Core web application running on Kestrel. 
+keywords: ASP.NET, .NET, Linux, nginx, Ubuntu, Reverse Proxy
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 1c33e576-33de-481a-8ad3-896b94fde0e3
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/linuxproduction
 ---
@@ -44,20 +49,33 @@ Kestrel is great for serving dynamic content from ASP.NET, however the web servi
 
 For the purposes of this guide, we are going to use a single instance of Nginx that runs on the same server alongside your HTTP server. However, based on your requirements you may choose a different setup.
 
+When setting up a reverse-proxy server other than IIS, you must call `app.UseIdentity` (in `Configure`) before any other external providers.
+
+Because requests are forwarded by reverse-proxy, use `ForwardedHeaders` middleware (from `Microsoft.AspNetCore.HttpOverrides` package) in order to set the  redirect URI with the `X-Forwarded-For` and `X-Forwarded-Proto` headers instead of `Request.Scheme` and `Request.Host`."
+
+Add `UseForwardedHeaders` to `Configure` before calling `app.UseFacebookAuthentication` or similar:
+
+```csharp
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+```
+
 ### Install Nginx
 
-````bash
+```
 sudo apt-get install nginx
-   ````
+```
 
 > [!NOTE]
 > If you plan to install optional Nginx modules you may be required to build Nginx from source.
 
 We are going to `apt-get` to install Nginx. The installer also creates a System V init script that runs Nginx as daemon on system startup. Since we just installed Nginx for the first time, we can explicitly start it by running
 
-````bash
+```bash
 sudo service nginx start
-   ````
+```
 
 At this point you should be able to navigate to your browser and see the default landing page for Nginx.
 
@@ -67,7 +85,7 @@ We will now configure Nginx as a reverse proxy to forward requests to our ASP.NE
 
 We will be modifying the `/etc/nginx/sites-available/default`, so open it up in your favorite text editor and replace the contents with the following.
 
-````nginx
+```nginx
 server {
     listen 80;
     location / {
@@ -79,7 +97,7 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 }
-````
+```
 
 This is one of the simplest configuration files for Nginx that forwards incoming public traffic on your port `80` to a port `5000` that your web application will listen on.
 
@@ -101,10 +119,10 @@ An example service file for our application.
 
 ```text
 [Unit]
-    Description=Example .NET Web API Application running on CentOS 7
+    Description=Example .NET Web API Application running on Ubuntu
 
     [Service]
-    ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
+    ExecStart=/usr/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
     Restart=always
     RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes
     SyslogIdentifier=dotnet-example
@@ -115,7 +133,8 @@ An example service file for our application.
     WantedBy=multi-user.target
 ```
 
->note **User** If *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
+> [!NOTE]
+> **User** -- If the user *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
 
 Save the file and enable the service.
 
@@ -172,13 +191,13 @@ Linux Security Modules (LSM) is a framework that is part of the Linux kernel sin
 
 Close off all external ports that are not in use. Uncomplicated firewall (ufw) provides a frontend for `iptables` by providing a command-line interface for configuring the firewall. Verify that `ufw` is configured to allow traffic on any ports you need.
 
-````bash
+```bash
 sudo apt-get install ufw
 sudo ufw enable
 
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
-````
+```
 
 ### Securing Nginx
 
@@ -186,7 +205,7 @@ The default distribution of Nginx doesn't enable SSL. To enable all the security
 
 #### Download the source and install the build dependencies
 
-````bash
+```bash
 # Install the build dependencies
 sudo apt-get update
 sudo apt-get install build-essential zlib1g-dev libpcre3-dev libssl-dev libxslt1-dev libxml2-dev libgd2-xpm-dev libgeoip-dev libgoogle-perftools-dev libperl-dev
@@ -194,16 +213,16 @@ sudo apt-get install build-essential zlib1g-dev libpcre3-dev libssl-dev libxslt1
 # Download nginx 1.10.0 or latest
 wget http://www.nginx.org/download/nginx-1.10.0.tar.gz
 tar zxf nginx-1.10.0.tar.gz
-````
+```
 
 #### Change the Nginx response name
 
 Edit *src/http/ngx_http_header_filter_module.c*
 
-````c
+```c
 static char ngx_http_server_string[] = "Server: Your Web Server" CRLF;
 static char ngx_http_server_full_string[] = "Server: Your Web Server" CRLF;
-````
+```
 
 #### Configure the options and build
 
@@ -211,14 +230,14 @@ The PCRE library is required for regular expressions. Regular expressions are us
 
 Consider using a web application firewall like *ModSecurity* to harden your application.
 
-````bash
+```bash
 ./configure
 --with-pcre=../pcre-8.38
 --with-zlib=../zlib-1.2.8
 --with-http_ssl_module
 --with-stream
 --with-mail=dynamic
-````
+```
 
 #### Configure SSL
 

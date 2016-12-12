@@ -1,11 +1,14 @@
 ---
-title: Dependency Injection
-author: rick-anderson
+title: Dependency Injection | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: fccd69be-7ad1-47fb-b203-b3633b6b9a9b
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/dependency-injection
 ---
@@ -13,7 +16,7 @@ uid: fundamentals/dependency-injection
 
 <a name=fundamentals-dependency-injection></a>
 
-[Steve Smith](http://ardalis.com), [Scott Addie](https://scottaddie.com)
+By [Steve Smith](http://ardalis.com) and [Scott Addie](https://scottaddie.com)
 
 ASP.NET Core is designed from the ground up to support and leverage dependency injection. ASP.NET Core applications can leverage built-in framework services by having them injected into methods in the Startup class, and application services can be configured for injection as well. The default services container provided by ASP.NET Core provides a minimal feature set and is not intended to replace other containers.
 
@@ -23,7 +26,7 @@ ASP.NET Core is designed from the ground up to support and leverage dependency i
 
 Dependency injection (DI) is a technique for achieving loose coupling between objects and their collaborators, or dependencies. Rather than directly instantiating collaborators, or using static references, the objects a class needs in order to perform its actions are provided to the class in some fashion. Most often, classes will declare their dependencies via their constructor, allowing them to follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/). This approach is known as "constructor injection".
 
-When classes are designed with DI in mind, they are more loosely coupled because they do not have direct, hard-coded dependencies on their collaborators. This follows the [Dependency Inversion Principle](http://deviq.com/dependency-inversion-principle/), which states that *"high level modules should not depend on low level modules; both should depend on abstractions."* Instead of referencing specific implementations, classes, request abstractions (typically `interfaces`) which are provided to them when they are constructed. Extracting dependencies into interfaces and providing implementations of these interfaces as parameters is also an example of the [Strategy design pattern](http://deviq.com/strategy-design-pattern/).
+When classes are designed with DI in mind, they are more loosely coupled because they do not have direct, hard-coded dependencies on their collaborators. This follows the [Dependency Inversion Principle](http://deviq.com/dependency-inversion-principle/), which states that *"high level modules should not depend on low level modules; both should depend on abstractions."* Instead of referencing specific implementations, classes request abstractions (typically `interfaces`) which are provided to them when the class is constructed. Extracting dependencies into interfaces and providing implementations of these interfaces as parameters is also an example of the [Strategy design pattern](http://deviq.com/strategy-design-pattern/).
 
 When a system is designed to use DI, with many classes requesting their dependencies via their constructor (or properties), it's helpful to have a class dedicated to creating these classes with their associated dependencies. These classes are referred to as *containers*, or more specifically, [Inversion of Control (IoC)](http://deviq.com/inversion-of-control/) containers or Dependency Injection (DI) containers. A container is essentially a factory that is responsible for providing instances of types that are requested from it. If a given type has declared that it has dependencies, and the container has been configured to provide the dependency types, it will create the dependencies as part of creating the requested instance. In this way, complex dependency graphs can be provided to classes without the need for any hard-coded object construction. In addition to creating objects with their dependencies, containers typically manage object lifetimes within the application.
 
@@ -41,12 +44,10 @@ The `ConfigureServices` method in the `Startup` class is responsible for definin
 
 [!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=5,8,12&range=39-56)]
 
-The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add**Service**extension method to register all of the services required by that feature.
+The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add*ServiceName* extension method to register all of the services required by that feature.
 
 >[!TIP]
 > You can request certain framework-provided services within `Startup` methods through their parameter lists - see [Application Startup](startup.md) for more details.
-
-Of course, in addition to configuring the application to take advantage of various framework features, you can also use `ConfigureServices` to configure your own application services.
 
 ## Registering Your Own Services
 
@@ -55,7 +56,7 @@ You can register your own application services as follows. The first generic typ
 [!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?range=53-54)]
 
 > [!NOTE]
-> Each `services.Add<service>` call adds (and potentially configures) services. For example, `services.AddMvc()` adds the services MVC requires.
+> Each `services.Add<ServiceName>` extension method adds (and potentially configures) services. For example, `services.AddMvc()` adds the services MVC requires. It's recommended that you follow this convention, placing extension methods in the `Microsoft.Extensions.DependencyInjection` namespace, to encapsulate groups of service registrations.
 
 The `AddTransient` method is used to map abstract types to concrete services that are instantiated separately for every object that requires it. This is known as the service's *lifetime*, and additional lifetime options are described below. It is important to choose an appropriate lifetime for each of the services you register. Should a new instance of the service be provided to each class that requests it? Should one instance be used throughout a given web request? Or should a single instance be used for the lifetime of the application?
 
@@ -63,7 +64,7 @@ In the sample for this article, there is a simple controller that displays chara
 
 [!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Controllers/CharactersController.cs?highlight=3,5,6,7,8,14,21,23,24,25,26&range=8-36)]
 
-The `ICharacterRepository` simply defines the two methods the controller needs to work with `Character` instances.
+The `ICharacterRepository` defines the two methods the controller needs to work with `Character` instances.
 
 [!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Interfaces/ICharacterRepository.cs?highlight=8,9)]
 
@@ -81,12 +82,16 @@ Note that `CharacterRepository` requests an `ApplicationDbContext` in its constr
 
 In this case, both `ICharacterRepository` and in turn `ApplicationDbContext` must be registered with the services container in `ConfigureServices` in `Startup`. `ApplicationDbContext` is configured with the call to the extension method `AddDbContext<T>`. The following code shows the registration of the `CharacterRepository` type.
 
-[!code-csharp[Main](dependency-injection/sample/DependencyInjectionSample/Startup.cs?highlight=2,3,4,10&range=17-33)]
+[!code-csharp[Main](dependency-injection/sample/DependencyInjectionSample/Startup.cs?highlight=3-5,11&range=16-32)]
 
 Entity Framework contexts should be added to the services container using the `Scoped` lifetime. This is taken care of automatically if you use the helper methods as shown above. Repositories that will make use of Entity Framework should use the same lifetime.
 
 >[!WARNING]
 > The main danger to be wary of is resolving a `Scoped` service from a singleton. It's likely in such a case that the service will have incorrect state when processing subsequent requests.
+
+Services that have dependencies should register them in the container. If a service's constructor requires a primitive, such as a `string`, this can be injected by using the [options pattern and configuration](configuration.md).
+
+<a name=service-lifetimes-and-registration-options></a>
 
 ## Service Lifetimes and Registration Options
 
@@ -116,7 +121,7 @@ Next, in `ConfigureServices`, each type is added to the container according to i
 
 [!code-csharp[Main](dependency-injection/sample/DependencyInjectionSample/Startup.cs?range=26-32)]
 
-Note that the `IOperationSingletonInstance` service is using a specific instance with a known ID of `Guid.Empty` so it will be clear when this type is in use. We have also registered an `OperationService` that depends on each of the other `Operation` types, so that it will be clear within a request whether this service is getting the same instance as the controller, or a new one, for each operation type. All this service does is expose its dependencies as properties, so they can be displayed in the view.
+Note that the `IOperationSingletonInstance` service is using a specific instance with a known ID of `Guid.Empty` so it will be clear when this type is in use (its Guid will be all zeroes). We have also registered an `OperationService` that depends on each of the other `Operation` types, so that it will be clear within a request whether this service is getting the same instance as the controller, or a new one, for each operation type. All this service does is expose its dependencies as properties, so they can be displayed in the view.
 
 [!code-csharp[Main](dependency-injection/sample/DependencyInjectionSample/Services/OperationService.cs)]
 
@@ -130,7 +135,7 @@ Now two separate requests are made to this controller action:
 
 ![image](dependency-injection/_static/lifetimes_request2.png)
 
-Observe which of the `OperationId` values varies within a request, and between requests.
+Observe which of the `OperationId` values vary within a request, and between requests.
 
 * *Transient* objects are always different; a new instance is provided to every controller and every service.
 
@@ -163,50 +168,50 @@ With regards to data access specifically, you can inject the `DbContext` into yo
 
 ## Replacing the default services container
 
-The built-in services container is meant to serve the basic needs of the framework and most consumer applications built on it. However, developers who wish to replace the built-in container with their preferred container can easily do so. The `ConfigureServices` method typically returns `void`, but if its signature is changed to return `IServiceProvider`, a different container can be configured and returned. There are many IOC containers available for .NET. In this example, the [Autofac](http://autofac.org/) package is used.
+The built-in services container is meant to serve the basic needs of the framework and most consumer applications built on it. However, developers can replace the built-in container with their preferred container. The `ConfigureServices` method typically returns `void`, but if its signature is changed to return `IServiceProvider`, a different container can be configured and returned. There are many IOC containers available for .NET. In this example, the [Autofac](http://autofac.org/) package is used.
 
 First, add the appropriate container package(s) to the dependencies property in `project.json`:
 
-````javascript
+```javascript
 "dependencies" : {
      "Autofac": "4.0.0",
      "Autofac.Extensions.DependencyInjection": "4.0.0"
    },
-   ````
+   ```
 
 Next, configure the container in `ConfigureServices` and return an `IServiceProvider`:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [1, 11]}} -->
 
-````csharp
+```csharp
 public IServiceProvider ConfigureServices(IServiceCollection services)
-   {
-     services.AddMvc();
-     // add other framework services
+{
+  services.AddMvc();
+  // add other framework services
 
-     // Add Autofac
-     var containerBuilder = new ContainerBuilder();
-     containerBuilder.RegisterModule<DefaultModule>();
-     containerBuilder.Populate(services);
-     var container = containerBuilder.Build();
-     return new AutofacServiceProvider(container);
-   }
-   ````
+  // Add Autofac
+  var containerBuilder = new ContainerBuilder();
+  containerBuilder.RegisterModule<DefaultModule>();
+  containerBuilder.Populate(services);
+  var container = containerBuilder.Build();
+  return new AutofacServiceProvider(container);
+}
+```
 
 > [!NOTE]
 > When using a third-party DI container, you must change `ConfigureServices` so that it returns `IServiceProvider` instead of `void`.
 
 Finally, configure Autofac as normal in `DefaultModule`:
 
-````csharp
+```csharp
 public class DefaultModule : Module
-   {
-     protected override void Load(ContainerBuilder builder)
-     {
-       builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
-     }
-   }
-   ````
+{
+  protected override void Load(ContainerBuilder builder)
+  {
+    builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
+  }
+}
+```
 
 At runtime, Autofac will be used to resolve types and inject dependencies. [Learn more about using Autofac and ASP.NET Core](http://docs.autofac.org/en/latest/integration/aspnetcore.html).
 

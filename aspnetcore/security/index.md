@@ -1,18 +1,21 @@
 ---
-title: Security
+title: Security | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a8fb7eb7-e0e5-4394-84f3-1f1dbe012345
+ms.technology: aspnet
 ms.prod: aspnet-core
 ---
 # Security
 
 *   [Authentication](authentication/index.md)
     *   [Introduction to Identity](authentication/identity.md)
-    *   [Enabling authentication using Facebook, Google and other external providers](authentication/sociallogins.md)
+    *   [Enabling authentication using Facebook, Google and other external providers](authentication/social/index.md)
     *   [Account Confirmation and Password Recovery](authentication/accconfirm.md)
     *   [Two-factor authentication with SMS](authentication/2fa.md)
     *   [🔧 Supporting Third Party Clients using OAuth 2.0](authentication/oauth2.md)

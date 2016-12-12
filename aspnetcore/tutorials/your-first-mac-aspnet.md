@@ -1,17 +1,20 @@
 ---
-title: Your First ASP.NET Core Application on a Mac Using Visual Studio Code
-author: rick-anderson
+title: Your First ASP.NET Core Application on a Mac Using Visual Studio Code | Microsoft Docs
+author: ardalis
+description: This article will walk you through creating your first web application on a Mac using the Yeoman generator for ASP.NET Core and Visual Studio Code
+keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: dcc08e09-e73e-4feb-84ce-8219b7e544ef
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/your-first-mac-aspnet
 ---
 # Your First ASP.NET Core Application on a Mac Using Visual Studio Code
 
-By [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Shayne Boyer](https://twitter.com/spboyer)
+By [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shayne Boyer](https://twitter.com/spboyer)
 
 This article will show you how to write your first ASP.NET Core application on a Mac.
 
@@ -25,15 +28,15 @@ We will be using `yo aspnet` to generate the **Web Application Basic** template,
 
 Install the necessary yeoman generators and bower using npm.
 
-````console
+```console
 npm install -g yo generator-aspnet bower
-   ````
+   ```
 
 Run the ASP.NET Core generator
 
-````console
+```console
 yo aspnet
-   ````
+   ```
 
 * Select **Web Application Basic [without Membership and Authorization]** and tap Enter
 
@@ -43,13 +46,13 @@ yo aspnet
 
 When the generator completes scaffolding the files, it will instruct you to restore, build, and run the application.
 
-````console
+```console
 Your project is now created, you can use the following commands to get going
        cd "MyFirstApp"
        dotnet restore
        dotnet build (optional, build will also happen with it's run)
        dotnet run
-   ````
+   ```
 
 ## Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 
@@ -61,7 +64,7 @@ Your project is now created, you can use the following commands to get going
 
 When the application is opened, Visual Studio Code will prompt to restore the needed project dependencies as well as add build and debug dependencies.
 
-![image](your-first-mac-aspnet/_static/dependencies-restore.png)
+![VSCVisual Studio Code prompt to restore the needed project dependencies and add build and debug dependencies](your-first-mac-aspnet/_static/dependencies-restore.png)
 
 Tap "Yes" to add the build and debug assets.
 
@@ -71,20 +74,16 @@ Tap "Restore" to restore the project dependencies. Alternately, you can enter `�
 
 ![image](your-first-mac-aspnet/_static/dot-restore.png)
 
-You can run commands directly from within Visual Studio Code, including `dotnet restore` and any tools referenced in the *project.json* file, as well as custom tasks defined in *.vscode/tasks.json*. Visual Studio Code also includes an integrated console `⌃`` where you can execute these commands without leaving the editor.
+You can run commands directly from within Visual Studio Code, including `dotnet restore` and any tools referenced in the *project.json* file, as well as custom tasks defined in *.vscode/tasks.json*. Visual Studio Code also includes an integrated console `⌃` where you can execute these commands without leaving the editor.
 
 If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive.
 
 In the left navigation bar, there are five icons, representing four viewlets:
 
 * Explore
-
 * Search
-
 * Git
-
 * Debug
-
 * Extensions
 
 The Explorer viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
@@ -103,7 +102,7 @@ More on editor in [Visual Studio Code](https://code.visualstudio.com).
 
 ## Running Locally Using Kestrel
 
-The sample is configured to use [Kestrel](../fundamentals/servers.md#kestrel) for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency.
+The sample is configured to use [Kestrel](../fundamentals/servers/kestrel.md) for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency.
 
   `"Microsoft.AspNetCore.Server.Kestrel":`
 
@@ -184,7 +183,5 @@ Looking at the Deployment Details in the Azure Portal, you can see the logs and 
 ## Additional Resources
 
 * [Visual Studio Code](https://code.visualstudio.com)
-
 * [Building Projects with Yeoman](../client-side/yeoman.md)
-
 * [Fundamentals](../fundamentals/index.md)

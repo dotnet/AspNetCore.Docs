@@ -1,11 +1,14 @@
 ---
-title: Working with Static Files
+title: Working with Static Files | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: e32245c7-4eee-4831-bd2e-915dbf9f5f70
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/static-files
 ---
@@ -21,16 +24,16 @@ Static files, such as HTML, CSS, image, and JavaScript, are assets that an ASP.N
 
 ## Serving static files
 
-Static files are typically located in the `web root` (*<content-root>/wwwroot*) folder. See Content root and Web root in  [Introduction to ASP.NET Core](../intro.md) for more information. You generally set the content root to be the current directory so that your project's `web root` will be found while in development.
+Static files are typically located in the `web root` (*\<content-root>/wwwroot*) folder. See Content root and Web root in  [Introduction to ASP.NET Core](../index.md) for more information. You generally set the content root to be the current directory so that your project's `web root` will be found while in development.
 
 [!code-csharp[Main](../common/samples/WebApplication1/Program.cs?highlight=5&start=12&end=22)]
 
 Static files can be stored in any folder under the `web root` and accessed with a relative path to that root. For example, when you create a default Web application project using Visual Studio, there are several folders created within the *wwwroot*  folder - *css*, *images*, and *js*. The URI to access an image in the *images* subfolder:
 
-* `http://\<app>/images/\<imageFileName>`
+* `http://<app>/images/<imageFileName>`
 * `http://localhost:9189/images/banner3.svg`
 
-In order for static files to be served, you must configure the [Middleware](middleware.md) to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the [UseStaticFiles](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/StaticFileExtensions/index.html#Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles) extension method from `Startup.Configure`:
+In order for static files to be served, you must configure the [Middleware](middleware.md) to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the `UseStaticFiles` extension method from `Startup.Configure`:
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupStaticFiles.cs?highlight=3&name=snippet1)]
 
@@ -39,21 +42,16 @@ In order for static files to be served, you must configure the [Middleware](midd
 You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
 
 > [!NOTE]
-> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with [`UseWebRoot`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/HostingAbstractionsWebHostBuilderExtensions/index.html#Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot). See [Introduction to ASP.NET Core](../intro.md) for more information.
+> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with `UseWebRoot`. See [Introduction to ASP.NET Core](../index.md) for more information.
 
 Suppose you have a project hierarchy where the static files you wish to serve are outside the `web root`. For example:
 
-   * wwwroot
-
-     * css
-
-     * images
-
-     * ...
-
-   * MyStaticFiles
-
-     * test.png
+* wwwroot
+  * css
+  * images
+  * ...
+* MyStaticFiles
+  * test.png
 
 For a request to access *test.png*, configure the static files middleware as follows:
 
@@ -67,25 +65,25 @@ The static file module provides **no** authorization checks. Any files served by
 
 * Store them outside of *wwwroot* and any directory accessible to the static file middleware **and**
 
-* Serve them through a controller action, returning a [`FileResult`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/FileResult/index.html#Microsoft.AspNetCore.Mvc.FileResult) where authorization is applied
+* Serve them through a controller action, returning a `FileResult` where authorization is applied
 
 ## Enabling directory browsing
 
-Directory browsing allows the user of your web app to see a list of directories and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). To enable directory browsing, call the [UseDirectoryBrowser](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/DirectoryBrowserExtensions/index.html#Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser) extension method from  `Startup.Configure`:
+Directory browsing allows the user of your web app to see a list of directories and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). To enable directory browsing, call the `UseDirectoryBrowser` extension method from  `Startup.Configure`:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet1)]
 
-And add required services by calling [`AddDirectoryBrowser`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/DirectoryBrowserServiceExtensions/index.html#Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser) extension method from  `Startup.ConfigureServices`:
+And add required services by calling `AddDirectoryBrowser` extension method from `Startup.ConfigureServices`:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet2)]
 
-The code above allows directory browsing of the *wwwroot/images* folder using the URL http://<app>/MyImages, with links to each file and folder:
+The code above allows directory browsing of the *wwwroot/images* folder using the URL http://\<app>/MyImages, with links to each file and folder:
 
 ![image](static-files/_static/dir-browse.png)
 
 See [Considerations](#considerations) on the security risks when enabling browsing.
 
-Note the two `app.UseStaticFiles` calls. The first one is required to serve the CSS, images and JavaScript in the *wwwroot* folder, and the second call for directory browsing of the *wwwroot/images* folder using the URL http://<app>/MyImages:
+Note the two `app.UseStaticFiles` calls. The first one is required to serve the CSS, images and JavaScript in the *wwwroot* folder, and the second call for directory browsing of the *wwwroot/images* folder using the URL http://\<app>/MyImages:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?highlight=3,5&name=snippet1)]
 
@@ -96,17 +94,14 @@ Setting a default home page gives site visitors a place to start when visiting y
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupEmpty.cs?highlight=3&name=snippet1)]
 
 > [!NOTE]
-> [`UseDefaultFiles`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/DefaultFilesExtensions/index.html#Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles) must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL re-writer that doesn't actually serve the file. You must enable the static file middleware (`UseStaticFiles`) to serve the file.
+> `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL re-writer that doesn't actually serve the file. You must enable the static file middleware (`UseStaticFiles`) to serve the file.
 
-With [`UseDefaultFiles`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/DefaultFilesExtensions/index.html#Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles), requests to a folder will search for:
+With `UseDefaultFiles`, requests to a folder will search for:
 
-   * default.htm
-
-   * default.html
-
-   * index.htm
-
-   * index.html
+* default.htm
+* default.html
+* index.htm
+* index.html
 
 The first file found from the list will be served as if the request was the fully qualified URI (although the browser URL will continue to show the URI requested).
 
@@ -116,21 +111,21 @@ The following code shows how to change the default file name to *mydefault.html*
 
 ## UseFileServer
 
-[`UseFileServer`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/FileServerExtensions/index.html#Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer) combines the functionality of [`UseStaticFiles`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/StaticFileExtensions/index.html#Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles), [`UseDefaultFiles`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/DefaultFilesExtensions/index.html#Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles), and [`UseDirectoryBrowser`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/DirectoryBrowserExtensions/index.html#Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser).
+`UseFileServer` combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`.
 
 The following code enables static files and the default file to be served, but does not allow directory browsing:
 
-````csharp
+```csharp
 app.UseFileServer();
-   ````
+   ```
 
 The following code enables static files, default files and  directory browsing:
 
-````csharp
+```csharp
 app.UseFileServer(enableDirectoryBrowsing: true);
-   ````
+   ```
 
-See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the `web root`, you instantiate and configure an [FileServerOptions](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/FileServerOptions/index.html#Microsoft.AspNetCore.Builder.FileServerOptions) object that you pass as a parameter to `UseFileServer`. For example, given the following directory hierarchy in your Web app:
+See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the `web root`, you instantiate and configure an `FileServerOptions` object that you pass as a parameter to `UseFileServer`. For example, given the following directory hierarchy in your Web app:
 
 * wwwroot
 
@@ -146,11 +141,11 @@ See [Considerations](#considerations) on the security risks when enabling browsi
 
   * default.html
 
-Using the hierarchy example above, you might want to enable static files, default files, and browsing for the `MyStaticFiles` directory. In the following code snippet, that is accomplished with a single call to [`FileServerOptions`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/FileServerOptions/index.html#Microsoft.AspNetCore.Builder.FileServerOptions).
+Using the hierarchy example above, you might want to enable static files, default files, and browsing for the `MyStaticFiles` directory. In the following code snippet, that is accomplished with a single call to `FileServerOptions`.
 
 [!code-csharp[Main](static-files/sample/StartupUseFileServer.cs?highlight=5,6,7,8,9,10,11&name=snippet1)]
 
-If `enableDirectoryBrowsing` is set to `true` you are required to call [`AddDirectoryBrowser`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/DirectoryBrowserServiceExtensions/index.html#Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser) extension method from  `Startup.ConfigureServices`:
+If `enableDirectoryBrowsing` is set to `true` you are required to call `AddDirectoryBrowser` extension method from  `Startup.ConfigureServices`:
 
 [!code-csharp[Main](static-files/sample/StartupUseFileServer.cs?name=snippet2)]
 
@@ -161,16 +156,16 @@ Using the file hierarchy and code above:
 | `http://<app>/StaticFiles/test.png`    |      MyStaticFiles/test.png |
 | `http://<app>/StaticFiles`              |     MyStaticFiles/default.html |
 
-If no default named files are in the *MyStaticFiles* directory, http://<app>/StaticFiles returns the directory listing with clickable links:
+If no default named files are in the *MyStaticFiles* directory, http://\<app>/StaticFiles returns the directory listing with clickable links:
 
 ![image](static-files/_static/db2.PNG)
 
 > [!NOTE]
-> `UseDefaultFiles` and `UseDirectoryBrowser` will take the url http://<app>/StaticFiles without the trailing slash and cause a client side redirect to http://<app>/StaticFiles/ (adding the trailing slash). Without the trailing slash relative URLs within the documents would be incorrect.
+> `UseDefaultFiles` and `UseDirectoryBrowser` will take the url http://\<app>/StaticFiles without the trailing slash and cause a client side redirect to http://\<app>/StaticFiles/ (adding the trailing slash). Without the trailing slash relative URLs within the documents would be incorrect.
 
 ### FileExtensionContentTypeProvider
 
-The [`FileExtensionContentTypeProvider`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/StaticFiles/FileExtensionContentTypeProvider/index.html#Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider) class contains a  collection that maps file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types, the ".rtf" is replaced, and ".mp4" is removed.
+The `FileExtensionContentTypeProvider` class contains a  collection that maps file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types, the ".rtf" is replaced, and ".mp4" is removed.
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupFileExtensionContentTypeProvider.cs?highlight=3,4,5,6,7,8,9,10,11,12,19&name=snippet1)]
 
@@ -187,12 +182,12 @@ The following code enables serving unknown types and will render the unknown fil
 With the code above, a request for a file with an unknown content type will be returned as an image.
 
 >[!WARNING]
-> Enabling [`ServeUnknownFileTypes`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/StaticFileOptions/index.html#Microsoft.AspNetCore.Builder.StaticFileOptions.ServeUnknownFileTypes) is a security risk and using it is discouraged.  [`FileExtensionContentTypeProvider`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/StaticFiles/FileExtensionContentTypeProvider/index.html#Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider)  (explained below) provides a safer alternative to serving files with non-standard extensions.
+> Enabling `ServeUnknownFileTypes` is a security risk and using it is discouraged.  `FileExtensionContentTypeProvider`  (explained below) provides a safer alternative to serving files with non-standard extensions.
 
 ### Considerations
 
 >[!WARNING]
-> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. We recommend that you **not** enable directory browsing in production. Be careful about which directories you enable with `UseStaticFiles` or `UseDirectoryBrowser` as the entire directory and all sub-directories will be accessible. We recommend keeping public content in its own directory such as *<content root>/wwwroot*, away from application views, configuration files, etc.
+> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. We recommend that you **not** enable directory browsing in production. Be careful about which directories you enable with `UseStaticFiles` or `UseDirectoryBrowser` as the entire directory and all sub-directories will be accessible. We recommend keeping public content in its own directory such as *\<content root>/wwwroot*, away from application views, configuration files, etc.
 
 * The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of their underlying file system. For example, Windows is case insensitive, but Mac and Linux are not.
 
@@ -215,4 +210,4 @@ With the code above, a request for a file with an unknown content type will be r
 
 * [Middleware](middleware.md)
 
-* [Introduction to ASP.NET Core](../intro.md)
+* [Introduction to ASP.NET Core](../index.md)

@@ -1,11 +1,14 @@
 ---
-title: Account Confirmation and Password Recovery
+title: Account Confirmation and Password Recovery | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d794500b-86f7-4229-a237-e0dd00e2dc08
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/accconfirm
 ---
@@ -63,12 +66,12 @@ In this section we'll set up our Visual Studio project to use SSL and our projec
 
 * Add the following code to `ConfigureServices` in `Startup`:
 
-````csharp
+```csharp
 services.Configure<MvcOptions>(options =>
 {
     options.Filters.Add(new RequireHttpsAttribute ());
 });
-````
+```
 
 Add the `[RequireHttps]` attribute to each controller. The `[RequireHttps]` attribute will redirect all HTTP GET requests to HTTPS GET and will reject all HTTP POSTs. A security best practice is to use HTTPS for all requests.
 
@@ -76,9 +79,13 @@ Add the `[RequireHttps]` attribute to each controller. The `[RequireHttps]` attr
 
 ## Require email confirmation
 
-It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "bob@example.com" from registering as "joe@contoso.com". Without email confirmation, "joe@contoso.com" could get unwanted email from your app. Suppose Bob accidentally registered as  "bib@example.com" and hadn't noticed it, he wouldn't be able to use password recovery because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
+It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "yli@example.com" from registering as "nolivetto@contoso.com." Without email confirmation, "nolivetto@contoso.com" could get unwanted email from your app. Suppose the user accidentally registered as "ylo@example.com" and hadn't noticed the misspelling of "yli," they wouldn't be able to use password recovery because the app doesn't have their correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
 
-You generally want to prevent new users from posting any data to your web site before they have been confirmed by email, an SMS text message, or another mechanism. In the sections below, we will enable email confirmation and modify the code to prevent newly registered  users from logging in until their email has been confirmed.
+You generally want to prevent new users from posting any data to your web site before they have a confirmed email. In the sections below, we will enable email confirmation and modify the code to prevent newly registered users from logging in until their email has been confirmed.
+
+Update `ConfigureServices` to require a confirmed email:
+
+[!code-csharp[Main](accconfirm/sample/WebApplication3/src/WebApplication3/Startup.cs?highlight=11&name=snippet1)]
 
 ### Configure email provider
 
@@ -90,10 +97,10 @@ We'll use the [Options pattern](../../fundamentals/configuration.md#options-conf
 
 Set the `SendGridUser` and `SendGridKey` with the [secret-manager tool](../app-secrets.md). For example:
 
-````none
+```none
 C:\WebApplication3\src\WebApplication3>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
-````
+```
 
 On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the %APPDATA%/Microsoft/UserSecrets/<**userSecretsId**> directory. The **userSecretsId** directory can be found in your *project.json* file. For this example, the first few lines of the *project.json* file are shown below:
 
@@ -101,18 +108,18 @@ On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file
 
 At this time, the contents of the *secrets.json* file are not encrypted. The *secrets.json* file is shown below (the sensitive keys have been removed.)
 
-````json
+```json
 {
   "SendGridUser": "RickAndMSFT",
   "SendGridKey": "",
   "Authentication:Facebook:AppId": "",
   "Authentication:Facebook:AppSecret": ""
 }
-````
+```
 
 ### Configure startup to use `AuthMessageSenderOptions`
 
-Add the dependecy `Microsoft.Extensions.Options.ConfigurationExtensions` in the project.json file.
+Add the dependency `Microsoft.Extensions.Options.ConfigurationExtensions` in the project.json file.
 
 Add `AuthMessageSenderOptions` to the service container at the end of the `ConfigureServices` method in the *Startup.cs* file:
 
@@ -148,9 +155,9 @@ The template already has the code for account confirmation and password recovery
 > [!NOTE]
 > We're also preventing a newly registered user from being automatically logged on by commenting out the following line:
 >
-> ````csharp
+> ```csharp
 > //await _signInManager.SignInAsync(user, isPersistent: false);
-> ````
+> ```
 
 *  Enable password recovery by uncommenting the code in the `ForgotPassword` action in the *Controllers/AccountController.cs* file.
 
@@ -203,7 +210,7 @@ With the current templates, once a user completes the registration form, they ar
 
 ## Combine social and local login accounts
 
-To complete this section, you must first enable an external authentication provider. See [Enabling authentication using Facebook, Google and other external providers](sociallogins.md).
+To complete this section, you must first enable an external authentication provider. See [Enabling authentication using Facebook, Google and other external providers](social/index.md).
 
 You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT@gmail.com" is first created as a local login, but you can create the account as a social login first, then add a local login.
 

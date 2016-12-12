@@ -1,17 +1,18 @@
 ---
-title: Create, Read, Update, and Delete operations
+title: Create, Read, Update, and Delete - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 6e1cd570-40f1-4b24-8b6e-7d2d27758f18
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/crud
 ---
-# Create, Read, Update, and Delete operations
-
-By [Tom Dykstra](https://github.com/tdykstra)
+# Create, Read, Update, and Delete - EF Core with ASP.NET Core MVC tutorial
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -51,27 +52,27 @@ The key value that is passed to the `Details` method comes from *route data*. Ro
 
 In the following URL, the default route maps Instructor as the controller, Index as the action, and 1 as the id; these are route data values.
 
-````none
+```
 http://localhost:1230/Instructor/Index/1?courseID=2021
-````
+```
 
 The last part of the URL ("?courseID=2021") is a query string value. The model binder will also pass the ID value to the `Details` method `id` parameter if you pass it as a query string value:
 
-````none
+```
 http://localhost:1230/Instructor/Index?id=1&CourseID=2021
-````
+```
 
 In the Index page, hyperlink URLs are created by tag helper statements in the Razor view. In the following Razor code, the id parameter matches the default route, so `id` is added to the route data.
 
-````html
+```html
 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
-````
+```
 
 In the following Razor code, `studentID` doesn't match a parameter in the default route, so it's added as a query string.
 
-````html
+```html
 <a asp-action="Edit" asp-route-studentID="@item.ID">Edit</a>
-````
+```
 
 ### Add enrollments to the Details view
 
@@ -109,7 +110,7 @@ The `ValidateAntiForgeryToken` attribute helps prevent cross-site request forger
 
 The `Bind` attribute that the scaffolded code includes on the `Create` method is one way to protect against overposting in create scenarios. For example, suppose the Student entity includes a `Secret` property that you don't want this web page to set.
 
-````csharp
+```csharp
 
 public class Student
 {
@@ -119,7 +120,7 @@ public class Student
     public DateTime EnrollmentDate { get; set; }
     public string Secret { get; set; }
 }
-````
+```
 
 Even if you don't have a `Secret` field on the web page, a hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value. Without the `Bind` attribute limiting the fields that the model binder uses when it creates a Student instance, the model binder would pick up that `Secret` form value and use it to create the Student entity instance. Then whatever value the hacker specified for the `Secret` form field would be updated in your database. The following image shows the Fiddler tool adding the `Secret` field (with the value "OverPost") to the posted form values.
 
@@ -266,7 +267,7 @@ In *Startup.cs* you call the [AddDbContext extension method](https://github.com/
 
 ## Handling Transactions
 
-By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](http://ef.readthedocs.io/en/latest/saving/transactions.html).
+By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://docs.microsoft.com/en-us/ef/core/saving/transactions).
 
 ## No-tracking queries
 
@@ -280,7 +281,7 @@ You can disable tracking of entity objects in memory by calling the `AsNoTrackin
 
 * You want to attach an entity in order to update it, but earlier you retrieved the same entity for a different purpose. Because the entity is already being tracked by the database context, you can't attach the entity that you want to change. One way to handle this situation is to call `AsNoTracking` on the earlier query.
 
-For more information, see [Tracking vs. No-Tracking](https://ef.readthedocs.io/en/latest/querying/tracking.html).
+For more information, see [Tracking vs. No-Tracking](https://docs.microsoft.com/en-us/ef/core/querying/tracking).
 
 ## Summary
 

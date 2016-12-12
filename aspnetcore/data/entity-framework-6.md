@@ -1,11 +1,14 @@
 ﻿---
-title: Getting Started with ASP.NET Core and Entity Framework 6
+title: Getting Started with ASP.NET Core and Entity Framework 6 | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 016cc836-4c43-45a4-b9a7-9efaf53350df
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/entity-framework-6
 ---
@@ -19,7 +22,7 @@ This article will show you how to use Entity Framework 6 inside an ASP.NET Core 
 
 To use Entity Framework 6, your project has to compile against the full .NET Framework, as Entity Framework 6 does not support .NET Core. If you need cross-platform features you will need to upgrade to [Entity Framework Core](https://docs.efproject.net).
 
-The recommended way to use Entity Framework 6 in an ASP.NET Core 1.0 application is to put the EF6 context and model classes in a class library project (*.csproj* project file) that targets the full framework. Add a reference to the class library from the ASP.NET Core project. See the sample [Visual Studio solution with EF6 and ASP.NET Core projects](https://github.com/aspnet/Docs/tree/master/aspnet/data/entity-framework-6/sample/).
+The recommended way to use Entity Framework 6 in an ASP.NET Core 1.0 application is to put the EF6 context and model classes in a class library project (*.csproj* project file) that targets the full framework. Add a reference to the class library from the ASP.NET Core project. See the sample [Visual Studio solution with EF6 and ASP.NET Core projects](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/entity-framework-6/sample/).
 
 It's not feasible to put an EF6 context in an ASP.NET Core 1.0 project because *.xproj*-based projects don't support all of the functionality that EF6 commands such as *Enable-Migrations* require. In a future release of ASP.NET Core, Core projects will be based on *.csproj* files, and at that time you'll be able to include an EF6 context directly in an ASP.NET Core project.
 
@@ -31,7 +34,7 @@ Your ASP.NET Core project has to reference the full .NET framework and EF6. For 
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [3, 29], "linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript", "source": "/Users/shirhatti/src/Docs/aspnet/data/entity-framework-6/sample/MVCCore/project.json"} -->
 
-````javascript
+```javascript
 {
   "dependencies": {
     "EntityFramework": "6.1.3",
@@ -68,7 +71,7 @@ Your ASP.NET Core project has to reference the full .NET framework and EF6. For 
       }
     }
   },
-````
+```
 
 If you’re creating a new project, use the **ASP.NET Core Web Application (.NET Framework)** template.
 
@@ -78,20 +81,20 @@ The EF6 command-line tools that you'll use in the EF6 class library project requ
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/data/entity-framework-6/sample/EF6/SchoolContext.cs"} -->
 
-````csharp
+```csharp
 
 public class SchoolContext : DbContext
 {
     public SchoolContext(string connString) : base(connString)
     {
     }
-````
+```
 
 Since your EF6 context doesn't have a parameterless constructor, your EF6 project has to provide an implementation of [IDbContextFactory](https://msdn.microsoft.com/library/hh506876). The EF6 command-line tools will find and use that implementation so they can instantiate the context. Here's an example.
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/data/entity-framework-6/sample/EF6/SchoolContextFactory.cs"} -->
 
-````csharp
+```csharp
 
 public class SchoolContextFactory : IDbContextFactory<SchoolContext>
 {
@@ -100,7 +103,7 @@ public class SchoolContextFactory : IDbContextFactory<SchoolContext>
         return new EF6.SchoolContext("Server=(localdb)\\mssqllocaldb;Database=EF6MVCCore;Trusted_Connection=True;MultipleActiveResultSets=true");
     }
 }
-````
+```
 
 In this sample code, the `IDbContextFactory` implementation passes in a hard-coded connection string. This is the connection string that the command-line tools will use. You'll want to implement a strategy to ensure that the class library uses the same connection string that the calling application uses. For example, you could get the value from an environment variable in both projects.
 
@@ -110,20 +113,20 @@ In the Core project's *Startup.cs* file, set up the EF6 context for dependency i
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/data/entity-framework-6/sample/MVCCore/Startup.cs"} -->
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     // Add framework services.
     services.AddMvc();
     services.AddScoped<SchoolContext>(_ => new SchoolContext(Configuration.GetConnectionString("DefaultConnection")));
 }
-````
+```
 
 You can then get an instance of the context in your controllers by using DI. The code is similar to what you'd write for an EF Core context:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/data/entity-framework-6/sample/MVCCore/Controllers/StudentsController.cs"} -->
 
-````csharp
+```csharp
 public class StudentsController : Controller
 {
     private readonly SchoolContext _context;
@@ -132,11 +135,11 @@ public class StudentsController : Controller
     {
         _context = context;
     }
-````
+```
 
 ## Sample application
 
-For a working sample application, see the [sample Visual Studio solution](https://github.com/aspnet/Docs/tree/master/aspnet/data/entity-framework-6/sample/) that accompanies this article.
+For a working sample application, see the [sample Visual Studio solution](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/entity-framework-6/sample/) that accompanies this article.
 
 This sample can be created from scratch by the following steps in Visual Studio:
 

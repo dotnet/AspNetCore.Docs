@@ -1,11 +1,14 @@
----
-title: Bundling and Minification
+﻿---
+title: Bundling and Minification | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d54230f9-8e5f-4861-a29c-1d3a14e0b0d9
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/bundling-and-minification
 ---
@@ -56,7 +59,7 @@ Minification performs a variety of different code optimizations to reduce the si
 
 Consider the following JavaScript function:
 
-````javascript
+```javascript
 AddAltToImg = function (imageTagAndImageID, imageContext) {
   ///<signature>
   ///<summary> Adds an alt tab to the image
@@ -67,13 +70,13 @@ AddAltToImg = function (imageTagAndImageID, imageContext) {
   var imageElement = $(imageTagAndImageID, imageContext);
   imageElement.attr('alt', imageElement.attr('id').replace(/ID/, ''));
 }
-````
+```
 
 After minification, the function is reduced to the following:
 
-````javascript
+```javascript
 AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""))};
-   ````
+   ```
 
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
@@ -96,7 +99,7 @@ Add `uglify` to minify your bundled JavaScript files and `cssmin` to minify your
 
 [!code-js[Main](bundling-and-minification/samples/WebApplication1/src/WebApplication1/gulpfile.js?highlight=4,11&range=31-43)]
 
-To run bundling and minification tasks from the command-line using gulp (`gulp min`), or you can also execute any of your gulp tasks from within Visual Studio using the **Task Runner Explorer**. To use the **Task Runner Explorer** select *gulpfile.js* in the Solution Explorer and then select **Tools > Task Runner Explorer**:
+You can run bundling and minification tasks from a command prompt using gulp (`gulp min`), or you can also execute any of your gulp tasks from within Visual Studio using the **Task Runner Explorer**. To use the **Task Runner Explorer** select *gulpfile.js* in the Solution Explorer and then select **Tools > Task Runner Explorer**:
 
 ![image](bundling-and-minification/_static/task-runner-explorer.png)
 

@@ -1,15 +1,19 @@
 ---
-title: Updating related data
+title: Updating related data - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 67bd162b-bfb7-4750-9e7f-705228b5288c
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/update-related-data
 ---
-# Updating related data
+
+# Updating related data - EF Core with ASP.NET Core MVC tutorial
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -75,7 +79,7 @@ In *Views/Courses/Edit.cshtml*, make the same change for the Department field th
 
 Also in *Views/Courses/Edit.cshtml*, add a course number field before the Credits field. Because it's the primary key, it's displayed, but it can't be changed.
 
-[!code-html[Main](intro/samples/cu/Views/Courses/Edit.cshtml?range=37-43)]
+[!code-html[Main](intro/samples/cu/Views/Courses/Edit.cshtml?range=16-21)]
 
 There's already a hidden field (`<input type="hidden">`) for the course number in the Edit view. Adding a `<label>` tag helper doesn't eliminate the need for the hidden field because it doesn't cause the course number to be included in the posted data when the user clicks **Save** on the **Edit** page.
 
@@ -129,23 +133,23 @@ The code does the following:
 
     <!-- Snippets do not play well with <ul> [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
-    ````charp
+    ```csharp
     if (await TryUpdateModelAsync<Instructor>(
         instructorToUpdate,
         "",
         i => i.FirstMidName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment))
-	````
+	```
 	
 -   If the office location is blank, sets the Instructor.OfficeAssignment property to null so that the related row in the OfficeAssignment table will be deleted.
 
     <!-- Snippets do not play well with <ul>  "intro/samples/cu/Controllers/InstructorsController.cs"} -->
 
-    ````csharp
+    ```csharp
     if (String.IsNullOrWhiteSpace(instructorToUpdate.OfficeAssignment?.Location))
     {
         instructorToUpdate.OfficeAssignment = null;
     }
-    ````
+    ```
 
 - Saves the changes to the database.
 
@@ -257,13 +261,13 @@ The HttpPost `Create` method adds each selected course to the `Courses` navigati
 
 Notice that in order to be able to add courses to the `Courses` navigation property you have to initialize the property as an empty collection:
 
-````csharp
-instructor.Courses = new List<Course>();
-````
+```csharp
+instructor.Courses = new List<CourseAssignment>();
+```
 
 As an alternative to doing this in controller code, you could do it in the Instructor model by changing the property getter to automatically create the collection if it doesn't exist, as shown in the following example:
 
-````csharp
+```csharp
 private ICollection<Course> _courses;
 public ICollection<Course> Courses
 {
@@ -276,7 +280,7 @@ public ICollection<Course> Courses
         _courses = value;
     }
 }
-````
+```
 
 If you modify the `Courses` property in this way, you can remove the explicit property initialization code in the controller.
 
@@ -288,7 +292,7 @@ Test by running the **Create** page and adding an instructor.
 
 ## Handling Transactions
 
-As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://ef.readthedocs.io/en/latest/saving/transactions.html).
+As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://docs.microsoft.com/ef/core/saving/transactions).
 
 ## Summary
 

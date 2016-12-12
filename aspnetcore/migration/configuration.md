@@ -1,11 +1,14 @@
 ---
-title: Migrating Configuration
-author: rick-anderson
+title: Migrating Configuration | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 8468d859-ff32-4a92-9e62-08c4a9e36594
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: migration/configuration
 ---
@@ -15,7 +18,7 @@ By [Steve Smith](http://ardalis.com) and [Scott Addie](https://scottaddie.com)
 
 In the previous article, we began [migrating an ASP.NET MVC project to ASP.NET Core MVC](mvc.md). In this article, we migrate configuration.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/migration/configuration/samples)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/migration/configuration/samples)
 
 ## Setup Configuration
 
@@ -29,9 +32,9 @@ For this article, we are starting with the partially-migrated ASP.NET Core proje
 
 Note that at this point, the *Startup.cs* file will not compile, as we still need to add the following `using` statement:
 
-````csharp
+```csharp
 using Microsoft.Extensions.Configuration;
-````
+```
 
 Add an *appsettings.json* file to the root of the project using the appropriate item template:
 

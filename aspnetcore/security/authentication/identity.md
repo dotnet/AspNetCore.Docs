@@ -1,17 +1,20 @@
 ---
-title: Introduction to Identity
+title: Introduction to Identity | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: cf119f21-1a2b-49a2-b052-547ccb66ee83
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/identity
 ---
 # Introduction to Identity
 
-By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.com/RickAndMSFT), Tom Dykstra, Jon Galloway and [Erik Reitan](https://github.com/Erikre)
+By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), Jon Galloway, and [Erik Reitan](https://github.com/Erikre)
 
 ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login providers such as Facebook, Google, Microsoft Account, Twitter and more.
 
@@ -122,12 +125,18 @@ These dependencies are needed to use the identity system in ASP.NET Core applica
 
 For additional information and guidance on migrating your existing identity store see [Migrating Authentication and Identity](../../migration/identity.md)
 
+<!-- replace ../../ relative links
+  [Authentication and Identity](../../migration/identity.md)
+with xref links
+ [Authentication and Identity](xref:migration/identity)
+-->
+
 ## Next Steps
 
-* [Migrating Authentication and Identity](../../migration/identity.md#migration-identity.md)
+* [Migrating Authentication and Identity](xref:migration/identity#migration-identity)
 
-* [Account Confirmation and Password Recovery](accconfirm.md#security-authentication-account-confirmation.md)
+* [Account Confirmation and Password Recovery](accconfirm.md#security-authentication-account-confirmation)
 
-* [Two-factor authentication with SMS](2fa.md#security-authentication-2fa.md)
+* [Two-factor authentication with SMS](2fa.md#security-authentication-2fa)
 
-* [Enabling authentication using Facebook, Google and other external providers](sociallogins.md#security-authentication-social-logins.md)
+* [Enabling authentication using Facebook, Google and other external providers](social/index.md)

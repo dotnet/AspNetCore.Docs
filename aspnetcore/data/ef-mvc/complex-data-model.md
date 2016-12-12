@@ -1,15 +1,19 @@
 ---
-title: Creating a complex data model
+title: Creating a complex data model - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 0dd63913-a041-48b6-96a4-3aeaedbdf5d0
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/complex-data-model
 ---
-# Creating a complex data model
+
+# Creating a complex data model - EF Core with ASP.NET Core MVC tutorial
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -37,9 +41,9 @@ The `DataType` attribute is used to specify a data type that is more specific th
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
 
-````csharp
+```csharp
 [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-````
+```
 
 The `ApplyFormatInEditMode` setting specifies that the formatting should also be applied when the value is displayed in a text box for editing. (You might not want that for some fields -- for example, for currency values, you might not want the currency symbol in the text box for editing.)
 
@@ -65,9 +69,9 @@ Suppose you want to ensure that users don't enter more than 50 characters for a 
 
 The `StringLength` attribute won't prevent a user from entering white space for a name. You can use the `RegularExpression` attribute to apply restrictions to the input. For example the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
-````none
+```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
-````
+```
 
 The `MaxLength` attribute provides functionality similar to the `StringLength` attribute but doesn't provide client side validation.
 
@@ -75,10 +79,10 @@ The database model has now changed in a way that requires a change in the databa
 
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands:
 
-````none
+```console
 dotnet ef migrations add MaxLengthOnNames -c SchoolContext
 dotnet ef database update -c SchoolContext
-````
+```
 
 The `migrations add` command creates a file named *<timeStamp>_MaxLengthOnNames.cs*. This file contains code in the `Up` method that will update the database to match the current data model. The `database update` command ran that code.
 
@@ -104,10 +108,10 @@ The addition of the `Column` attribute changes the model backing the `SchoolCont
 
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands to create another migration:
 
-````none
+```console
 dotnet ef migrations add ColummFirstName -c SchoolContext
 dotnet ef database update -c SchoolContext
-````
+```
 
 In **SQL Server Object Explorer**, open the Student table designer by double-clicking the **Student** table.
 
@@ -136,11 +140,11 @@ The `Required` attribute makes the name properties required fields. The `Require
 
 You could remove the `Required` attribute and replace it with a minimum length parameter for the `StringLength` attribute:
 
-````csharp
+```csharp
 [Display(Name = "Last Name")]
 [StringLength(50, MinimumLength=1)]
 public string LastName { get; set; }
-````
+```
 
 ### The Display attribute
 
@@ -162,9 +166,9 @@ Notice that several properties are the same in the Student and Instructor entiti
 
 You can put multiple attributes on one line, so you could also write the `HireDate` attributes as follows:
 
-````csharp
+```csharp
 [DataType(DataType.Date),Display(Name = "Hire Date"),DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-````
+```
 
 ### The Courses and OfficeAssignment navigation properties
 
@@ -172,9 +176,9 @@ The `Courses` and `OfficeAssignment` properties are navigation properties.
 
 An instructor can teach any number of courses, so `Courses` is defined as a collection.
 
-````csharp
+```csharp
 public ICollection<InstructorCourse> Courses { get; set; }
-````
+```
 
 If a navigation property can hold multiple entities, its type must be a list in which entries can be added, deleted, and updated.  You can specify `ICollection<T>` or a type such as `List<T>` or `HashSet<T>`. If you specify `ICollection<T>`, EF creates a `HashSet<T>` collection by default.
 
@@ -182,9 +186,9 @@ The reason why these are `InstructorCourse` entities is explained below in the s
 
 Contoso University business rules state that an instructor can only have at most one office, so the `OfficeAssignment` property holds a single OfficeAssignment entity (which may be null if no office is assigned).
 
-````csharp
+```csharp
 public virtual OfficeAssignment OfficeAssignment { get; set; }
-````
+```
 
 ## Create the OfficeAssignment entity
 
@@ -198,11 +202,11 @@ Create *Models/OfficeAssignment.cs* with the following code:
 
 There's a one-to-zero-or-one relationship  between the Instructor and the OfficeAssignment entities. An office assignment only exists in relation to the instructor it's assigned to, and therefore its primary key is also its foreign key to the Instructor entity. But the Entity Framework can't automatically recognize InstructorID as the primary key of this entity because its name doesn't follow the ID or classnameID naming convention. Therefore, the `Key` attribute is used to identify it as the key:
 
-````csharp
+```csharp
 [Key]
 [ForeignKey("Instructor")]
 public int InstructorID { get; set; }
-````
+```
 
 You can also use the `Key` attribute if the entity does have its own primary key but you want to name the property something other than classnameID or ID.
 
@@ -228,21 +232,21 @@ In *Models/Course.cs*, replace the code you added earlier with the following cod
 
 The course entity has a foreign key property `DepartmentID` which points to the related Department entity and it has a `Department` navigation property.
 
-The Entity Framework doesn't require you to add a foreign key property to your data model when you have a navigation property for a related entity.  EF automatically creates foreign keys in the database wherever they are needed and creates [shadow properties](https://ef.readthedocs.io/en/latest/modeling/shadow-properties.html) for them. But having the foreign key in the data model can make updates simpler and more efficient. For example, when you fetch a course entity to edit, the  Department entity is null if you don't load it, so when you update the course entity, you would have to first fetch the Department entity. When the foreign key property `DepartmentID` is included in the data model, you don't need to fetch the Department entity before you update.
+The Entity Framework doesn't require you to add a foreign key property to your data model when you have a navigation property for a related entity.  EF automatically creates foreign keys in the database wherever they are needed and creates [shadow properties](https://docs.microsoft.com/ef/core/modeling/shadow-properties) for them. But having the foreign key in the data model can make updates simpler and more efficient. For example, when you fetch a course entity to edit, the  Department entity is null if you don't load it, so when you update the course entity, you would have to first fetch the Department entity. When the foreign key property `DepartmentID` is included in the data model, you don't need to fetch the Department entity before you update.
 
 ### The DatabaseGenerated attribute
 
 The `DatabaseGenerated` attribute with the `None` parameter on the `CourseID` property specifies that primary key values are provided by the user rather than generated by the database.
 
-````csharp
+```csharp
 [DatabaseGenerated(DatabaseGeneratedOption.None)]
 [Display(Name = "Number")]
 public int CourseID { get; set; }
-````
+```
 
 By default, the Entity Framework assumes that primary key values are generated by the database. That's what you want in most scenarios. However, for Course entities, you'll use a user-specified course number such as a 1000 series for one department, a 2000 series for another department, and so on.
 
-The `DatabaseGenerated` attribute can also be used to generate default values, as in the case of database columns used to record the date a row was created or updated.  For more information, see [Generated Properties](https://ef.readthedocs.io/en/latest/modeling/generated-properties.html).
+The `DatabaseGenerated` attribute can also be used to generate default values, as in the case of database columns used to record the date a row was created or updated.  For more information, see [Generated Properties](https://docs.microsoft.com/ef/core/modeling/generated-properties).
 
 ### Foreign key and navigation properties
 
@@ -250,22 +254,22 @@ The foreign key properties and navigation properties in the Course entity reflec
 
 A course is assigned to one department, so there's a `DepartmentID` foreign key and a `Department` navigation property for the reasons mentioned above.
 
-````csharp
+```csharp
 public int DepartmentID { get; set; }
 public Department Department { get; set; }
-````
+```
 
 A course can have any number of students enrolled in it, so the `Enrollments` navigation property is a collection:
 
-````csharp
+```csharp
 public ICollection<Enrollment> Enrollments { get; set; }
-````
+```
 
 A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection:
 
-````csharp
+```csharp
 public ICollection<Instructor> Instructors { get; set; }
-````
+```
 
 ## Create the Department entity
 
@@ -280,10 +284,10 @@ Create *Models/Department.cs* with the following code:
 
 Earlier you used the `Column` attribute to change column name mapping. In the code for the Department entity, the `Column` attribute is being used to change SQL data type mapping so that the column will be defined using the SQL Server money type in the database:
 
-````csharp
+```csharp
 [Column(TypeName="money")]
 public decimal Budget { get; set; }
-````
+```
 
 Column mapping is generally not required, because the Entity Framework chooses the appropriate SQL Server data type based on the CLR type that you define for the property. The CLR `decimal` type maps to a SQL Server `decimal` type. But in this case you know that the column will be holding currency amounts, and the money data type is more appropriate for that.
 
@@ -293,25 +297,25 @@ The foreign key and navigation properties reflect the following relationships:
 
 A department may or may not have an administrator, and an administrator is always an instructor. Therefore the `InstructorID` property is included as the foreign key to the Instructor entity, and a question mark is added after the `int` type designation to mark the property as nullable. The navigation property is named `Administrator` but holds an Instructor entity:
 
-````csharp
+```csharp
 public int? InstructorID { get; set; }
 public virtual Instructor Administrator { get; set; }
-````
+```
 
 A department may have many courses, so there's a Courses navigation property:
 
-````csharp
+```csharp
 public ICollection<Course> Courses { get; set; }
-````
+```
 
 > [!NOTE]
 > By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when you try to add a migration. For example, if you didn't define the Department.InstructorID property as nullable, EF would configure a cascade delete rule to delete the instructor when you delete the department, which is not what you want to have happen. If your business rules required the `InstructorID` property to be non-nullable, you would have to use the following fluent API statement to disable cascade delete on the relationship:
-> ````csharp
+> ```csharp
 > modelBuilder.Entity<Department>()
 >    .HasOne(d => d.Administrator)
 >    .WithMany()
 >    .OnDelete(DeleteBehavior.Restrict)
-> ````
+> ```
 
 ## Modify the Enrollment entity
 
@@ -327,17 +331,17 @@ The foreign key properties and navigation properties reflect the following relat
 
 An enrollment record is for a single course, so there's a `CourseID` foreign key property and a `Course` navigation property:
 
-````csharp
+```csharp
 public int CourseID { get; set; }
 public Course Course { get; set; }
-````
+```
 
 An enrollment record is for a single student, so there's a `StudentID` foreign key property and a `Student` navigation property:
 
-````csharp
+```csharp
 public int StudentID { get; set; }
 public Student Student { get; set; }
-````
+```
 
 ## Many-to-Many Relationships
 
@@ -381,16 +385,16 @@ This code adds the new entities and configures the CourseAssignment entity's com
 
 ## Fluent API alternative to attributes
 
-The code in the `OnModelCreating` method of the `DbContext` class uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement, as in this example from the [EF Core documentation](http://ef.readthedocs.io/en/latest/modeling/index.html#methods-of-configuration):
+The code in the `OnModelCreating` method of the `DbContext` class uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement, as in this example from the [EF Core documentation](https://docs.microsoft.com/en-us/ef/core/modeling/#methods-of-configuration):
 
-````csharp
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Blog>()
         .Property(b => b.Url)
         .IsRequired();
 }
-````
+```
 
 In this tutorial you're using the fluent API only for database mapping that you can't do with attributes. However, you can also use the fluent API to specify most of the formatting, validation, and mapping rules that you can do by using attributes. Some attributes such as `MinimumLength` can't be applied with the fluent API. As mentioned previously, `MinimumLength` doesn't change the schema, it only applies a client and server side validation rule.
 
@@ -418,13 +422,13 @@ As you saw in the first tutorial, most of this code simply creates new entity ob
 
 Save your changes and build the project. Then open the command window in the project folder and enter the `migrations add` command (don't do the update-database command yet):
 
-````none
+```console
 dotnet ef migrations add ComplexDataModel -c SchoolContext
-````
+```
 
 You get a warning about possible data loss.
 
-````none
+```text
 C:\ContosoUniversity\src\ContosoUniversity>dotnet ef migrations add ComplexDataModel -c SchoolContext
 Project ContosoUniversity (.NETCoreApp,Version=v1.0) will be compiled because Input items removed from last build
 Compiling ContosoUniversity for .NETCoreApp,Version=v1.0
@@ -438,7 +442,7 @@ An operation was scaffolded that may result in the loss of data. Please review t
 Done.
 
 To undo this action, use 'dotnet ef migrations remove'
-````
+```
 
 If you tried to run the `database update` command at this point (don't do it yet), you would get the following error:
 
@@ -460,26 +464,26 @@ Save your changes and build the project.
 
 You now have new code in the `DbInitializer` class that adds seed data for the new entities to an empty database. To make EF create a new empty database, change the name of the database in the connection string in *appsettings.json* to ContosoUniversity3 or some other name that you haven't used on the computer you're using.
 
-````json
+```json
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=ContosoUniversity3;Trusted_Connection=True;MultipleActiveResultSets=true"
   },
-````
+```
 
 Save your change to *appsettings.json*.
 
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
-> ````none
+> ```console
 > dotnet ef database drop -c SchoolContext
-> ````
+> ```
 
 After you have changed the database name or deleted the database, run the `database update` command in the command window to execute the migrations.
 
-````none
+```console
 dotnet ef database update -c SchoolContext
-````
+```
 
 Run the app to cause the `DbInitializer.Initialize` method to run and populate the new database.
 

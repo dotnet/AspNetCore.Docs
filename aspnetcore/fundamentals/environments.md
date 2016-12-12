@@ -1,11 +1,14 @@
 ---
-title: Working with Multiple Environments
-author: rick-anderson
+title: Working with Multiple Environments | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: b5bba985-be12-4464-9a01-df3599b2a6f1
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/environments
 ---
@@ -32,7 +35,7 @@ This should be the environment used when developing an application. When using V
 
 ![image](environments/_static/project-properties-debug.png)
 
-When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the `Properties` folder. This file holds settings specific to each profile Visual Studio is configured to use to launch the application, including any environment variables that should be used. (Debug profiles are discussed in more detail in [Servers](servers.md)). For example, after adding another profile configured to use IIS Express, but using an `ASPNETCORE_ENVIRONMENT` value of `Staging`, the `launchSettings.json` file in our sample project is shown below:
+When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the `Properties` folder. This file holds settings specific to each profile Visual Studio is configured to use to launch the application, including any environment variables that should be used. (Debug profiles are discussed in more detail in [Servers](servers/index.md)). For example, after adding another profile configured to use IIS Express, but using an `ASPNETCORE_ENVIRONMENT` value of `Staging`, the `launchSettings.json` file in our sample project is shown below:
 
 launchSettings.json
 
@@ -68,8 +71,8 @@ This is by no means meant to be a complete list. It's best to avoid scattering e
 
 ## Determining the environment at runtime
 
-The [`IHostingEnvironment`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/IHostingEnvironment/index.html#Microsoft.AspNetCore.Hosting.IHostingEnvironment) service provides the core abstraction for working with environments. This service is provided by the ASP.NET hosting layer, and can be injected into your startup logic via [`Dependency Injection](dependency-injection.md). The ASP.NET Core web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling [EnvironmentName`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/IHostingEnvironment/index.html#Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName) or
-[`IsEnvironment`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/HostingEnvironmentExtensions/index.html#Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsEnvironment) on the instance of [`IHostingEnvironment`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/IHostingEnvironment/index.html#Microsoft.AspNetCore.Hosting.IHostingEnvironment) passed into the appropriate method.
+The `IHostingEnvironment` service provides the core abstraction for working with environments. This service is provided by the ASP.NET hosting layer, and can be injected into your startup logic via [Dependency Injection](dependency-injection.md). The ASP.NET Core web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling `EnvironmentName` or
+`IsEnvironment` on the instance of `IHostingEnvironment` passed into the appropriate method.
 
 > [!NOTE]
 > If you need to check whether the application is running in a particular environment, use `env.IsEnvironment("environmentname")` since it will correctly ignore case (instead of checking if `env.EnvironmentName == "Development"` for example).
@@ -93,7 +96,7 @@ ASP.NET Core supports a convention-based approach to configuring an application'
 When an ASP.NET Core application starts, the `Startup` class is used to bootstrap the application, load its configuration settings, etc. ([learn more about ASP.NET startup](startup.md)). However, if a class exists named `Startup{EnvironmentName}` (for example `StartupDevelopment`), and the `ASPNETCORE_ENVIRONMENT` environment variable matches that name, then that `Startup` class is used instead. Thus, you could configure `Startup` for development, but have a separate `StartupProduction` that would be used when the app is run in production. Or vice versa.
 
 > [!NOTE]
-> Calling ``WebHostBuilder.UseStartup<TStartup>()`` overrides configuration sections.
+> Calling `WebHostBuilder.UseStartup<TStartup>()` overrides configuration sections.
 
 In addition to using an entirely separate `Startup` class based on the current environment, you can also make adjustments to how the application is configured within a `Startup` class. The `Configure()` and `ConfigureServices()` methods support environment-specific versions similar to the `Startup` class itself, of the form `Configure{EnvironmentName}()` and `Configure{EnvironmentName}Services()`. If you define a method `ConfigureDevelopment()` it will be called instead of `Configure()` when the environment is set to development. Likewise, `ConfigureDevelopmentServices()` would be called instead of `ConfigureServices()` in the same environment.
 

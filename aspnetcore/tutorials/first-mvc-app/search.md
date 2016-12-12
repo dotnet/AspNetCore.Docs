@@ -1,30 +1,31 @@
 ---
-title: Adding Search
+title: Adding Search | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d69e5529-8ef6-4628-855d-200206d962b9
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/search
 ---
 # Adding Search
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 In this section you'll add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
 Update the `Index` action method to enable search:
 
-[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?range=256-267)]
+[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
 The first line of the `Index` action method creates a [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) query to select the movies:
 
-````csharp
+```csharp
 var movies = from m in _context.Movie
              select m;
-````
+```
 
 The query is *only* defined at this point, it **has not** been run against the database.
 
@@ -32,12 +33,12 @@ If the `searchString` parameter contains a string, the movies query is modified 
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [3]}} -->
 
-````csharp
+```csharp
 if (!String.IsNullOrEmpty(searchString))
-   {
-       movies = movies.Where(s => s.Title.Contains(searchString));
-   }
-````
+{
+    movies = movies.Where(s => s.Title.Contains(searchString));
+}
+```
 
 The `s => s.Title.Contains()` code above is a [Lambda Expression](http://msdn.microsoft.com/en-us/library/bb397687.aspx). Lambdas are used in method-based [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) queries as arguments to standard query operator methods such as the [Where](http://msdn.microsoft.com/en-us/library/system.linq.enumerable.where.aspx) method or `Contains` used in the code above. LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where`, `Contains`  or `OrderBy`. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](http://msdn.microsoft.com/en-us/library/bb738633.aspx).
 
@@ -66,11 +67,11 @@ Change the parameter to `id` and all occurrences of `searchString` change to `id
 
 The previous `Index` method:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&range=256-267)]
+[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_1stSearch)]
 
 The updated `Index` method:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&range=275-286)]
+[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_SearchID)]
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
@@ -78,7 +79,7 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound `ID` parameter, change it back so that it takes a parameter named `searchString`:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&range=256-267)]
+[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=snippet_1stSearch)]
 
 Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
 
@@ -92,7 +93,7 @@ There's no `[HttpPost]` overload of the `Index` method as you might expect. You 
 
 You could add the following `[HttpPost] Index` method.
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&range=294-298)]
+[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=snippet_SearchPost)]
 
 The `notUsed` parameter is used to create an overload for the `Index` method. We'll talk about that later in the tutorial.
 
@@ -124,9 +125,9 @@ Now when you submit a search, the URL contains the search query string. Searchin
 
 The following markup shows the change to the `form` tag:
 
-````html
+```html
 <form asp-controller="Movies" asp-action="Index" method="get">
-   ````
+   ```
 
 ## Adding Search by Genre
 
@@ -138,27 +139,27 @@ The movie-genre view model will contain:
 
    * a list of movies
 
-   * a [`SelectList`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/SelectList/index.html) containing the list of genres. This will allow the user to select a genre from the list.
+   * a `SelectList` containing the list of genres. This will allow the user to select a genre from the list.
 
    * `movieGenre`, which contains the selected genre
 
 Replace the `Index` method with the following code:
 
-[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?range=306-331)]
+[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
 
 The following code is a `LINQ` query that retrieves all the genres from the database.
 
-````csharp
+```csharp
 IQueryable<string> genreQuery = from m in _context.Movie
                                    orderby m.Genre
                                    select m.Genre;
-   ````
+   ```
 
 The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 
-````csharp
+```csharp
 movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
-   ````
+   ```
 
 ## Adding search by genre to the Index view
 
@@ -166,4 +167,6 @@ movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
 
 Test the app by searching by genre, by movie title, and by both.
 
-[&larr; **Previous**](controller-methods-views.md)     [**Next** &rarr;](new-field.md)  
+>[!div class="step-by-step"]
+[Previous](controller-methods-views.md)
+[Next](new-field.md)  

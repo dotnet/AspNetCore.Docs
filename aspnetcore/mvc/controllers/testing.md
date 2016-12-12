@@ -1,11 +1,14 @@
 ---
-title: Testing Controller Logic
-author: rick-anderson
+title: Testing Controller Logic | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: dd4135ec-2b15-410c-b3fb-3d12eed4a1ac
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/testing
 ---
@@ -15,7 +18,7 @@ By [Steve Smith](http://ardalis.com)
 
 Controllers in ASP.NET MVC apps should be small and focused on user-interface concerns. Large controllers that deal with non-UI concerns are more difficult to test and maintain.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/controllers/testing/sample)
+[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/testing/sample)
 
 ## Why Test Controllers
 
@@ -123,10 +126,10 @@ Each integration test class configures the `TestServer` that will run the ASP.NE
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
 
-````none
+```none
 The view 'Index' was not found. The following locations were searched:
 (list of locations)
-````
+```
 
 To correct this issue, you need to configure the server's content root, so it can locate the views for the project being tested. This is done by a call to `UseContentRoot` in the in the `TestFixture` class, shown below:
 
@@ -150,4 +153,4 @@ The following set of tests target the `Create` method in the [IdeasController](x
 
 Unlike integration tests of actions that returns HTML views, web API methods that return results can usually be deserialized as strongly typed objects, as the last test above shows. In this case, the test deserializes the result to a `BrainstormSession` instance, and confirms that the idea was correctly added to its collection of ideas.
 
-You'll find additional examples of integration tests in this article's [sample project](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/controllers/testing/sample).
+You'll find additional examples of integration tests in this article's [sample project](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/testing/sample).

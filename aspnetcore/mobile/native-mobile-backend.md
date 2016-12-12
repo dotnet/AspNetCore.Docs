@@ -1,11 +1,14 @@
 ---
-title: Creating Backend Services for Native Mobile Applications
-author: rick-anderson
+title: Creating Backend Services for Native Mobile Applications | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 3b6a32f2-5af9-4ede-9b7f-17ab300526d0
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mobile/native-mobile-backend
 ---
@@ -15,7 +18,7 @@ By [Steve Smith](http://ardalis.com)
 
 Mobile apps can easily communicate with ASP.NET Core backend services.
 
-[View or download sample backend services code](https://github.com/aspnet/Docs/tree/master/aspnet/mobile/native-mobile-backend/sample)
+[View or download sample backend services code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
 
 ## The Sample Native Mobile App
 
@@ -41,13 +44,13 @@ This sample is configured by default to use backend services hosted at developer
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 // URL of REST service (Xamarin ReadOnly Service)
 //public static string RestUrl = "http://developer.xamarin.com:8081/api/todoitems{0}";
 
 // use your machine's IP address
 public static string RestUrl = "http://192.168.1.207:5000/api/todoitems/{0}";
-````
+```
 
 ## Creating the ASP.NET Core Project
 
@@ -60,7 +63,7 @@ The application should respond to all requests made to port 5000. Update *Progra
 [!code-csharp[Main](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Program.cs?range=10-16&highlight=3)]
 
 > [!NOTE]
-> Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run `dotnet run` from the command line, or choose the application name profile from the Debug Target dropdown in the Visual Studio toolbar.
+> Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run `dotnet run` from a command prompt, or choose the application name profile from the Debug Target dropdown in the Visual Studio toolbar.
 
 Add a model class to represent To-Do items. Mark required fields using the `[Required]` attribute:
 

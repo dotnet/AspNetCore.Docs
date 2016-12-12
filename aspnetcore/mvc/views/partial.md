@@ -1,24 +1,24 @@
 ---
-title: Partial Views
-author: rick-anderson
+title: Partial Views | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4be1b12c-b74e-44ff-826b-99ce86e8d464
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/partial
 ---
 # Partial Views
 
->[!WARNING]
-> This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
-
 By [Steve Smith](http://ardalis.com)
 
 ASP.NET Core MVC supports partial views, which are useful when you have reusable parts of web pages you want to share between different views.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/partial/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/partial/sample)
 
 ## What are Partial Views?
 
@@ -38,7 +38,7 @@ If you have a complex page made up of several logical pieces, it can be helpful 
 
 ## Declaring Partial Views
 
-Partial views are created like any other view: you create a *.cshtml* file within the *Views* folder. There is no semantic difference between a partial view and a regular view - they are just rendered differently. You can have a view that is returned directly from a controller's [`ViewResult`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewResult/index.html#Microsoft.AspNetCore.Mvc.ViewResult), and the same view can be used as a partial view. The main difference between how a view and a partial view are rendered is that partial views do not run *_ViewStart.cshtml* (while views do - learn more about *_ViewStart.cshtml* in [Layout](layout.md)).
+Partial views are created like any other view: you create a *.cshtml* file within the *Views* folder. There is no semantic difference between a partial view and a regular view - they are just rendered differently. You can have a view that is returned directly from a controller's `ViewResult`, and the same view can be used as a partial view. The main difference between how a view and a partial view are rendered is that partial views do not run *_ViewStart.cshtml* (while views do - learn more about *_ViewStart.cshtml* in [Layout](layout.md)).
 
 ## Referencing a Partial View
 
@@ -46,11 +46,11 @@ From within a view page, there are several ways in which you can render a partia
 
 [!code-html[Main](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=9)]
 
-The [`PartialAsync`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/IHtmlHelper/index.html#Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.PartialAsync) method is available for partial views containing asynchronous code (although code in views is generally discouraged):
+The `PartialAsync` method is available for partial views containing asynchronous code (although code in views is generally discouraged):
 
 [!code-html[Main](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=8)]
 
-You can render a partial view with [`RenderPartial`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/HtmlHelperPartialExtensions/index.html#Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial). This method doesn't return a result; it streams the rendered output directly to the response. Because it doesn't return a result, it must be called within a Razor code block (you can also call `RenderPartialAsync` if necessary):
+You can render a partial view with `RenderPartial`. This method doesn't return a result; it streams the rendered output directly to the response. Because it doesn't return a result, it must be called within a Razor code block (you can also call `RenderPartialAsync` if necessary):
 
 [!code-html[Main](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=10-12)]
 
@@ -63,7 +63,7 @@ Because it streams the result directly, `RenderPartial` and `RenderPartialAsync`
 
 When referencing a partial view, you can refer to its location in several ways:
 
-````text
+```text
 // Uses a view in current folder with this name
 // If none is found, searches the Shared folder
 @Html.Partial("ViewName")
@@ -78,7 +78,7 @@ When referencing a partial view, you can refer to its location in several ways:
 
 // Locate the view using relative paths
 @Html.Partial("../Account/LoginPartial.cshtml")
-````
+```
 
 If desired, you can have different partial views with the same name in different view folders. When referencing the views by name (without file extension), views in each folder will use the partial view in the same folder with them. You can also specify a default partial view to use, placing it in the *Shared* folder. This view will be used by any views that don't have their own copy of the partial view in their folder. In this way, you can have a default partial view (in *Shared*), which can be overridden by a partial view with the same name in the same folder as the parent view.
 
@@ -93,21 +93,21 @@ When a partial view is instantiated, it gets a copy of the parent view's `ViewDa
 
 You can pass an instance of `ViewDataDictionary` to the partial view:
 
-````csharp
+```csharp
 @Html.Partial("PartialName", customViewData)
-   ````
+   ```
 
 You can also pass a model into a partial view. This can be the page's view model, or some portion of it, or a custom object. Simply pass in the model as the second parameter when calling `Partial`/`PartialAsync` or `RenderPartial`/`RenderPartialAsync`:
 
-````csharp
+```csharp
 @Html.Partial("PartialName", viewModel)
-   ````
+   ```
 
 You can pass an instance of `ViewDataDictionary` and a view model to a partial view:
 
-````csharp
+```csharp
 @Html.Partial("PartialName", viewModel, customViewData)
-   ````
+   ```
 
 ### An Example
 

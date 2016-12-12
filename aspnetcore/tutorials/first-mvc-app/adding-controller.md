@@ -1,21 +1,19 @@
 ---
-title: Adding a controller
+title: Adding a controller | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: e04b6665-d0de-4d99-b78f-d6a0c4634a87
+ms.technology: aspnet
 ms.prod: aspnet-core
 
 uid: tutorials/first-mvc-app/adding-controller
 ---
 # Adding a controller
-
-
-<!-- manual conversion complete -->
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Model-View-Controller (MVC) architectural pattern separates an app into three main components: the **M**odel, the **V**iew, and the **C**ontroller. The MVC pattern helps you create apps that are testable and easier to maintain and update than traditional monolithic apps. MVC-based apps contain:
 
@@ -45,7 +43,7 @@ Every `public` method in a controller is callable as an HTTP endpoint. In the sa
 
 The first comment states this is an [HTTP GET](http://www.w3schools.com/tags/ref_httpmethods.asp) method that is invoked by appending "/HelloWorld/" to the base URL. The second comment specifies an [HTTP GET](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that is invoked by appending "/HelloWorld/Welcome/" to the URL. Later on in the tutorial we'll use the scaffolding engine to generate `HTTP POST` methods.
 
-Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, [http://localhost:1234/HelloWorld](http://localhost:1234/HelloWorld) is used, but you'll have to replace *1234* with the port number of your app.) The `Index` method returns a string. You told the system to return some HTML, and it did!
+Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, `http://localhost:1234/HelloWorld` is used, but you'll have to replace *1234* with the port number of your app.) The `Index` method returns a string. You told the system to return some HTML, and it did!
 
 ![image](adding-controller/_static/hell1.png)
 
@@ -99,4 +97,6 @@ This time the third URL segment  matched the route parameter `id`. The `Welcome`
 
 In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response. We'll do that in the next tutorial.
 
->[&larr; **Previous**](start-mvc.md)     [**Next** &rarr;](adding-view.md)  
+>[!div class="step-by-step"]
+[Previous](start-mvc.md)
+[Next](adding-view.md)  

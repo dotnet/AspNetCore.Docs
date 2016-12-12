@@ -1,11 +1,14 @@
 ---
-title: Application Pools
+title: Application Pools | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a641f75c-38fe-4936-aff0-c825c407570f
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: hosting/apppool
 ---
@@ -47,10 +50,10 @@ To grant the IIS worker process access to your application, you will need to mod
 
 6. Click the **Check Names** button and then click **OK**.
 
-You can also do this via the command-line by using **ICACLS** tool.
+You can also do this via a command prompt by using **ICACLS** tool.
 
 <!-- literal_block {"ids": [], "classes": ["code", "bat"], "xml:space": "preserve"} -->
 
-````
+```
    ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool" :F
-   ````
+   ```

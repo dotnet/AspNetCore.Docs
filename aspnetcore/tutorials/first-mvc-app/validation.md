@@ -1,23 +1,24 @@
----
-title: Adding Validation
+﻿---
+title: Adding Validation | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: edbed483-6858-4f19-8082-3ac7d2752986
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/validation
 ---
 # Adding Validation
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 In this section you'll add validation logic to the `Movie` model, and you'll ensure that the validation rules are enforced any time a user attempts to create or edit a movie.
 
 ## Keeping things DRY
 
-One of the design tenets of MVC is [DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself) ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
+One of the design tenets of MVC is [DRY](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
 
 The validation support provided by MVC and Entity Framework Core Code First is a great example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
@@ -99,10 +100,10 @@ The `DataType` attributes only provide hints for the view engine to format the d
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
 
-````csharp
+```csharp
 [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 public DateTime ReleaseDate { get; set; }
-````
+```
 
 The `ApplyFormatInEditMode` setting specifies that the formatting should also be applied when the value is displayed in a text box for editing. (You might not want that for some fields — for example, for currency values, you probably do not want the currency symbol in the text box for editing.)
 
@@ -117,9 +118,9 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 > [!NOTE]
 > jQuery validation does not work with the `Range` attribute and `DateTime`. For example, the following code will always display a client side validation error, even when the date is in the specified range:
 
-````csharp
+```csharp
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
-   ````
+   ```
 
 You will need to disable jQuery date validation to use the `Range` attribute with `DateTime`. It's generally not a good practice to compile hard dates in your models, so using the `Range` attribute and `DateTime` is discouraged.
 
@@ -139,4 +140,6 @@ In the next part of the series, we'll review the application and make some impro
 
 * [Authoring Tag Helpers](../../mvc/views/tag-helpers/authoring.md)
 
->[&larr; **Previous**](new-field.md)     [**Next** &rarr;](details.md)  
+>[!div class="step-by-step"]
+[Previous](new-field.md)
+[Next](details.md)  

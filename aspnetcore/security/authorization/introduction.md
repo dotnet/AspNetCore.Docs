@@ -1,11 +1,14 @@
 ---
-title: Introduction
+title: Introduction | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a6a556ed-ba59-4107-9358-44cf20e5931b
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/introduction
 ---
@@ -13,7 +16,7 @@ uid: security/authorization/introduction
 
 <a name=security-authorization-introduction></a>
 
-Authorization refers to the process that determines what a user is able to do. For example user Adam may be able to create a document library, add documents, edit documents and delete them. User Bob may only be authorized to read documents in a single library.
+Authorization refers to the process that determines what a user is able to do. For example, an administrative user is allowed to create a document library, add documents, edit documents, and delete them. A non-administrative user working with the library is only authorized to read the documents.
 
 Authorization is orthogonal and independent from authentication, which is the process of ascertaining who a user is. Authentication may create one or more identities for the current user.
 
@@ -23,4 +26,4 @@ In ASP.NET Core authorization now provides simple declarative [role](roles.md#se
 
 ## Namespaces
 
-Authorization components, including the [`AuthorizeAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizeAttribute/index.html#Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`AllowAnonymousAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AllowAnonymousAttribute/index.html#Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes are found in the [`Microsoft.AspNetCore.Authorization`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/index.html#Microsoft.AspNetCore.Authorization) namespace.
+Authorization components, including the `AuthorizeAttribute` and `AllowAnonymousAttribute` attributes are found in the `Microsoft.AspNetCore.Authorization` namespace.

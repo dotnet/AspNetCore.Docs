@@ -1,15 +1,19 @@
 ---
-title: Advanced topics
+title: Advanced topics - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 92a2986a-d005-4ff6-9559-6657fd466bb7
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/advanced
 ---
-# Advanced topics
+
+# Advanced topics - EF Core with ASP.NET Core MVC tutorial
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -19,7 +23,7 @@ In the previous tutorial you implemented table-per-hierarchy inheritance. This t
 
 One of the advantages of using the Entity Framework is that it avoids tying your code too closely to a particular method of storing data. It does this by generating SQL queries and commands for you, which also frees you from having to write them yourself. But there are exceptional scenarios when you need to run specific SQL queries that you have manually created. For these scenarios, the Entity Framework Code First API includes methods that enable you to pass SQL commands directly to the database. You have the following options in EF Core 1.0:
 
-* Use the `DbSet.FromSql` method for queries that return entity types. The returned objects must be of the type expected by the `DbSet` object, and they are automatically tracked by the database context unless you [turn tracking off](#no-tracking-queries).
+* Use the `DbSet.FromSql` method for queries that return entity types. The returned objects must be of the type expected by the `DbSet` object, and they are automatically tracked by the database context unless you [turn tracking off](crud.md#no-tracking-queries).
 
 * Use the `Database.ExecuteSqlCommand` for non-query commands.
 
@@ -41,7 +45,7 @@ To verify that the new code works correctly, select the **Departments** tab and 
 
 ## Call a query that returns other types
 
-Earlier you created a student statistics grid for the About page that showed the number of students for each enrollment date. You got the data from the Students entity set (`_context.Students`) and used LINQ to project the results into a list of `EnrollmentDatGroup` view model objects. Suppose you want to write the SQL itself rather than using LINQ. To do that you need to run a SQL query that returns something other than entity objects. In EF Core 1.0, one way to do that is write ADO.NET code and get the database connection from EF.
+Earlier you created a student statistics grid for the About page that showed the number of students for each enrollment date. You got the data from the Students entity set (`_context.Students`) and used LINQ to project the results into a list of `EnrollmentDateGroup` view model objects. Suppose you want to write the SQL itself rather than using LINQ. To do that you need to run a SQL query that returns something other than entity objects. In EF Core 1.0, one way to do that is write ADO.NET code and get the database connection from EF.
 
 In HomeController.cs, replace the LINQ statement in the `About` method with ADO.NET code, as shown in the following highlighted code:
 
@@ -79,7 +83,7 @@ In *Views/Courses/UpdateCourseCredits.cshtml*, replace the template code with th
 
 [!code-html[Main](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
 
-Run the ``UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:50205/Course/UpdateCourseCredits)`. Enter a number in the text box:
+Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:50205/Course/UpdateCourseCredits)`. Enter a number in the text box:
 
 ![Update Course Credits page](advanced/_static/update-credits.png)
 
@@ -91,7 +95,7 @@ Click **Back to List** to see the list of courses with the revised number of cre
 
 ![Courses Index page](advanced/_static/courses-index.png)
 
-For more information about raw SQL queries, see [Raw SQL Queries](https://ef.readthedocs.io/en/latest/querying/raw-sql.html).
+For more information about raw SQL queries, see [Raw SQL Queries](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql).
 
 ## Examine SQL sent to the database
 
@@ -103,7 +107,7 @@ Run the application in debug mode, and go to the Details page for a student.
 
 Go to the **Output** window showing debug output, and you see the query:
 
-````text
+```text
 
 Microsoft.EntityFrameworkCore.Storage.Internal
 .RelationalCommandBuilderFactory:Information:
@@ -117,7 +121,7 @@ WHERE EXISTS (
     FROM [Student] AS [s]
     WHERE ([s].[ID] = @__id_0) AND ([e].[StudentID] = [s].[ID]))
 ORDER BY [e].[StudentID]
-````
+```
 
 You'll notice something here that might surprise you: the SQL selects up to 2 rows (`TOP(2)`). The `SingleOrDefaultAsync` method doesn't resolve to one row on the server. If the Where clause matches multiple rows, the method must return null, so EF only has to select a maximum of 2 rows, because if 3 or more match the Where clause, the result from the `SingleOrDefault` method is the same as if 2 rows match.
 
@@ -135,7 +139,7 @@ Many developers write code to implement the repository and unit of work patterns
 
 For information about how to implement the repository and unit of work patterns, see [the Entity Framework 5 version of this tutorial series](http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
 
-Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Testing with InMemory](https://ef.readthedocs.io/en/latest/miscellaneous/testing.html).
+Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Testing with InMemory](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory).
 
 ## Automatic change detection
 
@@ -149,9 +153,9 @@ The Entity Framework determines how an entity has changed (and therefore which u
 
 If you're tracking a large number of entities and you call one of these methods many times in a loop, you might get significant performance improvements by temporarily turning off automatic change detection using the `ChangeTracker.AutoDetectChangesEnabled` property. For example:
 
-````csharp
+```csharp
 _context.ChangeTracker.AutoDetectChangesEnabled = false;
-````
+```
 
 ## Entity Framework Core source code
 
@@ -161,11 +165,11 @@ Although the source code is open, Entity Framework Core is fully supported as a 
 
 ## Reverse engineer from existing database
 
-To reverse engineer a data model including entity classes from an existing database, use the [scaffold-dbcontext](https://ef.readthedocs.io/en/latest/miscellaneous/cli/powershell.html#scaffold-dbcontext) command. See the [getting-started tutorial](https://docs.efproject.net/en/latest/platforms/aspnetcore/existing-db.html).
+To reverse engineer a data model including entity classes from an existing database, use the [scaffold-dbcontext](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell#scaffold-dbcontext) command. See the [getting-started tutorial](https://docs.efproject.net/en/latest/platforms/aspnetcore/existing-db.html).
 
 ## Summary
 
-This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application. For more information about how to work with data using the Entity Framework, see the [EF documentation](https://ef.readthedocs.io/).
+This completes this series of tutorials on using the Entity Framework Core in an ASP.NET MVC application. For more information about how to work with data using the Entity Framework, see the [EF documentation](https://docs.microsoft.com/ef/).
 
 For information about how to deploy your web application after you've built it, see [Publishing and deployment](https://docs.asp.net/en/latest/publishing/index.html).
 For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see the [ASP.NET Core documentation](https://docs.asp.net/).
@@ -179,15 +183,7 @@ Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan 
 
 Error message:
 
-````text
-Cannot open 'C:\ContosoUniversity\src
-\ContosoUniversity\bin\Debug\netcoreapp1.0
-\ContosoUniversity.dll' for writing --
-'The process cannot access the file
-'C:\ContosoUniversity\src\ContosoUniversity\bin
-\Debug\netcoreapp1.0\ContosoUniversity.dll'
-because it is being used by another process.
-````
+> Cannot open 'C:\ContosoUniversity\src\ContosoUniversity\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' for writing -- 'The process cannot access the file 'C:\ContosoUniversity\src\ContosoUniversity\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' because it is being used by another process.
 
 Solution:
 
@@ -213,15 +209,15 @@ To delete a database in SSOX, right-click the database, click **Delete**, and th
 
 To delete a database by using the CLI, run the `database drop` CLI command:
 
-````none
+```console
 dotnet ef database drop -c SchoolContext
-````
+```
 
 ### Error locating SQL Server instance
 
 Error Message:
 
-    A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+> A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
 
 Solution:
 

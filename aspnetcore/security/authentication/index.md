@@ -1,11 +1,14 @@
 ---
-title: Authentication
+title: Authentication | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 981852c9-78f9-4590-aaee-9d50a2838dfe
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/index
 ---
@@ -13,7 +16,7 @@ uid: security/authentication/index
 
 * [Introduction to Identity](identity.md)
 
-* [Enabling authentication using Facebook, Google and other external providers](sociallogins.md)
+* [Enabling authentication using Facebook, Google and other external providers](social/index.md)
 
 * [Account Confirmation and Password Recovery](accconfirm.md)
 
@@ -25,10 +28,10 @@ uid: security/authentication/index
 
 * [Azure Active Directory](azure-active-directory/index.md)
 
-  * [Integrating Azure AD Into an ASP.NET Core Web App](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore.md)
+  * [Integrating Azure AD Into an ASP.NET Core Web App](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore)
 
-  * [Calling a ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore.md)
+  * [Calling an ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore)
 
-  * [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/en-us/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/.md)
+  * [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/en-us/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore)
 
-* [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io.md)
+* [Securing ASP.NET Core apps with IdentityServer4](https://identityserver4.readthedocs.io)

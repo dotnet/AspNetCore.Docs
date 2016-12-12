@@ -1,11 +1,14 @@
 ---
-title: File Providers
-author: rick-anderson
+title: File Providers | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 1e35d362-0005-4f84-a187-274ca203a787
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/file-providers
 ---
@@ -19,7 +22,7 @@ ASP.NET Core abstracts file system access through the use of File Providers.
 
 ## File Provider abstractions
 
-File Providers are an abstraction over file systems. The main interface is [IFileProvider](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/FileProviders/IFileProvider/index.html#Microsoft.Extensions.FileProviders.IFileProvider). `IFileProvider` exposes methods to get file information ([IFileInfo](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/FileProviders/IFileInfo/index.html#Microsoft.Extensions.FileProviders.IFileInfo)), directory information ([IDirectoryContents](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/FileProviders/IDirectoryContents/index.html#Microsoft.Extensions.FileProviders.IDirectoryContents)), and to set up change notifications (using an [IChangeToken](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Primitives/IChangeToken/index.html#Microsoft.Extensions.Primitives.IChangeToken)).
+File Providers are an abstraction over file systems. The main interface is `IFileProvider`. `IFileProvider` exposes methods to get file information (`IFileInfo`), directory information (`IDirectoryContents`), and to set up change notifications (using an `IChangeToken`).
 
 `IFileInfo` provides methods and properties about individual files or directories. It has two boolean properties, `Exists` and `IsDirectory`, as well as properties describing the file's `Name`, `Length` (in bytes), and `LastModified` date. You can read from the file using its `CreateReadStream` method.
 
@@ -29,17 +32,17 @@ Three implementations of `IFileProvider` are available: Physical, Embedded, and 
 
 ### PhysicalFileProvider
 
-The [PhysicalFileProvider](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/FileProviders/PhysicalFileProvider/index.html#Microsoft.Extensions.FileProviders.PhysicalFileProvider) provides access to the physical file system. It wraps the `System.IO.File` type (for the physical provider), scoping all paths to a directory and its children. This scoping limits access to a certain directory and its children, preventing access to the file system outside of this boundary. When instantiating this provider, you must provide it with a directory path, which serves as the base path for all requests made to this provider (and which restricts access outside of this path). In an ASP.NET Core app, you can instantiate a `PhysicalFileProvider` provider directly, or you can request an `IFileProvider` in a Controller or service's constructor through [dependency injection](dependency-injection.md). The latter approach will typically yield a more flexible and testable solution.
+The `PhysicalFileProvider` provides access to the physical file system. It wraps the `System.IO.File` type (for the physical provider), scoping all paths to a directory and its children. This scoping limits access to a certain directory and its children, preventing access to the file system outside of this boundary. When instantiating this provider, you must provide it with a directory path, which serves as the base path for all requests made to this provider (and which restricts access outside of this path). In an ASP.NET Core app, you can instantiate a `PhysicalFileProvider` provider directly, or you can request an `IFileProvider` in a Controller or service's constructor through [dependency injection](dependency-injection.md). The latter approach will typically yield a more flexible and testable solution.
 
 To create a `PhysicalFileProvider`, simply instantiate it, passing it a physical path. You can then iterate through its directory contents or get a specific file's information by providing a subpath.
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 IFileProvider provider = new PhysicalFileProvider(applicationRoot);
 IDirectoryContents contents = provider.GetDirectoryContents(""); // the applicationRoot contents
 IFileInfo fileInfo = provider.GetFileInfo("wwwroot/js/site.js"); // a file under applicationRoot
-````
+```
 
 To request a provider from a controller, specify it in the controller's constructor and assign it to a local field. Use the local instance from your action methods:
 
@@ -72,9 +75,9 @@ When creating an `EmbeddedFileProvider`, pass the assembly it will read to its c
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
-````
+```
 
 The snippet above demonstrates how to create an `EmbeddedFileProvider` with access to the currently executing assembly.
 

@@ -29,9 +29,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            </tr>
+        </tr>
     }
 </table>
-<div >
+<div>
     @await Component.InvokeAsync("PriorityList", new { maxPriority = 2, isDone = false })
 </div>

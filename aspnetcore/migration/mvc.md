@@ -1,17 +1,20 @@
 ---
-title: Migrating From ASP.NET MVC to ASP.NET Core MVC
-author: rick-anderson
+title: Migrating From ASP.NET MVC to ASP.NET Core MVC | Microsoft Docs
+author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 3155cc9e-d0c9-424b-886c-35c0ec6f9f4e
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: migration/mvc
 ---
 # Migrating From ASP.NET MVC to ASP.NET Core MVC
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com) and [Scott Addie](https://scottaddie.com)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com), and [Scott Addie](https://scottaddie.com)
 
 This article shows how to get started migrating an ASP.NET MVC project to [ASP.NET Core MVC](../mvc/index.md). In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client-side dependencies. Additional articles cover migrating configuration and identity code found in many ASP.NET MVC projects.
 
@@ -86,9 +89,9 @@ Replace the contents of the *Views/Home/Index.cshtml* file with the following:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
-````html
+```html
 <h1>Hello world!</h1>
-````
+```
 
 Run the app.
 
@@ -114,15 +117,15 @@ Now that we have a minimal working ASP.NET Core project, we can start migrating 
 
 ## Controllers and views
 
-* Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`. Note that in ASP.NET MVC, the built-in template's controller action method return type is [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC, the action methods return [IActionResult](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/IActionResult/index.html) instead. `ActionResult` implements `IActionResult`, so there is no need to change the return type of your action methods.
+* Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`. Note that in ASP.NET MVC, the built-in template's controller action method return type is [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`, so there is no need to change the return type of your action methods.
 
 * Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.
 
 * Run the ASP.NET Core app and test each method. We haven't migrated the layout file or styles yet, so the rendered views will only contain the content in the view files. You won't have the layout file generated links for the `About` and `Contact` views, so you'll have to invoke them from the browser (replace **4492** with the port number used in your project).
 
-  * http://localhost:4492/home/about
+  * `http://localhost:4492/home/about`
 
-  * http://localhost:4492/home/contact
+  * `http://localhost:4492/home/contact`
 
 ![image](mvc/_static/contact-page.png)
 
@@ -181,18 +184,18 @@ The replacement CSS link:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
-````html
+```html
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-````
+```
 
 The replacement script tags:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
-````html
+```html
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-````
+```
 
 The updated _Layout.cshtml file is shown below:
 
@@ -231,7 +234,7 @@ There are many problems that can cause a HTTP 500 error message that contain no 
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [3, 4, 5, 6]}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 {
     if (env.IsDevelopment())
@@ -248,7 +251,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
             template: "{controller=Home}/{action=Index}/{id?}");
     });
 }
-````
+```
 
 See **Using the Developer Exception Page** in [Error Handling](../fundamentals/error-handling.md) for more information.
 

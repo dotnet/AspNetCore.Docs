@@ -1,11 +1,14 @@
 ---
-title: Model Binding
+title: Model Binding | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: b355a48e-a15c-4d58-b69c-899763613a97
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/models/model-binding
 ---
@@ -27,9 +30,9 @@ Since the route template looks like this, `{controller=Home}/{action=Index}/{id?
 
 <!-- literal_block {"ids": [], "linenos": true, "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 public IActionResult Edit(int? id)
-   ````
+   ```
 
 Note: The strings in the URL route are not case sensitive.
 
@@ -37,7 +40,13 @@ MVC will try to bind request data to the action parameters by name. MVC will loo
 
 1. `Form values`: These are form values that go in the HTTP request using the POST method. (including jQuery POST requests).
 
-2. `Route values`: The set of route values provided by @fundamentals/routing
+2. `Route values`: The set of route values provided by [Routing](../../fundamentals/routing.md)
+
+<!-- DocFX BUG
+This link works bug generates an error when building with DocFX
+@fundamentals/routing
+[Routing](xref:fundamentals/routing)
+-->
 
 3. `Query strings`: The query string part of the URI.
 
@@ -62,7 +71,7 @@ Additionally, there are some special data types that MVC must consider when perf
 
 These types can be bound to action parameters or to properties on a class type.
 
-Once model binding is complete, [Validation](xref:mvc/models/validation) occurs. Default model binding works great for the vast majority of development scenarios. It is also extensible so if you have unique needs you can customize the built-in behavior.
+Once model binding is complete, [Validation](validation.md) occurs. Default model binding works great for the vast majority of development scenarios. It is also extensible so if you have unique needs you can customize the built-in behavior.
 
 ## Customize model binding behavior with attributes
 
@@ -96,16 +105,12 @@ ASP.NET selects input formatters based on the [Content-Type](https://www.w3.org/
 
 <!-- literal_block {"ids": [], "linenos": true, "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
    {
        services.AddMvc()
           .AddXmlSerializerFormatters();
    }
-   ````
+   ```
 
 Code in the *Startup.cs* file contains a `ConfigureServices` method with a `services` argument you can use to build up services for your ASP.NET app. In the sample, we are adding an XML formatter as a service that MVC will provide for this app. The `options` argument passed into the `AddMvc` method allows you to add and manage filters, formatters, and other system options from MVC upon app startup. Then apply the `Consumes` attribute to controller classes or action methods to work with the format you want.
-
-## Additional Resources
-
-* [Validation xref](xref:mvc/models/validation)

@@ -1,11 +1,14 @@
 ---
-title: Key Management
+title: Key Management | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: fb9b807a-d143-4861-9ddb-005d8796afa3
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/implementation/key-management
 ---
@@ -50,11 +53,11 @@ There might be circumstances where a key will be created with immediate activati
 
 The default key lifetime is 90 days, though this is configurable as in the following example.
 
-````csharp
+```csharp
 services.AddDataProtection()
        // use 14-day lifetime instead of 90-day lifetime
        .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
-   ````
+   ```
 
 An administrator can also change the default system-wide, though an explicit call to SetDefaultKeyLifetime will override any system-wide policy. The default key lifetime cannot be shorter than 7 days.
 

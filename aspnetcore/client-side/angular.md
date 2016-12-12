@@ -1,11 +1,14 @@
----
-title: Using Angular for Single Page Applications (SPAs)
+﻿---
+title: Using Angular for Single Page Applications (SPAs) | Microsoft Docs
 author: rick-anderson
+description: Learn how to build a SPA-style ASP.NET application using AngularJS
+keywords: ASP.NET Core, Angular, SPA
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4b30576b-2718-4c39-9253-a59966747893
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/angular
 ---
@@ -18,7 +21,7 @@ By [Venkata Koppaka](http://blog.falafel.com/author/venkata-koppaka/) and [Scott
 
 In this article, you will learn how to build a SPA-style ASP.NET application using AngularJS.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample)
 
 ## What is AngularJS?
 
@@ -218,15 +221,15 @@ A [module](https://docs.angularjs.org/guide/module) in AngularJS is a collection
 
 Below is a snippet of code that shows how to create a new module in AngularJS. The first parameter is the name of the module. The second parameter defines dependencies on other modules. Later in this article, we will be showing how to pass these dependencies to an `angular.module()` method call.
 
-````javascript
+```javascript
 var personApp = angular.module('personApp', []);
-   ````
+   ```
 
 Use the `ng-app` directive to represent an AngularJS module on the page. To use a module, assign the name of the module, `personApp` in this example, to the `ng-app` directive in our template.
 
-````html
+```html
 <body ng-app="personApp">
-   ````
+   ```
 
 ### Controllers
 
@@ -278,11 +281,11 @@ Below is an example that shows how to use factories in AngularJS:
 
 To call this factory from the controller, pass `personFactory` as a parameter to the `controller` function:
 
-````javascript
+```javascript
 personApp.controller('personController', function($scope,personFactory) {
   $scope.name = personFactory.getName();
 });
-````
+```
 
 ### Using services to talk to a REST endpoint
 
@@ -316,7 +319,7 @@ Let's see the application in action:
 
 ![image](angular/_static/rest-bound.png)
 
-You can [view the application's structure on GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample).
+You can [view the application's structure on GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample).
 
 > [!NOTE]
 > For more on structuring AngularJS applications, see [John Papa's Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
@@ -361,7 +364,7 @@ If we navigate to a detail page, for example `people/spa#/persons/2`, we will se
 
 ![image](angular/_static/spa-persons-2.png)
 
-You can view the full source and any files not shown in this article on [GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample).
+You can view the full source and any files not shown in this article on [GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample).
 
 ### Event Handlers
 

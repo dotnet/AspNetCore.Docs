@@ -1,11 +1,14 @@
 ---
-title: Migrating from ASP.NET Core RC2 to ASP.NET Core 1.0
+title: Migrating from ASP.NET Core RC2 to ASP.NET Core 1.0 | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: b672bd6e-7ecf-4504-9ecf-58ae9ec0153f
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: migration/rc2-to-rtm
 ---
@@ -23,20 +26,20 @@ Install the new tools from [https://dot.net/core](https://dot.net/core) and foll
 
 Update the global.json to
 
-````javascript
+```javascript
 {
      "projects": [ "src", "test" ],
      "sdk": {
          "version": "1.0.0-preview2-003121"
      }
    }
-   ````
+   ```
 
 ## Tools
 
 For the tools we ship, you no longer need to use `imports` in *project.json*. For example:
 
-````json
+```json
 {
      "tools": {
        "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
@@ -45,26 +48,26 @@ For the tools we ship, you no longer need to use `imports` in *project.json*. Fo
        }
      }
    }
-   ````
+   ```
 
 Becomes:
 
-````json
+```json
 {
      "tools": {
        "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
      }
    }
-   ````
+   ```
 
 ## Hosting
 
-The `UseServer` is no longer available for [`IWebHostBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/IWebHostBuilder/index.html#Microsoft.AspNetCore.Hosting.IWebHostBuilder). You must now use [`UseKestrel`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilderKestrelExtensions/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel) or [`UseWebListener`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilderWebListenerExtensions/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilderWebListenerExtensions.UseWebListener).
+The `UseServer` is no longer available for `IWebHostBuilder`. You must now use `UseKestrel` or `UseWebListener`.
 
 ## ASP.NET MVC Core
 
-The `HtmlEncodedString` class has been replaced by [`HtmlString`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Html/HtmlString/index.html#Microsoft.AspNetCore.Html.HtmlString) (contained in the  `Microsoft.AspNetCore.Html.Abstractions` package).
+The `HtmlEncodedString` class has been replaced by `HtmlString` (contained in the  `Microsoft.AspNetCore.Html.Abstractions` package).
 
 ## Security
 
-The [`AuthorizationHandler<TRequirement>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizationHandler-TRequirement/index.html#Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>) class now only contains an asynchronous interface.
+The `AuthorizationHandler<TRequirement>` class now only contains an asynchronous interface.

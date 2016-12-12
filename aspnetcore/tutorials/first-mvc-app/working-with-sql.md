@@ -1,17 +1,18 @@
 ---
-title: Working with SQL Server LocalDB
+title: Working with SQL Server LocalDB | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: ff8fd9b8-7c98-424d-8641-7524e23bf541
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/working-with-sql
 ---
 # Working with SQL Server LocalDB
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The `ApplicationDbContext` class handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](../../fundamentals/dependency-injection.md) container in the `ConfigureServices` method in the *Startup.cs* file:
 
@@ -25,7 +26,7 @@ When you deploy the app to a test or production server, you can use an environme
 
 ## SQL Server Express LocalDB
 
-LocalDB is a lightweight version of the SQL Server Express Database Engine that is targeted for program development. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB database creates "*.mdf" files in the *C:/Users/<user>* directory.
+LocalDB is a lightweight version of the SQL Server Express Database Engine that is targeted for program development. LocalDB starts on demand and runs in user mode, so there is no complex configuration. By default, LocalDB database creates "\*.mdf" files in the *C:/Users/\<user\>* directory.
 
 * From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
@@ -53,12 +54,12 @@ Create a new class named `SeedData` in the *Models* folder. Replace the generate
 
 Notice if there are any movies in the DB, the seed initializer returns.
 
-````csharp
+```csharp
 if (context.Movie.Any())
 {
     return;   // DB has been seeded.
 }
-````
+```
 
 Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file:
 
@@ -86,4 +87,6 @@ The app shows the seeded data.
 
 ![image](working-with-sql/_static/m55.png)
 
->[&larr; **Previous**](adding-model.md)     [**Next** &rarr;](controller-methods-views.md)  
+>[!div class="step-by-step"]
+[Previous](adding-model.md)
+[Next](controller-methods-views.md)  

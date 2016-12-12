@@ -1,15 +1,19 @@
 ---
-title: Inheritance
+title: Inheritance - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 41dc0db7-6f17-453e-aba6-633430609c74
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/inheritance
 ---
-# Inheritance
+
+# Inheritance - EF Core with ASP.NET Core MVC tutorial
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -73,15 +77,15 @@ This is all that the Entity Framework needs in order to configure table-per-hier
 
 Save your changes and build the project. Then open the command window in the project folder and enter the following command:
 
-````text
+```console
 dotnet ef migrations add Inheritance -c SchoolContext
-````
+```
 
 Run the `database update` command:.
 
-````text
+```console
 dotnet ef database update -c SchoolContext
-````
+```
 
 The command will fail at this point because you have existing data that migrations doesn't know how to handle. You get an error message like the following one:
 
@@ -115,9 +119,9 @@ This code takes care of the following database update tasks:
 
 Run the `database update` command again:
 
-````text
+```console
 dotnet ef database update -c SchoolContext
-````
+```
 
 (In a production system you would make corresponding changes to the `Down` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the `Down` method.)
 
@@ -138,7 +142,7 @@ Right-click the Person table, and then click **Show Table Data** to see the disc
 
 ## Summary
 
-You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, and `Instructor` classes. For more information about inheritance in Entity Framework Core, see [Inheritance](https://ef.readthedocs.io/en/latest/modeling/inheritance.html). In the next tutorial you'll see how to handle a variety of relatively advanced Entity Framework scenarios.
+You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, and `Instructor` classes. For more information about inheritance in Entity Framework Core, see [Inheritance](https://docs.microsoft.com/en-us/ef/core/modeling/inheritance). In the next tutorial you'll see how to handle a variety of relatively advanced Entity Framework scenarios.
 
 >[!div class="step-by-step"]
 [Previous](concurrency.md)

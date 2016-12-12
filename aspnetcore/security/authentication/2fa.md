@@ -1,11 +1,14 @@
 ---
-title: Two-factor authentication with SMS
+title: Two-factor authentication with SMS | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: ff1c22d1-d1f2-4616-84dd-94ba61ec299a
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/2fa
 ---
@@ -40,9 +43,9 @@ After you create the project, follow the instructions in [Account Confirmation a
 
    <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-   ````
+   ```
    Install-Package Twilio
-   ````
+   ```
 
 * Add code in the *Services/MessageServices.cs* file to enable SMS.
 
@@ -52,7 +55,7 @@ After you create the project, follow the instructions in [Account Confirmation a
 > Twilio does not yet support [.NET Core](https://microsoft.com/net/core). To use Twilio from your application you need to either target the full .NET Framework or you can call the Twilio REST API to send SMS messages.
 
 > [!NOTE]
-> You can remove `//` line comment characters from the `System.Diagnostics.Debug.WriteLine(message);` line to test the application when you can't get SMS messages. A better approach to logging is to use the built in [logging](../../fundamentals/logging.md#fundamentals-logging).
+> You can remove `//` line comment characters from the `System.Diagnostics.Debug.WriteLine(message);` line to test the application when you can't get SMS messages. A better approach is to use the built in [logging system](../../fundamentals/logging.md).
 
 ### Configure the SMS provider key/value
 
@@ -64,10 +67,10 @@ We'll use the [Options pattern](../../fundamentals/configuration.md#options-conf
 
 Set `SID`, `AuthToken`, and `SendNumber` with the [secret-manager tool](../app-secrets.md). For example:
 
-````none
+```none
 C:/WebSMS/src/WebApplication1>dotnet user-secrets set SID abcdefghi
 info: Successfully saved SID = abcdefghi to the secret store.
-````
+```
 
 ### Configure startup to use `AuthMessageSMSSenderOptions`
 
@@ -143,7 +146,7 @@ We recommend you use account lockout with 2FA. Once a user logs in (through a lo
 
 [!code-csharp[Main](./2fa/sample/WebSMS/src/WebSMS/Startup.cs?highlight=1,2,3,4,5&range=67-77)]
 
-## Debugging  Twilio
+## Debugging Twilio
 
 If you're able to use the Twilio API, but you don't get an SMS message, try the following:
 
@@ -151,7 +154,7 @@ If you're able to use the Twilio API, but you don't get an SMS message, try the 
 
 2.  Use the following code in a console application to test Twilio:
 
-    ````csharp
+    ```csharp
     static void Main(string[] args)
     {
       string AccountSid = "";
@@ -162,5 +165,5 @@ If you're able to use the Twilio API, but you don't get an SMS message, try the 
       var message = twilio.SendMessage(FromPhone, toPhone, "Twilio Test");
       Console.WriteLine(message.Sid);
     }
-    ````
+    ```
     

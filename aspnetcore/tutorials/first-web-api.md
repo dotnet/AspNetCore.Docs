@@ -1,11 +1,14 @@
----
-title: Building Your First Web API with ASP.NET Core MVC and Visual Studio
+﻿---
+title: Building Your First Web API with ASP.NET Core MVC and Visual Studio | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 830b4af5-ed14-423e-9f59-764a6f13a8f6
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-web-api
 ---
@@ -38,9 +41,9 @@ Here is the API that you’ll create:
      
 <br>     
     
-The following diagram show the basic design of the app.
+The following diagram shows the basic design of the app.
 
-![image](first-web-api/_static/architecture.png)
+![app basic design](first-web-api/_static/architecture.png)
 
 * The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial. We'll use [Postman](https://www.getpostman.com/) to test the app.
 
@@ -56,11 +59,11 @@ Start Visual Studio. From the **File** menu, select **New** > **Project**.
 
 Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project `TodoApi`, clear **Host in the cloud**, and tap **OK**.
 
-![image](first-web-api/_static/new-project.png)
+![New web app](first-web-api/_static/new-project.png)
 
 In the **New ASP.NET Core Web Application (.NET Core) - TodoApi** dialog, select the **Web API** template. Tap **OK**.
 
-![image](first-web-api/_static/web-api-project.png)
+![Select Web API](first-web-api/_static/web-api-project.png)
 
 ## Add a model class
 
@@ -68,7 +71,7 @@ A model is an object that represents the data in your application. In this case,
 
 Add a folder named "Models". In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-![image](first-web-api/_static/add-folder.png)
+![Add > New Folder](first-web-api/_static/add-folder.png)
 
 > [!NOTE]
 > You can put model classes anywhere in your project, but the *Models* folder is used by convention.
@@ -81,15 +84,15 @@ Replace the generated code with:
 
 ## Add a repository class
 
-A *repository* is an object that encapsulates the data layer, and contains logic for retrieving data and mapping it to an entity model. Even though the example app doesn’t use a database, it’s useful to see how you can inject a repository into your controllers. Create the repository code in the *Models* folder.
+A *repository* is an object that encapsulates the data layer. The *repository* contains logic for retrieving and mapping data to an entity model. Even though the example app doesn’t use a database, it’s useful to see how you can inject a repository into your controllers. Create the repository code in the *Models* folder.
 
-Start by defining a repository interface named `ITodoRepository`. Use the class template (**Add New Item**  > **Class**).
+Defining a repository interface named `ITodoRepository`. Use the class template (**Add New Item**  > **Class**).
 
 [!code-csharp[Main](first-web-api/sample/src/TodoApi/Models/ITodoRepository.cs)]
 
 This interface defines basic CRUD operations.
 
-Next, add a `TodoRepository` class that implements `ITodoRepository`:
+Add a `TodoRepository` class that implements `ITodoRepository`:
 
 [!code-csharp[Main](first-web-api/sample/src/TodoApi/Models/TodoRepository.cs)]
 
@@ -103,9 +106,9 @@ This approach makes it easier to unit test your controllers. Unit tests should i
 
 In order to inject the repository into the controller, we need to register it with the DI container. Open the *Startup.cs* file. Add the following using directive:
 
-````csharp
+```csharp
 using TodoApi.Models;
-   ````
+   ```
 
 In the `ConfigureServices` method, add the highlighted code:
 
@@ -136,7 +139,7 @@ These methods implement the two GET methods:
 
 Here is an example HTTP response for the `GetAll` method:
 
-````
+```
 HTTP/1.1 200 OK
    Content-Type: application/json; charset=utf-8
    Server: Microsoft-IIS/10.0
@@ -144,26 +147,24 @@ HTTP/1.1 200 OK
    Content-Length: 82
 
    [{"Key":"4f67d7c5-a2a9-4aae-b030-16003dd829ae","Name":"Item1","IsComplete":false}]
-   ````
+   ```
 
 Later in the tutorial I'll show how you can view the HTTP response using [Postman](https://www.getpostman.com/).
 
 ### Routing and URL paths
 
-The `[HttpGet]` attribute ([`HttpGetAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/HttpGetAttribute/index.html#Microsoft.AspNetCore.Mvc.HttpGetAttribute)) specifies an HTTP GET method. The URL path for each method is constructed as follows:
+The `[HttpGet]` attribute (`HttpGetAttribute`) specifies an HTTP GET method. The URL path for each method is constructed as follows:
 
 * Take the template string in the controller’s route attribute,  `[Route("api/[controller]")]`
-
 * Replace "[Controller]" with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller and the root name is "todo". ASP.NET Core [routing](../mvc/controllers/routing.md) is not case sensitive.
-
 * If the `[HttpGet]` attribute has a template string, append that to the path. This sample doesn't use a template string.
 
 In the `GetById` method:
 
-````csharp
+```csharp
 [HttpGet("{id}", Name = "GetTodo")]
 public IActionResult GetById(string id)
-````
+```
 
 `"{id}"` is a placeholder variable for the ID of the `todo` item. When `GetById` is invoked, it assigns the value of "{id}" in the URL to the method's `id` parameter.
 
@@ -177,12 +178,12 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
 
 * If no item matches the requested ID, the method returns a 404 error.  This is done by returning `NotFound`.
 
-* Otherwise, the method returns 200 with a JSON response body. This is done by returning an [`ObjectResult`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ObjectResult/index.html#Microsoft.AspNetCore.Mvc.ObjectResult)
+* Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult`
 
   
 ### Launch the app
 
-In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the data will be displayed. If you're using IE, IE will prompt to you open or save the *values.json* file.
+In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to `http://localhost:port/api/values`, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the data will be displayed. If you're using IE, IE will prompt to you open or save the *values.json* file. Navigate to the `Todo` controller we just created `http://localhost:port/api/todo`.
 
 ## Implement the other CRUD operations
 
@@ -194,7 +195,7 @@ We'll add `Create`, `Update`, and `Delete` methods to the controller. These are 
 
 This is an HTTP POST method, indicated by the [`[HttpPost]`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/HttpPostAttribute/index.html) attribute. The [`[FromBody]`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/FromBodyAttribute/index.html) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
 
-The [`CreatedAtRoute`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Controller/index.html) method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreateAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+The `CreatedAtRoute` method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreateAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 ### Use Postman to send a Create request
 
@@ -218,10 +219,10 @@ Tap the Headers tab and copy the **Location** header:
 
 You can use the Location header URI to access the resource you just created. Recall the `GetById` method created the `"GetTodo"` named route:
 
-````csharp
+```csharp
 [HttpGet("{id}", Name = "GetTodo")]
 public IActionResult GetById(string id)
-````
+```
 
 ### Update
 
@@ -247,7 +248,7 @@ The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-s
 
 * For information about deploying your API, see [Publishing and Deployment](../publishing/index.md).
 
-* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample)
+* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample)
 
 * [Postman](https://www.getpostman.com/)
 
