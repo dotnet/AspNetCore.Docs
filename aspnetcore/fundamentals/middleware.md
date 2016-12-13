@@ -123,13 +123,16 @@ app.Map("/level1", level1App => {
 
 ASP.NET ships with the following middleware components:
 
-| Middleware | Description   |
-| ----- | -------  |
-| Authentication | Provides authentication support. |
-|  CORS |  Configures Cross-Origin Resource Sharing. |
-| Routing | Defines and constrains request routes. |
-| Session | Provides support for managing user sessions. |
-| Static Files | Provides support for serving static files, and directory browsing. |
+| Middleware | Description |
+| ----- | ------- |
+| [Authentication](xref:security/authentication/identity) | Provides authentication support. |
+| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. |
+| Response Caching | Provides support for caching responses. |
+| Response Compression | Provides support for compressing responses. |
+| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |
+| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |
+| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |
+| URL Rewriting | Provides support for rewriting URLs and redirecting requests. |
 
 <a name=middleware-writing-middleware></a>
 
