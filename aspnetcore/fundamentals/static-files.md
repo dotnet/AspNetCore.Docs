@@ -42,7 +42,7 @@ In order for static files to be served, you must configure the [Middleware](midd
 You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
 
 > [!NOTE]
-> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with `UseWebRoot`. See [Introduction to ASP.NET Core](../index.md) for more information.
+> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with `UseWebRoot`.
 
 Suppose you have a project hierarchy where the static files you wish to serve are outside the `web root`. For example:
 
