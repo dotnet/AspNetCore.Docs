@@ -61,6 +61,6 @@ You can find more info on configuring your IIS server for ASP.NET Core at [Publi
 
 After you have configured your web server, the next thing to do is to create a publish profile in Visual Studio. The easiest way to get started with publishing an ASP.NET Core application to a standard IIS host is to use a publish profile. If your hosting provider has support for creating a publish profile, download that and then import it into the Visual Studio publish dialog with the Import button. You can see that dialog shown below.
 
-![image](iis-with-msdeploy/_static/pub-dialog.png)
+![Publish dialog page](iis-with-msdeploy/_static/pub-dialog.png)
 
 After importing the publish profile, there is one additional step that needs to be taken before being able to publish to a standard IIS host. In the publish PowerShell script generated (under PropertiesPublishProfiles) update the publish module version number from `1.0.1` to `1.0.2-beta2`. After changing `1.0.1` to `1.0.2-beta2` you can use the Visual Studio publish dialog to publish and preview changes.

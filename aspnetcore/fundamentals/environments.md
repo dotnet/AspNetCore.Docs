@@ -33,7 +33,7 @@ The current environment setting can be detected programmatically from within you
 
 This should be the environment used when developing an application. When using Visual Studio, this setting can be specified in your project's debug profiles, such as for IIS Express, shown here:
 
-![image](environments/_static/project-properties-debug.png)
+![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
 
 When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the `Properties` folder. This file holds settings specific to each profile Visual Studio is configured to use to launch the application, including any environment variables that should be used. (Debug profiles are discussed in more detail in [Servers](servers/index.md)). For example, after adding another profile configured to use IIS Express, but using an `ASPNETCORE_ENVIRONMENT` value of `Staging`, the `launchSettings.json` file in our sample project is shown below:
 

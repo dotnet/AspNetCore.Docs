@@ -1,7 +1,7 @@
 ---
 uid: receiving/receivers
 ---
-  # WebHook Receivers
+# WebHook Receivers
 
 Receiving WebHooks depends on who the sender is. Sometimes there are additional steps registering a WebHook verifying that the subscriber is really listening. Some WebHooks provide a push-to-pull model where the HTTP POST request only contains a reference to the event information which is then to be retrieved independently. Often the security model varies quite a bit.
 
@@ -9,7 +9,7 @@ The purpose of Microsoft ASP.NET WebHooks is to make it both simpler and more co
 
 A WebHook receiver is responsible for accepting and verifying WebHooks from a particular sender. A WebHook receiver can support any number of WebHooks, each with their own configuration. For example, the GitHub WebHook receiver can accept WebHooks from any number of GitHub repositories.
 
-  ## WebHook Receiver URIs
+## WebHook Receiver URIs
 
 By installing Microsoft ASP.NET WebHooks you get a general WebHook controller which accepts WebHook requests from an open-ended number of services. When a request arrives, it picks the appropriate receiver that you have installed for handling a particular WebHook sender.
 
@@ -17,10 +17,9 @@ The URI of this controller is the WebHook URI that you register with the service
 
 <!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
-````
-
-   https://<host>/api/webhooks/incoming/<receiver>/{id}
-   ````
+```
+https://<host>/api/webhooks/incoming/<receiver>/{id}
+```
 
 For security reasons, many WebHook receivers require that the URI is an *https* URI and in some cases it must also contain an additional query parameter which is used to enforce that only the intended party can send WebHooks to the URI above.
 
@@ -30,14 +29,13 @@ The *{id}* is an optional identifier which can be used to identify a particular 
 
 <!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
-````
+```
+https://<host>/api/webhooks/incoming/github
+https://<host>/api/webhooks/incoming/github/12345
+https://<host>/api/webhooks/incoming/github/54321
+```
 
-   https://<host>/api/webhooks/incoming/github
-   https://<host>/api/webhooks/incoming/github/12345
-   https://<host>/api/webhooks/incoming/github/54321
-   ````
-
-  ## Installing a WebHook Receiver
+## Installing a WebHook Receiver
 
 To receive WebHooks using Microsoft ASP.NET WebHooks, you first install the Nuget package for the WebHook provider or providers you want to receive WebHooks from. The Nuget packages are named [Microsoft.AspNet.WebHooks.Receivers.*](https://www.nuget.org/packages?q=Microsoft.AspNet.WebHooks.Receivers) where the last part indicates the service supported. For example
 
@@ -45,58 +43,55 @@ To receive WebHooks using Microsoft ASP.NET WebHooks, you first install the Nuge
 
 Out of the box you can find support for Dropbox, GitHub, MailChimp, PayPal, Pusher, Salesforce, Slack, Stripe, Trello, and WordPress but it is possible to support any number of other providers.
 
-  ## Configuring a WebHook Receiver
+## Configuring a WebHook Receiver
 
 WebHook Receivers are configured through the [IWebHookReceiverConfig](https://github.com/aspnet/WebHooks/blob/master/src/Microsoft.AspNet.WebHooks.Receivers/WebHooks/IWebHookReceiverConfig.cs) inteface and particular implementations of that interface can be registered using any dependency injection model. The default implementation uses Application Settings which can either be set in the Web.config file, or, if using Azure Web Apps, can be set through the [Azure Portal](https://portal.azure.com/).
 
-![image](_static/AzureAppSettings.png)
+![Azure App Settings](_static/AzureAppSettings.png)
 
 The format for Application Setting keys is as follows:
 
 <!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
+```
+MS_WebHookReceiverSecret_<receiver>
 ````
-
-   MS_WebHookReceiverSecret_<receiver>
-   ````
 
 The value is a comma-separated list of values matching the *{id}* values for which WebHooks have been registered, for example:
 
 <!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
-````
+```
+MS_WebHookReceiverSecret_GitHub = <secret1>, 12345=<secret2>, 54321=<secret3>
+```
 
-   MS_WebHookReceiverSecret_GitHub = <secret1>, 12345=<secret2>, 54321=<secret3>
-   ````
-
-  ## Initializing a WebHook Receiver
+## Initializing a WebHook Receiver
 
 WebHook Receivers are initialized by registering them, typically in the *WebApiConfig* static class, for example:
 
 <!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
-````
+```csharp
+namespace WebHookReceivers
+{
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            // Web API configuration and services
 
-   namespace WebHookReceivers
-   {
-       public static class WebApiConfig
-       {
-           public static void Register(HttpConfiguration config)
-           {
-               // Web API configuration and services
+            // Web API routes
+            config.MapHttpAttributeRoutes();
 
-               // Web API routes
-               config.MapHttpAttributeRoutes();
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
-               config.Routes.MapHttpRoute(
-                   name: "DefaultApi",
-                   routeTemplate: "api/{controller}/{id}",
-                   defaults: new { id = RouteParameter.Optional }
-               );
-
-               // Load receivers
-               config.InitializeReceiveGitHubWebHooks();
-           }
-       }
-   }
-   ````
+            // Load receivers
+            config.InitializeReceiveGitHubWebHooks();
+        }
+    }
+}
+```

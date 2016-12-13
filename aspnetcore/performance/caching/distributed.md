@@ -118,7 +118,7 @@ C:\DistCacheSample\src\DistCacheSample>dotnet sql-cache create "Data Source=(loc
 
 The created table have the following schema:
 
-![image](distributed/_static/SqlServerCacheTable.png)
+![SqlServer Cache Table](distributed/_static/SqlServerCacheTable.png)
 
 Like all cache implementations, your app should get and set cache values using an instance of `IDistributedCache`, not a `SqlServerCache`. The sample implements `SqlServerCache` in the `Production` environment (so it is configured in `ConfigureProductionServices`).
 
