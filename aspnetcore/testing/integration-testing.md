@@ -58,7 +58,7 @@ Now we can add a few additional integration tests to confirm that the prime chec
 
 Note that we're not really trying to test the correctness of our prime number checker with these tests, but rather that the web application is doing what we expect. We already have unit test coverage that gives us confidence in `PrimeService`, as you can see here:
 
-![image](integration-testing/_static/test-explorer.png)
+![Test Explorer](integration-testing/_static/test-explorer.png)
 
 You can learn more about the unit tests in the [Unit testing](https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test) article.
 
