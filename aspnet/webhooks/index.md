@@ -2,7 +2,7 @@
 uid: index
 ---
 
-  # Overview of ASP.NET WebHooks
+# Overview of ASP.NET WebHooks
 
 WebHooks is a lightweight HTTP pattern providing a simple pub/sub model for wiring together Web APIs and SaaS services. When an event happens in a service, a notification is sent in the form of an HTTP POST request to registered subscribers. The POST request contains information about the event which makes it possible for the receiver to act accordingly.
 
@@ -26,34 +26,33 @@ Typically the HTTP POST request contains a JSON object or HTML form data determi
 
 <!-- literal_block {"names": [], "classes": [], "dupnames": [], "xml:space": "preserve", "backrefs": [], "ids": []} -->
 
+````javascript
+{
+  "action": "opened",
+  "issue": {
+      "url": "https://api.github.com/repos/octocat/Hello-World/issues/1347",
+      "number": 1347,
+      ...
+  },
+  "repository": {
+      "id": 1296269,
+      "full_name": "octocat/Hello-World",
+      "owner": {
+          "login": "octocat",
+          "id": 1
+          ...
+      },
+      ...
+  },
+  "sender": {
+      "login": "octocat",
+      "id": 1,
+      ...
+  }
+}
 ````
 
-   {
-     "action": "opened",
-     "issue": {
-         "url": "https://api.github.com/repos/octocat/Hello-World/issues/1347",
-         "number": 1347,
-         ...
-     },
-     "repository": {
-         "id": 1296269,
-         "full_name": "octocat/Hello-World",
-         "owner": {
-             "login": "octocat",
-             "id": 1
-             ...
-         },
-         ...
-     },
-     "sender": {
-         "login": "octocat",
-         "id": 1,
-         ...
-     }
-   }
-   ````
-
-To ensure that the WebHook is indeed from the intended sender, the POST request is secured in some way and then verified by the receiver. For example, [GitHub WebHooks](https://developer.github.com/webhooks/) includes an *X-Hub-Signature* HTTP header with a hash of the request body which is checked by the receiver implementation so you don’t have to worry about it.
+To ensure that the WebHook is indeed from the intended sender, the POST request is secured in some way and then verified by the receiver. For example, [GitHub WebHooks](https://developer.github.com/webhooks/) includes an *X-Hub-Signature* HTTP header with a hash of the request body which is checked by the receiver implementation so you donï¿½t have to worry about it.
 
 The WebHook flow generally goes something like this:
 
@@ -71,11 +70,11 @@ The WebHook flow generally goes something like this:
 
 * Once an event happens, the matching WebHook registrations are found and HTTP POST requests are submitted. Typically, the generation of the HTTP POST requests are retried several times if for some reason the recipient is not responding or the HTTP POST request results in an error response.
 
-  ## WebHooks Processing Pipeline
+## WebHooks Processing Pipeline
 
 The Microsoft ASP.NET WebHooks processing pipeline for incoming WebHooks looks like this:
 
-![image](_static/WebHookReceivers.png)
+![ASP.NET WebHooks Processing Pipeline](_static/WebHookReceivers.png)
 
 The two key concepts here are *Receivers* and *Handlers*:
 

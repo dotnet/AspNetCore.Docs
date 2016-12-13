@@ -125,4 +125,4 @@ The *ArticleSection* partial:
 
 At runtime, the partials are rendered into the parent view, which itself is rendered within the shared *_Layout.cshtml*, resulting in output like this:
 
-![image](partial/_static/output.png)
+![partial view output](partial/_static/output.png)

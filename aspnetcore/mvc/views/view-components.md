@@ -99,7 +99,7 @@ In this example, the view component is called directly from the controller:
 
 [Download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `Todo` controller that displays a list of *Todo* items.
 
-![image](view-components/_static/2dos.png)
+![List of ToDos](view-components/_static/2dos.png)
 
 ### Add a ViewComponent class
 
@@ -170,7 +170,7 @@ Update *Views/TodoList/Index.cshtml*
 
 Run the app and verify PVC view.
 
-![image](view-components/_static/pvc.png)
+![Priority View Component](view-components/_static/pvc.png)
 
 If the PVC view is not rendered, verify you are calling the view component with a priority of 4 or higher.
 

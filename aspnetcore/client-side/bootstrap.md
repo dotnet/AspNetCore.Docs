@@ -24,7 +24,7 @@ Bootstrap is currently the most popular web framework for developing responsive 
 
 There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET Core, in which case Bootstrap will come pre-installed:
 
-![image](bootstrap/_static/bootstrap-in-starter-template.png)
+![Bootstrap in starter template solution view](bootstrap/_static/bootstrap-in-starter-template.png)
 
 Adding Bootstrap to an ASP.NET Core project is simply a matter of adding it to `bower.json` as a dependency:
 
@@ -80,15 +80,15 @@ The default template uses a set of `<div>` elements to render a top navbar and t
 
 It also includes the application name, which appears in the top left.  The main navigation menu is rendered by the `<ul>` element within the second div, and includes links to Home, About, and Contact. Additional links for Register and Login are added by the _LoginPartial line on line 29. Below the navigation, the main body of each page is rendered in another `<div>`, marked with the "container" and "body-content" classes. In the simple default _Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple `<footer>` is added to the end of the `<div>` element.  You can see how the built-in About page appears using this template:
 
-![image](bootstrap/_static/about-page-wide.png)
+![about page](bootstrap/_static/about-page-wide.png)
 
 The collapsed navbar, with "hamburger" button in the top right, appears when the window drops below a certain width:
 
-![image](bootstrap/_static/about-page-hamburger.png)
+![about page with hamburger menu](bootstrap/_static/about-page-hamburger.png)
 
 Clicking the icon reveals the menu items in a vertical drawer that slides down from the top of the page:
 
-![image](bootstrap/_static/about-page-hamburger-open.png)
+![about page with hamburger menu expanded](bootstrap/_static/about-page-hamburger-open.png)
 
 ### Typography and Links
 
@@ -121,11 +121,11 @@ When specifying two columns both with "col-md-6" the resulting layout will be tw
 
 Bootstrap will always default to a single-column layout, so you only need to specify columns when you want more than one column. The only time you would want to explicitly specify that a `<div>` take up all 12 columns would be to override the behavior of a larger device tier. When specifying multiple device tier classes, you may need to reset the column rendering at certain points. Adding a clearfix div that is only visible within a certain viewport can achieve this, as shown here:
 
-![image](bootstrap/_static/narrow-and-wide-viewport-grid.png)
+![narrow and wide viewport grid](bootstrap/_static/narrow-and-wide-viewport-grid.png)
 
 In the above example, One and Two share a row in the "md" layout, while Two and Three share a row in the "xs" layout. Without the clearfix `<div>`, Two and Three are not shown correctly in the "xs" view (note that only One, Four, and Five are shown):
 
-![image](bootstrap/_static/grid-without-clearfix.png)
+![grid without using clearfix](bootstrap/_static/grid-without-clearfix.png)
 
 In this example, only a single row `<div>` was used, and Bootstrap still mostly did the right thing with regard to the layout and stacking of the columns. Typically, you should specify a row `<div>` for each horizontal row your layout requires, and of course you can nest Bootstrap grids within one another. When you do, each nested grid will occupy 100% of the width of the element in which it is placed, which can then be subdivided using column classes.
 
@@ -133,35 +133,35 @@ In this example, only a single row `<div>` was used, and Bootstrap still mostly 
 
 If you've used the default ASP.NET MVC templates in Visual Studio 2012 or 2013, you've probably seen the Jumbotron in action. It refers to a large full-width section of a page that can be used to display a large background image, a call to action, a rotator, or similar elements. To add a jumbotron to a page, simply add a `<div>` and give it a class of "jumbotron", then place a container `<div>` inside and add your content.  We can easily adjust the standard About page to use a jumbotron for the main headings it displays:
 
-![image](bootstrap/_static/jumbotron.png)
+![jumbotron example](bootstrap/_static/jumbotron.png)
 
 ### Buttons
 
 The default button classes and their colors are shown in the figure below.
 
-![image](bootstrap/_static/theme-buttons.png)
+![themed buttons](bootstrap/_static/theme-buttons.png)
 
 ### Badges
 
 Badges refer to small, usually numeric callouts next to a navigation item. They can indicate a number of messages or notifications waiting, or the presence of updates. Specifying such badges is as simple as adding a <span> containing the text, with a class of "badge":
 
-![image](bootstrap/_static/theme-badges.png)
+![themed badges](bootstrap/_static/theme-badges.png)
 
 ### Alerts
 
 You may need to display some kind of notification, alert, or error message to your application's users. That's where the standard alert classes come in.  There are four different severity levels, with associated color schemes:
 
-![image](bootstrap/_static/theme-alerts.png)
+![themed alerts](bootstrap/_static/theme-alerts.png)
 
 ### Navbars and Menus
 
 Our layout already includes a standard navbar, but the Bootstrap theme supports additional styling options. We can also easily opt to display the navbar vertically rather than horizontally if that's preferred, as well as adding sub-navigation items in flyout menus. Simple navigation menus, like tab strips, are built on top of <ul> elements. These can be created very simply by just providing them with the CSS classes "nav" and "nav-tabs":
 
-![image](bootstrap/_static/theme-tabstrips.png)
+![themed tabstrips](bootstrap/_static/theme-tabstrips.png)
 
 Navbars are built similarly, but are a bit more complex.  They start with a `<nav>` or `<div>` with a class of "navbar", within which a container div holds the rest of the elements. Our page includes a navbar in its header already – the one shown below simply expands on this, adding support for a dropdown menu:
 
-![image](bootstrap/_static/theme-navbars.png)
+![themed navbars](bootstrap/_static/theme-navbars.png)
 
 ### Additional Elements
 
@@ -173,7 +173,7 @@ The default theme can also be used to present HTML tables in a nicely formatted 
 
 You can extend the standard Bootstrap theme by overriding some or all of its CSS, adjusting the colors and styles to suit your own application's needs. If you'd like to start from a ready-made theme, there are several theme galleries available online that specialize in Bootstrap themes, such as WrapBootstrap.com (which has a variety of commercial themes) and Bootswatch.com (which offers free themes).  Some of the paid templates available provide a great deal of functionality on top of the basic Bootstrap theme, such as rich support for administrative menus, and dashboards with rich charts and gauges. An example of a popular paid template is Inspinia, currently for sale for $18, which includes an ASP.NET MVC5 template in addition to AngularJS and static HTML versions. A sample screenshot is shown below.
 
-![image](bootstrap/_static/theme-inspinia.png)
+![Example theme inspinia](bootstrap/_static/theme-inspinia.png)
 
 If you want to change your Bootstrap theme, put the *bootstrap.css* file for the theme you want in the *wwwroot/css* folder and change the references in *_Layout.cshtml* to point it.  Change the links for all environments:
 
@@ -197,13 +197,13 @@ In addition to those elements already discussed, Bootstrap includes support for 
 
 Bootstrap includes icon sets from Glyphicons ([http://glyphicons.com](http://glyphicons.com)), with over 200 icons freely available for use within your Bootstrap-enabled web application. Here's just a small sample:
 
-![image](bootstrap/_static/theme-glyphicons.png)
+![Glyphicons](bootstrap/_static/theme-glyphicons.png)
 
 ### Input Groups
 
 Input groups allow bundling of additional text or buttons with an input element, providing the user with a more intuitive experience:
 
-![image](bootstrap/_static/input-groups.png)
+![input groups](bootstrap/_static/input-groups.png)
 
 ### Breadcrumbs
 

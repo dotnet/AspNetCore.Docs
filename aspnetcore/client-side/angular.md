@@ -47,7 +47,7 @@ There are several ways to add AngularJS to your application. If you’re startin
 
 Upon saving the `bower.json` file, Angular will be installed in your project's `wwwroot/lib` folder. Additionally, it will be listed within the `Dependencies/Bower` folder. See the screenshot below.
 
-![image](angular/_static/angular-solution-explorer.png)
+![Solution Explorer with Angular Project](angular/_static/angular-solution-explorer.png)
 
 Next, add a `<script>` reference to the bottom of the `<body>` section of your HTML page or *_Layout.cshtml* file, as shown here:
 
@@ -84,7 +84,7 @@ One of the primitive directives used in all AngularJS applications is the `ng-ap
 
 To keep these samples independent of one another, I'm not using the shared layout file. You can see that we decorated the body tag with the `ng-app` directive to indicate this page is an AngularJS application. The `{{2+2}}` is an Angular data binding expression that you will learn more about in a moment. Here is the result if you run this application:
 
-![image](angular/_static/simple-directive.png)
+![Simple Angular Directive](angular/_static/simple-directive.png)
 
 Other primitive directives in AngularJS include:
 
@@ -120,7 +120,7 @@ Create either an HTML file or a controller action with an accompanying view name
 
 Notice that you can display model values using either directives or data binding (`ng-bind`). The resulting page should look like this:
 
-![image](angular/_static/simple-databinding.png)
+![Simple Databinding](angular/_static/simple-databinding.png)
 
 ### Templates
 
@@ -132,11 +132,11 @@ Add another view to demonstrate templates, and add the following to it:
 
 The template has AngularJS directives like `ng-app`, `ng-init`, `ng-model` and data binding expression syntax to bind the `personName` property. Running in the browser, the view looks like the screenshot below:
 
-![image](angular/_static/simple-templates-1.png)
+![Simple Templates example 1](angular/_static/simple-templates-1.png)
 
 If you change the name by typing in the input field, you will see the text next to the input field dynamically update, showing Angular two-way data binding in action.
 
-![image](angular/_static/simple-templates-2.png)
+![Simple Templates example 2](angular/_static/simple-templates-2.png)
 
 ### Expressions
 
@@ -148,7 +148,7 @@ The AngularJS expressions in the sample below bind `personName` and a simple Jav
 
 The example running in the browser displays the `personName` data and the results of the calculation:
 
-![image](angular/_static/simple-expressions.png)
+![Simple Expressions](angular/_static/simple-expressions.png)
 
 ### Repeaters
 
@@ -160,7 +160,7 @@ Repeating in AngularJS is done via a primitive directive called `ng-repeat`. The
 
 The [repeat directive](https://docs.angularjs.org/api/ng/directive/ngRepeat) outputs a series of list items in an unordered list, as you can see in the developer tools shown in this screenshot:
 
-![image](angular/_static/repeater.png)
+![Repeater Example](angular/_static/repeater.png)
 
 Here is an example that repeats over an array of objects. The `ng-init` directive establishes a `names` array, where each element is an object containing first and last names. The `ng-repeat` assignment, `name in names`, outputs a list item for every array element.
 
@@ -192,7 +192,7 @@ Below is a sample that shows `$index`, `$even`, `$odd`, `$first`, and `$last` in
 
 Here is the resulting output:
 
-![image](angular/_static/repeaters2.png)
+![Repeater example 2](angular/_static/repeaters2.png)
 
 ### $scope
 
@@ -213,7 +213,7 @@ What happens when a particular property is not found by the view? The view defin
 
 Notice on line 9 that we are asking Angular to show the "name" property using expression syntax. Line 10 then refers to "age", a property that does not exist. The running example shows the name set to "Mary Jane" and nothing for age. Missing properties are ignored.
 
-![image](angular/_static/scope.png)
+![Scope example](angular/_static/scope.png)
 
 ### Modules
 
@@ -246,7 +246,7 @@ The view using the `ng-controller` directive assigns the controller name:
 
 The page shows "Mary" and "Jane" that correspond to the `firstName` and `lastName` properties attached to the `$scope` object:
 
-![image](angular/_static/controllers.png)
+![Controller example](angular/_static/controllers.png)
 
 ### Components
 
@@ -269,7 +269,7 @@ The associated template used by component:
 
 The page shows "Aftab" and "Ansari" that correspond to the `firstName` and `lastName` properties attached to the `vm` object:
 
-![image](angular/_static/components.png)
+![Components example](angular/_static/components.png)
 
 ### Services
 
@@ -317,7 +317,7 @@ The `Person` controller returns a JSON-formatted list of `Person` objects:
 
 Let's see the application in action:
 
-![image](angular/_static/rest-bound.png)
+![Controller displaying REST results](angular/_static/rest-bound.png)
 
 You can [view the application's structure on GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample).
 
@@ -358,11 +358,11 @@ The controller is defined by using the module's `controller` function in `person
 
 If we run this application and navigate to the `people/spa#/persons` URL, we will see:
 
-![image](angular/_static/spa-persons.png)
+![Persons List View](angular/_static/spa-persons.png)
 
 If we navigate to a detail page, for example `people/spa#/persons/2`, we will see the detail partial view:
 
-![image](angular/_static/spa-persons-2.png)
+![Person Detail View](angular/_static/spa-persons-2.png)
 
 You can view the full source and any files not shown in this article on [GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample).
 
@@ -407,7 +407,7 @@ The view below binds a controller function to an AngularJS event. Line 9 has a b
 
 The running example demonstrates that the controller's `sayName` function is called automatically when the button is clicked.
 
-![image](angular/_static/events.png)
+![Click Event](angular/_static/events.png)
 
 For more detail on AngularJS built-in event handler directives, be sure to head to the [documentation website](https://docs.angularjs.org/api/ng/directive/ngClick) of AngularJS.
 

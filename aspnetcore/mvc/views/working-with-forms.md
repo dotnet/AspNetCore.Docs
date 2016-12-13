@@ -486,7 +486,7 @@ The `CountryViewModelGroup` groups the `SelectListItem` elements into the "North
 
 The two groups are shown below:
 
-![image](working-with-forms/_static/grp.png)
+![option group example](working-with-forms/_static/grp.png)
 
 The generated HTML:
 
