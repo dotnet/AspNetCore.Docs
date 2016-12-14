@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "Microsoft.AspNetCore.Diagnostics": "1.2.0-preview1-22808",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
     "Microsoft.AspNetCore.Routing": "1.0.1",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
@@ -18,10 +17,6 @@
 
   "frameworks": {
     "netcoreapp1.0": {
-      "imports": [
-        "dotnet5.6",
-        "portable-net45+win8"
-      ]
     }
   },
 

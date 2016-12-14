@@ -14,15 +14,17 @@ public class HomeController : Controller
     private const string CacheKeyTicks = "_CacheKeyTicks";
     private IMemoryCache _memoryCache;
     private static string _evictionMsg1;
-    private static string _evictionMsg2;
+    private string _evictionMsg2="not set";
     private static string _cancellationMsg;
     private static CancellationTokenSource _cts = new CancellationTokenSource();
     private static CancellationTokenSource _cts2 = new CancellationTokenSource();
 
+    #region snippet_ctor
     public HomeController(IMemoryCache memoryCache)
     {
         _memoryCache = memoryCache;
     }
+    #endregion
 
     #region snippet1
     public IActionResult Index()
@@ -72,11 +74,11 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index3()
     {
-        DateTime cachedVal = await 
+        DateTime cachedVal = await
             _memoryCache.GetOrCreateAsync<DateTime>(CacheKeyTime, entry =>
         {
             entry.SlidingExpiration = TimeSpan.FromSeconds(3);
-            return Task.FromResult <DateTime>(DateTime.Now);
+            return Task.FromResult<DateTime>(DateTime.Now);
         });
 
         return View("Index", cachedVal);
@@ -130,14 +132,23 @@ public class HomeController : Controller
     }
     #endregion
 
+    public IActionResult Index4()
+    {
+        _evictionMsg2 = "In Index4";
+
+        return View("Index");
+    }
+
+
     #region snippet_ed
     public IActionResult EvictDependency()
     {
+        _evictionMsg2 = "in EvictDependency";
         using (var entry = _memoryCache.CreateEntry(CacheKeyMS2))
         {
             // expire this entry if the dependant entry expires.
             entry.Value = DateTime.Now.TimeOfDay.Milliseconds.ToString();
-            entry.RegisterPostEvictionCallback(AfterEvicted2);
+            entry.RegisterPostEvictionCallback(AfterEvicted2, this);
 
             _memoryCache.Set(CacheKeyMS3,
                 DateTime.Now.AddMilliseconds(4).TimeOfDay.Milliseconds.ToString(),
@@ -162,12 +173,10 @@ public class HomeController : Controller
     }
     #endregion
 
-    // TODO Review How can I add global _evictionMsg2 to callback so I don't need 
-    // a callback per global. I would rather not have AfterEvicted and AfterEvicted2
     private static void AfterEvicted2(object key, object value,
     EvictionReason reason, object state)
     {
-        _evictionMsg2 = $"key: {key}, Value: {value}, Reason: {reason}";
+        ((HomeController)state)._evictionMsg2 = $"key: {key}, Value: {value}, Reason: {reason}";
     }
 
     public IActionResult CheckCancel(int? id = 0)
