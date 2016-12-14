@@ -68,7 +68,7 @@ The following code calls [Get](https://docs.microsoft.com/en-us/aspnet/core/api/
 
 See [IMemoryCache methods](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.imemorycache) and [CacheExtensions methods](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.cacheextensions) for a description of the cache methods.
 
-## Using `MemoryCacheEntryOptions`
+## Using MemoryCacheEntryOptions
 
 The following sample:
 
