@@ -15,7 +15,7 @@ By [Luke Latham](https://github.com/GuardRex) and [John Luo](https://github.com/
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/sample)
 
-This document provides details on how to configure the Response Caching Middleware for ASP.NET Core applications. For an introduction to to HTTP caching and the `ResponseCaching` feature, see [Response Caching](response.md).
+This document provides details on how to configure the Response Caching Middleware for ASP.NET Core applications. For an introduction to to HTTP caching and the `ResponseCacheAttribute`, see [Response Caching](response.md).
 
 ## Package
 To include the middleware in your project, add a reference to the  [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package. The middleware is available for projects that target `.NETFramework 4.5.1` or `.NETStandard 1.3` or higher.
@@ -25,9 +25,7 @@ In `ConfgureServices`, add the middleware to your service collection.
 ```c#
 public void ConfigureServices(IServiceCollection services)
 {
-    ...
     services.AddResponseCaching();
-    ...
 }
 ```
 Configure the application to use the middleware when processing requests.
