@@ -13,35 +13,40 @@ uid: performance/caching/middleware
 
 By [Luke Latham](https://github.com/GuardRex) and [John Luo](https://github.com/JunTaoLuo)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/middleware/sample)
 
-This document provides details on how to configure the Response Caching Middleware for ASP.NET Core applications. For an introduction to to HTTP caching and the `ResponseCacheAttribute`, see [Response Caching](response.md).
+This document provides details on how to configure the Response Caching Middleware for ASP.NET Core applications. For an introduction to to HTTP caching and the `ResponseCache` attribute, see [Response Caching](response.md).
 
 ## Package
 To include the middleware in your project, add a reference to the  [`Microsoft.AspNetCore.ResponseCaching`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package. The middleware is available for projects that target `.NETFramework 4.5.1` or `.NETStandard 1.3` or higher.
 
 ## Extensions
-In `ConfgureServices`, add the middleware to your service collection.
+Refer to the [Response Caching Middleware sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/middleware/sample). In `ConfgureServices`, add the middleware to your service collection.
 ```c#
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddResponseCaching();
 }
 ```
-Configure the application to use the middleware when processing requests.
+Configure the application to use the middleware when processing requests. The example below and the [Response Caching Middleware sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/middleware/sample) show how to add a `Cache-Control` header to the response that will cache cachable responses for up to 10 seconds. The application also sends a `Vary` header to configure the cache to serve the response only if the `Accept-Encoding` header of subsequent requests matches that from the original request.
 ```c#
 public void Configure(IApplicationBuilder app)
 {
-    ...
     app.UseResponseCaching();
-    ...
+    context.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
+    {
+        Public = true,
+        MaxAge = TimeSpan.FromSeconds(10)
+    };
+    context.Response.Headers[HeaderNames.Vary] = new string[] { "Accept-Encoding" };
 }
 ```
-The position of `app.UseResponseCaching()` relative to other middleware in the pipeline is important. Any terminal middleware placed before the Response Caching Middleware will prevent the Response Caching Middleware from caching or serving the response. For example, if you place [Static File Middleware](xref:fundamentals/static-files) before `app.UseResponseCaching()`, your static files will not be cached by the middleware. If you place Static File Middleware after `app.UseResponseCaching()`, your static files will be cached.
+The position of this middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before the Response Caching Middleware will prevent the Response Caching Middleware from caching or serving the response. For example, if you place [Static File Middleware](xref:fundamentals/static-files) before Response Caching Middleware, your static files will not be cached by the middleware. If you place Static File Middleware after Response Caching Middleware, your static files will be cached.
 
-If you place Static File Middleware before Response Caching Middleware, you can provide a prefix to the middleware that will force it to ignore requests with a path that doesn't match your prefix. For example, you can prefix your application's static file links with **assets** (**http://www.myapp.com/assets/staticfile.txt**) and configure the middleware to ignore any requests that do not include the **assets** prefix, `app.UseStaticFiles("/assets")`. Note that "**assets**" is only part of the path in your links to the static files. Your application will not have an **assets** folder, and your static files should remain in the **wwwroot** folder of your deployed application (**wwwroot\staticfile.txt**).
+>[!NOTE]
+> If you place Static File Middleware before Response Caching Middleware, you can provide a prefix to the middleware that will force it to ignore requests with a path that doesn't match your prefix. For example, you can prefix your application's static file links with **assets** (**http://www.myapp.com/assets/staticfile.txt**) and configure the middleware to ignore any requests that do not include the **assets** prefix, `app.UseStaticFiles("/assets")`. Note that "**assets**" is only part of the path in your links to the static files. Your application will not have an **assets** folder, and your static files should remain in the **wwwroot** folder of your deployed application (**wwwroot\staticfile.txt**).
 
-There is no need for you to be concerned about the position of `app.UseDeveloperExceptionPage()` and the accidential caching of the developer exception page. The Response Caching Middleware only caches 200 (OK) server responses. The developer exception page is only produced on non-200 responses, so it will never be cached by the middleware.
+> The Response Caching Middleware only caches 200 (OK) server responses. Any other responses, including [error pages](xref:fundamentals/error-handling), will be ignored by the middleware.
 
 ## Options
 The middleware offers two options for controlling response caching.
@@ -60,8 +65,43 @@ services.AddResponseCaching(options =>
 });
 ```
 
-## ResponseCache attribute
-The `ResponseCache` attribute specifies the parameters necessary for setting appropriate headers for response caching. The only parameter of the `ResponseCache` attribute that strictly requires the middleware is `VaryByQueryKeys`, which does not correspond to an actual HTTP header. See the [ResponseCache Attribute document](response.md#responsecache-attribute) and the [ResponseCacheAttribute Class API Reference](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute) for usage and a description of the parameters.
+## `ResponseCache` attribute
+The `ResponseCache` attribute specifies the parameters necessary for setting appropriate headers for response caching. The only parameter of the `ResponseCache` attribute that strictly requires the middleware is `VaryByQueryKeys`, which does not correspond to an actual HTTP header. See [ResponseCache Attribute](response.md#responsecache-attribute) and the [ResponseCacheAttribute Class API Reference](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute) for usage and a description of the parameters.
+
+## `VaryByQueryKeys` without using the `ResponseCache` attribute
+You can vary response caching with the `VaryByQueryKeys` feature without the `ResponseCache` attribute by using the `ResponseCachingFeature` directly from the `IFeatureCollection` of the `HttpContext`.
+```c#
+var responseCachingFeature = context.HttpContext.Features.Get<IResponseCachingFeature>();
+if (responseCachingFeature != null)
+{
+    responseCachingFeature.VaryByQueryKeys = new[] { "MyKey" };
+}
+```
+You can also create a custom `ResponseCachingFeature` that will apply `VaryByQueryKeys` globally to your application.
+```c#
+public void Configure(IApplicationBuilder app)
+{
+    app.UseResponseCaching();
+    
+    app.Use((context, next) =>
+    {
+        if (context.Features.Get<IResponseCachingFeature>() == null)
+        {
+            context.Features.Set<IResponseCachingFeature>(new CustomResponseCachingFeature());
+        }
+        return next();
+    });
+}
+
+public class CustomResponseCachingFeature : IResponseCachingFeature
+{
+    public string[] VaryByQueryKeys
+    {
+        get { return new[] { "MyKey" }; }
+        set { }
+    }
+}
+```
 
 ## Caching conditions
 * The request must result in a 200 (OK) response from the server.
@@ -72,6 +112,10 @@ The `ResponseCache` attribute specifies the parameters necessary for setting app
 * The `Pragma: no-cache` header/value must not be present.
 * The `Set-Cookie` header must not be present.
 * `Vary` header parameters must be valid and not equal to `*`.
+* The `Content-Length` header (if set) must match the size of the response body.
+* The `HttpSendFileFeature` is not used.
+* Response buffering is successful.
+* The response must be cacheable according to the [RFC 7234](https://tools.ietf.org/html/rfc7234) specifications. For example, the `no-store` directive must must not exist in request or response header fields. See *Section 3: Storing Responses in Caches* and *Section 4.2: Freshness* of the RFC document for details.
 
 >[!NOTE]
 > The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks will set the `Cache-Control` and `Pragma` headers to `no-cache` so that responses will not be cached.
@@ -83,17 +127,15 @@ Header | Details
 --- | --- |
 Authorization | <p>The response is not cached if the header exists.</p>
 Cache-Control | <p>The header must be present and its value must explicitly be marked `public`.</p><p>You can control caching with the following parameters:</p><ul><li>max-age</li><li>max-stale</li><li>min-fresh</li><li>must-revalidate</li><li>no-cache</li><li>no-store</li><li>only-if-cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-revalidate</li></ul>
-Pragma | <p>The value must not be `no-cache`.</p><p>Considered for backward compatibility with HTTP/1.0.</p>
+Pragma | <p>The value must not be `no-cache`. This header is overridden by the relevant directives in the `Cache-Control` header if present.</p><p>Considered for backward compatibility with HTTP/1.0.</p>
 Set-Cookie | <p>The response is not cached if the header exists.</p>
-Vary | <p>You can vary the cached response by another header. For example, you can cache responses by encoding by including the `Vary: Accept-Encoding` header, which would cache `gzip` and `text/plain` responses separately.</p>
-Expires | <p>The response must not be stale given the value provided.</p>
+Vary | <p>You can vary the cached response by another header. For example, you can cache responses by encoding by including the `Vary: Accept-Encoding` header, which would cache `gzip` and `text/plain` responses separately. A response with a header value of `*` is never stored.</p>
+Expires | <p>A response deemed stale by this header will not be stored or retrieved unless overridden by other `Cache-Control` headers.</p>
 If-None-Match | <p>The response will be served from cache if the value is not `*` and the `ETag` of the response doesn't match any of the values provided. Otherwise, a 304 (Not Modified) response will be served.</p>
 If-Modified-Since | <p>If the `If-None-Match` header is not present, a cached response will be served if the cached response date value is less than the value provided.</p>
-
-The middleware sets the following headers when appropriate:
-* Date
-* Age
-* Content-Length
+Date | <p>When serving from cache, the `Date` header is set by the middleware if it wasn't provided on the original response.</p>
+Content-Length | <p>When serving from cache, the `Content-Length` header is set by the middleware if it wasn't provided on the original response.</p>
+Age | <p>The `Age` header sent in the original response will be ignored. The middleware will compute a new value when serving a cached response.</p>
 
 ## Additional Resources
 
