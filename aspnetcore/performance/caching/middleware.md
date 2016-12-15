@@ -23,11 +23,11 @@ To include the middleware in your project, add a reference to the  [`Microsoft.A
 ## Extensions
 In `ConfgureServices`, add the middleware to your service collection.
 
-[!code-csharp[Main](middleware/sample/Startup.cs?name=snippet_configureservices&range=16-19)]
+[!code-csharp[Main](middleware/sample/Startup.cs?range=16-19)]
 
 Configure the application to use the middleware when processing requests. The sample application adds a `Cache-Control` header to the response that will cache cachable responses for up to 10 seconds. The sample also sends a `Vary` header to configure the cache to serve the response only if the `Accept-Encoding` header of subsequent requests matches that from the original request.
 
-[!code-csharp[Main](middleware/sample/Startup.cs?name=snippet_configure&range=21-35)]
+[!code-csharp[Main](middleware/sample/Startup.cs?range=21-35)]
 
 The position of this middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before the this middleware will prevent the Response Caching Middleware from caching or serving the response. For example, if you place [Static File Middleware](xref:fundamentals/static-files) before this middleware, your static files will not be cached by the middleware. If you place Static File Middleware after this middleware, your static files will be cached.
 
