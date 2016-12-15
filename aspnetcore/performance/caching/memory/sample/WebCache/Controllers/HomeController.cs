@@ -15,8 +15,8 @@ public class HomeController : Controller
     private const string CacheKeyEvictMsg1 = "_CacheKeyEvictMsg1";
     private const string CacheKeyEvictMsg2= "_CacheKeyEvictMsg2";
     private const string CacheKeyCancelMsg = "_CacheKeyCancelMsg";
-    private const string CacheKeyCanceTokenSource = "_CacheKeyCanceTokenSource";
-    private const string CacheKeyCanceTokenSource2 = "_CacheKeyCanceTokenSource2";
+    private const string CacheKeyCancelTokenSource = "_CacheKeyCancelTokenSource";
+    private const string CacheKeyCancelTokenSource2 = "_CacheKeyCancelTokenSource2";
     private IMemoryCache _memoryCache;
 
 
@@ -144,7 +144,7 @@ public class HomeController : Controller
         // Clear out eviction message, and key from previous run (if any).
         _memoryCache.Remove(CacheKeyEvictMsg2);
         CancellationTokenSource cts2 = new CancellationTokenSource();
-        _memoryCache.Set<CancellationTokenSource>(CacheKeyCanceTokenSource2, cts2);
+        _memoryCache.Set<CancellationTokenSource>(CacheKeyCancelTokenSource2, cts2);
 
         using (var entry = _memoryCache.CreateEntry(CacheKeyMS2))
         {
@@ -169,7 +169,7 @@ public class HomeController : Controller
         if (id > 0)
         {
             CancellationTokenSource cts2 =
-                _memoryCache.Get<CancellationTokenSource>(CacheKeyCanceTokenSource2);
+                _memoryCache.Get<CancellationTokenSource>(CacheKeyCancelTokenSource2);
             cts2.Cancel();
         }
 
@@ -190,7 +190,7 @@ public class HomeController : Controller
         if (id > 0)
         {
             CancellationTokenSource cts =
-               _memoryCache.Get<CancellationTokenSource>(CacheKeyCanceTokenSource);
+               _memoryCache.Get<CancellationTokenSource>(CacheKeyCancelTokenSource);
             cts.CancelAfter(100);
             // Cancel immediately with cts.Cancel();
         }
@@ -204,7 +204,7 @@ public class HomeController : Controller
     {
         var cachedVal = DateTime.Now.Second.ToString();
         CancellationTokenSource cts = new CancellationTokenSource();
-        _memoryCache.Set<CancellationTokenSource>(CacheKeyCanceTokenSource, cts);
+        _memoryCache.Set<CancellationTokenSource>(CacheKeyCancelTokenSource, cts);
 
         // Don't use previous message.
         _memoryCache.Remove(CacheKeyCancelMsg);
