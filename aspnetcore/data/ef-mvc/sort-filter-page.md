@@ -54,7 +54,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code crea
 
 ### Add column heading hyperlinks to the Student Index view
 
-Replace the code in *Views/Students/Index.cshtml*, with the following code to rearrange the column order and add column heading hyperlinks. The new column headings are highlighted.
+Replace the code in *Views/Students/Index.cshtml*, with the following code to rearrange the column order and add column heading hyperlinks. The changed lines are highlighted.
 
 [!code-html[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22,32,38)]
 
