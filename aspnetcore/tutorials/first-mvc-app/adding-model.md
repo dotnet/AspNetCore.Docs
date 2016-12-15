@@ -44,7 +44,7 @@ Complete the **New Project** dialog:
 
 ![image](start-mvc/_static/new_project2.png)
 
->[!WARNING]
+> [!WARNING]
 > You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffolding engine to work.
 
 In the **New ASP.NET Core Web Application - MvcMovie** dialog:
@@ -79,8 +79,8 @@ In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Fr
 
 Complete the **Add Controller** dialog
 
-* **Model class:** *Movie(MvcMovie.Models)*
-* **Data context class:** *ApplicationDbContext(MvcMovie.Data)*
+* **Model class:** *Movie (MvcMovie.Models)*
+* **Data context class:** *ApplicationDbContext (MvcMovie.Data)*
 * **Views:**: Keep the default of each option checked
 * **Controller name:** Keep the default *MoviesController*
 * Tap **Add**
@@ -106,6 +106,9 @@ We'll follow those instructions to get the database ready for our Movie app.
 
 You must stop IIS Express before you update the database.
 
+> [!NOTE]
+> In Visual Studio 2017 RC you no longer need to stop IIS Express, however if you are running in debug mode you'll need to close the browser window and stop debugging.
+
 <a name=stop-iis-express-reference-label></a>
 
 ## To Stop IIS Express:
@@ -120,36 +123,17 @@ You must stop IIS Express before you update the database.
 
 * Alternatively, you can exit and restart Visual Studio
 
-* Open a command prompt in the project directory (MvcMovie/src/MvcMovie). Follow these instructions for a quick way to open a folder in the project directory.
-
-  * Open a file in the root of the project (for this example, use *Startup.cs*.)
-
-  * Right click on *Startup.cs*  **> Open Containing Folder**.
-
-
-
-   ![image](adding-model/_static/quick.png)
-
-
-
-   * Shift + right click a folder > **Open command window here**
-
-
-
-   ![image](adding-model/_static/folder.png)
-
-
-
-   * Run `cd ..` to move back up to the project directory
+* Open a command prompt and navigate to the project directory (*your_path*/MvcMovie/src/MvcMovie). You can find the path by selecting the `web.config` file in Solution Explorer and viewing the `Full Path` property in the Properties window.
 
 * Run the following commands in the command prompt:
 
-```console
-dotnet ef migrations add Initial
-dotnet ef database update
-   ```
+  ```console
+  dotnet ef migrations add Initial
+  dotnet ef database update
+  ```
    
-Note: If IIS-Express is running, you might get the error *CS2012: Cannot open 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' for writing -- 'The process cannot access the file 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' because it is being used by another process.'* If you get that error, exit and restart Visual Studio.
+  > [!NOTE]
+  > If IIS-Express is running, you might get the error *CS2012: Cannot open 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' for writing -- 'The process cannot access the file 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' because it is being used by another process.'* If you get that error, exit and restart Visual Studio.
 
 ## dotnet ef commands
 

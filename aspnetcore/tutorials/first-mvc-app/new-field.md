@@ -26,7 +26,7 @@ Open the *Models/Movie.cs* file and add a `Rating` property:
 
 Build the app (Ctrl+Shift+B).
 
-Because you've added a new field to the `Movie` class, you also need to update the binding white list so this new property will be included. Update the `[Bind]` attribute for `Create` and `Edit` action methods to include the `Rating` property:
+Because you've added a new field to the `Movie` class, you also need to update the binding white list so this new property will be included. In `MoviesController.cs`, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
 ```csharp
 [Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]
@@ -63,7 +63,7 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 [!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Models/SeedDataRating.cs?highlight=6&range=25-32)]
 
 >[!WARNING]
-> You must stop IIS Express before you run the `dotnet ef` commands.   See [To Stop IIS Express:](adding-model.md#stop-iis-express-reference-label)
+> You must stop IIS Express before you run the `dotnet ef` commands. In Visual Studio 2017 RC this step isn't necessary, but you should close the browser window and stop debugging. See [To Stop IIS Express:](adding-model.md#stop-iis-express-reference-label)
 
 Build the solution then open a command prompt. Enter the following commands:
 
