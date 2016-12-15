@@ -75,7 +75,7 @@ Any other form of persistent storage, whether using Entity Framework and a datab
 
 ## Working with HttpContext.Items
 
-The `HttpContext` abstraction provides support for a simple dictionary collection of type `IDictionary<object, object>`, called `Items`. This collection is available from the start of an *HttpRequest`* and is discarded at the end of each request. You can access it by simply assigning a value to a keyed entry, or by requesting the value for a given key.
+The `HttpContext` abstraction provides support for a simple dictionary collection of type `IDictionary<object, object>`, called `Items`. This collection is available from the start of an *HttpRequest* and is discarded at the end of each request. You can access it by simply assigning a value to a keyed entry, or by requesting the value for a given key.
 
 For example, some simple [Middleware](middleware.md) could add something to the `Items` collection:
 
