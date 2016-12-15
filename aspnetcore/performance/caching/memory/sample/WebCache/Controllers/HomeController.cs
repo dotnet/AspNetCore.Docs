@@ -17,8 +17,6 @@ public class HomeController : Controller
     private const string CacheKeyCancelMsg = "_CacheKeyCancelMsg";
     private const string CacheKeyCanceTokenSource = "_CacheKeyCanceTokenSource";
     private const string CacheKeyCanceTokenSource2 = "_CacheKeyCanceTokenSource2";
-    private static CancellationTokenSource _cts;
-    private static CancellationTokenSource _cts2;
     private IMemoryCache _memoryCache;
 
 
@@ -145,7 +143,8 @@ public class HomeController : Controller
     {
         // Clear out eviction message, and key from previous run (if any).
         _memoryCache.Remove(CacheKeyEvictMsg2);
-        _cts2 = new CancellationTokenSource();
+        CancellationTokenSource cts2 = new CancellationTokenSource();
+        _memoryCache.Set<CancellationTokenSource>(CacheKeyCanceTokenSource2, cts2);
 
         using (var entry = _memoryCache.CreateEntry(CacheKeyMS2))
         {
@@ -155,7 +154,7 @@ public class HomeController : Controller
 
             _memoryCache.Set(CacheKeyMS3,
                 DateTime.Now.AddMilliseconds(4).TimeOfDay.Milliseconds.ToString(),
-                new CancellationChangeToken(_cts2.Token));
+                new CancellationChangeToken(cts2.Token));
         }
 
         return RedirectToAction("CheckEvictDependency");
@@ -169,7 +168,9 @@ public class HomeController : Controller
 
         if (id > 0)
         {
-            _cts2.Cancel();
+            CancellationTokenSource cts2 =
+                _memoryCache.Get<CancellationTokenSource>(CacheKeyCanceTokenSource2);
+            cts2.Cancel();
         }
 
         return View();
@@ -188,8 +189,10 @@ public class HomeController : Controller
     {
         if (id > 0)
         {
-            _cts.CancelAfter(100);
-            // Cancel immediately with _cts.Cancel();
+            CancellationTokenSource cts =
+               _memoryCache.Get<CancellationTokenSource>(CacheKeyCanceTokenSource);
+            cts.CancelAfter(100);
+            // Cancel immediately with cts.Cancel();
         }
 
         ViewData["CachedTime"] = _memoryCache.Get<string>(CacheKeyTicks);
@@ -200,14 +203,15 @@ public class HomeController : Controller
     public IActionResult CancelTest()
     {
         var cachedVal = DateTime.Now.Second.ToString();
-        _cts = new CancellationTokenSource();
+        CancellationTokenSource cts = new CancellationTokenSource();
+        _memoryCache.Set<CancellationTokenSource>(CacheKeyCanceTokenSource, cts);
 
         // Don't use previous message.
         _memoryCache.Remove(CacheKeyCancelMsg);
 
         _memoryCache.Set(CacheKeyTicks, cachedVal,
             new MemoryCacheEntryOptions()
-            .AddExpirationToken(new CancellationChangeToken(_cts.Token))
+            .AddExpirationToken(new CancellationChangeToken(cts.Token))
             .RegisterPostEvictionCallback(
                 (key, value, reason, substate) =>
                 {
