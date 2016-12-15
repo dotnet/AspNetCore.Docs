@@ -189,7 +189,7 @@ If you're storing more complex objects, you will need to serialize the object to
 
 The associated sample application demonstrates how to work with Session, including storing and retrieving simple types as well as custom objects. In order to see what happens when session expires, the sample has configured sessions to last just 10 seconds:
 
-[!code-csharp[Main](../fundamentals/app-state/sample/src/AppState/Startup.cs?highlight=2,6&range=15-23)]
+[!code-csharp[Main](../fundamentals/app-state/sample/src/AppState/Startup.cs?highlight=3,7&range=14-22)]
 
 When you first navigate to the web server, it displays a screen indicating that no session has yet been established:
 
@@ -197,13 +197,13 @@ When you first navigate to the web server, it displays a screen indicating that 
 
 This default behavior is produced by the following middleware in Startup.cs, which runs when requests are made that do not already have an established session (note the highlighted sections):
 
-[!code-csharp[Main](app-state/sample/src/AppState/Startup.cs?range=77-107&highlight=4,6,8-11,28-29)]
+[!code-csharp[Main](app-state/sample/src/AppState/Startup.cs?range=77-106&highlight=4,6,8-11,28-29)]
 
 `GetOrCreateEntries` is a helper method that will retrieve a `RequestEntryCollection` instance from `Session` if it exists; otherwise, it creates the empty collection and returns that. The collection holds `RequestEntry` instances, which keep track of the different requests the user has made during the current session, and how many requests they've made for each path.
 
-[!code-csharp[Main](app-state/sample/src/AppState/Model/RequestEntry.cs?range=3-)]
+[!code-csharp[Main](app-state/sample/src/AppState/Model/RequestEntry.cs?range=3-7)]
 
-[!code-csharp[Main](app-state/sample/src/AppState/Model/RequestEntryCollection.cs?range=6-)]
+[!code-csharp[Main](app-state/sample/src/AppState/Model/RequestEntryCollection.cs?range=7-28)]
 
 Fetching the current instance of `RequestEntryCollection` is done via the `GetOrCreateEntries` helper method:
 
@@ -221,7 +221,7 @@ Refreshing the page results in the count incrementing; returning to the root of 
 
 Establishing the session is done in the middleware that handles requests to "/session":
 
-[!code-none[Main](../fundamentals/app-state/sample/src/AppState/Startup.cs?highlight=2,8,9,10,11,12,13,14&range=56-75)]
+[!code-csharp[Main](../fundamentals/app-state/sample/src/AppState/Startup.cs?highlight=2,8,9,10,11,12,13,14&range=56-75)]
 
 Requests to this path will get or create a `RequestEntryCollection`, will add the current path to it, and then will store it in session using the helper method `SaveEntries`, shown below:
 
