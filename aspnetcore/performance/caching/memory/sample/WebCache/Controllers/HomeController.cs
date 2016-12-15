@@ -10,7 +10,6 @@ public class HomeController : Controller
 {   
     private IMemoryCache _memoryCache;
 
-
     public HomeController(IMemoryCache memoryCache)
     {
         _memoryCache = memoryCache;
