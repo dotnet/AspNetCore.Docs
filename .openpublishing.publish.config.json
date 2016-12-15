@@ -1,7 +1,7 @@
 {
   "build_entry_point": "docs",
   "need_generate_pdf": false,
-  "need_generate_intellisense": true,
+  "need_generate_intellisense": false,
   "git_repository_branch_open_to_public_contributors": "master",
   "need_generate_pdf_url_template": true,
   "Targets": {
