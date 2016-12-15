@@ -3,6 +3,7 @@
   "need_generate_pdf": false,
   "need_generate_intellisense": false,
   "need_preview_pull_request": true,
+  "need_pr_comments": false,
   "git_repository_branch_open_to_public_contributors": "master",
   "need_generate_pdf_url_template": true,
   "Targets": {
