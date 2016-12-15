@@ -72,7 +72,7 @@ To add filtering to the Students Index page, you'll add a text box and a submit 
 
 In *StudentsController.cs*, replace the `Index` method with the following code (the changes are highlighted).
 
-[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortFilter&1,5,9-13)]
+[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortFilter&highlight=1,5,9-13)]
 
 You've added a `searchString` parameter to the `Index` method. The search string value is received from a text box that you'll add to the Index view. You've also added to the LINQ statement a where clause that selects only students whose first name or last name contains the search string. The statement that adds the where clause is executed only if there's a value to search for.
 
