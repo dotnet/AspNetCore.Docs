@@ -86,7 +86,10 @@ Content-Length | <p>When serving from cache, the `Content-Length` header is set 
 Age | <p>The `Age` header sent in the original response will be ignored. The middleware will compute a new value when serving a cached response.</p>
 
 ## Troubleshooting
-If caching behavior is not as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the outgoing headers on the response. The conditions by which a response will be cached or served from the cache are listed below.
+If caching behavior is not as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. The conditions by which a response will be cached or served from the cache are listed below.
+
+When testing and troubleshooting caching behavior, a browser may set request headers that affect caching in undesirable ways. For example, a browser may set the `Cache-Control` header to `no-cache` when you refresh the page. Instead of using a browser, use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), all of which allow you to explicitly set request headers.
+
 * The request must result in a 200 (OK) response from the server.
 * The request method must be GET or HEAD.
 * Terminal middlewares, such as Static File Middleware, must not process the response prior to the Response Caching Middleware.
@@ -104,8 +107,6 @@ If caching behavior is not as you expect, confirm that responses are cacheable a
 
 >[!NOTE]
 > The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks will set the `Cache-Control` and `Pragma` headers to `no-cache` so that responses will not be cached.
-
-> When testing and troubleshooting caching behavior, browsers may set request headers that affect caching in undesirable ways. Use browser developer tools or a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/) when testing and troubleshooting caching.
 
 ## Additional Resources
 
