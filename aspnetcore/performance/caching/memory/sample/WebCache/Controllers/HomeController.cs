@@ -12,12 +12,15 @@ public class HomeController : Controller
     private const string CacheKeyMS2 = "_CacheKeyMS2";
     private const string CacheKeyMS3 = "_CacheKeyMS3";
     private const string CacheKeyTicks = "_CacheKeyTicks";
-    private IMemoryCache _memoryCache;
     private const string CacheKeyEvictMsg1 = "_CacheKeyEvictMsg1";
     private const string CacheKeyEvictMsg2= "_CacheKeyEvictMsg2";
     private const string CacheKeyCancelMsg = "_CacheKeyCancelMsg";
-    private static CancellationTokenSource _cts = new CancellationTokenSource();
-    private static CancellationTokenSource _cts2 = new CancellationTokenSource();
+    private const string CacheKeyCanceTokenSource = "_CacheKeyCanceTokenSource";
+    private const string CacheKeyCanceTokenSource2 = "_CacheKeyCanceTokenSource2";
+    private static CancellationTokenSource _cts;
+    private static CancellationTokenSource _cts2;
+    private IMemoryCache _memoryCache;
+
 
     #region snippet_ctor
     public HomeController(IMemoryCache memoryCache)
@@ -101,6 +104,9 @@ public class HomeController : Controller
             DateTime.Now,
             GetMemCacheOptions(6, 2, CacheItemPriority.NeverRemove, AfterEvicted));
 
+        // Don't use previous message.
+        _memoryCache.Remove(CacheKeyEvictMsg1);
+
         return RedirectToAction("CheckEvictionTime");
     }
 
@@ -114,7 +120,7 @@ public class HomeController : Controller
             .SetSlidingExpiration(TimeSpan.FromSeconds(slideExpire))
             // Pin to cache.
             .SetPriority(cachePriority)
-            .RegisterPostEvictionCallback(postEvictDelegate, state: null);
+            .RegisterPostEvictionCallback(postEvictDelegate, state: this);
     }
 
     // Show key value and why key was evicted.
@@ -137,6 +143,10 @@ public class HomeController : Controller
     #region snippet_ed
     public IActionResult EvictDependency()
     {
+        // Clear out eviction message, and key from previous run (if any).
+        _memoryCache.Remove(CacheKeyEvictMsg2);
+        _cts2 = new CancellationTokenSource();
+
         using (var entry = _memoryCache.CreateEntry(CacheKeyMS2))
         {
             // expire this entry if the dependant entry expires.
@@ -190,6 +200,10 @@ public class HomeController : Controller
     public IActionResult CancelTest()
     {
         var cachedVal = DateTime.Now.Second.ToString();
+        _cts = new CancellationTokenSource();
+
+        // Don't use previous message.
+        _memoryCache.Remove(CacheKeyCancelMsg);
 
         _memoryCache.Set(CacheKeyTicks, cachedVal,
             new MemoryCacheEntryOptions()

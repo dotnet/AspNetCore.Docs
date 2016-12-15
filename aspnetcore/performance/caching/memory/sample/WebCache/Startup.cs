@@ -5,7 +5,6 @@ public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        // Requires NuGet package "Microsoft.Extensions.Caching.Memory"
         services.AddMemoryCache();
         services.AddMvc();
     }
