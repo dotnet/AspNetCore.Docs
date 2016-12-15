@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
 {
+    #region snippet_CacheFilter
     public class NaiveCacheResourceFilterAttribute : Attribute,
         IResourceFilter
     {
@@ -39,4 +40,5 @@ namespace FiltersSample.Filters
             }
         }
     }
+    #endregion
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace FiltersSample.Filters
 {
+    #region snippet_ExceptionFilter
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {
         private readonly IHostingEnvironment _hostingEnvironment;
@@ -30,8 +31,8 @@ namespace FiltersSample.Filters
             result.ViewData = new ViewDataDictionary(_modelMetadataProvider,context.ModelState);
             result.ViewData.Add("Exception", context.Exception);
             // TODO: Pass additional detailed data via ViewData
-            context.ExceptionHandled = true; // mark exception as handled
             context.Result = result;
         }
     }
+    #endregion
 }
