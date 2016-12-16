@@ -153,7 +153,7 @@ public class HomeController : Controller
     {
         ViewData["CachedMS2"] = _memoryCache.Get<string>(CacheKey.MS2);
         ViewData["CachedMS3"] = _memoryCache.Get<string>(CacheKey.MS3);
-        ViewData["Message"] = _memoryCache.Get<string>(CacheKey.EvictMsg2);
+        ViewData["MessageCED"] = _memoryCache.Get<string>(CacheKey.EvictMsg2);
 
         if (id > 0)
         {
