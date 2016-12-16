@@ -86,7 +86,7 @@ Content-Length | <p>When serving from cache, the `Content-Length` header is set 
 Age | <p>The `Age` header sent in the original response will be ignored. The middleware will compute a new value when serving a cached response.</p>
 
 ## Troubleshooting
-If caching behavior is not as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. The conditions by which a response will be cached or served from the cache are listed below.
+If caching behavior is not as you expect, confirm that responses are cacheable and capable of being served from the cache by examining the request's incoming headers and the response's outgoing headers. The conditions by which a response will be cached are listed below.
 
 Enabling logging can help when debugging. For example, the middleware logs why a response is or is not cached and whether it was retrieved from cache. See [Logging in ASP.NET Core](xref:fundamentals/logging) for more information on enabling logging in your application.
 
