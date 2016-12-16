@@ -95,13 +95,16 @@ Environments, like "Development" and "Production", are a first-class notion in A
 
 For more information, see [Working with Multiple Environments](environments.md).
 
+## .NET Core vs. .NET Framework runtime
+
+An ASP.NET Core app can use the .NET Core or .NET Framework runtime. For more information, see [Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
+
 ## Additional information
 
-See also the following resources:
+See also the following topics:
 
 - [Logging](logging.md)
 - [Error Handling](error-handling.md)
 - [Globalization and localization](localization.md)
 - [File Providers](file-providers.md)
 - [Managing Application State](app-state.md)
-- [Choosing the Right .NET For You on the Server](choosing-the-right-dotnet.md)
