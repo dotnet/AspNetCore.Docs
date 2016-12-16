@@ -79,8 +79,6 @@ public class HomeController : Controller
     {
         _memoryCache.Remove(CacheKey.Time);
 
-        ViewData["CachedTime"] = "Removed";
-
         return View("Index");
     }
 
