@@ -34,10 +34,7 @@ The `Index` method above returns a View object. It uses a view template to gener
 
   * Tap **MVC View Page**
 
-  * In the **Name** box, keep the default *Index.cshtml*
-
-    > [!Note]
-    > In Visual Studio 2017 RC, the default is *Index1.cshtml*. Change it to *Index.cshtml*
+  * In the **Name** box, change the name if necessary to *Index.cshtml*.
 
   * Tap **Add**
 

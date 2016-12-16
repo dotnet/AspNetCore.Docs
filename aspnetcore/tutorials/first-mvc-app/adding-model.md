@@ -104,25 +104,6 @@ We'll follow those instructions to get the database ready for our Movie app.
 
 ### Update the database
 
-You must stop IIS Express before you update the database.
-
-> [!NOTE]
-> In Visual Studio 2017 RC you no longer need to stop IIS Express, however if you are running in debug mode you'll need to close the browser window and stop debugging.
-
-<a name=stop-iis-express-reference-label></a>
-
-## To Stop IIS Express:
-
-* Right click the IIS Express system tray icon in the notification area
-
-   ![image](working-with-sql/_static/iisExIcon.png)
-
-* Tap **Exit** or **Stop Site**
-
-![image](working-with-sql/_static/stopIIS.png)
-
-* Alternatively, you can exit and restart Visual Studio
-
 * Open a command prompt and navigate to the project directory (*your_path*/MvcMovie/src/MvcMovie). You can find the path by selecting the `web.config` file in Solution Explorer and viewing the `Full Path` property in the Properties window.
 
 * Run the following commands in the command prompt:
@@ -131,10 +112,7 @@ You must stop IIS Express before you update the database.
   dotnet ef migrations add Initial
   dotnet ef database update
   ```
-   
-  > [!NOTE]
-  > If IIS-Express is running, you might get the error *CS2012: Cannot open 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' for writing -- 'The process cannot access the file 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' because it is being used by another process.'* If you get that error, exit and restart Visual Studio.
-
+  
 ## dotnet ef commands
 
 * `dotnet` (.NET Core) is a cross-platform implementation of .NET. You can read about it [here](http://go.microsoft.com/fwlink/?LinkID=517853)

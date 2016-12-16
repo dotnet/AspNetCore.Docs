@@ -39,8 +39,7 @@ Let's remove the `using` statements that are not needed. They show up by default
 
 ![image](controller-methods-views/_static/rm.png)
 
-> [!Note]
-> In Visual Studio 2017 RC 2, this step isn't necessary. Unneeded `using` statements were automatically removed.
+**Visual Studio 2017 RC 2 note:** This step isn't necessary. Unneeded `using` statements were automatically removed.
 
 The updated code:
 

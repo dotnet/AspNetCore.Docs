@@ -16,7 +16,7 @@ uid: tutorials/first-mvc-app/search
 
 In this section you'll add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
-Update the `Index` action method in `oviesController.cs` to enable search:
+Update the `Index` method with the following code:
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
