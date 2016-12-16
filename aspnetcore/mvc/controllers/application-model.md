@@ -7,7 +7,7 @@ ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 4eb7e52f-5665-41a4-a3e3-e348d07237f2
+ms.assetid: 4eb7e52f-5665-41a4-a3e3-e348d07337f2
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/application-model
@@ -20,7 +20,7 @@ ASP.NET Core MVC defines an *application model* representing the components of a
 
 ## Models and Providers
 
-The ASP.NET Core MVC application models include both abstract interfaces and concrete implementations that define how MVC behaves. This behavior includes how MVC determines and uses controller names, action names, action parameters, routes, and filters. By working with the application model, you can modify your app to follow different conventions from the default MVC behavior.
+The ASP.NET Core MVC application model include both abstract interfaces and concrete implementation classes that describe an MVC application. This model is the result of MVC discovering the app's controllers, actions, action parameters, routes, and filters according to default conventions. By working with the application model, you can modify your app to follow different conventions from the default MVC behavior. The parameters, names, routes, and filters are all used as configuration data for actions and controllers.
 
 The ASP.NET Core MVC Application Model has the following structure:
 
@@ -29,9 +29,16 @@ The ASP.NET Core MVC Application Model has the following structure:
 		* Actions (ActionModel)
 			* Parameters (ParameterModel)
 
-Each level of the model has access to a common `Properties` collection, and lower levels can access and overwrite property values set by higher levels in the hierarchy.
+Each level of the model has access to a common `Properties` collection, and lower levels can access and overwrite property values set by higher levels in the hierarchy. The properties are persisted to the `ActionDescriptor.Properties` when the actions are created. Then when a request is being handled, any properties a convention added or modified can be accessed through `ActionContext.ActionDescriptor.Properties`. Using properties is a great way to configure your filters, model binders, etc. on a per-action basis.
 
-ASP.NET Core MVC loads the application model using a provider pattern, defined by the [IApplicationModelProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iapplicationmodelprovider) interface. Implementations of this interface "wrap" one another, with each implementation calling `OnProvidersExecuting` in ascending order based on its `Order` property. The `OnProvidersExecuted` method is then called in reverse order. The framework defines several providers:
+> [!NOTE]
+> The `ActionDescriptor.Properties` collection is not thread safe (for writes) once app startup has finished. Conventions are the best way to safely add data to this collection.
+
+### IApplicationModelProvider
+
+ASP.NET Core MVC loads the application model using a provider pattern, defined by the [IApplicationModelProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iapplicationmodelprovider) interface. This section covers some of the internal implementation details of how this provider functions. This is an advanced topic - most apps that leverage the application model should do so by working with conventions.
+
+Implementations of the `IApplicationModelProvider` interface "wrap" one another, with each implementation calling `OnProvidersExecuting` in ascending order based on its `Order` property. The `OnProvidersExecuted` method is then called in reverse order. The framework defines several providers:
 
 First (`Order=-1000`):
 
@@ -45,6 +52,9 @@ Then (`Order=-990`):
 > [!NOTE]
 > The order in which two providers with the same value for `Order` are called is undefined, and therefore should not be relied upon.
 
+> [!NOTE]
+> `IApplicationModelProvider` is an advanced concept for framework authors to extend. In general, apps should use conventions and frameworks should use providers. The key distinction is that providers always run before conventions.
+
 The `DefaultApplicationModelProvider` establishes many of the default behaviors used by ASP.NET Core MVC. Its responsibilities include:
 
 * Adding global filters to the context
@@ -53,7 +63,7 @@ The `DefaultApplicationModelProvider` establishes many of the default behaviors 
 * Adding action method parameters to the context
 * Applying route and other attributes
 
-Some built-in behaviors are implemented by the `DefaultApplicationModelProvider` and can be overridden by replacing its behavior. For example, normally static methods are not added as controller actions. You can change this by overriding the virtual `IsAction` method. This provider is also responsible for constructing the [`ControllerModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel), which in turn references [`ActionModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ActionModel), [`PropertyModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel), and [`ParameterModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ParameterModel) instances.
+Some built-in behaviors are implemented by the `DefaultApplicationModelProvider`. This provider is responsible for constructing the [`ControllerModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel), which in turn references [`ActionModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ActionModel), [`PropertyModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel), and [`ParameterModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ParameterModel) instances. The `DefaultApplicationModelProvider` class is an internal framework implementation detail that can and will change in the future. 
 
 The `AuthorizationApplicationModelProvider` is responsible for applying the behavior associated with the `AuthorizeFilter` and `AllowAnonymousFilter` attributes. [Learn more about these attributes](https://docs.microsoft.com/aspnet/core/security/authorization/simple).
 
@@ -61,7 +71,7 @@ The `CorsApplicationModelProvider` implements behavior associated with the `IEna
 
 ## Conventions
 
-The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify your app's behavior.
+The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify your app's behavior. Conventions provide a way for you to write code that will dynamically apply customizations. While [filters](https://docs.microsoft.com/aspnet/core/mvc/controllers/filters) provide a means of modifying the framework's behavior, customizations let you control how the whole app is wired together.
 
 The following conventions are available:
 
@@ -70,7 +80,7 @@ The following conventions are available:
 * [`IActionModelConvention`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iactionmodelconvention)
 * [`IParameterModelConvention`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iparametermodelconvention)
 
-Conventions are applied by adding them to MVC settings or by implementing `Attribute`s and applying them to controllers, actions, or action parameters (similar to [`Filters`](https://docs.microsoft.com/aspnet/core/mvc/controllers/filters)). Unlike filters, conventions are only executed when the app is starting, not as part of each request.
+Conventions are applied by adding them to MVC options or by implementing `Attribute`s and applying them to controllers, actions, or action parameters (similar to [`Filters`](https://docs.microsoft.com/aspnet/core/mvc/controllers/filters)). Unlike filters, conventions are only executed when the app is starting, not as part of each request.
 
 ### Sample: Modifying the ApplicationModel
 

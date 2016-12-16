@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AppModelSample.Conventions;
+﻿using AppModelSample.Conventions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +29,7 @@ namespace AppModelSample
             {
                 options.Conventions.Add(new ApplicationDescription("My Application Description"));
                 options.Conventions.Add(new NamespaceRoutingConvention());
+                options.Conventions.Add(new IdsMustBeInRouteParameterModelConvention());
             });
         }
         #endregion
