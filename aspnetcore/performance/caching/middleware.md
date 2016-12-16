@@ -68,7 +68,7 @@ if (responseCachingFeature != null)
 }
 ```
 
-## HTTP response caching headers
+## HTTP headers used by Response Caching Middleware
 Response caching by the middleware is configured via your HTTP response headers. The relevant headers are listed below with notes on how they affect caching.
 
 Header | Details
@@ -103,7 +103,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * `Vary` header parameters must be valid and not equal to `*`.
 * The `Content-Length` header value (if set) must match the size of the response body.
 * The `HttpSendFileFeature` is not used.
-* If a matching response has been cached, the cached response must be stale according to headers such as `Cache-Control: max-age={value}` or `Expires: {value}`.
+* The response must not be stale as specified by the `Expires` header and the `max-age` and `s-maxage` cache directives.
 * Response buffering is successful, and the total length of the response is smaller than the configured limit.
 * The response must be cacheable according to the [RFC 7234](https://tools.ietf.org/html/rfc7234) specifications. For example, the `no-store` directive must not exist in request or response header fields. See *Section 3: Storing Responses in Caches* of the RFC document for details.
 
