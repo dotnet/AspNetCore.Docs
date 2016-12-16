@@ -21,6 +21,7 @@
 ### [WebListener](fundamentals/servers/weblistener.md)
 ## [Request Features](fundamentals/request-features.md)
 ## [Open Web Interface for .NET (OWIN)](fundamentals/owin.md)
+## [Choosing between .NET Core and .NET Framework runtime](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server)
 # [MVC](mvc/toc.md)
 # [Testing](testing/toc.md)
 # [Working with Data](data/toc.md)
