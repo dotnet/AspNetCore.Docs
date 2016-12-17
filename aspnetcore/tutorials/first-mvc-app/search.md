@@ -14,6 +14,8 @@ uid: tutorials/first-mvc-app/search
 ---
 # Adding Search
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 In this section you'll add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
 Update the `Index` method with the following code:
