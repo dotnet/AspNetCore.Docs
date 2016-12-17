@@ -13,11 +13,14 @@ namespace ResponseCachingSample
 {
     public class Startup
     {
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddResponseCaching();
         }
+        #endregion
 
+        #region snippet2
         public void Configure(IApplicationBuilder app)
         {
             app.UseResponseCaching();
@@ -33,6 +36,7 @@ namespace ResponseCachingSample
                 await context.Response.WriteAsync("Hello World! " + DateTime.UtcNow);
             });
         }
+        #endregion
 
         public static void Main(string[] args)
         {
