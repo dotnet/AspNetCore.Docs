@@ -18,11 +18,11 @@ In this section you're going to modify the `HelloWorldController` class to use R
 
 You'll create a view template file using Razor. Razor-based view templates have a *.cshtml* file extension, and provide an elegant way to create HTML output using C#. Razor seamlessly blends C# and HTML, minimizing the number of characters and keystrokes required when writing a view template, and enables a fast, fluid coding workflow.
 
-Currently the `Index` method returns a string with a message that is hard-coded in the controller class. Change the `Index` method to return a View object, as shown in the following code:
+Currently the `Index` method returns a string with a message that is hard-coded in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
 
 [!code-csharp[Main](start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_4)]
 
-The `Index` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as action methods) such as the `Index` method above, generally return an `IActionResult` (or a class derived from `ActionResult`), not primitive types like string.
+The `Index` method above returns a View object. It uses a view template to generate an HTML response to the browser. Controller methods (also known as action methods) such as the `Index` method above, generally return an `IActionResult` (or a class derived from `ActionResult`), not primitive types like string.
 
 * Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
 
@@ -34,7 +34,7 @@ The `Index` method above uses a view template to generate an HTML response to th
 
   * Tap **MVC View Page**
 
-  * In the **Name** box, keep the default *Index.cshtml*
+  * In the **Name** box, change the name if necessary to *Index.cshtml*.
 
   * Tap **Add**
 
@@ -62,14 +62,14 @@ Tap on the menu links (**MvcMovie**, **Home**, **About**). Each page shows the s
 
 ### Change the title and menu link in the layout file
 
-Change the contents of the title element. Change the anchor text in the layout template to "MVC Movie" and the controller from `Home` to `Movies` as highlighted below:
+Change the contents of the title element. Change the anchor text in the layout template to "Movie App" and the controller from `Home` to `Movies` as highlighted below:
 
 [!code-html[Main](start-mvc/sample/src/MvcMovie/Views/Shared/_Layout.html?highlight=6,29)]
 
 >[!WARNING]
 > We haven't implemented the `Movies` controller yet, so if you click on that link, you'll get a 404 (Not found) error.
 
-Save your changes and tap the **About** link. Notice how each page displays the **Mvc Movie** link. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.
+Save your changes and tap the **About** link. Notice how the title on the browser tab now displays **About - Movie App** instead of **About - Mvc Movie**. Tap the **Contact** link and notice that it also displays **Movie App**. We were able to make the change once in the layout template and have all pages on the site reflect the new link text and new title.
 
 Examine the *Views/_ViewStart.cshtml* file:
 
@@ -110,7 +110,7 @@ You'll make them slightly different so you can see which bit of code changes whi
 <title>@ViewData["Title"] - Movie App</title>
    ```
 
-Save your change and refresh the page. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
+Save your change and navigate to `http://localhost:xxxx/HelloWorld`. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 
 Also notice how the content in the *Index.cshtml* view template was merged with the *Views/Shared/_Layout.cshtml* view template and a single HTML response was sent to the browser. Layout templates make it really easy to make changes that apply across all of the pages in your application. To learn more see [Layout](../../mvc/views/layout.md).
 

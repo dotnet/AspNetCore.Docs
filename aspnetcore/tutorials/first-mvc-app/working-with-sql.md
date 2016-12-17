@@ -30,21 +30,21 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine that 
 
 * From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-![image](working-with-sql/_static/ssox.png)
+  ![image](working-with-sql/_static/ssox.png)
 
 * Right click on the `Movie` table **> View Designer**
 
-![image](working-with-sql/_static/design.png)
+  ![image](working-with-sql/_static/design.png)
 
-![image](working-with-sql/_static/dv.png)
+  ![image](working-with-sql/_static/dv.png)
 
 Note the key icon next to `ID`. By default, EF will make a property named `ID` the primary key.
 
 * Right click on the `Movie` table **> View Data**
 
-![image](working-with-sql/_static/ssox2.png)
+  ![image](working-with-sql/_static/ssox2.png)
 
-![image](working-with-sql/_static/vd22.png)
+  ![image](working-with-sql/_static/vd22.png)
 
 ## Seed the database
 
@@ -72,17 +72,16 @@ Test the app
 
   * Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**
 
+    ![image](working-with-sql/_static/iisExIcon.png)
 
-![image](working-with-sql/_static/iisExIcon.png)
+    ![image](working-with-sql/_static/stopIIS.png)
 
-![image](working-with-sql/_static/stopIIS.png)
+    > [!Note]
+    > In Visual Studio 2017 RC you don't need to stop IIS Express.
 
    * If you were running VS in non-debug mode, press F5 to run in debug mode
-   * If you were running VS in debug mode, stop the debugger and press ^F5
-   * If the database doesn't initialize, put a break point on the line `if (context.Movie.Any())` and start debugging.
-
-![image](working-with-sql/_static/dbg.png)
-
+   * If you were running VS in debug mode, stop the debugger and press F5
+   
 The app shows the seeded data.
 
 ![image](working-with-sql/_static/m55.png)

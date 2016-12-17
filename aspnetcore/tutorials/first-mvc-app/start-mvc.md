@@ -27,6 +27,9 @@ This tutorial will teach you the basics of building an ASP.NET Core MVC web app 
 
 * Install [.NET Core + Visual Studio tooling](http://go.microsoft.com/fwlink/?LinkID=798306)
 
+> [!Note]
+> You can also use Visual Studio 2017 RC for this tutorial. Some of the steps will differ slightly; the differences are called out throughout the tutorial. [Download Visual Studio 2017 RC](https://www.visualstudio.com/vs/visual-studio-2017-rc/). When you begin the installation, Visual Studio allows you to select the optional components to include in the installation. Choose the .NET Core and Docker (Preview) workload.
+
 ## Create a web app
 
 From the Visual Studio **Start** page, tap **New Project**.
@@ -54,6 +57,9 @@ Complete the **New ASP.NET Core Web Application - MvcMovie** dialog:
 
 ![New ASP.NET Core web app](start-mvc/_static/p3.png)
 
+> [!Note]
+> In Visual Studio 2017 RC, the **Host in the cloud** option is disabled and the dialog is slightly different than the illustration.
+
 Visual Studio used a default template for the MVC project you just created, so you have a working app right now by entering a project name and selecting a few options. This is a simple "Hello World!" project, and it's a good place to start,
 
 Tap **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
@@ -70,9 +76,11 @@ Tap **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
 
 ![IIS Express](start-mvc/_static/iis_express.png)
 
-The default template gives you working **Home, Contact, About, Register** and **Log in** links. The browser image above doesn't show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.
+The default template gives you working **Home, About** and **Contact** links. The browser image above doesn't show these links. Depending on the size of your browser, you might need to click the navigation icon to show them.
 
 ![navigation icon in upper right](start-mvc/_static/2.png)
+
+If you were running in debug mode, tap **Shift-F5** to stop debugging.
 
 In the next part of this tutorial, we'll learn about MVC and start writing some code.
 
