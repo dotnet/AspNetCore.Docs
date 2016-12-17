@@ -1,4 +1,4 @@
-﻿---
+---
 title: Adding a view | Microsoft Docs
 author: rick-anderson
 description: 
@@ -13,6 +13,8 @@ ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/adding-view
 ---
 # Adding a view
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this section you're going to modify the `HelloWorldController` class to use Razor view template files to cleanly encapsulate the process of generating HTML responses to a client.
 
