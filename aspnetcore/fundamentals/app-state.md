@@ -1,8 +1,8 @@
 ---
-title: Managing Application State | Microsoft Docs
+title: Session and application state | Microsoft Docs
 author: rick-anderson
-description: Application state, unlike session state, applies to all users and sessions.
-keywords: ASP.NET Core,
+description: Approaches to preserving application and user (session) state between requests.
+keywords: ASP.NET Core, Application state, session state, querystring, post
 ms.author: riande
 manager: wpickett
 ms.date: 1/14/2017
@@ -20,11 +20,13 @@ HTTP is a stateless protocol; the Web server treats each HTTP request as an inde
 
 Application state, unlike session state, applies to all users and sessions.
 
+-------------- Notes to remove --------------------
+
 The following sections provide an overview of the most common approaches to saving state in an ASP.NET Core app.
 
 [https://msdn.microsoft.com/en-us/library/z1hkazw7.aspx](https://msdn.microsoft.com/en-us/library/z1hkazw7.aspx)
 
-MVC also exposes a TempData property on a Controller which is an additional w rapper around Session. This can be used for storing transient data that only needs to be available for a single request after the current one.
+MVC also exposes a TempData property on a Controller which is an additional wrapper around Session. This can be used for storing transient data that only needs to be available for a single request after the current request.
 
 fact that app restarts will clear the session. [http://andrewlock.net/an-introduction-to-session-storage-in-asp-net-core/](http://andrewlock.net/an-introduction-to-session-storage-in-asp-net-core/) show session cookie eilon in SO TempData is not the same thing as Session State, it is merely built on top of it. (And it is also not yet implemented in ASP.NET vNext.)
 
@@ -32,17 +34,19 @@ TempData behaves totally different than Session in that data stored there only p
 
 [http://www.binaryintellect.net/articles/b06fd1d7-5f8c-46d3-9f61-9c11a2254cbb.aspx](http://www.binaryintellect.net/articles/b06fd1d7-5f8c-46d3-9f61-9c11a2254cbb.aspx) show storing employee as byte[] and json seriliazition.
 
-[http://stackoverflow.com/questions/29420262/sessions-in-asp-net-core-1-0](http://stackoverflow.com/questions/29420262/sessions-in-asp-net-core-1-0)
+
+---------------- end of Notes to remove ----------------------------
 
   ## Session state
 
-Session state is a feature in ASP.NET Core you can enable that allows you to save and store user data while the user browses your web app. This user specific data is called session data and is stored in temporary persistence (server memory or a distributed cache) , or in a database.
+Session state is a feature in ASP.NET Core you can enable that allows you to save and store user data while the user browses your web app. This temporary storage of user state is called session data. Session data is stored in a dictionary on the server, not on the client. A session ID is stored on the client in a cookie. The session ID cookie is sent to server with each request, and the server uses the session ID to fetch the session data. The session ID cookie is per browser, you cannot share session across browsers. 
 
-ASP.NET Core session state identifies requests from the same browser during a limited time window as a session, and provides a way to persist variable values for the duration of that session. It uses a cookie-based identifier to access user data related to a given browser session (a series of requests from a specific browser and machine). Session is ideal for storing user state that is specific to a particular session but which doesn’t need to be persisted permanently (or which can be reproduced as needed from a persistent store).
+Session is retained by the server for a limited time after the last request. The default session timeout is 20 minutes, but you can configure session time out. The session data is backed by a cache. Session is ideal for storing user state that is specific to a particular session but which doesn’t need to be persisted permanently.
 
-Warning: You can’t guarantee the client closes the browser and clears their session cookie (some browsers keep them alive across windows). Consequently, you can’t assume that a session is restricted to a single user, the next user may continue with the same session.
+> [!WARNING]
+> Sensitive data should never be stored in session. You can’t guarantee the client will close the browser and clear their session cookie (and some browsers keep them alive across windows). Consequently, you can’t assume that a session is restricted to a single user, the next user may continue with the same session. 
 
-The in-memory session provider stores session data on the server, which can impact scale out. If you run your web app on a server farm, you’ll need to enable sticky sessions to tie each session to a specific server.  Windows Azure Web Sites defaults to sticky sessions (Application Request Routing or ARR). Sticky session can impact scalability and complicate updating your web app. For maximum scalability and flexibility in updating your site, disable sticky sessions and use a distributed cache for the session store.
+The in-memory session provider stores session data on the server, which can impact scale out. If you run your web app on a server farm, you’ll need to enable sticky sessions to tie each session to a specific server.  Windows Azure Web Sites defaults to sticky sessions (Application Request Routing or ARR). Sticky session can impact scalability and complicate updating your web app. 
 
 See [Installing and Configuring Session](#installing-and-configuring-session), below for more details.
 
@@ -52,7 +56,7 @@ State from one request can be provided to another request by adding values to th
 
 Query strings are useful for capturing state in a persistent manner, allowing links with embedded state to be created and shared through email or social networks. However, no assumption can be made about the user making the request, since URLs with query strings can easily be shared. Care must also be taken to avoid [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks. An attacker could trick a user into visiting a malicious site while authenticated. CSRF are a major form of vulnerability that can be used to steal user data from your app, or take malicious actions on the behalf of the user. Any preserved application or session state needs to protect against CSRF attachs. See [Preventing Cross-Site Request Forgery (XSRF/CSRF) Attacks in ASP.NET Core](../security/anti-request-forgery.md)
 
-  ### Hidden fields
+  ### Post data and hidden fields
 
 Data can be saved in hidden form fields and posted back on the next request. This is common in multi-page forms.  It’s insecure in that the client can tamper with the data so the server must always revalidate it.
 
@@ -74,36 +78,15 @@ Caching provides a means of efficiently storing and retrieving data. It provides
 
   ## Installing and Configuring Session
 
-The following code from the `Startup` class shows how to set up the in-memory session provider:
+Enabling the session middleware requires the following in `Startup`:
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/app-state/sample/src/WebAppSession/Startup.cs", "highlight_args": {"linenostart": 1, "hl_lines": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 20]}, "names": []} -->
+- Add an [IDistributedCache](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache) memory cache. The memory cache is used as a backing store for session.
+- Call [AddSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions#Microsoft_Extensions_DependencyInjection_SessionServiceCollectionExtensions_AddSession_Microsoft_Extensions_DependencyInjection_IServiceCollection_), which requires NuGet package "Microsoft.AspNetCore.Session".
+- Call [UseSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.sessionmiddlewareextensions#methods_).
 
-````none
+The following code shows how to set up the in-memory session provider:
 
-   public void ConfigureServices(IServiceCollection services)
-   {
-       services.AddMvc();
-
-       // Adds a default in-memory implementation of IDistributedCache.
-       services.AddDistributedMemoryCache();
-
-       // Requireds NuGet package "Microsoft.AspNetCore.Session".
-       services.AddSession(o =>
-       {
-           // Set a short timeout for easy testing.
-           o.IdleTimeout = TimeSpan.FromSeconds(10);
-           o.CookieHttpOnly = true;
-       });
-   }
-
-   public void Configure(IApplicationBuilder app)
-   {
-       app.UseStaticFiles();
-       app.UseSession();
-       app.UseMvcWithDefaultRoute();
-   }
-
-   ````
+[!code-csharp[Main](app-state/sample/src/WebAppSession/Startup.cs?highligh=11-20,25)]
 
 ASP.NET Core ships a session package that provides middleware for managing session state. You can install it by including a reference to the `Microsoft.AspNetCore.Session` package in your project.json file.
 
