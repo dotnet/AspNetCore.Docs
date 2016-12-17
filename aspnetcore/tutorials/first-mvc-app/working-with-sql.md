@@ -14,6 +14,8 @@ uid: tutorials/first-mvc-app/working-with-sql
 ---
 # Working with SQL Server LocalDB
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 The `ApplicationDbContext` class handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](../../fundamentals/dependency-injection.md) container in the `ConfigureServices` method in the *Startup.cs* file:
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Startup.cs?name=snippet_details)]
