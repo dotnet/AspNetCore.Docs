@@ -1,4 +1,4 @@
-﻿---
+---
 title: Adding a model | Microsoft Docs
 author: rick-anderson
 description: 
@@ -13,6 +13,8 @@ ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/adding-model
 ---
 # Adding a model
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this section you'll add some classes for managing movies in a database. These classes will be the "**M**odel" part of the **M**VC app.
 
