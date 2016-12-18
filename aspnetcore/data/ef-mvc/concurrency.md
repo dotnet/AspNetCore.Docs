@@ -13,7 +13,7 @@ ms.prod: aspnet-core
 uid: data/ef-mvc/concurrency
 ---
 
-# Handling concurrency conflicts - EF Core with ASP.NET Core MVC tutorial
+# Handling concurrency conflicts - EF Core with ASP.NET Core MVC tutorial (8 of 10)
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

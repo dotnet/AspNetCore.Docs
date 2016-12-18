@@ -13,7 +13,7 @@ ms.prod: aspnet-core
 uid: data/ef-mvc/advanced
 ---
 
-# Advanced topics - EF Core with ASP.NET Core MVC tutorial
+# Advanced topics - EF Core with ASP.NET Core MVC tutorial (10 of 10)
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

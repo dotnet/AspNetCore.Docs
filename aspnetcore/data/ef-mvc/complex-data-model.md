@@ -13,7 +13,7 @@ ms.prod: aspnet-core
 uid: data/ef-mvc/complex-data-model
 ---
 
-# Creating a complex data model - EF Core with ASP.NET Core MVC tutorial
+# Creating a complex data model - EF Core with ASP.NET Core MVC tutorial (5 of 10)
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

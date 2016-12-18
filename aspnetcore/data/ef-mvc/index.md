@@ -14,22 +14,22 @@ uid: data/ef-mvc/index
 ---
 # Getting started with ASP.NET Core and Entity Framework Core using Visual Studio
 
-* [Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio](intro.md)
+1. [Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio](intro.md)
 
-* [Create, Read, Update, and Delete operations](crud.md)
+2. [Create, Read, Update, and Delete operations](crud.md)
 
-* [Sorting, filtering, paging, and grouping](sort-filter-page.md)
+3. [Sorting, filtering, paging, and grouping](sort-filter-page.md)
 
-* [Migrations](migrations.md)
+4.  [Migrations](migrations.md)
 
-* [Creating a complex data model](complex-data-model.md)
+5. [Creating a complex data model](complex-data-model.md)
 
-* [Reading related data](read-related-data.md)
+6. [Reading related data](read-related-data.md)
 
-* [Updating related data](update-related-data.md)
+7. [Updating related data](update-related-data.md)
 
-* [Handling concurrency conflicts](concurrency.md)
+8. [Handling concurrency conflicts](concurrency.md)
 
-* [Inheritance](inheritance.md)
+9. [Inheritance](inheritance.md)
 
-* [Advanced topics](advanced.md)
+10. [Advanced topics](advanced.md)
