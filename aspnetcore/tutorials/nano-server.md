@@ -1,47 +1,50 @@
-﻿---
+---
 title: ASP.NET Core on Nano Server | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 11/4/2016
 ms.topic: article
 ms.assetid: 50922cf1-ca58-4006-9236-99b7ff2dd0cf
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/nano-server
 ---
-# ASP.NET Core on Nano Server
+# ASP.NET Core with IIS on Nano Server
 
 <a name=nano-server></a>
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
->[!IMPORTANT]
-> This tutorial uses a pre-release version of the Nano Server installation option of Windows Server Technical Preview 5. You may use the software in the virtual hard disk image only to internally demonstrate and evaluate it. You may not use the software in a live operating environment. Please see [https://go.microsoft.com/fwlink/?LinkId=624232](https://go.microsoft.com/fwlink/?LinkId=624232) for specific information about the end date for the preview.
-
 In this tutorial, you'll take an existing ASP.NET Core app and deploy it to a Nano Server instance running IIS.
 
 ## Introduction
 
-Nano Server is an installation option in Windows Server 2016, offering a tiny footprint, better security and better servicing than Server Core or full Server. Please consult the official [Nano Server documentation](https://technet.microsoft.com/en-us/library/mt126167.aspx) for more details.  There are 3 ways for you try out Nano Server for yourself:
+Nano Server is an installation option in Windows Server 2016, offering a tiny footprint, better security and better servicing than Server Core or full Server. Please consult the official [Nano Server documentation](https://technet.microsoft.com/library/mt126167.aspx) for more details and download links for 180 Days evaluation versions. 
+There are 3 easy ways for you to try out Nano Server, when you sign in with your MS account:
 
-1. You can download the Windows Server 2016 Technical Preview 5 ISO file, and build a Nano Server image
+1. You can download the Windows Server 2016 ISO file, and build a Nano Server image
 
-2. Download the Nano Server developer VHD
+2. Download the Nano Server VHD
 
 3. Create a VM in Azure using the Nano Server image in the Azure Gallery. If you don’t have an Azure account, you can get a free 30-day trial
 
-In this tutorial, we will be using the pre-built [Nano Server Developer VHD](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula)  from Windows Server Technical Preview 5.
+In this tutorial, we will be using the 2nd option, the pre-built Nano Server VHD from Windows Server 2016
 
 Before proceeding with this tutorial, you will need the [published](../publishing/index.md) output of an existing ASP.NET Core application. Ensure your application is built to run in a **64-bit** process.
 
+
 ## Setting up the Nano Server Instance
 
-[Create a new Virtual Machine using Hyper-V](https://technet.microsoft.com/en-us/library/hh846766.aspx) on your development machine using the previously downloaded VHD. The machine will require you to set an administrator password before logging on. At the VM console, press F11 to set the password before the first log in.
+[Create a new Virtual Machine using Hyper-V](https://technet.microsoft.com/en-us/library/hh846766.aspx) on your development machine using the previously downloaded VHD. The machine will require you to set an administrator password before logging on. At the VM console, press F11 to set the password before the first log in.  
+Then you also need to check your new VM's IP address either my checking your DHCP server, fixed IP supplied while provisioning your VM or in Nano Server recovery console's networking settings.
 
-After setting the local password, you will manage Nano Server using PowerShell remoting.
+> [!NOTE]
+> Let's assume your new VM runs with the local V4 IP address 192.168.1.10.
+
+Now you're able to manage it using PowerShell remoting, which is the only way to fully administer your Nano Server
 
 ### Connecting to your Nano Server Instance using PowerShell Remoting
 
@@ -65,8 +68,7 @@ Once you have added your Nano Server instance to your `TrustedHosts`, you can co
 $nanoServerSession = New-PSSession -ComputerName $nanoServerIpAddress -Credential ~\Administrator
    Enter-PSSession $nanoServerSession
    ```
-
-A successful connection results in a prompt with a format looking like: `[10.83.181.14]: PS C:\Users\Administrator\Documents>`
+A successful connection results in a prompt with a format looking like: `[192.168.1.10]: PS C:\Users\Administrator\Documents>`
 
 ## Creating a file share
 
@@ -80,17 +82,20 @@ mkdir C:\PublishedApps\AspNetCoreSampleForNano
    net share AspNetCoreSampleForNano=c:\PublishedApps\AspNetCoreSampleForNano /GRANT:EVERYONE`,FULL
    ```
 
-After running the above commands you should be able to access this share by visiting `\\<nanoserver-ip-address>\AspNetCoreSampleForNano` in the host machine's Windows Explorer.
+After running the above commands you should be able to access this share by visiting `\\192.168.1.10\AspNetCoreSampleForNano` in the host machine's Windows Explorer.
 
 ## Open port in the Firewall
 
-Run the following commands in the remote session to open up a port in the firewall to listen for TCP traffic.
+Run the following commands in the remote session to open up a port in the firewall to let IIS listen for TCP traffic on port 80/tcp.
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
 ```
 New-NetFirewallRule -Name "AspNet5 IIS" -DisplayName "Allow HTTP on TCP/8000" -Protocol TCP -LocalPort 8000 -Action Allow -Enabled True
    ```
+
+Note: This code line is divided by a line breaker escape character that helps reading by wrapping too long lines of code. If you copy-paste it directly
+into your Powershell Remoting prompt it may not work as expected. It works fine, though, if you paste it in the Powershell ISE and execute the script or selected lineswith F8.
 
 ## Installing IIS
 
@@ -106,17 +111,13 @@ Install-PackageProvider NanoServerPackage
    Install-NanoServerPackage -Name Microsoft-NanoServer-Storage-Package
    Install-NanoServerPackage -Name Microsoft-NanoServer-IIS-Package
    ```
-
-> [!NOTE]
-> Installing *Microsoft-NanoServer-Storage-Package* requires a reboot. This is a temporary work around and won't be required in the future.
-
-To quickly verify if IIS is setup correctly, you can visit the url `http://<nanoserver-ip-address>/` and should see a welcome page. When IIS is installed, by default a web site called `Default Web Site` listening on port 80 is created.
+To quickly verify if IIS is setup correctly, you can visit the url `http://192.168.1.10/` and should see a welcome page. When IIS is installed, by default a web site called `Default Web Site` listening on port 80 is created.
 
 ## Installing the ASP.NET Core Module (ANCM)
 
 The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the version of the [.NET Core Windows Server Hosting bundle](https://dot.net/) on a regular (not Nano) machine. After installing the bundle on a regular machine, you will need to copy the following files to the file share that we created earlier.
 
-On a regular (not Nano) machine run the following copy commands:
+On a regular (not Nano) server with IIS run the following copy commands:
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
@@ -125,12 +126,16 @@ copy C:\windows\system32\inetsrv\aspnetcore.dll `\\<nanoserver-ip-address>\AspNe
    copy C:\windows\system32\inetsrv\config\schema\aspnetcore_schema.xml `\\<nanoserver-ip-address>\AspNetCoreSampleForNano`
    ```
 
-On a Nano machine, you will need to copy the following files from the file share that we created earlier to the valid locations. So, run the following copy commands:
+Replace `C:\windows\system32\inetsrv` with `C:\Program Files\IIS Express` on a Windows 10 machine
+
+
+On the Nano side, you will need to copy the following files from the file share that we created earlier to the valid locations. So, run the following copy commands:
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
 ```
 copy C:\PublishedApps\AspNetCoreSampleForNano\aspnetcore.dll C:\windows\system32\inetsrv\
+
    copy C:\PublishedApps\AspNetCoreSampleForNano\aspnetcore_schema.xml C:\windows\system32\inetsrv\config\schema\
    ```
 
@@ -140,14 +145,14 @@ Run the following script in the remote session:
 
 ```
 # Backup existing applicationHost.config
+
    copy C:\Windows\System32\inetsrv\config\applicationHost.config C:\Windows\System32\inetsrv\config\applicationHost_BeforeInstallingANCM.config
 
    Import-Module IISAdministration
 
    # Initialize variables
    $aspNetCoreHandlerFilePath="C:\windows\system32\inetsrv\aspnetcore.dll"
-   Reset-IISServerManager -confirm:$false
-   $sm = Get-IISServerManager
+   Reset-IISServerManager -confirm:$false   $sm = Get-IISServerManager
 
    # Add AppSettings section 
    $sm.GetApplicationHostConfiguration().RootSectionGroup.Sections.Add("appSettings")
@@ -182,13 +187,17 @@ Run the following script in the remote session:
 
 ## Installing .NET Core Framework
 
-If you published a portable app, .NET Core must be installed on the target machine. Execute the following Powershell script in a remote Powershell session to install the .NET Framework on your Nano Server.
+If you published a portable app (FDD),
+.NET Core must be installed on the target machine. Execute the following Powershell script throughout a remote Powershell session to install the .NET Framework on your Nano Server.
+
+> to understand the differences between Framework-dependent deployments (FDD) and Self-contained deployments (SCD) check
+> [deployment options](https://docs.microsoft.com/en-us/dotnet/articles/core/deploying/)
 
 [!code-powershell[Main](nano-server/Download-Dotnet.ps1)]
 
 ## Publishing the application
 
-Copy over the published output of your existing application to the file share.
+Copy over the published output of your existing application to the file share's root.
 
 You may need to make changes to your *web.config* to point to where you extracted `dotnet.exe`. Alternatively, you can add `dotnet.exe` to your path.
 
@@ -208,7 +217,8 @@ Example of how a web.config might look like if `dotnet.exe` was **not** on the p
    </configuration>
    ```
 
-Run the following commands in the remote session to create a new site in IIS for the published app. This script uses the `DefaultAppPool` for simplicity. For more considerations on running under an application pool, see [Application Pools](../hosting/apppool.md#apppool).
+Run the following commands in the remote session to create a new site in IIS for the published app on a different port than the default website. You also need to open that port to access the web.
+This script uses the `DefaultAppPool` for simplicity. For more considerations on running under an application pool, see [Application Pools](../hosting/apppool.md#apppool).
 
 <!-- literal_block {"ids": [], "classes": ["code", "powershell"], "xml:space": "preserve"} -->
 
@@ -219,12 +229,15 @@ Import-module IISAdministration
 
 ## Known issue running .NET Core CLI on Nano Server and Workaround
 
-If you’re using Nano Server Technical Preview 5 with .NET Core CLI, you will need to copy all DLL files from `c:\windows\system32\forwarders` to `c:\Program Files\dotnet\shared\Microsoft.NETCore.App\1.0.0\` and your  .NET Core binaries directory `c:\dotnet` (in this example), due to a bug that has since been fixed in later releases.
+   New-NetFirewallRule -Name "AspNetCore Port 81 IIS" -DisplayName "Allow HTTP on TCP/81" `
+    -Protocol TCP -LocalPort 81 -Action Allow -Enabled True
+   ````
 
-If you use `dotnet publish`, make sure to copy all DLL files from `c:\windows\system32\forwarders` to your publish directory as well.
-
-If your Nano Server Technical Preview 5 build is updated or serviced, please make sure to repeat this process, in case any of the DLLs have been updated as well.
 
 ## Running the Application
 
+<!--- removed merge conflict
+The published web app should be accessible in browser at `http://192.168.1.10:81`. If you have set up logging as described in [Log creation and redirection](../hosting/aspnet-core-module.md#log-redirection), you should be able to view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.
+-->
 The published web app should be accessible in browser at `http://<nanoserver-ip-address>:8000`. If you have set up logging as described in [Log creation and redirection](../hosting/aspnet-core-module.md#log-creation-and-redirection), you should be able to view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.
+

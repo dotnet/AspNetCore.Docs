@@ -38,7 +38,7 @@ using Microsoft.Extensions.Configuration;
 
 Add an *appsettings.json* file to the root of the project using the appropriate item template:
 
-![image](configuration/_static/add-appsettings-json.png)
+![Add AppSettings JSON](configuration/_static/add-appsettings-json.png)
 
 ## Migrate Configuration Settings from web.config
 

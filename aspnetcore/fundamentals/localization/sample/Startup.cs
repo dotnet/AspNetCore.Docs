@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Data.Entity;
+using Localization.StarterWeb.Models;
+using Localization.StarterWeb.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Localization.StarterWeb.Models;
-using Localization.StarterWeb.Services;
-using Microsoft.AspNet.Mvc.Razor;
-using Microsoft.AspNet.Localization;
-using System.Globalization;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Localization;
 
 namespace Localization.StarterWeb
 {
@@ -23,31 +21,22 @@ namespace Localization.StarterWeb
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
-            }
-
-            builder.AddEnvironmentVariables();
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"])
+            );
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -100,7 +89,6 @@ namespace Localization.StarterWeb
             */
 
 
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -108,8 +96,6 @@ namespace Localization.StarterWeb
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            // ExceptionHandler ommited for brevity. 
 
             if (env.IsDevelopment())
             {
@@ -156,12 +142,6 @@ namespace Localization.StarterWeb
                 SupportedUICultures = supportedCultures
             });
 
-            // Remaining code omitted for brevity.
-
-            var options = new IISPlatformHandlerOptions();
-            options.AuthenticationDescriptions.Clear();
-            app.UseIISPlatformHandler(options);
-
             app.UseStaticFiles();
 
             app.UseIdentity();
@@ -174,18 +154,6 @@ namespace Localization.StarterWeb
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-
-        // Entry point for the application.
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseDefaultConfiguration(args)
-                .UseIISPlatformHandlerUrl()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
         }
     }
 }

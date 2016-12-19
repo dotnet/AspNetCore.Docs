@@ -432,7 +432,7 @@ Delete any *{app name} - Web Deploy-publish.ps1* scripts created with Visual Stu
 
 ### applicationhost.config changes
 
-An *applicationhost.config* file created with ASP.NET 5 RC1 will point ASP.NET Core to an invalid [content root](../index.md#content-root-lbl) location. With such a *applicationhost.config* file, ASP.NET Core will be configured with [content root](../index.md#content-root-lbl)/[web root](../index.md#web-root-lbl) as the [content root](../index.md#content-root-lbl) folder and therefore look for *web.config* in `Content root/wwwroot`. The *web.config* file must be in the [content root](../index.md#content-root-lbl) folder. When configured like this, the app will terminate with an HTTP 500 error.
+An *applicationhost.config* file created with ASP.NET 5 RC1 will point ASP.NET Core to an invalid *content root* location. With such a *applicationhost.config* file, ASP.NET Core will be configured with *content root/web root* as the *content root* folder and therefore look for *web.config* in `Content root/wwwroot`. The *web.config* file must be in the *content root* folder. When configured like this, the app will terminate with an HTTP 500 error.
 
 ## Updating Launch Settings in Visual Studio
 

@@ -22,13 +22,13 @@ Views frequently share visual and programmatic elements. In this article, you'll
 
 Most web apps have a common layout that provides the user with a consistent experience as they navigate from page to page. The layout typically includes common user interface elements such as the app header, navigation or menu elements, and footer.
 
-![image](layout/_static/page-layout.png)
+![Page Layout example](layout/_static/page-layout.png)
 
 Common HTML structures such as scripts and stylesheets are also frequently used by many pages within an app. All of these shared elements may be defined in a *layout* file, which can then be referenced by any view used within the app. Layouts reduce duplicate code in views, helping them follow the [Don't Repeat Yourself (DRY) principle](http://deviq.com/don-t-repeat-yourself/).
 
 By convention, the default layout for an ASP.NET app is named `_Layout.cshtml`. The Visual Studio ASP.NET Core MVC project template includes this layout file in the `Views/Shared` folder:
 
-![image](layout/_static/web-project-views.png)
+![views folder in solutions explorer](layout/_static/web-project-views.png)
 
 This layout defines a top level template for views in the app. Apps do not require a layout, and apps can define more than one layout, with different views specifying different layouts.
 

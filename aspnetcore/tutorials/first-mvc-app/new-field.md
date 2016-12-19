@@ -14,6 +14,8 @@ uid: tutorials/first-mvc-app/new-field
 ---
 # Adding a New Field
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 In this section you'll use [Entity Framework](http://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html) Code First Migrations to add a new field to the model and migrate that change to the database.
 
 When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to track down issues at development time that you might otherwise only find (by obscure errors) at run time.
@@ -26,7 +28,7 @@ Open the *Models/Movie.cs* file and add a `Rating` property:
 
 Build the app (Ctrl+Shift+B).
 
-Because you've added a new field to the `Movie` class, you also need to update the binding white list so this new property will be included. Update the `[Bind]` attribute for `Create` and `Edit` action methods to include the `Rating` property:
+Because you've added a new field to the `Movie` class, you also need to update the binding white list so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
 ```csharp
 [Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]
@@ -61,9 +63,6 @@ For this tutorial, we'll use Code First Migrations.
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
 [!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Models/SeedDataRating.cs?highlight=6&range=25-32)]
-
->[!WARNING]
-> You must stop IIS Express before you run the `dotnet ef` commands.   See [To Stop IIS Express:](adding-model.md#stop-iis-express-reference-label)
 
 Build the solution then open a command prompt. Enter the following commands:
 

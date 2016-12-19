@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 // Add NuGet  <package id="Microsoft.Extensions.Configuration.Binder"
+// Add NuGet  <package id="Microsoft.Extensions.Configuration.CommandLine"
 public class Program
 {
     static public IConfigurationRoot Configuration { get; set; }
