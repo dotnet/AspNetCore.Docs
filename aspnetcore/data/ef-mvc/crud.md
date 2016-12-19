@@ -138,7 +138,7 @@ An alternative way to prevent overposting that is preferred by many developers i
 
 The code in *Views/Students/Create.cshtml* uses `label`, `input`, and `span` (for validation messages) tag helpers for each field.
 
-in ASP.NET Core 1.0, validation messages aren't rendered if `span` elements are self-closing, but scaffolding creates them as self-closing. To enable validation, convert the validation `span` tags from self-closing to explicit closing tags. (Remove the "/" before the closing angle bracket, and add `</span>`.) The changes are highlighted in the following example.
+in ASP.NET Core 1.0, validation messages aren't rendered if `span` elements are self-closing, but scaffolding creates them as self-closing. To enable validation, convert the validation `span` tags from self-closing to explicit closing tags. (Remove the "/" before the closing angle bracket, and add *</span>*.) The changes are highlighted in the following example.
 
 [!code-html[](intro/samples/cu/Views/Students/Create.cshtml?range=15-35&highlight=5,12,19)]
 
