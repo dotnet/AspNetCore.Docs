@@ -1,3 +1,3 @@
 --- 
-redirect_url: /aspnet/core/fundamentals/choosing-the-right-dotnet
+redirect_url: https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server
 ---

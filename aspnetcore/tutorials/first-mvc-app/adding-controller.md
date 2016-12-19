@@ -25,9 +25,7 @@ The Model-View-Controller (MVC) architectural pattern separates an app into thre
 
 The MVC pattern helps you create apps that separate the different aspects of the app (input logic, business logic, and UI logic), while providing a loose coupling between these elements. The pattern specifies where each kind of logic should be located in the app. The UI logic belongs in the view. Input logic belongs in the controller. Business logic belongs in the model. This separation helps you manage complexity when you build an app, because it enables you to work on one aspect of the implementation at a time without impacting the code of another. For example, you can work on the view code without depending on the business logic code.
 
-We'll be covering all these concepts in this tutorial series and show you how to use them to build a simple movie app. The following image shows the *Models*, *Views* and *Controllers* folders in the MVC project.
-
-![image](adding-controller/_static/mvc1.png)
+We'll be covering all these concepts in this tutorial series and show you how to use them to build a simple movie app. The MVC project currently contains folders for the *Controllers* and *Views*. A *Models* folder will be added in a later step.
 
 * In **Solution Explorer**, right-click **Controllers > Add > New Item... > MVC Controller Class**
 
