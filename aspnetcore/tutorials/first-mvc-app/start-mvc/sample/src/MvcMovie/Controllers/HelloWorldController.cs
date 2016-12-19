@@ -50,7 +50,7 @@ namespace MvcMovie.Controllers
         #region snippet_2
         public string Welcome(string name, int numTimes = 1)
         {
-            return HtmlEncoder.Default.Encode($"Hello {name}, numTimes: {numTimes}");
+            return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
         }
         #endregion
     }

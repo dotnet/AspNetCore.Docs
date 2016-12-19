@@ -22,7 +22,7 @@ This article shows how to migrate existing ASP.NET [HTTP modules and handlers](h
 
 Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules and handlers work:
 
-![image](http-modules/_static/moduleshandlers.png)
+![Modules Handler](http-modules/_static/moduleshandlers.png)
 
 **Handlers are:**
 
@@ -80,7 +80,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
    * See [Creating a middleware pipeline with IApplicationBuilder](../fundamentals/middleware.md#creating-a-middleware-pipeline-with-iapplicationbuilder)
 
-![image](http-modules/_static/middleware.png)
+![Middleware](http-modules/_static/middleware.png)
 
 Note how in the image above, the authentication middleware short-circuited the request.
 

@@ -47,7 +47,7 @@ To upload small files, you can use a multi-part HTML form or construct a POST re
 
 In order to support file uploads, HTML forms must specify an `enctype` of `multipart/form-data`. The `files` input element shown above supports uploading multiple files; omit the `multiple` attribute on this input element to allow just a single file to be uploaded. The above markup renders in a browser as:
 
-![image](file-uploads/_static/upload-form.png)
+![File upload form](file-uploads/_static/upload-form.png)
 
 The individual files uploaded to the server can be accessed through [Model Binding](model-binding.md) using the [IFormFile](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/IFormFile/index.html.md#Microsoft.AspNetCore.Http.IFormFile.md) interface. `IFormFile` has the following structure:
 

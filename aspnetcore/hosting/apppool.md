@@ -28,7 +28,7 @@ An application pool identity account allows you to run an application under a un
 
 In the IIS Management Console, under **Advanced Settings** for your application pool ensure that *Identity* list item is set to use **ApplicationPoolIdentity** as shown in the image below.
 
-![image](apppool/_static/apppool-identity.png)
+![App Pool identity](apppool/_static/apppool-identity.png)
 
 ## Securing Resources
 
@@ -44,7 +44,7 @@ To grant the IIS worker process access to your application, you will need to mod
 
 4. Click the **Locations** and make sure you select your server.
 
-    ![image](apppool/_static/apppool-adduser.jpg)
+    ![App Pool Add User](apppool/_static/apppool-adduser.jpg)
 
 5. Enter **IIS AppPool\DefaultAppPool** in **Enter the object names to select** textbox.
 

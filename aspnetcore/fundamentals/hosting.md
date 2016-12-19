@@ -20,7 +20,7 @@ To run an ASP.NET Core app, you need to configure and launch a host using `WebHo
 
 ## What is a Host?
 
-ASP.NET Core apps require a *host* in which to execute. A host must implement the `IWebHost` interface, which exposes collections of features and services, and a `Start` method. The host is typically created using an instance of a `WebHostBuilder`, which builds and returns a  `WebHost` instance. The `WebHost` references the server that will handle requests. Learn more about [servers](servers/overview.md).
+ASP.NET Core apps require a *host* in which to execute. A host must implement the `IWebHost` interface, which exposes collections of features and services, and a `Start` method. The host is typically created using an instance of a `WebHostBuilder`, which builds and returns a  `WebHost` instance. The `WebHost` references the server that will handle requests. Learn more about [servers](servers/index.md).
 
 ### What is the difference between a host and a server?
 
@@ -87,7 +87,7 @@ new WebHostBuilder()
 
 **Content Root** `string`
 
-Key: `contentRoot`. Defaults to the folder where the application assembly resides (for Kestrel; IIS will use the web project root by default). This setting determines where ASP.NET Core will begin searching for content files, such as MVC Views. Also used as the base path for the . Set using the `UseContentRoot` method. Path must exist, or host will fail to start.
+Key: `contentRoot`. Defaults to the folder where the application assembly resides (for Kestrel; IIS will use the web project root by default). This setting determines where ASP.NET Core will begin searching for content files, such as MVC Views. Also used as the base path for the [Web Root Setting](#web-root-setting). Set using the `UseContentRoot` method. Path must exist, or host will fail to start.
 
 ```csharp
 new WebHostBuilder()
@@ -105,11 +105,11 @@ new WebHostBuilder()
 
 When Detailed Errors is set to `false` and Capture Startup Errors is `true`, a generic error page is displayed in response to every request to the server.
 
-![image](hosting/_static/generic-error-page.png)
+![Generic error page](hosting/_static/generic-error-page.png)
 
 When Detailed Errors is set to `true` and Capture Startup Errors is `true`, a detailed error page is displayed in response to every request to the server.
 
-![image](hosting/_static/detailed-error-page.png)
+![Detailed error page](hosting/_static/detailed-error-page.png)
 
 **Environment** `string`
 
@@ -179,7 +179,7 @@ public static void Main(string[] args)
 
 In the example above, command-line arguments may be passed in to configure the host, or configuration settings may optionally be specified in a *hosting.json* file. To specify the host run on a particular URL, you could pass in the desired value from a command prompt:
 
-```none
+```console
 dotnet run --urls "http://*:5000"
    ```
 

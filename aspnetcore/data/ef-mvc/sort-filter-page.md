@@ -1,6 +1,6 @@
 ---
 title: Sorting, filtering, paging, and grouping - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
-author: rick-anderson
+author: tdykstra
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
@@ -13,7 +13,9 @@ ms.prod: aspnet-core
 uid: data/ef-mvc/sort-filter-page
 ---
 
-# Sorting, filtering, paging, and grouping - EF Core with ASP.NET Core MVC tutorial
+# Sorting, filtering, paging, and grouping - EF Core with ASP.NET Core MVC tutorial (3 of 10)
+
+By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -54,9 +56,9 @@ The method uses LINQ to Entities to specify the column to sort by. The code crea
 
 ### Add column heading hyperlinks to the Student Index view
 
-Replace the code in *Views/Students/Index.cshtml*, with the following code to rearrange the column order and add column heading hyperlinks. The new column headings are highlighted.
+Replace the code in *Views/Students/Index.cshtml*, with the following code to rearrange the column order and add column heading hyperlinks. The changed lines are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22)]
+[!code-html[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22,32,38)]
 
 This code uses the information in `ViewData` properties to set up hyperlinks with the appropriate query string values.
 
@@ -72,7 +74,7 @@ To add filtering to the Students Index page, you'll add a text box and a submit 
 
 In *StudentsController.cs*, replace the `Index` method with the following code (the changes are highlighted).
 
-[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortFilter&1,5,9-13)]
+[!code-csharp[Main](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortFilter&highlight=1,5,9-13)]
 
 You've added a `searchString` parameter to the `Index` method. The search string value is received from a text box that you'll add to the Index view. You've also added to the LINQ statement a where clause that selects only students whose first name or last name contains the search string. The statement that adds the where clause is executed only if there's a value to search for.
 

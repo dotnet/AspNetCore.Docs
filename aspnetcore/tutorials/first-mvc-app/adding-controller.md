@@ -25,9 +25,7 @@ The Model-View-Controller (MVC) architectural pattern separates an app into thre
 
 The MVC pattern helps you create apps that separate the different aspects of the app (input logic, business logic, and UI logic), while providing a loose coupling between these elements. The pattern specifies where each kind of logic should be located in the app. The UI logic belongs in the view. Input logic belongs in the controller. Business logic belongs in the model. This separation helps you manage complexity when you build an app, because it enables you to work on one aspect of the implementation at a time without impacting the code of another. For example, you can work on the view code without depending on the business logic code.
 
-We'll be covering all these concepts in this tutorial series and show you how to use them to build a simple movie app. The following image shows the *Models*, *Views* and *Controllers* folders in the MVC project.
-
-![image](adding-controller/_static/mvc1.png)
+We'll be covering all these concepts in this tutorial series and show you how to use them to build a simple movie app. The MVC project currently contains folders for the *Controllers* and *Views*. A *Models* folder will be added in a later step.
 
 * In **Solution Explorer**, right-click **Controllers > Add > New Item... > MVC Controller Class**
 
@@ -71,7 +69,7 @@ Let's modify the example slightly so that you can pass some parameter informatio
 > The code above uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript). It also uses [Interpolated Strings](https://msdn.microsoft.com/en-us/library/dn961160.aspx).
 
 > [!NOTE]
-> In Visual Studio 2015, when you are running in IIS Express without debugging (Ctl+F5), you don't need to build the app after changing the code. Just save the file, refresh your browser and you can see the changes.
+> In Visual Studio 2015, when you are running in IIS Express without debugging (Ctrl+F5), you don't need to build the app after changing the code. Just save the file, refresh your browser and you can see the changes.
 
 Run your app and browse to:
 

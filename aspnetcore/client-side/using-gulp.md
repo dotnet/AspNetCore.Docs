@@ -185,21 +185,21 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
 3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
     
-    ![image](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
+    ![Open Task Runner Exploere from Solution Explorer](using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png)
     
     **Task Runner Explorer** shows the list of Gulp tasks. In the default ASP.NET Core Web Application template in Visual Studio, there are six tasks included from *gulpfile.js*.
     
-    ![image](using-gulp/_static/03-TaskRunnerExplorer.png)
+    ![Task Runner Explorer](using-gulp/_static/03-TaskRunnerExplorer.png)
 
 4.  Underneath **Tasks** in **Task Runner Explorer**, right-click **clean**, and select **Run** from the pop-up menu.
 
-    ![image](using-gulp/_static/04-TaskRunner-clean.png)
+    ![Task Runner Explorer clean task](using-gulp/_static/04-TaskRunner-clean.png)
 
     **Task Runner Explorer** will create a new tab named **clean** and execute the related clean task as it is defined in *gulpfile.js*.
 
 5.  Right-click the **clean** task, then select **Bindings** > **Before Build**.
 
-    ![image](using-gulp/_static/05-TaskRunner-BeforeBuild.png)
+    ![Task Runner Explorer binding BeforeBuild](using-gulp/_static/05-TaskRunner-BeforeBuild.png)
 
     The **Before Build** binding option allows the clean task to run automatically before each build of the project.
 
@@ -230,7 +230,7 @@ To define a new Gulp task, modify *gulpfile.js*.
 
 4.  In **Task Runner Explorer**, right-click **first**, and select **Run**.
 
-    ![image](using-gulp/_static/06-TaskRunner-First.png)
+    ![Task Runner Explorer run first task](using-gulp/_static/06-TaskRunner-First.png)
 
     You’ll see that the output text is displayed. If you are interested in examples based on a common scenario, see Gulp Recipes.
 
@@ -262,13 +262,13 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
 
 4.  In **Task Runner Explorer**, right-click **series** and select **Run**.
 
-    ![image](using-gulp/_static/07-TaskRunner-Series.png)
+    ![Task Runner Explorer run series task](using-gulp/_static/07-TaskRunner-Series.png)
 
 ## IntelliSense
 
 IntelliSense provides code completion, parameter descriptions, and other features to boost productivity and to decrease errors. Gulp tasks are written in JavaScript; therefore, IntelliSense can provide assistance while developing. As you work with JavaScript, IntelliSense lists the objects, functions, properties, and parameters that are available based on your current context. Select a coding option from the pop-up list provided by IntelliSense to complete the code.
 
-![image](using-gulp/_static/08-IntelliSense.png)
+![gulp IntelliSense](using-gulp/_static/08-IntelliSense.png)
 
 For more information about IntelliSense, see [JavaScript IntelliSense](https://msdn.microsoft.com/en-us/library/bb385682.aspx).
 

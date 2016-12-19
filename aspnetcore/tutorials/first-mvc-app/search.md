@@ -14,9 +14,11 @@ uid: tutorials/first-mvc-app/search
 ---
 # Adding Search
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 In this section you'll add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
-Update the `Index` action method to enable search:
+Update the `Index` method with the following code:
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
@@ -143,7 +145,7 @@ The movie-genre view model will contain:
 
    * `movieGenre`, which contains the selected genre
 
-Replace the `Index` method with the following code:
+Replace the `Index` method in `MoviesController.cs` with the following code:
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
 
@@ -162,6 +164,8 @@ movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
    ```
 
 ## Adding search by genre to the Index view
+
+Update `Index.cshtml` as follows:
 
 [!code-HTML[Main](../../tutorials/first-mvc-app/start-mvc/sample2/src/MvcMovie/Views/Movies/IndexFormGenre.cshtml?highlight=1,15,16,17,27,41)]
 

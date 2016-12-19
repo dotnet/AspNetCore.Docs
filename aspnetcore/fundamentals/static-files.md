@@ -42,7 +42,7 @@ In order for static files to be served, you must configure the [Middleware](midd
 You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
 
 > [!NOTE]
-> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with `UseWebRoot`. See [Introduction to ASP.NET Core](../index.md) for more information.
+> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with `UseWebRoot`.
 
 Suppose you have a project hierarchy where the static files you wish to serve are outside the `web root`. For example:
 
@@ -79,7 +79,7 @@ And add required services by calling `AddDirectoryBrowser` extension method from
 
 The code above allows directory browsing of the *wwwroot/images* folder using the URL http://\<app>/MyImages, with links to each file and folder:
 
-![image](static-files/_static/dir-browse.png)
+![directory browsing](static-files/_static/dir-browse.png)
 
 See [Considerations](#considerations) on the security risks when enabling browsing.
 
@@ -158,7 +158,7 @@ Using the file hierarchy and code above:
 
 If no default named files are in the *MyStaticFiles* directory, http://\<app>/StaticFiles returns the directory listing with clickable links:
 
-![image](static-files/_static/db2.PNG)
+![Static files list](static-files/_static/db2.PNG)
 
 > [!NOTE]
 > `UseDefaultFiles` and `UseDirectoryBrowser` will take the url http://\<app>/StaticFiles without the trailing slash and cause a client side redirect to http://\<app>/StaticFiles/ (adding the trailing slash). Without the trailing slash relative URLs within the documents would be incorrect.
