@@ -69,9 +69,9 @@ The `Production` environment is the environment in which the application runs wh
 
 This is by no means meant to be a complete list. It's best to avoid scattering environment checks in many parts of your application. Instead, the recommended approach is to perform such checks within the application's `Startup` class(es) wherever possible
 
-## Setting the environment using the command line
+## Setting the environment
 
-Setting the environment can be set from the command line when starting the app. Depending on the operating system, the method in which this is accomplished varies for either a global or session based setting.
+The method for setting the environment depends on the operating system.
 
 ### Windows
 To set the `ASPNETCORE_ENVIRONMENT` for the current session, if the app is started using `dotnet run`, the following commands are used
@@ -85,31 +85,31 @@ setx ASPNETCORE_ENVIRONMENT "Development"
 $Env:ASPNETCORE_ENVIRONMENT = "Development"
 ```
 
-These commands will last for the duration the current window is open, once closed the `ASPNETCORE_ENVIRONMENT` setting will revert to the default setting or machine value. In order to set the value globally on Windows open the *Advanced System Properties* > *Environment Variables* and add or edit the `ASPNETCORE_ENVIRONMENT` value.
+These commands take effect only for the current window. When the window is closed, the ASPNETCORE_ENVIRONMENT setting reverts to the default setting or machine value. In order to set the value globally on Windows open the **Control Panel** > **System** > **Advanced system settings** and add or edit the `ASPNETCORE_ENVIRONMENT` value.
 
 ![System Advanced Properties](environments/_static/systemsetting_environment.png)
 
 ![ASPNET Core Environment Variable](environments/_static/windows_aspnetcore_environment.png) 
 
 ### macOS
-Setting the current environment for macOS can be done in line when running the application
+Setting the current environment for macOS can be done in-line when running the application;
 
 ```bash
 ASPNETCORE_ENVIRONMENT=Development dotnet run
 ```
-or using `export` to set it prior to running the app
+or using `export` to set it prior to running the app.
 
 ```bash
 export ASPNETCORE_ENVIRONMENT=Development
 ``` 
-Machine level environment variables are set in the **.bashrc**  or **.bash_profile** file. Edit the file using any text editor and add the following statment.
+Machine level environment variables are set in the *.bashrc*  or *.bash_profile* file. Edit the file using any text editor and add the following statment.
 
 ```
 export ASPNETCORE_ENVIRONMENT=Development
 ```  
 
 ### Linux
-For Linx distros, use the `export` command at the command line for session based variable settings and **bash_profile** for machine level environment settings.
+For Linx distros, use the `export` command at the command line for session based variable settings and *bash_profile* file for machine level environment settings.
 
 ## Determining the environment at runtime
 
