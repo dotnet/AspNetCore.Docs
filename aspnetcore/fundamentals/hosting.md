@@ -87,7 +87,7 @@ new WebHostBuilder()
 
 **Content Root** `string`
 
-Key: `contentRoot`. Defaults to the folder where the application assembly resides (for Kestrel; IIS will use the web project root by default). This setting determines where ASP.NET Core will begin searching for content files, such as MVC Views. Also used as the base path for the [Web Root Setting](#web-root-setting). Set using the `UseContentRoot` method. Path must exist, or host will fail to start.
+Key: `contentRoot`. Defaults to the folder where the application assembly resides (for Kestrel; IIS will use the web project root by default). This setting determines where ASP.NET Core will begin searching for content files, such as MVC Views. Also used as the base path for the . Set using the `UseContentRoot` method. Path must exist, or host will fail to start.
 
 ```csharp
 new WebHostBuilder()

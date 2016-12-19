@@ -32,8 +32,7 @@
     "globalMetadata": {
       "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
       "_navPath": "/foo",
-      "_navRel": "/foo",
-      "searchScope": ["ASP.NET Core"]
+      "_navRel": "/foo"
     },
     "fileMetadata": {},
     "template": [],
