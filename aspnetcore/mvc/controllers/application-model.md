@@ -120,13 +120,13 @@ Applying this to an action within the previous example's controller demonstrates
 
 ### Sample: Modifying the ParameterModel
 
-The following convention can be applied to action parameters to modify their `BindingInfo`. In this case, the convention specifies that the `BinderModelName` is "Special". This could be used to customize [model binding](https://docs.microsoft.com/aspnet/core/mvc/models/model-binding) behavior.
+The following convention can be applied to action parameters to modify their `BindingInfo`. The following convention requires that the parameter be a route parameter; other potential binding sources (such as query string values) are ignored.
 
-[!code-csharp[Main](./application-model/sample/src/AppModelSample/Conventions/SpecialParameterAttribute.cs)]
+[!code-csharp[Main](./application-model/sample/src/AppModelSample/Conventions/MustBeInRouteParameterModelConvention.cs)]
 
-The attribute is applied to any action parameter:
+The attribute may be applied to any action parameter:
 
-[!code-csharp[Main](./application-model/sample/src/AppModelSample/Controllers/ParameterModelController.cs?name=ParameterModelController&highlight=3)]
+[!code-csharp[Main](./application-model/sample/src/AppModelSample/Controllers/ParameterModelController.cs?name=ParameterModelController&highlight=5)]
 
 ### Sample: Modifying the ActionModel Name
 
@@ -171,7 +171,6 @@ To use the Web API Compatibility Shim, you need to add the package to your proje
 
 ```c#
 services.AddMvc().AddWebApiConventions();
-
 ```
 
 The conventions provided by the shim are only applied to parts of the app that have had certain attributes applied to them. The following four attributes are used to control which controllers should have their conventions modified by the shim's conventions:

@@ -6,10 +6,11 @@ namespace AppModelSample.Controllers
     #region ParameterModelController
     public class ParameterModelController : Controller
     {
-        public string GetById([SpecialParameter]int id)
+        // Will bind:  /ParameterModel/GetById/123
+        // WON'T bind: /ParameterModel/GetById?id=123
+        public string GetById([MustBeInRouteParameterModelConvention]int id)
         {
-            return "BinderModelName: " + 
-                ControllerContext.ActionDescriptor.Parameters[0].BindingInfo?.BinderModelName;
+            return $"Bound to id: {id}";
         }
     }
     #endregion
