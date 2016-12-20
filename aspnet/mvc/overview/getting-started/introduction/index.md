@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 06/10/2013
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-mvc
 ms.prod: .net-framework
+msc.legacyurl: /mvc/overview/getting-started/introduction
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47550) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/introduction/index.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/introduction)
 

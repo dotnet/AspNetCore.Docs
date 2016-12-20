@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-webforms
 ms.prod: .net-framework
+msc.legacyurl: /web-forms/overview/moving-to-aspnet-20
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/33007) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/moving-to-aspnet-20/index.html) | [View prod content](http://www.asp.net/web-forms/overview/moving-to-aspnet-20)
 

@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 01/17/2012
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-webapi
 ms.prod: .net-framework
+msc.legacyurl: /web-api/overview/formats-and-model-binding
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36785) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/formats-and-model-binding/index.html) | [View prod content](http://www.asp.net/web-api/overview/formats-and-model-binding)
 

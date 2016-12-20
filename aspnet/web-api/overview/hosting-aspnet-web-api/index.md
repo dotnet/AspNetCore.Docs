@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 01/26/2012
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-webapi
 ms.prod: .net-framework
+msc.legacyurl: /web-api/overview/hosting-aspnet-web-api
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36892) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/hosting-aspnet-web-api/index.html) | [View prod content](http://www.asp.net/web-api/overview/hosting-aspnet-web-api)
 

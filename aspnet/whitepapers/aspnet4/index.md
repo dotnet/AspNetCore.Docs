@@ -9,6 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
+msc.legacyurl: /whitepapers/aspnet4
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36235) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/aspnet4/index.html) | [View prod content](http://www.asp.net/whitepapers/aspnet4)
 

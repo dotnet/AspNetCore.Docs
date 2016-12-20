@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 06/16/2014
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-webapi
 ms.prod: .net-framework
+msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\older-versions\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58353) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/index.html) | [View prod content](http://www.asp.net/web-api/overview/older-versions/using-web-api-1-with-entity-framework-5)
 

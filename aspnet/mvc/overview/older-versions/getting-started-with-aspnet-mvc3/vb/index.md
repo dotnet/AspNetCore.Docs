@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 04/12/2012
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-mvc
 ms.prod: .net-framework
+msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\getting-started-with-aspnet-mvc3\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37938) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb)
 

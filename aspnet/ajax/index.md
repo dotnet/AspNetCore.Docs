@@ -9,6 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
+msc.legacyurl: /ajax
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36256) | [View dev content](http://docs.aspdev.net/tutorials/ajax/index.html) | [View prod content](http://www.asp.net/ajax)
 

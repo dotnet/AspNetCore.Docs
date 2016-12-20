@@ -9,6 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
+msc.legacyurl: /ajax/cdn/jquery-validate
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59184) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-validate/index.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-validate)
 

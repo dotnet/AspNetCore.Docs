@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 02/16/2012
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-webapi
 ms.prod: .net-framework
+msc.legacyurl: /web-api/videos
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37456) | [View dev content](http://docs.aspdev.net/tutorials/web-api/videos/index.html) | [View prod content](http://www.asp.net/web-api/videos)
 

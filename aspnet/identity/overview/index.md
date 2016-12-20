@@ -9,6 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
+msc.legacyurl: /identity/overview
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51456) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/index.html) | [View prod content](http://www.asp.net/identity/overview)
 

@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 05/18/2012
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-webpages
 ms.prod: .net-framework
+msc.legacyurl: /web-pages/videos/aspnet-razor-pages
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38417) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/aspnet-razor-pages/index.html) | [View prod content](http://www.asp.net/web-pages/videos/aspnet-razor-pages)
 

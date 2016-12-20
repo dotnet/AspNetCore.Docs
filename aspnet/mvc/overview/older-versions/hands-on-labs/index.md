@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 02/18/2013
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-mvc
 ms.prod: .net-framework
+msc.legacyurl: /mvc/overview/older-versions/hands-on-labs
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45267) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/hands-on-labs/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/hands-on-labs)
 

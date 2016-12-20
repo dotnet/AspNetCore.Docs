@@ -7,8 +7,9 @@ manager: wpickett
 ms.date: 05/12/2012
 ms.topic: article
 ms.assetid: 
-ms.technology: 
+ms.technology: dotnet-webapi
 ms.prod: .net-framework
+msc.legacyurl: /web-api/overview/testing-and-debugging
 ---
 [Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38201) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/testing-and-debugging/index.html) | [View prod content](http://www.asp.net/web-api/overview/testing-and-debugging)
 
