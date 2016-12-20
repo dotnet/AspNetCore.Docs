@@ -12,7 +12,9 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/crud
 ---
-# Create, Read, Update, and Delete - EF Core with ASP.NET Core MVC tutorial
+# Create, Read, Update, and Delete - EF Core with ASP.NET Core MVC tutorial (2 of 10)
+
+By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
