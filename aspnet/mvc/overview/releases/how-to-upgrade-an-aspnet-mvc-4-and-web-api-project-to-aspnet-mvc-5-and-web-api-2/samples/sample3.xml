@@ -1,0 +1,3 @@
+<securityPolicy>
+   <!--<trustLevel name="Medium"  policyFile="web_mediumtrust.config"/>-->
+</securityPolicy>
