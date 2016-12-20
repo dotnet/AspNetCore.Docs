@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\controllers-and-routing\creating-custom-routes-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24918) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs) | Picker: 27556
-
 Creating Custom Routes (C#)
 ====================
 by [Microsoft](https://github.com/microsoft)

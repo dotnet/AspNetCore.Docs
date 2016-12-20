@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38236) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/index.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment)
-
 ASP.NET 4 - Enterprise Deployment Series 3 Configuring TFS
 ====================
 > This tutorial will show you how to configure Team Foundation Server (TFS) 2010 to build solutions and deploy web content to various target environments.

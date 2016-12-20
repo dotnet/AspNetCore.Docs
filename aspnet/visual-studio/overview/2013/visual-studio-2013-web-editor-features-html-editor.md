@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/visual-studio-2013-web-editor-features-html-editor
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2013\visual-studio-2013-web-editor-features-html-editor.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51386) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2013/visual-studio-2013-web-editor-features-html-editor.html) | [View prod content](http://www.asp.net/visual-studio/overview/2013/visual-studio-2013-web-editor-features-html-editor) | Picker: 51396
-
 Visual Studio 2013 Web Editor Features - HTML Editor
 ====================
 by [Mads Kristensen](https://github.com/madskristensen)

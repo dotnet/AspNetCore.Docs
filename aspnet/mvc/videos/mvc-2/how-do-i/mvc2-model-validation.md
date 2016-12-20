@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/mvc2-model-validation
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\mvc2-model-validation.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26710) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/mvc2-model-validation.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/mvc2-model-validation) | Picker: 27497
-
 MVC2 - Model Validation
 ====================
 by [Microsoft](https://github.com/microsoft)

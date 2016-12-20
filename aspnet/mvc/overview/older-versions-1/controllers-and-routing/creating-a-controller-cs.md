@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-a-controller-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\controllers-and-routing\creating-a-controller-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24884) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/controllers-and-routing/creating-a-controller-cs.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-a-controller-cs) | Picker: 27564
-
 Creating a Controller (C#)
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

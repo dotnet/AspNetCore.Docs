@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\security\authenticating-users-with-forms-authentication-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25212) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-cs.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/security/authenticating-users-with-forms-authentication-cs) | Picker: 27598
-
 Authenticating Users with Forms Authentication (C#)
 ====================
 by [Microsoft](https://github.com/microsoft)

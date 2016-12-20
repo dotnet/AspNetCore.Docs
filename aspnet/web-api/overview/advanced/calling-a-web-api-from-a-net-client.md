@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/calling-a-web-api-from-a-net-client
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\advanced\calling-a-web-api-from-a-net-client.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42692) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/advanced/calling-a-web-api-from-a-net-client.html) | [View prod content](http://www.asp.net/web-api/overview/advanced/calling-a-web-api-from-a-net-client) | Picker: 42697
-
 Calling a Web API From a .NET Client (C#)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-delete-data-form-entry-support
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\nerddinner\provide-crud-create-read-update-delete-data-form-entry-support.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25185) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-delete-data-form-entry-support.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-delete-data-form-entry-support) | Picker: 27640
-
 Provide CRUD (Create, Read, Update, Delete) Data Form Entry Support
 ====================
 by [Microsoft](https://github.com/microsoft)

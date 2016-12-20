@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-work-with-data-in-aspnet-mvc-partial-views
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\how-do-i-work-with-data-in-aspnet-mvc-partial-views.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26703) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/how-do-i-work-with-data-in-aspnet-mvc-partial-views.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/how-do-i-work-with-data-in-aspnet-mvc-partial-views) | Picker: 27490
-
 How Do I: Work with Data in ASP.NET MVC Partial Views?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

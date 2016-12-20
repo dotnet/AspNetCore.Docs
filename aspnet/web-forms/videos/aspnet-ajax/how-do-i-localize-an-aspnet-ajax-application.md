@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-localize-an-aspnet-ajax-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-localize-an-aspnet-ajax-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26601) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-localize-an-aspnet-ajax-application.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-localize-an-aspnet-ajax-application) | Picker: 33624
-
 [How Do I:] Localize an ASP.NET AJAX Application?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

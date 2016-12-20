@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/tutorial-server-broadcast-with-aspnet-signalr
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\older-versions\tutorial-server-broadcast-with-aspnet-signalr.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45851) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/older-versions/tutorial-server-broadcast-with-aspnet-signalr.html) | [View prod content](http://www.asp.net/signalr/overview/older-versions/tutorial-server-broadcast-with-aspnet-signalr) | Picker: 45852
-
 Tutorial: Server Broadcast with ASP.NET SignalR 1.x
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)

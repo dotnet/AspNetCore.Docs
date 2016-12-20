@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-synchronize-data-in-secondary-user-controls-based-upon-user-selections
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-synchronize-data-in-secondary-user-controls-based-upon-user-selections.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26504) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-synchronize-data-in-secondary-user-controls-based-upon-user-selections.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-synchronize-data-in-secondary-user-controls-based-upon-user-selections) | Picker: 33527
-
 [How Do I]: Synchronize Data in Secondary User Control(s) Based Upon User Selections
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

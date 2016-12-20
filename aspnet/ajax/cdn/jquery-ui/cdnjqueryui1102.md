@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui1102
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\jquery-ui\cdnjqueryui1102.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59207) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-ui/cdnjqueryui1102.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-ui/cdnjqueryui1102) | Picker: 59207
-
 jQuery UI 1.10.2 on the Microsoft Ajax CDN
 ====================
 The jQuery UI 1.10.2 library includes the following files:

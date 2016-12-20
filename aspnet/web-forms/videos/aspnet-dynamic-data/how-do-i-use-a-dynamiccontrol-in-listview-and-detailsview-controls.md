@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-dynamic-data\how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26811) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-dynamic-data/how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-dynamic-data/how-do-i-use-a-dynamiccontrol-in-listview-and-detailsview-controls) | Picker: 33768
-
 How Do I Use a DynamicControl in ListView and DetailsView Controls?
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

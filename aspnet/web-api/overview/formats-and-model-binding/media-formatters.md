@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/media-formatters
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\formats-and-model-binding\media-formatters.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37651) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/formats-and-model-binding/media-formatters.html) | [View prod content](http://www.asp.net/web-api/overview/formats-and-model-binding/media-formatters) | Picker: 37652
-
 Media Formatters in ASP.NET Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

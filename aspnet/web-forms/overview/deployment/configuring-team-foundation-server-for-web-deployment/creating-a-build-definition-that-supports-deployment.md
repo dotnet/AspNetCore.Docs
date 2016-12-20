@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\configuring-team-foundation-server-for-web-deployment\creating-a-build-definition-that-supports-deployment.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38175) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment) | Picker: 38241
-
 Creating a Build Definition That Supports Deployment
 ====================
 by [Jason Lee](https://github.com/jrjlee)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-4-understanding-web-application-state
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-20-applications\lesson-4-understanding-web-application-state.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26907) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-20-applications/lesson-4-understanding-web-application-state.html) | [View prod content](http://www.asp.net/web-forms/videos/building-20-applications/lesson-4-understanding-web-application-state) | Picker: 33854
-
 [Lesson 4:] Understanding Web Application State
 ====================
 by [Microsoft](https://github.com/microsoft)

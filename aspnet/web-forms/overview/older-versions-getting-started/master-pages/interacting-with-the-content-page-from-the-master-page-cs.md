@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-content-page-from-the-master-page-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\master-pages\interacting-with-the-content-page-from-the-master-page-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25112) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-content-page-from-the-master-page-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/master-pages/interacting-with-the-content-page-from-the-master-page-cs) | Picker: 33328
-
 Interacting with the Content Page from the Master Page (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

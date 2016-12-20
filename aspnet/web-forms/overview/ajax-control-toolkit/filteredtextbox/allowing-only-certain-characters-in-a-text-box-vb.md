@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/filteredtextbox/allowing-only-certain-characters-in-a-text-box-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\filteredtextbox\allowing-only-certain-characters-in-a-text-box-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24821) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/filteredtextbox/allowing-only-certain-characters-in-a-text-box-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/filteredtextbox/allowing-only-certain-characters-in-a-text-box-vb) | Picker: 33121
-
 Allowing Only Certain Characters in a Text Box (VB)
 ====================
 by [Christian Wenz](https://github.com/wenz)

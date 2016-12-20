@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/chart/aspnet-4-how-do-i-introducing-the-new-chart-control-in-visual-studio-2010
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\chart\aspnet-4-how-do-i-introducing-the-new-chart-control-in-visual-studio-2010.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26669) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/chart/aspnet-4-how-do-i-introducing-the-new-chart-control-in-visual-studio-2010.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/chart/aspnet-4-how-do-i-introducing-the-new-chart-control-in-visual-studio-2010) | Picker: 33692
-
 How Do I: Introducing the New Chart Control in Visual Studio 2010
 ====================
 by Max Adams

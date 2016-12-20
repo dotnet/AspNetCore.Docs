@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/upgrading-signalr-1x-projects-to-20
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\older-versions\upgrading-signalr-1x-projects-to-20.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/49799) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/older-versions/upgrading-signalr-1x-projects-to-20.html) | [View prod content](http://www.asp.net/signalr/overview/older-versions/upgrading-signalr-1x-projects-to-20) | Picker: 49800
-
 Upgrading SignalR 1.x Projects to version 2
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)

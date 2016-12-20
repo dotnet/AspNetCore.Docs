@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-event-handlers-in-aspnet-web-pages-and-controls
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-event-handlers-in-aspnet-web-pages-and-controls.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26448) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-event-handlers-in-aspnet-web-pages-and-controls.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-event-handlers-in-aspnet-web-pages-and-controls) | Picker: 33471
-
 [How Do I:] Event Handlers in ASP.NET Web Pages and Controls
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

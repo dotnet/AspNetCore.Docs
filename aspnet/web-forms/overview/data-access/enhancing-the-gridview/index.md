@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32994) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/enhancing-the-gridview/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/enhancing-the-gridview)
-
 Enhancing the GridView
 ====================
 > These tutorials show how to add a column of radio buttons to a GridView control to provide an intuitive way to select a single row.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-updateprogress-control
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-use-the-aspnet-ajax-updateprogress-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26587) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-updateprogress-control.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-updateprogress-control) | Picker: 33610
-
 [How Do I:] Use the ASP.NET AJAX UpdateProgress Control?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

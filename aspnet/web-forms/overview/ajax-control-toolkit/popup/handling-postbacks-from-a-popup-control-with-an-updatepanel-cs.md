@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/popup/handling-postbacks-from-a-popup-control-with-an-updatepanel-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\popup\handling-postbacks-from-a-popup-control-with-an-updatepanel-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24842) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/popup/handling-postbacks-from-a-popup-control-with-an-updatepanel-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/popup/handling-postbacks-from-a-popup-control-with-an-updatepanel-cs) | Picker: 33142
-
 Handling Postbacks from A Popup Control With an UpdatePanel (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

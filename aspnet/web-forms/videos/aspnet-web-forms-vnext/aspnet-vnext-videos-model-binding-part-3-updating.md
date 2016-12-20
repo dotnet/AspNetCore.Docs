@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-3-updating
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-web-forms-vnext\aspnet-vnext-videos-model-binding-part-3-updating.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26769) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-3-updating.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-3-updating) | Picker: 33726
-
 ASP.NET vNext Videos: Model Binding Part 3 - Updating
 ====================
 by [Damian Edwards](https://github.com/DamianEdwards)

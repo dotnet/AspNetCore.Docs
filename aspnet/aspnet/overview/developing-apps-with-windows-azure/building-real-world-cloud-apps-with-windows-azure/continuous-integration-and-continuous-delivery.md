@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\developing-apps-with-windows-azure\building-real-world-cloud-apps-with-windows-azure\continuous-integration-and-continuous-delivery.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/53563) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.html) | [View prod content](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery) | Picker: 53627
-
 Continuous Integration and Continuous Delivery (Building Real-World Cloud Apps with Azure)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra)

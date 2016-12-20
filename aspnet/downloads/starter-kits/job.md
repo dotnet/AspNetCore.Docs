@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/job
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\job.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36281) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/job.html) | [View prod content](http://www.asp.net/downloads/starter-kits/job) | Picker: 36281
-
 Job Site Starter Kit
 ====================
 > Job Site Starter Kit (JSSK) is an ASP.NET starter kit demonstrating many new features of ASP.NET 2.0 including themes, master pages, new data controls, membership, roles and profiles.

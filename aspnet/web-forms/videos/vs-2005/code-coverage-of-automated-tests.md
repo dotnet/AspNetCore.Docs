@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/code-coverage-of-automated-tests
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\code-coverage-of-automated-tests.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26826) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/code-coverage-of-automated-tests.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/code-coverage-of-automated-tests) | Picker: 33783
-
 Code Coverage of Automated Tests
 ====================
 by Eric Lee

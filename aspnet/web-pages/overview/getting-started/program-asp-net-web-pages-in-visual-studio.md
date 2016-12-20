@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\getting-started\program-asp-net-web-pages-in-visual-studio.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38951) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio.html) | [View prod content](http://www.asp.net/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio) | Picker: 38365
-
 Programming ASP.NET Web Pages (Razor) Using Visual Studio
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

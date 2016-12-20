@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/views/using-page-inspector-in-aspnet-mvc
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\views\using-page-inspector-in-aspnet-mvc.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37549) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/views/using-page-inspector-in-aspnet-mvc.html) | [View prod content](http://www.asp.net/mvc/overview/views/using-page-inspector-in-aspnet-mvc) | Picker: 37576
-
 Using Page Inspector in ASP.NET MVC
 ====================
 by Tim Ammann

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26728) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete) | Picker: 27519
-
 ASP.NET MVC Storefront Part 8: Testing Controllers, Iteration 1 Complete
 ====================
 by [Rob Conery](https://github.com/robconery)

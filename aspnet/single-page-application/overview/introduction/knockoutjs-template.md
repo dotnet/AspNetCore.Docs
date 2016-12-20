@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/introduction/knockoutjs-template
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\single-page-application\overview\introduction\knockoutjs-template.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43838) | [View dev content](http://docs.aspdev.net/tutorials/single-page-application/overview/introduction/knockoutjs-template.html) | [View prod content](http://www.asp.net/single-page-application/overview/introduction/knockoutjs-template) | Picker: 43855
-
 Single Page Application: KnockoutJS template
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

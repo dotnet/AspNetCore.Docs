@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-reusable-component-for-sending-email-to-a-distribution-list
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-create-a-reusable-component-for-sending-email-to-a-distribution-list.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26495) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-create-a-reusable-component-for-sending-email-to-a-distribution-list.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-create-a-reusable-component-for-sending-email-to-a-distribution-list) | Picker: 33518
-
 [How Do I:] Create a Reusable Component for Sending Email to a Distribution List
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

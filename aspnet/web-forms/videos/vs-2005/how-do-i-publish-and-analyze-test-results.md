@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-publish-and-analyze-test-results
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\how-do-i-publish-and-analyze-test-results.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26840) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/how-do-i-publish-and-analyze-test-results.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/how-do-i-publish-and-analyze-test-results) | Picker: 33797
-
 [How Do I:] Publish and Analyze Test Results?
 ====================
 by [Chris Menegay](https://twitter.com/CMenegay)

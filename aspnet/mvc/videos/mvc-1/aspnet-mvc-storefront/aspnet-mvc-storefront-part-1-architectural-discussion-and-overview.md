@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-1-architectural-discussion-and-overview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-1-architectural-discussion-and-overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26721) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-1-architectural-discussion-and-overview.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-1-architectural-discussion-and-overview) | Picker: 27512
-
 ASP.NET MVC Storefront Part 1: Architectural Discussion and Overview
 ====================
 by [Rob Conery](https://github.com/robconery)

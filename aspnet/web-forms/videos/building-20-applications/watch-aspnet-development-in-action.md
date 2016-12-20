@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/watch-aspnet-development-in-action
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-20-applications\watch-aspnet-development-in-action.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26642) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-20-applications/watch-aspnet-development-in-action.html) | [View prod content](http://www.asp.net/web-forms/videos/building-20-applications/watch-aspnet-development-in-action) | Picker: 33665
-
 Watch ASP.NET Development in Action
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

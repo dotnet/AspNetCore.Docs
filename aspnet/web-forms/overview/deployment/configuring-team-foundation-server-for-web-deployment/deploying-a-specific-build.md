@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\configuring-team-foundation-server-for-web-deployment\deploying-a-specific-build.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38176) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build) | Picker: 38242
-
 Deploying a Specific Build
 ====================
 by [Jason Lee](https://github.com/jrjlee)

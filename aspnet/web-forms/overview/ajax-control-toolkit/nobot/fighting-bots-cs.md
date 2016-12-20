@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/nobot/fighting-bots-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\nobot\fighting-bots-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24834) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/nobot/fighting-bots-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/nobot/fighting-bots-cs) | Picker: 33134
-
 Fighting Bots (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

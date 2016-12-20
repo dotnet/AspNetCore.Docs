@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview/inserting-a-new-record-from-the-gridview-s-footer-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\enhancing-the-gridview\inserting-a-new-record-from-the-gridview-s-footer-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25055) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/enhancing-the-gridview/inserting-a-new-record-from-the-gridview-s-footer-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/enhancing-the-gridview/inserting-a-new-record-from-the-gridview-s-footer-vb) | Picker: 33293
-
 Inserting a New Record from the GridView's Footer (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-to-create-table-specific-custom-forms-in-an-aspnet-dynamic-data-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-dynamic-data\how-to-create-table-specific-custom-forms-in-an-aspnet-dynamic-data-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26681) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-dynamic-data/how-to-create-table-specific-custom-forms-in-an-aspnet-dynamic-data-application.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-dynamic-data/how-to-create-table-specific-custom-forms-in-an-aspnet-dynamic-data-application) | Picker: 33704
-
 How to Create Table Specific Custom Forms in an ASP.NET Dynamic Data Application
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

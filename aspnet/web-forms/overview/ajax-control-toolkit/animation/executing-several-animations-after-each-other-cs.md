@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-after-each-other-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\animation\executing-several-animations-after-each-other-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24780) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-after-each-other-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-after-each-other-cs) | Picker: 33080
-
 Executing Several Animations after Each Other (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

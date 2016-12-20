@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\older-versions\build-restful-apis-with-aspnet-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45257) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api.html) | [View prod content](http://www.asp.net/web-api/overview/older-versions/build-restful-apis-with-aspnet-web-api) | Picker: 45249
-
 Build RESTful API's with ASP.NET Web API
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

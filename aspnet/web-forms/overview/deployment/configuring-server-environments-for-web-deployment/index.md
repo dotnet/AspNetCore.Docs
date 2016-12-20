@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38244) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/configuring-server-environments-for-web-deployment/index.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/configuring-server-environments-for-web-deployment)
-
 ASP.NET 4 - Enterprise Deployment Series 2 Configuring Servers
 ====================
 > This tutorial will show you how to set up server environments to support one-click, or automated, website deployment and publishing in various different scenarios.

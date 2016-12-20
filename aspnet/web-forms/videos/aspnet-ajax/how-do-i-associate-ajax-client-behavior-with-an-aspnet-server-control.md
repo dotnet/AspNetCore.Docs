@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26606) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-associate-ajax-client-behavior-with-an-aspnet-server-control) | Picker: 33629
-
 [How Do I:] Associate AJAX Client Behavior with an ASP.NET Server Control?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

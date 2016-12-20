@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/combobox
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35845) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/combobox/index.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/combobox)
-
 ComboBox
 ====================
 > This tutorial shows how to use the ComboBox control, which combines the flexibility of a text box with a list of options that users can choose from.

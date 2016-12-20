@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26737) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood) | Picker: 27528
-
 ASP.NET MVC Storefront Part 17: Checkout With Jeff Atwood
 ====================
 by [Rob Conery](https://github.com/robconery)

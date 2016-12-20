@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\security\aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59288) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.html) | [View prod content](http://www.asp.net/mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication) | Picker: 59289
-
 ASP.NET MVC 5 app with SMS and email Two-Factor Authentication
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

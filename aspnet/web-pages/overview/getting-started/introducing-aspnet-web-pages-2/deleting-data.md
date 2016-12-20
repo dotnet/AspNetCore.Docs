@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/deleting-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\getting-started\introducing-aspnet-web-pages-2\deleting-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38469) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/deleting-data.html) | [View prod content](http://www.asp.net/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/deleting-data) | Picker: 38478
-
 Introducing ASP.NET Web Pages - Deleting Database Data
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

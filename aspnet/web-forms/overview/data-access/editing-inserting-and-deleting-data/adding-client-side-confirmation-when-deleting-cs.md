@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\editing-inserting-and-deleting-data\adding-client-side-confirmation-when-deleting-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25046) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-cs) | Picker: 33284
-
 Adding Client-Side Confirmation When Deleting (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

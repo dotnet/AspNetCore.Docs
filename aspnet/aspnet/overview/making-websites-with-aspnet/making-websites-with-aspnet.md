@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/making-websites-with-aspnet/making-websites-with-aspnet
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\making-websites-with-aspnet\making-websites-with-aspnet.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/49306) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/making-websites-with-aspnet/making-websites-with-aspnet.html) | [View prod content](http://www.asp.net/aspnet/overview/making-websites-with-aspnet/making-websites-with-aspnet) | Picker: 49300
-
 Making Websites with ASP.NET
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/10-working-with-video
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\ui-layouts-and-themes\10-working-with-video.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38940) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/ui-layouts-and-themes/10-working-with-video.html) | [View prod content](http://www.asp.net/web-pages/overview/ui-layouts-and-themes/10-working-with-video) | Picker: 59916
-
 Displaying Video in an ASP.NET Web Pages (Razor) Site
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

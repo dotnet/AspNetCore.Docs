@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/23462) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/models-data/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/models-data)
-
 Models (Data)
 ====================
 > In this tutorial series, you learn how to use ASP.NET MVC with the Microsoft Entity Framework. Over the course of this tutorial, you build a web application that illustrates how to select, insert, update, and delete database data by using the Entity Framework.

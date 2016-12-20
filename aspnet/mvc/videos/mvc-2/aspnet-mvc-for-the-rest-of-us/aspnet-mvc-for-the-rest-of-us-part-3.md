@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-3
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\aspnet-mvc-for-the-rest-of-us\aspnet-mvc-for-the-rest-of-us-part-3.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26685) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-3.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-3) | Picker: 27504
-
 ASP.NET MVC For the Rest of Us: Part 3
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

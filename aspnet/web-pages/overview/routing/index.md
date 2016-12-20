@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/routing
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59897) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/routing/index.html) | [View prod content](http://www.asp.net/web-pages/overview/routing)
-
 Routing
 ====================
 > How to customize the URLs used by a Web Pages application.

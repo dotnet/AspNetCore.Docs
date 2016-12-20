@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36215) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/overview.html) | [View prod content](http://www.asp.net/whitepapers/overview) | Picker: 36215
-
 Whitepapers
 ====================
 > On this page you will find whitepapers to help you install and configure ASP.NET, and to assist you to write secure, fast and flexible ASP.NET applications.

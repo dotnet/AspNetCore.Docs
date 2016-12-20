@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/features-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/57671) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/features-api/index.html) | [View prod content](http://www.asp.net/identity/overview/features-api)
-
 ASP.NET Identity Features & API
 ====================
 > Features & API

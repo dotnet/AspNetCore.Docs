@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/visual-studio-2010/visual-studio-2010-quick-hit-websites-instead-of-web-projects
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\visual-studio-2010\visual-studio-2010-quick-hit-websites-instead-of-web-projects.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26934) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/visual-studio-2010/visual-studio-2010-quick-hit-websites-instead-of-web-projects.html) | [View prod content](http://www.asp.net/mvc/videos/visual-studio-2010/visual-studio-2010-quick-hit-websites-instead-of-web-projects) | Picker: 35830
-
 Visual Studio 2010 "Quick Hit" - Websites Instead of Web Projects
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

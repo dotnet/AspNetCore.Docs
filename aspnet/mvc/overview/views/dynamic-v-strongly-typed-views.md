@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/views/dynamic-v-strongly-typed-views
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\views\dynamic-v-strongly-typed-views.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24733) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/views/dynamic-v-strongly-typed-views.html) | [View prod content](http://www.asp.net/mvc/overview/views/dynamic-v-strongly-typed-views) | Picker: 33035
-
 Dynamic v. Strongly Typed Views
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

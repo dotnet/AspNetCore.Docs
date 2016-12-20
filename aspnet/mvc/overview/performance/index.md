@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/60410) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/performance/index.html) | [View prod content](http://www.asp.net/mvc/overview/performance)
-
 ASP.NET MVC Performance
 ====================
 > Resources for optimizing performance of ASP.NET MVC applications.

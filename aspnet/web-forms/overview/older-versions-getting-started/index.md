@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/60620) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started)
-
 Older Versions - Web Forms Getting Started
 ====================
 > Documentation on ASP.NET Web Forms 4 and earlier versions.

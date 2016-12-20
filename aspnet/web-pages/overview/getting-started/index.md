@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38351) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/getting-started/index.html) | [View prod content](http://www.asp.net/web-pages/overview/getting-started)
-
 Getting Started with ASP.NET Web Pages
 ====================
 > What Web Pages and WebMatrix are, plus how to install everything, get started, and deploy sites.

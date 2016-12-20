@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/creating-and-using-a-helper-in-an-aspnet-web-pages-site
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\ui-layouts-and-themes\creating-and-using-a-helper-in-an-aspnet-web-pages-site.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38608) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/ui-layouts-and-themes/creating-and-using-a-helper-in-an-aspnet-web-pages-site.html) | [View prod content](http://www.asp.net/web-pages/overview/ui-layouts-and-themes/creating-and-using-a-helper-in-an-aspnet-web-pages-site) | Picker: 59910
-
 Creating and Using a Helper in an ASP.NET Web Pages (Razor) Site
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

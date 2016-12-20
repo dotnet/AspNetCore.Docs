@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/60438) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions)
-
 Older Versions - MVC 3 and 4
 ====================
 > Links to resources for learning how to use earlier versions of ASP.NET MVC.

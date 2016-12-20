@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/data-source-controls
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\moving-to-aspnet-20\data-source-controls.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25172) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/moving-to-aspnet-20/data-source-controls.html) | [View prod content](http://www.asp.net/web-forms/overview/moving-to-aspnet-20/data-source-controls) | Picker: 33384
-
 Data Source Controls
 ====================
 by [Microsoft](https://github.com/microsoft)

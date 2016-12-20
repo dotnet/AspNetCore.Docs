@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/adding-animation-to-a-control-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\animation\adding-animation-to-a-control-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24776) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/animation/adding-animation-to-a-control-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/animation/adding-animation-to-a-control-cs) | Picker: 33076
-
 Adding Animation to a Control (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

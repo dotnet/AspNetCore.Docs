@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/releases/whats-new-in-aspnet-mvc-52
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\releases\whats-new-in-aspnet-mvc-52.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/57885) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/releases/whats-new-in-aspnet-mvc-52.html) | [View prod content](http://www.asp.net/mvc/overview/releases/whats-new-in-aspnet-mvc-52) | Picker: 58202
-
 What’s New in ASP.NET MVC 5.2
 ====================
 by [Microsoft](https://github.com/microsoft)

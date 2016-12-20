@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/intro-to-visual-web-developer
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-35-applications\intro-to-visual-web-developer.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26789) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-35-applications/intro-to-visual-web-developer.html) | [View prod content](http://www.asp.net/web-forms/videos/building-35-applications/intro-to-visual-web-developer) | Picker: 33746
-
 Intro to Visual Web Developer
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/windows-azure-authentication
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2012\windows-azure-authentication.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43244) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2012/windows-azure-authentication.html) | [View prod content](http://www.asp.net/visual-studio/overview/2012/windows-azure-authentication) | Picker: 43266
-
 Windows Azure Authentication
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

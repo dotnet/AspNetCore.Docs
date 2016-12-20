@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\getting-started-with-ef-using-mvc\advanced-entity-framework-scenarios-for-an-mvc-web-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54436) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application) | Picker: 33317
-
 Advanced Entity Framework 6 Scenarios for an MVC 5 Web Application (12 of 12)
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

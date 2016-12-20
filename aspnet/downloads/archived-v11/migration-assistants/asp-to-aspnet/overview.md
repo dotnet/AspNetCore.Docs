@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/archived-v11/migration-assistants/asp-to-aspnet/overview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\archived-v11\migration-assistants\asp-to-aspnet\overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36261) | [View dev content](http://docs.aspdev.net/tutorials/downloads/archived-v11/migration-assistants/asp-to-aspnet/overview.html) | [View prod content](http://www.asp.net/downloads/archived-v11/migration-assistants/asp-to-aspnet/overview) | Picker: 36261
-
 ASP to ASP.NET Migration Assistant - Getting Started
 ====================
 > The ASP to ASP.NET Migration Assistant is designed to help you convert ASP pages and applications to ASP.NET. It does not make the conversion process completely automatic, but it will speed up your project by automating some of the steps required for migration.

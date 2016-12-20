@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/enabling-full-text-search-in-your-text-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\sql-2005\enabling-full-text-search-in-your-text-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26889) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/sql-2005/enabling-full-text-search-in-your-text-data.html) | [View prod content](http://www.asp.net/web-forms/videos/sql-2005/enabling-full-text-search-in-your-text-data) | Picker: 33836
-
 Enabling Full-Text Search in your Text Data
 ====================
 by [Microsoft](https://github.com/microsoft)

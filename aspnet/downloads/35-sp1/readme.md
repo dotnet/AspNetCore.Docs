@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/35-sp1/readme
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\35-sp1\readme.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36271) | [View dev content](http://docs.aspdev.net/tutorials/downloads/35-sp1/readme.html) | [View prod content](http://www.asp.net/downloads/35-sp1/readme) | Picker: 36271
-
 Readme
 ====================
 > The .NET Framework 3.5 Service Pack 1 includes both fixes for existing ASP.NET features as well as new ASP.NET functionality.

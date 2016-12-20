@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-aspnet-iis-registration-tool-to-configure-aspnet
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-use-the-aspnet-iis-registration-tool-to-configure-aspnet.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26469) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-use-the-aspnet-iis-registration-tool-to-configure-aspnet.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-use-the-aspnet-iis-registration-tool-to-configure-aspnet) | Picker: 33492
-
 How Do I Use the ASP.NET IIS Registration Tool to Configure ASP.NET
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

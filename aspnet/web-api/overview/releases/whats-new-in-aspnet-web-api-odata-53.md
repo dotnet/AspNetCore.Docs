@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/releases/whats-new-in-aspnet-web-api-odata-53
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\releases\whats-new-in-aspnet-web-api-odata-53.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59683) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/releases/whats-new-in-aspnet-web-api-odata-53.html) | [View prod content](http://www.asp.net/web-api/overview/releases/whats-new-in-aspnet-web-api-odata-53) | Picker: 59690
-
 What's New in ASP.NET Web API OData 5.3
 ====================
 by [Microsoft](https://github.com/microsoft)

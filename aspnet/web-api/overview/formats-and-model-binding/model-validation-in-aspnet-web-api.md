@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\formats-and-model-binding\model-validation-in-aspnet-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42702) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api.html) | [View prod content](http://www.asp.net/web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api) | Picker: 42703
-
 Model Validation in ASP.NET Web API
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

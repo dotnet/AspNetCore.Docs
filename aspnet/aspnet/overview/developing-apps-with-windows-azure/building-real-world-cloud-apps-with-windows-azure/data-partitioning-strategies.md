@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-partitioning-strategies
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\developing-apps-with-windows-azure\building-real-world-cloud-apps-with-windows-azure\data-partitioning-strategies.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/53572) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-partitioning-strategies.html) | [View prod content](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-partitioning-strategies) | Picker: 53619
-
 Data Partitioning Strategies (Building Real-World Cloud Apps with Azure)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra)

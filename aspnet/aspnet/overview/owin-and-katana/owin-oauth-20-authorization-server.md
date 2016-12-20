@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\owin-and-katana\owin-oauth-20-authorization-server.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54354) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server.html) | [View prod content](http://www.asp.net/aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server) | Picker: 54359
-
 OWIN OAuth 2.0 Authorization Server
 ====================
 by [Hongye Sun](https://github.com/hongyes), [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson](https://github.com/Rick-Anderson)

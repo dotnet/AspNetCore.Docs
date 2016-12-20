@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic/14-analyzing-traffic
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\performance-and-traffic\14-analyzing-traffic.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38944) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/performance-and-traffic/14-analyzing-traffic.html) | [View prod content](http://www.asp.net/web-pages/overview/performance-and-traffic/14-analyzing-traffic) | Picker: 59915
-
 Tracking Visitor Information (Analytics) for an ASP.NET Web Pages (Razor) Site
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

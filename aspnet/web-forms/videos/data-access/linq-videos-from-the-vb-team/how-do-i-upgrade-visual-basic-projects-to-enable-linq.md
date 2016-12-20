@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-upgrade-visual-basic-projects-to-enable-linq
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\linq-videos-from-the-vb-team\how-do-i-upgrade-visual-basic-projects-to-enable-linq.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26859) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-upgrade-visual-basic-projects-to-enable-linq.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-upgrade-visual-basic-projects-to-enable-linq) | Picker: 37525
-
 [How Do I:] Upgrade Visual Basic Projects to Enable LINQ?
 ====================
 by [Beth Massi](https://github.com/bethmassi)

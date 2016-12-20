@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-add-javascript-event-handlers-to-aspnet-server-controls
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-add-javascript-event-handlers-to-aspnet-server-controls.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26464) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-add-javascript-event-handlers-to-aspnet-server-controls.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-add-javascript-event-handlers-to-aspnet-server-controls) | Picker: 33487
-
 [How Do I:] Add JavaScript Event Handlers to ASP.NET Server Controls
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

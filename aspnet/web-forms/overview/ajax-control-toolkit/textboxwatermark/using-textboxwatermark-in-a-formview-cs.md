@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-in-a-formview-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\textboxwatermark\using-textboxwatermark-in-a-formview-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24856) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-in-a-formview-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-in-a-formview-cs) | Picker: 33156
-
 Using TextBoxWatermark in a FormView (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

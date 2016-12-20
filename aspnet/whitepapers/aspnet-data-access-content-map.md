@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-data-access-content-map
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\aspnet-data-access-content-map.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43662) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/aspnet-data-access-content-map.html) | [View prod content](http://www.asp.net/whitepapers/aspnet-data-access-content-map) | Picker: 43662
-
 ASP.NET Data Access - Recommended Resources
 ====================
 > This topic provides links to documentation resources about how to access data in ASP.NET web applications, primarily by using the Entity Framework and SQL Server.

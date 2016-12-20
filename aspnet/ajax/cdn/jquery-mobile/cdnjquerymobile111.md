@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-mobile/cdnjquerymobile111
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\jquery-mobile\cdnjquerymobile111.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59241) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-mobile/cdnjquerymobile111.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-mobile/cdnjquerymobile111) | Picker: 59241
-
 jQuery Mobile 1.1.1 on the Microsoft Ajax CDN
 ====================
 The jQuery Mobile 1.1.1 library includes the following files:

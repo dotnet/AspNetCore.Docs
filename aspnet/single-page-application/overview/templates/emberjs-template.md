@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/emberjs-template
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\single-page-application\overview\templates\emberjs-template.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43840) | [View dev content](http://docs.aspdev.net/tutorials/single-page-application/overview/templates/emberjs-template.html) | [View prod content](http://www.asp.net/single-page-application/overview/templates/emberjs-template) | Picker: 43858
-
 EmberJS template
 ====================
 by [Xinyang Qiu](https://github.com/xqiu)

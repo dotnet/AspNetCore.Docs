@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/adding-email-to-your-web-site
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\aspnet-razor-pages\adding-email-to-your-web-site.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26763) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/aspnet-razor-pages/adding-email-to-your-web-site.html) | [View prod content](http://www.asp.net/web-pages/videos/aspnet-razor-pages/adding-email-to-your-web-site) | Picker: 38432
-
 Adding Email to Your Web Site
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/deployment/visual-studio-web-deployment/preparing-databases
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\deployment\visual-studio-web-deployment\preparing-databases.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45352) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/deployment/visual-studio-web-deployment/preparing-databases.html) | [View prod content](http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/preparing-databases) | Picker: 45365
-
 ASP.NET Web Deployment using Visual Studio: Preparing for Database Deployment
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

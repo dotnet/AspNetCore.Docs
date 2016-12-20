@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-debugging-capabilities
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\aspnet-ajax\understanding-asp-net-ajax-debugging-capabilities.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24881) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-debugging-capabilities.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-debugging-capabilities) | Picker: 33181
-
 Understanding ASP.NET AJAX Debugging Capabilities
 ====================
 by [Scott Cate](https://github.com/scottcate)

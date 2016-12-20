@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\migrating\intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26923) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/migrating/intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire.html) | [View prod content](http://www.asp.net/web-forms/videos/migrating/intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire) | Picker: 33870
-
 Intro to ASP.NET for ColdFusion Developers: Adding ASP.NET to Your Repertoire
 ====================
 by [Microsoft](https://github.com/microsoft)

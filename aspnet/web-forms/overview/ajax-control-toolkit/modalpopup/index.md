@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/modalpopup
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35853) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/modalpopup/index.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/modalpopup)
-
 ModalPopup
 ====================
 > This tutorial shows how to use the ModalPopup control, which lets you create the equivalent of a modal dialog box.

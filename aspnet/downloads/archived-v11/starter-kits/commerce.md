@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/archived-v11/starter-kits/commerce
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\archived-v11\starter-kits\commerce.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36265) | [View dev content](http://docs.aspdev.net/tutorials/downloads/archived-v11/starter-kits/commerce.html) | [View prod content](http://www.asp.net/downloads/archived-v11/starter-kits/commerce) | Picker: 36265
-
 Commerce Web Site
 ====================
 > The Commerce Starter Kit demonstrates an ecommerce storefront application complete with shopping cart, product catalog, and a web service to submit orders.

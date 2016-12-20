@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-to-best-learn-asp-net-mvc
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\how-to-best-learn-asp-net-mvc.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26513) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/how-to-best-learn-asp-net-mvc.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/how-to-best-learn-asp-net-mvc) | Picker: 33536
-
 How to Best Learn ASP.NET MVC
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

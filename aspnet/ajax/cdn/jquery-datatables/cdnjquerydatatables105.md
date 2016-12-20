@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-datatables/cdnjquerydatatables105
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\jquery-datatables\cdnjquerydatatables105.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/62391) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-datatables/cdnjquerydatatables105.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-datatables/cdnjquerydatatables105) | Picker: 62391
-
 jQuery DataTables 1.10.5
 ====================
 The following files for the jQuery DataTables plubin are hosted on the CDN:

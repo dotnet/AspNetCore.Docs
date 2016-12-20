@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/how-do-i-use-routing-with-aspnet-web-forms
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\routing\how-do-i-use-routing-with-aspnet-web-forms.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26667) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/routing/how-do-i-use-routing-with-aspnet-web-forms.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/routing/how-do-i-use-routing-with-aspnet-web-forms) | Picker: 33690
-
 How Do I: Use Routing with ASP.NET Web Forms?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

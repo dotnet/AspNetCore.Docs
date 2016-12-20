@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/what-is-asp-net
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\what-is-asp-net.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26515) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/what-is-asp-net.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/what-is-asp-net) | Picker: 33538
-
 What is ASP.NET?
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

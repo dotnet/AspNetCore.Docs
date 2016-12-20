@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\advanced-data-access-scenarios\using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24753) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/advanced-data-access-scenarios/using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/advanced-data-access-scenarios/using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb) | Picker: 33053
-
 Using Existing Stored Procedures for the Typed DataSet's TableAdapters (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24910) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript) | Picker: 27548
-
 Creating a MVC 3 Application with Razor and Unobtrusive JavaScript
 ====================
 by [Microsoft](https://github.com/microsoft)

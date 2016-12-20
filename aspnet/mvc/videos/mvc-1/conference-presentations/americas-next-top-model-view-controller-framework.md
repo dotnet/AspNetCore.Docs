@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/conference-presentations/americas-next-top-model-view-controller-framework
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\conference-presentations\americas-next-top-model-view-controller-framework.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26747) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/conference-presentations/americas-next-top-model-view-controller-framework.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/conference-presentations/americas-next-top-model-view-controller-framework) | Picker: 27510
-
 America's Next Top Model View Controller Framework
 ====================
 by [Phil Haack](https://github.com/Haacked)

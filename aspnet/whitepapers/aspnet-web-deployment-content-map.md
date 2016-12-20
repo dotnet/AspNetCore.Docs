@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-web-deployment-content-map
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\aspnet-web-deployment-content-map.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43663) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/aspnet-web-deployment-content-map.html) | [View prod content](http://www.asp.net/whitepapers/aspnet-web-deployment-content-map) | Picker: 43663
-
 ASP.NET Web Deployment - Recommended Resources
 ====================
 > This topic provides links to documentation resources about how to deploy (publish) ASP.NET web applications to IIS by using Visual Studio 2010, Visual Web Developer 2010, and later versions.

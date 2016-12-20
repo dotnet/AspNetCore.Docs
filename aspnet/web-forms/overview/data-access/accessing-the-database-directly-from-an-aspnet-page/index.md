@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32964) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page)
-
 Accessing the Database Directly from an ASP.NET Page
 ====================
 > These tutorials show how to use the SqlDataSource control to query the database directly when you don't need a strict separation of the presentation and data access layers.

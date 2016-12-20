@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-3-understanding-more-about-events-and-postback
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-20-applications\lesson-3-understanding-more-about-events-and-postback.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26906) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-20-applications/lesson-3-understanding-more-about-events-and-postback.html) | [View prod content](http://www.asp.net/web-forms/videos/building-20-applications/lesson-3-understanding-more-about-events-and-postback) | Picker: 33853
-
 [Lesson 3:]  Understanding More About Events and Postback
 ====================
 by [Microsoft](https://github.com/microsoft)

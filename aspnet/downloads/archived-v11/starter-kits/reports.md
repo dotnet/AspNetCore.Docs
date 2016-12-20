@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/archived-v11/starter-kits/reports
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\archived-v11\starter-kits\reports.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36266) | [View dev content](http://docs.aspdev.net/tutorials/downloads/archived-v11/starter-kits/reports.html) | [View prod content](http://www.asp.net/downloads/archived-v11/starter-kits/reports) | Picker: 36266
-
 Reports Web Site
 ====================
 > The Reports Starter Kit demonstrates a simple data reporting solution for displaying multiple views on data, creating charts, and rendering any type of data in a Web application.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-1-selecting-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-web-forms-vnext\aspnet-vnext-videos-model-binding-part-1-selecting-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26767) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-1-selecting-data.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-1-selecting-data) | Picker: 33724
-
 ASP.NET vNext Videos: Model Binding Part 1 - Selecting Data
 ====================
 by [Damian Edwards](https://github.com/DamianEdwards)

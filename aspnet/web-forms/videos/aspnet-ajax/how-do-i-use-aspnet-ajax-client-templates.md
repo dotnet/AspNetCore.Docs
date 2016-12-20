@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-aspnet-ajax-client-templates
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-use-aspnet-ajax-client-templates.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26617) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-use-aspnet-ajax-client-templates.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-use-aspnet-ajax-client-templates) | Picker: 33640
-
 How Do I: Use ASP.NET AJAX Client Templates
 ====================
 by [Rob Windsor](https://twitter.com/robwindsor)

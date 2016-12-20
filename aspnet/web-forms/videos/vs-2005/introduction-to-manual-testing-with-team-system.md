@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/introduction-to-manual-testing-with-team-system
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\introduction-to-manual-testing-with-team-system.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26823) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/introduction-to-manual-testing-with-team-system.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/introduction-to-manual-testing-with-team-system) | Picker: 33780
-
 Introduction to Manual Testing with Team System
 ====================
 by Eric Lee

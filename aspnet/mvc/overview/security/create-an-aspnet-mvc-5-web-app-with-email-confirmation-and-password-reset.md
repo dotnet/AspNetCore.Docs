@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\security\create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59124) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset.html) | [View prod content](http://www.asp.net/mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset) | Picker: 59134
-
 Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset (C#)
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

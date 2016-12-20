@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/two-simple-techniques-for-triggering-updates-to-update-panels
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\two-simple-techniques-for-triggering-updates-to-update-panels.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26608) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/two-simple-techniques-for-triggering-updates-to-update-panels.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/two-simple-techniques-for-triggering-updates-to-update-panels) | Picker: 33631
-
 Two Simple Techniques for Triggering Updates to Update Panels
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

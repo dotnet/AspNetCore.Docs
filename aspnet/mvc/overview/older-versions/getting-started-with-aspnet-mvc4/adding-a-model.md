@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-model
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\getting-started-with-aspnet-mvc4\adding-a-model.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37149) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-model.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-model) | Picker: 37156
-
 Adding a Model
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

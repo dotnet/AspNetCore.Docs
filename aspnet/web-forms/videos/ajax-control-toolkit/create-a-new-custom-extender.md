@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/create-a-new-custom-extender
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\create-a-new-custom-extender.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26573) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/create-a-new-custom-extender.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/create-a-new-custom-extender) | Picker: 33596
-
 Create a New Custom Extender
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/measuring-the-business-value-of-ajax
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\measuring-the-business-value-of-ajax.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26825) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/measuring-the-business-value-of-ajax.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/measuring-the-business-value-of-ajax) | Picker: 33782
-
 Measuring the Business Value of AJAX
 ====================
 by Eric Lee

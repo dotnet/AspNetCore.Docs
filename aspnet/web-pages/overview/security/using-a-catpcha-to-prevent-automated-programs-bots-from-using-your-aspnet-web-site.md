@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/security/using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\security\using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38632) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/security/using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site.html) | [View prod content](http://www.asp.net/web-pages/overview/security/using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site) | Picker: 59909
-
 Using a CAPTCHA to Prevent Bots from Using Your ASP.NET Web Razor) Site
 ====================
 by [Microsoft](https://github.com/microsoft)

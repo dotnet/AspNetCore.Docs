@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-and-web-tools-20122
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-web-forms-vnext\aspnet-and-web-tools-20122.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45414) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-web-forms-vnext/aspnet-and-web-tools-20122.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-web-forms-vnext/aspnet-and-web-tools-20122) | Picker: 45415
-
 ASP.NET and Web Tools 2012.2
 ====================
 by [Jon Galloway](https://github.com/jongalloway)

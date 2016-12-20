@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/building-and-customizing-reports-in-business-intelligence-development-studio
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\sql-2005\building-and-customizing-reports-in-business-intelligence-development-studio.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26887) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/sql-2005/building-and-customizing-reports-in-business-intelligence-development-studio.html) | [View prod content](http://www.asp.net/web-forms/videos/sql-2005/building-and-customizing-reports-in-business-intelligence-development-studio) | Picker: 33834
-
 Building and Customizing Reports in Business Intelligence Development Studio
 ====================
 by [Microsoft](https://github.com/microsoft)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\models-data\validating-with-the-idataerrorinfo-interface-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24929) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/models-data/validating-with-the-idataerrorinfo-interface-vb) | Picker: 27583
-
 Validating with the IDataErrorInfo Interface (VB)
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

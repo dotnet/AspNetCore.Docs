@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-8
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\data\using-web-api-with-entity-framework\part-8.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58274) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/data/using-web-api-with-entity-framework/part-8.html) | [View prod content](http://www.asp.net/web-api/overview/data/using-web-api-with-entity-framework/part-8) | Picker: 58292
-
 Display Item Details
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

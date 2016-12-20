@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/side-by-side-with-10
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\side-by-side-with-10.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36245) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/side-by-side-with-10.html) | [View prod content](http://www.asp.net/whitepapers/side-by-side-with-10) | Picker: 36245
-
 ASP.NET Side-by-Side Execution of .NET Framework 1.0 and 1.1
 ====================
 > This whitepaper describes how to install both .NET 1.0 and .NET 1.1 on your machine, allowing an ASP.NET Web application to run on either version of the framework.

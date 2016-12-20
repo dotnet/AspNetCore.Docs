@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/creating-a-server-farm-with-the-web-farm-framework
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\configuring-server-environments-for-web-deployment\creating-a-server-farm-with-the-web-farm-framework.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38168) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/configuring-server-environments-for-web-deployment/creating-a-server-farm-with-the-web-farm-framework.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/configuring-server-environments-for-web-deployment/creating-a-server-farm-with-the-web-farm-framework) | Picker: 38254
-
 Creating a Server Farm with the Web Farm Framework
 ====================
 by [Jason Lee](https://github.com/jrjlee)

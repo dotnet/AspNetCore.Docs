@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47643) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/index.html) | [View prod content](http://www.asp.net/aspnet)
-
 ASP.NET Framework
 ====================
 - [Overview](overview/index.md)

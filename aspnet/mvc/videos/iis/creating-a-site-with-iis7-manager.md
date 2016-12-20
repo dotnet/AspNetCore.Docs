@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/creating-a-site-with-iis7-manager
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\iis\creating-a-site-with-iis7-manager.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26816) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/iis/creating-a-site-with-iis7-manager.html) | [View prod content](http://www.asp.net/mvc/videos/iis/creating-a-site-with-iis7-manager) | Picker: 35837
-
 Creating a Site with IIS7 Manager
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-3
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\mvc-music-store\mvc-music-store-part-3.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24894) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-3.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-3) | Picker: 27627
-
 Part 3: Views and ViewModels
 ====================
 by [Jon Galloway](https://github.com/jongalloway)

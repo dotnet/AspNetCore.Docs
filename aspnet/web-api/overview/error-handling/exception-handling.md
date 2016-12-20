@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/error-handling/exception-handling
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\error-handling\exception-handling.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37764) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/error-handling/exception-handling.html) | [View prod content](http://www.asp.net/web-api/overview/error-handling/exception-handling) | Picker: 37765
-
 Exception Handling in ASP.NET Web API
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

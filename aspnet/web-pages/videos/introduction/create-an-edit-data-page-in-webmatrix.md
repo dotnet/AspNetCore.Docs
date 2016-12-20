@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/create-an-edit-data-page-in-webmatrix
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\introduction\create-an-edit-data-page-in-webmatrix.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26854) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/introduction/create-an-edit-data-page-in-webmatrix.html) | [View prod content](http://www.asp.net/web-pages/videos/introduction/create-an-edit-data-page-in-webmatrix) | Picker: 38413
-
 Create an Edit Data Page in WebMatrix
 ====================
 by [Advaiya](https://twitter.com/Advaiyasolns)

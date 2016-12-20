@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-localization
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\aspnet-ajax\understanding-asp-net-ajax-localization.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24879) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-localization.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-localization) | Picker: 33179
-
 Understanding ASP.NET AJAX Localization
 ====================
 by [Scott Cate](https://github.com/scottcate)

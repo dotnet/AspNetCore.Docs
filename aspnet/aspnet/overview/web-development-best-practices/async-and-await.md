@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/web-development-best-practices/async-and-await
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\web-development-best-practices\async-and-await.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42899) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/web-development-best-practices/async-and-await.html) | [View prod content](http://www.asp.net/aspnet/overview/web-development-best-practices/async-and-await) | Picker: 42900
-
 Async and Await
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

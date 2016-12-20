@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/advanced/dependency-injection
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\advanced\dependency-injection.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51342) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/advanced/dependency-injection.html) | [View prod content](http://www.asp.net/signalr/overview/advanced/dependency-injection) | Picker: 59972
-
 Dependency Injection in SignalR
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)

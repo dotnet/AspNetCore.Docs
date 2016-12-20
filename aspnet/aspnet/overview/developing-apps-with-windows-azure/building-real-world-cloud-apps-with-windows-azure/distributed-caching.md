@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/distributed-caching
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\developing-apps-with-windows-azure\building-real-world-cloud-apps-with-windows-azure\distributed-caching.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/53564) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/distributed-caching.html) | [View prod content](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/distributed-caching) | Picker: 53621
-
 Distributed Caching (Building Real-World Cloud Apps with Azure)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra)

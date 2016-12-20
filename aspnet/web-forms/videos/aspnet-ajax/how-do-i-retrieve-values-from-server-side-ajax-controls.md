@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-retrieve-values-from-server-side-ajax-controls
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-retrieve-values-from-server-side-ajax-controls.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26607) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-retrieve-values-from-server-side-ajax-controls.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-retrieve-values-from-server-side-ajax-controls) | Picker: 33630
-
 [How Do I:] Retrieve Values From Server Side AJAX Controls
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

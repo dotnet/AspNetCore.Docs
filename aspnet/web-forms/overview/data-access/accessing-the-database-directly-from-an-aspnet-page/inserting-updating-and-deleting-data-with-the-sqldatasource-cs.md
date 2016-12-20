@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/inserting-updating-and-deleting-data-with-the-sqldatasource-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\accessing-the-database-directly-from-an-aspnet-page\inserting-updating-and-deleting-data-with-the-sqldatasource-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24738) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/inserting-updating-and-deleting-data-with-the-sqldatasource-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/inserting-updating-and-deleting-data-with-the-sqldatasource-cs) | Picker: 33040
-
 Inserting, Updating, and Deleting Data with the SqlDataSource (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

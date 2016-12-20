@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\contact-manager\iteration-7-add-ajax-functionality-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25245) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-vb) | Picker: 27624
-
 Iteration #7 – Add Ajax functionality (VB)
 ====================
 by [Microsoft](https://github.com/microsoft)

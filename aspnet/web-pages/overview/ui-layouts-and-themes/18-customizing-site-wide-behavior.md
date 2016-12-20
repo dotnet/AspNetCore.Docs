@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/18-customizing-site-wide-behavior
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\ui-layouts-and-themes\18-customizing-site-wide-behavior.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38948) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/ui-layouts-and-themes/18-customizing-site-wide-behavior.html) | [View prod content](http://www.asp.net/web-pages/overview/ui-layouts-and-themes/18-customizing-site-wide-behavior) | Picker: 59902
-
 Customizing Site-Wide Behavior for ASP.NET Web Pages (Razor) Sites
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

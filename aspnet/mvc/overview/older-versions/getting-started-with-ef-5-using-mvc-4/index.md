@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51669) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4)
-
 Getting Started with EF 5 using MVC 4
 ====================
 > The basics of using Entity Framework 5 to display and edit data in an ASP.NET MVC 4 application.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/readme
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\readme\overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38456) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/readme/overview.html) | [View prod content](http://www.asp.net/web-pages/readme/overview) | Picker: 38456
-
 WebMatrix Readme
 ====================
 13 January 2011

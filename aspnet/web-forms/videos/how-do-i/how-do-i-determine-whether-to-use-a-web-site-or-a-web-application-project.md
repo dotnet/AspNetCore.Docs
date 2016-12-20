@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-determine-whether-to-use-a-web-site-or-a-web-application-project
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-determine-whether-to-use-a-web-site-or-a-web-application-project.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26485) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-determine-whether-to-use-a-web-site-or-a-web-application-project.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-determine-whether-to-use-a-web-site-or-a-web-application-project) | Picker: 33508
-
 [How Do I:] Determine Whether to Use a Web Site or a Web Application Project
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

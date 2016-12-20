@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/creating-unit-tests-for-aspnet-mvc-applications
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\creating-unit-tests-for-aspnet-mvc-applications.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26695) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/creating-unit-tests-for-aspnet-mvc-applications.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/creating-unit-tests-for-aspnet-mvc-applications) | Picker: 27482
-
 Creating Unit Tests for ASP.NET MVC Applications
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

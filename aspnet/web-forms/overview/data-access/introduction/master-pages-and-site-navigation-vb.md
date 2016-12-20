@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/introduction/master-pages-and-site-navigation-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\introduction\master-pages-and-site-navigation-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25133) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/introduction/master-pages-and-site-navigation-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/introduction/master-pages-and-site-navigation-vb) | Picker: 33349
-
 Master Pages and Site Navigation (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

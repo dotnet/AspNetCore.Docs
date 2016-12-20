@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/signalr-performance
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\performance\signalr-performance.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51348) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/performance/signalr-performance.html) | [View prod content](http://www.asp.net/signalr/overview/performance/signalr-performance) | Picker: 59948
-
 SignalR Performance
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)

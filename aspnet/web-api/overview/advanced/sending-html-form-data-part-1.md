@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/sending-html-form-data-part-1
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\advanced\sending-html-form-data-part-1.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/39134) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/advanced/sending-html-form-data-part-1.html) | [View prod content](http://www.asp.net/web-api/overview/advanced/sending-html-form-data-part-1) | Picker: 39135
-
 Sending HTML Form Data in ASP.NET Web API: Form-urlencoded Data
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

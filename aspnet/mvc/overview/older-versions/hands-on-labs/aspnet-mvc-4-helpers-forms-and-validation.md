@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-helpers-forms-and-validation
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\hands-on-labs\aspnet-mvc-4-helpers-forms-and-validation.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45255) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-helpers-forms-and-validation.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-helpers-forms-and-validation) | Picker: 45272
-
 ASP.NET MVC 4 Helpers, Forms and Validation
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

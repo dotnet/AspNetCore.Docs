@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/dynamicpopulate
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35848) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/dynamicpopulate/index.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/dynamicpopulate)
-
 DynamicPopulate
 ====================
 > This tutorial shows how to use the DynamicPopulate control, which calls a web service and displays the resulting value in a control on the page.

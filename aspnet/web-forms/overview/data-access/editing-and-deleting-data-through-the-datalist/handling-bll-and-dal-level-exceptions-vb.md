@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/handling-bll-and-dal-level-exceptions-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\editing-and-deleting-data-through-the-datalist\handling-bll-and-dal-level-exceptions-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25029) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/handling-bll-and-dal-level-exceptions-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/handling-bll-and-dal-level-exceptions-vb) | Picker: 33267
-
 Handling BLL- and DAL-Level Exceptions (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

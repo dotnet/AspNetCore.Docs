@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/cascadingdropdown/filling-a-list-using-cascadingdropdown-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\cascadingdropdown\filling-a-list-using-cascadingdropdown-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24798) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/cascadingdropdown/filling-a-list-using-cascadingdropdown-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/cascadingdropdown/filling-a-list-using-cascadingdropdown-cs) | Picker: 33098
-
 Filling a List Using CascadingDropDown (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

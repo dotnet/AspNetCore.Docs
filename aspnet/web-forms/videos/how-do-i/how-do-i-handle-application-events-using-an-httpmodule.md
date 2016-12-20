@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-handle-application-events-using-an-httpmodule
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-handle-application-events-using-an-httpmodule.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26439) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-handle-application-events-using-an-httpmodule.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-handle-application-events-using-an-httpmodule) | Picker: 33462
-
 [How Do I:] Handle Application Events using an HttpModule?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

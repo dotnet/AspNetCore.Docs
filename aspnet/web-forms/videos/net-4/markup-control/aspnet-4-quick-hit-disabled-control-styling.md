@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-disabled-control-styling
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\markup-control\aspnet-4-quick-hit-disabled-control-styling.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26665) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-disabled-control-styling.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-disabled-control-styling) | Picker: 33688
-
 ASP.NET 4 "Quick Hit" - Disabled Control Styling
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

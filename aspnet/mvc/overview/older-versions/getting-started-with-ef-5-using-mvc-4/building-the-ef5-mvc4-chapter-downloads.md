@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/building-the-ef5-mvc4-chapter-downloads
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\getting-started-with-ef-5-using-mvc-4\building-the-ef5-mvc4-chapter-downloads.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47981) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/building-the-ef5-mvc4-chapter-downloads.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/building-the-ef5-mvc4-chapter-downloads) | Picker: 51673
-
 Building the Chapter Downloads for the EF 5 MVC 4 Tutorials
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

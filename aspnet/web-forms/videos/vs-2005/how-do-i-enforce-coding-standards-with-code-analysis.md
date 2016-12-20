@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-enforce-coding-standards-with-code-analysis
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\how-do-i-enforce-coding-standards-with-code-analysis.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26838) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/how-do-i-enforce-coding-standards-with-code-analysis.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/how-do-i-enforce-coding-standards-with-code-analysis) | Picker: 33795
-
 [How Do I:] Enforce Coding Standards with Code Analysis?
 ====================
 by [Chris Menegay](https://twitter.com/CMenegay)

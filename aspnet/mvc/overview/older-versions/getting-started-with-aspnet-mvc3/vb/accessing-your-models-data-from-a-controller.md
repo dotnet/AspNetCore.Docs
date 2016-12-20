@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/accessing-your-models-data-from-a-controller
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\getting-started-with-aspnet-mvc3\vb\accessing-your-models-data-from-a-controller.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25093) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/accessing-your-models-data-from-a-controller.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb/accessing-your-models-data-from-a-controller) | Picker: 27662
-
 Accessing your Model's Data from a Controller (VB)
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

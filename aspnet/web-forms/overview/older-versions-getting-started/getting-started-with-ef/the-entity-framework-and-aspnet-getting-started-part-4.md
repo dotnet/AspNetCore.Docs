@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\getting-started-with-ef\the-entity-framework-and-aspnet-getting-started-part-4.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25065) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-4.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/getting-started-with-ef/the-entity-framework-and-aspnet-getting-started-part-4) | Picker: 33303
-
 Getting Started with Entity Framework 4.0 Database First and ASP.NET 4 Web Forms - Part 4
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

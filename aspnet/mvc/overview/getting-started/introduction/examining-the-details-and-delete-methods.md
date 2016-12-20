@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/examining-the-details-and-delete-methods
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\introduction\examining-the-details-and-delete-methods.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47543) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/introduction/examining-the-details-and-delete-methods.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/introduction/examining-the-details-and-delete-methods) | Picker: 47556
-
 Examining the Details and Delete Methods
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-5
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\tailspin-spyworks\tailspin-spyworks-part-5.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25228) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-5.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-5) | Picker: 27470
-
 Part 5: Business Logic
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

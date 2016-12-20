@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/working-with-iis7-deligated-admin
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\iis\working-with-iis7-deligated-admin.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26813) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/iis/working-with-iis7-deligated-admin.html) | [View prod content](http://www.asp.net/web-forms/videos/iis/working-with-iis7-deligated-admin) | Picker: 33770
-
 Working with IIS7 Delegated Admin
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

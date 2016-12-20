@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-aspnet-ajax-enable-an-existing-web-service
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-aspnet-ajax-enable-an-existing-web-service.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26578) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-aspnet-ajax-enable-an-existing-web-service.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-aspnet-ajax-enable-an-existing-web-service) | Picker: 33601
-
 [How Do I:] ASP.NET AJAX Enable an Existing Web Service?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

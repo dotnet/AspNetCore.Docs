@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-5-globalization
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-5-globalization.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26725) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-5-globalization.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-5-globalization) | Picker: 27516
-
 ASP.NET MVC Storefront Part 5: Globalization
 ====================
 by [Rob Conery](https://github.com/robconery)

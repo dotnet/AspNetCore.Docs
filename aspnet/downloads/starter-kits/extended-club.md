@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/extended-club
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\extended-club.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36279) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/extended-club.html) | [View prod content](http://www.asp.net/downloads/starter-kits/extended-club) | Picker: 36279
-
 Extended Club Site Starter Kit
 ====================
 > The Extended Club Web Site provides an extended version of the original [Club starter kit](club.md). New administration pages provide for the management of user roles and of the site map structure. Web Parts allow the user to personalize the home page, and alternative Themes allow the user to select the site's appearance.

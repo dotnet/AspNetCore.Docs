@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-3/mvc-3-razor-helpers
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-3\mvc-3-razor-helpers.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26720) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-3/mvc-3-razor-helpers.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-3/mvc-3-razor-helpers) | Picker: 27539
-
 MVC 3 - Razor Helpers
 ====================
 by [Jon Galloway](https://github.com/jongalloway)

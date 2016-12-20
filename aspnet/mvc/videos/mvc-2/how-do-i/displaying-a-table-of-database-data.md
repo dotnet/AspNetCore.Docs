@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/displaying-a-table-of-database-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\displaying-a-table-of-database-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26698) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/displaying-a-table-of-database-data.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/displaying-a-table-of-database-data) | Picker: 27485
-
 Displaying a Table of Database Data
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

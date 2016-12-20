@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/hands-on-labs/using-page-inspector-in-visual-studio-2012
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\getting-started\hands-on-labs\using-page-inspector-in-visual-studio-2012.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45258) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/getting-started/hands-on-labs/using-page-inspector-in-visual-studio-2012.html) | [View prod content](http://www.asp.net/web-forms/overview/getting-started/hands-on-labs/using-page-inspector-in-visual-studio-2012) | Picker: 45264
-
 Using Page Inspector in Visual Studio 2012
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

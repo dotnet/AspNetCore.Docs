@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/whats-new-in-aspnet-web-pages-32
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\releases\whats-new-in-aspnet-web-pages-32.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/57881) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/releases/whats-new-in-aspnet-web-pages-32.html) | [View prod content](http://www.asp.net/web-pages/overview/releases/whats-new-in-aspnet-web-pages-32) | Picker: 58203
-
 What's New in ASP.NET Web Pages 3.2
 ====================
 by [Microsoft](https://github.com/microsoft)

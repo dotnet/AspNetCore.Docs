@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/json-and-xml-serialization
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\formats-and-model-binding\json-and-xml-serialization.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38977) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/formats-and-model-binding/json-and-xml-serialization.html) | [View prod content](http://www.asp.net/web-api/overview/formats-and-model-binding/json-and-xml-serialization) | Picker: 38983
-
 JSON and XML Serialization in ASP.NET Web API
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

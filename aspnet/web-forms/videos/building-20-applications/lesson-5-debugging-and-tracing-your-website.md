@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-5-debugging-and-tracing-your-website
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-20-applications\lesson-5-debugging-and-tracing-your-website.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26908) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-20-applications/lesson-5-debugging-and-tracing-your-website.html) | [View prod content](http://www.asp.net/web-forms/videos/building-20-applications/lesson-5-debugging-and-tracing-your-website) | Picker: 33855
-
 [Lesson 5:] Debugging and Tracing Your Website
 ====================
 by [Microsoft](https://github.com/microsoft)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/data-controls/the-datapager-control
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\data-controls\the-datapager-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26620) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/data-controls/the-datapager-control.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/data-controls/the-datapager-control) | Picker: 33643
-
 The DataPager Control
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

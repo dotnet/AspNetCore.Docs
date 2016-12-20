@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\contact-manager\iteration-4-make-the-application-loosely-coupled-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25239) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-vb) | Picker: 27618
-
 Iteration #4 – Make the application loosely coupled (VB)
 ====================
 by [Microsoft](https://github.com/microsoft)

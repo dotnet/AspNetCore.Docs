@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-dropdown-control
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-use-the-aspnet-ajax-dropdown-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26554) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-dropdown-control.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-dropdown-control) | Picker: 33577
-
 [How Do I:] Use the ASP.NET AJAX DropDown Control?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/adding-a-new-category-to-the-dropdownlist-using-jquery-ui
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\working-with-the-dropdownlist-box-and-jquery\adding-a-new-category-to-the-dropdownlist-using-jquery-ui.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36746) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/adding-a-new-category-to-the-dropdownlist-using-jquery-ui.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/adding-a-new-category-to-the-dropdownlist-using-jquery-ui) | Picker: 36834
-
 Adding a New Category to the DropDownList using jQuery UI
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

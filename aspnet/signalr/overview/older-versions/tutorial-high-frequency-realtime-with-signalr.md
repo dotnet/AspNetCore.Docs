@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/tutorial-high-frequency-realtime-with-signalr
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\older-versions\tutorial-high-frequency-realtime-with-signalr.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/46893) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/older-versions/tutorial-high-frequency-realtime-with-signalr.html) | [View prod content](http://www.asp.net/signalr/overview/older-versions/tutorial-high-frequency-realtime-with-signalr) | Picker: 46894
-
 High-Frequency Realtime with SignalR 1.x
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)

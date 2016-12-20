@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/entering-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\getting-started\introducing-aspnet-web-pages-2\entering-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38467) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/entering-data.html) | [View prod content](http://www.asp.net/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/entering-data) | Picker: 38476
-
 Introducing ASP.NET Web Pages - Entering Database Data by Using Forms
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)
@@ -205,7 +203,7 @@ Obviously, you don't want to let users enter half-empty movie information into t
 > 
 > It's a little more complicated than that, but the important point is that `null` represents a sort of undetermined state.
 > 
-> Now and then it's important to understand exactly when a value is null and when it's just an empty string. In the code for the *AddMovie* page, you get the values of the text boxes by using `Request.Form["title"]` and so on. When the page first runs (before you click the button), the value of `Request.Form["title"]` is null. But when you submit the form, `Request.Form["title"]` gets the value of the `title` text box. It's not obvious, but an empty text box is not null; it just has an empty string in it. So when the code runs in response to the button click, `Request.Form["title"]` has an empty string in it.``
+> Now and then it's important to understand exactly when a value is null and when it's just an empty string. In the code for the *AddMovie* page, you get the values of the text boxes by using `Request.Form["title"]` and so on. When the page first runs (before you click the button), the value of `Request.Form["title"]` is null. But when you submit the form, `Request.Form["title"]` gets the value of the `title` text box. It's not obvious, but an empty text box is not null; it just has an empty string in it. So when the code runs in response to the button click, `Request.Form["title"]` has an empty string in it.
 > 
 > Why is this distinction important? When you created the *Movies* table, you explicitly said that none of the fields could be null. But here you have an entry form for new movies, and you're leaving fields blank. You would reasonably expect the database to complain when you tried to save new movies that didn't have values for genre or year. But that's the point &mdash; even if you leave those text boxes blank, the values aren't null; they're empty strings. As a result, you're able to save new movies to the database with these columns empty &mdash; but not null! &mdash; values. Therefore, you have to make sure that users don't submit an empty string, which you can do by validating the user's input.
 

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/understanding-views-view-data-and-html-helpers
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\understanding-views-view-data-and-html-helpers.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26692) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/understanding-views-view-data-and-html-helpers.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/understanding-views-view-data-and-html-helpers) | Picker: 27479
-
 Understanding Views, View Data, and HTML Helpers
 ====================
 by [Microsoft](https://github.com/microsoft)

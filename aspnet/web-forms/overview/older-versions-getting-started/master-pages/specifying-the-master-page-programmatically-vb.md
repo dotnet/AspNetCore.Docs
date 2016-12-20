@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\master-pages\specifying-the-master-page-programmatically-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24769) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/master-pages/specifying-the-master-page-programmatically-vb) | Picker: 33069
-
 Specifying the Master Page Programmatically (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

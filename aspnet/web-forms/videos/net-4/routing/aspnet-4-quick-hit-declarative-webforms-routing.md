@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/aspnet-4-quick-hit-declarative-webforms-routing
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\routing\aspnet-4-quick-hit-declarative-webforms-routing.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26648) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/routing/aspnet-4-quick-hit-declarative-webforms-routing.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/routing/aspnet-4-quick-hit-declarative-webforms-routing) | Picker: 33671
-
 ASP.NET 4 "Quick Hit" - Declarative WebForms Routing
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/club
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\club.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36275) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/club.html) | [View prod content](http://www.asp.net/downloads/starter-kits/club) | Picker: 36275
-
 Club Site Starter Kit
 ====================
 > A starting point for creating a web site for your club or organization. Includes a news posting, calendaring, member directory, and photo album systems.

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/iis7-playlists
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\iis\iis7-playlists.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26819) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/iis/iis7-playlists.html) | [View prod content](http://www.asp.net/mvc/videos/iis/iis7-playlists) | Picker: 35840
-
 IIS7 Playlists
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/asp-forms-login-relocation
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\authentication\asp-forms-login-relocation.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26773) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/authentication/asp-forms-login-relocation.html) | [View prod content](http://www.asp.net/web-forms/videos/authentication/asp-forms-login-relocation) | Picker: 33730
-
 ASP Forms Login Relocation
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

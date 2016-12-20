@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/aspnet-data-access-technologies-an-introduction-to-linq
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\aspnet-data-access-technologies-an-introduction-to-linq.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26509) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/aspnet-data-access-technologies-an-introduction-to-linq.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/aspnet-data-access-technologies-an-introduction-to-linq) | Picker: 33532
-
 ASP.NET Data Access Technologies, an Introduction to LINQ
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

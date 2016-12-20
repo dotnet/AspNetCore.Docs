@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-strongly-typed-data-controls
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-web-forms-vnext\aspnet-vnext-videos-strongly-typed-data-controls.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26766) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-strongly-typed-data-controls.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-strongly-typed-data-controls) | Picker: 33723
-
 ASP.NET vNext Videos: Strongly Typed Data Controls
 ====================
 by [Damian Edwards](https://github.com/DamianEdwards)

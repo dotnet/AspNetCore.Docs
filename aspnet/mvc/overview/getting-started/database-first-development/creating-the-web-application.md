@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/creating-the-web-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\database-first-development\creating-the-web-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/50898) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/database-first-development/creating-the-web-application.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/database-first-development/creating-the-web-application) | Picker: 50888
-
 EF Database First with ASP.NET MVC: Creating the Web Application and Data Models
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

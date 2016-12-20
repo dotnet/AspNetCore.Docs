@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-configure-the-aspnet-ajax-calendar-control
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-configure-the-aspnet-ajax-calendar-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26553) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-configure-the-aspnet-ajax-calendar-control.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-configure-the-aspnet-ajax-calendar-control) | Picker: 33576
-
 [How Do I:] Configure the ASP.NET AJAX Calendar Control?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

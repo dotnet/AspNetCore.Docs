@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/12799) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/presenting-and-managing-data/index.html) | [View prod content](http://www.asp.net/web-forms/overview/presenting-and-managing-data)
-
 Working with Data in ASP.NET Web Forms
 ====================
 > How to access data using controls and how to persist information between requests.

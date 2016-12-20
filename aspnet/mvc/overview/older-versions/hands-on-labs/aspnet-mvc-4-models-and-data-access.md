@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-models-and-data-access
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\hands-on-labs\aspnet-mvc-4-models-and-data-access.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45256) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-models-and-data-access.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-models-and-data-access) | Picker: 45273
-
 ASP.NET MVC 4 Models and Data Access
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

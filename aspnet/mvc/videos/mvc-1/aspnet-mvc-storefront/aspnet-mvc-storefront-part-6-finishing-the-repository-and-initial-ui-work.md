@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-6-finishing-the-repository-and-initial-ui-work
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-6-finishing-the-repository-and-initial-ui-work.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26726) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-6-finishing-the-repository-and-initial-ui-work.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-6-finishing-the-repository-and-initial-ui-work) | Picker: 27517
-
 ASP.NET MVC Storefront Part 6: Finishing The Repository, and Initial UI Work
 ====================
 by [Rob Conery](https://github.com/robconery)

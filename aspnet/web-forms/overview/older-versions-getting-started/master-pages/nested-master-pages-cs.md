@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/nested-master-pages-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\master-pages\nested-master-pages-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24770) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/master-pages/nested-master-pages-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/master-pages/nested-master-pages-cs) | Picker: 33070
-
 Nested Master Pages (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26507) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page) | Picker: 33530
-
 [How Do I]: Add Client Script Event Handlers Controls on an ASP.NET Page?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

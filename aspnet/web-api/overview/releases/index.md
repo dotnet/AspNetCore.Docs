@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/releases
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54030) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/releases/index.html) | [View prod content](http://www.asp.net/web-api/overview/releases)
-
 ASP.NET Web API Releases
 ====================
 > What's new in recent Web API releases.

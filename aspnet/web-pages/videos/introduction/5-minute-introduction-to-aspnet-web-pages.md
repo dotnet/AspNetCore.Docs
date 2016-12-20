@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/5-minute-introduction-to-aspnet-web-pages
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\introduction\5-minute-introduction-to-aspnet-web-pages.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26847) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/introduction/5-minute-introduction-to-aspnet-web-pages.html) | [View prod content](http://www.asp.net/web-pages/videos/introduction/5-minute-introduction-to-aspnet-web-pages) | Picker: 38406
-
 5 Minute Introduction to ASP.NET Web Pages
 ====================
 by [Microsoft](https://github.com/microsoft)

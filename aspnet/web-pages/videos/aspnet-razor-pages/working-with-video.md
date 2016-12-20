@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/working-with-video
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\aspnet-razor-pages\working-with-video.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26762) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/aspnet-razor-pages/working-with-video.html) | [View prod content](http://www.asp.net/web-pages/videos/aspnet-razor-pages/working-with-video) | Picker: 38431
-
 Working with Video
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

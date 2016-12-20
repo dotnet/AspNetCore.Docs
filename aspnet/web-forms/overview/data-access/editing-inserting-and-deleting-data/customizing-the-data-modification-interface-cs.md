@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/customizing-the-data-modification-interface-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\editing-inserting-and-deleting-data\customizing-the-data-modification-interface-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25042) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/editing-inserting-and-deleting-data/customizing-the-data-modification-interface-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/editing-inserting-and-deleting-data/customizing-the-data-modification-interface-cs) | Picker: 33280
-
 Customizing the Data Modification Interface (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/20814) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/index.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i)
-
 How-Do-I
 ====================
 > Videos in this section cover ASP.NET MVC, including how to build "The Storefront" - an entire e-commerce application from start to finish.

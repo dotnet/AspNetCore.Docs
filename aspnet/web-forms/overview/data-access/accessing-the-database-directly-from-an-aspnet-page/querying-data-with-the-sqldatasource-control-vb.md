@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\accessing-the-database-directly-from-an-aspnet-page\querying-data-with-the-sqldatasource-control-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24735) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/querying-data-with-the-sqldatasource-control-vb) | Picker: 33037
-
 Querying Data with the SqlDataSource Control (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-file-uploads-with-an-ajax-style-interface
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-file-uploads-with-an-ajax-style-interface.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26457) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-file-uploads-with-an-ajax-style-interface.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-file-uploads-with-an-ajax-style-interface) | Picker: 33480
-
 [How Do I:]  File Uploads with an AJAX Style Interface
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/introduction-and-overview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\getting-started\getting-started-with-aspnet-45-web-forms\introduction-and-overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42777) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/introduction-and-overview.html) | [View prod content](http://www.asp.net/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/introduction-and-overview) | Picker: 37913
-
 Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013
 ====================
 by [Erik Reitan](https://github.com/Erikre)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-predictive-fetch-pattern-for-ajax
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-implement-the-predictive-fetch-pattern-for-ajax.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26583) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-implement-the-predictive-fetch-pattern-for-ajax.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-implement-the-predictive-fetch-pattern-for-ajax) | Picker: 33606
-
 [How Do I:] Implement the Predictive Fetch Pattern for AJAX?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

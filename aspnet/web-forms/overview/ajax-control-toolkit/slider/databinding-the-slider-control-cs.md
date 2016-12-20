@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/slider/databinding-the-slider-control-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\slider\databinding-the-slider-control-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24852) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/slider/databinding-the-slider-control-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/slider/databinding-the-slider-control-cs) | Picker: 33152
-
 Databinding the Slider Control (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

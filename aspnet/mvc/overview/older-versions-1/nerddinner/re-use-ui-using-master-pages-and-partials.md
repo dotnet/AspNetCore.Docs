@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/re-use-ui-using-master-pages-and-partials
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\nerddinner\re-use-ui-using-master-pages-and-partials.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25187) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/nerddinner/re-use-ui-using-master-pages-and-partials.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/nerddinner/re-use-ui-using-master-pages-and-partials) | Picker: 27642
-
 Re-use UI Using Master Pages and Partials
 ====================
 by [Microsoft](https://github.com/microsoft)

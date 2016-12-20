@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/efficiently-paging-through-large-amounts-of-data-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\paging-and-sorting\efficiently-paging-through-large-amounts-of-data-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25197) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/paging-and-sorting/efficiently-paging-through-large-amounts-of-data-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/paging-and-sorting/efficiently-paging-through-large-amounts-of-data-vb) | Picker: 33393
-
 Efficiently Paging Through Large Amounts of Data (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

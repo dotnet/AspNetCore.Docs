@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/mvc4-release-notes
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\mvc4-release-notes.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38976) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/mvc4-release-notes.html) | [View prod content](http://www.asp.net/whitepapers/mvc4-release-notes) | Picker: 38976
-
 ASP.NET MVC 4
 ====================
 > This document describes the release of ASP.NET MVC 4 .

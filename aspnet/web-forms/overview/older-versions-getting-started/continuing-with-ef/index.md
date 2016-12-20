@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32984) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/continuing-with-ef/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/continuing-with-ef)
-
 ASP.NET 4 - Continuing with Entity Framework 4 and Web Forms
 ====================
 > How to build the Contoso U application as an n-tier application using the ObjectDataSource control and how to handle concurrency and maximize performance.

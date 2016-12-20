@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/create-a-website-using-webmatrix
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\introduction\create-a-website-using-webmatrix.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26849) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/introduction/create-a-website-using-webmatrix.html) | [View prod content](http://www.asp.net/web-pages/videos/introduction/create-a-website-using-webmatrix) | Picker: 38408
-
 Create a Website Using WebMatrix
 ====================
 by [Advaiya](https://twitter.com/Advaiyasolns)

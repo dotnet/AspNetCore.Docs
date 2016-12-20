@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-intro-ui-and-edm
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\tailspin-spyworks\tailspin-spyworks-intro-ui-and-edm.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26892) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/tailspin-spyworks/tailspin-spyworks-intro-ui-and-edm.html) | [View prod content](http://www.asp.net/web-forms/videos/tailspin-spyworks/tailspin-spyworks-intro-ui-and-edm) | Picker: 33839
-
 Tailspin Spyworks - Intro UI and EDM
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\data\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42611) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/data/using-web-api-with-entity-framework/index.html) | [View prod content](http://www.asp.net/web-api/overview/data/using-web-api-with-entity-framework)
-
 Using Web API 2 with Entity Framework 6
 ====================
 > How to create a Web API application that uses Entity Framework for database persistence.

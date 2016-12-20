@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/hands-on-labs/whats-new-in-web-forms-in-aspnet-45
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\getting-started\hands-on-labs\whats-new-in-web-forms-in-aspnet-45.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45261) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/getting-started/hands-on-labs/whats-new-in-web-forms-in-aspnet-45.html) | [View prod content](http://www.asp.net/web-forms/overview/getting-started/hands-on-labs/whats-new-in-web-forms-in-aspnet-45) | Picker: 45266
-
 What's New in Web Forms in ASP.NET 4.5
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

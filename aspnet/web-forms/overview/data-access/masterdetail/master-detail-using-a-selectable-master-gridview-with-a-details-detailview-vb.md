@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\masterdetail\master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25157) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb) | Picker: 33369
-
 Master/Detail Using a Selectable Master GridView with a Details DetailView (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

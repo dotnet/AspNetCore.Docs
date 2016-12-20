@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\getting-started-with-ef-using-mvc\implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54439) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application) | Picker: 33315
-
 Implementing Inheritance with the Entity Framework 6 in an ASP.NET MVC 5 Application (11 of 12)
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

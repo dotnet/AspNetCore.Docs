@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/aspnet-and-web-tools-20122-release-notes-rtw
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2012\aspnet-and-web-tools-20122-release-notes-rtw.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43831) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2012/aspnet-and-web-tools-20122-release-notes-rtw.html) | [View prod content](http://www.asp.net/visual-studio/overview/2012/aspnet-and-web-tools-20122-release-notes-rtw) | Picker: 43832
-
 ASP.NET and Web Tools 2012.2 Release Notes
 ====================
 > This document describes the release of ASP.NET and Web Tools 2012.2. It is an update to Visual Studio Web Tooling and ASP.NET.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35812) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/routing/index.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/routing)
-
 Routing
 ====================
 > This video shows you how to create intuitive and SEO-friendly URLs for your Web Forms applications.

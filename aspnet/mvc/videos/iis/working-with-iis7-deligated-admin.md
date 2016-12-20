@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/working-with-iis7-deligated-admin
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\iis\working-with-iis7-deligated-admin.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26813) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/iis/working-with-iis7-deligated-admin.html) | [View prod content](http://www.asp.net/mvc/videos/iis/working-with-iis7-deligated-admin) | Picker: 35834
-
 Working with IIS7 Delegated Admin
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/application-lifecycle-management-from-development-to-production
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\deploying-web-applications-in-enterprise-scenarios\application-lifecycle-management-from-development-to-production.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38145) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/application-lifecycle-management-from-development-to-production.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/application-lifecycle-management-from-development-to-production) | Picker: 38223
-
 Application Lifecycle Management: From Development to Production
 ====================
 by [Jason Lee](https://github.com/jrjlee)

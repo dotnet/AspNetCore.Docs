@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\models-data\creating-model-classes-with-linq-to-sql-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24890) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-cs.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-cs) | Picker: 27578
-
 Creating Model Classes with LINQ to SQL (C#)
 ====================
 by [Microsoft](https://github.com/microsoft)

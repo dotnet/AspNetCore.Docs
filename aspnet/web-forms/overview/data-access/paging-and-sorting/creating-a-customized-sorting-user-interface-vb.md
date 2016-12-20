@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/creating-a-customized-sorting-user-interface-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\paging-and-sorting\creating-a-customized-sorting-user-interface-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25201) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/paging-and-sorting/creating-a-customized-sorting-user-interface-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/paging-and-sorting/creating-a-customized-sorting-user-interface-vb) | Picker: 33397
-
 Creating a Customized Sorting User Interface (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

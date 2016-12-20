@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui1822
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\jquery-ui\cdnjqueryui1822.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59204) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-ui/cdnjqueryui1822.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-ui/cdnjqueryui1822) | Picker: 59204
-
 jQuery UI 1.8.22 on the Microsoft Ajax CDN
 ====================
 The jQuery UI 1.8.22 library includes the following files:

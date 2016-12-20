@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/masterdetail
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/33005) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/masterdetail/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/masterdetail)
-
 Master/Detail
 ====================
 > These tutorials show how to display master records in a drop-down list and details in a GridView control.

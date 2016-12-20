@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/overview/asp-net-mvc-overview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\overview\asp-net-mvc-overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24904) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/overview/asp-net-mvc-overview.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/overview/asp-net-mvc-overview) | Picker: 27542
-
 ASP.NET MVC Overview
 ====================
 by [Microsoft](https://github.com/microsoft)

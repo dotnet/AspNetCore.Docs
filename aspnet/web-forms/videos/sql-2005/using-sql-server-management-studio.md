@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/using-sql-server-management-studio
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\sql-2005\using-sql-server-management-studio.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26885) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/sql-2005/using-sql-server-management-studio.html) | [View prod content](http://www.asp.net/web-forms/videos/sql-2005/using-sql-server-management-studio) | Picker: 33832
-
 Using SQL Server Management Studio
 ====================
 by [Microsoft](https://github.com/microsoft)

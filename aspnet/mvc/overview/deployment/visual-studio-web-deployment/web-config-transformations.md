@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/deployment/visual-studio-web-deployment/web-config-transformations
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\deployment\visual-studio-web-deployment\web-config-transformations.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45356) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/deployment/visual-studio-web-deployment/web-config-transformations.html) | [View prod content](http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/web-config-transformations) | Picker: 45369
-
 ASP.NET Web Deployment using Visual Studio: Web.config File Transformations
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

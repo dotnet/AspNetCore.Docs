@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/developing-aspnet-apps-with-windows-azure-active-directory
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\getting-started\developing-aspnet-apps-with-windows-azure-active-directory.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/50359) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/getting-started/developing-aspnet-apps-with-windows-azure-active-directory.html) | [View prod content](http://www.asp.net/identity/overview/getting-started/developing-aspnet-apps-with-windows-azure-active-directory) | Picker: 51462
-
 Developing ASP.NET Apps with Azure Active Directory
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

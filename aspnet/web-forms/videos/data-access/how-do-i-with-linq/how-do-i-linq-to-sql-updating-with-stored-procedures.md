@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-with-stored-procedures
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\how-do-i-with-linq\how-do-i-linq-to-sql-updating-with-stored-procedures.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26527) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-with-stored-procedures.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-with-stored-procedures) | Picker: 37520
-
 How Do I: LINQ to SQL: Updating with Stored Procedures
 ====================
 by [Scott Stanfield](https://github.com/scottstanfield)

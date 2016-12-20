@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-razor-syntax-c
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\getting-started\introducing-razor-syntax-c.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38932) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/getting-started/introducing-razor-syntax-c.html) | [View prod content](http://www.asp.net/web-pages/overview/getting-started/introducing-razor-syntax-c) | Picker: 38482
-
 Introduction to ASP.NET Web Programming Using the Razor Syntax (C#)
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

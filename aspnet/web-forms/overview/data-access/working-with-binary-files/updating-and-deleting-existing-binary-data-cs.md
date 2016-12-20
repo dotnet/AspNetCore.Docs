@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/updating-and-deleting-existing-binary-data-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\working-with-binary-files\updating-and-deleting-existing-binary-data-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25278) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/working-with-binary-files/updating-and-deleting-existing-binary-data-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/working-with-binary-files/updating-and-deleting-existing-binary-data-cs) | Picker: 33445
-
 Updating and Deleting Existing Binary Data (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

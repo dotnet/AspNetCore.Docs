@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-setting-folder-permissions-6-of-12
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\deployment-to-a-hosting-provider\deployment-to-a-hosting-provider-setting-folder-permissions-6-of-12.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/34119) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-setting-folder-permissions-6-of-12.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-setting-folder-permissions-6-of-12) | Picker: 36421
-
 Deploying an ASP.NET Web Application with SQL Server Compact using Visual Studio or Visual Web Developer: Setting Folder Permissions - 6 of 12
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

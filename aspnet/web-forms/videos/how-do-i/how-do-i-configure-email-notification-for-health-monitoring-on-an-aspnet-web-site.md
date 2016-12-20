@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26488) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site) | Picker: 33511
-
 [How Do I:] Configure Email Notification for Health Monitoring on an ASP.NET Web Site
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/changing-an-animation-using-client-side-code-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\animation\changing-an-animation-using-client-side-code-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24797) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/animation/changing-an-animation-using-client-side-code-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/animation/changing-an-animation-using-client-side-code-vb) | Picker: 33097
-
 Changing an Animation Using Client-Side Code (VB)
 ====================
 by [Christian Wenz](https://github.com/wenz)

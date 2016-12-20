@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-asp-net-health-monitoring-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\deploying-web-site-projects\logging-error-details-with-asp-net-health-monitoring-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25103) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-asp-net-health-monitoring-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-asp-net-health-monitoring-vb) | Picker: 33323
-
 Logging Error Details with ASP.NET Health Monitoring (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

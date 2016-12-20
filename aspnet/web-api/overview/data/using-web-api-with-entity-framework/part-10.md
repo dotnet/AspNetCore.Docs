@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-10
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\data\using-web-api-with-entity-framework\part-10.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58263) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/data/using-web-api-with-entity-framework/part-10.html) | [View prod content](http://www.asp.net/web-api/overview/data/using-web-api-with-entity-framework/part-10) | Picker: 58294
-
 Publish the App to Azure Azure App Service
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

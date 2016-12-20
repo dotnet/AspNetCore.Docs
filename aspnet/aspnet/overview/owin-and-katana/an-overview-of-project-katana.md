@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/an-overview-of-project-katana
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\owin-and-katana\an-overview-of-project-katana.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47290) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/owin-and-katana/an-overview-of-project-katana.html) | [View prod content](http://www.asp.net/aspnet/overview/owin-and-katana/an-overview-of-project-katana) | Picker: 47292
-
 An Overview of Project Katana
 ====================
 by [Howard Dierking](https://github.com/howarddierking)

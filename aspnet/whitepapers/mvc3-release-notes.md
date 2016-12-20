@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/mvc3-release-notes
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\mvc3-release-notes.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36240) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/mvc3-release-notes.html) | [View prod content](http://www.asp.net/whitepapers/mvc3-release-notes) | Picker: 36240
-
 ASP.NET MVC 3
 ====================
 - [Overview](#overview)

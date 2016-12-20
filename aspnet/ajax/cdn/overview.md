@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59182) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/overview.html) | [View prod content](http://www.asp.net/ajax/cdn/overview) | Picker: 59182
-
 Microsoft Ajax Content Delivery Network
 ====================
 ## Table of Contents

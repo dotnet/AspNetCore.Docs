@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\videos\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37448) | [View dev content](http://docs.aspdev.net/tutorials/web-api/videos/getting-started/index.html) | [View prod content](http://www.asp.net/web-api/videos/getting-started)
-
 ASP.NET Web API Overview and Getting Started Videos
 ====================
 > This is a series of videos to get you started with ASP.NET Web API.

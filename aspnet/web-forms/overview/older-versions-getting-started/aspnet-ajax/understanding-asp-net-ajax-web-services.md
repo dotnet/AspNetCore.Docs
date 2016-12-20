@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\aspnet-ajax\understanding-asp-net-ajax-web-services.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24880) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-web-services) | Picker: 33180
-
 Understanding ASP.NET AJAX Web Services
 ====================
 by [Scott Cate](https://github.com/scottcate)

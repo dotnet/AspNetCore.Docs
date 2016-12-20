@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /entity-framework
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\entity-framework.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36253) | [View dev content](http://docs.aspdev.net/tutorials/entity-framework.html) | [View prod content](http://www.asp.net/entity-framework) | Picker: 36253
-
 Entity Framework
 ====================
 Entity Framework (EF) is an object-relational mapper that enables .NET developers to work with relational data using domain-specific objects. It eliminates the need for most of the data-access code that developers usually need to write.

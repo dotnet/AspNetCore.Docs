@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\controllers-and-routing\adding-dynamic-content-to-a-cached-page-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25109) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/adding-dynamic-content-to-a-cached-page-vb) | Picker: 27597
-
 Adding Dynamic Content to a Cached Page (VB)
 ====================
 by [Microsoft](https://github.com/microsoft)

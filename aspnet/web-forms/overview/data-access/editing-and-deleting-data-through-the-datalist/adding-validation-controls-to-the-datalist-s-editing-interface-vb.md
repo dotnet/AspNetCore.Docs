@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/adding-validation-controls-to-the-datalist-s-editing-interface-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\editing-and-deleting-data-through-the-datalist\adding-validation-controls-to-the-datalist-s-editing-interface-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25031) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/adding-validation-controls-to-the-datalist-s-editing-interface-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/adding-validation-controls-to-the-datalist-s-editing-interface-vb) | Picker: 33269
-
 Adding Validation Controls to the DataList's Editing Interface (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

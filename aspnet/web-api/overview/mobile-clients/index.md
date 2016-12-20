@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/mobile-clients
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58964) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/mobile-clients/index.html) | [View prod content](http://www.asp.net/web-api/overview/mobile-clients)
-
 Web API and Mobile Clients
 ====================
 > Using ASP.NET Web API to reach native mobile clients.

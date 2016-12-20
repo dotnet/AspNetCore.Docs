@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-create-an-aspnet-ajax-extender-from-scratch
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-create-an-aspnet-ajax-extender-from-scratch.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26604) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-create-an-aspnet-ajax-extender-from-scratch.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-create-an-aspnet-ajax-extender-from-scratch) | Picker: 33627
-
 [How Do I:] Create an ASP.NET AJAX Extender from Scratch?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

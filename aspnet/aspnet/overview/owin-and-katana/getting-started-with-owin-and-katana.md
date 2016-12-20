@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\owin-and-katana\getting-started-with-owin-and-katana.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/50673) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana.html) | [View prod content](http://www.asp.net/aspnet/overview/owin-and-katana/getting-started-with-owin-and-katana) | Picker: 50674
-
 Getting Started with OWIN and Katana
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

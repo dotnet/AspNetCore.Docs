@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic/bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\performance-and-traffic\bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42562) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/performance-and-traffic/bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site.html) | [View prod content](http://www.asp.net/web-pages/overview/performance-and-traffic/bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site) | Picker: 59921
-
 Bundling and Minifying Assets in an ASP.NET Web Pages (Razor) Site
 ====================
 by [Microsoft](https://github.com/microsoft)

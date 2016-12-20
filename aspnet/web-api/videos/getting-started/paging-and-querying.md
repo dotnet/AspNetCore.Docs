@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/paging-and-querying
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\videos\getting-started\paging-and-querying.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37166) | [View dev content](http://docs.aspdev.net/tutorials/web-api/videos/getting-started/paging-and-querying.html) | [View prod content](http://www.asp.net/web-api/videos/getting-started/paging-and-querying) | Picker: 43065
-
 ASP.NET Web API, Part 4: Paging and Querying
 ====================
 by [Jon Galloway](https://github.com/jongalloway)

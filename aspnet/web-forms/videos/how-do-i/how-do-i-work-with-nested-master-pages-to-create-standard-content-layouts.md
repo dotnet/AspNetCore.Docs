@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-work-with-nested-master-pages-to-create-standard-content-layouts
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-work-with-nested-master-pages-to-create-standard-content-layouts.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26474) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-work-with-nested-master-pages-to-create-standard-content-layouts.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-work-with-nested-master-pages-to-create-standard-content-layouts) | Picker: 33497
-
 [How Do I:] Work with Nested Master Pages to Create Standard Content Layouts
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

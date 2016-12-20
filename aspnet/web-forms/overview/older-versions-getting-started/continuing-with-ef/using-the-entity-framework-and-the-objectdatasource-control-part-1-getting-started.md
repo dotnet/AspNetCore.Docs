@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\continuing-with-ef\using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24984) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started) | Picker: 33224
-
 Using the Entity Framework 4.0 and the ObjectDataSource Control, Part 1: Getting Started
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

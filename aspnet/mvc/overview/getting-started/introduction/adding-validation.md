@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-validation
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\introduction\adding-validation.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47541) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/introduction/adding-validation.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/introduction/adding-validation) | Picker: 47559
-
 Adding Validation
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

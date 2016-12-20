@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-and-iis6
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\aspnet-and-iis6.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36242) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/aspnet-and-iis6.html) | [View prod content](http://www.asp.net/whitepapers/aspnet-and-iis6) | Picker: 36242
-
 Running ASP.NET 1.1 with IIS 6.0
 ====================
 > While Windows Server 2003 includes both IIS 6.0 and ASP.NET 1.1, these components are disabled by default. This whitepaper describes how to enable IIS 6.0 and ASP.NET 1.1, and recommends several configuration settings to get the optimal performance from IIS and ASP.NET.

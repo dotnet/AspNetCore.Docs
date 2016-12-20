@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-6-use-test-driven-development-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\contact-manager\iteration-6-use-test-driven-development-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25243) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/contact-manager/iteration-6-use-test-driven-development-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-6-use-test-driven-development-vb) | Picker: 27622
-
 Iteration #6 – Use test-driven development (VB)
 ====================
 by [Microsoft](https://github.com/microsoft)

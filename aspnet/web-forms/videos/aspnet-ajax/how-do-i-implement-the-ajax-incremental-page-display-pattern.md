@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-incremental-page-display-pattern
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-implement-the-ajax-incremental-page-display-pattern.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26585) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-incremental-page-display-pattern.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-incremental-page-display-pattern) | Picker: 33608
-
 [How Do I:] Implement the AJAX Incremental Page Display Pattern?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

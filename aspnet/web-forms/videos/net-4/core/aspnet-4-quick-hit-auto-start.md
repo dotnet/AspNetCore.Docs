@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/core/aspnet-4-quick-hit-auto-start
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\core\aspnet-4-quick-hit-auto-start.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26650) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/core/aspnet-4-quick-hit-auto-start.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/core/aspnet-4-quick-hit-auto-start) | Picker: 33673
-
 ASP.NET 4 "Quick Hit" - Auto Start
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

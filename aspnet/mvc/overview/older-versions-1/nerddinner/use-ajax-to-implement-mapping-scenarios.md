@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\nerddinner\use-ajax-to-implement-mapping-scenarios.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25191) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios) | Picker: 27646
-
 Use AJAX to Implement Mapping Scenarios
 ====================
 by [Microsoft](https://github.com/microsoft)

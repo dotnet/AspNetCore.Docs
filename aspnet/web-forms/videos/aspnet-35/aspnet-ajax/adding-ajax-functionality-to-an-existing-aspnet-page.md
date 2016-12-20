@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/adding-ajax-functionality-to-an-existing-aspnet-page
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\aspnet-ajax\adding-ajax-functionality-to-an-existing-aspnet-page.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26629) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/aspnet-ajax/adding-ajax-functionality-to-an-existing-aspnet-page.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/aspnet-ajax/adding-ajax-functionality-to-an-existing-aspnet-page) | Picker: 33652
-
 Adding AJAX Functionality to an Existing ASP.NET Page
 ====================
 by [Todd Miranda](https://github.com/tmiranda)

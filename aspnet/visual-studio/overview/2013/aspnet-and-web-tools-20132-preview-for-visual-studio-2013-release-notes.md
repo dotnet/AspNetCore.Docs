@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2013\aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/52887) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2013/aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes.html) | [View prod content](http://www.asp.net/visual-studio/overview/2013/aspnet-and-web-tools-20132-preview-for-visual-studio-2013-release-notes) | Picker: 52888
-
 ASP.NET and Web Tools 2013.2  for Visual Studio 2013 Release Notes
 ====================
 by [Microsoft](https://github.com/microsoft)

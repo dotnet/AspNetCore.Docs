@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-maskededit-controls
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-use-the-aspnet-ajax-maskededit-controls.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26555) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-maskededit-controls.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-maskededit-controls) | Picker: 33578
-
 [How Do I:] Use the ASP.NET AJAX MaskedEdit Controls?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

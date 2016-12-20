@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/archived-v11/starter-kits
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\archived-v11\starter-kits\overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36264) | [View dev content](http://docs.aspdev.net/tutorials/downloads/archived-v11/starter-kits/overview.html) | [View prod content](http://www.asp.net/downloads/archived-v11/starter-kits/overview) | Picker: 36264
-
 ASP.NET 1.1 Starter Kits
 ====================
 Several starter kits were provided for learning how to develop with ASP.NET 1.x. Although these starter kits are still available, the current recommendation is to use the [MVC Music Store](../../../mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-1.md) as your starting point.

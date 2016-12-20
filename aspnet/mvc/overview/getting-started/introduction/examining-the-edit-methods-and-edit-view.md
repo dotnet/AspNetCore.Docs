@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\introduction\examining-the-edit-methods-and-edit-view.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47547) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view) | Picker: 47562
-
 Examining the Edit Methods and Edit View
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/real-time-web-applications-with-signalr
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\getting-started\real-time-web-applications-with-signalr.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58834) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/getting-started/real-time-web-applications-with-signalr.html) | [View prod content](http://www.asp.net/signalr/overview/getting-started/real-time-web-applications-with-signalr) | Picker: 59957
-
 Hands On Lab: Real-Time Web Applications with SignalR
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/integrated-windows-authentication
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\security\integrated-windows-authentication.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43545) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/security/integrated-windows-authentication.html) | [View prod content](http://www.asp.net/web-api/overview/security/integrated-windows-authentication) | Picker: 43553
-
 Integrated Windows Authentication
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

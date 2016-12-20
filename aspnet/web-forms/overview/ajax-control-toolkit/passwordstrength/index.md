@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/passwordstrength
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35857) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/passwordstrength/index.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/passwordstrength)
-
 PasswordStrength
 ====================
 > This tutorial shows how to PasswordStrength control to check how strong a password is as a user creates it.

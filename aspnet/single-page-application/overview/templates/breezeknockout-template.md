@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/breezeknockout-template
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\single-page-application\overview\templates\breezeknockout-template.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43837) | [View dev content](http://docs.aspdev.net/tutorials/single-page-application/overview/templates/breezeknockout-template.html) | [View prod content](http://www.asp.net/single-page-application/overview/templates/breezeknockout-template) | Picker: 43854
-
 Breeze/Knockout template
 ====================
 by [Mads Kristensen](https://github.com/madskristensen)

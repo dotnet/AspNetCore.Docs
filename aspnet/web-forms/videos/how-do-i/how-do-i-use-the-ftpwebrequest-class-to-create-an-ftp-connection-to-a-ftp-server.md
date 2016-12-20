@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-ftpwebrequest-class-to-create-an-ftp-connection-to-a-ftp-server
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-use-the-ftpwebrequest-class-to-create-an-ftp-connection-to-a-ftp-server.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26497) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-use-the-ftpwebrequest-class-to-create-an-ftp-connection-to-a-ftp-server.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-use-the-ftpwebrequest-class-to-create-an-ftp-connection-to-a-ftp-server) | Picker: 33520
-
 [How Do I:] Use the FtpWebRequest Class to Create an FTP Connection to a FTP Server
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

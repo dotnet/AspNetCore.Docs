@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/introduction-to-aspnet-identity
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\getting-started\introduction-to-aspnet-identity.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51455) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/getting-started/introduction-to-aspnet-identity.html) | [View prod content](http://www.asp.net/identity/overview/getting-started/introduction-to-aspnet-identity) | Picker: 51458
-
 Introduction to ASP.NET Identity
 ====================
 by [Jon Galloway](https://github.com/jongalloway), [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra)

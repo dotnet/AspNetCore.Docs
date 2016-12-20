@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/implementing-optimistic-concurrency-with-the-sqldatasource-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\accessing-the-database-directly-from-an-aspnet-page\implementing-optimistic-concurrency-with-the-sqldatasource-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24741) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/implementing-optimistic-concurrency-with-the-sqldatasource-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/implementing-optimistic-concurrency-with-the-sqldatasource-vb) | Picker: 33043
-
 Implementing Optimistic Concurrency with the SqlDataSource (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

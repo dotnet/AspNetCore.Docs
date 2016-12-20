@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-use-msbuild-to-automate-the-aspnet-compiler-and-merge-utilities
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\how-do-i\how-do-i-use-msbuild-to-automate-the-aspnet-compiler-and-merge-utilities.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26643) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/how-do-i/how-do-i-use-msbuild-to-automate-the-aspnet-compiler-and-merge-utilities.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/how-do-i/how-do-i-use-msbuild-to-automate-the-aspnet-compiler-and-merge-utilities) | Picker: 33666
-
 [How Do I:] Use MSBuild to Automate the ASP.NET Compiler and Merge Utilities
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

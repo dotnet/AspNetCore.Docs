@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-controllers-and-views-to-implement-a-listingdetails-ui
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\nerddinner\use-controllers-and-views-to-implement-a-listingdetails-ui.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25184) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/nerddinner/use-controllers-and-views-to-implement-a-listingdetails-ui.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/nerddinner/use-controllers-and-views-to-implement-a-listingdetails-ui) | Picker: 27639
-
 Use Controllers and Views to Implement a Listing/Details UI
 ====================
 by [Microsoft](https://github.com/microsoft)

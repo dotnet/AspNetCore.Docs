@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-and-use-classes-in-javascript
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-create-and-use-classes-in-javascript.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26510) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-create-and-use-classes-in-javascript.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-create-and-use-classes-in-javascript) | Picker: 33533
-
 How Do I: Create and Use Classes in JavaScript?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

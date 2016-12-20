@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-accordion-control
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-use-the-aspnet-ajax-accordion-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26540) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-accordion-control.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-accordion-control) | Picker: 33563
-
 [How Do I:] Use the ASP.NET AJAX Accordion Control?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

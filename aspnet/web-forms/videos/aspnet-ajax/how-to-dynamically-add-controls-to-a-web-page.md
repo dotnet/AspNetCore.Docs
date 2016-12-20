@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-to-dynamically-add-controls-to-a-web-page
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-to-dynamically-add-controls-to-a-web-page.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26613) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-to-dynamically-add-controls-to-a-web-page.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-to-dynamically-add-controls-to-a-web-page) | Picker: 33636
-
 How To Dynamically Add Controls to a Web Page
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/dotnetnuke
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\dotnetnuke.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36277) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/dotnetnuke.html) | [View prod content](http://www.asp.net/downloads/starter-kits/dotnetnuke) | Picker: 36277
-
 DotNetNuke Portal Starter Kit
 ====================
 > DotNetNuke is an open source web application framework ideal for creating, deploying and managing interactive web, intranet and extranet sites. The combination of an enterprise portal, built-in content management system, elegant skinning engine, and the ability to display static and dynamic content makes DotNetNuke an essential tool for ASP.NET developers.

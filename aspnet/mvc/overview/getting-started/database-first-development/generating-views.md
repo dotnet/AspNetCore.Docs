@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/generating-views
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\database-first-development\generating-views.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/50896) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/database-first-development/generating-views.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/database-first-development/generating-views) | Picker: 50890
-
 EF Database First with ASP.NET MVC: Generating Views
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-ability-to-create-groups-with-the-listview-control-for-different-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-use-the-ability-to-create-groups-with-the-listview-control-for-different-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26471) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-use-the-ability-to-create-groups-with-the-listview-control-for-different-data.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-use-the-ability-to-create-groups-with-the-listview-control-for-different-data) | Picker: 33494
-
 [How Do I:] Use the Ability to Create Groups with the ListView Control for Different Data
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

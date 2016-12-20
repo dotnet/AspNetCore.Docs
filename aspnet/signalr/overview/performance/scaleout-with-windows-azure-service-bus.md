@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/scaleout-with-windows-azure-service-bus
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\performance\scaleout-with-windows-azure-service-bus.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51352) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/performance/scaleout-with-windows-azure-service-bus.html) | [View prod content](http://www.asp.net/signalr/overview/performance/scaleout-with-windows-azure-service-bus) | Picker: 59942
-
 SignalR Scaleout with Azure Service Bus
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)

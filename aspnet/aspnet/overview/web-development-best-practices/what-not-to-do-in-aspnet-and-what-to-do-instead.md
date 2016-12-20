@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\web-development-best-practices\what-not-to-do-in-aspnet-and-what-to-do-instead.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/49797) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead.html) | [View prod content](http://www.asp.net/aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead) | Picker: 49798
-
 What not to do in ASP.NET, and what to do instead
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

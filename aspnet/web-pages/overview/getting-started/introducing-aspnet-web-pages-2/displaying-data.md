@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/displaying-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\getting-started\introducing-aspnet-web-pages-2\displaying-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38465) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/displaying-data.html) | [View prod content](http://www.asp.net/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/displaying-data) | Picker: 38474
-
 Introducing ASP.NET Web Pages - Displaying Data
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

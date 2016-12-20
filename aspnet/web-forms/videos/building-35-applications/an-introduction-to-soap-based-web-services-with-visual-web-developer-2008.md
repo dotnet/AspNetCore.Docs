@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/an-introduction-to-soap-based-web-services-with-visual-web-developer-2008
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-35-applications\an-introduction-to-soap-based-web-services-with-visual-web-developer-2008.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26801) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-35-applications/an-introduction-to-soap-based-web-services-with-visual-web-developer-2008.html) | [View prod content](http://www.asp.net/web-forms/videos/building-35-applications/an-introduction-to-soap-based-web-services-with-visual-web-developer-2008) | Picker: 33758
-
 An Introduction to SOAP Based Web Services with Visual Web Developer 2008
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

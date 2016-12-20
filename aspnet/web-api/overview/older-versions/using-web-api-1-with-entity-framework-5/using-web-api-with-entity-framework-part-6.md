@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-6
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\older-versions\using-web-api-1-with-entity-framework-5\using-web-api-with-entity-framework-part-6.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42624) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-6.html) | [View prod content](http://www.asp.net/web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-6) | Picker: 42625
-
 Part 6: Creating Product and Order Controllers
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

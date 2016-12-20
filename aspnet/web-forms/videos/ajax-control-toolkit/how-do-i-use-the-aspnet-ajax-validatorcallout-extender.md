@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-validatorcallout-extender
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-use-the-aspnet-ajax-validatorcallout-extender.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26561) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-validatorcallout-extender.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-validatorcallout-extender) | Picker: 33584
-
 [How Do I:] Use the ASP.NET AJAX ValidatorCallout Extender?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

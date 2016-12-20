@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32987) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/custom-formatting/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/custom-formatting)
-
 Custom Formatting
 ====================
 > These tutorials look at how to customize data display during data binding by using event handlers in the GridView, DetailsView, and FormView controls.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/retrieving-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\presenting-and-managing-data\model-binding\retrieving-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45586) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/presenting-and-managing-data/model-binding/retrieving-data.html) | [View prod content](http://www.asp.net/web-forms/overview/presenting-and-managing-data/model-binding/retrieving-data) | Picker: 45595
-
 Retrieving and displaying data with model binding and web forms
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

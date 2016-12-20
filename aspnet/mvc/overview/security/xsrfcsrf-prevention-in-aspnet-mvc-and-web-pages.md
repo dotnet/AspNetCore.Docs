@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\security\xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45522) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.html) | [View prod content](http://www.asp.net/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) | Picker: 45523
-
 XSRF/CSRF Prevention in ASP.NET MVC and Web Pages
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

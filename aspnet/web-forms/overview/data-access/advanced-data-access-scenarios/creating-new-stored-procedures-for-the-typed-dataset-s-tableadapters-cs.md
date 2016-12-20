@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\advanced-data-access-scenarios\creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24750) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/advanced-data-access-scenarios/creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/advanced-data-access-scenarios/creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs) | Picker: 33050
-
 Creating New Stored Procedures for the Typed DataSet's TableAdapters (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

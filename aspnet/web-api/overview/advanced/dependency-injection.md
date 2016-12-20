@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/dependency-injection
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\advanced\dependency-injection.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37003) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/advanced/dependency-injection.html) | [View prod content](http://www.asp.net/web-api/overview/advanced/dependency-injection) | Picker: 59310
-
 Dependency Injection in ASP.NET Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/videos
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43463) | [View dev content](http://docs.aspdev.net/tutorials/signalr/videos/index.html) | [View prod content](http://www.asp.net/signalr/videos)
-
 ASP.NET SignalR Videos
 ====================
 - [ASP.NET SignalR Videos](getting-started/index.md)

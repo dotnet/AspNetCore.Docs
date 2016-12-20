@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/12790) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/index.html) | [View prod content](http://www.asp.net/web-forms/overview)
-
 ASP.NET Web Forms Guidance
 ====================
 - [Getting Started](getting-started/index.md)

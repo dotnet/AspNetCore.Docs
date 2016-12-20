@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/whats-new-in-aspnet-45-and-visual-studio-2012
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\whats-new-in-aspnet-45-and-visual-studio-2012.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/68445) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/whats-new-in-aspnet-45-and-visual-studio-2012.html) | [View prod content](http://www.asp.net/whitepapers/whats-new-in-aspnet-45-and-visual-studio-2012) | Picker: 68445
-
 What's New in ASP.NET 4.5 and Visual Studio 2012
 ====================
 > This document describes new features and enhancements that are being introduced in ASP.NET 4.5. It also describes improvements being made for web development in Visual Studio 2012. This document was originally published on February 29, 2012.

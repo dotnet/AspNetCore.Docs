@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/17209) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/index.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started)
-
 ASP.NET MVC Getting Started
 ====================
 > The following guidance explains what ASP.NET MVC is and shows how to get started.

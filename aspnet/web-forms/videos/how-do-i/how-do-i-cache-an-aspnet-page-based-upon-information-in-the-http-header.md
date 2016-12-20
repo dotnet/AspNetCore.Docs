@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-cache-an-aspnet-page-based-upon-information-in-the-http-header
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-cache-an-aspnet-page-based-upon-information-in-the-http-header.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26503) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-cache-an-aspnet-page-based-upon-information-in-the-http-header.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-cache-an-aspnet-page-based-upon-information-in-the-http-header) | Picker: 33526
-
 [How Do I:]  Cache an ASP.NET Page Based Upon Information in the HTTP Header
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

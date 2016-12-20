@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/deployment/visual-studio-web-deployment/deploying-to-production
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\deployment\visual-studio-web-deployment\deploying-to-production.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45350) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-production.html) | [View prod content](http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/deploying-to-production) | Picker: 45363
-
 ASP.NET Web Deployment using Visual Studio: Deploying to Production
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

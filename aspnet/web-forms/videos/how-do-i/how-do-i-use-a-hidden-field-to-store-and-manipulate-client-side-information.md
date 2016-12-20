@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-a-hidden-field-to-store-and-manipulate-client-side-information
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-use-a-hidden-field-to-store-and-manipulate-client-side-information.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26481) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-use-a-hidden-field-to-store-and-manipulate-client-side-information.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-use-a-hidden-field-to-store-and-manipulate-client-side-information) | Picker: 33504
-
 [How Do I:] Use a Hidden Field to Store and Manipulate Client-Side Information
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\getting-started\aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51840) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/getting-started/aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider.html) | [View prod content](http://www.asp.net/identity/overview/getting-started/aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider) | Picker: 51842
-
 ASP.NET Identity: Using MySQL Storage with an EntityFramework MySQL Provider (C#)
 ====================
 by [Maurycy Markowski](https://github.com/maumar), [Raquel Soares De Almeida](https://github.com/raquelsa), [Robert McMurray](https://github.com/rmcmurray)

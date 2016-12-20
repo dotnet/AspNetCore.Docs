@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\aspnet-mvc-facebook-birthday-app.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45515) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app) | Picker: 45612
-
 ASP.NET MVC Facebook Birthday App
 ====================
 by [Kirthi Krishnamraju](https://github.com/kirthik), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra), [Troy Dai](https://github.com/troydai), [Yao Huang Lin](https://github.com/yaohuang)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/twitter-helper
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\ui-layouts-and-themes\twitter-helper.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51139) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/ui-layouts-and-themes/twitter-helper.html) | [View prod content](http://www.asp.net/web-pages/overview/ui-layouts-and-themes/twitter-helper) | Picker: 51306
-
 Twitter Helper with ASP.NET Web Pages
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

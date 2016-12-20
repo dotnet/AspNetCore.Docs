@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\movie-database\create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24902) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs) | Picker: 27540
-
 Create a Movie Database Application in 15 Minutes with ASP.NET MVC (C#)
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

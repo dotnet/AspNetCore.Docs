@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/working-with-files
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\aspnet-razor-pages\working-with-files.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26760) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/aspnet-razor-pages/working-with-files.html) | [View prod content](http://www.asp.net/web-pages/videos/aspnet-razor-pages/working-with-files) | Picker: 38429
-
 Working with Files
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

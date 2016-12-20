@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-after-processing-pattern
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-implement-the-ajax-after-processing-pattern.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26589) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-after-processing-pattern.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-implement-the-ajax-after-processing-pattern) | Picker: 33612
-
 [How Do I:] Implement the AJAX After Processing Pattern?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/building-and-packaging-web-application-projects
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\web-deployment-in-the-enterprise\building-and-packaging-web-application-projects.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38152) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/web-deployment-in-the-enterprise/building-and-packaging-web-application-projects.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/web-deployment-in-the-enterprise/building-and-packaging-web-application-projects) | Picker: 38230
-
 Building and Packaging Web Application Projects
 ====================
 by [Jason Lee](https://github.com/jrjlee)

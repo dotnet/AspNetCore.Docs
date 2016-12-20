@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/security/persistent-connection-authorization
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\security\persistent-connection-authorization.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51304) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/security/persistent-connection-authorization.html) | [View prod content](http://www.asp.net/signalr/overview/security/persistent-connection-authorization) | Picker: 59973
-
 Authentication and Authorization for SignalR Persistent Connections
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)

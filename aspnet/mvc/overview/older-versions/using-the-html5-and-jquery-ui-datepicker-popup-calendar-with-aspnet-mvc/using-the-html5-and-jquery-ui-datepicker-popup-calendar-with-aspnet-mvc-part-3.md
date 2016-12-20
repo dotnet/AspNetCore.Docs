@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc\using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24913) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3) | Picker: 27551
-
 Using the HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 3
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

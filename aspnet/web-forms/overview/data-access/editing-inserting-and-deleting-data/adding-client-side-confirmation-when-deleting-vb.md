@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\editing-inserting-and-deleting-data\adding-client-side-confirmation-when-deleting-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25047) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-client-side-confirmation-when-deleting-vb) | Picker: 33285
-
 Adding Client-Side Confirmation When Deleting (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

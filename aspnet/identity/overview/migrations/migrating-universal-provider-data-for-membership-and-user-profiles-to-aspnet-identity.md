@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/migrations/migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\migrations\migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/52995) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/migrations/migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity.html) | [View prod content](http://www.asp.net/identity/overview/migrations/migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity) | Picker: 53005
-
 Migrating Universal Provider Data for Membership and User Profiles to ASP.NET Identity (C#)
 ====================
 by [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://github.com/Rick-Anderson), [Robert McMurray](https://github.com/rmcmurray), [Suhas Joshi](https://github.com/suhasj)

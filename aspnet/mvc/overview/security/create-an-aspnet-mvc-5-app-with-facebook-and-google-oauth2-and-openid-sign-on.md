@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\security\create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47548) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.html) | [View prod content](http://www.asp.net/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on) | Picker: 47551
-
 Code! MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on (C#)
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

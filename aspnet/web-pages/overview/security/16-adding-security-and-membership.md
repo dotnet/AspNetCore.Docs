@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/security/16-adding-security-and-membership
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\security\16-adding-security-and-membership.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38946) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/security/16-adding-security-and-membership.html) | [View prod content](http://www.asp.net/web-pages/overview/security/16-adding-security-and-membership) | Picker: 59920
-
 Adding Security and Membership to an ASP.NET Web Pages (Razor) Site
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

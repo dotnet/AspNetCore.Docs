@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/archived-v11/starter-kits/issue-tracker
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\archived-v11\starter-kits\issue-tracker.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36267) | [View dev content](http://docs.aspdev.net/tutorials/downloads/archived-v11/starter-kits/issue-tracker.html) | [View prod content](http://www.asp.net/downloads/archived-v11/starter-kits/issue-tracker) | Picker: 36267
-
 Issue Tracker Web Site
 ====================
 > The Issue Tracker enables project teams to keep track of outstanding issues, assigned owners, history and related issues through a Web-based interface.

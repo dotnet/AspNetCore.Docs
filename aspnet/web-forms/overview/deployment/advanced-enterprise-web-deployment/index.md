@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38256) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/advanced-enterprise-web-deployment/index.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/advanced-enterprise-web-deployment)
-
 ASP.NET 4 - Enterprise Deployment Series 4 Advanced Topics
 ====================
 > This tutorial will show you how to perform various tasks that are required or desirable in a lot of enterprise deployment scenarios.

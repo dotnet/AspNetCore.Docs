@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-ajax-control-toolkit-control-extender-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\getting-started\creating-a-custom-ajax-control-toolkit-control-extender-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24869) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-ajax-control-toolkit-control-extender-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-ajax-control-toolkit-control-extender-vb) | Picker: 33169
-
 Creating a Custom AJAX Control Toolkit Control Extender (VB)
 ====================
 by [Microsoft](https://github.com/microsoft)

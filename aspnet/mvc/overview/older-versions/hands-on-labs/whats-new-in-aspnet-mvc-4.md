@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/whats-new-in-aspnet-mvc-4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\hands-on-labs\whats-new-in-aspnet-mvc-4.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45260) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/hands-on-labs/whats-new-in-aspnet-mvc-4.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/hands-on-labs/whats-new-in-aspnet-mvc-4) | Picker: 45274
-
 What's New in ASP.NET MVC 4
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

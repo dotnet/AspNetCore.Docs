@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/dropshadow/adjusting-the-z-index-of-a-dropshadow-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\dropshadow\adjusting-the-z-index-of-a-dropshadow-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24810) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/dropshadow/adjusting-the-z-index-of-a-dropshadow-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/dropshadow/adjusting-the-z-index-of-a-dropshadow-cs) | Picker: 33110
-
 Adjusting the Z-Index of a DropShadow (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

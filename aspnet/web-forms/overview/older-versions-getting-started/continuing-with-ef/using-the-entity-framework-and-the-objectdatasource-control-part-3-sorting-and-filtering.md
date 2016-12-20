@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\continuing-with-ef\using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24986) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/continuing-with-ef/using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering) | Picker: 33226
-
 Using the Entity Framework 4.0 and the ObjectDataSource Control, Part 3: Sorting and Filtering
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

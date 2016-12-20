@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/adonet-data-services
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35540) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/adonet-data-services/index.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/adonet-data-services)
-
 ADO.NET Data Services
 ====================
 > These videos show you how to create a data access layer using a typed data set for a simple ASP.NET application.

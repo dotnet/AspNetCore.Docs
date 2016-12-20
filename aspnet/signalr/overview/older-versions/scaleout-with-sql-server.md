@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/scaleout-with-sql-server
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\older-versions\scaleout-with-sql-server.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47245) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/older-versions/scaleout-with-sql-server.html) | [View prod content](http://www.asp.net/signalr/overview/older-versions/scaleout-with-sql-server) | Picker: 47252
-
 SignalR Scaleout with SQL Server (SignalR 1.x)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)

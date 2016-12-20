@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/pluralsight
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\pluralsight.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38455) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/pluralsight.html) | [View prod content](http://www.asp.net/web-pages/pluralsight) | Picker: 38455
-
 WebMatrix and Web Pages Video Training from Pluralsight
 ====================
 ### Videos

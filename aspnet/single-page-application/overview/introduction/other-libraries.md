@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/introduction/other-libraries
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\single-page-application\overview\introduction\other-libraries.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43862) | [View dev content](http://docs.aspdev.net/tutorials/single-page-application/overview/introduction/other-libraries.html) | [View prod content](http://www.asp.net/single-page-application/overview/introduction/other-libraries) | Picker: 43856
-
 Know a library other than Knockout?
 ====================
 by [Mads Kristensen](https://github.com/madskristensen)

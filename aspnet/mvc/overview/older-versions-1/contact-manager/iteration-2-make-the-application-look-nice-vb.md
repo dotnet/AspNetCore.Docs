@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\contact-manager\iteration-2-make-the-application-look-nice-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25235) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-vb) | Picker: 27614
-
 Iteration #2 – Make the application look nice (VB)
 ====================
 by [Microsoft](https://github.com/microsoft)

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/ms03-32-issue
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\ms03-32-issue.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36244) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/ms03-32-issue.html) | [View prod content](http://www.asp.net/whitepapers/ms03-32-issue) | Picker: 36244
-
 Fix for 'Server Application Unavailable' Error after Applying Security Update for IE
 ====================
 > This paper describes the patch that fixes an issue with the MS03-32 Security Update for Internet Explorer that affects ASP.NET 1.0 applications running on Windows XP Professional.

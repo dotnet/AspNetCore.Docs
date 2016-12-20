@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/displaying-data-with-the-datalist-and-repeater-controls-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\displaying-data-with-the-datalist-and-repeater\displaying-data-with-the-datalist-and-repeater-controls-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25017) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/displaying-data-with-the-datalist-and-repeater-controls-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/displaying-data-with-the-datalist-and-repeater-controls-vb) | Picker: 33255
-
 Displaying Data with the DataList and Repeater Controls (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

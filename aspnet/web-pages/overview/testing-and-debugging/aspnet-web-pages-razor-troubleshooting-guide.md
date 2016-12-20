@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/testing-and-debugging/aspnet-web-pages-razor-troubleshooting-guide
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\testing-and-debugging\aspnet-web-pages-razor-troubleshooting-guide.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38636) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/testing-and-debugging/aspnet-web-pages-razor-troubleshooting-guide.html) | [View prod content](http://www.asp.net/web-pages/overview/testing-and-debugging/aspnet-web-pages-razor-troubleshooting-guide) | Picker: 38639
-
 ASP.NET Web Pages (Razor) Troubleshooting Guide
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

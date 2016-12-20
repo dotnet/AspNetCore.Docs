@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32981) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/basic-reporting/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/basic-reporting)
-
 Basic Reporting
 ====================
 > This set of tutorials looks at how to use the ObjectDataSource control to work with data retrieved from the BLL, all without code.

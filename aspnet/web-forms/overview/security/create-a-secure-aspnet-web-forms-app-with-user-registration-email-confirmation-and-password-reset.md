@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\security\create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/60013) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset.html) | [View prod content](http://www.asp.net/web-forms/overview/security/create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset) | Picker: 60018
-
 Create a secure ASP.NET Web Forms app with user registration, email confirmation and password reset (C#)
 ====================
 by [Erik Reitan](https://github.com/Erikre)

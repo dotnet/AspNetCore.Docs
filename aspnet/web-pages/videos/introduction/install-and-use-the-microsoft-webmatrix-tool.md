@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/install-and-use-the-microsoft-webmatrix-tool
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\introduction\install-and-use-the-microsoft-webmatrix-tool.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26848) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/introduction/install-and-use-the-microsoft-webmatrix-tool.html) | [View prod content](http://www.asp.net/web-pages/videos/introduction/install-and-use-the-microsoft-webmatrix-tool) | Picker: 38407
-
 Install and Use the Microsoft WebMatrix Tool
 ====================
 by [Advaiya](https://twitter.com/Advaiyasolns)

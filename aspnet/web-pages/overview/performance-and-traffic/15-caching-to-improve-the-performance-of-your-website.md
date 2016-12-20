@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic/15-caching-to-improve-the-performance-of-your-website
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\performance-and-traffic\15-caching-to-improve-the-performance-of-your-website.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38945) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/performance-and-traffic/15-caching-to-improve-the-performance-of-your-website.html) | [View prod content](http://www.asp.net/web-pages/overview/performance-and-traffic/15-caching-to-improve-the-performance-of-your-website) | Picker: 59905
-
 Caching Data in an ASP.NET Web Pages (Razor) Site for Better Performance
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

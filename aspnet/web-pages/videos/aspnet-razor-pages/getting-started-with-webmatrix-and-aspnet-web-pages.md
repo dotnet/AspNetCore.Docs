@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/getting-started-with-webmatrix-and-aspnet-web-pages
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\aspnet-razor-pages\getting-started-with-webmatrix-and-aspnet-web-pages.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26749) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/aspnet-razor-pages/getting-started-with-webmatrix-and-aspnet-web-pages.html) | [View prod content](http://www.asp.net/web-pages/videos/aspnet-razor-pages/getting-started-with-webmatrix-and-aspnet-web-pages) | Picker: 38418
-
 Getting Started with WebMatrix and ASP.NET Web Pages
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

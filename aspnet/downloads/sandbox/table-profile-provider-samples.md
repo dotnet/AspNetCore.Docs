@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/sandbox/table-profile-provider-samples
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\sandbox\table-profile-provider-samples.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37854) | [View dev content](http://docs.aspdev.net/tutorials/downloads/sandbox/table-profile-provider-samples.html) | [View prod content](http://www.asp.net/downloads/sandbox/table-profile-provider-samples) | Picker: 37854
-
 Table Profile Provider Samples
 ====================
 > ![](table-profile-provider-samples/_static/image1.gif) The default SqlProfileProvider that ships with ASP.NET 2.0 "blobicizes" Profile data using string, XML or binary serialization prior to storing information in SQL Server. A frequent request from developers is the ability to store Profile data "in the clear" in the database so that the data is available for querying and use in stored procedures. The two samples in this download solve this problem.

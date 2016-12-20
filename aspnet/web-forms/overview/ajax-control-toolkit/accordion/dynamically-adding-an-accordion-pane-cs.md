@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/accordion/dynamically-adding-an-accordion-pane-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\accordion\dynamically-adding-an-accordion-pane-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24774) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/accordion/dynamically-adding-an-accordion-pane-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/accordion/dynamically-adding-an-accordion-pane-cs) | Picker: 33074
-
 Dynamically Adding An Accordion Pane (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

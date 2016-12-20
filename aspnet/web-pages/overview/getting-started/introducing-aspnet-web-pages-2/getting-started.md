@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\getting-started\introducing-aspnet-web-pages-2\getting-started.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38463) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started.html) | [View prod content](http://www.asp.net/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started) | Picker: 38472
-
 Introducing ASP.NET Web Pages - Getting Started
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

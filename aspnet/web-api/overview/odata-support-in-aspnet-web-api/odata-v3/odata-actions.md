@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v3/odata-actions
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\odata-support-in-aspnet-web-api\odata-v3\odata-actions.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45481) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/odata-support-in-aspnet-web-api/odata-v3/odata-actions.html) | [View prod content](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/odata-v3/odata-actions) | Picker: 45482
-
 Supporting OData Actions in ASP.NET Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

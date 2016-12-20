@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35663) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/getting-started-with-mvc/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc)
-
 Getting Started With MVC
 ====================
 > This is a beginner tutorial series that introduces ASP.NET MVC. You’ll create a simple web application that reads and writes from a database.

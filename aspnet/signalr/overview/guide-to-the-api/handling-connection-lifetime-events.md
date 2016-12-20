@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api/handling-connection-lifetime-events
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\guide-to-the-api\handling-connection-lifetime-events.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51344) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/guide-to-the-api/handling-connection-lifetime-events.html) | [View prod content](http://www.asp.net/signalr/overview/guide-to-the-api/handling-connection-lifetime-events) | Picker: 59962
-
 Understanding and Handling Connection Lifetime Events in SignalR
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)

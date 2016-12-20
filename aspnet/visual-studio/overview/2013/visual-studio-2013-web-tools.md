@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/visual-studio-2013-web-tools
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2013\visual-studio-2013-web-tools.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58742) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2013/visual-studio-2013-web-tools.html) | [View prod content](http://www.asp.net/visual-studio/overview/2013/visual-studio-2013-web-tools) | Picker: 58837
-
 Hands On Lab: Visual Studio 2013 Web Tools
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/rating
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35859) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/rating/index.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/rating)
-
 Rating
 ====================
 > This tutorial shows how to use the Rating control to let users enter ratings for articles or items.

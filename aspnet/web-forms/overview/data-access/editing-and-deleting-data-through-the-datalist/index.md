@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32992) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist)
-
 Editing and Deleting Data Through the DataList
 ====================
 > These tutorials show how to tweak the DataList control so that it lets uses modify data.

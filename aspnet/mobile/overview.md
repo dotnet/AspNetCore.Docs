@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /mobile
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mobile\overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36247) | [View dev content](http://docs.aspdev.net/tutorials/mobile/overview.html) | [View prod content](http://www.asp.net/mobile/overview) | Picker: 36247
-
 Mobile Apps & Sites with ASP.NET
 ====================
 ## Develop Mobile Apps

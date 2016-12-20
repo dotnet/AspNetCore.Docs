@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/creating-web-projects-in-visual-studio
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2013\creating-web-projects-in-visual-studio.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47641) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2013/creating-web-projects-in-visual-studio.html) | [View prod content](http://www.asp.net/visual-studio/overview/2013/creating-web-projects-in-visual-studio) | Picker: 47652
-
 Creating ASP.NET Web Projects in Visual Studio 2013
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

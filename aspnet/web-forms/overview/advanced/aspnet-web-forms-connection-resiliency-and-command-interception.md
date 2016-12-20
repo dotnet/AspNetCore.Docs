@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/advanced/aspnet-web-forms-connection-resiliency-and-command-interception
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\advanced\aspnet-web-forms-connection-resiliency-and-command-interception.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/55037) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/advanced/aspnet-web-forms-connection-resiliency-and-command-interception.html) | [View prod content](http://www.asp.net/web-forms/overview/advanced/aspnet-web-forms-connection-resiliency-and-command-interception) | Picker: 55040
-
 ASP.NET Web Forms Connection Resiliency and Command Interception
 ====================
 by [Erik Reitan](https://github.com/Erikre)

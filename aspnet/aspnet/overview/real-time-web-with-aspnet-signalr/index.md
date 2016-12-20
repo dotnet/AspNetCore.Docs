@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/real-time-web-with-aspnet-signalr
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51229) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/real-time-web-with-aspnet-signalr/index.html) | [View prod content](http://www.asp.net/aspnet/overview/real-time-web-with-aspnet-signalr)
-
 Real Time Web with ASP.NET SignalR
 ====================
 > Real Time Web with ASP.NET SIgnalR

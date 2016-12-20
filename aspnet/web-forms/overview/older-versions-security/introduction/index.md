@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-security\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35550) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-security/introduction/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-security/introduction)
-
 ASP.NET 3.5 - Introduction to Security
 ====================
 > This series of tutorials explores techniques for authenticating users using a login form (forms authentication) and authorizing access to individual pages in an ASP.NET application.

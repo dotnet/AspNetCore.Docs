@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26600) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-implement-the-persistent-communications-pattern-with-the-updatepanel) | Picker: 33623
-
 [How Do I:] Implement the Persistent Communications Pattern with the UpdatePanel?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

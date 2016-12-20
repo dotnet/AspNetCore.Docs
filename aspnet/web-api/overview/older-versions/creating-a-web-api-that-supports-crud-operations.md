@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/creating-a-web-api-that-supports-crud-operations
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\older-versions\creating-a-web-api-that-supports-crud-operations.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36898) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/older-versions/creating-a-web-api-that-supports-crud-operations.html) | [View prod content](http://www.asp.net/web-api/overview/older-versions/creating-a-web-api-that-supports-crud-operations) | Picker: 36899
-
 Enabling CRUD Operations in ASP.NET Web API 1
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

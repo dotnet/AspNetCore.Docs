@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32991) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater)
-
 Displaying Data with the DataList and Repeater
 ====================
 > These tutorials show alternative ways to display data by using the DataList and Repeater controls.

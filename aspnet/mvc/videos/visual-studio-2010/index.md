@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/visual-studio-2010
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35823) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/visual-studio-2010/index.html) | [View prod content](http://www.asp.net/mvc/videos/visual-studio-2010)
-
 General VS 2010 Tips
 ====================
 > Visual Studio 2010

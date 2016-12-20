@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-pass-information-from-one-page-to-another-using-a-query-string
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-pass-information-from-one-page-to-another-using-a-query-string.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26477) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-pass-information-from-one-page-to-another-using-a-query-string.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-pass-information-from-one-page-to-another-using-a-query-string) | Picker: 33500
-
 [How Do I:] Pass Information From One Page to Another Using a Query String
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

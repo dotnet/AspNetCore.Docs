@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\aspnet4\overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36235) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/aspnet4/overview.html) | [View prod content](http://www.asp.net/whitepapers/aspnet4/overview) | Picker: 36235
-
 ASP.NET 4 and Visual Studio 2010 Web Development Overview
 ====================
 > This document provides an overview of many of the new features for ASP.NET that are included in the.NET Framework 4 and in Visual Studio 2010.

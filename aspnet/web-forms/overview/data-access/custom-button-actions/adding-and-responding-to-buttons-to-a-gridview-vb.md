@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\custom-button-actions\adding-and-responding-to-buttons-to-a-gridview-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24991) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-vb) | Picker: 33231
-
 Adding and Responding to Buttons to a GridView (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

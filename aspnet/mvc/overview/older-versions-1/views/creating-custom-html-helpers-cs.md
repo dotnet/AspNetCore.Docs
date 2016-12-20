@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\views\creating-custom-html-helpers-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24936) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs) | Picker: 27570
-
 Creating Custom HTML Helpers (C#)
 ====================
 by [Microsoft](https://github.com/microsoft)

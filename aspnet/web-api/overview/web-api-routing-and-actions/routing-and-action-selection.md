@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/routing-and-action-selection
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\web-api-routing-and-actions\routing-and-action-selection.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42723) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/web-api-routing-and-actions/routing-and-action-selection.html) | [View prod content](http://www.asp.net/web-api/overview/web-api-routing-and-actions/routing-and-action-selection) | Picker: 42724
-
 Routing and Action Selection in ASP.NET Web API
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

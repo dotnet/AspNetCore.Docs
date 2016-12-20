@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/extensibility/change-primary-key-for-users-in-aspnet-identity
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\extensibility\change-primary-key-for-users-in-aspnet-identity.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58848) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/extensibility/change-primary-key-for-users-in-aspnet-identity.html) | [View prod content](http://www.asp.net/identity/overview/extensibility/change-primary-key-for-users-in-aspnet-identity) | Picker: 58857
-
 Change Primary Key for Users in ASP.NET Identity
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

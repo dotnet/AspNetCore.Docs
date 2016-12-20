@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-designer
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35819) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/visual-studio-designer/index.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/visual-studio-designer)
-
 Visual Studio Designer
 ====================
 > This video illustrates enhanced features in Visual Studio 2008 for working with master pages.

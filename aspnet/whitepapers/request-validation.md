@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/request-validation
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\request-validation.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36246) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/request-validation.html) | [View prod content](http://www.asp.net/whitepapers/request-validation) | Picker: 36246
-
 Request Validation - Preventing Script Attacks
 ====================
 > This paper describes the request validation feature of ASP.NET where, by default, the application is prevented from processing unencoded HTML content submitted to the server. This request validation feature can be disabled when the application has been designed to safely process HTML data.

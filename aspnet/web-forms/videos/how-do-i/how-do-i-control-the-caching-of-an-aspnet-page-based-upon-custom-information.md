@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-control-the-caching-of-an-aspnet-page-based-upon-custom-information
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-control-the-caching-of-an-aspnet-page-based-upon-custom-information.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26502) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-control-the-caching-of-an-aspnet-page-based-upon-custom-information.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-control-the-caching-of-an-aspnet-page-based-upon-custom-information) | Picker: 33525
-
 [How Do I:] Control the Caching of an ASP.NET Page Based Upon Custom Information
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

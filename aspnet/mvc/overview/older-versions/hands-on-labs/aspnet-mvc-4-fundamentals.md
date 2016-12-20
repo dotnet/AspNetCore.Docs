@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-fundamentals
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\hands-on-labs\aspnet-mvc-4-fundamentals.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45254) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-fundamentals.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-fundamentals) | Picker: 45271
-
 ASP.NET MVC 4 Fundamentals
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

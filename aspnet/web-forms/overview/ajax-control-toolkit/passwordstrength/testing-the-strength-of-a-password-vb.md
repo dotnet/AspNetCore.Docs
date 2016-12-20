@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/passwordstrength/testing-the-strength-of-a-password-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\passwordstrength\testing-the-strength-of-a-password-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24839) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/passwordstrength/testing-the-strength-of-a-password-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/passwordstrength/testing-the-strength-of-a-password-vb) | Picker: 33139
-
 Testing the Strength of a Password (VB)
 ====================
 by [Christian Wenz](https://github.com/wenz)

@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/signalr-connection-density-testing-with-crank
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\performance\signalr-connection-density-testing-with-crank.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59994) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/performance/signalr-connection-density-testing-with-crank.html) | [View prod content](http://www.asp.net/signalr/overview/performance/signalr-connection-density-testing-with-crank) | Picker: 61083
-
 SignalR Connection Density Testing with Crank
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/23473) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/nerddinner/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/nerddinner)
-
 NerdDinner
 ====================
 > How to build the NerdDinner.com website using ASP.NET MVC 1. For the ASP.MVC 3 version, please visit [nerddinner.codeplex.com](http://nerddinner.codeplex.com/).

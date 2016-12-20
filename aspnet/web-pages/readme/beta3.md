@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/readme/beta3
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\readme\beta3.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38457) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/readme/beta3.html) | [View prod content](http://www.asp.net/web-pages/readme/beta3) | Picker: 38457
-
 Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme
 ====================
 > Web Matrix and ASP.NET Web Pages (Razor) Beta 3 Release Readme

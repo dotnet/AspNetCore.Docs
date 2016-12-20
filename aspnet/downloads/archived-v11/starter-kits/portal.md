@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/archived-v11/starter-kits/portal
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\archived-v11\starter-kits\portal.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36269) | [View dev content](http://docs.aspdev.net/tutorials/downloads/archived-v11/starter-kits/portal.html) | [View prod content](http://www.asp.net/downloads/archived-v11/starter-kits/portal) | Picker: 36269
-
 Portal Web Site
 ====================
 > The ASP.NET Portal Starter Kit demonstrates how you can use ASP.NET and the .NET Framework to build a dynamic portal application. The ASP.NET Portal Starter Kit offers all the functionality of typical portal applications.

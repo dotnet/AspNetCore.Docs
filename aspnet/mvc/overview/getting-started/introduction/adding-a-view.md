@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-a-view
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\introduction\adding-a-view.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47537) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/introduction/adding-a-view.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/introduction/adding-a-view) | Picker: 47553
-
 Adding a View
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

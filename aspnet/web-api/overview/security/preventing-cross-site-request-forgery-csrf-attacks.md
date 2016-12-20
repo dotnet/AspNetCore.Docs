@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\security\preventing-cross-site-request-forgery-csrf-attacks.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43547) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks.html) | [View prod content](http://www.asp.net/web-api/overview/security/preventing-cross-site-request-forgery-csrf-attacks) | Picker: 43555
-
 Preventing Cross-Site Request Forgery (CSRF) Attacks in ASP.NET Web API
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

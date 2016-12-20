@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/23470) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/deployment/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/deployment)
-
 Deployment
 ====================
 > In this tutorial you learn how to use ASP.NET MVC and routing with different versions of IIS.

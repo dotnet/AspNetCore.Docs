@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/security
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/12854) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/security/index.html) | [View prod content](http://www.asp.net/web-forms/overview/security)
-
 Security, Authentication, and Authorization in ASP.NET Web Forms
 ====================
 > How to let users to log in to your site (and optionally be assigned to roles) using either a login form or Windows authentication.

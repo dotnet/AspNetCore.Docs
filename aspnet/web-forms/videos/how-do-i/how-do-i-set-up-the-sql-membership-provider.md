@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-set-up-the-sql-membership-provider
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-set-up-the-sql-membership-provider.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26436) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-set-up-the-sql-membership-provider.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-set-up-the-sql-membership-provider) | Picker: 33459
-
 [How Do I:] Set Up the SQL Membership Provider
 ====================
 by [Patrick Hynds](https://twitter.com/patrickhynds)

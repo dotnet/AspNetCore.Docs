@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59309) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/advanced/index.html) | [View prod content](http://www.asp.net/web-api/overview/advanced)
-
 Advanced Topics for ASP.NET Web API
 ====================
 > More advanced topics for ASP.NET Web API development, after you've learned the basics.

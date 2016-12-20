@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor/quick-tour-of-the-visual-studio-2008-integrated-development-environment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\visual-studio-editor\quick-tour-of-the-visual-studio-2008-integrated-development-environment.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26627) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/visual-studio-editor/quick-tour-of-the-visual-studio-2008-integrated-development-environment.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/visual-studio-editor/quick-tour-of-the-visual-studio-2008-integrated-development-environment) | Picker: 33650
-
 Quick Tour of the Visual Studio 2008 Integrated Development Environment
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

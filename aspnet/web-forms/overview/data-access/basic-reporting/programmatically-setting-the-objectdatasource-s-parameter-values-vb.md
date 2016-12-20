@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\basic-reporting\programmatically-setting-the-objectdatasource-s-parameter-values-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24971) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-vb) | Picker: 33211
-
 Programmatically Setting the ObjectDataSource's Parameter Values (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

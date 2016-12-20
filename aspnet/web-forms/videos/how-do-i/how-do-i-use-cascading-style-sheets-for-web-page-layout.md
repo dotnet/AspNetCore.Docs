@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-cascading-style-sheets-for-web-page-layout
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-use-cascading-style-sheets-for-web-page-layout.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26440) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-use-cascading-style-sheets-for-web-page-layout.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-use-cascading-style-sheets-for-web-page-layout) | Picker: 33463
-
 [How Do I:] Use Cascading Style Sheets for Web Page Layout?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

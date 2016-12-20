@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/caching-data-at-application-startup-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\caching-data\caching-data-at-application-startup-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24976) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/caching-data/caching-data-at-application-startup-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/caching-data/caching-data-at-application-startup-cs) | Picker: 33216
-
 Caching Data at Application Startup (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

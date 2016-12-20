@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/forms-login-custom-key-configuration
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\authentication\forms-login-custom-key-configuration.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26774) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/authentication/forms-login-custom-key-configuration.html) | [View prod content](http://www.asp.net/web-forms/videos/authentication/forms-login-custom-key-configuration) | Picker: 33731
-
 Forms Login Custom Key Configuration
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

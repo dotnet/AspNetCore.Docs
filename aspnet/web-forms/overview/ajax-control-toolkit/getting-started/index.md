@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35850) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/getting-started/index.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/getting-started)
-
 Getting Started
 ====================
 > This page describes how to download the Ajax Control Toolkit and how to add its controls to the Visual Studio or Visual Web Developer toolbox.

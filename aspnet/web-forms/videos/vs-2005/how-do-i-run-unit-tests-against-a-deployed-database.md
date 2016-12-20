@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-run-unit-tests-against-a-deployed-database
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\how-do-i-run-unit-tests-against-a-deployed-database.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26845) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/how-do-i-run-unit-tests-against-a-deployed-database.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/how-do-i-run-unit-tests-against-a-deployed-database) | Picker: 33802
-
 [How Do I:] Run Unit Tests against a Deployed Database?
 ====================
 by [Paul Hacker](https://github.com/pjhacker)

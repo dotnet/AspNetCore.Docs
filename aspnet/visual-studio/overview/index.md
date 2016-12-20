@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47647) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/index.html) | [View prod content](http://www.asp.net/visual-studio/overview)
-
 Visual Studio Overview
 ====================
 - [Visual Studio 2013](2013/index.md)

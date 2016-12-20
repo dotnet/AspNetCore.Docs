@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-adding-elements-to-a-css-file-and-create-new-css-on-the-fly
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\how-do-i\how-do-i-adding-elements-to-a-css-file-and-create-new-css-on-the-fly.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26635) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/how-do-i/how-do-i-adding-elements-to-a-css-file-and-create-new-css-on-the-fly.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/how-do-i/how-do-i-adding-elements-to-a-css-file-and-create-new-css-on-the-fly) | Picker: 33658
-
 [How Do I:] Adding Elements to a CSS File and Create New CSS on the Fly
 ====================
 by Asli Bilgin

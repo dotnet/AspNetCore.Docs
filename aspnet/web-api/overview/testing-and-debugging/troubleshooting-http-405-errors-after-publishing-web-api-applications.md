@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/troubleshooting-http-405-errors-after-publishing-web-api-applications
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\testing-and-debugging\troubleshooting-http-405-errors-after-publishing-web-api-applications.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/57429) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/testing-and-debugging/troubleshooting-http-405-errors-after-publishing-web-api-applications.html) | [View prod content](http://www.asp.net/web-api/overview/testing-and-debugging/troubleshooting-http-405-errors-after-publishing-web-api-applications) | Picker: 57430
-
 Troubleshooting HTTP 405 Errors after Publishing Web API 2 Applications
 ====================
 by [Robert McMurray](https://github.com/rmcmurray)

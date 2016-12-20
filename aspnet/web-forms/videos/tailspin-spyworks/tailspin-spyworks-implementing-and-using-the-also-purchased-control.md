@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-implementing-and-using-the-also-purchased-control
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\tailspin-spyworks\tailspin-spyworks-implementing-and-using-the-also-purchased-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26891) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/tailspin-spyworks/tailspin-spyworks-implementing-and-using-the-also-purchased-control.html) | [View prod content](http://www.asp.net/web-forms/videos/tailspin-spyworks/tailspin-spyworks-implementing-and-using-the-also-purchased-control) | Picker: 33838
-
 Tailspin Spyworks - Implementing and Using the Also Purchased Control
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/creating-stored-procedures-and-user-defined-functions-with-managed-code-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\advanced-data-access-scenarios\creating-stored-procedures-and-user-defined-functions-with-managed-code-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24767) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/advanced-data-access-scenarios/creating-stored-procedures-and-user-defined-functions-with-managed-code-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/advanced-data-access-scenarios/creating-stored-procedures-and-user-defined-functions-with-managed-code-vb) | Picker: 33067
-
 Creating Stored Procedures and User-Defined Functions with Managed Code (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/collapsiblepanel/collapsing-and-expanding-a-panel-from-javascript-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\collapsiblepanel\collapsing-and-expanding-a-panel-from-javascript-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24807) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/collapsiblepanel/collapsing-and-expanding-a-panel-from-javascript-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/collapsiblepanel/collapsing-and-expanding-a-panel-from-javascript-vb) | Picker: 33107
-
 Collapsing and Expanding a Panel from JavaScript (VB)
 ====================
 by [Christian Wenz](https://github.com/wenz)

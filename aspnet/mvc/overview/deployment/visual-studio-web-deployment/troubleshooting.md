@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/deployment/visual-studio-web-deployment/troubleshooting
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\deployment\visual-studio-web-deployment\troubleshooting.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45355) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/deployment/visual-studio-web-deployment/troubleshooting.html) | [View prod content](http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/troubleshooting) | Picker: 45368
-
 ASP.NET Web Deployment using Visual Studio: Troubleshooting
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

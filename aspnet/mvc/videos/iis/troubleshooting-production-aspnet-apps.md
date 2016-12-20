@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/troubleshooting-production-aspnet-apps
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\iis\troubleshooting-production-aspnet-apps.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26815) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/iis/troubleshooting-production-aspnet-apps.html) | [View prod content](http://www.asp.net/mvc/videos/iis/troubleshooting-production-aspnet-apps) | Picker: 35836
-
 Troubleshooting Production ASP.NET Apps
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

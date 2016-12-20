@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/mvc4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\mvc4.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/34085) | [View dev content](http://docs.aspdev.net/tutorials/mvc/mvc4.html) | [View prod content](http://www.asp.net/mvc/mvc4) | Picker: 34085
-
 ASP.NET MVC 4
 ====================
 ### Top Features

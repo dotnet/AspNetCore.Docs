@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-export-data-to-a-comma-delimited-csv-file-for-an-application-like-excel
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-export-data-to-a-comma-delimited-csv-file-for-an-application-like-excel.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26498) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-export-data-to-a-comma-delimited-csv-file-for-an-application-like-excel.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-export-data-to-a-comma-delimited-csv-file-for-an-application-like-excel) | Picker: 33521
-
 [How Do I:] Export Data to a Comma Delimited (CSV) File for an Application Like Excel
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

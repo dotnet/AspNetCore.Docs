@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\getting-started-with-aspnet-web-api\build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58804) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs.html) | [View prod content](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs) | Picker: 58838
-
 Hands On Lab: Build a Single Page Application (SPA) with ASP.NET Web API and Angular.js
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

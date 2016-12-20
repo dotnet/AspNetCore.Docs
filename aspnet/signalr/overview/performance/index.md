@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59931) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/performance/index.html) | [View prod content](http://www.asp.net/signalr/overview/performance)
-
 SignalR Performance
 ====================
 > How to maximize the performance of SignalR applications.

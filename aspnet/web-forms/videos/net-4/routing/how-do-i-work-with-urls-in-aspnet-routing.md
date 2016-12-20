@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/how-do-i-work-with-urls-in-aspnet-routing
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\routing\how-do-i-work-with-urls-in-aspnet-routing.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26668) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/routing/how-do-i-work-with-urls-in-aspnet-routing.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/routing/how-do-i-work-with-urls-in-aspnet-routing) | Picker: 33691
-
 How Do I: Work with URLs in ASP.NET Routing?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

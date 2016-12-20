@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-security\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/33006) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-security/membership/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-security/membership)
-
 ASP.NET 3.5 - Membership
 ====================
 > This tutorial series examines techniques for using the built-in membership (security) system to create user accounts and configure authorization rules.

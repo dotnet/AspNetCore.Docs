@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/introduction-to-aspnet-ajax-history
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\aspnet-ajax\introduction-to-aspnet-ajax-history.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26670) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/aspnet-ajax/introduction-to-aspnet-ajax-history.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/aspnet-ajax/introduction-to-aspnet-ajax-history) | Picker: 33693
-
 Introduction to ASP.NET Ajax History
 ====================
 by [Bertrand Le Roy](https://github.com/bleroy)

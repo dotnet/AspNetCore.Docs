@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/basic-aspnet-authentication-in-an-ajax-enabled-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\basic-aspnet-authentication-in-an-ajax-enabled-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26611) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/basic-aspnet-authentication-in-an-ajax-enabled-application.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/basic-aspnet-authentication-in-an-ajax-enabled-application) | Picker: 33634
-
 Basic ASP.NET Authentication in an AJAX Enabled Application
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

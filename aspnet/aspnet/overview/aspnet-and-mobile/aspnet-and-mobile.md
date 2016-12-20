@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/aspnet-and-mobile/aspnet-and-mobile
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\aspnet-and-mobile\aspnet-and-mobile.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/49307) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/aspnet-and-mobile/aspnet-and-mobile.html) | [View prod content](http://www.asp.net/aspnet/overview/aspnet-and-mobile/aspnet-and-mobile) | Picker: 49301
-
 ASP.NET and Mobile
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/authorization
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\videos\getting-started\authorization.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37168) | [View dev content](http://docs.aspdev.net/tutorials/web-api/videos/getting-started/authorization.html) | [View prod content](http://www.asp.net/web-api/videos/getting-started/authorization) | Picker: 43067
-
 ASP.NET Web API, Part 6: Authorization
 ====================
 by [Jon Galloway](https://github.com/jongalloway)

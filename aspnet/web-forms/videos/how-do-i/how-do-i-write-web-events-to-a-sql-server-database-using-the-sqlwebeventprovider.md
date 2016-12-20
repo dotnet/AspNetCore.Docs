@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-write-web-events-to-a-sql-server-database-using-the-sqlwebeventprovider
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-write-web-events-to-a-sql-server-database-using-the-sqlwebeventprovider.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26486) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-write-web-events-to-a-sql-server-database-using-the-sqlwebeventprovider.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-write-web-events-to-a-sql-server-database-using-the-sqlwebeventprovider) | Picker: 33509
-
 [How Do I:] Write Web Events to a SQL Server Database Using the SqlWebEventProvider
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

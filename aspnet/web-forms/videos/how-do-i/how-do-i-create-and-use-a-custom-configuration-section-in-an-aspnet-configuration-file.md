@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-and-use-a-custom-configuration-section-in-an-aspnet-configuration-file
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-create-and-use-a-custom-configuration-section-in-an-aspnet-configuration-file.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26467) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-create-and-use-a-custom-configuration-section-in-an-aspnet-configuration-file.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-create-and-use-a-custom-configuration-section-in-an-aspnet-configuration-file) | Picker: 33490
-
 [How Do I:] Create and Use a Custom Configuration Section in an ASP.NET Configuration File
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

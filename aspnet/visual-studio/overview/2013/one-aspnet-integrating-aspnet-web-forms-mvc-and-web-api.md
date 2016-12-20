@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2013\one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58778) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2013/one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api.html) | [View prod content](http://www.asp.net/visual-studio/overview/2013/one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api) | Picker: 58861
-
 Hands On Lab: One ASP.NET: Integrating ASP.NET Web Forms, MVC and Web API
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)

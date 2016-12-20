@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/security
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/23467) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/security/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/security)
-
 Security
 ====================
 > This tutorial set covers how to password protect some pages in your ASP.NET MVC application and how to create and manage users and roles.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/dynamically-controlling-updatepanel-animations-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\animation\dynamically-controlling-updatepanel-animations-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24863) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/animation/dynamically-controlling-updatepanel-animations-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/animation/dynamically-controlling-updatepanel-animations-vb) | Picker: 33163
-
 Dynamically Controlling UpdatePanel Animations (VB)
 ====================
 by [Christian Wenz](https://github.com/wenz)

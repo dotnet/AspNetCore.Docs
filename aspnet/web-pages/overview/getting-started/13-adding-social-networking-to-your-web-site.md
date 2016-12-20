@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/13-adding-social-networking-to-your-web-site
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\getting-started\13-adding-social-networking-to-your-web-site.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38943) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/getting-started/13-adding-social-networking-to-your-web-site.html) | [View prod content](http://www.asp.net/web-pages/overview/getting-started/13-adding-social-networking-to-your-web-site) | Picker: 59911
-
 Adding Social Networking to ASP.NET Web Pages (Razor) Sites
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

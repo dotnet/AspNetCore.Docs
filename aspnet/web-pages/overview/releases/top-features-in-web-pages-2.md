@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/top-features-in-web-pages-2
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\releases\top-features-in-web-pages-2.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24965) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/releases/top-features-in-web-pages-2.html) | [View prod content](http://www.asp.net/web-pages/overview/releases/top-features-in-web-pages-2) | Picker: 38367
-
 The Top Features in ASP.NET Web Pages 2
 ====================
 by [Microsoft](https://github.com/microsoft)

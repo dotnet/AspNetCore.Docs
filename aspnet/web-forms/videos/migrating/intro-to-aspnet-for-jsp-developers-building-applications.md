@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-building-applications
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\migrating\intro-to-aspnet-for-jsp-developers-building-applications.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26922) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-building-applications.html) | [View prod content](http://www.asp.net/web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-building-applications) | Picker: 33869
-
 Intro to ASP.NET for JSP Developers: Building Applications
 ====================
 by [Microsoft](https://github.com/microsoft)

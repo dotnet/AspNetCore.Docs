@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/choosing-the-right-approach-to-web-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\configuring-server-environments-for-web-deployment\choosing-the-right-approach-to-web-deployment.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38160) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/configuring-server-environments-for-web-deployment/choosing-the-right-approach-to-web-deployment.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/configuring-server-environments-for-web-deployment/choosing-the-right-approach-to-web-deployment) | Picker: 38246
-
 Choosing the Right Approach to Web Deployment
 ====================
 by [Jason Lee](https://github.com/jrjlee)

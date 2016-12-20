@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/6466) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/index.html) | [View prod content](http://www.asp.net/mvc/videos)
-
 Videos
 ====================
 - [ASP.NET MVC 4](mvc-4/index.md)

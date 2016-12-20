@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-build-process
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\web-deployment-in-the-enterprise\understanding-the-build-process.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38151) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-build-process.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-build-process) | Picker: 38229
-
 Understanding the Build Process
 ====================
 by [Jason Lee](https://github.com/jrjlee)

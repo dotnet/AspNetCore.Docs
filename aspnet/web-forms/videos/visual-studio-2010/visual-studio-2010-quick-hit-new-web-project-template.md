@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-new-web-project-template
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\visual-studio-2010\visual-studio-2010-quick-hit-new-web-project-template.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26932) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-new-web-project-template.html) | [View prod content](http://www.asp.net/web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-new-web-project-template) | Picker: 33879
-
 Visual Studio 2010 "Quick Hit" - New Web Project Template
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

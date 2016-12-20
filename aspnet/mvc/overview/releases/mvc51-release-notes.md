@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/releases/mvc51-release-notes
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\releases\mvc51-release-notes.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54027) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/releases/mvc51-release-notes.html) | [View prod content](http://www.asp.net/mvc/overview/releases/mvc51-release-notes) | Picker: 54044
-
 What's New in ASP.NET MVC 5.1
 ====================
 by [Microsoft](https://github.com/microsoft)

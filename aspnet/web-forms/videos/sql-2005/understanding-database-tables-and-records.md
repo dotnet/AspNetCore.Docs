@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/understanding-database-tables-and-records
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\sql-2005\understanding-database-tables-and-records.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26878) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/sql-2005/understanding-database-tables-and-records.html) | [View prod content](http://www.asp.net/web-forms/videos/sql-2005/understanding-database-tables-and-records) | Picker: 33825
-
 Understanding Database Tables and Records
 ====================
 by [Microsoft](https://github.com/microsoft)

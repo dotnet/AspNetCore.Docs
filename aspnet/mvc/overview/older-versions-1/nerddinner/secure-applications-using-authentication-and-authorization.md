@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/secure-applications-using-authentication-and-authorization
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\nerddinner\secure-applications-using-authentication-and-authorization.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25189) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/nerddinner/secure-applications-using-authentication-and-authorization.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/nerddinner/secure-applications-using-authentication-and-authorization) | Picker: 27644
-
 Secure Applications Using Authentication and Authorization
 ====================
 by [Microsoft](https://github.com/microsoft)

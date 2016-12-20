@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/enabling-windows-authentication-in-katana
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\owin-and-katana\enabling-windows-authentication-in-katana.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47988) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/owin-and-katana/enabling-windows-authentication-in-katana.html) | [View prod content](http://www.asp.net/aspnet/overview/owin-and-katana/enabling-windows-authentication-in-katana) | Picker: 47989
-
 Enabling Windows Authentication in Katana
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

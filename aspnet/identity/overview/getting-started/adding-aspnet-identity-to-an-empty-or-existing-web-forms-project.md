@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/adding-aspnet-identity-to-an-empty-or-existing-web-forms-project
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\getting-started\adding-aspnet-identity-to-an-empty-or-existing-web-forms-project.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51489) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/getting-started/adding-aspnet-identity-to-an-empty-or-existing-web-forms-project.html) | [View prod content](http://www.asp.net/identity/overview/getting-started/adding-aspnet-identity-to-an-empty-or-existing-web-forms-project) | Picker: 51490
-
 Adding ASP.NET Identity to an Empty or Existing Web Forms Project
 ====================
 by [Raquel Soares De Almeida](https://github.com/raquelsa)

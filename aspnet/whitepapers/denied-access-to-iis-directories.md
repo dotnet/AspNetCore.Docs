@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/denied-access-to-iis-directories
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\denied-access-to-iis-directories.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36238) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/denied-access-to-iis-directories.html) | [View prod content](http://www.asp.net/whitepapers/denied-access-to-iis-directories) | Picker: 36238
-
 ASP.NET Denied Access to IIS Directories
 ====================
 > This whitepaper describes what you must do if a request to your ASP.NET application returns the error, "Denied Access to *DirectoryName* directory. Failed to start monitoring directory chaanges."

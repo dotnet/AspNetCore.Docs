@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/htmleditor
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35852) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/htmleditor/index.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/htmleditor)
-
 HTMLEditor
 ====================
 > This tutorial shows how to use the HTMLEditor control, which provides a rich editor and WYSIWYG or source editing of HTML content.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/paging-and-sorting-report-data-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\paging-and-sorting\paging-and-sorting-report-data-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25194) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/paging-and-sorting/paging-and-sorting-report-data-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/paging-and-sorting/paging-and-sorting-report-data-cs) | Picker: 33390
-
 Paging and Sorting Report Data (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

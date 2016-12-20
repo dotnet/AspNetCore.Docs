@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/installing-ftp7
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\iis\installing-ftp7.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26817) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/iis/installing-ftp7.html) | [View prod content](http://www.asp.net/mvc/videos/iis/installing-ftp7) | Picker: 35838
-
 Installing FTP7
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/individual-accounts-in-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\security\individual-accounts-in-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/60324) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/security/individual-accounts-in-web-api.html) | [View prod content](http://www.asp.net/web-api/overview/security/individual-accounts-in-web-api) | Picker: 51297
-
 Secure a Web API with Individual Accounts and Local Login in ASP.NET Web API 2.2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

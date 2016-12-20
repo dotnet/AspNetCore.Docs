@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-use-httpverbs-attributes-in-an-mvc-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\how-do-i-use-httpverbs-attributes-in-an-mvc-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26707) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/how-do-i-use-httpverbs-attributes-in-an-mvc-application.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/how-do-i-use-httpverbs-attributes-in-an-mvc-application) | Picker: 27494
-
 How Do I: Use HttpVerbs Attributes in an MVC Application?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

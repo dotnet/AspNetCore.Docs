@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/creating-user-accounts-with-the-create-user-wizard
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\authentication\creating-user-accounts-with-the-create-user-wizard.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26780) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/authentication/creating-user-accounts-with-the-create-user-wizard.html) | [View prod content](http://www.asp.net/web-forms/videos/authentication/creating-user-accounts-with-the-create-user-wizard) | Picker: 33737
-
 Creating User Accounts with the Create User Wizard
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

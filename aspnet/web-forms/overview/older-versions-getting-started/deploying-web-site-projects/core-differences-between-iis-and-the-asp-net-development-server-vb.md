@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/core-differences-between-iis-and-the-asp-net-development-server-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\deploying-web-site-projects\core-differences-between-iis-and-the-asp-net-development-server-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25145) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/core-differences-between-iis-and-the-asp-net-development-server-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/core-differences-between-iis-and-the-asp-net-development-server-vb) | Picker: 33361
-
 Core Differences Between IIS and the ASP.NET Development Server (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

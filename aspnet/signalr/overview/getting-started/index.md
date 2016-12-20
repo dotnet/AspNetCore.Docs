@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59929) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/getting-started/index.html) | [View prod content](http://www.asp.net/signalr/overview/getting-started)
-
 SignalR Getting Started
 ====================
 > What SignalR is, platforms it runs on, and how to get started.

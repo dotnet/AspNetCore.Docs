@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/pluralsight
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\pluralsight.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36214) | [View dev content](http://docs.aspdev.net/tutorials/mvc/pluralsight.html) | [View prod content](http://www.asp.net/mvc/pluralsight) | Picker: 36214
-
 MVC Video Training from Pluralsight
 ====================
 ### Videos

@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\testing-and-debugging\tracing-in-aspnet-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38196) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api.html) | [View prod content](http://www.asp.net/web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api) | Picker: 38202
-
 Tracing in ASP.NET Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

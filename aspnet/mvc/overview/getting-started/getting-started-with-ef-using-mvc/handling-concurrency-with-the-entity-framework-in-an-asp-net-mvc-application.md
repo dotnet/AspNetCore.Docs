@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\getting-started-with-ef-using-mvc\handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54438) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application) | Picker: 33314
-
 Handling Concurrency with the Entity Framework 6 in an ASP.NET MVC 5 Application (10 of 12)
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)
@@ -79,7 +77,7 @@ In *Models\Department.cs*, add a tracking property named `RowVersion`:
 
 [!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=20-22)]
 
-The [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) attribute specifies that this column will be included in the `Where` clause of `Update` and `Delete` commands sent to the database. The attribute is called [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) because previous versions of SQL Server used a SQL [timestamp](https://msdn.microsoft.com/en-us/library/ms182776(v=SQL.90).aspx) data type before the SQL [rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) replaced it. The .Net type for ``[rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) is a byte array.
+The [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) attribute specifies that this column will be included in the `Where` clause of `Update` and `Delete` commands sent to the database. The attribute is called [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) because previous versions of SQL Server used a SQL [timestamp](https://msdn.microsoft.com/en-us/library/ms182776(v=SQL.90).aspx) data type before the SQL [rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) replaced it. The .Net type for[rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) is a byte array.
 
 If you prefer to use the fluent API, you can use the [IsConcurrencyToken](https://msdn.microsoft.com/en-us/library/gg679501(v=VS.103).aspx) method to specify the tracking property, as shown in the following example:
 

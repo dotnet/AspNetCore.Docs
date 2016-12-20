@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-choose-between-methods-of-ajax-page-updates
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-choose-between-methods-of-ajax-page-updates.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26592) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-choose-between-methods-of-ajax-page-updates.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-choose-between-methods-of-ajax-page-updates) | Picker: 33615
-
 [How Do I:] Choose Between Methods of AJAX Page Updates?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\filtering-scenarios-with-the-datalist-and-repeater\master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25061) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater/master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb) | Picker: 33299
-
 Master/Detail Using a Bulleted List of Master Records with a Details DataList (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

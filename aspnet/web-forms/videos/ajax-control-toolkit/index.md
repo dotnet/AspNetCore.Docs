@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32932) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/index.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit)
-
 Ajax Control Toolkit
 ====================
 > How to create very responsive ASP.NET Web pages using the Ajax Control Toolkit.

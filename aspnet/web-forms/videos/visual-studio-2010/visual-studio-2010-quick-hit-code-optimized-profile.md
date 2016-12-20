@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-optimized-profile
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\visual-studio-2010\visual-studio-2010-quick-hit-code-optimized-profile.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26928) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-optimized-profile.html) | [View prod content](http://www.asp.net/web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-optimized-profile) | Picker: 33875
-
 Visual Studio 2010 "Quick Hit" - Code Optimized Profile
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

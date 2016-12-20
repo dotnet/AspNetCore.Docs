@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\getting-started-with-aspnet-web-api\tutorial-your-first-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36869) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api.html) | [View prod content](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) | Picker: 36873
-
 Getting Started with ASP.NET Web API 2 (C#)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

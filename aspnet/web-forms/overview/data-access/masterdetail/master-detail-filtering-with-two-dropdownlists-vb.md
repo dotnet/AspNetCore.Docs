@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/masterdetail/master-detail-filtering-with-two-dropdownlists-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\masterdetail\master-detail-filtering-with-two-dropdownlists-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25153) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/masterdetail/master-detail-filtering-with-two-dropdownlists-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/masterdetail/master-detail-filtering-with-two-dropdownlists-vb) | Picker: 33365
-
 Master/Detail Filtering With Two DropDownLists (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

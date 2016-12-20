@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-inserting-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\working-with-batched-data\batch-inserting-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25270) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/working-with-batched-data/batch-inserting-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/working-with-batched-data/batch-inserting-cs) | Picker: 33437
-
 Batch Inserting (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

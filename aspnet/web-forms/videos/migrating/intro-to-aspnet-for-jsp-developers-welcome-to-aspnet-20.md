@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\migrating\intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26921) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20.html) | [View prod content](http://www.asp.net/web-forms/videos/migrating/intro-to-aspnet-for-jsp-developers-welcome-to-aspnet-20) | Picker: 33868
-
 Intro to ASP.NET for JSP Developers: Welcome to ASP.NET 2.0
 ====================
 by [Microsoft](https://github.com/microsoft)

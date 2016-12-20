@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59928) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/guide-to-the-api/index.html) | [View prod content](http://www.asp.net/signalr/overview/guide-to-the-api)
-
 SignalR Guide to the API
 ====================
 > Documentation on how to use the SignalR Hubs API. For authorization API, see the Security tab.

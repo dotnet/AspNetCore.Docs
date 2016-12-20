@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/simple-web-service-authentication
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\authentication\simple-web-service-authentication.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26787) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/authentication/simple-web-service-authentication.html) | [View prod content](http://www.asp.net/web-forms/videos/authentication/simple-web-service-authentication) | Picker: 33744
-
 Simple Web Service Authentication
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

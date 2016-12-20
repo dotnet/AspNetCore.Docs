@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/modalpopup/handling-postbacks-from-a-modalpopup-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\modalpopup\handling-postbacks-from-a-modalpopup-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24829) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/modalpopup/handling-postbacks-from-a-modalpopup-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/modalpopup/handling-postbacks-from-a-modalpopup-vb) | Picker: 33129
-
 Handling Postbacks from a ModalPopup (VB)
 ====================
 by [Christian Wenz](https://github.com/wenz)

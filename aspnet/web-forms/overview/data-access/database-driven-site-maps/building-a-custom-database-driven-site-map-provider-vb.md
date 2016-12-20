@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/database-driven-site-maps/building-a-custom-database-driven-site-map-provider-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\database-driven-site-maps\building-a-custom-database-driven-site-map-provider-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25005) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/database-driven-site-maps/building-a-custom-database-driven-site-map-provider-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/database-driven-site-maps/building-a-custom-database-driven-site-map-provider-vb) | Picker: 33245
-
 Building a Custom Database-Driven Site Map Provider (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

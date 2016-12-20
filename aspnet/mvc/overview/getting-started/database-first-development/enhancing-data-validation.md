@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/enhancing-data-validation
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\database-first-development\enhancing-data-validation.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/50895) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/database-first-development/enhancing-data-validation.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/database-first-development/enhancing-data-validation) | Picker: 50889
-
 EF Database First with ASP.NET MVC: Enhancing Data Validation
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

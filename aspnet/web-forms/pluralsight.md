@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/pluralsight
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\pluralsight.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36494) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/pluralsight.html) | [View prod content](http://www.asp.net/web-forms/pluralsight) | Picker: 36494
-
 Web Forms Video Training from Pluralsight
 ====================
 ### Videos

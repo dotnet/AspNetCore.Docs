@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/visual-studio-2012-web-publishing-improvements
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2012\visual-studio-2012-web-publishing-improvements.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42888) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2012/visual-studio-2012-web-publishing-improvements.html) | [View prod content](http://www.asp.net/visual-studio/overview/2012/visual-studio-2012-web-publishing-improvements) | Picker: 42889
-
 Visual Studio 2012 Web Publishing Improvements
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

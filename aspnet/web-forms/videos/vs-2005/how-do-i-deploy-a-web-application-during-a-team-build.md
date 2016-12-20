@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-deploy-a-web-application-during-a-team-build
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\how-do-i-deploy-a-web-application-during-a-team-build.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26844) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/how-do-i-deploy-a-web-application-during-a-team-build.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/how-do-i-deploy-a-web-application-during-a-team-build) | Picker: 33801
-
 [How Do I:] Deploy a Web Application during a Team Build?
 ====================
 by [Paul Hacker](https://github.com/pjhacker)

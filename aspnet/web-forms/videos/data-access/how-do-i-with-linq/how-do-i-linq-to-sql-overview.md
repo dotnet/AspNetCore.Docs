@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-overview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\how-do-i-with-linq\how-do-i-linq-to-sql-overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26520) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-overview.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-overview) | Picker: 37513
-
 [How Do I:] LINQ to SQL: Overview
 ====================
 by [Scott Stanfield](https://github.com/scottstanfield)

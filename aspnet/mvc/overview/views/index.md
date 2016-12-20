@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/views
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/13227) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/views/index.html) | [View prod content](http://www.asp.net/mvc/overview/views)
-
 ASP.NET MVC UI, Layouts, and Themes
 ====================
 > The Razor syntax and how to use it in views (the V in MVC) to display information.

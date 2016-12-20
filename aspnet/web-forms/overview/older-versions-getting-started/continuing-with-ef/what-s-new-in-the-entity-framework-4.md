@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef/what-s-new-in-the-entity-framework-4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\continuing-with-ef\what-s-new-in-the-entity-framework-4.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24989) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/continuing-with-ef/what-s-new-in-the-entity-framework-4.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/continuing-with-ef/what-s-new-in-the-entity-framework-4) | Picker: 33229
-
 What's New in the Entity Framework 4.0
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/visual-studio-2013-web-editor-features-browser-link
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2013\visual-studio-2013-web-editor-features-browser-link.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51389) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2013/visual-studio-2013-web-editor-features-browser-link.html) | [View prod content](http://www.asp.net/visual-studio/overview/2013/visual-studio-2013-web-editor-features-browser-link) | Picker: 51391
-
 Visual Studio 2013 Web Editor Features - Browser Link
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-fixednames-option-with-the-compiler-utility-for-maximum-flexibility
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-use-the-fixednames-option-with-the-compiler-utility-for-maximum-flexibility.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26482) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-use-the-fixednames-option-with-the-compiler-utility-for-maximum-flexibility.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-use-the-fixednames-option-with-the-compiler-utility-for-maximum-flexibility) | Picker: 33505
-
 [How Do I:] Use the Fixednames Option with the Compiler Utility for Maximum Flexibility
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/page-lifecycle-events
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-35-applications\page-lifecycle-events.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26793) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-35-applications/page-lifecycle-events.html) | [View prod content](http://www.asp.net/web-forms/videos/building-35-applications/page-lifecycle-events) | Picker: 33750
-
 Page Lifecycle Events
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

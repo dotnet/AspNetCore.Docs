@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-mvc2-upgrade-notes
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\aspnet-mvc2-upgrade-notes.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36237) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/aspnet-mvc2-upgrade-notes.html) | [View prod content](http://www.asp.net/whitepapers/aspnet-mvc2-upgrade-notes) | Picker: 36237
-
 Upgrading an ASP.NET MVC 1.0 Application to ASP.NET MVC 2
 ====================
 > This document describes both how to upgrade manually and with a wizard an ASP.NET MVC 1.0 Application to ASP.NET MVC 2. This document is also available for [Download](https://download.microsoft.com/download/F/1/6/F16F9AF9-8EF4-4845-BC97-639791D5699C/MVC2-Upgrade-Notes.pdf)

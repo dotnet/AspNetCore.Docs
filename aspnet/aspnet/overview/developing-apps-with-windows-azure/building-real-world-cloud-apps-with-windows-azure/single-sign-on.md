@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/single-sign-on
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\developing-apps-with-windows-azure\building-real-world-cloud-apps-with-windows-azure\single-sign-on.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/53577) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/single-sign-on.html) | [View prod content](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/single-sign-on) | Picker: 53625
-
 Single Sign-On (Building Real-World Cloud Apps with Azure)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Rick Anderson](https://github.com/Rick-Anderson), [Tom Dykstra](https://github.com/tdykstra)

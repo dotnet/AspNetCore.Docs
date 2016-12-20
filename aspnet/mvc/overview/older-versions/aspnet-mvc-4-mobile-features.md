@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/aspnet-mvc-4-mobile-features
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\aspnet-mvc-4-mobile-features.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24915) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/aspnet-mvc-4-mobile-features.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/aspnet-mvc-4-mobile-features) | Picker: 27553
-
 ASP.NET MVC 4 Mobile Features
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

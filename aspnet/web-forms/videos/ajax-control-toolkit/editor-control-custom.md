@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/editor-control-custom
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\editor-control-custom.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26572) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/editor-control-custom.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/editor-control-custom) | Picker: 33595
-
 Editor Control Custom
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

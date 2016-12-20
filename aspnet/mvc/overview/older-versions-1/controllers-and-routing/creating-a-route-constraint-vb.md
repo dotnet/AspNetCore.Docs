@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\controllers-and-routing\creating-a-route-constraint-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24923) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-vb) | Picker: 27561
-
 Creating a Route Constraint (VB)
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

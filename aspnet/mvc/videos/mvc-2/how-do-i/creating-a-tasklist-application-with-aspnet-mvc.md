@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/creating-a-tasklist-application-with-aspnet-mvc
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\creating-a-tasklist-application-with-aspnet-mvc.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26687) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/creating-a-tasklist-application-with-aspnet-mvc.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/creating-a-tasklist-application-with-aspnet-mvc) | Picker: 27474
-
 Creating a Tasklist Application with ASP.NET MVC
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/build-a-model-with-business-rule-validations
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\nerddinner\build-a-model-with-business-rule-validations.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25183) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/nerddinner/build-a-model-with-business-rule-validations.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/nerddinner/build-a-model-with-business-rule-validations) | Picker: 27638
-
 Build a Model with Business Rule Validations
 ====================
 by [Microsoft](https://github.com/microsoft)

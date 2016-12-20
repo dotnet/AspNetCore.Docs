@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32955) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/tailspin-spyworks/index.html) | [View prod content](http://www.asp.net/web-forms/videos/tailspin-spyworks)
-
 Tailspin Spyworks
 ====================
 > How to use new features in ASP.NET 4 to build an online store, including shopping, checkout, and administration.

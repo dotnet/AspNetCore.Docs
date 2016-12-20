@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/dynamicpopulate/using-dynamicpopulate-with-a-user-control-and-javascript-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\dynamicpopulate\using-dynamicpopulate-with-a-user-control-and-javascript-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24818) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/dynamicpopulate/using-dynamicpopulate-with-a-user-control-and-javascript-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/dynamicpopulate/using-dynamicpopulate-with-a-user-control-and-javascript-cs) | Picker: 33118
-
 Using DynamicPopulate with a User Control And JavaScript (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

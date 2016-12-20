@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-startup-class-detection
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\owin-and-katana\owin-startup-class-detection.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/50345) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/owin-and-katana/owin-startup-class-detection.html) | [View prod content](http://www.asp.net/aspnet/overview/owin-and-katana/owin-startup-class-detection) | Picker: 50346
-
 OWIN Startup Class Detection
 ====================
 by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson](https://github.com/Rick-Anderson)

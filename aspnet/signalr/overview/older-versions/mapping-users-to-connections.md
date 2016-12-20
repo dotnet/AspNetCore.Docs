@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/mapping-users-to-connections
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\older-versions\mapping-users-to-connections.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47840) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/older-versions/mapping-users-to-connections.html) | [View prod content](http://www.asp.net/signalr/overview/older-versions/mapping-users-to-connections) | Picker: 59968
-
 Mapping SignalR Users to Connections in SignalR 1.x
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)

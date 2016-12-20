@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35549) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/master-pages/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/master-pages)
-
 ASP.NET 3.5 - Web Forms Master Pages
 ====================
 > How to create and use ASP.NET master pages and content pages to create a consistent layout in Web Forms applications.

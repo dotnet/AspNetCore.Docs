@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/understanding-controllers-controller-actions-and-action-results
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\understanding-controllers-controller-actions-and-action-results.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26691) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/understanding-controllers-controller-actions-and-action-results.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/understanding-controllers-controller-actions-and-action-results) | Picker: 27478
-
 Understanding Controllers, Controller Actions, and Action Results
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

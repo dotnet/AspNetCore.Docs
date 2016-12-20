@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/begin-modifying-dynamic-data-applications-with-url-routing
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-dynamic-data\begin-modifying-dynamic-data-applications-with-url-routing.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26675) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-dynamic-data/begin-modifying-dynamic-data-applications-with-url-routing.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-dynamic-data/begin-modifying-dynamic-data-applications-with-url-routing) | Picker: 33698
-
 Begin Modifying Dynamic Data Applications with URL Routing
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

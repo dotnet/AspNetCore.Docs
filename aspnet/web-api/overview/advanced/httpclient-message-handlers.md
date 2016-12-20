@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/httpclient-message-handlers
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\advanced\httpclient-message-handlers.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43130) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/advanced/httpclient-message-handlers.html) | [View prod content](http://www.asp.net/web-api/overview/advanced/httpclient-message-handlers) | Picker: 43131
-
 HttpClient Message Handlers in ASP.NET Web API
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

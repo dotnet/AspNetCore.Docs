@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32937) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-dynamic-data/index.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-dynamic-data)
-
 ASP.NET Dynamic Data
 ====================
 > How to use ASP.NET Dynamic Data to create scaffolded applications that automatically know how to perform data access.

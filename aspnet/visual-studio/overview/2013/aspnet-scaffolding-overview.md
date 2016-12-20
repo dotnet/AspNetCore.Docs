@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/aspnet-scaffolding-overview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2013\aspnet-scaffolding-overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47622) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2013/aspnet-scaffolding-overview.html) | [View prod content](http://www.asp.net/visual-studio/overview/2013/aspnet-scaffolding-overview) | Picker: 47651
-
 ASP.NET Scaffolding in Visual Studio 2013
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

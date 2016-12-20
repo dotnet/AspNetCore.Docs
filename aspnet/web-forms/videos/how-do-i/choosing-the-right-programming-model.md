@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/choosing-the-right-programming-model
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\choosing-the-right-programming-model.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26516) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/choosing-the-right-programming-model.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/choosing-the-right-programming-model) | Picker: 33539
-
 Choosing the Right Programming Model
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

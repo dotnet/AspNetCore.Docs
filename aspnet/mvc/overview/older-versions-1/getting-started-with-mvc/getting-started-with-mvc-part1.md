@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part1
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\getting-started-with-mvc\getting-started-with-mvc-part1.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24724) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part1.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part1) | Picker: 33026
-
 Intro to ASP.NET MVC
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

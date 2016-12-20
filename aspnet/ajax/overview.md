@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36256) | [View dev content](http://docs.aspdev.net/tutorials/ajax/overview.html) | [View prod content](http://www.asp.net/ajax/overview) | Picker: 36256
-
 ASP.NET Ajax : Enhanced Interactivity and Responsiveness
 ====================
 ## ASP.NET Ajax: Enhanced Interactivity and Responsiveness

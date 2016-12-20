@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/use-open-types-in-odata-v4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\odata-support-in-aspnet-web-api\odata-v4\use-open-types-in-odata-v4.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59686) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/odata-support-in-aspnet-web-api/odata-v4/use-open-types-in-odata-v4.html) | [View prod content](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/odata-v4/use-open-types-in-odata-v4) | Picker: 59692
-
 Open Types in OData v4 with ASP.NET Web API
 ====================
 by [Microsoft](https://github.com/microsoft)

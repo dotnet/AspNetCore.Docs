@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\deploying-web-applications-in-enterprise-scenarios\enterprise-web-deployment-scenario-overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38144) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/enterprise-web-deployment-scenario-overview) | Picker: 38222
-
 Enterprise Web Deployment: Scenario Overview
 ====================
 by [Jason Lee](https://github.com/jrjlee)

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\features-api\best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59988) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.html) | [View prod content](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure) | Picker: 59993
-
 Best practices for deploying passwords and other sensitive data to ASP.NET and Azure App Service
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

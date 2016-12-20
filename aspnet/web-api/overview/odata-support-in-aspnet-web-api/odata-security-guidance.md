@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-security-guidance
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\odata-support-in-aspnet-web-api\odata-security-guidance.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43771) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/odata-support-in-aspnet-web-api/odata-security-guidance.html) | [View prod content](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/odata-security-guidance) | Picker: 43777
-
 Security Guidance for ASP.NET Web API 2 OData
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

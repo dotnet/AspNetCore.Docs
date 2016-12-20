@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/content-guide
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\content-guide.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38458) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/content-guide.html) | [View prod content](http://www.asp.net/web-pages/content-guide) | Picker: 38458
-
 WebMatrix Content Guide
 ====================
 WebMatrix is a set of tools that provides an easy way to build Web sites for Microsoft Windows. It includes IIS Express (a development web server), ASP.NET (a web programming framework), and SQL Server Compact (an embedded database). To see a quick tour of WebMatrix, see [WebMatrix Overview](https://www.microsoft.com/web/webmatrix/). To review the top WebMatrix features, see [WebMatrix Features](https://www.microsoft.com/web/webmatrix/features/).

@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/using-web-api-with-aspnet-web-forms
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\getting-started-with-aspnet-web-api\using-web-api-with-aspnet-web-forms.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37851) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/getting-started-with-aspnet-web-api/using-web-api-with-aspnet-web-forms.html) | [View prod content](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/using-web-api-with-aspnet-web-forms) | Picker: 37852
-
 Using Web API with ASP.NET Web Forms
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

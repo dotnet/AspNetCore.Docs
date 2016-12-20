@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/preventing-javascript-injection-attacks
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\preventing-javascript-injection-attacks.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26694) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/preventing-javascript-injection-attacks.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/preventing-javascript-injection-attacks) | Picker: 27481
-
 Preventing JavaScript Injection Attacks
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

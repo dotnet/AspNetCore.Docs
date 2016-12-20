@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/archived-v11
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36257) | [View dev content](http://docs.aspdev.net/tutorials/downloads/archived-v11/index.html) | [View prod content](http://www.asp.net/downloads/archived-v11)
-
 Archived Downloads v1.1
 ====================
 - [Archived Downloads v1.1](overview.md)

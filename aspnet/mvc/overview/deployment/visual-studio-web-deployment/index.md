@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/deployment/visual-studio-web-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\deployment\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45357) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/deployment/visual-studio-web-deployment/index.html) | [View prod content](http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment)
-
 ASP.NET Web Deployment using Visual Studio
 ====================
 > A 12-part tutorial series that shows how to deploy an ASP.NET web application to an Azure Website or a third-party hosting provider, by using Visual Studio 2012. Includes tutorials on deploying to IIS on the local computer, Web.config transformations, deploying SQL Server databases, and command-line deployment. The sample application used in the tutorial is a Web Forms project, but the procedures all apply equally to MVC.

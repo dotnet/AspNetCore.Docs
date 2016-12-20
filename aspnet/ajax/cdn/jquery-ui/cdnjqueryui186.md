@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui186
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\jquery-ui\cdnjqueryui186.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59215) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-ui/cdnjqueryui186.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-ui/cdnjqueryui186) | Picker: 59215
-
 jQuery UI 1.8.6 on the Microsoft Ajax CDN
 ====================
 The jQuery UI 1.8.6 library includes the following files:

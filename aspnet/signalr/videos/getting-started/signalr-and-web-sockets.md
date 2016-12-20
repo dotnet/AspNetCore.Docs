@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/videos/getting-started/signalr-and-web-sockets
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\videos\getting-started\signalr-and-web-sockets.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42897) | [View dev content](http://docs.aspdev.net/tutorials/signalr/videos/getting-started/signalr-and-web-sockets.html) | [View prod content](http://www.asp.net/signalr/videos/getting-started/signalr-and-web-sockets) | Picker: 42898
-
 SignalR and Web Sockets
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

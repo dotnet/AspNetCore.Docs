@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/installing-ftp7
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\iis\installing-ftp7.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26817) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/iis/installing-ftp7.html) | [View prod content](http://www.asp.net/web-forms/videos/iis/installing-ftp7) | Picker: 33774
-
 Installing FTP7
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

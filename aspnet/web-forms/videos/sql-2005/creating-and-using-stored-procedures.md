@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/creating-and-using-stored-procedures
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\sql-2005\creating-and-using-stored-procedures.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26888) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/sql-2005/creating-and-using-stored-procedures.html) | [View prod content](http://www.asp.net/web-forms/videos/sql-2005/creating-and-using-stored-procedures) | Picker: 33835
-
 Creating and Using Stored Procedures
 ====================
 by [Microsoft](https://github.com/microsoft)

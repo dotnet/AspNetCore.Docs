@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/5-minute-introduction-to-aspnet-web-forms
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\5-minute-introduction-to-aspnet-web-forms.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26512) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/5-minute-introduction-to-aspnet-web-forms.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/5-minute-introduction-to-aspnet-web-forms) | Picker: 33535
-
 Intro to ASP.NET Web Forms
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

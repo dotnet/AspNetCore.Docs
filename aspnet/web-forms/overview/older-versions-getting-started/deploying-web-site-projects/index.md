@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38217) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/deploying-web-site-projects)
-
 Deploying Web Site Projects in Visual Studio 2008 and earlier
 ====================
 > ASP.NET web applications are typically designed, created, and tested in a local development environment and need to be deployed to a production environment once it is ready for release. This tutorial series details the deployment process.

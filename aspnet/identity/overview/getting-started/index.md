@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51457) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/getting-started/index.html) | [View prod content](http://www.asp.net/identity/overview/getting-started)
-
 Getting Started with ASP.NET Identity
 ====================
 > The ASP.NET Identity system is designed to replace the previous ASP.NET Membership and Simple Membership systems. It includes profile support, OAuth integration, works with OWIN, and is included with the ASP.NET templates shipped with Visual Studio 2013.

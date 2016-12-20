@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-the-database
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\how-do-i-with-linq\how-do-i-linq-to-sql-updating-the-database.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26523) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-the-database.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-the-database) | Picker: 37516
-
 [How Do I:] LINQ to SQL: Updating the Database
 ====================
 by [Scott Stanfield](https://github.com/scottstanfield)

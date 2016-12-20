@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/host-owin-in-an-azure-worker-role
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\owin-and-katana\host-owin-in-an-azure-worker-role.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/55393) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/owin-and-katana/host-owin-in-an-azure-worker-role.html) | [View prod content](http://www.asp.net/aspnet/overview/owin-and-katana/host-owin-in-an-azure-worker-role) | Picker: 55407
-
 Host OWIN in an Azure Worker Role
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

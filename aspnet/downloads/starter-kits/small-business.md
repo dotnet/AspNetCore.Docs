@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/small-business
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\small-business.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36286) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/small-business.html) | [View prod content](http://www.asp.net/downloads/starter-kits/small-business) | Picker: 36286
-
 Small Business Starter Kit
 ====================
 > The Small Business Starter Kit provides a sample of a business promotion website suitable for small and medium-sized businesses. It provides a template for customizing and creating a site for your own business out-of-the-box, with advanced features including integration with SQL and XML data sources for content and data management.

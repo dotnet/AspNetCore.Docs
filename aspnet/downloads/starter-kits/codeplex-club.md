@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/codeplex-club
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\codeplex-club.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36276) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/codeplex-club.html) | [View prod content](http://www.asp.net/downloads/starter-kits/codeplex-club) | Picker: 36276
-
 Codeplex Club Site Starter Kit
 ====================
 > The Codeplex Club Web Site in an open-source project that enhances the original [Club starter kit](club.md). The project provides an extended architecture, improved Photo and Blogging components, and better administration options.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/adonet-data-services/how-to-work-with-datasets-and-filters-from-an-asp-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\adonet-data-services\how-to-work-with-datasets-and-filters-from-an-asp-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26533) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/adonet-data-services/how-to-work-with-datasets-and-filters-from-an-asp-application.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/adonet-data-services/how-to-work-with-datasets-and-filters-from-an-asp-application) | Picker: 35545
-
 How to Work with Datasets and Filters from an ASP Application
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

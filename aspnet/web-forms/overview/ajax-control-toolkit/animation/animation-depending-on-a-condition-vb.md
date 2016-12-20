@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/animation-depending-on-a-condition-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\animation\animation-depending-on-a-condition-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24783) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/animation/animation-depending-on-a-condition-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/animation/animation-depending-on-a-condition-vb) | Picker: 33083
-
 Animation Depending On a Condition (VB)
 ====================
 by [Christian Wenz](https://github.com/wenz)
@@ -74,7 +72,7 @@ Within the `<Animations>` node, use `<OnLoad>` to run the animations once the pa
      </Animations>
     </ajaxToolkit:AnimationExtender>
 
-Note that the less than sign (`<`) in the `ConditionScript` attribute must be escaped (``). When you run this script, either no animation runs, or one of the two does, or both do.
+Note that the less than sign (`<`) in the `ConditionScript` attribute must be escaped (). When you run this script, either no animation runs, or one of the two does, or both do.
 
 
 [![The panel is fading out without resizing, so the second animation runs, the first one didn't](animation-depending-on-a-condition-vb/_static/image2.png)](animation-depending-on-a-condition-vb/_static/image1.png)

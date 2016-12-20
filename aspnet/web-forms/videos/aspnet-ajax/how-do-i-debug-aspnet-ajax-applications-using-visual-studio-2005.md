@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26595) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-debug-aspnet-ajax-applications-using-visual-studio-2005) | Picker: 33618
-
 [How Do I:] Debug ASP.NET AJAX Applications Using Visual Studio 2005?
 ====================
 by [Scott Golightly](https://github.com/scottgolightly)

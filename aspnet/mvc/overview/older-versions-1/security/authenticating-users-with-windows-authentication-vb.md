@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/security/authenticating-users-with-windows-authentication-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\security\authenticating-users-with-windows-authentication-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25215) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/security/authenticating-users-with-windows-authentication-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/security/authenticating-users-with-windows-authentication-vb) | Picker: 27601
-
 Authenticating Users with Windows Authentication (VB)
 ====================
 by [Microsoft](https://github.com/microsoft)

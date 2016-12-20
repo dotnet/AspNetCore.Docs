@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-share-data-between-client-javascript-and-server-code-using-a-hidden-field
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-share-data-between-client-javascript-and-server-code-using-a-hidden-field.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26462) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-share-data-between-client-javascript-and-server-code-using-a-hidden-field.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-share-data-between-client-javascript-and-server-code-using-a-hidden-field) | Picker: 33485
-
 [How Do I:] Share Data Between Client JavaScript and Server Code Using a Hidden Field
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

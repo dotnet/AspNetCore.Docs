@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/data/aspnet-4-quick-hit-persistent-gridview-row-selection
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\data\aspnet-4-quick-hit-persistent-gridview-row-selection.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26656) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/data/aspnet-4-quick-hit-persistent-gridview-row-selection.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/data/aspnet-4-quick-hit-persistent-gridview-row-selection) | Picker: 33679
-
 ASP.NET 4 "Quick Hit" – Persistent GridView Row Selection
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

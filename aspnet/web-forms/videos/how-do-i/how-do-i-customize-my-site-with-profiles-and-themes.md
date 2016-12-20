@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-customize-my-site-with-profiles-and-themes
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-customize-my-site-with-profiles-and-themes.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26429) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-customize-my-site-with-profiles-and-themes.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-customize-my-site-with-profiles-and-themes) | Picker: 33452
-
 [How Do I:] Customize my Site with Profiles and Themes?
 ====================
 by [Microsoft](https://github.com/microsoft)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\accessing-the-database-directly-from-an-aspnet-page\using-parameterized-queries-with-the-sqldatasource-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24736) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/accessing-the-database-directly-from-an-aspnet-page/using-parameterized-queries-with-the-sqldatasource-cs) | Picker: 33038
-
 Using Parameterized Queries with the SqlDataSource (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

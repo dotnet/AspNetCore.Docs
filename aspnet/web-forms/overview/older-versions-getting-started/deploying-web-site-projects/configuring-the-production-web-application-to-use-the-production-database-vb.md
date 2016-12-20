@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\deploying-web-site-projects\configuring-the-production-web-application-to-use-the-production-database-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25011) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-the-production-web-application-to-use-the-production-database-vb) | Picker: 33249
-
 Configuring the Production Web Application to Use the Production Database (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

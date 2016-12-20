@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet4/breaking-changes
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\aspnet4\breaking-changes.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36236) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/aspnet4/breaking-changes.html) | [View prod content](http://www.asp.net/whitepapers/aspnet4/breaking-changes) | Picker: 36236
-
 ASP.NET 4 Breaking Changes
 ====================
 > This document describes changes that have been made for the .NET Framework version 4 release that can potentially affect applications that were created using earlier releases, including the ASP.NET 4 Beta 1 and Beta 2 releases.

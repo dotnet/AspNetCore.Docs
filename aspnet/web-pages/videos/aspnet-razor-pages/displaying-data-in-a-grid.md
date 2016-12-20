@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/displaying-data-in-a-grid
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\aspnet-razor-pages\displaying-data-in-a-grid.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26757) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/aspnet-razor-pages/displaying-data-in-a-grid.html) | [View prod content](http://www.asp.net/web-pages/videos/aspnet-razor-pages/displaying-data-in-a-grid) | Picker: 38426
-
 Displaying Data in a Grid
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

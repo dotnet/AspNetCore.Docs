@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35820) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/visual-studio-editor/index.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/visual-studio-editor)
-
 Visual Studio Editor
 ====================
 > This video series shows you new features of the Visual Studio 2008 editor, including enhanced support for JavaScript and CSS.

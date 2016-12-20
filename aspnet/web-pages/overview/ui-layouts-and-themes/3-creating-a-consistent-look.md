@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/3-creating-a-consistent-look
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\ui-layouts-and-themes\3-creating-a-consistent-look.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38933) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/ui-layouts-and-themes/3-creating-a-consistent-look.html) | [View prod content](http://www.asp.net/web-pages/overview/ui-layouts-and-themes/3-creating-a-consistent-look) | Picker: 59917
-
 Creating a Consistent Layout in ASP.NET Web Pages (Razor) Sites
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

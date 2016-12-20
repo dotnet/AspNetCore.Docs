@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-mobile
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59185) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-mobile/index.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-mobile)
-
 jQuery Mobile
 ====================
 - [jQuery Mobile 1.4.2 on the Microsoft Ajax CDN](cdnjquerymobile142.md)

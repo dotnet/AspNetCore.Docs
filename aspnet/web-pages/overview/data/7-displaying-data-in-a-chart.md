@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/data/7-displaying-data-in-a-chart
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\data\7-displaying-data-in-a-chart.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38937) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/data/7-displaying-data-in-a-chart.html) | [View prod content](http://www.asp.net/web-pages/overview/data/7-displaying-data-in-a-chart) | Picker: 59925
-
 Displaying Data in a Chart with ASP.NET Web Pages (Razor)
 ====================
 by [Microsoft](https://github.com/microsoft)

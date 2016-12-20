@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/why-aspnet-mvc-3-minute-overview-video-for-decision-makers
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\why-aspnet-mvc-3-minute-overview-video-for-decision-makers.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26700) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/why-aspnet-mvc-3-minute-overview-video-for-decision-makers.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/why-aspnet-mvc-3-minute-overview-video-for-decision-makers) | Picker: 27487
-
 Why ASP.NET MVC? 3 minute overview video for decision makers
 ====================
 by [Rob Conery](https://github.com/robconery)

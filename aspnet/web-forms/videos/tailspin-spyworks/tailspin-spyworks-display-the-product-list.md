@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-the-product-list
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\tailspin-spyworks\tailspin-spyworks-display-the-product-list.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26895) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-the-product-list.html) | [View prod content](http://www.asp.net/web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-the-product-list) | Picker: 33842
-
 Tailspin Spyworks - Display the Product List
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

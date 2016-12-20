@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api/working-with-groups
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\guide-to-the-api\working-with-groups.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51301) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/guide-to-the-api/working-with-groups.html) | [View prod content](http://www.asp.net/signalr/overview/guide-to-the-api/working-with-groups) | Picker: 59946
-
 Working with Groups in SignalR
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)

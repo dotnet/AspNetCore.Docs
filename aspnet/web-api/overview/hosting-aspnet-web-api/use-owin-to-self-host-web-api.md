@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\hosting-aspnet-web-api\use-owin-to-self-host-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47786) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api.html) | [View prod content](http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api) | Picker: 47787
-
 Use OWIN to Self-Host ASP.NET Web API 2
 ====================
 by [Kanchan Mehrotra](https://twitter.com/kanchanmeh)

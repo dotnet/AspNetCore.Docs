@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-deploy-a-web-site-using-the-copy-web-site-tool
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-deploy-a-web-site-using-the-copy-web-site-tool.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26466) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-deploy-a-web-site-using-the-copy-web-site-tool.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-deploy-a-web-site-using-the-copy-web-site-tool) | Picker: 33489
-
 [How Do I:] Deploy a Web Site Using the Copy Web Site Tool
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

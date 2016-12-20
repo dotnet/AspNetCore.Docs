@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/creating-a-connection-string
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\introduction\creating-a-connection-string.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47542) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/introduction/creating-a-connection-string.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/introduction/creating-a-connection-string) | Picker: 47561
-
 Creating a Connection String and Working with SQL Server LocalDB
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

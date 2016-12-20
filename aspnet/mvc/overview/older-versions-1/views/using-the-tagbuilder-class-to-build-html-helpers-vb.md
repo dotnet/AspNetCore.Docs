@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\views\using-the-tagbuilder-class-to-build-html-helpers-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24941) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/views/using-the-tagbuilder-class-to-build-html-helpers-vb) | Picker: 27575
-
 Using the TagBuilder Class to Build HTML Helpers (VB)
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26603) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-trigger-an-updatepanel-refresh-from-a-dropdownlist-control) | Picker: 33626
-
 [How Do I:] Trigger an UpdatePanel Refresh from a DropDownList Control?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/feature-specific-delegated-management
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\iis\feature-specific-delegated-management.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26814) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/iis/feature-specific-delegated-management.html) | [View prod content](http://www.asp.net/web-forms/videos/iis/feature-specific-delegated-management) | Picker: 33771
-
 Feature Specific Delegated Management
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

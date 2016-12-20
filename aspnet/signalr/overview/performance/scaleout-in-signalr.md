@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/scaleout-in-signalr
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\performance\scaleout-in-signalr.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51349) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/performance/scaleout-in-signalr.html) | [View prod content](http://www.asp.net/signalr/overview/performance/scaleout-in-signalr) | Picker: 59977
-
 Introduction to Scaleout in SignalR
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)

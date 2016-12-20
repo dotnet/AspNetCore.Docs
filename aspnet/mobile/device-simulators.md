@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /mobile/device-simulators
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mobile\device-simulators.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36249) | [View dev content](http://docs.aspdev.net/tutorials/mobile/device-simulators.html) | [View prod content](http://www.asp.net/mobile/device-simulators) | Picker: 36249
-
 Simulate Popular Mobile Devices for Testing
 ====================
 > You can download emulators for popular mobile devices and browsers by following these links

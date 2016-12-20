@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/profiles-themes-and-web-parts
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\moving-to-aspnet-20\profiles-themes-and-web-parts.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25177) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/moving-to-aspnet-20/profiles-themes-and-web-parts.html) | [View prod content](http://www.asp.net/web-forms/overview/moving-to-aspnet-20/profiles-themes-and-web-parts) | Picker: 33389
-
 Profiles, Themes, and Web Parts
 ====================
 by [Microsoft](https://github.com/microsoft)

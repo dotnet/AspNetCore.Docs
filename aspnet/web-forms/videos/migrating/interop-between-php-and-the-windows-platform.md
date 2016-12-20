@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/interop-between-php-and-the-windows-platform
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\migrating\interop-between-php-and-the-windows-platform.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26925) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/migrating/interop-between-php-and-the-windows-platform.html) | [View prod content](http://www.asp.net/web-forms/videos/migrating/interop-between-php-and-the-windows-platform) | Picker: 33872
-
 Interop between PHP and the Windows Platform
 ====================
 by [Microsoft](https://github.com/microsoft)

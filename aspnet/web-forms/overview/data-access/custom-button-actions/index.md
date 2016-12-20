@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-button-actions
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32985) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/custom-button-actions/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/custom-button-actions)
-
 Custom Button Actions
 ====================
 > This short set of tutorials shows how to add buttons to the GridView or DetailsView control that can perform any actions that your application needs.

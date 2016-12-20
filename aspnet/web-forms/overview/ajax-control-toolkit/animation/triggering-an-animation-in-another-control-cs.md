@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/triggering-an-animation-in-another-control-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\animation\triggering-an-animation-in-another-control-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24790) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/animation/triggering-an-animation-in-another-control-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/animation/triggering-an-animation-in-another-control-cs) | Picker: 33090
-
 Triggering an Animation in another Control (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

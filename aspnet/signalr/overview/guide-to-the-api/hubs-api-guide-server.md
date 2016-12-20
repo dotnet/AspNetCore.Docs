@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api/hubs-api-guide-server
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\guide-to-the-api\hubs-api-guide-server.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51345) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/guide-to-the-api/hubs-api-guide-server.html) | [View prod content](http://www.asp.net/signalr/overview/guide-to-the-api/hubs-api-guide-server) | Picker: 59940
-
 ASP.NET SignalR Hubs API Guide - Server (C#)
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-write-code-more-quickly-with-unit-tests
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\how-do-i-write-code-more-quickly-with-unit-tests.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26833) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/how-do-i-write-code-more-quickly-with-unit-tests.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/how-do-i-write-code-more-quickly-with-unit-tests) | Picker: 33790
-
 [How Do I:] Write Code More Quickly with Unit Tests?
 ====================
 by [Chris Menegay](https://twitter.com/CMenegay)

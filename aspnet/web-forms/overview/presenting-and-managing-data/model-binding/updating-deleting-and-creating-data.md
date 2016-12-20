@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/updating-deleting-and-creating-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\presenting-and-managing-data\model-binding\updating-deleting-and-creating-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45588) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/presenting-and-managing-data/model-binding/updating-deleting-and-creating-data.html) | [View prod content](http://www.asp.net/web-forms/overview/presenting-and-managing-data/model-binding/updating-deleting-and-creating-data) | Picker: 45598
-
 Updating, deleting, and creating data with model binding and web forms
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

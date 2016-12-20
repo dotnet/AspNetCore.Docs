@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-a-new-field
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\introduction\adding-a-new-field.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47544) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/introduction/adding-a-new-field.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/introduction/adding-a-new-field) | Picker: 47552
-
 Adding a New Field
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

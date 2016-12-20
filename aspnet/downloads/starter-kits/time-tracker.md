@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/time-tracker
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\time-tracker.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36288) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/time-tracker.html) | [View prod content](http://www.asp.net/downloads/starter-kits/time-tracker) | Picker: 36288
-
 Time Tracker Starter Kit
 ====================
 > A business web application for keeping track of hours spent on a project with the ability to handle multiple resources as well as multiple projects.

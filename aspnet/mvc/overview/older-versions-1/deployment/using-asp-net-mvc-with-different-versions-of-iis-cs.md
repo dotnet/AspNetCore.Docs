@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\deployment\using-asp-net-mvc-with-different-versions-of-iis-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25006) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-cs.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-cs) | Picker: 27609
-
 Using ASP.NET MVC with Different Versions of IIS (C#)
 ====================
 by [Microsoft](https://github.com/microsoft)

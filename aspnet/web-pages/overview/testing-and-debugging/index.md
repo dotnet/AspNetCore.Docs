@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/testing-and-debugging
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59896) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/testing-and-debugging/index.html) | [View prod content](http://www.asp.net/web-pages/overview/testing-and-debugging)
-
 Testing and Debugging
 ====================
 > How to test and debug ASP.NET Web Pages applications.

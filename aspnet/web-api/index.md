@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36760) | [View dev content](http://docs.aspdev.net/tutorials/web-api/index.html) | [View prod content](http://www.asp.net/web-api)
-
 ASP.NET Web API
 ====================
 - [Guidance](overview/index.md)

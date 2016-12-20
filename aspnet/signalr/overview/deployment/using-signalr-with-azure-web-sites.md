@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/deployment/using-signalr-with-azure-web-sites
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\deployment\using-signalr-with-azure-web-sites.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/53022) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/deployment/using-signalr-with-azure-web-sites.html) | [View prod content](http://www.asp.net/signalr/overview/deployment/using-signalr-with-azure-web-sites) | Picker: 59974
-
 Using SignalR with Web Apps in Azure App Service
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)

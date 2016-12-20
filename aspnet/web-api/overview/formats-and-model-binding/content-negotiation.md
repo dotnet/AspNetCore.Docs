@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/content-negotiation
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\formats-and-model-binding\content-negotiation.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38491) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/formats-and-model-binding/content-negotiation.html) | [View prod content](http://www.asp.net/web-api/overview/formats-and-model-binding/content-negotiation) | Picker: 38492
-
 Content Negotiation in ASP.NET Web API
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

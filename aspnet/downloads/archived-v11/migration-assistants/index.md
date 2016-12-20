@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/archived-v11/migration-assistants
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\archived-v11\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36259) | [View dev content](http://docs.aspdev.net/tutorials/downloads/archived-v11/migration-assistants/index.html) | [View prod content](http://www.asp.net/downloads/archived-v11/migration-assistants)
-
 Migration Assistants
 ====================
 - [Migration Assistants](overview.md)

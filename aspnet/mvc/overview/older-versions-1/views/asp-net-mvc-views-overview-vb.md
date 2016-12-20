@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\views\asp-net-mvc-views-overview-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24935) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb) | Picker: 27569
-
 ASP.NET MVC Views Overview (VB)
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

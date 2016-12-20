@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-send-email-asynchronously-with-aspnet
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-send-email-asynchronously-with-aspnet.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26491) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-send-email-asynchronously-with-aspnet.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-send-email-asynchronously-with-aspnet) | Picker: 33514
-
 [How Do I:] Send Email Asynchronously with ASP.NET
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

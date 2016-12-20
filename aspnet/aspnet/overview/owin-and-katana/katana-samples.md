@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/katana-samples
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\aspnet\overview\owin-and-katana\katana-samples.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54085) | [View dev content](http://docs.aspdev.net/tutorials/aspnet/overview/owin-and-katana/katana-samples.html) | [View prod content](http://www.asp.net/aspnet/overview/owin-and-katana/katana-samples) | Picker: 54086
-
 Katana Samples
 ====================
 by [Microsoft](https://github.com/microsoft)

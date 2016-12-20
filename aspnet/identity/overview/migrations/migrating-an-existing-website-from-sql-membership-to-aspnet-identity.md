@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/migrations/migrating-an-existing-website-from-sql-membership-to-aspnet-identity
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\migrations\migrating-an-existing-website-from-sql-membership-to-aspnet-identity.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51525) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/migrations/migrating-an-existing-website-from-sql-membership-to-aspnet-identity.html) | [View prod content](http://www.asp.net/identity/overview/migrations/migrating-an-existing-website-from-sql-membership-to-aspnet-identity) | Picker: 51527
-
 Migrating an Existing Website from SQL Membership to ASP.NET Identity
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson), [Suhas Joshi](https://github.com/suhasj)

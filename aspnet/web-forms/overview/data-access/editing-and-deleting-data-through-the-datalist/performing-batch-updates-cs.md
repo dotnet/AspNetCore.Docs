@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/performing-batch-updates-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\editing-and-deleting-data-through-the-datalist\performing-batch-updates-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25026) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/performing-batch-updates-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/performing-batch-updates-cs) | Picker: 33264
-
 Performing Batch Updates (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

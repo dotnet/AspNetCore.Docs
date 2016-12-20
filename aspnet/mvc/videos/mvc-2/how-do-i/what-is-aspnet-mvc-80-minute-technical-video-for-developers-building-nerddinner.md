@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26699) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/what-is-aspnet-mvc-80-minute-technical-video-for-developers-building-nerddinner) | Picker: 27486
-
 What is ASP.NET MVC? 80 minute technical video for developers, building NerdDinner
 ====================
 by [Rob Conery](https://github.com/robconery)

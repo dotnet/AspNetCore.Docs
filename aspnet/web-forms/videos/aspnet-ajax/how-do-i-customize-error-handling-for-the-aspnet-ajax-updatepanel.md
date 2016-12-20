@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26616) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel) | Picker: 33639
-
 How Do I: Customize Error Handling for the ASP.NET AJAX UpdatePanel
 ====================
 by [Rob Windsor](https://twitter.com/robwindsor)

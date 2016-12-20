@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/introduction
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35790) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/introduction/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/introduction)
-
 Introduction
 ====================
 > This introductory set of tutorials explains how to create a Data Access Layer (DAL), a Business Logic Layer (BLL), and a consistent look across your site.

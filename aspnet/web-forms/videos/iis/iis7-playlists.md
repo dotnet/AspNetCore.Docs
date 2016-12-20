@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/iis7-playlists
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\iis\iis7-playlists.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26819) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/iis/iis7-playlists.html) | [View prod content](http://www.asp.net/web-forms/videos/iis/iis7-playlists) | Picker: 33776
-
 IIS7 Playlists
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

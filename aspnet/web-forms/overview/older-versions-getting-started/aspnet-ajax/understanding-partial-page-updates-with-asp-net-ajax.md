@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\aspnet-ajax\understanding-partial-page-updates-with-asp-net-ajax.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24876) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax) | Picker: 33176
-
 Understanding Partial Page Updates with ASP.NET AJAX
 ====================
 by [Scott Cate](https://github.com/scottcate)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/configuring-sql-to-work-with-membership-schemas
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\authentication\configuring-sql-to-work-with-membership-schemas.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26778) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/authentication/configuring-sql-to-work-with-membership-schemas.html) | [View prod content](http://www.asp.net/web-forms/videos/authentication/configuring-sql-to-work-with-membership-schemas) | Picker: 33735
-
 Configuring SQL To Work with Membership Schemas
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-9
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\data\using-web-api-with-entity-framework\part-9.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58286) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/data/using-web-api-with-entity-framework/part-9.html) | [View prod content](http://www.asp.net/web-api/overview/data/using-web-api-with-entity-framework/part-9) | Picker: 58290
-
 Add a New Item to the Database
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

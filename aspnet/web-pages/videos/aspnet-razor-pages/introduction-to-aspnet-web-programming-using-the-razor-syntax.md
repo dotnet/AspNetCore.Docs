@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\aspnet-razor-pages\introduction-to-aspnet-web-programming-using-the-razor-syntax.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26750) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax.html) | [View prod content](http://www.asp.net/web-pages/videos/aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax) | Picker: 38419
-
 Introduction to ASP.NET Web Programming Using the Razor Syntax
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

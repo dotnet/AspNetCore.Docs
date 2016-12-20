@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/mvc5
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\mvc5.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54042) | [View dev content](http://docs.aspdev.net/tutorials/mvc/mvc5.html) | [View prod content](http://www.asp.net/mvc/mvc5) | Picker: 54042
-
 ASP.NET MVC 5
 ====================
 ## What's New in ASP.NET MVC 5

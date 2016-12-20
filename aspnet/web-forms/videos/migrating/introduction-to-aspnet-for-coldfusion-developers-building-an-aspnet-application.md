@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\migrating\introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26924) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/migrating/introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application.html) | [View prod content](http://www.asp.net/web-forms/videos/migrating/introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application) | Picker: 33871
-
 Introduction to ASP.NET for ColdFusion Developers: Building an ASP.NET Application
 ====================
 by [Microsoft](https://github.com/microsoft)

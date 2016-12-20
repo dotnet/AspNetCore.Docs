@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\features-api\account-confirmation-and-password-recovery-with-aspnet-identity.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/57670) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity.html) | [View prod content](http://www.asp.net/identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity) | Picker: 57672
-
 Account Confirmation and Password Recovery with ASP.NET Identity (C#)
 ====================
 by [Hao Kung](https://github.com/HaoK), [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://github.com/Rick-Anderson), [Suhas Joshi](https://github.com/suhasj)

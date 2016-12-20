@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api/hubs-api-guide-javascript-client
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\guide-to-the-api\hubs-api-guide-javascript-client.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51343) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/guide-to-the-api/hubs-api-guide-javascript-client.html) | [View prod content](http://www.asp.net/signalr/overview/guide-to-the-api/hubs-api-guide-javascript-client) | Picker: 59959
-
 ASP.NET SignalR Hubs API Guide - JavaScript Client
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom Dykstra](https://github.com/tdykstra)

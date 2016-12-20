@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-determine-whether-an-asynchronous-postback-has-occurred
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-determine-whether-an-asynchronous-postback-has-occurred.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26598) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-determine-whether-an-asynchronous-postback-has-occurred.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-determine-whether-an-asynchronous-postback-has-occurred) | Picker: 33621
-
 [How Do I:] Determine Whether an Asynchronous Postback has Occurred?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

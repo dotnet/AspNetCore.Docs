@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-security\introduction\an-overview-of-forms-authentication-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25121) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-cs) | Picker: 33337
-
 An Overview of Forms Authentication (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

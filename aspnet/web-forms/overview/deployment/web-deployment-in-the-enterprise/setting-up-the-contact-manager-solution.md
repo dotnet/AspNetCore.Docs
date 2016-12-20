@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/setting-up-the-contact-manager-solution
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\web-deployment-in-the-enterprise\setting-up-the-contact-manager-solution.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38149) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/web-deployment-in-the-enterprise/setting-up-the-contact-manager-solution.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/web-deployment-in-the-enterprise/setting-up-the-contact-manager-solution) | Picker: 38227
-
 Setting Up the Contact Manager Solution
 ====================
 by [Jason Lee](https://github.com/jrjlee)

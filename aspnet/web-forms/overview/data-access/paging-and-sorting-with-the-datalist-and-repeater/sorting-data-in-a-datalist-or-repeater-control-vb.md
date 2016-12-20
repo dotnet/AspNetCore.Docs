@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/sorting-data-in-a-datalist-or-repeater-control-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\paging-and-sorting-with-the-datalist-and-repeater\sorting-data-in-a-datalist-or-repeater-control-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25205) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/sorting-data-in-a-datalist-or-repeater-control-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/paging-and-sorting-with-the-datalist-and-repeater/sorting-data-in-a-datalist-or-repeater-control-vb) | Picker: 33401
-
 Sorting Data in a DataList or Repeater Control (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

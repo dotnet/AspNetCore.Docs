@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-7-databinding-to-user-interface-controls
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-20-applications\lesson-7-databinding-to-user-interface-controls.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26910) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-20-applications/lesson-7-databinding-to-user-interface-controls.html) | [View prod content](http://www.asp.net/web-forms/videos/building-20-applications/lesson-7-databinding-to-user-interface-controls) | Picker: 33857
-
 [Lesson 7:] Databinding to User Interface Controls
 ====================
 by [Microsoft](https://github.com/microsoft)

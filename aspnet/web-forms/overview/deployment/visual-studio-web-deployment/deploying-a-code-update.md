@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\visual-studio-web-deployment\deploying-a-code-update.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45345) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update) | Picker: 45372
-
 ASP.NET Web Deployment using Visual Studio: Deploying a Code Update
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

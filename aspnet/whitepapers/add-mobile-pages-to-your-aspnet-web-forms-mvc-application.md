@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\add-mobile-pages-to-your-aspnet-web-forms-mvc-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36243) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application.html) | [View prod content](http://www.asp.net/whitepapers/add-mobile-pages-to-your-aspnet-web-forms-mvc-application) | Picker: 36243
-
 How To: Add Mobile Pages to Your ASP.NET Web Forms / MVC Application
 ====================
 > **Applies To**

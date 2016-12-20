@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/configuring-permissions-for-team-build-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\configuring-team-foundation-server-for-web-deployment\configuring-permissions-for-team-build-deployment.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38177) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/configuring-permissions-for-team-build-deployment.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/configuring-permissions-for-team-build-deployment) | Picker: 38243
-
 Configuring Permissions for Team Build Deployment
 ====================
 by [Jason Lee](https://github.com/jrjlee)

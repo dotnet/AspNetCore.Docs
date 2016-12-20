@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/5369) | [View dev content](http://docs.aspdev.net/tutorials/downloads/index.html) | [View prod content](http://www.asp.net/downloads)
-
 Download ASP.NET
 ====================
 - [ASP.NET 3.5 and Visual Studio 2008](vs2008.md)

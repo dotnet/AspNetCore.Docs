@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\editing-inserting-and-deleting-data\handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25038) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs) | Picker: 33276
-
 Handling BLL- and DAL-Level Exceptions in an ASP.NET Page (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

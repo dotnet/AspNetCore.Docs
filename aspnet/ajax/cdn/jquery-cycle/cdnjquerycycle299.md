@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-cycle/cdnjquerycycle299
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\jquery-cycle\cdnjquerycycle299.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59257) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-cycle/cdnjquerycycle299.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-cycle/cdnjquerycycle299) | Picker: 59257
-
 jQuery Cycle 2.99
 ====================
 The following jQuery Cycle files are hosted on this CDN:

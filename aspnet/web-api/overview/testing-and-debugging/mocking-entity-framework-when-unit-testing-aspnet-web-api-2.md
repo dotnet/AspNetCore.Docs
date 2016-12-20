@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/mocking-entity-framework-when-unit-testing-aspnet-web-api-2
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\testing-and-debugging\mocking-entity-framework-when-unit-testing-aspnet-web-api-2.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/52974) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/testing-and-debugging/mocking-entity-framework-when-unit-testing-aspnet-web-api-2.html) | [View prod content](http://www.asp.net/web-api/overview/testing-and-debugging/mocking-entity-framework-when-unit-testing-aspnet-web-api-2) | Picker: 52975
-
 Mocking Entity Framework when Unit Testing ASP.NET Web API 2
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

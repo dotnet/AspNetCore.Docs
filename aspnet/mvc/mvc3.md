@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/mvc3
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\mvc3.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32553) | [View dev content](http://docs.aspdev.net/tutorials/mvc/mvc3.html) | [View prod content](http://www.asp.net/mvc/mvc3) | Picker: 32553
-
 ASP.NET MVC 3
 ====================
 > *(includes April 2011 Tools Update)*

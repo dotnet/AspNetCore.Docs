@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/delete-and-update
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\videos\getting-started\delete-and-update.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37165) | [View dev content](http://docs.aspdev.net/tutorials/web-api/videos/getting-started/delete-and-update.html) | [View prod content](http://www.asp.net/web-api/videos/getting-started/delete-and-update) | Picker: 43064
-
 ASP.NET Web API, Part 3: Delete and Update
 ====================
 by [Jon Galloway](https://github.com/jongalloway)

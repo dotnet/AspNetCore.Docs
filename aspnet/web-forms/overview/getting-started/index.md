@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/12791) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/getting-started/index.html) | [View prod content](http://www.asp.net/web-forms/overview/getting-started)
-
 Getting Started with ASP.NET Web Forms
 ====================
 > The Web Forms model and how to create pages and use controls.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-change-how-my-fields-render
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-dynamic-data\how-do-i-change-how-my-fields-render.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26807) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-dynamic-data/how-do-i-change-how-my-fields-render.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-dynamic-data/how-do-i-change-how-my-fields-render) | Picker: 33764
-
 How do I Change how my Fields render?
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

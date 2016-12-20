@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-button-actions-with-the-datalist-and-repeater/custom-buttons-in-the-datalist-and-repeater-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\custom-button-actions-with-the-datalist-and-repeater\custom-buttons-in-the-datalist-and-repeater-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24993) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/custom-button-actions-with-the-datalist-and-repeater/custom-buttons-in-the-datalist-and-repeater-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/custom-button-actions-with-the-datalist-and-repeater/custom-buttons-in-the-datalist-and-repeater-vb) | Picker: 33233
-
 Custom Buttons in the DataList and Repeater (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

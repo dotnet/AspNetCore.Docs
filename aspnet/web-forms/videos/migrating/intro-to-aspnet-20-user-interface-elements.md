@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-20-user-interface-elements
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\migrating\intro-to-aspnet-20-user-interface-elements.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26919) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/migrating/intro-to-aspnet-20-user-interface-elements.html) | [View prod content](http://www.asp.net/web-forms/videos/migrating/intro-to-aspnet-20-user-interface-elements) | Picker: 33866
-
 [Intro to ASP.NET 2.0:] User Interface Elements
 ====================
 by [Microsoft](https://github.com/microsoft)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-6-working-with-stylesheets-and-master-pages
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-20-applications\lesson-6-working-with-stylesheets-and-master-pages.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26909) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-20-applications/lesson-6-working-with-stylesheets-and-master-pages.html) | [View prod content](http://www.asp.net/web-forms/videos/building-20-applications/lesson-6-working-with-stylesheets-and-master-pages) | Picker: 33856
-
 [Lesson 6:] Working with Stylesheets and Master Pages
 ====================
 by [Microsoft](https://github.com/microsoft)

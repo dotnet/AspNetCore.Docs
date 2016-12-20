@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/web-application-projects-web-deployment-projects
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\web-application-projects-web-deployment-projects.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26927) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/web-application-projects-web-deployment-projects.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/web-application-projects-web-deployment-projects) | Picker: 33874
-
 Web Application Projects & Web Deployment Projects
 ====================
 by [Bradley Bartz](https://github.com/BradleyBartz)

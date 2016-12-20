@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/the-asp-net-2-0-page-model
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\moving-to-aspnet-20\the-asp-net-2-0-page-model.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25169) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/moving-to-aspnet-20/the-asp-net-2-0-page-model.html) | [View prod content](http://www.asp.net/web-forms/overview/moving-to-aspnet-20/the-asp-net-2-0-page-model) | Picker: 33381
-
 The ASP.NET 2.0 Page Model
 ====================
 by [Microsoft](https://github.com/microsoft)

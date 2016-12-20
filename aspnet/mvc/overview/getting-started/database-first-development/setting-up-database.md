@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/database-first-development/setting-up-database
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\database-first-development\setting-up-database.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/50899) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/database-first-development/setting-up-database.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/database-first-development/setting-up-database) | Picker: 50891
-
 Getting Started with Entity Framework 6 Database First using MVC 5
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

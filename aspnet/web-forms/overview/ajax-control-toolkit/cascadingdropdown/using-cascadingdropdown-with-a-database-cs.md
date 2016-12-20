@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/cascadingdropdown/using-cascadingdropdown-with-a-database-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\cascadingdropdown\using-cascadingdropdown-with-a-database-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24800) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/cascadingdropdown/using-cascadingdropdown-with-a-database-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/cascadingdropdown/using-cascadingdropdown-with-a-database-cs) | Picker: 33100
-
 Using CascadingDropDown with a Database (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

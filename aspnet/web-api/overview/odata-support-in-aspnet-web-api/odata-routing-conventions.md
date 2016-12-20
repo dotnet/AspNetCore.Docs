@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\odata-support-in-aspnet-web-api\odata-routing-conventions.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/48216) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions.html) | [View prod content](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions) | Picker: 48217
-
 Routing Conventions in ASP.NET Web API 2 Odata
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

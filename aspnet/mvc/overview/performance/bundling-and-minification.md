@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance/bundling-and-minification
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\performance\bundling-and-minification.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/39124) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/performance/bundling-and-minification.html) | [View prod content](http://www.asp.net/mvc/overview/performance/bundling-and-minification) | Picker: 39127
-
 Bundling and Minification
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

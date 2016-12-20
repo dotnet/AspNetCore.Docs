@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/23472) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/mvc-music-store/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/mvc-music-store)
-
 ASP.NET MVC 3 Music Store
 ====================
 > How to create the MVC Music Store application, a sample application that sells music albums online, and that implements site administration, user sign-in, and shopping cart functionality.

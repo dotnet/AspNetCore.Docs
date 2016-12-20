@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-security\membership\validating-user-credentials-against-the-membership-user-store-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25163) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-vb) | Picker: 33375
-
 Validating User Credentials Against the Membership User Store (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

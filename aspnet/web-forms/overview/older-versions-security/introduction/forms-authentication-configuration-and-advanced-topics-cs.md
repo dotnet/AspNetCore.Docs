@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-security\introduction\forms-authentication-configuration-and-advanced-topics-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25125) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-cs) | Picker: 33341
-
 Forms Authentication Configuration and Advanced Topics (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

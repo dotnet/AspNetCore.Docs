@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-at-the-same-time-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\animation\executing-several-animations-at-the-same-time-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24778) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-at-the-same-time-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/animation/executing-several-animations-at-the-same-time-cs) | Picker: 33078
-
 Executing Several Animations at The Same Time (C#)
 ====================
 by [Christian Wenz](https://github.com/wenz)

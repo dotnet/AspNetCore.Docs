@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/using-browser-link
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\visual-studio\overview\2013\using-browser-link.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51221) | [View dev content](http://docs.aspdev.net/tutorials/visual-studio/overview/2013/using-browser-link.html) | [View prod content](http://www.asp.net/visual-studio/overview/2013/using-browser-link) | Picker: 51222
-
 Using Browser Link in Visual Studio 2013
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

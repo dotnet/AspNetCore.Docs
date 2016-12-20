@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/mvc2-html-encoding
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\mvc2-html-encoding.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26708) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/mvc2-html-encoding.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/mvc2-html-encoding) | Picker: 27495
-
 MVC2 - Html Encoding
 ====================
 by [Microsoft](https://github.com/microsoft)

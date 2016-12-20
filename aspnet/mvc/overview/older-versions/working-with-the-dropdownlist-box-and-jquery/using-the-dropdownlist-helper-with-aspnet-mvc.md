@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\working-with-the-dropdownlist-box-and-jquery\using-the-dropdownlist-helper-with-aspnet-mvc.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36742) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc) | Picker: 36832
-
 Using the DropDownList Helper with ASP.NET MVC
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

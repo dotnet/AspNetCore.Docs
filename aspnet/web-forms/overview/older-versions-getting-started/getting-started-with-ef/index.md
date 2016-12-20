@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/getting-started-with-ef
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32996) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/getting-started-with-ef/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/getting-started-with-ef)
-
 ASP.NET 4 - Getting Started with Entity Framework 4 and Web Forms
 ====================
 > The basics of using Entity Framework to display and edit data in an ASP.NET Web Forms application.

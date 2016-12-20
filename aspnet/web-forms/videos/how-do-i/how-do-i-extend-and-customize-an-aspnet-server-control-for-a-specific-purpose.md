@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-extend-and-customize-an-aspnet-server-control-for-a-specific-purpose
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-extend-and-customize-an-aspnet-server-control-for-a-specific-purpose.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26470) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-extend-and-customize-an-aspnet-server-control-for-a-specific-purpose.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-extend-and-customize-an-aspnet-server-control-for-a-specific-purpose) | Picker: 33493
-
 [How Do I:] Extend and Customize an ASP.NET Server Control for a Specific Purpose
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

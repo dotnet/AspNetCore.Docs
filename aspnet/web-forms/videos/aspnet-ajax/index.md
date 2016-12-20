@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32933) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/index.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax)
-
 ASP.NET AJAX
 ====================
 > Ways to work with ASP.NET AJAX to create highly responsive pages, even if you're not a JavaScript expert.

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/aspnet-identity-recommended-resources
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\getting-started\aspnet-identity-recommended-resources.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58124) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/getting-started/aspnet-identity-recommended-resources.html) | [View prod content](http://www.asp.net/identity/overview/getting-started/aspnet-identity-recommended-resources) | Picker: 58127
-
 ASP.NET Identity Recommended Resources
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

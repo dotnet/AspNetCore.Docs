@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-autocomplete-control
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-use-the-aspnet-ajax-autocomplete-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26552) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-autocomplete-control.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-autocomplete-control) | Picker: 33575
-
 [How Do I:] Use the ASP.NET AJAX AutoComplete Control
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

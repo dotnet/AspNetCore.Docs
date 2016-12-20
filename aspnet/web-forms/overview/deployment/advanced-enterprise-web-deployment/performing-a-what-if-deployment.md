@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/performing-a-what-if-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\advanced-enterprise-web-deployment\performing-a-what-if-deployment.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38180) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/advanced-enterprise-web-deployment/performing-a-what-if-deployment.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/advanced-enterprise-web-deployment/performing-a-what-if-deployment) | Picker: 38258
-
 Performing a "What If" Deployment
 ====================
 by [Jason Lee](https://github.com/jrjlee)

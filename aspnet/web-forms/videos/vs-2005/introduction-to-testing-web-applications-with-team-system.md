@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/introduction-to-testing-web-applications-with-team-system
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\introduction-to-testing-web-applications-with-team-system.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26821) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/introduction-to-testing-web-applications-with-team-system.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/introduction-to-testing-web-applications-with-team-system) | Picker: 33778
-
 Introduction to Testing Web Applications with Team System
 ====================
 by Eric Lee

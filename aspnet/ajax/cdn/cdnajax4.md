@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/cdnajax4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\cdnajax4.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59190) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/cdnajax4.html) | [View prod content](http://www.asp.net/ajax/cdn/cdnajax4) | Picker: 59190
-
 ASP.NET Web Forms and Ajax 4
 ====================
 The following files are hosted on the CDN:

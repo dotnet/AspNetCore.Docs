@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/configuring-parameters-for-web-package-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\web-deployment-in-the-enterprise\configuring-parameters-for-web-package-deployment.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38153) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/web-deployment-in-the-enterprise/configuring-parameters-for-web-package-deployment.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/web-deployment-in-the-enterprise/configuring-parameters-for-web-package-deployment) | Picker: 38231
-
 Configuring Parameters for Web Package Deployment
 ====================
 by [Jason Lee](https://github.com/jrjlee)

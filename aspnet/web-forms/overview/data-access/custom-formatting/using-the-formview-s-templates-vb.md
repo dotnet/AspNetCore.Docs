@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-formatting/using-the-formview-s-templates-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\custom-formatting\using-the-formview-s-templates-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25001) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/custom-formatting/using-the-formview-s-templates-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/custom-formatting/using-the-formview-s-templates-vb) | Picker: 33241
-
 Using the FormView's Templates (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

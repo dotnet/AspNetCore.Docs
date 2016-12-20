@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\enhancing-the-gridview\adding-a-gridview-column-of-radio-buttons-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25051) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/enhancing-the-gridview/adding-a-gridview-column-of-radio-buttons-vb) | Picker: 33289
-
 Adding a GridView Column of Radio Buttons (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

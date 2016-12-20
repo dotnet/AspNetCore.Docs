@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35815) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/how-do-i/index.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/how-do-i)
-
 How Do I
 ====================
 > This multi-part video series shows you how to take advantage of new features in ASP.NET 3.5 and Visual Studio 2008.

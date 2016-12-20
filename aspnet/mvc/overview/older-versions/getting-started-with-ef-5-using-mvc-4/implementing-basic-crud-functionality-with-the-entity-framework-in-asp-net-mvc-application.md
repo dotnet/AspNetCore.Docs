@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\getting-started-with-ef-5-using-mvc-4\implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25071) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application) | Picker: 51671
-
 Implementing Basic CRUD Functionality with the Entity Framework in ASP.NET MVC Application (2 of 10)
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

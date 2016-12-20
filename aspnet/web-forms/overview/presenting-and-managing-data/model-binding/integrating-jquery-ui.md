@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/integrating-jquery-ui
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\presenting-and-managing-data\model-binding\integrating-jquery-ui.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45585) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/presenting-and-managing-data/model-binding/integrating-jquery-ui.html) | [View prod content](http://www.asp.net/web-forms/overview/presenting-and-managing-data/model-binding/integrating-jquery-ui) | Picker: 45597
-
 Integrating JQuery UI Datepicker with model binding and web forms
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

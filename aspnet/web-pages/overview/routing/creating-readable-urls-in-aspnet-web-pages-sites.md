@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/routing/creating-readable-urls-in-aspnet-web-pages-sites
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\routing\creating-readable-urls-in-aspnet-web-pages-sites.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38612) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/routing/creating-readable-urls-in-aspnet-web-pages-sites.html) | [View prod content](http://www.asp.net/web-pages/overview/routing/creating-readable-urls-in-aspnet-web-pages-sites) | Picker: 59926
-
 Creating Readable URLs in ASP.NET Web Pages (Razor) Sites
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

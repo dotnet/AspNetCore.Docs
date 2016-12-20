@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/scaleout-with-redis
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\older-versions\scaleout-with-redis.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47247) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/older-versions/scaleout-with-redis.html) | [View prod content](http://www.asp.net/signalr/overview/older-versions/scaleout-with-redis) | Picker: 47251
-
 SignalR Scaleout with Redis (SignalR 1.x)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson), [Patrick Fletcher](https://github.com/pfletcher)

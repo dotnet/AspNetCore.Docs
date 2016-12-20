@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/action-results
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\getting-started-with-aspnet-web-api\action-results.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54186) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/getting-started-with-aspnet-web-api/action-results.html) | [View prod content](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/action-results) | Picker: 54187
-
 Action Results in Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

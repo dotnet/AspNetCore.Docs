@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui1823
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\jquery-ui\cdnjqueryui1823.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59218) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-ui/cdnjqueryui1823.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-ui/cdnjqueryui1823) | Picker: 59218
-
 jQuery UI 1.8.23 on the Microsoft Ajax CDN
 ====================
 The jQuery UI 1.8.23 library includes the following files:

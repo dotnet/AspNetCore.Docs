@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-the-conditional-updatemode-of-the-updatepanel
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\how-do-i-use-the-conditional-updatemode-of-the-updatepanel.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26599) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/how-do-i-use-the-conditional-updatemode-of-the-updatepanel.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/how-do-i-use-the-conditional-updatemode-of-the-updatepanel) | Picker: 33622
-
 [How Do I:] Use the Conditional UpdateMode of the UpdatePanel?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

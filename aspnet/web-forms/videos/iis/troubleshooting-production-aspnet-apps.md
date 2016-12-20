@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/troubleshooting-production-aspnet-apps
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\iis\troubleshooting-production-aspnet-apps.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26815) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/iis/troubleshooting-production-aspnet-apps.html) | [View prod content](http://www.asp.net/web-forms/videos/iis/troubleshooting-production-aspnet-apps) | Picker: 33772
-
 Troubleshooting Production ASP.NET Apps
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

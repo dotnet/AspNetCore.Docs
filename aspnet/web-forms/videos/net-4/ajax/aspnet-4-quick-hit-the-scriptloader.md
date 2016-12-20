@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/ajax/aspnet-4-quick-hit-the-scriptloader
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\ajax\aspnet-4-quick-hit-the-scriptloader.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26661) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/ajax/aspnet-4-quick-hit-the-scriptloader.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/ajax/aspnet-4-quick-hit-the-scriptloader) | Picker: 33684
-
 ASP.NET 4 "Quick Hit" - The ScriptLoader
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

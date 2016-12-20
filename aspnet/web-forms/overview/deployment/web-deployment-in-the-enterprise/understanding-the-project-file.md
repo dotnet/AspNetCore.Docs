@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-project-file
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\web-deployment-in-the-enterprise\understanding-the-project-file.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38150) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-project-file.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/web-deployment-in-the-enterprise/understanding-the-project-file) | Picker: 38228
-
 Understanding the Project File
 ====================
 by [Jason Lee](https://github.com/jrjlee)

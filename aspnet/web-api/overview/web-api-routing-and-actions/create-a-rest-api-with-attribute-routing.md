@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\web-api-routing-and-actions\create-a-rest-api-with-attribute-routing.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47564) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing.html) | [View prod content](http://www.asp.net/web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing) | Picker: 47620
-
 Create a REST API with Attribute Routing in ASP.NET Web API 2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

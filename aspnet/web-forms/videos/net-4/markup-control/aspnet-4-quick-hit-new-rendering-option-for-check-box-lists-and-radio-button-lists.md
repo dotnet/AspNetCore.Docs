@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-new-rendering-option-for-check-box-lists-and-radio-button-lists
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\markup-control\aspnet-4-quick-hit-new-rendering-option-for-check-box-lists-and-radio-button-lists.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26655) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-new-rendering-option-for-check-box-lists-and-radio-button-lists.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-new-rendering-option-for-check-box-lists-and-radio-button-lists) | Picker: 33678
-
 ASP.NET 4 "Quick Hit" – New Rendering Option for Check Box Lists and Radio Button Lists
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

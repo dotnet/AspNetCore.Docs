@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-validation-controls-in-aspnet
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-use-validation-controls-in-aspnet.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26444) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-use-validation-controls-in-aspnet.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-use-validation-controls-in-aspnet) | Picker: 33467
-
 [How Do I:]  Use Validation Controls in ASP.NET?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

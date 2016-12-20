@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/samples-list
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\samples-list.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43091) | [View dev content](http://docs.aspdev.net/tutorials/web-api/samples-list.html) | [View prod content](http://www.asp.net/web-api/samples-list) | Picker: 43091
-
 Web API Samples List
 ====================
 ## HttpClient Samples

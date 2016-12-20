@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\contact-manager\iteration-3-add-form-validation-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25237) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-vb) | Picker: 27616
-
 Iteration #3 – Add form validation (VB)
 ====================
 by [Microsoft](https://github.com/microsoft)

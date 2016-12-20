@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/user-based-authorization-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-security\membership\user-based-authorization-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25165) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-security/membership/user-based-authorization-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-security/membership/user-based-authorization-vb) | Picker: 33377
-
 User-Based Authorization (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

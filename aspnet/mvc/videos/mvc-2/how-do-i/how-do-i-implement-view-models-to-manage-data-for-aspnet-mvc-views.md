@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-implement-view-models-to-manage-data-for-aspnet-mvc-views
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\how-do-i-implement-view-models-to-manage-data-for-aspnet-mvc-views.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26704) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/how-do-i-implement-view-models-to-manage-data-for-aspnet-mvc-views.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/how-do-i-implement-view-models-to-manage-data-for-aspnet-mvc-views) | Picker: 27491
-
 How Do I: Implement View  Models to Manage Data for ASP.NET MVC Views?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

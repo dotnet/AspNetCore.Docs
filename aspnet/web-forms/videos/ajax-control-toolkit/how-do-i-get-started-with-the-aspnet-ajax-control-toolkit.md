@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26534) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit) | Picker: 33557
-
 [How Do I:] Get Started with the ASP.NET AJAX Control Toolkit?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

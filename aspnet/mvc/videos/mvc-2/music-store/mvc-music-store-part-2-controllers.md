@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/music-store/mvc-music-store-part-2-controllers
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\music-store\mvc-music-store-part-2-controllers.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26716) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/music-store/mvc-music-store-part-2-controllers.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/music-store/mvc-music-store-part-2-controllers) | Picker: 27507
-
 MVC Music Store Part 2: Controllers
 ====================
 by [Jon Galloway](https://github.com/jongalloway)

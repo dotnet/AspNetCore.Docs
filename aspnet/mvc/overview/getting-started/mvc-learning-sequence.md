@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/mvc-learning-sequence
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\mvc-learning-sequence.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/63563) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/mvc-learning-sequence.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/mvc-learning-sequence) | Picker: 63565
-
 MVC recommended tutorials and articles
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

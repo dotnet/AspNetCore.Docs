@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\displaying-data-with-the-datalist-and-repeater\showing-multiple-records-per-row-with-the-datalist-control-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25021) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-vb) | Picker: 33259
-
 Showing Multiple Records per Row with the DataList Control (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

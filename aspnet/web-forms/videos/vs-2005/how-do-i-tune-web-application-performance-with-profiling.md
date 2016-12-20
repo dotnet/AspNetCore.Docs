@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-tune-web-application-performance-with-profiling
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\how-do-i-tune-web-application-performance-with-profiling.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26836) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/how-do-i-tune-web-application-performance-with-profiling.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/how-do-i-tune-web-application-performance-with-profiling) | Picker: 33793
-
 [How Do I:] Tune Web Application Performance with Profiling?
 ====================
 by [Chris Menegay](https://twitter.com/CMenegay)

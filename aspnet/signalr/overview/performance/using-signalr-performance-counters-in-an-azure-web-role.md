@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/using-signalr-performance-counters-in-an-azure-web-role
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\performance\using-signalr-performance-counters-in-an-azure-web-role.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59995) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/performance/using-signalr-performance-counters-in-an-azure-web-role.html) | [View prod content](http://www.asp.net/signalr/overview/performance/using-signalr-performance-counters-in-an-azure-web-role) | Picker: 61084
-
 Using SignalR Performance Counters in an Azure Web Role
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction/publish-a-website-to-the-internet-using-webmatrix
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\videos\introduction\publish-a-website-to-the-internet-using-webmatrix.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26856) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/introduction/publish-a-website-to-the-internet-using-webmatrix.html) | [View prod content](http://www.asp.net/web-pages/videos/introduction/publish-a-website-to-the-internet-using-webmatrix) | Picker: 38415
-
 Publish a Website to the Internet Using WebMatrix
 ====================
 by [Advaiya](https://twitter.com/Advaiyasolns)

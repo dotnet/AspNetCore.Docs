@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/displaying-a-custom-error-page-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\deploying-web-site-projects\displaying-a-custom-error-page-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25099) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/displaying-a-custom-error-page-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/displaying-a-custom-error-page-vb) | Picker: 33319
-
 Displaying a Custom Error Page (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

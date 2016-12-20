@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-persist-the-state-of-a-user-control-during-a-postback
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-persist-the-state-of-a-user-control-during-a-postback.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26506) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-persist-the-state-of-a-user-control-during-a-postback.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-persist-the-state-of-a-user-control-during-a-postback) | Picker: 33529
-
 [How Do I]: Persist the State of a User Control During a Postback
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

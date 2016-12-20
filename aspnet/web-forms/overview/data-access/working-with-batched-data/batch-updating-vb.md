@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-updating-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\working-with-batched-data\batch-updating-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25267) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/working-with-batched-data/batch-updating-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/working-with-batched-data/batch-updating-vb) | Picker: 33434
-
 Batch Updating (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

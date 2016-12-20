@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-validate/cdnjqueryvalidate18
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\jquery-validate\cdnjqueryvalidate18.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59232) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-validate/cdnjqueryvalidate18.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-validate/cdnjqueryvalidate18) | Picker: 59232
-
 jquery.validate version 1.8
 ====================
 The following files are hosted on the CDN:

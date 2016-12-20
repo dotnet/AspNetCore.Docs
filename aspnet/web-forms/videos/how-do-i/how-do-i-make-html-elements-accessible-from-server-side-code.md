@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-make-html-elements-accessible-from-server-side-code
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-make-html-elements-accessible-from-server-side-code.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26472) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-make-html-elements-accessible-from-server-side-code.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-make-html-elements-accessible-from-server-side-code) | Picker: 33495
-
 [How Do I:] Make HTML elements accessible from server side code
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

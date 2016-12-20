@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-dynamic-data\how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26679) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-dynamic-data/how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-dynamic-data/how-to-implement-custom-field-validation-with-imperative-logic-in-vb-or-c) | Picker: 33702
-
 How to Implement Custom Field Validation with Imperative Logic in VB or C#
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

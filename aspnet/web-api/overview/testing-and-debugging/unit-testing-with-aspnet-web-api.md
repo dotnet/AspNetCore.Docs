@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/unit-testing-with-aspnet-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\testing-and-debugging\unit-testing-with-aspnet-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/52964) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/testing-and-debugging/unit-testing-with-aspnet-web-api.html) | [View prod content](http://www.asp.net/web-api/overview/testing-and-debugging/unit-testing-with-aspnet-web-api) | Picker: 52965
-
 Unit Testing ASP.NET Web API 2
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

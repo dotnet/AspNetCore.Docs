@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-alwaysvisible-control-extender
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-use-the-aspnet-ajax-alwaysvisible-control-extender.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26539) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-alwaysvisible-control-extender.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-alwaysvisible-control-extender) | Picker: 33562
-
 [How Do I:] Use the ASP.NET AJAX AlwaysVisible Control Extender?
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

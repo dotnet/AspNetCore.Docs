@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/self-host-a-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\older-versions\self-host-a-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36889) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/older-versions/self-host-a-web-api.html) | [View prod content](http://www.asp.net/web-api/overview/older-versions/self-host-a-web-api) | Picker: 36893
-
 Self-Host ASP.NET Web API 1 (C#)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

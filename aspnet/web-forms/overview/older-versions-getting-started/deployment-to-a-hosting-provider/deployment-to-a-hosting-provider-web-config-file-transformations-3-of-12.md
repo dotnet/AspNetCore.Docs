@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-web-config-file-transformations-3-of-12
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\deployment-to-a-hosting-provider\deployment-to-a-hosting-provider-web-config-file-transformations-3-of-12.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/34116) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-web-config-file-transformations-3-of-12.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-web-config-file-transformations-3-of-12) | Picker: 36392
-
 Deploying an ASP.NET Web Application with SQL Server Compact using Visual Studio or Visual Web Developer: Web.Config File Transformations - 3 of 12
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

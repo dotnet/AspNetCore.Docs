@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/error-handling/web-api-global-error-handling
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\error-handling\web-api-global-error-handling.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54190) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/error-handling/web-api-global-error-handling.html) | [View prod content](http://www.asp.net/web-api/overview/error-handling/web-api-global-error-handling) | Picker: 54191
-
 Global Error Handling in ASP.NET Web API 2
 ====================
 by [David Matson](https://github.com/davidmatson), [Rick Anderson](https://github.com/Rick-Anderson)

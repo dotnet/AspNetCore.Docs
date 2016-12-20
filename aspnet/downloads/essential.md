@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/essential
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\essential.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36252) | [View dev content](http://docs.aspdev.net/tutorials/downloads/essential.html) | [View prod content](http://www.asp.net/downloads/essential) | Picker: 36252
-
 Essential Downloads
 ====================
 > To get started creating dynamic web sites with ASP.NET, you will need the following two downloads. Both downloads are free, and both are provided in your choice of language. For more information on whats new in Visual Studio 2008 and ASP.NET 3.5 go to the [new features page](vs2008.md). For more information on ASP.NET in the .NET Framework 3.5 Service Pack 1 go to the [SP1 page](35-sp1/index.md)

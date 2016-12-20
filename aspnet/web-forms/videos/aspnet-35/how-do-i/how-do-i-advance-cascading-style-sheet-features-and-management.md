@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-advance-cascading-style-sheet-features-and-management
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\how-do-i\how-do-i-advance-cascading-style-sheet-features-and-management.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26636) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/how-do-i/how-do-i-advance-cascading-style-sheet-features-and-management.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/how-do-i/how-do-i-advance-cascading-style-sheet-features-and-management) | Picker: 33659
-
 [How Do I:] Advance Cascading Style Sheet Features and Management
 ====================
 by Asli Bilgin

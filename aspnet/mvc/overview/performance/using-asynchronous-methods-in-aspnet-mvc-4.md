@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\performance\using-asynchronous-methods-in-aspnet-mvc-4.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/39009) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4.html) | [View prod content](http://www.asp.net/mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4) | Picker: 39023
-
 Using Asynchronous Methods in ASP.NET MVC 4
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

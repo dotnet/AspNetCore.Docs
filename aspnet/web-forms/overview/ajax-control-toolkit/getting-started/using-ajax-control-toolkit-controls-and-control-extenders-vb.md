@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/using-ajax-control-toolkit-controls-and-control-extenders-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\getting-started\using-ajax-control-toolkit-controls-and-control-extenders-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24867) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/getting-started/using-ajax-control-toolkit-controls-and-control-extenders-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/getting-started/using-ajax-control-toolkit-controls-and-control-extenders-vb) | Picker: 33167
-
 Using AJAX Control Toolkit Controls and Control Extenders (VB)
 ====================
 by [Microsoft](https://github.com/microsoft)

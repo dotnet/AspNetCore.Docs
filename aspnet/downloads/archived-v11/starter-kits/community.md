@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/archived-v11/starter-kits/community
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\archived-v11\starter-kits\community.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36268) | [View dev content](http://docs.aspdev.net/tutorials/downloads/archived-v11/starter-kits/community.html) | [View prod content](http://www.asp.net/downloads/archived-v11/starter-kits/community) | Picker: 36268
-
 Community Web Site
 ====================
 > The Community Starter Kit enables an individual or an ISP to quickly create a community Web site such as a user group site, a developer resource site, or a news site.

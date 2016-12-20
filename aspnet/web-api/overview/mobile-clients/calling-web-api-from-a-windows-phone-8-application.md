@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/mobile-clients/calling-web-api-from-a-windows-phone-8-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\mobile-clients\calling-web-api-from-a-windows-phone-8-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51134) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/mobile-clients/calling-web-api-from-a-windows-phone-8-application.html) | [View prod content](http://www.asp.net/web-api/overview/mobile-clients/calling-web-api-from-a-windows-phone-8-application) | Picker: 51135
-
 Calling Web API from a Windows Phone 8 Application (C#)
 ====================
 by [Robert McMurray](https://github.com/rmcmurray)

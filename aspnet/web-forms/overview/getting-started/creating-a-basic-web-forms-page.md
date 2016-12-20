@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/creating-a-basic-web-forms-page
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\getting-started\creating-a-basic-web-forms-page.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54661) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/getting-started/creating-a-basic-web-forms-page.html) | [View prod content](http://www.asp.net/web-forms/overview/getting-started/creating-a-basic-web-forms-page) | Picker: 54678
-
 Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013
 ====================
 by [Erik Reitan](https://github.com/Erikre)

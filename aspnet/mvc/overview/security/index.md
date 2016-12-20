@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/13230) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/security/index.html) | [View prod content](http://www.asp.net/mvc/overview/security)
-
 Security, Authentication, and Authorization with ASP.NET MVC
 ====================
 > How to make an ASP.NET site more secure, and how to implement authentication and authorization.

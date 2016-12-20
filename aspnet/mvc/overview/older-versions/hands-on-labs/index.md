@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45267) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/hands-on-labs/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/hands-on-labs)
-
 ASP.NET MVC 4 Hands On Labs
 ====================
 > Learn how to develop with ASP.NET MVC with these Hands On Labs

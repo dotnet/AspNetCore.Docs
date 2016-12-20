@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/odata-actions-and-functions
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\odata-support-in-aspnet-web-api\odata-v4\odata-actions-and-functions.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58339) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/odata-support-in-aspnet-web-api/odata-v4/odata-actions-and-functions.html) | [View prod content](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/odata-v4/odata-actions-and-functions) | Picker: 58355
-
 Actions and Functions in OData v4 Using ASP.NET Web API 2.2
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

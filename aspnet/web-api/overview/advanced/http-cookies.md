@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/http-cookies
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\advanced\http-cookies.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43086) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/advanced/http-cookies.html) | [View prod content](http://www.asp.net/web-api/overview/advanced/http-cookies) | Picker: 43087
-
 HTTP Cookies in ASP.NET Web API
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

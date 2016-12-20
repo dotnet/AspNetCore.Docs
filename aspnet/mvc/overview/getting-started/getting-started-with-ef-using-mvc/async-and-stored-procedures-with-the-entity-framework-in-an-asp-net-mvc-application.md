@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\getting-started-with-ef-using-mvc\async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51666) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/getting-started-with-ef-using-mvc/async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application) | Picker: 51682
-
 Async and Stored Procedures with the Entity Framework in an ASP.NET MVC Application
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

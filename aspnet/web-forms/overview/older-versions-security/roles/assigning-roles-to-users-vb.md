@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/roles/assigning-roles-to-users-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-security\roles\assigning-roles-to-users-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25209) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-security/roles/assigning-roles-to-users-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-security/roles/assigning-roles-to-users-vb) | Picker: 33405
-
 Assigning Roles to Users (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

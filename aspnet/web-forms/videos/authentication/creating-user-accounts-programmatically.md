@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/creating-user-accounts-programmatically
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\authentication\creating-user-accounts-programmatically.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26781) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/authentication/creating-user-accounts-programmatically.html) | [View prod content](http://www.asp.net/web-forms/videos/authentication/creating-user-accounts-programmatically) | Picker: 33738
-
 Creating User Accounts Programmatically
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

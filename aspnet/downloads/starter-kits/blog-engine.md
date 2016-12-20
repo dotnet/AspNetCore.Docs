@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/blog-engine
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\blog-engine.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36273) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/blog-engine.html) | [View prod content](http://www.asp.net/downloads/starter-kits/blog-engine) | Picker: 36273
-
 BlogEngine.NET Starter Kit
 ====================
 > BlogEngine.NET is a full-featured blogging platform that is a breeze to set up, customize, and use. BlogEngine.NET works with your choice of data source; you may use SQL Server, or you may take the plug'n'play approach using XML files.

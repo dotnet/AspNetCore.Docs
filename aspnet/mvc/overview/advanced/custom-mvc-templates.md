@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/advanced/custom-mvc-templates
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\advanced\custom-mvc-templates.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43456) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/advanced/custom-mvc-templates.html) | [View prod content](http://www.asp.net/mvc/overview/advanced/custom-mvc-templates) | Picker: 43457
-
 Custom MVC Template
 ====================
 by [Jacques Eloff](https://github.com/joeloff)

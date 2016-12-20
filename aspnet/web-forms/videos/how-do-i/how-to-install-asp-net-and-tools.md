@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-to-install-asp-net-and-tools
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-to-install-asp-net-and-tools.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26514) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-to-install-asp-net-and-tools.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-to-install-asp-net-and-tools) | Picker: 33537
-
 How to Install ASP.NET and Tools
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

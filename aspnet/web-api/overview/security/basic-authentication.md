@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/basic-authentication
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\security\basic-authentication.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43543) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/security/basic-authentication.html) | [View prod content](http://www.asp.net/web-api/overview/security/basic-authentication) | Picker: 43551
-
 Basic Authentication in ASP.NET Web API
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\advanced-enterprise-web-deployment\deploying-database-role-memberships-to-test-environments.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38182) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments) | Picker: 38260
-
 Deploying Database Role Memberships to Test Environments
 ====================
 by [Jason Lee](https://github.com/jrjlee)

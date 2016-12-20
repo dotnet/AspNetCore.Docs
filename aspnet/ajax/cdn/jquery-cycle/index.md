@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-cycle
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59187) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-cycle/index.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-cycle)
-
 jQuery Cycle
 ====================
 - [jQuery Cycle 2.99](cdnjquerycycle299.md)

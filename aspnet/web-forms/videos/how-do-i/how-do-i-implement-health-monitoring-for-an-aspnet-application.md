@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-health-monitoring-for-an-aspnet-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-implement-health-monitoring-for-an-aspnet-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26446) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-implement-health-monitoring-for-an-aspnet-application.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-implement-health-monitoring-for-an-aspnet-application) | Picker: 33469
-
 [How Do I:]  Implement Health Monitoring for an ASP.NET Application?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\overview\understanding-models-views-and-controllers-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24909) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/overview/understanding-models-views-and-controllers-vb) | Picker: 27547
-
 Understanding Models, Views, and Controllers (VB)
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

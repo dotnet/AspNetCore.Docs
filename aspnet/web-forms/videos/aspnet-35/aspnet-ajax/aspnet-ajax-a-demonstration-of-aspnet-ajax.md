@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/aspnet-ajax-a-demonstration-of-aspnet-ajax
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\aspnet-ajax\aspnet-ajax-a-demonstration-of-aspnet-ajax.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26640) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/aspnet-ajax/aspnet-ajax-a-demonstration-of-aspnet-ajax.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/aspnet-ajax/aspnet-ajax-a-demonstration-of-aspnet-ajax) | Picker: 33663
-
 ASP.NET AJAX: A demonstration of ASP.NET AJAX
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

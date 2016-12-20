@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/releases/how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\releases\how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/50580) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/releases/how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2.html) | [View prod content](http://www.asp.net/mvc/overview/releases/how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2) | Picker: 50581
-
 How to Upgrade an ASP.NET MVC 4 and Web API Project to ASP.NET MVC 5 and Web API 2
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
@@ -87,7 +85,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 Be sure to make these changes in the app *web.config* file, not the *web.config* file in the *Views* folder.
 
-Locate the `` `<runtime>/<assemblyBinding>` section, and make the following changes:
+Locate the `<runtime>/<assemblyBinding>` section, and make the following changes:
 
 1. In the elements with the name attribute "System.Web.Mvc", change the version number from "4.0.0.0" to "5.0.0.0". (Two changes in that element.)
 2. In elements with the name attribute &quot;System.Web.Helpers" and &quot;System.Web.WebPages&quot; change the version number from "2.0.0.0" to "3.0.0.0". Four changes will occur, two in each of the elements.

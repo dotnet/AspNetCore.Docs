@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\deploying-web-applications-in-enterprise-scenarios\deploying-web-applications-in-enterprise-scenarios.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38143) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios) | Picker: 38221
-
 Deploying Web Applications in Enterprise Scenarios using Visual Studio 2010
 ====================
 by [Jason Lee](https://github.com/jrjlee)

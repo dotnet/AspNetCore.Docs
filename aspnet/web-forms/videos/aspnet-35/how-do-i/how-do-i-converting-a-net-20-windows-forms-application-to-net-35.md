@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-converting-a-net-20-windows-forms-application-to-net-35
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\how-do-i\how-do-i-converting-a-net-20-windows-forms-application-to-net-35.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26637) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/how-do-i/how-do-i-converting-a-net-20-windows-forms-application-to-net-35.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/how-do-i/how-do-i-converting-a-net-20-windows-forms-application-to-net-35) | Picker: 33660
-
 [How Do I:] Converting a .NET 2.0 Windows Forms Application to .NET 3.5
 ====================
 by Asli Bilgin

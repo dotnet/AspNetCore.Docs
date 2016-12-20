@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/performance-and-caching/using-asynchronous-methods-in-aspnet-45
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\performance-and-caching\using-asynchronous-methods-in-aspnet-45.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/39017) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/performance-and-caching/using-asynchronous-methods-in-aspnet-45.html) | [View prod content](http://www.asp.net/web-forms/overview/performance-and-caching/using-asynchronous-methods-in-aspnet-45) | Picker: 39024
-
 Using Asynchronous Methods in ASP.NET 4.5
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
@@ -194,7 +192,7 @@ The downside to async void events is that developers no longer has full control 
 
 ## <a id="Parallel"></a>  Performing Multiple Operations in Parallel
 
-Asynchronous Methods have a significant advantage over synchronous methods when an action must perform several independent operations. In the sample provided, the synchronous page *PWG.aspx*``(for Products, Widgets and Gizmos) displays the results of three web service calls to get a list of products, widgets, and gizmos. The [ASP.NET Web API](../../../web-api/index.md) project that provides these services uses [Task.Delay](https://msdn.microsoft.com/en-us/library/hh139096(VS.110).aspx) to simulate latency or slow network calls. When the delay is set to 500 milliseconds, the asynchronous *PWGasync.aspx* page takes a little over 500 milliseconds to complete while the synchronous `PWG` version takes over 1,500 milliseconds. The synchronous *PWG.aspx*page is shown in the following code.
+Asynchronous Methods have a significant advantage over synchronous methods when an action must perform several independent operations. In the sample provided, the synchronous page *PWG.aspx*(for Products, Widgets and Gizmos) displays the results of three web service calls to get a list of products, widgets, and gizmos. The [ASP.NET Web API](../../../web-api/index.md) project that provides these services uses [Task.Delay](https://msdn.microsoft.com/en-us/library/hh139096(VS.110).aspx) to simulate latency or slow network calls. When the delay is set to 500 milliseconds, the asynchronous *PWGasync.aspx* page takes a little over 500 milliseconds to complete while the synchronous `PWG` version takes over 1,500 milliseconds. The synchronous *PWG.aspx*page is shown in the following code.
 
     protected void Page_Load(object sender, EventArgs e)
     {

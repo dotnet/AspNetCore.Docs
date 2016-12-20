@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-precompile-an-aspnet-website
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-precompile-an-aspnet-website.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26496) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-precompile-an-aspnet-website.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-precompile-an-aspnet-website) | Picker: 33519
-
 [How Do I:] Precompile an ASP.NET Website
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

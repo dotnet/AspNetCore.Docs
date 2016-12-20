@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation/picking-one-animation-out-of-a-list-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\animation\picking-one-animation-out-of-a-list-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24785) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/animation/picking-one-animation-out-of-a-list-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/animation/picking-one-animation-out-of-a-list-vb) | Picker: 33085
-
 Picking One Animation Out Of a List (VB)
 ====================
 by [Christian Wenz](https://github.com/wenz)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-executing-arbitrary-sql
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\how-do-i-with-linq\how-do-i-linq-to-sql-executing-arbitrary-sql.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26528) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-executing-arbitrary-sql.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-executing-arbitrary-sql) | Picker: 37521
-
 How Do I: LINQ to SQL: Executing Arbitrary SQL
 ====================
 by [Scott Stanfield](https://github.com/scottstanfield)

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /mobile/tested-devices
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mobile\tested-devices.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36248) | [View dev content](http://docs.aspdev.net/tutorials/mobile/tested-devices.html) | [View prod content](http://www.asp.net/mobile/tested-devices) | Picker: 36248
-
 ASP.NET Mobile Controls Tested Devices
 ====================
 > The following devices and browsers have been tested with the Microsoft Mobile Internet Toolkit v1.0 and ASP.NET mobile controls.

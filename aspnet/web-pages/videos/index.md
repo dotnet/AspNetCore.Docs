@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38404) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/videos/index.html) | [View prod content](http://www.asp.net/web-pages/videos)
-
 Videos
 ====================
 - [Introduction](introduction/index.md)

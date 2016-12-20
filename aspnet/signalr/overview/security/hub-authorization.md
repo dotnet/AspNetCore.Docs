@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/security/hub-authorization
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\security\hub-authorization.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51305) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/security/hub-authorization.html) | [View prod content](http://www.asp.net/signalr/overview/security/hub-authorization) | Picker: 59964
-
 Authentication and Authorization for SignalR Hubs
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)

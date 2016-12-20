@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/creating-and-using-an-ajax-enabled-web-service-in-a-web-site
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\aspnet-ajax\creating-and-using-an-ajax-enabled-web-service-in-a-web-site.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26630) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/aspnet-ajax/creating-and-using-an-ajax-enabled-web-service-in-a-web-site.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/aspnet-ajax/creating-and-using-an-ajax-enabled-web-service-in-a-web-site) | Picker: 33653
-
 Creating and Using an AJAX-enabled Web Service in a Web Site
 ====================
 by [Rob Windsor](https://twitter.com/robwindsor)

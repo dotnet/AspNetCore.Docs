@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26702) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/how-do-i-return-json-formatted-data-for-an-ajax-call-in-an-aspnet-mvc-web-application) | Picker: 27489
-
 How Do I: Return JSON Formatted Data for an AJAX Call in an ASP.NET MVC Web Application?
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

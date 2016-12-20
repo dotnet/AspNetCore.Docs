@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/deployment/tutorial-signalr-self-host
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\deployment\tutorial-signalr-self-host.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/48017) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/deployment/tutorial-signalr-self-host.html) | [View prod content](http://www.asp.net/signalr/overview/deployment/tutorial-signalr-self-host) | Picker: 59981
-
 Tutorial: SignalR Self-Host
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)

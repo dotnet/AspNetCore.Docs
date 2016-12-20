@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/media-library
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\media-library.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36283) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/media-library.html) | [View prod content](http://www.asp.net/downloads/starter-kits/media-library) | Picker: 36283
-
 Media Library Starter Kit
 ====================
 > The Media Share Library Starter Kit enables you to easily create an application that allows registered users to present a collection of media items (such as movie DVDs, music CDs, books, and more) for other registered users to borrow.

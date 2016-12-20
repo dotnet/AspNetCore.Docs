@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/backbonejs-template
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\single-page-application\overview\templates\backbonejs-template.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45737) | [View dev content](http://docs.aspdev.net/tutorials/single-page-application/overview/templates/backbonejs-template.html) | [View prod content](http://www.asp.net/single-page-application/overview/templates/backbonejs-template) | Picker: 45738
-
 Backbone Template
 ====================
 by [Mads Kristensen](https://github.com/madskristensen)

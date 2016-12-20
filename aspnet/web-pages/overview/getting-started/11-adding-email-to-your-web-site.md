@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/11-adding-email-to-your-web-site
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\getting-started\11-adding-email-to-your-web-site.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38941) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/getting-started/11-adding-email-to-your-web-site.html) | [View prod content](http://www.asp.net/web-pages/overview/getting-started/11-adding-email-to-your-web-site) | Picker: 59899
-
 Sending Email from an ASP.NET Web Pages (Razor) Site
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-8-working-with-the-gridview-and-formview
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\building-20-applications\lesson-8-working-with-the-gridview-and-formview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26911) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/building-20-applications/lesson-8-working-with-the-gridview-and-formview.html) | [View prod content](http://www.asp.net/web-forms/videos/building-20-applications/lesson-8-working-with-the-gridview-and-formview) | Picker: 33858
-
 [Lesson 8:] Working with the GridView and FormView
 ====================
 by [Microsoft](https://github.com/microsoft)

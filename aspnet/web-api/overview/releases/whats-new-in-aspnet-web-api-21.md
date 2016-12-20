@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/releases/whats-new-in-aspnet-web-api-21
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\releases\whats-new-in-aspnet-web-api-21.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54028) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/releases/whats-new-in-aspnet-web-api-21.html) | [View prod content](http://www.asp.net/web-api/overview/releases/whats-new-in-aspnet-web-api-21) | Picker: 54031
-
 What's New in ASP.NET Web API 2.1
 ====================
 by [Microsoft](https://github.com/microsoft)

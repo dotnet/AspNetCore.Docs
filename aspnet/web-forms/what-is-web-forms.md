@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/what-is-web-forms
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\what-is-web-forms.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36254) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/what-is-web-forms.html) | [View prod content](http://www.asp.net/web-forms/what-is-web-forms) | Picker: 36254
-
 What is Web Forms
 ====================
 ASP.NET Web Forms is a part of the ASP.NET web application framework and is included with [Visual Studio](../downloads/index.md). It is one of the four programming models you can use to create ASP.NET web applications, the others are ASP.NET MVC, ASP.NET Web Pages, and ASP.NET Single Page Applications.

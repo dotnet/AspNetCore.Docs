@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-per-product-details
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\tailspin-spyworks\tailspin-spyworks-display-per-product-details.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26896) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-per-product-details.html) | [View prod content](http://www.asp.net/web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-per-product-details) | Picker: 33843
-
 Tailspin Spyworks - Display Per Product Details
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-map-an-aspnet-server-control-to-the-adaptor-used-to-render-it
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-map-an-aspnet-server-control-to-the-adaptor-used-to-render-it.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26476) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-map-an-aspnet-server-control-to-the-adaptor-used-to-render-it.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-map-an-aspnet-server-control-to-the-adaptor-used-to-render-it) | Picker: 33499
-
 [How Do I:] Map an ASP.NET Server Control to the Adaptor Used to Render It
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

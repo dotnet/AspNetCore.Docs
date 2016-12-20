@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-enable-xml-intellisense-and-use-xml-namespaces
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\linq-videos-from-the-vb-team\how-do-i-enable-xml-intellisense-and-use-xml-namespaces.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26861) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-enable-xml-intellisense-and-use-xml-namespaces.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/linq-videos-from-the-vb-team/how-do-i-enable-xml-intellisense-and-use-xml-namespaces) | Picker: 37527
-
 [How Do I:] Enable XML IntelliSense and Use XML Namespaces?
 ====================
 by [Beth Massi](https://github.com/bethmassi)

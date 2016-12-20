@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/custom-validation
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\videos\getting-started\custom-validation.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37167) | [View dev content](http://docs.aspdev.net/tutorials/web-api/videos/getting-started/custom-validation.html) | [View prod content](http://www.asp.net/web-api/videos/getting-started/custom-validation) | Picker: 43066
-
 ASP.NET Web API, Part 5: Custom Validation
 ====================
 by [Jon Galloway](https://github.com/jongalloway)

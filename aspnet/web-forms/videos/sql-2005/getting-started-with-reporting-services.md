@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/getting-started-with-reporting-services
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\sql-2005\getting-started-with-reporting-services.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26886) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/sql-2005/getting-started-with-reporting-services.html) | [View prod content](http://www.asp.net/web-forms/videos/sql-2005/getting-started-with-reporting-services) | Picker: 33833
-
 Getting Started with Reporting Services
 ====================
 by [Microsoft](https://github.com/microsoft)

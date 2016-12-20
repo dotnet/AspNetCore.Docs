@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\extensibility\overview-of-custom-storage-providers-for-aspnet-identity.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/54205) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity.html) | [View prod content](http://www.asp.net/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity) | Picker: 54211
-
 Overview of Custom Storage Providers for ASP.NET Identity
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

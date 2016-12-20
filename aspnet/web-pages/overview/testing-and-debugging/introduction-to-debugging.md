@@ -11,8 +11,6 @@ ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/testing-and-debugging/introduction-to-debugging
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-pages\overview\testing-and-debugging\introduction-to-debugging.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38947) | [View dev content](http://docs.aspdev.net/tutorials/web-pages/overview/testing-and-debugging/introduction-to-debugging.html) | [View prod content](http://www.asp.net/web-pages/overview/testing-and-debugging/introduction-to-debugging) | Picker: 59908
-
 Introduction to Debugging ASP.NET Web Pages (Razor) Sites
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

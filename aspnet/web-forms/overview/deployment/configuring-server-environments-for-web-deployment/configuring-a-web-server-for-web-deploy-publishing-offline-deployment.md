@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-offline-deployment
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\deployment\configuring-server-environments-for-web-deployment\configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/38166) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-offline-deployment.html) | [View prod content](http://www.asp.net/web-forms/overview/deployment/configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-offline-deployment) | Picker: 38252
-
 Configuring a Web Server for Web Deploy Publishing (Offline Deployment)
 ====================
 by [Jason Lee](https://github.com/jrjlee)

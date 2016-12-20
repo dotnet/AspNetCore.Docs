@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-objectdatasource-with-a-data-access-class-and-business-object
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-use-the-objectdatasource-with-a-data-access-class-and-business-object.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26460) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-use-the-objectdatasource-with-a-data-access-class-and-business-object.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-use-the-objectdatasource-with-a-data-access-class-and-business-object) | Picker: 33483
-
 [How Do I:] Use the ObjectDataSource with a Data Access Class and Business Object
 ====================
 by [Chris Pels](https://twitter.com/chrispels)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-enable-inline-gridview-editing
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-dynamic-data\how-do-i-enable-inline-gridview-editing.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26806) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-dynamic-data/how-do-i-enable-inline-gridview-editing.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-dynamic-data/how-do-i-enable-inline-gridview-editing) | Picker: 33763
-
 How Do I Enable Inline GridView Editing?
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

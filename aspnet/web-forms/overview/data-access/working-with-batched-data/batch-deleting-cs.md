@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-deleting-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\working-with-batched-data\batch-deleting-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25268) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/working-with-batched-data/batch-deleting-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/working-with-batched-data/batch-deleting-cs) | Picker: 33435
-
 Batch Deleting (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

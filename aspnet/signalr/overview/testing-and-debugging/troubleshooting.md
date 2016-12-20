@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/testing-and-debugging/troubleshooting
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\testing-and-debugging\troubleshooting.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/51354) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/testing-and-debugging/troubleshooting.html) | [View prod content](http://www.asp.net/signalr/overview/testing-and-debugging/troubleshooting) | Picker: 59949
-
 SignalR Troubleshooting
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)

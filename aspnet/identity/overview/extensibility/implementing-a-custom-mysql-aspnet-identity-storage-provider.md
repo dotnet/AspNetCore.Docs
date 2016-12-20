@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/extensibility/implementing-a-custom-mysql-aspnet-identity-storage-provider
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\identity\overview\extensibility\implementing-a-custom-mysql-aspnet-identity-storage-provider.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/53115) | [View dev content](http://docs.aspdev.net/tutorials/identity/overview/extensibility/implementing-a-custom-mysql-aspnet-identity-storage-provider.html) | [View prod content](http://www.asp.net/identity/overview/extensibility/implementing-a-custom-mysql-aspnet-identity-storage-provider) | Picker: 53120
-
 Implementing a Custom MySQL ASP.NET Identity Storage Provider
 ====================
 by [Raquel Soares De Almeida](https://github.com/raquelsa), [Suhas Joshi](https://github.com/suhasj), [Tom FitzMacken](https://github.com/tfitzmac)

@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\deployment-to-a-hosting-provider\deployment-to-a-hosting-provider-introduction-1-of-12.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/34114) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12) | Picker: 36416
-
 Deploying an ASP.NET Web Application with SQL Server Compact using Visual Studio: Introduction - 1 of 12
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

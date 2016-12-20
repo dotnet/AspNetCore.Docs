@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/nested-data-web-controls-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\displaying-data-with-the-datalist-and-repeater\nested-data-web-controls-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25023) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/nested-data-web-controls-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/nested-data-web-controls-vb) | Picker: 33261
-
 Nested Data Web Controls (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

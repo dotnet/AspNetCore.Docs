@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/security/preventing-javascript-injection-attacks-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions-1\security\preventing-javascript-injection-attacks-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25217) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions-1/security/preventing-javascript-injection-attacks-vb.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions-1/security/preventing-javascript-injection-attacks-vb) | Picker: 27603
-
 Preventing JavaScript Injection Attacks (VB)
 ====================
 by [Stephen Walther](https://github.com/StephenWalther)

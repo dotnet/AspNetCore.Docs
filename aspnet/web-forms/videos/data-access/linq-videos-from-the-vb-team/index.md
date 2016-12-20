@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/linq-videos-from-the-vb-team
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37522) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/linq-videos-from-the-vb-team/index.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/linq-videos-from-the-vb-team)
-
 LINQ Videos from the VB Team
 ====================
 > These videos provide over an hour and half of content focused on the new LINQ language features of Visual Basic 9.0 included in Visual Studio 2008.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/42961) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/odata-support-in-aspnet-web-api/index.html) | [View prod content](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api)
-
 OData in ASP.NET Web API
 ====================
 > How to create OData endpoints in Web API. OData is a data access protocol for the web. It provides a uniform way to query and manipulate data sets. Web API supports both Version 3 and Version 4 of the OData protocol.

@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/classifieds
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\classifieds.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36274) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/classifieds.html) | [View prod content](http://www.asp.net/downloads/starter-kits/classifieds) | Picker: 36274
-
 Classifieds Site Starter Kit
 ====================
 > The Classifieds Site Starter Kit provides a complete, ready to run, fully customizable, Web site for listing and managing classified advertisements.

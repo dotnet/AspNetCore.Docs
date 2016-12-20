@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/bit-rate-throttling
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\iis\bit-rate-throttling.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26818) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/iis/bit-rate-throttling.html) | [View prod content](http://www.asp.net/mvc/videos/iis/bit-rate-throttling) | Picker: 35839
-
 Bit Rate Throttling
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

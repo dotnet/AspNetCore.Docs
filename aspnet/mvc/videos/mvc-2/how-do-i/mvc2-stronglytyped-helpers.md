@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/mvc2-stronglytyped-helpers
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\mvc2-stronglytyped-helpers.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26709) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/mvc2-stronglytyped-helpers.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/mvc2-stronglytyped-helpers) | Picker: 27496
-
 MVC2 - StronglyTyped Helpers
 ====================
 by [Microsoft](https://github.com/microsoft)

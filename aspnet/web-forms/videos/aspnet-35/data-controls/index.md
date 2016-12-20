@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/data-controls
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35817) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/data-controls/index.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/data-controls)
-
 Data Controls
 ====================
 > This set of videos explores how to use new data control features with ASP.NET 3.5

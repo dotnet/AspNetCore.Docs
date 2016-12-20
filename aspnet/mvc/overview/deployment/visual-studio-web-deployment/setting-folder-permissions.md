@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/deployment/visual-studio-web-deployment/setting-folder-permissions
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\deployment\visual-studio-web-deployment\setting-folder-permissions.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45354) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/deployment/visual-studio-web-deployment/setting-folder-permissions.html) | [View prod content](http://www.asp.net/mvc/overview/deployment/visual-studio-web-deployment/setting-folder-permissions) | Picker: 45367
-
 ASP.NET Web Deployment using Visual Studio: Setting Folder Permissions
 ====================
 by [Tom Dykstra](https://github.com/tdykstra)

@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\older-versions\tutorial-getting-started-with-signalr-and-mvc-4.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45727) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4.html) | [View prod content](http://www.asp.net/signalr/overview/older-versions/tutorial-getting-started-with-signalr-and-mvc-4) | Picker: 45728
-
 Tutorial: Getting Started with SignalR 1.x and MVC 4
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher), [Tim Teebken](https://github.com/timlt)

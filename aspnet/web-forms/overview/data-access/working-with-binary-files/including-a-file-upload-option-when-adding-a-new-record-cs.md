@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-cs
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\working-with-binary-files\including-a-file-upload-option-when-adding-a-new-record-cs.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25276) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-cs.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-cs) | Picker: 33443
-
 Including a File Upload Option When Adding a New Record (C#)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

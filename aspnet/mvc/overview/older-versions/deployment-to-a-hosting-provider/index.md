@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/deployment-to-a-hosting-provider
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36415) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/deployment-to-a-hosting-provider/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/deployment-to-a-hosting-provider)
-
 ASP.NET Web Deployment with SQL Server Compact using Visual Studio
 ====================
 > This tutorial series shows how to make an ASP.NET web application that uses SQL Server Compact available over the internet by deploying it to a third-party hosting provider. Requires Visual Studio 2012 RC or Visual Studio 2010. For more up-to-date information about deployment features, or for information about how to deploy SQL Server editions other than SQL Server Compact, see [ASP.NET Web Deployment using Visual Studio](web-forms/overview/deployment/visual-studio-web-deployment/introduction.md).

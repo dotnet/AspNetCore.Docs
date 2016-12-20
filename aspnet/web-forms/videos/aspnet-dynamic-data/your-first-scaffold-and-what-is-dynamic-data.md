@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/your-first-scaffold-and-what-is-dynamic-data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-dynamic-data\your-first-scaffold-and-what-is-dynamic-data.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26805) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-dynamic-data/your-first-scaffold-and-what-is-dynamic-data.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-dynamic-data/your-first-scaffold-and-what-is-dynamic-data) | Picker: 33762
-
 Your First Scaffold and What is Dynamic Data?
 ====================
 by [Scott Hanselman](https://github.com/shanselman)

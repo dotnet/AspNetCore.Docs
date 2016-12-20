@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-elmah-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\deploying-web-site-projects\logging-error-details-with-elmah-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/25105) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-elmah-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-elmah-vb) | Picker: 33325
-
 Logging Error Details with ELMAH (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

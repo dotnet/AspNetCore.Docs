@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/aspnet-mvc-how-10-minute-technical-video-for-developers
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\aspnet-mvc-how-10-minute-technical-video-for-developers.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26701) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/aspnet-mvc-how-10-minute-technical-video-for-developers.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/aspnet-mvc-how-10-minute-technical-video-for-developers) | Picker: 27488
-
 ASP.NET MVC: How? 10 minute technical video for developers
 ====================
 by [Rob Conery](https://github.com/robconery)

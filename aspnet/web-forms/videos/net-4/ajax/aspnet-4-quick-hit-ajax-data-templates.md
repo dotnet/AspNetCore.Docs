@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/ajax/aspnet-4-quick-hit-ajax-data-templates
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\net-4\ajax\aspnet-4-quick-hit-ajax-data-templates.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26663) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/net-4/ajax/aspnet-4-quick-hit-ajax-data-templates.html) | [View prod content](http://www.asp.net/web-forms/videos/net-4/ajax/aspnet-4-quick-hit-ajax-data-templates) | Picker: 33686
-
 ASP.NET 4 "Quick Hit" - AJAX Data Templates
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

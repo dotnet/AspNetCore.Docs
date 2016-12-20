@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/mvc4-beta-release-notes
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\whitepapers\mvc4-beta-release-notes.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36241) | [View dev content](http://docs.aspdev.net/tutorials/whitepapers/mvc4-beta-release-notes.html) | [View prod content](http://www.asp.net/whitepapers/mvc4-beta-release-notes) | Picker: 36241
-
 ASP.NET MVC 4
 ====================
 > This document describes the release of ASP.NET MVC 4 Beta for Visual Studio 2010.

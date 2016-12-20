@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/60467) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/data/index.html) | [View prod content](http://www.asp.net/web-api/overview/data)
-
 Working with Data in ASP.NET Web API
 ====================
 > How to program CRUD (create, read, update, delete) operations in Web API.

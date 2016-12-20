@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-5
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\data\using-web-api-with-entity-framework\part-5.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/58255) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/data/using-web-api-with-entity-framework/part-5.html) | [View prod content](http://www.asp.net/web-api/overview/data/using-web-api-with-entity-framework/part-5) | Picker: 58296
-
 Create Data Transfer Objects (DTOs)
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

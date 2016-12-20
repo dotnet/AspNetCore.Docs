@@ -11,8 +11,6 @@ ms.technology:
 ms.prod: .net-framework
 msc.legacyurl: /downloads/starter-kits/my-web-pages
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\downloads\starter-kits\my-web-pages.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36284) | [View dev content](http://docs.aspdev.net/tutorials/downloads/starter-kits/my-web-pages.html) | [View prod content](http://www.asp.net/downloads/starter-kits/my-web-pages) | Picker: 36284
-
 My Web Pages Starter Kit
 ====================
 > The My Web Pages Starter Kit is a dynamic content management system (CMS). It is designed to meet the needs of computer enthusiasts who want to deploy and maintain their own website — and it is also easy to modify the look and feel or even extend the feature set.

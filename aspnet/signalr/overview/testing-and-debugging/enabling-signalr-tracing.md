@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/testing-and-debugging/enabling-signalr-tracing
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\testing-and-debugging\enabling-signalr-tracing.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59043) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/testing-and-debugging/enabling-signalr-tracing.html) | [View prod content](http://www.asp.net/signalr/overview/testing-and-debugging/enabling-signalr-tracing) | Picker: 59950
-
 Enabling SignalR Tracing
 ====================
 by [Tom FitzMacken](https://github.com/tfitzmac)

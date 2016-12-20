@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/getting-started
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\getting-started\introduction\getting-started.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47546) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/getting-started/introduction/getting-started.html) | [View prod content](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started) | Picker: 47557
-
 Getting Started with ASP.NET MVC 5
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)

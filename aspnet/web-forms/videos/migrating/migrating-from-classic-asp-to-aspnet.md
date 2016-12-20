@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/migrating-from-classic-asp-to-aspnet
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\migrating\migrating-from-classic-asp-to-aspnet.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26920) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/migrating/migrating-from-classic-asp-to-aspnet.html) | [View prod content](http://www.asp.net/web-forms/videos/migrating/migrating-from-classic-asp-to-aspnet) | Picker: 33867
-
 [Migrating from] Classic ASP to ASP.NET
 ====================
 by [Microsoft](https://github.com/microsoft)

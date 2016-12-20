@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/admin
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-security\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32966) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-security/admin/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-security/admin)
-
 ASP.NET 3.5 - Security Administration
 ====================
 > This tutorial series shows you one way to create an administration page that lets you manage users and roles.

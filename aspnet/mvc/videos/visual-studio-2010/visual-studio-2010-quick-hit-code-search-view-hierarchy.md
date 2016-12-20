@@ -11,8 +11,6 @@ ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-search-view-hierarchy
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\visual-studio-2010\visual-studio-2010-quick-hit-code-search-view-hierarchy.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26929) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-search-view-hierarchy.html) | [View prod content](http://www.asp.net/mvc/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-search-view-hierarchy) | Picker: 35825
-
 Visual Studio 2010 "Quick Hit" - Code Search View Hierarchy
 ====================
 by [Joe Stagner](https://github.com/JoeStagner)

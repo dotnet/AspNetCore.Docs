@@ -11,8 +11,6 @@ ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/troubleshooting
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\older-versions\troubleshooting.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47337) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/older-versions/troubleshooting.html) | [View prod content](http://www.asp.net/signalr/overview/older-versions/troubleshooting) | Picker: 47339
-
 SignalR Troubleshooting (SignalR 1.x)
 ====================
 by [Patrick Fletcher](https://github.com/pfletcher)

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/using-sql-cache-dependencies-vb
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\caching-data\using-sql-cache-dependencies-vb.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/24979) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/caching-data/using-sql-cache-dependencies-vb.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/caching-data/using-sql-cache-dependencies-vb) | Picker: 33219
-
 Using SQL Cache Dependencies (VB)
 ====================
 by [Scott Mitchell](https://twitter.com/ScottOnWriting)

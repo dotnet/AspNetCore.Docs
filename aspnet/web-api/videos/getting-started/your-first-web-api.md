@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/your-first-web-api
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\videos\getting-started\your-first-web-api.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37163) | [View dev content](http://docs.aspdev.net/tutorials/web-api/videos/getting-started/your-first-web-api.html) | [View prod content](http://www.asp.net/web-api/videos/getting-started/your-first-web-api) | Picker: 43062
-
 ASP.NET Web API, Part 1: Your First Web API
 ====================
 by [Jon Galloway](https://github.com/jongalloway)

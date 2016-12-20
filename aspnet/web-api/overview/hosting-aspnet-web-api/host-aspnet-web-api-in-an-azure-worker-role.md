@@ -11,8 +11,6 @@ ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-worker-role
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\hosting-aspnet-web-api\host-aspnet-web-api-in-an-azure-worker-role.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47350) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-worker-role.html) | [View prod content](http://www.asp.net/web-api/overview/hosting-aspnet-web-api/host-aspnet-web-api-in-an-azure-worker-role) | Picker: 47331
-
 Host ASP.NET Web API 2 in an Azure Worker Role
 ====================
 by [Mike Wasson](https://github.com/MikeWasson)

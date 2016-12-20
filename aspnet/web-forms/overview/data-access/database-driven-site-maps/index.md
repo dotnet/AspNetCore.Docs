@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/database-driven-site-maps
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32988) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/data-access/database-driven-site-maps/index.html) | [View prod content](http://www.asp.net/web-forms/overview/data-access/database-driven-site-maps)
-
 Database-Driven Site Maps
 ====================
 > This tutorial explains how to build a site map dynamically based on information in the database.

@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-get-started-with-the-entity-framework
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\how-do-i\how-do-i-get-started-with-the-entity-framework.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26638) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/how-do-i/how-do-i-get-started-with-the-entity-framework.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/how-do-i/how-do-i-get-started-with-the-entity-framework) | Picker: 33661
-
 [How Do I:] Get Started with the Entity Framework
 ====================
 by [Alex James](https://github.com/adjames)

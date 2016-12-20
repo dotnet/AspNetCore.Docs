@@ -11,8 +11,6 @@ ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/build-your-first-asp-net-application-with-asp-net-web-forms
 ---
-[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\build-your-first-asp-net-application-with-asp-net-web-forms.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26517) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/build-your-first-asp-net-application-with-asp-net-web-forms.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/build-your-first-asp-net-application-with-asp-net-web-forms) | Picker: 33540
-
 Build Your First ASP.NET Application with ASP.NET Web Forms
 ====================
 by [Laurence Moroney](https://github.com/lmoroney)
