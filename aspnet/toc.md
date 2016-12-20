@@ -12,5 +12,5 @@
 # [Web API](web-api/toc.md)
 # [Web Forms](web-forms/toc.md)
 # [Web Pages](web-pages/toc.md)
-# [ASP.NET WebHooks Documentation](webhooks/index.md)
+# [ASP.NET WebHooks Documentation](webhooks/toc.md)
 # [Whitepapers](whitepapers/toc.md)
