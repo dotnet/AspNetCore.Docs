@@ -1,0 +1,6 @@
+# [Master/Detail Filtering With a DropDownList (C#)](master-detail-filtering-with-a-dropdownlist-datalist-cs.md)
+# [Master/Detail Filtering Across Two Pages (C#)](master-detail-filtering-acess-two-pages-datalist-cs.md)
+# [Master/Detail Using a Bulleted List of Master Records with a Details DataList (C#)](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-cs.md)
+# [Master/Detail Filtering With a DropDownList (VB)](master-detail-filtering-with-a-dropdownlist-datalist-vb.md)
+# [Master/Detail Filtering Across Two Pages (VB)](master-detail-filtering-acess-two-pages-datalist-vb.md)
+# [Master/Detail Using a Bulleted List of Master Records with a Details DataList (VB)](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb.md)

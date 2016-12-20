@@ -1,0 +1,6 @@
+# [Security Basics and ASP.NET Support (C#)](security-basics-and-asp-net-support-cs.md)
+# [Overview of Forms Authentication (C#)](an-overview-of-forms-authentication-cs.md)
+# [Forms Authentication Configuration and Advanced Topics (C#)](forms-authentication-configuration-and-advanced-topics-cs.md)
+# [Security Basics and ASP.NET Support (VB)](security-basics-and-asp-net-support-vb.md)
+# [Overview of Forms Authentication (VB)](an-overview-of-forms-authentication-vb.md)
+# [Forms Authentication Configuration and Advanced Topics (VB)](forms-authentication-configuration-and-advanced-topics-vb.md)

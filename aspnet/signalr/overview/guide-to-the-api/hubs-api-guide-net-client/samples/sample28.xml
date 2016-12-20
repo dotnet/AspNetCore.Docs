@@ -1,0 +1,1 @@
+stockTickerHubProxyProxy.On("Notify", () => Console.WriteLine("Notified!"));

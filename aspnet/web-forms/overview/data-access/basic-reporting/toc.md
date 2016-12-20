@@ -1,0 +1,6 @@
+# [Displaying Data With the ObjectDataSource (C#)](displaying-data-with-the-objectdatasource-cs.md)
+# [Declarative Parameters (C#)](declarative-parameters-cs.md)
+# [Programmatically Setting the ObjectDataSource's Parameter Values (C#)](programmatically-setting-the-objectdatasource-s-parameter-values-cs.md)
+# [Displaying Data With the ObjectDataSource (VB)](displaying-data-with-the-objectdatasource-vb.md)
+# [Declarative Parameters (VB)](declarative-parameters-vb.md)
+# [Programmatically Setting the ObjectDataSource's Parameter Values (VB)](programmatically-setting-the-objectdatasource-s-parameter-values-vb.md)

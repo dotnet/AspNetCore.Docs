@@ -1,0 +1,6 @@
+# [Adding a GridView Column of Radio Buttons (C#)](adding-a-gridview-column-of-radio-buttons-cs.md)
+# [Adding a GridView Column of Checkboxes (C#)](adding-a-gridview-column-of-checkboxes-cs.md)
+# [Inserting a New Record from the GridView's Footer (C#)](inserting-a-new-record-from-the-gridview-s-footer-cs.md)
+# [Adding a GridView Column of Radio Buttons (VB)](adding-a-gridview-column-of-radio-buttons-vb.md)
+# [Adding a GridView Column of Checkboxes (VB)](adding-a-gridview-column-of-checkboxes-vb.md)
+# [Inserting a New Record from the GridView's Footer (VB)](inserting-a-new-record-from-the-gridview-s-footer-vb.md)

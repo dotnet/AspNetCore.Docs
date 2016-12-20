@@ -1,0 +1,24 @@
+---
+title: "Understanding Models, Views, and Controllers | Microsoft Docs"
+author: StephenWalther
+description: "Confused about Models, Views, and Controllers? In this tutorial, Stephen Walther introduces you to the different parts of an ASP.NET MVC application."
+ms.author: riande
+manager: wpickett
+ms.date: 08/20/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-mvc
+ms.prod: .net-framework
+msc.legacyurl: /mvc/videos/mvc-2/how-do-i/understanding-models-views-and-controllers
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\how-do-i\understanding-models-views-and-controllers.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26689) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/how-do-i/understanding-models-views-and-controllers.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/how-do-i/understanding-models-views-and-controllers) | Picker: 27476
+
+Understanding Models, Views, and Controllers
+====================
+by [Stephen Walther](https://github.com/StephenWalther)
+
+Confused about Models, Views, and Controllers? In this tutorial, Stephen Walther introduces you to the different parts of an ASP.NET MVC application. For additional information about this video, read the "Understanding Models, Views, and Controllers" tutorial ([C#](../../../overview/older-versions-1/overview/understanding-models-views-and-controllers-cs.md), [VB](../../../overview/older-versions-1/overview/understanding-models-views-and-controllers-vb.md)).
+
+[&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/understanding-models-views-and-controllers)
+
+>[!div class="step-by-step"] [Previous](creating-a-movie-database-application-in-15-minutes-with-aspnet-mvc.md) [Next](aspnet-mvc-controller-overview.md)

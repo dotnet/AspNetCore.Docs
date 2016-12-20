@@ -1,0 +1,24 @@
+---
+title: "[How Do I:] LINQ to SQL: Overview | Microsoft Docs"
+author: scottstanfield
+description: "New language features for C# and VB support data access directly from code, without writing SQL. This video shows the minimum steps to use LINQ (Language Int..."
+ms.author: riande
+manager: wpickett
+ms.date: 11/15/2007
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-overview
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\how-do-i-with-linq\how-do-i-linq-to-sql-overview.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26520) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-overview.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-overview) | Picker: 37513
+
+[How Do I:] LINQ to SQL: Overview
+====================
+by [Scott Stanfield](https://github.com/scottstanfield)
+
+New language features for C# and VB support data access directly from code, without writing SQL. This video shows the minimum steps to use LINQ (Language Integrated Query) to query, update, add and delete rows from the Northwind database.
+
+[&#9654; Watch video (9 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-overview)
+
+>[!div class="step-by-step"] [Next](how-do-i-linq-to-sql-data-model.md)

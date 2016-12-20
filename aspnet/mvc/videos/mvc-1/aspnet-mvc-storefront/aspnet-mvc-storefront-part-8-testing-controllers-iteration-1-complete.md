@@ -1,0 +1,24 @@
+---
+title: "ASP.NET MVC Storefront Part 8: Testing Controllers, Iteration 1 Complete | Microsoft Docs"
+author: robconery
+description: "Rob finishes up the initial iteration of the site and work on Controller Tests as well."
+ms.author: riande
+manager: wpickett
+ms.date: 05/27/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-mvc
+ms.prod: .net-framework
+msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26728) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete) | Picker: 27519
+
+ASP.NET MVC Storefront Part 8: Testing Controllers, Iteration 1 Complete
+====================
+by [Rob Conery](https://github.com/robconery)
+
+Rob finishes up the initial iteration of the site and work on Controller Tests as well.
+
+[&#9654; Watch video (30 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete)
+
+>[!div class="step-by-step"] [Previous](aspnet-mvc-storefront-part-7-routing-and-ui-work.md) [Next](aspnet-mvc-storefront-part-9-the-shopping-cart.md)

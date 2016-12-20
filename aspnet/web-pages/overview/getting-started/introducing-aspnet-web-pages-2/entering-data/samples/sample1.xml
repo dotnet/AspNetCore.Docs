@@ -1,0 +1,20 @@
+@{
+    Validation.RequireField("title", "You must enter a title");
+    Validation.RequireField("genre", "Genre is required");
+    Validation.RequireField("year", "You haven't entered a year");
+
+    var title = "";
+    var genre = "";
+    var year = "";
+
+    if(IsPost && Validation.IsValid()){
+       title = Request.Form["title"];
+       genre = Request.Form["genre"];
+       year = Request.Form["year"];
+
+       var db = Database.Open("WebPagesMovies");
+       var insertCommand = "INSERT INTO Movies (Title, Genre, Year) Values(@0, @1, @2)";
+       db.Execute(insertCommand, title, genre, year);
+       Response.Redirect("~/Movies");
+    }
+}

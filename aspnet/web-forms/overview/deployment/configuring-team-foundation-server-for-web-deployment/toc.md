@@ -1,0 +1,7 @@
+# [Configuring Team Foundation Server for Web Deployment](configuring-team-foundation-server-for-web-deployment.md)
+# [Creating a Team Project in TFS](creating-a-team-project-in-tfs.md)
+# [Adding Content to Source Control](adding-content-to-source-control.md)
+# [Configuring a TFS Build Server for Web Deployment](configuring-a-tfs-build-server-for-web-deployment.md)
+# [Creating a Build Definition That Supports Deployment](creating-a-build-definition-that-supports-deployment.md)
+# [Deploying a Specific Build](deploying-a-specific-build.md)
+# [Configuring Permissions for Team Build Deployment](configuring-permissions-for-team-build-deployment.md)

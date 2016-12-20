@@ -1,0 +1,22 @@
+---
+title: "[How Do I]: Add Client Script Event Handlers Controls on an ASP.NET Page? | Microsoft Docs"
+author: rick-anderson
+description: "In this video Chris Pels shows how to add client script events to controls on an ASP.NET page. First, several ASP.NET controls are added to the page and an e..."
+ms.author: riande
+manager: wpickett
+ms.date: 04/23/2009
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26507) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page) | Picker: 33530
+
+[How Do I]: Add Client Script Event Handlers Controls on an ASP.NET Page?
+====================
+by [Chris Pels](https://twitter.com/chrispels)
+
+In this video Chris Pels shows how to add client script events to controls on an ASP.NET page. First, several ASP.NET controls are added to the page and an event handler is added for standard server-side processing of the Click event for a button. Next, client side JavaScript event handlers are added for Mouseover and Mouseout client side events that call JavaScript functions on the page to change a button background color. Next, key presses are captured for a textbox by adding a client side event handler. Then the OnClientClick attribute is shown as the way to handle client site click events for a button in addition to server side processing. Finally, several client side event handlers are defined by adding them programmatically in the server Page\_Load event.
+
+[&#9654; Watch video (12 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-add-client-script-event-handlers-controls-on-an-aspnet-page)

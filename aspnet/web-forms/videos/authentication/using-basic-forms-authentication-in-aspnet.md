@@ -1,0 +1,24 @@
+---
+title: "Using Basic Forms Authentication in ASP.NET | Microsoft Docs"
+author: JoeStagner
+description: "Joe Stagner walks through the process to utilize basic forms based authentication programmatically with ASP.NET. It is suggested that viewers read this befor..."
+ms.author: riande
+manager: wpickett
+ms.date: 07/16/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/authentication/using-basic-forms-authentication-in-aspnet
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\authentication\using-basic-forms-authentication-in-aspnet.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26770) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/authentication/using-basic-forms-authentication-in-aspnet.html) | [View prod content](http://www.asp.net/web-forms/videos/authentication/using-basic-forms-authentication-in-aspnet) | Picker: 33727
+
+Using Basic Forms Authentication in ASP.NET
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+Joe Stagner walks through the process to utilize basic forms based authentication programmatically with ASP.NET. It is suggested that viewers read [this](../../overview/older-versions-security/introduction/security-basics-and-asp-net-support-vb.md) before viewing. For more information this demo relates to the tutorial located [here](../../overview/older-versions-security/introduction/an-overview-of-forms-authentication-vb.md).
+
+[&#9654; Watch video (23 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/using-basic-forms-authentication-in-aspnet)
+
+>[!div class="step-by-step"] [Next](how-to-change-the-forms-authentication-properties.md)

@@ -1,0 +1,8 @@
+<configuration>
+  <appSettings>
+    <add key="webpages:Version" value="3.0.0.0" />
+     <!-- Other settings. -->
+    
+    <add key="Search:AppKey" value="" />
+  </appSettings>
+  <system.web>

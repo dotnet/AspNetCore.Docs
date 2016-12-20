@@ -1,0 +1,28 @@
+---
+title: "How Do I with LINQ | Microsoft Docs"
+author: rick-anderson
+description: "This video series walks you through everything you need to know to become proficient in using LINQ as a web developer."
+ms.author: riande
+manager: wpickett
+ms.date: 02/24/2012
+ms.topic: article
+ms.assetid: 
+ms.technology: 
+ms.prod: .net-framework
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/37512) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/how-do-i-with-linq/index.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/how-do-i-with-linq)
+
+How Do I with LINQ
+====================
+> This video series walks you through everything you need to know to become proficient in using LINQ as a web developer.
+
+
+- [LINQ to SQL: Overview](how-do-i-linq-to-sql-overview.md)
+- [LINQ to SQL: Data Model](how-do-i-linq-to-sql-data-model.md)
+- [LINQ to SQL: Querying the Database](how-do-i-linq-to-sql-querying-the-database.md)
+- [LINQ to SQL: Updating the Database](how-do-i-linq-to-sql-updating-the-database.md)
+- [LINQ to SQL: LinqDataSource](how-do-i-linq-to-sql-linqdatasource.md)
+- [LINQ to SQL: Custom LinqDataSource](how-do-i-linq-to-sql-custom-linqdatasource.md)
+- [LINQ to SQL: Using Stored Procedures](how-do-i-linq-to-sql-using-stored-procedures.md)
+- [LINQ to SQL: Updating with Stored Procedures](how-do-i-linq-to-sql-updating-with-stored-procedures.md)
+- [LINQ to SQL: Executing Arbitrary SQL](how-do-i-linq-to-sql-executing-arbitrary-sql.md)

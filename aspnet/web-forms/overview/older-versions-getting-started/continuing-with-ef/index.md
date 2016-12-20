@@ -1,0 +1,25 @@
+---
+title: "ASP.NET 4 - Continuing with Entity Framework 4 and Web Forms | Microsoft Docs"
+author: rick-anderson
+description: "How to build the Contoso U application as an n-tier application using the ObjectDataSource control and how to handle concurrency and maximize performance."
+ms.author: riande
+manager: wpickett
+ms.date: 10/05/2011
+ms.topic: article
+ms.assetid: 
+ms.technology: 
+ms.prod: .net-framework
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-getting-started\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32984) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-getting-started/continuing-with-ef/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-getting-started/continuing-with-ef)
+
+ASP.NET 4 - Continuing with Entity Framework 4 and Web Forms
+====================
+> How to build the Contoso U application as an n-tier application using the ObjectDataSource control and how to handle concurrency and maximize performance.
+
+
+- [Entity Framework 4.0 and the ObjectDataSource Control, Part 1: Getting Started](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started.md)
+- [Entity Framework 4.0 and the ObjectDataSource Control, Part 2: Adding a Business Logic Layer and Unit Tests](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests.md)
+- [Entity Framework 4.0 and the ObjectDataSource Control, Part 3: Sorting and Filtering](using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)
+- [Handling Concurrency with the Entity Framework 4.0 in ASP.NET 4](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application.md)
+- [Maximizing Performance with the Entity Framework 4.0 in ASP.NET 4](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)
+- [What's New in the Entity Framework 4.0](what-s-new-in-the-entity-framework-4.md)

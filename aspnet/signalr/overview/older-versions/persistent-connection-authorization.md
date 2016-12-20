@@ -1,0 +1,37 @@
+---
+title: "Authentication and Authorization for SignalR Persistent Connections (SignalR 1.x) | Microsoft Docs"
+author: pfletcher
+description: "This topic describes how to enforce authorization on a persistent connection. For general information about integrating security into a SignalR application,..."
+ms.author: riande
+manager: wpickett
+ms.date: 10/21/2013
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-signalr
+ms.prod: .net-framework
+msc.legacyurl: /signalr/overview/older-versions/persistent-connection-authorization
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\signalr\overview\older-versions\persistent-connection-authorization.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/47383) | [View dev content](http://docs.aspdev.net/tutorials/signalr/overview/older-versions/persistent-connection-authorization.html) | [View prod content](http://www.asp.net/signalr/overview/older-versions/persistent-connection-authorization) | Picker: 47391
+
+Authentication and Authorization for SignalR Persistent Connections (SignalR 1.x)
+====================
+by [Patrick Fletcher](https://github.com/pfletcher), [Tom FitzMacken](https://github.com/tfitzmac)
+
+> This topic describes how to enforce authorization on a persistent connection. For general information about integrating security into a SignalR application, see [Introduction to Security](index.md).
+
+
+## Enforce authorization
+
+To enforce authorization rules when using a [PersistentConnection](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.persistentconnection(v=vs.111).aspx) you must override the `AuthorizeRequest` method. You cannot use the `Authorize` attribute with persistent connections. The `AuthorizeRequest` method is called by the SignalR Framework before every request to verify that the user is authorized to perform the requested action. The `AuthorizeRequest` method is not called from the client; instead, you authenticate the user through your application's standard authentication mechanism.
+
+The example below shows how to limit requests to authenticated users.
+
+    public class AuthenticatedConnection : PersistentConnection 
+    { 
+        protected override bool AuthorizeRequest(IRequest request) 
+        { 
+            return request.User.Identity.IsAuthenticated; 
+        } 
+    }
+
+You can add any customized authorization logic in the AuthorizeRequest method; such as, checking whether a user belongs to a particular role.

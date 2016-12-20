@@ -1,0 +1,24 @@
+---
+title: "Forms Login Custom Key Configuration | Microsoft Docs"
+author: JoeStagner
+description: "Joe Stagner will examine the machine key setting in your ASP.NET application. For more information on this demo, a tutorial is located here ."
+ms.author: riande
+manager: wpickett
+ms.date: 07/16/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/authentication/forms-login-custom-key-configuration
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\authentication\forms-login-custom-key-configuration.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26774) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/authentication/forms-login-custom-key-configuration.html) | [View prod content](http://www.asp.net/web-forms/videos/authentication/forms-login-custom-key-configuration) | Picker: 33731
+
+Forms Login Custom Key Configuration
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+Joe Stagner will examine the machine key setting in your ASP.NET application. For more information on this demo, a tutorial is located [here](../../overview/older-versions-security/introduction/forms-authentication-configuration-and-advanced-topics-vb.md).
+
+[&#9654; Watch video (7 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/forms-login-custom-key-configuration)
+
+>[!div class="step-by-step"] [Previous](asp-forms-login-relocation.md) [Next](add-custom-data-to-the-authentication-method.md)

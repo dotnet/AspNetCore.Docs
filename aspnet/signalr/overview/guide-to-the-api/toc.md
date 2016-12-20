@@ -1,0 +1,6 @@
+# [Hubs API Guide - Server (C#)](hubs-api-guide-server.md)
+# [Hubs API Guide - JavaScript Client](hubs-api-guide-javascript-client.md)
+# [Hubs API Guide - .NET Client (C#)](hubs-api-guide-net-client.md)
+# [Understanding and Handling Connection Lifetime Events in SignalR](handling-connection-lifetime-events.md)
+# [Working with Groups in SignalR](working-with-groups.md)
+# [Mapping SignalR Users to Connections](mapping-users-to-connections.md)

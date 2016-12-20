@@ -1,0 +1,8 @@
+# [Uploading Files (C#)](uploading-files-cs.md)
+# [Displaying Binary Data in the Data Web Controls (C#)](displaying-binary-data-in-the-data-web-controls-cs.md)
+# [Including a File Upload Option When Adding a New Record (C#)](including-a-file-upload-option-when-adding-a-new-record-cs.md)
+# [Updating and Deleting Existing Binary Data (C#)](updating-and-deleting-existing-binary-data-cs.md)
+# [Uploading Files (VB)](uploading-files-vb.md)
+# [Displaying Binary Data in the Data Web Controls (VB)](displaying-binary-data-in-the-data-web-controls-vb.md)
+# [Including a File Upload Option When Adding a New Record (VB)](including-a-file-upload-option-when-adding-a-new-record-vb.md)
+# [Updating and Deleting Existing Binary Data (VB)](updating-and-deleting-existing-binary-data-vb.md)

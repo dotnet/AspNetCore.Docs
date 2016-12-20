@@ -1,0 +1,24 @@
+---
+title: "Validating Users Manually | Microsoft Docs"
+author: JoeStagner
+description: "In this video Joe Stagner shows you how to create your own web form and process the authentication request manually. For additional information about this vi..."
+ms.author: riande
+manager: wpickett
+ms.date: 08/22/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/authentication/validating-users-manually
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\authentication\validating-users-manually.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26782) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/authentication/validating-users-manually.html) | [View prod content](http://www.asp.net/web-forms/videos/authentication/validating-users-manually) | Picker: 33739
+
+Validating Users Manually
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+In this video Joe Stagner shows you how to create your own web form and process the authentication request manually. For additional information about this video, read the "Validating User Credentials Against the Membership User Store" security tutorial ([C#](../../overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-cs.md), [VB](../../overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-vb.md)).
+
+[&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/validating-users-manually)
+
+>[!div class="step-by-step"] [Previous](creating-user-accounts-programmatically.md) [Next](validating-users-with-the-login-control.md)

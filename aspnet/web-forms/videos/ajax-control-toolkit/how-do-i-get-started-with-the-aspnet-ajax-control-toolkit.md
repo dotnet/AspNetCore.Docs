@@ -1,0 +1,24 @@
+---
+title: "[How Do I:] Get Started with the ASP.NET AJAX Control Toolkit? | Microsoft Docs"
+author: JoeStagner
+description: "Learn how to extend your ASP.NET AJAX applications using the ASP.NET AJAX Control Toolkit. This video starts with the very basics, including downloading and..."
+ms.author: riande
+manager: wpickett
+ms.date: 01/23/2007
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26534) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit) | Picker: 33557
+
+[How Do I:] Get Started with the ASP.NET AJAX Control Toolkit?
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+Learn how to extend your ASP.NET AJAX applications using the ASP.NET AJAX Control Toolkit. This video starts with the very basics, including downloading and installing the toolkit, and adding a few of its controls to a simple ASP.NET AJAX-enabled web page.
+
+[&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-get-started-with-the-aspnet-ajax-control-toolkit)
+
+>[!div class="step-by-step"] [Next](how-do-i-use-the-aspnet-ajax-cascadingdropdown-control-extender.md)

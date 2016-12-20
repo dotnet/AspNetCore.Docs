@@ -1,0 +1,1 @@
+public void NewContosoChatMessage(string userName, string message)

@@ -1,0 +1,24 @@
+---
+title: "ASP.NET MVC For the Rest of Us: Part 3 | Microsoft Docs"
+author: JoeStagner
+description: "In this Video Microsoft's Joe Stagner rebuilds the "Contact Us" feature for an ASP.NET MVC application using the Microsoft Entity Framework and a strongly ty..."
+ms.author: riande
+manager: wpickett
+ms.date: 04/22/2010
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-mvc
+ms.prod: .net-framework
+msc.legacyurl: /mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-3
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-2\aspnet-mvc-for-the-rest-of-us\aspnet-mvc-for-the-rest-of-us-part-3.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26685) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-3.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-3) | Picker: 27504
+
+ASP.NET MVC For the Rest of Us: Part 3
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+In this Video Microsoft's Joe Stagner rebuilds the "Contact Us" feature for an ASP.NET MVC application using the Microsoft Entity Framework and a strongly typed view. Here we start to get a real feel for the power of working with data in ASP.NET MVC.
+
+[&#9654; Watch video (16 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-for-the-rest-of-us-part-3)
+
+>[!div class="step-by-step"] [Previous](aspnet-mvc-for-the-rest-of-us-part-2.md) [Next](aspnet-mvc-for-the-rest-of-us-part-4.md)

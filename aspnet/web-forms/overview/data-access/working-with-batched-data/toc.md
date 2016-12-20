@@ -1,0 +1,8 @@
+# [Wrapping Database Modifications within a Transaction (C#)](wrapping-database-modifications-within-a-transaction-cs.md)
+# [Batch Updating (C#)](batch-updating-cs.md)
+# [Batch Deleting (C#)](batch-deleting-cs.md)
+# [Batch Inserting (C#)](batch-inserting-cs.md)
+# [Wrapping Database Modifications within a Transaction (VB)](wrapping-database-modifications-within-a-transaction-vb.md)
+# [Batch Updating (VB)](batch-updating-vb.md)
+# [Batch Deleting (VB)](batch-deleting-vb.md)
+# [Batch Inserting (VB)](batch-inserting-vb.md)

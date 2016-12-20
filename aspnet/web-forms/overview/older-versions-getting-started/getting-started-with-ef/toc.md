@@ -1,0 +1,8 @@
+# [Getting Started with Entity Framework 4.0 Database First](the-entity-framework-and-aspnet-getting-started-part-1.md)
+# [Getting Started with Entity Framework 4.0 Database First - Part 2](the-entity-framework-and-aspnet-getting-started-part-2.md)
+# [Getting Started with Entity Framework 4.0 Database First - Part 3](the-entity-framework-and-aspnet-getting-started-part-3.md)
+# [Getting Started with Entity Framework 4.0 Database First - Part 4](the-entity-framework-and-aspnet-getting-started-part-4.md)
+# [Getting Started with Entity Framework 4.0 Database First - Part 5](the-entity-framework-and-aspnet-getting-started-part-5.md)
+# [Getting Started with Entity Framework 4.0 Database First - Part 6](the-entity-framework-and-aspnet-getting-started-part-6.md)
+# [Getting Started with Entity Framework 4.0 Database First - Part 7](the-entity-framework-and-aspnet-getting-started-part-7.md)
+# [Getting Started with Entity Framework 4.0 Database First - Part 8](the-entity-framework-and-aspnet-getting-started-part-8.md)

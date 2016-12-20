@@ -1,0 +1,22 @@
+---
+title: "[How Do I:] Create a Custom Membership Provider? | Microsoft Docs"
+author: rick-anderson
+description: "A Membership Provider allows a web application to store and retrieve membership data for a user, and the standard ASP.NET Membership Provider uses pre-define..."
+ms.author: riande
+manager: wpickett
+ms.date: 10/05/2007
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-custom-membership-provider
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-create-a-custom-membership-provider.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26441) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-create-a-custom-membership-provider.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-create-a-custom-membership-provider) | Picker: 33464
+
+[How Do I:] Create a Custom Membership Provider?
+====================
+by [Chris Pels](https://twitter.com/chrispels)
+
+A Membership Provider allows a web application to store and retrieve membership data for a user, and the standard ASP.NET Membership Provider uses pre-defined SQL Server tables. In this video we learn how to create a custom membership provider that uses custom SQL Server tables separate from the pre-defined tables used by the standard provider. The principles covered in the video will apply to creating custom membership providers using other databases such as Access or Oracle. After learning to create the custom membership provider, we learn how to configure the provider in a web application, and see a demonstration of creating a new user and authenticating the new user with the custom membership provider.
+
+[&#9654; Watch video (29 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-a-custom-membership-provider)

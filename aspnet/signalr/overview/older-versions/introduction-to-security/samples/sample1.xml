@@ -1,0 +1,8 @@
+chat.client.addMessageToPage = function (name, message) {
+    // Html encode display name and message. 
+    var encodedName = $('<div />').text(name).html();
+    var encodedMsg = $('<div />').text(message).html();
+    // Add the message to the page. 
+    $('#discussion').append('<li><strong>' + encodedName
+        + '</strong>:  ' + encodedMsg + '</li>');
+};

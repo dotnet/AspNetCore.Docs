@@ -1,0 +1,44 @@
+---
+title: "Integrated Windows Authentication | Microsoft Docs"
+author: MikeWasson
+description: "Describes using Integrated Windows Authentication in ASP.NET Web API."
+ms.author: riande
+manager: wpickett
+ms.date: 12/18/2012
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webapi
+ms.prod: .net-framework
+msc.legacyurl: /web-api/overview/security/integrated-windows-authentication
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-api\overview\security\integrated-windows-authentication.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/43545) | [View dev content](http://docs.aspdev.net/tutorials/web-api/overview/security/integrated-windows-authentication.html) | [View prod content](http://www.asp.net/web-api/overview/security/integrated-windows-authentication) | Picker: 43553
+
+Integrated Windows Authentication
+====================
+by [Mike Wasson](https://github.com/MikeWasson)
+
+Integrated Windows authentication enables users to log in with their Windows credentials, using Kerberos or NTLM. The client sends credentials in the Authorization header. Windows authentication is best suited for an intranet environment. For more information, see [Windows Authentication](http://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication).
+
+| Advantages | Disadvantages |
+| --- | --- |
+| - Built into IIS. - Does not send the user credentials in the request. - If the client computer belongs to the domain (for example, intranet application), the user does not need to enter credentials. | - Not recommended for Internet applications. - Requires Kerberos or NTLM support in the client. - Client must be in the Active Directory domain. |
+
+> [!NOTE] If your application is hosted on Azure and you have an on-premise Active Directory domain, consider federating your on-premise AD with Azure Active Directory. That way, users can log in with their on-premise credentials, but the authentication is performed by Azure AD. For more information, see [Azure Authentication](../../../visual-studio/overview/2012/windows-azure-authentication.md).
+
+
+To create an application that uses Integrated Windows authentication, select the "Intranet Application" template in the MVC 4 project wizard. This project template puts the following setting in the Web.config file:
+
+    <system.web>
+        <authentication mode="Windows" />
+    </system.web>
+
+On the client side, Integrated Windows authentication works with any browser that supports the [Negotiate](http://www.ietf.org/rfc/rfc4559.txt) authentication scheme, which includes most major browsers. For .NET client applications, the **HttpClient** class supports Windows authentication:
+
+    HttpClientHandler handler = new HttpClientHandler()
+    {
+        UseDefaultCredentials = true
+    };
+    
+    HttpClient client = new HttpClient(handler);
+
+Windows authentication is vulnerable to cross-site request forgery (CSRF) attacks. See [Preventing Cross-Site Request Forgery (CSRF) Attacks](preventing-cross-site-request-forgery-csrf-attacks.md).

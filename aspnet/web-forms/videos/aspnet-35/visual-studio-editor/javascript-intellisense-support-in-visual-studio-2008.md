@@ -1,0 +1,24 @@
+---
+title: "JavaScript Intellisense Support in Visual Studio 2008 | Microsoft Docs"
+author: JoeStagner
+description: "In this video I will highlight some of JavaScript Intellisense built into Visual Studio 2008. I will show ways of improving the Intellisense JavaScript featu..."
+ms.author: riande
+manager: wpickett
+ms.date: 11/15/2007
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor/javascript-intellisense-support-in-visual-studio-2008
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\visual-studio-editor\javascript-intellisense-support-in-visual-studio-2008.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26623) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/visual-studio-editor/javascript-intellisense-support-in-visual-studio-2008.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/visual-studio-editor/javascript-intellisense-support-in-visual-studio-2008) | Picker: 33646
+
+JavaScript Intellisense Support in Visual Studio 2008
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+In this video I will highlight some of JavaScript Intellisense built into Visual Studio 2008. I will show ways of improving the Intellisense JavaScript feature by the way you write your JavaScript code.
+
+[&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/javascript-intellisense-support-in-visual-studio-2008)
+
+>[!div class="step-by-step"] [Previous](new-designer-support-in-visual-studio-2008.md) [Next](javascript-debugging-in-visual-studio-2008.md)

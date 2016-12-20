@@ -1,0 +1,7 @@
+<configuration>
+  <appSettings>
+    <add key="webpages:Version" value="3.0.0.0"/>
+     <!-- Other settings removed for clarity -->    
+    <add key="Facebook:AuthorizationRedirectPath" value="~/Home/Permissions"/>
+    <add key="Facebook:VerifyToken:User" value=""/>
+  </appSettings>

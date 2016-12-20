@@ -1,0 +1,1 @@
+[Bind(Include = "ID,Title,ReleaseDate,Genre,Price,Rating")]

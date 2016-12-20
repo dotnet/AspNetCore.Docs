@@ -1,0 +1,24 @@
+---
+title: "ASP.NET MVC Storefront Part 14: Rich Client Interaction | Microsoft Docs"
+author: robconery
+description: "Rich Client interaction specifically focused on AJAX. Rob Conery has documented each step in the development process on his blog ."
+ms.author: riande
+manager: wpickett
+ms.date: 07/10/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-mvc
+ms.prod: .net-framework
+msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-14-rich-client-interaction
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-14-rich-client-interaction.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26734) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-14-rich-client-interaction.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-14-rich-client-interaction) | Picker: 27525
+
+ASP.NET MVC Storefront Part 14: Rich Client Interaction
+====================
+by [Rob Conery](https://github.com/robconery)
+
+Rich Client interaction specifically focused on AJAX. Rob Conery has documented each step in the development process on his [blog](http://blog.wekeroad.com/mvc-storefront/mvcstore-part-14/).
+
+[&#9654; Watch video (33 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-14-rich-client-interaction)
+
+>[!div class="step-by-step"] [Previous](aspnet-mvc-storefront-part-13-dependency-injection.md) [Next](aspnet-mvc-storefront-part-15-public-code-review.md)

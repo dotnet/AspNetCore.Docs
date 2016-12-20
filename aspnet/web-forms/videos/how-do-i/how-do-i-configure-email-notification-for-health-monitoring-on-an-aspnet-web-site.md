@@ -1,0 +1,22 @@
+---
+title: "[How Do I:] Configure Email Notification for Health Monitoring on an ASP.NET Web Site | Microsoft Docs"
+author: rick-anderson
+description: "In this video Chris Pels shows how to configure email notification for health monitoring in an ASP.NET web site. First, see how to configure the sending of e..."
+ms.author: riande
+manager: wpickett
+ms.date: 09/11/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26488) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site) | Picker: 33511
+
+[How Do I:] Configure Email Notification for Health Monitoring on an ASP.NET Web Site
+====================
+by [Chris Pels](https://twitter.com/chrispels)
+
+In this video Chris Pels shows how to configure email notification for health monitoring in an ASP.NET web site. First, see how to configure the sending of email in an ASP.NET web site through the use of the &lt;emailSettings&gt; element in the web.config file. Next, learn how to add the SimpleMailWebEventProvider which sends emails for health monitoring events as a provider. Then see the standard health monitoring events that can be used with email notification by examining the machine level health monitoring configuration. After reviewing the available events see a rule implemented that maps the "All Events" to the email provider. Upon starting the web site several emails are then sent and examined when they are received in Outlook. Finally, some basic principles of which events might be mapped to the health monitoring email provider are discussed.
+
+[&#9654; Watch video (25 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-configure-email-notification-for-health-monitoring-on-an-aspnet-web-site)

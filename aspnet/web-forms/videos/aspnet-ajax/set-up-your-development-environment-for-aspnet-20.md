@@ -1,0 +1,24 @@
+---
+title: "Set Up Your Development Environment for ASP.NET 2.0 | Microsoft Docs"
+author: JoeStagner
+description: "In this video you’ll learn how to set up your Development Environment for developing ASP.NET AJAX Applications if you are targeting ASP.NET 2.0."
+ms.author: riande
+manager: wpickett
+ms.date: 05/13/2009
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/aspnet-ajax/set-up-your-development-environment-for-aspnet-20
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\set-up-your-development-environment-for-aspnet-20.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26615) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/set-up-your-development-environment-for-aspnet-20.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/set-up-your-development-environment-for-aspnet-20) | Picker: 33638
+
+Set Up Your Development Environment for ASP.NET 2.0
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+In this video you'll learn how to set up your Development Environment for developing ASP.NET AJAX Applications if you are targeting ASP.NET 2.0.
+
+[&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/set-up-your-development-environment-for-aspnet-20)
+
+>[!div class="step-by-step"] [Previous](set-up-your-development-environment-for-aspnet-35.md) [Next](how-do-i-customize-error-handling-for-the-aspnet-ajax-updatepanel.md)

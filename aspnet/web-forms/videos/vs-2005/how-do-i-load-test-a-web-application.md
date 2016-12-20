@@ -1,0 +1,24 @@
+---
+title: "[How Do I:] Load Test a Web Application? | Microsoft Docs"
+author: rick-anderson
+description: "This video walks you through the process of recording a Web Test and then replaying it as a Load Test that simulates multiple users. We see how Visual Studio..."
+ms.author: riande
+manager: wpickett
+ms.date: 07/01/2007
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-load-test-a-web-application
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\vs-2005\how-do-i-load-test-a-web-application.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26835) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/vs-2005/how-do-i-load-test-a-web-application.html) | [View prod content](http://www.asp.net/web-forms/videos/vs-2005/how-do-i-load-test-a-web-application) | Picker: 33792
+
+[How Do I:] Load Test a Web Application?
+====================
+by [Chris Menegay](https://twitter.com/CMenegay)
+
+This video walks you through the process of recording a Web Test and then replaying it as a Load Test that simulates multiple users. We see how Visual Studio Team System allows you to set warning and critical thresholds of server resources utilization, which defines whether the Web application passes or fails the load test.
+
+[&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-load-test-a-web-application)
+
+>[!div class="step-by-step"] [Previous](how-do-i-practice-test-driven-development.md) [Next](how-do-i-tune-web-application-performance-with-profiling.md)

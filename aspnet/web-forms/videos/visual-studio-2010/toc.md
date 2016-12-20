@@ -1,0 +1,8 @@
+# [Code Optimized Profile](visual-studio-2010-quick-hit-code-optimized-profile.md)
+# [Code Search View Hierarchy](visual-studio-2010-quick-hit-code-search-view-hierarchy.md)
+# [IntelliSense Smart Lists](visual-studio-2010-quick-hit-intellisense-smart-lists.md)
+# [Multi-Monitor Support](visual-studio-2010-quick-hit-multi-monitor-support.md)
+# [New Web Project Template](visual-studio-2010-quick-hit-new-web-project-template.md)
+# [New Multi-Targeting](visual-studio-2010-quick-hit-new-multi-targeting.md)
+# [Websites Instead of Web Projects](visual-studio-2010-quick-hit-websites-instead-of-web-projects.md)
+# [Snippets IntelliSense](visual-studio-2010-quick-hit-snippets-intellisense.md)

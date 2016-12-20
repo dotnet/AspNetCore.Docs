@@ -1,0 +1,6 @@
+# [Permanent Redirect](aspnet-4-quick-hit-permanent-redirect.md)
+# [Imperative WebForms Routing](aspnet-4-quick-hit-imperative-webforms-routing.md)
+# [Declarative WebForms Routing](aspnet-4-quick-hit-declarative-webforms-routing.md)
+# [Outbound WebForms Routing](aspnet-4-quick-hit-outbound-webforms-routing.md)
+# [Use Routing with ASP.NET Web Forms](how-do-i-use-routing-with-aspnet-web-forms.md)
+# [Work with URLs in ASP.NET Routing](how-do-i-work-with-urls-in-aspnet-routing.md)

@@ -1,0 +1,27 @@
+---
+title: "ModalPopup | Microsoft Docs"
+author: rick-anderson
+description: "This tutorial shows how to use the ModalPopup control, which lets you create the equivalent of a modal dialog box."
+ms.author: riande
+manager: wpickett
+ms.date: 11/14/2011
+ms.topic: article
+ms.assetid: 
+ms.technology: 
+ms.prod: .net-framework
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\ajax-control-toolkit\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35853) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/ajax-control-toolkit/modalpopup/index.html) | [View prod content](http://www.asp.net/web-forms/overview/ajax-control-toolkit/modalpopup)
+
+ModalPopup
+====================
+> This tutorial shows how to use the ModalPopup control, which lets you create the equivalent of a modal dialog box.
+
+
+- [Launching a Modal Popup Window from Server Code (C#)](launching-a-modal-popup-window-from-server-code-cs.md)
+- [Using ModalPopup with a Repeater Control (C#)](using-modalpopup-with-a-repeater-control-cs.md)
+- [Handling Postbacks from a ModalPopup (C#)](handling-postbacks-from-a-modalpopup-cs.md)
+- [Positioning a ModalPopup (C#)](positioning-a-modalpopup-cs.md)
+- [Launching a Modal Popup Window from Server Code (VB)](launching-a-modal-popup-window-from-server-code-vb.md)
+- [Using ModalPopup with a Repeater Control (VB)](using-modalpopup-with-a-repeater-control-vb.md)
+- [Handling Postbacks from a ModalPopup (VB)](handling-postbacks-from-a-modalpopup-vb.md)
+- [Positioning a ModalPopup (VB)](positioning-a-modalpopup-vb.md)

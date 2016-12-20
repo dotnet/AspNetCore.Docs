@@ -1,0 +1,28 @@
+---
+title: "ASP.NET 4.5 | Microsoft Docs"
+author: rick-anderson
+description: "About new Web Forms features introduced in ASP.NET 4.5."
+ms.author: riande
+manager: wpickett
+ms.date: 10/05/2011
+ms.topic: article
+ms.assetid: 
+ms.technology: 
+ms.prod: .net-framework
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/32945) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-web-forms-vnext/index.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-web-forms-vnext)
+
+ASP.NET 4.5
+====================
+> About new Web Forms features introduced in ASP.NET 4.5.
+
+
+- [Strongly Typed Data Controls](aspnet-vnext-videos-strongly-typed-data-controls.md)
+- [Model Binding Part 1 - Selecting Data](aspnet-vnext-videos-model-binding-part-1-selecting-data.md)
+- [Model Binding Part 2 - Filtering](aspnet-vnext-videos-model-binding-part-2-filtering.md)
+- [Model Binding Part 3 - Updating](aspnet-vnext-videos-model-binding-part-3-updating.md)
+- [ASP.NET 4.5 Web Forms Model Binding](aspnet-45-web-forms-model-binding.md)
+- [ASP.NET 4.5 Web Forms Strong Typed Data Controls](aspnet-45-web-forms-strong-typed-data-controls.md)
+- [Bundling and Minification](aspnet-vnext-videos-bundling-and-minification.md)
+- [Getting Started with the Next Version of ASP.NET](getting-started-with-the-next-version-of-aspnet.md)
+- [ASP.NET and Web Tools 2012.2](aspnet-and-web-tools-20122.md)

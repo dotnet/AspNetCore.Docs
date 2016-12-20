@@ -1,0 +1,24 @@
+---
+title: "How Do I: LINQ to SQL: Updating with Stored Procedures | Microsoft Docs"
+author: scottstanfield
+description: "Override the generated ORM update/delete/insert logic with your own through stored procedures. The video also shows in detail how to use the SQL Profiler to..."
+ms.author: riande
+manager: wpickett
+ms.date: 03/13/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-with-stored-procedures
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\data-access\how-do-i-with-linq\how-do-i-linq-to-sql-updating-with-stored-procedures.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26527) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-with-stored-procedures.html) | [View prod content](http://www.asp.net/web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-with-stored-procedures) | Picker: 37520
+
+How Do I: LINQ to SQL: Updating with Stored Procedures
+====================
+by [Scott Stanfield](https://github.com/scottstanfield)
+
+Override the generated ORM update/delete/insert logic with your own through stored procedures. The video also shows in detail how to use the SQL Profiler to monitor the changes in the ORM from generated SQL to our custom SQL stored procs. Since we're just writing SQL, the same techniques apply to both C# and VB developers.
+
+[&#9654; Watch video (15 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-linq-to-sql-updating-with-stored-procedures)
+
+>[!div class="step-by-step"] [Previous](how-do-i-linq-to-sql-using-stored-procedures.md) [Next](how-do-i-linq-to-sql-executing-arbitrary-sql.md)

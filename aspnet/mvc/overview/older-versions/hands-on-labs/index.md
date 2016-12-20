@@ -1,0 +1,26 @@
+---
+title: "ASP.NET MVC 4 Hands On Labs | Microsoft Docs"
+author: rick-anderson
+description: "Learn how to develop with ASP.NET MVC with these Hands On Labs"
+ms.author: riande
+manager: wpickett
+ms.date: 02/18/2013
+ms.topic: article
+ms.assetid: 
+ms.technology: 
+ms.prod: .net-framework
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/45267) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/hands-on-labs/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/hands-on-labs)
+
+ASP.NET MVC 4 Hands On Labs
+====================
+> Learn how to develop with ASP.NET MVC with these Hands On Labs
+
+
+- [What's New in ASP.NET MVC 4](whats-new-in-aspnet-mvc-4.md)
+- [ASP.NET MVC 4 Fundamentals](aspnet-mvc-4-fundamentals.md)
+- [ASP.NET MVC 4 Models and Data Access](aspnet-mvc-4-models-and-data-access.md)
+- [ASP.NET MVC 4 Custom Action Filters](aspnet-mvc-4-custom-action-filters.md)
+- [ASP.NET MVC 4 Entity Framework Scaffolding and Migrations](aspnet-mvc-4-entity-framework-scaffolding-and-migrations.md)
+- [ASP.NET MVC 4 Dependency Injection](aspnet-mvc-4-dependency-injection.md)
+- [ASP.NET MVC 4 Helpers, Forms and Validation](aspnet-mvc-4-helpers-forms-and-validation.md)

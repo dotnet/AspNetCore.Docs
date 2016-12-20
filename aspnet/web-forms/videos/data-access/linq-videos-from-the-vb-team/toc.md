@@ -1,0 +1,7 @@
+# [Get Started with LINQ](how-do-i-get-started-with-linq.md)
+# [Perform Group and Aggregate Queries](how-do-i-perform-group-and-aggregate-queries.md)
+# [Upgrade Visual Basic Projects to Enable LINQ](how-do-i-upgrade-visual-basic-projects-to-enable-linq.md)
+# [Get Started with LINQ to XML](how-do-i-get-started-with-linq-to-xml.md)
+# [Enable XML IntelliSense and Use XML Namespaces](how-do-i-enable-xml-intellisense-and-use-xml-namespaces.md)
+# [Create XML Documents from SQL Data](how-do-i-create-xml-documents-from-sql-data.md)
+# [Create Excel Spreadsheets using LINQ to XML](how-do-i-create-excel-spreadsheets-using-linq-to-xml.md)

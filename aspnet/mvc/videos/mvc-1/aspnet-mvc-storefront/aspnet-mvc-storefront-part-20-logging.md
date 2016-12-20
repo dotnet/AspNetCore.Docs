@@ -1,0 +1,24 @@
+---
+title: "ASP.NET MVC Storefront Part 20: Logging | Microsoft Docs"
+author: robconery
+description: "In this episode I plug in logging - something that probably should have been implemented sooner."
+ms.author: riande
+manager: wpickett
+ms.date: 10/16/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-mvc
+ms.prod: .net-framework
+msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-20-logging
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-20-logging.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26741) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-20-logging.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-20-logging) | Picker: 27532
+
+ASP.NET MVC Storefront Part 20: Logging
+====================
+by [Rob Conery](https://github.com/robconery)
+
+In this episode I plug in logging - something that probably should have been implemented sooner.
+
+[&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-20-logging)
+
+>[!div class="step-by-step"] [Previous](aspnet-mvc-storefront-part-19a-windows-workflow-followup.md) [Next](aspnet-mvc-storefront-part-21-order-manager-and-personalization.md)

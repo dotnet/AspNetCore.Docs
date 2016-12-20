@@ -1,0 +1,43 @@
+<form action="/movies/Edit/4" method="post">
+   <input name="__RequestVerificationToken" type="hidden" value="UxY6bkQyJCXO3Kn5AXg-6TXxOj6yVBi9tghHaQ5Lq_qwKvcojNXEEfcbn-FGh_0vuw4tS_BRk7QQQHlJp8AP4_X4orVNoQnp2cd8kXhykS01" />  <fieldset class="form-horizontal">
+      <legend>Movie</legend>
+
+      <input data-val="true" data-val-number="The field ID must be a number." data-val-required="The ID field is required." id="ID" name="ID" type="hidden" value="4" />
+
+      <div class="control-group">
+         <label class="control-label" for="Title">Title</label>
+         <div class="controls">
+            <input class="text-box single-line" id="Title" name="Title" type="text" value="GhostBusters" />
+            <span class="field-validation-valid help-inline" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+         </div>
+      </div>
+
+      <div class="control-group">
+         <label class="control-label" for="ReleaseDate">Release Date</label>
+         <div class="controls">
+            <input class="text-box single-line" data-val="true" data-val-date="The field Release Date must be a date." data-val-required="The Release Date field is required." id="ReleaseDate" name="ReleaseDate" type="date" value="1/1/1984" />
+            <span class="field-validation-valid help-inline" data-valmsg-for="ReleaseDate" data-valmsg-replace="true"></span>
+         </div>
+      </div>
+
+      <div class="control-group">
+         <label class="control-label" for="Genre">Genre</label>
+         <div class="controls">
+            <input class="text-box single-line" id="Genre" name="Genre" type="text" value="Comedy" />
+            <span class="field-validation-valid help-inline" data-valmsg-for="Genre" data-valmsg-replace="true"></span>
+         </div>
+      </div>
+
+      <div class="control-group">
+         <label class="control-label" for="Price">Price</label>
+         <div class="controls">
+            <input class="text-box single-line" data-val="true" data-val-number="The field Price must be a number." data-val-required="The Price field is required." id="Price" name="Price" type="text" value="7.99" />
+            <span class="field-validation-valid help-inline" data-valmsg-for="Price" data-valmsg-replace="true"></span>
+         </div>
+      </div>
+
+      <div class="form-actions no-color">
+         <input type="submit" value="Save" class="btn" />
+      </div>
+   </fieldset>
+</form>

@@ -1,0 +1,24 @@
+---
+title: "ASP.NET MVC Storefront Part 18: Creating An Experience | Microsoft Docs"
+author: robconery
+description: "In this episode I work on pulling all of the technical pieces together to form a coherent "experience" for the shopper."
+ms.author: riande
+manager: wpickett
+ms.date: 10/16/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-mvc
+ms.prod: .net-framework
+msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-18-creating-an-experience
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-18-creating-an-experience.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26738) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-18-creating-an-experience.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-18-creating-an-experience) | Picker: 27529
+
+ASP.NET MVC Storefront Part 18: Creating An Experience
+====================
+by [Rob Conery](https://github.com/robconery)
+
+In this episode I work on pulling all of the technical pieces together to form a coherent "experience" for the shopper.
+
+[&#9654; Watch video (21 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-18-creating-an-experience)
+
+>[!div class="step-by-step"] [Previous](aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood.md) [Next](aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow.md)

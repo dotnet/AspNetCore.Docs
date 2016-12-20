@@ -1,0 +1,7 @@
+# [ Getting Started with ASP.NET MVC 5 ](introduction/toc.md)
+# [Getting Started with EF 6 using MVC 5](getting-started-with-ef-using-mvc/toc.md)
+# [EF Database First with ASP.NET MVC](database-first-development/toc.md)
+# [ASP.NET MVC Facebook Birthday App](aspnet-mvc-facebook-birthday-app.md)
+# [Lifecycle of an ASP.NET MVC 5 Application](lifecycle-of-an-aspnet-mvc-5-application.md)
+# [MVC Recommended Resources](recommended-resources-for-mvc.md)
+# [MVC recommended tutorials and articles](mvc-learning-sequence.md)

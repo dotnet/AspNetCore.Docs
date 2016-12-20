@@ -1,0 +1,23 @@
+---
+title: "MVC 3 - The HTML5 and jQuery UI Datepicker Popup Calendar | Microsoft Docs"
+author: rick-anderson
+description: "This tutorial covers how to work with editor templates, display templates, and the jQuery UI datepicker popup calendar in an ASP.NET MVC Web application."
+ms.author: riande
+manager: wpickett
+ms.date: 01/19/2012
+ms.topic: article
+ms.assetid: 
+ms.technology: 
+ms.prod: .net-framework
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\overview\older-versions\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/36830) | [View dev content](http://docs.aspdev.net/tutorials/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc/index.html) | [View prod content](http://www.asp.net/mvc/overview/older-versions/using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc)
+
+MVC 3 - The HTML5 and jQuery UI Datepicker Popup Calendar
+====================
+> This tutorial covers how to work with editor templates, display templates, and the jQuery UI datepicker popup calendar in an ASP.NET MVC Web application.
+
+
+- [HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 1](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1.md)
+- [HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 2](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2.md)
+- [HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 3](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3.md)
+- [HTML5 and jQuery UI Datepicker Popup Calendar with ASP.NET MVC - Part 4](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4.md)

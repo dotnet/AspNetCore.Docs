@@ -1,0 +1,46 @@
+<td> 
+                @if (item.OfficeAssignment != null) 
+                { 
+                    @item.OfficeAssignment.Location  
+                } 
+            </td> 
+        </tr> 
+    } 
+</table>
+
+@if (Model.Courses != null) 
+{ 
+    <h3>Courses Taught by Selected Instructor</h3> 
+<table> 
+    <tr> 
+        <th></th> 
+        <th>ID</th> 
+        <th>Title</th> 
+        <th>Department</th> 
+    </tr> 
+ 
+    @foreach (var item in Model.Courses) 
+    { 
+        string selectedRow = ""; 
+        if (item.CourseID == ViewBag.CourseID) 
+        { 
+            selectedRow = "selectedrow"; 
+        } 
+    <tr class="@selectedRow"> 
+        <td> 
+            @Html.ActionLink("Select", "Index", new { courseID = item.CourseID }) 
+        </td> 
+        <td> 
+            @item.CourseID 
+        </td> 
+        <td> 
+            @item.Title 
+        </td> 
+        <td> 
+            @item.Department.Name 
+        </td> 
+    </tr> 
+    } 
+ 
+</table> 
+}

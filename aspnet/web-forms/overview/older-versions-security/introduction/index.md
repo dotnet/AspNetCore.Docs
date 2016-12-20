@@ -1,0 +1,25 @@
+---
+title: "ASP.NET 3.5 - Introduction to Security | Microsoft Docs"
+author: rick-anderson
+description: "This series of tutorials explores techniques for authenticating users using a login form (forms authentication) and authorizing access to individual pages in..."
+ms.author: riande
+manager: wpickett
+ms.date: 11/04/2011
+ms.topic: article
+ms.assetid: 
+ms.technology: 
+ms.prod: .net-framework
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\overview\older-versions-security\index.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/35550) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/overview/older-versions-security/introduction/index.html) | [View prod content](http://www.asp.net/web-forms/overview/older-versions-security/introduction)
+
+ASP.NET 3.5 - Introduction to Security
+====================
+> This series of tutorials explores techniques for authenticating users using a login form (forms authentication) and authorizing access to individual pages in an ASP.NET application.
+
+
+- [Security Basics and ASP.NET Support (C#)](security-basics-and-asp-net-support-cs.md)
+- [Overview of Forms Authentication (C#)](an-overview-of-forms-authentication-cs.md)
+- [Forms Authentication Configuration and Advanced Topics (C#)](forms-authentication-configuration-and-advanced-topics-cs.md)
+- [Security Basics and ASP.NET Support (VB)](security-basics-and-asp-net-support-vb.md)
+- [Overview of Forms Authentication (VB)](an-overview-of-forms-authentication-vb.md)
+- [Forms Authentication Configuration and Advanced Topics (VB)](forms-authentication-configuration-and-advanced-topics-vb.md)

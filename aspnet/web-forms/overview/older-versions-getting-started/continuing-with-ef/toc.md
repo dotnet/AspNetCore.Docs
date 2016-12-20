@@ -1,0 +1,6 @@
+# [Entity Framework 4.0 and the ObjectDataSource Control, Part 1: Getting Started](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started.md)
+# [Entity Framework 4.0 and the ObjectDataSource Control, Part 2: Adding a Business Logic Layer and Unit Tests](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests.md)
+# [Entity Framework 4.0 and the ObjectDataSource Control, Part 3: Sorting and Filtering](using-the-entity-framework-and-the-objectdatasource-control-part-3-sorting-and-filtering.md)
+# [Handling Concurrency with the Entity Framework 4.0 in ASP.NET 4](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application.md)
+# [Maximizing Performance with the Entity Framework 4.0 in ASP.NET 4](maximizing-performance-with-the-entity-framework-in-an-asp-net-web-application.md)
+# [What's New in the Entity Framework 4.0](what-s-new-in-the-entity-framework-4.md)

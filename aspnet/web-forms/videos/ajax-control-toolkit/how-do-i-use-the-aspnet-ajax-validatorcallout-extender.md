@@ -1,0 +1,24 @@
+---
+title: "[How Do I:] Use the ASP.NET AJAX ValidatorCallout Extender? | Microsoft Docs"
+author: JoeStagner
+description: "The standard ASP.NET validation controls work on both the server and the client. Server-side validation adds to the security of your Web application, while c..."
+ms.author: riande
+manager: wpickett
+ms.date: 06/21/2007
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-validatorcallout-extender
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\ajax-control-toolkit\how-do-i-use-the-aspnet-ajax-validatorcallout-extender.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26561) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-validatorcallout-extender.html) | [View prod content](http://www.asp.net/web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-validatorcallout-extender) | Picker: 33584
+
+[How Do I:] Use the ASP.NET AJAX ValidatorCallout Extender?
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+The standard ASP.NET validation controls work on both the server and the client. Server-side validation adds to the security of your Web application, while client-side validation adds to the user friendliness of your Web application. This video demonstrates how the ValidatorCallout control from the ASP.NET AJAX Control Toolkit extends the standard validation controls to enhance the user experience by neatly positioning validation messages in callout boxes.
+
+[&#9654; Watch video (11 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-use-the-aspnet-ajax-validatorcallout-extender)
+
+>[!div class="step-by-step"] [Previous](how-do-i-use-the-numericupdown-extender-control.md) [Next](how-do-i-use-the-aspnet-ajax-resizablecontrol-extender.md)

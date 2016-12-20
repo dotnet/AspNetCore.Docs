@@ -1,0 +1,32 @@
+---
+title: "jQuery DataTables 1.9.0 | Microsoft Docs"
+author: rick-anderson
+description: ""
+ms.author: riande
+manager: wpickett
+ms.date: 07/23/2014
+ms.topic: article
+ms.assetid: 
+ms.technology: 
+ms.prod: .net-framework
+msc.legacyurl: /ajax/cdn/jquery-datatables/cdnjquerydatatables190
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\ajax\cdn\jquery-datatables\cdnjquerydatatables190.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/59264) | [View dev content](http://docs.aspdev.net/tutorials/ajax/cdn/jquery-datatables/cdnjquerydatatables190.html) | [View prod content](http://www.asp.net/ajax/cdn/jquery-datatables/cdnjquerydatatables190) | Picker: 59264
+
+jQuery DataTables 1.9.0
+====================
+The following files for the jQuery DataTables plubin are hosted on the CDN:
+
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.js
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables\_themeroller.css
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/images/back\_disabled.jpg
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/images/back\_enabled.jpg
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/images/forward\_disabled.jpg
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/images/forward\_enabled.jpg
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/images/sort\_asc.png
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/images/sort\_asc\_disabled.png
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/images/sort\_both.png
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/images/sort\_desc.png
+- http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/images/sort\_desc\_disabled.png

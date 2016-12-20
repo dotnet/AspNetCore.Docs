@@ -1,0 +1,22 @@
+---
+title: "Ninja on Fire Black Belt Tips | Microsoft Docs"
+author: Haacked
+description: "See a walkthrough of several tips and tricks for getting the most out of the ASP.NET MVC framework."
+ms.author: riande
+manager: wpickett
+ms.date: 05/12/2009
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-mvc
+ms.prod: .net-framework
+msc.legacyurl: /mvc/videos/mvc-1/conference-presentations/ninja-on-fire-black-belt-tips
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\conference-presentations\ninja-on-fire-black-belt-tips.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26748) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/conference-presentations/ninja-on-fire-black-belt-tips.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/conference-presentations/ninja-on-fire-black-belt-tips) | Picker: 27511
+
+Ninja on Fire Black Belt Tips
+====================
+by [Phil Haack](https://github.com/Haacked)
+
+See a walkthrough of several tips and tricks for getting the most out of the ASP.NET MVC framework.
+
+[&#9654; Watch video (77 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/ninja-on-fire-black-belt-tips)

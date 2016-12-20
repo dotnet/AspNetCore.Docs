@@ -1,0 +1,8 @@
+# [Master/Detail Filtering With a DropDownList (C#)](master-detail-filtering-with-a-dropdownlist-cs.md)
+# [Master/Detail Filtering With Two DropDownLists (C#)](master-detail-filtering-with-two-dropdownlists-cs.md)
+# [Master/Detail Filtering Across Two Pages (C#)](master-detail-filtering-across-two-pages-cs.md)
+# [Master/Detail Using a Selectable Master GridView with a Details DetailView (C#)](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-cs.md)
+# [Master/Detail Filtering With a DropDownList (VB)](master-detail-filtering-with-a-dropdownlist-vb.md)
+# [Master/Detail Filtering With Two DropDownLists (VB)](master-detail-filtering-with-two-dropdownlists-vb.md)
+# [Master/Detail Filtering Across Two Pages (VB)](master-detail-filtering-across-two-pages-vb.md)
+# [Master/Detail Using a Selectable Master GridView with a Details DetailView (VB)](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb.md)

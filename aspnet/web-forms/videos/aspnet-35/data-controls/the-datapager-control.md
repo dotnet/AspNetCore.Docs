@@ -1,0 +1,24 @@
+---
+title: "The DataPager Control | Microsoft Docs"
+author: JoeStagner
+description: "Generally the DataPager control is used with the ListView control. The ListView control is data driven. First create a ListView control and provide it some d..."
+ms.author: riande
+manager: wpickett
+ms.date: 11/15/2007
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/aspnet-35/data-controls/the-datapager-control
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-35\data-controls\the-datapager-control.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26620) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-35/data-controls/the-datapager-control.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-35/data-controls/the-datapager-control) | Picker: 33643
+
+The DataPager Control
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+Generally the DataPager control is used with the ListView control. The ListView control is data driven. First create a ListView control and provide it some data. Next drop the DataPager control onto the page to enhance the web page functionally. If you have not watched the ListView control How-Do-I video it would be best to review it before using the DataPager control.
+
+[&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/the-datapager-control)
+
+>[!div class="step-by-step"] [Previous](the-listview-control.md)

@@ -1,0 +1,24 @@
+---
+title: "ASP.NET MVC Storefront Part 10: Shopping Cart Refactor and Authorization | Microsoft Docs"
+author: robconery
+description: "Rob refactors the initial go at the Shopping Cart, and implements the core of a Membership System using ASP.NET Membership."
+ms.author: riande
+manager: wpickett
+ms.date: 05/27/2008
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-mvc
+ms.prod: .net-framework
+msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-10-shopping-cart-refactor-and-authorization
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\mvc\videos\mvc-1\aspnet-mvc-storefront\aspnet-mvc-storefront-part-10-shopping-cart-refactor-and-authorization.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26730) | [View dev content](http://docs.aspdev.net/tutorials/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-10-shopping-cart-refactor-and-authorization.html) | [View prod content](http://www.asp.net/mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-10-shopping-cart-refactor-and-authorization) | Picker: 27521
+
+ASP.NET MVC Storefront Part 10: Shopping Cart Refactor and Authorization
+====================
+by [Rob Conery](https://github.com/robconery)
+
+Rob refactors the initial go at the Shopping Cart, and implements the core of a Membership System using ASP.NET Membership.
+
+[&#9654; Watch video (25 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/aspnet-mvc-storefront-part-10-shopping-cart-refactor-and-authorization)
+
+>[!div class="step-by-step"] [Previous](aspnet-mvc-storefront-part-9-the-shopping-cart.md) [Next](aspnet-mvc-storefront-part-11-hooking-up-the-shopping-cart-and-using-components.md)

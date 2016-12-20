@@ -1,0 +1,6 @@
+# [Authenticating Users with Forms Authentication (C#)](authenticating-users-with-forms-authentication-cs.md)
+# [Authenticating Users with Windows Authentication (C#)](authenticating-users-with-windows-authentication-cs.md)
+# [Preventing JavaScript Injection Attacks (C#)](preventing-javascript-injection-attacks-cs.md)
+# [Authenticating Users with Forms Authentication (VB)](authenticating-users-with-forms-authentication-vb.md)
+# [Authenticating Users with Windows Authentication (VB)](authenticating-users-with-windows-authentication-vb.md)
+# [Preventing JavaScript Injection Attacks (VB)](preventing-javascript-injection-attacks-vb.md)

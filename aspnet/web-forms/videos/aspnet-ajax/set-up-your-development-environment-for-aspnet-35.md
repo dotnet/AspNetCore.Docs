@@ -1,0 +1,24 @@
+---
+title: "Set Up Your Development Environment for ASP.NET 3.5 | Microsoft Docs"
+author: JoeStagner
+description: "In this video you’ll learn how to set up your Development Environment for developing ASP.NET AJAX Applications if you are targeting ASP.NET 3.5."
+ms.author: riande
+manager: wpickett
+ms.date: 05/13/2009
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/aspnet-ajax/set-up-your-development-environment-for-aspnet-35
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\aspnet-ajax\set-up-your-development-environment-for-aspnet-35.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26614) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/aspnet-ajax/set-up-your-development-environment-for-aspnet-35.html) | [View prod content](http://www.asp.net/web-forms/videos/aspnet-ajax/set-up-your-development-environment-for-aspnet-35) | Picker: 33637
+
+Set Up Your Development Environment for ASP.NET 3.5
+====================
+by [Joe Stagner](https://github.com/JoeStagner)
+
+In this video you'll learn how to set up your Development Environment for developing ASP.NET AJAX Applications if you are targeting ASP.NET 3.5.
+
+[&#9654; Watch video (8 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/set-up-your-development-environment-for-aspnet-35)
+
+>[!div class="step-by-step"] [Previous](how-to-dynamically-add-controls-to-a-web-page.md) [Next](set-up-your-development-environment-for-aspnet-20.md)

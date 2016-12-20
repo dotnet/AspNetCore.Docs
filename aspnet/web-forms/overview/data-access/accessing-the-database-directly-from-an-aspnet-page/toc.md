@@ -1,0 +1,8 @@
+# [Querying Data with the SqlDataSource Control (C#)](querying-data-with-the-sqldatasource-control-cs.md)
+# [Using Parameterized Queries with the SqlDataSource (C#)](using-parameterized-queries-with-the-sqldatasource-cs.md)
+# [Inserting, Updating, and Deleting Data with the SqlDataSource (C#)](inserting-updating-and-deleting-data-with-the-sqldatasource-cs.md)
+# [Implementing Optimistic Concurrency with the SqlDataSource (C#)](implementing-optimistic-concurrency-with-the-sqldatasource-cs.md)
+# [Querying Data with the SqlDataSource Control (VB)](querying-data-with-the-sqldatasource-control-vb.md)
+# [Using Parameterized Queries with the SqlDataSource (VB)](using-parameterized-queries-with-the-sqldatasource-vb.md)
+# [Inserting, Updating, and Deleting Data with the SqlDataSource (VB)](inserting-updating-and-deleting-data-with-the-sqldatasource-vb.md)
+# [Implementing Optimistic Concurrency with the SqlDataSource (VB)](implementing-optimistic-concurrency-with-the-sqldatasource-vb.md)

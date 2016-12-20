@@ -1,0 +1,22 @@
+---
+title: "[How Do I:] Create Data-Driven Web Sites? | Microsoft Docs"
+author: microsoft
+description: "See how simple it is to create data-driven web sites using ASP.NET 2.0, Visual Web Developer 2005 Express Edition, and SQL Server 2005 Express Edition. Learn..."
+ms.author: riande
+manager: wpickett
+ms.date: 01/16/2006
+ms.topic: article
+ms.assetid: 
+ms.technology: dotnet-webforms
+ms.prod: .net-framework
+msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-data-driven-web-sites
+---
+[Edit .md file](C:\Projects\msc\dev\Msc.Www\Web.ASP\App_Data\github\web-forms\videos\how-do-i\how-do-i-create-data-driven-web-sites.md) | [Edit dev content](http://www.aspdev.net/umbraco#/content/content/edit/26434) | [View dev content](http://docs.aspdev.net/tutorials/web-forms/videos/how-do-i/how-do-i-create-data-driven-web-sites.html) | [View prod content](http://www.asp.net/web-forms/videos/how-do-i/how-do-i-create-data-driven-web-sites) | Picker: 33457
+
+[How Do I:] Create Data-Driven Web Sites?
+====================
+by [Microsoft](https://github.com/microsoft)
+
+See how simple it is to create data-driven web sites using ASP.NET 2.0, Visual Web Developer 2005 Express Edition, and SQL Server 2005 Express Edition. Learn how to create a database, add its data, and display that data on a web page.
+
+[&#9654; Watch video (13 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-data-driven-web-sites)
