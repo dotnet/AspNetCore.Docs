@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using AppPartDemo.Model;
+﻿using AppPartSample.Model;
+using Microsoft.AspNetCore.Mvc;
 
-namespace AppPartDemo.Controllers
+namespace AppPartSample.Controllers
 {
     public class HomeController : Controller
     {
@@ -14,7 +14,6 @@ namespace AppPartDemo.Controllers
         public IActionResult Error()
         {
             return View();
-
         }
     }
 }

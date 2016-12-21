@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace AppPartDemo
+namespace AppPartSample
 {
     // Used to set the controller name for routing purposes. Without this convention the
     // names would be like 'GenericController`1[Widget]' instead of 'Widget'.

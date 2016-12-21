@@ -1,11 +1,11 @@
-﻿using AppPartDemo.Model;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
+﻿using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AppPartSample.Model;
 
-namespace AppPartDemo
+namespace AppPartSample
 {
     // An IApplicationFeatureProvider<ControllerFeature> will be used at startup time to discover types
     // that should be treated as controllers. Normally MVC will ignore an open generic type like

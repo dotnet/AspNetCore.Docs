@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace AppPartDemo.Model
+namespace AppPartSample.Model
 {
     public static class EntityTypes
     {
