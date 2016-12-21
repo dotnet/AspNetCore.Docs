@@ -24,31 +24,31 @@ This tutorial shows you how to enable your users to sign in with their Microsoft
 
 * Navigate to [https://apps.dev.microsoft.com](https://apps.dev.microsoft.com):
 
-![image](index/_static/MicrosoftDev.png)
+![Microsoft Developer Portal open in Microsoft Edge](index/_static/MicrosoftDev.png)
 
 * Tap **sign in**:
 
-![image](index/_static/MicrosoftDevLogin.png)
+![Sign in dialog](index/_static/MicrosoftDevLogin.png)
 
 If you don't already have a Microsoft account, tap **[Create one!](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=13&ct=1478151035&rver=6.7.6643.0&wp=SAPI_LONG&wreply=https%3a%2f%2fapps.dev.microsoft.com%2fLoginPostBack&id=293053&aadredir=1&contextid=D70D4F21246BAB50&bk=1478151036&uiflavor=web&uaid=f0c3de863a914c358b8dc01b1ff49e85&mkt=EN-US&lc=1033&lic=1)**. After signing in you are redirected to **My applications** page:
 
-![image](index/_static/MicrosoftDevApps.png)
+![My applications dialog](index/_static/MicrosoftDevApps.png)
 
 * Tap **Add an app** in the upper right corner and enter your **application name**:
 
-![image](index/_static/MicrosoftDevAppCreate.png)
+![New Application Registration dialog](index/_static/MicrosoftDevAppCreate.png)
 
 * The **Registration** page is displayed:
 
-![image](index/_static/MicrosoftDevAppReg.png)
+![Registration page](index/_static/MicrosoftDevAppReg.png)
 
 * Tap **Add Platform** in the **Platforms** section and select the **Web** platform:
 
-![image](index/_static/MicrosoftDevAppPlatform.png)
+![Add Platform dialog](index/_static/MicrosoftDevAppPlatform.png)
 
 * In the new **Web** platform section, enter your current site URL with *signin-microsoft* appended into the **Redirect URIs** field. For example, `https://localhost:44320/signin-microsoft`:
 
-![image](index/_static/MicrosoftRedirectUri.png)
+![Web Platform section](index/_static/MicrosoftRedirectUri.png)
   
   > [!NOTE]
   > When deploying the site you'll need to register a new public url.
@@ -68,7 +68,7 @@ Link sensitive settings like Microsoft `ApplicationId` and `Secret` to your appl
 
 * Tap **Generate New Password** in the **Application Secrets** section. This displays a box where you can copy the application secret:
 
-![image](index/_static/MicrosoftDevPassword.png)
+![New password generated dialog](index/_static/MicrosoftDevPassword.png)
 
 * Execute the following commands in your project working directory to store the Microsoft secrets:
 
@@ -104,22 +104,22 @@ app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 
 Run your application and click **Log in**. An option to sign in with Microsoft appears:
 
-![image](index/_static/DoneMicrosoft.png)
+![Web application Log in page: User not authenticated](index/_static/DoneMicrosoft.png)
 
 When you click on Microsoft, you are redirected to Microsoft for authentication:
 
-![image](index/_static/MicrosoftLogin.png)
+![Microsoft authentication dialog](index/_static/MicrosoftLogin.png)
 
 After entering your Microsoft Account credentials, you are redirected back to the web site where you can set your email.
 
 You are now logged in using your Microsoft credentials:
 
-![image](index/_static/Done.png)
+![Web application: User authenticated](index/_static/Done.png)
 
 > [!NOTE]
 > If the Microsoft Account provider redirects you to a sign in error page, note the error title and description directly following the `#` (hashtag) in the Uri. The most common cause is your application Uri not matching any of the **Redirect URIs** specified for the **Web** platform. In this case, ensure protocol, host, and port are all correct. Your application should be using `https` protocol and the redirect uri should end with **signin-microsoft** as that's the route Microsoft Account middleware requests the login provider to redirect to.
 
-![image](index/_static/MicrosoftLoginError.png)
+![Microsoft error page: We're unable to complete your request. Microsoft account is experiencing technical problems. Please try again later.](index/_static/MicrosoftLoginError.png)
 
 ## Next steps
 
