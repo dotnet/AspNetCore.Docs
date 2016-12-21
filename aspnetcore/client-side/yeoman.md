@@ -58,13 +58,13 @@ yo aspnet
 
 The generator displays a menu. Arrow down to the **Empty Web Application** project and tap **Enter**:
 
-![image](yeoman/_static/yeoman-yo-aspnet.png)
+![Command window: What type of application do you want to create? Menu of application types](yeoman/_static/yeoman-yo-aspnet.png)
 
 Use "EmptyWeb1" for the app name and then tap **Enter**
 
 Yeoman will scaffold the project and its supporting files. Suggested next steps are also provided in the form of commands.
 
-![image](yeoman/_static/yeoman-yo-aspnet-created.png)
+![Command window: What's the name of your ASP.NET application? Command prompt](yeoman/_static/yeoman-yo-aspnet-created.png)
 
 The [ASP.NET generator](https://www.npmjs.com/package/generator-aspnet) creates ASP.NET Core projects that can be loaded into Visual Studio Code, Visual Studio, or run from the command line.
 
@@ -72,11 +72,11 @@ The [ASP.NET generator](https://www.npmjs.com/package/generator-aspnet) creates 
 
 Follow the suggested commands by changing directories to the `EmptyWeb1` directory. Then run `dotnet restore`.
 
-![image](yeoman/_static/dotnet-restore.png)
+![Command window](yeoman/_static/dotnet-restore.png)
 
 Build and run the app using `dotnet build` and `dotnet run`:
 
-![image](yeoman/_static/dotnet-build-run.png)
+![Command window](yeoman/_static/dotnet-build-run.png)
 
 At this point you can navigate to the URL shown to test the newly created ASP.NET Core app.
 
@@ -94,15 +94,15 @@ Open Visual Studio. From the File menu, select Open ‣ Project/Solution.
 
 In the Open Project dialog, navigate to the *project.json* file, select it, and click the **Open** button. In the Solution Explorer, the project should look something like the screenshot below.
 
-![image](yeoman/_static/yeoman-solution.png)
+![Files and folders of a new project in Solution Explorer](yeoman/_static/yeoman-solution.png)
 
 Yeoman scaffolds a MVC web application, complete with both server- and client-side build support. Server-side dependencies are listed under the **References** node, and client-side dependencies in the **Dependencies** node of Solution Explorer. Dependencies are restored automatically when the project is loaded.
 
-![image](yeoman/_static/yeoman-loading-dependencies.png)
+![Under the Dependencies node in the Solution Explorer tree view, the Bower folder is open listing its dependencies.](yeoman/_static/yeoman-loading-dependencies.png)
 
 When all the dependencies are restored, press **F5** to run the project. The default home page displays in the browser.
 
-![image](yeoman/_static/yeoman-home-page.png)
+![Web application open in Microsoft Edge](yeoman/_static/yeoman-home-page.png)
 
 ## Restoring, Building, and Hosting from the Command Line
 
@@ -130,7 +130,7 @@ The cross-platform [Kestrel](../fundamentals/servers/kestrel.md) web server will
 
 Open a web browser, and navigate to `http://localhost:5000`.
 
-![image](yeoman/_static/yeoman-home-page_5000.png)
+![Web application open in Microsoft Edge](yeoman/_static/yeoman-home-page_5000.png)
 
 ## Adding to Your Project with Sub Generators
 
