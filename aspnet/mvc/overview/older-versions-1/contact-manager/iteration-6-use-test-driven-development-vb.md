@@ -118,24 +118,7 @@ Our first unit test is contained in Listing 1. This test verifies that the Index
 
 **Listing 1 - Controllers\<wbr />GroupControllerTest.vb**
 
-    Imports Microsoft.VisualStudio.TestTools.UnitTesting
-    Imports System.Web.Mvc
-    
-    <TestClass()> _
-    Public Class GroupControllerTest
-    
-        <TestMethod()> _
-        Public Sub Index()
-            ' Arrange
-            Dim controller = New GroupController()
-    
-            ' Act
-            Dim result = CType(controller.Index(), ViewResult)
-    
-            ' Assert
-            Assert.IsInstanceOfType(result.ViewData.Model, GetType(IEnumerable(Of Group)))
-        End Sub
-    End Class
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample1.xml)]
 
 When you first type the code in Listing 1 in Visual Studio, you'll get a lot of red squiggly lines. We have not created the GroupController or Group classes.
 
@@ -145,21 +128,11 @@ The Group controller class in Listing 2 contains the bare minimum of code requir
 
 **Listing 2 - Controllers\GroupController.vb**
 
-    Public Class GroupController
-        Inherits System.Web.Mvc.Controller
-    
-        Function Index() As ActionResult
-            Dim groups = new List(Of Group)
-            Return View(groups)
-        End Function
-    
-    End Class
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample2.xml)]
 
 **Listing 3 - Models\Group.vb**
 
-    Public Class Group
-    
-    End Class
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample3.xml)]
 
 After we add the GroupController and Group classes to our project, our first unit test completes successfully (see Figure 2). We have done the minimum work required to pass the test. It is time to celebrate.
 
@@ -177,20 +150,7 @@ The test in Listing 4 verifies that calling the Create() method with a new Group
 
 **Listing 4 - Controllers\<wbr />GroupControllerTest.vb**
 
-    <TestMethod> _
-    Public Sub Create()
-        ' Arrange
-        Dim controller = New GroupController()
-    
-        ' Act
-        Dim groupToCreate = New Group()
-        controller.Create(groupToCreate)
-    
-        ' Assert
-        Dim result = CType(controller.Index(), ViewResult)
-        Dim groups = CType(result.ViewData.Model, IEnumerable(Of Group))
-        CollectionAssert.Contains(groups.ToList(), groupToCreate)
-    End Sub
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample4.xml)]
 
 The test in Listing 4 calls the Group controller Create() method with a new contact Group. Next, the test verifies that calling the Group controller Index() method returns the new Group in view data.
 
@@ -198,21 +158,7 @@ The modified Group controller in Listing 5 contains the bare minimum of changes 
 
 **Listing 5 - Controllers\GroupController.vb**
 
-    Public Class GroupController
-    Inherits Controller
-    
-    Private _groups As IList(Of Group) = New List(Of Group)()
-    
-    Public Function Index() As ActionResult
-    	Return View(_groups)
-    End Function
-    
-    Public Function Create(ByVal groupToCreate As Group) As ActionResult
-    	_groups.Add(groupToCreate)
-    	Return RedirectToAction("Index")
-    
-    End Function
-    End Class
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample5.xml)]
 
 ## The Group controller in Listing 5 has a new Create() action. This action adds a Group to a collection of Groups. Notice that the Index() action has been modified to return the contents of the collection of Groups.
 
@@ -226,53 +172,17 @@ Listing 6 contains a new test that expresses this intention. This test verifies 
 
 **Listing 6 - Controllers\<wbr />GroupControllerTest.vb**
 
-    <TestMethod> _
-    Public Sub CreateRequiredName()
-        ' Arrange
-        Dim controller = New GroupController()
-    
-        ' Act
-        Dim groupToCreate As New Group()
-        groupToCreate.Name = String.Empty
-        Dim result = CType(controller.Create(groupToCreate), ViewResult)
-    
-        ' Assert
-        Dim [error] = result.ViewData.ModelState("Name").Errors(0)
-        Assert.AreEqual("Name is required.", [error].ErrorMessage)
-    End Sub
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample6.xml)]
 
 In order to satisfy this test, we need to add a Name property to our Group class (see Listing 7). Furthermore, we need to add a tiny bit of validation logic to our Group controller s Create() action (see Listing 8).
 
 **Listing 7 - Models\Group.vb**
 
-    Public Class Group
-    
-        Private _name As String
-    
-        Public Property Name() As String
-    	Get
-    		Return _name
-    	End Get
-    	Set(ByVal value As String)
-    		_name = value
-    	End Set
-    End Property
-    
-    End Class
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample7.xml)]
 
 **Listing 8 - Controllers\GroupController.vb**
 
-    Public Function Create(ByVal groupToCreate As Group) As ActionResult
-        ' Validation logic
-        If groupToCreate.Name.Trim().Length = 0 Then
-        ModelState.AddModelError("Name", "Name is required.")
-        Return View("Create")
-        End If
-    
-        ' Database logic
-        _groups.Add(groupToCreate)
-        Return RedirectToAction("Index")
-    End Function
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample8.xml)]
 
 Notice that the Group controller Create() action now contains both validation and database logic. Currently, the database used by the Group controller consists of nothing more than an in-memory collection.
 
@@ -292,187 +202,27 @@ Listing 11 contains a new FakeContactManagerRepository class that implements the
 
 **Listing 9 - Controllers\GroupController.vb**
 
-    Public Class GroupController
-    Inherits Controller
-    
-    Private _service As IContactManagerService
-    
-    Public Sub New()
-    	_service = New ContactManagerService(New ModelStateWrapper(Me.ModelState))
-    
-    End Sub
-    
-    Public Sub New(ByVal service As IContactManagerService)
-    	_service = service
-    End Sub
-    
-    Public Function Index() As ActionResult
-    	Return View(_service.ListGroups())
-    End Function
-
-    Public Function Create(ByVal groupToCreate As Group) As ActionResult
-    	If _service.CreateGroup(groupToCreate) Then
-    		Return RedirectToAction("Index")
-    	End If
-    	Return View("Create")
-    End Function
-    
-    End Class
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample9.xml)]
 
 **Listing 10 - Controllers\<wbr />ContactManagerService.vb**
 
-    Public Function ValidateGroup(ByVal groupToValidate As Group) As Boolean
-    If groupToValidate.Name.Trim().Length = 0 Then
-    	_validationDictionary.AddError("Name", "Name is required.")
-    End If
-    Return _validationDictionary.IsValid
-    End Function
-    
-    Public Function CreateGroup(ByVal groupToCreate As Group) As Boolean Implements IContactManagerService.CreateGroup
-        ' Validation logic
-        If Not ValidateGroup(groupToCreate) Then
-            Return False
-        End If
-    
-        ' Database logic
-        Try
-            _repository.CreateGroup(groupToCreate)
-        Catch
-            Return False
-        End Try
-        Return True
-    End Function
-    
-    Public Function ListGroups() As IEnumerable(Of Group) Implements IContactManagerService.ListGroups
-        Return _repository.ListGroups()
-    End Function
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample10.xml)]
 
 **Listing 11 - Controllers\<wbr />FakeContactManagerRepository.<wbr />vb**
 
-    Public Class FakeContactManagerRepository
-    Implements IContactManagerRepository
-    
-    Private _groups As IList(Of Group) = New List(Of Group)()
-    
-    #Region "IContactManagerRepository Members"
-    
-    ' Group methods
-    
-    Public Function CreateGroup(ByVal groupToCreate As Group) As Group Implements IContactManagerRepository.CreateGroup
-    	_groups.Add(groupToCreate)
-    	Return groupToCreate
-    End Function
-    
-    Public Function ListGroups() As IEnumerable(Of Group) Implements IContactManagerRepository.ListGroups
-    	Return _groups
-    End Function
-    
-    ' Contact methods
-    
-    Public Function CreateContact(ByVal contactToCreate As Contact) As Contact Implements IContactManagerRepository.CreateContact
-    	Throw New NotImplementedException()
-    End Function
-    
-    Public Sub DeleteContact(ByVal contactToDelete As Contact) Implements IContactManagerRepository.DeleteContact
-    	Throw New NotImplementedException()
-    End Sub
-    
-    Public Function EditContact(ByVal contactToEdit As Contact) As Contact Implements IContactManagerRepository.EditContact
-    	Throw New NotImplementedException()
-    End Function
-    
-    Public Function GetContact(ByVal id As Integer) As Contact Implements IContactManagerRepository.GetContact
-    	Throw New NotImplementedException()
-    End Function
-    
-    Public Function ListContacts() As IEnumerable(Of Contact) Implements IContactManagerRepository.ListContacts
-    	Throw New NotImplementedException()
-    End Function
-    
-    #End Region
-    End Class
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample11.xml)]
 
 
 Modifying the IContactManagerRepository interface requires use to implement the CreateGroup() and ListGroups() methods in the EntityContactManagerRepository class. The laziest and fastest way to do this is to add stub methods that look like this:
 
-    Public Function CreateGroup(groupToCreate As Group) As Group Implements IContactManagerRepository.CreateGroup
-    
-        throw New NotImplementedException()
-    
-    End Function 
-    
-    Public Function ListGroups() As IEnumerable(Of Group) Implements IContactManagerRepository.ListGroups
-    
-        throw New NotImplementedException()
-    
-    End Function
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample12.xml)]
 
 
 Finally, these changes to the design of our application require us to make some modifications to our unit tests. We now need to use the FakeContactManagerRepository when performing the unit tests. The updated GroupControllerTest class is contained in Listing 12.
 
 **Listing 12 - Controllers\<wbr />GroupControllerTest.vb**
 
-    Imports Microsoft.VisualStudio.TestTools.UnitTesting
-    Imports System.Web.Mvc
-    
-    <TestClass()> _
-    Public Class GroupControllerTest
-    
-        Private _repository As IContactManagerRepository
-        Private _modelState As ModelStateDictionary
-        Private _service As IContactManagerService
-    
-        <TestInitialize()> _
-        Public Sub Initialize()
-            _repository = New FakeContactManagerRepository()
-            _modelState = New ModelStateDictionary()
-            _service = New ContactManagerService(New ModelStateWrapper(_modelState), _repository)
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub Index()
-            ' Arrange
-            Dim controller = New GroupController(_service)
-    
-            ' Act
-            Dim result = CType(controller.Index(), ViewResult)
-    
-            ' Assert
-            Assert.IsInstanceOfType(result.ViewData.Model, GetType(IEnumerable(Of Group)))
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub Create()
-            ' Arrange
-            Dim controller = New GroupController(_service)
-    
-            ' Act
-            Dim groupToCreate = New Group()
-            groupToCreate.Name = "Business"
-            controller.Create(groupToCreate)
-    
-            ' Assert
-            Dim result = CType(controller.Index(), ViewResult)
-            Dim groups = CType(result.ViewData.Model, IEnumerable(Of Group))
-            CollectionAssert.Contains(groups.ToList(), groupToCreate)
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub CreateRequiredName()
-            ' Arrange
-            Dim controller = New GroupController(_service)
-    
-            ' Act
-            Dim groupToCreate = New Group()
-            groupToCreate.Name = String.Empty
-            Dim result = CType(controller.Create(groupToCreate), ViewResult)
-    
-            ' Assert
-            Dim nameError = _modelState("Name").Errors(0)
-            Assert.AreEqual("Name is required.", nameError.ErrorMessage)
-        End Sub
-    
-    End Class
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample13.xml)]
 
 After we make all of these changes, once again, all of our unit tests pass. We have completed the entire cycle of Red/Green/Refactor. We have implemented the first two user stories. We now have supporting unit tests for the requirements expressed in the user stories. Implementing the remainder of the user stories involves repeating the same cycle of Red/Green/Refactor.
 
@@ -554,105 +304,17 @@ Next, we need to implement our repository class. Over the course of this iterati
 
 **Listing 14 - Models\<wbr />IContactManagerRepository.vb**
 
-    Public Interface IContactManagerRepository
-    ' Contact methods
-    Function CreateContact(ByVal groupId As Integer, ByVal contactToCreate As Contact) As Contact
-    Sub DeleteContact(ByVal contactToDelete As Contact)
-    Function EditContact(ByVal groupId As Integer, ByVal contactToEdit As Contact) As Contact
-    Function GetContact(ByVal id As Integer) As Contact
-    
-    ' Group methods
-    Function CreateGroup(ByVal groupToCreate As Group) As Group
-    Function ListGroups() As IEnumerable(Of Group)
-    Function GetGroup(ByVal groupId As Integer) As Group
-    Function GetFirstGroup() As Group
-    Sub DeleteGroup(ByVal groupToDelete As Group)
-    
-    End Interface
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample14.xml)]
 
 We haven t actually implemented any of the methods related to working with contact groups in our real EntityContactManagerRepository class. Currently, the EntityContactManagerRepository class has stub methods for each of the contact group methods listed in the IContactManagerRepository interface. For example, the ListGroups() method currently looks like this:
 
-    Public Function ListGroups() As IEnumerable(Of Group) Implements IContactManagerRepository.ListGroups
-    
-        throw New NotImplementedException()
-    
-    End Function
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample15.xml)]
 
 The stub methods enabled us to compile our application and pass the unit tests. However, now it is time to actually implement these methods. The final version of the EntityContactManagerRepository class is contained in Listing 13.
 
 **Listing 13 - Models\<wbr />EntityContactManagerRepository<wbr />.vb**
 
-    Public Class EntityContactManagerRepository
-    Implements IContactManagerRepository
-    
-    Private _entities As New ContactManagerDBEntities()
-    
-    ' Contact methods
-    
-    Public Function GetContact(ByVal id As Integer) As Contact Implements IContactManagerRepository.GetContact
-    	Return (From c In _entities.ContactSet.Include("Group") _
-    	        Where c.Id = id _
-    	        Select c).FirstOrDefault()
-    End Function
-    
-    Public Function CreateContact(ByVal groupId As Integer, ByVal contactToCreate As Contact) As Contact Implements IContactManagerRepository.CreateContact
-    	' Associate group with contact
-    	contactToCreate.Group = GetGroup(groupId)
-    
-    	' Save new contact
-    	_entities.AddToContactSet(contactToCreate)
-    	_entities.SaveChanges()
-    	Return contactToCreate
-    End Function
-    
-    Public Function EditContact(ByVal groupId As Integer, ByVal contactToEdit As Contact) As Contact Implements IContactManagerRepository.EditContact
-    	' Get original contact
-    	Dim originalContact = GetContact(contactToEdit.Id)
-    
-    	' Update with new group
-    	originalContact.Group = GetGroup(groupId)
-    
-    	' Save changes
-    	_entities.ApplyPropertyChanges(originalContact.EntityKey.EntitySetName, contactToEdit)
-    	_entities.SaveChanges()
-    	Return contactToEdit
-    End Function
-    
-    Public Sub DeleteContact(ByVal contactToDelete As Contact) Implements IContactManagerRepository.DeleteContact 
-    	Dim originalContact = GetContact(contactToDelete.Id)
-    	_entities.DeleteObject(originalContact)
-    	_entities.SaveChanges()
-    End Sub
-    
-        ' Group methods
-    
-    Public Function CreateGroup(ByVal groupToCreate As Group) As Group Implements IContactManagerRepository.CreateGroup 
-    	_entities.AddToGroupSet(groupToCreate)
-    	_entities.SaveChanges()
-    	Return groupToCreate
-    End Function
-    
-    Public Function ListGroups() As IEnumerable(Of Group) Implements IContactManagerRepository.ListGroups
-    	Return _entities.GroupSet.ToList()
-    End Function
-    
-    Public Function GetFirstGroup() As Group Implements IContactManagerRepository.GetFirstGroup
-    	Return _entities.GroupSet.Include("Contacts").FirstOrDefault()
-    End Function
-    
-    Public Function GetGroup(ByVal id As Integer) As Group Implements IContactManagerRepository.GetGroup
-    	Return (From g In _entities.GroupSet.Include("Contacts") _
-    	        Where g.Id = id _
-    	        Select g).FirstOrDefault()
-    End Function
-    
-    Public Sub DeleteGroup(ByVal groupToDelete As Group) Implements IContactManagerRepository.DeleteGroup
-    	Dim originalGroup = GetGroup(groupToDelete.Id)
-    	_entities.DeleteObject(originalGroup)
-    	_entities.SaveChanges()
-    End Sub
-    
-    End Class
+[!code[Main](iteration-6-use-test-driven-development-vb/samples/sample16.xml)]
 
 ### Creating the Views
 

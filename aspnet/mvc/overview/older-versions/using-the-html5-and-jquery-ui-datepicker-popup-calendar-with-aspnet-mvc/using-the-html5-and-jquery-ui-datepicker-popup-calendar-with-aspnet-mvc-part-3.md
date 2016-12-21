@@ -24,53 +24,19 @@ In this section you'll create an address class and learn how to create a templat
 
 In the *Models* folder, create a new class file named *Person.cs* where you'll put two types: a `Person` class and an `Address` class. The `Person` class will contain a property that's typed as `Address`. The `Address` type is a complex type, meaning it's not one of the built-in types like `int`, `string`, or `double`. Instead, it has several properties. The code for the new classes looks like this:
 
-    public class Address {
-            public string StreetAddress { get; set; }
-            public string City { get; set; }
-            public string PostalCode { get; set; }
-        }
-    
-        public class Person {
-            public int ID { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string Phone { get; set; }
-            public Address HomeAddress;
-        }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample1.xml)]
 
 In the `Movie` controller, add the following `PersonDetail` action to display a person instance:
 
-    public ActionResult PersonDetail(int id = 0) {
-         return View(GetPerson(id));
-    }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample2.xml)]
 
 Then add the following code to the `Movie` controller to populate the `Person` model with some sample data:
 
-    Person GetPerson(int id) {
-                var p = new Person
-                {
-                    ID = 1,
-                    FirstName = "Joe",
-                    LastName = "Smith",
-                    Phone = "123-456",
-                    HomeAddress = new Address
-                    {
-                        City = "Great Falls",
-                        StreetAddress = "1234 N 57th St",
-                        PostalCode = "95045"
-                    }
-                };
-                return p;
-            }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample3.xml)]
 
 Open the *Views\Movies\PersonDetail.cshtml*file and add the following markup for the `PersonDetail` view.
 
-    @model Person
-    @{
-        ViewBag.Title = "PersonDetail";
-    }
-    <h2>Person Detail</h2>
-    @Html.DisplayForModel()
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample4.xml)]
 
 Press Ctrl+F5 to run the application and navigate to *Movies/PersonDetail*.
 
@@ -80,20 +46,11 @@ The `PersonDetail` view doesn't contain the `Address` complex type, as you can s
 
 The `Address` model data is not displayed because it's a complex type. To display the address information, open the *Views\Movies\PersonDetail.cshtml* file again and add the following markup.
 
-    @Html.DisplayFor( x => x.HomeAddress )
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample5.xml)]
 
 The complete markup for the `PersonDetail` now view looks like this:
 
-    @model MvcMovie.Models.Person
-    
-    @{
-        ViewBag.Title = "PersonDetail";
-    }
-    
-    <h2>Person Detail</h2>
-    
-    @Html.DisplayForModel()
-    @Html.DisplayFor( x => x.HomeAddress )
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample6.xml)]
 
 Run the application again and display the `PersonDetail` view. The address information is now displayed:
 
@@ -109,26 +66,7 @@ In the *Views\Shared\DisplayTemplates* folder, create a strongly typed partial v
 
 Click **Add**, and then open the new *Views\Shared\DisplayTemplates\Address.cshtml* file. The new view contains the following generated markup:
 
-    @model MvcMovie.Models.Address
-    
-    <fieldset>
-        <legend>Address</legend>
-    
-        <div class="display-label">StreetAddress</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.StreetAddress)
-        </div>
-    
-        <div class="display-label">City</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.City)
-        </div>
-    
-        <div class="display-label">PostalCode</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.PostalCode)
-        </div>
-    </fieldset>
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample7.xml)]
 
 Run the application and display the `PersonDetail` view. This time, the `Address` template that you just created is used to display the `Address` complex type, so the display looks like the following:
 
@@ -140,12 +78,10 @@ You've seen that you can specify the format or template for a model property by 
 
 - Applying the `DisplayFormat` attribute to a property in the model. For example, the following code causes the date to be displayed without the time:
 
-        [DisplayFormat(DataFormatString = "{0:d}")]
-        public DateTime ReleaseDate { get; set; }
+    [!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample8.xml)]
 - Applying a [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute to a property in the model and specifying the data type. For example, the following code causes the date to be displayed without the time.
 
-        [DataType(DataType.Date)]
-        public DateTime ReleaseDate { get; set; }
+    [!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample9.xml)]
 
     If the application contains a *date.cshtml* template in the *Views\Shared\DisplayTemplates* folder or the *Views\Movies\DisplayTemplates* folder, that template will be used to render the `DateTime` property. Otherwise the built-in ASP.NET templating system displays the property as a date.
 - Creating a display template in the *Views\Shared\DisplayTemplates* folder or the *Views\Movies\DisplayTemplates* folder whose name matches the data type that you want to format. For example, you saw that the *Views\Shared\DisplayTemplates\DateTime.cshtml* was used to render `DateTime` properties in a model, without adding an attribute to the model and without adding any markup to views.

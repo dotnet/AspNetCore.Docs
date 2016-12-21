@@ -32,37 +32,19 @@ For this sample, we assume that the instance of the SQL Server 2005 Express Edit
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](using-hovermenu-with-a-repeater-control-cs/samples/sample1.xml)]
 
 Then, add a data source to the page. In order to use a limited amount of data, we only select the first five entries in the Vendor table of the AdventureWorks database. If you are using the Visual Studio assistant to create the data source, mind that a bug in the current version does not prefix the table name (`Vendor`) with `Purchasing`. The following markup shows the correct syntax:
 
-    <asp:SqlDataSource ID="sds1" runat="server" ConnectionString="
-     Data Source=(local)\SQLEXPRESS;Initial Catalog=AdventureWorks;Integrated Security=True"
-     ProviderName="System.Data.SqlClient" SelectCommand="SELECT TOP 5
-     [VendorID], [Name] FROM [Purchasing].[Vendor]" />
+[!code[Main](using-hovermenu-with-a-repeater-control-cs/samples/sample2.xml)]
 
 Next, add a panel which serves as the modal popup:
 
-    <asp:Panel ID="HoverPanel" runat="server">
-     More info ...
-    </asp:Panel>
+[!code[Main](using-hovermenu-with-a-repeater-control-cs/samples/sample3.xml)]
 
 Now, the `HoverMenuExtender` comes into play. So that every element in the data source gets its own popup, the extender must be put within the repeater's `<ItemTemplate>` section. Here is the markup:
 
-    <asp:Repeater ID="rep1" DataSourceID="sds1" runat="server">
-     <ItemTemplate>
-     <br />
-     <asp:Panel ID="myPanel" runat="server" Width="400px" BackColor="Lime" BorderWidth="1px">
-     <div>
-     Vendor
-     <%#DataBinder.Eval(Container.DataItem, "Name")%>
-     </div>
-     </asp:Panel>
-     <br />
-     <ajaxToolkit:HoverMenuExtender ID="hme" runat="server" TargetControlID="myPanel"
-     PopupControlID="HoverPanel" PopupPosition="Right" PopDelay="50" />
-     </ItemTemplate>
-    </asp:Repeater>
+[!code[Main](using-hovermenu-with-a-repeater-control-cs/samples/sample4.xml)]
 
 Now every item in the data source displays a popup to the right (`PopupPosition` attribute) after a delay of 50 milliseconds (`PopDelay` attribute).
 

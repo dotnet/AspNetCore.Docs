@@ -54,22 +54,11 @@ When adding a new content page to the website, Visual Web Developer automaticall
 
 To illustrate this, add a new content page to the root directory named `MultipleContentPlaceHolders.aspx` that is bound to the `Site.master` master page. Visual Web Developer creates this page with the following declarative markup:
 
-    <%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false" CodeFile="MultipleContentPlaceHolders.aspx.vb" Inherits="MultipleContentPlaceHolders" Title="Untitled Page" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    </asp:Content>
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-    </asp:Content>
-    <asp:Content ID="Content3" ContentPlaceHolderID="LeftColumnContent" Runat="Server">
-    </asp:Content>
+[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample1.xml)]
 
 Enter some content into the Content control referencing the `MainContent` ContentPlaceHolders (`Content2`). Next, add the following markup to the `Content3` Content control (which references the `LeftColumnContent` ContentPlaceHolder):
 
-    <h3>Page-Specific Content</h3>
-    <ul>
-     <li>This content is defined in the content page.</li>
-     <li>The master page has two regions in the Web Form that are editable on a
-     page-by-page basis.</li>
-    </ul>
+[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample2.xml)]
 
 After adding this markup, visit the page through a browser. As Figure 3 shows, the markup placed in the `Content3` Content control is displayed in the left column beneath the News section (circled in red). The markup placed in `Content2` is displayed in the right portion of the page (circled in blue).
 
@@ -95,10 +84,7 @@ To add a Content control for the `LeftColumnContent` ContentPlaceHolder to `Abou
 
 Clicking the Create Custom Content link generates the necessary Content control in the page and sets its `ContentPlaceHolderID` property to the ContentPlaceHolder's `ID`. For example, clicking the Create Custom Content link for `LeftColumnContent` region in `About.aspx` adds the following declarative markup to the page:
 
-    <asp:Content ID="Content3" runat="server" 
-     contentplaceholderid="LeftColumnContent">
-     
-    </asp:Content>
+[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample3.xml)]
 
 ### Omitting Content Controls
 
@@ -127,12 +113,7 @@ A better solution is to define the username and password textboxes as the Conten
 
 Open the `Site.master` master page and add the following markup to the left column between the `DateDisplay` Label and Lessons section:
 
-    <asp:ContentPlaceHolder ID="QuickLoginUI" runat="server">
-     <asp:Login ID="QuickLogin" runat="server" 
-        TitleText="<h3>Sign In</h3>"
-        FailureAction="RedirectToLoginPage">
-     </asp:Login>
-    </asp:ContentPlaceHolder>
+[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample4.xml)]
 
 After adding this markup your master page's Design view should look similar to Figure 6.
 
@@ -154,27 +135,7 @@ Add a Login control to the `MainContent` Content control. Likewise, feel free to
 
 After defining the content for the `MainContent` and `LeftColumnContent` regions, your login page's declarative markup should look similar to the following:
 
-    <%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false" CodeFile="Login.aspx.vb" Inherits="Login" Title="Untitled Page" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    </asp:Content>
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-     <h2>
-     Sign In</h2>
-     <p>
-     <asp:Login ID="Login1" runat="server" TitleText="">
-     </asp:Login>
-     </p>
-    </asp:Content>
-    <asp:Content ID="Content3" ContentPlaceHolderID="QuickLoginUI" Runat="Server">
-    </asp:Content>
-    <asp:Content ID="Content4" ContentPlaceHolderID="LeftColumnContent" Runat="Server">
-     <h3>Sign In Tasks</h3>
-     <ul>
-     <li>Create a New Account</li>
-     <li>Recover Forgotten Password</li>
-     </ul>
-     <p>TODO: Turn the above text into links...</p>
-    </asp:Content>
+[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample5.xml)]
 
 Figure 7 shows this page when viewed through a browser. Because this page specifies a Content control for the `QuickLoginUI` ContentPlaceHolder, it overrides the default content specified in the master page. The net effect is that the Login control displayed in the master page's Design view (see Figure 6) is not rendered in this page.
 

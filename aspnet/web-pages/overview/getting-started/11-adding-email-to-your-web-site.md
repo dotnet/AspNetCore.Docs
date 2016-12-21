@@ -57,88 +57,12 @@ In this procedure, you create two pages. The first page has a form that lets use
 1. Create a new website.
 2. Add a new page named *EmailRequest.cshtml* and add the following markup: 
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Request for Assistance</title>
-        </head>
-        <body>
-          <h2>Submit Email Request for Assistance</h2>
-          <form method="post" action="ProcessRequest.cshtml">
-            <div>
-                Your name:
-                <input type="text" name="customerName" />
-            </div>
-        
-            <div>
-                Your email address:
-                <input type="text" name="customerEmail" />
-            </div>
-        
-            <div>
-                Details about your problem: <br />
-                <textarea name="customerRequest" cols="45" rows="4"></textarea>
-            </div>
-        
-            <div>
-                <input type="submit" value="Submit" />
-            </div>
-          </form>
-        </body>
-        </html>
+    [!code[Main](11-adding-email-to-your-web-site/samples/sample1.xml)]
 
     Notice that the `action` attribute of the form element has been set to *ProcessRequest.cshtml*. This means that the form will be submitted to that page instead of back to the current page.
 3. Add a new page named *ProcessRequest.cshtml* to the website and add the following code and markup:   
 
-        @{
-            var customerName = Request["customerName"];
-            var customerEmail = Request["customerEmail"]; 
-            var customerRequest = Request["customerRequest"];
-            var errorMessage = "";
-            var debuggingFlag = false;
-            try {
-                // Initialize WebMail helper
-                WebMail.SmtpServer = "your-SMTP-host";
-                WebMail.SmtpPort = 25;
-                WebMail.UserName = "your-user-name-here";
-                WebMail.Password = "your-account-password";
-                WebMail.From = "your-email-address-here";
-        
-                // Send email
-                WebMail.Send(to: customerEmail,
-                    subject: "Help request from - " + customerName,
-                    body: customerRequest
-                );
-            }
-            catch (Exception ex ) {
-                errorMessage = ex.Message;
-            }
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Request for Assistance</title>
-        </head>
-        <body>
-          <p>Sorry to hear that you are having trouble, <b>@customerName</b>.</p>
-            @if(errorMessage == ""){
-              <p>An email message has been sent to our customer service
-                 department regarding the following problem:</p>
-              <p><b>@customerRequest</b></p>
-            }
-            else{
-                <p><b>The email was <em>not</em> sent.</b></p>
-                <p>Please check that the code in the ProcessRequest page has 
-                   correct settings for the SMTP server name, a user name, 
-                   a password, and a "from" address.
-                </p>
-                if(debuggingFlag){
-                    <p>The following error was reported:</p>
-                    <p><em>@errorMessage</em></p>
-                }
-            }
-        </body>
-        </html>
+    [!code[Main](11-adding-email-to-your-web-site/samples/sample2.xml)]
 
     In the code, you get the values of the form fields that were submitted to the page. You then call the `WebMail` helper's `Send` method to create and send the email message. In this case, the values to use are made up of text that you concatenate with the values that were submitted from the form.
 
@@ -187,97 +111,10 @@ You can also send files that are attached to email messages. In this procedure, 
     `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
 3. Create a page named *SendFile.cshtml* and add the following markup: 
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Attach File</title>
-        </head>
-        <body>
-          <h2>Submit Email with Attachment</h2>
-          <form method="post" action="ProcessFile.cshtml">
-            <div>
-                Your name:
-                <input type="text" name="customerName" />
-            </div>
-        
-            <div>
-                Your email address:
-                <input type="text" name="customerEmail" />
-            </div>
-        
-            <div>
-                Subject line: <br />
-                <input type="text" size= 30 name="subjectLine" />
-            </div>
-        
-            <div>
-                File to attach: <br />
-                <input type="text" size=60 name="fileAttachment" />
-            </div>
-        
-            <div>
-                <input type="submit" value="Submit" />
-            </div>
-          </form>
-        </body>
-        </html>
+    [!code[Main](11-adding-email-to-your-web-site/samples/sample3.xml)]
 4. Create a page named *ProcessFile.cshtml* and add the following markup: 
 
-        @{
-            var customerName = Request["customerName"];
-            var customerEmail = Request["customerEmail"]; 
-            var customerRequest = Request["customerRequest"];
-            var subjectLine = Request["subjectLine"];
-            var fileAttachment = Request["fileAttachment"];
-            var errorMessage = "";
-            var debuggingFlag = false;
-        
-            try {
-                // Initialize WebMail helper
-                WebMail.SmtpServer = "your-SMTP-host";
-                WebMail.SmtpPort = 25;
-                WebMail.UserName = "your-user-name-here";
-                WebMail.Password = "your-account-password";
-                WebMail.From = "your-email-address-here";
-        
-                // Create array containing file name
-                var filesList = new string [] { fileAttachment };
-        
-                // Attach file and send email
-                WebMail.Send(to: customerEmail,
-                    subject: subjectLine,
-                    body: "File attached. <br />From: " + customerName,
-                    filesToAttach: filesList);
-            }
-            catch (Exception ex ) {
-                errorMessage = ex.Message;
-            }
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Request for Assistance</title>
-        </head>
-        <body>
-          <p>Sorry to hear that you are having trouble, <b>@customerName</b>.</p>
-            @if(errorMessage == ""){
-                <p><b>@customerName</b>, thank you for your interest.</p>
-                <p>An email message has been sent to our customer service
-                   department with the <b>@fileAttachment</b> file attached.</p>
-            }
-            else{
-                <p><b>The email was <em>not</em> sent.</b></p>
-                <p>Please check that the code in the ProcessRequest page has 
-                   correct settings for the SMTP server name, a user name, 
-                   a password, and a "from" address.
-                </p>
-                if(debuggingFlag){
-                    <p>The following error was reported:</p>
-                    <p><em>@errorMessage</em></p>
-                }
-            }
-        </body>
-        </html>
+    [!code[Main](11-adding-email-to-your-web-site/samples/sample4.xml)]
 5. Modify the following email related settings in the code from the example:
 
     - Set `your-SMTP-host` to the name of an SMTP server that you have access to.

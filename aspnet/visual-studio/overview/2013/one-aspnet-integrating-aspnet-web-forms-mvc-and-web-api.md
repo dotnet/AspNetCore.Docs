@@ -130,35 +130,10 @@ In this task you will start creating a new Web site in Visual Studio based on th
 6. Expand the **App\_Start** folder and notice the **WebApiConfig.cs** file. Visual Studio included that file in the generated solution because you included Web API when configuring your project with the One ASP.NET template.
 7. Open the **WebApiConfig.cs** file. In the *WebApiConfig* class you will find the configuration associated with Web API, which maps HTTP routes to **Web API controllers**.
 
-        public static void Register(HttpConfiguration config)
-        {
-            // Web API configuration and services
-        
-            // Web API routes
-            config.MapHttpAttributeRoutes();
-        
-            config.Routes.MapHttpRoute(
-                    name: "DefaultApi",
-                    routeTemplate: "api/{controller}/{id}",
-                    defaults: new { id = RouteParameter.Optional }
-                );
-        }
+    [!code[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample1.xml)]
 8. Open the **RouteConfig.cs** file. Inside the *RegisterRoutes* method you will find the configuration associated with MVC, which maps HTTP routes to **MVC controllers**.
 
-        public static void RegisterRoutes(RouteCollection routes)
-        {
-            var settings = new FriendlyUrlSettings();
-            settings.AutoRedirectMode = RedirectMode.Permanent;
-            routes.EnableFriendlyUrls(settings);
-        
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-        
-            routes.MapRoute(
-                    name: "Default",
-                    url: "{controller}/{action}/{id}",
-                    defaults: new { action = "Index", id = UrlParameter.Optional }
-                );
-        }
+    [!code[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample2.xml)]
 
 <a id="Ex1Task2"></a>
 #### Task 2 – Running the Solution
@@ -226,17 +201,7 @@ You will now define a **Person** class, which will be the model used by the scaf
 
     (Code Snippet - *BringingTogetherOneAspNet - Ex2 - PersonClass*)
 
-        namespace MyHybridSite.Models
-        {
-             public class Person
-             {
-                  public int Id { get; set; }
-        
-                  public string Name { get; set; }
-        
-                  public int Age { get; set; }
-             }
-        }
+    [!code[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample3.xml)]
 5. In **Solution Explorer**, right-click the **MyHybridSite** project and select **Build**, or press **CTRL + SHIFT + B** to build the project.
 
 <a id="Ex2Task2"></a>
@@ -276,41 +241,7 @@ Now that the **Person** model is created, you will use ASP.NET MVC scaffolding w
     *After creating the MVC controller with scaffolding*
 7. Open the **MvcPersonController.cs** file in the **Controllers** folder. Notice that the CRUD action methods have been generated automatically.
 
-        ...
-        
-        // POST: /MvcPerson/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="Id,Name,Age")] Person person)
-        {
-             if (ModelState.IsValid)
-             {
-                  db.People.Add(person);
-                  await db.SaveChangesAsync();
-                  return RedirectToAction("Index");
-             }
-        
-             return View(person);
-        }
-        
-        // GET: /MvcPerson/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-             if (id == null)
-             {
-                  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-             }
-             Person person = await db.People.FindAsync(id);
-             if (person == null)
-             {
-                  return HttpNotFound();
-             }
-             return View(person);
-        }
-        
-        ...
+    [!code[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample4.xml)]
 
     > [!NOTE] By selecting the **Use async controller actions** check box from the scaffolding options in the previous steps, Visual Studio generates asynchronous action methods for all actions that involve access to the Person data context. It is recommended that you use asynchronous action methods for long-running, non-CPU bound requests to avoid blocking the Web server from performing work while the request is being processed.
 
@@ -380,18 +311,10 @@ In this task you will create a new **Web API Controller** that will expose the p
     *After creating the Web API controller with scaffolding*
 6. Open the **ApiPersonController.cs** file and inspect the *GetPeople* action method. This method queries the db field of **PersonContext** type in order to get the people data.
 
-        // GET api/ApiPerson
-        public IQueryable<Person> GetPeople()
-        {
-            return db.People;
-        }
+    [!code[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample5.xml)]
 7. Now notice the comment above the method definition. It provides the URI that exposes this action which you will use in the next task.
 
-        // GET api/ApiPerson
-        public IQueryable<Person> GetPeople()
-        {
-            return db.People;
-        }
+    [!code[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample6.xml)]
 
     > [!NOTE] By default, Web API is configured to catch the queries to the */api* path to avoid collisions with MVC controllers. If you need to change this setting, refer to [Routing in ASP.NET Web API](../../../web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api.md).
 
@@ -436,7 +359,7 @@ When you create a Web API, it is useful to create a help page so that other deve
 1. From the **Tools** menu in Visual Studio, select **Library Package Manager**, and then click **Package Manager Console**.
 2. In the **Package Manager Console** window, execute the following command:
 
-        Install-Package Microsoft.AspNet.WebApi.HelpPage
+    [!code[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample7.xml)]
 
     > [!NOTE] The **Microsoft.AspNet.WebApi.HelpPage** package installs the necessary assemblies and adds MVC Views for the help pages under the **Areas/HelpPage** folder.
 
@@ -445,7 +368,7 @@ When you create a Web API, it is useful to create a help page so that other deve
     *HelpPage Area*
 3. By default, the help pages have placeholder strings for documentation. You can use XML documentation comments to create the documentation. To enable this feature, open the **HelpPageConfig.cs** file located in the **Areas/HelpPage/App\_Start** folder and uncomment the following line:
 
-        config.SetDocumentationProvider(new XmlDocumentationProvider(HttpContext.Current.Server.MapPath("~/App_Data/XmlDocument.xml")));
+    [!code[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample8.xml)]
 4. In **Solution Explorer**, right-click the project **MyHybridSite**, select **Properties** and click the **Build** tab.
 
     ![Build tab](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/_static/image32.png "Build section")
@@ -463,15 +386,7 @@ When you create a Web API, it is useful to create a help page so that other deve
     > [!NOTE] Visual Studio automatically inserts the XML elements which define the method documentation.
 9. Add a summary text and the return value for the *GetPeople* method. It should look like the following.
 
-        // GET api/ApiPerson
-        /// <summary>
-        /// Documentation for 'GET' method
-        /// </summary>
-        /// <returns>Returns a list of people in the requested format</returns>
-        public IQueryable<Person> GetPeople()
-        {
-            return db.People;
-        }
+    [!code[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample9.xml)]
 10. Press **F5** to run the solution.
 11. Append **/help** to the URL in the address bar to browse to the help page.
 

@@ -28,46 +28,23 @@ The CascadingDropDown control in the AJAX Control Toolkit extends a DropDownList
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](presetting-list-entries-with-cascadingdropdown-vb/samples/sample1.xml)]
 
 Then, a DropDownList control is required:
 
-    <div>
-     Vendor: <asp:DropDownList ID="VendorsList" runat="server"/>
-    </div>
+[!code[Main](presetting-list-entries-with-cascadingdropdown-vb/samples/sample2.xml)]
 
 For this list, a CascadingDropDown extender is added, providing web service URL and method information:
 
-    <ajaxToolkit:CascadingDropDown ID="ccd1" runat="server"
-     ServicePath="CascadingDropdown2.vb.asmx" ServiceMethod="GetVendors"
-     TargetControlID="VendorsList" Category="Vendor" />
+[!code[Main](presetting-list-entries-with-cascadingdropdown-vb/samples/sample3.xml)]
 
 The CascadingDropDown extender then asynchronously calls a web service with the following method signature:
 
-    Public Function MethodNameHere(ByVal knownCategoryValues As String, ByVal category As String) As CascadingDropDownNameValue()
+[!code[Main](presetting-list-entries-with-cascadingdropdown-vb/samples/sample4.xml)]
 
 The method returns an array of type CascadingDropDown value. The type's constructor expects first the list entry's caption and then the value (HTML `value` attribute). If the third argument is set to true, the list element is automatically selected in the browser.
 
-    <%@ WebService Language="VB" Class="CascadingDropDown2" %>
-    Imports System.Web.Script.Services
-    Imports AjaxControlToolkit
-    Imports System.Web
-    Imports System.Web.Services
-    Imports System.Web.Services.Protocols
-    Imports System.Collections.Generic
-    <ScriptService()> _
-    Public Class CascadingDropDown2
-     Inherits System.Web.Services.WebService
-     <WebMethod()> _
-     Public Function GetVendors(ByVal knownCategoryValues As String, ByVal category As
-     String) As CascadingDropDownNameValue()
-     Dim l As New List(Of CascadingDropDownNameValue)
-     l.Add(New CascadingDropDownNameValue("International", "1"))
-     l.Add(New CascadingDropDownNameValue("Electronic Bike Repairs & Supplies","2", True))
-     l.Add(New CascadingDropDownNameValue("Premier Sport, Inc.", "3"))
-     Return l.ToArray()
-     End Function
-    End Class
+[!code[Main](presetting-list-entries-with-cascadingdropdown-vb/samples/sample5.xml)]
 
 Loading the page in the browser will fill the dropdown list with three vendors, the second one being preselected.
 

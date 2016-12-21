@@ -69,63 +69,7 @@ Add an [OWIN Startup class](owin-startup-class-detection.md) under the project r
 
 Create an *App\_Start* folder. Select the *App\_Start* folder and use Shift+Alt+A to add the downloaded version of the *AuthorizationServer\App\_Start\Startup.Auth.cs* file.
 
-    public void ConfigureAuth(IAppBuilder app)
-     {
-         // Enable the Application Sign In Cookie.
-         app.UseCookieAuthentication(new CookieAuthenticationOptions
-         {
-             AuthenticationType = "Application",
-             AuthenticationMode = AuthenticationMode.Passive,
-             LoginPath = new PathString(Paths.LoginPath),
-             LogoutPath = new PathString(Paths.LogoutPath),
-         });
-    
-         // Enable the External Sign In Cookie.
-         app.SetDefaultSignInAsAuthenticationType("External");
-         app.UseCookieAuthentication(new CookieAuthenticationOptions
-         {
-             AuthenticationType = "External",
-             AuthenticationMode = AuthenticationMode.Passive,
-             CookieName = CookieAuthenticationDefaults.CookiePrefix + "External",
-             ExpireTimeSpan = TimeSpan.FromMinutes(5),
-         });
-    
-         // Enable Google authentication.
-         app.UseGoogleAuthentication();
-    
-         // Setup Authorization Server
-         app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
-         {
-             AuthorizeEndpointPath = new PathString(Paths.AuthorizePath),
-             TokenEndpointPath = new PathString(Paths.TokenPath),
-             ApplicationCanDisplayErrors = true,
-    #if DEBUG
-                    AllowInsecureHttp = true,
-    #endif
-         // Authorization server provider which controls the lifecycle of Authorization Server
-         Provider = new OAuthAuthorizationServerProvider
-         {
-             OnValidateClientRedirectUri = ValidateClientRedirectUri,
-             OnValidateClientAuthentication = ValidateClientAuthentication,
-             OnGrantResourceOwnerCredentials = GrantResourceOwnerCredentials,
-             OnGrantClientCredentials = GrantClientCredetails
-         },
-    
-         // Authorization code provider which creates and receives the authorization code.
-         AuthorizationCodeProvider = new AuthenticationTokenProvider
-         {
-             OnCreate = CreateAuthenticationCode,
-             OnReceive = ReceiveAuthenticationCode,
-         },
-    
-         // Refresh token provider which creates and receives refresh token.
-         RefreshTokenProvider = new AuthenticationTokenProvider
-         {
-             OnCreate = CreateRefreshToken,
-             OnReceive = ReceiveRefreshToken,
-         }
-     });
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample2.xml)]
 
 The code above enables application/external sign in cookies and Google authentication, which are used by authorization server itself to manage accounts.
 
@@ -147,63 +91,9 @@ The `UseOAuthAuthorizationServer` extension method is to setup the authorization
 
 OAuth doesn't care where or how you manage your user account information. It's [ASP.NET Identity](../authentication-and-identity.md) which is responsible for it. In this tutorial, we will simplify the account management code and just make sure that user can login using OWIN cookie middleware. Here is the simplified sample code for the `AccountController`:
 
-    public class AccountController : Controller
-    {
-        public ActionResult Login()
-        {
-            var authentication =  HttpContext.GetOwinContext().Authentication;
-            if (Request.HttpMethod == "POST")
-            {
-                var isPersistent = !string.IsNullOrEmpty(Request.Form.Get("isPersistent"));
-    
-                if (!string.IsNullOrEmpty(Request.Form.Get("submit.Signin")))
-                {
-                    authentication.SignIn(
-                        new AuthenticationProperties { IsPersistent = isPersistent },
-                        new ClaimsIdentity(new[] { new Claim(
-                           ClaimsIdentity.DefaultNameClaimType, Request.Form["username"]) }, 
-                           "Application"));
-                }
-            }
-    
-            return View();
-        }
-    
-        public ActionResult Logout()
-        {
-            return View();
-        }
-    
-        public ActionResult External()
-        {
-            var authentication = HttpContext.GetOwinContext().Authentication;
-            if (Request.HttpMethod == "POST")
-            {
-                foreach (var key in Request.Form.AllKeys)
-                {
-                    if (key.StartsWith("submit.External.") && !string.IsNullOrEmpty(Request.Form.Get(key)))
-                    {
-                        var authType = key.Substring("submit.External.".Length);
-                        authentication.Challenge(authType);
-                        return new HttpUnauthorizedResult();
-                    }
-                }
-            }
-            var identity = authentication.AuthenticateAsync("External").Result.Identity;
-            if (identity != null)
-            {
-                authentication.SignOut("External");
-                authentication.SignIn(
-                    new AuthenticationProperties { IsPersistent = true },
-                    new ClaimsIdentity(identity.Claims, "Application", identity.NameClaimType, identity.RoleClaimType));
-                return Redirect(Request.QueryString["ReturnUrl"]);
-            }
-    
-            return View();
-        }
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample3.xml)]
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample2.xml?highlight=1)]
+[!code[Main](owin-oauth-20-authorization-server/samples/sample4.xml?highlight=1)]
 
 `ValidateClientRedirectUri` is used to validate the client with its registered redirect URL. `ValidateClientAuthentication` checks the basic scheme header and form body to get the client's credentials.
 
@@ -229,27 +119,11 @@ Review the IETF's OAuth 2 [Authorization Code Grant](http://tools.ietf.org/html/
 
 A sample implementation for `AuthorizationCodeProvider.CreateAsync` and `ReceiveAsync` to control the creation and validation of authorization code is shown below.
 
-    private readonly ConcurrentDictionary<string, string> _authenticationCodes =
-         new ConcurrentDictionary<string, string>(StringComparer.Ordinal);
-    
-     private void CreateAuthenticationCode(AuthenticationTokenCreateContext context)
-     {
-         context.SetToken(Guid.NewGuid().ToString("n") + Guid.NewGuid().ToString("n"));
-         _authenticationCodes[context.Token] = context.SerializeTicket();
-     }
-    
-     private void ReceiveAuthenticationCode(AuthenticationTokenReceiveContext context)
-     {
-         string value;
-         if (_authenticationCodes.TryRemove(context.Token, out value))
-         {
-             context.DeserializeTicket(value);
-         }
-     }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample5.xml)]
 
 The code above uses an in-memory concurrent dictionary to store the code and identity ticket and restore the identity after receiving the code. In a real application, it would be replaced by a persistent data store. The authorization endpoint is for the resource owner to grant access to the client. Usually, it needs a user interface to allow the user to click a button and confirm the grant. OWIN OAuth middleware allows application code to handle the authorization endpoint. In our sample app, we use an MVC controller called `OAuthController` to handle it. Here is the sample implementation:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample3.xml?highlight=15)]
+[!code[Main](owin-oauth-20-authorization-server/samples/sample6.xml?highlight=15)]
 
 The `Authorize` action will first check if the user has logged in to the authorization server. If not, the authentication middleware challenges the caller to authenticate using the "Application" cookie and redirects to the login page. (See highlighted code above.) If user has logged in, it will render the Authorize view, as shown below:![](owin-oauth-20-authorization-server/_static/image2.png)If the **Grant** button is selected, the `Authorize` action will create a new "Bearer" identity and sign in with it. It will trigger the authorization server to generate a bearer token and send it back to the client with JSON payload. 
 
@@ -289,17 +163,7 @@ Refer to the IETF's OAuth 2 [Resource Owner Password Credentials Grant](http://t
 
 Here is the sample implementation for `Provider.GrantResourceOwnerCredentials`:
 
-    private Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
-     {
-         var identity = new ClaimsIdentity(new GenericIdentity(
-            context.UserName, OAuthDefaults.AuthenticationType), 
-            context.Scope.Select(x => new Claim("urn:oauth:scope", x))
-            );
-    
-         context.Validated(identity);
-    
-         return Task.FromResult(0);
-     }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample7.xml)]
 
 > [!NOTE] The code above is intended to explain this section of the tutorial and should not be used in secure or production apps. It does not check the resource owners credentials. It assumes every credential is valid and creates a new identity for it. The new identity will be used to generate the access token and refresh token. Please replace the code with your own secure account management code.
 
@@ -319,17 +183,7 @@ Refer to the IETF's OAuth 2 [Client Credentials Grant](http://tools.ietf.org/htm
 
 Here is the sample implementation for `Provider.GrantClientCredentials`:
 
-    private Task GrantClientCredetails(OAuthGrantClientCredentialsContext context)
-     {
-         var identity = new ClaimsIdentity(new GenericIdentity(
-            context.ClientId, OAuthDefaults.AuthenticationType), 
-            context.Scope.Select(x => new Claim("urn:oauth:scope", x))
-            );
-    
-         context.Validated(identity);
-    
-         return Task.FromResult(0);
-     }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample8.xml)]
 
 > [!NOTE] The code above is intended to explain this section of the tutorial and should not be used in secure or production apps. Please replace the code with your own secure client management code.
 
@@ -349,28 +203,9 @@ Refer to the IETF's OAuth 2 [Refresh Token](http://tools.ietf.org/html/rfc6749#s
 
 Here is the sample implementation for `Provider.GrantRefreshToken`: 
 
-    public void ConfigureAuth(IAppBuilder app)
-     {
-        // Code removed for clarity     
-    
-         // Refresh token provider which creates and receives refresh token.
-         RefreshTokenProvider = new AuthenticationTokenProvider
-         {
-             OnCreate = CreateRefreshToken,
-             OnReceive = ReceiveRefreshToken,
-         }
-     });
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample9.xml)]
 
-    private void CreateRefreshToken(AuthenticationTokenCreateContext context)
-     {
-         context.SetToken(context.SerializeTicket());
-     }
-    
-     private void ReceiveRefreshToken(AuthenticationTokenReceiveContext context)
-     {
-         context.DeserializeTicket(context.Token);
-     }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample10.xml)]
 
 ## Create a Resource Server which is protected by Access Token
 
@@ -382,72 +217,15 @@ Create an empty web app project and install following packages in the project:
 
 Create a startup class and configure authentication and Web API. See *AuthorizationServer\ResourceServer\Startup.cs* in the sample download.
 
-    [assembly: OwinStartup(typeof(ResourceServer.Startup))]
-    
-    namespace ResourceServer
-    {
-        public partial class Startup
-        {
-            public void Configuration(IAppBuilder app)
-            {
-                ConfigureAuth(app);
-                ConfigureWebApi(app);
-            }
-        }
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample11.xml)]
 
 See *AuthorizationServer\ResourceServer\App\_Start\Startup.Auth.cs* in the sample download.
 
-    using Microsoft.Owin.Cors;
-    using Microsoft.Owin.Security.OAuth;
-    using Owin;
-    
-    namespace ResourceServer
-    {
-        public partial class Startup
-        {
-            public void ConfigureAuth(IAppBuilder app)
-            {
-                app.UseCors(CorsOptions.AllowAll);
-    
-                app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
-                {
-                });
-            }
-        }
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample12.xml)]
 
 See *AuthorizationServer\ResourceServer\App\_Start\Startup.WebApi.cs* in the sample download.
 
-    using Microsoft.Owin.Security.OAuth;
-    using Owin;
-    using System.Web.Http;
-    
-    namespace ResourceServer
-    {
-        public partial class Startup
-        {
-            public void ConfigureWebApi(IAppBuilder app)
-            {
-                var config = new HttpConfiguration();
-                // Web API configuration and services
-                // Configure Web API to use only bearer token authentication.
-                config.SuppressDefaultHostAuthentication();
-                config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-    
-                // Web API routes
-                config.MapHttpAttributeRoutes();
-    
-                config.Routes.MapHttpRoute(
-                    name: "DefaultApi",
-                    routeTemplate: "api/{controller}/{id}",
-                    defaults: new { id = RouteParameter.Optional }
-                );
-    
-                app.UseWebApi(config);
-            }
-        }
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample13.xml)]
 
 - `UseCors` method allows CORS for all domains.
 - `UseOAuthBearerAuthentication` method enables OAuth bearer token authentication middleware which will receive and validate bearer token from authorization header in the request.
@@ -456,27 +234,11 @@ See *AuthorizationServer\ResourceServer\App\_Start\Startup.WebApi.cs* in the sam
 
 In order to demonstrate the authenticated identity, we create an ApiController to output current user's claims.
 
-    namespace ResourceServer.Controllers
-    {
-        [Authorize]
-        public class MeController : ApiController
-        {
-            // GET api/<controller>
-            public IEnumerable<object> Get()
-            {
-                var identity = User.Identity as ClaimsIdentity;
-                return identity.Claims.Select(c => new
-                {
-                    Type = c.Type,
-                    Value = c.Value
-                });
-            }
-        }
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample14.xml)]
 
 If the authorization server and the resource server are not on the same computer, the OAuth middleware will use the different machine keys to encrypt and decrypt bearer access token. In order to share the same private key between both projects, we add the same `machinekey` setting in both *web.config* files.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample4.xml?highlight=8-10)]
+[!code[Main](owin-oauth-20-authorization-server/samples/sample15.xml?highlight=8-10)]
 
 ## Create OAuth 2.0 Clients
 
@@ -494,84 +256,11 @@ If the authorization server and the resource server are not on the same computer
 
 Here is the sample code of the `HomeController` of the client.
 
-    using Constants;
-    using DotNetOpenAuth.OAuth2;
-    using System;
-    using System.Net.Http;
-    using System.Web.Mvc;
-    
-    namespace AuthorizationCodeGrant.Controllers
-    {
-       public class HomeController : Controller
-       {
-          private WebServerClient _webServerClient;
-    
-          public ActionResult Index()
-          {
-             ViewBag.AccessToken = Request.Form["AccessToken"] ?? "";
-             ViewBag.RefreshToken = Request.Form["RefreshToken"] ?? "";
-             ViewBag.Action = "";
-             ViewBag.ApiResponse = "";
-    
-             InitializeWebServerClient();
-             var accessToken = Request.Form["AccessToken"];
-             if (string.IsNullOrEmpty(accessToken))
-             {
-                var authorizationState = _webServerClient.ProcessUserAuthorization(Request);
-                if (authorizationState != null)
-                {
-                   ViewBag.AccessToken = authorizationState.AccessToken;
-                   ViewBag.RefreshToken = authorizationState.RefreshToken;
-                   ViewBag.Action = Request.Path;
-                }
-             }
-    
-             if (!string.IsNullOrEmpty(Request.Form.Get("submit.Authorize")))
-             {
-                var userAuthorization = _webServerClient.PrepareRequestUserAuthorization(new[] { "bio", "notes" });
-                userAuthorization.Send(HttpContext);
-                Response.End();
-             }
-             else if (!string.IsNullOrEmpty(Request.Form.Get("submit.Refresh")))
-             {
-                var state = new AuthorizationState
-                {
-                   AccessToken = Request.Form["AccessToken"],
-                   RefreshToken = Request.Form["RefreshToken"]
-                };
-                if (_webServerClient.RefreshAuthorization(state))
-                {
-                   ViewBag.AccessToken = state.AccessToken;
-                   ViewBag.RefreshToken = state.RefreshToken;
-                }
-             }
-             else if (!string.IsNullOrEmpty(Request.Form.Get("submit.CallApi")))
-             {
-                var resourceServerUri = new Uri(Paths.ResourceServerBaseAddress);
-                var client = new HttpClient(_webServerClient.CreateAuthorizingHandler(accessToken));
-                var body = client.GetStringAsync(new Uri(resourceServerUri, Paths.MePath)).Result;
-                ViewBag.ApiResponse = body;
-             }
-    
-             return View();
-          }
-    
-          private void InitializeWebServerClient()
-          {
-             var authorizationServerUri = new Uri(Paths.AuthorizationServerBaseAddress);
-             var authorizationServer = new AuthorizationServerDescription
-             {
-                AuthorizationEndpoint = new Uri(authorizationServerUri, Paths.AuthorizePath),
-                TokenEndpoint = new Uri(authorizationServerUri, Paths.TokenPath)
-             };
-             _webServerClient = new WebServerClient(authorizationServer, Clients.Client1.Id, Clients.Client1.Secret);
-          }
-       }
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample16.xml)]
 
 `DotNetOpenAuth` requires SSL by default. Since our demo is using HTTP, you need to add following setting in the config file:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample5.xml?highlight=4-6)]
+[!code[Main](owin-oauth-20-authorization-server/samples/sample17.xml?highlight=4-6)]
 
 > [!NOTE] **Security Note:** Never disable SSL in a production app. Your login credentials are now being sent in clear-text across the wire. The code above is just for local sample debugging and exploration.
 
@@ -589,112 +278,11 @@ The following image shows this process:
 
 The client should have two pages: one for home page and the other for callback.Here is the sample JavaScript code found in the *Index.cshtml* file:
 
-    <script type="text/javascript">
-        (function ($) {
-            var authorizeUri = '@(Paths.AuthorizationServerBaseAddress + Paths.AuthorizePath)';
-            var tokenUri = '@(Paths.AuthorizationServerBaseAddress + Paths.TokenPath)';
-            var apiUri = '@(Paths.ResourceServerBaseAddress + Paths.MePath)';
-            var returnUri = '@Paths.ImplicitGrantCallBackPath';
-    
-            $('#Authorize').click(function () {
-                var nonce = 'my-nonce';
-    
-                var uri = addQueryString(authorizeUri, {
-                    'client_id': '7890ab',
-                    'redirect_uri': returnUri,
-                    'state': nonce,
-                    'scope': 'bio notes',
-                    'response_type': 'token',
-                });
-    
-                window.oauth = {};
-                window.oauth.signin = function (data) {
-                    if (data.state !== nonce) {
-                        return;
-                    }
-    
-                    $('#AccessToken').val(data.access_token);
-                }
-    
-                window.open(uri, 'Authorize', 'width=640,height=480');
-            });
-    
-            $('#CallApi').click(function () {
-                $.ajax(apiUri, {
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader('Authorization', 'Bearer ' + $('#AccessToken').val());
-                    },
-                    dataType: 'text',
-                    cache: false,
-                    success: function (data) {
-                        console.log(data);
-                        $('#output').text(data);
-                    }
-                });
-            });
-    
-            function addQueryString(uri, parameters) {
-                var delimiter = (uri.indexOf('?') == -1) ? '?' : '&';
-                for (var parameterName in parameters) {
-                    var parameterValue = parameters[parameterName];
-                    uri += delimiter + encodeURIComponent(parameterName) + '=' + encodeURIComponent(parameterValue);
-                    delimiter = '&';
-                }
-                return uri;
-            }
-        })(jQuery);
-    </script>
+[!code[Main](owin-oauth-20-authorization-server/samples/sample18.xml)]
 
 Here is the callback handling code in *SignIn.cshtml* file:
 
-    <script type="text/javascript">
-        (function ($) {
-            function getFragment() {
-                if (window.location.hash.indexOf("#") === 0) {
-                    return parseQueryString(window.location.hash.substr(1));
-                } else {
-                    return {};
-                }
-            }
-    
-            function parseQueryString(queryString) {
-                var data = {},
-                    pairs, pair, separatorIndex, escapedKey, escapedValue, key, value;
-    
-                if (queryString === null) {
-                    return data;
-                }
-    
-                pairs = queryString.split("&");
-    
-                for (var i = 0; i < pairs.length; i++) {
-                    pair = pairs[i];
-                    separatorIndex = pair.indexOf("=");
-    
-                    if (separatorIndex === -1) {
-                        escapedKey = pair;
-                        escapedValue = null;
-                    } else {
-                        escapedKey = pair.substr(0, separatorIndex);
-                        escapedValue = pair.substr(separatorIndex + 1);
-                    }
-    
-                    key = decodeURIComponent(escapedKey);
-                    value = decodeURIComponent(escapedValue);
-    
-                    data[key] = value;
-                }
-    
-                return data;
-            }
-    
-            var fragments = getFragment();
-            if (window.opener && window.opener.oauth && window.opener.oauth.signin) {
-                window.opener.oauth.signin(fragments);
-            }
-            window.close();
-        })(jQuery);
-    </script>
+[!code[Main](owin-oauth-20-authorization-server/samples/sample19.xml)]
 
 > [!NOTE] A best practice is to move the JavaScript to an external file and not embed it with the Razor markup. To keep this sample simple, they have been combined.
 
@@ -703,94 +291,10 @@ Here is the callback handling code in *SignIn.cshtml* file:
 
 We uses a console app to demo this client. Here is the code:
 
-    class Program
-    {
-        private static WebServerClient _webServerClient;
-        private static string _accessToken;
-    
-        static void Main(string[] args)
-        {
-            InitializeWebServerClient();
-    
-            Console.WriteLine("Requesting Token...");
-            RequestToken();
-    
-            Console.WriteLine("Access Token: {0}", _accessToken);
-    
-            Console.WriteLine("Access Protected Resource");
-            AccessProtectedResource();            
-        }
-    
-        private static void InitializeWebServerClient()
-        {
-            var authorizationServerUri = new Uri(Paths.AuthorizationServerBaseAddress);
-            var authorizationServer = new AuthorizationServerDescription
-            {
-                AuthorizationEndpoint = new Uri(authorizationServerUri, Paths.AuthorizePath),
-                TokenEndpoint = new Uri(authorizationServerUri, Paths.TokenPath)
-            };
-            _webServerClient = new WebServerClient(authorizationServer, Clients.Client1.Id, Clients.Client1.Secret);
-        }
-    
-        private static void RequestToken()
-        {
-            var state = _webServerClient.GetClientAccessToken(new[] { "bio", "notes" });
-            _accessToken = state.AccessToken;
-        }
-    
-        private static void AccessProtectedResource()
-        {
-            var resourceServerUri = new Uri(Paths.ResourceServerBaseAddress);
-            var client = new HttpClient(_webServerClient.CreateAuthorizingHandler(_accessToken));
-            var body = client.GetStringAsync(new Uri(resourceServerUri, Paths.MePath)).Result;
-            Console.WriteLine(body);
-        }
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample20.xml)]
 
 ### Client Credentials Grant Client
 
 Similar to the Resource Owner Password Credentials Grant, here is console app code:
 
-    class Program
-    {
-        private static WebServerClient _webServerClient;
-        private static string _accessToken;
-    
-        static void Main(string[] args)
-        {
-            InitializeWebServerClient();
-    
-            Console.WriteLine("Requesting Token...");
-            RequestToken();
-    
-            Console.WriteLine("Access Token: {0}", _accessToken);
-    
-            Console.WriteLine("Access Protected Resource");
-            AccessProtectedResource();
-        }
-    
-        private static void InitializeWebServerClient()
-        {
-            var authorizationServerUri = new Uri(Paths.AuthorizationServerBaseAddress);
-            var authorizationServer = new AuthorizationServerDescription
-            {
-                AuthorizationEndpoint = new Uri(authorizationServerUri, Paths.AuthorizePath),
-                TokenEndpoint = new Uri(authorizationServerUri, Paths.TokenPath)
-            };
-            _webServerClient = new WebServerClient(authorizationServer, Clients.Client1.Id, Clients.Client1.Secret);
-        }
-    
-        private static void RequestToken()
-        {
-            var state = _webServerClient.ExchangeUserCredentialForToken("test", "test", new[] { "bio", "notes" });
-            _accessToken = state.AccessToken;
-        }
-    
-        private static void AccessProtectedResource()
-        {
-            var resourceServerUri = new Uri(Paths.ResourceServerBaseAddress);
-            var client = new HttpClient(_webServerClient.CreateAuthorizingHandler(_accessToken));
-            var body = client.GetStringAsync(new Uri(resourceServerUri, Paths.MePath)).Result;
-            Console.WriteLine(body);
-        }
-    }
+[!code[Main](owin-oauth-20-authorization-server/samples/sample21.xml)]

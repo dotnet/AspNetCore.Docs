@@ -1,5 +1,5 @@
-public class ContosoChatMessage
-{
-    public string UserName { get; set; }
-    public string Message { get; set; }
-}
+$.extend(contosoChatHubProxy.client, {
+    addContosoChatMessageToPage: function(userName, message) {
+    console.log(userName + ' ' + message);
+    };
+});

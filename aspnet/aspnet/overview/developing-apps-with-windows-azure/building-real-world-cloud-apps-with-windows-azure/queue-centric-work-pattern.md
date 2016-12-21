@@ -157,22 +157,7 @@ Inside the worker role, we poll for messages by calling the `ProcessMessageAsync
 
 The `ProcessMessagesAsync` method checks if there's a message waiting. If there is one, it deserializes the message into a `FixItTask` entity and saves the entity in the database. It loops until the queue is empty.
 
-    public async Task ProcessMessagesAsync()
-    {
-        CloudQueue queue = _queueClient.GetQueueReference(fixitQueueName);
-        await queue.CreateIfNotExistsAsync();
-        while (true)
-        {
-            CloudQueueMessage message = await queue.GetMessageAsync();
-            if (message == null)
-            {
-                break;
-            }
-            FixItTask fixit = JsonConvert.DeserializeObject<FixItTask>(message.AsString);
-            await _repository.CreateAsync(fixit);
-            await queue.DeleteMessageAsync(message);
-        }
-    }
+[!code[Main](queue-centric-work-pattern/samples/sample4.xml)]
 
 Polling for queue messages incurs a small transaction charge, so when there's no message waiting to be processed, the worker role's `RunAsync` method waits a second before polling again by calling `Task.Delay(1000)`.
 

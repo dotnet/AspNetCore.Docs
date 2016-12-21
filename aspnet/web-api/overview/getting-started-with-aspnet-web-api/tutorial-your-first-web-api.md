@@ -59,16 +59,7 @@ If Solution Explorer is not already visible, click the **View** menu and select 
 
 Name the class &quot;Product&quot;. Add the following properties to the `Product` class.
 
-    namespace ProductsApp.Models
-    {
-        public class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Category { get; set; }
-            public decimal Price { get; set; }
-        }
-    }
+[!code[Main](tutorial-your-first-web-api/samples/sample1.xml)]
 
 ## Adding a Controller
 
@@ -97,40 +88,7 @@ The scaffolding creates a file named ProductsController.cs in the Controllers fo
 
 If this file is not open already, double-click the file to open it. Replace the code in this file with the following:
 
-    using ProductsApp.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Web.Http;
-    
-    namespace ProductsApp.Controllers
-    {
-        public class ProductsController : ApiController
-        {
-            Product[] products = new Product[] 
-            { 
-                new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 }, 
-                new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M }, 
-                new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M } 
-            };
-    
-            public IEnumerable<Product> GetAllProducts()
-            {
-                return products;
-            }
-    
-            public IHttpActionResult GetProduct(int id)
-            {
-                var product = products.FirstOrDefault((p) => p.Id == id);
-                if (product == null)
-                {
-                    return NotFound();
-                }
-                return Ok(product);
-            }
-        }
-    }
+[!code[Main](tutorial-your-first-web-api/samples/sample2.xml)]
 
 To keep the example simple, products are stored in a fixed array inside the controller class. Of course, in a real application, you would query a database or use some other external data source.
 
@@ -164,57 +122,7 @@ In the **Add New Item** dialog, select the **Web** node under **Visual C#**, and
 
 Replace everything in this file with the following:
 
-    <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-      <title>Product App</title>
-    </head>
-    <body>
-    
-      <div>
-        <h2>All Products</h2>
-        <ul id="products" />
-      </div>
-      <div>
-        <h2>Search by ID</h2>
-        <input type="text" id="prodId" size="5" />
-        <input type="button" value="Search" onclick="find();" />
-        <p id="product" />
-      </div>
-    
-      <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
-      <script>
-        var uri = 'api/products';
-    
-        $(document).ready(function () {
-          // Send an AJAX request
-          $.getJSON(uri)
-              .done(function (data) {
-                // On success, 'data' contains a list of products.
-                $.each(data, function (key, item) {
-                  // Add a list item for the product.
-                  $('<li>', { text: formatItem(item) }).appendTo($('#products'));
-                });
-              });
-        });
-    
-        function formatItem(item) {
-          return item.Name + ': $' + item.Price;
-        }
-    
-        function find() {
-          var id = $('#prodId').val();
-          $.getJSON(uri + '/' + id)
-              .done(function (data) {
-                $('#product').text(formatItem(data));
-              })
-              .fail(function (jqXHR, textStatus, err) {
-                $('#product').text('Error: ' + err);
-              });
-        }
-      </script>
-    </body>
-    </html>
+[!code[Main](tutorial-your-first-web-api/samples/sample3.xml)]
 
 There are several ways to get jQuery. In this example, I used the [Microsoft Ajax CDN](../../../ajax/cdn/overview.md). You can also download it from [http://jquery.com/](http://jquery.com/), and the ASP.NET "Web API" project template includes jQuery as well.
 
@@ -224,32 +132,13 @@ To get a list of products, send an HTTP GET request to &quot;/api/products&quot;
 
 The jQuery [getJSON](http://api.jquery.com/jQuery.getJSON/) function sends an AJAX request. For response contains array of JSON objects. The `done` function specifies a callback that is called if the request succeeds. In the callback, we update the DOM with the product information.
 
-    $(document).ready(function () {
-        // Send an AJAX request
-        $.getJSON(apiUrl)
-            .done(function (data) {
-                // On success, 'data' contains a list of products.
-                $.each(data, function (key, item) {
-                    // Add a list item for the product.
-                    $('<li>', { text: formatItem(item) }).appendTo($('#products'));
-                });
-            });
-    });
+[!code[Main](tutorial-your-first-web-api/samples/sample4.xml)]
 
 ### Getting a Product By ID
 
 To get a product by ID, send an HTTP GET request to &quot;/api/products/*id*&quot;, where *id* is the product ID.
 
-    function find() {
-        var id = $('#prodId').val();
-        $.getJSON(apiUrl + '/' + id)
-            .done(function (data) {
-                $('#product').text(formatItem(data));
-            })
-            .fail(function (jqXHR, textStatus, err) {
-                $('#product').text('Error: ' + err);
-            });
-    }
+[!code[Main](tutorial-your-first-web-api/samples/sample5.xml)]
 
 We still call `getJSON` to send the AJAX request, but this time we put the ID in the request URI. The response from this request is a JSON representation of a single product.
 

@@ -55,28 +55,7 @@ For this report remove the `ProductID`, `SupplierID`, `CategoryID`, and `Reorder
 After making these changes, your DetailsView control's declarative markup should look similar to the following:
 
 
-    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False"
-        DataKeyNames="ProductID" DataSourceID="ObjectDataSource1" AllowPaging="True"
-        EnableViewState="False">
-        <Fields>
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-              SortExpression="ProductName" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category"
-              ReadOnly="True" SortExpression="CategoryName" />
-            <asp:BoundField DataField="SupplierName" HeaderText="Supplier"
-              ReadOnly="True" SortExpression="SupplierName" />
-            <asp:BoundField DataField="QuantityPerUnit"
-              HeaderText="Qty/Unit" SortExpression="QuantityPerUnit" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="Price"
-              SortExpression="UnitPrice" />
-            <asp:BoundField DataField="UnitsInStock"
-              HeaderText="Units In Stock" SortExpression="UnitsInStock" />
-            <asp:BoundField DataField="UnitsOnOrder"
-              HeaderText="Units On Order" SortExpression="UnitsOnOrder" />
-            <asp:CheckBoxField DataField="Discontinued"
-              HeaderText="Discontinued" SortExpression="Discontinued" />
-        </Fields>
-    </asp:DetailsView>
+[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample1.xml)]
 
 Take a moment to view the page through a browser. At this point you should see a single product listed (Chai) with rows showing the product's name, category, supplier, price, units in stock, units on order, and its discontinued status.
 
@@ -135,7 +114,7 @@ For the `UnitPrice` field use the currency formatting specified either by select
 Declaratively, the formatting specification is indicated as a second parameter into the `Bind` or `Eval` methods. The settings just made through the Designer result in the following databinding expression in the declarative markup:
 
 
-    <asp:Label ID="Label1" runat="server" Text='<%# Eval("UnitPrice", "{0:C}") %>'/>
+[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample2.xml)]
 
 ## Adding the Remaining Data Fields to the TemplateField
 
@@ -149,38 +128,7 @@ Add the static markup, Label Web controls, and databinding syntax so that the Pr
 After performing this task your DetailsView's declarative markup should look similar to the following:
 
 
-    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False"
-        DataKeyNames="ProductID" DataSourceID="ObjectDataSource1" AllowPaging="True"
-        EnableViewState="False">
-        <Fields>
-            <asp:BoundField DataField="ProductName"
-              HeaderText="Product" SortExpression="ProductName" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category"
-              ReadOnly="True" SortExpression="CategoryName" />
-            <asp:BoundField DataField="SupplierName"
-              HeaderText="Supplier" ReadOnly="True"
-              SortExpression="SupplierName" />
-            <asp:BoundField DataField="QuantityPerUnit"
-              HeaderText="Qty/Unit" SortExpression="QuantityPerUnit" />
-            <asp:TemplateField HeaderText="Price and Inventory">
-                <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server"
-                      Text='<%# Eval("UnitPrice", "{0:C}") %>'></asp:Label>
-                    <br />
-                    <strong>
-                    (In Stock / On Order: </strong>
-                    <asp:Label ID="Label2" runat="server"
-                      Text='<%# Eval("UnitsInStock") %>'></asp:Label>
-                    <strong>/</strong>
-                    <asp:Label ID="Label3" runat="server"
-                      Text='<%# Eval("UnitsOnOrder") %>'>
-                    </asp:Label><strong>)</strong>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:CheckBoxField DataField="Discontinued"
-               HeaderText="Discontinued" SortExpression="Discontinued" />
-        </Fields>
-    </asp:DetailsView>
+[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample3.xml)]
 
 With these changes we've consolidated the price and inventory information into a single DetailsView row.
 
@@ -207,13 +155,7 @@ Imagine that we didn't want the strings "True" or "False" to be used, but "YES" 
 Add a formatting method to the `DetailsViewTemplateField.aspx` page's code-behind class named `DisplayDiscontinuedAsYESorNO` that accepts a Boolean as an input parameter and returns a string. As discussed in the previous tutorial, this method *must* be marked as `protected` or `public` in order to be accessible from the template.
 
 
-    protected string DisplayDiscontinuedAsYESorNO(bool discontinued)
-    {
-        if (discontinued)
-            return "YES";
-        else
-            return "NO";
-    }
+[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample4.xml)]
 
 This method checks the input parameter (`discontinued`) and returns "YES" if it is `true`, "NO" otherwise.
 
@@ -223,12 +165,7 @@ This method checks the input parameter (`discontinued`) and returns "YES" if it 
 With this formatting method complete, all that remains is to call it from the TemplateField's `ItemTemplate`. To create the TemplateField either remove the `Discontinued` BoundField and add a new TemplateField or convert the `Discontinued` BoundField into a TemplateField. Then, from the declarative markup view, edit the TemplateField so that it contains just an ItemTemplate that invokes the `DisplayDiscontinuedAsYESorNO` method, passing in the value of the current `ProductRow` instance's `Discontinued` property. This can be accessed via the `Eval` method. Specifically, the TemplateField's markup should look like:
 
 
-    <asp:TemplateField HeaderText="Discontinued" SortExpression="Discontinued">
-        <ItemTemplate>
-            <%# DisplayDiscontinuedAsYESorNO((bool)
-              Eval("Discontinued")) %>
-        </ItemTemplate>
-    </asp:TemplateField>
+[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample5.xml)]
 
 This will cause the `DisplayDiscontinuedAsYESorNO` method to be invoked when rendering the DetailsView, passing in the `ProductRow` instance's `Discontinued` value. Since the `Eval` method returns a value of type `object`, but the `DisplayDiscontinuedAsYESorNO` method expects an input parameter of type `bool`, we cast the `Eval` methods return value to `bool`. The `DisplayDiscontinuedAsYESorNO` method will then return "YES" or "NO" depending on the value it receives. The returned value is what is displayed in this DetailsView row (see Figure 10).
 

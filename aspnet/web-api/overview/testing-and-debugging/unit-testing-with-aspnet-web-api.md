@@ -95,17 +95,7 @@ In the unit test project, add a project reference to the original project.
 
 In your StoreApp project, add a class file to the **Models** folder named **Product.cs**. Replace the contents of the file with the following code.
 
-    using System;
-    
-    namespace StoreApp.Models
-    {
-        public class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public decimal Price { get; set; }
-        }
-    }
+[!code[Main](unit-testing-with-aspnet-web-api/samples/sample1.xml)]
 
 Build the solution.
 
@@ -119,52 +109,7 @@ Set the controller name to **SimpleProductController**, and click **Add**.
 
 Replace the existing code with the following code. To simplify this example, the data is stored in a list rather than a database. The list defined in this class represents the production data. Notice that the controller includes a constructor that takes as a parameter a list of Product objects. This constructor enables you to pass test data when unit testing. The controller also includes two **async** methods to illustrate unit testing asynchronous methods. These async methods were implemented by calling **Task.FromResult** to minimize extraneous code, but normally the methods would include resource-intensive operations.
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Web.Http;
-    using StoreApp.Models;
-    
-    namespace StoreApp.Controllers
-    {
-        public class SimpleProductController : ApiController
-        {
-            List<Product> products = new List<Product>();        
-               
-            public SimpleProductController() { }
-    
-            public SimpleProductController(List<Product> products)
-            {
-                this.products = products;
-            }
-    
-            public IEnumerable<Product> GetAllProducts()
-            {
-                return products;
-            }
-    
-            public async Task<IEnumerable<Product>> GetAllProductsAsync()
-            {
-                return await Task.FromResult(GetAllProducts());
-            }
-    
-            public IHttpActionResult GetProduct(int id)
-            {
-                var product = products.FirstOrDefault((p) => p.Id == id);
-                if (product == null)
-                {
-                    return NotFound();
-                }
-                return Ok(product);
-            }
-    
-            public async Task<IHttpActionResult> GetProductAsync(int id)
-            {
-                return await Task.FromResult(GetProduct(id));
-            }
-        }
-    }
+[!code[Main](unit-testing-with-aspnet-web-api/samples/sample2.xml)]
 
 The GetProduct method returns an instance of the **IHttpActionResult** interface. IHttpActionResult is one of the new features in Web API 2, and it simplifies unit test development. Classes that implement the IHttpActionResult interface are found in the [System.Web.Http.Results](https://msdn.microsoft.com/en-us/library/system.web.http.results.aspx) namespace. These classes represent possible responses from an action request, and they correspond to HTTP status codes.
 
@@ -196,82 +141,7 @@ By default, your test project includes an empty test file named UnitTest1.cs. Th
 
 For this tutorial, you will create your own test class. You can delete the UnitTest1.cs file. Add a class named **TestSimpleProductController.cs**, and replace the code with the following code.
 
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using System.Web.Http.Results;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using StoreApp.Controllers;
-    using StoreApp.Models;
-    
-    namespace StoreApp.Tests
-    {
-        [TestClass]
-        public class TestSimpleProductController
-        {
-            [TestMethod]
-            public void GetAllProducts_ShouldReturnAllProducts()
-            {
-                var testProducts = GetTestProducts();
-                var controller = new SimpleProductController(testProducts);
-    
-                var result = controller.GetAllProducts() as List<Product>;
-                Assert.AreEqual(testProducts.Count, result.Count);
-            }
-    
-            [TestMethod]
-            public async Task GetAllProductsAsync_ShouldReturnAllProducts()
-            {
-                var testProducts = GetTestProducts();
-                var controller = new SimpleProductController(testProducts);
-    
-                var result = await controller.GetAllProductsAsync() as List<Product>;
-                Assert.AreEqual(testProducts.Count, result.Count);
-            }
-    
-            [TestMethod]
-            public void GetProduct_ShouldReturnCorrectProduct()
-            {
-                var testProducts = GetTestProducts();
-                var controller = new SimpleProductController(testProducts);
-    
-                var result = controller.GetProduct(4) as OkNegotiatedContentResult<Product>;
-                Assert.IsNotNull(result);
-                Assert.AreEqual(testProducts[3].Name, result.Content.Name);
-            }
-    
-            [TestMethod]
-            public async Task GetProductAsync_ShouldReturnCorrectProduct()
-            {
-                var testProducts = GetTestProducts();
-                var controller = new SimpleProductController(testProducts);
-    
-                var result = await controller.GetProductAsync(4) as OkNegotiatedContentResult<Product>;
-                Assert.IsNotNull(result);
-                Assert.AreEqual(testProducts[3].Name, result.Content.Name);
-            }
-    
-            [TestMethod]
-            public void GetProduct_ShouldNotFindProduct()
-            {
-                var controller = new SimpleProductController(GetTestProducts());
-    
-                var result = controller.GetProduct(999);
-                Assert.IsInstanceOfType(result, typeof(NotFoundResult));
-            }
-    
-            private List<Product> GetTestProducts()
-            {
-                var testProducts = new List<Product>();
-                testProducts.Add(new Product { Id = 1, Name = "Demo1", Price = 1 });
-                testProducts.Add(new Product { Id = 2, Name = "Demo2", Price = 3.75M });
-                testProducts.Add(new Product { Id = 3, Name = "Demo3", Price = 16.99M });
-                testProducts.Add(new Product { Id = 4, Name = "Demo4", Price = 11.00M });
-    
-                return testProducts;
-            }
-        }
-    }
+[!code[Main](unit-testing-with-aspnet-web-api/samples/sample3.xml)]
 
 <a id="runtests"></a>
 ## Run tests

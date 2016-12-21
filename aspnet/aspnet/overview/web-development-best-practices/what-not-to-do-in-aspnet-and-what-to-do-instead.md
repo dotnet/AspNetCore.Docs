@@ -75,19 +75,11 @@ Web server controls contain dozens of properties which can be used to set in-lin
 
 The following example shows a CSS class the sets text to red.
 
-    .CautionRow {
-        color: red;
-    }
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample1.xml)]
 
 The next example shows how to dynamically apply the CSS class.
 
-    protected void CustomersGridView_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.Cells[2].Text == "Unconfirmed")
-        {
-            e.Row.CssClass = "CautionRow";
-        }
-    }
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample2.xml)]
 
 <a id="callback"></a>
 
@@ -119,27 +111,25 @@ Request validation is a feature of ASP.NET that inspects each request and stops 
 
 The following example shows how to use a static method in the Uri class to determine whether the Uri provided by a user is valid.
 
-    var isValidUri = Uri.IsWellFormedUriString(passedUri, UriKind.Absolute);
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample3.xml)]
 
 However, to sufficiently verify the Uri, you should also check to make sure it specifies `http` or `https`. The following example uses instance methods to verify that the Uri is valid.
 
-    var uriToVerify = new Uri(passedUri);
-    var isValidUri = uriToVerify.IsWellFormedOriginalString();
-    var isValidScheme = uriToVerify.Scheme == "http" || uriToVerify.Scheme == "https";
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample4.xml)]
 
 Before rendering user input as HTML or including user input in a SQL query, encode the values to ensure malicious code is not included.
 
 You can HTML encode the value in markup with the &lt;%: %&gt; syntax, as shown below.
 
-[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample1.xml?highlight=1)]
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample5.xml?highlight=1)]
 
 Or, in Razor syntax, you can HTML encode with @, as shown below.
 
-[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample2.xml?highlight=1)]
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample6.xml?highlight=1)]
 
 The next example shows how to HTML encode a value in code-behind.
 
-    var encodedInput = Server.HtmlEncode(userInput);
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample7.xml)]
 
 To safely encode a value for SQL commands, use command parameters such as the [SqlParameter](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlparameter.aspx). <a id="cookieless"></a>
 
@@ -151,12 +141,7 @@ Passing authentication information in the query string is not secure. Therefore,
 
 The following example shows how to specify in the Web.config file that Forms Authentication requires a cookie that is transmitted over SSL.
 
-    <authentication mode="Forms">
-      <forms loginUrl="member_login.aspx"
-        cookieless="UseCookies"
-        requireSSL="true"
-        path="/MyApplication" />
-    </authentication>
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample8.xml)]
 
 <a id="viewstatemac"></a>
 
@@ -170,7 +155,7 @@ Starting with ASP.NET 4.5.2, the runtime enforces **EnableViewStateMac=true**. E
 
 The following example shows how to set EnableViewStateMac to true. You do not need to actually set this value to true because it is true by default. However, if you have set it to false on any page in your application, you must immediately correct this value.
 
-    <%@ Page language="C#" EnableViewStateMac="true" %>
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample9.xml)]
 
 <a id="medium"></a>
 
@@ -200,8 +185,7 @@ The UrlPathEncode method was added to the .NET Framework to resolve a very speci
 
 The following example shows how to pass an encoded URL as a query string parameter for a hyperlink control.
 
-    string destinationURL = "http://www.contoso.com/default.aspx?user=test";
-    NextPage.NavigateUrl = "~/Finish?url=" + Server.UrlEncode(destinationURL);
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample10.xml)]
 
 <a id="performance"></a>
 
@@ -225,25 +209,11 @@ When you mark a page event with **async** and **void**, you cannot determine whe
 
 The following example shows a button click handler that contains asynchronous code. This example includes reading a string value asynchronously, which is provided only as a simplified example of an asynchronous task and not as a recommended practice.
 
-    protected void StartAsync_Click(object sender, EventArgs e)
-    {
-        Page.RegisterAsyncTask(new PageAsyncTask(async() =>
-        {
-            string stringToRead = "Long text value";
-    
-            using (StringReader reader = new StringReader(stringToRead))
-            {
-                string readText = await reader.ReadToEndAsync();
-                Result.Text = readText;
-            }
-        }));
-    }
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample11.xml)]
 
 If you are using asynchronous Tasks, set the Http runtime target framework to 4.5 in the Web.config file. Setting the target framework to 4.5 turns on the new synchronization context that was added in .NET 4.5. This value is set by default in new projects in Visual Studio 2012, but is not be set if you are working with an existing project.
 
-    <system.web>
-        <httpRuntime TargetFramework="4.5" />
-    </system.web>
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample12.xml)]
 
 <a id="fire"></a>
 
@@ -285,11 +255,11 @@ Recommendation: Use ViewStateMode, instead of EnableViewState, to provide granul
 
 When you set EnableViewState to false in the Page directive, view state is disabled for all controls within the page and cannot be enabled. If you want to enable view state for only certain controls in your page, set ViewStateMode to Disabled for the Page.
 
-    <%@ Page ViewStateMode="Disabled" . . . %>
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample13.xml)]
 
 Then, set ViewStateMode to Enabled on only the controls that actually need view state.
 
-    <asp:GridView ViewStateMode="Enabled" runat="server">
+[!code[Main](what-not-to-do-in-aspnet-and-what-to-do-instead/samples/sample14.xml)]
 
 By enabling view state for only the controls that need it, you can shrink the size of the view state for your web pages.
 

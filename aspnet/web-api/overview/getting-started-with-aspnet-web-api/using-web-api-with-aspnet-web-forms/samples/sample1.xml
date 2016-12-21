@@ -1,3 +1,7 @@
-<asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-    <script src="Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
-</asp:Content>
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string Category { get; set; }
+    }

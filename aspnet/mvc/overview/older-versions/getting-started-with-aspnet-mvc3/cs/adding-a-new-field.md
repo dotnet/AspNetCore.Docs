@@ -35,19 +35,11 @@ In this section you'll make some changes to the model classes and learn how you 
 
 Start by adding a new `Rating` property to the existing `Movie` class. Open the *Movie.cs* file and add the `Rating` property like this one:
 
-    public string Rating { get; set; }
+[!code[Main](adding-a-new-field/samples/sample1.xml)]
 
 The complete `Movie` class now looks like the following code:
 
-    public class Movie
-    {
-        public int      ID          { get; set; }
-        public string   Title       { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public string   Genre       { get; set; }
-        public decimal  Price       { get; set; }
-        public string   Rating      { get; set; }
-    }
+[!code[Main](adding-a-new-field/samples/sample2.xml)]
 
 Recompile the application using the **Debug** &gt;**Build Movie** menu command.
 
@@ -55,51 +47,11 @@ Now that you've updated the `Model` class, you also need to update the *\Views\M
 
 Open the*\Views\Movies\Index.cshtml* file and add a `<th>Rating</th>` column heading just after the **Price** column. Then add a `<td>` column near the end of the template to render the `@item.Rating` value. Below is what the updated *Index.cshtml* view template looks like:
 
-    <table>
-        <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Release Date</th>
-            <th>Genre</th>
-            <th>Price</th>
-            <th>Rating</th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating   )
-            </td>
-            <td>
-                @Html.ActionLink("Edit Me", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
-    </table>
+[!code[Main](adding-a-new-field/samples/sample3.xml)]
 
 Next, open the *\Views\Movies\Create.cshtml* file and add the following markup near the end of the form. This renders a text box so that you can specify a rating when a new movie is created.
 
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Rating)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.Rating)
-        @Html.ValidationMessageFor(model => model.Rating)
-    </div>
+[!code[Main](adding-a-new-field/samples/sample4.xml)]
 
 ## Managing Model and Database Schema Differences
 
@@ -135,44 +87,7 @@ In **Solution Explorer**, right click the *Models* folder, select **Add**, and t
 
 Name the class "MovieInitializer". Update the `MovieInitializer` class to contain the following code:
 
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    
-    namespace MvcMovie.Models {
-        public class MovieInitializer : DropCreateDatabaseIfModelChanges<MovieDBContext> {
-            protected override void Seed(MovieDBContext context) {
-                var movies = new List<Movie> {  
-      
-                     new Movie { Title = "When Harry Met Sally",   
-                                 ReleaseDate=DateTime.Parse("1989-1-11"),   
-                                 Genre="Romantic Comedy",  
-                                 Rating="R",  
-                                 Price=7.99M},  
-    
-                         new Movie { Title = "Ghostbusters ",   
-                                 ReleaseDate=DateTime.Parse("1984-3-13"),   
-                                 Genre="Comedy",  
-                                  Rating="R",  
-                                 Price=8.99M},   
-      
-                     new Movie { Title = "Ghostbusters 2",   
-                                 ReleaseDate=DateTime.Parse("1986-2-23"),   
-                                 Genre="Comedy",  
-                                 Rating="R",  
-                                 Price=9.99M},   
-    
-                   new Movie { Title = "Rio Bravo",   
-                                 ReleaseDate=DateTime.Parse("1959-4-15"),   
-                                 Genre="Western",  
-                                 Rating="R",  
-                                 Price=3.99M},   
-                 };
-    
-                movies.ForEach(d => context.Movies.Add(d));
-            }
-        }
-    }
+[!code[Main](adding-a-new-field/samples/sample5.xml)]
 
 The `MovieInitializer` class specifies that the database used by the model should be dropped and automatically re-created if the model classes ever change. The code includes a `Seed` method to specify some default data to automatically add to the database any time it's created (or re-created). This provides a useful way to populate the database with some sample data, without requiring you to manually populate it each time you make a model change.
 
@@ -186,19 +101,11 @@ The *Global.asax* file contains the class that defines the entire application fo
 
 Let's add two using statements to the top of the file. The first references the Entity Framework namespace, and the second references the namespace where our `MovieInitializer` class lives:
 
-    using System.Data.Entity;            // Database.SetInitialize
-    using MvcMovie.Models;              // MovieInitializer
+[!code[Main](adding-a-new-field/samples/sample6.xml)]
 
 Then find the `Application_Start` method and add a call to `Database.SetInitializer` at the beginning of the method, as shown below:
 
-    protected void Application_Start()
-    {
-        Database.SetInitializer<MovieDBContext>(new MovieInitializer());
-    
-        AreaRegistration.RegisterAllAreas();
-        RegisterGlobalFilters(GlobalFilters.Filters);
-        RegisterRoutes(RouteTable.Routes);
-    }
+[!code[Main](adding-a-new-field/samples/sample7.xml)]
 
 The `Database.SetInitializer` statement you just added indicates that the database used by the `MovieDBContext` instance should be automatically deleted and re-created if the schema and the database don't match. And as you saw, it will also populate the database with the sample data that's specified in the `MovieInitializer` class.
 

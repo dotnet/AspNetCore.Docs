@@ -53,22 +53,7 @@ Next, open the `Default.aspx` page and drag the `SectionLevelTutorialListing.asc
 In order to have the bulleted list display the paging and sorting tutorials we'll be creating, we need to add them to the site map. Open the `Web.sitemap` file and add the following markup after the Editing, Inserting, and Deleting site map node markup:
 
 
-    <siteMapNode title="Paging and Sorting" url="~/PagingAndSorting/Default.aspx"
-        description="Samples of Reports that Provide Paging and Sorting Capabilities">
-        <siteMapNode url="~/PagingAndSorting/SimplePagingSorting.aspx"
-            title="Simple Paging & Sorting Examples"
-            description="Examines how to add simple paging and sorting support." />
-        <siteMapNode url="~/PagingAndSorting/EfficientPaging.aspx"
-            title="Efficiently Paging Through Large Result Sets"
-            description="Learn how to efficiently page through large result sets." />
-        <siteMapNode url="~/PagingAndSorting/SortParameter.aspx"
-            title="Sorting Data at the BLL or DAL"
-            description="Illustrates how to perform sorting logic in the Business Logic
-            Layer or Data Access Layer." />
-        <siteMapNode url="~/PagingAndSorting/CustomSortingUI.aspx"
-            title="Customizing the Sorting User Interface"
-            description="Learn how to customize and improve the sorting user interface." />
-    </siteMapNode>
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample1.xml)]
 
 
 ![Update the Site Map to Include the New ASP.NET Pages](paging-and-sorting-report-data-vb/_static/image3.png)
@@ -97,22 +82,7 @@ Since this report is a read-only report, there s no need to map the ObjectDataSo
 Next, let s customize the GridView s fields so that only the products names, suppliers, categories, prices, and discontinued statuses are displayed. Furthermore, feel free to make any field-level formatting changes, such as adjusting the `HeaderText` properties or formatting the price as a currency. After these changes, your GridView s declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="Products" AutoGenerateColumns="False" DataKeyNames="ProductID"
-        DataSourceID="ObjectDataSource1" EnableViewState="False" runat="server">
-        <Columns>
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category"
-                SortExpression="CategoryName" ReadOnly="True" />
-            <asp:BoundField DataField="SupplierName" HeaderText="Supplier"
-                SortExpression="SupplierName" ReadOnly="True" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="Price"
-                SortExpression="UnitPrice" DataFormatString="{0:C}"
-                HtmlEncode="False" />
-            <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued"
-                SortExpression="Discontinued" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample2.xml)]
 
 Figure 6 shows our progress thus far when viewed through a browser. Note that the page lists all of the products in one screen, showing each product s name, category, supplier, price, and discontinued status.
 
@@ -151,24 +121,12 @@ Moreover, the GridView, DetailsView, and FormView all offer the `PageIndex` and 
 Let s take a moment to improve the default appearance of our GridView s paging interface. Specifically, let s have the paging interface right-aligned with a light gray background. Rather than setting these properties directly through the GridView s `PagerStyle` property, let s create a CSS class in `Styles.css` named `PagerRowStyle` and then assign the `PagerStyle` s `CssClass` property through our Theme. Start by opening `Styles.css` and adding the following CSS class definition:
 
 
-    .PagerRowStyle
-    {
-        background-color: #ddd;
-        text-align: right;
-    }
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample3.xml)]
 
 Next, open the `GridView.skin` file in the `DataWebControls` folder within the `App_Themes` folder. As we discussed in the *Master Pages and Site Navigation* tutorial, Skin files can be used to specify the default property values for a Web control. Therefore, augment the existing settings to include setting the `PagerStyle` s `CssClass` property to `PagerRowStyle`. Also, let s configure the paging interface to show at most five numeric page buttons using the `NumericFirstLast` paging interface.
 
 
-    <asp:GridView runat="server" CssClass="DataWebControlStyle">
-       <AlternatingRowStyle CssClass="AlternatingRowStyle" />
-       <RowStyle CssClass="RowStyle" />
-       <HeaderStyle CssClass="HeaderStyle" />
-       <FooterStyle CssClass="FooterStyle" />
-       <SelectedRowStyle CssClass="SelectedRowStyle" />
-       <PagerStyle CssClass="PagerRowStyle" />
-       <PagerSettings Mode="NumericFirstLast" PageButtonCount="5" />
-    </asp:GridView>
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample4.xml)]
 
 ## The Paging User Experience
 
@@ -212,11 +170,7 @@ The data Web controls provide a number of properties that can be used to enhance
 First, add a Label Web control to your page, set its `ID` property to `PagingInformation`, and clear out its `Text` property. Next, create an event handler for the GridView s `DataBound` event and add the following code:
 
 
-    Protected Sub Products_DataBound(ByVal sender As Object, ByVal e As System.EventArgs) _
-        Handles Products.DataBound
-        PagingInformation.Text = String.Format("You are viewing page {0} of {1}...", _
-            Products.PageIndex + 1, Products.PageCount)
-    End Sub
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample5.xml)]
 
 This event handler assigns the `PagingInformation` Label s `Text` property to a message informing the user the page they are currently visiting `Products.PageIndex + 1` out of how many total pages `Products.PageCount` (we add 1 to the `Products.PageIndex` property because `PageIndex` is indexed starting at 0). I chose the assign this Label s `Text` property in the `DataBound` event handler as opposed to the `PageIndexChanged` event handler because the `DataBound` event fires every time data is bound to the GridView whereas the `PageIndexChanged` event handler only fires when the page index is changed. When the GridView is initially data bound on the first page visit, the `PageIndexChanging` event doesn t fire (whereas the `DataBound` event does).
 
@@ -233,18 +187,7 @@ In addition to the Label control, let s also add a DropDownList control that lis
 Next, return to the `DataBound` event handler and add the following code:
 
 
-    ' Clear out all of the items in the DropDownList
-    PageList.Items.Clear()
-    ' Add a ListItem for each page
-    For i As Integer = 0 To Products.PageCount - 1
-        ' Add the new ListItem
-        Dim pageListItem As New ListItem(String.Concat("Page ", i + 1), i.ToString())
-        PageList.Items.Add(pageListItem)
-        ' select the current item, if needed
-        If i = Products.PageIndex Then
-            pageListItem.Selected = True
-        End If
-    Next
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample6.xml)]
 
 This code begins by clearing out the items in the `PageList` DropDownList. This may seem superfluous, since one wouldn t expect the number of pages to change, but other users may be using the system simultaneously, adding or removing records from the `Products` table. Such insertions or deletions could alter the number of pages of data.
 
@@ -253,11 +196,7 @@ Next, we need to create the page numbers again and have the one that maps to the
 Finally, we need to create an event handler for the DropDownList s `SelectedIndexChanged` event, which fires each time the user pick a different item from the list. To create this event handler, simply double-click the DropDownList in the Designer, then add the following code:
 
 
-    Protected Sub PageList_SelectedIndexChanged(sender As Object, e As System.EventArgs) _
-        Handles PageList.SelectedIndexChanged
-            ' Jump to the specified page
-            Products.PageIndex = Convert.ToInt32(PageList.SelectedValue)
-    End Sub
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample7.xml)]
 
 As Figure 11 shows, merely changing the GridView s `PageIndex` property causes the data to be rebound to the GridView. In the GridView s `DataBound` event handler, the appropriate DropDownList `ListItem` is selected.
 
@@ -279,10 +218,7 @@ If your DAL does not return objects that natively support sorting you will need 
 The sorting LinkButtons are rendered as HTML hyperlinks, whose current colors (blue for an unvisited link and a dark red for a visited link) clash with the background color of the header row. Instead, let s have all header row links displayed in white, regardless of whether they ve been visited or not. This can be accomplished by adding the following to the `Styles.css` class:
 
 
-    .HeaderStyle a, .HeaderStyle a:visited
-    {
-        color: White;
-    }
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample8.xml)]
 
 This syntax indicates to use white text when displaying those hyperlinks within an element that uses the HeaderStyle class.
 
@@ -309,8 +245,7 @@ Like with default paging, the default sorting option re-retrieves *all* of the r
 When binding an ObjectDataSource to the GridView through the drop-down list in the GridView s smart tag, each GridView field automatically has its `SortExpression` property assigned to the name of the data field in the `ProductsRow` class. For example, the `ProductName` BoundField s `SortExpression` is set to `ProductName`, as shown in the following declarative markup:
 
 
-    <asp:BoundField DataField="ProductName" HeaderText="Product"
-        SortExpression="ProductName" />
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample9.xml)]
 
 A field can be configured so that it s not sortable by clearing out its `SortExpression` property (assigning it to an empty string). To illustrate this, imagine that we didn t want to let our customers sort our products by price. The `UnitPrice` BoundField s `SortExpression` property can be removed either from the declarative markup or through the Fields dialog box (which is accessible by clicking on the Edit Columns link in the GridView s smart tag).
 
@@ -337,11 +272,7 @@ Imagine that the reason we turned off sorting by the `UnitPrice` was because we 
 To accomplish this add a Button Web control to the page, set its `ID` property to `SortPriceDescending`, and its `Text` property to Sort by Price . Next, create an event handler for the Button s `Click` event by double-clicking the Button control in the Designer. Add the following code to this event handler:
 
 
-    Protected Sub SortPriceDescending_Click(sender As Object, e As System.EventArgs) _
-        Handles SortPriceDescending.Click
-            'Sort by UnitPrice in descending order
-            Products.Sort("UnitPrice", SortDirection.Descending)
-    End Sub
+[!code[Main](paging-and-sorting-report-data-vb/samples/sample10.xml)]
 
 Clicking this Button returns the user to the first page with the products sorted by price, from most expensive to least expensive (see Figure 15).
 

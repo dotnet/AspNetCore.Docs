@@ -1,1 +1,1 @@
-$.connection.hub.qs = { "version" : "1.0" };
+        Clients.All.addContosoChatMessageToPage(name, message);

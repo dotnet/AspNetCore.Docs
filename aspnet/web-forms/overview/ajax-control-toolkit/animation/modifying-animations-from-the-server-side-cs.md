@@ -28,47 +28,27 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](modifying-animations-from-the-server-side-cs/samples/sample1.xml)]
 
 The animation will be applied to a panel of text which looks like this:
 
-    <asp:Panel ID="panelShadow" runat="server" CssClass="panelClass">
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-    </asp:Panel>
+[!code[Main](modifying-animations-from-the-server-side-cs/samples/sample2.xml)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-    <style type="text/css">
-     .panelClass {background-color: lime; width: 300px;}
-    </style>
+[!code[Main](modifying-animations-from-the-server-side-cs/samples/sample3.xml)]
 
 The rest of the code runs on the server-side and does not use markup; instead, it uses code to create the `AnimationExtender` control:
 
-    <script runat="server">
-    void Page_Load()
-    {
-     AjaxControlToolkit.AnimationExtender ae = new AjaxControlToolkit.AnimationExtender();
-     ae.TargetControlID = "Panel1";
+[!code[Main](modifying-animations-from-the-server-side-cs/samples/sample4.xml)]
 
 However, the Control Toolkit currently does not provide an API access to create the individual animations. It is however possible to set the `AnimationExtender`'s Animations property to a string containing the XML markup used when assigning the animations declaratively. In order to create the XML which must not contain the `<Animations>` element you could use the .NET Framework's XML support or, as in the following code, just provide the string:
 
-    ae.Animations = "<OnLoad><Parallel><FadeOut Duration=\"1.5\"
-     Fps=\"24\" /><Resize Width=\"1000\" Height=\"150\"
-     Unit=\"px\" /></Parallel></OnLoad>";
+[!code[Main](modifying-animations-from-the-server-side-cs/samples/sample5.xml)]
 
 Finally, add the `AnimationExtender` control to the current page, within the `<form runat="server">` element, making sure that the animation is included and runs:
 
-    form1.Controls.Add(ae);
-    }
-    </script>
+[!code[Main](modifying-animations-from-the-server-side-cs/samples/sample6.xml)]
 
 
 [![The animation is created using server-side C#/VB code](modifying-animations-from-the-server-side-cs/_static/image2.png)](modifying-animations-from-the-server-side-cs/_static/image1.png)

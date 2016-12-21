@@ -1,14 +1,14 @@
-public class ProductController : ApiController
-{
-    // modify the type of the db field
-    private IStoreAppContext db = new StoreAppContext();
-
-    // add these contructors
-    public ProductController() { }
-
-    public ProductController(IStoreAppContext context)
+    // POST api/Product
+    [ResponseType(typeof(Product))]
+    public IHttpActionResult PostProduct(Product product)
     {
-        db = context;
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+    
+        db.Products.Add(product);
+        db.SaveChanges();
+    
+        return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
     }
-    // rest of class not shown
-}

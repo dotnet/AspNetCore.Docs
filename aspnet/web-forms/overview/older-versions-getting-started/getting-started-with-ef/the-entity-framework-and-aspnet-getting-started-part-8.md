@@ -34,46 +34,25 @@ To see how this works, you'll change the controls you use to display and edit fi
 
 Open the *Students.aspx* page and in the `StudentsGridView` control replace the **Name** and **Enrollment Date** `TemplateField` elements with the following markup:
 
-    <asp:TemplateField HeaderText="Name" SortExpression="LastName">
-                    <EditItemTemplate>
-                        <asp:DynamicControl ID="LastNameTextBox" runat="server" DataField="LastName" Mode="Edit" />
-                        <asp:DynamicControl ID="FirstNameTextBox" runat="server" DataField="FirstMidName" Mode="Edit" />
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:DynamicControl ID="LastNameLabel" runat="server" DataField="LastName" Mode="ReadOnly" />,
-                        <asp:DynamicControl ID="FirstNameLabel" runat="server" DataField="FirstMidName" Mode="ReadOnly" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:DynamicField DataField="EnrollmentDate" HeaderText="Enrollment Date" SortExpression="EnrollmentDate" />
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample1.xml)]
 
 This markup uses `DynamicControl` controls in place of `TextBox` and `Label` controls in the student name template field, and it uses a `DynamicField` control for the enrollment date. No format strings are specified.
 
 Add a `ValidationSummary` control after the `StudentsGridView` control.
 
-    <asp:ValidationSummary ID="StudentsValidationSummary" runat="server" ShowSummary="true"
-            DisplayMode="BulletList" Style="color: Red" />
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample2.xml)]
 
 In the `SearchGridView` control replace the markup for the **Name** and **Enrollment Date** columns as you did in the `StudentsGridView` control, except omit the `EditItemTemplate` element. The `Columns` element of the `SearchGridView` control now contains the following markup:
 
-    <asp:TemplateField HeaderText="Name" SortExpression="LastName">
-                    <ItemTemplate>
-                        <asp:DynamicControl ID="LastNameLabel" runat="server" DataField="LastName" Mode="ReadOnly" />,
-                        <asp:DynamicControl ID="FirstNameLabel" runat="server" DataField="FirstMidName" Mode="ReadOnly" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:DynamicField DataField="EnrollmentDate" HeaderText="Enrollment Date" SortExpression="EnrollmentDate" />
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample3.xml)]
 
 Open *Students.aspx.cs* and add the following `using` statement:
 
-    using ContosoUniversity.DAL;
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample4.xml)]
 
 Add a handler for the page's `Init` event:
 
-    protected void Page_Init(object sender, EventArgs e)
-            {
-                StudentsGridView.EnableDynamicData(typeof(Student));
-                SearchGridView.EnableDynamicData(typeof(Student));
-            }
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample5.xml)]
 
 This code specifies that Dynamic Data will provide formatting and validation in these data-bound controls for fields of the `Student` entity. If you get an error message like the following example when you run the page, it typically means you've forgotten to call the `EnableDynamicData` method in `Page_Init`:
 
@@ -109,31 +88,7 @@ In **Solution Explorer**, right-click the **ContosoUniversity** project, select 
 
 In the *DAL* folder, create a new class file, name it *Student.cs*, and replace the template code in it with the following code.
 
-    using System;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace ContosoUniversity.DAL
-    {
-        [MetadataType(typeof(StudentMetadata))]
-        public partial class Student
-        {
-        }
-    
-        public class StudentMetadata
-        {
-            [DisplayFormat(DataFormatString="{0:d}", ApplyFormatInEditMode=true)]
-            public DateTime EnrollmentDate { get; set; }
-    
-            [StringLength(25, ErrorMessage = "First name must be 25 characters or less in length.")]
-            [Required(ErrorMessage="First name is required.")]
-            public String FirstMidName { get; set; }
-    
-            [StringLength(25, ErrorMessage = "Last name must be 25 characters or less in length.")]
-            [Required(ErrorMessage = "Last name is required.")]
-            public String LastName { get; set; }
-        }
-    }
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample6.xml)]
 
 This code creates a partial class for the `Student` entity. The `MetadataType` attribute applied to this partial class identifies the class that you're using to specify metadata. The metadata class can have any name, but using the entity name plus "Metadata" is a common practice.
 

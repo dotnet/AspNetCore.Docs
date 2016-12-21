@@ -1,10 +1,2 @@
-public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            // New code
-            config.EnableSystemDiagnosticsTracing();
-
-            // Other configuration code not shown.
-        }
-    }
+    Install-Package Microsoft.AspNet.WebApi.Tracing
+    Update-Package Microsoft.AspNet.WebApi.WebHost

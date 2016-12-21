@@ -68,22 +68,7 @@ In order to retain readability/ maintainability in the client code, the abbrevia
 
 **Client-side JavaScript code that remaps shortened property names to human-readable names**
 
-    function reMap(smallObject, contract) {
-        var largeObject = {};
-        for (var smallProperty in contract) {
-            largeObject[contract[smallProperty]] = smallObject[smallProperty];
-        }
-        return largeObject;
-    }
-    var shapeModelContract = {
-        l: "left",
-        t: "top"
-    };
-    myHub.client.setShape = function (shapeModelSmall) {
-        var shapeModel = reMap(shapeModelSmall, shapeModelContract);
-        // shapeModelSmall has "l" and "t" properties  but after remapping
-        // shapeModel now has "left" and "top" properties
-    };
+[!code[Main](signalr-performance/samples/sample2.xml)]
 
 Names can be shortened in messages from the client to the server as well, using the same method.
 
@@ -103,23 +88,13 @@ The following configuration settings can be used to tune your server for better 
 
     **.NET server code in Startup.cs for decreasing default message buffer size**
 
-        public class Startup
-        {
-            public void Configuration(IAppBuilder app)
-            {
-                // Any connection or hub wire up and configuration should go here
-        	GlobalHost.Configuration.DefaultMessageBufferSize = 500;
-        	app.MapSignalR();
-            }
-        }
+    [!code[Main](signalr-performance/samples/sample3.xml)]
 
 **IIS configuration settings**
 
 - **Max concurrent requests per application**: Increasing the number of concurrent IIS requests will increase server resources available for serving requests. The default value is 5000; to increase this setting, execute the following commands in an elevated command prompt:
 
-        cd %windir%\System32\inetsrv\
-        appcmd.exe set config /section:system.webserver/serverRuntime 
-                /appConcurrentRequestLimit:10000
+    [!code[Main](signalr-performance/samples/sample4.xml)]
 - **ApplicationPool QueueLength**: This is the maximum number of requests that Http.sys queues for the application pool. When the queue is full, new requests receive a 503 "Service Unavailable" response. The default value is 1000.
 
     Shortening the queue length for the worker process in the application pool hosting your application will conserve memory resources. For more information, see [Managing, Tuning, and Configuring Application Pools](https://technet.microsoft.com/en-us/library/cc745955.aspx).
@@ -135,10 +110,10 @@ ASP.NET settings that may improve SignalR performance include the following:
 
 - **Maximum concurrent requests per CPU**: Increasing this setting may alleviate performance bottlenecks. To increase this setting, add the following configuration setting to the `aspnet.config` file:
 
-    [!code[Main](signalr-performance/samples/sample2.xml?highlight=4)]
+    [!code[Main](signalr-performance/samples/sample5.xml?highlight=4)]
 - **Request Queue Limit**: When the total number of connections exceeds the `maxConcurrentRequestsPerCPU` setting, ASP.NET will start throttling requests using a queue. To increase the size of the queue, you can increase the `requestQueueLimit` setting. To do this, add the following configuration setting to the `processModel` node in `config/machine.config` (rather than `aspnet.config`):
 
-        <processModel autoConfig="false" requestQueueLimit="250000" />
+    [!code[Main](signalr-performance/samples/sample6.xml)]
 
 <a id="troubleshooting"></a>
 
@@ -171,11 +146,11 @@ Peformance counters can be added to the server using a utility called SignalR.ex
 
 To install SignalR performance counters, run SignalR.exe in an elevated command prompt with the following parameter:
 
-    SignalR.exe ipc
+[!code[Main](signalr-performance/samples/sample7.xml)]
 
 To remove SignalR performance counters, run SignalR.exe in an elevated command prompt with the following parameter:
 
-    SignalR.exe upc
+[!code[Main](signalr-performance/samples/sample8.xml)]
 
 ### SignalR Performance counters
 
@@ -237,19 +212,11 @@ By default, only one stream is used for SQL Server and Redis, five streams are u
 
 **.NET Server Code for configuring table count and queue length for SQL Server backplane**
 
-    var connectionString = "(your connection string)";
-    var config = new SqlScaleoutConfiguration(connectionString) { 
-    TableCount = 3,
-    MaxQueueLength = 50 };
-    GlobalHost.DependencyResolver.UseSqlServer(config);
+[!code[Main](signalr-performance/samples/sample9.xml)]
 
 **.NET Server Code for configuring topic count and queue length for Service Bus backplane**
 
-    string connectionString = "(your connection string)";
-    var config = new ServiceBusScaleoutConfiguration(connectionString, "YourAppName") { 
-    TopicCount = 3,
-    MaxQueueLength = 50 };
-    GlobalHost.DependencyResolver.UseServiceBus(config);
+[!code[Main](signalr-performance/samples/sample10.xml)]
 
 A **Buffering** stream is one that has entered a faulted state; when the stream is in the faulted state, all messages sent to the backplane will fail immediately until the stream is no longer faulting. The **Send Queue Length** is the number of messages that have been posted but not yet sent.
 

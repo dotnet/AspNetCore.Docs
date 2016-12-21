@@ -63,17 +63,17 @@ In the body of the page, change the `WebGrid` markup by adding a column. Here's 
 
 The new column is this one:
 
-    grid.Column(format: @<a href="~/EditMovie?id=@item.ID)">Edit</a>)
+[!code[Main](updating-data/samples/sample2.xml)]
 
 The point of this column is to show a link (`<a>` element) whose text says "Edit". What we're after is to create a link that looks like the following when the page runs, with the `id` value different for each movie:
 
-    http://localhost:43097/EditMovie?id=7
+[!code[Main](updating-data/samples/sample3.xml)]
 
 This link will invoke a page named *EditMovie*, and it will pass the query string `?id=7` to that page.
 
 The syntax for the new column might look a bit complex, but that's only because it puts together several elements. Each individual element is straightforward. If you concentrate on just the `<a>` element, you see this markup:
 
-    <a href="~/EditMovie?id=@item.ID)">Edit</a>
+[!code[Main](updating-data/samples/sample4.xml)]
 
 Some background about how the grid works: the grid displays rows, one for each database record, and it displays columns for each field in the database record. While each grid row is being constructed, the `item` object contains the database record (item) for that row. This arrangement gives you a way in code to get at the data for that row. That's what you see here: the expression `item.ID` is getting the ID value of the current database item. You could get any of the database values (title, genre, or year) the same way by using `item.Title`, `item.Genre`, or `item.Year`.
 
@@ -81,7 +81,7 @@ The expression `"~/EditMovie?id=@item.ID` combines the hard-coded part of the ta
 
 The result is that this part of the markup in the column simply produces something like the following markup at run time:
 
-    href="/EditMovie?id=2"
+[!code[Main](updating-data/samples/sample5.xml)]
 
 Naturally, the actual value of `id` will be different for each row.
 
@@ -91,13 +91,13 @@ Now back to the grid column. The three columns you originally had in the grid di
 
 This new **Edit** link column is different. Instead of specifying a column name, you're passing a `format` parameter. This parameter lets you define markup that the `WebGrid` helper will render along with the `item` value to display the column data as bold or green or in whatever format that you want. For example, if you wanted the title to appear bold, you could create a column like this example:
 
-    grid.Column(format:@<strong>@item.Title</strong>)
+[!code[Main](updating-data/samples/sample6.xml)]
 
 (The various `@` characters you see in the `format` property mark the transition between markup and a code value.)
 
 Once you know about the `format` property, it's easier to understand how the new **Edit** link column is put together:
 
-    grid.Column(format: @<a href="~/EditMovie?id=@item.ID">Edit</a>),
+[!code[Main](updating-data/samples/sample7.xml)]
 
 The column consists *only* of the markup that renders the link, plus some information (the ID) that's extracted from the database record for the row.
 
@@ -132,44 +132,7 @@ Now you can create the *EditMovie* page. When users click the **Edit** link, the
 
 Create a page named *EditMovie.cshtml* and replace what's in the file with the following markup:
 
-    <!DOCTYPE html>
-    <html>
-      <head>
-       <meta charset="utf-8" />
-       <title>Edit a Movie</title>
-        <style>
-          .validation-summary-errors{
-            border:2px dashed red;
-            color:red;
-            font-weight:bold;
-            margin:12px;
-          }
-        </style>
-      </head>
-    </head>
-    <body>
-      <h1>Edit a Movie</h1>
-        @Html.ValidationSummary()
-      <form method="post">
-        <fieldset>
-          <legend>Movie Information</legend>
-    
-          <p><label for="title">Title:</label>
-             <input type="text" name="title" value="@title" /></p>
-    
-          <p><label for="genre">Genre:</label>
-             <input type="text" name="genre" value="@genre" /></p>
-    
-          <p><label for="year">Year:</label>
-             <input type="text" name="year" value="@year" /></p>
-    
-          <input type="hidden" name="movieid" value="@movieId" />
-    
-          <p><input type="submit" name="buttonSubmit" value="Submit Changes" /></p>
-        </fieldset>
-      </form>
-    </body>
-    </html>
+[!code[Main](updating-data/samples/sample8.xml)]
 
 This markup and code is similar to what you have in the *AddMovie* page. There's a small difference in the text for the submit button. As with the *AddMovie* page, there's an `Html.ValidationSummary` call that will display validation errors if there are any. This time we're leaving out calls to `Validation.Message`, since errors will be displayed in the validation summary. As noted in the previous tutorial, you can use the validation summary and the individual error messages in various combinations.
 
@@ -191,27 +154,7 @@ The second function is that when the user clicks the **Submit Changes** button, 
 
 To perform the first function, add this code to the top of the page:
 
-    @{
-        var title = "";
-        var genre = "";
-        var year = "";
-        var movieId = "";
-    
-        if(!IsPost){
-            if(!Request.QueryString["ID"].IsEmpty()){
-                movieId = Request.QueryString["ID"];
-                var db = Database.Open("WebPagesMovies");
-                var dbCommand = "SELECT * FROM Movies WHERE ID = @0";
-                var row = db.QuerySingle(dbCommand, movieId);
-                title = row.Title;
-                genre = row.Genre;
-                year = row.Year;
-            }
-            else{
-                Validation.AddFormError("No movie was selected.");
-            }
-        }
-    }
+[!code[Main](updating-data/samples/sample9.xml)]
 
 Most of this code is inside a block that starts `if(!IsPost)`. The `!` operator means "not," so the expression means *if this request is not a post submission*, which is an indirect way of saying *if this request is the first time that this page has been run*. As noted earlier, this code should run *only* the first time the page runs. If you didn't enclose the code in `if(!IsPost)`, it would run every time the page is invoked, whether the first time or in response to a button click.
 
@@ -243,24 +186,7 @@ You can change the movie information, but nothing happens when you click **Submi
 
 In the *EditMovie.cshtml* file, to implement the second function (saving changes), add the following code just inside the closing brace of the `@` block. (If you're not sure exactly where to put the code, you can look at the [complete code listing for the Edit Movie page](#Complete_Page_Listing_for_EditMovie) that appears at the end of this tutorial.)
 
-    if(IsPost){
-            Validation.RequireField("title", "You must enter a title");
-            Validation.RequireField("genre", "Genre is required");
-            Validation.RequireField("year", "You haven't entered a year");
-            Validation.RequireField("movieid", "No movie ID was submitted!");
-    
-            title = Request.Form["title"];
-            genre = Request.Form["genre"];
-            year = Request.Form["year"];
-            movieId = Request.Form["movieId"];
-    
-            if(Validation.IsValid()){
-                var db = Database.Open("WebPagesMovies");
-                var updateCommand = "UPDATE Movies SET Title=@0, Genre=@1, Year=@2 WHERE Id=@3";
-                db.Execute(updateCommand, title, genre, year, movieId);
-                Response.Redirect("~/Movies");
-           }
-        }
+[!code[Main](updating-data/samples/sample10.xml)]
 
 Again, this markup and code is similar to the code in *AddMovie*. The code is in an `if(IsPost)` block, because this code runs only when the user clicks the **Submit Changes** button &mdash; that is, when (and only when) the form has been posted. In this case, you're not using a test like `if(IsPost && Validation.IsValid())`— that is, you're not combining both tests by using AND. In this page, you first determine whether there's a form submission (`if(IsPost)`), and only then register the fields for validation. Then you can test the validation results (`if(Validation.IsValid()`). The flow is slightly different than in the *AddMovie.cshtml* page, but the effect is the same.
 
@@ -298,11 +224,7 @@ After the code uses `db.Execute` to run the `Update` statement, it redirects bac
 
 The first time that the page runs, you get the movie ID from the query string so that you can go get that movie from the database. You made sure that there actually was a value to go look for, which you did by using this code:
 
-    if(!IsPost){
-        if(!Request.QueryString["ID"].IsEmpty()){
-            // Etc.
-        }
-    }
+[!code[Main](updating-data/samples/sample11.xml)]
 
 You used this code to make sure that if a user gets to the *EditMovies* page without first selecting a movie in the *Movies* page, the page would display a user-friendly error message. (Otherwise, users would see an error that would probably just confuse them.)
 
@@ -315,55 +237,27 @@ If you're curious to see the errors that result from these URLs, run the *Movies
 
 So what should you do? The first fix is to make sure that not only is an ID passed to the page, but that the ID is an integer. Change the code for the `!IsPost` test to look like this example:
 
-    if(!IsPost){
-        if(!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].IsInt()) {
-           // Etc.
+[!code[Main](updating-data/samples/sample12.xml)]
 
 You've added a second condition to the `IsEmpty` test, linked with `&&` (logical AND):
 
-    Request.QueryString["ID"].IsInt()
+[!code[Main](updating-data/samples/sample13.xml)]
 
 You might remember from the [Introduction to ASP.NET Web Pages Programming](../introducing-razor-syntax-c.md) tutorial that methods like `AsBool` an `AsInt` convert a character string to some other data type. The `IsInt` method (and others, like `IsBool` and `IsDateTime`) are similar. However, they test only whether you *can* convert the string, without actually performing the conversion. So here you're essentially saying *If the query string value can be converted to an integer ...*.
 
 The other potential problem is looking for a movie that doesn't exist. The code to get a movie looks like this code:
 
-    var row = db.QuerySingle(dbCommand, movieId);
+[!code[Main](updating-data/samples/sample14.xml)]
 
 If you pass a `movieId` value to the `QuerySingle` method that doesn't correspond to an actual movie, nothing is returned and the statements that follow (for example, `title=row.Title`) result in errors.
 
 Again there's an easy fix. If the `db.QuerySingle` method returns no results, the `row` variable will be null. So you can check whether the `row` variable is null before you try to get values from it. The following code adds an `if` block around the statements that get the values out of the `row` object:
 
-    if(row != null) {
-        title = row.Title;
-        genre = row.Genre;
-        year = row.Year;
-    }
-    else{
-        Validation.AddFormError("No movie was found for that ID.");
-    }
+[!code[Main](updating-data/samples/sample15.xml)]
 
 With these two additional validation tests, the page becomes more bullet-proof. The complete code for the `!IsPost` branch now looks like this example:
 
-    if(!IsPost){
-         if(!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].IsInt()) {
-            movieId = Request.QueryString["ID"];
-            var db = Database.Open("WebPagesMovies");
-            var dbCommand = "SELECT * FROM Movies WHERE ID = @0";
-            var row = db.QuerySingle(dbCommand, movieId);
-    
-            if(row != null) {
-                title = row.Title;
-                genre = row.Genre;
-                year = row.Year;
-            }
-            else {
-                Validation.AddFormError("No movie was found for that ID.");
-            }
-        }
-        else {
-            Validation.AddFormError("No movie was selected.");
-        }
-    }
+[!code[Main](updating-data/samples/sample16.xml)]
 
 We'll note once more that this task is a good use for an `else` block. If the tests don't pass, the `else` blocks set error messages.
 
@@ -378,7 +272,7 @@ However:
 
 Either way, you want to make it easy for them to return to the main listing. It's an easy fix &mdash; add the following markup just after the closing `</form>` tag in the markup:
 
-    <p><a href="~/Movies">Return to movie listing</a></p>
+[!code[Main](updating-data/samples/sample17.xml)]
 
 This markup uses the same syntax for an `<a>` element that you've seen elsewhere. The URL includes `~` to mean "root of the website."
 
@@ -398,161 +292,11 @@ In the next tutorial, you'll see how to delete a movie record.
 
 ## Complete Listing for Movie Page (Updated with Edit Links)
 
-    @{
-        var db = Database.Open("WebPagesMovies") ;
-        var selectCommand = "SELECT * FROM Movies";
-        var searchTerm = "";
-    
-        if(!Request.QueryString["searchGenre"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Genre = @0";
-            searchTerm = Request.QueryString["searchGenre"];
-        }
-    
-        if(!Request.QueryString["searchTitle"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Title LIKE @0";
-            searchTerm = "%" + Request.QueryString["searchTitle"] + "%";
-        }
-    
-        var selectedData = db.Query(selectCommand, searchTerm);
-        var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:3);
-    }
-    
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="utf-8" />
-            <title>Movies</title>
-            <style type="text/css">
-              .grid { margin: 4px; border-collapse: collapse; width: 600px; }
-              .grid th, .grid td { border: 1px solid #C0C0C0; padding: 5px; }
-              .head { background-color: #E8E8E8; font-weight: bold; color: #FFF; }
-              .alt { background-color: #E8E8E8; color: #000; }
-            </style>
-        </head>
-        <body>
-            <h1>Movies</h1>
-              <form method="get">
-                  <div>
-                    <label for="searchGenre">Genre to look for:</label>
-                    <input type="text" name="searchGenre" value="@Request.QueryString["searchGenre"]" />
-                    <input type="Submit" value="Search Genre" /><br/>
-                    (Leave blank to list all movies.)<br/>
-                    </div>
-    
-                  <div>
-                      <label for="SearchTitle">Movie title contains the following:</label>
-                      <input type="text" name="searchTitle" value="@Request.QueryString["searchTitle"]" />
-                      <input type="Submit" value="Search Title" /><br/>
-                    </div>
-                </form>
-    
-            <div>
-                 @grid.GetHtml(
-                    tableStyle: "grid",
-                    headerStyle: "head",
-                    alternatingRowStyle: "alt",
-                    columns: grid.Columns(
-                        grid.Column(format: @<a href="~/EditMovie?id=@item.ID">Edit</a>),
-                        grid.Column("Title"),
-                        grid.Column("Genre"),
-                        grid.Column("Year")
-                    )
-                )
-            </div>
-        <p>
-            <a href="~/AddMovie">Add a movie</a>
-        </p>
-        </body>
-    </html>
+[!code[Main](updating-data/samples/sample18.xml)]
 
 ## Complete Page Listing for Edit Movie Page
 
-    @{
-        var title = "";
-        var genre = "";
-        var year = "";
-        var movieId = "";
-    
-        if(!IsPost){
-            if(!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].IsInt()) {
-                movieId = Request.QueryString["ID"];
-                var db = Database.Open("WebPagesMovies");
-                var dbCommand = "SELECT * FROM Movies WHERE ID = @0";
-                var row = db.QuerySingle(dbCommand, movieId);
-    
-                if(row != null) {
-                    title = row.Title;
-                    genre = row.Genre;
-                    year = row.Year;
-                }
-                else{
-                    Validation.AddFormError("No movie was selected.");
-                }
-            }
-            else{
-                Validation.AddFormError("No movie was selected.");
-            }
-        }
-    
-        if(IsPost){
-            Validation.RequireField("title", "You must enter a title");
-            Validation.RequireField("genre", "Genre is required");
-            Validation.RequireField("year", "You haven't entered a year");
-            Validation.RequireField("movieid", "No movie ID was submitted!");
-    
-            title = Request.Form["title"];
-            genre = Request.Form["genre"];
-            year = Request.Form["year"];
-            movieId = Request.Form["movieId"];
-    
-            if(Validation.IsValid()){
-                var db = Database.Open("WebPagesMovies");
-                var updateCommand = "UPDATE Movies SET Title=@0, Genre=@1, Year=@2 WHERE Id=@3";
-                db.Execute(updateCommand, title, genre, year, movieId);
-                Response.Redirect("~/Movies");
-            }
-        }
-    }
-    
-    <!DOCTYPE html>
-    <html>
-      <head>
-       <meta charset="utf-8" />
-       <title>Edit a Movie</title>
-        <style>
-          .validation-summary-errors{
-            border:2px dashed red;
-            color:red;
-            font-weight:bold;
-            margin:12px;
-          }
-        </style>
-      </head>
-    </head>
-    <body>
-      <h1>Edit a Movie</h1>
-        @Html.ValidationSummary()
-      <form method="post">
-        <fieldset>
-          <legend>Movie Information</legend>
-    
-          <p><label for="title">Title:</label>
-             <input type="text" name="title" value="@title" /></p>
-    
-          <p><label for="genre">Genre:</label>
-             <input type="text" name="genre" value="@genre" /></p>
-    
-          <p><label for="year">Year:</label>
-             <input type="text" name="year" value="@year" /></p>
-    
-          <input type="hidden" name="movieid" value="@movieId" />
-    
-          <p><input type="submit" name="buttonSubmit" value="Submit Changes" /></p>
-        </fieldset>
-      </form>
-      <p><a href="~/Movies">Return to movie listing</a></p>
-    </body>
-    </html>
+[!code[Main](updating-data/samples/sample19.xml)]
 
 ## Additional Resources
 

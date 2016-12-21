@@ -62,78 +62,17 @@ When we click the "Add" button, Visual Studio will create a new "DinnerForm.ascx
 
 We can then copy/paste the duplicate form layout / input control code from our Edit.aspx/ Create.aspx view templates into our new "DinnerForm.ascx" partial view template:
 
-    <%= Html.ValidationSummary("Please correct the errors and try again.") %>
-    
-    <% using (Html.BeginForm()) { %>
-    
-        <fieldset>
-            <p>
-                <label for="Title">Dinner Title:</label>
-                <%= Html.TextBox("Title", Model.Dinner.Title) %>
-                <%=Html.ValidationMessage("Title", "*") %>
-            </p>
-            <p>
-                <label for="EventDate">Event Date:</label>
-                <%= Html.TextBox("EventDate", Model.Dinner.EventDate) %>
-                <%= Html.ValidationMessage("EventDate", "*") %>
-            </p>
-            <p>
-                <label for="Description">Description:</label>
-                <%= Html.TextArea("Description", Model.Dinner.Description) %>
-                <%= Html.ValidationMessage("Description", "*") %>
-            </p>
-            <p>
-                <label for="Address">Address:</label>
-                <%= Html.TextBox("Address", Model.Dinner.Address) %>
-                <%= Html.ValidationMessage("Address", "*") %>
-            </p>
-            <p>
-                <label for="Country">Country:</label>
-                <%= Html.DropDownList("Country", Model.Countries) %>                
-                <%= Html.ValidationMessage("Country", "*") %>
-            </p>
-            <p>
-                <label for="ContactPhone">Contact Phone #:</label>
-                <%= Html.TextBox("ContactPhone", Model.Dinner.ContactPhone) %>
-                <%= Html.ValidationMessage("ContactPhone", "*") %>
-            </p>
-                
-            <p>
-                <input type="submit" value="Save"/>
-            </p>
-        </fieldset>
-        
-    <% } %>
+[!code[Main](re-use-ui-using-master-pages-and-partials/samples/sample1.xml)]
 
 We can then update our Edit and Create view templates to call the DinnerForm partial template and eliminate the form duplication. We can do this by calling Html.RenderPartial("DinnerForm") within our view templates:
 
 ##### Create.aspx
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-        Host a Dinner
-    </asp:Content>
-    
-    <asp:Content ID="Create" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Host a Dinner</h2>
-    
-        <% Html.RenderPartial("DinnerForm"); %>
-        
-    </asp:Content>
+[!code[Main](re-use-ui-using-master-pages-and-partials/samples/sample2.xml)]
 
 ##### Edit.aspx
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-        Edit: <%=Html.Encode(Model.Dinner.Title) %>
-    </asp:Content>
-    
-    <asp:Content ID="Edit" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Edit Dinner</h2>
-    
-        <% Html.RenderPartial("DinnerForm"); %>
-    
-    </asp:Content>
+[!code[Main](re-use-ui-using-master-pages-and-partials/samples/sample3.xml)]
 
 You can explicitly qualify the path of the partial template you want when calling Html.RenderPartial (for example: ~Views/Dinners/DinnerForm.ascx"). In our code above, though, we are taking advantage of the convention-based naming pattern within ASP.NET MVC, and just specifying "DinnerForm" as the name of the partial to render. When we do this ASP.NET MVC will look first in the convention-based views directory (for DinnersController this would be /Views/Dinners). If it doesn't find the partial template there it will then look for it in the /Views/Shared directory.
 
@@ -151,23 +90,7 @@ Sometimes it still makes sense to create partial views even when they are only b
 
 For example, consider the below code-snippet from the Site.master file in our project (which we will be looking at shortly). The code is relatively straight-forward to read – partly because the logic to display a login/logout link at the top right of the screen is encapsulated within the "LogOnUserControl" partial:
 
-    <div id="header">
-        <div id="title">
-            <h1>My MVC Application</h1>
-        </div>
-          
-        <div id="logindisplay">
-            <% Html.RenderPartial("LogOnUserControl"); %>
-        </div> 
-        
-        <div id="menucontainer">
-        
-            <ul id="menu">              
-                <li><%=Html.ActionLink("Home", "Index", "Home")%></li>
-                <li><%=Html.ActionLink("About", "About", "Home")%></li>
-            </ul>
-        </div>
-    </div>
+[!code[Main](re-use-ui-using-master-pages-and-partials/samples/sample4.xml)]
 
 Whenever you find yourself getting confused trying to understand the html/code markup within a view-template, consider whether it wouldn't be clearer if some of it was extracted and refactored into well-named partial views.
 
@@ -181,72 +104,17 @@ By default, new ASP.NET MVC projects have a master page template automatically a
 
 The default Site.master file looks like below. It defines the outer html of the site, along with a menu for navigation at the top. It contains two replaceable content placeholder controls – one for the title, and the other for where the primary content of a page should be replaced:
 
-    <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage"%>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    
-    <head runat="server">
-        <title>
-           <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
-        </title>
-       <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
-    </head>
-    
-    <body>
-        <div class="page">
-    
-            <div id="header">
-                <div id="title">
-                    <h1>My MVC Application</h1>
-                </div>
-                  
-                <div id="logindisplay">
-                    <% Html.RenderPartial("LogOnUserControl"); %>
-                </div> 
-                
-                <div id="menucontainer">
-    
-                    <ul id="menu">              
-                        <li><%=Html.ActionLink("Home", "Index", "Home")%></li>
-                        <li><%=Html.ActionLink("About", "About", "Home")%></li>
-                    </ul>
-                
-                </div>
-            </div>
-    
-            <div id="main">
-                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-            </div>
-        </div>
-    </body>
-    </html>
+[!code[Main](re-use-ui-using-master-pages-and-partials/samples/sample5.xml)]
 
 All of the view templates we've created for our NerdDinner application ("List", "Details", "Edit", "Create", "NotFound", etc) have been based on this Site.master template. This is indicated via the "MasterPageFile" attribute that was added by default to the top &lt;% @ Page %&gt; directive when we created our views using the "Add View" dialog:
 
-    <%@ Page Inherits="System.Web.Mvc.ViewPage<NerdDinner.Controllers.DinnerViewModel>" MasterPageFile="~/Views/Shared/Site.Master" %>
+[!code[Main](re-use-ui-using-master-pages-and-partials/samples/sample6.xml)]
 
 What this means is that we can change the Site.master content, and have the changes automatically be applied and used when we render any of our view templates.
 
 Let's update our Site.master's header section so that the header of our application is "NerdDinner" instead of "My MVC Application". Let's also update our navigation menu so that the first tab is "Find a Dinner" (handled by the HomeController's Index() action method), and let's add a new tab called "Host a Dinner" (handled by the DinnersController's Create() action method):
 
-    <div id="header">
-    
-        <div id="title">
-            <h1>NerdDinner</h1>
-        </div>
-    
-        <div id="logindisplay">
-            <% Html.RenderPartial("LoginStatus"); %>
-        </div> 
-        
-        <div id="menucontainer">
-            <ul id="menu">      
-               <li><%=Html.ActionLink("Find Dinner", "Index", "Home")%></li>
-               <li><%=Html.ActionLink("Host Dinner", "Create", "Dinners")%></li>
-               <li><%=Html.ActionLink("About", "About", "Home")%></li>   
-            </ul>
-        </div>
-    </div>
+[!code[Main](re-use-ui-using-master-pages-and-partials/samples/sample7.xml)]
 
 When we save the Site.master file and refresh our browser we'll see our header changes show up across all views within our application. For example:
 

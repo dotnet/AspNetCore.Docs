@@ -107,57 +107,7 @@ You begin by creating the Stock model class that you'll use to store and transmi
 
 1. Create a new class file in the project folder, name it *Stock.cs*, and then replace the template code with the following code:
 
-        using System;
-        
-        namespace SignalR.StockTicker
-        {
-            public class Stock
-            {
-                private decimal _price;
-        
-                public string Symbol { get; set; }
-        
-                public decimal Price
-                {
-                    get
-                    {
-                        return _price;
-                    }
-                    set
-                    {
-                        if (_price == value)
-                        {
-                            return;
-                        }
-        
-                        _price = value;
-        
-                        if (DayOpen == 0)
-                        {
-                            DayOpen = _price;
-                        }
-                    }
-                }
-        
-                public decimal DayOpen { get; private set; }
-        
-                public decimal Change
-                {
-                    get
-                    {
-                        return Price - DayOpen;
-                    }
-                }
-        
-                public double PercentChange
-                {
-                    get
-                    {
-                        return (double)Math.Round(Change / Price, 4);
-                    }
-                }
-            }
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample1.xml)]
 
     The two properties that you'll set when you create stocks are the Symbol (for example, MSFT for Microsoft) and the Price. The other properties depend on how and when you set Price. The first time you set Price, the value gets propagated to DayOpen. Subsequent times when you set Price, the Change and PercentChange property values are calculated based on the difference between Price and DayOpen.
 
@@ -173,30 +123,7 @@ You only want one instance of the StockTicker class to run on the server, so you
 2. Name the new hub *StockTickerHub.cs*, and then click **Add**. SignalR NuGet packages will be added to your project.
 3. Replace the template code with the following code:
 
-        using System.Collections.Generic;
-        using Microsoft.AspNet.SignalR;
-        using Microsoft.AspNet.SignalR.Hubs;
-        
-        namespace SignalR.StockTicker
-        {
-            [HubName("stockTickerMini")]
-            public class StockTickerHub : Hub
-            {
-                private readonly StockTicker _stockTicker;
-        
-                public StockTickerHub() : this(StockTicker.Instance) { }
-        
-                public StockTickerHub(StockTicker stockTicker)
-                {
-                    _stockTicker = stockTicker;
-                }
-        
-                public IEnumerable<Stock> GetAllStocks()
-                {
-                    return _stockTicker.GetAllStocks();
-                }
-            }
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample2.xml)]
 
     The [Hub](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hub(v=vs.111).aspx) class is used to define methods the clients can call on the server. You are defining one method: `GetAllStocks()`. When a client initially connects to the server, it will call this method to get a list of all of the stocks with their current prices. The method can execute synchronously and return `IEnumerable<Stock>` because it is returning data from memory. If the method had to get the data by doing something that would involve waiting, such as a database lookup or a web service call, you would specify `Task<IEnumerable<Stock>>` as the return value to enable asynchronous processing. For more information, see [ASP.NET SignalR Hubs API Guide - Server - When to execute asynchronously](../guide-to-the-api/hubs-api-guide-server.md).
 
@@ -205,117 +132,7 @@ You only want one instance of the StockTicker class to run on the server, so you
     As you'll see later when you create the StockTicker class, a singleton instance of that class is created in its static Instance property. That singleton instance of StockTicker remains in memory no matter how many clients connect or disconnect, and that instance is what the GetAllStocks method uses to return current stock information.
 4. Create a new class file in the project folder, name it *StockTicker.cs*, and then replace the template code with the following code:
 
-        using System;
-        using System.Collections.Concurrent;
-        using System.Collections.Generic;
-        using System.Threading;
-        using Microsoft.AspNet.SignalR;
-        using Microsoft.AspNet.SignalR.Hubs;
-        
-        namespace SignalR.StockTicker
-        {
-            public class StockTicker
-            {
-                // Singleton instance
-                private readonly static Lazy<StockTicker> _instance = new Lazy<StockTicker>(() => new StockTicker(GlobalHost.ConnectionManager.GetHubContext<StockTickerHub>().Clients));
-        
-                private readonly ConcurrentDictionary<string, Stock> _stocks = new ConcurrentDictionary<string, Stock>();
-        
-                private readonly object _updateStockPricesLock = new object();
-        
-                //stock can go up or down by a percentage of this factor on each change
-                private readonly double _rangePercent = .002;
-        
-                private readonly TimeSpan _updateInterval = TimeSpan.FromMilliseconds(250);
-                private readonly Random _updateOrNotRandom = new Random();
-        
-                private readonly Timer _timer;
-                private volatile bool _updatingStockPrices = false;
-        
-                private StockTicker(IHubConnectionContext<dynamic> clients)
-                {
-                    Clients = clients;
-        
-                    _stocks.Clear();
-                    var stocks = new List<Stock>
-                    {
-                        new Stock { Symbol = "MSFT", Price = 30.31m },
-                        new Stock { Symbol = "APPL", Price = 578.18m },
-                        new Stock { Symbol = "GOOG", Price = 570.30m }
-                    };
-                    stocks.ForEach(stock => _stocks.TryAdd(stock.Symbol, stock));
-        
-                    _timer = new Timer(UpdateStockPrices, null, _updateInterval, _updateInterval);
-        
-                }
-        
-                public static StockTicker Instance
-                {
-                    get
-                    {
-                        return _instance.Value;
-                    }
-                }
-        
-                private IHubConnectionContext<dynamic> Clients
-                {
-                    get;
-                    set;
-                }
-        
-                public IEnumerable<Stock> GetAllStocks()
-                {
-                    return _stocks.Values;
-                }
-        
-                private void UpdateStockPrices(object state)
-                {
-                    lock (_updateStockPricesLock)
-                    {
-                        if (!_updatingStockPrices)
-                        {
-                            _updatingStockPrices = true;
-        
-                            foreach (var stock in _stocks.Values)
-                            {
-                                if (TryUpdateStockPrice(stock))
-                                {
-                                    BroadcastStockPrice(stock);
-                                }
-                            }
-        
-                            _updatingStockPrices = false;
-                        }
-                    }
-                }
-        
-                private bool TryUpdateStockPrice(Stock stock)
-                {
-                    // Randomly choose whether to update this stock or not
-                    var r = _updateOrNotRandom.NextDouble();
-                    if (r > .1)
-                    {
-                        return false;
-                    }
-        
-                    // Update the stock price by a random factor of the range percent
-                    var random = new Random((int)Math.Floor(stock.Price));
-                    var percentChange = random.NextDouble() * _rangePercent;
-                    var pos = random.NextDouble() > .51;
-                    var change = Math.Round(stock.Price * (decimal)percentChange, 2);
-                    change = pos ? change : -change;
-        
-                    stock.Price += change;
-                    return true;
-                }
-        
-                private void BroadcastStockPrice(Stock stock)
-                {
-                    Clients.All.updateStockPrice(stock);
-                }
-        
-            }
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample3.xml)]
 
     Since multiple threads will be running the same instance of StockTicker code, the StockTicker class has to be threadsafe.
 
@@ -323,15 +140,7 @@ You only want one instance of the StockTicker class to run on the server, so you
 
     The code initializes the static \_instance field that backs the Instance property with an instance of the class, and this is the only instance of the class that can be created, because the constructor is marked as private. [Lazy initialization](https://msdn.microsoft.com/en-us/library/dd997286.aspx) is used for the \_instance field, not for performance reasons but to ensure that the instance creation is threadsafe.
 
-        private readonly static Lazy<StockTicker> _instance = new Lazy<StockTicker>(() => new StockTicker(GlobalHost.ConnectionManager.GetHubContext<StockTickerHub>().Clients));
-        
-        public static StockTicker Instance
-        {
-            get
-            {
-                return _instance.Value;
-            }
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample4.xml)]
 
     Each time a client connects to the server, a new instance of the StockTickerHub class running in a separate thread gets the StockTicker singleton instance from the StockTicker.Instance static property, as you saw earlier in the StockTickerHub class.
 
@@ -339,28 +148,9 @@ You only want one instance of the StockTicker class to run on the server, so you
 
     The constructor initializes the \_stocks collection with some sample stock data, and GetAllStocks returns the stocks. As you saw earlier, this collection of stocks is in turn returned by StockTickerHub.GetAllStocks which is a server method in the Hub class that clients can call.
 
-        private readonly ConcurrentDictionary<string, Stock> _stocks = new ConcurrentDictionary<string, Stock>();
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample5.xml)]
 
-        private StockTicker(IHubConnectionContext<dynamic> clients)
-        {
-            Clients = clients;
-        
-            _stocks.Clear();
-            var stocks = new List<Stock>
-            {
-                new Stock { Symbol = "MSFT", Price = 30.31m },
-                new Stock { Symbol = "APPL", Price = 578.18m },
-                new Stock { Symbol = "GOOG", Price = 570.30m }
-            };
-            stocks.ForEach(stock => _stocks.TryAdd(stock.Symbol, stock));
-        
-            _timer = new Timer(UpdateStockPrices, null, _updateInterval, _updateInterval);
-        }
-        
-        public IEnumerable<Stock> GetAllStocks()
-        {
-            return _stocks.Values;
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample6.xml)]
 
     The stocks collection is defined as a [ConcurrentDictionary](https://msdn.microsoft.com/en-us/library/dd287191.aspx) type for thread safety. As an alternative, you could use a [Dictionary](https://msdn.microsoft.com/en-us/library/xfhwa508.aspx) object and explicitly lock the dictionary when you make changes to it.
 
@@ -370,54 +160,13 @@ You only want one instance of the StockTicker class to run on the server, so you
 
     The constructor starts up a Timer object that periodically calls methods that update stock prices on a random basis.
 
-        _timer = new Timer(UpdateStockPrices, null, _updateInterval, _updateInterval);
-        
-        private void UpdateStockPrices(object state)
-        {
-            lock (_updateStockPricesLock)
-            {
-                if (!_updatingStockPrices)
-                {
-                    _updatingStockPrices = true;
-        
-                    foreach (var stock in _stocks.Values)
-                    {
-                        if (TryUpdateStockPrice(stock))
-                        {
-                            BroadcastStockPrice(stock);
-                        }
-                    }
-        
-                    _updatingStockPrices = false;
-                }
-            }
-        }
-        
-        private bool TryUpdateStockPrice(Stock stock)
-        {
-            // Randomly choose whether to update this stock or not
-            var r = _updateOrNotRandom.NextDouble();
-            if (r > .1)
-            {
-                return false;
-            }
-        
-            // Update the stock price by a random factor of the range percent
-            var random = new Random((int)Math.Floor(stock.Price));
-            var percentChange = random.NextDouble() * _rangePercent;
-            var pos = random.NextDouble() > .51;
-            var change = Math.Round(stock.Price * (decimal)percentChange, 2);
-            change = pos ? change : -change;
-        
-            stock.Price += change;
-            return true;
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample7.xml)]
 
     UpdateStockPrices is called by the Timer, which passes in null in the state parameter. Before updating prices, a lock is taken on the \_updateStockPricesLock object. The code checks if another thread is already updating prices, and then it calls TryUpdateStockPrice on each stock in the list. The TryUpdateStockPrice method decides whether to change the stock price, and how much to change it. If the stock price is changed, BroadcastStockPrice is called to broadcast the stock price change to all connected clients.
 
     The \_updatingStockPrices flag is marked as [volatile](https://msdn.microsoft.com/en-us/library/x13ttww7.aspx) to ensure that access to it is threadsafe.
 
-        private volatile bool _updatingStockPrices = false;
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample8.xml)]
 
     In a real application, the TryUpdateStockPrice method would call a web service to look up the price; in this code it uses a random number generator to make changes randomly.
 
@@ -429,26 +178,7 @@ You only want one instance of the StockTicker class to run on the server, so you
 
     There are two reasons why you want to get the context just once: getting the context is an expensive operation, and getting it once ensures that the intended order of messages sent to clients is preserved.
 
-        private readonly static Lazy<StockTicker> _instance =
-            new Lazy<StockTicker>(() => new StockTicker(GlobalHost.ConnectionManager.GetHubContext<StockTickerHub>().Clients));
-        
-        private StockTicker(IHubConnectionContext<dynamic> clients)
-        {
-            Clients = clients;
-        
-            // Remainder of constructor ...
-        }
-        
-        private IHubConnectionContext<dynamic> Clients
-        {
-            get;
-            set;
-        }
-        
-        private void BroadcastStockPrice(Stock stock)
-        {
-            Clients.All.updateStockPrice(stock);
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample9.xml)]
 
     Getting the Clients property of the context and putting it in the StockTickerClient property lets you write code to call client methods that looks the same as it would in a Hub class. For instance, to broadcast to all clients you can write Clients.All.updateStockPrice(stock).
 
@@ -463,25 +193,7 @@ The server needs to know which URL to intercept and direct to SignalR. To do tha
 1. In **Solution Explorer**, right-click the project, and then click **Add | OWIN Startup Class**. Name the class **Startup.cs**.
 2. Replace the code in **Startup.cs** with the following.
 
-        using System;
-        using System.Threading.Tasks;
-        using Microsoft.Owin;
-        using Owin;
-        
-        [assembly: OwinStartup(typeof(SignalR.StockTicker.Startup))]
-        
-        namespace SignalR.StockTicker
-        {
-            public class Startup
-            {
-                public void Configuration(IAppBuilder app)
-                {
-                    // Any connection or hub wire up and configuration should go here
-                    app.MapSignalR();
-                }
-        
-            }
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample10.xml)]
 
 You have now completed setting up the server code. In the next section you'll set up the client.
 
@@ -492,55 +204,7 @@ You have now completed setting up the server code. In the next section you'll se
 1. Create a new HTML file in the project folder, and name it *StockTicker.html*.
 2. Replace the template code with the following code.
 
-        <!DOCTYPE html>
-        <html xmlns="http://www.w3.org/1999/xhtml">
-        <head>
-            <title>ASP.NET SignalR Stock Ticker</title>
-            <style>
-                body {
-                    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-                    font-size: 16px;
-                }
-                #stockTable table {
-                    border-collapse: collapse;
-                }
-                    #stockTable table th, #stockTable table td {
-                        padding: 2px 6px;
-                    }
-                    #stockTable table td {
-                        text-align: right;
-                    }
-                #stockTable .loading td {
-                    text-align: left;
-                }
-            </style>
-        </head>
-        <body>
-            <h1>ASP.NET SignalR Stock Ticker Sample</h1>
-        
-            <h2>Live Stock Table</h2>
-            <div id="stockTable">
-                <table border="1">
-                    <thead>
-                        <tr><th>Symbol</th><th>Price</th><th>Open</th><th>Change</th><th>%</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr class="loading"><td colspan="5">loading...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        
-            <!--Script references. -->
-            <!--Reference the jQuery library. -->
-            <script src="/Scripts/jquery-1.10.2.min.js" ></script>
-            <!--Reference the SignalR library. -->
-            <script src="/Scripts/jquery.signalR-2.1.0.js"></script>
-            <!--Reference the autogenerated SignalR hub script. -->
-            <script src="/signalr/hubs"></script>
-            <!--Reference the StockTicker script. -->
-            <script src="StockTicker.js"></script>
-        </body>
-        </html>
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample11.xml)]
 
     The HTML creates a table with 5 columns, a header row, and a data row with a single cell that spans all 5 columns. The data row displays "loading..." and will only be shown momentarily when the application starts. JavaScript code will remove that row and add in its place rows with stock data retrieved from the server.
 
@@ -550,86 +214,23 @@ You have now completed setting up the server code. In the next section you'll se
 5. Create a new JavaScript file in the project folder and name it *StockTicker.js*..
 6. Replace the template code with the following code:
 
-        // A simple templating method for replacing placeholders enclosed in curly braces.
-        if (!String.prototype.supplant) {
-            String.prototype.supplant = function (o) {
-                return this.replace(/{([^{}]*)}/g,
-                    function (a, b) {
-                        var r = o[b];
-                        return typeof r === 'string' || typeof r === 'number' ? r : a;
-                    }
-                );
-            };
-        }
-        
-        $(function () {
-        
-            var ticker = $.connection.stockTickerMini, // the generated client-side hub proxy
-                up = '▲',
-                down = '▼',
-                $stockTable = $('#stockTable'),
-                $stockTableBody = $stockTable.find('tbody'),
-                rowTemplate = '<tr data-symbol="{Symbol}"><td>{Symbol}</td><td>{Price}</td><td>{DayOpen}</td><td>{Direction} {Change}</td><td>{PercentChange}</td></tr>';
-        
-            function formatStock(stock) {
-                return $.extend(stock, {
-                    Price: stock.Price.toFixed(2),
-                    PercentChange: (stock.PercentChange * 100).toFixed(2) + '%',
-                    Direction: stock.Change === 0 ? '' : stock.Change >= 0 ? up : down
-                });
-            }
-        
-            function init() {
-                ticker.server.getAllStocks().done(function (stocks) {
-                    $stockTableBody.empty();
-                    $.each(stocks, function () {
-                        var stock = formatStock(this);
-                        $stockTableBody.append(rowTemplate.supplant(stock));
-                    });
-                });
-            }
-        
-            // Add a client-side hub method that the server will call
-            ticker.client.updateStockPrice = function (stock) {
-                var displayStock = formatStock(stock),
-                    $row = $(rowTemplate.supplant(displayStock));
-        
-                $stockTableBody.find('tr[data-symbol=' + stock.Symbol + ']')
-                    .replaceWith($row);
-                }
-        
-            // Start the connection
-            $.connection.hub.start().done(init);
-        
-        });
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample12.xml)]
 
     $.connection refers to the SignalR proxies. The code gets a reference to the proxy for the StockTickerHub class and puts it in the ticker variable. The proxy name is the name that was set by the [HubName] attribute:
 
-        var ticker = $.connection.stockTickerMini
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample13.xml)]
 
-        [HubName("stockTickerMini")]
-        public class StockTickerHub : Hub
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample14.xml)]
 
     After all the variables and functions are defined, the last line of code in the file initializes the SignalR connection by calling the SignalR start function. The start function executes asynchronously and returns a [jQuery Deferred object](http://api.jquery.com/category/deferred-object/), which means you can call the done function to specify the function to call when the asynchronous operation is completed..
 
-        $.connection.hub.start().done(init);
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample15.xml)]
 
     The init function calls the getAllStocks function on the server and uses the information that the server returns to update the stock table. Notice that by default, you have to use camel casing on the client although the method name is pascal-cased on the server. The camel-casing rule only applies to methods, not objects. For example, you refer to stock.Symbol and stock.Price, not stock.symbol or stock.price.
 
-        function init() {
-            ticker.server.getAllStocks().done(function (stocks) {
-                $stockTableBody.empty();
-                $.each(stocks, function () {
-                    var stock = formatStock(this);
-                    $stockTableBody.append(rowTemplate.supplant(stock));
-                });
-            });
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample16.xml)]
 
-        public IEnumerable<Stock> GetAllStocks()
-        {
-            return _stockTicker.GetAllStocks();
-        }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample17.xml)]
 
     If you wanted to use pascal casing on the client, or if you wanted to use a completely different method name, you could decorate the Hub method with the HubMethodName attribute the same way you decorated the Hub class itself with the HubName attribute.
 
@@ -639,13 +240,7 @@ You have now completed setting up the server code. In the next section you'll se
 
     When the server changes a stock's price, it calls the updateStockPrice on connected clients. The function is added to the client property of the stockTicker proxy in order to make it available to calls from the server.
 
-        ticker.client.updateStockPrice = function (stock) {
-            var displayStock = formatStock(stock),
-                $row = $(rowTemplate.supplant(displayStock));
-        
-            $stockTableBody.find('tr[data-symbol=' + stock.Symbol + ']')
-                .replaceWith($row);
-            }
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample18.xml)]
 
     The updateStockPrice function formats a stock object received from the server into a table row the same way as in the init function. However, instead of appending the row to the table, it finds the stock's current row in the table and replaces that row with the new one.
 
@@ -685,9 +280,7 @@ For any given connection, SignalR chooses the best transport method that both th
 
 1. Open *StockTicker.js* and add a line of code to enable logging immediately before the code that initializes the connection at the end of the file:
 
-        // Start the connection
-        $.connection.hub.logging = true;
-        $.connection.hub.start().done(init);
+    [!code[Main](tutorial-server-broadcast-with-signalr/samples/sample19.xml)]
 2. Press F5 to run the project.
 3. Open your browser's developer tools window, and select the Console to see the logs. You might have to refresh the page to see the logs of Signalr negotiating the transport method for a new connection.
 
@@ -744,166 +337,39 @@ The **Live Stock Ticker** display is an unordered list in a div element that is 
 
 The stock ticker HTML:
 
-    <h2>Live Stock Ticker</h2>
-    <div id="stockTicker">
-        <div class="inner">
-            <ul>
-                <li class="loading">loading...</li>
-            </ul>
-        </div>
-    </div>
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample20.xml)]
 
 The stock ticker CSS:
 
-    #stockTicker {
-        overflow: hidden;
-        width: 450px;
-        height: 24px;
-        border: 1px solid #999;
-        }
-    
-        #stockTicker .inner {
-            width: 9999px;
-        }
-    
-        #stockTicker ul {
-            display: inline-block;
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-    
-        #stockTicker li {
-            display: inline-block;
-            margin-right: 8px;   
-        }
-    
-        /*<li data-symbol="{Symbol}"><span class="symbol">{Symbol}</span><span class="price">{Price}</span><span class="change">{PercentChange}</span></li>*/
-        #stockTicker .symbol {
-            font-weight: bold;
-        }
-    
-        #stockTicker .change {
-            font-style: italic;
-        }
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample21.xml)]
 
 The jQuery code that makes it scroll:
 
-    function scrollTicker() {
-        var w = $stockTickerUl.width();
-        $stockTickerUl.css({ marginLeft: w });
-        $stockTickerUl.animate({ marginLeft: -w }, 15000, 'linear', scrollTicker);
-    }
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample22.xml)]
 
 ### Additional methods on the server that the client can call
 
 The StockTickerHub class defines four additional methods that the client can call:
 
-    public string GetMarketState()
-    {
-        return _stockTicker.MarketState.ToString();
-    }
-    
-    public void OpenMarket()
-    {
-        _stockTicker.OpenMarket();
-    }
-    
-    public void CloseMarket()
-    {
-        _stockTicker.CloseMarket();
-    }
-    
-    public void Reset()
-    {
-        _stockTicker.Reset();
-    }
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample23.xml)]
 
 OpenMarket, CloseMarket, and Reset are called in response to the buttons at the top of the page. They demonstrate the pattern of one client triggering a change in state that is immediately propagated to all clients. Each of these methods calls a method in the StockTicker class that effects the market state change and then broadcasts the new state.
 
 In the StockTicker class, the state of the market is maintained by a MarketState property that returns a MarketState enum value:
 
-    public MarketState MarketState
-    {
-        get { return _marketState; }
-        private set { _marketState = value; }
-    }
-    
-    public enum MarketState
-    {
-        Closed,
-        Open
-    }
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample24.xml)]
 
 Each of the methods that change the market state do so inside a lock block because the StockTicker class has to be threadsafe:
 
-    public void OpenMarket()
-    {
-        lock (_marketStateLock)
-        {
-            if (MarketState != MarketState.Open)
-            {
-                _timer = new Timer(UpdateStockPrices, null, _updateInterval, _updateInterval);
-                MarketState = MarketState.Open;
-                BroadcastMarketStateChange(MarketState.Open);
-            }
-        }
-    }
-    
-    public void CloseMarket()
-    {
-        lock (_marketStateLock)
-        {
-            if (MarketState == MarketState.Open)
-            {
-                if (_timer != null)
-                {
-                    _timer.Dispose();
-                }
-                MarketState = MarketState.Closed;
-                BroadcastMarketStateChange(MarketState.Closed);
-            }
-        }
-    }
-    
-    public void Reset()
-    {
-        lock (_marketStateLock)
-        {
-            if (MarketState != MarketState.Closed)
-            {
-                throw new InvalidOperationException("Market must be closed before it can be reset.");
-            }
-            LoadDefaultStocks();
-            BroadcastMarketReset();
-        }
-    }
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample25.xml)]
 
 To ensure that this code is threadsafe, the \_marketState field that backs the MarketState property is marked as volatile,
 
-    private volatile MarketState _marketState;
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample26.xml)]
 
 The BroadcastMarketStateChange and BroadcastMarketReset methods are similar to the BroadcastStockPrice method that you already saw, except they call different methods defined at the client:
 
-    private void BroadcastMarketStateChange(MarketState marketState)
-    {
-        switch (marketState)
-        {
-            case MarketState.Open:
-                Clients.All.marketOpened();
-                break;
-            case MarketState.Closed:
-                Clients.All.marketClosed();
-                break;
-            default:
-                break;
-        }
-    }
-    
-    private void BroadcastMarketReset()
-    {
-        Clients.All.marketReset();
-    }
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample27.xml)]
 
 ### Additional functions on the client that the server can call
 
@@ -911,74 +377,13 @@ The updateStockPrice function now handles both the grid and the ticker display, 
 
 New functions in *SignalR.StockTicker.js* enable and disable the buttons based on market state, and they stop or start the ticker window horizontal scrolling. Since multiple functions are being added to ticker.client, the [jQuery extend function](http://api.jquery.com/jQuery.extend/) is used to add them.
 
-    $.extend(ticker.client, {
-        updateStockPrice: function (stock) {
-            var displayStock = formatStock(stock),
-                $row = $(rowTemplate.supplant(displayStock)),
-                $li = $(liTemplate.supplant(displayStock)),
-                bg = stock.LastChange === 0
-                    ? '255,216,0' // yellow
-                    : stock.LastChange > 0
-                        ? '154,240,117' // green
-                        : '255,148,148'; // red
-    
-            $stockTableBody.find('tr[data-symbol=' + stock.Symbol + ']')
-                .replaceWith($row);
-            $stockTickerUl.find('li[data-symbol=' + stock.Symbol + ']')
-                .replaceWith($li);
-    
-            $row.flash(bg, 1000);
-            $li.flash(bg, 1000);
-        },
-    
-        marketOpened: function () {
-            $("#open").prop("disabled", true);
-            $("#close").prop("disabled", false);
-            $("#reset").prop("disabled", true);
-            scrollTicker();
-        },
-    
-        marketClosed: function () {
-            $("#open").prop("disabled", false);
-            $("#close").prop("disabled", true);
-            $("#reset").prop("disabled", false);
-            stopTicker();
-        },
-    
-        marketReset: function () {
-            return init();
-        }
-    });
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample28.xml)]
 
 ### Additional client setup after establishing the connection
 
 After the client establishes the connection, it has some additional work to do: find out if the market is open or closed in order to call the appropriate marketOpened or marketClosed function, and attach the server method calls to the buttons.
 
-    $.connection.hub.start()
-        .pipe(init)
-        .pipe(function () {
-            return ticker.server.getMarketState();
-        })
-        .done(function (state) {
-            if (state === 'Open') {
-                ticker.client.marketOpened();
-            } else {
-                ticker.client.marketClosed();
-            }
-    
-            // Wire up the buttons
-            $("#open").click(function () {
-                ticker.server.openMarket();
-            });
-    
-            $("#close").click(function () {
-                ticker.server.closeMarket();
-            });
-    
-            $("#reset").click(function () {
-                ticker.server.reset();
-            });
-        });
+[!code[Main](tutorial-server-broadcast-with-signalr/samples/sample29.xml)]
 
 The server methods are not wired up to the buttons until after the connection is established, so that the code can't try to call the server methods before they are available.
 

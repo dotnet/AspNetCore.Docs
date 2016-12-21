@@ -49,22 +49,11 @@ To use OData query options, you must enable them explicitly. You can enable them
 
 To enable OData query options globally, call **EnableQuerySupport** on the **HttpConfiguration** class at startup:
 
-    public static void Register(HttpConfiguration config)
-    {
-        // ...
-    
-        config.EnableQuerySupport();
-    
-        // ...
-    }
+[!code[Main](supporting-odata-query-options/samples/sample1.xml)]
 
 The **EnableQuerySupport** method enables query options globally for any controller action that returns an **IQueryable** type. If you don't want query options enabled for the entire application, you can enable them for specific controller actions by adding the **[Queryable]** attribute to the action method.
 
-    public class ProductsController : ApiController
-    {
-        [Queryable]
-        IQueryable<Product> Get() {}
-    }
+[!code[Main](supporting-odata-query-options/samples/sample2.xml)]
 
 <a id="examples"></a>
 ## Example Queries
@@ -106,15 +95,11 @@ To sort the results, use the $orderby filter.
 
 If your database contains millions of records, you don't want to send them all in one payload. To prevent this, the server can limit the number of entries that it sends in a single response. To enable server paging, set the **PageSize** property in the **Queryable** attribute. The value is the maximum number of entries to return.
 
-    [Queryable(PageSize=10)]
-    public IQueryable<Product> Get() 
-    {
-        return products.AsQueryable();
-    }
+[!code[Main](supporting-odata-query-options/samples/sample3.xml)]
 
 If your controller returns OData format, the response body will contain a link to the next page of data:
 
-[!code[Main](supporting-odata-query-options/samples/sample1.xml?highlight=8)]
+[!code[Main](supporting-odata-query-options/samples/sample4.xml?highlight=8)]
 
 The client can use this link to fetch the next page. To learn the total number of entries in the result set, the client can set the $inlinecount query option with the value "allpages".
 
@@ -122,41 +107,18 @@ The client can use this link to fetch the next page. To learn the total number o
 
 The value "allpages" tells the server to include the total count in the response:
 
-[!code[Main](supporting-odata-query-options/samples/sample2.xml?highlight=3)]
+[!code[Main](supporting-odata-query-options/samples/sample5.xml?highlight=3)]
 
 > [!NOTE] Next-page links and inline count both require OData format. The reason is that OData defines special fields in the response body to hold the link and count.
 
 
 For non-OData formats, it is still possible to support next-page links and inline count, by wrapping the query results in a **PageResult&lt;T&gt;** object. However, it requires a bit more code. Here is an example:
 
-    public PageResult<Product> Get(ODataQueryOptions<Product> options)
-    {
-        ODataQuerySettings settings = new ODataQuerySettings()
-        {
-            PageSize = 5
-        };
-    
-        IQueryable results = options.ApplyTo(_products.AsQueryable(), settings);
-    
-        return new PageResult<Product>(
-            results as IEnumerable<Product>, 
-            Request.GetNextPageLink(), 
-            Request.GetInlineCount());
-    }
+[!code[Main](supporting-odata-query-options/samples/sample6.xml)]
 
 Here is an example JSON response:
 
-    {
-      "Items": [
-        { "ID":1,"Name":"Hat","Price":"15","Category":"Apparel" },
-        { "ID":2,"Name":"Socks","Price":"5","Category":"Apparel" },
-    
-        // Others not shown
-        
-      ],
-      "NextPageLink": "http://localhost/api/values?$inlinecount=allpages&$skip=10",
-      "Count": 50
-    }
+[!code[Main](supporting-odata-query-options/samples/sample7.xml)]
 
 <a id="limiting_query_options"></a>
 ## Limiting the Query Options
@@ -165,49 +127,30 @@ The query options give the client a lot of control over the query that is run on
 
 Allow only $skip and $top, to support paging and nothing else:
 
-    [Queryable(AllowedQueryOptions=
-        AllowedQueryOptions.Skip | AllowedQueryOptions.Top)]
+[!code[Main](supporting-odata-query-options/samples/sample8.xml)]
 
 Allow ordering only by certain properties, to prevent sorting on properties that are not indexed in the database:
 
-    [Queryable(AllowedOrderByProperties="Id")] // comma-separated list of properties
+[!code[Main](supporting-odata-query-options/samples/sample9.xml)]
 
 Allow the "eq" logical function but no other logical functions:
 
-    [Queryable(AllowedLogicalOperators=AllowedLogicalOperators.Equal)]
+[!code[Main](supporting-odata-query-options/samples/sample10.xml)]
 
 Do not allow any arithmetic operators:
 
-    [Queryable(AllowedArithmeticOperators=AllowedArithmeticOperators.None)]
+[!code[Main](supporting-odata-query-options/samples/sample11.xml)]
 
 You can restrict options globally by constructing a **QueryableAttribute** instance and passing it to the **EnableQuerySupport** function:
 
-    var queryAttribute = new QueryableAttribute()
-    {
-        AllowedQueryOptions = AllowedQueryOptions.Top | AllowedQueryOptions.Skip,
-        MaxTop = 100
-    };
-                    
-    config.EnableQuerySupport(queryAttribute);
+[!code[Main](supporting-odata-query-options/samples/sample12.xml)]
 
 <a id="ODataQueryOptions"></a>
 ## Invoking Query Options Directly
 
 Instead of using the **[Queryable]** attribute, you can invoke the query options directly in your controller. To do so, add an **ODataQueryOptions** parameter to the controller method. In this case, you don't need the **[Queryable]** attribute.
 
-    public IQueryable<Product> Get(ODataQueryOptions opts)
-    {
-        var settings = new ODataValidationSettings()
-        {
-            // Initialize settings as needed.
-            AllowedFunctions = AllowedFunctions.AllMathFunctions
-        };
-    
-        opts.Validate(settings);
-    
-        IQueryable results = opts.ApplyTo(products.AsQueryable());
-        return results as IQueryable<Product>;
-    }
+[!code[Main](supporting-odata-query-options/samples/sample13.xml)]
 
 Web API populates the **ODataQueryOptions** from the URI query string. To apply the query, pass an **IQueryable** to the **ApplyTo** method. The method returns another **IQueryable**.
 
@@ -222,69 +165,16 @@ Also see [OData Security Guidance](odata-security-guidance.md).
 
 First, override one of the validator classes that is defined in the **Web.Http.OData.Query.Validators** namespace. For example, the following validator class disables the 'desc' option for the $orderby option.
 
-    public class MyOrderByValidator : OrderByQueryValidator
-    {
-        // Disallow the 'desc' parameter for $orderby option.
-        public override void Validate(OrderByQueryOption orderByOption,
-                                        ODataValidationSettings validationSettings)
-        {
-            if (orderByOption.OrderByNodes.Any(
-                    node => node.Direction == OrderByDirection.Descending))
-            {
-                throw new ODataException("The 'desc' option is not supported.");
-            }
-            base.Validate(orderByOption, validationSettings);
-        }
-    }
+[!code[Main](supporting-odata-query-options/samples/sample14.xml)]
 
 Subclass the **[Queryable]** attribute to override the **ValidateQuery** method.
 
-    public class MyQueryableAttribute : QueryableAttribute
-    {
-        public override void ValidateQuery(HttpRequestMessage request, 
-            ODataQueryOptions queryOptions)
-        {
-            if (queryOptions.OrderBy != null)
-            {
-                queryOptions.OrderBy.Validator = new MyOrderByValidator();
-            }
-            base.ValidateQuery(request, queryOptions);
-        }
-    }
+[!code[Main](supporting-odata-query-options/samples/sample15.xml)]
 
 Then set your custom attribute either globally or per-controller:
 
-    // Globally:
-    config.EnableQuerySupport(new MyQueryableAttribute());
-    
-    // Per controller:
-    public class ValuesController : ApiController
-    {
-        [MyQueryable]
-        public IQueryable<Product> Get()
-        {
-            return products.AsQueryable();
-        }
-    }
+[!code[Main](supporting-odata-query-options/samples/sample16.xml)]
 
 If you are using **ODataQueryOptions** directly, set the validator on the options:
 
-    public IQueryable<Product> Get(ODataQueryOptions opts)
-    {
-        if (opts.OrderBy != null)
-        {
-            opts.OrderBy.Validator = new MyOrderByValidator();
-        }
-    
-        var settings = new ODataValidationSettings()
-        {
-            // Initialize settings as needed.
-            AllowedFunctions = AllowedFunctions.AllMathFunctions
-        };
-    
-        // Validate
-        opts.Validate(settings);
-    
-        IQueryable results = opts.ApplyTo(products.AsQueryable());
-        return results as IQueryable<Product>;
-    }
+[!code[Main](supporting-odata-query-options/samples/sample17.xml)]

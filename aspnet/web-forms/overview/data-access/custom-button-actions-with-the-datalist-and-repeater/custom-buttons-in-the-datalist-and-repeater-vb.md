@@ -56,17 +56,7 @@ Like in the other folders, `Default.aspx` in the `CustomButtonsDataListRepeater`
 Lastly, add the pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Paging and Sorting with the DataList and Repeater `<siteMapNode>`:
 
 
-    <siteMapNode
-        url="~/CustomButtonsDataListRepeater/Default.aspx"
-        title="Adding Custom Buttons to the DataList and Repeater"
-        description="Samples of DataList and Repeater Reports that Include
-                      Buttons for Performing Server-Side Actions">
-        <siteMapNode
-            url="~/CustomButtonsDataListRepeater/CustomButtons.aspx"
-            title="Using Custom Buttons in the DataList and Repeater's Templates"
-            description="Examines how to add custom Buttons, LinkButtons,
-                          or ImageButtons within templates." />
-    </siteMapNode>
+[!code[Main](custom-buttons-in-the-datalist-and-repeater-vb/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the editing, inserting, and deleting tutorials.
 
@@ -91,22 +81,7 @@ Unlike the DataList control, for which Visual Studio creates a default `ItemTemp
 Click on the Source tab in the bottom left corner and add an `ItemTemplate` that displays the category s name in an `<h3>` element and its description in a paragraph tag; include a `SeparatorTemplate` that displays a horizontal rule (`<hr />`) between each category. Also add a LinkButton with its `Text` property set to Show Products . After completing these steps, your page s declarative markup should look like the following:
 
 
-    <asp:Repeater ID="Categories" DataSourceID="CategoriesDataSource"
-        runat="server">
-        <ItemTemplate>
-            <h3><%# Eval("CategoryName") %></h3>
-            <p>
-                <%# Eval("Description") %>
-                [<asp:LinkButton runat="server" ID="ShowProducts">
-                    Show Products</asp:LinkButton>]
-            </p>
-        </ItemTemplate>
-        <SeparatorTemplate><hr /></SeparatorTemplate>
-    </asp:Repeater>
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetCategories" TypeName="CategoriesBLL">
-    </asp:ObjectDataSource>
+[!code[Main](custom-buttons-in-the-datalist-and-repeater-vb/samples/sample2.xml)]
 
 Figure 6 shows the page when viewed through a browser. Each category name and description is listed. The Show Products button, when clicked, causes a postback but does not yet perform any action.
 
@@ -128,9 +103,7 @@ When a button is clicked within a DataList or Repeater, oftentimes we need to pa
 For this example, set the LinkButton s `CommandName` property to ShowProducts and bind the current record s primary key value `CategoryID` to the `CommandArgument` property using the databinding syntax `CategoryArgument='<%# Eval("CategoryID") %>'`. After specifying these two properties, the LinkButton s declarative syntax should look like the following:
 
 
-    <asp:LinkButton runat="server" CommandName="ShowProducts"
-        CommandArgument='<%# Eval("CategoryID") %>' ID="ShowProducts">
-        Show Products</asp:LinkButton>
+[!code[Main](custom-buttons-in-the-datalist-and-repeater-vb/samples/sample3.xml)]
 
 When the button is clicked, a postback occurs and the DataList or Repeater s `ItemCommand` event fires. The event handler is passed the button s `CommandName` and `CommandArgument` values.
 
@@ -151,27 +124,12 @@ Since the selected category s `CategoryID` is passed in via the `CommandArgument
 The selected category s products can be displayed within the Repeater s `ItemTemplate` using any number of controls. We could add another nested Repeater, a DataList, a DropDownList, a GridView, and so on. Since we want to display the products as a bulleted list, though, we'll use the BulletedList control. Returning to the `CustomButtons.aspx` page s declarative markup, add a BulletedList control to the `ItemTemplate` after the Show Products LinkButton. Set the BulletedLists s `ID` to `ProductsInCategory`. The BulletedList displays the value of the data field specified via the `DataTextField` property; since this control will have product information bound to it, set the `DataTextField` property to `ProductName`.
 
 
-    <asp:BulletedList ID="ProductsInCategory" DataTextField="ProductName"
-        runat="server"></asp:BulletedList>
+[!code[Main](custom-buttons-in-the-datalist-and-repeater-vb/samples/sample4.xml)]
 
 In the `ItemCommand` event handler, reference this control using `e.Item.FindControl("ProductsInCategory")` and bind it to the set of products associated with the selected category.
 
 
-    Protected Sub Categories_ItemCommand _
-        (source As Object, e As RepeaterCommandEventArgs) _
-        Handles Categories.ItemCommand
-        If e.CommandName = "ShowProducts" Then
-            ' Determine the CategoryID
-            Dim categoryID As Integer = Convert.ToInt32(e.CommandArgument)
-            ' Get the associated products from the ProudctsBLL and
-            ' bind them to the BulletedList
-            Dim products As BulletedList = _
-                CType(e.Item.FindControl("ProductsInCategory"), BulletedList)
-            Dim productsAPI As New ProductsBLL()
-            products.DataSource = productsAPI.GetProductsByCategoryID(categoryID)
-            products.DataBind()
-        End If
-    End Sub
+[!code[Main](custom-buttons-in-the-datalist-and-repeater-vb/samples/sample5.xml)]
 
 Before performing any action in the `ItemCommand` event handler, it s prudent to first check the value of the incoming `CommandName`. Since the `ItemCommand` event handler fires when *any* button is clicked, if there are multiple buttons in the template use the `CommandName` value to discern what action to take. Checking the `CommandName` here is moot, since we only have a single button, but it is a good habit to form. Next, the `CategoryID` of the selected category is retrieved from the `CommandArgument` property. The BulletedList control in the template is then referenced and bound to the results of the `ProductsBLL` class s `GetProductsByCategoryID(categoryID)` method.
 

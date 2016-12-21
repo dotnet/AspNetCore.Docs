@@ -35,13 +35,7 @@ Because this operation has a side effect (it initiates a monetary transaction), 
 
 Her online banking complete, the user navigates away from the banking site and visits other locations on the web. One of those sites – fabrikam.com – includes the following markup on a page embedded within an &lt;iframe&gt;:
 
-    <form id="theForm" action="https://WoodgroveBank.com/DoTransfer" method="post">
-        <input type="hidden" name="toAcct" value="67890" />
-        <input type="hidden" name="amount" value="250.00" />
-    </form>
-    <script type="text/javascript">
-        document.getElementById('theForm').submit();
-    </script>
+[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample1.xml)]
 
 Which then causes the browser to make this request:
 

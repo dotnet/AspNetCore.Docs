@@ -1,0 +1,14 @@
+<p><label for="title">Title:</label>
+     <input type="text" name="title" value="@Request.Form["title"]" />
+      @Html.ValidationMessage("title")
+  </p>
+
+  <p><label for="genre">Genre:</label>
+     <input type="text" name="genre" value="@Request.Form["genre"]" />
+      @Html.ValidationMessage("genre")
+  </p>
+
+  <p><label for="year">Year:</label>
+     <input type="text" name="year" value="@Request.Form["year"]" />
+      @Html.ValidationMessage("year")
+  </p>

@@ -46,126 +46,19 @@ There are a few ways we could update our view templates to reflect the new Ratin
 
 Open up the \Views\Movies\Index.aspx template and add a &lt;th&gt;Rating&lt;/th&gt; to the head of the Movie table. I added mine after Genre. Then, in the same column position but lower down, add a line to output our new Rating.
 
-    <td>
-      <%: item.Rating %>
-    </td>
+[!code[Main](getting-started-with-mvc-part8/samples/sample1.xml)]
 
 Our final Index.aspx template will look like this:
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Movies.Models.Movie>>" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-        Movie List
-    </asp:Content>
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        <h2>My Movie List</h2>
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>ReleaseDate</th>
-                <th>Genre</th>
-                <th>Rating</th>
-                <th>Price</th>
-            </tr>
-            <% foreach (var item in Model)
-               { %>
-            <tr>
-                <td><%: item.Id %></td>
-                <td><%: item.Title %></td>
-                <td><%: String.Format("{0:g}", item.ReleaseDate) %></td>
-                <td><%: item.Genre %></td>
-                <td><%: item.Rating %></td>
-                <td><%: String.Format("{0:F}", item.Price) %></td>
-            </tr>
-            <% } %>
-        </table>
-        <p>
-            <%: Html.ActionLink("Create New", "Create") %>
-        </p>
-    </asp:Content>
+[!code[Main](getting-started-with-mvc-part8/samples/sample2.xml)]
 
 Let's then open up the \Views\Movies\Create.aspx template and add a Label and Textbox for our new Rating property:
 
-    <div class="editor-label">
-        <%: Html.LabelFor(model => model.Rating) %>
-    </div>
-    <div class="editor-field">
-        <%: Html.TextBoxFor(model => model.Rating)%>
-        <%: Html.ValidationMessageFor(model => model.Rating)%>
-    </div>
+[!code[Main](getting-started-with-mvc-part8/samples/sample3.xml)]
 
 Our final Create.aspx template will look like this, and let's change our browser's title and secondary &lt;h2&gt; title to something like "Create a Movie" while we're in here!
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Movies.Models.Movie>" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-        Create a Movie
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
-        <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
-        <h2>Create a Movie</h2>
-        <% Html.EnableClientValidation(); %>
-        <% using (Html.BeginForm()) {%>
-            <%: Html.ValidationSummary(true) %>
-    
-            <fieldset>
-                <legend>Fields</legend>
-               
-                <div class="editor-label">
-                    <%: Html.LabelFor(model => model.Title) %>
-                </div>
-                <div class="editor-field">
-                    <%: Html.TextBoxFor(model => model.Title) %>
-                    <%: Html.ValidationMessageFor(model => model.Title) %>
-                </div>
-               
-                <div class="editor-label">
-                    <%: Html.LabelFor(model => model.ReleaseDate) %>
-                </div>
-                <div class="editor-field">
-                    <%: Html.TextBoxFor(model => model.ReleaseDate) %>
-                    <%: Html.ValidationMessageFor(model => model.ReleaseDate) %>
-                </div>
-               
-                <div class="editor-label">
-                    <%: Html.LabelFor(model => model.Genre) %>
-                </div>
-                <div class="editor-field">
-                    <%: Html.TextBoxFor(model => model.Genre) %>
-                    <%: Html.ValidationMessageFor(model => model.Genre) %>
-                </div>
-    
-                <div class="editor-label">
-                    <%: Html.LabelFor(model => model.Rating) %>
-                </div>
-                <div class="editor-field">
-                    <%: Html.TextBoxFor(model => model.Rating)%>
-                    <%: Html.ValidationMessageFor(model => model.Rating)%>
-                </div>
-    
-                <div class="editor-label">
-                    <%: Html.LabelFor(model => model.Price) %>
-                </div>
-                <div class="editor-field">
-                    <%: Html.TextBoxFor(model => model.Price) %>
-                    <%: Html.ValidationMessageFor(model => model.Price) %>
-                </div>
-               
-                <p>
-                    <input type="submit" value="Create" />
-                </p>
-            </fieldset>
-    
-        <% } %>
-    
-        <div>
-            <%: Html.ActionLink("Back to List", "Index") %>
-        </div>
-    
-    </asp:Content>
+[!code[Main](getting-started-with-mvc-part8/samples/sample4.xml)]
 
 Run your app and now you've got a new field in the database that's been added to the Create page. Add a new Movie - this time with a Rating - and click Create.
 

@@ -26,34 +26,7 @@ The generated code provides a good starting point for your application but it do
 
 Open **Students/Details.cshtml**, and below the last &lt;/dl&gt; tab, but before the closing &lt;/div&gt; tag, add the following code.
 
-    <table class="table">
-        <tr>
-            <th>
-                Course Title
-            </th>
-            <th>
-                Grade
-            </th>
-            <th>
-                Credits
-            </th>
-        </tr>
-    
-        @foreach (var item in Model.Enrollments)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Course.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Grade)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Course.Credits)
-                </td>
-            </tr>
-        }
-    </table>
+[!code[Main](customizing-a-view/samples/sample1.xml)]
 
 This code creates a table that displays a row for each record in the Enrollment table for the selected student. The **Display** method renders HTML for the object (modelItem) that represents the expression. You use the Display method (rather than simply embedding the property value in the code) to make sure the value is formatted correctly based on its type and the template for that type. In this example, each expression returns a single property from the current record in the loop, and the values are primitive types which are rendered as text.
 

@@ -1,3 +1,8 @@
-$.connection.hub.connectionSlow(function () {
-    console.log('We are currently experiencing difficulties with the connection.')
-});
+public class ContosoChatHub : Hub
+{
+    [HubMethodName("NewContosoChatMessage")]
+    public void NewContosoChatMessage(string name, string message)
+    {
+        Clients.All.addContosoChatMessageToPage(name, message);
+    }
+}

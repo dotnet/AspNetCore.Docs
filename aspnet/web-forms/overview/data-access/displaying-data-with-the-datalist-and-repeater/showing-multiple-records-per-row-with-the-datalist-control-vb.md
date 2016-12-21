@@ -39,33 +39,14 @@ By showing multiple data source items per row, the DataList can more effectively
 Before we examine the `RepeatColumns` and `RepeatDirection` properties, let s first create a DataList on our page that lists product information using the standard single-column, multi-row table layout. For this example, let s display the product s name, category, and price using the following markup:
 
 
-    <h4>Product Name</h4>
-    Available in the Category Name store for Price
+[!code[Main](showing-multiple-records-per-row-with-the-datalist-control-vb/samples/sample1.xml)]
 
 We ve seen how to bind data to a DataList in previous examples, so I'll move through these steps quickly. Start by opening the `RepeatColumnAndDirection.aspx` page in the `DataListRepeaterBasics` folder and drag a DataList from the Toolbox onto the Designer. From the DataList s smart tag, opt to create a new ObjectDataSource and configure it to pull its data from the `ProductsBLL` class s `GetProducts` method, choosing the (None) option from the wizard s INSERT, UPDATE, and DELETE tabs.
 
 After creating and binding the new ObjectDataSource to the DataList, Visual Studio will automatically create an `ItemTemplate` that displays the name and value for each of the product data fields. Adjust the `ItemTemplate` either directly through the declarative markup or from the Edit Templates option in the DataList s smart tag so that it uses the markup shown above, replacing the *Product Name*, *Category Name*, and *Price* text with Label controls that use the appropriate databinding syntax to assign values to their `Text` properties. After updating the `ItemTemplate`, your page s declarative markup should look similar to the following:
 
 
-    <asp:DataList ID="DataList1" runat="server" DataKeyField="ProductID"
-        DataSourceID="ObjectDataSource1" EnableViewState="False">
-        <ItemTemplate>
-            <h4>
-                <asp:Label runat="server" ID="ProductNameLabel"
-                    Text='<%# Eval("ProductName") %>'></asp:Label>
-            </h4>
-            Available in the
-                <asp:Label runat="server" ID="CategoryNameLabel"
-                    Text='<%# Eval("CategoryName") %>' />
-            store for
-                <asp:Label runat="server" ID="UnitPriceLabel"
-                    Text='<%# Eval("UnitPrice", "{0:C}") %>' />
-        </ItemTemplate>
-    </asp:DataList>
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProducts" TypeName="ProductsBLL">
-    </asp:ObjectDataSource>
+[!code[Main](showing-multiple-records-per-row-with-the-datalist-control-vb/samples/sample2.xml)]
 
 Notice that I ve included a format specifier in the `Eval` databinding syntax for the `UnitPrice`, formatting the returned value as a currency - `Eval("UnitPrice", "{0:C}").`
 

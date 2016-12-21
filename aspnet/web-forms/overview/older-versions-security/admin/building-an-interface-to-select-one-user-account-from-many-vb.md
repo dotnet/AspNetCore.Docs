@@ -41,24 +41,13 @@ Also add two pages to the website's root directory: `ChangePassword.aspx` and `R
 
 These four pages should, at this point, have two Content controls, one for each of the master page's ContentPlaceHolders: `MainContent` and `LoginContent`.
 
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server"> 
-    </asp:Content> 
-    <asp:Content ID="Content2" ContentPlaceHolderID="LoginContent" Runat="Server"> 
-    </asp:Content>
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample1.xml)]
 
 We want to show the master page's default markup for the `LoginContent` ContentPlaceHolder for these pages. Therefore, remove the declarative markup for the `Content2` Content control. After doing so, the pages' markup should contain just one Content control.
 
 The ASP.NET pages in the `Administration` folder are intended solely for administrative users. We added an Administrators role to the system in the <a id="_msoanchor_2"></a>[*Creating and Managing Roles*](../roles/creating-and-managing-roles-vb.md) tutorial; restrict access to these two pages to this role. To accomplish this, add a `Web.config` file to the `Administration` folder and configure its `<authorization>` element to admit users in the Administrators role and to deny all others.
 
-    <?xml version="1.0"?> 
-    <configuration> 
-     <system.web> 
-     <authorization> 
-     <allow roles="Administrators" /> 
-     <deny users="*"/> 
-     </authorization> 
-     </system.web> 
-    </configuration>
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample2.xml)]
 
 At this point your project's Solution Explorer should look similar to the screen shot shown in Figure 1.
 
@@ -70,7 +59,7 @@ At this point your project's Solution Explorer should look similar to the screen
 
 Finally, update the site map (`Web.sitemap`) to include an entry to the `ManageUsers.aspx` page. Add the following XML after the `<siteMapNode>` we added for the Roles tutorials.
 
-    <siteMapNode title="User Administration" url="~/Administration/ManageUsers.aspx"/>
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample3.xml)]
 
 With the site map updated, visit the site through a browser. As Figure 2 shows, the navigation on the left now includes items for the Administration tutorials.
 
@@ -96,29 +85,11 @@ In order to display the desired user account information in the GridView, set th
 
 After configuring your GridView, ensure that its declarative markup resembles the following:
 
-    <asp:GridView ID="UserAccounts" runat="server" AutoGenerateColumns="False">
-     <Columns>
-     <asp:BoundField DataField="UserName" HeaderText="UserName" />
-     <asp:BoundField DataField="Email" HeaderText="Email" />
-     <asp:CheckBoxField DataField="IsApproved" HeaderText="Approved?" />
-     <asp:CheckBoxField DataField="IsLockedOut" HeaderText="Locked Out?" />
-     <asp:CheckBoxField DataField="IsOnline" HeaderText="Online?" />
-     <asp:BoundField DataField="Comment" HeaderText="Comment" />
-     </Columns>
-    </asp:GridView>
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample4.xml)]
 
 Next, we need to write code that binds the user accounts to the GridView. Create a method named `BindUserAccounts` to perform this task and then call it from the `Page_Load` event handler on the first page visit.
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-     If Not Page.IsPostBack Then
-     BindUserAccounts()
-     End If
-    End Sub
-    
-    Private Sub BindUserAccounts()
-     UserAccounts.DataSource = Membership.GetAllUsers()
-     UserAccounts.DataBind()
-    End Sub
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample5.xml)]
 
 Take a moment to test the page through a browser. As Figure 4 shows, the `UserAccounts` GridView lists the username, email address, and other pertinent account information for all users in the system.
 
@@ -136,29 +107,11 @@ Our first task is to add the 27 LinkButton controls. One option would be to crea
 
 Start by adding a Repeater control to the page above the `UserAccounts` GridView. Set the Repeater's `ID` property to `FilteringUI` Configure the Repeater's templates so that its `ItemTemplate` renders a LinkButton whose `Text` and `CommandName` properties are bound to the current array element. As we saw in the <a id="_msoanchor_3"></a>[*Assigning Roles to Users*](../roles/assigning-roles-to-users-vb.md) tutorial, this can be accomplished using the `Container.DataItem` databinding syntax. Use the Repeater's `SeparatorTemplate` to display a vertical line between each link.
 
-    <asp:Repeater ID="FilteringUI" runat="server">
-     <ItemTemplate>
-     <asp:LinkButton runat="server" ID="lnkFilter" 
-     Text='<%# Container.DataItem %>'
-     CommandName='<%# Container.DataItem %>'></asp:LinkButton>
-     </ItemTemplate>
-     <SeparatorTemplate>|</SeparatorTemplate>
-    </asp:Repeater>
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample6.xml)]
 
 To populate this Repeater with the desired filtering options, create a method named `BindFilteringUI`. Be sure to call this method from the `Page_Load` event handler on the first page load.
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-     If Not Page.IsPostBack Then
-     BindUserAccounts()
-     BindFilteringUI()
-     End If
-    End Sub
-    
-    Private Sub BindFilteringUI()
-     Dim filterOptions() As String = {"All", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
-     FilteringUI.DataSource = filterOptions
-     FilteringUI.DataBind()
-    End Sub
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample7.xml)]
 
 This method specifies the filtering options as elements in the `String` array `filterOptions` For each element in the array, the Repeater will render a LinkButton with its `Text` and `CommandName` properties assigned to the value of the array element.
 
@@ -177,42 +130,19 @@ Clicking any of the filtering LinkButtons causes a postback and raises the Repea
 
 Start by updating the `ManageUser.aspx` page's code-behind class so that it includes a property named `UsernameToMatch` This property persists the username filter string across postbacks:
 
-    Private Property UsernameToMatch() As String
-     Get
-     Dim o As Object = ViewState("UsernameToMatch")
-     If o Is Nothing Then
-     Return String.Empty
-     Else
-     Return o.ToString()
-     End If
-     End Get
-     Set(ByVal Value As String)
-     ViewState("UsernameToMatch") = Value
-     End Set
-    End Property
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample8.xml)]
 
 The `UsernameToMatch` property stores its value it is assigned into the `ViewState` collection using the key �UsernameToMatch�. When this property's value is read, it checks to see if a value exists in the `ViewState` collection; if not, it returns the default value, an empty string. The `UsernameToMatch` property exhibits a common pattern, namely persisting a value to view state so that any changes to the property are persisted across postbacks. For more information on this pattern, read [Understanding ASP.NET View State](https://msdn.microsoft.com/en-us/library/ms972976.aspx).
 
 Next, update the `BindUserAccounts` method so that instead of calling `Membership.GetAllUsers`, it calls `Membership.FindUsersByName`, passing in the value of the `UsernameToMatch` property appended with the SQL wildcard character, %.
 
-    Private Sub BindUserAccounts()
-     UserAccounts.DataSource = Membership.FindUsersByName(Me.UsernameToMatch &"%")
-     UserAccounts.DataBind()
-    End Sub
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample9.xml)]
 
 To display just those users whose username starts with the letter A , set the `UsernameToMatch` property to A and then call `BindUserAccounts` This would result in a call to `Membership.FindUsersByName("A%")`, which will return all users whose username starts with A . Likewise, to return *all* users, assign an empty string to the `UsernameToMatch` property so that the `BindUserAccounts` method will invoke `Membership.FindUsersByName("%")`, thereby returning all user accounts.
 
 Create an event handler for the Repeater's `ItemCommand` event. This event is raised whenever one of the filter LinkButtons is clicked; it is passed the clicked LinkButton's `CommandName` value through the `RepeaterCommandEventArgs` object. We need to assign the appropriate value to the `UsernameToMatch` property and then call the `BindUserAccounts` method. If the `CommandName` is All , assign an empty string to `UsernameToMatch` so that all user accounts are displayed. Otherwise, assign the `CommandName` value to `UsernameToMatch`
 
-    Protected Sub FilteringUI_ItemCommand(ByVal source As Object, ByVal e As System.Web.UI.WebControls.RepeaterCommandEventArgs) Handles FilteringUI.ItemCommand
-     If e.CommandName = "All" Then
-     Me.UsernameToMatch = String.Empty
-     Else
-     Me.UsernameToMatch = e.CommandName
-     End If
-    
-     BindUserAccounts()
-    End Sub
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample10.xml)]
 
 With this code in place, test out the filtering functionality. When the page is first visited, all user accounts are displayed (refer back to Figure 5). Clicking the A LinkButton causes a postback and filters the results, displaying only those user accounts that start with A .
 
@@ -253,12 +183,7 @@ One option would be to create a proxy class that exposes the interface the Objec
 
 Let's build a paging interface with First, Previous, Next, and Last LinkButtons. The First LinkButton, when clicked, will take the user to the first page of data, whereas Previous will return him to the previous page. Likewise, Next and Last will move the user to the next and last page, respectively. Add the four LinkButton controls beneath the `UserAccounts` GridView.
 
-    <p>
-     <asp:LinkButton ID="lnkFirst" runat="server">  First</asp:LinkButton> |
-     <asp:LinkButton ID="lnkPrev" runat="server">  Prev</asp:LinkButton> |
-     <asp:LinkButton ID="lnkNext" runat="server">Next  </asp:LinkButton> |
-     <asp:LinkButton ID="lnkLast" runat="server">Last  </asp:LinkButton>
-    </p>
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample11.xml)]
 
 Next, create an event handler for each of the LinkButton's `Click` events.
 
@@ -274,25 +199,7 @@ Figure 7 shows the four LinkButtons when viewed through the Visual Web Developer
 
 When a user first visits the `ManageUsers.aspx` page or clicks one of the filtering buttons, we want to display the first page of data in the GridView. When the user clicks one of the navigation LinkButtons, however, we need to update the page index. To maintain the page index and the number of records to display per page, add the following two properties to the page's code-behind class:
 
-    Private Property PageIndex() As Integer
-     Get
-     Dim o As Object = ViewState("PageIndex")
-     If o Is Nothing Then
-     Return 0
-     Else
-     Return Convert.ToInt32(o)
-     End If
-     End Get
-     Set(ByVal Value As Integer)
-     ViewState("PageIndex") = Value
-     End Set
-    End Property
-    
-    Private ReadOnly Property PageSize() As Integer
-     Get
-     Return 10
-     End Get
-    End Property
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample12.xml)]
 
 Like the `UsernameToMatch` property, the `PageIndex` property persists its value to view state. The read-only `PageSize` property returns a hard-coded value, 10. I invite the interested reader to update this property to use the same pattern as `PageIndex`, and then to augment the `ManageUsers.aspx` page such that the person visiting the page can specify how many user accounts to display per page.
 
@@ -302,49 +209,13 @@ With the paging interface in place and the `PageIndex` and `PageSize` properties
 
 Update the `BindUserAccounts` method with the following code:
 
-    Private Sub BindUserAccounts()
-     Dim totalRecords As Integer
-     UserAccounts.DataSource = Membership.FindUsersByName(Me.UsernameToMatch + "%", Me.PageIndex, Me.PageSize, totalRecords)
-     UserAccounts.DataBind()
-    
-     ' Enable/disable the paging interface
-     Dim visitingFirstPage As Boolean = (Me.PageIndex = 0)
-     lnkFirst.Enabled = Not visitingFirstPage
-     lnkPrev.Enabled = Not visitingFirstPage
-    
-     Dim lastPageIndex As Integer = (totalRecords - 1) / Me.PageSize
-     Dim visitingLastPage As Boolean = (Me.PageIndex >= lastPageIndex)
-     lnkNext.Enabled = Not visitingLastPage
-     lnkLast.Enabled = Not visitingLastPage
-    End Sub
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample13.xml)]
 
 Note that the total number of records being paged through is determined by the last parameter of the `FindUsersByName` method. After the specified page of user accounts are returned, the four LinkButtons are either enabled or disabled, depending on whether the first or last page of data is being viewed.
 
 The last step is to write the code for the four LinkButtons' `Click` event handlers. These event handlers need to update the `PageIndex` property and then rebind the data to the GridView via a call to `BindUserAccounts` The First, Previous, and Next event handlers are very simple. The `Click` event handler for the Last LinkButton, however, is a bit more complex because we need to determine how many records are being displayed in order to determine the last page index.
 
-    Protected Sub lnkFirst_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lnkFirst.Click
-     Me.PageIndex = 0
-     BindUserAccounts()
-    End Sub
-    
-    Protected Sub lnkPrev_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lnkPrev.Click
-     Me.PageIndex -= 1
-     BindUserAccounts()
-    End Sub
-    
-    Protected Sub lnkNext_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lnkNext.Click
-     Me.PageIndex += 1
-     BindUserAccounts()
-    End Sub
-    
-    Protected Sub lnkLast_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lnkLast.Click
-     ' Determine the total number of records
-     Dim totalRecords As Integer
-     Membership.FindUsersByName(Me.UsernameToMatch + "%", Me.PageIndex, Me.PageSize, totalRecords)
-     ' Navigate to the last page index
-     Me.PageIndex = (totalRecords - 1) / Me.PageSize
-     BindUserAccounts()
-    End Sub
+[!code[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample14.xml)]
 
 Figures 8 and 9 show the custom paging interface in action. Figure 8 shows the `ManageUsers.aspx` page when viewing the first page of data for all user accounts. Note that only 10 of the 13 accounts are displayed. Clicking the Next or Last link causes a postback, updates the `PageIndex` to 1, and binds the second page of user accounts to the grid (see Figure 9).
 

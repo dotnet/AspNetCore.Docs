@@ -42,10 +42,7 @@ You cannot use the System.ComponentModel.DataAnnotations.dll assembly included w
 
 Finally, you need to register the DataAnnotations Model Binder in the Global.asax file. Add the following line of code to the Application\_Start() event handler so that the Application\_Start() method looks like this:
 
-    Protected Sub Application_Start()
-        RegisterRoutes(RouteTable.Routes)
-        ModelBinders.Binders.DefaultBinder = New Microsoft.Web.Mvc.DataAnnotations.DataAnnotationsModelBinder()
-    End Sub
+[!code[Main](validation-with-the-data-annotation-validators-vb/samples/sample1.xml)]
 
 This line of code registers the DataAnnotationsModelBinder as the default model binder for the entire ASP.NET MVC application.
 
@@ -66,56 +63,7 @@ When you use the Data Annotations Model Binder, you use validator attributes to 
 
 The Product class in **Listing 1** illustrates how to use these validator attributes. The Name, Description, and UnitPrice properties are marked as required. The Name property must have a string length that is less than 10 characters. Finally, the UnitPrice property must match a regular expression pattern that represents a currency amount.
 
-    Imports System.ComponentModel
-    Imports System.ComponentModel.DataAnnotations
-    
-    Public Class Product
-    
-        Private _id As Integer
-        Private _name As String
-        Private _description As String
-        Private _unitPrice As Decimal
-    
-        Public Property Id() As Integer
-            Get
-                Return _id
-            End Get
-            Set(ByVal value As Integer)
-                _id = value
-            End Set
-        End Property
-    
-         _
-        Public Property Name() As String
-            Get
-                Return _name
-            End Get
-            Set(ByVal value As String)
-                _name = value
-            End Set
-        End Property
-    
-         _
-        Public Property Description() As String
-            Get
-                Return _description
-            End Get
-            Set(ByVal value As String)
-                _description = value
-            End Set
-        End Property
-    
-         _
-        Public Property UnitPrice() As Decimal
-            Get
-                Return _unitPrice
-            End Get
-            Set(ByVal value As Decimal)
-                _unitPrice = value
-            End Set
-        End Property
-    
-    End Class
+[!code[Main](validation-with-the-data-annotation-validators-vb/samples/sample2.xml)]
 
 **Listing 1**: Models\Product.vb
 
@@ -128,31 +76,7 @@ The Product class illustrates how to use one additional attribute: the DisplayNa
 
 You can use the Product class in **Listing 1** with the Create() controller action in **Listing 2**. This controller action redisplays the Create view when model state contains any errors.
 
-    Public Class ProductController
-        Inherits System.Web.Mvc.Controller
-    
-        '
-        ' GET: /Product/Create
-    
-        Function Create() As ActionResult
-            Return View()
-        End Function
-    
-        '
-        ' POST: /Product/Create
-    
-         _
-        Function Create( ByVal productToCreate As Product) As ActionResult
-    
-            If Not ModelState.IsValid Then
-                Return View()
-            End If
-    
-            Return RedirectToAction("Index")
-    
-        End Function
-    
-    End Class
+[!code[Main](validation-with-the-data-annotation-validators-vb/samples/sample3.xml)]
 
 **Listing 2**: Controllers\ProductController.vb
 
@@ -162,49 +86,7 @@ Finally, you can create the view in **Listing 3** by right-clicking the Create()
 
 **Figure 2**: Adding the Create View
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of MvcApplication1.Product)" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Create
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Create</h2>
-    
-        <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
-    
-        <% Using Html.BeginForm()%>
-    
-            <fieldset>
-                <legend>Fields</legend>
-                <p>
-                    <label for="Name">Name:</label>
-                    <%= Html.TextBox("Name") %>
-                    <%= Html.ValidationMessage("Name", "*") %>
-                </p>
-                <p>
-                    <label for="Description">Description:</label>
-                    <%= Html.TextBox("Description") %>
-                    <%= Html.ValidationMessage("Description", "*") %>
-                </p>
-                <p>
-                    <label for="UnitPrice">UnitPrice:</label>
-                    <%= Html.TextBox("UnitPrice") %>
-                    <%= Html.ValidationMessage("UnitPrice", "*") %>
-                </p>
-                <p>
-                    <input type="submit" value="Create" />
-                </p>
-            </fieldset>
-    
-        <% End Using %>
-    
-        <div>
-            <%=Html.ActionLink("Back to List", "Index") %>
-        </div>
-    
-    </asp:Content>
+[!code[Main](validation-with-the-data-annotation-validators-vb/samples/sample4.xml)]
 
 **Listing 3**: Views\Product\Create.aspx
 
@@ -237,49 +119,7 @@ For example, imagine that you have created a Movie class using the Entity Framew
 
 **Figure 5**: Movie class generated by Entity Framework
 
-    Imports System.ComponentModel
-    Imports System.ComponentModel.DataAnnotations
-    
-     _
-    Partial Public Class Movie
-    End Class
-    
-    Public Class MovieMetaData
-    
-        Private _title As Object
-        Private _director As Object
-        Private _dateReleased As Object
-    
-         _
-        Public Property Title() As Object
-            Get
-                Return _title
-            End Get
-            Set(ByVal value As Object)
-                _title = value
-            End Set
-        End Property
-    
-         _
-        Public Property Director() As Object
-            Get
-                Return _director
-            End Get
-            Set(ByVal value As Object)
-                _director = value
-            End Set
-        End Property
-    
-         _
-        Public Property DateReleased() As Object
-            Get
-                Return _dateReleased
-            End Get
-            Set(ByVal value As Object)
-                _dateReleased = value
-            End Set
-        End Property
-    End Class
+[!code[Main](validation-with-the-data-annotation-validators-vb/samples/sample5.xml)]
 
 **Listing 4**: Models\Movie.vb
 

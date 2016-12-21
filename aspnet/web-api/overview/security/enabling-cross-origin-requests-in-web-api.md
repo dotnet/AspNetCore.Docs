@@ -78,38 +78,7 @@ Start Visual Studio and create a new **ASP.NET Web Application** project. Select
 
 Add a Web API controller named `TestController` with the following code:
 
-    using System.Net.Http;
-    using System.Web.Http;
-    
-    namespace WebService.Controllers
-    {
-        public class TestController : ApiController
-        {
-            public HttpResponseMessage Get()
-            {
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent("GET: Test message")
-                };
-            }
-    
-            public HttpResponseMessage Post()
-            {
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent("POST: Test message")
-                };
-            }
-    
-            public HttpResponseMessage Put()
-            {
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent("PUT: Test message")
-                };
-            }
-        }
-    }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample1.xml)]
 
 You can run the application locally or deploy to Azure. (For the screenshots in this tutorial, I deployed to Azure App Service Web Apps.) To verify that the web API is working, navigate to `http://hostname/api/test/`, where *hostname* is the domain where you deployed the application. You should see the response text, &quot;GET: Test Message&quot;.
 
@@ -124,7 +93,7 @@ Create another ASP.NET Web Application project and select the **MVC** project te
 
 In Solution Explorer, open the file Views/Home/Index.cshtml. Replace the code in this file with the following:
 
-[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample1.xml?highlight=13)]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample2.xml?highlight=13)]
 
 For the *serviceUrl* variable, use the URI of the WebService app. Now run the WebClient app locally or publish it to another website.
 
@@ -142,17 +111,17 @@ Clicking the "Try It" button submits an AJAX request to the WebService app, usin
 
 Now let's enable CORS in the WebService app. First, add the CORS NuGet package. In Visual Studio, from the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
 
-    Install-Package Microsoft.AspNet.WebApi.Cors
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample3.xml)]
 
 This command installs the latest package and updates all dependencies, including the core Web API libraries. User the -Version flag to target a specific version. The CORS package requires Web API 2.0 or later.
 
 Open the file App\_Start/WebApiConfig.cs. Add the following code to the **WebApiConfig.Register** method.
 
-[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample2.xml?highlight=9)]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample4.xml?highlight=9)]
 
 Next, add the **[EnableCors]** attribute to the `TestController` class:
 
-[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample3.xml?highlight=3,7)]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample5.xml?highlight=3,7)]
 
 For the *origins* parameter, use the URI where you deployed the WebClient application. This allows cross-origin requests from WebClient, while still disallowing all other cross-domain requests. Later, I'll describe the parameters for **[EnableCors]** in more detail.
 
@@ -171,11 +140,11 @@ The CORS specification introduces several new HTTP headers that enable cross-ori
 
 Here is an example of a cross-origin request. The "Origin" header gives the domain of the site that is making the request.
 
-[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample4.xml?highlight=5)]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample6.xml?highlight=5)]
 
 If the server allows the request, it sets the Access-Control-Allow-Origin header. The value of this header either matches the Origin header, or is the wildcard value "\*", meaning that any origin is allowed.
 
-[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample5.xml?highlight=5)]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample7.xml?highlight=5)]
 
 If the response does not include the Access-Control-Allow-Origin header, the AJAX request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser does not make the response available to the client application.
 
@@ -197,7 +166,7 @@ The rule about request headers applies to headers that the application sets by c
 
 Here is an example of a preflight request:
 
-[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample6.xml?highlight=4-5)]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample8.xml?highlight=4-5)]
 
 The pre-flight request uses the HTTP OPTIONS method. It includes two special headers:
 
@@ -206,7 +175,7 @@ The pre-flight request uses the HTTP OPTIONS method. It includes two special hea
 
 Here is an example response, assuming that the server allows the request:
 
-[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample7.xml?highlight=6-7)]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample9.xml?highlight=6-7)]
 
 The response includes an Access-Control-Allow-Methods header that lists the allowed methods, and optionally an Access-Control-Allow-Headers header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request, as described earlier.
 
@@ -219,45 +188,19 @@ You can enable CORS per action, per controller, or globally for all Web API cont
 
 To enable CORS for a single action, set the **[EnableCors]** attribute on the action method. The following example enables CORS for the `GetItem` method only.
 
-    public class ItemsController : ApiController
-    {
-        public HttpResponseMessage GetAll() { ... }
-    
-        [EnableCors(origins: "http://www.example.com", headers: "*", methods: "*")]
-        public HttpResponseMessage GetItem(int id) { ... }
-    
-        public HttpResponseMessage Post() { ... }
-        public HttpResponseMessage PutItem(int id) { ... }
-    }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample10.xml)]
 
 **Per Controller**
 
 If you set **[EnableCors]** on the controller class, it applies to all the actions on the controller. To disable CORS for an action, add the **[DisableCors]** attribute to the action. The following example enables CORS for every method except `PutItem`.
 
-    [EnableCors(origins: "http://www.example.com", headers: "*", methods: "*")]
-    public class ItemsController : ApiController
-    {
-        public HttpResponseMessage GetAll() { ... }
-        public HttpResponseMessage GetItem(int id) { ... }
-        public HttpResponseMessage Post() { ... }
-    
-        [DisableCors]
-        public HttpResponseMessage PutItem(int id) { ... }
-    }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample11.xml)]
 
 **Globally**
 
 To enable CORS for all Web API controllers in your application, pass an **EnableCorsAttribute** instance to the **EnableCors** method:
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            var cors = new EnableCorsAttribute("www.example.com", "*", "*");
-            config.EnableCors(cors);
-            // ...
-        }
-    }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample12.xml)]
 
 If you set the attribute at more than one scope, the order of precedence is:
 
@@ -270,36 +213,27 @@ If you set the attribute at more than one scope, the order of precedence is:
 
 The *origins* parameter of the **[EnableCors]** attribute specifies which origins are allowed to access the resource. The value is a comma-separated list of the allowed origins.
 
-    [EnableCors(origins: "http://www.contoso.com,http://www.example.com", 
-        headers: "*", methods: "*")]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample13.xml)]
 
 You can also use the wildcard value "\*" to allow requests from any origins.
 
 Consider carefully before allowing requests from any origin. It means that literally any website can make AJAX calls to your web API.
 
-    // Allow CORS for all origins. (Caution!)
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample14.xml)]
 
 <a id="allowed-methods"></a>
 ## Set the Allowed HTTP Methods
 
 The *methods* parameter of the **[EnableCors]** attribute specifies which HTTP methods are allowed to access the resource. To allow all methods, use the wildcard value "\*". The following example allows only GET and POST requests.
 
-    [EnableCors(origins: "http://www.example.com", headers: "*", methods: "get,post")]
-    public class TestController : ApiController
-    {
-        public HttpResponseMessage Get() { ... }
-        public HttpResponseMessage Post() { ... }
-        public HttpResponseMessage Put() { ... }    
-    }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample15.xml)]
 
 <a id="allowed-request-headers"></a>
 ## Set the Allowed Request Headers
 
 Earlier I described how a preflight request might include an Access-Control-Request-Headers header, listing the HTTP headers set by the application (the so-called "author request headers"). The *headers* parameter of the **[EnableCors]** attribute specifies which author request headers are allowed. To allow any headers, set *headers* to "\*". To whitelist specific headers, set *headers* to a comma-separated list of the allowed headers:
 
-    [EnableCors(origins: "http://example.com", 
-        headers: "accept,content-type,origin,x-my-header", methods: "*")]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample16.xml)]
 
 However, browsers are not entirely consistent in how they set Access-Control-Request-Headers. For example, Chrome currently includes "origin"; while FireFox does not include standard headers such as "Accept", even when the application sets them in script.
 
@@ -321,19 +255,7 @@ The CORS spec calls these [simple response headers](https://dvcs.w3.org/hg/cors/
 
 In the following example, the controller's `Get` method sets a custom header named ‘X-Custom-Header'. By default, the browser will not expose this header in a cross-origin request. To make the header available, include ‘X-Custom-Header' in *exposedHeaders*.
 
-    [EnableCors(origins: "*", headers: "*", methods: "*", exposedHeaders: "X-Custom-Header")]
-    public class TestController : ApiController
-    {
-        public HttpResponseMessage Get()
-        {
-            var resp = new HttpResponseMessage()
-            {
-                Content = new StringContent("GET: Test message")
-            };
-            resp.Headers.Add("X-Custom-Header", "hello");
-            return resp;
-        }
-    }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample17.xml)]
 
 <a id="credentials"></a>
 ## Passing Credentials in Cross-Origin Requests
@@ -342,23 +264,15 @@ Credentials require special handling in a CORS request. By default, the browser 
 
 Using **XMLHttpRequest** directly:
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', 'http://www.example.com/api/test');
-    xhr.withCredentials = true;
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample18.xml)]
 
 In jQuery:
 
-    $.ajax({
-        type: 'get',
-        url: 'http://www.example.com/api/test',
-        xhrFields: {
-            withCredentials: true
-        }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample19.xml)]
 
 In addition, the server must allow the credentials. To allow cross-origin credentials in Web API, set the **SupportsCredentials** property to true on the **[EnableCors]** attribute:
 
-    [EnableCors(origins: "http://myclient.azurewebsites.net", headers: "*", 
-        methods: "*", SupportsCredentials = true)]
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample20.xml)]
 
 If this property is true, the HTTP response will include an Access-Control-Allow-Credentials header. This header tells the browser that the server allows credentials for a cross-origin request.
 
@@ -371,64 +285,21 @@ Be very careful about setting **SupportsCredentials** to true, because it means 
 
 The **[EnableCors]** attribute implements the **ICorsPolicyProvider** interface. You can provide your own implementation by creating a class that derives from **Attribute** and implements **ICorsProlicyProvider**.
 
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false)]
-    public class MyCorsPolicyAttribute : Attribute, ICorsPolicyProvider 
-    {
-        private CorsPolicy _policy;
-    
-        public MyCorsPolicyAttribute()
-        {
-            // Create a CORS policy.
-            _policy = new CorsPolicy
-            {
-                AllowAnyMethod = true,
-                AllowAnyHeader = true
-            };
-    
-            // Add allowed origins.
-            _policy.Origins.Add("http://myclient.azurewebsites.net");
-            _policy.Origins.Add("http://www.contoso.com");
-        }
-    
-        public Task<CorsPolicy> GetCorsPolicyAsync(HttpRequestMessage request)
-        {
-            return Task.FromResult(_policy);
-        }
-    }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample21.xml)]
 
 Now you can apply the attribute any place that you would put **[EnableCors]**.
 
-    [MyCorsPolicy]
-    public class TestController : ApiController
-    {
-        .. //
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample22.xml)]
 
 For example, a custom CORS policy provider could read the settings from a configuration file.
 
 As an alternative to using attributes, you can register an **ICorsPolicyProviderFactory** object that creates **ICorsPolicyProvider** objects.
 
-    public class CorsPolicyFactory : ICorsPolicyProviderFactory
-    {
-        ICorsPolicyProvider _provider = new MyCorsPolicyProvider();
-    
-        public ICorsPolicyProvider GetCorsPolicyProvider(HttpRequestMessage request)
-        {
-            return _provider;
-        }
-    }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample23.xml)]
 
 To set the **ICorsPolicyProviderFactory**, call the **SetCorsPolicyProviderFactory** extension method at startup, as follows:
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            config.SetCorsPolicyProviderFactory(new CorsPolicyFactory());
-            config.EnableCors();
-    
-            // ...
-        }
-    }
+[!code[Main](enabling-cross-origin-requests-in-web-api/samples/sample24.xml)]
 
 <a id="browser-support"></a>
 ## Browser Support

@@ -73,56 +73,17 @@ In this tutorial, you'll create a server that's hosted in a console application,
 2. Open the library package manager console by selecting **Tools**, **Library Package Manager**, **Package Manager Console**.
 3. In the package manager console, enter the following command:
 
-        Install-Package Microsoft.AspNet.SignalR.SelfHost
+    [!code[Main](tutorial-signalr-self-host/samples/sample1.xml)]
 
     This command adds the SignalR 2 Self-Host libraries to the project.
 4. In the package manager console, enter the following command:
 
-        Install-Package Microsoft.Owin.Cors
+    [!code[Main](tutorial-signalr-self-host/samples/sample2.xml)]
 
     This command adds the Microsoft.Owin.Cors library to the project. This library will be used for cross-domain support, which is required for applications that host SignalR and a web page client in different domains. Since you'll be hosting the SignalR server and the web client on different ports, this means that cross-domain must be enabled for communication between these components.
 5. Replace the contents of Program.cs with the following code.
 
-        using System;
-        using Microsoft.AspNet.SignalR;
-        using Microsoft.Owin.Hosting;
-        using Owin;
-        using Microsoft.Owin.Cors;
-        
-        namespace SignalRSelfHost
-        {
-            class Program
-            {
-                static void Main(string[] args)
-                {
-                    // This will *ONLY* bind to localhost, if you want to bind to all addresses
-                    // use http://*:8080 to bind to all addresses. 
-                    // See https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx 
-                    // for more information.
-                    string url = "http://localhost:8080";
-                    using (WebApp.Start(url))
-                    {
-                        Console.WriteLine("Server running on {0}", url);
-                        Console.ReadLine();
-                    }
-                }
-            }
-            class Startup
-            {
-                public void Configuration(IAppBuilder app)
-                {
-                    app.UseCors(CorsOptions.AllowAll);
-                    app.MapSignalR();
-                }
-            }
-            public class MyHub : Hub
-            {
-                public void Send(string name, string message)
-                {
-                    Clients.All.addMessage(name, message);
-                }
-            }
-        }
+    [!code[Main](tutorial-signalr-self-host/samples/sample3.xml)]
 
     The above code includes three classes:
 
@@ -149,7 +110,7 @@ In this section, you'll use the same JavaScript client from the [Getting Started
     ![](tutorial-signalr-self-host/_static/image4.png)
 3. In the package manager console, select the "JavascriptClient" project in the **Default project** drop-down, and execute the following command:
 
-        Install-Package Microsoft.AspNet.SignalR.JS
+    [!code[Main](tutorial-signalr-self-host/samples/sample4.xml)]
 
     This command installs the SignalR and JQuery libraries that you'll need in the client.
 4. Right-click on your project and select **Add**, **New Item**. Select the **Web** node, and select HTML Page. Name the page **Default.html**.
@@ -157,12 +118,11 @@ In this section, you'll use the same JavaScript client from the [Getting Started
     ![](tutorial-signalr-self-host/_static/image5.png)
 5. Replace the contents of the new HTML page with the following code. Verify that the script references here match the scripts in the Scripts folder of the project.
 
-    [!code[Main](tutorial-signalr-self-host/samples/sample1.xml?highlight=31-32)]
+    [!code[Main](tutorial-signalr-self-host/samples/sample5.xml?highlight=31-32)]
 
     The following code (highlighted in the code sample above) is the addition that you've made to the client used in the Getting Stared tutorial (in addition to upgrading the code to SignalR version 2 beta). This line of code explicitly sets the base connection URL for SignalR on the server.
 
-        //Set the hubs URL for the connection
-        $.connection.hub.url = "http://localhost:8080/signalr";
+    [!code[Main](tutorial-signalr-self-host/samples/sample6.xml)]
 6. Right-click on the solution, and select **Set Startup Projects...**. Select the **Multiple startup projects** radio button, and set both projects' **Action** to **Start**.
 
     ![](tutorial-signalr-self-host/_static/image6.png)

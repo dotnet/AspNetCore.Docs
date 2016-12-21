@@ -68,37 +68,7 @@ After completing the ObjectDataSource wizard, Visual Studio will add BoundFields
 After adding the Panel, Button, GridView, and ObjectDataSource controls and customizing the GridView s fields, your page s declarative markup should look similar to the following:
 
 
-    <asp:Panel ID="DisplayInterface" runat="server">
-        <p>
-            <asp:Button ID="ProcessShipment" runat="server" 
-                Text="Process Product Shipment" /> 
-        </p>
-        <asp:GridView ID="ProductsGrid" runat="server" AllowPaging="True" 
-            AllowSorting="True" AutoGenerateColumns="False" 
-            DataKeyNames="ProductID" DataSourceID="ProductsDataSource">
-            <Columns>
-                <asp:BoundField DataField="ProductName" HeaderText="Product" 
-                    SortExpression="ProductName" />
-                <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                    ReadOnly="True" SortExpression="CategoryName" />
-                <asp:BoundField DataField="SupplierName" HeaderText="Supplier" 
-                    ReadOnly="True" SortExpression="SupplierName" />
-                <asp:BoundField DataField="UnitPrice" DataFormatString="{0:c}" 
-                    HeaderText="Price" HtmlEncode="False" 
-                    SortExpression="UnitPrice">
-                    <ItemStyle HorizontalAlign="Right" />
-                </asp:BoundField>
-                <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued" 
-                    SortExpression="Discontinued">
-                    <ItemStyle HorizontalAlign="Center" />
-                </asp:CheckBoxField>
-            </Columns>
-        </asp:GridView>
-        <asp:ObjectDataSource ID="ProductsDataSource" runat="server" 
-            OldValuesParameterFormatString="original_{0}"
-            SelectMethod="GetProducts" TypeName="ProductsBLL">
-        </asp:ObjectDataSource>
-    </asp:Panel>
+[!code[Main](batch-inserting-vb/samples/sample1.xml)]
 
 Note that the markup for the Button and GridView appear within the opening and closing `<asp:Panel>` tags. Since these controls are within the `DisplayInterface` Panel, we can hide them by simply setting the Panel s `Visible` property to `False`. Step 3 looks at programmatically changing the Panel s `Visible` property in response to a button click to show one interface while hiding the other.
 
@@ -124,76 +94,12 @@ Next, we need to create the inserting interface that was shown back in Figure 1.
 Enter the following markup within the `<asp:Panel>` tags of the `InsertingInterface` Panel:
 
 
-    <table class="DataWebControlStyle" cellspacing="0">
-        <tr class="BatchInsertHeaderRow">
-            <td class="BatchInsertLabel">Supplier:</td>
-            <td></td>
-            <td class="BatchInsertLabel">Category:</td>
-            <td></td>
-        </tr>
-        <tr class="BatchInsertRow">
-            <td class="BatchInsertLabel">Product:</td>
-            <td></td>
-            <td class="BatchInsertLabel">Price:</td>
-            <td></td>
-        </tr>
-        <tr class="BatchInsertAlternatingRow">
-            <td class="BatchInsertLabel">Product:</td>
-            <td></td>
-            <td class="BatchInsertLabel">Price:</td>
-            <td></td>
-        </tr>
-        <tr class="BatchInsertRow">
-            <td class="BatchInsertLabel">Product:</td>
-            <td></td>
-            <td class="BatchInsertLabel">Price:</td>
-            <td></td>
-        </tr>
-        <tr class="BatchInsertAlternatingRow">
-            <td class="BatchInsertLabel">Product:</td>
-            <td></td>
-            <td class="BatchInsertLabel">Price:</td>
-            <td></td>
-        </tr>
-        <tr class="BatchInsertRow">
-            <td class="BatchInsertLabel">Product:</td>
-            <td></td>
-            <td class="BatchInsertLabel">Price:</td>
-            <td></td>
-        </tr>
-        <tr class="BatchInsertFooterRow">
-            <td colspan="4">
-            </td>
-        </tr>
-    </table>
+[!code[Main](batch-inserting-vb/samples/sample2.xml)]
 
 This `<table>` markup does not include any Web controls yet, we'll add those momentarily. Note that each `<tr>` element contains a particular CSS class setting: `BatchInsertHeaderRow` for the header row where the supplier and category DropDownLists will go; `BatchInsertFooterRow` for the footer row where the Add Products from Shipment and Cancel Buttons will go; and alternating `BatchInsertRow` and `BatchInsertAlternatingRow` values for the rows that will contain the product and unit price TextBox controls. I ve created corresponding CSS classes in the `Styles.css` file to give the inserting interface an appearance similar to the GridView and DetailsView controls we ve used throughout these tutorials. These CSS classes are shown below.
 
 
-    /*** Styles for ~/BatchData/BatchInsert.aspx tutorial ***/
-    .BatchInsertLabel
-    {
-        font-weight: bold;
-        text-align: right;
-    }
-    .BatchInsertHeaderRow td
-    {
-        color: White;
-        background-color: #900;
-        padding: 11px;
-    }
-    .BatchInsertFooterRow td
-    {
-        text-align: center;
-        padding-top: 5px;
-    }
-    .BatchInsertRow
-    {
-    }
-    .BatchInsertAlternatingRow
-    {
-        background-color: #fcc;
-    }
+[!code[Main](batch-inserting-vb/samples/sample3.xml)]
 
 With this markup entered, return to the Design view. This `<table>` should show as a four-column, seven-row table in the Designer, as Figure 6 illustrates.
 
@@ -276,11 +182,7 @@ Currently, the display interface is visible but the inserting interface is hidde
 We want to move from the display interface to the inserting interface when the Process Product Shipment button is clicked. Therefore, create an event handler for this Button s `Click` event that contains the following code:
 
 
-    Protected Sub ProcessShipment_Click(sender As Object, e As EventArgs) _
-        Handles ProcessShipment.Click
-        DisplayInterface.Visible = False
-        InsertingInterface.Visible = True
-    End Sub
+[!code[Main](batch-inserting-vb/samples/sample4.xml)]
 
 This code simply hides the `DisplayInterface` Panel and shows the `InsertingInterface` Panel.
 
@@ -289,32 +191,7 @@ Next, create event handlers for the Add Products from Shipment and Cancel Button
 > [!NOTE] Consider what might happen if we didn t return the controls to their pre-editing state before returning to the display interface. A user might click the Process Product Shipment button, enter the products from the shipment, and then click Add Products from Shipment . This would add the products and return the user to the display interface. At this point the user might want to add another shipment. Upon clicking the Process Product Shipment button they would return to the inserting interface but the DropDownList selections and TextBox values would still be populated with their previous values.
 
 
-    Protected Sub AddProducts_Click(sender As Object, e As EventArgs) _
-        Handles AddProducts.Click
-        ' TODO: Save the products
-        ' Revert to the display interface
-        ReturnToDisplayInterface()
-    End Sub
-    Protected Sub CancelButton_Click(sender As Object, e As EventArgs) _
-        Handles CancelButton.Click
-        ' Revert to the display interface
-        ReturnToDisplayInterface()
-    End Sub
-    Const firstControlID As Integer = 1
-    Const lastControlID As Integer = 5
-    Private Sub ReturnToDisplayInterface()
-        ' Reset the control values in the inserting interface
-        Suppliers.SelectedIndex = 0
-        Categories.SelectedIndex = 0
-        For i As Integer = firstControlID To lastControlID
-            CType(InsertingInterface.FindControl _
-                ("ProductName" + i.ToString()), TextBox).Text = String.Empty
-            CType(InsertingInterface.FindControl _
-                ("UnitPrice" + i.ToString()), TextBox).Text = String.Empty
-        Next
-        DisplayInterface.Visible = True
-        InsertingInterface.Visible = False
-    End Sub
+[!code[Main](batch-inserting-vb/samples/sample5.xml)]
 
 Both `Click` event handlers simply call the `ReturnToDisplayInterface` method, although we'll return to the Add Products from Shipment `Click` event handler in Step 4 and add code to save the products. `ReturnToDisplayInterface` starts by returning the `Suppliers` and `Categories` DropDownLists to their first options. The two constants `firstControlID` and `lastControlID` mark the starting and ending control index values used in naming the product name and unit price TextBoxes in the inserting interface and are used in the bounds of the `For` loop that sets the `Text` properties of the TextBox controls back to an empty string. Finally, the Panels `Visible` properties are reset so that the inserting interface is hidden and the display interface shown.
 
@@ -335,67 +212,7 @@ All that remains for this tutorial is to save the products to the database in th
 The code for the Add Products from Shipment Button s `Click` event handler also needs to perform a bit of error checking. Since there are no RequiredFieldValidators used in the inserting interface, a user could enter a price for a product while omitting its name. Since the product s name is required, if such a condition unfolds we need to alert the user and not proceed with the inserts. The complete `Click` event handler code follows:
 
 
-    Protected Sub AddProducts_Click(sender As Object, e As EventArgs) _
-        Handles AddProducts.Click
-        ' Make sure that the UnitPrice CompareValidators report valid data...
-        If Not Page.IsValid Then Exit Sub
-        ' Add new ProductsRows to a ProductsDataTable...
-        Dim products As New Northwind.ProductsDataTable()
-        For i As Integer = firstControlID To lastControlID
-            ' Read in the values for the product name and unit price
-            Dim productName As String = CType(InsertingInterface.FindControl _
-                ("ProductName" + i.ToString()), TextBox).Text.Trim()
-            Dim unitPrice As String = CType(InsertingInterface.FindControl _
-                ("UnitPrice" + i.ToString()), TextBox).Text.Trim()
-            ' Ensure that if unitPrice has a value, so does productName
-            If unitPrice.Length > 0 AndAlso productName.Length = 0 Then
-                ' Display a warning and exit this event handler
-                StatusLabel.Text = "If you provide a unit price you must also 
-                                    include the name of the product."
-                StatusLabel.Visible = True
-                Exit Sub
-            End If
-            ' Only add the product if a product name value is provided
-            If productName.Length > 0 Then
-                ' Add a new ProductsRow to the ProductsDataTable
-                Dim newProduct As Northwind.ProductsRow = products.NewProductsRow()
-                ' Assign the values from the web page
-                newProduct.ProductName = productName
-                newProduct.SupplierID = Convert.ToInt32(Suppliers.SelectedValue)
-                newProduct.CategoryID = Convert.ToInt32(Categories.SelectedValue)
-                If unitPrice.Length > 0 Then
-                    newProduct.UnitPrice = Convert.ToDecimal(unitPrice)
-                End If
-                ' Add any "default" values
-                newProduct.Discontinued = False
-                newProduct.UnitsOnOrder = 0
-                products.AddProductsRow(newProduct)
-            End If
-        Next
-        ' If we reach here, see if there were any products added
-        If products.Count > 0 Then
-            ' Add the new products to the database using a transaction
-            Dim productsAPI As New ProductsBLL()
-            productsAPI.UpdateWithTransaction(products)
-            ' Rebind the data to the grid so that the producst just added are displayed
-            ProductsGrid.DataBind()
-            ' Display a confirmation (don't use the Warning CSS class, though)
-            StatusLabel.CssClass = String.Empty
-            StatusLabel.Text = String.Format( _
-                "{0} products from supplier {1} have been " & _
-                "added and filed under category {2}.", _
-                products.Count, Suppliers.SelectedItem.Text, Categories.SelectedItem.Text)
-            StatusLabel.Visible = True
-            ' Revert to the display interface
-            ReturnToDisplayInterface()
-        Else
-            ' No products supplied!
-            StatusLabel.Text = 
-                "No products were added. Please enter the " & _
-                "product names and unit prices in the textboxes."
-            StatusLabel.Visible = True
-        End If
-    End Sub
+[!code[Main](batch-inserting-vb/samples/sample6.xml)]
 
 The event handler starts by ensuring that the `Page.IsValid` property returns a value of `True`. If it returns `False`, then that means one or more of the CompareValidators are reporting invalid data; in such a case we do not want to attempt to insert the entered products or we'll end up with an exception when attempting to assign the user-entered unit price value to the `ProductsRow` s `UnitPrice` property.
 

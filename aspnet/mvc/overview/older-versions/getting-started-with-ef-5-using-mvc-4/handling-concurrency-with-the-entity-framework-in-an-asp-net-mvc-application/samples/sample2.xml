@@ -1,1 +1,2 @@
-ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FullName");
+    modelBuilder.Entity<Department>()
+        .Property(p => p.RowVersion).IsConcurrencyToken();

@@ -32,148 +32,36 @@ The solution used in this tutorial can be downloaded from [CodePlex](http://aspn
 
 1. Define the CLR types.
 
-        /// <summary> 
-        /// Present the EntityType "Employee" 
-        /// </summary> 
-        public class Employee 
-        {     
-            public int ID { get; set; }     
-            public string Name { get; set; }  
-           
-            [Singleton]     
-            public Company Company { get; set; } 
-        } 
-        /// <summary> 
-        /// Present company category, which is an enum type 
-        /// </summary> 
-        public enum CompanyCategory 
-        { 
-            IT = 0,     
-            Communication = 1,     
-            Electronics = 2,     
-            Others = 3 
-        } 
-        /// <summary> 
-        /// Present the EntityType "Company" 
-        /// </summary> 
-        public class Company 
-        {
-             public int ID { get; set; }
-             public string Name { get; set; }
-             public Int64 Revenue { get; set; }
-             public CompanyCategory Category { get; set; }
-             public List<Employee> Employees { get; set; } 
-        }
+    [!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample1.xml)]
 2. Generate the EDM model based on the CLR types.
 
-        public static IEdmModel GetEdmModel() 
-        { 
-            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Employee>("Employees"); builder.Singleton<Company>("Umbrella");
-            builder.Namespace = typeof(Company).Namespace;
-            return builder.GetEdmModel(); 
-        }
+    [!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample2.xml)]
 
     Here, `builder.Singleton<Company>("Umbrella")` tells the model builder to create a singleton named `Umbrella` in the EDM model.
 
     The generated metadata will look like the following:
 
-        <EntityContainer Name="Container"> 
-          <EntitySet Name="Employees" EntityType="ODataSingletonSample.Employee"> 
-            <NavigationPropertyBinding Path="Company" Target="Umbrella"/> 
-          </EntitySet> 
-          <Singleton Name="Umbrella" Type="ODataSingletonSample.Company"> 
-            <NavigationPropertyBinding Path="Employees" Target="Employees"/> 
-          </Singleton> 
-        </EntityContainer>
+    [!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample3.xml)]
 
     From the metadata we can see that the navigation property `Company` in the `Employees` entity set is bound to the singleton `Umbrella`. The binding is done automatically by `ODataConventionModelBuilder`, since only `Umbrella` has the `Company` type. If there is any ambiguity in the model, you can use `HasSingletonBinding` to explicitly bind a navigation property to a singleton; `HasSingletonBinding` has the same effect as using the `Singleton` attribute in the CLR type definition:
 
-        EntitySetConfiguration<Employee> employeesConfiguration = 
-            builder.EntitySet<Employee>("Employees"); 
-        employeesConfiguration.HasSingletonBinding(c => c.Company, "Umbrella");
+    [!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample4.xml)]
 
 ## Define the singleton controller
 
 Like the EntitySet controller, the singleton controller inherits from `ODataController`, and the singleton controller name should be `[singletonName]Controller`.
 
-    public class UmbrellaController : ODataController 
-    {
-        public static Company Umbrella;
-        static UmbrellaController()
-        {
-            InitData();
-        }
-        private static void InitData()
-        {
-            Umbrella = new Company()
-            {
-                ID = 1,
-                Name = "Umbrella",
-                Revenue = 1000,
-                Category = CompanyCategory.Communication,
-                Employees = new List<Employee>()
-            };
-        } 
-    }
+[!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample5.xml)]
 
 In order to handle different kinds of requests, actions are required to be pre-defined in the controller. **Attribute routing** is enabled by default in WebApi 2.2. For example, to define an action to handle querying `Revenue` from `Company` using attribute routing, use the following:
 
-    [ODataRoute("Umbrella/Revenue")] 
-    public IHttpActionResult GetCompanyRevenue() 
-    {
-         return Ok(Umbrella.Revenue); 
-    }
+[!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample6.xml)]
 
 If you are not willing to define attributes for each action, just define your actions following [OData Routing Conventions](../odata-routing-conventions.md). Since a key is not required for querying a singleton, the actions defined in the singleton controller are slightly different from actions defined in the entityset controller.
 
 For reference, method signatures for every action definition in the singleton controller are listed below.
 
-    // Get Singleton 
-    // ~/singleton 
-    public IHttpActionResult Get() 
-    public IHttpActionResult GetUmbrella() 
-    
-    // Get Singleton 
-    // ~/singleton/cast 
-    public IHttpActionResult GetFromSubCompany() 
-    public IHttpActionResult GetUmbrellaFromSubCompany() 
-    
-    // Get Singleton Property 
-    // ~/singleton/property  
-    public IHttpActionResult GetName() 
-    public IHttpActionResult GetNameFromCompany() 
-    
-    // Get Singleton Navigation Property 
-    // ~/singleton/navigation  
-    public IHttpActionResult GetEmployees() 
-    public IHttpActionResult GetEmployeesFromCompany() 
-    
-    // Update singleton by PUT 
-    // PUT ~/singleton 
-    public IHttpActionResult Put(Company newCompany) 
-    public IHttpActionResult PutUmbrella(Company newCompany) 
-    
-    // Update singleton by Patch 
-    // PATCH ~/singleton 
-    public IHttpActionResult Patch(Delta<Company> item) 
-    public IHttpActionResult PatchUmbrella(Delta<Company> item) 
-    
-    // Add navigation link to singleton 
-    // POST ~/singleton/navigation/$ref 
-    public IHttpActionResult CreateRef(string navigationProperty, [FromBody] Uri link) 
-    
-    // Delete navigation link from singleton 
-    // DELETE ~/singleton/navigation/$ref?$id=~/relatedKey 
-    public IHttpActionResult DeleteRef(string relatedKey, string navigationProperty) 
-    
-    // Add a new entity to singleton navigation property 
-    // POST ~/singleton/navigation 
-    public IHttpActionResult PostToEmployees([FromBody] Employee employee) 
-    
-    // Call function bounded to singleton 
-    // GET ~/singleton/function() 
-    public IHttpActionResult GetEmployeesCount()
+[!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample7.xml)]
 
 Basically, this is all you need to do on the service side. The [sample project](http://aspnet.codeplex.com/sourcecontrol/latest#Samples/WebApi/OData/v4/ODataSingletonSample/) contains all of the code for the solution and the OData client that shows how to use the singleton. The client is built by following the steps in [Create an OData v4 Client App](create-an-odata-v4-client-app.md).
 

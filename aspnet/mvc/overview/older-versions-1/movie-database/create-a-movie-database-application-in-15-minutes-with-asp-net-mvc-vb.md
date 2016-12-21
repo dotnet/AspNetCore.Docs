@@ -211,95 +211,7 @@ After you complete these steps, the controller in Listing 1 is created. Notice t
 
 **Listing 1 – Controllers\HomeController.vb**
 
-    Public Class HomeController
-    
-            Inherits System.Web.Mvc.Controller 
-    
-            '
-    
-            ' GET: /Home/ 
-    
-            Function Index() As ActionResult
-    
-                Return View()
-    
-            End Function 
-    
-            '
-    
-            ' GET: /Home/Details/5 
-    
-            Function Details(ByVal id As Integer) As ActionResult
-    
-                Return View()
-    
-            End Function 
-    
-            '
-    
-            ' GET: /Home/Create 
-    
-            Function Create() As ActionResult
-    
-                Return View()
-    
-            End Function 
-    
-            '
-    
-            ' POST: /Home/Create 
-    
-            <AcceptVerbs(HttpVerbs.Post)> _
-    
-            Function Create(ByVal collection As FormCollection) As ActionResult
-    
-                Try
-    
-                    ' TODO: Add insert logic here
-    
-                    Return RedirectToAction("Index")
-    
-                Catch
-    
-                    Return View()
-    
-                End Try
-    
-            End Function 
-    
-            '
-    
-            ' GET: /Home/Edit/5 
-    
-            Function Edit(ByVal id As Integer) As ActionResult
-    
-                Return View()
-    
-            End Function 
-    
-            '
-    
-            ' POST: /Home/Edit/5 
-    
-            <AcceptVerbs(HttpVerbs.Post)> _
-    
-            Function Edit(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
-    
-                Try
-    
-                    ' TODO: Add update logic here 
-    
-                    Return RedirectToAction("Index")
-    
-                Catch
-    
-                    Return View()
-    
-                End Try
-    
-            End Function
-    
-        End Class
+[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample1.xml)]
 
 ## Listing Database Records
 
@@ -315,19 +227,7 @@ The list of movies is passed to the view. Anything that gets passed to the View(
 
 **Listing 2 – Controllers/HomeController.vb (modified Index method)**
 
-    Public Class HomeController
-    
-            Inherits System.Web.Mvc.Controller 
-    
-            Private _db As New MoviesDBEntities() 
-    
-            Function Index() As ActionResult
-    
-                Return View(_db.MovieSet.ToList())
-    
-            End Function
-    
-        End Class
+[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample2.xml)]
 
 The Index() method returns a view named Index. We need to create this view to display the list of movie database records. Follow these steps:
 
@@ -354,99 +254,7 @@ After you complete these steps, a new view named Index.aspx is added to the View
 **Figure 10**: Creating a new view with the Add View dialog ([Click to view full-size image](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/_static/image20.png))
 
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of IEnumerable (Of MovieApp.Movie))" %> 
-    
-        <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    
-           Index
-    
-        </asp:Content> 
-    
-        <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server"> 
-    
-            <h2>Index</h2> 
-    
-            <p>
-    
-                <%=Html.ActionLink("Create New", "Create")%>
-    
-            </p>
-    
-            <table>
-    
-                <tr>
-    
-                    <th></th>
-    
-                    <th>
-    
-                        Id
-    
-                    </th>
-    
-                    <th>
-    
-                        Title
-    
-                    </th>
-    
-                    <th>
-    
-                        Director
-    
-                    </th>
-    
-                    <th>
-    
-                        DateReleased
-    
-                    </th>
-    
-                </tr> 
-    
-            <% For Each item In Model%>
-    
-                <tr>
-    
-                    <td>
-    
-                        <%=Html.ActionLink("Edit", "Edit", New With {.id = item.Id})%> |
-    
-                        <%=Html.ActionLink("Details", "Details", New With {.id = item.Id})%>
-    
-                    </td>
-    
-                    <td>
-    
-                        <%= Html.Encode(item.Id) %>
-    
-                    </td>
-    
-                    <td>
-    
-                        <%= Html.Encode(item.Title) %>
-    
-                    </td>
-    
-                    <td>
-    
-                        <%= Html.Encode(item.Director) %>
-    
-                    </td>
-    
-                    <td>
-    
-                        <%= Html.Encode(String.Format("{0:g}", item.DateReleased)) %>
-    
-                    </td>
-    
-                </tr>
-    
-            <% Next%> 
-    
-            </table> 
-    
-        </asp:Content>
+[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample3.xml)]
 
 The Index view displays all of the movie records from the Movies database table within an HTML table. The view contains a For Each loop that iterates through each movie represented by the ViewData.Model property. If you run your application by hitting the F5 key, then you'll see the web page in Figure 11.
 
@@ -473,30 +281,7 @@ This second Create() method has been modified in the updated HomeController clas
 
 **Listing 4 – Controllers\HomeController.vb (modified Create method)**
 
-    Function Create() As ActionResult
-    
-                Return View()
-    
-            End Function 
-    
-            <AcceptVerbs(HttpVerbs.Post)> _
-    
-            Function Create(<_bind28_exclude3a_3d_22_id22_29_> ByVal movieToCreate As Movie) As ActionResult 
-    
-                If Not ModelState.IsValid Then
-    
-                    Return View()
-    
-                End If 
-    
-                _db.AddToMovieSet(movieToCreate)
-    
-                _db.SaveChanges() 
-    
-                Return RedirectToAction("Index")
-    
-            End Function 
-    <!--_bind28_exclude3a_3d_22_id22_29_-->
+[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample4.xml)]
 
 Visual Studio makes it easy to create the form for creating a new movie database record (see Figure 12). Follow these steps:
 
@@ -516,83 +301,7 @@ Visual Studio generates the view in Listing 5 automatically. This view contains 
 
 **Listing 5 – Views\Home\Create.aspx**
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of MovieApp.Movie)" %> 
-    
-        <asp:Content ID="Content3" ContentPlaceHolderID="TitleContent" runat="server">
-    
-           Create
-    
-        </asp:Content> 
-    
-        <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server"> 
-    
-            <h2>Create</h2> 
-    
-            <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %> 
-    
-            <% Using Html.BeginForm()%> 
-    
-                <fieldset>
-    
-                    <legend>Fields</legend>
-    
-                    <p>
-    
-                        <label for="Id">Id:</label>
-    
-                        <%= Html.TextBox("Id") %>
-    
-                        <%= Html.ValidationMessage("Id", "*") %>
-    
-                    </p>
-    
-                    <p>
-    
-                        <label for="Title">Title:</label>
-    
-                        <%= Html.TextBox("Title") %>
-    
-                        <%= Html.ValidationMessage("Title", "*") %>
-    
-                    </p>
-    
-                    <p>
-    
-                        <label for="Director">Director:</label>
-    
-                        <%= Html.TextBox("Director") %>
-    
-                        <%= Html.ValidationMessage("Director", "*") %>
-    
-                    </p>
-    
-                    <p>
-    
-                        <label for="DateReleased">DateReleased:</label>
-    
-                        <%= Html.TextBox("DateReleased") %>
-    
-                        <%= Html.ValidationMessage("DateReleased", "*") %>
-    
-                    </p>
-    
-                    <p>
-    
-                        <input type="submit" value="Create" />
-    
-                    </p>
-    
-                </fieldset> 
-    
-            <% End Using %> 
-    
-            <div>
-    
-                <%=Html.ActionLink("Back to List", "Index") %>
-    
-            </div> 
-    
-        </asp:Content>
+[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample5.xml)]
 
 > [!NOTE] 
 > 
@@ -638,41 +347,7 @@ Finally, we need to modify the Home controller so that it supports editing a dat
 
 **Listing 6 – Controllers\HomeController.vb (Edit methods)**
 
-    Function Edit(ByVal id As Integer) As ActionResult
-    
-                Dim movieToEdit = (From m In _db.MovieSet _
-    
-                               Where m.Id = id _
-    
-                               Select m).First() 
-    
-                Return View(movieToEdit)
-    
-            End Function 
-    
-            <AcceptVerbs(HttpVerbs.Post)> _
-    
-            Function Edit(ByVal movieToEdit As Movie) As ActionResult 
-    
-                Dim originalMovie = (From m In _db.MovieSet _
-    
-                           Where m.Id = movieToEdit.Id _
-    
-                           Select m).First() 
-    
-                If Not ModelState.IsValid Then
-    
-                    Return View(originalMovie)
-    
-                End If 
-    
-                _db.ApplyPropertyChanges(originalMovie.EntityKey.EntitySetName, movieToEdit)
-    
-                _db.SaveChanges() 
-    
-                Return RedirectToAction("Index")
-    
-            End Function
+[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample6.xml)]
 
 In Listing 6, I've added additional logic to both overloads of the Edit() method. The first Edit() method returns the movie database record that corresponds to the Id parameter passed to the method. The second overload performs the updates to a movie record in the database.
 

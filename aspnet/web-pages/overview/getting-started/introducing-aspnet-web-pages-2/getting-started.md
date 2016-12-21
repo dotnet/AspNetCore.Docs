@@ -216,22 +216,7 @@ Notice that the different parts of the page &mdash; the element names, attribute
   
  Add content for the `<head>` and `<body>` elements like in the following example. (If you want, you can just copy the following block and replace the entire existing page with this code.)
 
-    @{
-    
-    }
-    
-    <!DOCTYPE html>
-    
-    <html lang="en">
-        <head>
-            <meta charset="utf-8" />
-            <title>Hello World Page</title>
-        </head>
-        <body>
-            <h1>Hello World Page</h1>
-            <p>Hello World!</p>
-        </body>
-    </html>
+[!code[Main](getting-started/samples/sample1.xml)]
 
 In the Quick Access Toolbar or in the **File** menu, click **Save**.
 
@@ -259,15 +244,13 @@ Close the browser and go back to the page in WebMatrix.
 
 Add a line to the code block so that it looks like the following code:
 
-    @{
-       var currentDateTime = DateTime.Now;
-    }
+[!code[Main](getting-started/samples/sample2.xml)]
 
 This is a little bit of Razor code. It's probably clear that it gets the current date and time and puts that value into a *variable* named `currentDateTime`. You'll read more about Razor syntax in the next tutorial.
 
 In the body of the page, after the `<p>Hello World!</p>` element, add the following:
 
-    <p>Right now it's @currentDateTime</p>
+[!code[Main](getting-started/samples/sample3.xml)]
 
 This code gets the value that you put into the `currentDateTime` variable at the top and inserts it into the markup of the page. The `@` character marks the ASP.NET Web Pages code in the page.
 
@@ -279,19 +262,7 @@ Wait a few moments and then refresh the page in the browser. The date and time d
 
 In the browser, look at the page source. It looks like the following markup:
 
-    <!DOCTYPE html>
-    
-    <html lang="en">
-        <head>
-            <meta charset="utf-8" />
-            <title>Hello World Page</title>
-        </head>
-        <body>
-            <h1>Hello World Page</h1>
-            <p>Hello World!</p>
-            <p>Right now it's 1/18/2012 2:49:50 PM</p>
-        </body>
-    </html>
+[!code[Main](getting-started/samples/sample4.xml)]
 
 Notice that the `@{ }` block at the top isn't there. Also notice that the date and time display shows an actual string of characters (`1/18/2012 2:49:50 PM` or whatever), not `@currentDateTime` like you had in the *.cshtml* page. What happened here is that when you ran the page, ASP.NET processed all the code (very little in this case) that was marked with `@`. The code produces output, and that output was inserted into the page.
 

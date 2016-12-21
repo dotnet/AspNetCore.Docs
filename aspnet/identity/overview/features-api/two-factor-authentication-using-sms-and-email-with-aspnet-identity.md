@@ -100,12 +100,7 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
   
  Make the credentials and sender phone number available to the app:
 
-        public static class Keys
-        {
-           public static string SMSAccountIdentification = "My Idenfitication";
-           public static string SMSAccountPassword = "My Password";
-           public static string SMSAccountFrom = "+15555551234";
-        }
+    [!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample1.xml)]
 
     > [!NOTE] **Security Note:** Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See Jon Atten's [ASP.NET MVC: Keep Private Settings Out of Source Control](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx).
 6. **Implementation of data transfer to SMS provider**  
@@ -114,37 +109,7 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
   
  Depending on the used SMS provider activate either the     **Twilio** or the     **ASPSMS** section: 
 
-        public class SmsService : IIdentityMessageService
-        {
-            public Task SendAsync(IdentityMessage message)
-            {
-                // Twilio Begin
-                // var Twilio = new TwilioRestClient(
-                //   Keys.SMSAccountIdentification,
-                //   Keys.SMSAccountPassword);
-                // var result = Twilio.SendMessage(
-                //   Keys.SMSAccountFrom,
-                //   message.Destination, message.Body
-                // );
-                // Status is one of Queued, Sending, Sent, Failed or null if the number is not valid
-                // Trace.TraceInformation(result.Status);
-                // Twilio doesn't currently have an async API, so return success.
-                // return Task.FromResult(0);
-                // Twilio End
-        
-                // ASPSMS Begin 
-                // var soapSms = new WebApplication1.ASPSMSX2.ASPSMSX2SoapClient("ASPSMSX2Soap");
-                // soapSms.SendSimpleTextSMS(
-                //   Keys.SMSAccountIdentification,
-                //   Keys.SMSAccountPassword,
-                //   message.Destination,
-                //   Keys.SMSAccountFrom,
-                //   message.Body);
-                // soapSms.Close();
-                // return Task.FromResult(0);
-                // ASPSMS End
-            }
-        }
+    [!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample2.xml)]
 7. Run the app and log in with the account you previously registered.
 8. Click on your User ID, which activates the `Index` action method in `Manage` controller.  
   
@@ -161,7 +126,7 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
 
 ### Examine the code
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample1.xml?highlight=2)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample3.xml?highlight=2)]
 
 The `Index` action method in `Manage` controller sets the status message based on your previous action and provides links to change your local password or add a local account. The `Index` method also displays the state or your 2FA phone number, external logins, 2FA enabled, and remember 2FA method for this browser(explained later). Clicking on your user ID (email) in the title bar doesn't pass a message. Clicking on the **Phone Number : remove** link passes `Message=RemovePhoneSuccess` as a query string.  
   
@@ -171,17 +136,13 @@ The `Index` action method in `Manage` controller sets the status message based o
 
 The `AddPhoneNumber` action method displays a dialog box to enter a phone number that can receive SMS messages.
 
-    // GET: /Account/AddPhoneNumber
-    public ActionResult AddPhoneNumber()
-    {
-       return View();
-    }
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample4.xml)]
 
 ![](two-factor-authentication-using-sms-and-email-with-aspnet-identity/_static/image7.png)
 
 Clicking on the **Send verification code** button posts the phone number to the HTTP POST `AddPhoneNumber` action method.
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample2.xml?highlight=12)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample5.xml?highlight=12)]
 
 The `GenerateChangePhoneNumberTokenAsync` method generates the security token which will be set in the SMS message. If the SMS service has been configured, the token is sent as the string &quot;Your security code is &lt;token&gt;&quot;. The `SmsService.SendAsync` method to is called asynchronously, then the app is redirected to the `VerifyPhoneNumber` action method (which displays the following dialog), where you can enter the verification code.
 
@@ -189,43 +150,11 @@ The `GenerateChangePhoneNumberTokenAsync` method generates the security token wh
 
 Once you enter the code and click submit, the code is posted to the HTTP POST `VerifyPhoneNumber` action method.
 
-    // POST: /Account/VerifyPhoneNumber
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
-    {
-        if (!ModelState.IsValid)
-        {
-            return View(model);
-        }
-        var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
-        if (result.Succeeded)
-        {
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
-                await SignInAsync(user, isPersistent: false);
-            }
-            return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
-        }
-        // If we got this far, something failed, redisplay form
-        ModelState.AddModelError("", "Failed to verify phone");
-        return View(model);
-    }
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample6.xml)]
 
 The `ChangePhoneNumberAsync` method checks the posted security code. If the code is correct, the phone number is added to the `PhoneNumber` field of the `AspNetUsers` table. If that call is successful, the `SignInAsync` method is called:
 
-    private async Task SignInAsync(ApplicationUser user, bool isPersistent)
-    {
-       // Clear the temporary cookies used for external and two factor sign ins
-        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie, 
-           DefaultAuthenticationTypes.TwoFactorCookie);
-        AuthenticationManager.SignIn(new AuthenticationProperties
-        {
-           IsPersistent = isPersistent 
-        }, 
-           await user.GenerateUserIdentityAsync(UserManager));
-    }
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample7.xml)]
 
 The `isPersistent` parameter sets whether the authentication session is persisted across multiple requests.
 
@@ -235,9 +164,9 @@ The cookie middleware checks the cookie on each request. The `SecurityStampValid
 
 The `SignInAsync` method needs to be called when any change is made to the security profile. When the security profile changes, the database is updates the `SecurityStamp` field, and without calling the `SignInAsync` method you would stay logged in *only* until the next time the OWIN pipeline hits the database (the `validateInterval`). You can test this by changing the `SignInAsync` method to return immediately, and setting the cookie `validateInterval` property from 30 minutes to 5 seconds:
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample3.xml?highlight=3)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample8.xml?highlight=3)]
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample4.xml?highlight=20-21)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample9.xml?highlight=20-21)]
 
 With the above code changes, you can change your security profile (for example, by changing the state of **Two Factor Enabled**) and you will be logged out in 5 seconds when the `SecurityStampValidator.OnValidateIdentity` method fails. Remove the return line in the `SignInAsync` method, make another security profile change and you will not be logged out. The `SignInAsync` method generates a new security cookie.
 
@@ -253,34 +182,13 @@ Click on enable 2FA.![](two-factor-authentication-using-sms-and-email-with-aspne
 
 When you create a new MVC project, the *IdentityConfig.cs* file contains the following code to register a Two-factor authentication provider:
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample5.xml?highlight=22-35)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample10.xml?highlight=22-35)]
 
 ## Add a phone number for 2FA
 
 The `AddPhoneNumber` action method in the `Manage` controller generates a security token and sends it to the phone number you have provided.
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
-    {
-        if (!ModelState.IsValid)
-        {
-            return View(model);
-        }
-        // Generate the token and send it
-        var code = await UserManager.GenerateChangePhoneNumberTokenAsync(
-           User.Identity.GetUserId(), model.Number);
-        if (UserManager.SmsService != null)
-        {
-            var message = new IdentityMessage
-            {
-                Destination = model.Number,
-                Body = "Your security code is: " + code
-            };
-            await UserManager.SmsService.SendAsync(message);
-        }
-        return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
-    }
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample11.xml)]
 
 After sending the token, it redirects to the `VerifyPhoneNumber` action method, where you can enter the code to register SMS for 2FA. SMS 2FA is not used until you have verified the phone number.
 
@@ -288,18 +196,7 @@ After sending the token, it redirects to the `VerifyPhoneNumber` action method, 
 
 The `EnableTFA` action method enables 2FA:
 
-    // POST: /Manage/EnableTFA
-    [HttpPost]
-    public async Task<ActionResult> EnableTFA()
-    {
-        await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
-        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-        if (user != null)
-        {
-            await SignInAsync(user, isPersistent: false);
-        }
-        return RedirectToAction("Index", "Manage");
-    }
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample12.xml)]
 
 Note the `SignInAsync` must be called because enable 2FA is a change to the security profile. When 2FA is enabled, the user will need to use 2FA to log in, using the 2FA approaches they have registered (SMS and email in the sample).
 
@@ -336,46 +233,33 @@ Clicking on **Pick a password** allows you to add a local log on associated with
 
 You can protect the accounts on your app from dictionary attacks by enabling user lockout. The following code in the `ApplicationUserManager Create` method configures lock out:
 
-    // Configure user lockout defaults
-    manager.UserLockoutEnabledByDefault = true;
-    manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
-    manager.MaxFailedAccessAttemptsBeforeLockout = 5;
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample13.xml)]
 
 The code above enables lockout for two factor authentication only. While you can enable lock out for logins by changing `shouldLockout` to true in the `Login` method of the account controller, we recommend you not enable lock out for logins because it makes the account susceptible to [DOS](http://en.wikipedia.org/wiki/Denial-of-service_attack) login attacks. In the sample code, lockout is disabled for the admin account created in the `ApplicationDbInitializer Seed` method:
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample6.xml?highlight=19)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample14.xml?highlight=19)]
 
 ## Requiring a user to have a validated email account
 
 The following code requires a user to have a validated email account before they can log in:
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample7.xml?highlight=8-17)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample15.xml?highlight=8-17)]
 
 ## How SignInManager checks for 2FA requirement
 
 Both the local log in and social log in check to see if 2FA is enabled. If 2FA is enabled, the `SignInManager` logon method returns `SignInStatus.RequiresVerification`, and the user will be redirected to the `SendCode` action method, where they will have to enter the code to complete the log in sequence. If the user has RememberMe is set on the users local cookie, the `SignInManager` will return `SignInStatus.Success` and they will not have to go through 2FA.
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample8.xml?highlight=20-22)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample16.xml?highlight=20-22)]
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample9.xml?highlight=10-11,17-18)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample17.xml?highlight=10-11,17-18)]
 
 The following code shows the `SendCode` action method. A [SelectListItem](https://msdn.microsoft.com/en-us/library/system.web.mvc.selectlistitem.aspx) is created with all the 2FA methods enabled for the user. The [SelectListItem](https://msdn.microsoft.com/en-us/library/system.web.mvc.selectlistitem.aspx) is passed to the [DropDownListFor](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.dropdownlist.aspx) helper, which allows the user to select the 2FA approach (typically email and SMS).
 
-    public async Task<ActionResult> SendCode(string returnUrl)
-    {
-        var userId = await SignInManager.GetVerifiedUserIdAsync();
-        if (userId == null)
-        {
-            return View("Error");
-        }
-        var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
-        var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-        return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl });
-    }
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample18.xml)]
 
 Once the user posts the 2FA approach, the `HTTP POST SendCode` action method is called, the `SignInManager` sends the 2FA code, and the user is redirected to the `VerifyCode` action method where they can enter the code to complete the log in.
 
-[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample10.xml?highlight=3,13-14,18)]
+[!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample19.xml?highlight=3,13-14,18)]
 
 ## 2FA Lockout
 

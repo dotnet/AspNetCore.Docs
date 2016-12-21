@@ -33,14 +33,14 @@ Before we get into looking at how to configure data source controls, we should c
 
 The snippet below adds a new connection string.
 
-    <connectionStrings> <add name="Northwind" connectionString="Data Source=localhost; Integrated Security=SSPI;Initial Catalog=Northwind;" providerName="System.Data.SqlClient" /> </connectionStrings>
+[!code[Main](data-source-controls/samples/sample1.xml)]
 
 > [!NOTE] Just as with the &lt;appSettings&gt; section, the &lt;connectionStrings&gt; section appears outside of the &lt;system.web&gt; section in the configuration file.
 
 
 To use this connection string, you can use the following syntax when setting the ConnectionString attribute of a server control.
 
-    ConnectionString="<%$ ConnectionStrings:Northwind%>"
+[!code[Main](data-source-controls/samples/sample2.xml)]
 
 The &lt;connectionStrings&gt; section can also be encrypted so that sensitive information is not exposed. That ability will be covered in a later module.
 
@@ -77,7 +77,7 @@ In order to use the SqlDataSource, you simply provide a value for the Connection
 
 The code snippet below binds a DropDownList control to a SqlDataSource control using the connection string that is stored in the configuration file as shown above.
 
-    <asp:SqlDataSource id="SqlDataSource1" runat="server" DataSourceMode="DataReader" ConnectionString="<%$ ConnectionStrings:Northwind%>" SelectCommand="SELECT EmployeeID, LastName FROM Employees"> </asp:SqlDataSource><asp:DropDownList id="ListBox1" runat="server" DataTextField="LastName" DataValueField="EmployeeID" DataSourceID="SqlDataSource1"> </asp:DropDownList>
+[!code[Main](data-source-controls/samples/sample3.xml)]
 
 As illustrated above, the DataSourceMode property of the SqlDataSource specifies the mode for the data source. In the example above, the DataSourceMode is set to DataReader. In that case, the SqlDataSource will return an IDataReader object using a forward-only and read-only cursor. The specified type of object that is returned is controlled by the provider that is used. In this case, I'm using the System.Data.SqlClient provider as specified in the &lt;connectionStrings&gt; section of the web.config file. Therefore, the object that is returned will be of type SqlDataReader. By specifying a DataSourceMode value of DataSet, the data can be stored in a DataSet on the server. This mode allows you to add features such as sorting, paging, etc. If I had been data-binding the SqlDataSource to a GridView control, I would have chosen the DataSet mode. However, in the case of a DropDownList, the DataReader mode is the correct choice.
 
@@ -148,7 +148,7 @@ Returns the parameters that are used by the UpdateCommand of the SqlDataSourceVi
 
 The AccessDataSource control derives from the SqlDataSource class and is used to data-bind to a Microsoft Access database. The ConnectionString property for the AccessDataSource control is a read-only property. Instead of using the ConnectionString property, the DataFile property is used to point to the Access Database as shown below.
 
-    <asp:AccessDataSource id="AccessDataSource1" runat="server" DataFile="~/App_Data/Northwind.mdb"> </asp:AccessDataSource>
+[!code[Main](data-source-controls/samples/sample4.xml)]
 
 The AccessDataSource will always set the ProviderName of the base SqlDataSource to System.Data.OleDb and connects to the database using the Microsoft.Jet.OLEDB.4.0 OLE DB provider. You cannot use the AccessDataSource control to connect to a password-protected Access database. If you have to connect to a password protected database, you should use the SqlDataSource control.
 
@@ -161,7 +161,7 @@ The XmlDataSource is used to data-bind XML data to data-bound controls. You can 
 
 Consider the following XML file:
 
-    <?xml version="1.0" encoding="utf-8" ?> <People> <Person FirstName="Jake" LastName="Stone"> <Address> <Street>345 Maple St.</Street> <City>Redmond</City> <Region>WA</Region> <ZipCode>01434</ZipCode> </Address> <Job> <Title>CEO</Title> <Description>Develops company strategies.</Description> </Job> </Person> <Person FirstName="Jacob" LastName="Ladder"> <Address> <Street>123 Elm St.</Street> <City>Seattle</City> <Region>WA</Region> <ZipCode>11223</ZipCode> </Address> <Job> <Title>Attorney</Title> <Description>Reviews legal issues.</Description> </Job> </Person> <Person FirstName="Angela" LastName="Hound"> <Address> <Street>34 Palm Avenue</Street> <City>Renton</City> <Region>WA</Region> <ZipCode>63910</ZipCode> </Address> <Job> <Title>IT Director</Title> <Description>In charge of corporate network.</Description> </Job> </Person> </People>
+[!code[Main](data-source-controls/samples/sample5.xml)]
 
 Notice that the XmlDataSource uses an XPath property of *People/Person* in order to filter on just the &lt;Person&gt; nodes. The DropDownList then data-binds to the LastName attribute using the DataTextField property.
 
@@ -207,16 +207,10 @@ The following exercise uses the SqlDataSource control to connect to the Northwin
     2. Choose Web Configuration File from the list of templates and click Add.
 3. Edit the &lt;connectionStrings&gt; section as follows: 
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server"
-            ConnectionString="<%$ConnectionStrings:Northwind%>"
-            SelectCommand="SELECT * FROM Products">
-        </asp:SqlDataSource>
+    [!code[Main](data-source-controls/samples/sample6.xml)]
 4. Switch to Code view and add a ConnectionString attribute and a SelectCommand attribute to the &lt;asp:SqlDataSource&gt; control as follows: 
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server"
-            ConnectionString="<%$ConnectionStrings:Northwind%>"
-            SelectCommand="SELECT * FROM Products">
-        </asp:SqlDataSource>
+    [!code[Main](data-source-controls/samples/sample7.xml)]
 5. From Design view, add a new GridView control.
 6. From the Choose Data Source dropdown in the GridView Tasks menu, choose SqlDataSource1.
 7. Right-click on Default.aspx and choose View in Browser from the menu. Click Yes when prompted to save.
@@ -233,32 +227,20 @@ The following exercise demonstrates how to data bind a DropDownList control usin
 3. Switch to Source view.
 4. Add a DataSourceId, DataTextField, and DataValueField attribute to the &lt;asp:DropDownList&gt; control as follows: 
 
-        <asp:DropDownList ID="ddlProducts" runat="server"
-             DataSourceId="SqlDataSource1" DataTextField="ProductName"
-             DataValueField="ProductID">
-        </asp:DropDownList>
+    [!code[Main](data-source-controls/samples/sample8.xml)]
 5. Save Default.aspx and view it in the browser. Note that the DropDownList contains all of the products from the Northwind database.
 6. Close the browser.
 7. In Source view of Default.aspx, add a new TextBox control below the DropDownList control. Change the ID property of the TextBox to txtProductName.
 8. Under the TextBox control, add a new Button control. Change the ID property of the Button to btnUpdate and the Text property to **Update Product Name**.
 9. In Source view of Default.aspx, add an UpdateCommand property and two new UpdateParameters to the SqlDataSource tag as follows: 
 
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server"
-            ConnectionString="<%$ConnectionStrings:Northwind%>"
-            SelectCommand="SELECT * FROM Products"
-            UpdateCommand="UPDATE Products SET ProductName=@ProductName WHERE ProductID=@ProductID">
-              <UpdateParameters>
-              <asp:ControlParameter Name="ProductName" 
-                ControlID="txtProductName" PropertyName="Text" />
-              <asp:ControlParameter Name="ProductID" 
-                ControlID="ddlProducts" PropertyName="SelectedValue" />
-        </asp:SqlDataSource>
+    [!code[Main](data-source-controls/samples/sample9.xml)]
 
     > Note that there are two update parameters (ProductName and ProductID) added in this code. These parameters are mapped to the Text property of the txtProductName TextBox and the SelectedValue property of the ddlProducts DropDownList.
 10. Switch to Design view and double-click on the Button control to add an event handler.
 11. Add the following code to the btnUpdate\_Click code: 
 
-        SqlDataSource1.Update();
+    [!code[Main](data-source-controls/samples/sample10.xml)]
 12. Right-click on Default.aspx and choose to view it in the browser. Click Yes when prompted to save all changes.
 13. ASP.NET 2.0 partial classes allow for compilation at runtime. It is not necessary to build an application in order to see code changes take effect.
 14. Select a product from the DropDownList.
@@ -276,470 +258,9 @@ This exercise will demonstrate how to use the ObjectDataSource control and a sou
 5. Click Yes when prompted to add the class to the App\_Code folder.
 6. Add the following code to the NorthwindData.cs file: 
 
-        using System;
-        using System.Data;
-        using System.Configuration;
-        using System.Web;
-        using System.Web.Security;
-        using System.Web.UI;
-        using System.Web.UI.WebControls;
-        using System.Web.UI.WebControls.WebParts;
-        using System.Web.UI.HtmlControls;
-        using System.Data.SqlClient;
-        public class NorthwindData {
-            private string _connectionString;
-            public NorthwindData() {
-                Initialize();
-            }
-        
-            private void Initialize() {
-                if (ConfigurationManager.ConnectionStrings["Northwind"] == null ||
-                    ConfigurationManager.ConnectionStrings["Northwind"].ConnectionString.Trim() == "") {
-                        throw new Exception("A connection string named 'Northwind' with " +
-                        "a valid connection string must exist in the <connectionStrings> " +
-                        "configuration section for the application.");
-                }
-                _connectionString = ConfigurationManager.ConnectionStrings["Northwind"].ConnectionString;
-            }
-        
-            public DataTable GetAllEmployees(string sortColumns, int startRecord, int maxRecords) {
-                VerifySortColumns(sortColumns);
-                string sqlCmd = "SELECT EmployeeID, LastName, FirstName, Address, " +
-                    "City, Region, PostalCode FROM Employees ";
-                if (sortColumns.Trim() == "")
-                    sqlCmd += "ORDER BY EmployeeID";
-                else
-                    sqlCmd += "ORDER BY " + sortColumns;
-        
-                SqlConnection conn = new SqlConnection(_connectionString);
-                SqlDataAdapter da = new SqlDataAdapter(sqlCmd, conn);
-                DataSet ds = new DataSet();
-                try {
-                    conn.Open();
-                    da.Fill(ds, startRecord, maxRecords, "Employees");
-                } catch (SqlException e) {
-                    // Handle exception.
-                } finally {
-                    conn.Close();
-                }
-                return ds.Tables["Employees"];
-            }
-        
-            public int SelectCount() {
-                SqlConnection conn = new SqlConnection(_connectionString);
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Employees", conn);
-                int result = 0;
-        
-                try {
-                    conn.Open();
-                    result = (int)cmd.ExecuteScalar();
-                } catch (SqlException e) {
-                    // Handle exception.
-                } finally {
-                    conn.Close();
-                }
-                return result;
-            }
-        
-            //////////
-            // Verify that only valid columns are specified in the sort expression to
-            // avoid a SQL Injection attack.
-            private void VerifySortColumns(string sortColumns) {
-                if (sortColumns.ToLowerInvariant().EndsWith(" desc"))
-                    sortColumns = sortColumns.Substring(0, sortColumns.Length - 5);
-                string[] columnNames = sortColumns.Split(',');
-                foreach (string columnName in columnNames) {
-                    switch (columnName.Trim().ToLowerInvariant()) {
-                        case "employeeid":
-                            break;
-                        case "lastname":
-                            break;
-                        case "firstname":
-                            break;
-                        case "":
-                            break;
-                        default:
-                            throw new ArgumentException("SortColumns contains an " +
-                                "invalid column name.");
-                            break;
-                    }
-                }
-            }
-        
-            // Select an employee.
-            public DataTable GetEmployee(int EmployeeID) {
-                SqlConnection conn = new SqlConnection(_connectionString);
-                SqlDataAdapter da =
-                    new SqlDataAdapter("SELECT EmployeeID, LastName, FirstName, " +
-                    "Address, City, Region, PostalCode " +
-                    " FROM Employees WHERE EmployeeID = @EmployeeID", conn);
-                da.SelectCommand.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = EmployeeID;
-                DataSet ds = new DataSet();
-                try {
-                    conn.Open();
-                    da.Fill(ds, "Employees");
-                } catch (SqlException e) {
-                    // Handle exception.
-                } finally {
-                    conn.Close();
-                }
-        
-                return ds.Tables["Employees"];
-            }
-        
-            // Delete the Employee by ID.
-            public int DeleteEmployee(int EmployeeID) {
-                 SqlConnection conn = new SqlConnection(_connectionString);
-                 SqlCommand cmd = new SqlCommand("DELETE FROM Employees WHERE " +
-                     "EmployeeID = @EmployeeID", conn);
-                 cmd.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = EmployeeID;
-                 int result = 0;
-                 try {
-                     conn.Open();
-                     result = cmd.ExecuteNonQuery();
-                 } catch (SqlException e) {
-                     // Handle exception.
-                 } finally {
-                     conn.Close();
-                 }
-        
-                 return result;
-             }
-        
-             // Update the Employee by original ID.
-             public int UpdateEmployee(int EmployeeID, string LastName, string FirstName,
-                 string Address, string City, string Region,
-                 string PostalCode) {
-                 if (String.IsNullOrEmpty(FirstName))
-                     throw new ArgumentException("FirstName cannot be null or an empty string.");
-                 if (String.IsNullOrEmpty(LastName))
-                     throw new ArgumentException("LastName cannot be null or an empty string.");
-                 if (Address == null) { Address = String.Empty; }
-                 if (City == null) { City = String.Empty; }
-                 if (Region == null) { Region = String.Empty; }
-                 if (PostalCode == null) { PostalCode = String.Empty; }
-        
-                 SqlConnection conn = new SqlConnection(_connectionString);
-                 SqlCommand cmd = new SqlCommand("UPDATE Employees " +
-                     " SET FirstName=@FirstName, " +
-                     "LastName=@LastName, " +
-                     "Address=@Address, City=@City, " +
-                     "Region=@Region, " +
-                     "PostalCode=@PostalCode " +
-                     "WHERE EmployeeID=@EmployeeID", conn);
-                 cmd.Parameters.Add("@FirstName", SqlDbType.VarChar, 10).Value = FirstName;
-                 cmd.Parameters.Add("@LastName", SqlDbType.VarChar, 20).Value = LastName;
-                 cmd.Parameters.Add("@Address", SqlDbType.VarChar, 60).Value = Address;
-                 cmd.Parameters.Add("@City", SqlDbType.VarChar, 15).Value = City;
-                 cmd.Parameters.Add("@Region", SqlDbType.VarChar, 15).Value = Region;
-                 cmd.Parameters.Add("@PostalCode", SqlDbType.VarChar, 10).Value = PostalCode;
-                 cmd.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = EmployeeID;
-        
-                 int result = 0;
-                 try {
-                     conn.Open();
-                     result = cmd.ExecuteNonQuery();
-                 } catch (SqlException e) {
-                     // Handle exception.
-                 } finally {
-                     conn.Close();
-                 }
-        
-                 return result;
-            }
-        
-            // Insert an Employee.
-            public int InsertEmployee(string LastName, string FirstName,
-                string Address, string City, string Region,
-                string PostalCode) {
-                if (String.IsNullOrEmpty(FirstName))
-                    throw new ArgumentException("FirstName cannot be null or an empty string.");
-                if (String.IsNullOrEmpty(LastName))
-                    throw new ArgumentException("LastName cannot be null or an empty string.");
-                if (Address == null) { Address = String.Empty; }
-                if (City == null) { City = String.Empty; }
-                if (Region == null) { Region = String.Empty; }
-                if (PostalCode == null) { PostalCode = String.Empty; }
-        
-                SqlConnection conn = new SqlConnection(_connectionString);
-                SqlCommand cmd = new SqlCommand("INSERT INTO Employees " +
-                    " (FirstName, LastName, Address, " +
-                    " City, Region, PostalCode) " +
-                    " Values(@FirstName, @LastName, " +
-                    "@Address, @City, @Region, @PostalCode); " +
-                    "SELECT @EmployeeID = SCOPE_IDENTITY()", conn);
-        
-                cmd.Parameters.Add("@FirstName", SqlDbType.VarChar, 10).Value = FirstName;
-                cmd.Parameters.Add("@LastName", SqlDbType.VarChar, 20).Value = LastName;
-                cmd.Parameters.Add("@Address", SqlDbType.VarChar, 60).Value = Address;
-                cmd.Parameters.Add("@City", SqlDbType.VarChar, 15).Value = City;
-                cmd.Parameters.Add("@Region", SqlDbType.VarChar, 15).Value = Region;
-                cmd.Parameters.Add("@PostalCode", SqlDbType.VarChar, 10).Value = PostalCode;
-                SqlParameter p = cmd.Parameters.Add("@EmployeeID", SqlDbType.Int);
-                    p.Direction = ParameterDirection.Output;
-                int newEmployeeID = 0;
-                try {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    newEmployeeID = (int)p.Value;
-                } catch (SqlException e) {
-                    // Handle exception.
-                } finally {
-                    conn.Close();
-                }
-        
-                return newEmployeeID;
-            }
-        
-            //
-            // Methods that support Optimistic Concurrency checks.
-            //
-            // Delete the Employee by ID.
-            public int DeleteEmployee(int original_EmployeeID, string original_LastName,
-                string original_FirstName, string original_Address,
-                string original_City, string original_Region,
-                string original_PostalCode) {
-        
-                if (String.IsNullOrEmpty(original_FirstName))
-                    throw new ArgumentException("FirstName cannot be null or an empty string.");
-                if (String.IsNullOrEmpty(original_LastName))
-                    throw new ArgumentException("LastName cannot be null or an empty string.");
-                if (original_Address == null) { original_Address = String.Empty; }
-                if (original_City == null) { original_City = String.Empty; }
-                if (original_Region == null) { original_Region = String.Empty; }
-                if (original_PostalCode == null) { original_PostalCode = String.Empty; }
-                string sqlCmd = "DELETE FROM Employees WHERE EmployeeID = " + @original_EmployeeID
-        
-                SqlConnection conn = new SqlConnection(_connectionString);
-                SqlCommand cmd = new SqlCommand(sqlCmd, conn);
-                cmd.Parameters.Add("@original_EmployeeID",
-                    SqlDbType.Int).Value = original_EmployeeID;
-                cmd.Parameters.Add("@original_FirstName",
-                    SqlDbType.VarChar, 10).Value = original_FirstName;
-                cmd.Parameters.Add("@original_LastName",
-                    SqlDbType.VarChar, 20).Value = original_LastName;
-                cmd.Parameters.Add("@original_Address",
-                    SqlDbType.VarChar, 60).Value = original_Address;
-                cmd.Parameters.Add("@original_City",
-                    SqlDbType.VarChar, 15).Value = original_City;
-                cmd.Parameters.Add("@original_Region",
-                    SqlDbType.VarChar, 15).Value = original_Region;
-                cmd.Parameters.Add("@original_PostalCode",
-                    SqlDbType.VarChar, 10).Value = original_PostalCode;
-        
-                int result = 0;
-                try {
-                    conn.Open();
-                    result = cmd.ExecuteNonQuery();
-                } catch (SqlException e) {
-                    // Handle exception.
-                } finally {
-                    conn.Close();
-                }
-        
-                return result;
-            }
-        
-            // Update the Employee by original ID.
-            public int UpdateEmployee(string LastName, string FirstName,
-                string Address, string City, string Region,
-                string PostalCode, int original_EmployeeID,
-                string original_LastName, string original_FirstName,
-                string original_Address, string original_City,
-                string original_Region, string original_PostalCode) {
-        
-                if (String.IsNullOrEmpty(FirstName))
-                    throw new ArgumentException("FirstName cannot be null or an empty string.");
-                if (String.IsNullOrEmpty(LastName))
-                    throw new ArgumentException("LastName cannot be null or an empty string.");
-                if (Address == null) { Address = String.Empty; }
-                if (City == null) { City = String.Empty; }
-                if (Region == null) { Region = String.Empty; }
-                if (PostalCode == null) { PostalCode = String.Empty; }
-                if (original_Address == null) { original_Address = String.Empty; }
-                if (original_City == null) { original_City = String.Empty; }
-                if (original_Region == null) { original_Region = String.Empty; }
-                if (original_PostalCode == null) { original_PostalCode = String.Empty; }
-        
-                string sqlCmd = "UPDATE Employees " +
-                    " SET FirstName = @FirstName, LastName = @LastName, " +
-                    " Address = @Address, City = @City, Region = @Region, " +
-                    " PostalCode = @PostalCode " +
-                    " WHERE EmployeeID = @original_EmployeeID";
-        
-                SqlConnection conn = new SqlConnection(_connectionString);
-                SqlCommand cmd = new SqlCommand(sqlCmd, conn);
-                cmd.Parameters.Add("@FirstName", SqlDbType.VarChar, 10).Value = FirstName;
-                cmd.Parameters.Add("@LastName", SqlDbType.VarChar, 20).Value = LastName;
-                cmd.Parameters.Add("@Address", SqlDbType.VarChar, 60).Value = Address;
-                cmd.Parameters.Add("@City", SqlDbType.VarChar, 15).Value = City;
-                cmd.Parameters.Add("@Region", SqlDbType.VarChar, 15).Value = Region;
-                cmd.Parameters.Add("@PostalCode", SqlDbType.VarChar, 10).Value = PostalCode;
-                cmd.Parameters.Add("@original_EmployeeID",
-                    SqlDbType.Int).Value = original_EmployeeID;
-                cmd.Parameters.Add("@original_FirstName",
-                    SqlDbType.VarChar, 10).Value = original_FirstName;
-                cmd.Parameters.Add("@original_LastName",
-                    SqlDbType.VarChar, 20).Value = original_LastName;
-                cmd.Parameters.Add("@original_Address",
-                    SqlDbType.VarChar, 60).Value = original_Address;
-                cmd.Parameters.Add("@original_City",
-                    SqlDbType.VarChar, 15).Value = original_City;
-                cmd.Parameters.Add("@original_Region",
-                    SqlDbType.VarChar, 15).Value = original_Region;
-                cmd.Parameters.Add("@original_PostalCode",
-                    SqlDbType.VarChar, 10).Value = original_PostalCode;
-        
-                int result = 0;
-        
-                try {
-                    conn.Open();
-                    result = cmd.ExecuteNonQuery();
-                } catch (SqlException e) {
-                    // Handle exception.
-                } finally {
-                    conn.Close();
-                }
-                return result;
-            }
-        }
+    [!code[Main](data-source-controls/samples/sample11.xml)]
 7. Add the following code to the Source view of object.aspx: 
 
-        <%@ Page language="C#" %>
-        <script RunAt="server">
-        void EmployeesDetailsView_ItemInserted(Object sender, DetailsViewInsertedEventArgs e) {
-            EmployeesGridView.DataBind();
-        }
-        
-        void EmployeesDetailsView_ItemUpdated(Object sender, DetailsViewUpdatedEventArgs e) {
-            EmployeesGridView.DataBind();
-        }
-        
-        void EmployeesDetailsView_ItemDeleted(Object sender, DetailsViewDeletedEventArgs e) {
-            EmployeesGridView.DataBind();
-        }
-        void EmployeesGridView_OnSelectedIndexChanged(object sender, EventArgs e) {
-            EmployeeDetailsObjectDataSource.SelectParameters["EmployeeID"].DefaultValue =
-                EmployeesGridView.SelectedDataKey.Value.ToString();
-            EmployeesDetailsView.DataBind();
-        }
-        void EmployeeDetailsObjectDataSource_OnInserted(object sender,
-            ObjectDataSourceStatusEventArgs e) {
-        
-            EmployeeDetailsObjectDataSource.SelectParameters["EmployeeID"].DefaultValue =
-                e.ReturnValue.ToString();
-            EmployeesDetailsView.DataBind();
-        }
-        void EmployeeDetailsObjectDataSource_OnUpdated(object sender,
-            ObjectDataSourceStatusEventArgs e) {
-        
-            if ((int)e.ReturnValue == 0)
-                Msg.Text = "Employee was not updated. Please try again.";
-        }
-        void EmployeeDetailsObjectDataSource_OnDeleted(object sender,
-            ObjectDataSourceStatusEventArgs e) {
-        
-            if ((int)e.ReturnValue == 0)
-                Msg.Text = "Employee was not deleted. Please try again.";
-        }
-        void Page_Load() {
-            Msg.Text = "";
-        }
-        </script>
-        <html>
-          <body>
-            <form id="Form1" runat="server">
-              <h3>ObjectDataSource Example</h3>
-              <asp:Label id="Msg" runat="server" ForeColor="Red" />
-              <asp:ObjectDataSource
-                  ID="EmployeesObjectDataSource"
-                  runat="server"
-                  TypeName="NorthwindData"
-                  SortParameterName="SortColumns"
-                  EnablePaging="true"
-                  SelectCountMethod="SelectCount"
-                  StartRowIndexParameterName="StartRecord"
-                  MaximumRowsParameterName="MaxRecords"
-                  SelectMethod="GetAllEmployees" >
-              </asp:ObjectDataSource>
-              <asp:ObjectDataSource
-                  ID="EmployeeDetailsObjectDataSource"
-                  runat="server"
-                  TypeName="NorthwindData"
-                  ConflictDetection="CompareAllValues"
-                  OldValuesParameterFormatString="{0}"
-                  SelectMethod="GetEmployee"
-                  InsertMethod="InsertEmployee"
-                  UpdateMethod="UpdateEmployee"
-                  DeleteMethod="DeleteEmployee"
-                  OnInserted="EmployeeDetailsObjectDataSource_OnInserted"
-                  OnUpdated="EmployeeDetailsObjectDataSource_OnUpdated"
-                  OnDeleted="EmployeeDetailsObjectDataSource_OnDeleted">
-                  <SelectParameters>
-                      <asp:Parameter Name="EmployeeID" Type="Int32" />
-                  </SelectParameters>
-              </asp:ObjectDataSource>
-              <table cellspacing="10">
-                <tr>
-                  <td valign="top">
-                    <asp:GridView ID="EmployeesGridView"
-                        DataSourceID="EmployeesObjectDataSource"
-                        AutoGenerateColumns="false"
-                        AllowSorting="true"
-                        AllowPaging="true"
-                        PageSize="5"
-                        DataKeyNames="EmployeeID"
-                        OnSelectedIndexChanged="EmployeesGridView_OnSelectedIndexChanged"
-                        RunAt="server">
-                        <HeaderStyle backcolor="lightblue" forecolor="black"/>
-                        <Columns>
-                        <asp:ButtonField Text="Details..."
-                        HeaderText="Show Details"
-                        CommandName="Select"/>
-        
-                        <asp:BoundField DataField="EmployeeID" HeaderText="Employee ID"
-                        SortExpression="EmployeeID" />
-                        <asp:BoundField DataField="FirstName" HeaderText="First Name"
-                        SortExpression="FirstName" />
-                        <asp:BoundField DataField="LastName" HeaderText="Last Name"
-                        SortExpression="LastName, FirstName" />
-                        </Columns>
-                    </asp:GridView>
-                  </td>
-                  <td valign="top">
-                    <asp:DetailsView ID="EmployeesDetailsView"
-                        DataSourceID="EmployeeDetailsObjectDataSource"
-                        AutoGenerateRows="false"
-                        EmptyDataText="No records."
-                        DataKeyNames="EmployeeID"
-                        Gridlines="Both"
-                        AutoGenerateInsertButton="true"
-                        AutoGenerateEditButton="true"
-                        AutoGenerateDeleteButton="true"
-                        OnItemInserted="EmployeesDetailsView_ItemInserted"
-                        OnItemUpdated="EmployeesDetailsView_ItemUpdated"
-                        OnItemDeleted="EmployeesDetailsView_ItemDeleted"
-                        RunAt="server">
-                        <HeaderStyle backcolor="Navy" forecolor="White"/>
-                        <RowStyle backcolor="White"/>
-                        <AlternatingRowStyle backcolor="LightGray"/>
-                        <EditRowStyle backcolor="LightCyan"/>
-                        <Fields>
-                            <asp:BoundField DataField="EmployeeID" HeaderText="Employee ID"
-                                InsertVisible="False" ReadOnly="true"/>
-                            <asp:BoundField DataField="FirstName" HeaderText="First Name"/>
-                            <asp:BoundField DataField="LastName" HeaderText="Last Name"/>
-                            <asp:BoundField DataField="Address" HeaderText="Address"/>
-                            <asp:BoundField DataField="City" HeaderText="City"/>
-                            <asp:BoundField DataField="Region" HeaderText="Region"/>
-                            <asp:BoundField DataField="PostalCode" HeaderText="Postal Code"/>
-                        </Fields>
-                      </asp:DetailsView>
-                    </td>
-                  </tr>
-                </table>
-              </form>
-            </body>
-          </html>
+    [!code[Main](data-source-controls/samples/sample12.xml)]
 8. Save all files and browse object.aspx.
 9. Interact with the interface by viewing details, editing employees, adding employees, and deleting employees.

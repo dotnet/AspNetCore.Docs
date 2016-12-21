@@ -43,27 +43,7 @@ If you create a controller that is missing the *Controller* suffix then you won'
 
 **Listing 1 - Controllers\ProductController.cs**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Ajax;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class ProductController : Controller
-        {
-            //
-            // GET: /Product/
-    
-            public ActionResult Index()
-            {
-                return View();
-            }
-    
-        }
-    }
+[!code[Main](creating-a-controller-cs/samples/sample1.xml)]
 
 You should always create controllers in the Controllers folder. Otherwise, you'll be violating the conventions of ASP.NET MVC and other developers will have a more difficult time understanding your application.
 
@@ -79,86 +59,7 @@ When you create a controller, you have the option to generate Create, Update, an
 
 **Listing 2 - Controllers\CustomerController.cs**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Ajax;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class CustomerController : Controller
-        {
-            //
-            // GET: /Customer/
-    
-            public ActionResult Index()
-            {
-                return View();
-            }
-    
-            //
-            // GET: /Customer/Details/5
-    
-            public ActionResult Details(int id)
-            {
-                return View();
-            }
-    
-            //
-            // GET: /Customer/Create
-    
-            public ActionResult Create()
-            {
-                return View();
-            } 
-    
-            //
-            // POST: /Customer/Create
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Create(FormCollection collection)
-            {
-                try
-                {
-                    // TODO: Add insert logic here
-    
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-    
-            //
-            // GET: /Customer/Edit/5
-     
-            public ActionResult Edit(int id)
-            {
-                return View();
-            }
-    
-            //
-            // POST: /Customer/Edit/5
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Edit(int id, FormCollection collection)
-            {
-                try
-                {
-                    // TODO: Add update logic here
-     
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-        }
-    }
+[!code[Main](creating-a-controller-cs/samples/sample2.xml)]
 
 These generated methods are stub methods. You must add the actual logic for creating, updating, and showing details for a customer yourself. But, the stub methods provide you with a nice starting point.
 
@@ -178,23 +79,7 @@ The ASP.NET MVC controller is just a class. If you prefer, you can ignore the co
 
 **Listing 3 - Controllers\PersonController.cs**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class PersonController : System.Web.Mvc.Controller
-        {
-    
-            public string Index()
-            {
-                return "Hello World!";
-            }
-    
-        }
-    }
+[!code[Main](creating-a-controller-cs/samples/sample3.xml)]
 
 The controller in Listing 3 exposes one action named Index() that returns the string "Hello World!". You can invoke this controller action by running your application and requesting a URL like the following:
 

@@ -56,31 +56,7 @@ Next, open the `Default.aspx` page and drag the `SectionLevelTutorialListing.asc
 In order to have the bulleted list display the paging and sorting tutorials we'll be creating, we need to add them to the site map. Open the `Web.sitemap` file and add the following markup after the Editing and Deleting with the DataList site map node markup:
 
 
-    <siteMapNode
-        url="~/PagingSortingDataListRepeater/Default.aspx"
-        title="Paging and Sorting with the DataList and Repeater"
-        description="Paging and Sorting the Data in the DataList and Repeater Controls">
-        <siteMapNode
-            url="~/PagingSortingDataListRepeater/Paging.aspx"
-            title="Paging"
-            description="Learn how to page through the data shown
-                         in the DataList and Repeater controls." />
-        <siteMapNode
-            url="~/PagingSortingDataListRepeater/Sorting.aspx"
-            title="Sorting"
-            description="Sort the data displayed in a DataList or
-                         Repeater control." />
-        <siteMapNode
-            url="~/PagingSortingDataListRepeater/SortingWithDefaultPaging.aspx"
-            title="Sorting with Default Paging"
-            description="Create a DataList or Repeater control that is paged using
-                         default paging and can be sorted." />
-        <siteMapNode
-            url="~/PagingSortingDataListRepeater/SortingWithCustomPaging.aspx"
-            title="Sorting with Custom Paging"
-            description="Learn how to sort the data displayed in a DataList or
-                         Repeater control that uses custom paging." />
-    </siteMapNode>
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample1.xml)]
 
 
 ![Update the Site Map to Include the New ASP.NET Pages](paging-report-data-in-a-datalist-or-repeater-control-cs/_static/image5.png)
@@ -122,20 +98,7 @@ Add a method to the `ProductsBLL` class named `GetProductsAsPagedDataSource` tha
 `GetProductsAsPagedDataSource` starts by retrieving *all* of the records from `GetProducts()`. It then creates a `PagedDataSource` object, setting its `CurrentPageIndex` and `PageSize` properties to the values of the passed-in `pageIndex` and `pageSize` parameters. The method concludes by returning this configured `PagedDataSource`:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Select, false)]
-    public PagedDataSource GetProductsAsPagedDataSource(int pageIndex, int pageSize)
-    {
-        // Get ALL of the products
-        Northwind.ProductsDataTable products = GetProducts();
-        // Limit the results through a PagedDataSource
-        PagedDataSource pagedData = new PagedDataSource();
-        pagedData.DataSource = products.Rows;
-        pagedData.AllowPaging = true;
-        pagedData.CurrentPageIndex = pageIndex;
-        pagedData.PageSize = pageSize;
-        return pagedData;
-    }
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample2.xml)]
 
 ## Step 3: Displaying Product Information in a DataList Using Default Paging
 
@@ -172,33 +135,7 @@ After configuring the ObjectDataSource, Visual Studio automatically creates an `
 After making these changes, the DataList and ObjectDataSource s markup should look similar to the following:
 
 
-    <asp:DataList ID="ProductsDefaultPaging" runat="server" Width="100%"
-        DataKeyField="ProductID" DataSourceID="ProductsDefaultPagingDataSource"
-        RepeatColumns="2" EnableViewState="False">
-        <ItemTemplate>
-            <h4><asp:Label ID="ProductNameLabel" runat="server"
-                Text='<%# Eval("ProductName") %>'></asp:Label></h4>
-            Category:
-            <asp:Label ID="CategoryNameLabel" runat="server"
-                Text='<%# Eval("CategoryName") %>'></asp:Label><br />
-            Supplier:
-            <asp:Label ID="SupplierNameLabel" runat="server"
-                Text='<%# Eval("SupplierName") %>'></asp:Label><br />
-            <br />
-            <br />
-        </ItemTemplate>
-        <ItemStyle Width="50%" />
-    </asp:DataList>
-    <asp:ObjectDataSource ID="ProductsDefaultPagingDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}" TypeName="ProductsBLL"
-        SelectMethod="GetProductsAsPagedDataSource">
-        <SelectParameters>
-            <asp:QueryStringParameter DefaultValue="0" Name="pageIndex"
-                 QueryStringField="pageIndex" Type="Int32" />
-            <asp:QueryStringParameter DefaultValue="4" Name="pageSize"
-                 QueryStringField="pageSize" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample3.xml)]
 
 > [!NOTE] Since we are not performing any update or delete functionality in this tutorial, you may disable the DataList s view state to reduce the rendered page size.
 
@@ -233,10 +170,7 @@ For the DataList and Repeater, we are responsible for deciding upon a paging int
 For this tutorial, let s use the Next, Previous, First, Last interface. Add four Button Web controls to the page and set their `ID` s to `FirstPage`, `PrevPage`, `NextPage`, and `LastPage`. Set the `Text` properties to &lt;&lt; First , &lt; Prev , Next &gt; , and Last &gt;&gt; .
 
 
-    <asp:Button runat="server" ID="FirstPage" Text="<< First" />
-    <asp:Button runat="server" ID="PrevPage" Text="< Prev" />
-    <asp:Button runat="server" ID="NextPage" Text="Next >" />
-    <asp:Button runat="server" ID="LastPage" Text="Last >>" />
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample4.xml)]
 
 Next, create a `Click` event handler for each of these Buttons. In a moment we'll add the code necessary to display the requested page.
 
@@ -252,55 +186,12 @@ The page count is calculated as the ceiling of the total row count divided by th
 If the paging interface includes a Last button, it is imperative that the total number of records being paged through be remembered across postbacks so that when the Last button is clicked we can determine the last page index. To facilitate this, create a `TotalRowCount` property in the ASP.NET page s code-behind class that persists its value to view state:
 
 
-    private int TotalRowCount
-    {
-        get
-        {
-            object o = ViewState["TotalRowCount"];
-            if (o == null)
-                return -1;
-            else
-                return (int)o;
-        }
-        set
-        {
-            ViewState["TotalRowCount"] = value;
-        }
-    }
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample5.xml)]
 
 In addition to `TotalRowCount`, take a minute to create read-only page-level properties for easily accessing the page index, page size, and page count:
 
 
-    private int PageIndex
-    {
-        get
-        {
-            if (!string.IsNullOrEmpty(Request.QueryString["pageIndex"]))
-                return Convert.ToInt32(Request.QueryString["pageIndex"]);
-            else
-                return 0;
-        }
-    }
-    private int PageSize
-    {
-        get
-        {
-            if (!string.IsNullOrEmpty(Request.QueryString["pageSize"]))
-                return Convert.ToInt32(Request.QueryString["pageSize"]);
-            else
-                return 4;
-        }
-    }
-    private int PageCount
-    {
-        get
-        {
-            if (TotalRowCount <= 0 || PageSize <= 0)
-                return 1;
-            else
-                return ((TotalRowCount + PageSize) - 1) / PageSize;
-        }
-    }
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample6.xml)]
 
 ## Determining the Total Number of Records Being Paged Through
 
@@ -309,15 +200,7 @@ The `PagedDataSource` object returned from the ObjectDataSource s `Select()` met
 To accomplish this, create an event handler for the ObjectDataSource s `Selected` event. In the `Selected` event handler we have access to the return value of the ObjectDataSource s `Select()` method in this case, the `PagedDataSource`.
 
 
-    protected void ProductsDefaultPagingDataSource_Selected
-        (object sender, ObjectDataSourceStatusEventArgs e)
-    {
-        // Reference the PagedDataSource bound to the DataList
-        PagedDataSource pagedData = (PagedDataSource)e.ReturnValue;
-        // Remember the total number of records being paged through
-        // across postbacks
-        TotalRowCount = pagedData.DataSourceCount;
-    }
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample7.xml)]
 
 ## Displaying the Requested Page of Data
 
@@ -326,32 +209,7 @@ When the user clicks one of the buttons in the paging interface, we need to disp
 To facilitate this, create a `RedirectUser(sendUserToPageIndex)` method that redirects the user to `Paging.aspx?pageIndex=sendUserToPageIndex`. Then, call this method from the four Button `Click` event handlers. In the `FirstPage` `Click` event handler, call `RedirectUser(0)`, to send them to the first page; in the `PrevPage` `Click` event handler, use `PageIndex - 1` as the page index; and so on.
 
 
-    protected void FirstPage_Click(object sender, EventArgs e)
-    {
-        // Send the user to the first page
-        RedirectUser(0);
-    }
-    protected void PrevPage_Click(object sender, EventArgs e)
-    {
-        // Send the user to the previous page
-        RedirectUser(PageIndex - 1);
-    }
-    protected void NextPage_Click(object sender, EventArgs e)
-    {
-        // Send the user to the next page
-        RedirectUser(PageIndex + 1);
-    }
-    protected void LastPage_Click(object sender, EventArgs e)
-    {
-        // Send the user to the last page
-        RedirectUser(PageCount - 1);
-    }
-    private void RedirectUser(int sendUserToPageIndex)
-    {
-        // Send the user to the requested page
-        Response.Redirect(string.Format("Paging.aspx?pageIndex={0}&pageSize={1}",
-            sendUserToPageIndex, PageSize));
-    }
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample8.xml)]
 
 With the `Click` event handlers complete, the DataList s records can be paged through by clicking the buttons. Take a moment to try it out!
 
@@ -362,20 +220,14 @@ Currently, all four buttons are enabled regardless of the page being viewed. How
 Add the following to the ObjectDataSource s `Selected` event handler:
 
 
-    // Configure the paging interface based on the data in the PagedDataSource
-    FirstPage.Enabled = !pagedData.IsFirstPage;
-    PrevPage.Enabled = !pagedData.IsFirstPage;
-    NextPage.Enabled = !pagedData.IsLastPage;
-    LastPage.Enabled = !pagedData.IsLastPage;
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample9.xml)]
 
 With this addition, the First and Previous buttons will be disabled when viewing the first page, while the Next and Last buttons will be disabled when viewing the last page.
 
 Let s complete the paging interface by informing the user what page they re currently viewing and how many total pages exist. Add a Label Web control to the page and set its `ID` property to `CurrentPageNumber`. Set its `Text` property in the ObjectDataSource s Selected event handler such that it includes the current page being viewed (`PageIndex + 1`) and the total number of pages (`PageCount`).
 
 
-    // Display the current page being viewed...
-    CurrentPageNumber.Text = string.Format("You are viewing page {0} of {1}...",
-        PageIndex + 1, PageCount);
+[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample10.xml)]
 
 Figure 10 shows `Paging.aspx` when first visited. Since the querystring is empty, the DataList defaults to showing the first four products; the First and Previous buttons are disabled. Clicking Next displays the next four records (see Figure 11); the First and Previous buttons are now enabled.
 

@@ -90,38 +90,7 @@ ASP.NET Routing uses a route table to handle incoming requests. This route table
 
 **Listing 1 - Global.asax**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Routing;
-    
-    namespace MvcApplication1
-    {
-        // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-        // visit https://go.microsoft.com/?LinkId=9394801
-    
-        public class MvcApplication : System.Web.HttpApplication
-        {
-            public static void RegisterRoutes(RouteCollection routes)
-            {
-                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-    
-                routes.MapRoute(
-                    "Default",                                              // Route name
-                    "{controller}/{action}/{id}",                           // URL with parameters
-                    new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
-                );
-    
-            }
-    
-            protected void Application_Start()
-            {
-                RegisterRoutes(RouteTable.Routes);
-            }
-        }
-    }
+[!code[Main](understanding-models-views-and-controllers-cs/samples/sample1.xml)]
 
 When an ASP.NET application first starts, the Application\_Start() method is called. In Listing 1, this method calls the RegisterRoutes() method and the RegisterRoutes() method creates the default route table.
 
@@ -169,33 +138,7 @@ A controller is just a class (for example, a Visual Basic or C# class). The samp
 
 **Listing 2 - HomeController.cs**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-        [HandleError]
-        public class HomeController : Controller
-        {
-            public ActionResult Index()
-            {
-                ViewData["Title"] = "Home Page";
-                ViewData["Message"] = "Welcome to ASP.NET MVC!";
-    
-                return View();
-            }
-    
-            public ActionResult About()
-            {
-                ViewData["Title"] = "About Page";
-    
-                return View();
-            }
-        }
-    }
+[!code[Main](understanding-models-views-and-controllers-cs/samples/sample2.xml)]
 
 Notice that the HomeController has two methods named Index() and About(). These two methods correspond to the two actions exposed by the controller. The URL /Home/Index invokes the HomeController.Index() method and the URL /Home/About invokes the HomeController.About() method.
 
@@ -219,14 +162,7 @@ The file in Listing 3 contains the About.aspx view.
 
 **Listing 3 - About.aspx**
 
-    <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-    
-    <asp:Content ID="aboutContent" ContentPlaceHolderID="MainContent" runat="server">
-        <h2>About</h2>
-        <p>
-            Put content here.
-        </p>
-    </asp:Content>
+[!code[Main](understanding-models-views-and-controllers-cs/samples/sample3.xml)]
 
 If you ignore the first line in Listing 3, most of the rest of the view consists of standard HTML. You can modify the contents of the view by entering any HTML that you want here.
 

@@ -72,17 +72,7 @@ Although you could manipulate your project files to exclude specific files and f
 This is the basic structure of this *.wpp.targets* file:
 
 
-    <Project ToolsVersion="4.0" 
-             xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-      <ItemGroup>   
-        <ExcludeFromPackageFolders Include="[semi-colon-separated folder list]">
-          <FromTarget>[arbitrary metadata value]</FromTarget>
-        </ExcludeFromPackageFolders>
-        <ExcludeFromPackageFiles Include="[semi-colon-separated file list]">
-          <FromTarget>[arbitrary metadata value]</FromTarget>
-        </ExcludeFromPackageFiles>
-      </ItemGroup>
-    </Project>
+[!code[Main](excluding-files-and-folders-from-deployment/samples/sample1.xml)]
 
 
 Note that each item includes an item metadata element named **FromTarget**. This is an optional value that doesn&#x27;t affect the build process; it simply serves to indicate why particular files or folders were omitted if someone reviews the build logs.
@@ -103,41 +93,22 @@ The next procedure shows you how to add a *.wpp.targets* file to a web applicati
     > [!NOTE] If you add a new item to the root node of a project, the file is created in the same folder as the project file. You can verify this by opening the folder in Windows Explorer.
 5. In the file, add a **Project** element and an **ItemGroup** element:
 
-        <Project ToolsVersion="4.0" 
-                 xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-          <ItemGroup>    
-          </ItemGroup>
-        </Project>
+    [!code[Main](excluding-files-and-folders-from-deployment/samples/sample2.xml)]
 6. If you want to exclude folders from the web package, add an **ExcludeFromPackageFolders** element to the **ItemGroup** element:
 
     1. In the **Include** attribute, provide a semicolon-separated list of the folders you want to exclude.
     2. In the **FromTarget** metadata element, provide a meaningful value to indicate why the folders are being excluded, like the name of the *.wpp.targets* file.
 
-        <ExcludeFromPackageFolders Include="Internal">
-          <FromTarget>ContactManager.Mvc.wpp.targets</FromTarget>
-        </ExcludeFromPackageFolders>
+    [!code[Main](excluding-files-and-folders-from-deployment/samples/sample3.xml)]
 7. If you want to exclude files from the web package, add an **ExcludeFromPackageFiles** element to the **ItemGroup** element:
 
     1. In the **Include** attribute, provide a semicolon-separated list of the files you want to exclude.
     2. In the **FromTarget** metadata element, provide a meaningful value to indicate why the files are being excluded, like the name of the *.wpp.targets* file.
 
-        <ExcludeFromPackageFiles Include="Scripts\jquery-1.4.4-vsdoc.js;Scripts\jquery-1.4.4.js;Scripts\jquery-ui.js;Scripts\jquery.unobtrusive-ajax.js;Scripts\jquery.validate-vsdoc.js;Scripts\jquery.validate.js;Scripts\jquery.validate.unobtrusive.js;Scripts\MicrosoftAjax.debug.js;Scripts\MicrosoftMvcValidation.debug.js">
-          <FromTarget>ContactManager.Mvc.wpp.targets</FromTarget>
-        </ExcludeFromPackageFiles>
+    [!code[Main](excluding-files-and-folders-from-deployment/samples/sample4.xml)]
 8. The *[project name].wpp.targets* file should now resemble this:
 
-        <Project ToolsVersion="4.0" 
-                 xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-          <ItemGroup>   
-            <ExcludeFromPackageFolders Include="Internal">
-              <FromTarget>ContactManager.Mvc.wpp.targets</FromTarget>
-            </ExcludeFromPackageFolders>
-            <ExcludeFromPackageFiles Include="Scripts\jquery-1.4.4-
-        vsdoc.js;Scripts\jquery-1.4.4.js;Scripts\jquery-ui.js;Scripts\jquery.unobtrusive-ajax.js;Scripts\jquery.validate-vsdoc.js;Scripts\jquery.validate.js;Scripts\jquery.validate.unobtrusive.js;Scripts\MicrosoftAjax.debug.js;Scripts\MicrosoftMvcValidation.debug.js">
-              <FromTarget>ContactManager.Mvc.wpp.targets</FromTarget>
-            </ExcludeFromPackageFiles>
-          </ItemGroup>
-        </Project>
+    [!code[Main](excluding-files-and-folders-from-deployment/samples/sample5.xml)]
 9. Save and close the *[project name].wpp.targets* file.
 
 The next time you build and package your web application project, the WPP will automatically detect the *.wpp.targets* file. Any files and folders you specified will not be included in the web package.

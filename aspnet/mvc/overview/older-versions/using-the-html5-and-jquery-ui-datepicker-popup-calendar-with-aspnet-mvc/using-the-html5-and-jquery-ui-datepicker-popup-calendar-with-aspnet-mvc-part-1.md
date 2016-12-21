@@ -64,25 +64,7 @@ The formatting for the date and the price is the result of using the [DisplayFor
 
 Open the *Movie.cs* file and comment out the `DisplayFormat` attribute on the `ReleaseDate` and `Price` properties. The resulting `Movie` class looks like this:
 
-    public class Movie {
-            public int ID { get; set; }
-    
-            [Required(ErrorMessage = "Title is required")]
-            public string Title { get; set; }
-    
-            //  [DisplayFormat(DataFormatString = "{0:d}")]
-            public DateTime ReleaseDate { get; set; }
-    
-            [Required(ErrorMessage = "Genre must be specified")]
-            public string Genre { get; set; }
-    
-            [Range(1, 100, ErrorMessage = "Price must be between $1 and $100")]
-            //[DisplayFormat(DataFormatString = "{0:c}")]
-            public decimal Price { get; set; }
-    
-            [StringLength(5)]
-            public string Rating { get; set; }
-        }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1/samples/sample1.xml)]
 
 Press CTRL+F5 again to run the application and select the **Home** tab to view the movie list. This time the release date shows the date and time, and the price field no longer shows the currency symbol. Your change in the `Movie` class has undone the nice formatting that you saw earlier, but you'll fix that in a moment.
 
@@ -92,25 +74,7 @@ Press CTRL+F5 again to run the application and select the **Home** tab to view t
 
 Replace the commented-out `DisplayFormat` attribute for the `ReleaseDate` property with the [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute, using the `Date` enumeration. Replace the `DisplayFormat` attribute for the `Price` property with the [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute again, this time using the `Currency` enumeration. This is what the completed code looks like:
 
-    public class Movie {
-            public int ID { get; set; }
-    
-            [Required(ErrorMessage = "Title is required")]
-            public string Title { get; set; }
-    
-            [DataType(DataType.Date)]
-            public DateTime ReleaseDate { get; set; }
-    
-            [Required(ErrorMessage = "Genre must be specified")]
-            public string Genre { get; set; }
-    
-            [Range(1, 100, ErrorMessage = "Price must be between $1 and $100")]
-            [DataType(DataType.Currency)]
-            public decimal Price { get; set; }
-    
-            [StringLength(5)]
-            public string Rating { get; set; }
-        }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-1/samples/sample2.xml)]
 
 Run the application. Now the release date and the price properties are formatted correctly (that is, using appropriate date and currency formats). The [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute provides type metadata for the built-in ASP.NET MVC templates so that the fields render in the correct format. Using the `DataType` attribute is preferable to using the `DisplayFormat` attribute that was originally in the code, because the `DataType` attribute makes the model cleaner and more flexible for purposes like internationalization.
 

@@ -1,7 +1,7 @@
-<ul class="list-unstyled" data-bind="foreach: books">
-  <li>
-    <strong><span data-bind="text: AuthorName"></span></strong>: <span data-bind="text: Title"></span>
-    <!-- New code -->
-    <small><a href="#" data-bind="click: $parent.getBookDetail">Details</a></small>
-  </li>
-</ul>
+    self.detail = ko.observable();
+    
+    self.getBookDetail = function (item) {
+        ajaxHelper(booksUri + item.Id, 'GET').done(function (data) {
+            self.detail(data);
+        });
+    }

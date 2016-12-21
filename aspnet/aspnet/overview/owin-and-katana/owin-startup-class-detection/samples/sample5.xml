@@ -1,10 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <appSettings>
-    <add key="owin:appStartup" value="TestingConfiguration" />
-  </appSettings>
-  <system.web>
-    <compilation debug="true" targetFramework="4.5" />
-    <httpRuntime targetFramework="4.5" />
-  </system.web>
-</configuration>
+[assembly: OwinStartup("ProductionConfiguration", typeof(StartupDemo.ProductionStartup2))]
+
+namespace StartupDemo
+{
+    public class ProductionStartup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+            app.Run(context =>
+            {
+                string t = DateTime.Now.Millisecond.ToString();
+                return context.Response.WriteAsync(t + " Production OWIN App");
+            });
+        }
+    }
+    public class ProductionStartup2
+    {
+        public void Configuration(IAppBuilder app)
+        {
+            app.Run(context =>
+            {
+                string t = DateTime.Now.Millisecond.ToString();
+                return context.Response.WriteAsync(t + " 2nd Production OWIN App");
+            });
+        }
+    }
+}

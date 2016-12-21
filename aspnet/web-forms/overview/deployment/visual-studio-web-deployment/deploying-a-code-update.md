@@ -38,30 +38,7 @@ Now you'll add code that runs when the **Select** link is clicked and displays a
 
 1. In *Instructors.aspx*, add the following markup immediately after the **ErrorMessageLabel** `Label` control:
 
-        <h3>Courses Taught</h3>
-        <asp:ObjectDataSource ID="CoursesObjectDataSource" runat="server" TypeName="ContosoUniversity.BLL.SchoolBL"
-            DataObjectTypeName="ContosoUniversity.DAL.Course" SelectMethod="GetCoursesByInstructor">
-            <SelectParameters>
-                <asp:ControlParameter ControlID="InstructorsGridView" Name="PersonID" PropertyName="SelectedDataKey.Value"
-                    Type="Int32" />
-            </SelectParameters>
-        </asp:ObjectDataSource>
-        <asp:GridView ID="CoursesGridView" runat="server" DataSourceID="CoursesObjectDataSource"
-            AllowSorting="True" AutoGenerateColumns="False" SelectedRowStyle-BackColor="LightGray"
-            DataKeyNames="CourseID">
-            <EmptyDataTemplate>
-                <p>No courses found.</p>
-            </EmptyDataTemplate>
-            <Columns>
-                <asp:BoundField DataField="CourseID" HeaderText="ID" ReadOnly="True" SortExpression="CourseID" />
-                <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                <asp:TemplateField HeaderText="Department" SortExpression="DepartmentID">
-                    <ItemTemplate>
-                        <asp:Label ID="GridViewDepartmentLabel" runat="server" Text='<%# Eval("Department.Name") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+    [!code[Main](deploying-a-code-update/samples/sample1.xml)]
 2. Run the page and select an instructor. You see a list of courses taught by that instructor.
 
     ![Instructors page with courses taught](deploying-a-code-update/_static/image2.png)
@@ -103,7 +80,7 @@ The change you're deploying now is a simple change to a single page. But sometim
 
 You can configure Web Deploy to automatically put a default *app\_offline.htm* file on the server when it starts deploying and remove it when it finishes. To do that all you have to do is add the following XML element to your publish profile (.pubxml) file:
 
-    <EnableMSDeployAppOffline>true</EnableMSDeployAppOffline>
+[!code[Main](deploying-a-code-update/samples/sample2.xml)]
 
 For this tutorial you'll see how to create and use a custom *app\_offline.htm* file.
 
@@ -115,17 +92,7 @@ Using *app\_offline.htm* in the staging site isn't required, because you don't h
 2. Create an **HTML Page** named *app\_offline.htm* (delete the final "l" in the *.html* extension that Visual Studio creates by default).
 3. Replace the template markup with the following markup:
 
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml">
-        <head>
-            <title>Contoso University - Under Construction</title>
-        </head>
-        <body>
-          <h1>Contoso University</h1>
-          <h2>Under Construction</h2>
-          <p>The Contoso University site is temporarily unavailable while we upgrade it. Please try again later.</p>
-        </body>
-        </html>
+    [!code[Main](deploying-a-code-update/samples/sample3.xml)]
 4. Save and close the file.
 
 ### Copy app\_offline.htm to the root folder of the web site
@@ -175,7 +142,7 @@ Visual Studio 2012 also gives you the ability to deploy individual files. For a 
 1. Open *Content/Site.css*, and find the block for the `body` tag.
 2. Change the value for `background-color` from `#fff` to `darkblue`.
 
-    [!code[Main](deploying-a-code-update/samples/sample1.xml?highlight=2)]
+    [!code[Main](deploying-a-code-update/samples/sample4.xml?highlight=2)]
 
 ### View the change in the Publish Preview window
 

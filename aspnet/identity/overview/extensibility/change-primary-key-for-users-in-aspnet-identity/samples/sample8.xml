@@ -1,18 +1,14 @@
-public async Task<ActionResult> Disassociate(string loginProvider, string providerKey) 
-{ 
-    ManageMessageId? message = null; 
-    IdentityResult result = await UserManager.RemoveLoginAsync(
-        User.Identity.GetUserId<int>(), 
-        new UserLoginInfo(loginProvider, providerKey)); 
-    if (result.Succeeded) 
+app.UseCookieAuthentication(new CookieAuthenticationOptions 
     { 
-        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId<int>()); 
-        await SignInAsync(user, isPersistent: false); 
-        message = ManageMessageId.RemoveLoginSuccess; 
-    } 
-    else 
-    { 
-        message = ManageMessageId.Error; 
-    } 
-    return RedirectToAction("Manage", new { Message = message }); 
-}
+        AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie, 
+        LoginPath = new PathString("/Account/Login"), 
+        Provider = new CookieAuthenticationProvider 
+        { 
+            OnValidateIdentity = SecurityStampValidator
+                .OnValidateIdentity<ApplicationUserManager, ApplicationUser, int>( 
+                    validateInterval: TimeSpan.FromMinutes(30), 
+                    regenerateIdentityCallback: (manager, user) => 
+                        user.GenerateUserIdentityAsync(manager), 
+                    getUserIdCallback:(id)=>(id.GetUserId<int>()))
+        } 
+    });

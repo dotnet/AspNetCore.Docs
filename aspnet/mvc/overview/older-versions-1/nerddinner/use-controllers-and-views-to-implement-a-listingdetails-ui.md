@@ -59,22 +59,7 @@ We want to enable visitors using our application to browse a list of upcoming di
 
 We will publish initial implementations of these URLs by adding two public "action methods" to our DinnersController class like below:
 
-    public class DinnersController : Controller {
-    
-        //
-        // HTTP-GET: /Dinners/
-    
-        public void Index() {
-            Response.Write("<h1>Coming Soon: Dinners</h1>");
-        }
-    
-        //
-        // HTTP-GET: /Dinners/Details/2
-    
-        public void Details(int id) {
-            Response.Write("<h1>Details DinnerID: " + id + "</h1>");
-        }
-    }
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample1.xml)]
 
 We'll then run the NerdDinner application and use our browser to invoke them. Typing in the *"/Dinners/"* URL will cause our*Index()* method to run, and it will send back the following response:
 
@@ -96,16 +81,7 @@ By default, new ASP.NET MVC projects come with a preconfigured set of URL routin
 
 The default ASP.NET MVC routing rules are registered within the "RegisterRoutes" method of this class:
 
-    public void RegisterRoutes(RouteCollection routes) {
-    
-        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-    
-        routes.MapRoute(
-            "Default",                                       // Route name
-            "{controller}/{action}/{id}",                    // URL w/ params
-            new { controller="Home", action="Index",id="" }  // Param defaults
-        );
-    }
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample2.xml)]
 
 The "routes.MapRoute()" method call above registers a default routing rule that maps incoming URLs to controller classes using the URL format: "/{controller}/{action}/{id}" – where "controller" is the name of the controller class to instantiate, "action" is the name of a public method to invoke on it, and "id" is an optional parameter embedded within the URL that can be passed as an argument to the method. The third parameter passed to the "MapRoute()" method call is a set of default values to use for the controller/action/id values in the event that they are not present in the URL (Controller = "Home", Action="Index", Id="").
 
@@ -132,34 +108,7 @@ We'll use the DinnerRepository class we built earlier to implement the behavior.
 
 Later in this chapter we'll introduce the concept of "Dependency Injection" and show another way for our Controllers to obtain a reference to a DinnerRepository that enables better unit testing – but for right now we'll just create an instance of our DinnerRepository inline like below.
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using NerdDinner.Models;
-    
-    namespace NerdDinner.Controllers {
-    
-        public class DinnersController : Controller {
-    
-            DinnerRepository dinnerRepository = new DinnerRepository();
-    
-            //
-            // GET: /Dinners/
-    
-            public void Index() {
-                var dinners = dinnerRepository.FindUpcomingDinners().ToList();
-            }
-    
-            //
-            // GET: /Dinners/Details/2
-    
-            public void Details(int id) {
-                Dinner dinner = dinnerRepository.GetDinner(id);
-            }
-        }
-    }
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample3.xml)]
 
 Now we are ready to generate a HTML response back using our retrieved data model objects.
 
@@ -171,33 +120,7 @@ Separating our controller logic from our view rendering brings several big benef
 
 We can update our DinnersController class to indicate that we want to use a view template to send back an HTML UI response by changing the method signatures of our two action methods from having a return type of "void" to instead have a return type of "ActionResult". We can then call the *View()* helper method on the Controller base class to return back a "ViewResult" object like below:
 
-    public class DinnersController : Controller {
-    
-        DinnerRepository dinnerRepository = new DinnerRepository();
-    
-        //
-        // GET: /Dinners/
-    
-        public ActionResult Index() {
-    
-            var dinners = dinnerRepository.FindUpcomingDinners().ToList();
-    
-            return View("Index", dinners);
-        }
-    
-        //
-        // GET: /Dinners/Details/2
-    
-        public ActionResult Details(int id) {
-    
-            Dinner dinner = dinnerRepository.GetDinner(id);
-    
-            if (dinner == null)
-                return View("NotFound");
-            else
-                return View("Details", dinner);
-        }
-    }
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample4.xml)]
 
 The signature of the *View()* helper method we are using above looks like below:
 
@@ -207,30 +130,11 @@ The first parameter to the *View()* helper method is the name of the view templa
 
 Within our Index() action method we are calling the *View()* helper method and indicating that we want to render an HTML listing of dinners using an "Index" view template. We are passing the view template a sequence of Dinner objects to generate the list from:
 
-    //
-        // GET: /Dinners/
-    
-        public ActionResult Index() {
-        
-            var dinners = dinnerRepository.FindUpcomingDinners().ToList();
-            
-            return View("Index", dinners);
-        }
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample5.xml)]
 
 Within our Details() action method we attempt to retrieve a Dinner object using the id provided within the URL. If a valid Dinner is found we call the *View()* helper method, indicating we want to use a "Details" view template to render the retrieved Dinner object. If an invalid dinner is requested, we render a helpful error message that indicates that the Dinner doesn't exist using a "NotFound" view template (and an overloaded version of the *View()* helper method that just takes the template name):
 
-    //
-        // GET: /Dinners/Details/2
-    
-        public ActionResult Details(int id) {
-    
-            Dinner dinner = dinnerRepository.FindDinner(id);
-    
-            if (dinner == null)
-                return View("NotFound");
-            else
-                return View("Details", dinner);
-        }
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample6.xml)]
 
 Let's now implement the "NotFound", "Details", and "Index" view templates.
 
@@ -258,17 +162,7 @@ View templates by default have two "content regions" where we can add content an
 
 To implement our "NotFound" view template we'll add some basic content:
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-        Dinner Not Found
-    </asp:Content>
-    
-    <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Dinner Not Found</h2>
-    
-        <p>Sorry - but the dinner you requested doesn't exist or was deleted.</p>
-    
-    </asp:Content>
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample7.xml)]
 
 We can then try it out within the browser. To do this let's request the *"/Dinners/Details/9999"* URL. This will refer to a dinner that doesn't currently exist in the database, and will cause our DinnersController.Details() action method to render our "NotFound" view template:
 
@@ -298,64 +192,7 @@ When we click the "Add" button, Visual Studio will create a new "Details.aspx" v
 
 It will also open up our new "Details.aspx" view template within the code-editor. It will contain an initial scaffold implementation of a details view based on a Dinner model. The scaffolding engine uses .NET reflection to look at the public properties exposed on the class passed it, and will add appropriate content based on each type it finds:
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-        Details
-    </asp:Content>
-    
-    <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Details</h2>
-    
-        <fieldset>
-            <legend>Fields</legend>
-            <p>
-                DinnerID:
-                <%=Html.Encode(Model.DinnerID) %>
-            </p>
-            <p>
-                Title:
-                <%=Html.Encode(Model.Title) %>
-            </p>
-            <p>
-                EventDate:
-                <%= Html.Encode(String.Format("{0:g}", Model.EventDate)) %>
-            </p>
-            <p>
-                Description:
-                <%=Html.Encode(Model.Description) %>
-            </p>
-            <p>
-                HostedBy:
-                <%=Html.Encode(Model.HostedBy) %>
-            </p>
-            <p>
-                ContactPhone:
-                <%=Html.Encode(Model.ContactPhone) %>
-            </p>
-            <p>
-                Address:
-                <%=Html.Encode(Model.Address) %>
-            </p>
-            <p>
-                Country:
-                <%=Html.Encode(Model.Country) %>
-            </p>
-            <p>
-                Latitude:
-                <%= Html.Encode(String.Format("{0:F}",Model.Latitude)) %>
-            </p>
-            <p>
-                Longitude:
-                <%= Html.Encode(String.Format("{0:F}",Model.Longitude)) %>
-            </p>
-        </fieldset>
-        
-        <p>
-            <%=Html.ActionLink("Edit","Edit", new { id=Model.DinnerID }) %>|
-            <%=Html.ActionLink("Back to List", "Index") %>
-        </p>
-        
-    </asp:Content>
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample8.xml)]
 
 We can request the *"/Dinners/Details/1"* URL to see what this "details" scaffold implementation looks like in the browser. Using this URL will display one of the dinners we manually added to our database when we first created it:
 
@@ -371,39 +208,7 @@ We can write code within our View that accesses the "Dinner" model object that w
 
 Let's make some tweaks so that the source for our final Details view template looks like below:
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-        Dinner: <%=Html.Encode(Model.Title) %>
-    </asp:Content>
-    
-    <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2><%=Html.Encode(Model.Title) %></h2>
-        <p>
-            <strong>When:</strong> 
-            <%=Model.EventDate.ToShortDateString() %> 
-    
-            <strong>@</strong>
-            <%=Model.EventDate.ToShortTimeString() %>
-        </p>
-        <p>
-            <strong>Where:</strong> 
-            <%=Html.Encode(Model.Address) %>,
-            <%=Html.Encode(Model.Country) %>
-        </p>
-         <p>
-            <strong>Description:</strong> 
-            <%=Html.Encode(Model.Description) %>
-        </p>       
-        <p>
-            <strong>Organizer:</strong> 
-            <%=Html.Encode(Model.HostedBy) %>
-            (<%=Html.Encode(Model.ContactPhone) %>)
-        </p>
-        
-        <%= Html.ActionLink("Edit Dinner", "Edit", new { id=Model.DinnerID })%> |
-        <%= Html.ActionLink("Delete Dinner","Delete", new { id=Model.DinnerID})%>   
-         
-    </asp:Content>
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample9.xml)]
 
 When we access the *"/Dinners/Details/1"* URL again it will now render like below:
 
@@ -425,25 +230,7 @@ When we run the application and access the *"/Dinners/"* URL it will render our 
 
 The table solution above gives us a grid-like layout of our Dinner data – which isn't quite what we want for our consumer facing Dinner listing. We can update the Index.aspx view template and modify it to list fewer columns of data, and use a &lt;ul&gt; element to render them instead of a table using the code below:
 
-    <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Upcoming Dinners</h2>
-    
-        <ul>
-            <% foreach (var dinner in Model) { %>
-            
-                <li>                 
-                    <%=Html.Encode(dinner.Title) %>            
-                    on 
-                    <%=Html.Encode(dinner.EventDate.ToShortDateString())%>
-                    @
-                    <%=Html.Encode(dinner.EventDate.ToShortTimeString())%>
-                </li>
-                
-            <% } %>
-        </ul>
-        
-    </asp:Content>
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample10.xml)]
 
 We are using the "var" keyword within the above foreach statement as we loop over each dinner in our Model. Those unfamiliar with C# 3.0 might think that using "var" means that the dinner object is late-bound. It instead means that the compiler is using type-inference against the strongly typed "Model" property (which is of type "IEnumerable&lt;Dinner&gt;") and compiling the local "dinner" variable as a Dinner type – which means we get full intellisense and compile-time checking for it within code blocks:
 
@@ -461,36 +248,15 @@ We can generate these hyperlinks within our Index view in one of two ways. The f
 
 An alternative approach we can use is to take advantage of the built-in "Html.ActionLink()" helper method within ASP.NET MVC that supports programmatically creating an HTML &lt;a&gt; element that links to another action method on a Controller:
 
-    <%= Html.ActionLink(dinner.Title, "Details", new { id=dinner.DinnerID }) %>
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample11.xml)]
 
 The first parameter to the Html.ActionLink() helper method is the link-text to display (in this case the title of the dinner), the second parameter is the Controller action name we want to generate the link to (in this case the Details method), and the third parameter is a set of parameters to send to the action (implemented as an anonymous type with property name/values). In this case we are specifying the "id" parameter of the dinner we want to link to, and because the default URL routing rule in ASP.NET MVC is "{Controller}/{Action}/{id}" the Html.ActionLink() helper method will generate the following output:
 
-    <a href="/Dinners/Details/1">.NET Futures</a>
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample12.xml)]
 
 For our Index.aspx view we'll use the Html.ActionLink() helper method approach and have each dinner in the list link to the appropriate details URL:
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-        Upcoming Dinners
-    </asp:Content>
-    
-    <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Upcoming Dinners</h2>
-    
-        <ul>
-            <% foreach (var dinner in Model) { %>
-            
-                <li>     
-                    <%=Html.ActionLink(dinner.Title, "Details", new { id=dinner.DinnerID }) %>
-                    on 
-                    <%=Html.Encode(dinner.EventDate.ToShortDateString())%>
-                    @
-                    <%=Html.Encode(dinner.EventDate.ToShortTimeString())%>
-                </li>
-                
-            <% } %>
-        </ul>
-    </asp:Content>
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample13.xml)]
 
 And now when we hit the */Dinners* URL our dinner list looks like below:
 
@@ -518,33 +284,7 @@ Developers do not need to explicitly specify the view template name when the vie
 
 This allows us to clean up our controller code a little, and avoid duplicating the name twice in our code:
 
-    public class DinnersController : Controller {
-    
-        DinnerRepository dinnerRepository = new DinnerRepository();
-    
-        //
-        // GET: /Dinners/
-    
-        public ActionResult Index() {
-    
-            var dinners = dinnerRepository.FindUpcomingDinners().ToList();
-    
-            return View(dinners);
-        }
-    
-        //
-        // GET: /Dinners/Details/2
-    
-        public ActionResult Details(int id) {
-    
-            Dinner dinner = dinnerRepository.GetDinner(id);
-    
-            if (dinner == null)
-                return View("NotFound");
-            else
-                return View(dinner);
-        }
-    }
+[!code[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample14.xml)]
 
 The above code is all that is needed to implement a nice Dinner listing/details experience for the site.
 

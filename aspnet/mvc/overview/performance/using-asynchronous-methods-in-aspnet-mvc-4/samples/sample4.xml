@@ -1,11 +1,6 @@
-[AsyncTimeout(150)]
-[HandleError(ExceptionType = typeof(TimeoutException),
-                                    View = "TimeoutError")]
-public async Task<ActionResult> GizmosCancelAsync(
-                       CancellationToken cancellationToken )
+public async Task<ActionResult> GizmosAsync()
 {
     ViewBag.SyncOrAsync = "Asynchronous";
     var gizmoService = new GizmoService();
-    return View("Gizmos",
-        await gizmoService.GetGizmosAsync(cancellationToken));
+    return View("Gizmos", await gizmoService.GetGizmosAsync());
 }

@@ -51,40 +51,7 @@ In ASP.NET pages, you can use the `ReCaptcha` helper to render a CAPTCHA test th
 7. In the root folder of a website, create new page named *Recaptcha.cshtml*.
 8. Replace the existing content with the following: 
 
-        @using Microsoft.Web.Helpers;
-        @{
-          var showRecaptcha = true;
-          if (IsPost) {
-            if (ReCaptcha.Validate()) {
-                @:Your response passed!
-                showRecaptcha = false;
-            }
-            else{
-              @:Your response didn't pass!
-            }
-          }
-        }
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title>Testing Global Recaptcha Keys</title>
-            </head>
-            <body>
-            <form action="" method="post">
-            @if(showRecaptcha == true){
-                if(ReCaptcha.PrivateKey != ""){
-                    <p>@ReCaptcha.GetHtml()</p>
-                    <input type="submit" value="Submit" />
-                }
-                else {
-                    <p>You can get your public and private keys at
-                    the ReCaptcha.Net website (http://recaptcha.net).
-                    Then add the keys to the _AppStart.cshtml file.</p>
-                }
-            }
-            </form>
-            </body>
-        </html>
+    [!code[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample2.xml)]
 9. Run the *Recaptcha.cshtml* page in a browser. If the `PrivateKey` value is valid, the page displays the ReCaptcha control and a button. If you had not set the keys globally in *\_AppStart.html*, the page would display an error. 
 
     ![](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/_static/image1.png)
@@ -92,19 +59,7 @@ In ASP.NET pages, you can use the `ReCaptcha` helper to render a CAPTCHA test th
 
 > [!NOTE] If your computer is on a domain that uses proxy server, you might need to configure the `defaultproxy` element of the *Web.config* file. The following example shows a *Web.config* file with the `defaultproxy` element configured to enable the ReCaptcha service to work.
 > 
->     <?xml version="1.0" encoding="utf-8"?>
->     <configuration>
->       <system.net>
->           <defaultProxy>
->              <proxy
->                 usesystemdefault = "false"
->                 proxyaddress="http://myProxy.MyDomain.com"
->                 bypassonlocal="true"
->                 autoDetect="False"
->              />
->           </defaultProxy>
->        </system.net>
->     </configuration>
+> [!code[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample3.xml)]
 
 
 <a id="Additional_Resources"></a>

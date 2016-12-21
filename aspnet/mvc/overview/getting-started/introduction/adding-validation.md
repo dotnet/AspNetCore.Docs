@@ -45,12 +45,7 @@ In the image above, you can see all the string fields are set to [NVARCHAR (MAX)
 
 When this command finishes, Visual Studio opens the class file that defines the new `DbMIgration` derived class with the name specified (`DataAnnotations`), and in the `Up` method you can see the code that updates the schema constraints:
 
-    public override void Up()
-    {
-        AlterColumn("dbo.Movies", "Title", c => c.String(maxLength: 60));
-        AlterColumn("dbo.Movies", "Genre", c => c.String(nullable: false, maxLength: 30));
-        AlterColumn("dbo.Movies", "Rating", c => c.String(maxLength: 5));
-    }
+[!code[Main](adding-validation/samples/sample2.xml)]
 
 The `Genre` field is are no longer nullable (that is, you must enter a value). The `Rating` field has a maximum length of 5 and `Title` has a maximum length of 60. The minimum length of 3 on `Title` and the range on `Price` did not create schema changes.
 
@@ -64,11 +59,7 @@ The validation attributes specify behavior that you want to enforce on the model
 
 Code First ensures that the validation rules you specify on a model class are enforced before the application saves changes in the database. For example, the code below will throw a [DbEntityValidationException](https://msdn.microsoft.com/en-us/library/system.data.entity.validation.dbentityvalidationexception(v=vs.103).aspx) exception when the `SaveChanges` method is called, because several required `Movie` property values are missing:
 
-    MovieDBContext db = new MovieDBContext();
-    Movie movie = new Movie();
-    movie.Title = "Gone with the Wind";
-    db.Movies.Add(movie);
-    db.SaveChanges();        // <= Will throw server side validation exception
+[!code[Main](adding-validation/samples/sample3.xml)]
 
 The code above throws the following exception:
 
@@ -99,25 +90,7 @@ The form data is not sent to the server until there are no client side validatio
 
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The next listing shows what the `Create` methods in the `MovieController` class look like. They're unchanged from how you created them earlier in this tutorial.
 
-    public ActionResult Create()
-    {
-        return View();
-    }
-    // POST: /Movies/Create
-    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-    // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Create([Bind(Include = "ID,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
-    {
-        if (ModelState.IsValid)
-        {
-            db.Movies.Add(movie);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        return View(movie);
-    }
+[!code[Main](adding-validation/samples/sample4.xml)]
 
 The first (HTTP GET) `Create` action method displays the initial Create form. The second (`[HttpPost]`) version handles the form post. The second `Create` method (The `HttpPost` version) calls `ModelState.IsValid` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the `Create` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, **the form is not posted to the server when there are validation errors detected on the client side; the second** `Create`**method is never called**. If you disable JavaScript in your browser, client validation is disabled and the HTTP POST `Create` method calls `ModelState.IsValid` to check whether the movie has any validation errors.
 
@@ -137,7 +110,7 @@ The following image shows how to disable JavaScript in the Chrome browser.
 
 Below is the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
-[!code[Main](adding-validation/samples/sample2.xml?highlight=16-17)]
+[!code[Main](adding-validation/samples/sample5.xml?highlight=16-17)]
 
 Notice how the code uses an `Html.EditorFor` helper to output the `<input>` element for each `Movie` property. Next to this helper is a call to the `Html.ValidationMessageFor` helper method. These two helper methods work with the model object that's passed by the controller to the view (in this case, a `Movie` object). They automatically look for validation attributes specified on the model and display error messages as appropriate.
 
@@ -149,11 +122,7 @@ If you want to change the validation logic later, you can do so in exactly one p
 
 Open the *Movie.cs* file and examine the `Movie` class. The [`System.ComponentModel.DataAnnotations`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a [`DataType`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate [`DataType`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute.
 
-    [DataType(DataType.Date)] 
-            public DateTime ReleaseDate { get; set; }
-           
-            [DataType(DataType.Currency)] 
-            public decimal Price { get; set; }
+[!code[Main](adding-validation/samples/sample6.xml)]
 
 The [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatypeattribute.aspx) attributes only provide hints for the view engine to format the data (and supply attributes such as `<a>` for URL's and `<a href="mailto:EmailAddress.com">` for email. You can use the [RegularExpression](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.regularexpressionattribute.aspx) attribute to validate the format of the data. The [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatypeattribute.aspx) attribute is used to specify a data type that is more specific than the database intrinsic type, they are ***not*** validation attributes. In this case we only want to keep track of the date, not the date and time. The [DataType Enumeration](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) provides for many data types, such as *Date, Time, PhoneNumber, Currency, EmailAddress* and more. The `DataType` attribute can also enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for [DataType.EmailAddress](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx), and a date selector can be provided for [DataType.Date](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) in browsers that support [HTML5](http://html5.org/). The [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatypeattribute.aspx) attributes emits HTML 5 [data-](http://ejohn.org/blog/html-5-data-attributes/) (pronounced *data dash*) attributes that HTML 5 browsers can understand. The [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatypeattribute.aspx) attributes do not provide any validation.
 
@@ -177,14 +146,14 @@ If you use the `DataType` attribute with a date field, you have to specify the `
 
 > [!NOTE] jQuery validation does not work with the [Range](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.rangeattribute.aspx) attribute and [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx). For example, the following code will always display a client side validation error, even when the date is in the specified range:
 > 
->     [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
+> [!code[Main](adding-validation/samples/sample7.xml)]
 > 
 >  You will need to disable jQuery date validation to use the [Range](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.rangeattribute.aspx) attribute with [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx). It's generally not a good practice to compile hard dates in your models, so using the [Range](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.rangeattribute.aspx) attribute and [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx) is discouraged.
 
 
 The following code shows combining attributes on one line:
 
-[!code[Main](adding-validation/samples/sample3.xml?highlight=6,10)]
+[!code[Main](adding-validation/samples/sample8.xml?highlight=6,10)]
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 

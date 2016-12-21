@@ -124,19 +124,11 @@ Notice that the new design for the Contact Manager includes images for editing a
 
 Originally, these links that were rendered with the HTML.ActionLink() helper like this:
 
-    <td>
-        <%= Html.ActionLink("Edit", "Edit", new { id=item.Id  }) %> |
-        <%= Html.ActionLink("Delete", "Delete", new { id=item.Id  }) %> 
-    </td>
+[!code[Main](iteration-2-make-the-application-look-nice-cs/samples/sample1.xml)]
 
 The Html.ActionLink() method does not support images (the method HTML encodes the link text for security reasons). Therefore, I replaced the calls to Html.ActionLink() with calls to Url.Action() like this:
 
-    <td class="actions edit">
-        <a href='<%= Url.Action("Edit", new {id=item.Id}) %>'><img src="../../Content/Edit.png" alt="Edit" /></a>
-    </td>
-    <td class="actions delete">
-        <a href='<%= Url.Action("Delete", new {id=item.Id}) %>'><img src="../../Content/Delete.png" alt="Delete" /></a>
-    </td>
+[!code[Main](iteration-2-make-the-application-look-nice-cs/samples/sample2.xml)]
 
 The Html.ActionLink() method renders an entire HTML hyperlink. The Url.Action() method, on the other hand, renders just the URL without the &lt;a&gt; tag.
 
@@ -152,43 +144,7 @@ To support rendering both selected and unselected tabs, I created a custom HTML 
 
 **Listing 1 - Helpers\MenuItemHelper.cs**
 
-    using System;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Html;
-    
-    namespace Helpers
-    {
-        /// <summary>
-        /// This helper method renders a link within an HTML LI tag.
-        /// A class="selected" attribute is added to the tag when
-        /// the link being rendered corresponds to the current
-        /// controller and action.
-        /// 
-        /// This helper method is used in the Site.Master View 
-        /// Master Page to display the website menu.
-        /// </summary>
-        public static class MenuItemHelper
-        {
-            public static string MenuItem(this HtmlHelper helper, string linkText, string actionName, string controllerName)
-            {
-                string currentControllerName = (string)helper.ViewContext.RouteData.Values["controller"];
-                string currentActionName = (string)helper.ViewContext.RouteData.Values["action"];
-    
-                var builder = new TagBuilder("li");
-                
-                // Add selected class
-                if (currentControllerName.Equals(controllerName, StringComparison.CurrentCultureIgnoreCase) && currentActionName.Equals(actionName, StringComparison.CurrentCultureIgnoreCase))
-                    builder.AddCssClass("selected");            
-                
-                // Add link
-                builder.InnerHtml = helper.ActionLink(linkText, actionName, controllerName);
-    
-                // Render Tag Builder
-                return builder.ToString(TagRenderMode.Normal);
-            }
-    
-        }
-    }
+[!code[Main](iteration-2-make-the-application-look-nice-cs/samples/sample3.xml)]
 
 The MenuItemHelper uses the TagBuilder class internally to build the &lt;li&gt; HTML tag. The TagBuilder class is a very useful utility class that you can use whenever you need to build up a new HTML tag. It includes methods for adding attributes, adding CSS classes, generating Ids, and modifying the tag s inner HTML.
 

@@ -100,22 +100,7 @@ In this exercise, you will learn how to use ASP.NET MVC 4 scaffolding with code 
 
     C#
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        
-        namespace MVC4EF.Models
-        {
-            public class Person
-            {
-                public int PersonID { get; set; }
-        
-                public string FirstName { get; set; }
-        
-                public string LastName { get; set; }        
-            }
-        }
+    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample1.xml)]
 6. Click **Build | Build Solution** to save the changes and build the project.
 
     ![Building the application](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image3.png "Building the application")
@@ -187,7 +172,7 @@ In this task you will update the database using Entity Framework Migrations. You
 
     PMC
 
-        Enable-Migrations -ContextTypeName [ContextClassName]
+    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample2.xml)]
 
     ![Enabling Migrations](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image11.png "Enabling Migrations")
 
@@ -202,30 +187,12 @@ In this task you will update the database using Entity Framework Migrations. You
 
     C#
 
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = true;
-        }
+    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample3.xml)]
 4. Open the Person class and add an attribute for the person's middle name. With this new attribute, you are changing the model.
 
     C#
 
-        public class 
-        
-        Person
-        {
-            public int PersonID { get; set; }
-        
-            public string FirstName { get; 
-        
-        set; }
-        
-            public string LastName { get; 
-        
-        set; }
-        
-            public string MiddleName { get; set; }
-        }
+    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample4.xml)]
 5. Select **Build | Build Solution** on the menu to build the application.
 
     ![Building the application](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image13.png "Building the application")
@@ -235,7 +202,7 @@ In this task you will update the database using Entity Framework Migrations. You
 
     PMC
 
-        Add-Migration AddMiddleName
+    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample5.xml)]
 
     This command will look for changes in the data objects, and then, it will add the necessary commands to modify the database accordingly.
 
@@ -246,9 +213,7 @@ In this task you will update the database using Entity Framework Migrations. You
 
     PMC
 
-        Update-Database -Script -SourceMigration:
-        
-        $InitialDatabase
+    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample6.xml)]
 
     ![Generating a SQL script](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image15.png "Generating a SQL script")
 
@@ -261,7 +226,7 @@ In this task you will update the database using Entity Framework Migrations. You
 
     PMC
 
-        Update-Database -Verbose
+    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample7.xml)]
 
     ![Updating the Database](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image17.png "Updating the Database")
 

@@ -1,34 +1,15 @@
-using IdentityMySQLDemo.Models;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-
-namespace IdentityMySQLDemo
-{
-  public class MySqlInitializer : IDatabaseInitializer<ApplicationDbContext>
-  {
-    public void InitializeDatabase(ApplicationDbContext context)
-    {
-      if (!context.Database.Exists())
-      {
-        // if database did not exist before - create it
-        context.Database.Create();
-      }
-      else
-      {
-        // query to check if MigrationHistory table is present in the database 
-        var migrationHistoryTableExists = ((IObjectContextAdapter)context).ObjectContext.ExecuteStoreQuery<int>(
-        string.Format(
-          "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '{0}' AND table_name = '__MigrationHistory'",
-          "[Insert your database schema here - such as 'users']"));
-
-        // if MigrationHistory table is not there (which is the case first time we run) - create it
-        if (migrationHistoryTableExists.FirstOrDefault() == 0)
-        {
-          context.Database.Delete();
-          context.Database.Create();
-        }
-      }
-    }
-  }
-}
+        <entityFramework>
+          <providers>
+            <provider invariantName="MySql.Data.MySqlClient"
+              type="MySql.Data.MySqlClient.MySqlProviderServices, MySql.Data.Entity"/> 
+          </providers>
+        </entityFramework>
+        <system.data>
+          <DbProviderFactories>
+            <remove invariant="MySql.Data.MySqlClient"></remove>
+            <add name="MySQL Data Provider"
+              invariant="MySql.Data.MySqlClient"
+              description=".Net Framework Data Provider for MySQL"
+              type="MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=6.7.2.0"/>
+          </DbProviderFactories>
+        </system.data>

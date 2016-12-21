@@ -1,5 +1,7 @@
-async public Task NewContosoChatMessage(string name, string message)
+public class ContosoChatHub : Hub
 {
-    await Clients.Others.addContosoChatMessageToPage(data);
-    Clients.Caller.notifyMessageSent();
+    public void NewContosoChatMessage(string name, string message)
+    {
+        Clients.All.addNewMessageToPage(name, message);
+    }
 }

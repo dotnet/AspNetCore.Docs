@@ -34,16 +34,7 @@ We can easily implement this by creating a partial view which is added to our Si
 
 As shown previously, the ShoppingCart controller includes a CartSummary action method which returns a partial view:
 
-    //
-    // GET: /ShoppingCart/CartSummary
-    [ChildActionOnly]
-     public ActionResult CartSummary()
-    {
-        var cart = ShoppingCart.GetCart(this.HttpContext);
-     
-        ViewData["CartCount"] = cart.GetCount();
-        return PartialView("CartSummary");
-    }
+[!code[Main](mvc-music-store-part-10/samples/sample1.xml)]
 
 To create the CartSummary partial view, right-click on the Views/ShoppingCart folder and select Add View. Name the view CartSummary and check the "Create a partial view" checkbox as shown below.
 
@@ -51,16 +42,11 @@ To create the CartSummary partial view, right-click on the Views/ShoppingCart fo
 
 The CartSummary partial view is really simple - it's just a link to the ShoppingCart Index view which shows the number of items in the cart. The complete code for CartSummary.cshtml is as follows:
 
-    @Html.ActionLink("Cart
-    (" + ViewData["CartCount"] + ")",
-        "Index",
-        "ShoppingCart",
-        new { id = "cart-status" })
+[!code[Main](mvc-music-store-part-10/samples/sample2.xml)]
 
 We can include a partial view in any page in the site, including the Site master, by using the Html.RenderAction method. RenderAction requires us to specify the Action Name ("CartSummary") and the Controller Name ("ShoppingCart") as below.
 
-    @Html.RenderAction("CartSummary",
-    "ShoppingCart")
+[!code[Main](mvc-music-store-part-10/samples/sample3.xml)]
 
 Before adding this to the site Layout, we will also create the Genre Menu so we can make all of our Site.master updates at one time.
 
@@ -72,14 +58,7 @@ We can make it a lot easier for our users to navigate through the store by addin
 
 We will follow the same steps also create a GenreMenu partial view, and then we can add them both to the Site master. First, add the following GenreMenu controller action to the StoreController:
 
-    //
-    // GET: /Store/GenreMenu
-    [ChildActionOnly]
-     public ActionResult GenreMenu()
-    {
-        var genres = storeDB.Genres.ToList();
-        return PartialView(genres);
-     }
+[!code[Main](mvc-music-store-part-10/samples/sample4.xml)]
 
 This action returns a list of Genres which will be displayed by the partial view, which we will create next.
 
@@ -91,54 +70,13 @@ Right-click on the GenreMenu controller action and create a partial view named G
 
 Update the view code for the GenreMenu partial view to display the items using an unordered list as follows.
 
-    @model IEnumerable<MvcMusicStore.Models.Genre>
-    <ul id="categories">
-        @foreach (var genre in Model)
-        {
-            <li>@Html.ActionLink(genre.Name,
-                    "Browse", "Store", 
-                    new { Genre = genre.Name }, null)
-            </li>
-        }
-    </ul>
+[!code[Main](mvc-music-store-part-10/samples/sample5.xml)]
 
 ## Updating Site Layout to display our Partial Views
 
 We can add our partial views to the Site Layout (/Views/Shared/\_Layout.cshtml) by calling Html.RenderAction(). We'll add them both in, as well as some additional markup to display them, as shown below:
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>@ViewBag.Title</title>
-        <link href="@Url.Content("~/Content/Site.css")"
-    rel="stylesheet" 
-            type="text/css" />
-        <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")"
-            type="text/javascript"></script>
-    </head>
-    <body>
-        <div id="header">
-            <h1><a href="/">ASP.NET MVC MUSIC
-    STORE</a></h1>
-            <ul id="navlist">
-                <li class="first">
-                    <a href="@Url.Content("~")" id="current">
-                        Home</a></li>
-                <li><a href="@Url.Content("~/Store/")">Store</a></li>
-                <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
-                <li><a href="@Url.Content("~/StoreManager/")">
-                        Admin</a></li>
-            </ul>        
-        </div>
-        @{Html.RenderAction("GenreMenu", "Store");}
-        <div id="main">
-            @RenderBody()
-        </div>
-        <div id="footer">
-            built with <a href="https://asp.net/mvc">ASP.NET MVC 3</a>
-        </div>
-    </body>
-    </html>
+[!code[Main](mvc-music-store-part-10/samples/sample6.xml)]
 
 Now when we run the application, we will see the Genre in the left navigation area and the Cart Summary at the top.
 
@@ -146,29 +84,7 @@ Now when we run the application, we will see the Genre in the left navigation ar
 
 The Store Browse page is functional, but doesn't look very good. We can update the page to show the albums in a better layout by updating the view code (found in /Views/Store/Browse.cshtml) as follows:
 
-    @model MvcMusicStore.Models.Genre
-     
-    @{
-        ViewBag.Title = "Browse Albums";
-    }
-     
-    <div class="genre">
-        <h3><em>@Model.Name</em> Albums</h3>
-     
-        <ul id="album-list">
-            @foreach (var album in Model.Albums)
-            {
-                <li>
-                    <a href="@Url.Action("Details", 
-                        new { id = album.AlbumId })">
-                        <img alt="@album.Title" 
-                            src="@album.AlbumArtUrl" />
-                        <span>@album.Title</span>
-                    </a>
-                </li>
-            }
-        </ul>
-    </div>
+[!code[Main](mvc-music-store-part-10/samples/sample7.xml)]
 
 Here we are making use of Url.Action rather than Html.ActionLink so that we can apply special formatting to the link to include the album artwork.
 
@@ -184,91 +100,27 @@ We want to feature our top selling albums on the home page to increase sales. We
 
 First, we'll add a navigation property to our Album class so that EntityFramework knows that they're associated. The last few lines of our **Album** class should now look like this:
 
-    public virtual Genre  Genre                  { get; set; }
-    public virtual Artist Artist                 { get; set; }
-    public virtual List<OrderDetail>OrderDetails { get; set; }
-        }
-    }
+[!code[Main](mvc-music-store-part-10/samples/sample8.xml)]
 
 *Note: This will require adding a using statement to bring in the System.Collections.Generic namespace.*
 
 First, we'll add a storeDB field and the MvcMusicStore.Models using statements, as in our other controllers. Next, we'll add the following method to the HomeController which queries our database to find top selling albums according to OrderDetails.
 
-    private List<Album> GetTopSellingAlbums(int count)
-     {
-        // Group the order details by album and return
-        // the albums with the highest count
-        return storeDB.Albums
-            .OrderByDescending(a => a.OrderDetails.Count())
-            .Take(count)
-            .ToList();
-    }
+[!code[Main](mvc-music-store-part-10/samples/sample9.xml)]
 
 This is a private method, since we don't want to make it available as a controller action. We are including it in the HomeController for simplicity, but you are encouraged to move your business logic into separate service classes as appropriate.
 
 With that in place, we can update the Index controller action to query the top 5 selling albums and return them to the view.
 
-    public ActionResult Index()
-    {
-        // Get most popular albums
-        var albums = GetTopSellingAlbums(5);
-     
-        return View(albums);
-     }
+[!code[Main](mvc-music-store-part-10/samples/sample10.xml)]
 
 The complete code for the updated HomeController is as shown below.
 
-    using System.Collections.Generic;
-     using System.Linq;
-     using System.Web.Mvc;
-     using MvcMusicStore.Models;
-     
-    namespace MvcMusicStore.Controllers
-    {
-        public class HomeController : Controller
-        {
-            //
-            // GET: /Home/
-            MusicStoreEntities storeDB = new MusicStoreEntities();
-            public ActionResult Index()
-            {
-                // Get most popular albums
-                var albums = GetTopSellingAlbums(5);
-     
-                return View(albums);
-            }
-            private List<Album> GetTopSellingAlbums(int count)
-            {
-                // Group the order details by album and return
-                // the albums with the highest count
-                return storeDB.Albums
-                    .OrderByDescending(a => a.OrderDetails.Count())
-                    .Take(count)
-                    .ToList();
-            }
-        }
-    }
+[!code[Main](mvc-music-store-part-10/samples/sample11.xml)]
 
 Finally, we'll need to update our Home Index view so that it can display a list of albums by updating the Model type and adding the album list to the bottom. We will take this opportunity to also add a heading and a promotion section to the page.
 
-    @model List<MvcMusicStore.Models.Album>
-    @{
-        ViewBag.Title = "ASP.NET MVC Music Store";
-    }
-    <div id="promotion">
-    </div>
-    <h3><em>Fresh</em> off the grill</h3>
-    <ul id="album-list">
-        @foreach (var album in Model)
-        {
-            <li><a href="@Url.Action("Details", "Store",
-                    new { id = album.AlbumId })">
-                <img alt="@album.Title" src="@album.AlbumArtUrl" />
-                <span>@album.Title</span>
-    </a>
-            </li>
-        }
-    </ul>
+[!code[Main](mvc-music-store-part-10/samples/sample12.xml)]
 
 Now when we run the application, we'll see our updated home page with top selling albums and our promotional message.
 

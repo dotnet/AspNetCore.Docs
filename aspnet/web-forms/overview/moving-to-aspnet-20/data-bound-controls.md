@@ -51,13 +51,13 @@ AdRotator controls use either an XML file or a table in a database for data. The
 
 A typical XML file might look like the following:
 
-    <?xml version="1.0" encoding="utf-8" ?> <Advertisements xmlns="http://schemas.microsoft.com/AspNet/AdRotator-Schedule-File"> <Ad> <ImageUrl>~/images/Contoso_ad.gif</ImageUrl> <NavigateUrl>http://www.contoso-ltd.com</NavigateUrl> <AlternateText>Ad for Contoso, Ltd. Web site</AlternateText> <Impressions>100</Impressions> </Ad> <Ad> <ImageUrl>~/images/Aspnet_ad.gif</ImageUrl> <NavigateUrl>https://www.asp.net</NavigateUrl> <AlternateText>Ad for ASP.NET Web site</AlternateText> <Impressions>50</Impressions> </Ad> </Advertisements>
+[!code[Main](data-bound-controls/samples/sample1.xml)]
 
 In the above example, the ad for Contoso is twice as likely to appear as the ad for the ASP.NET Web site because of the value for the Impressions attribute.
 
 To display ads from the above XML file, add an AdRotator control to a page and set the **AdvertisementFile** property to point to the XML file as shown below:
 
-    <asp:AdRotator ID="AdRotator1" runat="server" AdvertisementFile="App_Data/Ads.xml" />
+[!code[Main](data-bound-controls/samples/sample2.xml)]
 
 If you choose to use a database table as the data source for your AdRotator control, you will first need to set up a database using the following schema:
 
@@ -76,7 +76,7 @@ In cases where you already have a database with a different schema, you can use 
 
 The following code snippet sets the ImageUrl, NavigateUrl, and AlternateText for an ad programmatically:
 
-    protected void AdRotator1_AdCreated(object sender, System.Web.UI.WebControls.AdCreatedEventArgs e) { e.ImageUrl = "images/contoso_ad.gif"; e.NavigateUrl = "http://www.contoso-ltd.com/"; e.AlternateText = "Ad for Contoso, Ltd Web site"; }
+[!code[Main](data-bound-controls/samples/sample3.xml)]
 
 ## List Controls
 
@@ -381,7 +381,7 @@ The Menu control in ASP.NET 2.0 is designed to be a full-featured navigation sys
 
 A Menu controls structure can be defined declaratively or dynamically and consists of a single root node and any number of sub-nodes. The following code declaratively defines a menu for the Menu control.
 
-    <asp:menu id="NavigationMenu" disappearafter="2000" staticdisplaylevels="2" staticsubmenuindent="10" orientation="Vertical" font-names="Arial" target="_blank" runat="server"> <staticmenuitemstyle backcolor="LightSteelBlue" forecolor="Black"/> <statichoverstyle backcolor="LightSkyBlue"/> <dynamicmenuitemstyle backcolor="Black" forecolor="Silver"/> <dynamichoverstyle backcolor="LightSkyBlue" forecolor="Black"/> <items> <asp:menuitem navigateurl="Home.aspx" text="Home" tooltip="Home"> <asp:menuitem navigateurl="Music.aspx" text="Music" tooltip="Music"> <asp:menuitem navigateurl="Classical.aspx" text="Classical" tooltip="Classical"/> <asp:menuitem navigateurl="Rock.aspx" text="Rock" tooltip="Rock"/> <asp:menuitem navigateurl="Jazz.aspx" text="Jazz" tooltip="Jazz"/> </asp:menuitem> <asp:menuitem navigateurl="Movies.aspx" text="Movies" tooltip="Movies"> <asp:menuitem navigateurl="Action.aspx" text="Action" tooltip="Action"/> <asp:menuitem navigateurl="Drama.aspx" text="Drama" tooltip="Drama"/> <asp:menuitem navigateurl="Musical.aspx" text="Musical" tooltip="Musical"/> </asp:menuitem> </asp:menuitem> </items> </asp:menu>
+[!code[Main](data-bound-controls/samples/sample4.xml)]
 
 In the above example, the Home.aspx node is the root node. All other nodes are nested within the root node at various levels.
 
@@ -398,7 +398,7 @@ The **MaximumDynamicDisplayLevels** property configures the maximum number of dy
 
 The Menu control can be bound to any hierarchical data source such as the SiteMapDataSource or the XMLDataSource. The SiteMapDataSource is the most commonly used method for data binding to a Menu control because it feeds off of the Web.sitemap file and its schema provides a known API to the Menu control. The listing below shows a simple Web.sitemap file.
 
-    <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" > <siteMapNode url="~/default.aspx" description="Our Home Page" title="Home"> <siteMapNode url="~/products/default.aspx" title="Products" description="Our Products"> <siteMapNode url="~/products/winprods.aspx" title="Windows Products" description="Windows Products" /> <siteMapNode url="~/products/webprods.aspx" title="Web Products" description="Web Products" /> </siteMapNode> <siteMapNode url="~/services/default.aspx" title="Services" description="Our Services"> <siteMapNode url="~/services/consulting.aspx" title="Consulting Services" description="Consulting Services" /> <siteMapNode url="~/services/develop.aspx" title="Development Services" description="Development Services" /> </siteMapNode> </siteMapNode> </siteMap>
+[!code[Main](data-bound-controls/samples/sample5.xml)]
 
 Notice that there is only one root siteMapNode element, in this case, the Home element. Several attributes can be configured for each siteMapNode. The most commonly used attributes are:
 
@@ -437,8 +437,7 @@ The MenuItemClicked event is raised when a menu item is clicked. The MenuItemDat
 
 You can also affect the appearance of a menu control using one or more of the many styles available to format menus. Among these are **StaticMenuStyle**, **DynamicMenuStyle**, **DynamicMenuItemStyle**, **DynamicSelectedStyle**, and **DynamicHoverStyle**. These properties are configured using a standard HTML Style string. For example, the following will affect the style for dynamic menus.
 
-    <DynamicMenuStyle BorderStyle="Outset" BorderWidth="1px"
-        BackColor="#D6D3CE" />
+[!code[Main](data-bound-controls/samples/sample6.xml)]
 
 > [!NOTE] If you are using any of the Hover styles, you will need to add a &lt;head&gt; element in to the page with the *runat* element set to *server*.
 
@@ -469,9 +468,7 @@ By setting the **PopulateNodesFromClient** and the **PopulateOnDemand** properti
 
 ASP.NET dynamically creates the client code that implements this functionality. The &lt;script&gt; tags that contain the script are generated pointing to an AXD file. For example, the listing below shows the script links for the script code that generates the XMLHttp request.
 
-    <script src="/WebSite1/WebResource.axd?d=QQG9vSdBi4_k2y9AeP_iww2&
-        amp;t=632514255396426531"
-        type="text/javascript"></script>
+[!code[Main](data-bound-controls/samples/sample7.xml)]
 
 If you browse the AXD file above in your browser and open it, you will see the code that implements the XMLHttp request. This method prevents customers from modifying the script file.
 
@@ -538,15 +535,13 @@ The TreeView control provides many properties for controlling the appearance of 
 
 Each of these properties is read-only. However, they will each return a **TreeNodeStyle** object, and the properties of that object can be modified using the *property-subproperty* format. For example, to set the **ForeColor** property of the **SelectedNodeStyle**, you would use the following syntax:
 
-    <asp:TreeView id=sampleTreeView
-        SelectedNodeStyle-ForeColor=Blue
-        runat=server>
+[!code[Main](data-bound-controls/samples/sample8.xml)]
 
 Notice that the tag above is not closed. That is because when using the declarative syntax shown here, you would include the TreeViews nodes in the HTML code as well.
 
 The style properties can also be specified in code using the *property.subproperty* format. For example, to set the **ForeColor** property of the **RootNodeStyle** in code, you would use the following syntax:
 
-    treeView1.RootNodeStyle.ForeColor = System.Drawing.Color.Red;
+[!code[Main](data-bound-controls/samples/sample9.xml)]
 
 > [!NOTE] For a comprehensive list of the different style properties, see the MSDN documentation on the TreeNodeStyle object.
 
@@ -597,13 +592,11 @@ The following styles are available for formatting of a SiteMapPath control.
 
 The NodeStyle property is overridden by either the CurrentNodeStyle or the RootNodeStyle. Each of these properties is read-only and returns a **Style** object. To affect the appearance of a node using one of these properties, you will need to set the properties of the Style object that is returned. For example, the code below changes the forecolor property of the current node.
 
-    <asp:SiteMapPath runat="server" ID="SiteMapPath1"
-      CurrentNodeStyle-ForeColor="Orange"/>
+[!code[Main](data-bound-controls/samples/sample10.xml)]
 
 The property can also be applied programmatically as follows:
 
-    this.SiteMapPath1.CurrentNodeStyle.ForeColor =
-        System.Drawing.Color.Orange;
+[!code[Main](data-bound-controls/samples/sample11.xml)]
 
 > [!NOTE] If a template is applied, the style will not be applied.
 
@@ -614,27 +607,7 @@ The property can also be applied programmatically as follows:
 2. Add a Site Map file by selecting File, New, File and choosing Site Map from the list of file templates.
 3. Open the site map (Web.sitemap by default) and modify it so that it looks like the listing below. The pages to which you are linking in the site map file do not really exist, but that will not be an issue for this exercise.
 
-        <?xml version="1.0" encoding="utf-8" ?>
-        <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-            <siteMapNode url="~/default.aspx">
-                <siteMapNode url="~/products/default.aspx"
-                  title="Products" description="Our Products">
-                    <siteMapNode url="~/products/winprods.aspx"
-                      title="Windows Products" description="Windows Products" />
-                    <siteMapNode url="~/products/webprods.aspx"
-                      title="Web Products" description="Web Products" />
-                </siteMapNode>
-                <siteMapNode url="~/services/default.aspx"
-                  title="Services" description="Our Services">
-                    <siteMapNode url="~/services/consulting.aspx"
-                      title="Consulting Services"
-                      description="Consulting Services" />
-                    <siteMapNode url="~/services/develop.aspx"
-                      title="Development Services"
-                      description="Development Services" />
-                </siteMapNode>
-            </siteMapNode>
-        </siteMap>
+    [!code[Main](data-bound-controls/samples/sample12.xml)]
 4. Open the default Web form in Design view.
 5. From the Navigation section of the Toolbox, add a new Menu control to the page.
 6. From the Data section of the Toolbox, add a new SiteMapDataSource. The SiteMapDataSource will automatically use the Web.sitemap file in your site. (The Web.sitemap file *must* be in the root folder of the site.)
@@ -653,135 +626,7 @@ This exercise assumes that you have SQL Server running locally and that the Nort
 1. Create a new Web site.
 2. Switch to Code view for Default.aspx and replace all code with the code listed below. 
 
-        <%@ Page Language="C#" %>
-        <%@ Import Namespace="System.Data" %>
-        <%@ Import Namespace="System.Data.SqlClient" %>
-        
-        <script runat="server">
-            void PopulateNode(Object sender, TreeNodeEventArgs e) {
-                // Call the appropriate method to populate a node at a particular level.
-                switch (e.Node.Depth) {
-                    case 0:
-                        // Populate the first-level nodes.
-                        PopulateCategories(e.Node);
-                        break;
-                    case 1:
-                        // Populate the second-level nodes.
-                        PopulateProducts(e.Node);
-                        break;
-                    default:
-                        // Do nothing.
-                        break;
-                }
-        
-            }
-            void PopulateCategories(TreeNode node) {
-        
-                // Query for the product categories. These are the values
-                // for the second-level nodes.
-                DataSet ResultSet = RunQuery("Select CategoryID, CategoryName From Categories");
-                // Create the second-level nodes.
-                if (ResultSet.Tables.Count > 0) {
-        
-                    // Iterate through and create a new node for each row in the query results.
-                    // Notice that the query results are stored in the table of the DataSet.
-                    foreach (DataRow row in ResultSet.Tables[0].Rows) {
-        
-                        // Create the new node. Notice that the CategoryId is stored in the Value property
-                        // of the node. This will make querying for items in a specific category easier when
-                        // the third-level nodes are created.
-                        TreeNode newNode = new TreeNode();
-                        newNode.Text = row["CategoryName"].ToString();
-                        newNode.Value = row["CategoryID"].ToString();
-                        // Set the PopulateOnDemand property to true so that the child nodes can be
-                        // dynamically populated.
-                        newNode.PopulateOnDemand = true;
-        
-                        // Set additional properties for the node.
-                        newNode.SelectAction = TreeNodeSelectAction.Expand;
-        
-                        // Add the new node to the ChildNodes collection of the parent node.
-                        node.ChildNodes.Add(newNode);
-        
-                    }
-        
-                }
-        
-            }
-            void PopulateProducts(TreeNode node) {
-                // Query for the products of the current category. These are the values
-                // for the third-level nodes.
-                DataSet ResultSet = RunQuery("Select ProductName From Products Where CategoryID=" + node.Value);
-                // Create the third-level nodes.
-                if (ResultSet.Tables.Count > 0) {
-        
-                    // Iterate through and create a new node for each row in the query results.
-                    // Notice that the query results are stored in the table of the DataSet.
-                    foreach (DataRow row in ResultSet.Tables[0].Rows) {
-        
-                        // Create the new node.
-                        TreeNode NewNode = new TreeNode(row["ProductName"].ToString());
-        
-                        // Set the PopulateOnDemand property to false, because these are leaf nodes and
-                        // do not need to be populated.
-                        NewNode.PopulateOnDemand = false;
-        
-                        // Set additional properties for the node.
-                        NewNode.SelectAction = TreeNodeSelectAction.None;
-        
-                        // Add the new node to the ChildNodes collection of the parent node.
-                        node.ChildNodes.Add(NewNode);
-        
-                    }
-        
-                }
-            }
-            DataSet RunQuery(String QueryString) {
-                // Declare the connection string. This example uses Microsoft SQL Server
-                // and connects to the Northwind sample database.
-                String ConnectionString = "server=localhost;database=NorthWind;Integrated Security=SSPI";
-                SqlConnection DBConnection = new SqlConnection(ConnectionString);
-                SqlDataAdapter DBAdapter;
-                DataSet ResultsDataSet = new DataSet();
-                try {
-                    // Run the query and create a DataSet.
-                    DBAdapter = new SqlDataAdapter(QueryString, DBConnection);
-                    DBAdapter.Fill(ResultsDataSet);
-                    // Close the database connection.
-                    DBConnection.Close();
-                } catch (Exception ex) {
-                    // Close the database connection if it is still open.
-                    if (DBConnection.State == ConnectionState.Open) {
-                        DBConnection.Close();
-                    }
-        
-                    Message.Text = "Unable to connect to the database.";
-                }
-                return ResultsDataSet;
-            }
-        </script>
-        
-        <html>
-        <body>
-            <form id="Form1" runat="server">
-                <h3>
-                    TreeView PopulateNodesFromClient Example</h3>
-                <asp:TreeView ID="LinksTreeView" 
-                  Font-Name="Arial" ForeColor="Blue" EnableClientScript="true"
-                  PopulateNodesFromClient="false" 
-                  OnTreeNodePopulate="PopulateNode" runat="server"
-                    ExpandDepth="0">
-                    <Nodes>
-                        <asp:TreeNode Text="Inventory" SelectAction="Expand"
-                                      PopulateOnDemand="True" Value="Inventory" />
-                    </Nodes>
-                </asp:TreeView>
-                <br>
-                <br>
-                <asp:Label ID="Message" runat="server" />
-            </form>
-        </body>
-        </html>
+    [!code[Main](data-bound-controls/samples/sample13.xml)]
 3. Save the page as treeview.aspx.
 4. Browse the page.
 5. When the page is first displayed, view the source of the page in your browser. Note that only the visible nodes were sent to the client.
@@ -794,12 +639,7 @@ This exercise assumes that you have SQL Server running locally and that the Nort
 2. Add a new web.config to the Web site.
 3. Add a connection string to the web.config file as shown below: 
 
-        <connectionStrings>
-            <add name="Northwind"
-                 providerName="System.Data.SqlClient"
-                 connectionString="Data Source=localhost;Integrated Security=SSPI;
-                 Initial Catalog=Northwind;"/>
-        </connectionStrings>
+    [!code[Main](data-bound-controls/samples/sample14.xml)]
 
     > [!NOTE] You may need to change the connection string based upon your environment.
 4. Save and close the web.config file.

@@ -38,29 +38,7 @@ To add sorting to the Student Index page, you'll change the `Index` method of th
 
 In *Controllers\StudentController.cs*, replace the `Index` method with the following code:
 
-    public ActionResult Index(string sortOrder)
-    {
-       ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
-       ViewBag.DateSortParm = sortOrder == "Date" ? "Date_desc" : "Date";
-       var students = from s in db.Students
-                      select s;
-       switch (sortOrder)
-       {
-          case "Name_desc":
-             students = students.OrderByDescending(s => s.LastName);
-             break;
-          case "Date":
-             students = students.OrderBy(s => s.EnrollmentDate);
-             break;
-          case "Date_desc":
-             students = students.OrderByDescending(s => s.EnrollmentDate);
-             break;
-          default:
-             students = students.OrderBy(s => s.LastName);
-             break;
-       }
-       return View(students.ToList());
-    }
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml)]
 
 This code receives a `sortOrder` parameter from the query string in the URL. The query string value is provided by ASP.NET MVC as a parameter to the action method. The parameter will be a string that's either "Name" or "Date", optionally followed by an underscore and the string "desc" to specify descending order. The default sort order is ascending.
 
@@ -68,8 +46,7 @@ The first time the Index page is requested, there's no query string. The student
 
 The two `ViewBag` variables are used so that the view can configure the column heading hyperlinks with the appropriate query string values:
 
-    ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
-    ViewBag.DateSortParm = sortOrder == "Date" ? "Date_desc" : "Date";
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml)]
 
 These are ternary statements. The first one specifies that if the `sortOrder` parameter is null or empty, `ViewBag.NameSortParm` should be set to "name\_desc"; otherwise, it should be set to an empty string. These two statements enable the view to set the column heading hyperlinks as follows:
 
@@ -86,7 +63,7 @@ The method uses [LINQ to Entities](https://msdn.microsoft.com/en-us/library/bb38
 
 In *Views\Student\Index.cshtml*, replace the `<tr>` and `<th>` elements for the heading row with the highlighted code:
 
-[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=5-15)]
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=5-15)]
 
 This code uses the information in the `ViewBag` properties to set up hyperlinks with the appropriate query string values.
 
@@ -106,7 +83,7 @@ To add filtering to the Students Index page, you'll add a text box and a submit 
 
 In *Controllers\StudentController.cs*, replace the `Index` method with the following code (the changes are highlighted):
 
-[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml?highlight=1,7-11)]
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=1,7-11)]
 
 You've added a `searchString` parameter to the `Index` method. You've also added to the LINQ statement a `where` clausethat selects only students whose first name or last name contains the search string. The search string value is received from a text box that you'll add to the Index view.The statement that adds the [where](https://msdn.microsoft.com/en-us/library/bb535040.aspx) clause is executed only if there's a value to search for.
 
@@ -117,7 +94,7 @@ You've added a `searchString` parameter to the `Index` method. You've also added
 
 In *Views\Student\Index.cshtml*, add the highlighted code immediately before the opening `table` tag in order to create a caption, a text box, and a **Search** button.
 
-[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=5-10)]
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml?highlight=5-10)]
 
 Run the page, enter a search string, and click **Search** to verify that filtering is working.
 
@@ -149,77 +126,29 @@ In the **Select Projects** box, click **OK**.
 
 In *Controllers\StudentController.cs*, add a `using` statement for the `PagedList` namespace:
 
-    using PagedList;
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml)]
 
 Replace the `Index` method with the following code:
 
-    public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
-    {
-       ViewBag.CurrentSort = sortOrder;
-       ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-       ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-    
-       if (searchString != null)
-       {
-          page = 1;
-       }
-       else
-       {
-          searchString = currentFilter;
-       }
-    
-       ViewBag.CurrentFilter = searchString;
-    
-       var students = from s in db.Students
-                      select s;
-       if (!String.IsNullOrEmpty(searchString))
-       {
-          students = students.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
-                                 || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
-       }
-       switch (sortOrder)
-       {
-          case "name_desc":
-             students = students.OrderByDescending(s => s.LastName);
-             break;
-          case "Date":
-             students = students.OrderBy(s => s.EnrollmentDate);
-             break;
-          case "date_desc":
-             students = students.OrderByDescending(s => s.EnrollmentDate);
-             break;
-          default:  // Name ascending 
-             students = students.OrderBy(s => s.LastName);
-             break;
-       }
-    
-       int pageSize = 3;
-       int pageNumber = (page ?? 1);
-       return View(students.ToPagedList(pageNumber, pageSize));
-    }
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml)]
 
 This code adds a `page` parameter, a current sort order parameter, and a current filter parameter to the method signature, as shown here:
 
-    public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml)]
 
 The first time the page is displayed, or if the user hasn't clicked a paging or sorting link, all the parameters will be null. If a paging link is clicked, the `page` variable will contain the page number to display.
 
 `A ViewBag` property provides the view with the current sort order, because this must be included in the paging links in order to keep the sort order the same while paging:
 
-    ViewBag.CurrentSort = sortOrder;
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.xml)]
 
 Another property, `ViewBag.CurrentFilter`, provides the view with the current filter string. This value must be included in the paging links in order to maintain the filter settings during paging, and it must be restored to the text box when the page is redisplayed. If the search string is changed during paging, the page has to be reset to 1, because the new filter can result in different data to display. The search string is changed when a value is entered in the text box and the submit button is pressed. In that case, the `searchString` parameter is not null.
 
-    if (searchString != null)
-            page = 1;
-        else
-            searchString = currentFilter;
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.xml)]
 
 At the end of the method, the `ToPagedList` extension method on the students `IQueryable` object converts the student query to a single page of students in a collection type that supports paging. That single page of students is then passed to the view:
 
-    int pageSize = 3;
-    int pageNumber = (page ?? 1);
-    return View(students.ToPagedList(pageNumber, pageSize));
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.xml)]
 
 The `ToPagedList` method takes a page number. The two question marks represent the [null-coalescing operator](https://msdn.microsoft.com/en-us/library/ms173224.aspx). The null-coalescing operator defines a default value for a nullable type; the expression `(page ?? 1)` means return the value of `page` if it has a value, or return 1 if `page` is null.
 
@@ -227,7 +156,7 @@ The `ToPagedList` method takes a page number. The two question marks represent t
 
 In *Views\Student\Index.cshtml*, replace the existing code with the following code:
 
-[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=6,9,14-20,56-58)]
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.xml?highlight=6,9,14-20,56-58)]
 
 The `@model` statement at the top of the page specifies that the view now gets a `PagedList` object instead of a `List` object.
 
@@ -235,27 +164,27 @@ The `using` statement for `PagedList.Mvc` gives access to the MVC helper for the
 
 The code uses an overload of [BeginForm](https://msdn.microsoft.com/en-us/library/system.web.mvc.html.formextensions.beginform(v=vs.108).aspx) that allows it to specify [FormMethod.Get](https://msdn.microsoft.com/en-us/library/system.web.mvc.formmethod(v=vs.100).aspx/css).
 
-[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml?highlight=1)]
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample13.xml?highlight=1)]
 
 The default [BeginForm](https://msdn.microsoft.com/en-us/library/system.web.mvc.html.formextensions.beginform(v=vs.108).aspx) submits form data with a POST, which means that parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP GET, the form data is passed in the URL as query strings, which enables users to bookmark the URL. The [W3C guidelines for the use of HTTP GET](http://www.w3.org/2001/tag/doc/whenToUseGet.html) specify that you should use GET when the action does not result in an update.
 
 The text box is initialized with the current search string so when you click a new page you can see the current search string.
 
-[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml?highlight=1)]
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample14.xml?highlight=1)]
 
 The column header links use the query string to pass the current search string to the controller so that the user can sort within filter results:
 
-[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml?highlight=1)]
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample15.xml?highlight=1)]
 
 The current page and total number of pages are displayed.
 
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.xml)]
 
 If there are no pages to display, "Page 0 of 0" is shown. (In that case the page number is greater than the page count because `Model.PageNumber` is 1, and `Model.PageCount` is 0.)
 
 The paging buttons are displayed by the `PagedListPager` helper:
 
-    @Html.PagedListPager( Model, page => Url.Action("Index", new { page }) )
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.xml)]
 
 The `PagedListPager` helper provides a number of options that you can customize, including URLs and styling. For more information, see [TroyGoode / PagedList](https://github.com/TroyGoode/PagedList) on the GitHub site.
 
@@ -279,88 +208,33 @@ For the Contoso University website's About page, you'll display how many student
 
 Create a *ViewModels* folder. In that folder, add a class file *EnrollmentDateGroup.cs* and replace the existing code with the following code:
 
-    using System;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace ContosoUniversity.ViewModels
-    {
-        public class EnrollmentDateGroup
-        {
-            [DataType(DataType.Date)]
-            public DateTime? EnrollmentDate { get; set; }
-    
-            public int StudentCount { get; set; }
-        }
-    }
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.xml)]
 
 ### Modify the Home Controller
 
 In *HomeController.cs*, add the following `using` statements at the top of the file:
 
-    using ContosoUniversity.DAL;
-    using ContosoUniversity.ViewModels;
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.xml)]
 
 Add a class variable for the database context immediately after the opening curly brace for the class:
 
-[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml?highlight=3)]
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample20.xml?highlight=3)]
 
 Replace the `About` method with the following code:
 
-    public ActionResult About()
-    {
-        var data = from student in db.Students
-                   group student by student.EnrollmentDate into dateGroup
-                   select new EnrollmentDateGroup()
-                   {
-                       EnrollmentDate = dateGroup.Key,
-                       StudentCount = dateGroup.Count()
-                   };
-        return View(data);
-    }
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample21.xml)]
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
 
 Add a `Dispose` method:
 
-    protected override void Dispose(bool disposing)
-    {
-        db.Dispose();
-        base.Dispose(disposing);
-    }
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample22.xml)]
 
 ### Modify the About View
 
 Replace the code in the *Views\Home\About.cshtml* file with the following code:
 
-    @model IEnumerable<ContosoUniversity.ViewModels.EnrollmentDateGroup>
-               
-    @{
-        ViewBag.Title = "Student Body Statistics";
-    }
-    
-    <h2>Student Body Statistics</h2>
-    
-    <table>
-        <tr>
-            <th>
-                Enrollment Date
-            </th>
-            <th>
-                Students
-            </th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnrollmentDate)
-            </td>
-            <td>
-                @item.StudentCount
-            </td>
-        </tr>
-    }
-    </table>
+[!code[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample23.xml)]
 
 Run the app and click the **About** link. The count of students for each enrollment date is displayed in a table.
 

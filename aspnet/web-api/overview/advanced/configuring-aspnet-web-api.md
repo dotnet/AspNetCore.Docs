@@ -48,26 +48,7 @@ In an ASP.NET application, configure Web API by calling [GlobalConfiguration.Con
 
 Here is an example using an anonymous delegate:
 
-    using System.Web.Http;
-    namespace WebApplication1
-    {
-        public class WebApiApplication : System.Web.HttpApplication
-        {
-            protected void Application_Start()
-            {
-                GlobalConfiguration.Configure(config =>
-                {
-                    config.MapHttpAttributeRoutes();
-    
-                    config.Routes.MapHttpRoute(
-                        name: "DefaultApi",
-                        routeTemplate: "api/{controller}/{id}",
-                        defaults: new { id = RouteParameter.Optional }
-                    );
-                });
-            }
-        }
-    }
+[!code[Main](configuring-aspnet-web-api/samples/sample1.xml)]
 
 In Visual Studio 2013, the "ASP.NET Web Application" project template automatically sets up the configuration code, if you select "Web API" in the **New ASP.NET Project** dialog.
 
@@ -77,32 +58,18 @@ The project template creates a file named WebApiConfig.cs inside the App\_Start 
 
 ![](configuring-aspnet-web-api/_static/image3.png)
 
-[!code[Main](configuring-aspnet-web-api/samples/sample1.xml?highlight=12)]
+[!code[Main](configuring-aspnet-web-api/samples/sample2.xml?highlight=12)]
 
 The project template also adds the code that calls the delegate from **Application\_Start**.
 
-[!code[Main](configuring-aspnet-web-api/samples/sample2.xml?highlight=5)]
+[!code[Main](configuring-aspnet-web-api/samples/sample3.xml?highlight=5)]
 
 <a id="selfhost"></a>
 ## Configuring Web API with OWIN Self-Hosting
 
 If you are self-hosting with OWIN, create a new **HttpConfiguration** instance. Perform any configuration on this instance, and then pass the instance to the **Owin.UseWebApi** extension method.
 
-    public class Startup 
-    { 
-        public void Configuration(IAppBuilder appBuilder) 
-        { 
-            HttpConfiguration config = new HttpConfiguration(); 
-    
-            config.Routes.MapHttpRoute( 
-                name: "DefaultApi", 
-                routeTemplate: "api/{controller}/{id}", 
-                defaults: new { id = RouteParameter.Optional } 
-            ); 
-    
-            appBuilder.UseWebApi(config); 
-        } 
-    }
+[!code[Main](configuring-aspnet-web-api/samples/sample4.xml)]
 
 The tutorial [Use OWIN to Self-Host ASP.NET Web API 2](../hosting-aspnet-web-api/use-owin-to-self-host-web-api.md) shows the complete steps.
 
@@ -150,11 +117,11 @@ Multiple-Instance Services
 
 To add a custom implementation to a multi-instance service, call **Add** or **Insert** on the **Services** collection:
 
-    config.Services.Add(typeof(IFilterProvider), new MyFilterProvider());
+[!code[Main](configuring-aspnet-web-api/samples/sample5.xml)]
 
 To replace a single-instance service with a custom implementation, call **Replace** on the **Services** collection:
 
-    config.Services.Replace(typeof(ITraceWriter), new MyTraceWriter());
+[!code[Main](configuring-aspnet-web-api/samples/sample6.xml)]
 
 <a id="percontrollerconfig"></a>
 ## Per-Controller Configuration
@@ -169,32 +136,7 @@ To do so, define a custom attribute that implements the **IControllerConfigurati
 
 The following example replaces the default media-type formatters with a custom formatter.
 
-    using System;
-    using System.Web.Http;
-    using System.Web.Http.Controllers;
-    
-    namespace WebApplication1.Controllers
-    {
-    
-        public class UseMyFormatterAttribute : Attribute, IControllerConfiguration
-        {
-            public void Initialize(HttpControllerSettings settings,
-                HttpControllerDescriptor descriptor)
-            {
-                // Clear the formatters list.
-                settings.Formatters.Clear();
-    
-                // Add a custom media-type formatter.
-                settings.Formatters.Add(new MyFormatter());
-            }
-        }
-    
-        [UseMyFormatter]
-        public class ValuesController : ApiController
-        {
-            // Controller methods not shown...
-        }
-    }
+[!code[Main](configuring-aspnet-web-api/samples/sample7.xml)]
 
 The **IControllerConfiguration.Initialize** method takes two parameters:
 

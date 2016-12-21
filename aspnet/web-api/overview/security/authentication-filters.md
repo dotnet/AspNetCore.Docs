@@ -28,36 +28,15 @@ Like other filters, authentication filters can be applied per-controller, per-ac
 
 To apply an authentication filter to a controller, decorate the controller class with the filter attribute. The following code sets the `[IdentityBasicAuthentication]` filter on a controller class, which enables Basic Authentication for all of the controller's actions.
 
-    [IdentityBasicAuthentication] // Enable Basic authentication for this controller.
-    [Authorize] // Require authenticated requests.
-    public class HomeController : ApiController
-    {
-        public IHttpActionResult Get() { . . . }
-        public IHttpActionResult Post() { . . . }
-    }
+[!code[Main](authentication-filters/samples/sample1.xml)]
 
 To apply the filter to one action, decorate the action with the filter. The following code sets the `[IdentityBasicAuthentication]` filter on the controller's `Post` method.
 
-    [Authorize] // Require authenticated requests.
-    public class HomeController : ApiController
-    {
-        public IHttpActionResult Get() { . . . }
-    
-        [IdentityBasicAuthentication] // Enable Basic authentication for this action.
-        public IHttpActionResult Post() { . . . }
-    }
+[!code[Main](authentication-filters/samples/sample2.xml)]
 
 To apply the filter to all Web API controllers, add it to **GlobalConfiguration.Filters**.
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            config.Filters.Add(new IdentityBasicAuthenticationAttribute());
-    
-            // Other configuration code not shown...
-        }
-    }
+[!code[Main](authentication-filters/samples/sample3.xml)]
 
 ## Implementing a Web API Authentication Filter
 
@@ -107,10 +86,7 @@ Other combinations are possible&mdash;for example, if the controller action allo
 
 The **AuthenticateAsync** method tries to authenticate the request. Here is the method signature:
 
-    Task AuthenticateAsync(
-        HttpAuthenticationContext context,
-        CancellationToken cancellationToken
-    )
+[!code[Main](authentication-filters/samples/sample4.xml)]
 
 The **AuthenticateAsync** method must do one of the following:
 
@@ -131,55 +107,7 @@ Here is a general outline for implementing **AuthenticateAsync**.
 
 The follow code shows the **AuthenticateAsync** method from the [Basic Authentication](http://aspnet.codeplex.com/sourcecontrol/latest#Samples/WebApi/BasicAuthentication/ReadMe.txt) sample. The comments indicate each step. The code shows several types of error: An Authorization header with no credentials, malformed credentials, and bad username/password.
 
-    public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
-    {
-        // 1. Look for credentials in the request.
-        HttpRequestMessage request = context.Request;
-        AuthenticationHeaderValue authorization = request.Headers.Authorization;
-    
-        // 2. If there are no credentials, do nothing.
-        if (authorization == null)
-        {
-            return;
-        }
-    
-        // 3. If there are credentials but the filter does not recognize the 
-        //    authentication scheme, do nothing.
-        if (authorization.Scheme != "Basic")
-        {
-            return;
-        }
-    
-        // 4. If there are credentials that the filter understands, try to validate them.
-        // 5. If the credentials are bad, set the error result.
-        if (String.IsNullOrEmpty(authorization.Parameter))
-        {
-            context.ErrorResult = new AuthenticationFailureResult("Missing credentials", request);
-            return;
-        }
-    
-        Tuple<string, string> userNameAndPasword = ExtractUserNameAndPassword(authorization.Parameter);
-        if (userNameAndPasword == null)
-        {
-            context.ErrorResult = new AuthenticationFailureResult("Invalid credentials", request);
-        }
-    
-        string userName = userNameAndPasword.Item1;
-        string password = userNameAndPasword.Item2;
-    
-        IPrincipal principal = await AuthenticateAsync(userName, password, cancellationToken);
-        if (principal == null)
-        {
-            context.ErrorResult = new AuthenticationFailureResult("Invalid username or password", request);
-        }
-    
-        // 6. If the credentials are valid, set principal.
-        else
-        {
-            context.Principal = principal;
-        }
-    
-    }
+[!code[Main](authentication-filters/samples/sample5.xml)]
 
 ## Setting an Error Result
 
@@ -187,40 +115,13 @@ If the credentials are invalid, the filter must set `context.ErrorResult` to an 
 
 The Basic Authentication sample includes an `AuthenticationFailureResult` class that is suitable for this purpose.
 
-    public class AuthenticationFailureResult : IHttpActionResult
-    {
-        public AuthenticationFailureResult(string reasonPhrase, HttpRequestMessage request)
-        {
-            ReasonPhrase = reasonPhrase;
-            Request = request;
-        }
-    
-        public string ReasonPhrase { get; private set; }
-    
-        public HttpRequestMessage Request { get; private set; }
-    
-        public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
-        {
-            return Task.FromResult(Execute());
-        }
-    
-        private HttpResponseMessage Execute()
-        {
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
-            response.RequestMessage = Request;
-            response.ReasonPhrase = ReasonPhrase;
-            return response;
-        }
-    }
+[!code[Main](authentication-filters/samples/sample6.xml)]
 
 ## Implementing ChallengeAsync
 
 The purpose of the **ChallengeAsync** method is to add authentication challenges to the response, if needed. Here is the method signature:
 
-    Task ChallengeAsync(
-        HttpAuthenticationChallengeContext context,
-        CancellationToken cancellationToken
-    )
+[!code[Main](authentication-filters/samples/sample7.xml)]
 
 The method is called on every authentication filter in the request pipeline.
 
@@ -236,34 +137,7 @@ I'll call the original **IHttpActionResult** the *inner result*, and the new **I
 
 The following example is taken from the Basic Authentication sample. It defines an **IHttpActionResult** for the outer result.
 
-    public class AddChallengeOnUnauthorizedResult : IHttpActionResult
-    {
-        public AddChallengeOnUnauthorizedResult(AuthenticationHeaderValue challenge, IHttpActionResult innerResult)
-        {
-            Challenge = challenge;
-            InnerResult = innerResult;
-        }
-    
-        public AuthenticationHeaderValue Challenge { get; private set; }
-    
-        public IHttpActionResult InnerResult { get; private set; }
-    
-        public async Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
-        {
-            HttpResponseMessage response = await InnerResult.ExecuteAsync(cancellationToken);
-    
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                // Only add one challenge per authentication scheme.
-                if (!response.Headers.WwwAuthenticate.Any((h) => h.Scheme == Challenge.Scheme))
-                {
-                    response.Headers.WwwAuthenticate.Add(Challenge);
-                }
-            }
-    
-            return response;
-        }
-    }
+[!code[Main](authentication-filters/samples/sample8.xml)]
 
 The `InnerResult` property holds the inner **IHttpActionResult**. The `Challenge` property represents a Www-Authentication header. Notice that **ExecuteAsync** first calls `InnerResult.ExecuteAsync` to create the HTTP response, and then adds the challenge if needed.
 
@@ -271,12 +145,7 @@ Check the response code before adding the challenge. Most authentication schemes
 
 Given the `AddChallengeOnUnauthorizedResult` class, the actual code in **ChallengeAsync** is simple. You just create the result and attach it to `context.Result`.
 
-    public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
-    {
-        var challenge = new AuthenticationHeaderValue("Basic");
-        context.Result = new AddChallengeOnUnauthorizedResult(challenge, context.Result);
-        return Task.FromResult(0);
-    }
+[!code[Main](authentication-filters/samples/sample9.xml)]
 
 Note: The Basic Authentication sample abstracts this logic a bit, by placing it in an extension method.
 
@@ -288,15 +157,7 @@ Often, you may want to to enable host-level authentication for the rest of your 
 
 To disable host-level authentication inside the Web API pipeline, call `config.SuppressHostPrincipal()` in your configuration. This causes Web API to remove the **IPrincipal** from any request that enters the Web API pipeline. Effectively, it &quot;un-authenticates&quot; the request.
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            config.SuppressHostPrincipal();
-    
-            // Other configuration code not shown...
-        }
-    }
+[!code[Main](authentication-filters/samples/sample10.xml)]
 
 ## Additional Resources
 

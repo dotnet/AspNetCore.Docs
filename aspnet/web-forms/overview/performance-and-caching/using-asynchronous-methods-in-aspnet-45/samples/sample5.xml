@@ -1,4 +1,11 @@
-<%@ Page  Async="true"  AsyncTimeout="1" 
-    Language="C#" AutoEventWireup="true" 
-    CodeBehind="GizmosCancelAsync.aspx.cs" 
-    Inherits="WebAppAsync.GizmosCancelAsync" %>
+protected void Page_Load(object sender, EventArgs e)
+{
+    RegisterAsyncTask(new PageAsyncTask(GetGizmosSvcAsync));
+}
+
+private async Task GetGizmosSvcAsync()
+{
+    var gizmoService = new GizmoService();
+    GizmosGridView.DataSource = await gizmoService.GetGizmosAsync();
+    GizmosGridView.DataBind();
+}

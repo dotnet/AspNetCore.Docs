@@ -56,38 +56,11 @@ Both services provide access to an exception context containing relevant informa
 
  The exception logger and handler service interfaces are simple async methods taking the respective contexts: 
 
-    public interface IExceptionLogger
-    {
-       Task LogAsync(ExceptionLoggerContext context, 
-                     CancellationToken cancellationToken);
-    }
-    
-    public interface IExceptionHandler
-    {
-       Task HandleAsync(ExceptionHandlerContext context, 
-                        CancellationToken cancellationToken);
-    }
+[!code[Main](web-api-global-error-handling/samples/sample2.xml)]
 
  We also provide base classes for both of these interfaces. Overriding the core (sync or async) methods is all that is required to log or handle at the recommended times. For logging, the `ExceptionLogger` base class will ensure that the core logging method is only called once for each exception (even if it later propagates further up the call stack and is caught again). The `ExceptionHandler` base class will call the core handling method only for exceptions at the top of the call stack, ignoring legacy nested catch blocks. (Simplified versions of these base classes are in the appendix below.) Both `IExceptionLogger` and `IExceptionHandler` receive information about the exception via an `ExceptionContext`.
 
-    public class ExceptionContext
-    {
-       public Exception Exception { get; set; }
-    
-       public HttpRequestMessage Request { get; set; }
-    
-       public HttpRequestContext RequestContext { get; set; }
-    
-       public HttpControllerContext ControllerContext { get; set; }
-    
-       public HttpActionContext ActionContext { get; set; }
-    
-       public HttpResponseMessage Response { get; set; }
-    
-       public string CatchBlock { get; set; }
-    
-       public bool IsTopLevelCatchBlock { get; set; }
-    }
+[!code[Main](web-api-global-error-handling/samples/sample3.xml)]
 
 When the framework calls an exception logger or an exception handler, it will always provide an `Exception` and a `Request`. Except for unit testing, it will also always provide a `RequestContext`. It will rarely provide a `ControllerContext` and `ActionContext` (only when calling from the catch block for exception filters). It will very rarely provide a `Response`(only in certain IIS cases when in the middle of trying to write the response). Note that because some of these properties may be `null` it is up to the consumer to check for `null` before accessing members of the exception class.`CatchBlock` is a string indicating which catch block saw the exception. The catch block strings are as follows:
 
@@ -109,21 +82,13 @@ The list of catch block strings is also available via static readonly properties
 
 In addition to the `ExceptionContext`, a logger gets one more piece of information via the full `ExceptionLoggerContext`:
 
-    public class ExceptionLoggerContext
-    {
-       public ExceptionContext ExceptionContext { get; set; }
-       public bool CanBeHandled { get; set; }
-    }
+[!code[Main](web-api-global-error-handling/samples/sample4.xml)]
 
 The second property, `CanBeHandled`, allows a logger to identify an exception that cannot be handled. When the connection is about to be aborted and no new response message can be sent, the loggers will be called but the handler will ***not*** be called, and the loggers can identify this scenario from this property.
 
 In additional to the `ExceptionContext`, a handler gets one more property it can set on the full `ExceptionHandlerContext` to handle the exception:
 
-    public class ExceptionHandlerContext
-    {
-       public ExceptionContext ExceptionContext { get; set; }
-       public IHttpActionResult Result { get; set; }
-    }
+[!code[Main](web-api-global-error-handling/samples/sample5.xml)]
 
 An exception handler indicates that it has handled an exception by setting the `Result` property to an action result (for example, an [ExceptionResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.exceptionresult(v=vs.118).aspx), [InternalServerErrorResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.internalservererrorresult(v=vs.118).aspx), [StatusCodeResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.statuscoderesult(v=vs.118).aspx), or a custom result). If the `Result` property is null, the exception is unhandled and the original exception will be re-thrown.
 
@@ -140,122 +105,14 @@ For both exception loggers and exception handlers, we don't do anything to recov
 
 The exception logger below send exception data to configured Trace sources (including the Debug output window in Visual Studio).
 
-    class TraceExceptionLogger : ExceptionLogger
-    {
-       public override void LogCore(ExceptionLoggerContext context)
-       {
-          Trace.TraceError(context.ExceptionContext.Exception.ToString());
-       }
-    }
+[!code[Main](web-api-global-error-handling/samples/sample6.xml)]
 
 ### Custom Error Message Exception Handler
 
 The following below produces a custom error response to clients, including an email address for contacting support.
 
-    class OopsExceptionHandler : ExceptionHandler
-    {
-        public override void HandleCore(ExceptionHandlerContext context)
-        {
-            context.Result = new TextPlainErrorResult
-            {
-                Request = context.ExceptionContext.Request,
-                Content = "Oops! Sorry! Something went wrong." +
-                          "Please contact support@contoso.com so we can try to fix it."
-            };
-        }
-    
-        private class TextPlainErrorResult : IHttpActionResult
-        {
-            public HttpRequestMessage Request { get; set; }
-    
-            public string Content { get; set; }
-    
-            public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
-            {
-                HttpResponseMessage response = 
-                                 new HttpResponseMessage(HttpStatusCode.InternalServerError);
-                response.Content = new StringContent(Content);
-                response.RequestMessage = Request;
-                return Task.FromResult(response);
-            }
-        }
-    }
+[!code[Main](web-api-global-error-handling/samples/sample7.xml)]
 
 ## Appendix: Base Class Details
 
-    public class ExceptionLogger : IExceptionLogger
-    {
-        public virtual Task LogAsync(ExceptionLoggerContext context, 
-                                     CancellationToken cancellationToken)
-        {
-            if (!ShouldLog(context))
-            {
-                return Task.FromResult(0);
-            }
-    
-            return LogAsyncCore(context, cancellationToken);
-        }
-    
-        public virtual Task LogAsyncCore(ExceptionLoggerContext context, 
-                                         CancellationToken cancellationToken)
-        {
-            LogCore(context);
-            return Task.FromResult(0);
-        }
-    
-        public virtual void LogCore(ExceptionLoggerContext context)
-        {
-        }
-    
-        public virtual bool ShouldLog(ExceptionLoggerContext context)
-        {
-            IDictionary exceptionData = context.ExceptionContext.Exception.Data;
-    
-            if (!exceptionData.Contains("MS_LoggedBy"))
-            {
-                exceptionData.Add("MS_LoggedBy", new List<object>());
-            }
-    
-            ICollection<object> loggedBy = ((ICollection<object>)exceptionData[LoggedByKey]);
-    
-            if (!loggedBy.Contains(this))
-            {
-                loggedBy.Add(this);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
-    
-    public class ExceptionHandler : IExceptionHandler
-    {
-        public virtual Task HandleAsync(ExceptionHandlerContext context, 
-                                        CancellationToken cancellationToken)
-        {
-            if (!ShouldHandle(context))
-            {
-                return Task.FromResult(0);
-            }
-    
-            return HandleAsyncCore(context, cancellationToken);
-        }
-    
-        public virtual Task HandleAsyncCore(ExceptionHandlerContext context, 
-                                           CancellationToken cancellationToken)
-        {
-            HandleCore(context);
-            return Task.FromResult(0);
-        }
-    
-        public virtual void HandleCore(ExceptionHandlerContext context)
-        {
-        }
-    
-        public virtual bool ShouldHandle(ExceptionHandlerContext context)
-        {
-            return context.ExceptionContext.IsOutermostCatchBlock;
-        }
-    }
+[!code[Main](web-api-global-error-handling/samples/sample8.xml)]

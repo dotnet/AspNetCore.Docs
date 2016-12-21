@@ -78,12 +78,12 @@ You can add SignalR functionality to a project by installing a NuGet package. Th
 1. Click **Tools | Library Package Manager | Package Manager Console**.
 2. Enter the following command in the package manager.
 
-        Install-Package Microsoft.AspNet.SignalR -Version 1.1.3
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample1.xml)]
 
     The SignalR package installs a number of other NuGet packages as dependencies. When the installation is finished you have all of the server and client components required to use SignalR in an ASP.NET application.
 3. Enter the following command into the package manager console to install the JQuery and JQuery.UI packages.
 
-        Install-Package jQuery.ui.combined
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample2.xml)]
 
 <a id="baseapp"></a>
 
@@ -94,39 +94,7 @@ In this section, we'll create a browser application that sends the location of t
 1. In **Solution Explorer**, right-click on the project and select **Add**, **Class...**. Name the class **MoveShapeHub** and click **Add**.
 2. Replace the code in the new **MoveShapeHub** class with the following code.
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using Microsoft.AspNet.SignalR;
-        using Microsoft.AspNet.SignalR.Hubs;
-        using Newtonsoft.Json;
-        
-        namespace MoveShapeDemo
-        {
-            public class MoveShapeHub : Hub
-            {
-                public void UpdateModel(ShapeModel clientModel)
-                {
-                    clientModel.LastUpdatedBy = Context.ConnectionId;
-                    // Update the shape model within our broadcaster
-                    Clients.AllExcept(clientModel.LastUpdatedBy).updateShape(clientModel);
-                }
-            }
-            public class ShapeModel
-            {
-                // We declare Left and Top as lowercase with 
-                // JsonProperty to sync the client and server models
-                [JsonProperty("left")]
-                public double Left { get; set; }
-        
-                [JsonProperty("top")]
-                public double Top { get; set; }
-        
-                // We don't want the client to get the "LastUpdatedBy" property
-                [JsonIgnore]
-                public string LastUpdatedBy { get; set; }
-            }
-        }
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample3.xml)]
 
     The `MoveShapeHub` class above is an implementation of a SignalR hub. As in the [Getting Started with SignalR](index.md) tutorial, the hub has a method that the clients will call directly. In this case, the client will send an object containing the new X and Y coordinates of the shape to the server, which then gets broadcasted to all other connected clients. SignalR will automatically serialize this object using JSON.
 
@@ -136,84 +104,21 @@ In this section, we'll create a browser application that sends the location of t
     ![Add Global Application Class](tutorial-high-frequency-realtime-with-signalr/_static/image3.png)
 4. Add the following `using` statement after the provided **using** statements in the Global.asax.cs class.
 
-        using System.Web.Routing;
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample4.xml)]
 5. Add the following line of code in the `Application_Start` method of the Global class to register the default route for SignalR.
 
-        RouteTable.Routes.MapHubs();
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample5.xml)]
 
     Your global.asax file should look like the following:
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.Security;
-        using System.Web.SessionState;
-        
-        using System.Web.Routing;
-        
-        namespace MoveShapeDemo
-        {
-            public class Global : System.Web.HttpApplication
-            {
-                protected void Application_Start(object sender, EventArgs e)
-                {
-                    RouteTable.Routes.MapHubs();
-                }
-            }
-        }
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample6.xml)]
 6. Next, we'll add the client. In **Solution Explorer**, right-click the project, then click **Add | New Item**. In the **Add New Item** dialog, select **Html Page**. Give the page an appropriate name (like **Default.html**) and click **Add**.
 7. In **Solution Explorer**, right-click the page you just created and click **Set as Start Page**.
 8. Replace the default code in the HTML page with the following code snippet.
 
     > [!NOTE] Verify that the script references below match the packages added to your project in the Scripts folder. In Visual Studio 2010, the version of JQuery and SignalR added to the project may not match the version numbers below.
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>SignalR MoveShape Demo</title>
-            <style>
-                #shape {
-                    width: 100px;
-                    height: 100px;
-                    background-color: #FF0000;
-                }
-            </style>
-        </head>
-        <body>
-        <script src="Scripts/jquery-1.6.4.js"></script>
-        <script src="Scripts/jquery-ui-1.10.2.js"></script>
-        <script src="Scripts/jquery.signalR-1.0.1.js"></script>
-        <script src="/signalr/hubs"></script>
-        <script>
-         $(function () {
-                    var moveShapeHub = $.connection.moveShapeHub,
-                    $shape = $("#shape"),
-        
-                    shapeModel = {
-                        left: 0,
-                        top: 0
-                    };
-        
-                    moveShapeHub.client.updateShape = function (model) {
-                        shapeModel = model;
-                        $shape.css({ left: model.left, top: model.top });
-                    };
-        
-                    $.connection.hub.start().done(function () {
-                        $shape.draggable({
-                            drag: function () {
-                                shapeModel = $shape.offset();
-                                moveShapeHub.server.updateModel(shapeModel);
-                            }
-                        });
-                    });
-                });
-        </script>
-        
-            <div id="shape" />
-        </body>
-        </html>
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample7.xml)]
 
     The above HTML and JavaScript code creates a red Div called Shape, enables the shape's dragging behavior using the jQuery library, and uses the shape's `drag` event to send the shape's position to the server.
 9. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move.
@@ -228,70 +133,7 @@ Since sending the location of the shape on every mouse move event will create an
 
 1. Update the client code in the HTML page to match the following code snippet.
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>SignalR MoveShape Demo</title>
-            <style>
-                #shape {
-                    width: 100px;
-                    height: 100px;
-                    background-color: #FF0000;
-                }
-            </style>
-        
-        </head>
-        <body>
-        <script src="Scripts/jquery-1.6.4.js"></script>
-        <script src="Scripts/jquery-ui-1.10.2.js"></script>
-        <script src="Scripts/jquery.signalR-1.0.1.js"></script>
-        <script src="/signalr/hubs"></script>
-        <script>
-                $(function () {
-                    var moveShapeHub = $.connection.moveShapeHub,
-                        $shape = $("#shape"),
-                        // Send a maximum of 10 messages per second 
-                        // (mouse movements trigger a lot of messages)
-                        messageFrequency = 10, 
-                        // Determine how often to send messages in
-                        // time to abide by the messageFrequency
-                        updateRate = 1000 / messageFrequency, 
-                        shapeModel = {
-                            left: 0,
-                            top: 0
-                        },
-                        moved = false;
-        
-                    moveShapeHub.client.updateShape = function (model) {
-                        shapeModel = model;
-                        $shape.css({ left: model.left, top: model.top });
-                    };
-        
-                    $.connection.hub.start().done(function () {
-                        $shape.draggable({
-                            drag: function () {
-                                shapeModel = $shape.offset();
-                                moved = true;
-                            }
-                        });
-        
-                        // Start the client side server update interval
-                        setInterval(updateServerModel, updateRate);
-                    });
-        
-                    function updateServerModel() {
-                        // Only update server if we have a new movement
-                        if (moved) {
-                            moveShapeHub.server.updateModel(shapeModel);
-                            moved = false;
-                        }
-                    }
-                });
-        </script>
-        
-            <div id="shape" />
-        </body>
-        </html>
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample8.xml)]
 
     The above update adds the `updateServerModel` function, which gets called on a fixed frequency. This function sends the position data to the server whenever the `moved` flag indicates that there is new position data to send.
 2. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move. Since the number of messages that get sent to the server will be throttled, the animation will not appear as smooth as in the previous section.
@@ -306,112 +148,7 @@ In the current application, messages sent from the server to the client go out a
 
 1. Replace the contents of `MoveShapeHub.cs` with the following code snippet.
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        
-        using System.Threading;
-        using Microsoft.AspNet.SignalR;
-        
-        using Newtonsoft.Json;
-        
-        namespace MoveShapeDemo
-        {
-            public class Broadcaster
-            {
-                private readonly static Lazy<Broadcaster> _instance = 
-                    new Lazy<Broadcaster>(() => new Broadcaster());
-                // We're going to broadcast to all clients a maximum of 25 times per second
-                private readonly TimeSpan BroadcastInterval = 
-                    TimeSpan.FromMilliseconds(40); 
-                private readonly IHubContext _hubContext;
-                private Timer _broadcastLoop;
-                private ShapeModel _model;
-                private bool _modelUpdated;
-        
-                public Broadcaster()
-                {
-                    // Save our hub context so we can easily use it 
-                    // to send to its connected clients
-                    _hubContext = GlobalHost.ConnectionManager.GetHubContext<MoveShapeHub>();
-        
-                    _model = new ShapeModel();
-                    _modelUpdated = false;
-        
-                    // Start the broadcast loop
-                    _broadcastLoop = new Timer(
-                        BroadcastShape, 
-                        null, 
-                        BroadcastInterval, 
-                        BroadcastInterval);
-                }
-        
-                public void BroadcastShape(object state)
-                {
-                    // No need to send anything if our model hasn't changed
-                    if (_modelUpdated)
-                    {
-                        // This is how we can access the Clients property 
-                        // in a static hub method or outside of the hub entirely
-                        _hubContext.Clients.AllExcept(_model.LastUpdatedBy).updateShape(_model);
-                        _modelUpdated = false;
-                    }
-                }
-        
-                public void UpdateShape(ShapeModel clientModel)
-                {
-                    _model = clientModel;
-                    _modelUpdated = true;
-                }
-        
-                public static Broadcaster Instance
-                {
-                    get
-                    {
-                        return _instance.Value;
-                    }
-                }
-            }
-            
-            public class MoveShapeHub : Hub
-            {
-                // Is set via the constructor on each creation
-                private Broadcaster _broadcaster;
-        
-                public MoveShapeHub()
-                    : this(Broadcaster.Instance)
-                {
-                }
-        
-                public MoveShapeHub(Broadcaster broadcaster)
-                {
-                    _broadcaster = broadcaster;
-                }
-        
-                public void UpdateModel(ShapeModel clientModel)
-                {
-                    clientModel.LastUpdatedBy = Context.ConnectionId;
-                    // Update the shape model within our broadcaster
-                    _broadcaster.UpdateShape(clientModel);
-                }
-            }
-            public class ShapeModel
-            {
-                // We declare Left and Top as lowercase with 
-                // JsonProperty to sync the client and server models
-                [JsonProperty("left")]
-                public double Left { get; set; }
-        
-                [JsonProperty("top")]
-                public double Top { get; set; }
-        
-                // We don't want the client to get the "LastUpdatedBy" property
-                [JsonIgnore]
-                public string LastUpdatedBy { get; set; }
-            }
-            
-        }
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample9.xml)]
 
     The above code expands the client to add the `Broadcaster` class, which throttles the outgoing messages using the `Timer` class from the .NET framework.
 
@@ -432,7 +169,7 @@ The application is almost complete, but we could make one more improvement, in t
 
 1. Update the client's `updateShape` method to look like the highlighted code below:
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample1.xml?highlight=35-42)]
+    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample10.xml?highlight=35-42)]
 
     The above code moves the shape from the old location to the new one given by the server over the course of the animation interval (in this case, 100 milliseconds). Any previous animation running on the shape is cleared before the new animation starts.
 2. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move. The movement of the shape in the other window should appear less jerky as its movement is interpolated over time rather than being set once per incoming message.

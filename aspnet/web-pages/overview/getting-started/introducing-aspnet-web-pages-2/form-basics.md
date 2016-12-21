@@ -49,11 +49,7 @@ A form has user input elements &mdash; text boxes, buttons, radio buttons, check
 
 The basic HTML syntax of a form is illustrated by this example:
 
-    <form method="post">
-      <input type="text" name="name" value="" />
-      <br/>
-      <input type="submit" name="submit" value="Submit" />
-    </form>
+[!code[Main](form-basics/samples/sample1.xml)]
 
 When this markup runs in a page, it creates a simple form that looks like this illustration:
 
@@ -110,14 +106,7 @@ In WebMatrix, in the **Files** workspace, open the *Movies.cshtml* page.
 
 After the closing `</h1>` tag and before the opening `<div>` tag of the `grid.GetHtml` call, add the following markup:
 
-    <form method="get">
-      <div>
-        <label for="searchGenre">Genre to look for:</label>
-        <input type="text" name="searchGenre" value="" />
-        <input type="Submit" value="Search Genre" /><br/>
-        (Leave blank to list all movies.)<br/>
-        </div>
-    </form>
+[!code[Main](form-basics/samples/sample2.xml)]
 
 This markup creates a form that has a text box named `searchGenre` and a submit button. The text box and submit button are enclosed in a `<form>` element whose `method` attribute is set to `get`. (Remember that if you don't put the text box and submit button inside a `<form>` element, nothing will be submitted when you click the button.) You use the `GET` verb here because you're creating a form that does not make any changes on the server — it just results in a search. (In the previous tutorial, you used a `post` method, which is how you submit changes to the server. You'll see that in the next tutorial again.)
 
@@ -145,9 +134,7 @@ It's simple enough to read the value of the text box. But if the user didn't ent
 
 The following code is an example that shows how to implement these conditions. (You don't have to add this code yet; you'll do that in a moment.)
 
-    if(!Request.QueryString["searchGenre"].IsEmpty() ) {
-         // Do something here
-    }
+[!code[Main](form-basics/samples/sample3.xml)]
 
 The test breaks down in this way:
 
@@ -229,9 +216,7 @@ If you put all these elements together, you get the following code:
 
 Now you can update the code in the *Movies.cshtml* file. To begin, replace the code in the code block at the top of the page with this code:
 
-    var db = Database.Open("WebPagesMovies");
-    var selectCommand = "SELECT * FROM Movies";
-    var searchTerm = "";
+[!code[Main](form-basics/samples/sample4.xml)]
 
 The difference here is that you've put the query into the `selectCommand` variable, which you'll pass to `db.Query` later. Putting the SQL statement into a variable lets you change the statement, which is what you'll do to perform the search.
 
@@ -243,19 +228,7 @@ You don't want to run the query yet (that is, call `db.Query`) and you don't wan
 
 After this rewritten block, you can add the new logic for handling the search. The completed code will look like the following. Update the code in your page so it matches this example:
 
-    @{
-        var db = Database.Open("WebPagesMovies") ;
-        var selectCommand = "SELECT * FROM Movies";
-        var searchTerm = "";
-    
-        if(!Request.QueryString["searchGenre"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Genre = @0";
-            searchTerm = Request.QueryString["searchGenre"];
-        }
-    
-        var selectedData = db.Query(selectCommand, searchTerm);
-        var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:3);
-    }
+[!code[Main](form-basics/samples/sample5.xml)]
 
 The page now works like this. Every time the page runs, the code opens the database and the `selectCommand` variable is set to the SQL statement that gets all the records from the `Movies` table. The code also initializes the `searchTerm` variable.
 
@@ -293,7 +266,7 @@ There's actually an easy way to get around this issue. The genre that you entere
 
 Update the markup for the text box so that the `value` attribute gets its value from `searchTerm`, like this example:
 
-[!code[Main](form-basics/samples/sample1.xml?highlight=1)]
+[!code[Main](form-basics/samples/sample6.xml?highlight=1)]
 
 In this page, you could have also set the `value` attribute to the `searchTerm` variable, since that variable also contains the genre you entered. But using the `Request` object to set the `value` attribute as shown here is the standard way to accomplish this task. (Assuming you even want to do this &mdash; in some situations, you might want to render the page *without* values in the fields. It all depends on what's going on with your app.)
 
@@ -316,18 +289,11 @@ The search term `LIKE '%adventure%'` therefore means "with 'adventure' anywhere 
 
 Inside the `<form>` element, add the following markup right under the closing `</div>` tag for the genre search (just before the closing `</form>` element):
 
-    <div>
-      <label for="SearchTitle">Movie title contains the following:</label>
-      <input type="text" name="searchTitle" value="@Request.QueryString["searchTitle"]" />
-      <input type="Submit" value="Search Title" /><br/>
-    </div>
+[!code[Main](form-basics/samples/sample7.xml)]
 
 The code to handle this search is similar to the code for the genre search, except that you have to assemble the `LIKE` search. Inside the code block at the top of the page, add this `if` block just after the `if` block for the genre search:
 
-    if(!Request.QueryString["searchTitle"].IsEmpty() ) {
-        selectCommand = "SELECT * FROM Movies WHERE Title LIKE @0";
-        searchTerm = "%" + Request["searchTitle"] + "%";
-    }
+[!code[Main](form-basics/samples/sample8.xml)]
 
 This code uses the same logic you saw earlier, except that the search uses a `LIKE` operator and the code puts "`%`" before and after the search term.
 
@@ -339,24 +305,7 @@ Notice how it was easy to add another search to the page. All you had to do was:
 
 Here's the complete code block, which contains the new logic for a title search:
 
-    @{
-        var db = Database.Open("WebPagesMovies") ;
-        var selectCommand = "SELECT * FROM Movies";
-        var searchTerm = "";
-    
-        if(!Request.QueryString["searchGenre"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Genre = @0";
-            searchTerm = Request.QueryString["searchGenre"];
-        }
-    
-       if(!Request.QueryString["searchTitle"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Title LIKE @0";
-            searchTerm = "%" + Request["searchTitle"] + "%";
-        }
-    
-        var selectedData = db.Query(selectCommand, searchTerm);
-        var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:8);
-    }
+[!code[Main](form-basics/samples/sample9.xml)]
 
 Here's a summary of what this code does:
 
@@ -394,67 +343,7 @@ In the next tutorial, you'll create a page that uses a form to let users add mov
 
 ## Complete Listing for Movie Page (Updated with Search)
 
-    @{
-        var db = Database.Open("WebPagesMovies") ;
-        var selectCommand = "SELECT * FROM Movies";
-        var searchTerm = "";
-    
-        if(!Request.QueryString["searchGenre"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Genre = @0";
-            searchTerm = Request.QueryString["searchGenre"];
-        }
-    
-        if(!Request.QueryString["searchTitle"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Title LIKE @0";
-            searchTerm = "%" + Request["searchTitle"] + "%";
-        }
-    
-        var selectedData = db.Query(selectCommand, searchTerm);
-        var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:3);
-    }
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8" />
-        <title>Movies</title>
-        <style type="text/css">
-          .grid { margin: 4px; border-collapse: collapse; width: 600px; }
-          .grid th, .grid td { border: 1px solid #C0C0C0; padding: 5px; }
-          .head { background-color: #E8E8E8; font-weight: bold; color: #FFF; }
-          .alt { background-color: #E8E8E8; color: #000; }
-        </style>
-      </head>
-      <body>
-        <h1>Movies</h1>
-          <form method="get">
-            <div>
-            <label for="searchGenre">Genre to look for:</label>
-            <input type="text" name="searchGenre" value="@Request.QueryString["searchGenre"]" />
-            <input type="Submit" value="Search Genre" /><br/>
-            (Leave blank to list all movies.)<br/>
-            </div>
-    
-            <div>
-              <label for="SearchTitle">Movie title contains the following:</label>
-              <input type="text" name="searchTitle" value="@Request.QueryString["searchTitle"]" />
-              <input type="Submit" value="Search Title" /><br/>
-            </div>
-          </form>
-    
-        <div>
-          @grid.GetHtml(
-            tableStyle: "grid",
-            headerStyle: "head",
-            alternatingRowStyle: "alt",
-            columns: grid.Columns(
-              grid.Column("Title"),
-              grid.Column("Genre"),
-              grid.Column("Year")
-            )
-          )
-        </div>
-      </body>
-    </html>
+[!code[Main](form-basics/samples/sample10.xml)]
 
 ## Additional Resources
 

@@ -99,14 +99,7 @@ When you use solution configurations (like Debug and Release) within Visual Stud
 To specify a deployment configuration file in your VSDBCMD, use the **p:/DeploymentConfigurationFile** switch and provide the full path to your file. This will override the deployment configuration file that the deployment manifest identifies. For example, you could use this VSDBCMD command to deploy the **ContactManager** database to a test environment:
 
 
-    vsdbcmd.exe /a:Deploy
-                /manifest:"…\ContactManager.Database.deploymanifest"
-                /cs:"Data Source=TESTDB1;Integrated Security=true"
-                /p:TargetDatabase=ContactManager
-                /p:DeploymentConfigurationFile=
-                  "…\ContactManager.Database_TestEnvironment.sqldeployment"
-                /dd+
-                /script:"…\Publish-ContactManager-Db.sql"
+[!code[Main](customizing-database-deployments-for-multiple-environments/samples/sample1.xml)]
 
 
 > [!NOTE] Note that the build process may rename your .sqldeployment file when it copies the file to the output directory.
@@ -119,14 +112,7 @@ If you use SQL command variables in your pre-deployment or post-deployment SQL s
 You can invoke a VSDBCMD command from an MSBuild project file by using an **Exec** task within an MSBuild target. In its simplest form, it would look like this:
 
 
-    <Target Name="DeployDatabase">     
-       <PropertyGroup>      
-          <_Cmd>
-             Add your VSDBCMD command here
-          </_Cmd>
-       </PropertyGroup>
-       <Exec Command="$(_Cmd)"/> 
-     </Target>
+[!code[Main](customizing-database-deployments-for-multiple-environments/samples/sample2.xml)]
 
 
 - In practice, to make your project files easy to read and reuse, you&#x27;ll want to create properties to store the various command-line parameters. This makes it easier for users to provide property values in an environment-specific project file or to override default values from the MSBuild command line. If you use the split project file approach described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md), you should divide your build instructions and properties between the two files accordingly:

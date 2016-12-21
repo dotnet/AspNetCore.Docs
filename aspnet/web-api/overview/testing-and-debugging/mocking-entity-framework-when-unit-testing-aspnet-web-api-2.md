@@ -75,17 +75,7 @@ After creating the application, you will see it contains two projects - **StoreA
 
 In your StoreApp project, add a class file to the **Models** folder named **Product.cs**. Replace the contents of the file with the following code.
 
-    using System;
-    
-    namespace StoreApp.Models
-    {
-        public class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public decimal Price { get; set; }
-        }
-    }
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample1.xml)]
 
 Build the solution.
 
@@ -106,20 +96,7 @@ Set the following values:
 
 Click **Add** to create the controller with automatically-generated code. The code includes methods for creating, retrieving, updating and deleting instances of the Product class. The following code shows the method for add a Product. Notice that the method returns an instance of **IHttpActionResult**.
 
-    // POST api/Product
-    [ResponseType(typeof(Product))]
-    public IHttpActionResult PostProduct(Product product)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-    
-        db.Products.Add(product);
-        db.SaveChanges();
-    
-        return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
-    }
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample2.xml)]
 
 IHttpActionResult is one of the new features in Web API 2, and it simplifies unit test development.
 
@@ -134,18 +111,7 @@ Right-click the **Models** folder, and add a new interface named **IStoreAppCont
 
 Replace the code with the following code.
 
-    using System;
-    using System.Data.Entity;
-    
-    namespace StoreApp.Models
-    {
-        public interface IStoreAppContext : IDisposable
-        {
-            DbSet<Product> Products { get; }
-            int SaveChanges();
-            void MarkAsModified(Product item);    
-        }
-    }
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample3.xml)]
 
 Open the StoreAppContext.cs file and make the following highlighted changes. The important changes to note are:
 
@@ -153,15 +119,15 @@ Open the StoreAppContext.cs file and make the following highlighted changes. The
 - MarkAsModified method is implemented
 
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample1.xml?highlight=6,14-17)]
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample4.xml?highlight=6,14-17)]
 
 Open the ProductController.cs file. Change the existing code to match the highlighted code. These changes break the dependency on StoreAppContext and enable other classes to pass in a different object for the context class. This change will enable you to pass in a test context during unit tests.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample2.xml?highlight=4,7-12)]
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample5.xml?highlight=4,7-12)]
 
 There is one more change you must make in ProductController. In the **PutProduct** method, replace the line that sets the entity state to modified with a call to the MarkAsModified method.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample3.xml?highlight=14-15)]
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample6.xml?highlight=14-15)]
 
 Build the solution.
 
@@ -191,129 +157,15 @@ Close the Manage NuGet Packages window.
 
 Add a class named **TestDbSet** to the test project. This class serves as the base class for your test data set. Replace the code with the following code.
 
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Data.Entity;
-    using System.Linq;
-    
-    namespace StoreApp.Tests
-    {
-        public class TestDbSet<T> : DbSet<T>, IQueryable, IEnumerable<T>
-            where T : class
-        {
-            ObservableCollection<T> _data;
-            IQueryable _query;
-    
-            public TestDbSet()
-            {
-                _data = new ObservableCollection<T>();
-                _query = _data.AsQueryable();
-            }
-    
-            public override T Add(T item)
-            {
-                _data.Add(item);
-                return item;
-            }
-    
-            public override T Remove(T item)
-            {
-                _data.Remove(item);
-                return item;
-            }
-    
-            public override T Attach(T item)
-            {
-                _data.Add(item);
-                return item;
-            }
-    
-            public override T Create()
-            {
-                return Activator.CreateInstance<T>();
-            }
-    
-            public override TDerivedEntity Create<TDerivedEntity>()
-            {
-                return Activator.CreateInstance<TDerivedEntity>();
-            }
-    
-            public override ObservableCollection<T> Local
-            {
-                get { return new ObservableCollection<T>(_data); }
-            }
-    
-            Type IQueryable.ElementType
-            {
-                get { return _query.ElementType; }
-            }
-    
-            System.Linq.Expressions.Expression IQueryable.Expression
-            {
-                get { return _query.Expression; }
-            }
-    
-            IQueryProvider IQueryable.Provider
-            {
-                get { return _query.Provider; }
-            }
-    
-            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-            {
-                return _data.GetEnumerator();
-            }
-    
-            IEnumerator<T> IEnumerable<T>.GetEnumerator()
-            {
-                return _data.GetEnumerator();
-            }
-        }
-    }
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample7.xml)]
 
 Add a class named **TestProductDbSet** to the test project which contains the following code.
 
-    using System;
-    using System.Linq;
-    using StoreApp.Models;
-    
-    namespace StoreApp.Tests
-    {
-        class TestProductDbSet : TestDbSet<Product>
-        {
-            public override Product Find(params object[] keyValues)
-            {
-                return this.SingleOrDefault(product => product.Id == (int)keyValues.Single());
-            }
-        }
-    }
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample8.xml)]
 
 Add a class named **TestStoreAppContext** and replace the existing code with the following code.
 
-    using System;
-    using System.Data.Entity;
-    using StoreApp.Models;
-    
-    namespace StoreApp.Tests
-    {
-        public class TestStoreAppContext : IStoreAppContext 
-        {
-            public TestStoreAppContext()
-            {
-                this.Products = new TestProductDbSet();
-            }
-    
-            public DbSet<Product> Products { get; set; }
-    
-            public int SaveChanges()
-            {
-                return 0;
-            }
-    
-            public void MarkAsModified(Product item) { }
-            public void Dispose() { }
-        }
-    }
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample9.xml)]
 
 <a id="tests"></a>
 ## Create tests
@@ -322,104 +174,7 @@ By default, your test project includes an empty test file named **UnitTest1.cs**
 
 Add a class named **TestProductController** to the test project. Replace the code with the following code.
 
-    using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Web.Http.Results;
-    using System.Net;
-    using StoreApp.Models;
-    using StoreApp.Controllers;
-    
-    namespace StoreApp.Tests
-    {
-        [TestClass]
-        public class TestProductController
-        {
-            [TestMethod]
-            public void PostProduct_ShouldReturnSameProduct()
-            {
-                var controller = new ProductController(new TestStoreAppContext());
-    
-                var item = GetDemoProduct();
-    
-                var result =
-                    controller.PostProduct(item) as CreatedAtRouteNegotiatedContentResult<Product>;
-    
-                Assert.IsNotNull(result);
-                Assert.AreEqual(result.RouteName, "DefaultApi");
-                Assert.AreEqual(result.RouteValues["id"], result.Content.Id);
-                Assert.AreEqual(result.Content.Name, item.Name);
-            }
-    
-            [TestMethod]
-            public void PutProduct_ShouldReturnStatusCode()
-            {
-                var controller = new ProductController(new TestStoreAppContext());
-    
-                var item = GetDemoProduct();
-    
-                var result = controller.PutProduct(item.Id, item) as StatusCodeResult;
-                Assert.IsNotNull(result);
-                Assert.IsInstanceOfType(result, typeof(StatusCodeResult));
-                Assert.AreEqual(HttpStatusCode.NoContent, result.StatusCode);
-            }
-    
-            [TestMethod]
-            public void PutProduct_ShouldFail_WhenDifferentID()
-            {
-                var controller = new ProductController(new TestStoreAppContext());
-    
-                var badresult = controller.PutProduct(999, GetDemoProduct());
-                Assert.IsInstanceOfType(badresult, typeof(BadRequestResult));
-            }
-    
-            [TestMethod]
-            public void GetProduct_ShouldReturnProductWithSameID()
-            {
-                var context = new TestStoreAppContext();
-                context.Products.Add(GetDemoProduct());
-    
-                var controller = new ProductController(context);
-                var result = controller.GetProduct(3) as OkNegotiatedContentResult<Product>;
-    
-                Assert.IsNotNull(result);
-                Assert.AreEqual(3, result.Content.Id);
-            }
-    
-            [TestMethod]
-            public void GetProducts_ShouldReturnAllProducts()
-            {
-                var context = new TestStoreAppContext();
-                context.Products.Add(new Product { Id = 1, Name = "Demo1", Price = 20 });
-                context.Products.Add(new Product { Id = 2, Name = "Demo2", Price = 30 });
-                context.Products.Add(new Product { Id = 3, Name = "Demo3", Price = 40 });
-    
-                var controller = new ProductController(context);
-                var result = controller.GetProducts() as TestProductDbSet;
-    
-                Assert.IsNotNull(result);
-                Assert.AreEqual(3, result.Local.Count);
-            }
-    
-            [TestMethod]
-            public void DeleteProduct_ShouldReturnOK()
-            {
-                var context = new TestStoreAppContext();
-                var item = GetDemoProduct();
-                context.Products.Add(item);
-    
-                var controller = new ProductController(context);
-                var result = controller.DeleteProduct(3) as OkNegotiatedContentResult<Product>;
-    
-                Assert.IsNotNull(result);
-                Assert.AreEqual(item.Id, result.Content.Id);
-            }
-    
-            Product GetDemoProduct()
-            {
-                return new Product() { Id = 3, Name = "Demo name", Price = 5 };
-            }
-        }
-    }
+[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample10.xml)]
 
 <a id="runtests"></a>
 ## Run tests

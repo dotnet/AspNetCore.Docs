@@ -96,9 +96,7 @@ Since you will be using Code First Migrations, you no longer have to use the **D
 
 Open the application Web.config file and remove the element that specifies the Code First initializer class from the appSettings element. The appSettings element now looks like this:
 
-    <appSettings>
-      <add key="Environment" value="Dev" />
-    </appSettings>
+[!code[Main](deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12/samples/sample2.xml)]
 
 > [!NOTE] Another way to specify an initializer class is do it by calling `Database.SetInitializer` in the `Application_Start` method in the *Global.asax* file. If you are enabling Migrations in a project that uses that method to specify the initializer, remove that line of code.
 
@@ -123,49 +121,7 @@ You selected the DAL project because the "enable-migrations" command must be exe
 
 Open the Configuration.cs file and replace the comments in the `Seed` method with the following code:
 
-    var instructors = new List<Instructor>
-    {   
-        new Instructor { FirstMidName = "Kim",     LastName = "Abercrombie", HireDate = DateTime.Parse("1995-03-11"), OfficeAssignment = new OfficeAssignment { Location = "Smith 17" } },
-        new Instructor { FirstMidName = "Fadi",    LastName = "Fakhouri",    HireDate = DateTime.Parse("2002-07-06"), OfficeAssignment = new OfficeAssignment { Location = "Gowan 27" } },
-        new Instructor { FirstMidName = "Roger",   LastName = "Harui",       HireDate = DateTime.Parse("1998-07-01"), OfficeAssignment = new OfficeAssignment { Location = "Thompson 304" } },
-        new Instructor { FirstMidName = "Candace", LastName = "Kapoor",      HireDate = DateTime.Parse("2001-01-15") },
-        new Instructor { FirstMidName = "Roger",   LastName = "Zheng",       HireDate = DateTime.Parse("2004-02-12") }
-    };
-    instructors.ForEach(s => context.Instructors.AddOrUpdate(i => i.LastName, s));
-    context.SaveChanges();
-    
-    var departments = new List<Department>
-    {
-        new Department { Name = "English",     Budget = 350000, StartDate = DateTime.Parse("2007-09-01"), PersonID = 1 },
-        new Department { Name = "Mathematics", Budget = 100000, StartDate = DateTime.Parse("2007-09-01"), PersonID = 2 },
-        new Department { Name = "Engineering", Budget = 350000, StartDate = DateTime.Parse("2007-09-01"), PersonID = 3 },
-        new Department { Name = "Economics",   Budget = 100000, StartDate = DateTime.Parse("2007-09-01"), PersonID = 4 }
-    };
-    departments.ForEach(s => context.Departments.AddOrUpdate(d => d.Name, s));
-    context.SaveChanges();
-    
-    var courses = new List<Course>
-    {
-        new Course { CourseID = 1050, Title = "Chemistry",      Credits = 3, DepartmentID = 3, Instructors = new List<Instructor>() },
-        new Course { CourseID = 4022, Title = "Microeconomics", Credits = 3, DepartmentID = 4, Instructors = new List<Instructor>() },
-        new Course { CourseID = 4041, Title = "Macroeconomics", Credits = 3, DepartmentID = 4, Instructors = new List<Instructor>() },
-        new Course { CourseID = 1045, Title = "Calculus",       Credits = 4, DepartmentID = 2, Instructors = new List<Instructor>() },
-        new Course { CourseID = 3141, Title = "Trigonometry",   Credits = 4, DepartmentID = 2, Instructors = new List<Instructor>() },
-        new Course { CourseID = 2021, Title = "Composition",    Credits = 3, DepartmentID = 1, Instructors = new List<Instructor>() },
-        new Course { CourseID = 2042, Title = "Literature",     Credits = 4, DepartmentID = 1, Instructors = new List<Instructor>() }
-    };
-    courses.ForEach(s => context.Courses.AddOrUpdate(s));
-    context.SaveChanges();
-    
-    courses[0].Instructors.Add(instructors[0]);
-    courses[0].Instructors.Add(instructors[1]);
-    courses[1].Instructors.Add(instructors[2]);
-    courses[2].Instructors.Add(instructors[2]);
-    courses[3].Instructors.Add(instructors[3]);
-    courses[4].Instructors.Add(instructors[3]);
-    courses[5].Instructors.Add(instructors[3]);
-    courses[6].Instructors.Add(instructors[3]);
-    context.SaveChanges();
+[!code[Main](deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12/samples/sample3.xml)]
 
 The references to `List` have red squiggly lines under them because you don't have a `using` statement for its namespace yet. Right-click one of the instances of `List` and click **Resolve**, and then click **using System.Collections.Generic**.
 
@@ -173,7 +129,7 @@ The references to `List` have red squiggly lines under them because you don't ha
 
 This menu selection adds the following code to the `using` statements near the top of the file.
 
-    using System.Collections.Generic;
+[!code[Main](deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12/samples/sample4.xml)]
 
 > [!NOTE] Adding code to the `Seed` method is one of many ways that you can insert fixed data into the database. An alternative is to add code to the `Up` and `Down` methods of each migration class. The `Up` and `Down` methods contain code that implements database changes. You'll see examples of them in the [Deploying a Database Update](../../../../web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12.md) tutorial.
 > 
@@ -267,18 +223,11 @@ When you run the application in Visual Studio you don't want to use the *-Prod* 
 
 Open the application Web.config file, and locate the connection strings:
 
-    <configuration>
-      <!-- Settings -->
-      <connectionStrings>
-        <add name="DefaultConnection" connectionString="Data Source=|DataDirectory|aspnet.sdf" providerName="System.Data.SqlServerCe.4.0" />
-        <add name="SchoolContext" connectionString="Data Source=|DataDirectory|School.sdf" providerName="System.Data.SqlServerCe.4.0" />
-      </connectionStrings>
-      <!-- Settings -->
-    </configuration>
+[!code[Main](deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12/samples/sample5.xml)]
 
 Change "aspnet.sdf" to "aspnet-Dev.sdf", and change "School.sdf" to "School-Dev.sdf":
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12/samples/sample2.xml?highlight=4-5)]
+[!code[Main](deployment-to-a-hosting-provider-deploying-sql-server-compact-databases-2-of-12/samples/sample6.xml?highlight=4-5)]
 
 The SQL Server Compact database engine and both databases are now ready to be deployed. In the following tutorial you set up automatic *Web.config* file transformations for settings that must be different in the development, test, and production environments. (Among the settings that must be changed are the connection strings, but you'll set up those changes later when you create a publish profile.)
 

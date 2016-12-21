@@ -51,10 +51,7 @@ At this point your project's Solution Explorer should look similar to the screen
 
 Each page should, at this point, have the two Content controls, one for each of the master page's ContentPlaceHolders: `MainContent` and `LoginContent`.
 
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server"> 
-    </asp:Content> 
-    <asp:Content ID="Content2" ContentPlaceHolderID="LoginContent" Runat="Server"> 
-    </asp:Content>
+[!code[Main](creating-and-managing-roles-vb/samples/sample1.xml)]
 
 Recall that the `LoginContent` ContentPlaceHolder's default markup displays a link to log on or log off the site, depending on whether the user is authenticated. The presence of the `Content2` Content control in the ASP.NET page, however, overrides the master page's default markup. As we discussed in <a id="_msoanchor_4"></a>[*An Overview of Forms Authentication*](../introduction/an-overview-of-forms-authentication-vb.md) tutorial, overriding the default markup is useful in pages where we do not want to display login-related options in the left column.
 
@@ -62,12 +59,7 @@ For these four pages, however, we want to show the master page's default markup 
 
 Finally, let's update the site map (`Web.sitemap`) to include these new web pages. Add the following XML after the `<siteMapNode>` we added for the Membership tutorials.
 
-    <siteMapNode title="Roles"> 
-     <siteMapNode url="~/Roles/ManageRoles.aspx" title="Manage Roles" />
-     <siteMapNode url="~/Roles/UsersAndRoles.aspx" title="Users and Roles" />
-     <siteMapNode url="~/Roles/CreateUserWizardWithRoles.aspx" title="Create Account (with Roles)"/>
-     <siteMapNode url="~/Roles/RoleBasedAuthorization.aspx" title="Role-Based Authorization" />
-    </siteMapNode>
+[!code[Main](creating-and-managing-roles-vb/samples/sample2.xml)]
 
 With the site map updated, visit the site through a browser. As Figure 2 shows, the navigation on the left now includes items for the Roles tutorials.
 
@@ -87,26 +79,11 @@ In order to use the `SqlRoleProvider` provider in our application, we need to sp
 
 The Roles framework is configured via the `<roleManager>` element in the application's `Web.config` file. By default, role support is disabled. To enable it, you must set the [`<roleManager>`](https://msdn.microsoft.com/en-us/library/ms164660.aspx) element's `enabled` attribute to `true` like so:
 
-    <?xml version="1.0"?>
-    <configuration>
-     <system.web>
-     ... Additional configuration markup removed for brevity ... 
-    
-     <roleManager enabled="true" />
-     <system.web>
-    </configuration>
+[!code[Main](creating-and-managing-roles-vb/samples/sample3.xml)]
 
 By default, all web applications have a Roles provider named `AspNetSqlRoleProvider` of type `SqlRoleProvider`. This default provider is registered in `machine.config` (located at `%WINDIR%\Microsoft.Net\Framework\v2.0.50727\CONFIG`):
 
-    <roleManager>
-     <providers>
-     <add name="AspNetSqlRoleProvider"
-     connectionStringName="LocalSqlServer"
-     applicationName="/"
-     type="System.Web.Security.SqlRoleProvider,
-     System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
-     </providers>
-    </roleManager>
+[!code[Main](creating-and-managing-roles-vb/samples/sample4.xml)]
 
 The provider's `connectionStringName` attribute specifies the role store that is used. The `AspNetSqlRoleProvider` provider sets this attribute to `LocalSqlServer`, which is also defined in `machine.config` and points, by default, to a SQL Server 2005 Express Edition database in the `App_Data` folder named `aspnet.mdf`.
 
@@ -117,26 +94,7 @@ Consequently, if we simply enable the Roles framework without specifying any pro
 
 Add the following Roles configuration markup to the `Web.config` file. This markup registers a new provider named `SecurityTutorialsSqlRoleProvider.`
 
-    <?xml version="1.0"?>
-    <configuration>
-     <connectionStrings>
-     <add name="SecurityTutorialsConnectionString"
-     connectionString="..."/>
-     </connectionStrings>
-    
-     <system.web>
-     ... Additional configuration markup removed for brevity ...
-    
-     &nbsp &nbsp<roleManager enabled="true" defaultProvider="SecurityTutorialsSqlRoleProvider">
-     &nbsp &nbsp &nbsp<providers>
-     <add name="SecurityTutorialsSqlRoleProvider"
-     type="System.Web.Security.SqlRoleProvider"
-     applicationName="SecurityTutorials"
-     connectionStringName="SecurityTutorialsConnectionString"/>
-     </providers>
-     </roleManager>
-     <system.web>
-    </configuration>
+[!code[Main](creating-and-managing-roles-vb/samples/sample5.xml)]
 
 The above markup defines the `SecurityTutorialsSqlRoleProvider` as the default provider (via the `defaultProvider` attribute in the `<roleManager>` element). It also sets the `SecurityTutorialsSqlRoleProvider`'s `applicationName` setting to `SecurityTutorials`, which is the same `applicationName` setting used by the Membership provider (`SecurityTutorialsSqlMembershipProvider`). While not shown here, the [`<add>` element](https://msdn.microsoft.com/en-us/library/ms164662.aspx) for the `SqlRoleProvider` may also contain a `commandTimeout` attribute to specify the database timeout duration, in seconds. The default value is 30.
 
@@ -169,23 +127,11 @@ Roles offer a way to arbitrarily group users, and most commonly this grouping is
 
 Open the `ManageRoles.aspx` page in the `Roles` folder and add a TextBox and a Button Web control to the page. Set the TextBox control's `ID` property to `RoleName` and the Button's `ID` and `Text` properties to `CreateRoleButton` and Create Role , respectively. At this point, your page's declarative markup should look similar to the following:
 
-    <b>Create a New Role:</b>
-    <asp:TextBox ID="RoleName" runat="server"></asp:TextBox>
-    <br />
-    <asp:Button ID="CreateRoleButton" runat="server" Text="Create Role" />
+[!code[Main](creating-and-managing-roles-vb/samples/sample6.xml)]
 
 Next, double-click the `CreateRoleButton` Button control in the Designer to create a `Click` event handler and then add the following code:
 
-    Protected Sub CreateRoleButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles CreateRoleButton.Click
-     Dim newRoleName As String = RoleName.Text.Trim()
-    
-     If Not Roles.RoleExists(newRoleName) Then
-     ' Create the role
-     Roles.CreateRole(newRoleName)
-     End If
-    
-     RoleName.Text= String.Empty 
-    End Sub
+[!code[Main](creating-and-managing-roles-vb/samples/sample7.xml)]
 
 The above code starts by assigning the trimmed role name entered in the `RoleName` TextBox to the `newRoleName` variable. Next, the `Roles` class's `RoleExists` method is called to determine if the role `newRoleName` already exists in the system. If the role does not exist, it is created via a call to the `CreateRole` method. If the `CreateRole` method is passed a role name that already exists in the system, a `ProviderException` exception is thrown. This is why the code first checks to ensure that the role does not already exist in the system before calling `CreateRole`. The `Click` event handler concludes by clearing out the `RoleName` TextBox's `Text` property.
 
@@ -212,18 +158,11 @@ What happens? A postback occurs, but there's no visual cue that the role has act
 
 Let's augment the `ManageRoles.aspx` page to include a list of the current roles in the system. To accomplish this, add a GridView control to the page and set its `ID` property to `RoleList`. Next, add a method to the page's code-behind class named `DisplayRolesInGrid` using the following code:
 
-    Private Sub DisplayRolesInGrid()
-     RoleList.DataSource = Roles.GetAllRoles()
-     RoleList.DataBind()
-    End Sub
+[!code[Main](creating-and-managing-roles-vb/samples/sample8.xml)]
 
 The `Roles` class's `GetAllRoles` method returns all of the roles in the system as an array of strings. This string array is then bound to the GridView. In order to bind the list of roles to the GridView when the page is first loaded, we need to call the `DisplayRolesInGrid` method from the page's `Page_Load` event handler. The following code calls this method when the page is first visited, but not on subsequent postbacks.
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-     If Not Page.IsPostBack Then
-     DisplayRolesInGrid()
-     End If 
-    End Sub
+[!code[Main](creating-and-managing-roles-vb/samples/sample9.xml)]
 
 With this code in place, visit the page through a browser. As Figure 5 shows, you should see a grid with a single column labeled Item . The grid includes a row for the Administrators role we added in Step 4.
 
@@ -243,34 +182,14 @@ These properties and the `ItemTemplate`'s contents can be set declaratively or t
 
 Regardless of what approach you use, the GridView's resulting declarative markup should look similar to the following when you are done.
 
-    <asp:GridView ID="RoleList" runat="server" AutoGenerateColumns="false">
-     <Columns>
-     <asp:TemplateField HeaderText="Role">
-     <ItemTemplate>
-     <asp:Label runat="server" ID="RoleNameLabel" Text='<%# Container.DataItem %>' />
-     </ItemTemplate>
-     </asp:TemplateField>
-     </Columns>
-    </asp:GridView>
+[!code[Main](creating-and-managing-roles-vb/samples/sample10.xml)]
 
 > [!NOTE] The array's contents are displayed using the databinding syntax `<%# Container.DataItem %>`. A thorough description of why this syntax is used when displaying the contents of an array bound to the GridView is beyond the scope of this tutorial. For more information on this matter, refer to [Binding a Scalar Array to a Data Web Control](http://aspnet.4guysfromrolla.com/articles/082504-1.aspx).
 
 
 Currently, the `RoleList` GridView is only bound to the list of roles when the page is first visited. We need to refresh the grid whenever a new role is added. To accomplish this, update the `CreateRoleButton` Button's `Click` event handler so that it calls the `DisplayRolesInGrid` method if a new role is created.
 
-    Protected Sub CreateRoleButton_Click(ByVal sender As Object,ByVal e As System.EventArgs) Handles CreateRoleButton.Click
-     Dim newRoleName As String = RoleName.Text.Trim()
-    
-     If Not Roles.RoleExists(newRoleName) Then
-     ' Create the role
-     Roles.CreateRole(newRoleName)
-    
-     ' Refresh the RoleList Grid
-     DisplayRolesInGrid()
-     End If
-    
-     RoleName.Text = String.Empty 
-    End Sub
+[!code[Main](creating-and-managing-roles-vb/samples/sample11.xml)]
 
 Now when the user adds a new role the `RoleList` GridView shows the just-added role on postback, providing visual feedback that the role was successfully created. To illustrate this, visit the `ManageRoles.aspx` page through a browser and add a role named Supervisors . Upon clicking the Create Role button, a postback will ensue and the grid will update to include Administrators as well as the new role, Supervisors.
 
@@ -299,29 +218,11 @@ Let's augment the GridView in `ManageRoles.aspx` to include a Delete button that
 
 After adding the Delete button, your GridView's declarative markup should look similar to the following:
 
-    <asp:GridView ID="RoleList" runat="server" AutoGenerateColumns="False">
-     <Columns>
-     <asp:CommandField DeleteText="Delete Role" ShowDeleteButton="True" />
-     <asp:TemplateField HeaderText="Role">
-     <ItemTemplate>
-     <asp:Label runat="server" ID="RoleNameLabel" Text='<%# Container.DataItem %>' />
-     </ItemTemplate>
-     </asp:TemplateField>
-     </Columns> 
-    </asp:GridView>
+[!code[Main](creating-and-managing-roles-vb/samples/sample12.xml)]
 
 Next, create an event handler for the GridView's `RowDeleting` event. This is the event that is raised on postback when the Delete Role button is clicked. Add the following code to the event handler.
 
-    Protected Sub RoleList_RowDeleting(ByVal sender As Object,ByVal e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles RoleList.RowDeleting
-     ' Get the RoleNameLabel
-     Dim RoleNameLabel As Label = CType(RoleList.Rows(e.RowIndex).FindControl("RoleNameLabel"),Label)
-    
-     ' Delete the role
-     Roles.DeleteRole(RoleNameLabel.Text,False)
-    
-     ' Rebind the data to the RoleList grid
-     DisplayRolesInGrid()
-    End Sub
+[!code[Main](creating-and-managing-roles-vb/samples/sample13.xml)]
 
 The code starts by programmatically referencing the `RoleNameLabel` Web control in the row whose Delete Role button was clicked. The `Roles.DeleteRole` method is then invoked, passing in the `Text` of the `RoleNameLabel` and `False`, thereby deleting the role regardless of whether there are any users associated with the role. Finally, the `RoleList` GridView is refreshed so that the just-deleted role no longer appears in the grid.
 

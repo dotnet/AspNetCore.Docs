@@ -50,170 +50,31 @@ The CheckOut.aspx page should only be available to users who are logged in so we
 
 To do this we'll add the following to the configuration section of our web.config file.
 
-    <location path="Checkout.aspx">
-        <system.web>
-          <authorization>
-            <deny users="?" />
-          </authorization>
-        </system.web>
-      </location>
+[!code[Main](tailspin-spyworks-part-6/samples/sample1.xml)]
 
 The template for ASP.NET Web Forms applications automatically added an authentication section to our web.config file and established the default login page.
 
-    <authentication mode="Forms">
-          <forms loginUrl="~/Account/Login.aspx" timeout="2880" />
-        </authentication>
+[!code[Main](tailspin-spyworks-part-6/samples/sample2.xml)]
 
 We must modify the Login.aspx code behind file to migrate an anonymous shopping cart when the user logs in. Change the Page\_Load event as follows.
 
-    using System.Web.Security;
-    
-    protected void Page_Load(object sender, EventArgs e)
-    {
-      // If the user is not submitting their credentials
-      // save refferer
-      if (!Page.IsPostBack)
-         {
-         if (Page.Request.UrlReferrer != null)
-            {
-            Session["LoginReferrer"] = Page.Request.UrlReferrer.ToString();
-            }
-          }
-               
-      // User is logged in so log them out.
-      if (User.Identity.IsAuthenticated)
-         {
-         FormsAuthentication.SignOut();
-         Response.Redirect("~/");
-         }
-    }
+[!code[Main](tailspin-spyworks-part-6/samples/sample3.xml)]
 
 Then add a "LoggedIn" event handler like this to set the session name to the newly logged in user and change the temporary session id in the shopping cart to that of the user by calling the MigrateCart method in our MyShoppingCart class. (Implemented in the .cs file)
 
-    protected void LoginUser_LoggedIn(object sender, EventArgs e)
-    {
-      MyShoppingCart usersShoppingCart = new MyShoppingCart();
-      String cartId = usersShoppingCart.GetShoppingCartId();
-      usersShoppingCart.MigrateCart(cartId, LoginUser.UserName);
-                
-      if(Session["LoginReferrer"] != null)
-        {
-        Response.Redirect(Session["LoginReferrer"].ToString());
-        }
-    
-      Session["UserName"] = LoginUser.UserName;
-    }
+[!code[Main](tailspin-spyworks-part-6/samples/sample4.xml)]
 
 Implement the MigrateCart() method like this.
 
-    //--------------------------------------------------------------------------------------+
-    public void MigrateCart(String oldCartId, String UserName)
-    {
-      using (CommerceEntities db = new CommerceEntities())
-        {
-        try
-          {
-          var myShoppingCart = from cart in db.ShoppingCarts
-                               where cart.CartID == oldCartId
-                               select cart;
-    
-          foreach (ShoppingCart item in myShoppingCart)
-            {
-            item.CartID = UserName;                 
-            }
-          db.SaveChanges();
-          Session[CartId] = UserName;
-          }
-        catch (Exception exp)
-          {
-          throw new Exception("ERROR: Unable to Migrate Shopping Cart - " +     
-                               exp.Message.ToString(), exp);
-          }
-        }           
-    }
+[!code[Main](tailspin-spyworks-part-6/samples/sample5.xml)]
 
 In checkout.aspx we'll use an EntityDataSource and a GridView in our check out page much as we did in our shopping cart page.
 
-    <div id="CheckOutHeader" runat="server" class="ContentHead">
-      Review and Submit Your Order
-    </div>
-    <span id="Message" runat="server"><br />     
-       <asp:Label ID="LabelCartHeader" runat="server" 
-                  Text="Please check all the information below to be sure it's correct.">
-       </asp:Label>
-    </span><br /> 
-    <asp:GridView ID="MyList" runat="server" AutoGenerateColumns="False" 
-                  DataKeyNames="ProductID,UnitCost,Quantity" 
-                  DataSourceID="EDS_Cart" 
-                  CellPadding="4" GridLines="Vertical" CssClass="CartListItem" 
-                  onrowdatabound="MyList_RowDataBound" ShowFooter="True">
-      <AlternatingRowStyle CssClass="CartListItemAlt" />
-      <Columns>
-        <asp:BoundField DataField="ProductID" HeaderText="Product ID" ReadOnly="True" 
-                        SortExpression="ProductID"  />
-        <asp:BoundField DataField="ModelNumber" HeaderText="Model Number" 
-                        SortExpression="ModelNumber" />
-        <asp:BoundField DataField="ModelName" HeaderText="Model Name" 
-                        SortExpression="ModelName" />
-        <asp:BoundField DataField="UnitCost" HeaderText="Unit Cost" ReadOnly="True" 
-                        SortExpression="UnitCost" DataFormatString="{0:c}" />
-        <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="True" 
-                        SortExpression="Quantity" />
-        <asp:TemplateField> 
-          <HeaderTemplate>Item Total</HeaderTemplate>
-          <ItemTemplate>
-            <%# (Convert.ToDouble(Eval("Quantity")) * Convert.ToDouble(Eval("UnitCost")))%>
-          </ItemTemplate>
-        </asp:TemplateField>
-      </Columns>
-      <FooterStyle CssClass="CartListFooter"/>
-      <HeaderStyle  CssClass="CartListHead" />
-    </asp:GridView>   
-        
-    <br />
-    <asp:imagebutton id="CheckoutBtn" runat="server" ImageURL="Styles/Images/submit.gif" 
-                                      onclick="CheckoutBtn_Click">
-    </asp:imagebutton>
-    <asp:EntityDataSource ID="EDS_Cart" runat="server" 
-                          ConnectionString="name=CommerceEntities" 
-                          DefaultContainerName="CommerceEntities" 
-                          EnableFlattening="False" 
-                          EnableUpdate="True" 
-                          EntitySetName="ViewCarts" 
-                          AutoGenerateWhereClause="True" 
-                          EntityTypeFilter="" 
-                          Select="" Where="">
-       <WhereParameters>
-          <asp:SessionParameter Name="CartID" DefaultValue="0" 
-                                              SessionField="TailSpinSpyWorks_CartID" />
-       </WhereParameters>
-    </asp:EntityDataSource>
+[!code[Main](tailspin-spyworks-part-6/samples/sample6.xml)]
 
 Note that our GridView control specifies an "ondatabound" event handler named MyList\_RowDataBound so let's implement that event handler like this.
 
-    decimal _CartTotal = 0;
-    
-    //--------------------------------------------------------------------------------------+
-    protected void MyList_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-      if (e.Row.RowType == DataControlRowType.DataRow)
-         {
-         TailspinSpyworks.Data_Access.ViewCart myCart = new Data_Access.ViewCart();
-         myCart = (TailspinSpyworks.Data_Access.ViewCart)e.Row.DataItem;
-         _CartTotal += myCart.UnitCost * myCart.Quantity;
-         }
-       else if (e.Row.RowType == DataControlRowType.Footer)
-         {
-         if (_CartTotal > 0)
-            {
-            CheckOutHeader.InnerText = "Review and Submit Your Order";
-            LabelCartHeader.Text = "Please check all the information below to be sure
-                                                                    it's correct.";
-            CheckoutBtn.Visible = true;
-            e.Row.Cells[5].Text = "Total: " + _CartTotal.ToString("C");
-            }
-         }
-    }
+[!code[Main](tailspin-spyworks-part-6/samples/sample7.xml)]
 
 This method keeps a running total of the shopping cart as each row is bound and updates the bottom row of the GridView.
 
@@ -221,29 +82,11 @@ At this stage we have implemented a "review" presentation of the order to be pla
 
 Let's handle an empty cart scenario by adding a few lines of code to our Page\_Load event:
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-       CheckOutHeader.InnerText = "Your Shopping Cart is Empty";
-       LabelCartHeader.Text = "";
-       CheckoutBtn.Visible = false;
-    }
+[!code[Main](tailspin-spyworks-part-6/samples/sample8.xml)]
 
 When the user clicks on the "Submit" button we will execute the following code in the Submit Button Click Event handler.
 
-    protected void CheckoutBtn_Click(object sender, ImageClickEventArgs e)
-    {
-      MyShoppingCart usersShoppingCart = new MyShoppingCart();
-      if (usersShoppingCart.SubmitOrder(User.Identity.Name) == true)
-        {
-        CheckOutHeader.InnerText = "Thank You - Your Order is Complete.";
-        Message.Visible = false;
-        CheckoutBtn.Visible = false;
-        }
-      else
-        {
-        CheckOutHeader.InnerText = "Order Submission Failed - Please try again. ";
-        }
-    }
+[!code[Main](tailspin-spyworks-part-6/samples/sample9.xml)]
 
 The "meat" of the order submission process is to be implemented in the SubmitOrder() method of our MyShoppingCart class.
 
@@ -254,68 +97,11 @@ SubmitOrder will:
 - Clear the shopping cart.
 
 
-    //--------------------------------------------------------------------------------------+
-    public bool SubmitOrder(string UserName)
-    {
-      using (CommerceEntities db = new CommerceEntities())
-        {
-        try
-          {
-          //------------------------------------------------------------------------+
-          //  Add New Order Record                                                  |
-          //------------------------------------------------------------------------+
-          Order newOrder = new Order();
-          newOrder.CustomerName = UserName;
-          newOrder.OrderDate = DateTime.Now;
-          newOrder.ShipDate = CalculateShipDate();
-          db.Orders.AddObject(newOrder);
-          db.SaveChanges();
-             
-          //------------------------------------------------------------------------+
-          //  Create a new OderDetail Record for each item in the Shopping Cart     |
-          //------------------------------------------------------------------------+
-          String cartId = GetShoppingCartId();
-          var myCart = (from c in db.ViewCarts where c.CartID == cartId select c);
-          foreach (ViewCart item in myCart)
-            {
-            int i = 0;
-            if (i < 1)
-              {
-              OrderDetail od = new OrderDetail();
-              od.OrderID = newOrder.OrderID;
-              od.ProductID = item.ProductID;
-              od.Quantity = item.Quantity;
-              od.UnitCost = item.UnitCost;
-              db.OrderDetails.AddObject(od);
-              i++;
-              }
-    
-            var myItem = (from c in db.ShoppingCarts where c.CartID == item.CartID && 
-                             c.ProductID == item.ProductID select c).FirstOrDefault();
-            if (myItem != null)
-              {
-              db.DeleteObject(myItem);
-              }
-            }
-          db.SaveChanges();                    
-          }
-        catch (Exception exp)
-          {
-          throw new Exception("ERROR: Unable to Submit Order - " + exp.Message.ToString(), 
-                                                                   exp);
-          }
-        } 
-      return(true);
-    }
+[!code[Main](tailspin-spyworks-part-6/samples/sample10.xml)]
 
 For the purposes of this sample application we'll calculate a ship date by simply adding two days to the current date.
 
-    //--------------------------------------------------------------------------------------+
-    DateTime CalculateShipDate()
-    {
-       DateTime shipDate = DateTime.Now.AddDays(2);
-       return (shipDate);
-    }
+[!code[Main](tailspin-spyworks-part-6/samples/sample11.xml)]
 
 Running the application now will permit us to test the shopping process from start to finish.
 

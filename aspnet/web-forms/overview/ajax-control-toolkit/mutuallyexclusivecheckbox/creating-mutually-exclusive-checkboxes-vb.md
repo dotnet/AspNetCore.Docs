@@ -30,19 +30,15 @@ The ASP.NET AJAX Control Toolkit contains the MutuallyExclusiveCheckBox extender
 
 Let's start with putting two check boxes on a new ASP.NET page. There can be more, but two of them suffice to demonstrate the principle:
 
-    <asp:CheckBox ID="cbYes" runat="server" />Yes
-    <asp:CheckBox ID="cbNo" runat="server" />No
+[!code[Main](creating-mutually-exclusive-checkboxes-vb/samples/sample1.xml)]
 
 For both checkboxes, a MutuallyExclusiveCheckBoxExtender control must be put on the page. Both Key attributes need to have the same value, just as the value attributes of HTML radio button elements must be identical to denote the group they belong to. The TargetControlID property of the extender points to the ID of the check box.
 
-    <ajaxToolkit:MutuallyExclusiveCheckBoxExtender ID="mecbe1" runat="server"
-     TargetControlID="cbYes" Key="YesNo" />
-    <ajaxToolkit:MutuallyExclusiveCheckBoxExtender ID="mecbe2" runat="server"
-     TargetControlID="cbNo" Key="YesNo" />
+[!code[Main](creating-mutually-exclusive-checkboxes-vb/samples/sample2.xml)]
 
 Finally, include the ASP.NET AJAX `ScriptManager` which is required by all elements of the ASP.NET AJAX Control Toolkit:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](creating-mutually-exclusive-checkboxes-vb/samples/sample3.xml)]
 
 Save and run the page: You can check and uncheck both check boxes, however at no time can both check boxes be checked.
 

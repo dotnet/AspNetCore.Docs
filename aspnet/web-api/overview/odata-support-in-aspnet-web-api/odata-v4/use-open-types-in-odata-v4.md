@@ -38,49 +38,13 @@ The value of a dynamic property can be a primitive type, complex type, or enumer
 
 Use NuGet Package Manager to install the latest Web API OData libraries. From the Package Manager Console window:
 
-    Install-Package Microsoft.AspNet.OData
-    Install-Package Microsoft.AspNet.WebApi.OData
+[!code[Main](use-open-types-in-odata-v4/samples/sample1.xml)]
 
 ## Define the CLR Types
 
 Start by defining the EDM models as CLR types.
 
-    public enum Category
-    {
-        Book,
-        Magazine,
-        EBook
-    }
-    
-    public class Address
-    {
-        public string City { get; set; }
-        public string Street { get; set; }
-    }
-    
-    public class Customer
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Address Address { get; set; }
-    }
-    
-    public class Press
-    {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public Category Category { get; set; }
-        public IDictionary<string, object> DynamicProperties { get; set; }
-    }
-    
-    public class Book
-    {
-        [Key]
-        public string ISBN { get; set; }
-        public string Title { get; set; }
-        public Press Press { get; set; }
-        public IDictionary<string, object> Properties { get; set; }
-    }
+[!code[Main](use-open-types-in-odata-v4/samples/sample2.xml)]
 
 When the Entity Data Model (EDM) is created,
 
@@ -96,124 +60,17 @@ To create an open type, the CLR type must have a property of type `IDictionary<s
 
 If you use **ODataConventionModelBuilder** to create the EDM, `Press` and `Book` are automatically added as open types, based on the presence of a `IDictionary<string, object>` property.
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Book>("Books");
-            builder.EntitySet<Customer>("Customers");
-            var model = builder.GetEdmModel();
-    
-            config.MapODataServiceRoute(
-                routeName: "ODataRoute",
-                routePrefix: null,
-                model: model);
-    
-        }
-    }
+[!code[Main](use-open-types-in-odata-v4/samples/sample3.xml)]
 
 You can also build the EDM explicitly, using **ODataModelBuilder**.
 
-    ODataModelBuilder builder = new ODataModelBuilder();
-    
-      ComplexTypeConfiguration<Press> pressType = builder.ComplexType<Press>();
-      pressType.Property(c => c.Name);
-      // ...
-      pressType.HasDynamicProperties(c => c.DynamicProperties);
-    
-      EntityTypeConfiguration<Book> bookType = builder.EntityType<Book>();
-      bookType.HasKey(c => c.ISBN);
-      bookType.Property(c => c.Title);
-      // ...
-      bookType.ComplexProperty(c => c.Press);
-      bookType.HasDynamicProperties(c => c.Properties);
-    
-      // ...
-      builder.EntitySet<Book>("Books");
-      IEdmModel model = builder.GetEdmModel();
+[!code[Main](use-open-types-in-odata-v4/samples/sample4.xml)]
 
 ## Add an OData Controller
 
 Next, add an OData controller. For this tutorial, we'll use a simplified controller that just supports GET and POST requests, and uses an in-memory list to store entities.
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Http;
-    using System.Web.OData;
-    
-    namespace MyApp.Controllers
-    {
-        public class BooksController : ODataController
-        {
-            private IList<Book> _books = new List<Book>
-            {
-                new Book
-                {
-                    ISBN = "978-0-7356-8383-9",
-                    Title = "SignalR Programming in Microsoft ASP.NET",
-                    Press = new Press
-                    {
-                        Name = "Microsoft Press",
-                        Category = Category.Book
-                    }
-                },
-    
-                new Book
-                {
-                    ISBN = "978-0-7356-7942-9",
-                    Title = "Microsoft Azure SQL Database Step by Step",
-                    Press = new Press
-                    {
-                        Name = "Microsoft Press",
-                        Category = Category.EBook,
-                        DynamicProperties = new Dictionary<string, object>
-                        {
-                            { "Blog", "https://blogs.msdn.com/b/microsoft_press/" },
-                            { "Address", new Address { 
-                                  City = "Redmond", Street = "One Microsoft Way" }
-                            }
-                        }
-                    },
-                    Properties = new Dictionary<string, object>
-                    {
-                        { "Published", new DateTimeOffset(2014, 7, 3, 0, 0, 0, 0, new TimeSpan(0))},
-                        { "Authors", new [] { "Leonard G. Lobel", "Eric D. Boyd" }},
-                        { "OtherCategories", new [] {Category.Book, Category.Magazine}}
-                    }
-                }
-            };
-    
-            [EnableQuery]
-            public IQueryable<Book> Get()
-            {
-                return _books.AsQueryable();
-            }
-    
-            public IHttpActionResult Get([FromODataUri]string key)
-            {
-                Book book = _books.FirstOrDefault(e => e.ISBN == key);
-                if (book == null)
-                {
-                    return NotFound();
-                }
-    
-                return Ok(book);
-            }
-    
-            public IHttpActionResult Post(Book book)
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                } 
-                // For this sample, we aren't enforcing unique keys.
-                _books.Add(book);
-                return Created(book);
-            }
-        }
-    }
+[!code[Main](use-open-types-in-odata-v4/samples/sample5.xml)]
 
 Notice that the first `Book` instance has no dynamic properties. The second `Book` instance has the following dynamic properties:
 
@@ -230,7 +87,7 @@ Also, the `Press` property of that `Book` instance has the following dynamic pro
 
 To get the OData metadata document, send a GET request to `~/$metadata`. The response body should look similar to this:
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample1.xml?highlight=5,21)]
+[!code[Main](use-open-types-in-odata-v4/samples/sample6.xml?highlight=5,21)]
 
 From the metadata document, you can see that:
 
@@ -242,7 +99,7 @@ From the metadata document, you can see that:
 
 To get the book with ISBN equal to "978-0-7356-7942-9", send send a GET request to `~/Books('978-0-7356-7942-9')`. The response body should look similar to the following. (Indented to make it more readable.)
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample2.xml?highlight=8-13,15-23)]
+[!code[Main](use-open-types-in-odata-v4/samples/sample7.xml?highlight=8-13,15-23)]
 
 Notice that the dynamic properties are included inline with the declared properties.
 
@@ -252,7 +109,7 @@ To add a Book entity, send a POST request to `~/Books`. The client can set dynam
 
 Here is an example request. Note the "Price" and "Published" properties.
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample3.xml?highlight=10)]
+[!code[Main](use-open-types-in-odata-v4/samples/sample8.xml?highlight=10)]
 
 If you set a breakpoint in the controller method, you can see that Web API added these properties to the `Properties` dictionary.
 

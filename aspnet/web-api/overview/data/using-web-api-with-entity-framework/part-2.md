@@ -34,40 +34,11 @@ In Solution Explorer, right click the Models folder. Select **Add**, then select
 
 Replace all of the boilerplate code in Author.cs with the following code.
 
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace BookService.Models
-    {
-        public class Author
-        {
-            public int Id { get; set; }
-            [Required]
-            public string Name { get; set; }
-        }
-    }
+[!code[Main](part-2/samples/sample1.xml)]
 
 Add another class named `Book`, with the following code.
 
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace BookService.Models
-    {
-        public class Book
-        {
-            public int Id { get; set; }
-            [Required]
-            public string Title { get; set; }
-            public int Year { get; set; }
-            public decimal Price { get; set; }
-            public string Genre { get; set; }
-    
-            // Foreign Key
-            public int AuthorId { get; set; }
-            // Navigation property
-            public Author Author { get; set; }
-        }
-    }
+[!code[Main](part-2/samples/sample2.xml)]
 
 Entity Framework will use these models to create database tables. For each model, the `Id` property will become the primary key column of the database table.
 

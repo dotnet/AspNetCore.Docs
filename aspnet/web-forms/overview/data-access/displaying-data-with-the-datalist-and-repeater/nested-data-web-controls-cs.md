@@ -59,20 +59,7 @@ Configure the ObjectDataSource so that it pulls its data from the `CategoriesBLL
 To specify the Repeater s template content we need to go to the Source view and manually enter the declarative syntax. Add an `ItemTemplate` that displays the category s name in an `<h4>` element and the category s description in a paragraph element (`<p>`). Furthermore, let s separate each category with a horizontal rule (`<hr>`). After making these changes your page should contain declarative syntax for the Repeater and ObjectDataSource that is similar to the following:
 
 
-    <asp:Repeater ID="CategoryList" DataSourceID="CategoriesDataSource"
-        EnableViewState="False" runat="server">
-        <ItemTemplate>
-            <h4><%# Eval("CategoryName") %></h4>
-            <p><%# Eval("Description") %></p>
-        </ItemTemplate>
-        <SeparatorTemplate>
-            <hr />
-        </SeparatorTemplate>
-    </asp:Repeater>
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetCategories" TypeName="CategoriesBLL">
-    </asp:ObjectDataSource>
+[!code[Main](nested-data-web-controls-cs/samples/sample1.xml)]
 
 Figure 4 shows our progress when viewed through a browser.
 
@@ -89,19 +76,7 @@ With the category listing complete, our next task is to add a Repeater to the `C
 To create this Repeater we need to manually enter the inner Repeater s declarative syntax and templates into the `CategoryList` s `ItemTemplate`. Add the following markup within the `CategoryList` Repeater s `ItemTemplate`:
 
 
-    <asp:Repeater ID="ProductsByCategoryList" EnableViewState="False"
-        runat="server">
-        <HeaderTemplate>
-            <ul>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <li><strong><%# Eval("ProductName") %></strong>
-                (<%# Eval("UnitPrice", "{0:C}") %>)</li>
-        </ItemTemplate>
-        <FooterTemplate>
-            </ul>
-        </FooterTemplate>
-    </asp:Repeater>
+[!code[Main](nested-data-web-controls-cs/samples/sample2.xml)]
 
 ## Step 3: Binding the Category-Specific Products to the ProductsByCategoryList Repeater
 
@@ -116,34 +91,12 @@ Since we ve used the ObjectDataSource extensively throughout this tutorial serie
 Unfortunately, the Repeater doesn t allow its templates to be edited through the Design view so we need to add the declarative syntax for this ObjectDataSource control by hand. The following syntax shows the `CategoryList` Repeater s `ItemTemplate` after adding this new ObjectDataSource (`ProductsByCategoryDataSource`):
 
 
-    <h4><%# Eval("CategoryName") %></h4>
-    <p><%# Eval("Description") %></p>
-    <asp:Repeater ID="ProductsByCategoryList" EnableViewState="False"
-            DataSourceID="ProductsByCategoryDataSource" runat="server">
-        <HeaderTemplate>
-            <ul>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <li><strong><%# Eval("ProductName") %></strong> -
-                    sold as <%# Eval("QuantityPerUnit") %> at
-                    <%# Eval("UnitPrice", "{0:C}") %></li>
-        </ItemTemplate>
-        <FooterTemplate>
-            </ul>
-        </FooterTemplate>
-    </asp:Repeater>
-    <asp:ObjectDataSource ID="ProductsByCategoryDataSource" runat="server"
-               SelectMethod="GetProductsByCategoryID" TypeName="ProductsBLL">
-       <SelectParameters>
-            <asp:Parameter Name="CategoryID" Type="Int32" />
-       </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](nested-data-web-controls-cs/samples/sample3.xml)]
 
 When using the ObjectDataSource approach we need to set the `ProductsByCategoryList` Repeater s `DataSourceID` property to the `ID` of the ObjectDataSource (`ProductsByCategoryDataSource`). Also, notice that our ObjectDataSource has an `<asp:Parameter>` element that specifies the *`categoryID`* value that will be passed into the `GetProductsByCategoryID(categoryID)` method. But how do we specify this value? Ideally, we d be able to just set the `DefaultValue` property of the `<asp:Parameter>` element using databinding syntax, like so:
 
 
-    <asp:Parameter Name="CategoryID" Type="Int32"
-         DefaultValue='<%# Eval("CategoryID")' />
+[!code[Main](nested-data-web-controls-cs/samples/sample4.xml)]
 
 Unfortunately, databinding syntax is only valid in controls that have a `DataBinding` event. The `Parameter` class lacks such an event and therefore the above syntax is illegal and will result in a runtime error.
 
@@ -152,22 +105,7 @@ To set this value, we need to create an event handler for the `CategoryList` Rep
 Create an event handler for the `CategoryList` Repeater s `ItemDataBound` event with the following code:
 
 
-    protected void CategoryList_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        if (e.Item.ItemType == ListItemType.AlternatingItem ||
-            e.Item.ItemType == ListItemType.Item)
-        {
-            // Reference the CategoriesRow object being bound to this RepeaterItem
-            Northwind.CategoriesRow category =
-                (Northwind.CategoriesRow)((System.Data.DataRowView)e.Item.DataItem).Row;
-            // Reference the ProductsByCategoryDataSource ObjectDataSource
-            ObjectDataSource ProductsByCategoryDataSource =
-                (ObjectDataSource)e.Item.FindControl("ProductsByCategoryDataSource");
-            // Set the CategoryID Parameter value
-            ProductsByCategoryDataSource.SelectParameters["CategoryID"].DefaultValue =
-                category.CategoryID.ToString();
-        }
-    }
+[!code[Main](nested-data-web-controls-cs/samples/sample5.xml)]
 
 This event handler starts by ensuring that we re dealing with a data item rather than the header, footer, or separator item. Next, we reference the actual `CategoriesRow` instance that has just been bound to the current `RepeaterItem`. Finally, we reference the ObjectDataSource in the `ItemTemplate` and assign its `CategoryID` parameter value to the `CategoryID` of the current `RepeaterItem`.
 
@@ -184,23 +122,14 @@ With this event handler, the `ProductsByCategoryList` Repeater in each `Repeater
 Instead of using an ObjectDataSource to retrieve the products for the current category, we could create a method in our ASP.NET page s code-behind class (or in the `App_Code` folder or in a separate Class Library project) that returns the appropriate set of products when passed in a `CategoryID`. Imagine that we had such a method in our ASP.NET page s code-behind class and that it was named `GetProductsInCategory(categoryID)`. With this method in place we could bind the products for the current category to the inner Repeater using the following declarative syntax:
 
 
-    <asp:Repeater runat="server" ID="ProductsByCategoryList" EnableViewState="False"
-          DataSource='<%# GetProductsInCategory((int)(Eval("CategoryID"))) %>'>
-      ...
-    </asp:Repeater>
+[!code[Main](nested-data-web-controls-cs/samples/sample6.xml)]
 
 The Repeater s `DataSource` property uses the databinding syntax to indicate that its data comes from the `GetProductsInCategory(categoryID)` method. Since `Eval("CategoryID")` returns a value of type `Object`, we cast the object to an `Integer` before passing it into the `GetProductsInCategory(categoryID)` method. Note that the `CategoryID` accessed here via the databinding syntax is the `CategoryID` in the *outer* Repeater (`CategoryList`), the one that s bound to the records in the `Categories` table. Therefore, we know that `CategoryID` cannot be a database `NULL` value, which is why we can blindly cast the `Eval` method without checking if we re dealing with a `DBNull`.
 
 With this approach, we need to create the `GetProductsInCategory(categoryID)` method and have it retrieve the appropriate set of products given the supplied *`categoryID`*. We can do this by simply returning the `ProductsDataTable` returned by the `ProductsBLL` class s `GetProductsByCategoryID(categoryID)` method. Let s create the `GetProductsInCategory(categoryID)` method in the code-behind class for our `NestedControls.aspx` page. Do so using the following code:
 
 
-    protected Northwind.ProductsDataTable GetProductsInCategory(int categoryID)
-    {
-        // Create an instance of the ProductsBLL class
-        ProductsBLL productAPI = new ProductsBLL();
-        // Return the products in the category
-        return productAPI.GetProductsByCategoryID(categoryID);
-    }
+[!code[Main](nested-data-web-controls-cs/samples/sample7.xml)]
 
 This method simply creates an instance of the `ProductsBLL` method and returns the results of the `GetProductsByCategoryID(categoryID)` method. Note that the method must be marked `Public` or `Protected`; if the method is marked `Private`, it will not be accessible from the ASP.NET page s declarative markup.
 
@@ -220,19 +149,7 @@ Given *N* categories in the system, this approach nets *N* + 1 calls to the data
 To provide this functionality, we only need to make a slight modification to the `GetProductsInCategory(categoryID)` method in our ASP.NET page s code-behind class. Rather than blindly returning the results of the `ProductsBLL` class s `GetProductsByCategoryID(categoryID)` method, we can instead first access *all* of the products (if they haven t been accessed already) and then return just the filtered view of the products based on the passed-in `CategoryID`.
 
 
-    private Northwind.ProductsDataTable allProducts = null;
-    protected Northwind.ProductsDataTable GetProductsInCategory(int categoryID)
-    {
-        // First, see if we've yet to have accessed all of the product information
-        if (allProducts == null)
-        {
-            ProductsBLL productAPI = new ProductsBLL();
-            allProducts = productAPI.GetProducts();
-        }
-        // Return the filtered view
-        allProducts.DefaultView.RowFilter = "CategoryID = " + categoryID;
-        return allProducts;
-    }
+[!code[Main](nested-data-web-controls-cs/samples/sample8.xml)]
 
 Note the addition of the page-level variable, `allProducts`. This holds information about all of the products and is populated the first time the `GetProductsInCategory(categoryID)` method is invoked. After ensuring that the `allProducts` object has been created and populated, the method filters the DataTable s results such that only those rows whose `CategoryID` matches the specified `CategoryID` are accessible. This approach reduces the number of times the database is accessed from *N* + 1 down to two.
 

@@ -57,72 +57,13 @@ Copy the following into the file, completely replacing what's there already.
 > [!NOTE] When you copy code or markup from the examples into a page, the indentation and alignment might not be the same as in the tutorial. Indentation and alignment don't affect how the code runs, though.
 
 
-    @{
-       // Working with numbers
-       var a = 4;
-       var b = 5;
-       var theSum = a + b;
-    
-       // Working with characters (strings)
-       var technology = "ASP.NET";
-       var product ="Web Pages";
-    
-       // Working with objects
-       var rightNow = DateTime.Now;
-    }
-    
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <title>Testing Razor Syntax</title>
-        <meta charset="utf-8" />
-        <style>
-        body {font-family:Verdana; margin-left:50px; margin-top:50px;}
-        div {border: 1px solid black; width:50%; margin:1.2em;padding:1em;}
-        span.bright {color:red;}
-        </style>
-      </head>
-    <body>
-      <h1>Testing Razor Syntax</h1>
-      <form method="post">
-    
-        <div>
-          <p>The value of <em>a</em> is @a.  The value of <em>b</em> is @b.
-          <p>The sum of <em>a</em> and <em>b</em> is <strong>@theSum</strong>.</p>
-          <p>The product of <em>a</em> and <em>b</em> is <strong>@(a*b)</strong>.</p>
-        </div>
-    
-        <div>
-          <p>The technology is @technology, and the product is @product.</p>
-          <p>Together they are <span class="bright">@(technology + " " + product)</span></p>
-       </div>
-    
-       <div>
-         <p>The current date and time is: @rightNow</p>
-         <p>The URL of the current page is<br/><br/><code>@Request.Url</code></p>
-       </div>
-    
-      </form>
-    </body>
-    </html>
+[!code[Main](intro-to-web-pages-programming/samples/sample1.xml)]
 
 ## Examining the Example Page
 
 Most of what you see is ordinary HTML. However, at the top there's this code block:
 
-    @{
-       // Working with numbers.
-       var a = 4;
-       var b = 5;
-       var theSum = a + b;
-    
-       // Working with characters (strings).
-       var technology = "ASP.NET";
-       var product ="Web Pages";
-    
-       // Working with objects.
-       var rightNow = DateTime.Now;
-    }
+[!code[Main](intro-to-web-pages-programming/samples/sample2.xml)]
 
 Notice the following things about this code block:
 
@@ -146,21 +87,7 @@ As you can see from the example, DateTime is an object that lets you program dat
 
 In the body of the page, notice the following:
 
-    <div>
-      <p>The value of <em>a</em> is @a.  The value of <em>b</em> is @b.
-      <p>The sum of <em>a</em> and <em>b</em> is <strong>@theSum</strong>.</p>
-      <p>The product of <em>a</em> and <em>b</em> is <strong>@(a*b)</strong>.</p>
-    </div>
-    
-    <div>
-      <p>The technology is @technology, and the product is @product.</p>
-      <p>Together they are <span class="bright">@(technology + " " + product)</span></p>
-    </div>
-    
-    <div>
-      <p>The current date and time is: @rightNow</p>
-         <p>The URL of the current page is<br/><br/><code>@Request.Url</code></p>
-    </div>
+[!code[Main](intro-to-web-pages-programming/samples/sample3.xml)]
 
 Again, the @ character tells ASP.NET that what follows is code, not HTML. In the markup you can add @ followed by a code expression, and ASP.NET will render the value of that expression right at that point. In the example, @a will render whatever the value is of the variable named a, @product renders whatever is in the variable named product, and so on.
 
@@ -208,29 +135,7 @@ In WebMatrix, create a page and name it *TestRazorPart2.cshtml*. (In the ribbon,
 
 Replace the contents of that page with the following:
 
-    @{
-       var message = "This is the first time you've requested the page.";
-    }
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <title>Testing Razor Syntax - Part 2</title>
-        <meta charset="utf-8" />
-        <style>
-          body {font-family:Verdana; margin-left:50px; margin-top:50px;}
-          div {border: 1px solid black; width:50%; margin:1.2em;padding:1em;}
-        </style>
-      </head>
-      <body>
-      <h1>Testing Razor Syntax - Part 2</h1>
-      <form method="post">
-        <div>
-          <p>@message</p>
-          <p><input type="submit" value="Submit" /></p>
-      </div>
-      </form>
-    </body>
-    </html>
+[!code[Main](intro-to-web-pages-programming/samples/sample4.xml)]
 
 The code block at the top initializes a variable named message with some text. In the body of the page, the contents of the message variable are displayed inside a &lt;p&gt; element. The markup also contains an &lt;input&gt; element to create a **Submit** button.
 
@@ -238,33 +143,19 @@ Run the page to see how it works now. For now, it's basically a static page, eve
 
 Go back to WebMatrix. Inside the code block, add the following highlighted code *after* the line that initializes message:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample1.xml?highlight=4-6)]
+[!code[Main](intro-to-web-pages-programming/samples/sample5.xml?highlight=4-6)]
 
 ### The if { } block
 
 What you just added was an if condition. In code, the if condition has a structure like this:
 
-    if(some condition){
-        One or more statements here that run if the condition is true;
-    }
+[!code[Main](intro-to-web-pages-programming/samples/sample6.xml)]
 
 The condition to test is in parentheses. It has to be a value or an expression that returns true or false. If the condition is true, ASP.NET runs the statement or statements that are inside the braces. (Those are the *then* part of the *if-then* logic.) If the condition is false, the block of code is skipped.
 
 Here are a few examples of conditions you can test in an if statement:
 
-    if(currentValue > 12) { ... }
-    
-    if(dueDate <= DateTime.Today) { ... }
-    
-    if(IsDone == true) { ... }
-    
-    if(IsPost) { ... }
-    
-    if(!IsPost) { ... }
-    
-    if(a != 0) { ... }
-    
-    if(fileProcessingIsDone != true && displayMessage == false) { ... }
+[!code[Main](intro-to-web-pages-programming/samples/sample7.xml)]
 
 You can test variables against values or against expressions by using a *logical operator* or *comparison operator*: equal to (==), greater than (&gt;), less than (&lt;), greater than or equal to (&gt;=), and less than or equal to (&lt;=). The != operator means not equal to — for example, if(a != 0) means *if* *a**is not equal to 0*.
 
@@ -281,15 +172,7 @@ You can combine conditions by using a logical AND (&amp;&amp; operator) or logic
 
 One final thing about if blocks: an if block can be followed by an else block. An else block is useful is you have to execute different code when the condition is false. Here's a simple example:
 
-    var message = "";
-    if(errorOccurred == true)
-    {
-        message = "Sorry, an error occurred."; 
-    }
-    else
-    {
-        message = "The process finished without errors!";
-    }
+[!code[Main](intro-to-web-pages-programming/samples/sample8.xml)]
 
 You'll see some examples in later tutorials in this series where using an else block is useful.
 
@@ -303,9 +186,7 @@ Click the **Submit** button. The page is requested again. As before, the message
 
 Now add an if condition in the markup. Below the &lt;p&gt; element that contains the **Submit** button, add the following markup:
 
-    @if(IsPost){
-      <p>You submitted the page at @DateTime.Now</p>
-    }
+[!code[Main](intro-to-web-pages-programming/samples/sample9.xml)]
 
 You're adding code inside the markup, so you have to start with @. Then there's an if test similar to the one you added earlier up in the code block. Inside the braces, though, you're adding ordinary HTML — at least, it's ordinary until it gets to @DateTime.Now. This is another little bit of Razor code, so again you have to add @ in front of it.
 
@@ -321,25 +202,11 @@ One more test. This time, you'll add an if block that tests a value named show t
 
 At the bottom (but inside) the code block at the top of the page, add the following:
 
-    var showMessage = false;
-    if(Request.QueryString["show"].AsBool() == true) {
-        showMessage = true;
-    }
+[!code[Main](intro-to-web-pages-programming/samples/sample10.xml)]
 
 The complete code block now look like the following example. (Remember that when you copy the code into your page, the indentation might look different. But that doesn't affect how the code runs.)
 
-    @{
-       var message = "This is the first time you've requested the page.";
-    
-       if(IsPost) {
-          message = "Now you've submitted the page.";
-       }
-    
-       var showMessage = false;
-       if(Request.QueryString["show"].AsBool() == true) {
-         showMessage = true;
-       }
-    }
+[!code[Main](intro-to-web-pages-programming/samples/sample11.xml)]
 
 The new code in the block initializes a variable named showMessage to false. It then does an if test to look for a value in the query string. When you first request the page, it has a URL like this one:
 
@@ -362,13 +229,11 @@ There's a trick here, as you can see. Like the name says, the query string is a 
 
 In the markup of the page, remove or comment out this element (here it's shown commented out):
 
-    <!-- <p>@message</p> -->
+[!code[Main](intro-to-web-pages-programming/samples/sample12.xml)]
 
 Right where you removed or commented out that text, add the following:
 
-    @if(showMessage) {
-      <p>@message</p>
-    }
+[!code[Main](intro-to-web-pages-programming/samples/sample13.xml)]
 
 The if test says that if the showMessage variable is true, render a &lt;p&gt; element with the value of the message variable.
 
@@ -447,7 +312,7 @@ This feature is known as *IntelliSense*. It helps you code by providing context-
 
 Press G on the keyboard, and you see that IntelliSense finds the GetHtml method. Press Tab. IntelliSense inserts the selected method (GetHtml) for you. Type an open parenthesis, and notice that the closing parenthesis is automatically added. Type your email address in quotation marks between the two parenthesis. If you have a Gravatar account, your profile picture will be returned. If you do not have a Gravatar account, a default image is returned. When you're done, the line looks like this:
 
-    @Gravatar.GetHtml("john@contoso.com")
+[!code[Main](intro-to-web-pages-programming/samples/sample14.xml)]
 
 Now view the page in a browser. Either your picture or the default image is displayed, depending on whether you have a Gravatar account.
 
@@ -457,7 +322,7 @@ To get an idea of what the helper is doing for you, view the source of the page 
 
 The GetHtml method also enables you to customize the image by providing other parameters. The following code shows how to request an image has a width and height of 40 pixels, and uses a specified default image named **wavatar** if the specified account does not exist.
 
-    @Gravatar.GetHtml("john@contoso.com", 40, "wavatar")
+[!code[Main](intro-to-web-pages-programming/samples/sample15.xml)]
 
 This code produces something like the following result (the default image will randomly vary).
 
@@ -471,114 +336,15 @@ The next tutorial introduces you to working with a database. In that tutorial, y
 
 ## Complete Listing for TestRazor Page
 
-    @{
-       // Working with numbers
-       var a = 4;
-       var b = 5;
-       var theSum = a + b;
-    
-       // Working with characters (strings)
-       var technology = "ASP.NET";
-       var product ="Web Pages";
-    
-       // Working with objects
-       var rightNow = DateTime.Now;
-    }
-    
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <title>Testing Razor Syntax</title>
-        <meta charset="utf-8" />
-        <style>
-        body {font-family:Verdana; margin-left:50px; margin-top:50px;}
-        div {border: 1px solid black; width:50%; margin:1.2em;padding:1em;}
-        span.bright {color:red;}
-        </style>
-      </head>
-    <body>
-      <h1>Testing Razor Syntax</h1>
-      <form method="post">
-    
-        <div>
-          <p>The value of <em>a</em> is @a.  The value of <em>b</em> is @b.
-          <p>The sum of <em>a</em> and <em>b</em> is <strong>@theSum</strong>.</p>
-          <p>The product of <em>a</em> and <em>b</em> is <strong>@(a*b)</strong>.</p>
-        </div>
-    
-        <div>
-          <p>The technology is @technology, and the product is @product.</p>
-          <p>Together they are <span class="bright">@(technology + " " + product)</span></p>
-       </div>
-    
-       <div>
-         <p>The current date and time is: @rightNow</p>
-         <p>The URL of the current page is<br/><br/><code>@Request.Url</code></p>
-       </div>
-    
-      </form>
-    </body>
-    </html>
+[!code[Main](intro-to-web-pages-programming/samples/sample16.xml)]
 
 ## Complete Listing for TestRazorPart2 Page
 
-    @{
-       var message = "This is the first time you've requested the page.";
-    
-       if (IsPost) {
-          message = "Now you've submitted the page.";
-       }
-    
-       var showMessage = false;
-       if (Request.QueryString["show"].AsBool() == true) {
-         showMessage = true;
-       }
-    }
-    
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <title>Testing Razor Syntax - Part 2</title>
-        <meta charset="utf-8" />
-        <style>
-          body {font-family:Verdana; margin-left:50px; margin-top:50px;}
-          div {border: 1px solid black; width:50%; margin:1.2em;padding:1em;}
-        </style>
-      </head>
-      <body>
-      <h1>Testing Razor Syntax - Part 2</h1>
-      <form method="post">
-        <div>
-          <!--<p>@message</p>-->
-          @if(showMessage){
-            <p>@message</p>
-          }
-          <p><input type="submit" value="Submit" /></p>
-          @if (IsPost) {
-            <p>You submitted the page at @DateTime.Now</p>
-          }
-        </div>
-      </form>
-    </body>
-    </html>
+[!code[Main](intro-to-web-pages-programming/samples/sample17.xml)]
 
 ## Complete Listing for GravatarTest Page
 
-    @{
-    }
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="utf-8" />
-            <title></title>
-        </head>
-        <body>
-            <div>
-              @Gravatar.GetHtml("john@contoso.com")
-              @Gravatar.GetHtml("john@contoso.com", 40, "wavatar")
-            </div>
-        </body>
-    </html>
+[!code[Main](intro-to-web-pages-programming/samples/sample18.xml)]
 
 ## Additional Resources
 

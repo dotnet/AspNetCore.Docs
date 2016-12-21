@@ -77,12 +77,7 @@ Click Finish to complete the wizard and return to the DataSet's design surface. 
 Since our application architecture uses a separate layer for the business logic and data access logic, we need to add a method to our BLL that calls down to the DAL to retrieve employees hired before a specified date. Open the `EmployeesBLL.vb` file and add the following method:
 
 
-    <System.ComponentModel.DataObjectMethodAttribute _
-        (System.ComponentModel.DataObjectMethodType.Select, False)> _
-    Public Function GetEmployeesByHiredDateMonth(ByVal month As Integer) _
-        As Northwind.EmployeesDataTable
-        Return Adapter.GetEmployeesByHiredDateMonth(month)
-    End Function
+[!code[Main](programmatically-setting-the-objectdatasource-s-parameter-values-vb/samples/sample1.xml)]
 
 As with our other methods in this class, `GetEmployeesByHiredDateMonth(month)` simply calls down into the DAL and returns the results.
 
@@ -112,13 +107,7 @@ The final screen asks us to provide the `month` parameter value's source. Since 
 This will create a `Parameter` object in the ObjectDataSource's `SelectParameters` collection that does not have a value specified.
 
 
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetEmployeesByHiredDateMonth" TypeName="EmployeesBLL">
-        <SelectParameters>
-            <asp:Parameter Name="month" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](programmatically-setting-the-objectdatasource-s-parameter-values-vb/samples/sample2.xml)]
 
 To set this value programmatically, we need to create an event handler for the ObjectDataSource's `Selecting` event. To accomplish this, go to the Design view and double-click the ObjectDataSource. Alternatively, select the ObjectDataSource, go to the Properties window, and click the lightning bolt icon. Next, either double-click in the textbox next to the `Selecting` event or type in the name of the event handler you want to use. As a third option, you can create the event handler by selecting the ObjectDataSource and its `Selecting` event from the two drop-down lists at the top of the page's code-behind class.
 
@@ -131,11 +120,7 @@ To set this value programmatically, we need to create an event handler for the O
 All three approaches add a new event handler for the ObjectDataSource's `Selecting` event to the page's code-behind class. In this event handler we can read and write to the parameter values using `e.InputParameters(parameterName)`, where *`parameterName`* is the value of the `Name` attribute in the `<asp:Parameter>` tag (the `InputParameters` collection can also be indexed ordinally, as in `e.InputParameters(index)`). To set the `month` parameter to the current month, add the following to the `Selecting` event handler:
 
 
-    Protected Sub ObjectDataSource1_Selecting _
-        (sender As Object, e As ObjectDataSourceSelectingEventArgs) _
-            Handles ObjectDataSource1.Selecting
-        e.InputParameters("month") = DateTime.Now.Month
-    End Sub
+[!code[Main](programmatically-setting-the-objectdatasource-s-parameter-values-vb/samples/sample3.xml)]
 
 When visiting this page through a browser we can see that only one employee was hired this month (March) Laura Callahan, who's been with the company since 1994.
 

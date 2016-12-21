@@ -1,20 +1,22 @@
-public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
+public async Task<ActionResult> Index(ManageMessageId? message)
 {
-    if (!ModelState.IsValid)
+    ViewBag.StatusMessage =
+        message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+        : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+        : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+        : message == ManageMessageId.Error ? "An error has occurred."
+        : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+        : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+        : "";
+
+    var model = new IndexViewModel
     {
-        return View(model);
-    }
-    // Generate the token and send it
-    var code = await UserManager.GenerateChangePhoneNumberTokenAsync(
-        User.Identity.GetUserId<int>(), model.Number);
-    if (UserManager.SmsService != null)
-    {
-        var message = new IdentityMessage
-        {
-            Destination = model.Number,
-            Body = "Your security code is: " + code
-        };
-        await UserManager.SmsService.SendAsync(message);
-    }
-    return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+        HasPassword = HasPassword(),
+        PhoneNumber = await UserManager.GetPhoneNumberAsync(User.Identity.GetUserId<int>()),
+        TwoFactor = await UserManager.GetTwoFactorEnabledAsync(User.Identity.GetUserId<int>()),
+        Logins = await UserManager.GetLoginsAsync(User.Identity.GetUserId<int>()),
+        BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(
+          User.Identity.GetUserId())
+    };
+    return View(model);
 }

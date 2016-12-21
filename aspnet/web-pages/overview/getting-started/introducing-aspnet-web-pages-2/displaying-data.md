@@ -190,9 +190,7 @@ Click the **OK** button. WebMatrix opens a new file with some skeleton elements 
 
 At the top of the page, between the `@{` and `}` characters, enter the following code. (Make sure that you enter this code between the opening and closing braces.)
 
-    var db = Database.Open("WebPagesMovies");
-    var selectedData = db.Query("SELECT * FROM Movies");
-    var grid = new WebGrid(source: selectedData);
+[!code[Main](displaying-data/samples/sample1.xml)]
 
 The first line opens the database that you created earlier, which is always the first step before doing something with the database. You tell the `Database.Open` method name of the database to open. Notice that you don't include *.sdf* in the name. The `Open` method assumes that it's looking for an *.sdf* file (that is, *WebPagesMovies.sdf*) and that the *.sdf* file is in the *App\_Data* folder. (Earlier we noted that the *App\_Data* folder is reserved; this scenario is one of the places where ASP.NET makes assumptions about that name.)
 
@@ -243,14 +241,11 @@ At this stage, the database has been opened, you've gotten the data you want, an
 
 Inside the `<head>` element, set contents of the `<title>` element to "Movies":
 
-[!code[Main](displaying-data/samples/sample1.xml?highlight=3)]
+[!code[Main](displaying-data/samples/sample2.xml?highlight=3)]
 
 Inside the `<body>` element of the page, add the following:
 
-    <h1>Movies</h1>
-    <div>
-        @grid.GetHtml()
-    </div>
+[!code[Main](displaying-data/samples/sample3.xml)]
 
 That's it. The `grid` variable is the value you created when you created the `WebGrid` object in code earlier.
 
@@ -272,13 +267,7 @@ To start, you can specify that you want to display only certain columns. By defa
 
 In the *Movies.cshtml* file, replace the `@grid.GetHtml()` markup that you just added with the following:
 
-    @grid.GetHtml(
-        columns: grid.Columns(
-            grid.Column("Title"),
-            grid.Column("Genre"),
-            grid.Column("Year")
-        )
-    )
+[!code[Main](displaying-data/samples/sample4.xml)]
 
 To tell the helper which columns to display, you include a `columns` parameter for the `GetHtml` method and pass in a collection of columns. In the collection, you specify each column to include. You specify an individual column to display by including a `grid.Column` object, and pass in the name of the data column you want. (These columns must be included in the SQL query results — the `WebGrid` helper cannot display columns that were not returned by the query.)
 
@@ -292,12 +281,7 @@ There are quite a few more options for displaying columns, some of which will be
 
 Inside the `<head>` section of the page, just before the closing `</head>` tag, add the following `<style>` element:
 
-    <style type="text/css">
-      .grid { margin: 4px; border-collapse: collapse; width: 600px; }
-      .grid th, .grid td { border: 1px solid #C0C0C0; padding: 5px; }
-      .head { background-color: #E8E8E8; font-weight: bold; color: #FFF; }
-      .alt { background-color: #E8E8E8; color: #000; }
-    </style>
+[!code[Main](displaying-data/samples/sample5.xml)]
 
 This CSS markup defines classes named `grid`, `head`, and so on. You could also put these style definitions in a separate *.css* file and link that to the page. (In fact, you'll do that later in this tutorial set.) But to make things easy for this tutorial, they're inside the same page that displays the data.
 
@@ -305,16 +289,7 @@ Now you can get the `WebGrid` helper to use these style classes. The helper has 
 
 Change the `grid.GetHtml` markup so that it now looks like this code:
 
-    @grid.GetHtml(
-        tableStyle: "grid",
-        headerStyle: "head",
-        alternatingRowStyle: "alt",
-        columns: grid.Columns(
-            grid.Column("Title"),
-            grid.Column("Genre"),
-            grid.Column("Year")
-        )
-    )
+[!code[Main](displaying-data/samples/sample6.xml)]
 
 What's new here is that you've added `tableStyle`, `headerStyle`, and `alternatingRowStyle` parameters to the `GetHtml` method. These parameters have been set to the names of the CSS styles that you added a moment ago.
 
@@ -334,7 +309,7 @@ As the last task for this tutorial, you'll add paging to the grid. Right now it'
 
 In the page code, change the line that creates the `WebGrid` object to the following code:
 
-    var grid = new WebGrid(source: selectedData, rowsPerPage: 3);
+[!code[Main](displaying-data/samples/sample7.xml)]
 
 The only difference from before is that you've added a `rowsPerPage` parameter that's set to 3.
 
@@ -348,41 +323,7 @@ In the next tutorial, you'll learn how to use Razor and C# code to get user inpu
 
 ## Complete Listing for Movies Page
 
-    @{
-        var db = Database.Open("WebPagesMovies");
-        var selectedData = db.Query("SELECT * FROM Movies");
-        var grid = new WebGrid(source: selectedData, rowsPerPage: 3);
-    }
-    
-    <!DOCTYPE html>
-    
-    <html lang="en">
-        <head>
-            <meta charset="utf-8" />
-            <title>Movies</title>
-            <style type="text/css">
-              .grid { margin: 4px; border-collapse: collapse; width: 600px; }
-              .grid th, .grid td { border: 1px solid #C0C0C0; padding: 5px; }
-              .head { background-color: #E8E8E8; font-weight: bold; color: #FFF; }
-              .alt { background-color: #E8E8E8; color: #000; }
-            </style>
-        </head>
-        <body>
-            <h1>Movies</h1>
-            <div>
-                @grid.GetHtml(
-                    tableStyle: "grid",
-                    headerStyle: "head",
-                    alternatingRowStyle: "alt",
-                    columns: grid.Columns(
-                        grid.Column("Title"),
-                        grid.Column("Genre"),
-                        grid.Column("Year")
-                    )
-                )
-            </div>
-        </body>
-    </html>
+[!code[Main](displaying-data/samples/sample8.xml)]
 
 ## Additional Resources
 

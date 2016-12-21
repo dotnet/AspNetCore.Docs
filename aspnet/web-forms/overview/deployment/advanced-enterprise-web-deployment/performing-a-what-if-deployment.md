@@ -39,21 +39,7 @@ As described in [Deploying Web Packages](../web-deployment-in-the-enterprise/dep
 If you&#x27;re using MSDeploy.exe directly, you can run a "what if" deployment by adding the **–whatif** flag to your command. For example, to evaluate what would happen if you deployed the ContactManager.Mvc.zip package to a staging environment, the MSDeploy command should resemble this:
 
 
-    MSDeploy.exe
-      -whatif
-      -source:package="[path]\ContactManager.Mvc.zip"
-      -dest:auto,
-            computerName="https://stageweb1:8172/MSDeploy.axd?site=DemoSite",
-            username="FABRIKAM\stagingdeployer",
-            password="Pa$$w0rd",
-            authtype="Basic",
-            includeAcls="False"
-      -verb:sync
-      -disableLink:AppPoolExtension
-      -disableLink:ContentExtension
-      -disableLink:CertificateExtension
-      -setParamFile:"[path]\ContactManager.Mvc.SetParameters.xml"
-      -allowUntrusted
+[!code[Main](performing-a-what-if-deployment/samples/sample1.xml)]
 
 
 When you&#x27;re satisfied with the results of your "what if" deployment, you can remove the **–whatif** flag to run a live deployment.
@@ -64,13 +50,13 @@ When you&#x27;re satisfied with the results of your "what if" deployment, you ca
 If you&#x27;re using the *.deploy.cmd* file, you can run a "what if" deployment by including the **/t** flag (trial mode) flag instead of the **/y** flag ("yes," or update mode) in your command. For example, to evaluate what would happen if you deployed the ContactManager.Mvc.zip package by running the *.deploy.cmd* file, your command should resemble this:
 
 
-    ContactManager.Mvc.deploy.cmd /t /m:TESTWEB1 /a:NTLM
+[!code[Main](performing-a-what-if-deployment/samples/sample2.xml)]
 
 
 When you&#x27;re satisfied with the results of your "trial mode" deployment, you can replace the **/t** flag with a **/y** flag to run a live deployment:
 
 
-    ContactManager.Mvc.deploy.cmd /y /m:TESTWEB1 /a:NTLM
+[!code[Main](performing-a-what-if-deployment/samples/sample3.xml)]
 
 
 > [!NOTE] For more information on command-line options for *.deploy.cmd* files, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx). If you run the *.deploy.cmd* file without specifying any flags, the command prompt will display a list of available flags.
@@ -91,12 +77,7 @@ When you use VSDBCMD in **Deploy** mode, you can use the **/dd** (or **/DeployTo
 For example, to generate a deployment script for the **ContactManager** database without actually deploying the database, your VSDBCMD command should resemble this:
 
 
-    vsdbcmd.exe /a:Deploy
-                /manifest:"…\ContactManager.Database.deploymanifest"
-                /cs:"Data Source=TESTDB1;Integrated Security=true"
-                /p:TargetDatabase=ContactManager
-                /dd-
-                /script:"…\Publish-ContactManager-Db.sql"
+[!code[Main](performing-a-what-if-deployment/samples/sample4.xml)]
 
 
 VSDBCMD is a differential database deployment tool, and as such the deployment script is dynamically generated to contain all the SQL commands necessary to update the current database, if one exists, to the specified schema. Reviewing the deployment script is a useful way to determine what impact your deployment will have on the current database and the data it contains. For example, you might want to determine:
@@ -120,9 +101,7 @@ When you integrate the deployment of multiple web packages and/or databases into
 The *Publish.proj* file demonstrates how you can do this. First, you need to create a property to store the "what if" value:
 
 
-    <PropertyGroup>
-      <WhatIf Condition=" '$(WhatIf)'=='' ">false</WhatIf>
-    </PropertyGroup>
+[!code[Main](performing-a-what-if-deployment/samples/sample5.xml)]
 
 
 In this case, you&#x27;ve created a property named **WhatIf** with a default value of **false**. Users can override this value by setting the property to **true** in a command-line parameter, as you&#x27;ll see shortly.
@@ -130,45 +109,19 @@ In this case, you&#x27;ve created a property named **WhatIf** with a default val
 The next stage is to parameterize any Web Deploy and VSDBCMD commands so that the flags reflect the **WhatIf** property value. For example, the next target (taken from the *Publish.proj* file and simplified) runs the *.deploy.cmd* file to deploy a web package. By default, the command includes a **/Y** switch ("yes," or update mode). If **WhatIf** is set to **true**, this is replaced by a **/T** switch (trial, or "what if" mode).
 
 
-    <Target Name="PublishWebPackages" Outputs="%(PublishPackages.Identity)">
-      <PropertyGroup>
-        <_WhatIfSwitch>/Y</_WhatIfSwitch>
-        <_WhatIfSwitch Condition=" '$(WhatIf)'=='true' ">/T</_WhatIfSwitch>
-        <_Cmd>%(PublishPackages.FullPath) $(_WhatifSwitch)  
-             /M:$(MSDeployComputerName) 
-             /U:$(MSDeployUsername) 
-             /P:$(MSDeployPassword) 
-             /A:$(MSDeployAuth) 
-             %(PublishPackages.AdditionalMSDeployParameters)
-        </_Cmd>
-      </PropertyGroup>
-      <Exec Command="$(_Cmd)"/>
-    </Target>
+[!code[Main](performing-a-what-if-deployment/samples/sample6.xml)]
 
 
 Similarly, the next target uses the VSDBCMD utility to deploy a database. By default, a **/dd** switch is not included. This means that VSDBCMD will generate a deployment script but will not deploy the database&#x2014;in other words, a "what if" scenario. If the **WhatIf** property is not set to **true**, a **/dd** switch is added and VSDBCMD will deploy the database.
 
 
-    <Target Name="PublishDbPackages" Outputs="%(DbPublishPackages.Identity)">
-      <PropertyGroup>
-        <_DbDeployOrScript></_DbDeployOrScript>
-        <_DbDeployOrScript Condition=" '$(Whatif)'!='true' ">/dd</_DbDeployOrScript>
-        <_Cmd>"$(VsdbCmdExe)" /a:Deploy 
-               /cs:"%(DbPublishPackages.DatabaseConnectionString)" 
-               /p:TargetDatabase=%(DbPublishPackages.TargetDatabase) 
-               /manifest:"%(DbPublishPackages.FullPath)" 
-               /script:"$(_CmDbScriptPath)" 
-               $(_DbDeployOrScript)
-        </_Cmd>
-      </PropertyGroup>
-      <Exec Command="$(_Cmd)"/>
-    </Target>
+[!code[Main](performing-a-what-if-deployment/samples/sample7.xml)]
 
 
 You can use the same approach to parameterize all the relevant commands in your project file. When you want to run a "what if" deployment, you can then simply provide a **WhatIf** property value from the command line:
 
 
-    MSBuild.exe Publish.proj /p:WhatIf=true;TargetEnvPropsFile=EnvConfig\Env-Dev.proj
+[!code[Main](performing-a-what-if-deployment/samples/sample8.xml)]
 
 
 In this way, you can run a "what if" deployment for all your project components in a single step.

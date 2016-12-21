@@ -86,15 +86,7 @@ The **Prerequisites** section shows any steps needed to enable Browser Link for 
 
 To enable Browser Link for static HTML files, add the following to your Web.config file.
 
-    <configuration>
-      <system.webServer>    
-        <handlers>
-          <add name="Browser Link for HTML" path="*.html" verb="*" 
-               type="System.Web.StaticFileHandler, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" 
-               resourceType="File" preCondition="integratedMode" />
-        </handlers>
-      </system.webServer>    
-    </configuration>
+[!code[Main](using-browser-link/samples/sample1.xml)]
 
 For performance reasons, remove this setting when you publish your project.
 
@@ -108,14 +100,10 @@ Browser Link is enabled by default. There are several ways to disable it:
     ![](using-browser-link/_static/image12.png)
 - In the Web.config file, add a key named "vs:EnableBrowserLink" with the value "false" in the appSettings section. 
 
-        <appSettings>
-          <add key="vs:EnableBrowserLink" value="false"/>
-        </appSettings>
+    [!code[Main](using-browser-link/samples/sample2.xml)]
 - In the Web.config file, set debug to false. 
 
-        <system.web>
-          <compilation debug="false" targetFramework="4.5" />
-        </system.web>
+    [!code[Main](using-browser-link/samples/sample3.xml)]
 
 <a id="how-it-works"></a>
 ## How Does It Work?

@@ -39,23 +39,17 @@ Find the `<connectionStrings>` element:
 
 Add the following connection string to the `<connectionStrings>` element in the *Web.config* file.
 
-    <add name="MovieDBContext" 
-       connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Movies.mdf;Integrated Security=True" 
-       providerName="System.Data.SqlClient" 
-    />
+[!code[Main](creating-a-connection-string/samples/sample1.xml)]
 
 The following example shows a portion of the *Web.config* file with the new connection string added:
 
-    <connectionStrings>
-        <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-MvcMovie-20130603030321.mdf;Initial Catalog=aspnet-MvcMovie-20130603030321;Integrated Security=True" providerName="System.Data.SqlClient" />
-        <add name="MovieDBContext"    connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Movies.mdf;Integrated Security=True" providerName="System.Data.SqlClient"
-    />
+[!code[Main](creating-a-connection-string/samples/sample2.xml)]
 
 The two connection strings are very similar. The first connection string is named `DefaultConnection` and is used for the membership database to control who can access the application. The connection string you've added specifies a LocalDB database named *Movie.mdf*located in the *App\_Data* folder. We won't use the membership database in this tutorial, for more information on membership, authentication and security, see my tutorial [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/).
 
 The name of the connection string must match the name of the [DbContext](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext(v=vs.103).aspx) class.
 
-[!code[Main](creating-a-connection-string/samples/sample1.xml?highlight=15)]
+[!code[Main](creating-a-connection-string/samples/sample3.xml?highlight=15)]
 
 You don't actually need to add the `MovieDBContext` connection string. If you don't specify a connection string, Entity Framework will create a LocalDB database in the users directory with the fully qualified name of the [DbContext](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext(v=vs.103).aspx) class (in this case `MvcMovie.Models.MovieDBContext`). You can name the database anything you like, as long as it has the *.MDF* suffix. For example, we could name the database *MyFilms.mdf*.
 

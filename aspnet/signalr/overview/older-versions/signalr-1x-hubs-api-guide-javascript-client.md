@@ -90,9 +90,7 @@ If you want to register multiple event handlers for a client method that the ser
 
 A JavaScript client requires references to jQuery and the SignalR core JavaScript file. The jQuery version must be 1.6.4 or major later versions, such as 1.7.2, 1.8.2, or 1.9.1. If you decide to use the generated proxy, you also need a reference to the SignalR generated proxy JavaScript file. The following example shows what the references might look like in an HTML page that uses the generated proxy.
 
-    <script src="Scripts/jquery-1.6.4.min.js"></script>
-    <script src="Scripts/jquery.signalR-1.0.1.min.js"></script>
-    <script src="signalr/hubs"></script>
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample4.xml)]
 
 These references must be included in this order: jQuery first, SignalR core after that, and SignalR proxies last.
 
@@ -107,17 +105,17 @@ In the preceding example, the reference to the SignalR generated proxy is to dyn
 
 In an ASP.NET MVC 4 Razor view, use the tilde to refer to the application root in your proxy file reference:
 
-    <script src="~/signalr/hubs"></script>
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample5.xml)]
 
 For more information about using SignalR in MVC 4, see [Getting Started with SignalR and MVC 4](tutorial-getting-started-with-signalr-and-mvc-4.md).
 
 In an ASP.NET MVC 3 Razor view, use `Url.Content` for your proxy file reference:
 
-    <script src="@Url.Content("~/signalr/hubs")"></script>
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample6.xml)]
 
 In an ASP.NET Web Forms application, use `ResolveClientUrl` for your proxies file reference or register it via the ScriptManager using an app root relative path (starting with a tilde):
 
-    <script src='<%: ResolveClientUrl("~/signalr/hubs") %>'></script>
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample7.xml)]
 
 As a general rule, use the same method for specifying the "/signalr/hubs" URL that you use for CSS or JavaScript files. If you specify a URL without using a tilde, in some scenarios your application will work correctly when you test in Visual Studio using IIS Express but will fail with a 404 error when you deploy to full IIS. For more information, see **Resolving References to Root-Level Resources** in [Web Servers in Visual Studio for ASP.NET Web Projects](https://msdn.microsoft.com/en-us/library/58wxa9w5.aspx) on the MSDN site.
 
@@ -160,11 +158,11 @@ If you are using the generated proxy, you don't have to create the connection ob
 
 **Establish a connection (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample4.xml?highlight=5)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample8.xml?highlight=5)]
 
 **Establish a connection (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample5.xml?highlight=1,6)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample9.xml?highlight=1,6)]
 
 The sample code uses the default "/signalr" URL to connect to your SignalR service. For information about how to specify a different base URL, see [ASP.NET SignalR Hubs API Guide - Server - The /signalr URL](../guide-to-the-api/hubs-api-guide-server.md).
 
@@ -199,24 +197,23 @@ Typically if the browser loads a page from `http://contoso.com`, the SignalR con
 
 On the server, enable cross-domain connections by selecting that option when you call the `MapHubs` method.
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample6.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample10.xml?highlight=2)]
 
 On the client, specify the URL when you create the connection object (without the generated proxy) or before you call the start method (with the generated proxy).
 
 **Client code that specifies a cross-domain connection (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample7.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample11.xml?highlight=1)]
 
 **Client code that specifies a cross-domain connection (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample8.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample12.xml?highlight=1)]
 
 When you use the `$.hubConnection` constructor, you don't have to include `signalr` in the URL because it is added automatically (unless you specify `useDefaultUrl` as `false`).
 
 You can create multiple connections to different endpoints.
 
-    var connection1 = $.hubConnection('http://contoso.com/');
-    var connection2 = $.hubConnection('http://fabrikam.com/');
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample13.xml)]
 
 > [!NOTE] 
 > 
@@ -245,15 +242,15 @@ If you want to send data to the server when the client connects, you can add que
 
 **Set a query string value before calling the start method (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample9.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample14.xml?highlight=1)]
 
 **Set a query string value before calling the start method (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample10.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample15.xml?highlight=2)]
 
 The following example shows how to read a query string parameter in server code.
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample11.xml?highlight=5)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample16.xml?highlight=5)]
 
 <a id="transport"></a>
 
@@ -263,21 +260,21 @@ As part of the process of connecting, a SignalR client normally negotiates with 
 
 **Client code that specifies the transport method (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample12.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample17.xml?highlight=1)]
 
 **Client code that specifies the transport method (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample13.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample18.xml?highlight=2)]
 
 As an alternative, you can specify multiple transport methods in the order in which you want SignalR to try them:
 
 **Client code that specifies a custom transport fallback scheme (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample14.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample19.xml?highlight=1)]
 
 **Client code that specifies a custom transport fallback scheme (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample15.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample20.xml?highlight=2)]
 
 You can use the following values for specifying the transport method:
 
@@ -290,11 +287,11 @@ The following examples show how to find out which transport method is being used
 
 **Client code that displays the transport method used by a connection (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample16.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample21.xml?highlight=2)]
 
 **Client code that displays the transport method used by a connection (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample17.xml?highlight=3)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample22.xml?highlight=3)]
 
 For information about how to check the transport method in server code, see [ASP.NET SignalR Hubs API Guide - Server - How to get information about the client from the Context property](../guide-to-the-api/hubs-api-guide-server.md). For more information about transports and fallbacks, see [Introduction to SignalR - Transports and Fallbacks](../getting-started/introduction-to-signalr.md#transports).
 
@@ -308,29 +305,29 @@ On the client the proxy name is a camel-cased version of the Hub class name. Sig
 
 **Hub class on server**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample18.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample23.xml?highlight=1)]
 
 **Get a reference to the generated client proxy for the Hub**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample19.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample24.xml?highlight=1)]
 
 **Create client proxy for the Hub class (without generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample20.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample25.xml?highlight=1)]
 
 If you decorate your Hub class with a `HubName` attribute, use the exact name without changing case.
 
 **Hub class on server with HubName attribute**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample21.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample26.xml?highlight=1)]
 
 **Get a reference to the generated client proxy for the Hub**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample22.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample27.xml?highlight=1)]
 
 **Create client proxy for the Hub class (without generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample23.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample28.xml?highlight=1)]
 
 <a id="callclient"></a>
 
@@ -344,37 +341,37 @@ Method name matching is case-insensitive. For example, `Clients.All.addContosoCh
 
 **Define method on client (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample24.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample29.xml?highlight=2)]
 
 **Alternate way to define method on client (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample25.xml?highlight=1-2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample30.xml?highlight=1-2)]
 
 **Define method on client (without the generated proxy, or when adding after calling the start method)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample26.xml?highlight=3)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample31.xml?highlight=3)]
 
 **Server code that calls the client method**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample27.xml?highlight=5)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample32.xml?highlight=5)]
 
 The following examples include a complex object as a method parameter.
 
 **Define method on client that takes a complex object (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample28.xml?highlight=2-3)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample33.xml?highlight=2-3)]
 
 **Define method on client that takes a complex object (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample29.xml?highlight=3-4)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample34.xml?highlight=3-4)]
 
 **Server code that defines the complex object**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample30.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample35.xml?highlight=1)]
 
 **Server code that calls the client method using a complex object**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample31.xml?highlight=3)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample36.xml?highlight=3)]
 
 <a id="callserver"></a>
 
@@ -388,55 +385,51 @@ The following examples show how to call a server method that doesn't have a retu
 
 **Server method with no HubMethodName attribute**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample32.xml?highlight=3)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample37.xml?highlight=3)]
 
 **Server code that defines the complex object passed in a parameter**
 
-    public class ChatMessage
-    {
-        public string UserName { get; set; }
-        public string Message { get; set; }
-    }
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample38.xml)]
 
 **Client code that invokes the server method (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample33.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample39.xml?highlight=1)]
 
 **Client code that invokes the server method (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample34.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample40.xml?highlight=1)]
 
 If you decorated the Hub method with a `HubMethodName` attribute, use that name without changing case.
 
 **Server method** with a HubMethodName attribute
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample35.xml?highlight=3)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample41.xml?highlight=3)]
 
 **Client code that invokes the server method (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample36.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample42.xml?highlight=1)]
 
 **Client code that invokes the server method (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample37.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample43.xml?highlight=1)]
 
 The preceding examples show how to call a server method that has no return value. The following examples show how to call a server method that has a return value.
 
 **Server code for a method that has a return value**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample38.xml?highlight=3)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample44.xml?highlight=3)]
 
 **The Stock class used for the** return value
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample39.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample45.xml?highlight=1)]
 
 **Client code that invokes the server method (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample40.xml?highlight=2,4-5)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample46.xml?highlight=2,4-5)]
 
 **Client code that invokes the server method (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample41.xml?highlight=2,4-5)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample47.xml?highlight=2,4-5)]
 
 <a id="connectionlifetime"></a>
 
@@ -456,11 +449,11 @@ For example, if you want to display warning messages when there are connection p
 
 **Handle the connectionSlow event (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample42.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample48.xml?highlight=1)]
 
 **Handle the connectionSlow event (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample43.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample49.xml?highlight=2)]
 
 For more information, see [Understanding and Handling Connection Lifetime Events in SignalR](index.md).
 
@@ -472,27 +465,27 @@ The SignalR JavaScript client provides an `error` event that you can add a handl
 
 If you don't explicitly enable detailed error messages on the server, the exception object that SignalR returns after an error contains minimal information about the error. For example, if a call to `newContosoChatMessage` fails, the error message in the error object contains "`There was an error invoking Hub method 'contosoChatHub.newContosoChatMessage'.`" Sending detailed error messages to clients in production is not recommended for security reasons, but if you want to enable detailed error messages for troubleshooting purposes, use the following code on the server.
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample44.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample50.xml?highlight=2)]
 
 The following example shows how to add a handler for the error event.
 
 **Add an error handler (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample45.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample51.xml?highlight=1)]
 
 **Add an error handler (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample46.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample52.xml?highlight=2)]
 
 The following example shows how to handle an error from a method invocation.
 
 **Handle an error from a method invocation (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample47.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample53.xml?highlight=2)]
 
 **Handle an error from a method invocation (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample48.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample54.xml?highlight=2)]
 
 If a method invocation fails, the `error` event is also raised, so your code in the `error` method handler and in the `.fail` method callback would execute.
 
@@ -504,10 +497,10 @@ To enable client-side logging on a connection, set the `logging` property on the
 
 **Enable logging (with the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample49.xml?highlight=1)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample55.xml?highlight=1)]
 
 **Enable logging (without the generated proxy)**
 
-[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample50.xml?highlight=2)]
+[!code[Main](signalr-1x-hubs-api-guide-javascript-client/samples/sample56.xml?highlight=2)]
 
 To see the logs, open your browser's developer tools and go to the Console tab. For a tutorial that shows step-by-step instructions and screen shots that show how to do this, see [Server Broadcast with ASP.NET Signalr - Enable Logging](index.md).

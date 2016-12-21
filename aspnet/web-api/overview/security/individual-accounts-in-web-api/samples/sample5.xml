@@ -1,14 +1,10 @@
-HTTP/1.1 200 OK
-Content-Length: 669
-Content-Type: application/json;charset=UTF-8
-Server: Microsoft-IIS/8.0
-Date: Wed, 01 Oct 2014 01:22:36 GMT
+POST https://localhost:44305/api/Account/Register HTTP/1.1
+Host: localhost:44305
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:32.0) Gecko/20100101 Firefox/32.0
+Accept: */*
+Content-Type: application/json; charset=utf-8
+X-Requested-With: XMLHttpRequest
+Referer: https://localhost:44305/
+Content-Length: 84
 
-{
-  "access_token":"imSXTs2OqSrGWzsFQhIXziFCO3rF...",
-  "token_type":"bearer",
-  "expires_in":1209599,
-  "userName":"alice@example.com",
-  ".issued":"Wed, 01 Oct 2014 01:22:33 GMT",
-  ".expires":"Wed, 15 Oct 2014 01:22:33 GMT"
-}
+{"Email":"alice@example.com","Password":"Password1!","ConfirmPassword":"Password1!"}

@@ -77,12 +77,7 @@ The remainder of this topic describes the use of VSDBCMD with MSBuild to deploy 
 The VSDBCMD utility lets you deploy a database using either the database schema (the .dbschema file) or the deployment manifest (the .deploymanifest file). In practice, you&#x27;ll almost always use the deployment manifest, as the deployment manifest lets you provide default values for various deployment properties and identify any pre-deployment or post-deployment SQL scripts you want to run. For example, this VSDBCMD command is used to deploy the **ContactManager** database to a database server in a test environment:
 
 
-    vsdbcmd.exe /a:Deploy
-                /manifest:"…\ContactManager.Database.deploymanifest"
-                /cs:"Data Source=TESTDB1;Integrated Security=true"
-                /p:TargetDatabase=ContactManager
-                /dd+
-                /script:"…\Publish-ContactManager-Db.sql"
+[!code[Main](deploying-database-projects/samples/sample1.xml)]
 
 
 In this case:
@@ -108,7 +103,7 @@ The behavior of the **/dd** or **/DeployToDatabase** switch depends on whether y
 If you&#x27;re using a .deploymanifest file, the behavior is a lot more complicated. This is because the .deploymanifest file contains a property name **DeployToDatabase** that also determines whether the database is deployed.
 
 
-    <DeployToDatabase>False</DeployToDatabase>
+[!code[Main](deploying-database-projects/samples/sample2.xml)]
 
 
 The value of this property is set according to the properties of the database project. If you set the **Deploy action** to **Create a deployment script (.sql)**, the value will be **False**. If you set the **Deploy action** to **Create a deployment script (.sql) and deploy to the database**, the value will be **True**.

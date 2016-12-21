@@ -68,18 +68,7 @@ You can create a Transact-SQL script in a lot of different ways, and in any loca
     2. Add the database user to any required database roles.
 7. The file should resemble this:
 
-        USE $(DatabaseName)
-        GO
-        CREATE USER [FABRIKAM\TESTWEB1$] FOR LOGIN[FABRIKAM\TESTWEB1$]
-        GO
-        USE [ContactManager]
-        GO
-        EXEC sp_addrolemember N'db_datareader', N'FABRIKAM\TESTWEB1$'
-        GO
-        USE [ContactManager]
-        GO
-        EXEC sp_addrolemember N'db_datawriter', N'FABRIKAM\TESTWEB1$'
-        GO
+    [!code[Main](deploying-database-role-memberships-to-test-environments/samples/sample1.xml)]
 8. Save the file.
 
 ## Executing the Script on the Target Database
@@ -87,7 +76,7 @@ You can create a Transact-SQL script in a lot of different ways, and in any loca
 Ideally, you&#x27;d run any required Transact-SQL scripts as part of a post-deployment script when you deploy your database project. However, post-deployment scripts don&#x27;t allow you to execute logic conditionally based on solution configurations or build properties. The alternative is to run your SQL scripts directly from the MSBuild project file, by creating a **Target** element that executes a sqlcmd.exe command. You can use this command to run your script on the target database:
 
 
-    sqlcmd.exe –S [Database server] –d [Database name] –i [SQL script]
+[!code[Main](deploying-database-role-memberships-to-test-environments/samples/sample2.xml)]
 
 
 > [!NOTE] For more information on sqlcmd command-line options, see [sqlcmd Utility](https://msdn.microsoft.com/en-us/library/ms162773.aspx).
@@ -107,42 +96,13 @@ If you&#x27;re using the split project file approach described in [Understanding
 In the environment-specific project file, you need to define the database server name, the target database name, and a Boolean property that lets the user specify whether to deploy role memberships.
 
 
-    <PropertyGroup>
-       <CmTargetDatabase Condition=" '$(CmTargetDatabase)'=='' ">
-          ContactManager
-       </CmTargetDatabase>
-       <DatabaseServer Condition=" '$(DatabaseServer)'=='' ">
-          TESTDB1
-       </DatabaseServer>
-       <DeployTestDBRoleMemberships Condition="'$(DeployTestDBRoleMemberships)'==''">
-          true
-       </DeployTestDBRoleMemberships>
-    </PropertyGroup>
+[!code[Main](deploying-database-role-memberships-to-test-environments/samples/sample3.xml)]
 
 
 In the universal project file, you need to provide the location of the sqlcmd executable and the location of the SQL script you want to run. These properties will remain the same regardless of the destination environment. You also need to create an MSBuild target to execute the sqlcmd command.
 
 
-    <PropertyGroup>
-       <SqlCmdExe Condition=" '$(SqlCmdExe)'=='' ">
-          C:\Program Files\Microsoft SQL Server\100\Tools\Binn\sqlcmd.exe
-       </SqlCmdExe>
-    </PropertyGroup>
-    
-    <Target Name="DeployTestDBPermissions" 
-            Condition=" '$(DeployTestDBRoleMemberships)'=='true' AND 
-                        '$(Whatif)'!='true' ">
-       <PropertyGroup>
-         <SqlScript>
-            $(SourceRoot)ContactManager.Database\Scripts\Test\AddRoleMemberships.sql
-         </SqlScript>
-         <_Cmd>"$(SqlCmdExe)" -S "$(DatabaseServer)" 
-                              -d "$(CmTargetDatabase)" 
-                              -i "$(SqlScript)"
-         </_Cmd>
-       </PropertyGroup>
-       <Exec Command="$(_Cmd)" ContinueOnError="false" />
-    </Target>
+[!code[Main](deploying-database-role-memberships-to-test-environments/samples/sample4.xml)]
 
 
 Notice that you add the location of the sqlcmd executable as a static property, as this could be useful to other targets. In contrast, you define the location of your SQL script and the syntax of the sqlcmd command as dynamic properties within the target, as they will not be required before the target is executed. In this case, the **DeployTestDBPermissions** target will only be executed if these conditions are met:
@@ -153,22 +113,7 @@ Notice that you add the location of the sqlcmd executable as a static property, 
 Finally, don&#x27;t forget to invoke the target. In the *Publish.proj* file, you can do this by adding the target to the dependency list for the default **FullPublish** target. You need to ensure that the **DeployTestDBPermissions** target is not executed until the **PublishDbPackages** target has been executed.
 
 
-    <Project ToolsVersion="4.0" 
-             DefaultTargets="FullPublish" 
-             xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-       ...
-       <PropertyGroup>
-          <FullPublishDependsOn>
-             Clean;
-             BuildProjects;
-             GatherPackagesForPublishing;
-             PublishDbPackages;
-             DeployTestDBPermissions;
-             PublishWebPackages;
-          </FullPublishDependsOn>
-       </PropertyGroup>
-       <Target Name="FullPublish" DependsOnTargets="$(FullPublishDependsOn)" />
-    </Project>
+[!code[Main](deploying-database-role-memberships-to-test-environments/samples/sample5.xml)]
 
 
 ## Conclusion

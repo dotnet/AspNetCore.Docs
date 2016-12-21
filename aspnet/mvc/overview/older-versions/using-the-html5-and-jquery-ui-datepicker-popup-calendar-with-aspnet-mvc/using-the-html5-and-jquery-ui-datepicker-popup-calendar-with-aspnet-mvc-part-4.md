@@ -24,8 +24,7 @@ In this section you'll create a template for editing dates that will be applied 
 
 To begin, open the *Movie.cs* file and add the [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatypeattribute.aspx) attribute with the **Date** enumeration to the `ReleaseDate` property, as shown in the following code:
 
-    [DataType(DataType.Date)]
-    public DateTime ReleaseDate { get; set; }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample1.xml)]
 
 This code causes the `ReleaseDate` field to be displayed without the time in both display templates and edit templates. If your application contains a *date.cshtml* template in the *Views\Shared\EditorTemplates* folder or in the *Views\Movies\EditorTemplates* folder, that template will be used to render any `DateTime` property while editing. Otherwise the built-in ASP.NET templating system will display the property as a date.
 
@@ -45,10 +44,7 @@ Click **Add**. The *Views\Shared\EditorTemplates\Date.cshtml* template is create
 
 Add the following code to the *Views\Shared\EditorTemplates\Date.cshtml* template.
 
-    @model DateTime
-    Using Date Template
-    @Html.TextBox("", String.Format("{0:d}", Model.ToShortDateString()),
-      new { @class = "datefield", type = "date"  })
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample2.xml)]
 
 The first line declares the model to be a `DateTime` type. Although you don't need to declare the model type in edit and display templates, it's a best practice so that you get compile-time checking of the model being passed to the view. (Another benefit is that you then get IntelliSense for the model in the view in Visual Studio.) If the model type is not declared, ASP.NET MVC considers it a [dynamic](https://msdn.microsoft.com/en-us/library/dd264741.aspx) type and there's no compile-time type checking. If you declare the model to be a `DateTime` type, it becomes strongly typed.
 
@@ -64,14 +60,11 @@ Press CTRL+F5 to run the application. You can verify that the `ReleaseDate` prop
 
 In your browser, view the source of the page. (For example, right-click the page and select **View source**.) The following example shows some of the markup for the page, illustrating the `class` and `type` attributes in the rendered HTML.
 
-    <input class="datefield" data-val="true" data-val-required="Date is required" 
-          id="ReleaseDate" name="ReleaseDate" type="date" value="1/11/1989" />
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample3.xml)]
 
 Return to the *Views\Shared\EditorTemplates\Date.cshtml*template and remove the &quot;Using Date Template&quot; markup. Now the completed template looks like this:
 
-    @model DateTime
-    @Html.TextBox("", String.Format("{0:d}", Model.ToShortDateString()),
-      new { @class = "datefield", type = "date" })
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample4.xml)]
 
 ### Adding a jQuery UI Datepicker Popup Calendar using NuGet
 
@@ -108,9 +101,7 @@ To actually use the jQuery date picker, you need to create a jQuery script that 
 
 Add the following code to the *DatePickerReady.js* file:
 
-    $(function () {
-        $(".datefield").datepicker(); 
-    });
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample5.xml)]
 
 If you're not familiar with jQuery, here's a brief explanation of what this does: the first line is the &quot;jQuery ready&quot; function, which is called when all the DOM elements in a page have loaded. The second line selects all DOM elements that have the class name `datefield`, then invokes the `datepicker` function for each of them. (Remember that you added the `datefield` class to the *Views\Shared\EditorTemplates\Date.cshtml*template earlier in the tutorial.)
 
@@ -125,46 +116,11 @@ Next, open the *Views\Shared\\_Layout.cshtml* file. You need to add references t
 
 The following example shows the actual code that you should add at the bottom of the `head` element in the *Views\Shared\\_Layout.cshtml* file.
 
-    <link href="@Url.Content("~/Content/themes/base/jquery.ui.core.css")" 
-            rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")" 
-            rel="stylesheet"  type="text/css" />
-        <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" 
-            rel="stylesheet" type="text/css" />
-    
-        <script src="@Url.Content("~/Scripts/jquery.ui.core.min.js")" 
-            type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/jquery.ui.datepicker.min.js")" 
-            type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/DatePickerReady.js")" 
-            type="text/javascript"></script>
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample6.xml)]
 
 The complete `head` section is shown here:
 
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title</title>
-        <link href="@Url.Content("~/Content/Site.css")" 
-            rel="stylesheet" type="text/css" />
-        <script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" 
-            type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" 
-            type="text/javascript"></script>
-    
-        <link href="@Url.Content("~/Content/themes/base/jquery.ui.core.css")" 
-            rel="stylesheet" type="text/css" />
-        <link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")" 
-            rel="stylesheet"  type="text/css" />
-        <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" 
-            rel="stylesheet" type="text/css" />
-    
-        <script src="@Url.Content("~/Scripts/jquery.ui.core.min.js")" 
-            type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/jquery.ui.datepicker.min.js")" 
-            type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/DatePickerReady.js")" 
-            type="text/javascript"></script>
-    </head>
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample7.xml)]
 
 The [URL content helper](https://msdn.microsoft.com/en-us/library/system.web.mvc.urlhelper.content.aspx) method converts the resource path to an absolute path. You must use `@URL.Content` to correctly reference these resources when the application is running on IIS.
 
@@ -178,11 +134,7 @@ Like most jQuery controls, the datepicker lets you customize it extensively. For
 
 As more browsers support HTML5, you'll want to use the native HTML5 input , such as the `date` input element, and not use the jQuery UI calendar. You can add logic to your application to automatically use HTML5 controls if the browser supports them. To do this, replace the contents of the *DatePickerReady.j*s file with the following:
 
-    if (!Modernizr.inputtypes.date) {
-        $(function () {
-            $(".datefield").datepicker();
-        });
-    }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample8.xml)]
 
 The first line of this script uses Modernizr to verify that HTML5 date input is supported. If it's not supported, the jQuery UI date picker is hooked up instead. ([Modernizr](http://www.modernizr.com/docs/) is an open-source JavaScript library that detects the availability of native implementations of HTML5 and CSS3 . Modernizr is included in any new ASP.NET MVC projects that you create.)
 
@@ -192,14 +144,7 @@ After you've made this change, you can test it by using a browser that supports 
 
 Because new versions of browsers are implementing HTML5 incrementally, a good approach for now is to add code to your website that accommodates a wide variety of HTML5 support. For example, a more robust *DatePickerReady.js* script is shown below that lets your site support browsers that only partially support the HTML5 date control.
 
-    if (!Modernizr.inputtypes.date) {
-        $(function () {
-            $("input[type='date']")
-                        .datepicker()
-                        .get(0)
-                        .setAttribute("type", "text");
-        })
-    }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample9.xml)]
 
 This script selects HTML5 `input` elements of type `date` that don't fully support the HTML5 date control. For those elements, it hooks up the jQuery UI popup calendar and then changes the `type` attribute from `date` to `text`. By changing the `type` attribute from `date` to `text`, partial HTML5 date support is eliminated. An even more robust *DatePickerReady.js* script can be found at [JSFIDDLE](http://jsfiddle.net/XSTK8/15/).
 
@@ -207,24 +152,13 @@ This script selects HTML5 `input` elements of type `date` that don't fully suppo
 
 If you use one of the existing date templates and pass a null date, you'll get a run-time error. To make the date templates more robust, you'll change them to handle null values. To support nullable dates, change the code in the *Views\Shared\DisplayTemplates\DateTime.cshtml* to the following:
 
-    @model Nullable<DateTime>
-    @(Model != null ? string.Format("{0:d}", Model) : string.Empty)
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample10.xml)]
 
 The code returns an empty string when the model is **null**.
 
 Change the code in the *Views\Shared\EditorTemplates\Date.cshtml* file to the following:
 
-    @model Nullable<DateTime>
-    
-     @{
-        DateTime dt = DateTime.Now;
-        if (Model != null)
-        {
-           dt  = (System.DateTime) Model;
-       
-        }
-        @Html.TextBox("", String.Format("{0:d}", dt.ToShortDateString()), new { @class = "datefield", type = "date"  })
-    }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample11.xml)]
 
 When this code runs, if the model is not null, the model's `DateTime` value is used. If the model is null, the current date is used instead.
 

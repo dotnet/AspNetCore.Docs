@@ -62,9 +62,7 @@ The <mark><code>xdt:Transform="RemoveAttributes(debug)"</code></mark> attribute 
 
 If there's an error while the application runs, the application displays a generic error page in place of the system-generated error page, and it uses the [Elmah NuGet package](http://www.hanselman.com/blog/NuGetPackageOfTheWeek7ELMAHErrorLoggingModulesAndHandlersWithSQLServerCompact.aspx) for error logging and reporting. The `customErrors` element in the application *Web.config* file specifies the error page:
 
-    <customErrors mode="RemoteOnly" defaultRedirect="~/GenericErrorPage.aspx">
-      <error statusCode="404" redirect="~/GenericErrorPage.aspx" />
-    </customErrors>
+[!code[Main](web-config-transformations/samples/sample2.xml)]
 
 To see the error page, temporarily change the `mode` attribute of the `customErrors` element from "RemoteOnly" to "On" and run the application from Visual Studio. Cause an error by requesting an invalid URL, such as *Studentsxxx.aspx*. Instead of an IIS-generated "The resource cannot be found" error page, you see the *GenericErrorPage.aspx* page.
 
@@ -80,7 +78,7 @@ On your development computer it's convenient to allow free access to the error l
 
 Open *Web.Release.config* and add a new `location` element immediately before the closing `configuration` tag, as shown here.
 
-[!code[Main](web-config-transformations/samples/sample2.xml?highlight=27-34)]
+[!code[Main](web-config-transformations/samples/sample3.xml?highlight=27-34)]
 
 The `Transform` attribute value of "Insert" causes this `location` element to be added as a sibling to any existing `location` elements in the *Web.config* file. (There is already one `location` element that specifies authorization rules for the **Update Credits** page.)
 
@@ -115,17 +113,13 @@ The environment indicator is omitted when the application is running in staging 
 
 The Contoso University web pages read a value that is set in `appSettings` in the *Web.config* file in order to determine what environment the application is running in:
 
-    <appSettings>
-        <add key="Environment" value="Dev" />
-    </appSettings>
+[!code[Main](web-config-transformations/samples/sample4.xml)]
 
 The value should be "Test" in the test environment, and "Prod" for staging and production.
 
 The following code in a transform file will implement this transformation:
 
-    <appSettings>
-        <add key="Environment" value="Test" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
-    </appSettings>
+[!code[Main](web-config-transformations/samples/sample5.xml)]
 
 The `xdt:Transform` attribute value "SetAttributes" indicates that the purpose of this transform is to change attribute values of an existing element in the *Web.config* file. The `xdt:Locator` attribute value "Match(key)" indicates that the element to be modified is the one whose `key` attribute matches the `key` attribute specified here. The only other attribute of the `add` element is `value`, and that is what will be changed in the deployed *Web.config* file. The code shown here causes the `value` attribute of the `Environment` `appSettings` element to be set to "Test" in the *Web.config* file that is deployed.
 

@@ -69,11 +69,7 @@ When the Wingtip Toys sample application starts, it calls the `Application_Start
 
 The first parameter ("`ProductsByCategoryRoute`") is the route name. It is used to call the route when it is needed. The second parameter ("`Category/{categoryName}`") defines the friendly replacement URL that can be dynamic based on code. You use this route when you are populating a data control with links that are generated based on data. A route is shown as follows:
 
-    routes.MapPageRoute(
-                  "ProductsByCategoryRoute",
-                  "Category/{categoryName}",
-                  "~/ProductList.aspx"
-              );
+[!code[Main](url-routing/samples/sample2.xml)]
 
 The second parameter of the route includes a dynamic value specified by braces (`{ }`). In this case, the `categoryName` is a variable that will be used to determine the proper routing path.
 
@@ -101,36 +97,17 @@ Next, you'll update the application to use the `ProductsByCategoryRoute` to dete
 1. In **Solution Explorer**, open the *Site.Master* page if it is not already open.
 2. Update the **ListView** control named "`categoryList`" with the changes highlighted in yellow, so the markup appears as follows:   
 
-    [!code[Main](url-routing/samples/sample2.xml?highlight=7-9)]
+    [!code[Main](url-routing/samples/sample3.xml?highlight=7-9)]
 3. In **Solution Explorer**, open the *ProductList.aspx* page.
 4. Update the `ItemTemplate` element of the *ProductList.aspx*page with the updates highlighted in yellow, so the markup appears as follows:   
 
-    [!code[Main](url-routing/samples/sample3.xml?highlight=6-9,14-16)]
+    [!code[Main](url-routing/samples/sample4.xml?highlight=6-9,14-16)]
 5. Open the code-behind of *ProductList.aspx.cs* and add the following namespace as highlighted in yellow:  
 
-    [!code[Main](url-routing/samples/sample4.xml?highlight=9)]
+    [!code[Main](url-routing/samples/sample5.xml?highlight=9)]
 6. Replace the `GetProducts` method of the code-behind (*ProductList.aspx.cs*) with the following code:   
 
-        public IQueryable<Product> GetProducts(
-                            [QueryString("id")] int? categoryId,
-                            [RouteData] string categoryName)
-        {
-          var _db = new WingtipToys.Models.ProductContext();
-          IQueryable<Product> query = _db.Products;
-        
-          if (categoryId.HasValue && categoryId > 0)
-          {
-            query = query.Where(p => p.CategoryID == categoryId);
-          }
-        
-          if (!String.IsNullOrEmpty(categoryName))
-          {
-            query = query.Where(p =>
-                                String.Compare(p.Category.CategoryName,
-                                categoryName) == 0);
-          }
-          return query;
-        }
+    [!code[Main](url-routing/samples/sample6.xml)]
 
 #### Add Code for Product Details
 
@@ -138,27 +115,7 @@ Now, update the code-behind (*ProductDetails.aspx.cs*) for the *ProductDetails.a
 
 1. Replace the `GetProduct` method of the code-behind (*ProductDetails.aspx.cs*) with the following code:   
 
-        public IQueryable<Product> GetProduct(
-                            [QueryString("ProductID")] int? productId,
-                            [RouteData] string productName)
-        {
-          var _db = new WingtipToys.Models.ProductContext();
-          IQueryable<Product> query = _db.Products;
-          if (productId.HasValue && productId > 0)
-          {
-            query = query.Where(p => p.ProductID == productId);
-          }
-          else if (!String.IsNullOrEmpty(productName))
-          {
-            query = query.Where(p =>
-                      String.Compare(p.ProductName, productName) == 0);
-          }
-          else
-          {
-            query = null;
-          }
-          return query;
-        }
+    [!code[Main](url-routing/samples/sample7.xml)]
 
 ## Running the Application
 

@@ -52,28 +52,7 @@ Next, open the `Default.aspx` page and drag the `SectionLevelTutorialListing.asc
 
 In order to have the bulleted list display the master/detail tutorials we'll be creating, we need to add them to the site map. Open the `Web.sitemap` file and add the following markup after the "Displaying Data with the DataList and Repeater" site map node markup:
 
-    <siteMapNode
-        title="Master/Detail Reports with the DataList and Repeater"
-        description="Samples of Reports that Use the DataList and Repeater Controls"
-        url="~/DataListRepeaterFiltering/Default.aspx">
-     
-        <siteMapNode
-            title="Filter by Drop-Down List"
-            description="Filter results using a drop-down list."
-            url="~/DataListRepeaterFiltering/FilterByDropDownList.aspx" />
-     
-        <siteMapNode
-            title="Master/Detail Across Two Pages"
-            description="Master records on one page, detail records on another."
-            url="~/DataListRepeaterFiltering/CategoryListMaster.aspx" />
-     
-        <siteMapNode
-            title="Maser/Detail on One Page"
-            description="Master records in the left column, details on the right,
-                         both on the same page."
-            url="~/DataListRepeaterFiltering/CategoriesAndProducts.aspx" />
-     
-    </siteMapNode>
+[!code[Main](master-detail-filtering-with-a-dropdownlist-datalist-vb/samples/sample1.xml)]
 
 
 ![Update the Site Map to Include the New ASP.NET Pages](master-detail-filtering-with-a-dropdownlist-datalist-vb/_static/image5.png)
@@ -129,45 +108,7 @@ Upon completing the Configure Data Source wizard, Visual Studio will automatical
 
 After making these changes, your DataList and its ObjectDataSource's markup should look similar to the following:
 
-    <asp:DataList ID="DataList1" runat="server" DataKeyField="ProductID"
-        DataSourceID="ProductsByCategoryDataSource" EnableViewState="False">
-        <ItemTemplate>
-            <h4>
-                <asp:Label ID="ProductNameLabel" runat="server"
-                    Text='<%# Eval("ProductName") %>' />
-            </h4>
-            <table border="0">
-                <tr>
-                    <td class="ProductPropertyLabel">Category:</td>
-                    <td><asp:Label ID="CategoryNameLabel" runat="server"
-                        Text='<%# Eval("CategoryName") %>' /></td>
-                    <td class="ProductPropertyLabel">Supplier:</td>
-                    <td><asp:Label ID="SupplierNameLabel" runat="server"
-                        Text='<%# Eval("SupplierName") %>' /></td>
-                </tr>
-                <tr>
-                    <td class="ProductPropertyLabel">Qty/Unit:</td>
-                    <td><asp:Label ID="QuantityPerUnitLabel" runat="server"
-                        Text='<%# Eval("QuantityPerUnit") %>' /></td>
-                    <td class="ProductPropertyLabel">Price:</td>
-                    <td><asp:Label ID="UnitPriceLabel" runat="server"
-                        Text='<%# Eval("UnitPrice", "{0:C}") %>' /></td>
-                </tr>
-            </table>
-        </ItemTemplate>
-        <SeparatorTemplate>
-            <hr />
-        </SeparatorTemplate>
-    </asp:DataList>
-     
-    <asp:ObjectDataSource ID="ProductsByCategoryDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProductsByCategoryID" TypeName="ProductsBLL">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="Categories" Name="categoryID"
-                PropertyName="SelectedValue" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](master-detail-filtering-with-a-dropdownlist-datalist-vb/samples/sample2.xml)]
 
 Take a moment to check out our progress in a browser. When first visiting the page, those products belonging to the selected category (Beverages) are displayed (as shown in Figure 9), but changing the DropDownList doesn't update the data. This is because a postback must occur for the DataList to update. To accomplish this we can either set the DropDownList's `AutoPostBack` property to `true` or add a Button Web control to the page. For this tutorial, I've opted to set the DropDownList's `AutoPostBack` property to `true`.
 
@@ -198,13 +139,7 @@ To add a new list item to the DropDownList, go to the Properties window and clic
 
 Alternatively, you can add the list item by adding the following markup to the DropDownList:
 
-    <asp:DropDownList ID="categories" runat="server" AutoPostBack="True"
-        DataSourceID="CategoriesDataSource" DataTextField="CategoryName"
-        DataValueField="CategoryID" EnableViewState="False">
-     
-        <asp:ListItem Value="0">-- Choose a Category --</asp:ListItem>
-     
-    </asp:DropDownList>
+[!code[Main](master-detail-filtering-with-a-dropdownlist-datalist-vb/samples/sample3.xml)]
 
 Additionally, we need to set the DropDownList control's `AppendDataBoundItems` to `true` because if it's set to `false` (the default), when the categories are bound to the DropDownList from the ObjectDataSource they'll overwrite any manually-added list items.
 

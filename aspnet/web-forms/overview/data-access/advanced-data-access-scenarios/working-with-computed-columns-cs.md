@@ -39,8 +39,7 @@ The Northwind database does not have any computed columns so we will need to add
 Start by opening the `Suppliers` table definition by right-clicking on the `Suppliers` table in the Server Explorer and choosing Open Table Definition from the context-menu. This will display the columns of the table and their properties, such as their data type, whether they allow `NULL` s, and so forth. To add a computed column, start by typing in the name of the column into the table definition. Next, enter its expression into the (Formula) textbox under the Computed Column Specification section in the Column Properties window (see Figure 1). Name the computed column `FullContactName` and use the following expression:
 
 
-    ContactName + ' (' + CASE WHEN ContactTitle IS NOT NULL THEN 
-        ContactTitle + ', ' ELSE '' END + CompanyName + ')'
+[!code[Main](working-with-computed-columns-cs/samples/sample1.xml)]
 
 Note that strings can be concatenated in SQL using the `+` operator. The `CASE` statement can be used like a conditional in a traditional programming language. In the above expression the `CASE` statement can be read as: If `ContactTitle` is not `NULL` then output the `ContactTitle` value concatenated with a comma, otherwise emit nothing. For more on the usefulness of the `CASE` statement, see [The Power of SQL `CASE` Statements](http://www.4guysfromrolla.com/webtech/102704-1.shtml).
 
@@ -60,8 +59,7 @@ After naming the computed column and entering its expression, save the changes t
 Saving the table should refresh the Server Explorer, including the just-added column in the `Suppliers` table s column list. Furthermore, the expression entered into the (Formula) textbox will automatically adjust to an equivalent expression that strips unnecessary whitespace, surrounds column names with brackets (`[]`), and includes parentheses to more explicitly show the order of operations:
 
 
-    (((([ContactName]+' (')+case when [ContactTitle] IS NOT NULL 
-        then [ContactTitle]+', ' else '' end)+[CompanyName])+')')
+[!code[Main](working-with-computed-columns-cs/samples/sample2.xml)]
 
 For more information on computed columns in Microsoft SQL Server, refer to the [technical documentation](https://msdn.microsoft.com/en-us/library/ms191250.aspx). Also check out the [How to: Specify Computed Columns](https://msdn.microsoft.com/en-us/library/ms188300.aspx) for a step-by-step walkthrough of creating computed columns.
 
@@ -101,8 +99,7 @@ Start by opening the `NorthwindWithSprocs` DataSet in the `~/App_Code/DAL` folde
 The subsequent step prompts us for the main query. Enter the following query, which returns the `SupplierID`, `CompanyName`, `ContactName`, and `ContactTitle` columns for each supplier. Note that this query purposefully omits the computed column (`FullContactName`); we will update the corresponding stored procedure to include this column in Step 4.
 
 
-    SELECT SupplierID, CompanyName, ContactName, ContactTitle
-    FROM Suppliers
+[!code[Main](working-with-computed-columns-cs/samples/sample3.xml)]
 
 After entering the main query and clicking Next, the wizard allows us to name the four stored procedures it will generate. Name these stored procedures `Suppliers_Select`, `Suppliers_Insert`, `Suppliers_Update`, and `Suppliers_Delete`, as Figure 4 illustrates.
 
@@ -132,8 +129,7 @@ We now need to update the TableAdapter and DataTable created in Step 3 to includ
 Start by navigating to the Server Explorer and drilling down into the Stored Procedures folder. Open the `Suppliers_Select` stored procedure and update the `SELECT` query to include the `FullContactName` computed column:
 
 
-    SELECT SupplierID, CompanyName, ContactName, ContactTitle, FullContactName
-    FROM Suppliers
+[!code[Main](working-with-computed-columns-cs/samples/sample4.xml)]
 
 Save the changes to the stored procedure by clicking the Save icon in the Toolbar, by hitting Ctrl+S, or by choosing the Save `Suppliers_Select` option from the File menu.
 
@@ -168,9 +164,7 @@ Right-click on the `SuppliersTableAdapter` in the DataSet Design and choose the 
 The subsequent step prompts us for the query to use for this method. Enter the following, which returns the same data fields as the main query but for a particular supplier.
 
 
-    SELECT SupplierID, CompanyName, ContactName, ContactTitle, FullContactName
-    FROM Suppliers
-    WHERE SupplierID = @SupplierID
+[!code[Main](working-with-computed-columns-cs/samples/sample5.xml)]
 
 The next screen asks us to name the stored procedure that will be auto-generated. Name this stored procedure `Suppliers_SelectBySupplierID` and click Next.
 
@@ -197,61 +191,7 @@ Before we create an ASP.NET page that uses the computed column created in Step 1
 Create a new class file named `SuppliersBLLWithSprocs` in the `~/App_Code/BLL` folder and add the following code:
 
 
-    using System;
-    using System.Data;
-    using System.Configuration;
-    using System.Web;
-    using System.Web.Security;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-    using System.Web.UI.WebControls.WebParts;
-    using System.Web.UI.HtmlControls;
-    using NorthwindWithSprocsTableAdapters;
-    [System.ComponentModel.DataObject]
-    public class SuppliersBLLWithSprocs
-    {
-        private SuppliersTableAdapter _suppliersAdapter = null;
-        protected SuppliersTableAdapter Adapter
-        {
-            get
-            {
-                if (_suppliersAdapter == null)
-                    _suppliersAdapter = new SuppliersTableAdapter();
-                return _suppliersAdapter;
-            }
-        }
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Select, true)]
-        public NorthwindWithSprocs.SuppliersDataTable GetSuppliers()
-        {
-            return Adapter.GetSuppliers();
-        }
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Update, true)]
-        public bool UpdateSupplier(string companyName, string contactName, 
-            string contactTitle, int supplierID)
-        {
-            NorthwindWithSprocs.SuppliersDataTable suppliers = 
-                Adapter.GetSupplierBySupplierID(supplierID);
-            if (suppliers.Count == 0)
-                // no matching record found, return false
-                return false;
-            NorthwindWithSprocs.SuppliersRow supplier = suppliers[0];
-            supplier.CompanyName = companyName;
-            if (contactName == null) 
-                supplier.SetContactNameNull(); 
-            else 
-                supplier.ContactName = contactName;
-            if (contactTitle == null) 
-                supplier.SetContactTitleNull(); 
-            else 
-                supplier.ContactTitle = contactTitle;
-            // Update the product record
-            int rowsAffected = Adapter.Update(supplier);
-            // Return true if precisely one row was updated, otherwise false
-            return rowsAffected == 1;
-        }
-    }
+[!code[Main](working-with-computed-columns-cs/samples/sample6.xml)]
 
 Like the other BLL classes, `SuppliersBLLWithSprocs` has a `protected` `Adapter` property that returns an instance of the `SuppliersTableAdapter` class along with two `public` methods: `GetSuppliers` and `UpdateSupplier`. The `GetSuppliers` method calls and returns the `SuppliersDataTable` returned by the corresponding `GetSupplier` method in the Data Access Layer. The `UpdateSupplier` method retrieves information about the particular supplier being updated via a call to the DAL s `GetSupplierBySupplierID(supplierID)` method. It then updates the `CategoryName`, `ContactName`, and `ContactTitle` properties and commits these changes to the database by calling the Data Access Layer s `Update` method, passing in the modified `SuppliersRow` object.
 
@@ -277,35 +217,7 @@ In addition to adding BoundFields to the GridView, completion of the Data Source
 After making these edits to the GridView and ObjectDataSource, their declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="Suppliers" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="SupplierID" DataSourceID="SuppliersDataSource">
-        <Columns>
-            <asp:CommandField ShowEditButton="True" />
-            <asp:BoundField DataField="CompanyName" 
-                HeaderText="Company" 
-                SortExpression="CompanyName" />
-            <asp:BoundField DataField="ContactName" 
-                HeaderText="Contact Name" 
-                SortExpression="ContactName" />
-            <asp:BoundField DataField="ContactTitle" 
-                HeaderText="Title" 
-                SortExpression="ContactTitle" />
-            <asp:BoundField DataField="FullContactName" 
-                HeaderText="Full Contact Name"
-                SortExpression="FullContactName" 
-                ReadOnly="True" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="SuppliersDataSource" runat="server"
-        SelectMethod="GetSuppliers" TypeName="SuppliersBLLWithSprocs" 
-            UpdateMethod="UpdateSupplier">
-        <UpdateParameters>
-            <asp:Parameter Name="companyName" Type="String" />
-            <asp:Parameter Name="contactName" Type="String" />
-            <asp:Parameter Name="contactTitle" Type="String" />
-            <asp:Parameter Name="supplierID" Type="Int32" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
+[!code[Main](working-with-computed-columns-cs/samples/sample7.xml)]
 
 Next, visit this page through a browser. As Figure 12 shows, each supplier is listed in a grid that includes the `FullContactName` column, whose value is simply the concatenation of the other three columns formatted as `ContactName` (`ContactTitle`, `CompanyName`) .
 

@@ -34,13 +34,13 @@ You'll begin by adding some validation logic to the `Movie` class.
 
 Open the *Movie.cs* file. Add a `using` statement at the top of the file that references the [`System.ComponentModel.DataAnnotations`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace:
 
-    using System.ComponentModel.DataAnnotations;
+[!code[Main](adding-validation-to-the-model/samples/sample1.xml)]
 
 Notice the namespace does not contain `System.Web`. DataAnnotations provides a built-in set of validation attributes that you can apply declaratively to any class or property.
 
 Now update the `Movie` class to take advantage of the built-in [`Required`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx), [`StringLength`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.stringlengthattribute.aspx), and [`Range`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.rangeattribute.aspx) validation attributes. Use the following code as an example of where to apply the attributes.
 
-[!code[Main](adding-validation-to-the-model/samples/sample1.xml?highlight=4,10,13,17)]
+[!code[Main](adding-validation-to-the-model/samples/sample2.xml?highlight=4,10,13,17)]
 
 Run the application and you will again get the following run time error:
 
@@ -56,41 +56,13 @@ The validation attributes specify behavior that you want to enforce on the model
 
 Code First ensures that the validation rules you specify on a model class are enforced before the application saves changes in the database. For example, the code below will throw an exception when the `SaveChanges` method is called, because several required `Movie` property values are missing and the price is zero (which is out of the valid range).
 
-[!code[Main](adding-validation-to-the-model/samples/sample2.xml?highlight=7-8)]
+[!code[Main](adding-validation-to-the-model/samples/sample3.xml?highlight=7-8)]
 
 Having validation rules automatically enforced by the .NET Framework helps make your application more robust. It also ensures that you can't forget to validate something and inadvertently let bad data into the database.
 
 Here's a complete code listing for the updated *Movie.cs* file:
 
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace MvcMovie.Models {
-        public class Movie {
-            public int ID { get; set; }
-    
-            [Required]
-            public string Title { get; set; }
-    
-            [DataType(DataType.Date)]
-            public DateTime ReleaseDate { get; set; }
-    
-            [Required]
-            public string Genre { get; set; }
-    
-            [Range(1, 100)]
-            [DataType(DataType.Currency)]
-            public decimal Price { get; set; }
-    
-            [StringLength(5)]
-            public string Rating { get; set; }
-        }
-    
-        public class MovieDBContext : DbContext {
-            public DbSet<Movie> Movies { get; set; }
-        }
-    }
+[!code[Main](adding-validation-to-the-model/samples/sample4.xml)]
 
 ## Validation Error UI in ASP.NET MVC
 
@@ -103,31 +75,7 @@ Click the **Create New** link to add a new movie. Fill out the form with some in
 > [!NOTE] to support jQuery validation for non-English locales that use a comma (&quot;,&quot;) for a decimal point, you must include*globalize.js* and your specific *cultures/globalize.cultures.js* file(from [https://github.com/jquery/globalize](https://github.com/jquery/globalize) ) and JavaScript to use `Globalize.parseFloat`. The following code shows the modifications to the Views\Movies\Edit.cshtml file to work with the &quot;fr-FR&quot; culture:
 
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-        <script src="~/Scripts/globalize.js"></script>
-        <script src="~/Scripts/globalize.culture.fr-FR.js"></script>
-        <script>
-            $.validator.methods.number = function (value, element) {
-                return this.optional(element) ||
-                    !isNaN(Globalize.parseFloat(value));
-            }
-            $(document).ready(function () {
-                Globalize.culture('fr-FR');
-            });
-        </script>
-        <script>
-            jQuery.extend(jQuery.validator.methods, {    
-                range: function (value, element, param) {        
-                    //Use the Globalization plugin to parse the value        
-                    var val = $.global.parseFloat(value);
-                    return this.optional(element) || (
-                        val >= param[0] && val <= param[1]);
-                }
-            });
-    
-        </script>
-    }
+[!code[Main](adding-validation-to-the-model/samples/sample5.xml)]
 
 Notice how the form has automatically used a red border color to highlight the text boxes that contain invalid data and has emitted an appropriate validation error message next to each one. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (in case a user has JavaScript disabled).
 
@@ -150,7 +98,7 @@ The above sequence will trigger the required validation without hitting the subm
 
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The next listing shows what the `Create` methods in the `MovieController` class look like. They're unchanged from how you created them earlier in this tutorial.
 
-[!code[Main](adding-validation-to-the-model/samples/sample3.xml?highlight=12,15)]
+[!code[Main](adding-validation-to-the-model/samples/sample6.xml?highlight=12,15)]
 
 The first (HTTP GET) `Create` action method displays the initial Create form. The second (`[HttpPost]`) version handles the form post. The second `Create` method (The `HttpPost` version) calls `ModelState.IsValid` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the `Create` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example we are using, **the form is not posted to the server when their are validation errors detected on the client side; the second** `Create`**method is never called**. If you disable JavaScript in your browser, client validation is disabled and the HTTP POST `Create` method calls `ModelState.IsValid` to check whether the movie has any validation errors.
 
@@ -170,7 +118,7 @@ The following image shows how to disable JavaScript with the Chrome browser.
 
 Below is the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
-[!code[Main](adding-validation-to-the-model/samples/sample4.xml?highlight=22-23,30-31,38-39,46-47)]
+[!code[Main](adding-validation-to-the-model/samples/sample7.xml?highlight=22-23,30-31,38-39,46-47)]
 
 Notice how the code uses an `Html.EditorFor` helper to output the `<input>` element for each `Movie` property. Next to this helper is a call to the `Html.ValidationMessageFor` helper method. These two helper methods work with the model object that's passed by the controller to the view (in this case, a `Movie` object). They automatically look for validation attributes specified on the model and display error messages as appropriate.
 
@@ -182,51 +130,25 @@ If you want to change the validation logic later, you can do so in exactly one p
 
 Open the *Movie.cs* file and examine the `Movie` class. The [`System.ComponentModel.DataAnnotations`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a [`DataType`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate [`DisplayFormat`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute.
 
-    [DataType(DataType.Date)] 
-            public DateTime ReleaseDate { get; set; }
-           
-            [DataType(DataType.Currency)] 
-            public decimal Price { get; set; }
+[!code[Main](adding-validation-to-the-model/samples/sample8.xml)]
 
 The [`DataType`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attributes are not validation attributes, they are used to tell the view engine how to render the HTML. In the example above, the `DataType.Date` attribute displays the movie dates as dates only, without time. For example, the following [`DataType`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attributes don't validate the format of the data:
 
-    [DataType(DataType.EmailAddress)]
-    [DataType(DataType.PhoneNumber)]
-    [DataType(DataType.Url)]
+[!code[Main](adding-validation-to-the-model/samples/sample9.xml)]
 
 The attributes listed above only provide hints for the view engine to format the data (and supply attributes such as &lt;a&gt; for URL's and &lt;a href=&quot;mailto:EmailAddress.com&quot;&gt; for email. You can use the [RegularExpression](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.regularexpressionattribute.aspx) attribute to validate the format of the data.
 
 An alternative approach to using the `DataType` attributes, you could explicitly set a [`DataFormatString`](https://msdn.microsoft.com/en-us/library/system.string.format.aspx) value. The following code shows the release date property with a date format string (namely, &quot;d&quot;). You'd use this to specify that you don't want to time as part of the release date.
 
-    [DisplayFormat(DataFormatString = "{0:d}")]
-           public DateTime ReleaseDate { get; set; }
+[!code[Main](adding-validation-to-the-model/samples/sample10.xml)]
 
 The following code formats the `Price` property as currency.
 
-    [DisplayFormat(DataFormatString = "{0:c}")]
-           public decimal Price { get; set; }
+[!code[Main](adding-validation-to-the-model/samples/sample11.xml)]
 
 The complete `Movie` class is shown below.
 
-    public class Movie {
-        public int ID { get; set; }
-    
-        [Required]
-        public string Title { get; set; }
-    
-        [DataType(DataType.Date)]
-        public DateTime ReleaseDate { get; set; }
-    
-        [Required]
-        public string Genre { get; set; }
-    
-        [Range(1, 100)]
-        [DataType(DataType.Currency)]
-        public decimal Price { get; set; }
-    
-        [StringLength(5)]
-        public string Rating { get; set; }
-    }
+[!code[Main](adding-validation-to-the-model/samples/sample12.xml)]
 
 Run the application and browse to the `Movies` controller. The release date and price are nicely formatted. The image below shows the release date and price using &quot;fr-FR&quot; as the culture.
 

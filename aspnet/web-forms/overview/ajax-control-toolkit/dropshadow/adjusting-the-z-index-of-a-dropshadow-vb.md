@@ -28,52 +28,26 @@ The DropShadow control in the AJAX Control Toolkit extends a panel with a drop s
 
 The code commences with the Panel itself, containing enough text so that the panel contains enough text for the effect to be visible:
 
-    <asp:Panel ID="panelShadow" runat="server" CssClass="panel" Width="300px">
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-    </asp:Panel>
+[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample1.xml)]
 
 Another panel is placed directly before the `panelShadow` panel. It contains a menu with horizontal orientation so that menu entries appear over (or rather: under) the `dropShadow` panel):
 
-    <asp:Panel ID="panelMenu" runat="server" CssClass="ForegroundStyle">
-     <asp:Menu ID="menu1" runat="server" ForeColor="Red" Orientation="Horizontal">
-     <Items>
-     <asp:MenuItem Text="One">
-     <asp:MenuItem Text="1.1" />
-     <asp:MenuItem Text="1.2" />
-     </asp:MenuItem>
-     <asp:MenuItem Text="Two" />
-     <asp:MenuItem Text="Three" />
-     </Items>
-     </asp:Menu><br />
-    </asp:Panel>
+[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample2.xml)]
 
 Then, the `DropShadowExtender` is added to extend the `panelShadow` panel with a drop shadow effect:
 
-    <ajaxToolkit:DropShadowExtender ID="dse1" runat="server"
-     TargetControlID="panelShadow"
-     Opacity="0.5" Rounded="true" />
+[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample3.xml)]
 
 Finally, the ASP.NET AJAX `ScriptManager` control enables the Control Toolkit to work:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample4.xml)]
 
 When you run this script, the menu entries appear underneath the panel. However the menu uses the CSS class `panel` where you just have to define two things to make elements appear in front of the other panel:
 
 - Relative positioning
 - A positive z-index
 
-    <style type="text/css">
-     .ForegroundStyle {z-index: 123; position: relative;}
-     .panel {background-color: navy;}
-    </style>
+[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample5.xml)]
 
 Then, the `DropShadowExtender` control does not conflict any longer with the Menu control.
 

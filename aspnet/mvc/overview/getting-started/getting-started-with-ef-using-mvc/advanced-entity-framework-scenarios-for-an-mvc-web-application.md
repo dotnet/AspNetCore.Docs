@@ -75,19 +75,13 @@ To verify that the new code works correctly, select the **Departments** tab and 
 
 Earlier you created a student statistics grid for the About page that showed the number of students for each enrollment date. The code that does this in *HomeController.cs* uses LINQ:
 
-    var data = from student in db.Students
-               group student by student.EnrollmentDate into dateGroup
-               select new EnrollmentDateGroup()
-               {
-                   EnrollmentDate = dateGroup.Key,
-                   StudentCount = dateGroup.Count()
-               };
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample2.xml)]
 
 Suppose you want to write the code that retrieves this data directly in SQL rather than using LINQ. To do that you need to run a query that returns something other than entity objects, which means you need to use the [Database.SqlQuery](https://msdn.microsoft.com/en-us/library/system.data.entity.database.sqlquery(v=VS.103).aspx) method.
 
 In *HomeController.cs*, replace the LINQ statement in the `About` method with a SQL statement, as shown in the following highlighted code:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample2.xml?highlight=3-18)]
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample3.xml?highlight=3-18)]
 
 Run the About page. It displays the same data it did before.
 
@@ -101,20 +95,7 @@ Suppose Contoso University administrators want to be able to perform bulk change
 
 In *CourseContoller.cs*, add `UpdateCourseCredits` methods for `HttpGet` and `HttpPost`:
 
-    public ActionResult UpdateCourseCredits()
-    {
-        return View();
-    }
-    
-    [HttpPost]
-    public ActionResult UpdateCourseCredits(int? multiplier)
-    {
-        if (multiplier != null)
-        {
-            ViewBag.RowsAffected = db.Database.ExecuteSqlCommand("UPDATE Course SET Credits = Credits * {0}", multiplier);
-        }
-        return View();
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample4.xml)]
 
 When the controller processes an `HttpGet` request, nothing is returned in the `ViewBag.RowsAffected` variable, and the view displays an empty text box and a submit button, as shown in the preceding illustration.
 
@@ -128,35 +109,7 @@ In *CourseController.cs*, right-click one of the `UpdateCourseCredits` methods, 
 
 In *Views\Course\UpdateCourseCredits.cshtml*, replace the template code with the following code:
 
-    @model ContosoUniversity.Models.Course
-    
-    @{
-        ViewBag.Title = "UpdateCourseCredits";
-    }
-    
-    <h2>Update Course Credits</h2>
-    
-    @if (ViewBag.RowsAffected == null)
-    {
-        using (Html.BeginForm())
-        {
-            <p>
-                Enter a number to multiply every course's credits by: @Html.TextBox("multiplier")
-            </p>
-            <p>
-                <input type="submit" value="Update" />
-            </p>
-        }
-    }
-    @if (ViewBag.RowsAffected != null)
-    {
-        <p>
-            Number of rows updated: @ViewBag.RowsAffected
-        </p>
-    }
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample5.xml)]
 
 Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:50205/Course/UpdateCourseCredits`). Enter a number in the text box:
 
@@ -191,21 +144,11 @@ Sometimes it's helpful to be able to see the actual SQL queries that are sent to
 
 In *Controllers/CourseController*, replace the `Index` method with the following code, in order to temporarily stop eager loading:
 
-    public ActionResult Index()
-    {
-        var courses = db.Courses;
-        var sql = courses.ToString();
-        return View(courses.ToList());
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample6.xml)]
 
 Now set a breakpoint on the `return` statement (F9 with the cursor on that line). Press F5 to run the project in debug mode, and select the Course Index page. When the code reaches the breakpoint, examine the `sql` variable. You see the query that's sent to SQL Server. It's a simple `Select` statement.
 
-    {SELECT 
-    [Extent1].[CourseID] AS [CourseID], 
-    [Extent1].[Title] AS [Title], 
-    [Extent1].[Credits] AS [Credits], 
-    [Extent1].[DepartmentID] AS [DepartmentID]
-    FROM [Course] AS [Extent1]}
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.xml)]
 
 Click the magnifying class to see the query in the **Text Visualizer**.
 
@@ -215,19 +158,7 @@ Now you'll add a drop-down list to the Courses Index page so that users can filt
 
 In *CourseController.cs*, replace the `Index` method with the following code:
 
-    public ActionResult Index(int? SelectedDepartment)
-    {
-        var departments = db.Departments.OrderBy(q => q.Name).ToList();
-        ViewBag.SelectedDepartment = new SelectList(departments, "DepartmentID", "Name", SelectedDepartment);
-        int departmentID = SelectedDepartment.GetValueOrDefault();
-    
-        IQueryable<Course> courses = db.Courses
-            .Where(c => !SelectedDepartment.HasValue || c.DepartmentID == departmentID)
-            .OrderBy(d => d.CourseID)
-            .Include(d => d.Department);
-        var sql = courses.ToString();
-        return View(courses.ToList());
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample8.xml)]
 
 Restore the breakpoint on the `return` statement.
 
@@ -239,11 +170,7 @@ For the `Get` method of the `Course` repository, the code specifies a filter exp
 
 In *Views\Course\Index.cshtml*, immediately before the opening `table` tag, add the following code to create the drop-down list and a submit button:
 
-    @using (Html.BeginForm())
-    {
-        <p>Select Department: @Html.DropDownList("SelectedDepartment","All")   
-        <input type="submit" value="Filter" /></p>
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample9.xml)]
 
 With the breakpoint still set, run the Course Index page. Continue through the first times that the code hits a breakpoint, so that the page is displayed in the browser. Select a department from the drop-down list and click **Filter**:
 
@@ -251,33 +178,7 @@ With the breakpoint still set, run the Course Index page. Continue through the f
 
 This time the first breakpoint will be for the departments query for the drop-down list. Skip that and view the `query` variable the next time the code reaches the breakpoint in order to see what the `Course` query now looks like. You'll see something like the following:
 
-    SELECT 
-        [Project1].[CourseID] AS [CourseID], 
-        [Project1].[Title] AS [Title], 
-        [Project1].[Credits] AS [Credits], 
-        [Project1].[DepartmentID] AS [DepartmentID], 
-        [Project1].[DepartmentID1] AS [DepartmentID1], 
-        [Project1].[Name] AS [Name], 
-        [Project1].[Budget] AS [Budget], 
-        [Project1].[StartDate] AS [StartDate], 
-        [Project1].[InstructorID] AS [InstructorID], 
-        [Project1].[RowVersion] AS [RowVersion]
-        FROM ( SELECT 
-            [Extent1].[CourseID] AS [CourseID], 
-            [Extent1].[Title] AS [Title], 
-            [Extent1].[Credits] AS [Credits], 
-            [Extent1].[DepartmentID] AS [DepartmentID], 
-            [Extent2].[DepartmentID] AS [DepartmentID1], 
-            [Extent2].[Name] AS [Name], 
-            [Extent2].[Budget] AS [Budget], 
-            [Extent2].[StartDate] AS [StartDate], 
-            [Extent2].[InstructorID] AS [InstructorID], 
-            [Extent2].[RowVersion] AS [RowVersion]
-            FROM  [dbo].[Course] AS [Extent1]
-            INNER JOIN [dbo].[Department] AS [Extent2] ON [Extent1].[DepartmentID] = [Extent2].[DepartmentID]
-            WHERE @p__linq__0 IS NULL OR [Extent1].[DepartmentID] = @p__linq__1
-        )  AS [Project1]
-        ORDER BY [Project1].[CourseID] ASC
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample10.xml)]
 
 You can see that the query is now a `JOIN` query that loads `Department` data along with the `Course` data, and that it includes a `WHERE` clause.
 

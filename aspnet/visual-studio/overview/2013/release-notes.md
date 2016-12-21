@@ -203,35 +203,15 @@ ASP.NET MVC now supports attribute routing, thanks to a contribution by Tim McCa
 
 ASP.NET Web API now supports attribute routing, thanks to a contribution by Tim McCall, the author of [http://attributerouting.net](http://attributerouting.net). With attribute routing you can specify your Web API routes by annotating your actions and controllers like this:
 
-    [RoutePrefix("orders")] 
-    public class OrdersController : ApiController 
-    { 
-        [Route("{id}")] 
-        public Order Get(int id) { } 
-        [Route("{id}/approve")] 
-        public Order Approve(int id) { } 
-    }
+[!code[Main](release-notes/samples/sample1.xml)]
 
 Attribute routing gives you more control over the URIs in your web API. For example, you can easily define a resource hierarchy using a single API controller:
 
-    public class MoviesController : ApiController 
-    { 
-        [Route("movies")] 
-        public IEnumerable<Movie> Get() { } 
-        [Route("actors/{actorId}/movies")] 
-        public IEnumerable<Movie> GetByActor(int actorId) { } 
-        [Route("directors/{directorId}/movies")] 
-        public IEnumerable<Movie> GetByDirector(int directorId) { } 
-    }
+[!code[Main](release-notes/samples/sample2.xml)]
 
 Attribute routing also provides a convenient syntax for specifying optional parameters, default values, and route constraints:
 
-    // Optional parameter
-    [Route("people/{name?}")]
-    // Default value
-    [Route("people/{name=Dan}")]
-    // Constraint: Alphabetic characters only. 
-    [Route("people/{name:alpha}")]
+[!code[Main](release-notes/samples/sample3.xml)]
 
 For more information about attribute routing, see [Attribute Routing in Web API 2](../../../web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2.md).
 
@@ -271,16 +251,7 @@ Request batching combines multiple operations into a single HTTP POST request, t
 
 To enable request batching, simply add a route with a batching handler to your Web API configuration:
 
-    public static class WebApiConfig 
-    { 
-        public static void Register(HttpConfiguration config) 
-        { 
-            config.Routes.MapHttpBatchRoute( 
-                routeName: "WebApiBatch", 
-                routeTemplate: "api/batch", 
-                batchHandler: new DefaultHttpBatchHandler(GlobalConfiguration.DefaultServer)); 
-        } 
-    }
+[!code[Main](release-notes/samples/sample4.xml)]
 
 You can also control whether requests or executed sequentially or in any order.
 
@@ -368,44 +339,15 @@ In a **Self-hosted application**, the Startup class is passed as the type parame
 
 **Mapping hubs and connections in SignalR 1.x (from the global application file in a web application):** 
 
-    protected void Application_Start(object sender, EventArgs e) 
-    {
-        // Map all hubs to "/signalr"
-        RouteTable.Routes.MapHubs();
-        // Map the Echo PersistentConnection to "/echo"
-        RouteTable.Routes.MapConnection<myconnection>("echo", "/echo");
-    }
+[!code[Main](release-notes/samples/sample5.xml)]
 
 **Mapping hubs and connections in SignalR 2.0 (from an Owin Startup class file):** 
 
-    using Microsoft.AspNet.SignalR;
-    using Microsoft.Owin;
-    using Owin;
-    
-    [assembly: OwinStartup(typeof(MyWebApplication.Startup))]
-    
-    namespace MyWebApplication
-    {
-        public class Startup
-        {
-            public void Configuration(IAppBuilder app)
-            {
-                // Map all hubs to "/signalr"
-                app.MapSignalR();
-                // Map the Echo PersistentConnection to "/echo"
-                app.MapSignalR<echoconnection>("/echo");
-            }
-        }
-    }
+[!code[Main](release-notes/samples/sample6.xml)]
 
 In a **Self-hosted application**, the Startup class is passed as the type parameter for the `WebApp.Start` method, as shown below.
 
-    string url = "http://localhost:8080";
-    using (WebApp.Start<startup>(url))
-    {
-        Console.WriteLine("Server running on {0}", url);
-        Console.ReadLine();
-    }
+[!code[Main](release-notes/samples/sample7.xml)]
 
 <a id="crossdomain"></a>
 
@@ -419,7 +361,7 @@ To add the new CORS middleware in SignalR 2.0, add the `Microsoft.Owin.Cors` lib
 
 **Adding Microsoft.Owin.Cors to your project**: To install this library, run the following command in the Package Manager Console:
 
-    Install-Package Microsoft.Owin.Cors
+[!code[Main](release-notes/samples/sample8.xml)]
 
 This command will add the 2.0.0 version of the package to your project.
 
@@ -429,52 +371,13 @@ The following code snippets demonstrate how to implement cross-domain connection
 
 **Implementing cross-domain requests in SignalR 1.x (from the global application file)**
 
-    protected void Application_Start(object sender, EventArgs e) 
-    {
-        var hubConfiguration = new HubConfiguration();
-        hubConfiguration.EnableCrossDomain = true;
-        RouteTable.Routes.MapHubs(hubConfiguration);
-    }
+[!code[Main](release-notes/samples/sample9.xml)]
 
 **Implementing cross-domain requests in SignalR 2.0 (from a C# code file)**
 
 The following code demonstrates how to enable CORS or JSONP in a SignalR 2.0 project. This code sample uses `Map` and `RunSignalR` instead of `MapSignalR`, so that the CORS middleware runs only for the SignalR requests that require CORS support (rather than for all traffic at the path specified in `MapSignalR`.) `Map` can also be used for any other middleware that needs to run for a specific URL prefix, rather than for the entire application.
 
-    using Microsoft.AspNet.SignalR;
-    using Microsoft.Owin.Cors;
-    using Owin;
-    
-    [assembly: OwinStartup(typeof(MyWebApplication.Startup))]
-    
-    namespace MyWebApplication
-    {
-        public class Startup
-        {
-            public void Configuration(IAppBuilder app)
-            {
-                // Branch the pipeline here for requests that start with "/signalr"
-                app.Map("/signalr", map =>
-                {
-                    // Setup the CORS middleware to run before SignalR.
-                    // By default this will allow all origins. You can 
-                    // configure the set of origins and/or http verbs by
-                    // providing a cors options with a different policy.
-                    map.UseCors(CorsOptions.AllowAll);
-                    var hubConfiguration = new HubConfiguration 
-                    {
-                        // You can enable JSONP by uncommenting line below.
-                        // JSONP requests are insecure but some older browsers (and some
-                        // versions of IE) require JSONP to work cross domain
-                        // EnableJSONP = true
-                    };
-                    // Run the SignalR pipeline. We're not using MapSignalR
-                    // since this branch already runs under the "/signalr"
-                    // path.
-                    map.RunSignalR(hubConfiguration);
-                });
-            }
-        }
-    }
+[!code[Main](release-notes/samples/sample10.xml)]
 
 <a id="mobile"></a>
 
@@ -517,57 +420,11 @@ In SignalR 2.0, it's possible to send a message using a list of client and group
 
 **Sending a message to a list of clients and groups using PersistentConnection**
 
-    using Microsoft.AspNet.SignalR;
-    using System.Collections.Generic;
-    public class ChatConnection : PersistentConnection
-    {
-        static List<string> ConnectionIds = new List<string>();
-        static List<string> groups = new List<string>{"chatGroup", "chatGroup2"};
-        protected override System.Threading.Tasks.Task OnReceived(IRequest request, string connectionId, string data)
-        {
-            Connection.Send(ConnectionIds, data);
-            Groups.Send(groups, data);
-            return base.OnReceived(request, connectionId, data);
-        }
-        protected override System.Threading.Tasks.Task OnConnected(IRequest request, string connectionId)
-        {
-            ConnectionIds.Add(connectionId);
-            Groups.Add(connectionId, "chatGroup");
-            return base.OnConnected(request, connectionId);
-        }
-        protected override System.Threading.Tasks.Task OnDisconnected(IRequest request, string connectionId)
-        {
-            ConnectionIds.Remove(connectionId);
-            return base.OnDisconnected(request, connectionId);
-        }
-    }
+[!code[Main](release-notes/samples/sample11.xml)]
 
 **Sending a message to a list of clients and groups using Hubs**
 
-    using Microsoft.AspNet.SignalR;
-    using System.Collections.Generic;
-    public class ChatHub : Hub
-    {
-        static List<string> ConnectionIds = new List<string>();
-        static List<string> groups = new List<string> { "chatGroup", "chatGroup2" };
-        public void Send(string name, string message)
-        {
-            // Call the broadcastMessage method to update clients.
-            Clients.Clients(ConnectionIds).broadcastMessage(name, message);
-            Clients.Groups(groups).broadcastMessage(name, message);
-        }
-        public override System.Threading.Tasks.Task OnConnected()
-        {
-            ConnectionIds.Add(Context.ConnectionId);
-            Groups.Add(Context.ConnectionId, "chatGroup");
-            return base.OnConnected();
-        }
-        public override System.Threading.Tasks.Task OnDisconnected()
-        {
-            ConnectionIds.Remove(Context.ConnectionId);
-            return base.OnDisconnected();
-        }
-    }
+[!code[Main](release-notes/samples/sample12.xml)]
 
 <a id="sendtouser"></a>
 
@@ -577,10 +434,7 @@ This feature allows users to specify what the userId is based on an IRequest via
 
 **The IUserIdProvider interface**
 
-    public interface IUserIdProvider
-    {
-        string GetUserId(IRequest request);
-    }
+[!code[Main](release-notes/samples/sample13.xml)]
 
 By default there will be an implementation that uses the user's IPrincipal.Identity.Name as the user name.
 
@@ -588,13 +442,7 @@ In hubs, you'll be able to send messages to these users via a new API:
 
 **Using the Clients.User API**
 
-    public class MyHub : Hub
-    {
-        public void Send(string userId, string message)
-        {
-            Clients.User(userId).send(message);
-        }
-    }
+[!code[Main](release-notes/samples/sample14.xml)]
 
 <a id="errorhandling"></a>
 
@@ -606,38 +454,15 @@ The **show detailed hub exceptions** setting has no bearing on **HubException** 
 
 **Server-side code demonstrating sending a HubException to the client**
 
-    public class MyHub : Hub
-    {
-        public void Send(string message)
-        {
-            if(message.Contains("<script>"))
-            {
-                throw new HubException("This message will flow to the client", new { user = Context.User.Identity.Name, message = message });
-            }
-    
-            Clients.All.send(message);
-        }
-    }
+[!code[Main](release-notes/samples/sample15.xml)]
 
 **JavaScript client code demonstrating responding to a HubException sent from the server**
 
-    myHub.server.send("<script>")
-                .fail(function (e) {
-                    if (e.source === 'HubException') {
-                        console.log(e.message + ' : ' + e.data.user);
-                    }
-                });
+[!code[Main](release-notes/samples/sample16.xml)]
 
 **.NET client code demonstrating responding to a HubException sent from the server**
 
-    try
-    {
-        await myHub.Invoke("Send", "<script>");
-    }
-    catch(HubException ex)
-    {
-        Conosle.WriteLine(ex.Message);
-    }
+[!code[Main](release-notes/samples/sample17.xml)]
 
 <a id="unittesting"></a>
 
@@ -647,40 +472,11 @@ SignalR 2.0 includes an interface called `IHubCallerConnectionContext` on Hubs t
 
 **Unit testing SignalR with xUnit.net**
 
-    [Fact]
-    public void HubsAreMockableViaDynamic()
-    {
-        bool sendCalled = false;
-        var hub = new MyHub();
-        var mockClients = new Mock<IHubCallerConnectionContext>();
-        hub.Clients = mockClients.Object;
-        dynamic all = new ExpandoObject();
-        all.send = new Action<string>(message =>
-        {
-            sendCalled = true;
-        });
-        mockClients.Setup(m => m.All).Returns((ExpandoObject)all);
-        hub.Send("foo");
-        Assert.True(sendCalled);
-    }
+[!code[Main](release-notes/samples/sample18.xml)]
 
 **Unit testing SignalR with moq**
 
-    [Fact]
-    public interface IClientContract
-    {
-        void send(string message);
-    }
-    public void HubsAreMockableViaType()
-    {
-        var hub = new MyHub();
-        var mockClients = new Mock<IHubCallerConnectionContext>();
-        var all = new Mock<IClientContract>();
-        hub.Clients = mockClients.Object;
-        all.Setup(m => m.send(It.IsAny<string>())).Verifiable();
-        mockClients.Setup(m => m.All).Returns(all.Object);
-        hub.Send("foo");
-        all.VerifyAll();
+[!code[Main](release-notes/samples/sample19.xml)]
 
 <a id="javascripterror"></a>
 
@@ -690,9 +486,7 @@ In SignalR 2.0, all JavaScript error handling callbacks return JavaScript error 
 
 **JavaScript client code that handles the Start.Fail exception**
 
-    connection.start().fail(function(e) {
-        console.log('The error is: ' + e.message);
-    });
+[!code[Main](release-notes/samples/sample20.xml)]
 
 <a id="TOC8"></a>
 ## ASP.NET Identity
@@ -801,25 +595,11 @@ This section describes known issues and breaking changes in the ASP.NET and Web 
 
     Our earlier samples for `ODataQueryOptions<T>` always casted the return value from `ApplyTo` to `IQueryable<T>`. This worked earlier because the query options that we supported earlier (`$filter`, `$orderby`, `$skip`, `$top`) do not change the shape of the query. Now that we support `$select` and `$expand` the return value from `ApplyTo` will not be `IQueryable<T>` always.
 
-        // Sample ODataQueryOptions<T> usage from earlier
-        public IQueryable<Customer> Get(ODataQueryOptions<Customer> query)
-        {
-          IQueryable<customer> result="query.ApplyTo(_customers)" as iqueryable<customer>; return result;
-                       }
+    [!code[Main](release-notes/samples/sample21.xml)]
 
     If you are using the sample code from earlier, it will continue working if the client does not send `$select` and `$expand`. However, if you wish to support `$select` and `$expand` you have to change that code to this.
 
-        public IHttpActionResult Get(ODataQueryOptions<Customer> query)
-        {
-          IQueryable result = query.ApplyTo(_customers);
-          return Ok(result, result.GetType());
-        }
-         
-        private IHttpActionResult Ok(object content, Type type)
-        {
-          Type resultType = typeof(OkNegotiatedContentResult<>).MakeGenericType(type);
-          return Activator.CreateInstance(resultType, content, this) as IHttpActionResult;
-        }
+    [!code[Main](release-notes/samples/sample22.xml)]
 2. **Request.Url or RequestContext.Url is null during a batch request**
 
     In a batching scenario, **UrlHelper** is null when accessed from **Request.Url** or **RequestContext.Url**.
@@ -830,10 +610,7 @@ This section describes known issues and breaking changes in the ASP.NET and Web 
 
     **Creating a new instance of UrlHelper**
 
-        if (RequestContext.Url == null)
-        {
-        RequestContext.Url = new UrlHelper(Request);
-        }
+    [!code[Main](release-notes/samples/sample23.xml)]
 
 ### ASP.NET MVC
 
@@ -863,22 +640,7 @@ This section describes known issues and breaking changes in the ASP.NET and Web 
 
     For example, after you make the above changes, the assembly bindings should look like this:
 
-        <dependentAssembly>
-          <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
-          <bindingRedirect oldVersion="1.0.0.0-2.0.0.0" newVersion="3.0.0.0" />
-          </dependentAssembly>
-          <dependentAssembly>
-          <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
-          <bindingRedirect oldVersion="1.0.0.0-2.0.0.0" newVersion="3.0.0.0" />
-          </dependentAssembly>
-          <dependentAssembly>
-          <assemblyIdentity name="System.Web.WebPages.Razor" publicKeyToken="31bf3856ad364e35" />
-          <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
-          </dependentAssembly>
-          <dependentAssembly>
-          <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
-          <bindingRedirect oldVersion="1.0.0.0-4.0.0.0" newVersion="5.0.0.0" />
-        </dependentAssembly>
+    [!code[Main](release-notes/samples/sample24.xml)]
 
     For information on upgrading MVC 4 projects to MVC 5, see [How to Upgrade an ASP.NET MVC 4 and Web API Project to ASP.NET MVC 5 and Web API 2](../../../mvc/overview/releases/how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2.md).
 3. When using client-side validation with jQuery Unobtrusive Validation, the validation message is sometimes incorrect for an HTML input element with type='number'. The validation error for a required value ("The Age field is required") is shown when an invalid number is entered instead of the correct message that a valid number is required.
@@ -927,49 +689,17 @@ Workaround:
 
         **C#**
 
-            public static class WebApiConfig
-            {
-                public static void Register(HttpConfiguration config)
-                {
-                    config.MapHttpAttributeRoutes();
-                    config.Routes.MapHttpRoute(
-                        name: "DefaultApi",
-                        routeTemplate: "api/{controller}/{id}",
-                        defaults: new { id = RouteParameter.Optional }
-                    );
-                }
-            }
+        [!code[Main](release-notes/samples/sample25.xml)]
 
         **Visual Basic**
 
-            Public Module WebApiConfig
-                Public Sub Register(ByVal config As HttpConfiguration)
-                    config.MapHttpAttributeRoutes()
-                    config.Routes.MapHttpRoute(
-                      name:="DefaultApi",
-                      routeTemplate:="api/{controller}/{id}",
-                      defaults:=New With {.id = RouteParameter.Optional}
-                    )
-                End Sub
-            End Module
+        [!code[Main](release-notes/samples/sample26.xml)]
     2. Configure WebApiConfig.Register in the Application\_Start method in Global.asax as follows:
 
         **C#**
 
-            public class WebApiApplication : System.Web.HttpApplication
-            {
-                protected void Application_Start()
-                {
-                    GlobalConfiguration.Configure(WebApiConfig.Register);    
-                }
-            }
+        [!code[Main](release-notes/samples/sample27.xml)]
 
         **Visual Basic**
 
-            Public Class WebApiApplication
-                 Inherits System.Web.HttpApplication
-             
-                 Sub Application_Start()     
-                   GlobalConfiguration.Configure(AddressOf WebApiConfig.Register)       
-                 End Sub
-            End Class
+        [!code[Main](release-notes/samples/sample28.xml)]

@@ -124,11 +124,7 @@ This section of the document describes new features, changes, and known issues w
 
 > A new `asp:AdminManagerEnabled` key is available for the `<appSettings>` element in the *web.config* file, which lets you completely disable the package manager. The default value for this element is true, meaning that if it is not included in the *web.config* file, the package manager is enabled. To disable the package manager, add the following element to the *web.config* file in the root of the website:
 > 
->     <configuration>
->       <appSettings>
->         <add key="asp:AdminManagerEnabled" value="false"/>
->       </appSettings>
->     </configuration>
+> [!code[Main](overview/samples/sample1.xml)]
 
 
 #### <a id="Changes"></a>  Changes
@@ -223,12 +219,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > 
 > 
->     <system.net>
->       <defaultProxy>
->         <proxy autoDetect="False" 
->            proxyaddress="[proxy URL]"/>
->       </defaultProxy>
->     </system.net>
+> [!code[Main](overview/samples/sample2.xml)]
 > 
 > For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/en-us/library/sa91de1e.aspx) on the MSDN Web site.
 
@@ -246,14 +237,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > 
 > 
->     <compilation>
->       <assemblies>
->         <add assembly="System.Web.WebPages.Configuration, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
->     
->         <-- Additional assemblies here. -->
->     
->       </assemblies>
->     </compilation>
+> [!code[Main](overview/samples/sample3.xml)]
 
 
 #### Issue: Extensionless URLs do not find .cshtml/.vbhtml files on IIS 7 or IIS 7.5
@@ -273,9 +257,7 @@ This section of the document describes new features, changes, and known issues w
 > - If you have control over the server computer, on the server computer install the update that is described in [A update is available that enables certain IIS 7.0 or IIS 7.5 handlers to handle requests whose URLs do not end with a period](https://support.microsoft.com/kb/980368).
 > - If you do not have control over the server computer (for example, you are deploying to a hosting website), add the following to the website's *web.config* file: 
 > 
->         <system.webServer>
->           <modules runAllManagedModulesForAllRequests="true"/>
->         </system.webServer>
+>     [!code[Main](overview/samples/sample4.xml)]
 
 
 #### Issue: Deploying an application to a computer that does not have SQL Server Compact installed
@@ -297,15 +279,7 @@ This section of the document describes new features, changes, and known issues w
 > 2. In the root folder of the website, create or open a *web.config* file. (In WebMatrix 1.0, this file type is available if you click **All** in the **Choose a File Type** dialog box.)
 > 3. Add the following element as a child of the `<configuration>` element (not inside the `<system.web>` element):
 > 
->         <system.data>
->           <DbProviderFactories>
->             <remove invariant="System.Data.SqlServerCe.4.0"></remove>
->             <add name="Microsoft SQL Server Compact Data Provider" 
->               invariant="System.Data.SqlServerCe.4.0" 
->               Description=".NET Framework Data Provider for Microsoft SQL Server Compact" 
->               type="System.Data.SqlServerCe.SqlCeProviderFactory, System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"/>
->           </DbProviderFactories>
->         </system.data>
+>     [!code[Main](overview/samples/sample5.xml)]
 
 
 #### Issue: "Database" and "WebGrid" helpers do not work in Medium Trust in Visual Basic
@@ -473,34 +447,13 @@ For information about issues that involve installing SQL Server Compact as part 
 > 
 > 1. Add the following elements to the `SecurityClasses` section in *Web\_MediumTrust.config* file:
 > 
->         <SecurityClass Name="ReflectionPermission" 
->           Description="System.Security.Permissions.ReflectionPermission, mscorlib, 
->             Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>	
->             
->         <SecurityClass Name="RegistryPermission" 
->           Description="System.Security.Permissions.RegistryPermission, mscorlib, 
->           Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+>     [!code[Main](overview/samples/sample6.xml)]
 > 2. Create a new permission set in the *Web\_MediumTrust.config* file with the following required permissions:
 > 
->         <PermissionSet class="NamedPermission" version="1" Name="SqlCe_Trust">
->           <IPermission class="SecurityPermission" version="1" Flags="UnmanagedCode,SkipVerification"/>
->           <IPermission class="EnvironmentPermission" version="1" Read="PROCESSOR_ARCHITECTURE"/>
->           <IPermission class="RegistryPermission" version="1" Read="HKEY_LOCAL_MACHINE\" />
->         </PermissionSet>
+>     [!code[Main](overview/samples/sample7.xml)]
 > 3. Apply the permission set to SQL Server Compact by putting the following elements in the *Web\_MediumTrust.config* file:
 > 
->         <CodeGroup class="UnionCodeGroup" version="1" PermissionSetName="ASP.Net">
->           <IMembershipCondition class="UrlMembershipCondition" version="1" Url="$AppDirUrl$/*"/> 
->           <CodeGroup class="UnionCodeGroup" 
->               version="1" 
->               PermissionSetName="SqlCe_Trust" 
->               Name="SqlCe_Strong_Name" 
->               Description="This code group grants code signed with the SQLCE strong name SqlCe_Trust. ">
->             <IMembershipCondition class="StrongNameMembershipCondition" 
->               version="1" 
->               PublicKeyBlob="0024000004800000940000000602000000240000525341310004000001000100272736ad6e5f9586bac2d531eabc3acc666c2f8ec879fa94f8f7b0327d2ff2ed523448f83c3d5c5dd2dfc7bc99c5286b2c125117bf5cbe242b9d41750732b2bdffe649c6efb8e5526d526fdd130095ecdb7bf210809c6cdad8824faa9ac0310ac3cba2aa0523567b2dfa7fe250b30facbd62d4ec99b94ac47c7d3b28f1f6e4c8" Name="System.Data.SqlServerCe" />
->           </CodeGroup> 
->         </CodeGroup>
+>     [!code[Main](overview/samples/sample8.xml)]
 
 
 #### Issue: Gallery and PhpBB web applications display a "Service is unavailable" error after publishing

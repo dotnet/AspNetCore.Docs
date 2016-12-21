@@ -1,10 +1,27 @@
-public class Student
-   {
-      public int StudentID { get; set; }
-      public string LastName { get; set; }
-      public string FirstMidName { get; set; }
-      public DateTime EnrollmentDate { get; set; }
-      public string Secret { get; set; }
-
-      public virtual ICollection<Enrollment> Enrollments { get; set; }
-   }
+<div class="display-label">
+        @Html.LabelFor(model => model.Enrollments)
+    </div>
+    <div class="display-field">
+        <table>
+            <tr>
+                <th>Course Title</th>
+                <th>Grade</th>
+            </tr>
+            @foreach (var item in Model.Enrollments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.StudentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

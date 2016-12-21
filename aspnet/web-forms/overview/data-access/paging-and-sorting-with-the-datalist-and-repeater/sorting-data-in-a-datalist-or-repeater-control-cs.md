@@ -62,25 +62,7 @@ Unlike with the DataList, Visual Studio does not automatically create an `ItemTe
 After adding the `ItemTemplate`, the Repeater and ObjectDataSource s declarative markup should look similar to the following:
 
 
-    <asp:Repeater ID="SortableProducts" DataSourceID="ProductsDataSource"
-        EnableViewState="False" runat="server">
-        <ItemTemplate>
-            <h4><asp:Label ID="ProductNameLabel" runat="server"
-                Text='<%# Eval("ProductName") %>'></asp:Label></h4>
-            Category:
-            <asp:Label ID="CategoryNameLabel" runat="server"
-                Text='<%# Eval("CategoryName") %>'></asp:Label><br />
-            Supplier:
-            <asp:Label ID="SupplierNameLabel" runat="server"
-                Text='<%# Eval("SupplierName") %>'></asp:Label><br />
-            <br />
-            <br />
-        </ItemTemplate>
-    </asp:Repeater>
-    <asp:ObjectDataSource ID="ProductsDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}" TypeName="ProductsBLL"
-        SelectMethod="GetProducts">
-    </asp:ObjectDataSource>
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample1.xml)]
 
 Figure 3 shows this page when viewed through a browser.
 
@@ -97,11 +79,7 @@ To sort the data displayed in the Repeater, we need to inform the ObjectDataSour
 To pass sorting information from the ASP.NET page to the ObjectDataSource, create an event handler for the `Selecting` event and use the following code:
 
 
-    protected void ProductsDataSource_Selecting
-        (object sender, ObjectDataSourceSelectingEventArgs e)
-    {
-        e.Arguments.SortExpression = sortExpression;
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample2.xml)]
 
 The *sortExpression* value should be assigned the name of the data field to sort the data by (such as ProductName ). There is no sort direction-related property, so if you want to sort the data in descending order, append the string DESC to the *sortExpression* value (such as ProductName DESC ).
 
@@ -132,25 +110,12 @@ Finally, add a Button Web control to the right of the DropDownList. Set its `ID`
 After creating the `ListItem` s and adding the Refresh button, the DropDownList and Button s declarative syntax should look similar to the following:
 
 
-    <asp:DropDownList ID="SortBy" runat="server">
-        <asp:ListItem Value="ProductName">Name</asp:ListItem>
-        <asp:ListItem Value="ProductName DESC">Name (Reverse Order)
-            </asp:ListItem>
-        <asp:ListItem Value="CategoryName">Category</asp:ListItem>
-        <asp:ListItem Value="SupplierName">Supplier</asp:ListItem>
-    </asp:DropDownList>
-    <asp:Button runat="server" ID="RefreshRepeater" Text="Refresh" />
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample3.xml)]
 
 With the sorting DropDownList complete, we next need to update the ObjectDataSource s `Selecting` event handler so that it uses the selected `SortBy``ListItem` s `Value` property as opposed to a hard-coded sort expression.
 
 
-    protected void ProductsDataSource_Selecting
-        (object sender, ObjectDataSourceSelectingEventArgs e)
-    {
-        // Have the ObjectDataSource sort the results by the selected
-        // sort expression
-        e.Arguments.SortExpression = SortBy.SelectedValue;
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample4.xml)]
 
 At this point when first visiting the page the products will initially be sorted by the `ProductName` data field, as it s the `SortBy` `ListItem` selected by default (see Figure 6). Selecting a different sorting option such as Category and clicking Refresh will cause a postback and re-sort the data by the category name, as Figure 7 shows.
 
@@ -197,23 +162,7 @@ Earlier in this tutorial we added sorting support by specifying the sort express
 To accomplish this, create a new method in the `ProductsBLL` class, `GetProductsSortedAsPagedDataSource(sortExpression, pageIndex, pageSize)`. To sort the `ProductsDataTable` returned by the `GetProducts()` method, specify the `Sort` property of its default `DataTableView`:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Select, false)]
-    public PagedDataSource GetProductsSortedAsPagedDataSource
-        (string sortExpression, int pageIndex, int pageSize)
-    {
-        // Get ALL of the products
-        Northwind.ProductsDataTable products = GetProducts();
-        // Sort the products
-        products.DefaultView.Sort = sortExpression;
-        // Limit the results through a PagedDataSource
-        PagedDataSource pagedData = new PagedDataSource();
-        pagedData.DataSource = products.DefaultView;
-        pagedData.AllowPaging = true;
-        pagedData.CurrentPageIndex = pageIndex;
-        pagedData.PageSize = pageSize;
-        return pagedData;
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample5.xml)]
 
 The `GetProductsSortedAsPagedDataSource` method differs only slightly from the `GetProductsAsPagedDataSource` method created in the previous tutorial. In particular, `GetProductsSortedAsPagedDataSource` accepts an additional input parameter `sortExpression` and assigns this value to the `Sort` property of the `ProductDataTable` s `DefaultView`. A few lines of code later, the `PagedDataSource` object s DataSource is assigned the `ProductDataTable` s `DefaultView`.
 
@@ -226,20 +175,7 @@ Update the ObjectDataSource s `SelectMethod` property so that it invokes the new
 After these changes, the ObjectDataSource s declarative markup should look like:
 
 
-    <asp:ObjectDataSource ID="ProductsDefaultPagingDataSource"
-        OldValuesParameterFormatString="original_{0}" TypeName="ProductsBLL"
-        SelectMethod="GetProductsSortedAsPagedDataSource"
-        OnSelected="ProductsDefaultPagingDataSource_Selected" runat="server">
-        <SelectParameters>
-            <asp:QueryStringParameter DefaultValue="ProductName"
-                Name="sortExpression" QueryStringField="sortExpression"
-                Type="String" />
-            <asp:QueryStringParameter DefaultValue="0" Name="pageIndex"
-                QueryStringField="pageIndex" Type="Int32" />
-            <asp:QueryStringParameter DefaultValue="4" Name="pageSize"
-                QueryStringField="pageSize" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample6.xml)]
 
 At this point, the `SortingWithDefaultPaging.aspx` page will sort its results alphabetically by the product name (see Figure 9). This is because, by default, a value of ProductName is passed in as the `GetProductsSortedAsPagedDataSource` method s *sortExpression* parameter.
 
@@ -258,60 +194,17 @@ We first need to update the `RedirectUser` method to send the user to `SortingWi
 Currently the `RedirectUser` method accepts only a single input parameter the index of the page to display. However, there may be times when we want to redirect the user to a particular page of data using a sort expression other than what s specified in the querystring. In a moment we'll create the sorting interface for this page, which will include a series of Button Web controls for sorting the data by a specified column. When one of those Buttons is clicked, we want to redirect the user passing in the appropriate sort expression value. To provide this functionality, create two versions of the `RedirectUser` method. The first one should accept just the page index to display, while the second one accepts the page index and sort expression.
 
 
-    private string SortExpression
-    {
-        get
-        {
-            if (!string.IsNullOrEmpty(Request.QueryString["sortExpression"]))
-                return Request.QueryString["sortExpression"];
-            else
-                return "ProductName";
-        }
-    }
-    private void RedirectUser(int sendUserToPageIndex)
-    {
-        // Use the SortExpression property to get the sort expression
-        // from the querystring
-        RedirectUser(sendUserToPageIndex, SortExpression);
-    }
-    private void RedirectUser(int sendUserToPageIndex, string sendUserSortingBy)
-    {
-       // Send the user to the requested page with the requested sort expression
-       Response.Redirect(string.Format(
-          "SortingWithDefaultPaging.aspx?pageIndex={0}&pageSize={1}&sortExpression={2}",
-          sendUserToPageIndex, PageSize, sendUserSortingBy));
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample7.xml)]
 
 In the first example in this tutorial, we created a sorting interface using a DropDownList. For this example, let s use three Button Web controls positioned above the DataList one for sorting by `ProductName`, one for `CategoryName`, and one for `SupplierName`. Add the three Button Web controls, setting their `ID` and `Text` properties appropriately:
 
 
-    <p>
-        <asp:Button runat="server" id="SortByProductName"
-            Text="Sort by Product Name" />
-        <asp:Button runat="server" id="SortByCategoryName"
-            Text="Sort by Category" />
-        <asp:Button runat="server" id="SortBySupplierName"
-            Text="Sort by Supplier" />
-    </p>
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample8.xml)]
 
 Next, create a `Click` event handler for each. The event handlers should call the `RedirectUser` method, returning the user to the first page using the appropriate sort expression.
 
 
-    protected void SortByProductName_Click(object sender, EventArgs e)
-    {
-        // Sort by ProductName
-        RedirectUser(0, "ProductName");
-    }
-    protected void SortByCategoryName_Click(object sender, EventArgs e)
-    {
-        // Sort by CategoryName
-        RedirectUser(0, "CategoryName");
-    }
-    protected void SortBySupplierName_Click(object sender, EventArgs e)
-    {
-        // Sort by SupplierName
-        RedirectUser(0, "SupplierName");
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample9.xml)]
 
 When first visiting the page, the data is sorted by the product name alphabetically (refer back to Figure 9). Click the Next button to advance to the second page of data and then click the Sort by Category button. This returns us to the first page of data, sorted by category name (see Figure 10). Likewise, clicking the Sort by Supplier button sorts the data by supplier starting from the first page of data. The sort choice is remembered as the data is paged through. Figure 11 shows the page after sorting by category and then advancing to the thirteenth page of data.
 
@@ -358,39 +251,12 @@ Set the drop-down lists in the UPDATE, INSERT, and DELETE tabs to (None) and the
 Finally, define the Repeater s `ItemTemplate` so that the product s name, category, and supplier are shown. After these changes, the Repeater and ObjectDataSource s declarative syntax should look similar to the following:
 
 
-    <asp:Repeater ID="Products" runat="server" DataSourceID="ProductsDataSource"
-        EnableViewState="False">
-        <ItemTemplate>
-            <h4><asp:Label ID="ProductNameLabel" runat="server"
-                Text='<%# Eval("ProductName") %>'></asp:Label></h4>
-            Category:
-            <asp:Label ID="CategoryNameLabel" runat="server"
-                Text='<%# Eval("CategoryName") %>'></asp:Label><br />
-            Supplier:
-            <asp:Label ID="SupplierNameLabel" runat="server"
-                Text='<%# Eval("SupplierName") %>'></asp:Label><br />
-            <br />
-            <br />
-        </ItemTemplate>
-    </asp:Repeater>
-    <asp:ObjectDataSource ID="ProductsDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProductsPaged" TypeName="ProductsBLL">
-        <SelectParameters>
-            <asp:Parameter Name="startRowIndex" Type="Int32" />
-            <asp:Parameter Name="maximumRows" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample10.xml)]
 
 Take a moment to visit the page through a browser and note that no records are returned. This is because we ve yet to specify the *startRowIndex* and *maximumRows* parameter values; therefore, values of 0 are being passed in for both. To specify these values, create an event handler for the ObjectDataSource s `Selecting` event and set these parameters values programmatically to hard-coded values of 0 and 5, respectively:
 
 
-    protected void ProductsDataSource_Selecting
-        (object sender, ObjectDataSourceSelectingEventArgs e)
-    {
-        e.InputParameters["startRowIndex"] = 0;
-        e.InputParameters["maximumRows"] = 5;
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample11.xml)]
 
 With this change, the page, when viewed through a browser, shows the first five products.
 
@@ -406,42 +272,12 @@ With this change, the page, when viewed through a browser, shows the first five 
 In order to allow the user to step through the pages, we need to keep track of the start row index and maximum rows and remember these values across postbacks. In the default paging example we used querystring fields to persist these values; for this demo, let s persist this information in the page s view state. Create the following two properties:
 
 
-    private int StartRowIndex
-    {
-        get
-        {
-            object o = ViewState["StartRowIndex"];
-            if (o == null)
-                return 0;
-            else
-                return (int)o;
-        }
-        set
-        {
-            ViewState["StartRowIndex"] = value;
-        }
-    }
-    private int MaximumRows
-    {
-        get
-        {
-            object o = ViewState["MaximumRows"];
-            if (o == null)
-                return 5;
-            else
-                return (int)o;
-        }
-        set
-        {
-            ViewState["MaximumRows"] = value;
-        }
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample12.xml)]
 
 Next, update the code in the Selecting event handler so that it uses the `StartRowIndex` and `MaximumRows` properties instead of the hard-coded values of 0 and 5:
 
 
-    e.InputParameters["startRowIndex"] = StartRowIndex;
-    e.InputParameters["maximumRows"] = MaximumRows;
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample13.xml)]
 
 At this point our page still shows just the first five records. However, with these properties in place, we re ready to create our paging interface.
 
@@ -450,66 +286,22 @@ At this point our page still shows just the first five records. However, with th
 Let s use the same First, Previous, Next, Last paging interface used in the default paging example, including the Label Web control that displays what page of data is being viewed and how many total pages exist. Add the four Button Web controls and Label below the Repeater.
 
 
-    <p>
-        <asp:Button runat="server" ID="FirstPage" Text="<< First" />
-        <asp:Button runat="server" ID="PrevPage" Text="< Prev" />
-        <asp:Button runat="server" ID="NextPage" Text="Next >" />
-        <asp:Button runat="server" ID="LastPage" Text="Last >>" />
-    </p>
-    <p>
-        <asp:Label runat="server" ID="CurrentPageNumber"></asp:Label>
-    </p>
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample14.xml)]
 
 Next, create `Click` event handlers for the four Buttons. When one of these Buttons is clicked, we need to update the `StartRowIndex` and rebind the data to the Repeater. The code for the First, Previous, and Next buttons is simple enough, but for the Last button how do we determine the start row index for the last page of data? To compute this index as well as being able to determine whether the Next and Last buttons should be enabled we need to know how many records in total are being paged through. We can determine this by calling the `ProductsBLL` class s `TotalNumberOfProducts()` method. Let s create a read-only, page-level property named `TotalRowCount` that returns the results of the `TotalNumberOfProducts()` method:
 
 
-    private int TotalRowCount
-    {
-        get
-        {
-            // Return the value from the TotalNumberOfProducts() method
-            ProductsBLL productsAPI = new ProductsBLL();
-            return productsAPI.TotalNumberOfProducts();
-        }
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample15.xml)]
 
 With this property we can now determine the last page s start row index. Specifically, it s the integer result of the `TotalRowCount` minus 1 divided by `MaximumRows`, multiplied by `MaximumRows`. We can now write the `Click` event handlers for the four paging interface buttons:
 
 
-    protected void FirstPage_Click(object sender, EventArgs e)
-    {
-        // Return to StartRowIndex of 0 and rebind data
-        StartRowIndex = 0;
-        Products.DataBind();
-    }
-    protected void PrevPage_Click(object sender, EventArgs e)
-    {
-        // Subtract MaximumRows from StartRowIndex and rebind data
-        StartRowIndex -= MaximumRows;
-        Products.DataBind();
-    }
-    protected void NextPage_Click(object sender, EventArgs e)
-    {
-        // Add MaximumRows to StartRowIndex and rebind data
-        StartRowIndex += MaximumRows;
-        Products.DataBind();
-    }
-    protected void LastPage_Click(object sender, EventArgs e)
-    {
-        // Set StartRowIndex = to last page's starting row index and rebind data
-        StartRowIndex = ((TotalRowCount - 1) / MaximumRows) * MaximumRows;
-        Products.DataBind();
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample16.xml)]
 
 Finally, we need to disable the First and Previous buttons in the paging interface when viewing the first page of data and the Next and Last buttons when viewing the last page. To accomplish this, add the following code to the ObjectDataSource s `Selecting` event handler:
 
 
-    // Disable the paging interface buttons, if needed
-    FirstPage.Enabled = StartRowIndex != 0;
-    PrevPage.Enabled = StartRowIndex != 0;
-    int LastPageStartRowIndex = ((TotalRowCount - 1) / MaximumRows) * MaximumRows;
-    NextPage.Enabled = StartRowIndex < LastPageStartRowIndex;
-    LastPage.Enabled = StartRowIndex < LastPageStartRowIndex;
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample17.xml)]
 
 After adding these `Click` event handlers and the code to enable or disable the paging interface elements based on the current start row index, test the page in a browser. As Figure 15 illustrates, when first visiting the page the First and Previous buttons will are disabled. Clicking Next shows the second page of data, while clicking Last displays the final page (see Figures 16 and 17). When viewing the last page of data both the Next and Last buttons are disabled.
 
@@ -542,72 +334,27 @@ Now that custom paging has been implemented, we re ready to include sorting supp
 Start by updating the ObjectDataSource s `SelectMethod` property and adding a *sortExpression* `Parameter`. Make sure that the *sortExpression* `Parameter` s `Type` property is set to `String`. After completing these first two tasks, the ObjectDataSource s declarative markup should look like the following:
 
 
-    <asp:ObjectDataSource ID="ProductsDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}" TypeName="ProductsBLL"
-        SelectMethod="GetProductsPagedAndSorted"
-        OnSelecting="ProductsDataSource_Selecting">
-        <SelectParameters>
-            <asp:Parameter Name="sortExpression" Type="String" />
-            <asp:Parameter Name="startRowIndex" Type="Int32" />
-            <asp:Parameter Name="maximumRows" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample18.xml)]
 
 Next, we need a page-level `SortExpression` property whose value is serialized to view state. If no sort expression value has been set, use ProductName as the default:
 
 
-    private string SortExpression
-    {
-        get
-        {
-            object o = ViewState["SortExpression"];
-            if (o == null)
-                return "ProductName";
-            else
-                return o.ToString();
-        }
-        set
-        {
-            ViewState["SortExpression"] = value;
-        }
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample19.xml)]
 
 Before the ObjectDataSource invokes the `GetProductsPagedAndSorted` method we need to set the *sortExpression* `Parameter` to the value of the `SortExpression` property. In the `Selecting` event handler, add the following line of code:
 
 
-    e.InputParameters["sortExpression"] = SortExpression;
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample20.xml)]
 
 All that remains is to implement the sorting interface. As we did in the last example, let s have the sorting interface implemented using three Button Web controls that allow the user to sort the results by product name, category, or supplier.
 
 
-    <asp:Button runat="server" id="SortByProductName"
-        Text="Sort by Product Name" />
-    <asp:Button runat="server" id="SortByCategoryName"
-        Text="Sort by Category" />
-    <asp:Button runat="server" id="SortBySupplierName"
-        Text="Sort by Supplier" />
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample21.xml)]
 
 Create `Click` event handlers for these three Button controls. In the event handler, reset the `StartRowIndex` to 0, set the `SortExpression` to the appropriate value, and rebind the data to the Repeater:
 
 
-    protected void SortByProductName_Click(object sender, EventArgs e)
-    {
-        StartRowIndex = 0;
-        SortExpression = "ProductName";
-        Products.DataBind();
-    }
-    protected void SortByCategoryName_Click(object sender, EventArgs e)
-    {
-        StartRowIndex = 0;
-        SortExpression = "CategoryName";
-        Products.DataBind();
-    }
-    protected void SortBySupplierName_Click(object sender, EventArgs e)
-    {
-        StartRowIndex = 0;
-        SortExpression = "CompanyName";
-        Products.DataBind();
-    }
+[!code[Main](sorting-data-in-a-datalist-or-repeater-control-cs/samples/sample22.xml)]
 
 That s all there is to it! While there were a number of steps to get custom paging and sorting implemented, the steps were very similar to those needed for default paging. Figure 18 shows the products when viewing the last page of data when sorted by category.
 

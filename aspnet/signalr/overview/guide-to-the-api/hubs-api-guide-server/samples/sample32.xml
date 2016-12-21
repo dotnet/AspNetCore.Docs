@@ -1,2 +1,1 @@
-contosoChatHubProxy.state.userName = "Fadi Fakhouri";
-contosoChatHubProxy.state.computerName = "fadivm1";
+        Clients.AllExcept(connectionId1, connectionId2).addContosoChatMessageToPage(name, message);

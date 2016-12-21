@@ -78,20 +78,7 @@ The mail delivery configuration is specified through the [`<system.net>` element
 > [!NOTE] `<system.net>` is a child element of the root `<configuration>` element and a sibling of `<system.web>`. Therefore, do not put the `<system.net>` element within the `<system.web>` element; instead, put it at the same level.
 
 
-    <configuration>
-     ...
-     <system.net>
-     <mailSettings>
-     <smtp deliveryMethod="Network" from="youraddress@example.com">
-     <network
-     host="smtp.example.com"
-     userName="username"
-     password="password"
-     port="25" />
-     </smtp>
-     </mailSettings>
-     </system.net>
-    </configuration>
+[!code[Main](recovering-and-changing-passwords-cs/samples/sample1.xml)]
 
 In addition to using an SMTP server on the network, you can alternatively specify a pickup directory where email messages to be sent should be deposited.
 
@@ -135,23 +122,13 @@ The `SendingMail` event is fired right before the email message is sent and is o
 
 Create an event handler for the `SendingMail` event and add the following code, which programmatically adds `webmaster@example.com` to the CC list.
 
-    protected void RecoverPwd_SendingMail(object sender, MailMessageEventArgs e)
-    {
-     e.Message.CC.Add("webmaster@example.com");
-    }
+[!code[Main](recovering-and-changing-passwords-cs/samples/sample2.xml)]
 
 The email message can also be configured through declarative means. The PasswordRecovery's `MailDefinition` property is an object of type [`MailDefinition`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.maildefinition.aspx). The `MailDefinition` class offers a host of email-related properties, including `From`, `CC`, `Priority`, `Subject`, `IsBodyHtml`, `BodyFileName`, and others. For starters, set the [`Subject` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.maildefinition.subject.aspx) to something more descriptive than the one used by default ( Password ), such as Your password has been reset...
 
 To customize the body of the email message we need to create a separate email template file that contains the body's contents. Start by creating a new folder in the website named `EmailTemplates`. Next, add a new text file to this folder named `PasswordRecovery.txt` and add the following content:
 
-    Your password has been reset, <%UserName%>!
-    
-    According to our records, you have requested that your password be reset. Your new
-    password is: <%Password%>
-    
-    If you have any questions or trouble logging on please contact a site administrator.
-    
-    Thank you!
+[!code[Main](recovering-and-changing-passwords-cs/samples/sample3.xml)]
 
 Note the use of the placeholders `<%UserName%>` and `<%Password%>`. The PasswordRecovery control automatically replaces these two placeholders with the user's username and recovered password prior to sending the email.
 
@@ -239,39 +216,7 @@ By default, the ChangePassword control does not send an email message to the use
 
 Start by creating a new file in the `EmailTemplates` folder named `ChangePassword.htm`. Add the following markup:
 
-    <html>
-     <body>
-     <h2>Your Password Has Been Changed!</h2>
-     <p>
-     This email confirms that your password has been changed.
-     </p>
-     <p>
-     To log on to the site, use the following credentials:
-     </p>
-     <table>
-     <tr>
-     <td>
-     <b>Username:</b>
-     </td>
-     <td>
-     <%UserName%>
-     </td>
-     </tr>
-     <tr>
-     <td>
-     <b>Password:</b>
-     </td>
-     <td>
-     <%Password%>
-     </td>
-     </tr>
-     </table>
-     <p>
-     If you have any questions or encounter any problems logging in,
-     please contact a site administrator.
-     </p>
-     </body>
-    </html>
+[!code[Main](recovering-and-changing-passwords-cs/samples/sample4.xml)]
 
 Next, set the ChangePassword control's `MailDefinition` property's `BodyFileName`, `IsBodyHtml`, and `Subject` properties to ~/EmailTemplates/ChangePassword.htm , True, and Your password has changed! , respectively.
 
@@ -291,9 +236,7 @@ But what if your client insists that administrative users should be able to chan
 
 One workaround is to first reset the user's password and then change it to the new password using code like the following:
 
-    MembershipUser usr = Membership.GetUser(username);
-    string resetPwd = usr.ResetPassword();
-    usr.ChangePassword(resetPwd, newPassword);
+[!code[Main](recovering-and-changing-passwords-cs/samples/sample5.xml)]
 
 This code starts by retrieving information about *username*, which is the user whose password the administrator wishes to change. Next, the `ResetPassword` method is invoked, which assigns and the user a new, random password. This randomly-generated password is returned by the method and stored in the variable `resetPwd`. Now that we know the user's password, we can change it via a call to `ChangePassword`.
 

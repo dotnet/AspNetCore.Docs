@@ -30,24 +30,7 @@ Listing 1 contains a simple controller named the HomeController. The HomeControl
 
 **Listing 1 - HomeController.cs**
 
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-        [HandleError]
-        public class HomeController : Controller
-        {
-            public ActionResult Index()
-            {
-                return View();
-            }
-    
-            public ActionResult Details()
-            {
-                return RedirectToAction("Index");
-            }
-        }
-    }
+[!code[Main](asp-net-mvc-views-overview-cs/samples/sample1.xml)]
 
 You can invoke the first action, the Index() action, by typing the following URL into your browser address bar:
 
@@ -90,23 +73,7 @@ For example, the view in Listing 2 displays the current date and time.
 
 **Listing 2 - \Views\Home\Index.aspx**
 
-    <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-    
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-        <title>Index</title>
-    </head>
-    <body>
-        <div>
-    
-        The current date and time is
-        <% Response.Write(DateTime.Now);%>
-    
-        </div>
-    </body>
-    </html>
+[!code[Main](asp-net-mvc-views-overview-cs/samples/sample2.xml)]
 
 Notice that the body of the HTML page in Listing 2 contains the following script:
 
@@ -118,23 +85,7 @@ Since you call Response.Write() so often, Microsoft provides you with a shortcut
 
 **Listing 3 - Views\Home\Index2.aspx**
 
-    <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-    
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-        <title>Index</title>
-    </head>
-    <body>
-        <div>
-    
-        The current date and time is
-        <%=DateTime.Now %>
-    
-        </div>
-    </body>
-    </html>
+[!code[Main](asp-net-mvc-views-overview-cs/samples/sample3.xml)]
 
 You can use any .NET language to generate dynamic content in a view. Normally, you�ll use either Visual Basic .NET or C# to write your controllers and views.
 
@@ -146,39 +97,7 @@ For example, the view in Listing 4 takes advantage of three HTML Helpers -- the 
 
 **Listing 4 -- \Views\Home\Login.aspx**
 
-    <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-    
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-        <title>Login Form</title>
-    </head>
-    <body>
-        <div>
-        
-        <% using (Html.BeginForm())
-           { %>
-    
-            <label for="UserName">User Name:</label>
-            <br />
-            <%= Html.TextBox("UserName") %>
-            
-            <br /><br />
-                
-            <label for="Password">Password:</label>
-            <br />
-            <%= Html.Password("Password") %>
-            
-            <br /><br />
-    
-            <input type="submit" value="Log in" />        
-        
-        <% } %>
-        
-        </div>
-    </body>
-    </html>
+[!code[Main](asp-net-mvc-views-overview-cs/samples/sample4.xml)]
 
 
 [![The New Project dialog box](asp-net-mvc-views-overview-cs/_static/image1.jpg)](asp-net-mvc-views-overview-cs/_static/image1.png)
@@ -194,35 +113,7 @@ Using HTML Helper methods is optional. They make your life easier by reducing th
 
 **Listing 5 -- \Views\Home\Login.aspx**
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index4.aspx.cs" Inherits="MvcApp.Views.Home.Index4" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-        <title>Login Form without Help</title>
-    </head>
-    <body>
-        <div>
-    
-        <form method="post" action="/Home/Login">
-        
-        <label for="userName">User Name:</label>
-        <br />
-        <input name="userName" />
-        
-        <br /><br />
-        
-        <label for="password">Password:</label>
-        <br />
-        <input name="password" type="password" />
-        
-        <br /><br />
-        <input type="submit" value="Log In" />
-        
-        </form>
-        
-        </div>
-    </body>
-    </html>
+[!code[Main](asp-net-mvc-views-overview-cs/samples/sample5.xml)]
 
 You also have the option of creating your own HTML Helpers. For example, you can create a GridView() helper method that displays a set of database records in an HTML table automatically. We explore this topic in the tutorial **Creating Custom HTML Helpers**.
 
@@ -232,20 +123,7 @@ You use view data to pass data from a controller to a view. Think of view data l
 
 **Listing 6 - ProductController.cs**
 
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class ProductController : Controller
-        {
-            public ActionResult Index()
-            {
-                ViewData["message"] = "Hello World!";
-                return View();
-            }
-    
-        }
-    }
+[!code[Main](asp-net-mvc-views-overview-cs/samples/sample6.xml)]
 
 The controller ViewData property represents a collection of name and value pairs. In Listing 6, the Index() method adds an item to the view data collection named message with the value Hello World! . When the view is returned by the Index() method, the view data is passed to the view automatically.
 
@@ -253,21 +131,7 @@ The view in Listing 7 retrieves the message from the view data and renders the m
 
 **Listing 7 -- \Views\Product\Index.aspx**
 
-    <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-    
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-        <title>Product Index</title>
-    </head>
-    <body>
-        <div>
-        
-        <%= Html.Encode(ViewData["message"]) %>
-        
-        </div>
-    </body>
-    </html>
+[!code[Main](asp-net-mvc-views-overview-cs/samples/sample7.xml)]
 
 Notice that the view takes advantage of the Html.Encode() HTML Helper method when rendering the message. The Html.Encode() HTML Helper encodes special characters such as &lt; and &gt; into characters that are safe to display in a web page. Whenever you render content that a user submits to a website, you should encode the content to prevent JavaScript injection attacks.
 

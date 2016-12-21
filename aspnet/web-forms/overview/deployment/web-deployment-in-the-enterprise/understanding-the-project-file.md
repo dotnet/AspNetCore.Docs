@@ -73,10 +73,7 @@ This shows the relationship between the key elements in an MSBuild project file:
 The [Project](https://msdn.microsoft.com/en-us/library/bcxfsh87.aspx) element is the root element of every project file. In addition to identifying the XML schema for the project file, the **Project** element can include attributes to specify the entry points for the build process. For example, in the [Contact Manager sample solution](the-contact-manager-solution.md), the *Publish.proj* file specifies that the build should start by calling the target named **FullPublish**.
 
 
-    <Project ToolsVersion="4.0" DefaultTargets="FullPublish" 
-             xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-      
-    </Project>
+[!code[Main](understanding-the-project-file/samples/sample1.xml)]
 
 
 ### Properties and Conditions
@@ -84,18 +81,13 @@ The [Project](https://msdn.microsoft.com/en-us/library/bcxfsh87.aspx) element is
 A project file typically needs to provide lots of different pieces of information in order to successfully build and deploy your projects. These pieces of information could include server names, connection strings, credentials, build configurations, source and destination file paths, and any other information you want to include to support customization. In a project file, properties must be defined within a [PropertyGroup](https://msdn.microsoft.com/en-us/library/t4w159bs.aspx) element. MSBuild properties consist of key-value pairs. Within the **PropertyGroup** element, the element name defines the property key and the content of the element defines the property value. For example, you could define properties named **ServerName** and **ConnectionString** to store a static server name and connection string.
 
 
-    <PropertyGroup>    
-       <ServerName>FABRIKAM\TEST1</ServerName>
-       <ConnectionString>
-         Data Source=FABRIKAM\TESTDB;InitialCatalog=ContactManager,...
-       </ConnectionString>
-    </PropertyGroup>
+[!code[Main](understanding-the-project-file/samples/sample2.xml)]
 
 
 To retrieve a property value, you use the format **$(***PropertyName***)***.*For example, to retrieve the value of the **ServerName** property, you would type:
 
 
-    $(ServerName)
+[!code[Main](understanding-the-project-file/samples/sample3.xml)]
 
 
 > [!NOTE] You&#x27;ll see examples of how and when to use property values later in this topic.
@@ -104,7 +96,7 @@ To retrieve a property value, you use the format **$(***PropertyName***)***.*For
 Embedding information as static properties in a project file is not always the ideal approach to managing the build process. In a lot of scenarios, you'll want to obtain the information from other sources or empower the user to provide the information from the command prompt. MSBuild allows you to specify any property value as a command-line parameter. For example, the user could provide a value for **ServerName** when he or she runs MSBuild.exe from the command line.
 
 
-    msbuild.exe Publish.proj /p:ServerName=FABRIKAM\TESTWEB1
+[!code[Main](understanding-the-project-file/samples/sample4.xml)]
 
 
 > [!NOTE] For more information on the arguments and switches you can use with MSBuild.exe, see [MSBuild Command Line Reference](https://msdn.microsoft.com/en-us/library/ms164311.aspx).
@@ -115,10 +107,7 @@ You can use the same property syntax to obtain the values of environment variabl
 Properties are often used in conjunction with *conditions*. Most MSBuild elements support the **Condition** attribute, which lets you specify the criteria upon which MSBuild should evaluate the element. For example, consider this property definition:
 
 
-    <PropertyGroup>
-       <OutputRoot Condition=" '$(OutputRoot)'=='' ">..\Publish\Out\</OutputRoot>
-       ...
-    </PropertyGroup>
+[!code[Main](understanding-the-project-file/samples/sample5.xml)]
 
 
 When MSBuild processes this property definition, it first checks to see whether an **$(OutputRoot)** property value is available. If the property value is blank&#x2014;in other words, the user hasn't provided a value for this property&#x2014;the condition evaluates to **true** and the property value is set to **..\Publish\Out**. If the user has provided a value for this property, the condition evaluates to **false** and the static property value is not used.
@@ -130,32 +119,13 @@ For more information on the different ways in which you can specify conditions, 
 One of the important roles of the project file is to define the inputs to the build process. Typically, these inputs are files&#x2014;code files, configuration files, command files, and any other files that you need to process or copy as part of the build process. In the MSBuild project schema, these inputs are represented by [Item](https://msdn.microsoft.com/en-us/library/ms164283.aspx) elements. In a project file, items must be defined within an [ItemGroup](https://msdn.microsoft.com/en-us/library/646dk05y.aspx) element. Just like **Property** elements, you can name an **Item** element however you like. However, you must specify an **Include** attribute to identify the file or wildcard that the item represents.
 
 
-    <ItemGroup>
-       <ProjectsToBuild Include="$(SourceRoot)ContactManager-WCF.sln"/>
-    </ItemGroup>
+[!code[Main](understanding-the-project-file/samples/sample6.xml)]
 
 
 By specifying multiple **Item** elements with the same name, you're effectively creating a named list of resources. A good way to see this in action is to take a look inside one of the project files that Visual Studio creates. For example, the *ContactManager.Mvc.csproj* file in the sample solution includes a lot of item groups, each with several identically named **Item** elements.
 
 
-    <ItemGroup>
-       <Reference Include="Microsoft.CSharp" />
-       <Reference Include="System.Runtime.Serialization" />
-       <Reference Include="System.ServiceModel" />
-       ...
-    </ItemGroup>
-    <ItemGroup>
-       <Compile Include="Controllers\AccountController.cs" />
-       <Compile Include="Controllers\ContactsController.cs" />
-       <Compile Include="Controllers\HomeController.cs" />
-       ...
-    </ItemGroup>
-    <ItemGroup>
-       <Content Include="Content\Custom.css" />
-       <Content Include="CreateDatabase.sql" />
-       <Content Include="DropDatabase.sql" />
-       ...
-    </ItemGroup>
+[!code[Main](understanding-the-project-file/samples/sample7.xml)]
 
 
 In this way, the project file is instructing MSBuild to construct lists of files that need to be processed in the same way&#x2014;the **Reference** list includes assemblies that must be in place for a successful build, the **Compile** list includes code files that must be compiled, and the **Content** list includes resources that must be copied unaltered. We&#x27;ll look at how the build process references and uses these items later in this topic.
@@ -163,9 +133,7 @@ In this way, the project file is instructing MSBuild to construct lists of files
 Item elements can also include [ItemMetadata](https://msdn.microsoft.com/en-us/library/ms164284.aspx) child elements. These are user-defined key-value pairs and essentially represent properties that are specific to that item. For example, a lot of the **Compile** item elements in the project file include **DependentUpon** child elements.
 
 
-    <Compile Include="Global.asax.cs">
-       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
+[!code[Main](understanding-the-project-file/samples/sample8.xml)]
 
 
 > [!NOTE] In addition to user-created item metadata, all items are assigned various common metadata on creation. For more information, see [Well-known Item Metadata](https://msdn.microsoft.com/en-us/library/ms164313.aspx).
@@ -189,34 +157,25 @@ In the MSBuild schema, a [Task](https://msdn.microsoft.com/en-us/library/77f2hx1
 Tasks must always be contained within [Target](https://msdn.microsoft.com/en-us/library/t50z2hka.aspx) elements. A **Target** element is a set of one or more tasks that are executed sequentially, and a project file can contain multiple targets. When you want to run a task, or a set of tasks, you invoke the target that contains them. For example, suppose you have a simple project file that logs a message.
 
 
-    <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-       <Target Name="LogMessage">
-          <Message Text="Hello world!" />
-       </Target>
-    </Project>
+[!code[Main](understanding-the-project-file/samples/sample9.xml)]
 
 
 You can invoke the target from the command line, by using the **/t** switch to specify the target.
 
 
-    msbuild.exe Publish.proj /t:LogMessage
+[!code[Main](understanding-the-project-file/samples/sample10.xml)]
 
 
 Alternatively, you can add a **DefaultTargets** attribute to the **Project** element, to specify the targets that you want to invoke.
 
 
-    <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" 
-             DefaultTargets="FullPublish">
-       <Target Name="LogMessage">
-          <Message Text="Hello world!" />
-       </Target>
-    </Project>
+[!code[Main](understanding-the-project-file/samples/sample11.xml)]
 
 
 In this case, you don&#x27;t need to specify the target from the command line. You can simply specify the project file, and MSBuild will invoke the **FullPublish** target for you.
 
 
-    msbuild.exe Publish.proj
+[!code[Main](understanding-the-project-file/samples/sample12.xml)]
 
 
 Both targets and tasks can include **Condition** attributes. As such, you can choose to omit entire targets or individual tasks if certain conditions are met.
@@ -232,14 +191,7 @@ Generally speaking, when you create useful tasks and targets, you&#x27;ll need t
 For example, in the *Publish.proj* file in the sample solution, take a look at the **BuildProjects** target.
 
 
-    <Target Name="BuildProjects" Condition=" '$(BuildingInTeamBuild)'!='true' ">
-       <MSBuild Projects="@(ProjectsToBuild)"           
-                Properties="OutDir=$(OutputRoot);
-                            Configuration=$(Configuration);
-                            DeployOnBuild=true;
-                            DeployTarget=Package"
-                Targets="Build" />
-    </Target>
+[!code[Main](understanding-the-project-file/samples/sample13.xml)]
 
 
 In this sample, you can observe these key points:
@@ -248,19 +200,10 @@ In this sample, you can observe these key points:
 - The target contains a single instance of the [MSBuild](https://msdn.microsoft.com/en-us/library/z7f65y0d.aspx) task. This task lets you build other MSBuild projects.
 - The **ProjectsToBuild** item is passed to the task. This item could represent a list of project or solution files, all defined by **ProjectsToBuild** item elements within an item group. In this case, the **ProjectsToBuild** item refers to a single solution file.
 
-        <ItemGroup>
-           <ProjectsToBuild Include="$(SourceRoot)ContactManager-WCF.sln"/>
-        </ItemGroup>
+    [!code[Main](understanding-the-project-file/samples/sample14.xml)]
 - The property values passed to the **MSBuild** task include parameters named **OutputRoot** and **Configuration**. These are set to parameter values if they are provided, or static property values if they are not.
 
-        <PropertyGroup>
-           ... 
-           <Configuration Condition=" '$(Configuration)'=='' ">Release
-           </Configuration>
-           <OutputRoot Condition=" '$(OutputRoot)'=='' ">..\Publish\Out\
-           </OutputRoot>
-           ...
-        </PropertyGroup>
+    [!code[Main](understanding-the-project-file/samples/sample15.xml)]
 
 You can also see that the **MSBuild** task invokes a target named **Build**. This is one of several built-in targets that are widely used in Visual Studio project files and are available to you in your custom project files, like **Build**, **Clean**, **Rebuild**, and **Publish**. You&#x27;ll learn more about using targets and tasks to control the build process, and about the **MSBuild** task in particular, later in this topic.
 
@@ -279,13 +222,13 @@ Fortunately there is an alternative. MSBuild lets you split your build configura
 Now notice that the *Publish.proj* file includes an [Import](https://msdn.microsoft.com/en-us/library/92x05xfs.aspx) element, immediately beneath the opening **Project** tag.
 
 
-    <Import Project="$(TargetEnvPropsFile)"/>
+[!code[Main](understanding-the-project-file/samples/sample16.xml)]
 
 
 The **Import** element is used to import the contents of another MSBuild project file into the current MSBuild project file. In this case, the **TargetEnvPropsFile** parameter provides the filename of the project file you want to import. You can provide a value for this parameter when you run MSBuild.
 
 
-    msbuild.exe Publish.proj /p:TargetEnvPropsFile=EnvConfig\Env-Dev.proj
+[!code[Main](understanding-the-project-file/samples/sample17.xml)]
 
 
 This effectively merges the contents of the two files into a single project file. Using this approach, you can create one project file containing your universal build configuration and multiple supplementary project files containing environment-specific properties. As a result, simply running a command with a different parameter value lets you deploy your solution to a different environment.

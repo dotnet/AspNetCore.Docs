@@ -87,16 +87,7 @@ If Solution Explorer is not already visible, click the **View** menu and select 
 
 Add the following properties to the `Product` class.
 
-    namespace ProductStore.Models
-    {
-        public class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Category { get; set; }
-            public decimal Price { get; set; }
-        }
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample1.xml)]
 
 ## Adding a Repository
 
@@ -112,77 +103,11 @@ In the **Templates** pane, select **Installed Templates** and expand the C# node
 
 Add the following implementation:
 
-    namespace ProductStore.Models
-    {
-        public interface IProductRepository
-        {
-            IEnumerable<Product> GetAll();
-            Product Get(int id);
-            Product Add(Product item);
-            void Remove(int id);
-            bool Update(Product item);
-        }
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample2.xml)]
 
 Now add another class to the Models folder, named &quot;ProductRepository.&quot; This class will implement the `IProductRespository` interface. Add the following implementation:
 
-    namespace ProductStore.Models
-    {
-        public class ProductRepository : IProductRepository
-        {
-            private List<Product> products = new List<Product>();
-            private int _nextId = 1;
-    
-            public ProductRepository()
-            {
-                Add(new Product { Name = "Tomato soup", Category = "Groceries", Price = 1.39M });
-                Add(new Product { Name = "Yo-yo", Category = "Toys", Price = 3.75M });
-                Add(new Product { Name = "Hammer", Category = "Hardware", Price = 16.99M });
-            }
-    
-            public IEnumerable<Product> GetAll()
-            {
-                return products;
-            }
-    
-            public Product Get(int id)
-            {
-                return products.Find(p => p.Id == id);
-            }
-    
-            public Product Add(Product item)
-            {
-                if (item == null)
-                {
-                    throw new ArgumentNullException("item");
-                }
-                item.Id = _nextId++;
-                products.Add(item);
-                return item;
-            }
-    
-            public void Remove(int id)
-            {
-                products.RemoveAll(p => p.Id == id);
-            }
-    
-            public bool Update(Product item)
-            {
-                if (item == null)
-                {
-                    throw new ArgumentNullException("item");
-                }
-                int index = products.FindIndex(p => p.Id == item.Id);
-                if (index == -1)
-                {
-                    return false;
-                }
-                products.RemoveAt(index);
-                products.Add(item);
-                return true;
-            }
-        }
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample3.xml)]
 
 The repository keeps the list in local memory. This is OK for a tutorial, but in a real application, you would store the data externally, either a database or in cloud storage. The repository pattern will make it easier to change the implementation later.
 
@@ -208,14 +133,11 @@ In the **Add Controller** wizard, name the controller &quot;ProductsController&q
 
 The **Add Controller** wizard will create a file named ProductsController.cs in the Controllers folder. If this file is not open already, double-click the file to open it. Add the following **using** statement:
 
-    using ProductStore.Models;
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample4.xml)]
 
 Add a field that holds an **IProductRepository** instance.
 
-    public class ProductsController : ApiController
-    {
-        static readonly IProductRepository repository = new ProductRepository();
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample5.xml)]
 
 > [!NOTE] Calling `new ProductRepository()` in the controller is not the best design, because it ties the controller to a particular implementation of `IProductRepository`. For a better approach, see [Using the Web API Dependency Resolver](../advanced/dependency-injection.md).
 
@@ -232,28 +154,13 @@ The ProductStore API will expose several &quot;read&quot; actions as HTTP GET me
 
 To get the list of all products, add this method to the `ProductsController` class:
 
-    public class ProductsController : ApiController
-    {
-        public IEnumerable<Product> GetAllProducts()
-        {
-            return repository.GetAll();
-        }
-        // ....
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample6.xml)]
 
 The method name starts with &quot;Get&quot;, so by convention it maps to GET requests. Also, because the method has no parameters, it maps to a URI that does not contain an *&quot;id&quot;* segment in the path.
 
 To get a product by ID, add this method to the `ProductsController` class:
 
-    public Product GetProduct(int id)
-    {
-        Product item = repository.Get(id);
-        if (item == null)
-        {
-            throw new HttpResponseException(HttpStatusCode.NotFound); 
-        }
-        return item;
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample7.xml)]
 
 This method name also starts with &quot;Get&quot;, but the method has a parameter named *id*. This parameter is mapped to the &quot;id&quot; segment of the URI path. The ASP.NET Web API framework automatically converts the ID to the correct data type (**int**) for the parameter.
 
@@ -261,11 +168,7 @@ The GetProduct method throws an exception of type **HttpResponseException** if *
 
 Finally, add a method to find products by category:
 
-    public IEnumerable<Product> GetProductsByCategory(string category)
-    {
-        return repository.GetAll().Where(
-            p => string.Equals(p.Category, category, StringComparison.OrdinalIgnoreCase));
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample8.xml)]
 
 If the request URI has a query string, Web API tries to match the query parameters to parameters on the controller method. Therefore, a URI of the form "api/products?category=*category*" will map to this method.
 
@@ -273,12 +176,7 @@ If the request URI has a query string, Web API tries to match the query paramete
 
 Next, we'll add a method to the `ProductsController` class to create a new product. Here is a simple implementation of the method:
 
-    // Not the final implementation!
-    public Product PostProduct(Product item)
-    {
-        item = repository.Add(item);
-        return item;
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample9.xml)]
 
 Note two things about this method:
 
@@ -292,15 +190,7 @@ This implementation will work, but it is not quite complete. Ideally, we would l
 
 ASP.NET Web API makes it easy to manipulate the HTTP response message. Here is the improved implementation:
 
-    public HttpResponseMessage PostProduct(Product item)
-    {
-        item = repository.Add(item);
-        var response = Request.CreateResponse<Product>(HttpStatusCode.Created, item);
-    
-        string uri = Url.Link("DefaultApi", new { id = item.Id });
-        response.Headers.Location = new Uri(uri);
-        return response;
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample10.xml)]
 
 Notice that the method return type is now **HttpResponseMessage**. By returning an **HttpResponseMessage** instead of a Product, we can control the details of the HTTP response message, including the status code and the Location header.
 
@@ -313,14 +203,7 @@ The **CreateResponse** method creates an **HttpResponseMessage** and automatical
 
 Updating a product with PUT is straightforward:
 
-    public void PutProduct(int id, Product product)
-    {
-        product.Id = id;
-        if (!repository.Update(product))
-        {
-            throw new HttpResponseException(HttpStatusCode.NotFound);
-        }
-    }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample11.xml)]
 
 The method name starts with &quot;Put...&quot;, so Web API matches it to PUT requests. The method takes two parameters, the product ID and the updated product. The *id* parameter is taken from the URI path, and the *product* parameter is deserialized from the request body. By default, the ASP.NET Web API framework takes simple parameter types from the route and complex types from the request body.
 
@@ -328,15 +211,6 @@ The method name starts with &quot;Put...&quot;, so Web API matches it to PUT req
 
 To delete a resourse, define a "Delete..." method.
 
-    public void DeleteProduct(int id)
-        {
-            Product item = repository.Get(id);
-            if (item == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-    
-            repository.Remove(id);
-        }
+[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample12.xml)]
 
 If a DELETE request succeeds, it can return status 200 (OK) with an entity-body that describes the status; status 202 (Accepted) if the deletion is still pending; or status 204 (No Content) with no entity body. In this case, the `DeleteProduct` method has a `void` return type, so ASP.NET Web API automatically translates this into status code 204 (No Content).

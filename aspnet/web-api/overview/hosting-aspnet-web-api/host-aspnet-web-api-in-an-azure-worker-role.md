@@ -56,7 +56,7 @@ From the **Tools** menu, click **Library Package Manager**, then click **Package
 
 In the Package Manager Console window, enter the following command:
 
-    Install-Package Microsoft.AspNet.WebApi.OwinSelfHost
+[!code[Main](host-aspnet-web-api-in-an-azure-worker-role/samples/sample1.xml)]
 
 ## Add an HTTP Endpoint
 
@@ -78,56 +78,13 @@ In Solution Explorer, right click the WorkerRole1 project and select **Add** / *
 
 Replace all of the boilerplate code in this file with the following:
 
-    using Owin;
-    using System.Web.Http;
-    
-    namespace WorkerRole1
-    {
-        class Startup
-        {
-            public void Configuration(IAppBuilder app)
-            {
-                HttpConfiguration config = new HttpConfiguration();
-                config.Routes.MapHttpRoute(
-                    "Default",
-                    "{controller}/{id}",
-                    new { id = RouteParameter.Optional });
-    
-                app.UseWebApi(config);
-            }
-        }
-    }
+[!code[Main](host-aspnet-web-api-in-an-azure-worker-role/samples/sample2.xml)]
 
 ## Add a Web API Controller
 
 Next, add a Web API controller class. Right-click the WorkerRole1 project and select **Add** / **Class**. Name the class TestController. Replace all of the boilerplate code in this file with the following:
 
-    using System;
-    using System.Net.Http;
-    using System.Web.Http;
-    
-    namespace WorkerRole1
-    {
-        public class TestController : ApiController
-        {
-            public HttpResponseMessage Get()
-            {
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent("Hello from OWIN!")
-                };
-            }
-    
-            public HttpResponseMessage Get(int id)
-            {
-                string msg = String.Format("Hello from OWIN (id = {0})", id);
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent(msg)
-                };
-            }
-        }
-    }
+[!code[Main](host-aspnet-web-api-in-an-azure-worker-role/samples/sample3.xml)]
 
 For simplicity, this controller just defines two GET methods that return plain text.
 
@@ -137,85 +94,25 @@ Open the WorkerRole.cs file. This class defines the code that runs when the work
 
 Add the following using statement:
 
-    using Microsoft.Owin.Hosting;
+[!code[Main](host-aspnet-web-api-in-an-azure-worker-role/samples/sample4.xml)]
 
 Add an **IDisposable** member to the `WorkerRole` class:
 
-    public class WorkerRole : RoleEntryPoint
-    {
-        private IDisposable _app = null;
-    
-        // ....
-    }
+[!code[Main](host-aspnet-web-api-in-an-azure-worker-role/samples/sample5.xml)]
 
 In the `OnStart` method, add the following code to start the host:
 
-[!code[Main](host-aspnet-web-api-in-an-azure-worker-role/samples/sample1.xml?highlight=5)]
+[!code[Main](host-aspnet-web-api-in-an-azure-worker-role/samples/sample6.xml?highlight=5)]
 
 The **WebApp.Start** method starts the OWIN host. The name of the `Startup` class is a type parameter to the method. By convention, the host will call the `Configure` method of this class.
 
 Override the `OnStop` to dispose of the *\_app* instance:
 
-    public override void OnStop()
-    {
-        if (_app != null)
-        {
-            _app.Dispose();
-        }
-        base.OnStop();
-    }
+[!code[Main](host-aspnet-web-api-in-an-azure-worker-role/samples/sample7.xml)]
 
 Here is the complete code for WorkerRole.cs:
 
-    using Microsoft.Owin.Hosting;
-    using Microsoft.WindowsAzure.ServiceRuntime;
-    using System;
-    using System.Diagnostics;
-    using System.Net;
-    using System.Threading;
-    
-    namespace WorkerRole1
-    {
-        public class WorkerRole : RoleEntryPoint
-        {
-            private IDisposable _app = null;
-    
-            public override void Run()
-            {
-                Trace.TraceInformation("WebApiRole entry point called", "Information");
-    
-                while (true)
-                {
-                    Thread.Sleep(10000);
-                    Trace.TraceInformation("Working", "Information");
-                }
-            }
-    
-            public override bool OnStart()
-            {
-                ServicePointManager.DefaultConnectionLimit = 12;
-    
-                var endpoint = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"];
-                string baseUri = String.Format("{0}://{1}", 
-                    endpoint.Protocol, endpoint.IPEndpoint);
-    
-                Trace.TraceInformation(String.Format("Starting OWIN at {0}", baseUri), 
-                    "Information");
-    
-                _app = WebApp.Start<Startup>(new StartOptions(url: baseUri));
-               return base.OnStart();
-            }
-    
-            public override void OnStop()
-            {
-                if (_app != null)
-                {
-                    _app.Dispose();
-                }
-                base.OnStop();
-            }
-        }
-    }
+[!code[Main](host-aspnet-web-api-in-an-azure-worker-role/samples/sample8.xml)]
 
 Build the solution, and press F5 to run the application locally in the Azure Compute Emulator. Depending on your firewall settings, you might need to allow the emulator through your firewall.
 

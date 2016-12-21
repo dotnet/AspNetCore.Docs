@@ -1,15 +1,15 @@
-<entityFramework>
-  <contexts>
-    <context type="ContosoUniversity.DAL.SchoolContext, ContosoUniversity">
-      <databaseInitializer type="ContosoUniversity.DAL.SchoolInitializer, ContosoUniversity" />
-    </context>
-  </contexts>
-  <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
-    <parameters>
-      <parameter value="v11.0" />
-    </parameters>
-  </defaultConnectionFactory>
-  <providers>
-    <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
-  </providers>
-</entityFramework>
+    using System;
+    using System.Collections.Generic;
+    
+    namespace ContosoUniversity.Models
+    {
+        public class Student
+        {
+            public int ID { get; set; }
+            public string LastName { get; set; }
+            public string FirstMidName { get; set; }
+            public DateTime EnrollmentDate { get; set; }
+            
+            public virtual ICollection<Enrollment> Enrollments { get; set; }
+        }
+    }

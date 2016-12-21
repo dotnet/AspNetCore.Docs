@@ -41,19 +41,12 @@ Functions are a construct common to all programming languages. A function is a c
 Stored procedures are created using the [`CREATE PROCEDURE`](https://msdn.microsoft.com/en-us/library/aa258259(SQL.80).aspx) T-SQL statement. For example, the following T-SQL script creates a stored procedure named `GetProductsByCategoryID` that takes in a single parameter named `@CategoryID` and returns the `ProductID`, `ProductName`, `UnitPrice`, and `Discontinued` fields of those columns in the `Products` table that have a matching `CategoryID` value:
 
 
-    CREATE PROCEDURE GetProductsByCategoryID
-    (
-        @CategoryID int
-    )
-    AS
-    SELECT ProductID, ProductName, UnitPrice, Discontinued
-    FROM Products
-    WHERE CategoryID = @CategoryID
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample1.xml)]
 
 Once this stored procedure has been created, it can be called using the following syntax:
 
 
-    EXEC GetProductsByCategory categoryID
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample2.xml)]
 
 > [!NOTE] In the next tutorial we will examine creating stored procedures through the Visual Studio IDE. For this tutorial, however, we are going to let the TableAdapter wizard automatically generate the stored procedures for us.
 
@@ -95,38 +88,7 @@ Like in the other folders, `Default.aspx` in the `AdvancedDAL` folder will list 
 Lastly, add these pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Working with Batched Data `<siteMapNode>`:
 
 
-    <siteMapNode url="~/AdvancedDAL/Default.aspx" 
-        title="Advanced DAL Scenarios" 
-        description="Explore a number of advanced Data Access Layer scenarios.">
-        
-        <siteMapNode url="~/AdvancedDAL/NewSprocs.aspx" 
-            title="Creating New Stored Procedures for TableAdapters" 
-            description="Learn how to have the TableAdapter wizard automatically 
-                create and use stored procedures." />
-        <siteMapNode url="~/AdvancedDAL/ExistingSprocs.aspx" 
-            title="Using Existing Stored Procedures for TableAdapters" 
-            description="See how to plug existing stored procedures into a 
-                TableAdapter." />
-        <siteMapNode url="~/AdvancedDAL/JOINs.aspx" 
-            title="Returning Data Using JOINs" 
-            description="Learn how to augment your DataTables to work with data 
-                returned from multiple tables via a JOIN query." />
-        <siteMapNode url="~/AdvancedDAL/AddingColumns.aspx" 
-            title="Adding DataColumns to a DataTable" 
-            description="Master adding new columns to an existing DataTable." />
-        <siteMapNode url="~/AdvancedDAL/ComputedColumns.aspx" 
-            title="Working with Computed Columns" 
-            description="Explore how to work with computed columns when using 
-                Typed DataSets." />
-        <siteMapNode url="~/AdvancedDAL/EncryptingConfigSections.aspx" 
-            title="Protected Connection Strings in Web.config" 
-            description="Protect your connection string information in 
-                Web.config using encryption." />
-        <siteMapNode url="~/AdvancedDAL/ManagedFunctionsAndSprocs.aspx" 
-            title="Creating Managed SQL Functions and Stored Procedures" 
-            description="See how to create SQL functions and stored procedures 
-                using managed code." />
-    </siteMapNode>
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample3.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the advanced DAL scenarios tutorials.
 
@@ -164,10 +126,7 @@ Just like with using ad-hoc SQL statements, in the following step we are asked t
 Use the following `SELECT` query for this TableAdapter:
 
 
-    SELECT ProductID, ProductName, SupplierID, CategoryID, 
-           QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-           ReorderLevel, Discontinued
-    FROM Products
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample4.xml)]
 
 
 [![Enter the SELECT Query](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/_static/image13.png)](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/_static/image12.png)
@@ -249,83 +208,19 @@ To view or modify a stored procedure, double-click its name in the Server Explor
 The contents of both the `Products_Delete` and `Products_Select` stored procedures are quite straightforward. The `Products_Insert` and `Products_Update` stored procedures, on the other hand, warrant a closer inspection as they both perform a `SELECT` statement after their `INSERT` and `UPDATE` statements. For example, the following SQL makes up the `Products_Insert` stored procedure:
 
 
-    ALTER PROCEDURE dbo.Products_Insert
-    (
-        @ProductName nvarchar(40),
-        @SupplierID int,
-        @CategoryID int,
-        @QuantityPerUnit nvarchar(20),
-        @UnitPrice money,
-        @UnitsInStock smallint,
-        @UnitsOnOrder smallint,
-        @ReorderLevel smallint,
-        @Discontinued bit
-    )
-    AS
-        SET NOCOUNT OFF;
-    INSERT INTO [Products] ([ProductName], [SupplierID], [CategoryID], [QuantityPerUnit], 
-        [UnitPrice], [UnitsInStock], [UnitsOnOrder], [ReorderLevel], [Discontinued]) 
-    VALUES (@ProductName, @SupplierID, @CategoryID, @QuantityPerUnit, @UnitPrice, 
-        @UnitsInStock, @UnitsOnOrder, @ReorderLevel, @Discontinued);
-        
-    SELECT ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, 
-        UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued 
-    FROM Products 
-    WHERE (ProductID = SCOPE_IDENTITY())
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample5.xml)]
 
 The stored procedure accepts as input parameters the `Products` columns that were returned by the `SELECT` query specified in the TableAdapter s wizard and these values are used in an `INSERT` statement. Following the `INSERT` statement, a `SELECT` query is used to return the `Products` column values (including the `ProductID`) of the newly added record. This refresh capability is useful when adding a new record using the Batch Update pattern as it automatically updates the newly added `ProductRow` instances `ProductID` properties with the auto-incremented values assigned by the database.
 
 The following code illustrates this feature. It contains a `ProductsTableAdapter` and `ProductsDataTable` created for the `NorthwindWithSprocs` Typed DataSet. A new product is added to the database by creating a `ProductsRow` instance, supplying its values, and calling the TableAdapter s `Update` method, passing in the `ProductsDataTable`. Internally, the TableAdapter s `Update` method enumerates the `ProductsRow` instances in the passed-in DataTable (in this example there is only one - the one we just added), and performs the appropriate insert, update, or delete command. In this case, the `Products_Insert` stored procedure is executed, which adds a new record to the `Products` table and returns the details of the newly-added record. The `ProductsRow` instance s `ProductID` value is then updated. After the `Update` method has completed, we can access the newly-added record s `ProductID` value through the `ProductsRow` s `ProductID` property.
 
 
-    // Create the ProductsTableAdapter and ProductsDataTable
-    NorthwindWithSprocsTableAdapters.ProductsTableAdapter productsAPI = 
-        new NorthwindWithSprocsTableAdapters.ProductsTableAdapter();
-    NorthwindWithSprocs.ProductsDataTable products = 
-        new NorthwindWithSprocs.ProductsDataTable();
-    // Create a new ProductsRow instance and set its properties
-    NorthwindWithSprocs.ProductsRow product = products.NewProductsRow();
-    product.ProductName = "New Product";
-    product.CategoryID = 1;  // Beverages
-    product.Discontinued = false;
-    // Add the ProductsRow instance to the DataTable
-    products.AddProductsRow(product);
-    // Update the DataTable using the Batch Update pattern
-    productsAPI.Update(products);
-    // At this point, we can determine the value of the newly-added record's ProductID
-    int newlyAddedProductIDValue = product.ProductID;
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample6.xml)]
 
 The `Products_Update` stored procedure similarly includes a `SELECT` statement after its `UPDATE` statement.
 
 
-    ALTER PROCEDURE dbo.Products_Update
-    (
-        @ProductName nvarchar(40),
-        @SupplierID int,
-        @CategoryID int,
-        @QuantityPerUnit nvarchar(20),
-        @UnitPrice money,
-        @UnitsInStock smallint,
-        @UnitsOnOrder smallint,
-        @ReorderLevel smallint,
-        @Discontinued bit,
-        @Original_ProductID int,
-        @ProductID int
-    )
-    AS
-        SET NOCOUNT OFF;
-    UPDATE [Products] 
-    SET [ProductName] = @ProductName, [SupplierID] = @SupplierID, 
-        [CategoryID] = @CategoryID, [QuantityPerUnit] = @QuantityPerUnit, 
-        [UnitPrice] = @UnitPrice, [UnitsInStock] = @UnitsInStock, 
-        [UnitsOnOrder] = @UnitsOnOrder, [ReorderLevel] = @ReorderLevel, 
-        [Discontinued] = @Discontinued 
-    WHERE (([ProductID] = @Original_ProductID));
-        
-    SELECT ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, 
-        UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued 
-    FROM Products 
-    WHERE (ProductID = @ProductID)
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample7.xml)]
 
 Note that this stored procedure includes two input parameters for `ProductID`: `@Original_ProductID` and `@ProductID`. This functionality allows for scenarios where the primary key might be changed. For example, in an employee database, each employee record might use the employee s social security number as their primary key. In order to change an existing employee s social security number, both the new social security number and the original one must be supplied. For the `Products` table, such functionality is not needed because the `ProductID` column is an `IDENTITY` column and should never be changed. In fact, the `UPDATE` statement in the `Products_Update` stored procedure doesn t include the `ProductID` column in its column list. So, while `@Original_ProductID` is used in the `UPDATE` statement s `WHERE` clause, it is superfluous for the `Products` table and could be replaced by the `@ProductID` parameter. When modifying a stored procedure s parameters it is important that the TableAdapter method(s) that use that stored procedure are also updated.
 
@@ -334,32 +229,7 @@ Note that this stored procedure includes two input parameters for `ProductID`: `
 Since the `@Original_ProductID` parameter is superfluous, let s remove it from the `Products_Update` stored procedure altogether. Open the `Products_Update` stored procedure, delete the `@Original_ProductID` parameter, and, in the `WHERE` clause of the `UPDATE` statement, change the parameter name used from `@Original_ProductID` to `@ProductID`. After making these changes, the T-SQL within the stored procedure should look like the following:
 
 
-    ALTER PROCEDURE dbo.Products_Update
-    (
-        @ProductName nvarchar(40),
-        @SupplierID int,
-        @CategoryID int,
-        @QuantityPerUnit nvarchar(20),
-        @UnitPrice money,
-        @UnitsInStock smallint,
-        @UnitsOnOrder smallint,
-        @ReorderLevel smallint,
-        @Discontinued bit,
-        @ProductID int
-    )
-    AS
-        SET NOCOUNT OFF;
-    UPDATE [Products] SET [ProductName] = @ProductName, [SupplierID] = @SupplierID, 
-        [CategoryID] = @CategoryID, [QuantityPerUnit] = @QuantityPerUnit, 
-        [UnitPrice] = @UnitPrice, [UnitsInStock] = @UnitsInStock, 
-        [UnitsOnOrder] = @UnitsOnOrder, [ReorderLevel] = @ReorderLevel, 
-        [Discontinued] = @Discontinued 
-    WHERE (([ProductID] = @ProductID));
-        
-    SELECT ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, 
-        UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued 
-    FROM Products 
-    WHERE (ProductID = @ProductID)
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample8.xml)]
 
 To save these changes to the database, click the Save icon in the toolbar or hit Ctrl+S. At this point, the `Products_Update` stored procedure does not expect an `@Original_ProductID` input parameter, but the TableAdapter is configured to pass such a parameter. You can see the parameters the TableAdapter will send to the `Products_Update` stored procedure by selecting the TableAdapter in the DataSet Designer, going to the Properties window, and clicking the ellipses in the `UpdateCommand` s `Parameters` collection. This brings up the Parameters Collection Editor dialog box shown in Figure 14.
 
@@ -411,11 +281,7 @@ The next screen asks us to identify the type of query to execute, whether it wil
 The next screen displays the TableAdapter s main query, which just lists the name of the stored procedure (`dbo.Products_Select`). Replace the stored procedure name with the following `SELECT` statement, which returns all of the product fields for a specified product:
 
 
-    SELECT ProductID, ProductName, SupplierID, CategoryID, 
-           QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-           ReorderLevel, Discontinued
-    FROM Products
-    WHERE ProductID = @ProductID
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample9.xml)]
 
 
 [![Replace the Stored Procedure Name with a SELECT Query](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/_static/image42.png)](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/_static/image41.png)
@@ -444,17 +310,7 @@ After completing the wizard, the TableAdapter has a new method available, `GetPr
 Note that the `SelectByProductID` stored procedure takes `@ProductID` as an input parameter and executes the `SELECT` statement that we entered in the wizard.
 
 
-    ALTER PROCEDURE dbo.Products_SelectByProductID
-    (
-        @ProductID int
-    )
-    AS
-        SET NOCOUNT ON;
-    SELECT ProductID, ProductName, SupplierID, CategoryID, 
-           QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-           ReorderLevel, Discontinued
-    FROM Products
-    WHERE ProductID = @ProductID
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample10.xml)]
 
 ## Step 6: Creating a Business Logic Layer Class
 
@@ -463,145 +319,7 @@ Throughout the tutorial series we have strived to maintain a layered architectur
 Create a new class file named `ProductsBLLWithSprocs.cs` in the `~/App_Code/BLL` folder and add to it the following code:
 
 
-    using System;
-    using System.Data;
-    using System.Configuration;
-    using System.Web;
-    using System.Web.Security;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-    using System.Web.UI.WebControls.WebParts;
-    using System.Web.UI.HtmlControls;
-    using NorthwindWithSprocsTableAdapters;
-    [System.ComponentModel.DataObject]
-    public class ProductsBLLWithSprocs
-    {
-        private ProductsTableAdapter _productsAdapter = null;
-        protected ProductsTableAdapter Adapter
-        {
-            get
-            {
-                if (_productsAdapter == null)
-                    _productsAdapter = new ProductsTableAdapter();
-                return _productsAdapter;
-            }
-        }
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Select, true)]
-        public NorthwindWithSprocs.ProductsDataTable GetProducts()
-        {
-            return Adapter.GetProducts();
-        }
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Select, false)]
-        public NorthwindWithSprocs.ProductsDataTable GetProductByProductID(int productID)
-        {
-            return Adapter.GetProductByProductID(productID);
-        }
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public bool AddProduct
-            (string productName, int? supplierID, int? categoryID, 
-             string quantityPerUnit, decimal? unitPrice, short? unitsInStock, 
-             short? unitsOnOrder, short? reorderLevel, bool discontinued)
-        {
-            // Create a new ProductRow instance
-            NorthwindWithSprocs.ProductsDataTable products = 
-                new NorthwindWithSprocs.ProductsDataTable();
-            NorthwindWithSprocs.ProductsRow product = products.NewProductsRow();
-            product.ProductName = productName;
-            if (supplierID == null) 
-                product.SetSupplierIDNull(); 
-            else 
-                product.SupplierID = supplierID.Value;
-            if (categoryID == null) 
-                product.SetCategoryIDNull(); 
-            else 
-                product.CategoryID = categoryID.Value;
-            if (quantityPerUnit == null) 
-                product.SetQuantityPerUnitNull(); 
-            else 
-                product.QuantityPerUnit = quantityPerUnit;
-            if (unitPrice == null) 
-                product.SetUnitPriceNull(); 
-            else 
-                product.UnitPrice = unitPrice.Value;
-            if (unitsInStock == null) 
-                product.SetUnitsInStockNull(); 
-            else 
-                product.UnitsInStock = unitsInStock.Value;
-            if (unitsOnOrder == null) 
-                product.SetUnitsOnOrderNull(); 
-            else 
-                product.UnitsOnOrder = unitsOnOrder.Value;
-            if (reorderLevel == null)
-                product.SetReorderLevelNull(); 
-            else 
-                product.ReorderLevel = reorderLevel.Value;
-            product.Discontinued = discontinued;
-            // Add the new product
-            products.AddProductsRow(product);
-            int rowsAffected = Adapter.Update(products);
-            // Return true if precisely one row was inserted, otherwise false
-            return rowsAffected == 1;
-        }
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Update, true)]
-        public bool UpdateProduct
-            (string productName, int? supplierID, int? categoryID, string quantityPerUnit,
-            decimal? unitPrice, short? unitsInStock, short? unitsOnOrder, 
-            short? reorderLevel, bool discontinued, int productID)
-        {
-            NorthwindWithSprocs.ProductsDataTable products = 
-                Adapter.GetProductByProductID(productID);
-            if (products.Count == 0)
-                // no matching record found, return false
-                return false;
-            NorthwindWithSprocs.ProductsRow product = products[0];
-            product.ProductName = productName;
-            if (supplierID == null) 
-                product.SetSupplierIDNull(); 
-            else 
-                product.SupplierID = supplierID.Value;
-            if (categoryID == null) 
-                product.SetCategoryIDNull(); 
-            else 
-                product.CategoryID = categoryID.Value;
-            if (quantityPerUnit == null) 
-                product.SetQuantityPerUnitNull(); 
-            else 
-                product.QuantityPerUnit = quantityPerUnit;
-            if (unitPrice == null) 
-                product.SetUnitPriceNull(); 
-            else 
-                product.UnitPrice = unitPrice.Value;
-            if (unitsInStock == null) 
-                product.SetUnitsInStockNull(); 
-            else 
-                product.UnitsInStock = unitsInStock.Value;
-            if (unitsOnOrder == null) 
-                product.SetUnitsOnOrderNull(); 
-            else 
-                product.UnitsOnOrder = unitsOnOrder.Value;
-            if (reorderLevel == null) 
-                product.SetReorderLevelNull(); 
-            else 
-                product.ReorderLevel = reorderLevel.Value;
-            product.Discontinued = discontinued;
-            // Update the product record
-            int rowsAffected = Adapter.Update(product);
-            // Return true if precisely one row was updated, otherwise false
-            return rowsAffected == 1;
-        }
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public bool DeleteProduct(int productID)
-        {
-            int rowsAffected = Adapter.Delete(productID);
-            // Return true if precisely one row was deleted, otherwise false
-            return rowsAffected == 1;
-        }
-    }
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample11.xml)]
 
 This class mimics the `ProductsBLL` class semantics from earlier tutorials, but uses the `ProductsTableAdapter` and `ProductsDataTable` objects from the `NorthwindWithSprocs` DataSet. For example, rather than having a `using NorthwindTableAdapters` statement at the start of the class file as `ProductsBLL` does, the `ProductsBLLWithSprocs` class uses `using NorthwindWithSprocsTableAdapters`. Likewise, the `ProductsDataTable` and `ProductsRow` objects used in this class are prefixed with the `NorthwindWithSprocs` namespace. The `ProductsBLLWithSprocs` class provides two data access methods, `GetProducts` and `GetProductByProductID`, and methods to add, update, and delete a single product instance.
 
@@ -632,64 +350,7 @@ As we ve discussed in previous tutorials, at the completion of the ObjectDataSou
 After completing the Configure Data Source wizard, turning on editing and deleting support in the GridView, and returning the ObjectDataSource s `OldValuesParameterFormatString` property to its default value, your page s declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="Products" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="ProductID" DataSourceID="ProductsDataSource">
-        <Columns>
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-            <asp:BoundField DataField="ProductID" HeaderText="ProductID" 
-                InsertVisible="False" ReadOnly="True" 
-                SortExpression="ProductID" />
-            <asp:BoundField DataField="ProductName" HeaderText="ProductName" 
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="SupplierID" HeaderText="SupplierID" 
-                SortExpression="SupplierID" />
-            <asp:BoundField DataField="CategoryID" HeaderText="CategoryID" 
-                SortExpression="CategoryID" />
-            <asp:BoundField DataField="QuantityPerUnit" HeaderText="QuantityPerUnit" 
-                SortExpression="QuantityPerUnit" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="UnitPrice" 
-                SortExpression="UnitPrice" />
-            <asp:BoundField DataField="UnitsInStock" HeaderText="UnitsInStock" 
-                SortExpression="UnitsInStock" />
-            <asp:BoundField DataField="UnitsOnOrder" HeaderText="UnitsOnOrder" 
-                SortExpression="UnitsOnOrder" />
-            <asp:BoundField DataField="ReorderLevel" HeaderText="ReorderLevel" 
-                SortExpression="ReorderLevel" />
-            <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued" 
-                SortExpression="Discontinued" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="ProductsDataSource" runat="server" 
-        DeleteMethod="DeleteProduct" InsertMethod="AddProduct" 
-        SelectMethod="GetProducts" TypeName="ProductsBLLWithSprocs" 
-        UpdateMethod="UpdateProduct">
-        <DeleteParameters>
-            <asp:Parameter Name="productID" Type="Int32" />
-        </DeleteParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="supplierID" Type="Int32" />
-            <asp:Parameter Name="categoryID" Type="Int32" />
-            <asp:Parameter Name="quantityPerUnit" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="unitsInStock" Type="Int16" />
-            <asp:Parameter Name="unitsOnOrder" Type="Int16" />
-            <asp:Parameter Name="reorderLevel" Type="Int16" />
-            <asp:Parameter Name="discontinued" Type="Boolean" />
-            <asp:Parameter Name="productID" Type="Int32" />
-        </UpdateParameters>
-        <InsertParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="supplierID" Type="Int32" />
-            <asp:Parameter Name="categoryID" Type="Int32" />
-            <asp:Parameter Name="quantityPerUnit" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="unitsInStock" Type="Int16" />
-            <asp:Parameter Name="unitsOnOrder" Type="Int16" />
-            <asp:Parameter Name="reorderLevel" Type="Int16" />
-            <asp:Parameter Name="discontinued" Type="Boolean" />
-        </InsertParameters>
-    </asp:ObjectDataSource>
+[!code[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample12.xml)]
 
 At this point we could tidy up the GridView by customizing the editing interface to include validation, having the `CategoryID` and `SupplierID` columns render as DropDownLists, and so on. We could also add a client-side confirmation to the Delete button, and I encourage you to take the time to implement these enhancements. Since these topics have been covered in previous tutorials, however, we will not cover them again here.
 

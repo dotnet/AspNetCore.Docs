@@ -1,2 +1,3 @@
-var connection = $.hubConnection();
-connection.qs = { 'version' : '1.0' };
+var hubConfiguration = new HubConfiguration();
+hubConfiguration.EnableCrossDomain = true;
+RouteTable.Routes.MapHubs(hubConfiguration);

@@ -159,24 +159,7 @@ For a relatively new way to do logging that can produce more useful diagnostic i
 
 Here is the *ILogger* interface in the Fix It app.
 
-    public interface ILogger
-    {
-        void Information(string message);
-        void Information(string fmt, params object[] vars);
-        void Information(Exception exception, string fmt, params object[] vars);
-    
-        void Warning(string message);
-        void Warning(string fmt, params object[] vars);
-        void Warning(Exception exception, string fmt, params object[] vars);
-    
-        void Error(string message);
-        void Error(string fmt, params object[] vars);
-        void Error(Exception exception, string fmt, params object[] vars);
-    
-        void TraceApi(string componentName, string method, TimeSpan timespan);
-        void TraceApi(string componentName, string method, TimeSpan timespan, string properties);
-        void TraceApi(string componentName, string method, TimeSpan timespan, string fmt, params object[] vars);
-    }
+[!code[Main](monitoring-and-telemetry/samples/sample1.xml)]
 
 These methods enable you to write logs at the same four levels supported by *System.Diagnostics*. The TraceApi methods are for logging external service calls with information about latency. You could also add a set of methods for Debug/Verbose level.
 
@@ -184,40 +167,7 @@ These methods enable you to write logs at the same four levels supported by *Sys
 
 The implementation of the interface is really simple. It basically just calls into the standard *System.Diagnostics* methods. The following snippet shows all three of the Information methods and one each of the others.
 
-    public class Logger : ILogger
-    {
-        public void Information(string message)
-        {
-            Trace.TraceInformation(message);
-        }
-    
-        public void Information(string fmt, params object[] vars)
-        {
-            Trace.TraceInformation(fmt, vars);
-        }
-    
-        public void Information(Exception exception, string fmt, params object[] vars)
-        {
-            var msg = String.Format(fmt, vars);
-            Trace.TraceInformation(string.Format(fmt, vars) + ";Exception Details={0}", exception.ToString());
-        }
-    
-        public void Warning(string message)
-        {
-            Trace.TraceWarning(message);
-        }
-    
-        public void Error(string message)
-        {
-            Trace.TraceError(message);
-        }
-    
-        public void TraceApi(string componentName, string method, TimeSpan timespan, string properties)
-        {
-            string message = String.Concat("component:", componentName, ";method:", method, ";timespan:", timespan.ToString(), ";properties:", properties);
-            Trace.TraceInformation(message);
-        }
-    }
+[!code[Main](monitoring-and-telemetry/samples/sample2.xml)]
 
 ### Calling the ILogger methods
 
@@ -225,7 +175,7 @@ Every time code in the Fix It app catches an exception, it calls an *ILogger* me
 
 Notice that the log message includes the class name and method name. It's a good practice to make sure that log messages identify what part of the application code wrote them.
 
-[!code[Main](monitoring-and-telemetry/samples/sample1.xml?highlight=6,14,20-21,25)]
+[!code[Main](monitoring-and-telemetry/samples/sample3.xml?highlight=6,14,20-21,25)]
 
 So now for every time the Fix It app has made a call to SQL Database, you can see the call, the method that called it, and exactly how much time it took.
 
@@ -245,17 +195,17 @@ It's just a couple extra lines of code to write every time you call a service, a
 
 You might wonder how the repository constructor in the example shown above gets the logger interface implementation:
 
-[!code[Main](monitoring-and-telemetry/samples/sample2.xml?highlight=6)]
+[!code[Main](monitoring-and-telemetry/samples/sample4.xml?highlight=6)]
 
 To wire up the interface to the implementation the app uses [dependency injection](http://en.wikipedia.org/wiki/Dependency_injection)(DI) with [AutoFac](http://autofac.org/). DI enables you to use an object based on an interface in many places throughout your code and only have to specify in one place the implementation that gets used when the interface is instantiated. This makes it easier to change the implementation: for example, you might want to replace the System.Diagnostics logger with an NLog logger. Or for automated testing you might want to substitute a mock version of the logger.
 
 The Fix It application uses DI in all of the repositories and all of the controllers. The constructors of the controller classes get an *ITaskRepository* interface the same way the repository gets a logger interface:
 
-[!code[Main](monitoring-and-telemetry/samples/sample3.xml?highlight=5)]
+[!code[Main](monitoring-and-telemetry/samples/sample5.xml?highlight=5)]
 
 The app uses the AutoFac DI library to automatically provide *TaskRepository* and *Logger* instances for these constructors.
 
-[!code[Main](monitoring-and-telemetry/samples/sample4.xml?highlight=8,10)]
+[!code[Main](monitoring-and-telemetry/samples/sample6.xml?highlight=8,10)]
 
 This code basically says that anywhere a constructor needs an *ILogger* interface, pass in an instance of the *Logger* class, and whenever it needs an *IFixItTaskRepository* interface, pass in an instance of the *FixItTaskRepository* class.
 

@@ -34,44 +34,21 @@ If a Web API controller returns a resource as CLR type, the pipeline serializes 
 
 For example, consider the following controller action:
 
-    public Product GetProduct(int id)
-    {
-        var item = _products.FirstOrDefault(p => p.ID == id);
-        if (item == null)
-        {
-            throw new HttpResponseException(HttpStatusCode.NotFound);
-        }
-        return item; 
-    }
+[!code[Main](content-negotiation/samples/sample1.xml)]
 
 A client might send this HTTP request:
 
-    GET http://localhost.:21069/api/products/1 HTTP/1.1
-    Host: localhost.:21069
-    Accept: application/json, text/javascript, */*; q=0.01
+[!code[Main](content-negotiation/samples/sample2.xml)]
 
 In response, the server might send:
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 57
-    Connection: Close
-    
-    {"Id":1,"Name":"Gizmo","Category":"Widgets","Price":1.99}
+[!code[Main](content-negotiation/samples/sample3.xml)]
 
 In this example, the client requested either JSON, Javascript, or "anything" (\*/\*). The server responsed with a JSON representation of the `Product` object. Notice that the Content-Type header in the response is set to &quot;application/json&quot;.
 
 A controller can also return an **HttpResponseMessage** object. To specify a CLR object for the response body, call the **CreateResponse** extension method:
 
-    public HttpResponseMessage GetProduct(int id)
-    {
-        var item = _products.FirstOrDefault(p => p.ID == id);
-        if (item == null)
-        {
-            throw new HttpResponseException(HttpStatusCode.NotFound);
-        }
-        return Request.CreateResponse(HttpStatusCode.OK, product);
-    }
+[!code[Main](content-negotiation/samples/sample4.xml)]
 
 This option gives you more control over the details of the response. You can set the status code, add HTTP headers, and so forth.
 
@@ -96,30 +73,7 @@ If no formatter is found, the **Negotiate** method returns **null**, and the cli
 
 The following code shows how a controller can directly invoke content negotiation:
 
-    public HttpResponseMessage GetProduct(int id)
-    {
-        var product = new Product() 
-            { Id = id, Name = "Gizmo", Category = "Widgets", Price = 1.99M };
-    
-        IContentNegotiator negotiator = this.Configuration.Services.GetContentNegotiator();
-    
-        ContentNegotiationResult result = negotiator.Negotiate(
-            typeof(Product), this.Request, this.Configuration.Formatters);
-        if (result == null)
-        {
-            var response = new HttpResponseMessage(HttpStatusCode.NotAcceptable);
-            throw new HttpResponseException(response));
-        }
-    
-        return new HttpResponseMessage()
-        {
-            Content = new ObjectContent<Product>(
-                product,		        // What we are serializing 
-                result.Formatter,           // The media formatter
-                result.MediaType.MediaType  // The MIME type
-            )
-        };
-    }
+[!code[Main](content-negotiation/samples/sample5.xml)]
 
 This code is equivalent to the what the pipeline does automatically.
 
@@ -136,7 +90,7 @@ Next, the content negotiator looks at each formatter and evaluates how well it m
 
 If there are multiple matches, the match with the highest quality factor wins. For example:
 
-    Accept: application/json, application/xml; q=0.9, */*; q=0.1
+[!code[Main](content-negotiation/samples/sample6.xml)]
 
 In this example, application/json has an implied quality factor of 1.0, so it is preferred over application/xml.
 

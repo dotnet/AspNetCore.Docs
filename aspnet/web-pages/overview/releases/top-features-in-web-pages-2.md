@@ -70,10 +70,7 @@ The Beta version released in February 2012 has only a few changes from the Beta 
 
 - Razor now supports conditional attributes. In an HTML element, if you set an attribute to a value that resolves in server code to `false` or `null`, ASP.NET does not render the attribute at all. For example, imagine you have the following markup for a check box:
 
-        <input type="checkbox"
-        name="check1"
-        value="check1"
-        checked="@checked1" />
+    [!code[Main](top-features-in-web-pages-2/samples/sample1.xml)]
 
     If the value of `checked1` resolves to `false` or to `null`, the `checked` attribute is not rendered. This is a breaking change.
 - The `Validation.GetHtml` method has been renamed to `Validation.For`. This is a breaking change; `Validation.GetHtml` will not work in the Beta release.
@@ -130,33 +127,21 @@ To use the new validation features, do the following:
 
 In the page's code, register an element to be validated by using methods of the `Validation` helper: `Validation.RequireField`, `Validation.RequireFields` (to register multiple elements to be required), or `Validation.Add`. The `Add` method lets you specify other types of validation checks, like data-type checking, comparing entries in different fields, string-length checks, and patterns (using regular expressions). Here are some examples:
 
-    Validation.RequireField("text1");
-    Validation.RequireField("text1", "The text1 field is required");
-    Validation.RequireFields("text1", "text2", "text3");
-    
-    Validation.Add("text1", Validation.StringLength(5));
-    Validation.Add("textDate", Validation.DateTime("Enter a date"));
-    Validation.Add("textCount", Validation.Integer("Enter a number"));
-    Validation.Add("textCount",
-    Validation.Range(1, 10, "Enter a value between 1 and 10"));
+[!code[Main](top-features-in-web-pages-2/samples/sample2.xml)]
 
 To display a field-specific error, call `Html.ValidationMessage` in the markup for each element being validated:
 
-    <input type="text" name="course"
-    value="@Request["course"]" />
-    @Html.ValidationMessage("course")
+[!code[Main](top-features-in-web-pages-2/samples/sample3.xml)]
 
 To display a summary (`<ul>` list) of all the errors in the page, `Html.ValidationSummary` in the markup:
 
-    @Html.ValidationSummary()
+[!code[Main](top-features-in-web-pages-2/samples/sample4.xml)]
 
 These steps are enough to implement server-side validation. If you want to add client-side validation, do the following in addition.
 
 Add the following script file references inside the `<head>` section of a web page. The first two script references point to remote files on a content delivery network (CDN) server. The third reference points to a local script file.
 
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+[!code[Main](top-features-in-web-pages-2/samples/sample5.xml)]
 
 The easiest way to get a local copy of the *jquery.validate.unobtrusive.min.js* library is to create a new Web Pages site based on one of the site templates (such as Starter Site). The site created by the template includes *jquery.validate.unobtrusive.js* file in its Scripts folder, from which you can copy it to your site.
 
@@ -164,11 +149,7 @@ If your website uses a*\_SiteLayout* page to control the page layout, you can in
 
 In the markup for an individual element, call the `Validation.For` method. This method emits attributes that jQuery can hook in order to provide client-side validation. For example:
 
-    <input type="text" name="course"
-    value="@Request["course"]"
-    @Validation.For("course")
-    />
-    @Html.ValidationMessage("course")
+[!code[Main](top-features-in-web-pages-2/samples/sample6.xml)]
 
 The following example shows a page that validates user input on a form. To run and test this validation code, do this:
 
@@ -177,73 +158,7 @@ The following example shows a page that validates user input on a form. To run a
 3. Run the page in a browser. Enter valid and invalid values to see the effects on validation. For example, leave a required field blank or enter a letter in the **Credits** field.
 
 
-    @{
-    // Specify what fields users must fill in.
-    Validation.RequireFields("course", "professorname", "credits");
-    // Add validation criteria.  Here, require that input to Credits is an integer.
-    Validation.Add("credits", Validator.Integer());
-    
-    if (IsPost)  {
-    // Wrap the postback code with a validation check.
-    if (Validation.IsValid()) {
-    	var course = Request["course"];
-    	var professorName = Request["professorname"];
-    	var credits = Request["credits"];
-    	// Display valid input values.
-    	<text>
-    		You entered: <br />
-    		Class: @course <br />
-    		Professor: @professorName <br />
-    		Credits: @credits <br />
-    	</text>
-    }
-    }
-    }
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="utf-8" />
-    <title>Testing Validation in ASP.NET Web Pages version 2</title>
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js"></script>
-    <script  src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.min.js"></script>
-    <script src="@Href("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
-    </head>
-    <body>
-    <form method="post" action="">
-    <!-- Display a summary message about any validation issues. -->
-    @Html.ValidationSummary()
-    <fieldset>
-      <legend>Add Class</legend>
-    <div>
-      <label for="Course">Class:</label>
-      <!-- Validation.For("course") adds validation attributes to the input element. -->
-      <input type="text" name="Course" value="@Request["course"]"  @Validation.For("course") />
-    
-      <!-- Display a field-specific message about validation issues. -->
-      @Html.ValidationMessage("course")
-    </div>
-    
-    <div>
-      <label for="ProfessorName">Professor:</label>
-      <input type="text" name="ProfessorName" value="@Request["professorname"]"
-    	  @Validation.For("professorname") />
-      @Html.ValidationMessage("professorname")
-    </div>
-    
-    <div>
-      <label for="Credits">Credits:</label>
-      <input type="text" name="Credits" value="@Request["credits"]" @Validation.For("credits") />
-      @Html.ValidationMessage("credits")
-    </div>
-    
-    <div>
-      <label>&nbsp;</label>
-      <input type="submit" value="Submit" class="submit" />
-    </div>
-      </fieldset>
-    </form>
-    </body>
-    </html>
+[!code[Main](top-features-in-web-pages-2/samples/sample7.xml)]
 
 Here is the page when a user submits valid input:
 
@@ -299,62 +214,19 @@ To run the sample:
 
 *Test.js*
 
-    function UpdateNoteStyle(id) {
-    var theNote = document.getElementById(id);
-    theNote.style.fontSize = "150%";
-    }
-    function ReturnNoteStyle(id) {
-    var theNote = document.getElementById(id);
-    theNote.style.fontSize = "inherit";
-    }
+[!code[Main](top-features-in-web-pages-2/samples/sample8.xml)]
 
 *Helpers.cshtml*
 
-    @helper MakeNote(string content, string noteid) {
-    Assets.AddScript("~/Scripts/Test.js");
-    
-    <div id="@noteid" style="border: 1px solid black; width: 90%; padding: 5px; margin-left: 15px;"
-     onmouseover="UpdateNoteStyle('@noteid')" onmouseout="ReturnNoteStyle('@noteid')">
-      <p>
-      <strong>Note</strong>&nbsp;&nbsp; @content
-       </p>
-    </div>
-    }
+[!code[Main](top-features-in-web-pages-2/samples/sample9.xml)]
 
 *\_SiteLayout.cshtml*
 
-    <!DOCTYPE html>
-    
-    <html lang="en">
-    <head>
-    <meta charset="utf-8" />
-    <title></title>
-    </head>
-    <body>
-    <header>
-    	<div class="content-wrapper">
-    		<h1>Contoso Ltd.</h1>
-    	</div>
-    </header>
-    <div id="body">
-    	<section class="content-wrapper main-content clear-fix">
-    		@RenderBody()
-    	</section>
-    </div>
-    @Assets.GetScripts()
-    </body>
-    </html>
+[!code[Main](top-features-in-web-pages-2/samples/sample10.xml)]
 
 *ContentPage.cshtml*
 
-    @{
-    Layout = "~/_SiteLayout.cshtml";
-    }
-    <p>
-    Nullam scelerisque facilisis placerat. Fusce a augue
-    erat, malesuada euismod dui.
-    </p>
-    @Helpers.MakeNote("Latin is fun to translate.", "note1")
+[!code[Main](top-features-in-web-pages-2/samples/sample11.xml)]
 
 The following screenshot shows *ContentPage.cshtml* in a browser when you hold the mouse pointer over the note:
 
@@ -386,26 +258,13 @@ This section provides an example of how to let users log in from external sites 
 
 1. In your website, edit the *\_AppStart.cshtml* page and add the following two lines of code in the Razor code block after the call to the `WebSecurity.InitializeDatabaseConnection` method. This code enables both the Google and Yahoo OpenID providers. 
 
-        OAuthWebSecurity.RegisterOpenIDClient(BuiltInOpenIDClient.Google);
-        OAuthWebSecurity.RegisterOpenIDClient(BuiltInOpenIDClient.Yahoo);
+    [!code[Main](top-features-in-web-pages-2/samples/sample12.xml)]
 2. In the *~/Account/Login.cshtml* page, remove the comments from the following `<fieldset>` block of markup near the end of the page. To uncomment the code, remove the `@*` characters that precede and follow the `<fieldset>` block. The resulting code block looks like this:
 
-        <fieldset>
-        <legend>Log in using another service</legend>
-        <input type="submit" name="provider" id="facebook" value="Facebook" title="Log in using your Facebook account." />
-        <input type="submit" name="provider" id="twitter" value="Twitter" title="Log in using your Twitter account." />
-        <input type="submit" name="provider" id="windowsLive" value="WindowsLive" title="Log in using your Windows Live account." />
-        </fieldset>
+    [!code[Main](top-features-in-web-pages-2/samples/sample13.xml)]
 3. Add an `<input>` element for the Google or Yahoo provider to the `<fieldset>` group in the *~/Account/Login.cshtml* page. The updated `<fieldset>` group with `<input>` elements for both Google and Yahoo looks like the following example: 
 
-        <fieldset>
-        <legend>Log in using another service</legend>
-        <input type="submit" name="provider" id="facebook" value="Facebook" title="Log in using your Facebook account." />
-        <input type="submit" name="provider" id="twitter" value="Twitter" title="Log in using your Twitter account." />
-        <input type="submit" name="provider" id="windowsLive" value="WindowsLive" title="Log in using your Windows Live account." />
-        <input type="submit" name="provider" id="yahoo" value="Yahoo" title="Log in using your Yahoo account." />
-        <input type="submit" name="provider" id="google" value="Google" title="Log in using your Google account." />
-        </fieldset>
+    [!code[Main](top-features-in-web-pages-2/samples/sample14.xml)]
 4. In the *~/Account/AssociateServiceAccount.cshtml* page, add `<input>` elements for Google or Yahoo to the `<fieldset>` group near the end of the file. You can copy the same `<input>` elements that you just added to the `<fieldset>` section in the *~/Account/Login.cshtml* page. 
 
     The *~/Account/AssociateServiceAccount.cshtml* page in the Starter Site template can be used if you want to create a page on which users can associate multiple logins from other sites with a single account on your website.
@@ -447,21 +306,13 @@ Now you make changes to two pages in your website so that users will able to log
 
 1. In your website, edit the *\_AppStart.cshtml* page and uncomment the code for the Facebook OAuth provider. The uncommented code block looks like the following: 
 
-        OAuthWebSecurity.RegisterOAuthClient(
-        BuiltInOAuthClient.Facebook,
-        consumerKey: "",   // for Facebook, consumerKey is called AppID in the SDK
-        consumerSecret: "");
+    [!code[Main](top-features-in-web-pages-2/samples/sample15.xml)]
 2. Copy the **App ID** value from the Facebook application as the value of the `consumerKey` parameter (inside the quotation marks).
 3. Copy **App Secret** value from the Facebook application as the `consumerSecret` parameter value.
 4. Save and close the file.
 5. Edit the *~/Account/Login.cshtml* page and remove the comments from the `<fieldset>` block near the end of the page. To uncomment the code, remove the `@*` characters that precede and follow the `<fieldset>` block. The code block with comments removed looks like the following: 
 
-        <fieldset>
-        <legend>Log in using another service</legend>
-        <input type="submit" name="provider" id="facebook" value="Facebook" title="Log in using your Facebook account." />
-        <input type="submit" name="provider" id="twitter" value="Twitter" title="Log in using your Twitter account." />
-        <input type="submit" name="provider" id="windowsLive" value="WindowsLive" title="Log in using your Windows Live account." />
-        </fieldset>
+    [!code[Main](top-features-in-web-pages-2/samples/sample16.xml)]
 6. Save and close the file.
 
 Now you can test the Facebook login.
@@ -502,21 +353,13 @@ Now you make changes to two pages in your website so that users will be able to 
 
 1. In your website, edit the *\_AppStart.cshtml* page and uncomment the code for the Twitter OAuth provider. The uncommented code block looks like this: 
 
-        OAuthWebSecurity.RegisterOAuthClient(
-        BuiltInOAuthClient.Twitter,
-        consumerKey: "",
-        consumerSecret: "");
+    [!code[Main](top-features-in-web-pages-2/samples/sample17.xml)]
 2. Copy the **Consumer Key** value from the Twitter application as the value of the `consumerKey` parameter (inside the quotation marks).
 3. Copy the **Consumer Secret** value from the Twitter application as the value of the `consumerSecret` parameter.
 4. Save and close the file.
 5. Edit the *~/Account/Login.cshtml* page and remove the comments from the `<fieldset>` block near the end of the page. To uncomment the code, remove the `@*` characters that precede and follow the `<fieldset>` block. The code block with comments removed looks like the following: 
 
-        <fieldset>
-        <legend>Log in using another service</legend>
-        <input type="submit" name="provider" id="facebook" value="Facebook" title="Log in using your Facebook account." />
-        <input type="submit" name="provider" id="twitter" value="Twitter" title="Log in using your Twitter account." />
-        <input type="submit" name="provider" id="windowsLive" value="WindowsLive" title="Log in using your Windows Live account." />
-        </fieldset>
+    [!code[Main](top-features-in-web-pages-2/samples/sample18.xml)]
 6. Save and close the file.
 
 Now you can test the Twitter login.
@@ -558,102 +401,15 @@ To create mapping pages:
 2. Create a file named *MapAddress.cshtml* in the root of the site. This page will generate a map based on an address that you pass to it.
 3. Copy the following code into the file, overwriting the existing content. 
 
-        @{
-        Layout = "~/_MapLayout.cshtml";
-        Assets.AddScript("~/Scripts/jquery-1.6.2.min.js");
-        }
-        
-        <div id="navigation">
-        <h3>Map an Address:</h3>
-        <form method="post" action="" id="coordinates" style="width: 320px">
-        <fieldset>
-          <div>
-        	<label for="address">Address:</label>
-        	<input style="width: 300px" type="text"  name="address"  value="@Request["address"]"/>
-        	<input type="submit" value="Map It!" />
-           </div>
-        </fieldset>
-        </form>
-        </div>
-        <div id="content">
-        @if(IsPost) {
-        var theAddress = Request["address"];
-        @Maps.GetGoogleHtml(theAddress,
-        	width: "800",
-        	height: "800")
-        }
-        </div>
+    [!code[Main](top-features-in-web-pages-2/samples/sample19.xml)]
 4. Create a file named *\_MapLayout.cshtml* in the root of the site. This page will be the layout page for the two mapping pages.
 5. Copy the following code into the file, overwriting the existing content. 
 
-        <!DOCTYPE html>
-        
-        <html lang="en">
-        <head>
-        <meta charset="utf-8" />
-        
-        <title></title>
-        <style type="text/css">
-        	#navigation {
-        		position: absolute;
-        		top: 1em;
-        		left: 3em;
-        		width: 18em;
-        	}
-        	#content {
-        		margin-top: 10em;
-        		margin-left: 3em;
-        	}
-        </style>
-        </head>
-        <body>
-          @RenderBody()
-        
-          @*
-        Call the Assets helper to render tags for the Maps helper. For
-        releases after Web Pages 2 Beta, call Assets.GetScripts().
-          *@
-          @Assets.GetScripts()
-        </body>
-        </html>
+    [!code[Main](top-features-in-web-pages-2/samples/sample20.xml)]
 6. Create a file named *MapCoordinates.cshtml* in the root of the site. This page will generate a map based on a set of coordinates that you pass to it.
 7. Copy the following code into the file, overwriting the existing content. 
 
-        @{
-        Layout = "~/_MapLayout.cshtml";
-        Assets.AddScript("~/Scripts/jquery-1.6.2.min.js");
-        }
-        
-        <div id="navigation">
-        <h3>Map a set of coordinates:</h3>
-        <form method="post" action="" id="coordinates">
-        <fieldset>
-        <div>
-        	<label for="latitude">Latitude:   </label>
-        	<input type="text"  name="latitude" value="@Request["latitude"]"/>
-        </div>
-        <div>
-        	<label for="longitude">Longitude:</label>
-        	<input type="text" name="longitude" value="@Request["longitude"]"/>
-        </div>
-        <div>
-        	<input type="submit" value="Map It!" />
-        </div>
-        </fieldset>
-        </form>
-        </div>
-        <div id="content">
-        @if(IsPost) {
-        var theLatitude = Request["latitude"];
-        var theLongitude = Request["longitude"];
-        @Maps.GetBingHtml("Ag6C5Ci9VUGz9AIhQyJ7YNwGraanqwy5-V3LK1qGDpdEVPV-MUPBryG18ELoC6g6",
-        	"",
-        	theLatitude,
-        	theLongitude,
-        	width: "800",
-        	height: "800")
-        }
-        </div>
+    [!code[Main](top-features-in-web-pages-2/samples/sample21.xml)]
 
 To test your mapping pages:
 
@@ -676,12 +432,7 @@ Here are some things to remember when you install the Web Pages 2 Beta with WebM
 - By default, existing Web Pages applications will run as version 2 applications on your computer. (The assemblies for version 2 are installed in the GAC and will be used automatically.)
 - If you want to run a site using Web Pages version 1 (instead of the default, as in the previous point), you can configure the site to do that. If your site doesn't already have a *web.config* file in the root of the site, create a new one and copy the following XML into it, overwriting the existing content. If the site already contains a *web.config* file, add an `<appSettings>` element like the following one to the `<configuration>` section.
 
-        <?xml version="1.0"?>
-        <configuration>
-        <appSettings>
-        <add key="webPages:Version" value="1.0"/>
-        </appSettings>
-        </configuration>
+    [!code[Main](top-features-in-web-pages-2/samples/sample22.xml)]
 `- If you do not specify a version in the *web.config* file, a site is deployed as a version 2 site. (The version 2 assemblies are copied to the *bin* folder in the deployed site.)
 - New applications that you create using the site templates in Web Matrix version 2 Beta include the Web Pages version 2 assemblies in the site's *bin* folder.
 
@@ -709,85 +460,11 @@ To build and run the code sample:
 
 *Page1.cshtml*
 
-    <!DOCTYPE html>
-    
-    <html lang="en">
-    <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <style type="text/css">
-    	#navigation {
-    		position: absolute;
-    		top: 0;
-    		left: 0;
-    		width: 10em;
-    	}
-    	#content {
-    	margin-left: 13em;
-    		margin-right: 10em;
-    	}
-    </style>
-    </head>
-    <body>
-    <div id="navigation">
-    	<h3>Related Sites</h3>
-    	<ul>
-    		<li><a href="http://www.adventure-works.com/">Adventure Works</a></li>
-    		<li><a href="http://www.contoso.com/">Contoso, Ltd</a></li>
-    		<li><a href="http://www.treyresearch.net/">Trey Research</a></li>
-    	</ul>
-    </div>
-    <div id="content">
-    	<h1>Lorem ipsum dolor</h1>
-    	<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-    	eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-    	At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-    	no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-    	amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-    	labore et dolore magna aliquyam erat, sed diam voluptua. </p>
-    	<p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-    	gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-    	dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-    	ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-    	et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-    	sanctus est Lorem ipsum dolor sit amet.</p>
-    </div>
-    </body>
-    </html>
+[!code[Main](top-features-in-web-pages-2/samples/sample23.xml)]
 
 *Page1.Mobile.cshtml*
 
-    <!DOCTYPE html>
-    
-    <html lang="en">
-    <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <style type="text/css">
-    	#content {
-    	margin-left: 2em;
-    		margin-right: 5em;
-    	}
-    </style>
-    </head>
-    <body>
-    <div id="content">
-    	<h1>Lorem ipsum dolor</h1>
-    	<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-    	eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-    	At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-    	no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-    	amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-    	labore et dolore magna aliquyam erat, sed diam voluptua. </p>
-    	<p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-    	gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-    	dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-    	ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-    	et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-    	sanctus est Lorem ipsum dolor sit amet.</p>
-    </div>
-    </body>
-    </html>
+[!code[Main](top-features-in-web-pages-2/samples/sample24.xml)]
 
 *Page1.cshtml* rendered in a desktop browser:
 

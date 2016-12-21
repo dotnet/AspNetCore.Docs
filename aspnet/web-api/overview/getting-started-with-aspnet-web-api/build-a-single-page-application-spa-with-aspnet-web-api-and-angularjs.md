@@ -132,78 +132,24 @@ In this task you will start creating a new ASP.NET MVC project with support for 
     > - **TriviaDatabaseInitializer:** the implementation of the Entity Framework initializer for the **TriviaContext** class which inherits from **CreateDatabaseIfNotExists**. The default behavior of this class is to create the database only if it does not exist, inserting the entities specified in the **Seed** method.
 6. Open the **Global.asax.cs** file and add the following using statement.
 
-        using GeekQuiz.Models;
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample1.xml)]
 7. Add the following code at the beginning of the **Application\_Start** method to set the **TriviaDatabaseInitializer** as the database initializer.
 
-        public class MvcApplication : System.Web.HttpApplication
-        {
-            protected void Application_Start()
-            {
-                System.Data.Entity.Database.SetInitializer(new TriviaDatabaseInitializer()); 
-        
-                AreaRegistration.RegisterAllAreas();
-                GlobalConfiguration.Configure(WebApiConfig.Register);
-                FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-                RouteConfig.RegisterRoutes(RouteTable.Routes);
-                BundleConfig.RegisterBundles(BundleTable.Bundles);
-            }
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample2.xml)]
 8. Modify the **Home** controller to restrict access to authenticated users. To do this, open the **HomeController.cs** file inside the **Controllers** folder and add the **Authorize** attribute to the **HomeController** class definition.
 
-        namespace GeekQuiz.Controllers
-        {
-            [Authorize]
-            public class HomeController : Controller
-            {
-                public ActionResult Index()
-                {
-                    return View();
-                }
-        
-                ...
-            }
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample3.xml)]
 
     > [!NOTE] The **Authorize** filter checks to see if the user is authenticated. If the user is not authenticated, it returns HTTP status code 401 (Unauthorized) without invoking the action. You can apply the filter globally, at the controller level, or at the level of individual actions.
 9. You will now customize the layout of the web pages and the branding. To do this, open the **\_Layout.cshtml** file inside the **Views | Shared** folder and update the content of the **&lt;title&gt;** element by replacing *My ASP.NET Application* with *Geek Quiz*.
 
-        <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>@ViewBag.Title - Geek Quiz</title>
-            @Styles.Render("~/Content/css")
-            @Scripts.Render("~/bundles/modernizr")
-        
-        </head>
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample4.xml)]
 10. In the same file, update the navigation bar by removing the *About* and *Contact* links and renaming the *Home* link to *Play*. Additionally, rename the *Application name* link to *Geek Quiz*. The HTML for the navigation bar should look like the following code.
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Geek Quiz", "Index", "Home", null, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Play", "Index", "Home")</li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </div>
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample5.xml)]
 11. Update the footer of the layout page by replacing *My ASP.NET Application* with *Geek Quiz*. To do this, replace the content of the **&lt;footer&gt;** element with the following highlighted code.
 
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Geek Quiz</p>
-            </footer>
-        </div>
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample6.xml)]
 
 <a id="Ex1Task2"></a>
 #### Task 2 – Creating the TriviaController Web API
@@ -218,28 +164,10 @@ You will use the ASP.NET Scaffolding tools provided by Visual Studio to create t
 1. Open the **WebApiConfig.cs** file inside the **App\_Start** folder. This file defines the configuration of the Web API service, like how routes are mapped to Web API controller actions.
 2. Add the following using statement at the beginning of the file.
 
-        using Newtonsoft.Json.Serialization;
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample7.xml)]
 3. Add the following highlighted code to the **Register** method to globally configure the formatter for the JSON data retrieved by the Web API action methods.
 
-        public static class WebApiConfig
-        {
-            public static void Register(HttpConfiguration config)
-            {
-                // Web API configuration and services
-        
-                // Use camel case for JSON data.
-                config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-        
-                // Web API routes
-                config.MapHttpAttributeRoutes();
-        
-                config.Routes.MapHttpRoute(
-                    name: "DefaultApi",
-                    routeTemplate: "api/{controller}/{id}",
-                    defaults: new { id = RouteParameter.Optional }
-                );
-            }
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample8.xml)]
 
     > [!NOTE] The **CamelCasePropertyNamesContractResolver** automatically converts property names to *camel* case, which is the general convention for property names in JavaScript.
 4. In **Solution Explorer**, right-click the **Controllers** folder of the **GeekQuiz** project and select **Add | New Scaffolded Item...**.
@@ -265,108 +193,37 @@ You will use the ASP.NET Scaffolding tools provided by Visual Studio to create t
 
     (Code Snippet - *AspNetWebApiSpa - Ex1 - TriviaControllerUsings*)
 
-        using System.Data.Entity;
-        using System.Threading;
-        using System.Threading.Tasks;
-        using System.Web.Http.Description;
-        using GeekQuiz.Models;
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample9.xml)]
 8. Add the following code at the beginning of the **TriviaController** class to define, initialize and dispose the **TriviaContext** instance in the controller.
 
     (Code Snippet - *AspNetWebApiSpa - Ex1 - TriviaControllerContext*)
 
-        public class TriviaController : ApiController
-        {
-            private TriviaContext db = new TriviaContext();
-        
-            protected override void Dispose(bool disposing)
-            {
-                if (disposing)
-                {
-                    this.db.Dispose();
-                }
-        
-                base.Dispose(disposing);
-            }
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample10.xml)]
 
     > [!NOTE] The **Dispose** method of **TriviaController** invokes the **Dispose** method of the **TriviaContext** instance, which ensures that all the resources used by the context object are released when the **TriviaContext** instance is disposed or garbage-collected. This includes closing all database connections opened by Entity Framework.
 9. Add the following helper method at the end of the **TriviaController** class. This method retrieves the following quiz question from the database to be answered by the specified user.
 
     (Code Snippet - *AspNetWebApiSpa - Ex1 - TriviaControllerNextQuestion*)
 
-        private async Task<TriviaQuestion> NextQuestionAsync(string userId)
-        {
-            var lastQuestionId = await this.db.TriviaAnswers
-                .Where(a => a.UserId == userId)
-                .GroupBy(a => a.QuestionId)
-                .Select(g => new { QuestionId = g.Key, Count = g.Count() })
-                .OrderByDescending(q => new { q.Count, QuestionId = q.QuestionId })
-                .Select(q => q.QuestionId)
-                .FirstOrDefaultAsync();
-        
-            var questionsCount = await this.db.TriviaQuestions.CountAsync();
-        
-            var nextQuestionId = (lastQuestionId % questionsCount) + 1;
-            return await this.db.TriviaQuestions.FindAsync(CancellationToken.None, nextQuestionId);
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample11.xml)]
 10. Add the following **Get** action method to the **TriviaController** class. This action method calls the **NextQuestionAsync** helper method defined in the previous step to retrieve the next question for the authenticated user.
 
     (Code Snippet - *AspNetWebApiSpa - Ex1 - TriviaControllerGetAction*)
 
-        // GET api/Trivia
-        [ResponseType(typeof(TriviaQuestion))]
-        public async Task<IHttpActionResult> Get()
-        {
-            var userId = User.Identity.Name;
-        
-            TriviaQuestion nextQuestion = await this.NextQuestionAsync(userId);
-        
-            if (nextQuestion == null)
-            {
-                return this.NotFound();
-            }
-        
-            return this.Ok(nextQuestion);
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample12.xml)]
 11. Add the following helper method at the end of the **TriviaController** class. This method stores the specified answer in the database and returns a Boolean value indicating whether or not the answer is correct.
 
     (Code Snippet - *AspNetWebApiSpa - Ex1 - TriviaControllerStoreAsync*)
 
-        private async Task<bool> StoreAsync(TriviaAnswer answer)
-        {
-            this.db.TriviaAnswers.Add(answer);
-        
-            await this.db.SaveChangesAsync();
-            var selectedOption = await this.db.TriviaOptions.FirstOrDefaultAsync(o => o.Id == answer.OptionId
-                && o.QuestionId == answer.QuestionId);
-        
-            return selectedOption.IsCorrect;
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample13.xml)]
 12. Add the following **Post** action method to the **TriviaController** class. This action method associates the answer to the authenticated user and calls the **StoreAsync** helper method. Then, it sends a response with the Boolean value returned by the helper method.
 
     (Code Snippet - *AspNetWebApiSpa - Ex1 - TriviaControllerPostAction*)
 
-        // POST api/Trivia
-        [ResponseType(typeof(TriviaAnswer))]
-        public async Task<IHttpActionResult> Post(TriviaAnswer answer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return this.BadRequest(this.ModelState);
-            }
-        
-            answer.UserId = User.Identity.Name;
-        
-            var isCorrect = await this.StoreAsync(answer);
-            return this.Ok<bool>(isCorrect);
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample14.xml)]
 13. Modify the Web API controller to restrict access to authenticated users by adding the **Authorize** attribute to the **TriviaController** class definition.
 
-        [Authorize]
-        public class TriviaController : ApiController
-        {
-            ...
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample15.xml)]
 
 <a id="Ex1Task3"></a>
 #### Task 3 – Running the Solution
@@ -437,7 +294,7 @@ You will start by installing AngularJS from Visual Studio's Package Manager Cons
 1. Open **Visual Studio Express 2013 for Web** and open the **GeekQuiz.sln** solution located in the **Source/Ex2-CreatingASPAInterface/Begin** folder. Alternatively, you can continue with the solution that you obtained in the previous exercise.
 2. Open the **Package Manager Console** from **Tools** | **Library Package Manager**. Type the following command to install the **AngularJS.Core** NuGet package.
 
-        Install-Package AngularJS.Core
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample16.xml)]
 3. In **Solution Explorer**, right-click the **Scripts** folder of the **GeekQuiz** project and select **Add | New Folder**. Name the folder **app** and press **Enter**.
 4. Right-click the **app** folder you just created and select **Add | JavaScript File**.
 
@@ -453,18 +310,7 @@ You will start by installing AngularJS from Visual Studio's Package Manager Cons
 
     (Code Snippet - *AspNetWebApiSpa - Ex2 - AngularQuizController*)
 
-        angular.module('QuizApp', [])
-            .controller('QuizCtrl', function ($scope, $http) {
-                $scope.answered = false;
-                $scope.title = "loading question...";
-                $scope.options = [];
-                $scope.correctAnswer = false;
-                $scope.working = false;
-        
-                $scope.answer = function () {
-                    return $scope.correctAnswer ? 'correct' : 'incorrect';
-                };
-            });
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample17.xml)]
 
     > [!NOTE] The constructor function of the **QuizCtrl** controller expects an injectable parameter named **$scope**. The initial state of the scope should be set up in the constructor function by attaching properties to the **$scope** object. The properties contain the **view model**, and will be accessible to the template when the controller is registered.
     > 
@@ -473,48 +319,14 @@ You will start by installing AngularJS from Visual Studio's Package Manager Cons
 
     (Code Snippet - *AspNetWebApiSpa - Ex2 - AngularQuizControllerNextQuestion*)
 
-        .controller('QuizCtrl', function ($scope, $http) { 
-            ...
-        
-            $scope.nextQuestion = function () {
-                $scope.working = true;
-                $scope.answered = false;
-                $scope.title = "loading question...";
-                $scope.options = [];
-        
-                $http.get("/api/trivia").success(function (data, status, headers, config) {
-                    $scope.options = data.options;
-                    $scope.title = data.title;
-                    $scope.answered = false;
-                    $scope.working = false;
-                }).error(function (data, status, headers, config) {
-                    $scope.title = "Oops... something went wrong";
-                    $scope.working = false;
-                });
-            };
-        };
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample18.xml)]
 
     > [!NOTE] This function retrieves the next question from the **Trivia** Web API created in the previous exercise and attaches the question data to the **$scope** object.
 8. Insert the following code at the end of the **QuizCtrl** controller to define the **sendAnswer** function in the **$scope** object.
 
     (Code Snippet - *AspNetWebApiSpa - Ex2 - AngularQuizControllerSendAnswer*)
 
-        .controller('QuizCtrl', function ($scope, $http) { 
-            ...
-        
-            $scope.sendAnswer = function (option) {
-                $scope.working = true;
-                $scope.answered = true;
-        
-                $http.post('/api/trivia', { 'questionId': option.questionId, 'optionId': option.id }).success(function (data, status, headers, config) {
-                    $scope.correctAnswer = (data === true);
-                    $scope.working = false;
-                }).error(function (data, status, headers, config) {
-                    $scope.title = "Oops... something went wrong";
-                    $scope.working = false;
-                });
-            };
-        };
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample19.xml)]
 
     > [!NOTE] This function sends the answer selected by the user to the **Trivia** Web API and stores the result –i.e. if the answer is correct or not– in the **$scope** object.
     > 
@@ -523,37 +335,7 @@ You will start by installing AngularJS from Visual Studio's Package Manager Cons
 
     (Code Snippet - *AspNetWebApiSpa - Ex2 - GeekQuizView*)
 
-        @{
-            ViewBag.Title = "Play";
-        }
-        
-        <div id="bodyContainer" ng-app="QuizApp">
-            <section id="content">
-                <div class="container" >
-                    <div class="row">
-                        <div class="flip-container text-center col-md-12" ng-controller="QuizCtrl" ng-init="nextQuestion()">
-                            <div class="back" ng-class="{flip: answered, correct: correctAnswer, incorrect:!correctAnswer}">
-                                <p class="lead">{{answer()}}</p>
-                                <p>
-                                    <button class="btn btn-info btn-lg next option" ng-click="nextQuestion()" ng-disabled="working">Next Question</button>
-                                </p>
-                            </div>
-                            <div class="front" ng-class="{flip: answered}">
-                                <p class="lead">{{title}}</p>
-                                <div class="row text-center">
-                                    <button class="btn btn-info btn-lg option" ng-repeat="option in options" ng-click="sendAnswer(option)" ng-disabled="working">{{option.title}}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-        
-        @section scripts {
-            @Scripts.Render("~/Scripts/angular.js")
-            @Scripts.Render("~/Scripts/app/quiz-controller.js")
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample20.xml)]
 
     > [!NOTE] The AngularJS template is a declarative specification that uses information from the model and the controller to transform static markup into the dynamic view that the user sees in the browser. The following are examples of AngularJS elements and element attributes that can be used in a template:
     > 
@@ -565,48 +347,7 @@ You will start by installing AngularJS from Visual Studio's Package Manager Cons
 
     (Code Snippet - *AspNetWebApiSpa - Ex2 - GeekQuizStyles*)
 
-        .validation-summary-valid {
-             display: none;
-        }
-        
-        /* Geek Quiz styles */
-        .flip-container .back,
-        .flip-container .front {
-             border: 5px solid #00bcf2;
-             padding-bottom: 30px;
-             padding-top: 30px;
-        }
-        
-        #content {
-            position:relative;
-            background:#fff;
-            padding:50px 0 0 0;
-        }
-        
-        .option {
-             width:140px;
-             margin: 5px;
-        }
-        
-        div.correct p {
-             color: green;
-        }
-        
-        div.incorrect p {
-             color: red;
-        }
-        
-        .btn {
-             border-radius: 0;
-        }
-        
-        .flip-container div.front, .flip-container div.back.flip {
-            display: block;
-        }
-        
-        .flip-container div.front.flip, .flip-container div.back {
-            display: none;
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample21.xml)]
 
 <a id="Ex2Task2"></a>
 #### Task 2 – Running the Solution
@@ -652,49 +393,13 @@ In this task you will use CSS3 properties to perform rich animations by adding a
 3. Open the **Flip.css** file you just added and inspect its content.
 4. Locate the **flip transformation** comment. The styles below that comment use the CSS **perspective** and **rotateY** transformations to generate a &quot;card flip&quot; effect.
 
-        /* flip transformation */
-        .flip-container div.front {
-            -moz-transform: perspective(2000px) rotateY(0deg);
-            -webkit-transform: perspective(2000px) rotateY(0deg);
-            -o-transform: perspective(2000px) rotateY(0deg);
-            transform: perspective(2000px) rotateY(0deg);
-        }
-        
-            .flip-container div.front.flip {
-                -moz-transform: perspective(2000px) rotateY(179.9deg);
-                -webkit-transform: perspective(2000px) rotateY(179.9deg);
-                -o-transform: perspective(2000px) rotateY(179.9deg);
-                transform: perspective(2000px) rotateY(179.9deg);
-            }
-        
-        .flip-container div.back {
-            -moz-transform: perspective(2000px) rotateY(-180deg);
-            -webkit-transform: perspective(2000px) rotateY(-180deg);
-            -o-transform: perspective(2000px) rotateY(-180deg);
-            transform: perspective(2000px) rotateY(-180deg);
-        }
-        
-            .flip-container div.back.flip {
-                -moz-transform: perspective(2000px) rotateY(0deg);
-                -webkit-transform: perspective(2000px) rotateY(0deg);
-                -ms-transform: perspective(2000px) rotateY(0);
-                -o-transform: perspective(2000px) rotateY(0);
-                transform: perspective(2000px) rotateY(0);
-            }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample22.xml)]
 5. Locate the **hide back of pane during flip** comment. The style below that comment hides the back-side of the faces when they are facing away from the viewer by setting the **backface-visibility** CSS property to *hidden*.
 
-        /* hide back of pane during flip */
-        .front, .back {
-            -moz-backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-        }
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample23.xml)]
 6. Open the **BundleConfig.cs** file inside the **App\_Start** folder and add the reference to the **Flip.css** file in the **&quot;~/Content/css&quot;** style bundle
 
-        bundles.Add(new StyleBundle("~/Content/css").Include(
-            "~/Content/bootstrap.css",
-            "~/Content/site.css",
-            "~/Content/Flip.css"));
+    [!code[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample24.xml)]
 7. Press **F5** to run the solution and log in with your credentials.
 8. Answer a question by clicking one of the options. Notice the flip effect when transitioning between views.
 

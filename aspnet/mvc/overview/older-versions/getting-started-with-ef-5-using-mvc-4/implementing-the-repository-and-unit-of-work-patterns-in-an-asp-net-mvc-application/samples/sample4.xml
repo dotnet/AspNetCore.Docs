@@ -1,133 +1,189 @@
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ContosoUniversity.Models;
 using ContosoUniversity.DAL;
+using PagedList;
 
 namespace ContosoUniversity.Controllers
 {
-   public class CourseController : Controller
+   public class StudentController : Controller
    {
-      private UnitOfWork unitOfWork = new UnitOfWork();
+      private IStudentRepository studentRepository;
 
-      //
-      // GET: /Course/
-
-      public ViewResult Index()
+      public StudentController()
       {
-         var courses = unitOfWork.CourseRepository.Get(includeProperties: "Department");
-         return View(courses.ToList());
+         this.studentRepository = new StudentRepository(new SchoolContext());
+      }
+
+      public StudentController(IStudentRepository studentRepository)
+      {
+         this.studentRepository = studentRepository;
       }
 
       //
-      // GET: /Course/Details/5
+      // GET: /Student/
+
+      public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+      {
+         ViewBag.CurrentSort = sortOrder;
+         ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+         ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+         if (searchString != null)
+         {
+            page = 1;
+         }
+         else
+         {
+            searchString = currentFilter;
+         }
+         ViewBag.CurrentFilter = searchString;
+
+         var students = from s in studentRepository.GetStudents()
+                        select s;
+         if (!String.IsNullOrEmpty(searchString))
+         {
+            students = students.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
+                                   || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
+         }
+         switch (sortOrder)
+         {
+            case "name_desc":
+               students = students.OrderByDescending(s => s.LastName);
+               break;
+            case "Date":
+               students = students.OrderBy(s => s.EnrollmentDate);
+               break;
+            case "date_desc":
+               students = students.OrderByDescending(s => s.EnrollmentDate);
+               break;
+            default:  // Name ascending 
+               students = students.OrderBy(s => s.LastName);
+               break;
+         }
+
+         int pageSize = 3;
+         int pageNumber = (page ?? 1);
+         return View(students.ToPagedList(pageNumber, pageSize));
+      }
+
+      //
+      // GET: /Student/Details/5
 
       public ViewResult Details(int id)
       {
-         Course course = unitOfWork.CourseRepository.GetByID(id);
-         return View(course);
+         Student student = studentRepository.GetStudentByID(id);
+         return View(student);
       }
 
       //
-      // GET: /Course/Create
+      // GET: /Student/Create
 
       public ActionResult Create()
       {
-         PopulateDepartmentsDropDownList();
          return View();
       }
+
+      //
+      // POST: /Student/Create
 
       [HttpPost]
       [ValidateAntiForgeryToken]
       public ActionResult Create(
-          [Bind(Include = "CourseID,Title,Credits,DepartmentID")]
-         Course course)
+         [Bind(Include = "LastName, FirstMidName, EnrollmentDate")]
+           Student student)
       {
          try
          {
             if (ModelState.IsValid)
             {
-               unitOfWork.CourseRepository.Insert(course);
-               unitOfWork.Save();
+               studentRepository.InsertStudent(student);
+               studentRepository.Save();
                return RedirectToAction("Index");
             }
          }
          catch (DataException /* dex */)
          {
-            //Log the error (uncomment dex variable name after DataException and add a line here to write a log.)
-            ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+            //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
+            ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
          }
-         PopulateDepartmentsDropDownList(course.DepartmentID);
-         return View(course);
+         return View(student);
       }
+
+      //
+      // GET: /Student/Edit/5
 
       public ActionResult Edit(int id)
       {
-         Course course = unitOfWork.CourseRepository.GetByID(id);
-         PopulateDepartmentsDropDownList(course.DepartmentID);
-         return View(course);
+         Student student = studentRepository.GetStudentByID(id);
+         return View(student);
       }
+
+      //
+      // POST: /Student/Edit/5
 
       [HttpPost]
       [ValidateAntiForgeryToken]
       public ActionResult Edit(
-           [Bind(Include = "CourseID,Title,Credits,DepartmentID")]
-         Course course)
+         [Bind(Include = "LastName, FirstMidName, EnrollmentDate")]
+         Student student)
       {
          try
          {
             if (ModelState.IsValid)
             {
-               unitOfWork.CourseRepository.Update(course);
-               unitOfWork.Save();
+               studentRepository.UpdateStudent(student);
+               studentRepository.Save();
                return RedirectToAction("Index");
             }
          }
          catch (DataException /* dex */)
          {
-            //Log the error (uncomment dex variable name after DataException and add a line here to write a log.)
-            ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+            //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
+            ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
          }
-         PopulateDepartmentsDropDownList(course.DepartmentID);
-         return View(course);
-      }
-
-      private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
-      {
-         var departmentsQuery = unitOfWork.DepartmentRepository.Get(
-             orderBy: q => q.OrderBy(d => d.Name));
-         ViewBag.DepartmentID = new SelectList(departmentsQuery, "DepartmentID", "Name", selectedDepartment);
+         return View(student);
       }
 
       //
-      // GET: /Course/Delete/5
+      // GET: /Student/Delete/5
 
+      public ActionResult Delete(bool? saveChangesError = false, int id = 0)
+      {
+         if (saveChangesError.GetValueOrDefault())
+         {
+            ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
+         }
+         Student student = studentRepository.GetStudentByID(id);
+         return View(student);
+      }
+
+      //
+      // POST: /Student/Delete/5
+
+      [HttpPost]
+      [ValidateAntiForgeryToken]
       public ActionResult Delete(int id)
       {
-         Course course = unitOfWork.CourseRepository.GetByID(id);
-         return View(course);
-      }
-
-      //
-      // POST: /Course/Delete/5
-
-      [HttpPost, ActionName("Delete")]
-      [ValidateAntiForgeryToken]
-      public ActionResult DeleteConfirmed(int id)
-      {
-         Course course = unitOfWork.CourseRepository.GetByID(id);
-         unitOfWork.CourseRepository.Delete(id);
-         unitOfWork.Save();
+         try
+         {
+            Student student = studentRepository.GetStudentByID(id);
+            studentRepository.DeleteStudent(id);
+            studentRepository.Save();
+         }
+         catch (DataException /* dex */)
+         {
+            //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
+            return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+         }
          return RedirectToAction("Index");
       }
 
       protected override void Dispose(bool disposing)
       {
-         unitOfWork.Dispose();
+         studentRepository.Dispose();
          base.Dispose(disposing);
       }
    }

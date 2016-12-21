@@ -34,15 +34,15 @@ You can replace some parts of the process with your own custom behaviors. In thi
 
 A route template looks similar to a URI path, but it can have placeholder values, indicated with curly braces:
 
-    "api/{controller}/public/{category}/{id}"
+[!code[Main](routing-and-action-selection/samples/sample1.xml)]
 
 When you create a route, you can provide default values for some or all of the placeholders:
 
-    defaults: new { category = "all" }
+[!code[Main](routing-and-action-selection/samples/sample2.xml)]
 
 You can also provide constraints, which restrict how a URI segment can match a placeholder:
 
-    constraints: new { id = @"\d+" }   // Only matches if "id" is one or more digits.
+[!code[Main](routing-and-action-selection/samples/sample3.xml)]
 
 The framework tries to match the segments in the URI path to the template. Literals in the template must match exactly. A placeholder matches any value, unless you specify constraints. The framework does not match other parts of the URI, such as the host name or the query parameters. The framework selects the first route in the route table that matches the URI.
 
@@ -55,11 +55,7 @@ There are two special placeholders: "{controller}" and "{action}".
 
 If you provide defaults, the route will match a URI that is missing those segments. For example:
 
-    routes.MapHttpRoute(
-        name: "DefaultApi",
-        routeTemplate: "api/{controller}/{category}",
-        defaults: new { category = "all" }
-    );
+[!code[Main](routing-and-action-selection/samples/sample4.xml)]
 
 The URI "`http://localhost/api/products`" matches this route. The "{category}" segment is assigned the default value "all".
 
@@ -71,11 +67,7 @@ During this route-matching phase, the special "{controller}" and "{action}" plac
 
 A default can have the special value **RouteParameter.Optional**. If a placeholder gets assigned this value, the value is not added to the route dictionary. For example:
 
-    routes.MapHttpRoute(
-        name: "DefaultApi",
-        routeTemplate: "api/{controller}/{category}/{id}",
-        defaults: new { category = "all", id = RouteParameter.Optional }
-    );
+[!code[Main](routing-and-action-selection/samples/sample5.xml)]
 
 For the URI path "api/products", the route dictionary will contain:
 
@@ -90,11 +82,7 @@ For "api/products/toys/123", however, the route dictionary will contain:
 
 The defaults can also include a value that does not appear anywhere in the route template. If the route matches, that value is stored in the dictionary. For example:
 
-    routes.MapHttpRoute(
-        name: "Root",
-        routeTemplate: "api/root/{id}",
-        defaults: new { controller = "customers", id = RouteParameter.Optional }
-    );
+[!code[Main](routing-and-action-selection/samples/sample6.xml)]
 
 If the URI path is "api/root/8", the dictionary will contain two values:
 
@@ -159,7 +147,7 @@ Step #3 is probably the most confusing. The basic idea is that a parameter can g
 
 For example, consider the following action:
 
-    public void Get(int id)
+[!code[Main](routing-and-action-selection/samples/sample7.xml)]
 
 The *id* parameter binds to the URI. Therefore, this action can only match a URI that contains a value for "id", either in the route dictionary or in the query string.
 
@@ -180,32 +168,15 @@ Summary:
 
 Routes:
 
-    routes.MapHttpRoute(
-        name: "ApiRoot",
-        routeTemplate: "api/root/{id}",
-        defaults: new { controller = "products", id = RouteParameter.Optional }
-    );
-    routes.MapHttpRoute(
-        name: "DefaultApi",
-        routeTemplate: "api/{controller}/{id}",
-        defaults: new { id = RouteParameter.Optional }
-    );
+[!code[Main](routing-and-action-selection/samples/sample8.xml)]
 
 Controller:
 
-    public class ProductsController : ApiController
-    {
-        public IEnumerable<Product> GetAll() {}
-        public Product GetById(int id, double version = 1.0) {}
-        [HttpGet]
-        public void FindProductsByName(string name) {}
-        public void Post(Product value) {}
-        public void Put(int id, Product value) {}
-    }
+[!code[Main](routing-and-action-selection/samples/sample9.xml)]
 
 HTTP request:
 
-    GET http://localhost:34701/api/products/1?version=1.5&details=1
+[!code[Main](routing-and-action-selection/samples/sample10.xml)]
 
 ### Route Matching
 
@@ -258,5 +229,4 @@ Web API provides extension points for some parts of the routing process.
 
 To provide your own implementation for any of these interfaces, use the **Services** collection on the **HttpConfiguration** object:
 
-    var config = GlobalConfiguration.Configuration;
-    config.Services.Replace(typeof(IHttpControllerSelector), new MyControllerSelector(config));
+[!code[Main](routing-and-action-selection/samples/sample11.xml)]

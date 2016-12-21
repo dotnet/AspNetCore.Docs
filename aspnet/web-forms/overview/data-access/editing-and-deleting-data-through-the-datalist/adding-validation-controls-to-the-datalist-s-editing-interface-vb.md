@@ -102,30 +102,7 @@ Add the CompareValidator into the `EditItemTemplate` and set its `ControlToValid
 After adding these two validation controls, the DataList s `EditItemTemplate` s declarative syntax should look similar to the following:
 
 
-    <EditItemTemplate>
-        Product name:
-            <asp:TextBox ID="ProductName" runat="server"
-                Text='<%# Eval("ProductName") %>'></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
-                ControlToValidate="ProductName"
-                ErrorMessage="You must provide the product's name"
-                runat="server">*</asp:RequiredFieldValidator>
-        <br />
-        Price:
-            <asp:TextBox ID="UnitPrice" runat="server"
-                Text='<%# Eval("UnitPrice", "{0:C}") %>'></asp:TextBox>
-            <asp:CompareValidator ID="CompareValidator1"
-                ControlToValidate="UnitPrice"
-                ErrorMessage="The price must be greater than or equal to zero
-                              and cannot include the currency symbol"
-                Operator="GreaterThanEqual" Type="Currency" ValueToCompare="0"
-                runat="server">*</asp:CompareValidator><br />
-        <br />
-        <asp:Button ID="UpdateProduct" runat="server" CommandName="Update"
-            Text="Update" /> 
-        <asp:Button ID="CancelUpdate" runat="server" CommandName="Cancel"
-            Text="Cancel" />
-    </EditItemTemplate>
+[!code[Main](adding-validation-controls-to-the-datalist-s-editing-interface-vb/samples/sample1.xml)]
 
 After making these changes, open the page in a browser. If you attempt to omit the name or enter an invalid price value when editing a product, an asterisk appears next to the textbox. As Figure 5 shows, a price value that includes the currency symbol such as $19.95 is considered invalid. The CompareValidator s `Currency` `Type` allows for digit separators (such as commas or periods, depending on the culture settings) and a leading plus or minus sign, but does *not* permit a currency symbol. This behavior may perplex users as the editing interface currently renders the `UnitPrice` using the currency format.
 
@@ -171,9 +148,7 @@ If a user has JavaScript disabled, visits our page, edits a product, enters a pr
 Add the following code to the start of the `UpdateCommand` event handler, immediately before the `Try` block:
 
 
-    If Not Page.IsValid Then
-        Exit Sub
-    End If
+[!code[Main](adding-validation-controls-to-the-datalist-s-editing-interface-vb/samples/sample2.xml)]
 
 With this addition, the product will attempt to be updated only if the submitted data is valid. Most users won t be able to postback invalid data due to the validation controls client-side scripts, but users whose browsers don t support JavaScript or that have JavaScript support disabled, can bypass the client-side checks and submit invalid data.
 

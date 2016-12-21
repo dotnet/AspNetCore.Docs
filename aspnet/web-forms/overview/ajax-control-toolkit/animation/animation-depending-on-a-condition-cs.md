@@ -28,49 +28,23 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](animation-depending-on-a-condition-cs/samples/sample1.xml)]
 
 The animation will be applied to a panel of text which looks like this:
 
-    <asp:Panel ID="panelShadow" runat="server" CssClass="panelClass">    
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more    
-     efficient, more interactive and highly-personalized Web experiences that work    
-     across all the most popular browsers.<br />    
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more     
-     efficient, more interactive and highly-personalized Web experiences that work   
-     across all the most popular browsers.<br />    
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more     
-     efficient, more interactive and highly-personalized Web experiences that work    
-     across all the most popular browsers.<br />    
-    </asp:Panel>
+[!code[Main](animation-depending-on-a-condition-cs/samples/sample2.xml)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-    <style type="text/css">
-     .panelClass {background-color: lime; width: 300px;}
-    </style>
+[!code[Main](animation-depending-on-a-condition-cs/samples/sample3.xml)]
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server":`
 
-    <ajaxToolkit:AnimationExtender ID="ae" runat="server" TargetControlID="Panel1">
+[!code[Main](animation-depending-on-a-condition-cs/samples/sample4.xml)]
 
 Within the `<Animations>` node, use `<OnLoad>` to run the animations once the page has been fully loaded. Instead of one of the regular animations, the `<Condition>` element comes into play. The JavaScript code provided as the value of the `ConditionScript` attribute is executed at runtime. If it evaluates to true, the animation is executed, otherwise not. The following markup provides two animations, each of them being executed in 50% of cases upon random. Since there may only be one animation within `<OnLoad>`, the two `<Condition>` animations are joined together using the `<Sequence>` element:
 
-    <ajaxToolkit:AnimationExtender ID="ae" runat="server"
-     TargetControlID="Panel1">
-     <Animations>
-     <OnLoad>
-     <Sequence>
-     <Condition ConditionScript="Math.random()   0.5">
-     <Resize Width="1000" Height="150" Unit="px" />
-     </Condition>
-     <Condition ConditionScript="Math.random()   0.5">
-     <FadeOut Duration="1.5" Fps="24" />
-     </Condition>
-     </Sequence>
-     </OnLoad>
-     </Animations>
-    </ajaxToolkit:AnimationExtender>
+[!code[Main](animation-depending-on-a-condition-cs/samples/sample5.xml)]
 
 Note that the less than sign (`<`) in the `ConditionScript` attribute must be escaped (). When you run this script, either no animation runs, or one of the two does, or both do.
 

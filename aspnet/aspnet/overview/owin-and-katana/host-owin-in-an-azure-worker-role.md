@@ -56,7 +56,7 @@ From the **Tools** menu, click **Library Package Manager**, then click **Package
 
 In the Package Manager Console window, enter the following command:
 
-    Install-Package Microsoft.Owin.SelfHost
+[!code[Main](host-owin-in-an-azure-worker-role/samples/sample1.xml)]
 
 ## Add an HTTP Endpoint
 
@@ -76,18 +76,7 @@ In Solution Explorer, right click the WorkerRole1 project and select **Add** / *
 
 Replace all of the boilerplate code with the following:
 
-    using Owin;
-    
-    namespace WorkerRole1
-    {
-        public class Startup
-        {
-            public void Configuration(IAppBuilder app)
-            {
-                app.UseWelcomePage("/");
-            }
-        }
-    }
+[!code[Main](host-owin-in-an-azure-worker-role/samples/sample2.xml)]
 
 The `UseWelcomePage` extension method adds a simple HTML page to your application, to verify the site is working.
 
@@ -97,85 +86,25 @@ Open the WorkerRole.cs file. This class defines the code that runs when the work
 
 Add the following using statement:
 
-    using Microsoft.Owin.Hosting;
+[!code[Main](host-owin-in-an-azure-worker-role/samples/sample3.xml)]
 
 Add an **IDisposable** member to the `WorkerRole` class:
 
-    public class WorkerRole : RoleEntryPoint
-    {
-        private IDisposable _app = null;
-    
-        // ....
-    }
+[!code[Main](host-owin-in-an-azure-worker-role/samples/sample4.xml)]
 
 In the `OnStart` method, add the following code to start the host:
 
-[!code[Main](host-owin-in-an-azure-worker-role/samples/sample1.xml?highlight=5)]
+[!code[Main](host-owin-in-an-azure-worker-role/samples/sample5.xml?highlight=5)]
 
 The **WebApp.Start** method starts the OWIN host. The name of the `Startup` class is a type parameter to the method. By convention, the host will call the `Configure` method of this class.
 
 Override the `OnStop` to dispose of the *\_app* instance:
 
-    public override void OnStop()
-    {
-        if (_app != null)
-        {
-            _app.Dispose();
-        }
-        base.OnStop();
-    }
+[!code[Main](host-owin-in-an-azure-worker-role/samples/sample6.xml)]
 
 Here is the complete code for WorkerRole.cs:
 
-    using Microsoft.Owin.Hosting;
-    using Microsoft.WindowsAzure.ServiceRuntime;
-    using System;
-    using System.Diagnostics;
-    using System.Net;
-    using System.Threading;
-    
-    namespace WorkerRole1
-    {
-        public class WorkerRole : RoleEntryPoint
-        {
-            private IDisposable _app = null;
-    
-            public override void Run()
-            {
-                Trace.TraceInformation("WorkerRole entry point called", "Information");
-    
-                while (true)
-                {
-                    Thread.Sleep(10000);
-                    Trace.TraceInformation("Working", "Information");
-                }
-            }
-    
-            public override bool OnStart()
-            {
-                ServicePointManager.DefaultConnectionLimit = 12;
-    
-                var endpoint = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Endpoint1"];
-                string baseUri = String.Format("{0}://{1}", 
-                    endpoint.Protocol, endpoint.IPEndpoint);
-    
-                Trace.TraceInformation(String.Format("Starting OWIN at {0}", baseUri), 
-                    "Information");
-    
-                _app = WebApp.Start<Startup>(new StartOptions(url: baseUri));
-               return base.OnStart();
-            }
-    
-            public override void OnStop()
-            {
-                if (_app != null)
-                {
-                    _app.Dispose();
-                }
-                base.OnStop();
-            }
-        }
-    }
+[!code[Main](host-owin-in-an-azure-worker-role/samples/sample7.xml)]
 
 Build the solution, and press F5 to run the application locally in the Azure Compute Emulator. Depending on your firewall settings, you might need to allow the emulator through your firewall.
 

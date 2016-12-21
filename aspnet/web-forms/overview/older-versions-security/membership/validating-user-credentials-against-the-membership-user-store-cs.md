@@ -46,17 +46,7 @@ Let's update our login page (~/`Login.aspx`) so that it validates the supplied c
 
 The login page's user interface can remain unchanged, but we need to replace the Login button's `Click` event handler with code that validates the user against the Membership framework user store. Update the event handler so that its code appears as follows:
 
-    protected void LoginButton_Click(object sender, EventArgs e)
-    {
-     // Validate the user against the Membership framework user store
-     if (Membership.ValidateUser(UserName.Text, Password.Text))
-     {
-     // Log the user into the site
-     FormsAuthentication.RedirectFromLoginPage(UserName.Text, RememberMe.Checked);
-     }
-     // If we reach here, the user's credentials were invalid
-     InvalidCredentialsMessage.Visible = true;
-    }
+[!code[Main](validating-user-credentials-against-the-membership-user-store-cs/samples/sample1.xml)]
 
 This code is remarkably simple. We start by calling the `Membership.ValidateUser` method, passing in the supplied username and password. If that method returns true, then the user is signed into the site via the `FormsAuthentication` class's RedirectFromLoginPage method. (As we discussed in the <a id="Tutorial2"></a>[*An Overview of Forms Authentication*](../introduction/an-overview-of-forms-authentication-cs.md) tutorial, the `FormsAuthentication.RedirectFromLoginPage` creates the forms authentication ticket and then redirects the user to the appropriate page.) If the credentials are invalid, however, the `InvalidCredentialsMessage` Label is displayed, informing the user that their username or password was incorrect.
 
@@ -186,17 +176,7 @@ The HTML markup in the `LayoutTemplate` may be modified as needed. Likewise, fee
 
 To collect the visitor's email address, we need to add a TextBox to the template. Add the following declarative markup between the table row (`<tr>`) that contains the `Password` TextBox and the table row that holds the Remember me next time CheckBox:
 
-    <tr>
-     <td align="right">
-     <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email">Email:</asp:Label>
-     </td>
-     <td>
-     <asp:TextBox ID="Email" runat="server"></asp:TextBox>
-     <asp:RequiredFieldValidator ID="EmailRequired" runat="server" 
-     ControlToValidate="Email" ErrorMessage="Email is required." 
-     ToolTip="Email is required." ValidationGroup="myLogin">*</asp:RequiredFieldValidator>
-     </td>
-    </tr>
+[!code[Main](validating-user-credentials-against-the-membership-user-store-cs/samples/sample2.xml)]
 
 After adding the `Email` TextBox, visit the page through a browser. As Figure 8 shows, the Login control's user interface now includes a third textbox.
 
@@ -231,9 +211,7 @@ Figure 9 offers a flow chart of the authentication workflow.
 
 In order to plug in our custom authentication logic, we need to create an event handler for the Login control's `Authenticate` event. Creating an event handler for the `Authenticate` event will generate the following event handler definition:
 
-    protected void myLogin_Authenticate(object sender, AuthenticateEventArgs e)
-    {
-    }
+[!code[Main](validating-user-credentials-against-the-membership-user-store-cs/samples/sample3.xml)]
 
 As you can see, the `Authenticate` event handler is passed an object of type [`AuthenticateEventArgs`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.authenticateeventargs.aspx) as its second input parameter. The `AuthenticateEventArgs` class contains a Boolean property named `Authenticated` that is used to specify whether the supplied credentials are valid. Our task, then, is to write code here that determines whether the supplied credentials are valid or not, and to set the `e.Authenticate` property accordingly.
 
@@ -254,34 +232,7 @@ The `GetUser` method has a number of overloads. If used without passing in any p
 
 The following code implements these two checks. If both pass, then `e.Authenticate` is set to `true`, otherwise it is assigned `false`.
 
-    protected void myLogin_Authenticate(object sender, AuthenticateEventArgs e)
-    {
-     // Get the email address entered
-     TextBox EmailTextBox = myLogin.FindControl("Email") as TextBox;
-     string email = EmailTextBox.Text.Trim();
-    
-     // Verify that the username/password pair is valid
-     if (Membership.ValidateUser(myLogin.UserName, myLogin.Password))
-     {
-     // Username/password are valid, check email
-     MembershipUser usrInfo = Membership.GetUser(myLogin.UserName);
-     if (usrInfo != null && string.Compare(usrInfo.Email, email, true) == 0)
-     {
-     // Email matches, the credentials are valid
-     e.Authenticated = true;
-     }
-     else
-     {
-     // Email address is invalid...
-     e.Authenticated = false;
-     }
-     }
-     else
-     {
-     // Username/password are not valid...
-     e.Authenticated = false;
-     }
-    }
+[!code[Main](validating-user-credentials-against-the-membership-user-store-cs/samples/sample4.xml)]
 
 With this code in place, attempt to log in as a valid user, entering the correct username, password, and email address. Try it again, but this time purposefully use an incorrect email address (see Figure 10). Finally, try it a third time using a non-existent username. In the first case you should be successfully logged on to the site, but in the last two cases you should see the Login control's invalid credentials message.
 
@@ -311,26 +262,7 @@ Regardless of why the credentials are invalid, the Login control displays the sa
 
 Whenever a user attempts to login with invalid credentials the Login control raises its `LoginError` event. Go ahead and create an event handler for this event, and add the following code:
 
-    protected void myLogin_LoginError(object sender, EventArgs e)
-    {
-     // Determine why the user could not login...
-     myLogin.FailureText = "Your login attempt was not successful. Please try again.";
-    
-     // Does there exist a User account for this user?
-     MembershipUser usrInfo = Membership.GetUser(myLogin.UserName);
-     if (usrInfo != null)
-     {
-     // Is this user locked out?
-     if (usrInfo.IsLockedOut)
-     {
-     myLogin.FailureText = "Your account has been locked out because of too many invalid login attempts. Please contact the administrator to have your account unlocked.";
-     }
-     else if (!usrInfo.IsApproved)
-     {
-     myLogin.FailureText = "Your account has not yet been approved. You cannot login until an administrator has approved your account.";
-     }
-     }
-    }
+[!code[Main](validating-user-credentials-against-the-membership-user-store-cs/samples/sample5.xml)]
 
 The above code starts by setting the Login control's `FailureText` property to the default value ( Your login attempt was not successful. Please try again ). It then checks to see if the username supplied maps to an existing user account. If so, it consults the resulting `MembershipUser` object's `IsLockedOut` and `IsApproved` properties to determine if the account has been locked out or has not yet been approved. In either case, the `FailureText` property is updated to a corresponding value.
 

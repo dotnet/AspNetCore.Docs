@@ -76,13 +76,7 @@ In the **Add New** Item dialog, name the class &quot;Product&quot;.
 
 In the Product.cs file, add the following class definition:
 
-    public class Product
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public string Category { get; set; }
-    }
+[!code[Main](creating-an-odata-endpoint/samples/sample1.xml)]
 
 The ID property will be the entity key. Clients can query products by ID. This field would also be the primary key in the back-end database.
 
@@ -129,22 +123,7 @@ The scaffolding adds two code files to the project:
 
 In Solution Explorer, expand the App\_Start folder and open the file named WebApiConfig.cs. This class holds configuration code for Web API. Replace this code with the following:
 
-    using ProductService.Models;
-    using System.Web.Http;
-    using System.Web.Http.OData.Builder;
-    
-    namespace ProductService
-    {
-        public static class WebApiConfig
-        {
-            public static void Register(HttpConfiguration config)
-            {
-                ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-                builder.EntitySet<Product>("Products");
-                config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
-            }
-        }
-    }
+[!code[Main](creating-an-odata-endpoint/samples/sample2.xml)]
 
 This code does two things:
 
@@ -155,13 +134,13 @@ An EDM is an abstract model of the data. The EDM is used to create the metadata 
 
 The **EntitySet** method adds an entity set to the EDM:
 
-    modelBuilder.EntitySet<Product>("Products");
+[!code[Main](creating-an-odata-endpoint/samples/sample3.xml)]
 
 The string "Products" defines the name of the entity set. The name of the controller must match the name of the entity set. In this tutorial, the entity set is named "Products" and the controller is named `ProductsController`. If you named the entity set "ProductSet", you would name the controller `ProductSetController`. Note that an endpoint can have multiple entity sets. Call **EntitySet&lt;T&gt;** for each entity set, and then define a corresponding controller.
 
 The **MapODataRoute** method adds a route for the OData endpoint.
 
-    config.Routes.MapODataRoute("ODataRoute", "odata", model);
+[!code[Main](creating-an-odata-endpoint/samples/sample4.xml)]
 
 The first parameter is a friendly name for the route. Clients of your service do not see this name. The second parameter is the URI prefix for the endpoint. Given this code, the URI for the Products entity set is http://*hostname*/odata/Products. Your application can have more than one OData endpoint. For each endpoint, call **MapODataRoute** and provide a unique route name and a unique URI prefix.
 
@@ -172,7 +151,7 @@ In this step, you will use Entity Framework to seed the database with some test 
 
 From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-    Enable-Migrations
+[!code[Main](creating-an-odata-endpoint/samples/sample5.xml)]
 
 This adds a folder named Migrations and a code file named Configuration.cs.
 
@@ -180,22 +159,11 @@ This adds a folder named Migrations and a code file named Configuration.cs.
 
 Open this file and add the following code to the `Configuration.Seed` method.
 
-    protected override void Seed(ProductService.Models.ProductServiceContext context)
-    {
-        // New code 
-        context.Products.AddOrUpdate(new Product[] {
-            new Product() { ID = 1, Name = "Hat", Price = 15, Category = "Apparel" },
-            new Product() { ID = 2, Name = "Socks", Price = 5, Category = "Apparel" },
-            new Product() { ID = 3, Name = "Scarf", Price = 12, Category = "Apparel" },
-            new Product() { ID = 4, Name = "Yo-yo", Price = 4.95M, Category = "Toys" },
-            new Product() { ID = 5, Name = "Puzzle", Price = 8, Category = "Toys" },
-        });
-    }
+[!code[Main](creating-an-odata-endpoint/samples/sample6.xml)]
 
 In the Package Manager Console Window, enter the following commands:
 
-    Add-Migration Initial
-    Update-Database
+[!code[Main](creating-an-odata-endpoint/samples/sample7.xml)]
 
 These commands generate code that creates the database, and then executes that code.
 
@@ -226,26 +194,7 @@ Double-click the response in the Web Sessions list to see the details of the res
 
 The raw HTTP response message should look similar to the following:
 
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Pragma: no-cache
-    Content-Type: application/atomsvc+xml; charset=utf-8
-    Expires: -1
-    Server: Microsoft-IIS/8.0
-    DataServiceVersion: 3.0
-    Date: Mon, 23 Sep 2013 17:51:01 GMT
-    Content-Length: 364
-    
-    <?xml version="1.0" encoding="utf-8"?>
-    <service xml:base="http://localhost:60868/odata" 
-        xmlns="http://www.w3.org/2007/app" xmlns:atom="http://www.w3.org/2005/Atom">
-      <workspace>
-        <atom:title type="text">Default</atom:title>
-        <collection href="Products">
-            <atom:title type="text">Products</atom:title>
-        </collection>
-        </workspace>
-    </service></pre>
+[!code[Main](creating-an-odata-endpoint/samples/sample8.xml)]
 
 By default, Web API returns the service document in AtomPub format. To request JSON, add the following header to the HTTP request:
 
@@ -255,23 +204,7 @@ By default, Web API returns the service document in AtomPub format. To request J
 
 Now the HTTP response contains a JSON payload:
 
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Pragma: no-cache
-    Content-Type: application/json; charset=utf-8
-    Expires: -1
-    Server: Microsoft-IIS/8.0
-    DataServiceVersion: 3.0
-    Date: Mon, 23 Sep 2013 22:59:28 GMT
-    Content-Length: 136
-    
-    {
-      "odata.metadata":"http://localhost:60868/odata/$metadata","value":[
-        {
-          "name":"Products","url":"Products"
-        }
-      ]
-    }
+[!code[Main](creating-an-odata-endpoint/samples/sample9.xml)]
 
 ### Service Metadata Document
 
@@ -279,87 +212,19 @@ The *service metadata document* describes the data model of the service, using a
 
 To get the metadata document, send a GET request to `http://localhost:port/odata/$metadata`. Here is the metadata for the endpoint shown in this tutorial.
 
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Pragma: no-cache
-    Content-Type: application/xml; charset=utf-8
-    Expires: -1
-    Server: Microsoft-IIS/8.0
-    DataServiceVersion: 3.0
-    Date: Mon, 23 Sep 2013 23:05:52 GMT
-    Content-Length: 1086
-    
-    <?xml version="1.0" encoding="utf-8"?>
-    <edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
-      <edmx:DataServices m:DataServiceVersion="3.0" m:MaxDataServiceVersion="3.0" 
-        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
-        <Schema Namespace="ProductService.Models" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-          <EntityType Name="Product">
-            <Key>
-              <PropertyRef Name="ID" />
-            </Key>
-            <Property Name="ID" Type="Edm.Int32" Nullable="false" />
-            <Property Name="Name" Type="Edm.String" />
-            <Property Name="Price" Type="Edm.Decimal" Nullable="false" />
-            <Property Name="Category" Type="Edm.String" />
-          </EntityType>
-        </Schema>
-        <Schema Namespace="Default" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-          <EntityContainer Name="Container" m:IsDefaultEntityContainer="true">
-            <EntitySet Name="Products" EntityType="ProductService.Models.Product" />
-          </EntityContainer>
-        </Schema>
-      </edmx:DataServices>
-    </edmx:Edmx>
+[!code[Main](creating-an-odata-endpoint/samples/sample10.xml)]
 
 ### Entity Set
 
 To get the Products entity set, send a GET request to `http://localhost:port/odata/Products`.
 
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Pragma: no-cache
-    Content-Type: application/json; charset=utf-8
-    Expires: -1
-    Server: Microsoft-IIS/8.0
-    DataServiceVersion: 3.0
-    Date: Mon, 23 Sep 2013 23:01:31 GMT
-    Content-Length: 459
-    
-    {
-      "odata.metadata":"http://localhost:60868/odata/$metadata#Products","value":[
-        {
-          "ID":1,"Name":"Hat","Price":"15.00","Category":"Apparel"
-        },{
-          "ID":2,"Name":"Socks","Price":"5.00","Category":"Apparel"
-        },{
-          "ID":3,"Name":"Scarf","Price":"12.00","Category":"Apparel"
-        },{
-          "ID":4,"Name":"Yo-yo","Price":"4.95","Category":"Toys"
-        },{
-          "ID":5,"Name":"Puzzle","Price":"8.00","Category":"Toys"
-        }
-      ]
-    }
+[!code[Main](creating-an-odata-endpoint/samples/sample11.xml)]
 
 ### Entity
 
 To get an individual product, send a GET request to `http://localhost:port/odata/Products(1)`, where "1" is the product ID.
 
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Pragma: no-cache
-    Content-Type: application/json; charset=utf-8
-    Expires: -1
-    Server: Microsoft-IIS/8.0
-    DataServiceVersion: 3.0
-    Date: Mon, 23 Sep 2013 23:04:29 GMT
-    Content-Length: 140
-    
-    {
-      "odata.metadata":"http://localhost:60868/odata/$metadata#Products/@Element","ID":1,
-          "Name":"Hat","Price":"15.00","Category":"Apparel"
-    }
+[!code[Main](creating-an-odata-endpoint/samples/sample12.xml)]
 
 <a id="formats"></a>
 ## OData Serialization Formats
@@ -374,50 +239,17 @@ By default, Web API uses AtomPubJSON "light" format.
 
 To get AtomPub format, set the Accept header to "application/atom+xml". Here is an example response body:
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <entry xml:base="http://localhost:60868/odata" xmlns="http://www.w3.org/2005/Atom" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml">
-      <id>http://localhost:60868/odata/Products(1)</id>
-      <category term="ProductService.Models.Product" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" />
-      <link rel="edit" href="http://localhost:60868/odata/Products(1)" />
-      <link rel="self" href="http://localhost:60868/odata/Products(1)" />
-      <title />
-      <updated>2013-09-23T23:42:11Z</updated>
-      <author>
-        <name />
-      </author>
-      <content type="application/xml">
-        <m:properties>
-          <d:ID m:type="Edm.Int32">1</d:ID>
-          <d:Name>Hat</d:Name>
-          <d:Price m:type="Edm.Decimal">15.00</d:Price>
-          <d:Category>Apparel</d:Category>
-        </m:properties>
-      </content>
-    </entry>
+[!code[Main](creating-an-odata-endpoint/samples/sample13.xml)]
 
 You can see one obvious disadvantage of the Atom format: It's a lot more verbose than the JSON light. However, if you have a client that understands AtomPub, the client might prefer that format over JSON.
 
 Here is the JSON light version of the same entity:
 
-    {
-      "odata.metadata":"http://localhost:60868/odata/$metadata#Products/@Element",
-      "ID":1,
-      "Name":"Hat",
-      "Price":"15.00",
-      "Category":"Apparel"
-    }
+[!code[Main](creating-an-odata-endpoint/samples/sample14.xml)]
 
 The JSON light format was introduced in version 3 of the OData protocol. For backward compatibility, a client can request the older "verbose" JSON format. To request verbose JSON, set the Accept header to `application/json;odata=verbose`. Here is the verbose version:
 
-    {
-      "d":{
-        "__metadata":{
-          "id":"http://localhost:18285/odata/Products(1)",
-          "uri":"http://localhost:18285/odata/Products(1)",
-          "type":"ProductService.Models.Product"
-        },"ID":1,"Name":"Hat","Price":"15.00","Category":"Apparel"
-      }
-    }
+[!code[Main](creating-an-odata-endpoint/samples/sample15.xml)]
 
 This format conveys more metadata in the response body, which can add considerable overhead over an entire session. Also, it adds a level of indirection by wrapping the object in a property named "d".
 

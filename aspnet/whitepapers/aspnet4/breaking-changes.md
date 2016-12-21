@@ -52,7 +52,7 @@ ASP.NET controls have been modified in the .NET Framework version 4 in order to 
 
 If you use Visual Studio 2010 to upgrade your application from ASP.NET 2.0 or ASP.NET 3.5, the tool automatically adds a setting to the `Web.config` file that preserves legacy rendering. However, if you upgrade an application by changing the application pool in IIS to target the .NET Framework 4, ASP.NET uses the new rendering mode by default. To disable the new rendering mode, add the following setting in the `Web.config` file:
 
-    <pages controlRenderingCompatibilityVersion="3.5" />
+[!code[Main](breaking-changes/samples/sample1.xml)]
 
 The major rendering changes that the new behavior brings are as follows:
 
@@ -70,7 +70,7 @@ The **ClientIDMode** setting in ASP.NET 4 lets you specify how ASP.NET generates
 
 If you use Visual Studio 2010 to upgrade your application from ASP.NET 2.0 or ASP.NET 3.5, the tool automatically adds a setting to the `Web.config` file that preserves the behavior of earlier versions of the .NET Framework. However, if you upgrade an application by changing the application pool in IIS to target the .NET Framework 4, ASP.NET uses the new mode by default. To disable the new client ID mode, add the following setting in the `Web.config` file:
 
-    <pages ClientIDMode="AutoID" / >
+[!code[Main](breaking-changes/samples/sample2.xml)]
 
 <a id="0.1__Toc245724855"></a><a id="0.1__Toc255587632"></a><a id="0.1__Toc256770143"></a>
 
@@ -87,12 +87,11 @@ In ASP.NET 4, the **HtmlEncode** and **UrlEncode** methods of the **HttpUtility*
 
 The page parser for ASP.NET pages (`.aspx` files) and user controls (`.ascx` files) is stricter in ASP.NET 4 and will reject more instances of invalid markup. For example, the following two snippets would successfully parse in earlier releases of ASP.NET, but will now raise parser errors in ASP.NET 4.
 
-    <asp:HiddenField runat="server" ID="SomeControl" Value="sampleValue"  ; />
+[!code[Main](breaking-changes/samples/sample3.xml)]
 
 Notice the invalid semicolon at the end of the **HiddenField** tag.
 
-    <asp:LinkButton runat="server" ID="SomeControl" onclick="someControlClicked"
-          style="display:inline;  CssClass="searchLink"  />
+[!code[Main](breaking-changes/samples/sample4.xml)]
 
 Notice the unclosed **style** attribute that runs into the **CssClass** attribute.
 
@@ -111,7 +110,7 @@ If your application contains custom browser definitions that inherit from one of
 
 You can revert to the old browser definition files by copying the browser definition files from the following folder:
 
-    Windows\Microsoft.NET\Framework\v2.0.50727\CONFIG\Browsers
+[!code[Main](breaking-changes/samples/sample5.xml)]
 
 Copy the files into the corresponding `\CONFIG\Browsers` folder for ASP.NET 4. After you copy the files, run the Aspnet\_regbrowsers.exe command-line tool.
 
@@ -135,7 +134,7 @@ In ASP.NET 4, by default, request validation is enabled for all requests, becaus
 
 As a result, request validation errors might now occur for requests that previously did not trigger errors. To revert to the behavior of the ASP.NET 2.0 request validation feature, add the following setting in the `Web.config` file:
 
-    <httpRuntime requestValidationMode="2.0" />
+[!code[Main](breaking-changes/samples/sample6.xml)]
 
 However, we recommend that you analyze any request validation errors to determine whether existing handlers, modules, or other custom code accesses potentially unsafe HTTP inputs that could be XSS attack vectors.
 
@@ -147,7 +146,7 @@ ASP.NET uses both encryption and hashing algorithms to help secure data such as 
 
 Your applications might be affected if you run mixed ASP.NET 2.0/ASP.NET 4 environments where data such as forms authentication cookies must work across.NET Framework versions. To configure an ASP.NET 4 Web application to use the older HMACSHA1 algorithm, add the following setting in the `Web.config` file:
 
-    <machineKey validation="SHA1" />
+[!code[Main](breaking-changes/samples/sample7.xml)]
 
 <a id="0.1__Toc245724859"></a><a id="0.1__Toc255587638"></a><a id="0.1__Toc256770149"></a>
 
@@ -226,58 +225,7 @@ When you put the **configSections** element in the root `Web.config` file, paste
 > [!NOTE] In the following example, lines have been wrapped for readability.
 
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <!-- The root web configuration file -->
-    <configuration>
-      <configSections>
-        <sectionGroup name="system.web.extensions"
-            type="System.Web.Configuration.SystemWebExtensionsSectionGroup, 
-          System.Web.Extensions, Version=3.5.0.0, Culture=neutral,  
-          PublicKeyToken=31BF3856AD364E35">
-    
-          <sectionGroup name="scripting"
-            type="System.Web.Configuration.ScriptingSectionGroup, 
-            System.Web.Extensions, Version=3.5.0.0, Culture=neutral, 
-            PublicKeyToken=31BF3856AD364E35">
-    
-            <section name="scriptResourceHandler"
-              type="System.Web.Configuration.ScriptingScriptResourceHandlerSection, 
-              System.Web.Extensions, Version=3.5.0.0, Culture=neutral, 
-              PublicKeyToken=31BF3856AD364E35" requirePermission="false"
-              allowDefinition="MachineToApplication" />
-    
-            <sectionGroup name="webServices"
-              type="System.Web.Configuration.ScriptingWebServicesSectionGroup,
-              System.Web.Extensions, Version=3.5.0.0, Culture=neutral, 
-              PublicKeyToken=31BF3856AD364E35">
-    
-              <section name="jsonSerialization"
-                type="System.Web.Configuration.ScriptingJsonSerializationSection, 
-                System.Web.Extensions, Version=3.5.0.0, Culture=neutral, 
-                PublicKeyToken=31BF3856AD364E35" requirePermission="false"
-                allowDefinition="Everywhere" />
-    
-              <section name="profileService"
-                type="System.Web.Configuration.ScriptingProfileServiceSection, 
-                System.Web.Extensions, Version=3.5.0.0, Culture=neutral, 
-                PublicKeyToken=31BF3856AD364E35" requirePermission="false"
-                allowDefinition="MachineToApplication" />
-              <section name="authenticationService"
-                type="System.Web.Configuration.ScriptingAuthenticationServiceSection, 
-              System.Web.Extensions, Version=3.5.0.0, Culture=neutral, 
-              PublicKeyToken=31BF3856AD364E35" requirePermission="false"
-                allowDefinition="MachineToApplication" />
-    
-              <section name="roleService"
-                type="System.Web.Configuration.ScriptingRoleServiceSection, 
-              System.Web.Extensions, Version=3.5.0.0, Culture=neutral, 
-              PublicKeyToken=31BF3856AD364E35" requirePermission="false"
-                allowDefinition="MachineToApplication" />
-    
-            </sectionGroup>
-          </sectionGroup>
-        </sectionGroup>
-      </configSections>
+[!code[Main](breaking-changes/samples/sample8.xml)]
 
 ### Step 2 (all versions of IIS)
 
@@ -285,25 +233,11 @@ This step is required whether the ASP.NET 4 child Web application is running on 
 
 In the `Web.config` file of the parent Web application that is running ASP.NET 2 or ASP.NET 3.5, add a **location** tag that explicitly specifies (for both the IIS and ASP.NET configuration systems) that the configuration entries only apply to the parent Web application. The following example shows the syntax of the **location** element to add:
 
-    <location path="" inheritInChildApplications="false" >
-      <!-- Additional settings -->
-    </location>
+[!code[Main](breaking-changes/samples/sample9.xml)]
 
 The following example shows how the **location** tag is used to wrap all configuration sections starting with the **appSettings** section and ending with **system.webServer** section.
 
-    <location path="" inheritInChildApplications="false" >
-      <appSettings />
-      <connectionStrings />
-      <system.web>
-        <!-- Removed for brevity -->
-      </system.web>
-      <system.codedom>
-        <!-- Removed for brevity -->
-      </system.codedom>
-      <system.webServer>
-        <!-- Removed for brevity -->
-    </system.webServer>
-    </location>
+[!code[Main](breaking-changes/samples/sample10.xml)]
 
 When you have completed steps 1 and 2, child ASP.NET 4 Web applications will start without errors.
 
@@ -514,69 +448,15 @@ The Passport support built into ASP.NET 2.0 has been obsolete and unsupported fo
 
 In ASP.NET 3.5, the *MenuItem.PopOutImageUrl* property lets you specify the URL for an image that is displayed in a menu item to indicate that the menu item has a dynamic submenu. The following example shows how to specify this property in markup in ASP.NET 3.5.
 
-    <asp:menu id="NavigationMenu"
-        staticdisplaylevels="1"
-        staticsubmenuindent="10" 
-        orientation="Vertical" 
-        target="_blank"  
-        runat="server">
-      <items>
-        <asp:menuitem navigateurl="default2.aspx" 
-            text="Home" 
-            PopOutImageUrl="~/Images/Popout.gif"   
-            tooltip="Home">
-          <asp:menuitem navigateurl="default3.aspx"
-              text="Movies"
-              PopOutImageUrl="~/Images/Popout.gif"
-              tooltip="Movies"> 
-          </asp:menuitem>
-        </asp:menuitem>
-      </items>
-    </asp:menu>
+[!code[Main](breaking-changes/samples/sample11.xml)]
 
 As a result of a design change in ASP.NET 4, no output is rendered for the *PopOutImageUrl* if the property is set for the *MenuItem* class. Instead, you must specify an image URL directly in the *Menu* control using either the *StaticPopOutImageUrl* property or the *DynamicPopOutImageUrl* property. When you work with a static menu, the *Menu.StaticPopOutImageUrl* property specifies the URL for an image that is displayed in order to indicate that the static menu item has a submenu, as shown in the following example:
 
-    <asp:menu id="NavigationMenu"
-        staticdisplaylevels="1"
-        staticsubmenuindent="10" 
-        orientation="Vertical" 
-        target="_blank" 
-        StaticPopOutImageTextFormatString="More..."
-        StaticPopOutImageUrl="Images/Popout.gif"   
-        runat="server">
-      <items>
-        <asp:menuitem navigateurl="default2.aspx" 
-            text="Home" 
-            tooltip="Home">
-          <asp:menuitem navigateurl="default3.aspx"
-              text="Movies"
-              tooltip="Movies"> 
-          </asp:menuitem>
-        </asp:menuitem>
-      </items>
-    </asp:menu>
+[!code[Main](breaking-changes/samples/sample12.xml)]
 
 If you are working with a dynamic menu, you use the *Menu.DynamicPopOutImageUrl* property to specify the URL for an image that indicates that a dynamic menu item has a submenu. The following example is similar to the previous one, but shows how to set the *DynamicPopOutImageUrl* property for a dynamic menu.
 
-    <asp:menu id="NavigationMenu"
-        staticdisplaylevels="1"
-        staticsubmenuindent="10" 
-        orientation="Vertical" 
-        target="_blank" 
-        DynamicPopOutImageTextFormatString="More..."
-        DynamicPopOutImageUrl="Images/Popout.gif" 
-        runat="server">
-      <items>
-        <asp:menuitem navigateurl="default2.aspx" 
-            text="Home" 
-            tooltip="Home">
-          <asp:menuitem navigateurl="default3.aspx"
-              text="Movies"
-              tooltip="Movies"> 
-          </asp:menuitem>
-        </asp:menuitem>
-      </items>
-    </asp:menu>
+[!code[Main](breaking-changes/samples/sample13.xml)]
 
 If the *Menu.DynamicPopOutImageUrl* property is not set and the *Menu.DynamicEnableDefaultPopOutImage* property is set to *false*, no image is displayed. Similarly, if the *StaticPopOutImageUrl* property is not set and the *StaticEnableDefaultPopOutImage* property is set to *false*, no image is displayed.
 
@@ -590,47 +470,11 @@ In ASP.NET 4, the images that you specify using the *Menu.StaticPopOutImageUrl* 
 
 The following example of *Menu* control markup shows the *StaticPopOutImageUrl* property set using a path that contains a backslash. In ASP.NET 4, the image specified in the property will not render.
 
-    <asp:menu id="NavigationMenu"
-        staticdisplaylevels="1"
-        staticsubmenuindent="10" 
-        orientation="Vertical 
-        target="_blank" 
-        StaticPopOutImageTextFormatString="More..."
-        StaticPopOutImageUrl="Images\Popout.gif"   
-        runat="server">
-      <items>
-        <asp:menuitem navigateurl="default2.aspx" 
-            text="Home" 
-            tooltip="Home">
-          <asp:menuitem navigateurl="default3.aspx"
-              text="Movies"
-              tooltip="Movies"> 
-          </asp:menuitem>
-        </asp:menuitem>
-      </items>
-    </asp:menu>
+[!code[Main](breaking-changes/samples/sample14.xml)]
 
 To correct this issue, change path values that are specified in the *StaticPopOutImageUrl* and *DynamicPopOutImageUrl* properties to use forward slashes (/). The following example shows this change:
 
-    <asp:menu id="NavigationMenu"
-        staticdisplaylevels="1"
-        staticsubmenuindent="10" 
-        orientation="Vertical 
-        target="_blank" 
-        StaticPopOutImageTextFormatString="More..."
-        StaticPopOutImageUrl="Images/Popout.gif"   
-        runat="server">
-      <items>
-        <asp:menuitem navigateurl="default2.aspx" 
-            text="Home" 
-            tooltip="Home">
-          <asp:menuitem navigateurl="default3.aspx"
-              text="Movies"
-              tooltip="Movies"> 
-          </asp:menuitem>
-        </asp:menuitem>
-      </items>
-    </asp:menu>
+[!code[Main](breaking-changes/samples/sample15.xml)]
 
 Note that applications that were migrated from earlier versions of ASP.NET to ASP.NET 4 might also be affected, because the *MenuItem.PopOutImageUrl* property has been changed. For more information, see [The MenuItem.PopOutImageUrl Property Fails to Render an Image in ASP.NET 4](#0.1__The_MenuItem.PopOutImageUrl_Propert "_The_MenuItem.PopOutImageUrl_Propert") elsewhere in this document.
 

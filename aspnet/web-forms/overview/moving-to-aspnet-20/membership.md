@@ -52,14 +52,7 @@ Once you run that command, you will be presented with the ASP.NET SQL Server Set
 
 The ASP.NET SQL Server Setup Wizard creates the Web site in the instance you specify in the wizard. However, ASP.NET will use the connection string in the machine.config file to connect to your database. By default, this connection string will point to a SQL Server 2005 instance, so if you are using a SQL Server 2000 or SQL Server 7.0 instance, you will need to modify the connection string in the machine.config file. That connection string can be located here:
 
-    <configuration>
-        <connectionStrings>
-          <add name="LocalSqlServer"
-             connectionString="data source=(local);
-             Integrated Security=SSPI;Initial Catalog=aspnetdb;"  
-             providerName="System.Data.SqlClient" />
-        </connectionStrings>
-    </configuration>
+[!code[Main](membership/samples/sample1.xml)]
 
 Unfortunately, if you dont modify the connection string, ASP.NET will not give you a descriptive error. It will just continue to complain saying that you havent created the database. In the case above, I have modified the connection string to point to my local SQL Server 2000 instance.
 
@@ -166,7 +159,7 @@ Role management is not a requirement in ASP.NET membership, nor is membership a 
 
 To enable role management in your application, make the following change in your web.config file:
 
-    <roleManager enabled="true" cacheRolesInCookie="true" cookieProtection="All" />
+[!code[Main](membership/samples/sample2.xml)]
 
 When the **cacheRolesInCookie** attribute is set to true, ASP.NET caches a users role membership in a cookie on the client. This allows role lookups to occur without calls into the RoleProvider. When using this attribute, developers are encouraged to ensure that the **cookieProtection** attribute is set to All. (This is the default setting.) This ensures that the cookie data are encrypted and helps to ensure that the cookies contents havent been altered. Roles can be added using the Web Site Administration Tool. It allows you to easily define roles, configure access to parts of the site based on those roles, and assign users to roles.
 
@@ -202,13 +195,11 @@ ASP.NET 2.0 adds a web.config file to the folder for which you are specifying an
 
 The API for role management has not changed since version 1.x. The **IsInRole** method is used to determine if a user is in a particular role.
 
-    if (User.IsInRole(Administrators)) {
-        btnManageSite.Visible = true;
-    }
+[!code[Main](membership/samples/sample3.xml)]
 
 ASP.NET also creates a RolePrincipal instance as a member of the current context. The RolePrincipal object can be used to obtain all of the roles to which the user belongs as follows:
 
-    string[] userRoles = ((RolePrincipal)User).GetRoles();
+[!code[Main](membership/samples/sample4.xml)]
 
 ## Using RoleGroups with the LoginView Control
 
@@ -232,31 +223,7 @@ Each RoleGroup object contains an array of strings that defines which roles that
 
 There are a couple of ways that you can extend the functionality of ASP.NET membership. First of all, you can obviously change the existing functionality of the SqlMembershipProvider class by inheriting from it and overriding its methods. For example, if you want to implement your own functionality when users are created, you can create your own class that inherits from SqlMembershipProvider as follows:
 
-    public class jForumMembershipProvider : SqlMembershipProvider {
-        public jForumMembershipProvider() {
-    
-        }
-        public override MembershipUser CreateUser(
-        string username,
-        string password,
-        string email,
-        string passwordQuestion,
-        string passwordAnswer,
-        bool isApproved,
-        object providerUserKey,
-        out MembershipCreateStatus status) {
-            // your own implementation
-            return base.CreateUser(
-            username,
-            password,
-            email,
-            passwordQuestion,
-            passwordAnswer,
-            isApproved,
-            providerUserKey,
-            out status);
-        }
-    }
+[!code[Main](membership/samples/sample5.xml)]
 
 If, on the other hand, you want to create your own provider (to store your membership information in an Access database, for example), you can create your own provider.
 
@@ -297,33 +264,11 @@ Thats quite a list to implement as a C# developer. You may find it easier to cre
 
 The connection string and other properties should be set to their defaults in the Initialize method. (The Initialize method is fired when the provider is loaded at runtime.) The second parameter to the Initialize method is of type System.Collections.Specialized.NameValueCollection and is a reference to the &lt;add&gt; element that is associated with your custom provider in the web.config file. That entry looks like the following:
 
-    <system.web>
-      <authentication mode="Forms"/>
-      <membership
-      defaultProvider="jForumCustomMembershipProvider" >
-        <providers>
-          <add name="jForumCustomMembershipProvider"
-          type="jForumCustomMembershipProvider"
-          requiresQuestionAndAnswer="true"
-          connectionString="Provider=Microsoft.Jet.
-            OLEDB.4.0;Data Source=C:\jForumCustomMembershipProvider\
-            App_Data\Members.mdb;Persist Security
-            Info=False"
-            />
-        </providers>
-      </membership>
-    </system.web>
+[!code[Main](membership/samples/sample6.xml)]
 
 Here is an example of the Initialize method.
 
-    public override void Initialize(string name,
-        System.Collections.Specialized.NameValueCollection config) {
-    
-        if (config["requiresQuestionAndAnswer"])
-            _requiresQuestionAndAnswer = true;
-        _connString = config["connectionString"];
-        base.Initialize(name, config);
-    }
+[!code[Main](membership/samples/sample7.xml)]
 
 In order to validate the user when they submit your login form, you will need to use the ValidateUser method. This method fires when the user clicks the login button in the Login control. You will place your code that does the user lookup in this method.
 

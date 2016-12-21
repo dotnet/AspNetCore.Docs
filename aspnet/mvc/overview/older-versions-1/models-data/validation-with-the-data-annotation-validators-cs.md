@@ -42,11 +42,7 @@ You cannot use the System.ComponentModel.DataAnnotations.dll assembly included w
 
 Finally, you need to register the DataAnnotations Model Binder in the Global.asax file. Add the following line of code to the Application\_Start() event handler so that the Application\_Start() method looks like this:
 
-    protected void Application_Start()
-    {
-        RegisterRoutes(RouteTable.Routes);
-        ModelBinders.Binders.DefaultBinder = new Microsoft.Web.Mvc.DataAnnotations.DataAnnotationsModelBinder();
-    }
+[!code[Main](validation-with-the-data-annotation-validators-cs/samples/sample1.xml)]
 
 This line of code registers the ataAnnotationsModelBinder as the default model binder for the entire ASP.NET MVC application.
 
@@ -67,29 +63,7 @@ When you use the Data Annotations Model Binder, you use validator attributes to 
 
 The Product class in **Listing 1** illustrates how to use these validator attributes. The Name, Description, and UnitPrice properties are marked as required. The Name property must have a string length that is less than 10 characters. Finally, the UnitPrice property must match a regular expression pattern that represents a currency amount.
 
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace MvcApplication1.Models
-    {
-        
-        public class Product
-        {
-            public int Id { get; set; }
-    
-            [Required]
-            [StringLength(10)]
-            public string Name { get; set; }
-    
-            [Required]
-            public string Description { get; set; }
-    
-            [DisplayName("Price")]
-            [Required]
-            [RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
-            public decimal UnitPrice { get; set; }
-        }
-    }
+[!code[Main](validation-with-the-data-annotation-validators-cs/samples/sample2.xml)]
 
 **Listing 1**: Models\Product.cs
 
@@ -102,36 +76,7 @@ The Product class illustrates how to use one additional attribute: the DisplayNa
 
 You can use the Product class in **Listing 1** with the Create() controller action in **Listing 2**. This controller action redisplays the Create view when model state contains any errors.
 
-    using System.Web.Mvc;
-    using MvcApplication1.Models;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class ProductController : Controller
-        {
-             //
-            // GET: /Product/Create
-    
-            public ActionResult Create()
-            {
-                return View();
-            } 
-    
-            //
-            // POST: /Product/Create
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Create([Bind(Exclude="Id")]Product productToCreate)
-            {
-                if (!ModelState.IsValid)
-                    return View();
-    
-                // TODO: Add insert logic here
-                return RedirectToAction("Index");
-            }
-    
-        }
-    }
+[!code[Main](validation-with-the-data-annotation-validators-cs/samples/sample3.xml)]
 
 **Listing 2**: Controllers\ProductController.vb
 
@@ -141,45 +86,7 @@ Finally, you can create the view in **Listing 3** by right-clicking the Create()
 
 **Figure 2**: Adding the Create View
 
-    <%@ Page Title="" Language="C#" MasterPageFile="Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MvcApplication1.Models.Product>" %>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Create</h2>
-    
-        <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
-    
-        <% using (Html.BeginForm()) {%>
-    
-            <fieldset>
-                <legend>Fields</legend>
-                <p>
-                    <label for="Name">Name:</label>
-                    <%= Html.TextBox("Name") %>
-                    <%= Html.ValidationMessage("Name", "*") %>
-                </p>
-                <p>
-                    <label for="Description">Description:</label>
-                    <%= Html.TextBox("Description") %>
-                    <%= Html.ValidationMessage("Description", "*") %>
-                </p>
-                <p>
-                    <label for="UnitPrice">Price:</label>
-                    <%= Html.TextBox("UnitPrice") %>
-                    <%= Html.ValidationMessage("UnitPrice", "*") %>
-                </p>
-                <p>
-                    <input type="submit" value="Create" />
-                </p>
-            </fieldset>
-    
-        <% } %>
-    
-        <div>
-            <%=Html.ActionLink("Back to List", "Index") %>
-        </div>
-    
-    </asp:Content>
+[!code[Main](validation-with-the-data-annotation-validators-cs/samples/sample4.xml)]
 
 **Listing 3**: Views\Product\Create.aspx
 
@@ -212,31 +119,7 @@ For example, imagine that you have created a Movie class using the Entity Framew
 
 **Figure 5**: Movie class generated by Entity Framework
 
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace MvcApplication1.Models
-    {
-        [MetadataType(typeof(MovieMetaData))]
-        public partial class Movie
-        {
-        }
-    
-        public class MovieMetaData
-        {
-            [Required]
-            public object Title { get; set; }
-    
-            [Required]
-            [StringLength(5)]
-            public object Director { get; set; }
-    
-            [DisplayName("Date Released")]
-            [Required]
-            public object DateReleased { get; set; }
-        }
-    
-    }
+[!code[Main](validation-with-the-data-annotation-validators-cs/samples/sample5.xml)]
 
 **Listing 4**: Models\Movie.cs
 

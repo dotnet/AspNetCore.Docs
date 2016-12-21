@@ -49,7 +49,7 @@ You can add images to your website and to individual pages while you're developi
 
 If an image is already available on your site and you just want to display it on a page, you use an HTML `<img>` element like this:
 
-    <img src="images/Photo1.jpg" alt="Sample Photo" />
+[!code[Main](9-working-with-images/samples/sample1.xml)]
 
 Sometimes, though, you need to be able to display images dynamically &#8212; that is, you don't know what image to display until the page is running.
 
@@ -64,37 +64,7 @@ The procedure in this section shows how to display an image on the fly where use
 5. Verify that the four images are not marked as read-only.
 6. Replace the existing content in the page with the following:
 
-        @{  var imagePath= "";
-            if( Request["photoChoice"] != null){
-                imagePath = @"images\" + Request["photoChoice"];
-           }
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Display Image on the Fly</title>
-        </head>
-        <body>
-        <h1>Displaying an Image On the Fly</h1>
-        <form method="post" action="">
-            <div>
-                I want to see:
-                <select name="photoChoice">
-                    <option value="Photo1.jpg">Photo 1</option>
-                    <option value="Photo2.jpg">Photo 2</option>
-                    <option value="Photo3.jpg">Photo 3</option>
-                </select>
-                 
-                <input type="submit" value="Submit" />
-            </div>
-            <div style="padding:10px;">
-                @if(imagePath != ""){
-                    <img src="@imagePath" alt="Sample Image" width="300px" />
-                }
-            </div>
-        </form>
-        </body>
-        </html>
+    [!code[Main](9-working-with-images/samples/sample2.xml)]
 
     The body of the page has a drop-down list (a `<select>` element) that's named `photoChoice`. The list has three options, and the `value` attribute of each list option has the name of one of the images that you put in the *images* folder. Essentially, the list lets the user select a friendly name like &quot;Photo 1&quot;, and it then passes the *.jpg* file name when the page is submitted.
 
@@ -120,45 +90,7 @@ The previous example showed you how to display an image dynamically, but it work
 1. Add a new page and name it *UploadImage.cshtml*.
 2. Replace the existing content in the page with the following: 
 
-        @{  WebImage photo = null;
-            var newFileName = "";
-            var imagePath = "";
-        
-            if(IsPost){
-                photo = WebImage.GetImageFromRequest();
-                if(photo != null){
-                    newFileName = Guid.NewGuid().ToString() + "_" +
-                        Path.GetFileName(photo.FileName);
-                    imagePath = @"images\" + newFileName;
-        
-                    photo.Save(@"~\" + imagePath);
-                }
-            }
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Image Upload</title>
-        </head>
-        <body>
-          <form action="" method="post" enctype="multipart/form-data">
-            <fieldset>
-              <legend> Upload Image </legend>
-              <label for="Image">Image</label>
-              <input type="file" name="Image" />
-              <br/>
-              <input type="submit" value="Upload" />
-            </fieldset>
-          </form>
-          <h1>Uploaded Image</h1>
-            @if(imagePath != ""){
-            <div class="result">
-                <img src="@imagePath" alt="image" />
-        
-            </div>
-            }
-        </body>
-        </html>
+    [!code[Main](9-working-with-images/samples/sample3.xml)]
 
     The body of the text has an `<input type="file">` element, which lets users select a file to upload. When they click **Submit**, the file they picked is submitted along with the form.
 
@@ -172,7 +104,7 @@ The previous example showed you how to display an image dynamically, but it work
 
     You don't want all that path information, though &#8212; you just want the actual file name (*SamplePhoto1.jpg*). You can strip out just the file from a path by using the `Path.GetFileName` method, like this:
 
-        Path.GetFileName(photo.FileName)
+    [!code[Main](9-working-with-images/samples/sample4.xml)]
 
     You then create a new unique file name by adding a GUID to the original name. (For more about GUIDs, see [About GUIDs](#SB_AboutGUIDs) later in this article.) Then you construct a complete path that you can use to save the image. The save path is made up of the new file name, the folder (images), and the current website location.
 
@@ -210,53 +142,7 @@ This procedure shows how to resize an uploaded image to create a thumbnail and t
 2. In the *images* folder, create a subfolder named *thumbs*.
 3. Replace the existing content in the page with the following: 
 
-        @{  
-            WebImage photo = null;
-            var newFileName = "";
-            var imagePath = "";
-            var imageThumbPath  = "";
-        
-            if(IsPost){
-                photo = WebImage.GetImageFromRequest();
-                if(photo != null){
-                     newFileName = Guid.NewGuid().ToString() + "_" +
-                         Path.GetFileName(photo.FileName);
-                     imagePath = @"images\" + newFileName;
-                     photo.Save(@"~\" + imagePath);
-        
-                    imageThumbPath = @"images\thumbs\" + newFileName;
-                    photo.Resize(width: 60, height: 60, preserveAspectRatio: true,
-                       preventEnlarge: true);
-                    photo.Save(@"~\" + imageThumbPath);        }
-            }
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Resizing Image</title>
-        </head>
-        <body>
-        <h1>Thumbnail Image</h1>
-          <form action="" method="post" enctype="multipart/form-data">
-            <fieldset>
-              <legend> Creating Thumbnail Image </legend>
-              <label for="Image">Image</label>
-              <input type="file" name="Image" />
-              <br/>
-              <input type="submit" value="Submit" />
-            </fieldset>
-          </form>
-            @if(imagePath != ""){
-            <div class="result">
-                <img src="@imageThumbPath" alt="Thumbnail image" />
-                <a href="@Html.AttributeEncode(imagePath)" target="_Self">
-                    View full size
-                </a>
-            </div>
-        
-            }
-        </body>
-        </html>
+    [!code[Main](9-working-with-images/samples/sample5.xml)]
 
     This code is similar to the code from the previous example. The difference is that this code saves the image twice, once normally and once after you create a thumbnail copy of the image. First you get the uploaded image and save it in the *images* folder. You then construct a new path for the thumbnail image. To actually create the thumbnail, you call the `WebImage` helper's `Resize` method to create a 60-pixel by 60-pixel image. The example shows how you preserve the aspect ratio and how you can prevent the image from being enlarged (in case the new size would actually make the image larger). The resized image is then saved in the *thumbs* subfolder.
 
@@ -276,33 +162,11 @@ The `WebImage` helper also lets you flip and rotate images. This procedure shows
 1. Add a new page named *FlipImage.cshtml*.
 2. Replace the existing content in the page with the following: 
 
-        @{  var imagePath= "";
-            WebImage photo = new WebImage(@"~\Images\Photo2.jpg");
-            if(photo != null){
-                imagePath = @"images\Photo2.jpg";
-                photo.FlipVertical();
-                photo.Save(@"~\" + imagePath);
-             }
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Get Image From File</title>
-          <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-        </head>
-        <body>
-        <h1>Flip Image Vertically</h1>
-        @if(imagePath != ""){
-          <div class="result">
-            <img src="@imagePath" alt="Image" />
-          </div>
-        }
-        </body>
-        </html>
+    [!code[Main](9-working-with-images/samples/sample6.xml)]
 
     The code uses the `WebImage` helper to get an image from the server. You create the path to the image using the same technique you used in earlier examples for saving images, and you pass that path when you create an image using `WebImage`:
 
-        WebImage photo = new WebImage(@"~\Images\Photo2.jpg");
+    [!code[Main](9-working-with-images/samples/sample7.xml)]
 
     If an image is found, you construct a new path and file name, like you did in earlier examples. To flip the image, you call the `FlipVertical` method, and then you save the image again.
 
@@ -322,29 +186,7 @@ When you add images to your website, you might want to add a watermark to the im
 1. Add a new page named *Watermark.cshtml*.
 2. Replace the existing content in the page with the following: 
 
-        @{  var imagePath= "";
-            WebImage photo = new WebImage(@"~\Images\Photo3.jpg");
-            if(photo != null){
-                imagePath = @"images\Photo3.jpg";
-                photo.AddTextWatermark("My Watermark", fontColor:"Yellow", fontFamily:
-                    "Arial");
-                photo.Save(@"~\" + imagePath);    }
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Water Mark</title>
-          <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-        </head>
-        <body>
-        <h1>Adding a Watermark to an Image</h1>
-        @if(imagePath != ""){
-          <div class="result">
-            <img src="@imagePath" alt="Image" />
-          </div>
-        }
-        </body>
-        </html>
+    [!code[Main](9-working-with-images/samples/sample8.xml)]
 
     This code is like the code in the *FlipImage.cshtml* page from earlier (although this time it uses the *Photo3.jpg* file). To add the watermark, you call the `WebImage` helper's `AddTextWatermark` method before you save the image. In the call to `AddTextWatermark`, you pass the text &quot;My Watermark&quot;, set the font color to yellow, and set the font family to Arial. (Although it's not shown here, the `WebImage` helper also lets you specify opacity, font family and font size, and the position of the watermark text.) When you save the image it must not be read-only.
 
@@ -362,33 +204,7 @@ Instead of using text for a watermark, you can use another image. People sometim
 2. Add an image to the *images* folder that you can use as a logo, and rename the image *MyCompanyLogo.jpg*. This image should be an image that you can see clearly when it's set to 80 pixels wide and 20 pixels high.
 3. Replace the existing content in the page with the following: 
 
-        @{  var imagePath = "";
-           WebImage WatermarkPhoto = new WebImage(@"~\" +
-                @"\Images\MyCompanyLogo.jpg");
-            WebImage photo = new WebImage(@"~\Images\Photo4.jpg");
-            if(photo != null){
-                imagePath = @"images\Photo4.jpg";
-                photo.AddImageWatermark(WatermarkPhoto, width: 80, height: 20,
-                   horizontalAlign:"Center", verticalAlign:"Bottom",
-                   opacity:100,  padding:10);
-              photo.Save(@"~\" + imagePath);
-           }
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Image Watermark</title>
-          <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-        </head>
-        <body>
-          <h1>Using an Image as a Watermark</h1>
-          @if(imagePath != ""){
-            <div class="result">
-              <img src="@imagePath" alt="Image" />
-            </div>
-          }
-        </body>
-        </html>
+    [!code[Main](9-working-with-images/samples/sample9.xml)]
 
     This is another variation on the code from earlier examples. In this case, you call `AddImageWatermark` to add the watermark image to the target image (*Photo3.jpg*) before you save the image. When you call `AddImageWatermark`, you set its width to 80 pixels and the height to 20 pixels. The *MyCompanyLogo.jpg* image is horizontally aligned in the center and vertically aligned at the bottom of the target image. The opacity is set to 100% and the padding is set to 10 pixels. If the watermark image is bigger than the target image, nothing will happen. If the watermark image is bigger than the target image and you set the padding for the image watermark to zero, the watermark is ignored.
 

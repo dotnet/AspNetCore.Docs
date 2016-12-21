@@ -95,31 +95,7 @@ Next, add a new Master Page to the site in the root directory named Site.master.
 
 Define the site-wide page layout here in the master page. You can use the Design view and add whatever Layout or Web controls you need, or you can manually add the markup by hand in the Source view. I structured my master page's layout to mimic the layout used in my *[Working with Data in ASP.NET 2.0](../../data-access/index.md)* tutorial series (see Figure 4). The master page uses [cascading style sheets](http://www.w3schools.com/css/default.asp) for positioning and styles with the CSS settings defined in the file Style.css (which is included in this tutorial's associated download). While you cannot tell from the markup shown below, the CSS rules are defined such that the navigation &lt;div&gt;'s content is absolutely positioned so that it appears on the left and has a fixed width of 200 pixels.
 
-    <%@ Master Language="VB" CodeFile="Site.master.vb" Inherits="Site" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-     <head id="Head1" runat="server">
-     <title>Forms Authentication, Authorization, and User Accounts</title>
-     <link href="Styles.css" rel="stylesheet" type="text/css" />
-     </head>
-     <body>
-     <div id="wrapper">
-     <form id="form1" runat="server">
-     <div id="header">
-     <span class="title">User Account Tutorials</span>
-     </div>
-     <div id="content">
-     <asp:contentplaceholder id="MainContent" runat="server">
-     <!-- Page-specific content will go here... -->
-     </asp:contentplaceholder>
-     </div>
-     <div id="navigation">
-     TODO: Menu will go here...
-     </div>
-     </form>
-     </div>
-     </body>
-    </html>
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample1.xml)]
 
 A master page defines both the static page layout and the regions that can be edited by the ASP.NET pages that use the master page. These content editable regions are indicated by the ContentPlaceHolder control, which can be seen within the content &lt;div&gt;. Our master page has a single ContentPlaceHolder (MainContent), but master page's may have multiple ContentPlaceHolders.
 
@@ -153,9 +129,7 @@ Next, right-click on the project name in the Solution Explorer and choose to add
 
 The new Default.aspx page's declarative markup includes just a @Page directive specifying the path to the master page file and a Content control for the master page's MainContent ContentPlaceHolder.
 
-    <%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="_Default" Title="Untitled Page" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-    </asp:Content>
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample2.xml)]
 
 For now, leave Default.aspx empty. We will return to it later in this tutorial to add content.
 
@@ -183,17 +157,7 @@ If your project does not yet contain a Web.config file, add one now by right-cli
 
 Next, locate the &lt;authentication&gt; element and update it to use forms authentication. After this change, your Web.config file's markup should look similar to the following:
 
-    <configuration>
-     <system.web>
-     ... Unrelated configuration settings and comments removed for brevity ...
-     <!--
-     The <authentication> section enables configuration 
-     of the security authentication mode used by 
-     ASP.NET to identify an incoming user. 
-     -->
-     <authentication mode="Forms" />
-     </system.web>
-    </configuration>
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample3.xml)]
 
 > [!NOTE] Since Web.config is an XML file, casing is important. Make sure that you set the mode attribute to Forms, with a capital F . If you use a different casing, such as forms , you'll receive a configuration error when visiting the site through a browser.
 
@@ -228,28 +192,7 @@ Add two TextBoxes to Login.aspx and set their ID properties to UserName and Pass
 
 At this point your screen should look similar to the screen shot in Figure 9, and your page's declarative syntax should like the following:
 
-    <%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false" CodeFile="Login.aspx.vb" Inherits="Login" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-     <h1>
-     Login
-     </h1>
-     <p>
-     Username: <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
-     </p>
-     <p>
-     Password: <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
-     </p>
-     <p>
-     <asp:CheckBox ID="RememberMe" runat="server" Text="Remember Me" />
-     </p>
-     <p>
-     <asp:Button ID="LoginButton" runat="server" Text="Login" OnClick="LoginButton_Click" />
-     </p>
-     <p>
-     <asp:Label ID="InvalidCredentialsMessage" runat="server" ForeColor="Red" Text="Your username or password is invalid. Please try again." 
-     Visible="False"></asp:Label>
-     </p>
-    </asp:Content>
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample4.xml)]
 
 
 [![The Login Page Contains Two TextBoxes, a CheckBox, a Button, and a Label](an-overview-of-forms-authentication-vb/_static/image26.png)](an-overview-of-forms-authentication-vb/_static/image25.png)
@@ -269,21 +212,7 @@ With ASP.NET 2.0, developers should use one of the Membership providers to manag
 
 Rather than take the time to build our own custom Users database table (which would be obsolete once we implemented the SqlMembershipProvider), let's instead hard-code the valid credentials within the login page itself. In the LoginButton's Click event handler, add the following code:
 
-    Protected Sub LoginButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LoginButton.Click
-     ' Three valid username/password pairs: Scott/password, Jisun/password, and Sam/password.
-     Dim users() As String = {"Scott", "Jisun", "Sam"}
-     Dim passwords() As String = {"password", "password", "password"}
-     For i As Integer = 0 To users.Length - 1
-     Dim validUsername As Boolean = (String.Compare(UserName.Text, users(i), True) = 0)
-     Dim validPassword As Boolean = (String.Compare(Password.Text, passwords(i), False) = 0)
-     If validUsername AndAlso validPassword Then
-     ' TODO: Log in the user...
-     ' TODO: Redirect them to the appropriate page
-     End If
-     Next
-     ' If we reach here, the user's credentials were invalid
-     InvalidCredentialsMessage.Visible = True
-    End Sub
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample5.xml)]
 
 As you can see, there are three valid user accounts - Scott, Jisun, and Sam - and all three have the same password ( password ). The code loops through the users and passwords arrays looking for a valid username and password match. If both the username and password are valid, we need to login the user and then redirect them to the appropriate page. If the credentials are invalid, then we display the InvalidCredentialsMessage Label.
 
@@ -336,30 +265,13 @@ At this point we have enabled forms authentication and created a rudimentary log
 
 Let's augment the existing Default.aspx page to illustrate these techniques. In Default.aspx add two Panel controls, one named AuthenticatedMessagePanel and another named AnonymousMessagePanel. Add a Label control named WelcomeBackMessage in the first Panel. In the second Panel add a HyperLink control, set its Text property to Log In and its NavigateUrl property to ~/Login.aspx . At this point the declarative markup for Default.aspx should look similar to the following:
 
-    <%@ Page Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="_Default" Title="Untitled Page" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-     <asp:Panel runat="server" ID="AuthenticatedMessagePanel">
-     <asp:Label runat="server" ID="WelcomeBackMessage"></asp:Label>
-     </asp:Panel>
-     <asp:Panel runat="Server" ID="AnonymousMessagePanel">
-     <asp:HyperLink runat="server" ID="lnkLogin" Text="Log In" NavigateUrl="~/Login.aspx"></asp:HyperLink>
-     </asp:Panel>
-    </asp:Content>
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample6.xml)]
 
 As you have probably guessed by now, the idea here is to display just the AuthenticatedMessagePanel to authenticated visitors and just the AnonymousMessagePanel to anonymous visitors. To accomplish this we need to set these Panels' Visible properties depending on whether the user is logged in or not.
 
 The [Request.IsAuthenticated property](https://msdn.microsoft.com/en-us/library/system.web.httprequest.isauthenticated.aspx) returns a Boolean value indicating whether the request has been authenticated. Enter the following code into the Page\_Load event handler code:
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-     If Request.IsAuthenticated Then
-     WelcomeBackMessage.Text = "Welcome back!"
-     AuthenticatedMessagePanel.Visible = True
-     AnonymousMessagePanel.Visible = False
-     Else
-     AuthenticatedMessagePanel.Visible = False
-     AnonymousMessagePanel.Visible = True
-     End If
-    End Sub
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample7.xml)]
 
 With this code in place, visit Default.aspx through a browser. Assuming that you have yet to log in, you will see a link to the login page (see Figure 11). Click this link and log in to the site. As we saw in Step 3, after entering your credentials you will be returned to Default.aspx, but this time the page shows the Welcome back! message (see Figure 12).
 
@@ -423,11 +335,7 @@ Let's add the LoginView control to our site's master page, Site.master. Rather t
 
 Start by adding a ContentPlaceHolder named LoginContent into the master page within the navigation &lt;div&gt; element. You can simply drag a ContentPlaceHolder control from the Toolbox onto the Source view, placing the resulting markup right above the TODO: Menu will go here text.
 
-    <div id="navigation">
-     <asp:ContentPlaceHolder ID="LoginContent" runat="server">
-     </asp:ContentPlaceHolder>
-     TODO: Menu will go here...
-    </div>
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample8.xml)]
 
 Next, add a LoginView control within the LoginContent ContentPlaceHolder. Content placed into the master page's ContentPlaceHolder controls are considered *default content* for the ContentPlaceHolder. That is, ASP.NET pages that use this master page can specify their own content for each ContentPlaceHolder or use the master page's default content.
 
@@ -441,14 +349,7 @@ The LoginView and other login-related controls are located in the Toolbox's Logi
 
 Next, add two &lt;br /&gt; elements immediately after the LoginView control, but still within the ContentPlaceHolder. At this point, the navigation &lt;div&gt; element's markup should look like the following:
 
-    <div id="navigation">
-     <asp:ContentPlaceHolder ID="LoginContent" runat="server">
-     <asp:LoginView ID="LoginView1" runat="server">
-     </asp:LoginView>
-     <br /><br />
-     </asp:ContentPlaceHolder>
-     TODO: Menu will go here...
-    </div>
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample9.xml)]
 
 The LoginView's templates can be defined from the Designer or the declarative markup. From Visual Studio's Designer, expand the LoginView's smart tag, which lists the configured templates in a drop-down list. Type in the text Hello, stranger into the AnonymousTemplate; next, add a HyperLink control and set its Text and NavigateUrl properties to Log In and ~/Login.aspx , respectively.
 
@@ -456,20 +357,7 @@ After configuring the AnonymousTemplate, switch to the LoggedInTemplate and ente
 
 After making these additions to the LoginView's templates, the markup should look similar to the following:
 
-    <div id="navigation">
-     <asp:ContentPlaceHolder ID="LoginContent" runat="server">
-     <asp:LoginView ID="LoginView1" runat="server">
-     <LoggedInTemplate>
-     Welcome back, <asp:LoginName ID="LoginName1" runat="server" />.
-     </LoggedInTemplate>
-     <AnonymousTemplate>
-     Hello, stranger. <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Login.aspx">Log In</asp:HyperLink>
-     </AnonymousTemplate>
-     </asp:LoginView>
-     <br /><br />
-     </asp:ContentPlaceHolder>
-     TODO: Menu will go here...
-    </div>
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample10.xml)]
 
 With this addition to the Site.master master page, each page in our website will display a different message depending on whether the user is authenticated. Figure 15 shows the Default.aspx page when visited through a browser by user Jisun. The Welcome back, Jisun message is repeated twice: once in the master page's navigation section on the left (via the LoginView control we just added) and once in the Default.aspx's content area (via Panel controls and programmatic logic).
 
@@ -519,22 +407,7 @@ Let's add a LoginStatus control to the master page and configure it to use the R
 
 Next, return to the Site.master master page and add a LoginStatus control beneath the LoginView in the LoginContent ContentPlaceHolder. Set the LoginStatus control's LogoutAction property to Redirect and its LogoutPageUrl property to ~/Logout.aspx .
 
-    <div id="navigation">
-     <asp:ContentPlaceHolder ID="LoginContent" runat="server">
-     <asp:LoginView ID="LoginView1" runat="server">
-     <LoggedInTemplate>
-     Welcome back, <asp:LoginName ID="LoginName1" runat="server" />.
-     </LoggedInTemplate>
-     <AnonymousTemplate>
-     Hello, stranger. <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Login.aspx">Log In</asp:HyperLink>
-     </AnonymousTemplate>
-     </asp:LoginView>
-     <br />
-     <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Logout.aspx" />
-     <br /><br />
-     </asp:ContentPlaceHolder>
-     TODO: Menu will go here...
-    </div>
+[!code[Main](an-overview-of-forms-authentication-vb/samples/sample11.xml)]
 
 Since the LoginStatus is outside of the LoginView control, it will appear for both anonymous and authenticated users, but that's OK because the LoginStatus will correctly display a Login or Logout LinkButton. With the addition of the LoginStatus control, the Log In HyperLink in the AnonymousTemplate is superfluous, so remove it.
 

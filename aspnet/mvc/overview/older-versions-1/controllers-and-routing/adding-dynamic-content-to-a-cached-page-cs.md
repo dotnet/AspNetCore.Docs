@@ -36,54 +36,13 @@ Imagine, for example, that you want to randomly display different news items in 
 
 **Listing 1 – Models\News.cs**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Web;
-    
-    namespace MvcApplication1.Models
-    {
-        public class News
-        {
-            public static string RenderNews(HttpContext context)
-            {
-                var news = new List<string> 
-                    { 
-                        "Gas prices go up!", 
-                        "Life discovered on Mars!", 
-                        "Moon disappears!" 
-                    };
-                
-                var rnd = new Random();
-                return news[rnd.Next(news.Count)];
-            }
-    
-        }
-    }
+[!code[Main](adding-dynamic-content-to-a-cached-page-cs/samples/sample1.xml)]
 
 To take advantage of post-cache substitution, you call the HttpResponse.WriteSubstitution() method. The WriteSubstitution() method sets up the code to replace a region of the cached page with dynamic content. The WriteSubstitution() method is used to display the random news item in the view in Listing 2.
 
 **Listing 2 – Views\Home\Index.aspx**
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="MvcApplication1.Views.Home.Index" %>
-    <%@ Import Namespace="MvcApplication1.Models" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head runat="server">
-        <title>Index</title>
-    </head>
-    <body>
-        <div>
-    
-        <% Response.WriteSubstitution(News.RenderNews); %>
-            
-        <hr />
-        
-        The content of this page is output cached.
-        <%= DateTime.Now %>
-    
-        </div>
-    </body>
-    </html>
+[!code[Main](adding-dynamic-content-to-a-cached-page-cs/samples/sample2.xml)]
 
 The RenderNews method is passed to the WriteSubstitution() method. Notice that the RenderNews method is not called (there are no parentheses). Instead a reference to the method is passed to WriteSubstitution().
 
@@ -91,21 +50,7 @@ The Index view is cached. The view is returned by the controller in Listing 3. N
 
 **Listing 3 – Controllers\HomeController.cs**
 
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-        [HandleError]
-        public class HomeController : Controller
-        {
-            [OutputCache(Duration=60, VaryByParam="none")]
-            public ActionResult Index()
-            {
-                return View();
-            }
-    
-        }
-    }
+[!code[Main](adding-dynamic-content-to-a-cached-page-cs/samples/sample3.xml)]
 
 Even though the Index view is cached, different random news items are displayed when you request the Index page. When you request the Index page, the time displayed by the page does not change for 60 seconds (see Figure 1). The fact that the time does not change proves that the page is cached. However, the content injected by the WriteSubstitution() method – the random news item – changes with each request .
 
@@ -119,37 +64,7 @@ An easier way to take advantage of post-cache substitution is to encapsulate the
 
 **Listing 4 – AdHelper.cs**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Web;
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Helpers
-    {
-        public static class AdHelper
-        {
-            public static void RenderBanner(this HtmlHelper helper)
-            {
-                var context = helper.ViewContext.HttpContext;
-                context.Response.WriteSubstitution(RenderBannerInternal);
-            }
-            
-            private static string RenderBannerInternal(HttpContext context)
-            {
-                var ads = new List<string> 
-                    { 
-                        "/ads/banner1.gif", 
-                        "/ads/banner2.gif", 
-                        "/ads/banner3.gif" 
-                    };
-    
-                var rnd = new Random();
-                var ad = ads[rnd.Next(ads.Count)];
-                return String.Format("<img src='{0}' />", ad);
-            }
-    
-        }
-    }
+[!code[Main](adding-dynamic-content-to-a-cached-page-cs/samples/sample4.xml)]
 
 Listing 4 contains a static class that exposes two methods: RenderBanner() and RenderBannerInternal(). The RenderBanner() method represents the actual helper method. This method extends the standard ASP.NET MVC HtmlHelper class so that you can call Html.RenderBanner() in a view just like any other helper method.
 
@@ -161,31 +76,7 @@ The modified Index view in Listing 5 illustrates how you can use the RenderBanne
 
 **Listing 5 – Views\Home\Index.aspx (with RenderBanner() method)**
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="MvcApplication1.Views.Home.Index" %>
-    <%@ Import Namespace="MvcApplication1.Models" %>
-    <%@ Import Namespace="MvcApplication1.Helpers" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head runat="server">
-        <title>Index</title>
-    </head>
-    <body>
-        <div>
-    
-        <% Response.WriteSubstitution(News.RenderNews); %>
-        
-        <hr />
-        
-        <% Html.RenderBanner(); %>
-        
-        <hr />
-        
-        The content of this page is output cached.
-        <%= DateTime.Now %>
-    
-        </div>
-    </body>
-    </html>
+[!code[Main](adding-dynamic-content-to-a-cached-page-cs/samples/sample5.xml)]
 
 When you request the page rendered by the view in Listing 5, a different banner advertisement is displayed with each request (see Figure 2). The page is cached, but the banner advertisement is injected dynamically by the RenderBanner() helper method.
 

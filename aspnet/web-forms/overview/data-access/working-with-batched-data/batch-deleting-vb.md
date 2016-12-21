@@ -45,53 +45,7 @@ Since we already created the batch deleting interface in the [Adding a GridView 
 Next, go to the Source view in `BatchDelete.aspx` and paste the contents of the clipboard within the `<asp:Content>` tags. Also copy and paste the code from within the code-behind class in `CheckBoxField.aspx.vb` to within the code-behind class in `BatchDelete.aspx.vb` (the `DeleteSelectedProducts` Button s `Click` event handler, the `ToggleCheckState` method, and the `Click` event handlers for the `CheckAll` and `UncheckAll` Buttons). After copying over this content, the `BatchDelete.aspx` page s code-behind class should contain the following code:
 
 
-    Partial Class BatchData_BatchDelete
-        Inherits System.Web.UI.Page
-        Protected Sub DeleteSelectedProducts_Click(sender As Object, e As EventArgs) _
-            Handles DeleteSelectedProducts.Click
-            
-            Dim atLeastOneRowDeleted As Boolean = False
-            ' Iterate through the Products.Rows property
-            For Each row As GridViewRow In Products.Rows
-                ' Access the CheckBox
-                Dim cb As CheckBox = row.FindControl("ProductSelector")
-                If cb IsNot Nothing AndAlso cb.Checked Then
-                    ' Delete row! (Well, not really...)
-                    atLeastOneRowDeleted = True
-                    ' First, get the ProductID for the selected row
-                    Dim productID As Integer = _
-                        Convert.ToInt32(Products.DataKeys(row.RowIndex).Value)
-                    ' "Delete" the row
-                    DeleteResults.Text &= String.Format _
-                        ("This would have deleted ProductID {0}<br />", productID)
-                    '... To actually delete the product, use ...
-                    ' Dim productAPI As New ProductsBLL
-                    ' productAPI.DeleteProduct(productID)
-                    '............................................
-                End If
-            Next
-            ' Show the Label if at least one row was deleted...
-            DeleteResults.Visible = atLeastOneRowDeleted
-        End Sub
-        Private Sub ToggleCheckState(ByVal checkState As Boolean)
-            ' Iterate through the Products.Rows property
-            For Each row As GridViewRow In Products.Rows
-                ' Access the CheckBox
-                Dim cb As CheckBox = row.FindControl("ProductSelector")
-                If cb IsNot Nothing Then
-                    cb.Checked = checkState
-                End If
-            Next
-        End Sub
-        Protected Sub CheckAll_Click(sender As Object, e As EventArgs) _
-            Handles CheckAll.Click
-            ToggleCheckState(True)
-        End Sub
-        Protected Sub UncheckAll_Click(sender As Object, e As EventArgs) _
-            Handles UncheckAll.Click
-            ToggleCheckState(False)
-        End Sub
-    End Class
+[!code[Main](batch-deleting-vb/samples/sample1.xml)]
 
 After copying over the declarative markup and source code, take a moment to test `BatchDelete.aspx` by viewing it through a browser. You should see a GridView listing the first ten products in a GridView with each row listing the product s name, category, and price along with a checkbox. There should be three buttons: Check All , Uncheck All , and Delete Selected Products . Clicking the Check All button selects all checkboxes, while Uncheck All clears all checkboxes. Clicking Delete Selected Products displays a message that lists the `ProductID` values of the selected products, but does not actually delete the products.
 
@@ -108,25 +62,7 @@ With the batch deleting interface successfully copied over to `BatchDeleting.asp
 The `DeleteSelectedProducts` Button s `Click` event handler currently uses the following `For Each` loop to iterate through each GridView row:
 
 
-    ' Iterate through the Products.Rows property
-    For Each row As GridViewRow In Products.Rows
-        ' Access the CheckBox
-        Dim cb As CheckBox = row.FindControl("ProductSelector")
-        If cb IsNot Nothing AndAlso cb.Checked Then
-            ' Delete row! (Well, not really...)
-            atLeastOneRowDeleted = True
-            ' First, get the ProductID for the selected row
-            Dim productID As Integer = _
-                Convert.ToInt32(Products.DataKeys(row.RowIndex).Value)
-            ' "Delete" the row
-            DeleteResults.Text &= String.Format _
-                ("This would have deleted ProductID {0}<br />", productID)
-            '... To actually delete the product, use ...
-            ' Dim productAPI As New ProductsBLL
-            ' productAPI.DeleteProduct(productID)
-            '............................................
-        End If
-    Next
+[!code[Main](batch-deleting-vb/samples/sample2.xml)]
 
 For each row, the `ProductSelector` CheckBox Web control is programmatically referenced. If it is checked, the row s `ProductID` is retrieved from the `DataKeys` collection and the `DeleteResults` Label s `Text` property is updated to include a message indicating that the row was selected for deletion.
 
@@ -135,37 +71,7 @@ The above code does not actually delete any records as the call to the `Products
 In order to assure atomicity, we need to instead use the `ProductsBLL` class s `DeleteProductsWithTransaction` method. Because this method accepts a list of `ProductID` values, we need to first compile this list from the grid and then pass it as a parameter. We first create an instance of a `List(Of T)` of type `Integer`. Within the `For Each` loop we need to add the selected products `ProductID` values to this `List(Of T)`. After the loop this `List(Of T)` must be passed to the `ProductsBLL` class s `DeleteProductsWithTransaction` method. Update the `DeleteSelectedProducts` Button s `Click` event handler with the following code:
 
 
-    Protected Sub DeleteSelectedProducts_Click(sender As Object, e As EventArgs) _
-        Handles DeleteSelectedProducts.Click
-        
-        ' Create a List to hold the ProductID values to delete
-        Dim productIDsToDelete As New System.Collections.Generic.List(Of Integer)
-        ' Iterate through the Products.Rows property
-        For Each row As GridViewRow In Products.Rows
-            ' Access the CheckBox
-            Dim cb As CheckBox = CType(row.FindControl("ProductSelector"), CheckBox)
-            If cb IsNot Nothing AndAlso cb.Checked Then
-                ' Save the ProductID value for deletion
-                ' First, get the ProductID for the selected row
-                Dim productID As Integer = _
-                    Convert.ToInt32(Products.DataKeys(row.RowIndex).Value)
-                ' Add it to the List...
-                productIDsToDelete.Add(productID)
-                ' Add a confirmation message
-                DeleteResults.Text &= String.Format _
-                    ("ProductID {0} has been deleted<br />", productID)
-            End If
-        Next
-        ' Call the DeleteProductsWithTransaction method and show the Label 
-        ' if at least one row was deleted...
-        If productIDsToDelete.Count > 0 Then
-            Dim productAPI As New ProductsBLL()
-            productAPI.DeleteProductsWithTransaction(productIDsToDelete)
-            DeleteResults.Visible = True
-            ' Rebind the data to the GridView
-            Products.DataBind()
-        End If
-    End Sub
+[!code[Main](batch-deleting-vb/samples/sample3.xml)]
 
 The updated code creates a `List(Of T)` of type `Integer` (`productIDsToDelete`) and populates it with the `ProductID` values to delete. After the `For Each` loop, if there is at least one product selected, the `ProductsBLL` class s `DeleteProductsWithTransaction` method is called and passed this list. The `DeleteResults` Label is also displayed and the data rebound to the GridView (so that the newly-deleted records no longer appear as rows in the grid).
 

@@ -77,15 +77,7 @@ Inside a page, you can get the path information via the page's `UrlData` propert
 
 As described in the rules above, the request will go to your page. Inside the page, you can use code like the following to get and display the path information (in this case, the value &quot;1000&quot;):
 
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <title>URLData</title>
-        </head>
-        <body>
-          Customer ID: @UrlData[0].ToString()
-        </body>
-    </html>
+[!code[Main](creating-readable-urls-in-aspnet-web-pages-sites/samples/sample1.xml)]
 
 > [!NOTE] Because routing doesn't involve complete file names, there can be ambiguity if you have pages that have the same name but different file-name extensions (for example, *MyPage.cshtml* and *MyPage.html*). In order to avoid problems with routing, it's best to make sure that you don't have pages in your site whose names differ only in their extension.
 

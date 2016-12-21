@@ -50,43 +50,7 @@ The **Enable-Migrations** command (shown above) creates a *Configuration.cs* fil
 
 Visual Studio opens the*Configuration.cs* file. Replace the `Seed` method in the *Configuration.cs* file with the following code:
 
-    protected override void Seed(MvcMovie.Models.MovieDBContext context)
-    {
-        context.Movies.AddOrUpdate( i => i.Title,
-            new Movie
-            {
-                Title = "When Harry Met Sally",
-                ReleaseDate = DateTime.Parse("1989-1-11"),
-                Genre = "Romantic Comedy",
-                Price = 7.99M
-            },
-    
-             new Movie
-             {
-                 Title = "Ghostbusters ",
-                 ReleaseDate = DateTime.Parse("1984-3-13"),
-                 Genre = "Comedy",
-                 Price = 8.99M
-             },
-    
-             new Movie
-             {
-                 Title = "Ghostbusters 2",
-                 ReleaseDate = DateTime.Parse("1986-2-23"),
-                 Genre = "Comedy",
-                 Price = 9.99M
-             },
-    
-           new Movie
-           {
-               Title = "Rio Bravo",
-               ReleaseDate = DateTime.Parse("1959-4-15"),
-               Genre = "Western",
-               Price = 3.99M
-           }
-       );
-       
-    }
+[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample1.xml)]
 
 Right click on the red squiggly line under `Movie` and select **Resolve** then **using** **MvcMovie.Models;**
 
@@ -94,7 +58,7 @@ Right click on the red squiggly line under `Movie` and select **Resolve** then *
 
 Doing so adds the following using statement:
 
-    using MvcMovie.Models;
+[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample2.xml)]
 
 > [!NOTE] 
 > 
@@ -125,11 +89,11 @@ Run the application and navigate to the */Movies* URL. The seed data is displaye
 
 Start by adding a new `Rating` property to the existing `Movie` class. Open the *Models\Movie.cs* file and add the `Rating` property like this one:
 
-    public string Rating { get; set; }
+[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample3.xml)]
 
 The complete `Movie` class now looks like the following code:
 
-[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample1.xml?highlight=8)]
+[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample4.xml?highlight=8)]
 
 Build the application using the **Build** &gt;**Build Movie** menu command or by pressing CTRL-SHIFT-B.
 
@@ -137,17 +101,11 @@ Now that you've updated the `Model` class, you also need to update the *\Views\M
 
 Open the*\Views\Movies\Index.cshtml* file and add a `<th>Rating</th>` column heading just after the **Price** column. Then add a `<td>` column near the end of the template to render the `@item.Rating` value. Below is what the updated *Index.cshtml* view template looks like:
 
-[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample2.xml?highlight=26-28,46-48)]
+[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample5.xml?highlight=26-28,46-48)]
 
 Next, open the *\Views\Movies\Create.cshtml* file and add the following markup near the end of the form. This renders a text box so that you can specify a rating when a new movie is created.
 
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Rating)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.Rating)
-        @Html.ValidationMessageFor(model => model.Rating)
-    </div>
+[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample6.xml)]
 
 You've now updated the application code to support the new `Rating` property.
 
@@ -171,7 +129,7 @@ For this tutorial, we'll use Code First Migrations.
 
 Update the Seed method so that it provides a value for the new column. Open Migrations\Configuration.cs file and add a Rating field to each Movie object.
 
-[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample3.xml?highlight=6)]
+[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample7.xml?highlight=6)]
 
 Build the solution, and then open the **Package Manager Console** window and enter the following command:
 
@@ -181,18 +139,7 @@ The `add-migration` command tells the migration framework to examine the current
 
 When this command finishes, Visual Studio opens the class file that defines the new `DbMIgration` derived class, and in the `Up` method you can see the code that creates the new column.
 
-    public partial class AddRatingMig : DbMigration
-    {
-        public override void Up()
-        {
-            AddColumn("dbo.Movies", "Rating", c => c.String());
-        }
-        
-        public override void Down()
-        {
-            DropColumn("dbo.Movies", "Rating");
-        }
-    }
+[!code[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample8.xml)]
 
 Build the solution, and then enter the "update-database" command in the **Package Manager Console** window.
 

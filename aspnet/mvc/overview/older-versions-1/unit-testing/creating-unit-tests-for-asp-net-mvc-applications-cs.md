@@ -28,26 +28,7 @@ Let's start by creating the controller that we intend to test. The controller, n
 
 **Listing 1 – `ProductController.cs`**
 
-    using System;
-    using System.Web.Mvc;
-    
-    namespace Store.Controllers
-    {
-         public class ProductController : Controller
-         {
-              public ActionResult Index()
-              {
-                   // Add action logic here
-                   throw new NotImplementedException();
-              }
-    
-              public ActionResult Details(int Id)
-              {
-    
-                   return View("Details");
-              }
-         }
-    }
+[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-cs/samples/sample1.xml)]
 
 The `ProductController` contains two action methods named `Index()` and `Details()`. Both action methods return a view. Notice that the `Details()` action accepts a parameter named Id.
 
@@ -57,41 +38,17 @@ Imagine that we want to test whether or not the `ProductController` returns the 
 
 **Listing 2 – `ProductControllerTest.cs`**
 
-    using System.Web.Mvc;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Store.Controllers;
-    
-    namespace StoreTests.Controllers
-    {
-         [TestClass]
-         public class ProductControllerTest
-         {
-              [TestMethod]
-              public void TestDetailsView()
-              {
-                   var controller = new ProductController();
-                   var result = controller.Details(2) as ViewResult;
-                   Assert.AreEqual("Details", result.ViewName);
-    
-              }
-         }
-    }
+[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-cs/samples/sample2.xml)]
 
 The class in Listing 2 includes a test method named `TestDetailsView()`. This method contains three lines of code. The first line of code creates a new instance of the `ProductController` class. The second line of code invokes the controller's `Details()` action method. Finally, the last line of code checks whether or not the view returned by the `Details()` action is the Details view.
 
 The `ViewResult.ViewName` property represents the name of the view returned by a controller. One big warning about testing this property. There are two ways that a controller can return a view. A controller can explicitly return a view like this:
 
-    public ActionResult Details(int Id)
-    {
-         return View("Details");
-    }
+[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-cs/samples/sample3.xml)]
 
 Alternatively, the name of the view can be inferred from the name of the controller action like this:
 
-    public ActionResult Details(int Id)
-    {
-         return View();
-    }
+[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-cs/samples/sample4.xml)]
 
 This controller action also returns a view named `Details`. However, the name of the view is inferred from the action name. If you want to test the view name, then you must explicitly return the view name from the controller action.
 
@@ -116,26 +73,7 @@ The modified `ProductController` in Listing 3 includes an updated `Details()` ac
 
 **Listing 3 – `ProductController.cs`**
 
-    using System;
-    using System.Web.Mvc;
-    
-    namespace Store.Controllers
-    {
-         public class ProductController : Controller
-         {
-              public ActionResult Index()
-              {
-                   // Add action logic here
-                   throw new NotImplementedException();
-              }
-    
-              public ActionResult Details(int Id)
-              {
-                   var product = new Product(Id, "Laptop");
-                   return View("Details", product);
-              }
-         }
-    }
+[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-cs/samples/sample5.xml)]
 
 First, the `Details()` action creates a new instance of the `Product` class that represents a laptop computer. Next, the instance of the `Product` class is passed as the second parameter to the `View()` method.
 
@@ -143,26 +81,7 @@ You can write unit tests to test whether the expected data is contained in view 
 
 **Listing 4 – `ProductControllerTest.cs`**
 
-    using System.Web.Mvc;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Store.Controllers;
-    
-    namespace StoreTests.Controllers
-    {
-         [TestClass]
-         public class ProductControllerTest
-         {
-    
-              [TestMethod]
-              public void TestDetailsViewData()
-              {
-                   var controller = new ProductController();
-                   var result = controller.Details(2) as ViewResult;
-                   var product = (Product) result.ViewData.Model;
-                   Assert.AreEqual("Laptop", product.Name);
-              }
-         }
-    }
+[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-cs/samples/sample6.xml)]
 
 In Listing 4, the `TestDetailsView()` method tests the View Data returned by invoking the `Details()` method. The `ViewData` is exposed as a property on the `ViewResult` returned by invoking the `Details()` method. The `ViewData.Model` property contains the product passed to the view. The test simply verifies that the product contained in the View Data has the name Laptop.
 
@@ -174,50 +93,13 @@ For example, the modified `Details()` action in Listing 5 returns the `Details` 
 
 **Listing 5 – `ProductController.cs`**
 
-    using System;
-    using System.Web.Mvc;
-    namespace Store.Controllers
-    {
-         public class ProductController : Controller
-         {
-              public ActionResult Index()
-              {
-                   // Add action logic here
-                   throw new NotImplementedException();
-              }
-              public ActionResult Details(int Id)
-              {
-                   if (Id < 1)
-                        return RedirectToAction("Index");
-                   var product = new Product(Id, "Laptop");
-                   return View("Details", product);
-    
-              }
-         }
-    }
+[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-cs/samples/sample7.xml)]
 
 You can test the behavior of the `Details()` action with the unit test in Listing 6. The unit test in Listing 6 verifies that you are redirected to the `Index` view when an Id with the value -1 is passed to the `Details()` method.
 
 **Listing 6 – `ProductControllerTest.cs`**
 
-    using System.Web.Mvc;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Store.Controllers;
-    namespace StoreTests.Controllers
-    {
-         [TestClass]
-         public class ProductControllerTest
-         {
-              [TestMethod]
-              public void TestDetailsRedirect()
-              {
-                   var controller = new ProductController();
-                   var result = (RedirectToRouteResult) controller.Details(-1);
-                   Assert.AreEqual("Index", result.Values["action"]);
-    
-              }
-         }
-    }
+[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-cs/samples/sample8.xml)]
 
 When you call the `RedirectToAction()` method in a controller action, the controller action returns a `RedirectToRouteResult`. The test checks whether the `RedirectToRouteResult` will redirect the user to a controller action named `Index`.
 

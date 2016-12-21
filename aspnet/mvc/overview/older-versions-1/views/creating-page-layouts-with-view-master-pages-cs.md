@@ -46,51 +46,7 @@ For example, the view master page in Listing 1 defines a two-column layout. It c
 
 **Listing 1 – `Views\Shared\Site.master`**
 
-    <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="MvcApplication1.Views.Shared.Main" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-         <title></title>
-    
-         <style type="text/css">
-    
-         html
-         {
-               background-color:gray;
-         }
-    
-         .column
-         {
-              float:left;
-              width:300px;
-              border:solid 1px black;
-              margin-right:10px;
-              padding:5px;
-              background-color:white;
-    
-              min-height:500px;
-         }
-    
-         </style>
-    
-         <asp:ContentPlaceHolder ID="head" runat="server">
-         </asp:ContentPlaceHolder>
-    </head>
-    <body>
-    
-         <h1>My Website</h1>
-    
-         <div class="column">
-              <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-              </asp:ContentPlaceHolder>
-         </div>
-         <div class="column">
-              <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-              </asp:ContentPlaceHolder>
-         </div>
-    
-    </body>
-    </html>
+[!code[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample1.xml)]
 
 The body of the view master page in Listing 1 contains two `<div>` tags that correspond to the two columns. The Cascading Style Sheet column class is applied to both `<div>` tags. This class is defined in the style sheet declared at the top of the master page. You can preview how the view master page will be rendered by switching to Design view. Click the Design tab at the bottom-left of the source code editor (see Figure 2).
 
@@ -122,14 +78,7 @@ After you create a new view content page based on the Site.master master page, y
 
 **Listing 2 – `Views\Home\Index.aspx`**
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="MvcApplication1.Views.Home.Index" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    </asp:Content>
-    <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    </asp:Content>
-    <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    </asp:Content>
+[!code[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample2.xml)]
 
 Notice that this view contains a `<asp:Content>` tag that corresponds to each of the `<asp:ContentPlaceHolder>` tags in the view master page. Each `<asp:Content>` tag includes a ContentPlaceHolderID attribute that points to the particular `<asp:ContentPlaceHolder>` that it overrides.
 
@@ -143,17 +92,7 @@ For example, the modified Index view in Listing 3 contains only two `<asp:Conten
 
 **Listing 3 – `Views\Home\Index.aspx (modified)`**
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="MvcApplication1.Views.Home.Index" %>
-    <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-         <h1>Content in first column!</h1>
-    
-    </asp:Content>
-    <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    
-         <h1>Content in second column!</h1>
-    
-    </asp:Content>
+[!code[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample3.xml)]
 
 When the view in Listing 3 is requested, it renders the page in Figure 5. Notice that the view renders a page with two columns. Notice, furthermore, that the content from the view content page is merged with the content from the view master page
 
@@ -169,8 +108,7 @@ One issue that you encounter almost immediately when working with view master pa
 
 There are two ways that you can modify the title displayed by a view content page. First, you can assign a page title to the title attribute of the `<%@ page %>` directive declared at the top of a view content page. For example, if you want to assign the page title "Super Great Website" to the Index view, then you can include the following directive at the top of the Index view:
 
-    <%@ page title="Super Great Website" language="C#" masterpagefile="~/Views/Shared/Site.Master"
-                autoeventwireup="true" codebehind="Index.aspx.cs" inherits="MvcApplication1.Views.Home.Index"%>
+[!code[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample4.xml)]
 
 When the Index view is rendered to the browser, the desired title appears in the browser title bar:
 
@@ -184,26 +122,7 @@ An alternative approach to modifying master page content from an individual view
 
 **Listing 4 – `Views\Shared\Site2.master`**
 
-    <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site2.Master.cs" Inherits="MvcApplication1.Views.Shared.Site2" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head>
-    
-         <asp:ContentPlaceHolder ID="head" runat="server">
-              <title>Please change my title</title>
-              <meta name="description" content="Please provide a description" />
-              <meta name="keywords" content="keyword1,keyword2" />
-         </asp:ContentPlaceHolder>
-    </head>
-    <body>
-         <div>
-    
-              <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    
-              </asp:ContentPlaceHolder>
-         </div>
-    </body>
-    </html>
+[!code[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample5.xml)]
 
 Notice that the `<asp:ContentPlaceHolder>` tag in Listing 4 includes default content: a default title and default meta tags. If you don't override this `<asp:ContentPlaceHolder>` tag in an individual view content page, then the default content will be displayed.
 
@@ -211,18 +130,7 @@ The content view page in Listing 5 overrides the `<asp:ContentPlaceHolder>` tag 
 
 **Listing 5 – `Views\Home\Index2.aspx`**
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site2.Master" AutoEventWireup="true" CodeBehind="Index2.aspx.cs" Inherits="MvcApplication1.Views.Home.Index2" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-         <title>The Index2 Page</title>
-         <meta name="description" content="Description of Index2 page" />
-         <meta name="keywords" content="asp.net,mvc,cool,groovy" />    
-    </asp:Content>
-    <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-         Just some content in the body of the page.
-    
-    </asp:Content>
+[!code[Main](creating-page-layouts-with-view-master-pages-cs/samples/sample6.xml)]
 
 ### Summary
 

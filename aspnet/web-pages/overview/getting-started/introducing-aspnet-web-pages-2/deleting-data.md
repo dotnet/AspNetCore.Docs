@@ -57,7 +57,7 @@ Change the `WebGrid` markup in the body of the page by adding a column. Here's t
 
 The new column is this one:
 
-    grid.Column(format: @<a href="~/DeleteMovie?id=@item.ID">Delete</a>)
+[!code[Main](deleting-data/samples/sample2.xml)]
 
 The way the grid is configured, the **Edit** column is leftmost in the grid and the **Delete** column is rightmost. (There's a comma after the `Year` column now, in case you didn't notice that.) There's nothing special about where these link columns go, and you could as easily put them next to each other. In this case, they're separate to make them harder to get mixed up.
 
@@ -65,7 +65,7 @@ The way the grid is configured, the **Edit** column is leftmost in the grid and 
 
 The new column shows a link (`<a>` element) whose text says "Delete". The target of the link (its `href` attribute) is code that ultimately resolves to something like this URL, with the `id` value different for each movie:
 
-    http://localhost:43097/DeleteMovie?id=7
+[!code[Main](deleting-data/samples/sample3.xml)]
 
 This link will invoke a page named *DeleteMovie* and pass it the ID of the movie you've selected.
 
@@ -86,34 +86,7 @@ Now you can create the page that will be the target for the **Delete** link in t
 
 Create a page named *DeleteMovie.cshtml* and replace what's in the file with the following markup:
 
-    <html>
-    <head>
-      <title>Delete a Movie</title>
-    </head>
-    <body>
-          <h1>Delete a Movie</h1>
-            @Html.ValidationSummary()
-          <p><a href="~/Movies">Return to movie listing</a></p>
-    
-          <form method="post">
-            <fieldset>
-            <legend>Movie Information</legend>
-    
-            <p><span>Title:</span>
-             <span>@title</span></p>
-    
-            <p><span>Genre:</span>
-             <span>@genre</span></p>
-    
-            <p><span>Year:</span>
-              <span>@year</span></p>
-    
-            <input type="hidden" name="movieid" value="@movieId" />
-            <p><input type="submit" name="buttonDelete" value="Delete Movie" /></p>
-            </fieldset>
-          </form>
-        </body>
-    </html>
+[!code[Main](deleting-data/samples/sample4.xml)]
 
 This markup is like the *EditMovie* pages, except that instead of using text boxes (`<input type="text">`), the markup includes `<span>` elements. There's nothing here to edit. All you have to do is display the movie details so that users can make sure that they're deleting the right movie.
 
@@ -129,32 +102,7 @@ You'll have to write code to 1) read the movie details when the page is first di
 
 At the top of the *DeleteMovie.cshtml* page, add the following code block:
 
-    @{
-        var title = "";
-        var genre = "";
-        var year = "";
-        var movieId = "";
-    
-        if(!IsPost){
-            if(!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].IsInt()){
-                movieId = Request.QueryString["ID"];
-                var db = Database.Open("WebPagesMovies");
-                var dbCommand = "SELECT * FROM Movies WHERE ID = @0";
-                var row = db.QuerySingle(dbCommand, movieId);
-                if(row != null) {
-                    title = row.Title;
-                    genre = row.Genre;
-                    year = row.Year;
-                }
-                else{
-                    Validation.AddFormError("No movie was found for that ID.");
-                }
-            }
-            else{
-                Validation.AddFormError("No movie was found for that ID.");
-            }
-        }
-    }
+[!code[Main](deleting-data/samples/sample5.xml)]
 
 This markup is the same as the corresponding code in the *EditMovie* page. It gets the movie ID out of the query string and uses the ID to read a record from the database. The code includes the validation test (`IsInt()` and `row != null`) to make sure that the movie ID being passed to the page is valid.
 
@@ -164,19 +112,13 @@ Remember that this code should only run the first time the page runs. You don't 
 
 To delete the movie when the user clicks the button, add the following code just inside the closing brace of the `@` block:
 
-    if(IsPost && !Request["buttonDelete"].IsEmpty()){
-            movieId = Request.Form["movieId"];
-            var db = Database.Open("WebPagesMovies");
-            var deleteCommand = "DELETE FROM Movies WHERE ID = @0";
-            db.Execute(deleteCommand, movieId);
-            Response.Redirect("~/Movies");
-        }
+[!code[Main](deleting-data/samples/sample6.xml)]
 
 This code is similar to the code for updating an existing record, but simpler. The code basically runs a SQL `Delete` statement.
 
  As in the *EditMovie* page, the code is in an `if(IsPost)` block. This time, the `if()` condition is a little more complicated: 
 
-    if(IsPost && !Request["buttonDelete"].IsEmpty())
+[!code[Main](deleting-data/samples/sample7.xml)]
 
 There are two conditions here. The first is that the page is being submitted, as you've seen before &mdash; `if(IsPost)`.
 
@@ -212,138 +154,11 @@ The next tutorial shows you how to give all the pages on your site a common look
 
 ## Complete Listing for Movie Page (Updated with Delete Links)
 
-    @{
-        var db = Database.Open("WebPagesMovies") ;
-        var selectCommand = "SELECT * FROM Movies";
-        var searchTerm = "";
-    
-        if(!Request.QueryString["searchGenre"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Genre = @0";
-            searchTerm = Request.QueryString["searchGenre"];
-        }
-    
-        if(!Request.QueryString["searchTitle"].IsEmpty() ) {
-          selectCommand = "SELECT * FROM Movies WHERE Title LIKE @0";
-          searchTerm = "%" + Request.QueryString["searchTitle"] + "%";
-        }
-    
-        var selectedData = db.Query(selectCommand, searchTerm);
-        var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:3);
-    }
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="utf-8" />
-            <title>Movies</title>
-          <style type="text/css">
-            .grid { margin: 4px; border-collapse: collapse; width: 600px; }
-            .grid th, .grid td { border: 1px solid #C0C0C0; padding: 5px; }
-            .head { background-color: #E8E8E8; font-weight: bold; color: #FFF; }
-            .alt { background-color: #E8E8E8; color: #000; }
-          </style>
-        </head>
-        <body>
-          <h1>Movies</h1>
-          <form method="get">
-            <div>
-              <label for="searchGenre">Genre to look for:</label>
-              <input type="text" name="searchGenre" value="@Request.QueryString["searchGenre"]" />
-              <input type="Submit" value="Search Genre" /><br/>
-              (Leave blank to list all movies.)<br/>
-              </div>
-    
-            <div>
-              <label for="SearchTitle">Movie title contains the following:</label>
-              <input type="text" name="searchTitle" value="@Request.QueryString["searchTitle"]" />
-              <input type="Submit" value="Search Title" /><br/>
-            </div>
-    
-          </form>
-            <div>
-              @grid.GetHtml(
-                tableStyle: "grid",
-                headerStyle: "head",
-                alternatingRowStyle: "alt",
-                columns: grid.Columns(
-                    grid.Column(format: @<a href="~/EditMovie?id=@item.ID">Edit</a>),
-                    grid.Column("Title"),
-                    grid.Column("Genre"),
-                    grid.Column("Year"),
-                    grid.Column(format: @<a href="~/DeleteMovie?id=@item.ID">Delete</a>)
-                )
-            )
-          </div>
-          <p>
-            <a href="~/AddMovie">Add a movie</a>
-          </p>
-        </body>
-    </html>
+[!code[Main](deleting-data/samples/sample8.xml)]
 
 ## Complete Listing for DeleteMovie Page
 
-    @{
-        var title = "";
-        var genre = "";
-        var year = "";
-        var movieId = "";
-    
-        if(!IsPost){
-            if(!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].IsInt()){
-                movieId = Request.QueryString["ID"];
-                var db = Database.Open("WebPagesMovies");
-                var dbCommand = "SELECT * FROM Movies WHERE ID = @0";
-                var row = db.QuerySingle(dbCommand, movieId);
-                if(row != null) {
-                    title = row.Title;
-                    genre = row.Genre;
-                    year = row.Year;
-                }
-                else{
-                    Validation.AddFormError("No movie was found for that ID.");
-                }
-            }
-            else{
-                Validation.AddFormError("No movie was found for that ID.");
-            }
-        }
-    
-        if(IsPost && !Request["buttonDelete"].IsEmpty()){
-            movieId = Request.Form["movieId"];
-            var db = Database.Open("WebPagesMovies");
-            var deleteCommand = "DELETE FROM Movies WHERE ID = @0";
-            db.Execute(deleteCommand, movieId);
-            Response.Redirect("~/Movies");
-        }
-    }
-    <html>
-    <head>
-      <title>Delete a Movie</title>
-    </head>
-    <body>
-          <h1>Delete a Movie</h1>
-            @Html.ValidationSummary()
-          <p><a href="~/Movies">Return to movie listing</a></p>
-    
-          <form method="post">
-            <fieldset>
-            <legend>Movie Information</legend>
-    
-            <p><span>Title:</span>
-             <span>@title</span></p>
-    
-            <p><span>Genre:</span>
-             <span>@genre</span></p>
-    
-            <p><span>Year:</span>
-              <span>@year</span></p>
-    
-            <input type="hidden" name="movieid" value="@movieId" />
-            <p><input type="submit" name="buttonDelete" value="Delete Movie" /></p>
-            </fieldset>
-            <p><a href="~/Movies">Return to movie listing</a></p>
-          </form>
-        </body>
-    </html>
+[!code[Main](deleting-data/samples/sample9.xml)]
 
 ## Additional Resources
 

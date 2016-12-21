@@ -1,1 +1,1 @@
-MyHub.On<ReturnType>("MethodName", LocalMethod);
+    var myHub = $.connection.MyHub;

@@ -32,51 +32,15 @@ For this sample, we assume that the instance of the SQL Server 2005 Express Edit
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](using-textboxwatermark-in-a-formview-cs/samples/sample1.xml)]
 
 Then, add a data source to the page which supports the `DELETE`, `INSERT` and `UPDATE` SQL statements. If you are using the Visual Studio assistant to create the data source, mind that a bug in the current version does not prefix the table name (`Vendor`) with `Purchasing`. The following markup shows the correct syntax:
 
-    <asp:SqlDataSource ID="sds" runat="server" ConnectionString="Data
-     Source=(local)\SQLEXPRESS;Initial Catalog=AdventureWorks;Integrated Security=True"
-     DeleteCommand="DELETE FROM [Purchasing].[Vendor] WHERE [VendorID] = @VendorID"
-     InsertCommand="INSERT INTO [Purchasing].[Vendor] ([Name]) VALUES (@Name)"
-     ProviderName="System.Data.SqlClient"
-     SelectCommand="SELECT [VendorID], [Name] FROM [Purchasing].[Vendor]"
-     UpdateCommand="UPDATE [Purchasing].[Vendor] SET [Name] = @Name WHERE [VendorID] = @VendorID">
-     <DeleteParameters>
-     <asp:Parameter Name="VendorID" Type="Int32" />
-     </DeleteParameters>
-     <UpdateParameters>
-     <asp:Parameter Name="Name" Type="String" />
-     <asp:Parameter Name="VendorID" Type="Int32" />
-     </UpdateParameters>
-     <InsertParameters>
-     <asp:Parameter Name="Name" Type="String" />
-     </InsertParameters>
-    </asp:SqlDataSource>
+[!code[Main](using-textboxwatermark-in-a-formview-cs/samples/sample2.xml)]
 
 Remember the name (`ID`) of the data source, since it will be used in the `DataSourceID` property of the `FormView` control. The `<InsertItemTemplate>` section of the `FormView` contains a textbox which is extended by the `TextBoxWatermarkExtender` control. Make sure that the extender resides within the template and not outside of it.
 
-    <div>
-     <asp:FormView ID="FormView1" runat="server" DataSourceID="sds" AllowPaging="True">
-     <ItemTemplate>
-     <%# Eval("Name") %>
-     <asp:LinkButton ID="btnNew" runat="server" CommandName="New" Text="Insert" />
-     <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" Text="Edit" />
-     <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" Text="Delete" />
-     </ItemTemplate>
-     <EditItemTemplate>
-     <asp:TextBox ID="tbEdit" runat="server" Text='<%# Bind("Name") %>' />
-     <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Update" Text="Update" />
-     </EditItemTemplate>
-     <InsertItemTemplate>
-     <asp:TextBox ID="tbNew" runat="server" Text='<%# Bind("Name") %>' />
-     <asp:LinkButton ID="btnInsert" runat="server" CommandName="Insert" Text="Insert" />
-     <ajaxToolkit:TextBoxWatermarkExtender ID="tbwe" runat="server"
-     TargetControlID="tbNew" WatermarkText=" Vendor name " />
-     </InsertItemTemplate>
-     </asp:FormView>
-    </div>
+[!code[Main](using-textboxwatermark-in-a-formview-cs/samples/sample3.xml)]
 
 Now when the user changes into the insert mode of the `FormView` control, the text field for the new vendor is prefilled thanks to the `TextBoxWatermarkExtender` control. A click inside the textbox lets the filler text disappear.
 

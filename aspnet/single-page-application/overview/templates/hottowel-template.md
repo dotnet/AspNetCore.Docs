@@ -78,7 +78,7 @@ Hot Towel can be installed as a Visual Studio 2012 template. Just click `File` |
 
 Hot Towel is also a NuGet package that augments an existing empty ASP.NET MVC project. Just install using Nuget and then run!
 
-    Install-Package HotTowel
+[!code[Main](hottowel-template/samples/sample1.xml)]
 
 ## How Do I Build On Hot Towel?
 
@@ -96,15 +96,7 @@ Simply start adding code!
 
 index.cshtml is the starting route and view for the MVC application. It contains all the standard meta tags, css links, and JavaScript references you would expect. The body contains a single `<div>` which is where all of the content (your views) will be placed when they are requested. The `@Scripts.Render` uses Require.js to run the entrance point for the application's code, which is contained in the `main.js` file. A splash screen is provided to demonstrate how to create a splash screen while your app loads.
 
-    <body>
-        <div id="applicationHost">
-            @Html.Partial("_splash")
-        </div>
-    
-        @Scripts.Render("~/scripts/vendor")
-            <script type="text/javascript" src="~/App/durandal/amd/require.js" 
-                data-main="@Url.Content("~/App/main")"></script>
-    </body>
+[!code[Main](hottowel-template/samples/sample2.xml)]
 
 ### App/main.js
 
@@ -112,22 +104,7 @@ The `main.js` file contains the code that will run as soon as your app is loaded
 
 The `main.js` file defines several of durandal's modules to help the application kick start. The define statement helps resolve the modules dependencies so they are available for the function. First the debugging messages are enabled, which send messages about what events the application is performing to the console window. The app.start code tells durandal framework to start the application. The conventions are set so that durandal knows all views and viewmodels are contained in the same named folders, respectively. Finally, the `app.setRoot` kicks loads the `shell` using a predefined `entrance` animation.
 
-    define(['durandal/app', 
-            'durandal/viewLocator', 
-            'durandal/system', 
-            'durandal/plugins/router'],
-        function (app, viewLocator, system, router) {
-    
-        // Enable debug message to show in the console 
-        system.debug(true);
-    
-        app.start().then(function () {
-            router.useConvention();
-            viewLocator.useConvention();
-            //Show the app by setting the root view model for our application.
-            app.setRoot('viewmodels/shell', 'entrance');
-        });
-    });
+[!code[Main](hottowel-template/samples/sample3.xml)]
 
 ## Views
 
@@ -139,41 +116,13 @@ The `shell.html` contains the master layout for your HTML. All of your other vie
 
 The `compose` bindings for the header and footer are hard coded in Hot Towel to point to the `nav` and `footer` views, respectively. The compose binding for the section `#content` is bound to the `router` module's active item. In other words, when you click a navigation link it's corresponding view is loaded in this area.
 
-    <div>
-        <header>
-            <!--ko compose: {view: 'nav'} --><!--/ko-->
-        </header>
-         <section id="content" class="main container-fluid">
-            <!--ko compose: {model: router.activeItem, 
-                afterCompose: router.afterCompose, 
-                transition: 'entrance'} -->
-            <!--/ko-->
-        </section>
-        <footer>
-            <!--ko compose: {view: 'footer'} --><!--/ko-->
-        </footer>
-    </div>
+[!code[Main](hottowel-template/samples/sample4.xml)]
 
 ### nav.html
 
 The `nav.html` contains the navigation links for the SPA. This is where the menu structure can be placed, for example. Often this is data bound (using Knockout) to the `router` module to display the navigation you defined in the `shell.js`. Knockout looks for the data-bind attributes and binds those to the `shell` viewmodel to display the navigation routes and to show a progressbar (using Twitter Bootstrap) if the `router` module is in the middle of navigating from one view to another (see `router.isNavigating`).
 
-    <nav class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <a class="brand" href="/">
-                <span class="title">Hot Towel SPA</span> 
-            </a>
-            <div class="btn-group" data-bind="foreach: router.visibleRoutes">
-                <a data-bind="css: { active: isActive }, attr: { href: hash }, text: name" 
-                    class="btn btn-info" href="#"></a>
-            </div>
-            <div class="loader pull-right" data-bind="css: { active: router.isNavigating }">
-                <div class="progress progress-striped active page-progress-bar">
-                    <div class="bar" style="width: 100px;"></div>
-                </div>
-            </div>
-        </div>
-    </nav>
+[!code[Main](hottowel-template/samples/sample5.xml)]
 
 ### home.html and details.html
 
@@ -191,48 +140,13 @@ ViewModels are found in the `App/viewmodels` folder.
 
 The `shell` viewmodel contains properties and functions that are bound to the `shell` view. Often this is where the menu navigation bindings are found (see the `router.mapNav` logic).
 
-    define(['durandal/system', 'durandal/plugins/router', 'services/logger'],
-        function (system, router, logger) {
-            var shell = {
-                activate: activate,
-                router: router
-            };
-    
-            return shell;
-    
-            function activate() {
-                return boot();
-            }
-    
-            function boot() {
-                router.mapNav('home');
-                router.mapNav('details');
-                log('Hot Towel SPA Loaded!', null, true);
-                return router.activate('home');
-            }
-    
-            function log(msg, data, showToast) {
-                logger.log(msg, data, system.getModuleId(shell), showToast);
-            }
-        });
+[!code[Main](hottowel-template/samples/sample6.xml)]
 
 ### home.js and details.js
 
 These viewmodels contain the properties and functions that are bound to the `home` view. it also contains the presentation logic for the view, and is the glue between the data and the view.
 
-    define(['services/logger'], function (logger) {
-        var vm = {
-            activate: activate,
-            title: 'Home View'
-        };
-    
-        return vm;
-    
-        function activate() {
-            logger.log('Home View Activated', null, 'home', true);
-            return true;
-        }
-    });
+[!code[Main](hottowel-template/samples/sample7.xml)]
 
 ## Services
 

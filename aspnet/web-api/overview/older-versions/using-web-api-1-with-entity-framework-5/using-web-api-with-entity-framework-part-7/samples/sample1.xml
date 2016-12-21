@@ -1,25 +1,33 @@
-function AppViewModel() {
-    // ...
-
-    // NEW CODE
-    function ProductViewModel(root, product) {
-        var self = this;
-        self.ProductId = product.Id;
-        self.Name = product.Name;
-        self.Price = product.Price;
-        self.Quantity = ko.observable(0);
-
-        self.addItemToCart = function () {
-            var qty = self.Quantity();
-            if (qty == 0) {
-                root.cart.push(self);
-            }
-            self.Quantity(qty + 1);
-        };
-
-        self.removeAllFromCart = function () {
-            self.Quantity(0);
-            root.cart.remove(self);
-        };
-    }
-}
+    <div class="content">
+        <!-- List of products -->
+        <div class="float-left">
+        <h1>Products</h1>
+        <ul id="products">
+        </ul>
+        </div>
+    
+        <!-- Cart -->
+        <div id="cart" class="float-right">
+        <h1>Your Cart</h1>
+            <table class="details ui-widget-content">
+        </table>
+        <input type="button" value="Create Order"/>
+        </div>
+    </div>
+    
+    <div id="orders-area" class="content" >
+        <!-- List of orders -->
+        <div class="float-left">
+        <h1>Your Orders</h1>
+        <ul id="orders">
+        </ul>
+        </div>
+    
+       <!-- Order Details -->
+        <div id="order-details" class="float-right">
+        <h2>Order #<span></span></h2>
+        <table class="details ui-widget-content">
+        </table>
+        <p>Total: <span></span></p>
+        </div>
+    </div>

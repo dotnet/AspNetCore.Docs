@@ -34,50 +34,19 @@ When you scaffolded the `Movie` controller, ASP.NET MVC generated code that work
 
 Open the `Movie` controller and modify the `Details` method by returning `HttpNotFound` when a movie isn't found. You should also modify the `Details` method to set a default value for the ID that's passed to it. (You made similar changes to the `Edit` method in [part 6](examining-the-edit-methods-and-edit-view.md)of this tutorial.) However, you must change the return type of the `Details` method from `ViewResult` to `ActionResult`, because the `HttpNotFound` method doesn't return a `ViewResult` object. The following example shows the modified `Details` method.
 
-    Public Function Details(Optional ByVal id As Integer = 0) As ActionResult
-        Dim movie As Movie = db.Movies.Find(id)
-        If movie Is Nothing Then
-            Return HttpNotFound()
-        End If
-        Return View(movie)
-    End Function
+[!code[Main](improving-the-details-and-delete-methods/samples/sample1.xml)]
 
 Code First makes it easy to search for data using the `Find` method. An important security feature that we built into the method is that the code verifies that the `Find` method has found a movie before the code tries to do anything with it. For example, a hacker could introduce errors into the site by changing the URL created by the links from `http://localhost:xxxx/Movies/Details/1` to something like `http://localhost:xxxx/Movies/Details/12345` (or some other value that doesn't represent an actual movie). If you don't the check for a null movie, this could result in a database error.
 
 Similarly, change the `Delete` and `DeleteConfirmed` methods to specify a default value for the ID parameter and to return `HttpNotFound` when a movie isn't found. The updated `Delete` methods in the `Movie` controller are shown below.
 
-    ' GET: /Movies/Delete/5
-    
-     Public Function Delete(Optional ByVal id As Integer = 0) As ActionResult
-         Dim movie As Movie = db.Movies.Find(id)
-         If movie Is Nothing Then
-             Return HttpNotFound()
-         End If
-         Return View(movie)
-     End Function
-    
-     '
-     ' POST: /Movies/Delete/5
-    
-     <HttpPost(), ActionName("Delete")>
-     Public Function DeleteConfirmed(Optional ByVal id As Integer = 0) As ActionResult
-         Dim movie As Movie = db.Movies.Find(id)
-         If movie Is Nothing Then
-             Return HttpNotFound()
-         End If
-         db.Movies.Remove(movie)
-         db.SaveChanges()
-         Return RedirectToAction("Index")
-     End Function
+[!code[Main](improving-the-details-and-delete-methods/samples/sample2.xml)]
 
 Note that the `Delete` method doesn't delete the data. Performing a delete operation in response to a GET request (or for that matter, performing an edit operation, create operation, or any other operation that changes data) opens up a security hole. For more information about this, see Stephen Walther's blog entry [ASP.NET MVC Tip #46 — Don't use Delete Links because they create Security Holes](http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx).
 
 The `HttpPost` method that deletes the data is named `DeleteConfirmed` to give the HTTP POST method a unique signature or name. The two method signatures are shown below:
 
-    Public Function Delete(Optional ByVal id As Integer = 0) As ActionResult
-     
-     <HttpPost(), ActionName("Delete")>
-     Public Function DeleteConfirmed(Optional ByVal id As Integer = 0) As ActionResult
+[!code[Main](improving-the-details-and-delete-methods/samples/sample3.xml)]
 
 The common language runtime (CLR) requires overloaded methods to have a unique signature (same name, different list of parameters). However, here you need two Delete methods -- one for GET and one for POST -- that both require the same signature. (They both need to accept a single integer as a parameter.)
 
@@ -85,15 +54,7 @@ To sort this out, you can do a couple of things. One is to give the methods diff
 
 Another way to avoid a problem with methods that have identical names and signatures is to artificially change the signature of the POST method to include an unused parameter. For example, some developers add a parameter type `FormCollection` that is passed to the POST method, and then simply don't use the parameter:
 
-    Public Function Delete(ByVal fcNotUsed As FormCollection, Optional ByVal id As Integer = 0) As ActionResult
-    Dim movie As Movie = db.Movies.Find(id)
-    If movie Is Nothing Then
-    	Return HttpNotFound()
-    End If
-    db.Movies.Remove(movie)
-    db.SaveChanges()
-    Return RedirectToAction("Index")
-    End Function
+[!code[Main](improving-the-details-and-delete-methods/samples/sample4.xml)]
 
 ## Wrapping Up
 

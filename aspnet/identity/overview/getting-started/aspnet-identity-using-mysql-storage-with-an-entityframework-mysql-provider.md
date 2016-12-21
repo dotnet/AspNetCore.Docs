@@ -109,39 +109,13 @@ In this section you will configure the Entity Framework to use the MySQL provide
 1. Open the Web.config file for your project in Visual Studio 2013.
 2. Locate the following configuration settings, which define the default database provider and factory for the Entity Framework:
 
-        <entityFramework>
-          <defaultConnectionFactory
-              type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
-            <parameters>
-              <parameter value="v11.0" />
-            </parameters>
-          </defaultConnectionFactory>
-          <providers>
-            <provider
-              invariantName="System.Data.SqlClient"
-              type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
-          </providers>
-        </entityFramework>
+    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample1.xml)]
 3. Replace those configuration settings with the following, which will configure the Entity Framework to use the MySQL provider: 
 
-        <entityFramework>
-          <providers>
-            <provider invariantName="MySql.Data.MySqlClient"
-              type="MySql.Data.MySqlClient.MySqlProviderServices, MySql.Data.Entity"/> 
-          </providers>
-        </entityFramework>
-        <system.data>
-          <DbProviderFactories>
-            <remove invariant="MySql.Data.MySqlClient"></remove>
-            <add name="MySQL Data Provider"
-              invariant="MySql.Data.MySqlClient"
-              description=".Net Framework Data Provider for MySQL"
-              type="MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=6.7.2.0"/>
-          </DbProviderFactories>
-        </system.data>
+    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample2.xml)]
 4. Locate the &lt;connectionStrings&gt; section and replace it with the following code, which will define the connection string for your MySQL database that is hosted on Azure (note that providerName value has also been changed from the original):
 
-    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample1.xml?highlight=3-4)]
+    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample3.xml?highlight=3-4)]
 
 ### Adding custom MigrationHistory context
 
@@ -149,44 +123,10 @@ Entity Framework Code First uses a **MigrationHistory** table to keep track of m
 
 1. The schema information for this table is captured in a **HistoryContext**, which can be modified as any other **DbContext**. To do so, add a new class file named **MySqlHistoryContext.cs** to the project, and replace its contents with the following code:
 
-        using System.Data.Common;
-        using System.Data.Entity;
-        using System.Data.Entity.Migrations.History;
-         
-        namespace IdentityMySQLDemo
-        {
-          public class MySqlHistoryContext : HistoryContext
-          {
-            public MySqlHistoryContext(
-              DbConnection existingConnection,
-              string defaultSchema)
-            : base(existingConnection, defaultSchema)
-            {
-            }
-         
-            protected override void OnModelCreating(DbModelBuilder modelBuilder)
-            {
-              base.OnModelCreating(modelBuilder);
-              modelBuilder.Entity<HistoryRow>().Property(h => h.MigrationId).HasMaxLength(100).IsRequired();
-              modelBuilder.Entity<HistoryRow>().Property(h => h.ContextKey).HasMaxLength(200).IsRequired();
-            }
-          }
-        }
+    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample4.xml)]
 2. Next you will need to configure Entity Framework to use the modified **HistoryContext**, rather than default one. This can be done by leveraging code-based configuration features. To do so, add new class file named **MySqlConfiguration.cs** to your project and replace its contents with:
 
-        using System.Data.Entity;
-         
-        namespace IdentityMySQLDemo
-        {
-          public class MySqlConfiguration : DbConfiguration
-          {
-            public MySqlConfiguration()
-            {
-              SetHistoryContext(
-              "MySql.Data.MySqlClient", (conn, schema) => new MySqlHistoryContext(conn, schema));
-            }
-          }
-        }
+    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample5.xml)]
 
 ### Creating a custom EntityFramework initializer for ApplicationDbContext
 
@@ -199,33 +139,10 @@ To create a custom Entity Framework initializer for MySQL, use the following ste
 
 1. Add a new class file named **MySqlInitializer.cs** to the project, and replace it's contents with the following code: 
 
-    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample2.xml?highlight=23)]
+    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample6.xml?highlight=23)]
 2. Open the **IdentityModels.cs** file for your project, which is located in the **Models** directory, and replace it's contents with the following: 
 
-        using Microsoft.AspNet.Identity.EntityFramework;
-        using System.Data.Entity;
-        
-        namespace IdentityMySQLDemo.Models
-        {
-          // You can add profile data for the user by adding more properties to your ApplicationUser
-          // class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-          public class ApplicationUser : IdentityUser
-          {
-          }
-        
-          public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-          {
-            static ApplicationDbContext()
-            {
-              Database.SetInitializer(new MySqlInitializer());
-            }
-        
-            public ApplicationDbContext()
-              : base("DefaultConnection")
-            {
-            }
-          }
-        }
+    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample7.xml)]
 
 ## Running the application and verifying the database
 

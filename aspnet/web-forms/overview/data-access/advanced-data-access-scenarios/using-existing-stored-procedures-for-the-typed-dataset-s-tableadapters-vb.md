@@ -44,16 +44,7 @@ As Figure 1 shows, selecting the Add New Stored Procedure option opens a script 
 Enter the following script:
 
 
-    CREATE PROCEDURE dbo.Products_SelectByCategoryID 
-    (
-        @CategoryID int
-    )
-    AS
-    SELECT ProductID, ProductName, SupplierID, CategoryID, 
-           QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-           ReorderLevel, Discontinued
-    FROM Products
-    WHERE CategoryID = @CategoryID
+[!code[Main](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/samples/sample1.xml)]
 
 This script, when executed, will add a new stored procedure to the Northwind database named `Products_SelectByCategoryID`. This stored procedure accepts a single input parameter (`@CategoryID`, of type `int`) and it returns all of the fields for those products with a matching `CategoryID` value.
 
@@ -113,12 +104,7 @@ All that remains is to indicate what method patterns to use followed by the name
 With the `GetProductsByCategoryID` DAL method complete, the next step is to provide access to this method in the Business Logic Layer. Open the `ProductsBLLWithSprocs` class file and add the following method:
 
 
-    <System.ComponentModel.DataObjectMethodAttribute _
-        (System.ComponentModel.DataObjectMethodType.Select, False)> _
-    Public Function GetProductsByCategoryID(ByVal categoryID As Integer) _
-        As NorthwindWithSprocs.ProductsDataTable
-        Return Adapter.GetProductsByCategoryID(categoryID)
-    End Function
+[!code[Main](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/samples/sample2.xml)]
 
 This BLL method simply returns the `ProductsDataTable` returned from the `ProductsTableAdapter` s `GetProductsByCategoryID` method. The `DataObjectMethodAttribute` attribute provides metadata used by the ObjectDataSource s Configure Data Source wizard. In particular, this method will appear in the SELECT tab s drop-down list.
 
@@ -147,14 +133,7 @@ After completing the ObjectDataSource wizard, configure the DropDownList to disp
 At this point, the DropDownList and ObjectDataSource s declarative markup should similar to the following:
 
 
-    <asp:DropDownList ID="Categories" runat="server" AutoPostBack="True" 
-        DataSourceID="CategoriesDataSource" DataTextField="CategoryName" 
-        DataValueField="CategoryID">
-    </asp:DropDownList>
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}" 
-        SelectMethod="GetCategories" TypeName="CategoriesBLL">
-    </asp:ObjectDataSource>
+[!code[Main](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/samples/sample3.xml)]
 
 Next, drag a GridView onto the Designer, placing it beneath the DropDownList. Set the GridView s `ID` to `ProductsByCategory` and, from its smart tag, bind it to a new ObjectDataSource named `ProductsByCategoryDataSource`. Configure the `ProductsByCategoryDataSource` ObjectDataSource to use the `ProductsBLLWithSprocs` class, having it retrieve its data using the `GetProductsByCategoryID(categoryID)` method. Since this GridView will only be used to display data, set the drop-down lists in the UPDATE, INSERT, and DELETE tabs to (None) and click Next.
 
@@ -207,24 +186,7 @@ The three key SQL commands for manually starting, committing, and rolling back a
 This pattern can be implemented in T-SQL syntax using the following template:
 
 
-    BEGIN TRY
-      BEGIN TRANSACTION -- Start the transaction
-      ... Perform the SQL statements that makeup the transaction ...
-      -- If we reach here, success!
-      COMMIT TRANSACTION
-    END TRY
-    BEGIN CATCH 
-      -- Whoops, there was an error
-      ROLLBACK TRANSACTION
-      -- Raise an error with the 
-      -- details of the exception   
-      DECLARE @ErrMsg nvarchar(4000),
-              @ErrSeverity int 
-      SELECT @ErrMsg = ERROR_MESSAGE(), 
-             @ErrSeverity = ERROR_SEVERITY() 
-     
-      RAISERROR(@ErrMsg, @ErrSeverity, 1) 
-    END CATCH
+[!code[Main](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/samples/sample4.xml)]
 
 The template starts by defining a `TRY...CATCH` block, a construct new to SQL Server 2005. Like with `Try...Catch` blocks in Visual Basic, the SQL `TRY...CATCH` block executes the statements in the `TRY` block. If any statement raises an error, control is immediately transferred to the `CATCH` block.
 
@@ -251,51 +213,14 @@ Imagine, though, that we want to allow categories to be deleted regardless of wh
 Our first attempt at such a stored procedure might look like the following:
 
 
-    CREATE PROCEDURE dbo.Categories_Delete
-    (
-        @CategoryID int
-    )
-    AS
-    -- First, delete the associated products...
-    DELETE FROM Products
-    WHERE CategoryID = @CategoryID
-    -- Now delete the category
-    DELETE FROM Categories
-    WHERE CategoryID = @CategoryID
+[!code[Main](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/samples/sample5.xml)]
 
 While this will definitely delete the associated products and category, it does not do so under the umbrella of a transaction. Imagine that there is some other foreign key constraint on `Categories` that would prohibit the deletion of a particular `@CategoryID` value. The problem is that in such a case all of the products will be deleted before we attempt to delete the category. The net result is that for such a category, this stored procedure would remove all of its products while the category remained since it still has related records in some other table.
 
 If the stored procedure were wrapped within the scope of a transaction, however, the deletes to the `Products` table would be rolled back in the face of a failed delete on `Categories`. The following stored procedure script uses a transaction to assure atomicity between the two `DELETE` statements:
 
 
-    CREATE PROCEDURE dbo.Categories_Delete
-    (
-        @CategoryID int
-    )
-    AS
-    BEGIN TRY
-      BEGIN TRANSACTION -- Start the transaction
-      -- First, delete the associated products...
-      DELETE FROM Products
-      WHERE CategoryID = @CategoryID
-      -- Now delete the category
-      DELETE FROM Categories
-      WHERE CategoryID = @CategoryID
-      -- If we reach here, success!
-      COMMIT TRANSACTION
-    END TRY
-    BEGIN CATCH 
-      -- Whoops, there was an error
-      ROLLBACK TRANSACTION
-      -- Raise an error with the 
-      -- details of the exception   
-      DECLARE @ErrMsg nvarchar(4000),
-              @ErrSeverity int 
-      SELECT @ErrMsg = ERROR_MESSAGE(), 
-             @ErrSeverity = ERROR_SEVERITY() 
-     
-      RAISERROR(@ErrMsg, @ErrSeverity, 1) 
-    END CATCH
+[!code[Main](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/samples/sample6.xml)]
 
 Take a moment to add the `Categories_Delete` stored procedure to the Northwind database. Refer back to Step 1 for instructions on adding stored procedures to a database.
 

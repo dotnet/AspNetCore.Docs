@@ -59,33 +59,7 @@ Let s also add the user interface for deleting the selected products. Add a Butt
 After making these changes, the GridView, ObjectDataSource, Button, and Label s declarative markup should similar to the following:
 
 
-    <p>
-        <asp:GridView ID="Products" runat="server" AutoGenerateColumns="False" 
-            DataKeyNames="ProductID" DataSourceID="ProductsDataSource" 
-            AllowPaging="True" EnableViewState="False">
-            <Columns>
-                <asp:BoundField DataField="ProductName" HeaderText="Product" 
-                    SortExpression="ProductName" />
-                <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                    ReadOnly="True" SortExpression="CategoryName" />
-                <asp:BoundField DataField="UnitPrice" DataFormatString="{0:c}" 
-                    HeaderText="Price" HtmlEncode="False" 
-                    SortExpression="UnitPrice" />
-            </Columns>
-        </asp:GridView>
-        <asp:ObjectDataSource ID="ProductsDataSource" runat="server" 
-            OldValuesParameterFormatString="original_{0}" 
-            SelectMethod="GetProducts" TypeName="ProductsBLL">            
-        </asp:ObjectDataSource>
-    </p>
-    <p>
-        <asp:Button ID="DeleteSelectedProducts" runat="server" 
-            Text="Delete Selected Products" />
-    </p>
-    <p>
-        <asp:Label ID="DeleteResults" runat="server" EnableViewState="False" 
-            Visible="False"></asp:Label>
-    </p>
+[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample1.xml)]
 
 Take a moment to view the page in a browser (see Figure 5). At this point you should see the name, category, and price of the first ten products.
 
@@ -124,32 +98,7 @@ The GridView s [`Rows` property](https://msdn.microsoft.com/en-us/library/system
 Create an event handler for the `DeleteSelectedProducts` Button Web control s `Click` event and add the following code:
 
 
-    Protected Sub DeleteSelectedProducts_Click(sender As Object, e As EventArgs) _
-        Handles DeleteSelectedProducts.Click
-        
-        Dim atLeastOneRowDeleted As Boolean = False
-        ' Iterate through the Products.Rows property
-        For Each row As GridViewRow In Products.Rows
-            ' Access the CheckBox
-            Dim cb As CheckBox = row.FindControl("ProductSelector")
-            If cb IsNot Nothing AndAlso cb.Checked Then
-                ' Delete row! (Well, not really...)
-                atLeastOneRowDeleted = True
-                ' First, get the ProductID for the selected row
-                Dim productID As Integer = _
-                    Convert.ToInt32(Products.DataKeys(row.RowIndex).Value)
-                ' "Delete" the row
-                DeleteResults.Text &= String.Format( _
-                    "This would have deleted ProductID {0}<br />", productID)
-                '... To actually delete the product, use ...
-                ' Dim productAPI As New ProductsBLL
-                ' productAPI.DeleteProduct(productID)
-                '............................................
-            End If
-        Next
-        ' Show the Label if at least one row was deleted...
-        DeleteResults.Visible = atLeastOneRowDeleted
-    End Sub
+[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample2.xml)]
 
 The `Rows` property returns a collection of `GridViewRow` instances that makeup the GridView s data rows. The `For Each` loop here enumerates this collection. For each `GridViewRow` object, the row s CheckBox is programmatically accessed using `row.FindControl("controlID")`. If the CheckBox is checked, the row s corresponding `ProductID` value is retrieved from the `DataKeys` collection. In this exercise, we simply display an informative message in the `DeleteResults` Label, although in a working application we d instead make a call to the `ProductsBLL` class s `DeleteProduct(productID)` method.
 
@@ -168,37 +117,17 @@ If a user wants to delete all products on the current page, they must check each
 Add two Button Web controls to the page, placing them above the GridView. Set the first one s `ID` to `CheckAll` and its `Text` property to Check All ; set the second one s `ID` to `UncheckAll` and its `Text` property to Uncheck All .
 
 
-    <asp:Button ID="CheckAll" runat="server" Text="Check All" />
-     
-    <asp:Button ID="UncheckAll" runat="server" Text="Uncheck All" />
+[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample3.xml)]
 
 Next, create a method in the code-behind class named `ToggleCheckState(checkState)` that, when invoked, enumerates the `Products` GridView s `Rows` collection and sets each CheckBox s `Checked` property to the value of the passed in *checkState* parameter.
 
 
-    Private Sub ToggleCheckState(ByVal checkState As Boolean)
-        ' Iterate through the Products.Rows property
-        For Each row As GridViewRow In Products.Rows
-            ' Access the CheckBox
-            Dim cb As CheckBox = row.FindControl("ProductSelector")
-            If cb IsNot Nothing Then
-                cb.Checked = checkState
-            End If
-        Next
-    End Sub
+[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample4.xml)]
 
 Next, create `Click` event handlers for the `CheckAll` and `UncheckAll` buttons. In `CheckAll` s event handler, simply call `ToggleCheckState(True)`; in `UncheckAll`, call `ToggleCheckState(False)`.
 
 
-    Protected Sub CheckAll_Click(sender As Object, e As EventArgs) _
-        Handles CheckAll.Click
-        
-        ToggleCheckState(True)
-    End Sub
-    Protected Sub UncheckAll_Click(sender As Object, e As EventArgs) _
-        Handles UncheckAll.Click
-        
-        ToggleCheckState(False)
-    End Sub
+[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample5.xml)]
 
 With this code, clicking the Check All button causes a postback and checks all of the checkboxes in the GridView. Likewise, clicking Uncheck All unselects all checkboxes. Figure 9 shows the screen after the Check All button has been checked.
 

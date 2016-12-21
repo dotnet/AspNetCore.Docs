@@ -64,143 +64,7 @@ For the `ProductsBLL` class we need to add a total of seven methods:
 ProductsBLL.cs
 
 
-    using System;
-    using System.Data;
-    using System.Configuration;
-    using System.Web;
-    using System.Web.Security;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-    using System.Web.UI.WebControls.WebParts;
-    using System.Web.UI.HtmlControls;
-    using NorthwindTableAdapters;
-    
-    [System.ComponentModel.DataObject]
-    public class ProductsBLL
-    {
-        private ProductsTableAdapter _productsAdapter = null;
-        protected ProductsTableAdapter Adapter
-        {
-            get {
-                if (_productsAdapter == null)
-                    _productsAdapter = new ProductsTableAdapter();
-    
-                return _productsAdapter;
-            }
-        }
-    
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Select, true)]
-        public Northwind.ProductsDataTable GetProducts()
-        {
-            return Adapter.GetProducts();
-        }
-    
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Select, false)]
-        public Northwind.ProductsDataTable GetProductByProductID(int productID)
-        {
-            return Adapter.GetProductByProductID(productID);
-        }
-    
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Select, false)]
-        public Northwind.ProductsDataTable GetProductsByCategoryID(int categoryID)
-        {
-            return Adapter.GetProductsByCategoryID(categoryID);
-        }
-    
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Select, false)]
-        public Northwind.ProductsDataTable GetProductsBySupplierID(int supplierID)
-        {
-            return Adapter.GetProductsBySupplierID(supplierID);
-        }
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public bool AddProduct(string productName, int? supplierID, int? categoryID,
-            string quantityPerUnit, decimal? unitPrice,  short? unitsInStock,
-            short? unitsOnOrder, short? reorderLevel, bool discontinued)
-        {
-            // Create a new ProductRow instance
-            Northwind.ProductsDataTable products = new Northwind.ProductsDataTable();
-            Northwind.ProductsRow product = products.NewProductsRow();
-    
-            product.ProductName = productName;
-            if (supplierID == null) product.SetSupplierIDNull();
-              else product.SupplierID = supplierID.Value;
-            if (categoryID == null) product.SetCategoryIDNull();
-              else product.CategoryID = categoryID.Value;
-            if (quantityPerUnit == null) product.SetQuantityPerUnitNull();
-              else product.QuantityPerUnit = quantityPerUnit;
-            if (unitPrice == null) product.SetUnitPriceNull();
-              else product.UnitPrice = unitPrice.Value;
-            if (unitsInStock == null) product.SetUnitsInStockNull();
-              else product.UnitsInStock = unitsInStock.Value;
-            if (unitsOnOrder == null) product.SetUnitsOnOrderNull();
-              else product.UnitsOnOrder = unitsOnOrder.Value;
-            if (reorderLevel == null) product.SetReorderLevelNull();
-              else product.ReorderLevel = reorderLevel.Value;
-            product.Discontinued = discontinued;
-    
-            // Add the new product
-            products.AddProductsRow(product);
-            int rowsAffected = Adapter.Update(products);
-    
-            // Return true if precisely one row was inserted,
-            // otherwise false
-            return rowsAffected == 1;
-        }
-    
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Update, true)]
-        public bool UpdateProduct(string productName, int? supplierID, int? categoryID,
-            string quantityPerUnit, decimal? unitPrice, short? unitsInStock,
-            short? unitsOnOrder, short? reorderLevel, bool discontinued, int productID)
-        {
-            Northwind.ProductsDataTable products = Adapter.GetProductByProductID(productID);
-            if (products.Count == 0)
-                // no matching record found, return false
-                return false;
-    
-            Northwind.ProductsRow product = products[0];
-    
-            product.ProductName = productName;
-            if (supplierID == null) product.SetSupplierIDNull();
-              else product.SupplierID = supplierID.Value;
-            if (categoryID == null) product.SetCategoryIDNull();
-              else product.CategoryID = categoryID.Value;
-            if (quantityPerUnit == null) product.SetQuantityPerUnitNull();
-              else product.QuantityPerUnit = quantityPerUnit;
-            if (unitPrice == null) product.SetUnitPriceNull();
-              else product.UnitPrice = unitPrice.Value;
-            if (unitsInStock == null) product.SetUnitsInStockNull();
-              else product.UnitsInStock = unitsInStock.Value;
-            if (unitsOnOrder == null) product.SetUnitsOnOrderNull();
-              else product.UnitsOnOrder = unitsOnOrder.Value;
-            if (reorderLevel == null) product.SetReorderLevelNull();
-              else product.ReorderLevel = reorderLevel.Value;
-            product.Discontinued = discontinued;
-    
-            // Update the product record
-            int rowsAffected = Adapter.Update(product);
-    
-            // Return true if precisely one row was updated,
-            // otherwise false
-            return rowsAffected == 1;
-        }
-    
-        [System.ComponentModel.DataObjectMethodAttribute
-            (System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public bool DeleteProduct(int productID)
-        {
-            int rowsAffected = Adapter.Delete(productID);
-    
-            // Return true if precisely one row was deleted,
-            // otherwise false
-            return rowsAffected == 1;
-        }
-    }
+[!code[Main](creating-a-business-logic-layer-cs/samples/sample1.xml)]
 
 The methods that simply return data `GetProducts`, `GetProductByProductID`, `GetProductsByCategoryID`, and `GetProductBySuppliersID` are fairly straightforward as they simply call down into the DAL. While in some scenarios there may be business rules that need to be implemented at this level (such as authorization rules based on the currently logged on user or the role to which the user belongs), we'll simply leave these methods as-is. For these methods, then, the BLL serves merely as a proxy through which the presentation layer accesses the underlying data from the Data Access Layer.
 
@@ -239,35 +103,7 @@ With the `ProductsBLL` class complete, we still need to add the classes for work
 The one method worth noting is the `SuppliersBLL` class's `UpdateSupplierAddress` method. This method provides an interface for updating just the supplier's address information. Internally, this method reads in the `SupplierDataRow` object for the specified `supplierID` (using `GetSupplierBySupplierID`), sets its address-related properties, and then calls down into the `SupplierDataTable`'s `Update` method. The `UpdateSupplierAddress` method follows:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Update, true)]
-    public bool UpdateSupplierAddress
-        (int supplierID, string address, string city, string country)
-    {
-        Northwind.SuppliersDataTable suppliers =
-            Adapter.GetSupplierBySupplierID(supplierID);
-        if (suppliers.Count == 0)
-            // no matching record found, return false
-            return false;
-        else
-        {
-            Northwind.SuppliersRow supplier = suppliers[0];
-    
-            if (address == null) supplier.SetAddressNull();
-              else supplier.Address = address;
-            if (city == null) supplier.SetCityNull();
-              else supplier.City = city;
-            if (country == null) supplier.SetCountryNull();
-              else supplier.Country = country;
-    
-            // Update the supplier Address-related information
-            int rowsAffected = Adapter.Update(supplier);
-    
-            // Return true if precisely one row was updated,
-            // otherwise false
-            return rowsAffected == 1;
-        }
-    }
+[!code[Main](creating-a-business-logic-layer-cs/samples/sample2.xml)]
 
 Refer to this article's download for my complete implementation of the BLL classes.
 
@@ -276,16 +112,12 @@ Refer to this article's download for my complete implementation of the BLL class
 In the first tutorial we saw examples of working directly with the Typed DataSet programmatically, but with the addition of our BLL classes, the presentation tier should work against the BLL instead. In the `AllProducts.aspx` example from the first tutorial, the `ProductsTableAdapter` was used to bind the list of products to a GridView, as shown in the following code:
 
 
-    ProductsTableAdapter productsAdapter = new ProductsTableAdapter();
-    GridView1.DataSource = productsAdapter.GetProducts();
-    GridView1.DataBind();
+[!code[Main](creating-a-business-logic-layer-cs/samples/sample3.xml)]
 
 To use the new BLL classes, all that needs to be changed is the first line of code simply replace the `ProductsTableAdapter` object with a `ProductBLL` object:
 
 
-    ProductsBLL productLogic = new ProductsBLL();
-    GridView1.DataSource = productLogic.GetProducts();
-    GridView1.DataBind();
+[!code[Main](creating-a-business-logic-layer-cs/samples/sample4.xml)]
 
 The BLL classes can also be accessed declaratively (as can the Typed DataSet) by using the ObjectDataSource. We'll be discussing the ObjectDataSource in greater detail in the following tutorials.
 
@@ -327,42 +159,7 @@ Next, create an event handler for the `ColumnChanging` event that ensures that t
 ProductsDataTable.ColumnChanging.cs
 
 
-    public partial class Northwind
-    {
-        public partial class ProductsDataTable
-        {
-            public override void BeginInit()
-             {
-                this.ColumnChanging += ValidateColumn;
-             }
-    
-             void ValidateColumn(object sender,
-               DataColumnChangeEventArgs e)
-             {
-                if(e.Column.Equals(this.UnitPriceColumn))
-                {
-                   if(!Convert.IsDBNull(e.ProposedValue) &&
-                      (decimal)e.ProposedValue < 0)
-                   {
-                      throw new ArgumentException(
-                          "UnitPrice cannot be less than zero", "UnitPrice");
-                   }
-                }
-                else if (e.Column.Equals(this.UnitsInStockColumn) ||
-                         e.Column.Equals(this.UnitsOnOrderColumn) ||
-                         e.Column.Equals(this.ReorderLevelColumn))
-                {
-                    if (!Convert.IsDBNull(e.ProposedValue) &&
-                        (short)e.ProposedValue < 0)
-                    {
-                        throw new ArgumentException(string.Format(
-                            "{0} cannot be less than zero", e.Column.ColumnName),
-                            e.Column.ColumnName);
-                    }
-                }
-             }
-        }
-    }
+[!code[Main](creating-a-business-logic-layer-cs/samples/sample5.xml)]
 
 ## Step 4: Adding Custom Business Rules to the BLL's Classes
 
@@ -379,77 +176,14 @@ Imagine that our business rules dictate that a product could not be marked disco
 To enforce this business rule in the `UpdateProducts` method we'd start by checking if `Discontinued` was set to `true` and, if so, we'd call `GetProductsBySupplierID` to determine how many products we purchased from this product's supplier. If only one product is purchased from this supplier, we throw an `ApplicationException`.
 
 
-    public bool UpdateProduct(string productName, int? supplierID, int? categoryID,
-        string quantityPerUnit, decimal? unitPrice, short? unitsInStock,
-        short? unitsOnOrder, short? reorderLevel, bool discontinued, int productID)
-    {
-        Northwind.ProductsDataTable products = Adapter.GetProductByProductID(productID);
-        if (products.Count == 0)
-            // no matching record found, return false
-            return false;
-    
-        Northwind.ProductsRow product = products[0];
-    
-        // Business rule check - cannot discontinue
-        // a product that is supplied by only
-        // one supplier
-        if (discontinued)
-        {
-            // Get the products we buy from this supplier
-            Northwind.ProductsDataTable productsBySupplier =
-                Adapter.GetProductsBySupplierID(product.SupplierID);
-    
-            if (productsBySupplier.Count == 1)
-                // this is the only product we buy from this supplier
-                throw new ApplicationException(
-                    "You cannot mark a product as discontinued if it is the only
-                      product purchased from a supplier");
-        }
-    
-        product.ProductName = productName;
-        if (supplierID == null) product.SetSupplierIDNull();
-          else product.SupplierID = supplierID.Value;
-        if (categoryID == null) product.SetCategoryIDNull();
-          else product.CategoryID = categoryID.Value;
-        if (quantityPerUnit == null) product.SetQuantityPerUnitNull();
-          else product.QuantityPerUnit = quantityPerUnit;
-        if (unitPrice == null) product.SetUnitPriceNull();
-          else product.UnitPrice = unitPrice.Value;
-        if (unitsInStock == null) product.SetUnitsInStockNull();
-          else product.UnitsInStock = unitsInStock.Value;
-        if (unitsOnOrder == null) product.SetUnitsOnOrderNull();
-          else product.UnitsOnOrder = unitsOnOrder.Value;
-        if (reorderLevel == null) product.SetReorderLevelNull();
-          else product.ReorderLevel = reorderLevel.Value;
-        product.Discontinued = discontinued;
-    
-        // Update the product record
-        int rowsAffected = Adapter.Update(product);
-    
-        // Return true if precisely one row was updated,
-        // otherwise false
-        return rowsAffected == 1;
-    }
+[!code[Main](creating-a-business-logic-layer-cs/samples/sample6.xml)]
 
 ## Responding to Validation Errors in the Presentation Tier
 
 When calling the BLL from the presentation tier we can decide whether to attempt to handle any exceptions that might be raised or let them bubble up to ASP.NET (which will raise the `HttpApplication`'s `Error` event). To handle an exception when working with the BLL programmatically, we can use a [try...catch](https://msdn.microsoft.com/en-us/library/0yd65esw.aspx) block, as the following example shows:
 
 
-    ProductsBLL productLogic = new ProductsBLL();
-    
-    // Update information for ProductID 1
-    try
-    {
-        // This will fail since we are attempting to use a
-        // UnitPrice value less than 0.
-        productLogic.UpdateProduct(
-            "Scott s Tea", 1, 1, null, -14m, 10, null, null, false, 1);
-    }
-    catch (ArgumentException ae)
-    {
-        Response.Write("There was a problem: " + ae.Message);
-    }
+[!code[Main](creating-a-business-logic-layer-cs/samples/sample7.xml)]
 
 As we'll see in future tutorials, handling exceptions that bubble up from the BLL when using a data Web control for inserting, updating, or deleting data can be handled directly in an event handler as opposed to having to wrap code in `try...catch` blocks.
 

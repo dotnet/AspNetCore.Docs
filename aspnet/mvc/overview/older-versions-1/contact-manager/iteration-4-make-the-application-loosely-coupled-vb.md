@@ -77,53 +77,13 @@ First, we need to create an interface that describes all of the data access meth
 
 **Listing 1 - Models\IContactManagerRepository.vb**
 
-    Public Interface IContactManagerRepository
-    Function CreateContact(ByVal contactToCreate As Contact) As Contact
-    Sub DeleteContact(ByVal contactToDelete As Contact)
-    Function EditContact(ByVal contactToUpdate As Contact) As Contact
-    Function GetContact(ByVal id As Integer) As Contact
-    Function ListContacts() As IEnumerable(Of Contact)
-    End Interface
+[!code[Main](iteration-4-make-the-application-loosely-coupled-vb/samples/sample1.xml)]
 
 Next, we need to create a concrete class that implements the IContactManagerRepository interface. Because we are using the Microsoft Entity Framework to access the database, we'll create a new class named EntityContactManagerRepository. This class is contained in Listing 2.
 
 **Listing 2 - Models\EntityContactManagerRepository.vb**
 
-    Public Class EntityContactManagerRepository
-    Implements IContactManagerRepository
-    
-    Private _entities As New ContactManagerDBEntities()
-    
-    Public Function GetContact(ByVal id As Integer) As Contact Implements IContactManagerRepository.GetContact
-    	Return (From c In _entities.ContactSet _
-    	        Where c.Id = id _
-    	        Select c).FirstOrDefault()
-    End Function
-
-    Public Function ListContacts() As IEnumerable(Of Contact) Implements IContactManagerRepository.ListContacts
-    	Return _entities.ContactSet.ToList()
-    End Function
-
-    Public Function CreateContact(ByVal contactToCreate As Contact) As Contact Implements IContactManagerRepository.CreateContact
-    	_entities.AddToContactSet(contactToCreate)
-    	_entities.SaveChanges()
-    	Return contactToCreate
-    End Function
-
-    Public Function EditContact(ByVal contactToEdit As Contact) As Contact Implements IContactManagerRepository.EditContact
-    	Dim originalContact = GetContact(contactToEdit.Id)
-    	_entities.ApplyPropertyChanges(originalContact.EntityKey.EntitySetName, contactToEdit)
-    	_entities.SaveChanges()
-    	Return contactToEdit
-    End Function
-
-    Public Sub DeleteContact(ByVal contactToDelete As Contact) Implements IContactManagerRepository.DeleteContact
-    	Dim originalContact = GetContact(contactToDelete.Id)
-    	_entities.DeleteObject(originalContact)
-    	_entities.SaveChanges()
-    End Sub
-    
-    End Class
+[!code[Main](iteration-4-make-the-application-loosely-coupled-vb/samples/sample2.xml)]
 
 Notice that the EntityContactManagerRepository class implements the IContactManagerRepository interface. The class implements all five of the methods described by that interface.
 
@@ -150,95 +110,7 @@ The modified Contact controller is contained in Listing 3.
 
 **Listing 3 - Controllers\ContactController.vb**
 
-    Public Class ContactController
-        Inherits System.Web.Mvc.Controller
-    
-        Private _repository As IContactManagerRepository 
-    
-        Sub New()
-            Me.New(new EntityContactManagerRepository())
-        End Sub
-    
-        Sub New(repository As IContactManagerRepository)
-            _repository = repository
-        End Sub
-    
-        Protected Sub ValidateContact(contactToValidate As Contact)
-            If contactToValidate.FirstName.Trim().Length = 0 Then
-                ModelState.AddModelError("FirstName", "First name is required.")
-            End If
-            If contactToValidate.LastName.Trim().Length = 0 Then
-                ModelState.AddModelError("LastName", "Last name is required.")
-            End If
-            If (contactToValidate.Phone.Length > 0 AndAlso Not Regex.IsMatch(contactToValidate.Phone, "((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"))
-                ModelState.AddModelError("Phone", "Invalid phone number.")
-            End If        
-            If (contactToValidate.Email.Length > 0 AndAlso  Not Regex.IsMatch(contactToValidate.Email, "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
-                ModelState.AddModelError("Email", "Invalid email address.")
-            End If
-        End Sub
-    
-        Function Index() As ActionResult
-            Return View(_repository.ListContacts())
-        End Function
-    
-        Function Create() As ActionResult
-            Return View()
-        End Function
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Create(<Bind(Exclude:="Id")> ByVal contactToCreate As Contact) As ActionResult
-            ' Validation logic
-            ValidateContact(contactToCreate)
-            If Not ModelState.IsValid Then
-                Return View()
-            End If
-    
-            ' Database logic
-            Try
-                _repository.CreateContact(contactToCreate)
-                Return RedirectToAction("Index")
-            Catch
-                Return View()
-            End Try
-        End Function
-    
-        Function Edit(ByVal id As Integer) As ActionResult
-            Return View(_repository.GetContact(id))
-        End Function
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Edit(ByVal contactToEdit As Contact) As ActionResult
-            ' Validation logic
-            ValidateContact(contactToEdit)
-            If Not ModelState.IsValid Then
-                Return View()
-            End If
-    
-            ' Database logic
-            Try
-                _repository.EditContact(contactToEdit)
-                Return RedirectToAction("Index")
-            Catch
-                Return View()
-            End Try
-        End Function
-    
-        Function Delete(ByVal id As Integer) As ActionResult
-            Return View(_repository.GetContact(id))
-        End Function
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Delete(ByVal contactToDelete As Contact) As ActionResult
-            Try
-                _repository.DeleteContact(contactToDelete)
-                Return RedirectToAction("Index")
-            Catch
-                Return View()
-            End Try
-        End Function
-    
-    End Class
+[!code[Main](iteration-4-make-the-application-loosely-coupled-vb/samples/sample3.xml)]
 
 Notice that the Contact controller in Listing 3 has two constructors. The first constructor passes a concrete instance of the IContactManagerRepository interface to the second constructor. The Contact controller class uses *Constructor Dependency Injection*.
 
@@ -263,88 +135,7 @@ The ContactManagerService is contained in Listing 4. It contains the validation 
 
 **Listing 4 - Models\ContactManagerService.vb**
 
-    Public Class ContactManagerService
-    Implements IContactManagerService
-    
-    Private _validationDictionary As IValidationDictionary
-    Private _repository As IContactManagerRepository
-
-    Public Sub New(ByVal validationDictionary As IValidationDictionary)
-    	Me.New(validationDictionary, New EntityContactManagerRepository())
-    End Sub
-
-    Public Sub New(ByVal validationDictionary As IValidationDictionary, ByVal repository As IContactManagerRepository)
-    	_validationDictionary = validationDictionary
-    	_repository = repository
-    End Sub
-
-    Public Function ValidateContact(ByVal contactToValidate As Contact) As Boolean
-    	If contactToValidate.FirstName.Trim().Length = 0 Then
-    		_validationDictionary.AddError("FirstName", "First name is required.")
-    	End If
-    	If contactToValidate.LastName.Trim().Length = 0 Then
-    		_validationDictionary.AddError("LastName", "Last name is required.")
-    	End If
-    	If contactToValidate.Phone.Length > 0 AndAlso (Not Regex.IsMatch(contactToValidate.Phone, "((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}")) Then
-    		_validationDictionary.AddError("Phone", "Invalid phone number.")
-    	End If
-    	If contactToValidate.Email.Length > 0 AndAlso (Not Regex.IsMatch(contactToValidate.Email, "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")) Then
-    		_validationDictionary.AddError("Email", "Invalid email address.")
-    	End If
-    	Return _validationDictionary.IsValid
-    End Function
-
-    #Region "IContactManagerService Members"
-    
-    Public Function CreateContact(ByVal contactToCreate As Contact) As Boolean Implements IContactManagerService.CreateContact
-    	' Validation logic
-    	If Not ValidateContact(contactToCreate) Then
-    		Return False
-    	End If
-    
-    	' Database logic
-    	Try
-    		_repository.CreateContact(contactToCreate)
-    	Catch
-    		Return False
-    	End Try
-    	Return True
-    End Function
-    
-    Public Function EditContact(ByVal contactToEdit As Contact) As Boolean Implements IContactManagerService.EditContact
-    	' Validation logic
-    	If Not ValidateContact(contactToEdit) Then
-    		Return False
-    	End If
-    
-    	' Database logic
-    	Try
-    		_repository.EditContact(contactToEdit)
-    	Catch
-    		Return False
-    	End Try
-    	Return True
-    End Function
-    
-    Public Function DeleteContact(ByVal contactToDelete As Contact) As Boolean Implements IContactManagerService.DeleteContact
-    	Try
-    		_repository.DeleteContact(contactToDelete)
-    	Catch
-    		Return False
-    	End Try
-    	Return True
-    End Function
-    
-    Public Function GetContact(ByVal id As Integer) As Contact Implements IContactManagerService.GetContact
-    	Return _repository.GetContact(id)
-    End Function
-    
-    Public Function ListContacts() As IEnumerable(Of Contact) Implements IContactManagerService.ListContacts
-    	Return _repository.ListContacts()
-    End Function
-    
-    #End Region
-    End Class
+[!code[Main](iteration-4-make-the-application-loosely-coupled-vb/samples/sample4.xml)]
 
 Notice that the constructor for the ContactManagerService requires a ValidationDictionary. The service layer communicates with the controller layer through this ValidationDictionary. We discuss the ValidationDictionary in detail in the following section when we discuss the Decorator pattern.
 
@@ -354,72 +145,13 @@ The IContactManagerService interface is contained in Listing 5.
 
 **Listing 5 - Models\IContactManagerService.vb**
 
-    Public Interface IContactManagerService
-    Function CreateContact(ByVal contactToCreate As Contact) As Boolean
-    Function DeleteContact(ByVal contactToDelete As Contact) As Boolean
-    Function EditContact(ByVal contactToEdit As Contact) As Boolean
-    Function GetContact(ByVal id As Integer) As Contact
-    Function ListContacts() As IEnumerable(Of Contact)
-    End Interface
+[!code[Main](iteration-4-make-the-application-loosely-coupled-vb/samples/sample5.xml)]
 
 The modified Contact controller class is contained in Listing 6. Notice that the Contact controller no longer interacts with the ContactManager repository. Instead, the Contact controller interacts with the ContactManager service. Each layer is isolated as much as possible from other layers.
 
 **Listing 6 - Controllers\ContactController.vb**
 
-    Public Class ContactController
-        Inherits System.Web.Mvc.Controller
-    
-        Private _service As IContactManagerService 
-    
-        Sub New()
-            _service = new ContactManagerService(New ModelStateWrapper(ModelState))
-        End Sub
-    
-        Sub New(service As IContactManagerService)
-            _service = service
-        End Sub
-    
-        Function Index() As ActionResult
-            Return View(_service.ListContacts())
-        End Function
-    
-        Function Create() As ActionResult
-            Return View()
-        End Function
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Create(<Bind(Exclude:="Id")> ByVal contactToCreate As Contact) As ActionResult
-            If _service.CreateContact(contactToCreate) Then
-                Return RedirectToAction("Index")        
-            End If
-            Return View()
-        End Function
-    
-        Function Edit(ByVal id As Integer) As ActionResult
-            Return View(_service.GetContact(id))
-        End Function
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Edit(ByVal contactToEdit As Contact) As ActionResult
-            If _service.EditContact(contactToEdit) Then
-                Return RedirectToAction("Index")        
-            End If
-            Return View()
-        End Function
-    
-        Function Delete(ByVal id As Integer) As ActionResult
-            Return View(_service.GetContact(id))
-        End Function
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Delete(ByVal contactToDelete As Contact) As ActionResult
-            If _service.DeleteContact(contactToDelete) Then
-                return RedirectToAction("Index")
-            End If
-            Return View()
-        End Function
-    
-    End Class
+[!code[Main](iteration-4-make-the-application-loosely-coupled-vb/samples/sample6.xml)]
 
 Our application no longer runs afoul of the Single Responsibility Principle (SRP). The Contact controller in Listing 6 has been stripped of every responsibility other than controlling the flow of application execution. All the validation logic has been removed from the Contact controller and pushed into the service layer. All of the database logic has been pushed into the repository layer.
 
@@ -435,39 +167,15 @@ The Decorator pattern enables you to wrap an existing class in a new class in or
 
 **Listing 7 - Models\Validation\ModelStateWrapper.vb**
 
-    Public Class ModelStateWrapper
-    Implements IValidationDictionary
-    
-    Private _modelState As ModelStateDictionary
-    
-    Public Sub New(ByVal modelState As ModelStateDictionary)
-    	_modelState = modelState
-    End Sub
-    
-    Public Sub AddError(ByVal key As String, ByVal errorMessage As String) Implements IValidationDictionary.AddError
-    	_modelState.AddModelError(key, errorMessage)
-    End Sub
-    
-    Public ReadOnly Property IsValid() As Boolean Implements IValidationDictionary.IsValid
-    	Get
-    		Return _modelState.IsValid
-    	End Get
-    End Property
-    
-    End Class
+[!code[Main](iteration-4-make-the-application-loosely-coupled-vb/samples/sample7.xml)]
 
 **Listing 8 - Models\Validation\IValidationDictionary.vb**
 
-    Public Interface IValidationDictionary
-    
-    Sub AddError(ByVal key As String, ByVal errorMessage As String)
-    ReadOnly Property IsValid() As Boolean
-    
-    End Interface
+[!code[Main](iteration-4-make-the-application-loosely-coupled-vb/samples/sample8.xml)]
 
 If you take a close look at Listing 5 then you'll see that the ContactManager service layer uses the IValidationDictionary interface exclusively. The ContactManager service is not dependent on the ModelStateDictionary class. When the Contact controller creates the ContactManager service, the controller wraps its ModelState like this:
 
-    _service = new ContactManagerService(New ModelStateWrapper(ModelState))
+[!code[Main](iteration-4-make-the-application-loosely-coupled-vb/samples/sample9.xml)]
 
 ## Summary
 

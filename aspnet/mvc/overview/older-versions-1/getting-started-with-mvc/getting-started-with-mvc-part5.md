@@ -26,28 +26,7 @@ Right click on the Controllers folder and make a new MoviesController.
 
 This will create a new "MoviesController.cs" file underneath our \Controllers folder within our project. Let's update the MovieController to retrieve the list of movies from our newly populated database.
 
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
-    using Movies.Models;
-    
-    namespace Movies.Controllers
-    {
-        public class MoviesController : Controller
-        {
-            MoviesEntities db = new MoviesEntities();
-    
-            public ActionResult Index()
-            {
-                var movies = from m in db.Movies
-                             where m.ReleaseDate > new DateTime(1984, 6, 1)
-                             select m;
-    
-                return View(movies.ToList());
-    
-            }
-        }
-    }
+[!code[Main](getting-started-with-mvc-part5/samples/sample1.xml)]
 
 We are performing a LINQ query so that we only retrieve movies released after the summer of 1984. We'll need a View template to render this list of movies back, so right-click in the method and select Add View to create it.
 
@@ -69,36 +48,7 @@ We won't be implementing Edit, Details and Delete functionality with this applic
 
 Here is the source code for what our updated View template should look like once we make these changes:
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Movies.Models.Movie>>" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-        Movie List
-    </asp:Content>
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        <h2>My Movie List</h2>
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>ReleaseDate</th>
-                <th>Genre</th>
-                <th>Rating</th>
-                <th>Price</th>
-            </tr>
-            <% foreach (var item in Model)
-               { %>
-            <tr>
-                <td><%: item.Title %></td>
-                <td><%: String.Format("{0:g}", item.ReleaseDate) %></td>
-                <td><%: item.Genre %></td>
-                <td><%: item.Rating %></td>
-                <td><%: String.Format("{0:F}", item.Price) %></td>
-            </tr>
-            <% } %>
-        </table>
-        <p>
-            <%: Html.ActionLink("Create New", "Create") %>
-        </p>
-    </asp:Content>
+[!code[Main](getting-started-with-mvc-part5/samples/sample2.xml)]
 
 It's creating links that we won't need, so we'll delete them for this example. We will keep our Create New link though, as that's next! Here's what our app looks like with that column removed.
 

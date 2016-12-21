@@ -30,19 +30,7 @@ I'm not recommending that you add your validation or database logic to a control
 
 **Listing 1 - Controllers\ProductController.<wbr />vb**
 
-    '
-    ' POST: /Product/Create
-    
-    <AcceptVerbs(HttpVerbs.Post)> _
-    Public Function Create(<Bind(Exclude:="Id")> ByVal productToCreate As Product) As ActionResult
-        ' Validation logic
-        If productToCreate.Name.Trim().Length = 0 Then
-        ModelState.AddModelError("Name", "Name is required.")
-        End If
-        If productToCreate.Description.Trim().Length = 0 Then
-        ModelState.AddModelError("Description", "Description is required.")
-        End If
-        If productToCreate.UnitsInStock
+[!code[Main](performing-simple-validation-vb/samples/sample1.xml)]
 
 In Listing 1, the Name, Description, and UnitsInStock properties of the Product class are validated. If any of these properties fail a validation test then an error is added to the model state dictionary (represented by the ModelState property of the Controller class).
 
@@ -78,55 +66,7 @@ After you complete these steps, you get the Create view in Listing 2.
 
 **Listing 2 - Views\Product\Create.aspx**
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of MvcApplication1.Product)" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Create</title>
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Create</h2>
-    
-        <%= Html.ValidationSummary() %>
-    
-        <% Using Html.BeginForm()%>
-    
-            <fieldset>
-                <legend>Fields</legend>
-    
-                <p>
-                    <label for="Name">Name:</label>
-                    <%= Html.TextBox("Name") %>
-                    <%= Html.ValidationMessage("Name", "*") %>
-                </p>
-                <p>
-                    <label for="Description">Description:</label>
-                    <%= Html.TextBox("Description") %>
-                    <%= Html.ValidationMessage("Description", "*") %>
-                </p>
-                <p>
-                    <label for="Price">Price:</label>
-                    <%= Html.TextBox("Price") %>
-                    <%= Html.ValidationMessage("Price", "*") %>
-                </p>
-                <p>
-                    <label for="UnitsInStock">UnitsInStock:</label>
-                    <%= Html.TextBox("UnitsInStock") %>
-                    <%= Html.ValidationMessage("UnitsInStock", "*") %>
-                </p>
-                <p>
-                    <input type="submit" value="Create" />
-                </p>
-            </fieldset>
-    
-        <% End Using %>
-    
-        <div>
-            <%=Html.ActionLink("Back to List", "Index") %>
-        </div>
-    
-    </asp:Content>
+[!code[Main](performing-simple-validation-vb/samples/sample2.xml)]
 
 In Listing 2, the Html.ValidationSummary() helper is called immediately above the HTML form. This helper is used to display a list of validation error messages. The Html.ValidationSummary() helper renders the errors in a bulleted list.
 
@@ -169,7 +109,7 @@ There are actually two types of validation error messages - those generated befo
 
 The Create() action exposed by the Product controller in Listing 1 accepts an instance of the Product class. The signature of the Create method looks like this:
 
-    Public Function Create(<Bind(Exclude:="Id")> ByVal productToCreate As Product) As ActionResult
+[!code[Main](performing-simple-validation-vb/samples/sample3.xml)]
 
 The values of the HTML form fields from the Create form are bound to the productToCreate class by something called a model binder. The default model binder adds an error message to model state automatically when it cannot bind a form field to a form property.
 

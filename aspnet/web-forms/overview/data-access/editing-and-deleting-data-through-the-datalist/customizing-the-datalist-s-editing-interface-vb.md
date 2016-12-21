@@ -51,45 +51,7 @@ Before we can create the DataList s editable interface, we first need to build t
 After configuring the ObjectDataSource, Visual Studio will create a default `ItemTemplate` for the DataList that lists the name and value for each of the data fields returned. Modify the `ItemTemplate` so that the template lists the product name in an `<h4>` element along with the category name, supplier name, price, and discontinued status. Moreover, add an Edit button, making sure that its `CommandName` property is set to Edit . The declarative markup for my `ItemTemplate` follows:
 
 
-    <ItemTemplate>
-        <h4>
-            <asp:Label ID="ProductNameLabel" runat="server"
-                Text='<%# Eval("ProductName") %>' />
-        </h4>
-        <table border="0">
-            <tr>
-                <td class="ProductPropertyLabel">Category:</td>
-                <td class="ProductPropertyValue">
-                    <asp:Label ID="CategoryNameLabel" runat="server"
-                        Text='<%# Eval("CategoryName") %>' />
-                </td>
-                <td class="ProductPropertyLabel">Supplier:</td>
-                <td class="ProductPropertyValue">
-                    <asp:Label ID="SupplierNameLabel" runat="server"
-                        Text='<%# Eval("SupplierName") %>' />
-                </td>
-            </tr>
-            <tr>
-                <td class="ProductPropertyLabel">Discontinued:</td>
-                <td class="ProductPropertyValue">
-                    <asp:Label ID="DiscontinuedLabel" runat="server"
-                        Text='<%# Eval("Discontinued") %>' />
-                </td>
-                <td class="ProductPropertyLabel">Price:</td>
-                <td class="ProductPropertyValue">
-                    <asp:Label ID="UnitPriceLabel" runat="server"
-                        Text='<%# Eval("UnitPrice", "{0:C}") %>' />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <asp:Button runat="Server" ID="EditButton"
-                        Text="Edit" CommandName="Edit" />
-                </td>
-            </tr>
-        </table>
-        <br />
-    </ItemTemplate>
+[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample1.xml)]
 
 The above markup lays out the product information using an &lt;h4&gt; heading for the product s name and a four-column `<table>` for the remaining fields. The `ProductPropertyLabel` and `ProductPropertyValue` CSS classes, defined in `Styles.css`, have been discussed in previous tutorials. Figure 3 shows our progress when viewed through a browser.
 
@@ -133,67 +95,7 @@ Lastly, add the Update and Cancel buttons. Remember that for these two buttons i
 Feel free to lay out the editing interface however you like. I ve opted to use the same four-column `<table>` layout from the read-only interface, as the following declarative syntax and screen shot illustrates:
 
 
-    <EditItemTemplate>
-        <h4>
-            <asp:Label ID="ProductNameLabel" runat="server"
-                Text='<%# Eval("ProductName") %>' />
-        </h4>
-        <table border="0">
-            <tr>
-                <td class="ProductPropertyLabel">Name:</td>
-                <td colspan="3" class="ProductPropertyValue">
-                    <asp:TextBox runat="server" ID="ProductName" Width="90%" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
-                        ControlToValidate="ProductName"
-                        ErrorMessage="You must enter a name for the product."
-                        runat="server">*</asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="ProductPropertyLabel">Category:</td>
-                <td class="ProductPropertyValue">
-                    <asp:DropDownList ID="Categories" runat="server"
-                        DataSourceID="CategoriesDataSource"
-                        DataTextField="CategoryName" DataValueField="CategoryID" />
-                </td>
-                <td class="ProductPropertyLabel">Supplier:</td>
-                <td class="ProductPropertyValue">
-                    <asp:DropDownList ID="Suppliers"
-                        DataSourceID="SuppliersDataSource" DataTextField="CompanyName"
-                        DataValueField="SupplierID" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td class="ProductPropertyLabel">Discontinued:</td>
-                <td class="ProductPropertyValue">
-                    <asp:CheckBox runat="server" id="Discontinued" />
-                </td>
-                <td class="ProductPropertyLabel">Price:</td>
-                <td class="ProductPropertyValue">
-                    <asp:Label ID="UnitPriceLabel" runat="server"
-                        Text='<%# Eval("UnitPrice", "{0:C}") %>' />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <asp:Button runat="Server" ID="UpdateButton" CommandName="Update"
-                        Text="Update" />
-                     
-                    <asp:Button runat="Server" ID="CancelButton" CommandName="Cancel"
-                        Text="Cancel" CausesValidation="False" />
-                </td>
-            </tr>
-        </table>
-        <br />
-        <asp:ObjectDataSource ID="CategoriesDataSource" runat="server"
-            OldValuesParameterFormatString="original_{0}" SelectMethod="GetCategories"
-            TypeName="CategoriesBLL">
-        </asp:ObjectDataSource>
-        <asp:ObjectDataSource ID="SuppliersDataSource" runat="server"
-            OldValuesParameterFormatString="original_{0}" SelectMethod="GetSuppliers"
-            TypeName="SuppliersBLL">
-        </asp:ObjectDataSource>
-    </EditItemTemplate>
+[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample2.xml)]
 
 
 [![The Editing Interface is Laid Out like the Read-Only Interface](customizing-the-datalist-s-editing-interface-vb/_static/image20.png)](customizing-the-datalist-s-editing-interface-vb/_static/image19.png)
@@ -208,21 +110,7 @@ Currently, there is no databinding syntax in the `EditItemTemplate` (except for 
 Create these two event handlers and have them use the following code:
 
 
-    Protected Sub Products_EditCommand(source As Object, e As DataListCommandEventArgs) _
-        Handles Products.EditCommand
-        ' Set the DataList's EditItemIndex property to the
-        ' index of the DataListItem that was clicked
-        Products.EditItemIndex = e.Item.ItemIndex
-        ' Rebind the data to the DataList
-        Products.DataBind()
-    End Sub
-    Protected Sub Products_CancelCommand(source As Object, e As DataListCommandEventArgs) _
-        Handles Products.CancelCommand
-        ' Set the DataList's EditItemIndex property to -1
-        Products.EditItemIndex = -1
-        ' Rebind the data to the DataList
-        Products.DataBind()
-    End Sub
+[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample3.xml)]
 
 With these two event handlers in place, clicking the Edit button displays the editing interface and clicking the Cancel button returns the edited item to its read-only mode. Figure 8 shows the DataList after the Edit button has been clicked for Chef Anton s Gumbo Mix. Since we ve yet to add any databinding syntax to the editing interface, the `ProductName` TextBox is blank, the `Discontinued` CheckBox unchecked, and the first items selected from the `Categories` and `Suppliers` DropDownLists.
 
@@ -249,33 +137,7 @@ Assign the `ProductName` data field value to the `ProductName` TextBox s `Text` 
 When the user edits a product and clicks the Update button, a postback occurs and the DataList s `UpdateCommand` event fires. In the event handler, we need to read the values from the Web controls in the `EditItemTemplate` and interface with the BLL to update the product in the database. As we ve seen in previous tutorials, the `ProductID` of the updated product is accessible through the `DataKeys` collection. The user-entered fields are accessed by programmatically referencing the Web controls using `FindControl("controlID")`, as the following code shows:
 
 
-    Protected Sub Products_UpdateCommand(source As Object, e As DataListCommandEventArgs) _
-        Handles Products.UpdateCommand
-        If Not Page.IsValid Then
-            Exit Sub
-        End If
-        ' Read in the ProductID from the DataKeys collection
-        Dim productID As Integer = Convert.ToInt32(Products.DataKeys(e.Item.ItemIndex))
-        ' Read in the product name and price values
-        Dim productName As TextBox = CType(e.Item.FindControl("ProductName"), TextBox)
-        Dim categories As DropDownList=CType(e.Item.FindControl("Categories"), DropDownList)
-        Dim suppliers As DropDownList = CType(e.Item.FindControl("Suppliers"), DropDownList)
-        Dim discontinued As CheckBox = CType(e.Item.FindControl("Discontinued"), CheckBox)
-        Dim productNameValue As String = Nothing
-        If productName.Text.Trim().Length > 0 Then
-            productNameValue = productName.Text.Trim()
-        End If
-        Dim categoryIDValue As Integer = Convert.ToInt32(categories.SelectedValue)
-        Dim supplierIDValue As Integer = Convert.ToInt32(suppliers.SelectedValue)
-        Dim discontinuedValue As Boolean = discontinued.Checked
-        ' Call the ProductsBLL's UpdateProduct method...
-        Dim productsAPI As New ProductsBLL()
-        productsAPI.UpdateProduct(productNameValue, categoryIDValue, supplierIDValue, _
-            discontinuedValue, productID)
-        ' Revert the DataList back to its pre-editing state
-        Products.EditItemIndex = -1
-        Products.DataBind()
-    End Sub
+[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample4.xml)]
 
 The code starts out by consulting the `Page.IsValid` property to ensure that all the validation controls on the page are valid. If `Page.IsValid` is `True`, the edited product s `ProductID` value is read from the `DataKeys` collection and the data entry Web controls in the `EditItemTemplate` are programmatically referenced. Next, the values from these Web controls are read into variables that are then passed into the appropriate `UpdateProduct` overload. After updating the data, the DataList is returned to its pre-editing state.
 
@@ -291,17 +153,7 @@ To support `NULL` values for the category and supplier DropDownLists, we need to
 After making these changes, the DropDownLists markup in the DataList s `EditItemTemplate` should look similar to the following:
 
 
-    <asp:DropDownList ID="Categories" DataSourceID="CategoriesDataSource"
-        DataTextField="CategoryName" DataValueField="CategoryID"  runat="server"
-        SelectedValue='<%# Eval("CategoryID") %>' AppendDataBoundItems="True">
-        <asp:ListItem Value=" Selected="True">(None)</asp:ListItem>
-    </asp:DropDownList>
-    ...
-    <asp:DropDownList ID="Suppliers" DataSourceID="SuppliersDataSource"
-        DataTextField="CompanyName" DataValueField="SupplierID" runat="server"
-        SelectedValue='<%# Eval("SupplierID") %>' AppendDataBoundItems="True">
-        <asp:ListItem Value=" Selected="True">(None)</asp:ListItem>
-    </asp:DropDownList>
+[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample5.xml)]
 
 > [!NOTE] Static `ListItem` s can be added to a DropDownList through the Designer or directly through the declarative syntax. When adding a DropDownList item to represent a database `NULL` value, be sure to add the `ListItem` through the declarative syntax. If you use the `ListItem` Collection Editor in the Designer, the generated declarative syntax will omit the `Value` setting altogether when assigned a blank string, creating declarative markup like: `<asp:ListItem>(None)</asp:ListItem>`. While this may look harmless, the missing `Value` causes the DropDownList to use the `Text` property value in its place. That means that if this `NULL` `ListItem` is selected, the value (None) will be attempted to be assigned to the product data field (`CategoryID` or `SupplierID`, in this tutorial), which will result in an exception. By explicitly setting `Value=""`, a `NULL` value will be assigned to the product data field when the `NULL` `ListItem` is selected.
 
@@ -317,14 +169,7 @@ Take a moment to view our progress through a browser. When editing a product, no
 To save the (None) option as a database `NULL` value, we need to return to the `UpdateCommand` event handler. Change the `categoryIDValue` and `supplierIDValue` variables to be nullable integers and assign them a value other than `Nothing` only if the DropDownList s `SelectedValue` is not an empty string:
 
 
-    Dim categoryIDValue As Nullable(Of Integer) = Nothing
-    If Not String.IsNullOrEmpty(categories.SelectedValue) Then
-        categoryIDValue = Convert.ToInt32(categories.SelectedValue)
-    End If
-    Dim supplierIDValue As Nullable(Of Integer) = Nothing
-    If Not String.IsNullOrEmpty(suppliers.SelectedValue) Then
-        supplierIDValue = Convert.ToInt32(suppliers.SelectedValue)
-    End If
+[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample6.xml)]
 
 With this change, a value of `Nothing` will be passed into the `UpdateProduct` BLL method if the user selected the (None) option from either of the drop-down lists, which corresponds to a `NULL` database value.
 

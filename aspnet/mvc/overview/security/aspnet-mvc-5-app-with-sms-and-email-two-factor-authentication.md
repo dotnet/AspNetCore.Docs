@@ -93,43 +93,13 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
   
  Depending on the used SMS provider activate either the     **Twilio** or the     **ASPSMS** section: 
 
-        public class SmsService : IIdentityMessageService
-        {
-            public Task SendAsync(IdentityMessage message)
-            {
-                // Twilio Begin
-                // var Twilio = new TwilioRestClient(
-                //   System.Configuration.ConfigurationManager.AppSettings["SMSAccountIdentification"],
-                //   System.Configuration.ConfigurationManager.AppSettings["SMSAccountPassword"]);
-                // var result = Twilio.SendMessage(
-                //   System.Configuration.ConfigurationManager.AppSettings["SMSAccountFrom"],
-                //   message.Destination, message.Body
-                // );
-                // Status is one of Queued, Sending, Sent, Failed or null if the number is not valid
-                // Trace.TraceInformation(result.Status);
-                // Twilio doesn't currently have an async API, so return success.
-                // return Task.FromResult(0);
-                // Twilio End
-        
-                // ASPSMS Begin 
-                // var soapSms = new MvcPWx.ASPSMSX2.ASPSMSX2SoapClient("ASPSMSX2Soap");
-                // soapSms.SendSimpleTextSMS(
-                //   System.Configuration.ConfigurationManager.AppSettings["SMSAccountIdentification"],
-                //   System.Configuration.ConfigurationManager.AppSettings["SMSAccountPassword"],
-                //   message.Destination,
-                //   System.Configuration.ConfigurationManager.AppSettings["SMSAccountFrom"],
-                //   message.Body);
-                // soapSms.Close();
-                // return Task.FromResult(0);
-                // ASPSMS End
-            }
-        }
+    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample2.xml)]
 7. Update the *Views\Manage\Index.cshtml* Razor view: (note: don't just remove the comments in the exiting code, use the code below.)  
 
-    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample2.xml?highlight=29-66)]
+    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample3.xml?highlight=29-66)]
 8. Verify the `EnableTwoFactorAuthentication` and `DisableTwoFactorAuthentication` action methods in the `ManageController` have the[[ValidateAntiForgeryToken]](https://msdn.microsoft.com/en-us/library/system.web.mvc.validateantiforgerytokenattribute(v=vs.118).aspx) attribute:  
 
-    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample3.xml?highlight=3,16)]
+    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample4.xml?highlight=3,16)]
 9. Run the app and log in with the account you previously registered.
 10. Click on your User ID, which activates the `Index` action method in `Manage` controller.  
     ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image3.png)
@@ -137,11 +107,7 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
     ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image4.png)
 12. The `AddPhoneNumber` action method displays a dialog box to enter a phone number that can receive SMS messages.
 
-        // GET: /Account/AddPhoneNumber
-        public ActionResult AddPhoneNumber()
-        {
-           return View();
-        }
+    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample5.xml)]
 
     ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image5.png)
 13. In a few seconds you will get a text message with the verification code. Enter it and press **Submit**.  

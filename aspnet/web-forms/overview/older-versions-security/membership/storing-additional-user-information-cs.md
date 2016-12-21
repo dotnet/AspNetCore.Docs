@@ -165,41 +165,11 @@ Upon completing the DataSource Configuration Wizard, Visual Studio creates the S
 
 At this point your page's declarative markup should look similar to the following:
 
-    <asp:DetailsView ID="UserProfile" runat="server"
-         AutoGenerateRows="False" DataKeyNames="UserId"
-         DataSourceID="UserProfileDataSource">
-         <Fields>
-              <asp:BoundField DataField="HomeTown" HeaderText="HomeTown"
-                   SortExpression="HomeTown" />
-              <asp:BoundField DataField="HomepageUrl" HeaderText="HomepageUrl"
-                   SortExpression="HomepageUrl" />
-              <asp:BoundField DataField="Signature" HeaderText="Signature"
-                   SortExpression="Signature" />
-         </Fields>
-    </asp:DetailsView>
-    <asp:SqlDataSource ID="UserProfileDataSource" runat="server"
-              ConnectionString="<%$ ConnectionStrings:SecurityTutorialsConnectionString %>"
-              SelectCommand="SELECT [UserId], [HomeTown], [HomepageUrl], [Signature] FROM
-              [UserProfiles] WHERE ([UserId] = @UserId)">
-         <SelectParameters>
-              <asp:Parameter Name="UserId" Type="Object" />
-         </SelectParameters>
-    </asp:SqlDataSource>
+[!code[Main](storing-additional-user-information-cs/samples/sample1.xml)]
 
 We need to programmatically set the SqlDataSource control's `UserId` parameter to the currently logged in user's `UserId` before the data is selected. This can be accomplished by creating an event handler for the SqlDataSource's `Selecting` event and adding the following code there:
 
-    protected void UserProfileDataSource_Selecting(object sender, 
-              SqlDataSourceSelectingEventArgs e)
-    {
-         // Get a reference to the currently logged on user
-         MembershipUser currentUser = Membership.GetUser();
-     
-         // Determine the currently logged on user's UserId value
-         Guid currentUserId = (Guid)currentUser.ProviderUserKey;
-     
-         // Assign the currently logged on user's UserId to the @UserId parameter
-         e.Command.Parameters["@UserId"].Value = currentUserId;
-    }
+[!code[Main](storing-additional-user-information-cs/samples/sample2.xml)]
 
 The above code starts by obtaining a reference to the currently logged on user by calling the `Membership` class's `GetUser` method. This returns a `MembershipUser` object, whose `ProviderUserKey` property contains the `UserId`. The `UserId` value is then assigned to the SqlDataSource's `@UserId` parameter.
 
@@ -241,11 +211,7 @@ At this point the currently logged in user can view their home town, homepage, a
 
 The first thing we need to do is add an `UpdateCommand` for the SqlDataSource, specifying the `UPDATE` statement to execute and its corresponding parameters. Select the SqlDataSource and, from the Properties window, click on the ellipses next to the UpdateQuery property to bring up the Command and Parameter Editor dialog box. Enter the following `UPDATE` statement into the textbox:
 
-    UPDATE UserProfiles SET
-         HomeTown = @HomeTown,
-         HomepageUrl = @HomepageUrl,
-         Signature = @Signature
-    WHERE UserId = @UserId
+[!code[Main](storing-additional-user-information-cs/samples/sample3.xml)]
 
 Next, click the "Refresh Parameters" button, which will create a parameter in the SqlDataSource control's `UpdateParameters` collection for each of the parameters in the `UPDATE` statement. Leave the source for all of the parameters set to None and click the OK button to complete the dialog box.
 
@@ -259,19 +225,7 @@ Due to the additions we made to the SqlDataSource control, the DetailsView contr
 
 With these changes, your DetailsView control's declarative markup should look similar to the following:
 
-    <asp:DetailsView ID="UserProfile" runat="server"
-              AutoGenerateRows="False" DataKeyNames="UserId"
-              DataSourceID="UserProfileDataSource" DefaultMode="Edit">
-         <Fields>
-              <asp:BoundField DataField="HomeTown" HeaderText="HomeTown"
-                   SortExpression="HomeTown" />
-              <asp:BoundField DataField="HomepageUrl" HeaderText="HomepageUrl"
-                   SortExpression="HomepageUrl" />
-              <asp:BoundField DataField="Signature" HeaderText="Signature"
-                   SortExpression="Signature" />
-              <asp:CommandField ShowEditButton="True" />
-         </Fields>
-    </asp:DetailsView>
+[!code[Main](storing-additional-user-information-cs/samples/sample4.xml)]
 
 Note the addition of the CommandField and the `DefaultMode` property.
 
@@ -287,17 +241,11 @@ Try changing the values and clicking the Update button. It appears as if nothing
 
 To remedy this, return to Visual Studio and add a Label control above the DetailsView. Set its `ID` to `SettingsUpdatedMessage`, its `Text` property to "Your settings have been updated," and its `Visible` and `EnableViewState` properties to `false`.
 
-    <asp:Label ID="SettingsUpdatedMessage" runat="server"
-         Text="Your settings have been updated."
-         EnableViewState="false"
-         Visible="false"></asp:Label>
+[!code[Main](storing-additional-user-information-cs/samples/sample5.xml)]
 
 We need to display the `SettingsUpdatedMessage` Label whenever the DetailsView is updated. To accomplish this, create an event handler for the DetailsView's `ItemUpdated` event and add the following code:
 
-    protected void UserProfile_ItemUpdated(object sender, DetailsViewUpdatedEventArgs e)
-    {
-         SettingsUpdatedMessage.Visible = true;
-    }
+[!code[Main](storing-additional-user-information-cs/samples/sample6.xml)]
 
 Return to the `AdditionalUserInfo.aspx` page through a browser and update the data. This time, a helpful status message is displayed.
 
@@ -316,19 +264,7 @@ Currently, the website does not provide any links to the `AdditionalUserInfo.asp
 
 Recall that the master page contains a LoginView Web control in its `LoginContent` ContentPlaceHolder that displays different markup for authenticated and anonymous visitors. Update the LoginView control's `LoggedInTemplate` to include a link to the `AdditionalUserInfo.aspx` page. After making these changes the LoginView control's declarative markup should look similar to the following:
 
-    <asp:LoginView ID="LoginView1" runat="server">
-         <LoggedInTemplate>
-              Welcome back,
-              <asp:LoginName ID="LoginName1" runat="server" />.
-              <br />
-              <asp:HyperLink ID="lnkUpdateSettings" runat="server" 
-                   NavigateUrl="~/Membership/AdditionalUserInfo.aspx">
-                   Update Your Settings</asp:HyperLink>
-         </LoggedInTemplate>
-         <AnonymousTemplate>
-              Hello, stranger.
-         </AnonymousTemplate>
-    </asp:LoginView>
+[!code[Main](storing-additional-user-information-cs/samples/sample7.xml)]
 
 Note the addition of the `lnkUpdateSettings` HyperLink control to the `LoggedInTemplate`. With this link in place, authenticated users can quickly jump to the page to view and modify their home town, homepage, and signature settings.
 
@@ -342,29 +278,7 @@ Since each guestbook comment requires a subject and body, add a RequiredFieldVal
 
 After crafting the user interface your page's declarative markup should look something like the following:
 
-    <h3>Leave a Comment</h3>
-    <p>
-         <b>Subject:</b>
-         <asp:RequiredFieldValidator ID="SubjectReqValidator" runat="server"
-              ErrorMessage="You must provide a value for Subject"
-              ControlToValidate="Subject" ValidationGroup="EnterComment">
-         </asp:RequiredFieldValidator><br/>
-         <asp:TextBox ID="Subject" Columns="40" runat="server"></asp:TextBox>
-    </p>
-    <p>
-         <b>Body:</b>
-         <asp:RequiredFieldValidator ID="BodyReqValidator" runat="server"
-              ControlToValidate="Body"
-              ErrorMessage="You must provide a value for Body" ValidationGroup="EnterComment">
-         </asp:RequiredFieldValidator><br/>
-         <asp:TextBox ID="Body" TextMode="MultiLine" Width="95%"
-              Rows="8" runat="server"></asp:TextBox>
-    </p>
-    <p>
-         <asp:Button ID="PostCommentButton" runat="server" 
-              Text="Post Your Comment"
-              ValidationGroup="EnterComment" />
-    </p>
+[!code[Main](storing-additional-user-information-cs/samples/sample8.xml)]
 
 With the user interface complete, our next task is to insert a new record into the `GuestbookComments` table when the `PostCommentButton` is clicked. This can be accomplished in a number of ways: we can write ADO.NET code in the Button's `Click` event handler; we can add a SqlDataSource control to the page, configure its `InsertCommand`, and then call its `Insert` method from the `Click` event handler; or we could build a middle tier that was responsible for inserting new guestbook comments, and invoke this functionality from the `Click` event handler. Since we looked at using a SqlDataSource in Step 3, let's use ADO.NET code here.
 
@@ -373,36 +287,7 @@ With the user interface complete, our next task is to insert a new record into t
 
 Create an event handler for the `PostCommentButton`'s `Click` event and add the following code:
 
-    protected void PostCommentButton_Click(object sender, EventArgs e)
-    {
-         if (!Page.IsValid)
-              return;
-     
-         // Determine the currently logged on user's UserId
-         MembershipUser currentUser = Membership.GetUser();
-         Guid currentUserId = (Guid)currentUser.ProviderUserKey;
-     
-         // Insert a new record into GuestbookComments
-         string connectionString = 
-              ConfigurationManager.ConnectionStrings["SecurityTutorialsConnectionString"].ConnectionString;
-         string insertSql = "INSERT INTO GuestbookComments(Subject, Body, UserId) VALUES(@Subject,
-                   @Body, @UserId)";
-     
-         using (SqlConnection myConnection = new SqlConnection(connectionString))
-         {
-              myConnection.Open();
-              SqlCommand myCommand = new SqlCommand(insertSql, myConnection);
-              myCommand.Parameters.AddWithValue("@Subject", Subject.Text.Trim());
-              myCommand.Parameters.AddWithValue("@Body", Body.Text.Trim());
-              myCommand.Parameters.AddWithValue("@UserId", currentUserId);
-              myCommand.ExecuteNonQuery();
-              myConnection.Close();
-         }
-     
-         // "Reset" the Subject and Body TextBoxes
-         Subject.Text = string.Empty;
-         Body.Text = string.Empty;
-    }
+[!code[Main](storing-additional-user-information-cs/samples/sample9.xml)]
 
 The `Click` event handler starts by checking that the user-supplied data is valid. If it is not, the event handler exits before inserting a record. Assuming the supplied data is valid, the currently logged on user's `UserId` value is retrieved and stored in the `currentUserId` local variable. This value is needed because we must supply a `UserId` value when inserting a record into `GuestbookComments`.
 
@@ -450,51 +335,7 @@ When we completed the Configure Data Source wizard in Step 2, the associated Det
 
 I ended up using the following `LayoutTemplate`, `ItemTemplate`, and `ItemSeparatorTemplate` for my ListView control:
 
-    <asp:ListView ID="CommentList" runat="server" DataSourceID="CommentsDataSource">
-         <LayoutTemplate>
-              <span ID="itemPlaceholder" runat="server" />
-              <p>
-                   <asp:DataPager ID="DataPager1" runat="server">
-                        <Fields>
-                             <asp:NextPreviousPagerField ButtonType="Button" 
-                                  ShowFirstPageButton="True"
-                                  ShowLastPageButton="True" />
-                        </Fields>
-                   </asp:DataPager>
-              </p>
-         </LayoutTemplate>
-         <ItemTemplate>
-              <h4><asp:Label ID="SubjectLabel" runat="server" 
-                   Text='<%# Eval("Subject") %>' /></h4>
-              <asp:Label ID="BodyLabel" runat="server" 
-                   Text='<%# Eval("Body").ToString().Replace(Environment.NewLine, "<br />") %>' />
-              <p>
-                   ---<br />
-                   <asp:Label ID="SignatureLabel" Font-Italic="true" runat="server"
-                        Text='<%# Eval("Signature") %>' />
-                   <br />
-                   <br />
-                   My Home Town:
-                   <asp:Label ID="HomeTownLabel" runat="server" 
-                        Text='<%# Eval("HomeTown") %>' />
-                   <br />
-                   My Homepage:
-                   <asp:HyperLink ID="HomepageUrlLink" runat="server" 
-                        NavigateUrl='<%# Eval("HomepageUrl") %>' 
-                        Text='<%# Eval("HomepageUrl") %>' />
-              </p>
-              <p align="center">
-                   Posted by
-                   <asp:Label ID="UserNameLabel" runat="server" 
-                        Text='<%# Eval("UserName") %>' /> on
-                   <asp:Label ID="CommentDateLabel" runat="server" 
-                        Text='<%# Eval("CommentDate") %>' />
-              </p>
-         </ItemTemplate>
-         <ItemSeparatorTemplate>
-              <hr />
-         </ItemSeparatorTemplate>
-    </asp:ListView>
+[!code[Main](storing-additional-user-information-cs/samples/sample10.xml)]
 
 The `LayoutTemplate` defines the markup emitted by the control, while the `ItemTemplate` renders each item returned by the SqlDataSource. The `ItemTemplate`'s resulting markup is placed in the `LayoutTemplate`'s `itemPlaceholder` control. In addition to the `itemPlaceholder`, the `LayoutTemplate` includes a DataPager control, which limits the ListView to showing just 10 guestbook comments per page (the default) and renders a paging interface.
 
@@ -540,30 +381,7 @@ In order to add a row in the `UserProfiles` table for the just-created user, we 
 
 Create an event handler for the `NewUserWizard`'s `CreatedUser` event and add the following code:
 
-    protected void NewUserWizard_CreatedUser(object sender, EventArgs e)
-    {
-         // Get the UserId of the just-added user
-         MembershipUser newUser = Membership.GetUser(NewUserWizard.UserName);
-         Guid newUserId = (Guid)newUser.ProviderUserKey;
-     
-         // Insert a new record into UserProfiles
-         string connectionString = 
-              ConfigurationManager.ConnectionStrings["SecurityTutorialsConnectionString"].ConnectionString;
-         string insertSql = "INSERT INTO UserProfiles(UserId, HomeTown, HomepageUrl,
-              Signature) VALUES(@UserId, @HomeTown, @HomepageUrl, @Signature)";
-     
-         using (SqlConnection myConnection = new SqlConnection(connectionString))
-         {
-              myConnection.Open();
-              SqlCommand myCommand = new SqlCommand(insertSql, myConnection);
-              myCommand.Parameters.AddWithValue("@UserId", newUserId);
-              myCommand.Parameters.AddWithValue("@HomeTown", DBNull.Value);
-              myCommand.Parameters.AddWithValue("@HomepageUrl", DBNull.Value);
-              myCommand.Parameters.AddWithValue("@Signature", DBNull.Value);
-              myCommand.ExecuteNonQuery();
-              myConnection.Close();
-         }
-    }
+[!code[Main](storing-additional-user-information-cs/samples/sample11.xml)]
 
 The above code beings by retrieving the UserId of the just-added user account. This is accomplished by using the `Membership.GetUser(username)` method to return information about a particular user, and then using the `ProviderUserKey` property to retrieve their UserId. The username entered by the user in the CreateUserWizard control is available via its [`UserName` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.username.aspx).
 
@@ -589,15 +407,7 @@ The CreateUserWizard control extends the ASP.NET Wizard control, which is a cont
 
 The CreateUserWizard control's default markup defines two `WizardSteps`: `CreateUserWizardStep` and `CompleteWizardStep`.
 
-    <asp:CreateUserWizard ID="NewUserWizard" runat="server"
-         ContinueDestinationPageUrl="~/Membership/AdditionalUserInfo.aspx">
-         <WizardSteps>
-              <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
-              </asp:CreateUserWizardStep>
-              <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
-              </asp:CompleteWizardStep>
-         </WizardSteps>
-    </asp:CreateUserWizard>
+[!code[Main](storing-additional-user-information-cs/samples/sample12.xml)]
 
 The first `WizardStep`, `CreateUserWizardStep`, renders the interface that prompts for the username, password, email, and so on. After the visitor supplies this information and clicks "Create User", she is shown the `CompleteWizardStep`, which shows the success message and a Continue button.
 
@@ -643,18 +453,7 @@ From the CreateUserWizard control's Smart Tag, select the "Add/Remove `WizardSte
 
 Click OK to close the `WizardStep` Collection Editor dialog. The new `WizardStep` is evidenced by the CreateUserWizard control's updated declarative markup:
 
-    <asp:CreateUserWizard ID="NewUserWizard" runat="server"
-         ContinueDestinationPageUrl="~/Membership/AdditionalUserInfo.aspx">
-         <WizardSteps>
-              <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
-              </asp:CreateUserWizardStep>
-              <asp:WizardStep runat="server" ID="UserSettings" StepType="Step"
-                   Title="Your Settings">
-              </asp:WizardStep>
-              <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
-              </asp:CompleteWizardStep>
-         </WizardSteps>
-    </asp:CreateUserWizard>
+[!code[Main](storing-additional-user-information-cs/samples/sample13.xml)]
 
 Note the new `<asp:WizardStep>` element. We need to add the user interface to collect the new user's home town, homepage, and signature here. You can enter this content in the declarative syntax or through the Designer. To use the Designer, select the "Your Settings" step from the drop-down list in the Smart Tag to see the step in the Designer.
 
@@ -663,31 +462,7 @@ Note the new `<asp:WizardStep>` element. We need to add the user interface to co
 
 Create a user interface within the "Your Settings" step that contains three TextBox controls named `HomeTown`, `HomepageUrl`, and `Signature`. After constructing this interface, the CreateUserWizard's declarative markup should look similar to the following:
 
-    <asp:CreateUserWizard ID="NewUserWizard" runat="server"
-         ContinueDestinationPageUrl="~/Membership/AdditionalUserInfo.aspx">
-         <WizardSteps>
-              <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
-              </asp:CreateUserWizardStep>
-              <asp:WizardStep runat="server" ID="UserSettings" StepType="Step"
-                   Title="Your Settings">
-                   <p>
-                        <b>Home Town:</b><br />
-                        <asp:TextBox ID="HomeTown" runat="server"></asp:TextBox>
-                   </p>
-                   <p>
-                        <b>Homepage URL:</b><br />
-                        <asp:TextBox ID="HomepageUrl" Columns="40" runat="server"></asp:TextBox>
-                   </p>
-                   <p>
-                        <b>Signature:</b><br />
-                        <asp:TextBox ID="Signature" TextMode="MultiLine" Width="95%"
-                             Rows="5" runat="server"></asp:TextBox>
-                   </p>
-              </asp:WizardStep>
-              <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
-              </asp:CompleteWizardStep>
-         </WizardSteps>
-    </asp:CreateUserWizard>
+[!code[Main](storing-additional-user-information-cs/samples/sample14.xml)]
 
 Go ahead and visit this page through a browser and create a new user account, specifying values for the home town, homepage, and signature. After completing the `CreateUserWizardStep` the user account is created in the Membership framework and the `CreatedUser` event handler runs, which adds a new row to `UserProfiles`, but with a database `NULL` value for `HomeTown`, `HomepageUrl`, and `Signature`. The values entered for the home town, homepage, and signature are never used. The net result is a new user account with a `UserProfiles` record whose `HomeTown`, `HomepageUrl`, and `Signature` fields have yet to be specified.
 
@@ -695,43 +470,7 @@ We need to execute code after the "Your Settings" step that takes the home town,
 
 Add an event handler for the CreateUserWizard's `ActiveStepChanged` event and add the following code:
 
-    protected void NewUserWizard_ActiveStepChanged(object sender, EventArgs e)
-    {
-         // Have we JUST reached the Complete step?
-         if (NewUserWizard.ActiveStep.Title == "Complete")
-         {
-              WizardStep UserSettings = NewUserWizard.FindControl("UserSettings") as
-              WizardStep;
-     
-              // Programmatically reference the TextBox controls
-              TextBox HomeTown = UserSettings.FindControl("HomeTown") as TextBox;
-              TextBox HomepageUrl = UserSettings.FindControl("HomepageUrl") as TextBox;
-              TextBox Signature = UserSettings.FindControl("Signature") as TextBox;
-     
-              // Update the UserProfiles record for this user
-              // Get the UserId of the just-added user
-              MembershipUser newUser = Membership.GetUser(NewUserWizard.UserName);
-              Guid newUserId = (Guid)newUser.ProviderUserKey;
-     
-              // Insert a new record into UserProfiles
-              string connectionString = 
-                   ConfigurationManager.ConnectionStrings["SecurityTutorialsConnectionString"].ConnectionString;
-              string updateSql = "UPDATE UserProfiles SET HomeTown = @HomeTown, HomepageUrl
-                   = @HomepageUrl, Signature = @Signature WHERE UserId = @UserId";
-     
-              using (SqlConnection myConnection = new SqlConnection(connectionString))
-              {
-                   myConnection.Open();
-                   SqlCommand myCommand = new SqlCommand(updateSql, myConnection);
-                   myCommand.Parameters.AddWithValue("@HomeTown", HomeTown.Text.Trim());
-                   myCommand.Parameters.AddWithValue("@HomepageUrl", HomepageUrl.Text.Trim());
-                   myCommand.Parameters.AddWithValue("@Signature", Signature.Text.Trim());
-                   myCommand.Parameters.AddWithValue("@UserId", newUserId);
-                   myCommand.ExecuteNonQuery();
-                   myConnection.Close();
-              }
-         }
-    }
+[!code[Main](storing-additional-user-information-cs/samples/sample15.xml)]
 
 The above code starts by determining if we have just reached the "Complete" step. Since the "Complete" step occurs immediately after the "Your Settings" step, then when the visitor reaches "Complete" step that means she just finished the "Your Settings" step.
 

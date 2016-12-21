@@ -127,42 +127,7 @@ You can also make database mapping changes using the [Fluent API](https://msdn.m
 
 Create *Models\Instructor.cs*, replacing the template code with the following code:
 
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
-    namespace ContosoUniversity.Models
-    {
-        public class Instructor
-        {
-            public int InstructorID { get; set; }
-    
-            [Required]
-            [Display(Name = "Last Name")]
-            [StringLength(50)]
-            public string LastName { get; set; }
-    
-            [Required]
-            [Column("FirstName")]
-            [Display(Name = "First Name")]
-            [StringLength(50)]
-            public string FirstMidName { get; set; }
-    
-            [DataType(DataType.Date)]
-            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-            [Display(Name = "Hire Date")]
-            public DateTime HireDate { get; set; }
-    
-            public string FullName
-            {
-                get { return LastName + ", " + FirstMidName; }
-            }
-    
-            public virtual ICollection<Course> Courses { get; set; }
-            public virtual OfficeAssignment OfficeAssignment { get; set; }
-        }
-    }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample4.xml)]
 
 Notice that several properties are the same in the `Student` and `Instructor` entities. In the [Implementing Inheritance](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md) tutorial later in this series, you'll refactor using inheritance to eliminate this redundancy.
 
@@ -170,47 +135,21 @@ Notice that several properties are the same in the `Student` and `Instructor` en
 
 The attributes on the `LastName` property specify that it's a required field, that the caption for the text box should be "Last Name" (instead of the property name, which would be "LastName" with no space), and that the value can't be longer than 50 characters.
 
-    [Required]
-    [Display(Name="Last Name")]
-    [StringLength(50)]
-    public string LastName { get; set; }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample5.xml)]
 
 The [StringLength attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.stringlengthattribute.aspx) sets the maximum length in the database and provides client side and server side validation for ASP.NET MVC. You can also specify the minimum string length in this attribute, but the minimum value has no impact on the database schema. The [Required attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx) is not needed for value types such as DateTime, int, double, and float. Value types cannot be assigned a null value, so they are inherently required. You could remove the [Required attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx) and replace it with a minimum length parameter for the `StringLength` attribute:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample4.xml?highlight=2)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample6.xml?highlight=2)]
 
 You can put multiple attributes on one line, so you could also write the instructor class as follows:
 
-    public class Instructor
-    {
-       public int InstructorID { get; set; }
-    
-       [Display(Name = "Last Name"),StringLength(50, MinimumLength=1)]
-       public string LastName { get; set; }
-    
-       [Column("FirstName"),Display(Name = "First Name"),StringLength(50, MinimumLength=1)]
-       public string FirstMidName { get; set; }
-    
-       [DataType(DataType.Date),Display(Name = "Hire Date"),DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-       public DateTime HireDate { get; set; }
-    
-       public string FullName
-       {
-          get { return LastName + ", " + FirstMidName; }
-       }
-    
-       public virtual ICollection<Course> Courses { get; set; }
-       public virtual OfficeAssignment OfficeAssignment { get; set; }
-    }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample7.xml)]
 
 ### The FullName Calculated Property
 
 `FullName` is a calculated property that returns a value that's created by concatenating two other properties. Therefore it has only a `get` accessor, and no `FullName` column will be generated in the database.
 
-    public string FullName
-    {
-        get { return LastName + ", " + FirstMidName; }
-    }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample8.xml)]
 
 ### The Courses and OfficeAssignment Navigation Properties
 
@@ -218,8 +157,7 @@ The `Courses` and `OfficeAssignment` properties are navigation properties. As wa
 
 An instructor can teach any number of courses, so `Courses` is defined as a collection of `Course` entities. Our business rules state an instructor can only have at most one office, so `OfficeAssignment` is defined as a single `OfficeAssignment` entity (which may be `null` if no office is assigned).
 
-    public virtual ICollection<Course> Courses { get; set; }
-    public virtual OfficeAssignment OfficeAssignment { get; set; }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample9.xml)]
 
 ## Create the OfficeAssignment Entity
 
@@ -227,23 +165,7 @@ An instructor can teach any number of courses, so `Courses` is defined as a coll
 
 Create *Models\OfficeAssignment.cs* with the following code:
 
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
-    namespace ContosoUniversity.Models
-    {
-        public class OfficeAssignment
-        {
-            [Key]
-            [ForeignKey("Instructor")]
-            public int InstructorID { get; set; }
-            [StringLength(50)]
-            [Display(Name = "Office Location")]
-            public string Location { get; set; }
-    
-            public virtual Instructor Instructor { get; set; }
-        }
-    }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample10.xml)]
 
 Build the project, which saves your changes and verifies you haven't made any copy and paste errors the compiler can catch.
 
@@ -251,9 +173,7 @@ Build the project, which saves your changes and verifies you haven't made any co
 
 There's a one-to-zero-or-one relationship between the `Instructor` and the `OfficeAssignment` entities. An office assignment only exists in relation to the instructor it's assigned to, and therefore its primary key is also its foreign key to the `Instructor` entity. But the Entity Framework can't automatically recognize `InstructorID` as the primary key of this entity because its name doesn't follow the `ID` or *classname*`ID` naming convention. Therefore, the `Key` attribute is used to identify it as the key:
 
-    [Key]
-    [ForeignKey("Instructor")]
-    public int InstructorID { get; set; }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample11.xml)]
 
 You can also use the `Key` attribute if the entity does have its own primary key but you want to name the property something different than `classnameID` or `ID`. By default EF treats the key as non-database-generated because the column is for an identifying relationship.
 
@@ -277,32 +197,7 @@ You could put a `[Required]` attribute on the Instructor navigation property to 
 
 In *Models\Course.cs*, replace the code you added earlier with the following code:
 
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
-    namespace ContosoUniversity.Models
-    {
-       public class Course
-       {
-          [DatabaseGenerated(DatabaseGeneratedOption.None)]
-          [Display(Name = "Number")]
-          public int CourseID { get; set; }
-    
-          [StringLength(50, MinimumLength = 3)]
-          public string Title { get; set; }
-    
-          [Range(0, 5)]
-          public int Credits { get; set; }
-    
-          [Display(Name = "Department")]
-          public int DepartmentID { get; set; }
-    
-          public virtual Department Department { get; set; }
-          public virtual ICollection<Enrollment> Enrollments { get; set; }
-          public virtual ICollection<Instructor> Instructors { get; set; }
-       }
-    }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample12.xml)]
 
 The course entity has a foreign key property `DepartmentID` which points to the related `Department` entity and it has a `Department` navigation property. The Entity Framework doesn't require you to add a foreign key property to your data model when you have a navigation property for a related entity. EF automatically creates foreign keys in the database wherever they are needed. But having the foreign key in the data model can make updates simpler and more efficient. For example, when you fetch a course entity to edit, the `Department` entity is null if you don't load it, so when you update the course entity, you would have to first fetch the `Department` entity. When the foreign key property `DepartmentID` is included in the data model, you don't need to fetch the `Department` entity before you update.
 
@@ -310,9 +205,7 @@ The course entity has a foreign key property `DepartmentID` which points to the 
 
 The [DatabaseGenerated attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.databasegeneratedattribute.aspx) with the [None](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.databasegeneratedoption(v=vs.110).aspx) parameter on the `CourseID` property specifies that primary key values are provided by the user rather than generated by the database.
 
-    [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    [Display(Name = "Number")]
-    public int CourseID { get; set; }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample13.xml)]
 
 By default, the Entity Framework assumes that primary key values are generated by the database. That's what you want in most scenarios. However, for `Course` entities, you'll use a user-specified course number such as a 1000 series for one department, a 2000 series for another department, and so on.
 
@@ -322,14 +215,13 @@ The foreign key properties and navigation properties in the `Course` entity refl
 
 - A course is assigned to one department, so there's a `DepartmentID` foreign key and a `Department` navigation property for the reasons mentioned above. 
 
-        public int DepartmentID { get; set; }
-        public virtual Department Department { get; set; }
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample14.xml)]
 - A course can have any number of students enrolled in it, so the `Enrollments` navigation property is a collection: 
 
-        public virtual ICollection<Enrollment> Enrollments { get; set; }
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample15.xml)]
 - A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection: 
 
-        public virtual ICollection<Instructor> Instructors { get; set; }
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample16.xml)]
 
 ## Creating the Department Entity
 
@@ -337,41 +229,13 @@ The foreign key properties and navigation properties in the `Course` entity refl
 
 Create *Models\Department.cs*with the following code:
 
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
-    namespace ContosoUniversity.Models
-    {
-       public class Department
-       {
-          public int DepartmentID { get; set; }
-    
-          [StringLength(50, MinimumLength=3)]
-          public string Name { get; set; }
-    
-          [DataType(DataType.Currency)]
-          [Column(TypeName = "money")]
-          public decimal Budget { get; set; }
-    
-          [DataType(DataType.Date)]
-          public DateTime StartDate { get; set; }
-    
-          [Display(Name = "Administrator")]
-          public int? InstructorID { get; set; }
-    
-          public virtual Instructor Administrator { get; set; }
-          public virtual ICollection<Course> Courses { get; set; }
-       }
-    }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample17.xml)]
 
 ### The Column Attribute
 
 Earlier you used the [Column attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.columnattribute.aspx) to change column name mapping. In the code for the `Department` entity, the `Column` attribute is being used to change SQL data type mapping so that the column will be defined using the SQL Server [money](https://msdn.microsoft.com/en-us/library/ms179882.aspx) type in the database:
 
-    [Column(TypeName="money")]
-    public decimal Budget { get; set; }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample18.xml)]
 
 Column mapping is generally not required, because the Entity Framework usually chooses the appropriate SQL Server data type based on the CLR type that you define for the property. The CLR `decimal` type maps to a SQL Server `decimal` type. But in this case you know that the column will be holding currency amounts, and the [money](https://msdn.microsoft.com/en-us/library/ms179882.aspx) data type is more appropriate for that.
 
@@ -381,15 +245,14 @@ The foreign key and navigation properties reflect the following relationships:
 
 - A department may or may not have an administrator, and an administrator is always an instructor. Therefore the `InstructorID` property is included as the foreign key to the `Instructor` entity, and a question mark is added after the `int` type designation to mark the property as nullable.The navigation property is named `Administrator` but holds an `Instructor` entity: 
 
-        public int? InstructorID { get; set; }
-        public virtual Instructor Administrator { get; set; }
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample19.xml)]
 - A department may have many courses, so there's a `Courses` navigation property: 
 
-        public virtual ICollection<Course> Courses { get; set; }
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample20.xml)]
 
  > [!NOTE] By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when your initializer code runs. For example, if you didn't define the `Department.InstructorID` property as nullable, you'd get the following exception message when the initializer runs: "The referential relationship will result in a cyclical reference that's not allowed." If your business rules required `InstructorID` property as non-nullable, you would have to use the following fluent API to disable cascade delete on the relationship: 
 
-    modelBuilder.Entity().HasRequired(d => d.Administrator).WithMany().WillCascadeOnDelete(false);
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample21.xml)]
 
 
 ## Modifying the Student Entity
@@ -398,13 +261,13 @@ The foreign key and navigation properties reflect the following relationships:
 
 In *Models\Student.cs*, replace the code you added earlier with the following code. The changes are highlighted.
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample5.xml?highlight=12,15,24-27)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample22.xml?highlight=12,15,24-27)]
 
 ## The Enrollment Entity
 
  In *Models\Enrollment.cs*, replace the code you added earlier with the following code
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample6.xml?highlight=16)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample23.xml?highlight=16)]
 
 ### Foreign Key and Navigation Properties
 
@@ -412,12 +275,10 @@ The foreign key properties and navigation properties reflect the following relat
 
 - An enrollment record is for a single course, so there's a `CourseID` foreign key property and a `Course` navigation property: 
 
-        public int CourseID { get; set; }
-        public virtual Course Course { get; set; }
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample24.xml)]
 - An enrollment record is for a single student, so there's a `StudentID` foreign key property and a `Student` navigation property: 
 
-        public int StudentID { get; set; }
-        public virtual Student Student { get; set; }
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample25.xml)]
 
 ### Many-to-Many Relationships
 
@@ -457,48 +318,17 @@ Some developers prefer to use the fluent API exclusively so that they can keep t
 
 To add the new entities to the data model and perform database mapping that you didn't do by using attributes, replace the code in *DAL\SchoolContext.cs* with the following code:
 
-    using ContosoUniversity.Models;
-    using System.Data.Entity;
-    using System.Data.Entity.ModelConfiguration.Conventions;
-    
-    namespace ContosoUniversity.DAL
-    {
-       public class SchoolContext : DbContext
-       {
-          public DbSet<Course> Courses { get; set; }
-          public DbSet<Department> Departments { get; set; }
-          public DbSet<Enrollment> Enrollments { get; set; }
-          public DbSet<Instructor> Instructors { get; set; }
-          public DbSet<Student> Students { get; set; }
-          public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
-    
-          protected override void OnModelCreating(DbModelBuilder modelBuilder)
-          {
-             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-    
-             modelBuilder.Entity<Course>()
-                 .HasMany(c => c.Instructors).WithMany(i => i.Courses)
-                 .Map(t => t.MapLeftKey("CourseID")
-                     .MapRightKey("InstructorID")
-                     .ToTable("CourseInstructor"));
-          }
-       }
-    }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample26.xml)]
 
 The new statement in the [OnModelCreating](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext.onmodelcreating(v=vs.103).aspx) method configures the many-to-many join table:
 
 - For the many-to-many relationship between the `Instructor` and `Course` entities, the code specifies the table and column names for the join table. Code First can configure the many-to-many relationship for you without this code, but if you don't call it, you will get default names such as `InstructorInstructorID` for the `InstructorID` column.
 
-        modelBuilder.Entity<Course>()
-            .HasMany(c => c.Instructors).WithMany(i => i.Courses)
-            .Map(t => t.MapLeftKey("CourseID")
-                .MapRightKey("InstructorID")
-                .ToTable("CourseInstructor"));
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample27.xml)]
 
 The following code provides an example of how you could have used fluent API instead of attributes to specify the relationship between the `Instructor` and `OfficeAssignment` entities:
 
-    modelBuilder.Entity<Instructor>()
-        .HasOptional(p => p.OfficeAssignment).WithRequired(p => p.Instructor);
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample28.xml)]
 
 For information about what "fluent API" statements are doing behind the scenes, see the [Fluent API](https://blogs.msdn.com/b/aspnetue/archive/2011/05/04/entity-framework-code-first-tutorial-supplement-what-is-going-on-in-a-fluent-api-call.aspx) blog post.
 
@@ -506,237 +336,11 @@ For information about what "fluent API" statements are doing behind the scenes, 
 
 Replace the code in the *Migrations\Configuration.cs* file with the following code in order to provide seed data for the new entities you've created.
 
-    namespace ContosoUniversity.Migrations
-    {
-       using System;
-       using System.Collections.Generic;
-       using System.Data.Entity;
-       using System.Data.Entity.Migrations;
-       using System.Linq;
-       using ContosoUniversity.Models;
-       using ContosoUniversity.DAL;
-    
-       internal sealed class Configuration : DbMigrationsConfiguration<SchoolContext>
-       {
-          public Configuration()
-          {
-             AutomaticMigrationsEnabled = false;
-          }
-    
-          protected override void Seed(SchoolContext context)
-          {
-             var students = new List<Student>
-                {
-                    new Student { FirstMidName = "Carson",   LastName = "Alexander", 
-                        EnrollmentDate = DateTime.Parse("2010-09-01") },
-                    new Student { FirstMidName = "Meredith", LastName = "Alonso",    
-                        EnrollmentDate = DateTime.Parse("2012-09-01") },
-                    new Student { FirstMidName = "Arturo",   LastName = "Anand",     
-                        EnrollmentDate = DateTime.Parse("2013-09-01") },
-                    new Student { FirstMidName = "Gytis",    LastName = "Barzdukas", 
-                        EnrollmentDate = DateTime.Parse("2012-09-01") },
-                    new Student { FirstMidName = "Yan",      LastName = "Li",        
-                        EnrollmentDate = DateTime.Parse("2012-09-01") },
-                    new Student { FirstMidName = "Peggy",    LastName = "Justice",   
-                        EnrollmentDate = DateTime.Parse("2011-09-01") },
-                    new Student { FirstMidName = "Laura",    LastName = "Norman",    
-                        EnrollmentDate = DateTime.Parse("2013-09-01") },
-                    new Student { FirstMidName = "Nino",     LastName = "Olivetto",  
-                        EnrollmentDate = DateTime.Parse("2005-09-01") }
-                };
-    
-             students.ForEach(s => context.Students.AddOrUpdate(p => p.LastName, s));
-             context.SaveChanges();
-    
-             var instructors = new List<Instructor>
-                {
-                    new Instructor { FirstMidName = "Kim",     LastName = "Abercrombie", 
-                        HireDate = DateTime.Parse("1995-03-11") },
-                    new Instructor { FirstMidName = "Fadi",    LastName = "Fakhouri",    
-                        HireDate = DateTime.Parse("2002-07-06") },
-                    new Instructor { FirstMidName = "Roger",   LastName = "Harui",       
-                        HireDate = DateTime.Parse("1998-07-01") },
-                    new Instructor { FirstMidName = "Candace", LastName = "Kapoor",      
-                        HireDate = DateTime.Parse("2001-01-15") },
-                    new Instructor { FirstMidName = "Roger",   LastName = "Zheng",      
-                        HireDate = DateTime.Parse("2004-02-12") }
-                };
-             instructors.ForEach(s => context.Instructors.AddOrUpdate(p => p.LastName, s));
-             context.SaveChanges();
-    
-             var departments = new List<Department>
-                {
-                    new Department { Name = "English",     Budget = 350000, 
-                        StartDate = DateTime.Parse("2007-09-01"), 
-                        InstructorID  = instructors.Single( i => i.LastName == "Abercrombie").InstructorID },
-                    new Department { Name = "Mathematics", Budget = 100000, 
-                        StartDate = DateTime.Parse("2007-09-01"), 
-                        InstructorID  = instructors.Single( i => i.LastName == "Fakhouri").InstructorID },
-                    new Department { Name = "Engineering", Budget = 350000, 
-                        StartDate = DateTime.Parse("2007-09-01"), 
-                        InstructorID  = instructors.Single( i => i.LastName == "Harui").InstructorID },
-                    new Department { Name = "Economics",   Budget = 100000, 
-                        StartDate = DateTime.Parse("2007-09-01"), 
-                        InstructorID  = instructors.Single( i => i.LastName == "Kapoor").InstructorID }
-                };
-             departments.ForEach(s => context.Departments.AddOrUpdate(p => p.Name, s));
-             context.SaveChanges();
-    
-             var courses = new List<Course>
-                {
-                    new Course {CourseID = 1050, Title = "Chemistry",      Credits = 3,
-                      DepartmentID = departments.Single( s => s.Name == "Engineering").DepartmentID,
-                      Instructors = new List<Instructor>() 
-                    },
-                    new Course {CourseID = 4022, Title = "Microeconomics", Credits = 3,
-                      DepartmentID = departments.Single( s => s.Name == "Economics").DepartmentID,
-                      Instructors = new List<Instructor>() 
-                    },
-                    new Course {CourseID = 4041, Title = "Macroeconomics", Credits = 3,
-                      DepartmentID = departments.Single( s => s.Name == "Economics").DepartmentID,
-                      Instructors = new List<Instructor>() 
-                    },
-                    new Course {CourseID = 1045, Title = "Calculus",       Credits = 4,
-                      DepartmentID = departments.Single( s => s.Name == "Mathematics").DepartmentID,
-                      Instructors = new List<Instructor>() 
-                    },
-                    new Course {CourseID = 3141, Title = "Trigonometry",   Credits = 4,
-                      DepartmentID = departments.Single( s => s.Name == "Mathematics").DepartmentID,
-                      Instructors = new List<Instructor>() 
-                    },
-                    new Course {CourseID = 2021, Title = "Composition",    Credits = 3,
-                      DepartmentID = departments.Single( s => s.Name == "English").DepartmentID,
-                      Instructors = new List<Instructor>() 
-                    },
-                    new Course {CourseID = 2042, Title = "Literature",     Credits = 4,
-                      DepartmentID = departments.Single( s => s.Name == "English").DepartmentID,
-                      Instructors = new List<Instructor>() 
-                    },
-                };
-             courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseID, s));
-             context.SaveChanges();
-    
-             var officeAssignments = new List<OfficeAssignment>
-                {
-                    new OfficeAssignment { 
-                        InstructorID = instructors.Single( i => i.LastName == "Fakhouri").InstructorID, 
-                        Location = "Smith 17" },
-                    new OfficeAssignment { 
-                        InstructorID = instructors.Single( i => i.LastName == "Harui").InstructorID, 
-                        Location = "Gowan 27" },
-                    new OfficeAssignment { 
-                        InstructorID = instructors.Single( i => i.LastName == "Kapoor").InstructorID, 
-                        Location = "Thompson 304" },
-                };
-             officeAssignments.ForEach(s => context.OfficeAssignments.AddOrUpdate(p => p.Location, s));
-             context.SaveChanges();
-    
-             AddOrUpdateInstructor(context, "Chemistry", "Kapoor");
-             AddOrUpdateInstructor(context, "Chemistry", "Harui");
-             AddOrUpdateInstructor(context, "Microeconomics", "Zheng");
-             AddOrUpdateInstructor(context, "Macroeconomics", "Zheng");
-    
-             AddOrUpdateInstructor(context, "Calculus", "Fakhouri");
-             AddOrUpdateInstructor(context, "Trigonometry", "Harui");
-             AddOrUpdateInstructor(context, "Composition", "Abercrombie");
-             AddOrUpdateInstructor(context, "Literature", "Abercrombie");
-    
-             context.SaveChanges();
-    
-             var enrollments = new List<Enrollment>
-                {
-                    new Enrollment { 
-                        StudentID = students.Single(s => s.LastName == "Alexander").StudentID, 
-                        CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID, 
-                        Grade = Grade.A 
-                    },
-                     new Enrollment { 
-                        StudentID = students.Single(s => s.LastName == "Alexander").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Microeconomics" ).CourseID, 
-                        Grade = Grade.C 
-                     },                            
-                     new Enrollment { 
-                        StudentID = students.Single(s => s.LastName == "Alexander").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Macroeconomics" ).CourseID, 
-                        Grade = Grade.B
-                     },
-                     new Enrollment { 
-                         StudentID = students.Single(s => s.LastName == "Alonso").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Calculus" ).CourseID, 
-                        Grade = Grade.B 
-                     },
-                     new Enrollment { 
-                         StudentID = students.Single(s => s.LastName == "Alonso").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Trigonometry" ).CourseID, 
-                        Grade = Grade.B 
-                     },
-                     new Enrollment {
-                        StudentID = students.Single(s => s.LastName == "Alonso").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Composition" ).CourseID, 
-                        Grade = Grade.B 
-                     },
-                     new Enrollment { 
-                        StudentID = students.Single(s => s.LastName == "Anand").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID
-                     },
-                     new Enrollment { 
-                        StudentID = students.Single(s => s.LastName == "Anand").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Microeconomics").CourseID,
-                        Grade = Grade.B         
-                     },
-                    new Enrollment { 
-                        StudentID = students.Single(s => s.LastName == "Barzdukas").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Chemistry").CourseID,
-                        Grade = Grade.B         
-                     },
-                     new Enrollment { 
-                        StudentID = students.Single(s => s.LastName == "Li").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Composition").CourseID,
-                        Grade = Grade.B         
-                     },
-                     new Enrollment { 
-                        StudentID = students.Single(s => s.LastName == "Justice").StudentID,
-                        CourseID = courses.Single(c => c.Title == "Literature").CourseID,
-                        Grade = Grade.B         
-                     }
-                };
-    
-             foreach (Enrollment e in enrollments)
-             {
-                var enrollmentInDataBase = context.Enrollments.Where(
-                    s =>
-                         s.Student.StudentID == e.StudentID &&
-                         s.Course.CourseID == e.CourseID).SingleOrDefault();
-                if (enrollmentInDataBase == null)
-                {
-                   context.Enrollments.Add(e);
-                }
-             }
-             context.SaveChanges();
-          }
-    
-          void AddOrUpdateInstructor(SchoolContext context, string courseTitle, string instructorName)
-          {
-             var crs = context.Courses.SingleOrDefault(c => c.Title == courseTitle);
-             var inst = crs.Instructors.SingleOrDefault(i => i.LastName == instructorName);
-             if (inst == null)
-                crs.Instructors.Add(context.Instructors.Single(i => i.LastName == instructorName));
-          }
-       }
-    }
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample29.xml)]
 
 As you saw in the first tutorial, most of this code simply updates or creates new entity objects and loads sample data into properties as required for testing. However, notice how the `Course` entity, which has a many-to-many relationship with the `Instructor` entity, is handled:
 
-    var courses = new List<Course>
-     {
-         new Course {CourseID = 1050, Title = "Chemistry",      Credits = 3,
-           Department = departments.Single( s => s.Name == "Engineering"),
-           Instructors = new List<Instructor>() 
-         },
-         ...
-       };
-     courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseID, s));
-     context.SaveChanges();
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample30.xml)]
 
 When you create a `Course` object, you initialize the `Instructors` navigation property as an empty collection using the code `Instructors = new List<Instructor>()`. This makes it possible to add `Instructor` entities that are related to this `Course` by using the `Instructors.Add` method. If you didn't create an empty list, you wouldn't be able to add these relationships, because the `Instructors` property would be null and wouldn't have an `Add` method. You could also add the list initialization to the constructor.
 
@@ -752,7 +356,7 @@ If you try to update the database at this point, you'll get the following error:
 
 Edit the &lt;*timestamp&gt;\_Chap4.cs* file, and make the following code changes (you'll add a SQL statement and modify an `AddColumn` statement):
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample7.xml?highlight=14-18)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample31.xml?highlight=14-18)]
 
 (Make sure that you comment out or delete the existing `AddColumn` line when you add the new one, or you'll get an error when you enter the `update-database` command.)
 
@@ -764,7 +368,7 @@ After you have finished editing the &lt;*timestamp&gt;\_Chap4.cs* file, enter th
 
 > [!NOTE] It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can either change the connection string in the W*eb.config* file or delete the database. The simplest approach is to rename the database in *Web.config* file. For example, change the database name to CU\_test as shown in the following:
 > 
-> [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample8.xml?highlight=1-2)]
+> [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample32.xml?highlight=1-2)]
 > 
 >  With a new database, there is no data to migrate, and the `update-database` command is much more likely to complete without errors. For instructions on how to delete the database, see [How to Drop a Database from Visual Studio 2012](http://romiller.com/2013/05/17/how-to-drop-a-database-from-visual-studio-2012/).
 

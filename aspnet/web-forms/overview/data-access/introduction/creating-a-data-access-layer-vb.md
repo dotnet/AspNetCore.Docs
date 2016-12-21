@@ -183,12 +183,7 @@ Complete the wizard by clicking Finish. After the wizard closes we are returned 
 
 At this point we have a Typed DataSet with a single DataTable (`Northwind.Products`) and a strongly-typed DataAdapter class (`NorthwindTableAdapters.ProductsTableAdapter`) with a `GetProducts()` method. These objects can be used to access a list of all products from code like:
 
-    Dim productsAdapter As New NorthwindTableAdapters.ProductsTableAdapter()
-    Dim products as Northwind.ProductsDataTable
-    products = productsAdapter.GetProducts()
-    For Each productRow As Northwind.ProductsRow In products
-        Response.Write("Product: " & productRow.ProductName & "<br />")
-    Next
+[!code[Main](creating-a-data-access-layer-vb/samples/sample1.xml)]
 
 This code did not require us to write one bit of data access-specific code. We did not have to instantiate any ADO.NET classes, we didn't have to refer to any connection strings, SQL queries, or stored procedures. Instead, the TableAdapter provides the low-level data access code for us.
 
@@ -196,44 +191,11 @@ Each object used in this example is also strongly-typed, allowing Visual Studio 
 
 AllProducts.aspx
 
-    <%@ Page Language="VB" AutoEventWireup="true" CodeFile="AllProducts.aspx.vb"
-        Inherits="AllProducts" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head runat="server">
-        <title>View All Products in a GridView</title>
-        <link href="Styles.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <form id="form1" runat="server">
-        <div>
-            <h1>
-                All Products</h1>
-            <p>
-                <asp:GridView ID="GridView1" runat="server"
-                 CssClass="DataWebControlStyle">
-                   <HeaderStyle CssClass="HeaderStyle" />
-                   <AlternatingRowStyle CssClass="AlternatingRowStyle" />
-                </asp:GridView>
-                 </p>
-        </div>
-        </form>
-    </body>
-    </html>
+[!code[Main](creating-a-data-access-layer-vb/samples/sample2.xml)]
 
 AllProducts.aspx.vb
 
-    Imports NorthwindTableAdapters
-    Partial Class AllProducts
-        Inherits System.Web.UI.Page
-        Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) _
-            Handles Me.Load
-            Dim productsAdapter As New ProductsTableAdapter
-            GridView1.DataSource = productsAdapter.GetProducts()
-            GridView1.DataBind()
-        End Sub
-    End Class
+[!code[Main](creating-a-data-access-layer-vb/samples/sample3.xml)]
 
 
 [![The List of Products is Displayed in a GridView](creating-a-data-access-layer-vb/_static/image36.png)](creating-a-data-access-layer-vb/_static/image35.png)
@@ -301,44 +263,11 @@ With the `GetProductsByCategoryID(categoryID)` method in our DAL, we can now cre
 
 Beverages.aspx
 
-    <%@ Page Language="VB" AutoEventWireup="true" CodeFile="Beverages.aspx.vb"
-        Inherits="Beverages" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head runat="server">
-        <title>Untitled Page</title>
-        <link href="Styles.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <form id="form1" runat="server">
-        <div>
-            <h1>Beverages</h1>
-            <p>
-                <asp:GridView ID="GridView1" runat="server"
-                 CssClass="DataWebControlStyle">
-                   <HeaderStyle CssClass="HeaderStyle" />
-                   <AlternatingRowStyle CssClass="AlternatingRowStyle" />
-                </asp:GridView>
-                 </p>
-        </div>
-        </form>
-    </body>
-    </html>
+[!code[Main](creating-a-data-access-layer-vb/samples/sample4.xml)]
 
 Beverages.aspx.vb
 
-    Imports NorthwindTableAdapters
-    Partial Class Beverages
-        Inherits System.Web.UI.Page
-        Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) _
-            Handles Me.Load
-            Dim productsAdapter As New ProductsTableAdapter
-            GridView1.DataSource =
-             productsAdapter.GetProductsByCategoryID(1)
-            GridView1.DataBind()
-        End Sub
-    End Class
+[!code[Main](creating-a-data-access-layer-vb/samples/sample5.xml)]
 
 
 [![Those Products in the Beverages Category are Displayed](creating-a-data-access-layer-vb/_static/image53.png)](creating-a-data-access-layer-vb/_static/image52.png)
@@ -384,23 +313,11 @@ To examine or modify any of these database command properties, click on the `Com
 
 The following code example shows how to use the batch update pattern to double the price of all products that are not discontinued and that have 25 units in stock or less:
 
-    Dim productsAdapter As New NorthwindTableAdapters.ProductsTableAdapter()
-    Dim products As Northwind.ProductsDataTable = productsAdapter.GetProducts()
-    For Each product As Northwind.ProductsRow In products
-       If Not product.Discontinued AndAlso product.UnitsInStock <= 25 Then
-          product.UnitPrice *= 2
-       End if
-    Next
-    productsAdapter.Update(products)
+[!code[Main](creating-a-data-access-layer-vb/samples/sample6.xml)]
 
 The code below illustrates how to use the DB direct pattern to programmatically delete a particular product, then update one, and then add a new one:
 
-    Dim productsAdapter As New NorthwindTableAdapters.ProductsTableAdapter()
-    productsAdapter.Delete(3)
-    productsAdapter.Update( _
-        "Chai", 1, 1, "10 boxes x 20 bags", 18.0, 39, 15, 10, false, 1)
-    productsAdapter.Insert( _
-        "New Product", 1, 1, "12 tins per carton", 14.95, 15, 0, 10, false)
+[!code[Main](creating-a-data-access-layer-vb/samples/sample7.xml)]
 
 ## Creating Custom Insert, Update, and Delete Methods
 
@@ -442,10 +359,7 @@ By default, insert methods issue non-query methods, meaning that they return the
 
 The following code shows this new `InsertProduct` method in action:
 
-    Dim productsAdapter As New NorthwindTableAdapters.ProductsTableAdapter()
-    Dim new_productID As Integer = Convert.ToInt32(productsAdapter.InsertProduct( _
-        "New Product", 1, 1, "12 tins per carton", 14.95, 10, 0, 10, false))
-    productsAdapter.Delete(new_productID)
+[!code[Main](creating-a-data-access-layer-vb/samples/sample8.xml)]
 
 ## Step 5: Completing the Data Access Layer
 
@@ -453,13 +367,7 @@ Note that the `ProductsTableAdapters` class returns the `CategoryID` and `Suppli
 
 This can present a problem, however, as the TableAdapter's methods for inserting, updating, and deleting data are based off of this initial method. Fortunately, the auto-generated methods for inserting, updating, and deleting are not affected by subqueries in the `SELECT` clause. By taking care to add our queries to `Categories` and `Suppliers` as subqueries, rather than `JOIN` s, we'll avoid having to rework those methods for modifying data. Right-click on the `GetProducts()` method in the `ProductsTableAdapter` and choose Configure. Then, adjust the `SELECT` clause so that it looks like:
 
-    SELECT     ProductID, ProductName, SupplierID, CategoryID,
-    QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued,
-    (SELECT CategoryName FROM Categories
-    WHERE Categories.CategoryID = Products.CategoryID) as CategoryName,
-    (SELECT CompanyName FROM Suppliers
-    WHERE Suppliers.SupplierID = Products.SupplierID) as SupplierName
-    FROM         Products
+[!code[Main](creating-a-data-access-layer-vb/samples/sample9.xml)]
 
 
 [![Update the SELECT Statement for the GetProducts() Method](creating-a-data-access-layer-vb/_static/image80.png)](creating-a-data-access-layer-vb/_static/image79.png)
@@ -489,98 +397,46 @@ Take a few minutes to create the following TableAdapters and methods using the f
 
     - **GetProducts**: 
 
-            SELECT     ProductID, ProductName, SupplierID, 
-            CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, 
-            UnitsOnOrder, ReorderLevel, Discontinued, 
-            (SELECT CategoryName FROM Categories WHERE
-            Categories.CategoryID = Products.CategoryID) as 
-            CategoryName, (SELECT CompanyName FROM Suppliers
-            WHERE Suppliers.SupplierID = Products.SupplierID) 
-            as SupplierName
-            FROM         Products
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample10.xml)]
     - **GetProductsByCategoryID**: 
 
-            SELECT     ProductID, ProductName, SupplierID, CategoryID,
-            QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder,
-            ReorderLevel, Discontinued, (SELECT CategoryName
-            FROM Categories WHERE Categories.CategoryID = 
-            Products.CategoryID) as CategoryName,
-            (SELECT CompanyName FROM Suppliers WHERE
-            Suppliers.SupplierID = Products.SupplierID)
-            as SupplierName
-            FROM         Products
-            WHERE      CategoryID = @CategoryID
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample11.xml)]
     - **GetProductsBySupplierID**: 
 
-            SELECT     ProductID, ProductName, SupplierID, CategoryID,
-            QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder,
-            ReorderLevel, Discontinued, (SELECT CategoryName
-            FROM Categories WHERE Categories.CategoryID = 
-            Products.CategoryID) as CategoryName, 
-            (SELECT CompanyName FROM Suppliers WHERE 
-            Suppliers.SupplierID = Products.SupplierID) as SupplierName
-            FROM         Products
-            WHERE SupplierID = @SupplierID
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample12.xml)]
     - **GetProductByProductID**: 
 
-            SELECT     ProductID, ProductName, SupplierID, CategoryID,
-            QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder,
-            ReorderLevel, Discontinued, (SELECT CategoryName 
-            FROM Categories WHERE Categories.CategoryID = 
-            Products.CategoryID) as CategoryName, 
-            (SELECT CompanyName FROM Suppliers WHERE Suppliers.SupplierID = Products.SupplierID) 
-            as SupplierName
-            FROM         Products
-            WHERE ProductID = @ProductID
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample13.xml)]
 - **CategoriesTableAdapter**
 
     - **GetCategories**: 
 
-            SELECT     CategoryID, CategoryName, Description
-            FROM         Categories
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample14.xml)]
     - **GetCategoryByCategoryID**: 
 
-            SELECT     CategoryID, CategoryName, Description
-            FROM         Categories
-            WHERE CategoryID = @CategoryID
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample15.xml)]
 - **SuppliersTableAdapter**
 
     - **GetSuppliers**: 
 
-            SELECT     SupplierID, CompanyName, Address,
-            City, Country, Phone
-            FROM         Suppliers
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample16.xml)]
     - **GetSuppliersByCountry**: 
 
-            SELECT     SupplierID, CompanyName, Address,
-            City, Country, Phone
-            FROM         Suppliers
-            WHERE Country = @Country
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample17.xml)]
     - **GetSupplierBySupplierID**: 
 
-            SELECT     SupplierID, CompanyName, Address,
-            City, Country, Phone
-            FROM         Suppliers
-            WHERE SupplierID = @SupplierID
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample18.xml)]
 - **EmployeesTableAdapter**
 
     - **GetEmployees**: 
 
-            SELECT     EmployeeID, LastName, FirstName, Title,
-            HireDate, ReportsTo, Country
-            FROM         Employees
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample19.xml)]
     - **GetEmployeesByManager**: 
 
-            SELECT     EmployeeID, LastName, FirstName, Title, 
-            HireDate, ReportsTo, Country
-            FROM         Employees
-            WHERE ReportsTo = @ManagerID
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample20.xml)]
     - **GetEmployeeByEmployeeID**: 
 
-            SELECT     EmployeeID, LastName, FirstName, Title,
-            HireDate, ReportsTo, Country
-            FROM         Employees
-            WHERE EmployeeID = @EmployeeID
+        [!code[Main](creating-a-data-access-layer-vb/samples/sample21.xml)]
 
 
 [![The DataSet Designer After the Four TableAdapters Have Been Added](creating-a-data-access-layer-vb/_static/image84.png)](creating-a-data-access-layer-vb/_static/image83.png)
@@ -610,15 +466,7 @@ While auto-generated code can be a great time saver, the code is often very gene
 
 To demonstrate how to customize the DAL, let's add a `GetProducts()` method to the `SuppliersRow` class. The `SuppliersRow` class represents a single record in the `Suppliers` table; each supplier can provider zero to many products, so `GetProducts()` will return those products of the specified supplier. To accomplish this create a new class file in the `App_Code` folder named `SuppliersRow.vb` and add the following code:
 
-    Imports NorthwindTableAdapters
-    Partial Public Class Northwind
-        Partial Public Class SuppliersRow
-            Public Function GetProducts() As Northwind.ProductsDataTable
-                Dim productsAdapter As New ProductsTableAdapter
-                Return productsAdapter.GetProductsBySupplierID(Me.SupplierID)
-            End Function
-        End Class
-    End Class
+[!code[Main](creating-a-data-access-layer-vb/samples/sample22.xml)]
 
 This partial class instructs the compiler that when building the `Northwind.SuppliersRow` class to include the `GetProducts()` method we just defined. If you build your project and then return to the Class View you'll see `GetProducts()` now listed as a method of `Northwind.SuppliersRow`.
 
@@ -630,17 +478,7 @@ This partial class instructs the compiler that when building the `Northwind.Supp
 
 The `GetProducts()` method can now be used to enumerate the set of products for a particular supplier, as the following code shows:
 
-    Dim suppliersAdapter As New NorthwindTableAdapters.SuppliersTableAdapter()
-    Dim suppliers As Northwind.SuppliersDataTable = suppliersAdapter.GetSuppliers()
-    For Each supplier As Northwind.SuppliersRow In suppliers
-        Response.Write("Supplier: " & supplier.CompanyName)
-        Response.Write("<ul>")
-        Dim products As Northwind.ProductsDataTable = supplier.GetProducts()
-        For Each product As Northwind.ProductsRow In products
-            Response.Write("<li>" & product.ProductName & "</li>")
-        Next
-        Response.Write("</ul><p> </p>")
-    Next
+[!code[Main](creating-a-data-access-layer-vb/samples/sample23.xml)]
 
 This data can also be displayed in any of ASP.NET's data Web controls. The following page uses a GridView control with two fields:
 
@@ -651,57 +489,11 @@ We'll examine how to display such master-detail reports in future tutorials. For
 
 SuppliersAndProducts.aspx
 
-    <%@ Page Language="VB" CodeFile="SuppliersAndProducts.aspx.vb"
-        AutoEventWireup="true" Inherits="SuppliersAndProducts" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head runat="server">
-        <title>Untitled Page</title>
-        <link href="Styles.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <form id="form1" runat="server">
-        <div>
-            <h1>
-                Suppliers and Their Products</h1>
-            <p>
-                <asp:GridView ID="GridView1" runat="server"
-                 AutoGenerateColumns="False"
-                 CssClass="DataWebControlStyle">
-                    <HeaderStyle CssClass="HeaderStyle" />
-                    <AlternatingRowStyle CssClass="AlternatingRowStyle" />
-                    <Columns>
-                        <asp:BoundField DataField="CompanyName"
-                          HeaderText="Supplier" />
-                        <asp:TemplateField HeaderText="Products">
-                            <ItemTemplate>
-                                <asp:BulletedList ID="BulletedList1"
-                                 runat="server" DataSource="<%# CType(CType(Container.DataItem, System.Data.DataRowView).Row, Northwind.SuppliersRow).GetProducts() %>"
-                                     DataTextField="ProductName">
-                                </asp:BulletedList>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-                 </p>
-        </div>
-        </form>
-    </body>
-    </html>
+[!code[Main](creating-a-data-access-layer-vb/samples/sample24.xml)]
 
 SuppliersAndProducts.aspx.vb
 
-    Imports NorthwindTableAdapters
-    Partial Class SuppliersAndProducts
-        Inherits System.Web.UI.Page
-        Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) _
-            Handles Me.Load
-            Dim suppliersAdapter As New SuppliersTableAdapter
-            GridView1.DataSource = suppliersAdapter.GetSuppliers()
-            GridView1.DataBind()
-        End Sub
-    End Class
+[!code[Main](creating-a-data-access-layer-vb/samples/sample25.xml)]
 
 
 [![The Supplier's Company Name is Listed in the Left Column, Their Products in the Right](creating-a-data-access-layer-vb/_static/image92.png)](creating-a-data-access-layer-vb/_static/image91.png)

@@ -78,16 +78,7 @@ When you're done, click **OK**.
 
 Below the drop-down list, add a `GridView` control to the page and name it `CoursesGridView`. Connect it to the `CoursesEntityDataSource` data source control, click **Refresh Schema**, click **Edit Columns**, and remove the `DepartmentID` column. The `GridView` control markup resembles the following example.
 
-    <asp:GridView ID="CoursesGridView" runat="server" AutoGenerateColumns="False" 
-            DataKeyNames="CourseID" DataSourceID="CoursesEntityDataSource">
-            <Columns>
-                <asp:BoundField DataField="CourseID" HeaderText="ID" ReadOnly="True" 
-                    SortExpression="CourseID" />
-                <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                <asp:BoundField DataField="Credits" HeaderText="Credits" 
-                    SortExpression="Credits" />
-            </Columns>
-        </asp:GridView>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-3/samples/sample1.xml)]
 
 When the user changes the selected department in the drop-down list, you want the list of associated courses to change automatically. To make this happen, select the drop-down list, and in the **Properties** window set the `AutoPostBack` property to `True`.
 
@@ -95,15 +86,7 @@ When the user changes the selected department in the drop-down list, you want th
 
 Now that you're finished using the designer, switch to **Source** view and replace the `ConnectionString` and `DefaultContainer` name properties of the `CoursesEntityDataSource` control with the `ContextTypeName="ContosoUniversity.DAL.SchoolEntities"` attribute. When you're done, the markup for the control will look like the following example.
 
-    <asp:EntityDataSource ID="CoursesEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="false"
-            EntitySetName="Courses" 
-            AutoGenerateWhereClause="true" Where="">
-            <WhereParameters>
-                <asp:ControlParameter ControlID="DepartmentsDropDownList" Type="Int32" 
-                    Name="DepartmentID" PropertyName="SelectedValue" />
-            </WhereParameters>
-        </asp:EntityDataSource>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-3/samples/sample2.xml)]
 
 Run the page and use the drop-down list to select different departments. Only courses that are offered by the selected department are displayed in the `GridView` control.
 
@@ -115,9 +98,7 @@ Suppose Contoso University wants to put some student-body statistics on its Abou
 
 Open *About.aspx*, and in **Source** view, replace the existing contents of the `BodyContent` control with "Student Body Statistics" between `h2` tags:
 
-    <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-        <h2>Student Body Statistics</h2>
-    </asp:Content>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-3/samples/sample3.xml)]
 
 After the heading, add an `EntityDataSource` control and name it `StudentStatisticsEntityDataSource`. Connect it to `SchoolEntities`, select the `People` entity set, and leave the **Select** box in the wizard unchanged. Set the following properties in the **Properties** window:
 
@@ -128,28 +109,13 @@ After the heading, add an `EntityDataSource` control and name it `StudentStatist
 
 In **Source** view, replace the `ConnectionString` and `DefaultContainer` name properties with a `ContextTypeName` property. The `EntityDataSource` control markup now resembles the following example.
 
-    <asp:EntityDataSource ID="StudentStatisticsEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False" 
-            EntitySetName="People"
-            Select="it.EnrollmentDate, Count(it.EnrollmentDate) AS NumberOfStudents" 
-            OrderBy="it.EnrollmentDate" GroupBy="it.EnrollmentDate"
-            Where="it.EnrollmentDate is not null" >
-        </asp:EntityDataSource>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-3/samples/sample4.xml)]
 
 The syntax of the `Select`, `GroupBy`, and `Where` properties resembles Transact-SQL except for the `it` keyword that specifies the current entity.
 
 Add the following markup to create a `GridView` control to display the data.
 
-    <asp:GridView ID="StudentStatisticsGridView" runat="server" AutoGenerateColumns="False" 
-            DataSourceID="StudentStatisticsEntityDataSource">
-            <Columns>
-                <asp:BoundField DataField="EnrollmentDate" DataFormatString="{0:d}" 
-                    HeaderText="Date of Enrollment" 
-                    ReadOnly="True" SortExpression="EnrollmentDate" />
-                <asp:BoundField DataField="NumberOfStudents" HeaderText="Students" 
-                    ReadOnly="True" SortExpression="NumberOfStudents" />
-            </Columns>
-        </asp:GridView>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-3/samples/sample5.xml)]
 
 Run the page to see a list showing the number of students by enrollment date.
 
@@ -165,30 +131,13 @@ In this part of the tutorial you'll use a `QueryExtender` control to filter and 
 
 Open the *Courses.aspx* page, and below the markup you added previously, insert the following markup to create a heading, a text box for entering search strings, a search button, and an `EntityDataSource` control that's bound to the `Courses` entity set.
 
-    <h2>Courses by Name</h2>
-        Enter a course name 
-        <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox>
-         <asp:Button ID="SearchButton" runat="server" Text="Search" />
-        <br /><br />
-        <asp:EntityDataSource ID="SearchEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False" 
-            EntitySetName="Courses"  
-            Include="Department" >
-        </asp:EntityDataSource>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-3/samples/sample6.xml)]
 
 Notice that the `EntityDataSource` control's `Include` property is set to `Department`. In the database, the `Course` table does not contain the department name; it contains a `DepartmentID` foreign key column. If you were querying the database directly, to get the department name along with course data, you would have to join the `Course` and `Department` tables. By setting the `Include` property to `Department`, you specify that the Entity Framework should do the work of getting the related `Department` entity when it gets a `Course` entity. The `Department` entity is then stored in the `Department` navigation property of the `Course` entity. (By default, the `SchoolEntities` class that was generated by the data model designer retrieves related data when it's needed, and you've bound the data source control to that class, so setting the `Include` property is not necessary. However, setting it improves performance of the page, because otherwise the Entity Framework would make separate calls to the database to retrieve data for the `Course` entities and for the related `Department` entities.)
 
 After the `EntityDataSource` control you just created, insert the following markup to create a `QueryExtender` control that's bound to that `EntityDataSource` control.
 
-    <asp:QueryExtender ID="SearchQueryExtender" runat="server" 
-            TargetControlID="SearchEntityDataSource" >
-            <asp:SearchExpression SearchType="StartsWith" DataFields="Title">
-                <asp:ControlParameter ControlID="SearchTextBox" />
-            </asp:SearchExpression>
-            <asp:OrderByExpression DataField="Department.Name" Direction="Ascending">
-                <asp:ThenBy DataField="Title" Direction="Ascending" />            
-            </asp:OrderByExpression>
-        </asp:QueryExtender>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-3/samples/sample7.xml)]
 
 The `SearchExpression` element specifies that you want to select courses whose titles match the value entered in the text box. Only as many characters as are entered in the text box will be compared, because the `SearchType` property specifies `StartsWith`.
 
@@ -196,19 +145,7 @@ The `OrderByExpression` element specifies that the result set will be ordered by
 
 Finally, add a `GridView` control to display the list of courses:
 
-    <asp:GridView ID="SearchGridView" runat="server" AutoGenerateColumns="False" 
-            DataKeyNames="CourseID" DataSourceID="SearchEntityDataSource"  AllowPaging="true">
-            <Columns>
-                <asp:TemplateField HeaderText="Department">
-                    <ItemTemplate>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("Department.Name") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:BoundField DataField="CourseID" HeaderText="ID"/>
-                <asp:BoundField DataField="Title" HeaderText="Title" />
-                <asp:BoundField DataField="Credits" HeaderText="Credits" />
-            </Columns>
-        </asp:GridView>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-3/samples/sample8.xml)]
 
 The first column is a template field that displays the department name. The databinding expression specifies `Department.Name`, just as you saw in the `QueryExtender` control.
 
@@ -226,37 +163,7 @@ You can achieve an effect similar to the `QueryExtender` control's `StartsWith`,
 
 Open *Students.aspx* in **Source** view. After the `GridView` control, add the following markup:
 
-    <h2>Find Students by Name</h2>
-        Enter any part of the name
-        <asp:TextBox ID="SearchTextBox" runat="server" AutoPostBack="true"></asp:TextBox>
-         <asp:Button ID="SearchButton" runat="server" Text="Search" />
-        <br />
-        <br />
-        <asp:EntityDataSource ID="SearchEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False" 
-            EntitySetName="People"
-            Where="it.EnrollmentDate is not null and (it.FirstMidName Like '%' + @StudentName + '%' or it.LastName Like '%' + @StudentName + '%')" >
-            <WhereParameters>
-                <asp:ControlParameter ControlID="SearchTextBox" Name="StudentName" PropertyName="Text" 
-                 Type="String" DefaultValue="%"/>
-            </WhereParameters>
-        </asp:EntityDataSource>
-        <asp:GridView ID="SearchGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="PersonID"
-            DataSourceID="SearchEntityDataSource" AllowPaging="true">
-            <Columns>
-                <asp:TemplateField HeaderText="Name" SortExpression="LastName, FirstMidName">
-                    <ItemTemplate>
-                        <asp:Label ID="LastNameFoundLabel" runat="server" Text='<%# Eval("LastName") %>'></asp:Label>, 
-                        <asp:Label ID="FirstNameFoundLabel" runat="server" Text='<%# Eval("FirstMidName") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Enrollment Date" SortExpression="EnrollmentDate">
-                    <ItemTemplate>
-                        <asp:Label ID="EnrollmentDateFoundLabel" runat="server" Text='<%# Eval("EnrollmentDate", "{0:d}") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-3/samples/sample9.xml)]
 
 This markup is similar to what you've seen earlier except for the `Where` property value. The second part of the `Where` expression defines a substring search (`LIKE %FirstMidName% or LIKE %LastName%`) that searches both the first and last names for whatever is entered in the text box.
 

@@ -42,7 +42,7 @@ The runtime features are released as NuGet packages on the NuGet gallery. All th
 
 You can install or update to the released NuGet packages by using the NuGet Package Manager Console:
 
-    Install-Package Microsoft.AspNet.Mvc -Version 5.1.2
+[!code[Main](mvc51-release-notes/samples/sample1.xml)]
 
 <a id="documentation"></a>
 ## Documentation
@@ -67,15 +67,7 @@ Tutorials and other information about ASP.NET MVC 5.1 RTM are available from the
 
 The following code shows these APIs.
 
-    @if (EnumHelper.IsValidForEnumHelper(ViewData.ModelMetadata))
-    {
-        @Html.EnumDropDownListFor(model => model, htmlAttributes: new { @class = "form-control" })
-    }
-    @if (EnumHelper.IsValidForEnumHelper(ViewData.ModelMetadata))
-    {
-        foreach (SelectListItem item in EnumHelper.GetSelectList(ViewData.ModelMetadata,
-    (Enum)Model)) { … }
-    }
+[!code[Main](mvc51-release-notes/samples/sample2.xml)]
 
 You can see a complete example [here](https://aspnet.codeplex.com/SourceControl/latest#Samples/MVC/EnumSample/).
 
@@ -87,7 +79,7 @@ We now allow passing in HTML attributes in [EditorFor](https://msdn.microsoft.co
 
 For example:
 
-    @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" }, })
+[!code[Main](mvc51-release-notes/samples/sample3.xml)]
 
 <a id="Unobtrusive"></a>
 
@@ -101,15 +93,7 @@ Client-side validation for string and array types will now be supported for prop
 
 The callback functions (`OnBegin, OnComplete, OnFailure, OnSuccess`) will now be able to locate the invoking element via the `this` context. For example:
 
-    @Ajax.ActionLink("Click me", "AjaxAction", new AjaxOptions { UpdateTargetId = "foo", OnBegin = "OnClick" })
-    
-    <script>
-        function OnClick(jqXHR) {
-            if ($(this).hasClass("foo")) {
-                jqXHR.setRequestHeader("custom-header", "value");
-            }
-        }
-    </script>
+[!code[Main](mvc51-release-notes/samples/sample4.xml)]
 
 <a id="KnownBreakingChanges"></a>
 

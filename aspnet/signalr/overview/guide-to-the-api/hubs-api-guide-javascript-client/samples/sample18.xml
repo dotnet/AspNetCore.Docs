@@ -1,2 +1,2 @@
-[HubName("ContosoChatHub")]
-public class ChatHub : Hub
+var connection = $.hubConnection();
+connection.start({ transport: ['webSockets', 'longPolling'] });

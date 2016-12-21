@@ -1,1 +1,1 @@
-var contosoChatHubProxy = connection.createHubProxy('ContosoChatHub');
+public class ContosoChatHub : Hub

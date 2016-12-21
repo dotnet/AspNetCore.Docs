@@ -115,21 +115,9 @@ When you deploy a project to this web site and the application runs, whatever va
 
 You can set these values in Azure by using either the management portal or scripts. The environment creation automation script you saw in the [Automate Everything](automate-everything.md) chapter creates an Azure SQL Database, gets the storage and SQL Database connection strings, and stores these secrets in the settings for your web site.
 
-    # Configure app settings for storage account and New Relic
-    $appSettings = @{ `
-        "StorageAccountName" = $storageAccountName; `
-        "StorageAccountAccessKey" = $storage.AccessKey; `
-        "COR_ENABLE_PROFILING" = "1"; `
-        "COR_PROFILER" = "{71DA0A04-7777-4EC6-9643-7D28B46A8A41}"; `
-        "COR_PROFILER_PATH" = "C:\Home\site\wwwroot\newrelic\NewRelic.Profiler.dll"; `
-        "NEWRELIC_HOME" = "C:\Home\site\wwwroot\newrelic" `
-    }
+[!code[Main](source-control/samples/sample2.xml)]
 
-    # Configure connection strings for appdb and ASP.NET member db
-    $connectionStrings = ( `
-        @{Name = $sqlAppDatabaseName; Type = "SQLAzure"; ConnectionString = $sql.AppDatabase.ConnectionString}, `
-        @{Name = "DefaultConnection"; Type = "SQLAzure"; ConnectionString = $sql.MemberDatabase.ConnectionString}
-    )
+[!code[Main](source-control/samples/sample3.xml)]
 
 Notice that the scripts are parameterized so that actual values don't get persisted to the source repository.
 

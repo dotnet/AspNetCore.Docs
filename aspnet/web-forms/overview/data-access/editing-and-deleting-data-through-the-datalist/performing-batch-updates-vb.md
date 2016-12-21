@@ -69,41 +69,7 @@ After completing the wizard, Visual Studio automatically generates the DataList 
 Take a moment to create an editing interface that displays the supplier s name as text, but includes TextBoxes for the supplier s address, city, and country values. After making these changes, your page s declarative syntax should look similar to the following:
 
 
-    <asp:DataList ID="Suppliers" runat="server" DataKeyField="SupplierID"
-        DataSourceID="SuppliersDataSource">
-        <ItemTemplate>
-            <h4><asp:Label ID="CompanyNameLabel" runat="server"
-                Text='<%# Eval("CompanyName") %>' /></h4>
-            <table border="0">
-                <tr>
-                    <td class="SupplierPropertyLabel">Address:</td>
-                    <td class="SupplierPropertyValue">
-                        <asp:TextBox ID="Address" runat="server"
-                            Text='<%# Eval("Address") %>' />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="SupplierPropertyLabel">City:</td>
-                    <td class="SupplierPropertyValue">
-                        <asp:TextBox ID="City" runat="server"
-                            Text='<%# Eval("City") %>' />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="SupplierPropertyLabel">Country:</td>
-                    <td class="SupplierPropertyValue">
-                        <asp:TextBox ID="Country" runat="server"
-                            Text='<%# Eval("Country") %>' />
-                    </td>
-                </tr>
-            </table>
-            <br />
-        </ItemTemplate>
-    </asp:DataList>
-    <asp:ObjectDataSource ID="SuppliersDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetSuppliers" TypeName="SuppliersBLL">
-    </asp:ObjectDataSource>
+[!code[Main](performing-batch-updates-vb/samples/sample1.xml)]
 
 > [!NOTE] As with the preceding tutorial, the DataList in this tutorial must have its view state enabled.
 
@@ -111,15 +77,7 @@ Take a moment to create an editing interface that displays the supplier s name a
 In the `ItemTemplate` I m using two new CSS classes, `SupplierPropertyLabel` and `SupplierPropertyValue`, which have been added to the `Styles.css` class and configured to use the same style settings as the `ProductPropertyLabel` and `ProductPropertyValue` CSS classes.
 
 
-    .ProductPropertyLabel, .SupplierPropertyLabel
-    {
-        font-weight: bold;
-        text-align: right;
-    }
-    .ProductPropertyValue, .SupplierPropertyValue
-    {
-        padding-right: 35px;
-    }
+[!code[Main](performing-batch-updates-vb/samples/sample2.xml)]
 
 After making these changes, visit this page through a browser. As Figure 5 shows, each DataList item displays the supplier name as text and uses TextBoxes to display the address, city, and country.
 
@@ -136,17 +94,7 @@ While each supplier in Figure 5 has its address, city, and country fields displa
 Start by adding a Button Web control above the DataList and set its `ID` property to `UpdateAll1`. Next, add the second Button Web control beneath the DataList, setting its `ID` to `UpdateAll2`. Set the `Text` properties for the two Buttons to Update All . Lastly, create event handlers for both Buttons `Click` events. Rather than duplicating the update logic in each of the event handlers, let s refactor that logic to a third method, `UpdateAllSupplierAddresses`, having the event handlers simply invoking this third method.
 
 
-    Protected Sub UpdateAll1_Click(sender As Object, e As EventArgs) _
-        Handles UpdateAll1.Click
-        UpdateAllSupplierAddresses()
-    End Sub
-    Protected Sub UpdateAll2_Click(sender As Object, e As EventArgs) _
-        Handles UpdateAll2.Click
-        UpdateAllSupplierAddresses()
-    End Sub
-    Private Sub UpdateAllSupplierAddresses()
-        ' TODO: Write code to update _all_ of the supplier addresses in the DataList
-    End Sub
+[!code[Main](performing-batch-updates-vb/samples/sample3.xml)]
 
 Figure 6 shows the page after the Update All buttons have been added.
 
@@ -163,34 +111,7 @@ With all of the DataList s items displaying the editing interface and with the a
 The collection of `DataListItem` instances that makeup the DataList can be accessed via the DataList s [`Items` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalist.items.aspx). With a reference to a `DataListItem`, we can grab the corresponding `SupplierID` from the `DataKeys` collection and programmatically reference the TextBox Web controls within the `ItemTemplate` as the following code illustrates:
 
 
-    Private Sub UpdateAllSupplierAddresses()
-        ' Create an instance of the SuppliersBLL class
-        Dim suppliersAPI As New SuppliersBLL()
-        ' Iterate through the DataList's items
-        For Each item As DataListItem In Suppliers.Items
-            ' Get the supplierID from the DataKeys collection
-            Dim supplierID As Integer = Convert.ToInt32(Suppliers.DataKeys(item.ItemIndex))
-            ' Read in the user-entered values
-            Dim address As TextBox = CType(item.FindControl("Address"), TextBox)
-            Dim city As TextBox = CType(item.FindControl("City"), TextBox)
-            Dim country As TextBox = CType(item.FindControl("Country"), TextBox)
-            Dim addressValue As String = Nothing, _
-                cityValue As String = Nothing, _
-                countryValue As String = Nothing
-            If address.Text.Trim().Length > 0 Then
-                addressValue = address.Text.Trim()
-            End If
-            If city.Text.Trim().Length > 0 Then
-                cityValue = city.Text.Trim()
-            End If
-            If country.Text.Trim().Length > 0 Then
-                countryValue = country.Text.Trim()
-            End If
-            ' Call the SuppliersBLL class's UpdateSupplierAddress method
-            suppliersAPI.UpdateSupplierAddress _
-                (supplierID, addressValue, cityValue, countryValue)
-        Next
-    End Sub
+[!code[Main](performing-batch-updates-vb/samples/sample4.xml)]
 
 When the user clicks one of the Update All buttons, the `UpdateAllSupplierAddresses` method iterates through each `DataListItem` in the `Suppliers` DataList and calls the `SuppliersBLL` class s `UpdateSupplierAddress` method, passing in the corresponding values. A non-entered value for address, city, or country passes is a value of `Nothing` to `UpdateSupplierAddress` (rather than a blank string), which results in a database `NULL` for the underlying record s fields.
 
@@ -206,37 +127,7 @@ The ADO.NET DataTable and DataAdapter classes are designed to support batch upda
 In the `SuppliersBLL` class we update the specified supplier s address information by first reading in the single supplier record into a `SuppliersDataTable` and then set the `Address`, `City`, and `Country` column values using the following code:
 
 
-    Public Function UpdateSupplierAddress _
-        (supplierID As Integer, address As String, city As String, country As String) _
-        As Boolean
-        Dim suppliers As Northwind.SuppliersDataTable = _
-            Adapter.GetSupplierBySupplierID(supplierID)
-        If suppliers.Count = 0 Then
-            ' no matching record found, return false
-            Return False
-        Else
-            Dim supplier As Northwind.SuppliersRow = suppliers(0)
-            If address Is Nothing Then
-                supplier.SetAddressNull()
-            Else
-                supplier.Address = address
-            End If
-            If city Is Nothing Then
-                supplier.SetCityNull()
-            Else
-                supplier.City = city
-            End If
-            If country Is Nothing Then
-                supplier.SetCountryNull()
-            Else
-                supplier.Country = country
-            End If
-            ' Update the supplier Address-related information
-            Dim rowsAffected As Integer = Adapter.Update(supplier)
-            ' Return true if precisely one row was updated, otherwise false
-            Return rowsAffected = 1
-        End If
-    End Function
+[!code[Main](performing-batch-updates-vb/samples/sample5.xml)]
 
 This code naively assigns the passed-in address, city, and country values to the `SuppliersRow` in the `SuppliersDataTable` regardless of whether or not the values have changed. These modifications cause the `SuppliersRow` s `RowState` property to be marked as modified. When the Data Access Layer s `Update` method is called, it sees that the `SupplierRow` has been modified and therefore sends an `UPDATE` command to the database.
 
@@ -245,28 +136,7 @@ Imagine, however, that we added code to this method to only assign the passed-in
 To enact this change, replace the statements that blindly assign the passed-in address, city, and country values with the following code:
 
 
-    ' Only assign the values to the SupplierRow's column values if they differ
-    If address Is Nothing AndAlso Not supplier.IsAddressNull() Then
-        supplier.SetAddressNull()
-    ElseIf (address IsNot Nothing AndAlso supplier.IsAddressNull) _
-        OrElse (Not supplier.IsAddressNull() AndAlso _
-                    String.Compare(supplier.Address, address) <> 0) Then
-        supplier.Address = address
-    End If
-    If city Is Nothing AndAlso Not supplier.IsCityNull() Then
-        supplier.SetCityNull()
-    ElseIf (city IsNot Nothing AndAlso supplier.IsCityNull) _
-        OrElse (Not supplier.IsCityNull() AndAlso _
-                    String.Compare(supplier.City, city) <> 0) Then
-        supplier.City = city
-    End If
-    If country Is Nothing AndAlso Not supplier.IsCountryNull() Then
-        supplier.SetCountryNull()
-    ElseIf (country IsNot Nothing AndAlso supplier.IsCountryNull) _
-        OrElse (Not supplier.IsCountryNull() AndAlso _
-                    String.Compare(supplier.Country, country) <> 0) Then
-        supplier.Country = country
-    End If
+[!code[Main](performing-batch-updates-vb/samples/sample6.xml)]
 
 With this added code, the DAL s `Update` method sends an `UPDATE` statement to the database for only those records whose address-related values have changed.
 

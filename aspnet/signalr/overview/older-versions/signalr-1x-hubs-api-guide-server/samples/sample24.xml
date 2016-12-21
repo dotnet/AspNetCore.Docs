@@ -1,12 +1,4 @@
-public class ContosoChatHub : Hub
+public void SendMessage(string name, string message)
 {
-    public Task JoinGroup(string groupName)
-    {
-        return Groups.Add(Context.ConnectionId, groupName);
-    }
-
-    public Task LeaveGroup(string groupName)
-    {
-        return Groups.Remove(Context.ConnectionId, groupName);
-    }
+    Clients.All.addContosoChatMessageToPage(new ContosoChatMessage() { UserName = name, Message = message });
 }

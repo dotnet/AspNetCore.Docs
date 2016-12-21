@@ -234,8 +234,7 @@ The first of these methods is obviously the most secure, but the procedure for t
 
 The *robots.txt* file goes in your project folder and should have the following text in it:
 
-    User-agent: *
-    Disallow: /
+[!code[Main](deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12/samples/sample1.xml)]
 
 The `User-agent` line tells search engines that the rules in the file apply to all search engine web crawlers (robots), and the `Disallow` line specifies that no pages on the site should be crawled.
 

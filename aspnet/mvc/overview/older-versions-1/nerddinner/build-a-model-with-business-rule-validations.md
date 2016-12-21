@@ -98,17 +98,7 @@ In addition to allowing us to query for Dinner and RSVP objects, a NerdDinnerDat
 
 For example, the code below demonstrates how to use a LINQ query to retrieve a single Dinner object from the database, update two of the Dinner properties, and then save the changes back to the database:
 
-    NerdDinnerDataContext db = new NerdDinnerDataContext();
-    
-    // Retrieve Dinner object that reprents row with DinnerID of 1
-    Dinner dinner = db.Dinners.Single(d => d.DinnerID == 1);
-    
-    // Update two properties on Dinner 
-    dinner.Title = "Changed Title";
-    dinner.Description = "This dinner will be fun";
-    
-    // Persist changes to database
-    db.SubmitChanges();
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample1.xml)]
 
 The NerdDinnerDataContext object in the code above automatically tracked the property changes made to the Dinner object we retrieved from it. When we called the "SubmitChanges()" method, it will execute an appropriate SQL "UPDATE" statement to the database to persist the updated values back.
 
@@ -120,20 +110,7 @@ One approach that can make applications easier to maintain and test is to use a 
 
 For our NerdDinner application we'll define a DinnerRepository class with the below signature:
 
-    public class DinnerRepository {
-    
-        // Query Methods
-        public IQueryable<Dinner> FindAllDinners();
-        public IQueryable<Dinner> FindUpcomingDinners();
-        public Dinner             GetDinner(int id);
-    
-        // Insert/Delete
-        public void Add(Dinner dinner);
-        public void Delete(Dinner dinner);
-    
-        // Persistence
-        public void Save();
-    }
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample2.xml)]
 
 *Note: Later in this chapter we'll extract an IDinnerRepository interface from this class and enable dependency injection with it on our Controllers. To begin with, though, we are going to start simple and just work directly with the DinnerRepository class.*
 
@@ -143,47 +120,7 @@ To implement this class we'll right-click on our "Models" folder and choose the 
 
 We can then implement our DinnerRespository class using the code below:
 
-    public class DinnerRepository {
-     
-        private NerdDinnerDataContext db = new NerdDinnerDataContext();
-    
-        //
-        // Query Methods
-    
-        public IQueryable<Dinner> FindAllDinners() {
-            return db.Dinners;
-        }
-    
-        public IQueryable<Dinner> FindUpcomingDinners() {
-            return from dinner in db.Dinners
-                   where dinner.EventDate > DateTime.Now
-                   orderby dinner.EventDate
-                   select dinner;
-        }
-    
-        public Dinner GetDinner(int id) {
-            return db.Dinners.SingleOrDefault(d => d.DinnerID == id);
-        }
-    
-        //
-        // Insert/Delete Methods
-    
-        public void Add(Dinner dinner) {
-            db.Dinners.InsertOnSubmit(dinner);
-        }
-    
-        public void Delete(Dinner dinner) {
-            db.RSVPs.DeleteAllOnSubmit(dinner.RSVPs);
-            db.Dinners.DeleteOnSubmit(dinner);
-        }
-    
-        //
-        // Persistence 
-    
-        public void Save() {
-            db.SubmitChanges();
-        }
-    }
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample3.xml)]
 
 ### Retrieving, Updating, Inserting and Deleting using the DinnerRepository class
 
@@ -194,93 +131,31 @@ Now that we've created our DinnerRepository class, let's look at a few code exam
 The code below retrieves a single Dinner using the DinnerID value:
 
 
-    DinnerRepository dinnerRepository = new DinnerRepository();
-    
-    // Retrieve specific dinner by its DinnerID
-    Dinner dinner = dinnerRepository.GetDinner(5);
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample4.xml)]
 
 The code below retrieves all upcoming dinners and loops over them:
 
-    DinnerRepository dinnerRepository = new DinnerRepository();
-    
-    // Retrieve all upcoming Dinners
-    var upcomingDinners = dinnerRepository.FindUpcomingDinners();
-    
-    // Loop over each upcoming Dinner and print out its Title
-    foreach (Dinner dinner in upcomingDinners) {
-       Response.Write("Title" + dinner.Title);
-    }
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample5.xml)]
 
 #### Insert and Update Examples
 
 The code below demonstrates adding two new dinners. Additions/modifications to the repository aren't committed to the database until the "Save()" method is called on it. LINQ to SQL automatically wraps all changes in a database transaction – so either all changes happen or none of them do when our repository saves:
 
-    DinnerRepository dinnerRepository = new DinnerRepository();
-    
-    // Create First Dinner
-    Dinner newDinner1 = new Dinner();
-    newDinner1.Title = "Dinner with Scott";
-    newDinner1.HostedBy = "ScotGu";
-    newDinner1.ContactPhone = "425-703-8072";
-    
-    // Create Second Dinner
-    Dinner newDinner2 = new Dinner();
-    newDinner2.Title = "Dinner with Bill";
-    newDinner2.HostedBy = "BillG";
-    newDinner2.ContactPhone = "425-555-5151";
-    
-    // Add Dinners to Repository
-    dinnerRepository.Add(newDinner1);
-    dinnerRepository.Add(newDinner2);
-    
-    // Persist Changes
-    dinnerRepository.Save();
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample6.xml)]
 
 The code below retrieves an existing Dinner object, and modifies two properties on it. The changes are committed back to the database when the "Save()" method is called on our repository:
 
-    DinnerRepository dinnerRepository = new DinnerRepository();
-    
-    // Retrieve specific dinner by its DinnerID
-    Dinner dinner = dinnerRepository.GetDinner(5);
-    
-    // Update Dinner properties
-    dinner.Title = "Update Title";
-    dinner.HostedBy = "New Owner";
-    
-    // Persist changes
-    dinnerRepository.Save();
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample7.xml)]
 
 The code below retrieves a dinner and then adds an RSVP to it. It does this using the RSVPs collection on the Dinner object that LINQ to SQL created for us (because there is a primary-key/foreign-key relationship between the two in the database). This change is persisted back to the database as a new RSVP table row when the "Save()" method is called on the repository:
 
-    DinnerRepository dinnerRepository = new DinnerRepository();
-    
-    // Retrieve specific dinner by its DinnerID
-    Dinner dinner = dinnerRepository.GetDinner(5);
-    
-    // Create a new RSVP object
-    RSVP myRSVP = new RSVP();
-    myRSVP.AttendeeName = "ScottGu";
-    
-    // Add RSVP to Dinner's RSVP Collection
-    dinner.RSVPs.Add(myRSVP);
-    
-    // Persist changes
-    dinnerRepository.Save();
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample8.xml)]
 
 #### Delete Example
 
 The code below retrieves an existing Dinner object, and then marks it to be deleted. When the "Save()" method is called on the repository it will commit the delete back to the database:
 
-    DinnerRepository dinnerRepository = new DinnerRepository();
-    
-    // Retrieve specific dinner by its DinnerID
-    Dinner dinner = dinnerRepository.GetDinner(5);
-    
-    // Mark dinner to be deleted
-    dinnerRepository.Delete(dinner);
-    
-    // Persist changes
-    dinnerRepository.Save();
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample9.xml)]
 
 ### Integrating Validation and Business Rule Logic with Model Classes
 
@@ -304,32 +179,7 @@ We'll implement IsValid and GetRuleViolations() for our Dinner model by adding a
 
 Clicking the "Add" button will add a Dinner.cs file to our project and open it within the IDE. We can then implement a basic rule/validation enforcement framework using the below code:
 
-    public partial class Dinner {
-    
-        public bool IsValid {
-            get { return (GetRuleViolations().Count() == 0); }
-        }
-    
-        public IEnumerable<RuleViolation> GetRuleViolations() {
-            yield break;
-        }
-    
-        partial void OnValidate(ChangeAction action) {
-            if (!IsValid)
-                throw new ApplicationException("Rule violations prevent saving");
-        }
-    }
-    
-    public class RuleViolation {
-    
-        public string ErrorMessage { get; private set; }
-        public string PropertyName { get; private set; }
-    
-        public RuleViolation(string errorMessage, string propertyName) {
-            ErrorMessage = errorMessage;
-            PropertyName = propertyName;
-        }
-    }
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample10.xml)]
 
 A few notes about the above code:
 
@@ -341,58 +191,13 @@ A few notes about the above code:
 
 This approach provides a simple framework that we can integrate validation and business rules into. For now let's add the below rules to our GetRuleViolations() method:
 
-    public IEnumerable<RuleViolation> GetRuleViolations() {
-    
-        if (String.IsNullOrEmpty(Title))
-            yield return new RuleViolation("Title required","Title");
-    
-        if (String.IsNullOrEmpty(Description))
-            yield return new RuleViolation("Description required","Description");
-    
-        if (String.IsNullOrEmpty(HostedBy))
-            yield return new RuleViolation("HostedBy required", "HostedBy");
-    
-        if (String.IsNullOrEmpty(Address))
-            yield return new RuleViolation("Address required", "Address");
-    
-        if (String.IsNullOrEmpty(Country))
-            yield return new RuleViolation("Country required", "Country");
-    
-        if (String.IsNullOrEmpty(ContactPhone))
-            yield return new RuleViolation("Phone# required", "ContactPhone");
-    
-        if (!PhoneValidator.IsValidNumber(ContactPhone, Country))
-            yield return new RuleViolation("Phone# does not match country", "ContactPhone");
-    
-        yield break;
-    }
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample11.xml)]
 
 We are using the "yield return" feature of C# to return a sequence of any RuleViolations. The first six rule checks above simply enforce that string properties on our Dinner cannot be null or empty. The last rule is a little more interesting, and calls a PhoneValidator.IsValidNumber() helper method that we can add to our project to verify that the ContactPhone number format matches the Dinner's country.
 
 We can use .NET's regular expression support to implement this phone validation support. Below is a simple PhoneValidator implementation that we can add to our project that enables us to add country-specific Regex pattern checks:
 
-    public class PhoneValidator {
-    
-        static IDictionary<string, Regex> countryRegex = new Dictionary<string, Regex>() {
-               { "USA", new Regex("^[2-9]\\d{2}-\\d{3}-\\d{4}$")},
-               { "UK", new Regex("(^1300\\d{6}$)|(^1800|1900|1902\\d{6}$)|(^0[2|3|7|8]{1}[0-9]{8}$)|(^13\\d{4}$)|(^04\\d{2,3}\\d{6}$)")},
-               { "Netherlands", new Regex("(^\\+[0-9]{2}|^\\+[0-9]{2}\\(0\\)|^\\(\\+[0-9]{2}\\)\\(0\\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\\-\\s]{10}$)")},
-        };
-    
-        public static bool IsValidNumber(string phoneNumber, string country) {
-    
-            if (country != null && countryRegex.ContainsKey(country))
-                return countryRegex[country].IsMatch(phoneNumber);
-            else
-                return false;
-        }
-    
-        public static IEnumerable<string> Countries {
-            get {
-                return countryRegex.Keys;
-            }
-        }
-    }
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample12.xml)]
 
 #### Handling Validation and Business Logic Violations
 
@@ -400,35 +205,11 @@ Now that we've added the above validation and business rule code, any time we tr
 
 Developers can write code like below to proactively determine if a Dinner object is valid, and retrieve a list of all violations in it without raising any exceptions:
 
-    Dinner dinner = dinnerRepository.GetDinner(5);
-    
-    dinner.Country = "USA";
-    dinner.ContactPhone = "425-555-BOGUS";
-    
-    if (!dinner.IsValid) {
-    
-        var errors = dinner.GetRuleViolations();
-        
-        // do something to fix the errors
-    }
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample13.xml)]
 
 If we attempt to save a Dinner in an invalid state, an exception will be raised when we call the Save() method on the DinnerRepository. This occurs because LINQ to SQL automatically calls our Dinner.OnValidate() partial method before it saves the Dinner's changes, and we added code to Dinner.OnValidate() to raise an exception if any rule violations exist in the Dinner. We can catch this exception and reactively retrieve a list of the violations to fix:
 
-    Dinner dinner = dinnerRepository.GetDinner(5);
-    
-    try {
-    
-        dinner.Country = "USA";
-        dinner.ContactPhone = "425-555-BOGUS";
-    
-        dinnerRepository.Save();
-    }
-    catch {
-    
-        var errors = dinner.GetRuleViolations();
-    
-        // do something to fix errors
-    }
+[!code[Main](build-a-model-with-business-rule-validations/samples/sample14.xml)]
 
 Because our validation and business rules are implemented within our model layer, and not within the UI layer, they will be applied and used across all scenarios within our application. We can later change or add business rules and have all code that works with our Dinner objects honor them.
 

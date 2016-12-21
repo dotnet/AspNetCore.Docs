@@ -26,11 +26,7 @@ In ASP.NET Web API, a *controller* is a class that handles HTTP requests. The pu
 
 To determine which action to invoke, the framework uses a *routing table*. The Visual Studio project template for Web API creates a default route:
 
-    routes.MapHttpRoute(
-        name: "API Default",
-        routeTemplate: "api/{controller}/{id}",
-        defaults: new { id = RouteParameter.Optional }
-    );
+[!code[Main](routing-in-aspnet-web-api/samples/sample1.xml)]
 
 This route is defined in the WebApiConfig.cs file, which is placed in the App\_Start directory:
 
@@ -62,12 +58,7 @@ Once a matching route is found, Web API selects the controller and the action:
 
 Let's look at an example. Suppose that you define the following controller:
 
-    public class ProductsController : ApiController
-    {
-        public void GetAllProducts() { }
-        public IEnumerable<Product> GetProductById(int id) { }
-        public HttpResponseMessage DeleteProduct(int id){ }
-    }
+[!code[Main](routing-in-aspnet-web-api/samples/sample2.xml)]
 
 Here are some possible HTTP requests, along with the action that gets invoked for each:
 
@@ -92,65 +83,34 @@ Instead of using the naming convention for HTTP methods, you can explicitly spec
 
 In the following example, the FindProduct method is mapped to GET requests:
 
-    public class ProductsController : ApiController
-    {
-        [HttpGet]
-        public Product FindProduct(id) {}
-    }
+[!code[Main](routing-in-aspnet-web-api/samples/sample3.xml)]
 
 To allow multiple HTTP methods for an action, or to allow HTTP methods other than GET, PUT, POST, and DELETE, use the **AcceptVerbs** attribute, which takes a list of HTTP methods.
 
-    public class ProductsController : ApiController
-    {
-        [AcceptVerbs("GET", "HEAD")]
-        public Product FindProduct(id) { }
-    
-        // WebDAV method
-        [AcceptVerbs("MKCOL")]
-        public void MakeCollection() { }
-    }
+[!code[Main](routing-in-aspnet-web-api/samples/sample4.xml)]
 
 <a id="routing_by_action_name"></a>
 ### Routing by Action Name
 
 With the default routing template, Web API uses the HTTP method to select the action. However, you can also create a route where the action name is included in the URI:
 
-    routes.MapHttpRoute(
-        name: "ActionApi",
-        routeTemplate: "api/{controller}/{action}/{id}",
-        defaults: new { id = RouteParameter.Optional }
-    );
+[!code[Main](routing-in-aspnet-web-api/samples/sample5.xml)]
 
 In this route template, the *{action}* parameter names the action method on the controller. With this style of routing, use attributes to specify the allowed HTTP methods. For example, suppose your controller has the following method:
 
-    public class ProductsController : ApiController
-    {
-        [HttpGet]
-        public string Details(int id);
-    }
+[!code[Main](routing-in-aspnet-web-api/samples/sample6.xml)]
 
 In this case, a GET request for "api/products/details/1" would map to the Details method. This style of routing is similar to ASP.NET MVC, and may be appropriate for an RPC-style API.
 
 You can override the action name by using the **ActionName** attribute. In the following example, there are two actions that map to &quot;api/products/thumbnail/*id*. One supports GET and the other supports POST:
 
-    public class ProductsController : ApiController
-    {
-        [HttpGet]
-        [ActionName("Thumbnail")]
-        public HttpResponseMessage GetThumbnailImage(int id);
-    
-        [HttpPost]
-        [ActionName("Thumbnail")]
-        public void AddThumbnailImage(int id);
-    }
+[!code[Main](routing-in-aspnet-web-api/samples/sample7.xml)]
 
 ### Non-Actions
 
 To prevent a method from getting invoked as an action, use the **NonAction** attribute. This signals to the framework that the method is not an action, even if it would otherwise match the routing rules.
 
-    // Not an action method.
-    [NonAction]  
-    public string GetPrivateData() { ... }
+[!code[Main](routing-in-aspnet-web-api/samples/sample8.xml)]
 
 ## Further Reading
 

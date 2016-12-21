@@ -56,84 +56,23 @@ This tutorial demonstrates how to implement TPH inheritance. TPH is the default 
 
 In the *Models* folder, create *Person.cs* and replace the template code with the following code:
 
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
-    namespace ContosoUniversity.Models
-    {
-        public abstract class Person
-        {
-            public int ID { get; set; }
-    
-            [Required]
-            [StringLength(50)]
-            [Display(Name = "Last Name")]
-            public string LastName { get; set; }
-            [Required]
-            [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
-            [Column("FirstName")]
-            [Display(Name = "First Name")]
-            public string FirstMidName { get; set; }
-    
-            [Display(Name = "Full Name")]
-            public string FullName
-            {
-                get
-                {
-                    return LastName + ", " + FirstMidName;
-                }
-            }
-        }
-    }
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml)]
 
 ## Make Student and Instructor classes inherit from Person
 
 In *Instructor.cs*, derive the `Instructor` class from the `Person` class and remove the key and name fields. The code will look like the following example:
 
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
-    namespace ContosoUniversity.Models
-    {
-        public class Instructor : Person
-        {
-            [DataType(DataType.Date)]
-            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-            [Display(Name = "Hire Date")]
-            public DateTime HireDate { get; set; }
-    
-            public virtual ICollection<Course> Courses { get; set; }
-            public virtual OfficeAssignment OfficeAssignment { get; set; }
-        }
-    }
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml)]
 
 Make similar changes to *Student.cs*. The `Student` class will look like the following example:
 
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
-    namespace ContosoUniversity.Models
-    {
-        public class Student : Person
-        {
-            [DataType(DataType.Date)]
-            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-            [Display(Name = "Enrollment Date")]
-            public DateTime EnrollmentDate { get; set; }
-    
-            public virtual ICollection<Enrollment> Enrollments { get; set; }
-        }
-    }
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml)]
 
 ## Add the Person Entity Type to the Model
 
 In *SchoolContext.cs*, add a `DbSet` property for the `Person` entity type:
 
-    public DbSet<Person> People { get; set; }
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml)]
 
 This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is updated, it will have a `Person` table in place of the `Student` and `Instructor` tables.
 
@@ -150,33 +89,7 @@ Run the `Update-Database` command in the PMC. The command will fail at this poin
 
 Open *Migrations\&lt;timestamp&gt;\_Inheritance.cs* and replace the `Up` method with the following code:
 
-    public override void Up()
-    {
-        // Drop foreign keys and indexes that point to tables we're going to drop.
-        DropForeignKey("dbo.Enrollment", "StudentID", "dbo.Student");
-        DropIndex("dbo.Enrollment", new[] { "StudentID" });
-    
-        RenameTable(name: "dbo.Instructor", newName: "Person");
-        AddColumn("dbo.Person", "EnrollmentDate", c => c.DateTime());
-        AddColumn("dbo.Person", "Discriminator", c => c.String(nullable: false, maxLength: 128, defaultValue: "Instructor"));
-        AlterColumn("dbo.Person", "HireDate", c => c.DateTime());
-        AddColumn("dbo.Person", "OldId", c => c.Int(nullable: true));
-    
-        // Copy existing Student data into new Person table.
-        Sql("INSERT INTO dbo.Person (LastName, FirstName, HireDate, EnrollmentDate, Discriminator, OldId) SELECT LastName, FirstName, null AS HireDate, EnrollmentDate, 'Student' AS Discriminator, ID AS OldId FROM dbo.Student");
-    
-        // Fix up existing relationships to match new PK's.
-        Sql("UPDATE dbo.Enrollment SET StudentId = (SELECT ID FROM dbo.Person WHERE OldId = Enrollment.StudentId AND Discriminator = 'Student')");
-    
-        // Remove temporary key
-        DropColumn("dbo.Person", "OldId");
-    
-        DropTable("dbo.Student");
-    
-        // Re-create foreign keys and indexes pointing to new table.
-        AddForeignKey("dbo.Enrollment", "StudentID", "dbo.Person", "ID", cascadeDelete: true);
-        CreateIndex("dbo.Enrollment", "StudentID");
-    }
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml)]
 
 This code takes care of the following database update tasks:
 
@@ -199,7 +112,7 @@ Run the `update-database` command again.
 
 > [!NOTE] It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can continue with the tutorial by changing the connection string in the *Web.config* file or by deleting the database. The simplest approach is to rename the database in the *Web.config* file. For example, change the database name to ContosoUniversity2 as shown in the following example:
 > 
-> [!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=2)]
+> [!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml?highlight=2)]
 > 
 > With a new database, there is no data to migrate, and the `update-database` command is much more likely to complete without errors. For instructions on how to delete the database, see [How to Drop a Database from Visual Studio 2012](http://romiller.com/2013/05/17/how-to-drop-a-database-from-visual-studio-2012/). If you take this approach in order to continue with the tutorial, skip the deployment step at the end of this tutorial or deploy to a new site and database. If you deploy an update to the same site you've been deploying to already, EF will get the same error there when it runs migrations automatically. If you want to troubleshoot a migrations error, the best resource is one of the Entity Framework forums or StackOverflow.com.
 

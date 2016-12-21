@@ -63,17 +63,7 @@ Edit the GridView's fields removing all but the `ProductName` and `UnitPrice` Bo
 The final markup for the GridView is:
 
 
-    <asp:GridView ID="ProductsGrid" runat="server"
-      AutoGenerateColumns="False" DataKeyNames="ProductID"
-        DataSourceID="AllProductsDataSource" EnableViewState="False">
-        <Columns>
-            <asp:BoundField DataField="ProductName"
-             HeaderText="Product" SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice"
-                DataFormatString="{0:c}" HeaderText="Unit Price"
-                HtmlEncode="False" SortExpression="UnitPrice" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample1.xml)]
 
 Next, we need to mark the GridView as selectable, which will add a Select button to each row. To accomplish this, simply check the Enable Selection checkbox in the GridView's smart tag.
 
@@ -86,18 +76,7 @@ Next, we need to mark the GridView as selectable, which will add a Select button
 Checking the Enabling Selection option adds a CommandField to the `ProductsGrid` GridView with its `ShowSelectButton` property set to True. This results in a Select button for each row of the GridView, as Figure 6 illustrates. By default, the Select buttons are rendered as LinkButtons, but you can use Buttons or ImageButtons instead through the CommandField's `ButtonType` property.
 
 
-    <asp:GridView ID="ProductsGrid" runat="server"
-      AutoGenerateColumns="False" DataKeyNames="ProductID"
-        DataSourceID="AllProductsDataSource" EnableViewState="False">
-        <Columns>
-            <asp:CommandField ShowSelectButton="True" />
-            <asp:BoundField DataField="ProductName"
-              HeaderText="Product" SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice"
-              DataFormatString="{0:c}" HeaderText="Unit Price"
-                HtmlEncode="False" SortExpression="UnitPrice" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample2.xml)]
 
 When a GridView row's Select button is clicked a postback ensues and the GridView's `SelectedRow` property is updated. In addition to the `SelectedRow` property, the GridView provides the [SelectedIndex](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.selectedindex%28VS.80%29.aspx), [SelectedValue](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.selectedvalue%28VS.80%29.aspx), and [SelectedDataKey](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.selecteddatakey%28VS.80%29.aspx) properties. The `SelectedIndex` property returns the index of the selected row, whereas the `SelectedValue` and `SelectedDataKey` properties return values based upon the GridView's [DataKeyNames property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.datakeynames%28VS.80%29.aspx).
 
@@ -120,20 +99,12 @@ The `ProductsGrid` GridView has a `SelectedRowStyle` property that can be used t
 As with our earlier tutorials, let's strive to keep the aesthetic-related settings defined as CSS classes. Therefore, create a new CSS class in `Styles.css` named `SelectedRowStyle`.
 
 
-    .SelectedRowStyle
-    {
-        background-color: Yellow;
-    }
+[!code[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample3.xml)]
 
 To apply this CSS class to the `SelectedRowStyle` property of *all* GridViews in our tutorial series, edit the `GridView.skin` Skin in the `DataWebControls` Theme to include the `SelectedRowStyle` settings as shown below:
 
 
-    <asp:GridView runat="server" CssClass="DataWebControlStyle">
-       <AlternatingRowStyle CssClass="AlternatingRowStyle" />
-       <RowStyle CssClass="RowStyle" />
-       <HeaderStyle CssClass="HeaderStyle" />
-       <SelectedRowStyle CssClass="SelectedRowStyle" />
-    </asp:GridView>
+[!code[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample4.xml)]
 
 With this addition, the selected GridView row is now highlighted with a yellow background color.
 

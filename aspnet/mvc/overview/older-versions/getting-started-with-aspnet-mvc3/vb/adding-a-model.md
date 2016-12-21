@@ -42,45 +42,23 @@ Name the class "Movie".
 
 Add the following five properties to the `Movie` class:
 
-    Public Class Movie 
-            Public Property ID() As Integer 
-            Public Property Title() As String 
-            Public Property ReleaseDate() As Date 
-            Public Property Genre() As String 
-            Public Property Price() As Decimal 
-    End Class
+[!code[Main](adding-a-model/samples/sample1.xml)]
 
 We'll use the `Movie` class to represent movies in a database. Each instance of a `Movie` object will correspond to a row within a database table, and each property of the `Movie` class will map to a column in the table.
 
 In the same file, add the following `MovieDBContext` class:
 
-    Public Class MovieDBContext
-        Inherits DbContext
-        Public Property Movies() As DbSet(Of Movie)
-    End Class
+[!code[Main](adding-a-model/samples/sample2.xml)]
 
 The `MovieDBContext` class represents the Entity Framework movie database context, which handles fetching, storing, and updating `Movie` class instances in a database. The `MovieDBContext` derives from the `DbContext` base class provided by the Entity Framework. For more information about `DbContext` and `DbSet`, see [Productivity Improvements for the Entity Framework](https://blogs.msdn.com/b/efdesign/archive/2010/06/21/productivity-improvements-for-the-entity-framework.aspx?wa=wsignin1.0).
 
 In order to be able to reference `DbContext` and `DbSet`, you need to add the following `imports` statement at the top of the file:
 
-    Imports System.Data.Entity
+[!code[Main](adding-a-model/samples/sample3.xml)]
 
 The complete *Movie.vb* file is shown below.
 
-    Imports System.Data.Entity
-    
-    Public Class Movie
-            Public Property ID() As Integer
-            Public Property Title() As String
-            Public Property ReleaseDate() As Date
-            Public Property Genre() As String
-            Public Property Price() As Decimal
-    End Class
-    
-    Public Class MovieDBContext
-        Inherits DbContext
-        Public Property Movies() As DbSet(Of Movie)
-    End Class
+[!code[Main](adding-a-model/samples/sample4.xml)]
 
 ## Creating a Connection String and Working with SQL Server Compact
 
@@ -94,21 +72,11 @@ Open the application root *Web.config* file. (Not the *Web.config* file in the *
 
 Add the following connection string to the `<connectionStrings>` element in the *Web.config* file.
 
-    <add name="MovieDBContext" 
-             connectionString="Data Source=|DataDirectory|Movies.sdf" 
-             providerName="System.Data.SqlServerCe.4.0"/>
+[!code[Main](adding-a-model/samples/sample5.xml)]
 
 The following example shows a portion of the *Web.config* file with the new connection string added:
 
-    <configuration>
-      <connectionStrings>
-        <add name="MovieDBContext" 
-             connectionString="Data Source=|DataDirectory|Movies.sdf" 
-             providerName="System.Data.SqlServerCe.4.0"/>
-        <add name="ApplicationServices"
-             connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true"
-             providerName="System.Data.SqlClient" />
-      </connectionStrings>
+[!code[Main](adding-a-model/samples/sample6.xml)]
 
 This small amount of code and XML is everything you need to write in order to represent and store the movie data in a database.
 

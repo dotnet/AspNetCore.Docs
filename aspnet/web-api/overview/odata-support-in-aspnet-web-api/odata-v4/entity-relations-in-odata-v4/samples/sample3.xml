@@ -1,8 +1,11 @@
-public static void Register(HttpConfiguration config)
+public class ProductsContext : DbContext
 {
-    ODataModelBuilder builder = new ODataConventionModelBuilder();
-    builder.EntitySet<Product>("Products");
+    static ProductsContext()
+    {
+        Database.SetInitializer(new ProductInitializer());
+    }
+
+    public DbSet<Product> Products { get; set; }
     // New code:
-    builder.EntitySet<Supplier>("Suppliers");
-    config.MapODataServiceRoute("ODataRoute", null, builder.GetEdmModel());
+    public DbSet<Supplier> Suppliers { get; set; }
 }

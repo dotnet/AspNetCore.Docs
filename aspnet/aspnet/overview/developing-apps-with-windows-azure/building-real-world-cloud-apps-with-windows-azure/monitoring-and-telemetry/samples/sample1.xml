@@ -1,29 +1,18 @@
-public class FixItTaskRepository : IFixItTaskRepository
-{
-    private MyFixItContext db = new MyFixItContext();
-    private ILogger log = null;
-
-    public FixItTaskRepository(ILogger logger)
+    public interface ILogger
     {
-        log = logger;
-    }
-
-    public async Task<FixItTask> FindTaskByIdAsync(int id)
-    {
-        FixItTask fixItTask = null;
-        Stopwatch timespan = Stopwatch.StartNew();
-
-        try
-        {
-            fixItTask = await db.FixItTasks.FindAsync(id);
-            
-            timespan.Stop();
-            log.TraceApi("SQL Database", "FixItTaskRepository.FindTaskByIdAsync", timespan.Elapsed, "id={0}", id);
-        }
-        catch(Exception e)
-        {
-            log.Error(e, "Error in FixItTaskRepository.FindTaskByIdAsynx(id={0})", id);
-        }
-
-        return fixItTask;
+        void Information(string message);
+        void Information(string fmt, params object[] vars);
+        void Information(Exception exception, string fmt, params object[] vars);
+    
+        void Warning(string message);
+        void Warning(string fmt, params object[] vars);
+        void Warning(Exception exception, string fmt, params object[] vars);
+    
+        void Error(string message);
+        void Error(string fmt, params object[] vars);
+        void Error(Exception exception, string fmt, params object[] vars);
+    
+        void TraceApi(string componentName, string method, TimeSpan timespan);
+        void TraceApi(string componentName, string method, TimeSpan timespan, string properties);
+        void TraceApi(string componentName, string method, TimeSpan timespan, string fmt, params object[] vars);
     }

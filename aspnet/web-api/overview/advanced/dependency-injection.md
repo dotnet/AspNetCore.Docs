@@ -31,83 +31,15 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 A *dependency* is any object that another object requires. For example, it's common to define a [repository](http://martinfowler.com/eaaCatalog/repository.html) that handles data access. Let's illustrate with an example. First, we'll define a domain model:
 
-    public class Product
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-    }
+[!code[Main](dependency-injection/samples/sample1.xml)]
 
 Here is a simple repository class that stores items in a database, using Entity Framework.
 
-    public class ProductsContext : DbContext
-    {
-        public ProductsContext()
-            : base("name=ProductsContext")
-        {
-        }
-        public DbSet<Product> Products { get; set; }
-    }
-    
-    public class ProductRepository : IDisposable
-    {
-        private ProductsContext db = new ProductsContext();
-    
-        public IEnumerable<Product> GetAll()
-        {
-            return db.Products;
-        }
-        public Product GetByID(int id)
-        {
-            return db.Products.FirstOrDefault(p => p.Id == id);
-        }
-        public void Add(Product product)
-        {
-            db.Products.Add(product);
-            db.SaveChanges();
-        }
-    
-        protected void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (db != null)
-                {
-                    db.Dispose();
-                    db = null;
-                }
-            }
-        }
-    
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-    }
+[!code[Main](dependency-injection/samples/sample2.xml)]
 
 Now let's define a Web API controller that supports GET requests for `Product` entities. (I'm leaving out POST and other methods for simplicity.) Here is a first attempt:
 
-    public class ProductsController : ApiController
-    {
-        // This line of code is a problem!
-        ProductRepository _repository = new ProductRepository();
-    
-        public IEnumerable<Product> Get()
-        {
-            return _repository.GetAll();
-        }
-    
-        public IHttpActionResult Get(int id)
-        {
-            var product = _repository.GetByID(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return Ok(product);
-        }
-    }
+[!code[Main](dependency-injection/samples/sample3.xml)]
 
 Notice that the controller class depends on `ProductRepository`, and we are letting the controller create the `ProductRepository` instance. However, it's a bad idea to hard code the dependency in this way, for several reasons.
 
@@ -117,31 +49,11 @@ Notice that the controller class depends on `ProductRepository`, and we are lett
 
 We can address these problems by *injecting* the repository into the controller. First, refactor the `ProductRepository` class into an interface:
 
-    public interface IProductRepository
-    {
-        IEnumerable<Product> GetAll();
-        Product GetById(int id);
-        void Add(Product product);
-    }
-    
-    public class ProductRepository : IProductRepository
-    {
-        // Implementation not shown.
-    }
+[!code[Main](dependency-injection/samples/sample4.xml)]
 
 Then provide the `IProductRepository` as a constructor parameter:
 
-    public class ProductsController : ApiController
-    {
-        private IProductRepository _repository;
-    
-        public ProductsController(IProductRepository repository)  
-        {
-            _repository = repository;
-        }
-    
-        // Other controller methods not shown.
-    }
+[!code[Main](dependency-injection/samples/sample5.xml)]
 
 This example uses [constructor injection](http://www.martinfowler.com/articles/injection.html#FormsOfDependencyInjection). You can also use *setter injection*, where you set the dependency through a setter method or property.
 
@@ -151,16 +63,7 @@ But now there is a problem, because your application doesn't create the controll
 
 Web API defines the **IDependencyResolver** interface for resolving dependencies. Here is the definition of the interface:
 
-    public interface IDependencyResolver : IDependencyScope, IDisposable
-    {
-        IDependencyScope BeginScope();
-    }
-    
-    public interface IDependencyScope : IDisposable
-    {
-        object GetService(Type serviceType);
-        IEnumerable<object> GetServices(Type serviceType);
-    }
+[!code[Main](dependency-injection/samples/sample6.xml)]
 
 The **IDependencyScope** interface has two methods:
 
@@ -182,63 +85,11 @@ An IoC container is a software component that is responsible for managing depend
 
 For this tutorial, we'll use [Unity](https://msdn.microsoft.com/en-us/library/ff647202.aspx) from Microsoft Patterns &amp; Practices. (Other popular libraries include [Castle Windsor](http://www.castleproject.org/), [Spring.Net](http://www.springframework.net/), [Autofac](https://code.google.com/p/autofac/), [Ninject](http://www.ninject.org/), and [StructureMap](http://docs.structuremap.net/).) You can use NuGet Package Manager to install Unity. From the **Tools** menu in Visual Studio, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
 
-    Install-Package Unity
+[!code[Main](dependency-injection/samples/sample7.xml)]
 
 Here is an implementation of **IDependencyResolver** that wraps a Unity container.
 
-    using Microsoft.Practices.Unity;
-    using System;
-    using System.Collections.Generic;
-    using System.Web.Http.Dependencies;
-    
-    public class UnityResolver : IDependencyResolver
-    {
-        protected IUnityContainer container;
-    
-        public UnityResolver(IUnityContainer container)
-        {
-            if (container == null)
-            {
-                throw new ArgumentNullException("container");
-            }
-            this.container = container;
-        }
-    
-        public object GetService(Type serviceType)
-        {
-            try
-            {
-                return container.Resolve(serviceType);
-            }
-            catch (ResolutionFailedException)
-            {
-                return null;
-            }
-        }
-    
-        public IEnumerable<object> GetServices(Type serviceType)
-        {
-            try
-            {
-                return container.ResolveAll(serviceType);
-            }
-            catch (ResolutionFailedException)
-            {
-                return new List<object>();
-            }
-        }
-    
-        public IDependencyScope BeginScope()
-        {
-            var child = container.CreateChildContainer();
-            return new UnityResolver(child);
-        }
-    
-        public void Dispose()
-        {
-            container.Dispose();
-        }
-    }
+[!code[Main](dependency-injection/samples/sample8.xml)]
 
 > [!NOTE] If the **GetService** method cannot resolve a type, it should return **null**. If the **GetServices** method cannot resolve a type, it should return an empty collection object. Don't throw exceptions for unknown types.
 
@@ -249,14 +100,7 @@ Set the dependency resolver on the **DependencyResolver** property of the global
 
 The following code registers the `IProductRepository` interface with Unity and then creates a `UnityResolver`.
 
-    public static void Register(HttpConfiguration config)
-    {
-        var container = new UnityContainer();
-        container.RegisterType<IProductRepository, ProductRepository>(new HierarchicalLifetimeManager());
-        config.DependencyResolver = new UnityResolver(container);
-    
-        // Other Web API configuration not shown.
-    }
+[!code[Main](dependency-injection/samples/sample9.xml)]
 
 ## Dependenecy Scope and Controller Lifetime
 
@@ -268,10 +112,6 @@ Web API then calls **GetService** on the child scope to create the controller. W
 
 How you implement **BeginScope** depends on the IoC container. For Unity, scope corresponds to a child container:
 
-    public IDependencyScope BeginScope()
-    {
-        var child = container.CreateChildContainer();
-        return new UnityResolver(child);
-    }
+[!code[Main](dependency-injection/samples/sample10.xml)]
 
 Most IoC containers have similar equivalents.

@@ -62,64 +62,13 @@ The code for the LogOn action in an ASP.NET MVC 2 application is shown below. No
 
 **Listing 1 – ASP.NET MVC 2 LogOn action in `AccountController.cs`**
 
-    [HttpPost]
-    public ActionResult LogOn(LogOnModel model, string returnUrl)
-    {
-        if (ModelState.IsValid)
-        {
-            if (MembershipService.ValidateUser(model.UserName, model.Password))
-            {
-                FormsService.SignIn(model.UserName, model.RememberMe);
-                if (!String.IsNullOrEmpty(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            }
-        }
-     
-        // If we got this far, something failed, redisplay form
-        return View(model);
-    }
+[!code[Main](preventing-open-redirection-attacks/samples/sample1.xml)]
 
 Now let's look at the changes to the ASP.NET MVC 3 LogOn action. This code has been changed to validate the returnUrl parameter by calling a new method in the System.Web.Mvc.Url helper class named `IsLocalUrl()`.
 
 **Listing 2 – ASP.NET MVC 3 LogOn action in `AccountController.cs`**
 
-    [HttpPost]
-    public ActionResult LogOn(LogOnModel model, string returnUrl)
-    {
-        if (ModelState.IsValid)
-        {
-            if (MembershipService.ValidateUser(model.UserName, model.Password))
-            {
-                FormsService.SignIn(model.UserName, model.RememberMe);
-                if (Url.IsLocalUrl(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", 
-    		"The user name or password provided is incorrect.");
-            }
-        }
-     
-        // If we got this far, something failed, redisplay form
-        return View(model);
-    }
+[!code[Main](preventing-open-redirection-attacks/samples/sample2.xml)]
 
 This has been changed to validate the return URL parameter by calling a new method in the System.Web.Mvc.Url helper class, `IsLocalUrl()`.
 
@@ -131,71 +80,25 @@ The UrlHelper IsLocalUrl() method actually just calling into a method in System.
 
 **Listing 3 – The IsLocalUrl() method from the ASP.NET MVC 3 UrlHelper `class`**
 
-    public bool IsLocalUrl(string url) {
-        return System.Web.WebPages.RequestExtensions.IsUrlLocalToHost(
-            RequestContext.HttpContext.Request, url);
-    }
+[!code[Main](preventing-open-redirection-attacks/samples/sample3.xml)]
 
 The IsUrlLocalToHost method contains the actual validation logic, as shown in Listing 4.
 
 **Listing 4 – IsUrlLocalToHost() method from the System.Web.WebPages RequestExtensions class**
 
-    public static bool IsUrlLocalToHost(this HttpRequestBase request, string url)
-    {
-       return !url.IsEmpty() &&
-              ((url[0] == '/' && (url.Length == 1 ||
-               (url[1] != '/' && url[1] != '\\'))) ||   // "/" or "/foo" but not "//" or "/\"
-               (url.Length > 1 &&
-                url[0] == '~' && url[1] == '/'));   // "~/" or "~/foo"
-    }
+[!code[Main](preventing-open-redirection-attacks/samples/sample4.xml)]
 
 In our ASP.NET MVC 1.0 or 2 application, we'll add a IsLocalUrl() method to the AccountController, but you're encouraged to add it to a separate helper class if possible. We will make two small changes to the ASP.NET MVC 3 version of IsLocalUrl() so that it will work inside the AccountController. First, we'll change it from a public method to a private method, since public methods in controllers can be accessed as controller actions. Second, we'll modify the call that checks the URL host against the application host. That call makes use of a local RequestContext field in the UrlHelper class. Instead of using this.RequestContext.HttpContext.Request.Url.Host, we will use this.Request.Url.Host. The following code shows the modified IsLocalUrl() method for use with a controller class in ASP.NET MVC 1.0 and 2 applications.
 
 **Listing 5 – IsLocalUrl() method, which is modified for use with an MVC Controller class**
 
-    private bool IsLocalUrl(string url)
-    {
-       if (string.IsNullOrEmpty(url))
-       {
-          return false;
-       }
-       else
-       {
-          return ((url[0] == '/' && (url.Length == 1 ||
-                  (url[1] != '/' && url[1] != '\\'))) ||   // "/" or "/foo" but not "//" or "/\"
-                  (url.Length > 1 &&
-                   url[0] == '~' && url[1] == '/'));   // "~/" or "~/foo"
-       }
-    }
+[!code[Main](preventing-open-redirection-attacks/samples/sample5.xml)]
 
 Now that the IsLocalUrl() method is in place, we can call it from our LogOn action to validate the returnUrl parameter, as shown in the following code.
 
 **Listing 6 – Updated LogOn method which validates the returnUrl parameter**
 
-    [HttpPost] 
-    public ActionResult LogOn(LogOnModel model, string returnUrl) 
-    { 
-        if (ModelState.IsValid) 
-        { 
-            if (MembershipService.ValidateUser(model.UserName, model.Password)) 
-            { 
-                FormsService.SignIn(model.UserName, model.RememberMe); 
-                if (IsLocalUrl(returnUrl)) 
-                { 
-                    return Redirect(returnUrl); 
-                } 
-                else 
-                { 
-                    return RedirectToAction("Index", "Home"); 
-                } 
-            } 
-            else 
-            { 
-                ModelState.AddModelError("", 
-    		    "The user name or password provided is incorrect."); 
-            } 
-        }
-    }
+[!code[Main](preventing-open-redirection-attacks/samples/sample6.xml)]
 
 Now we can test an open redirection attack by attempting to log in using an external return URL. Let's use /Account/LogOn?ReturnUrl=http://www.bing.com/ again.
 

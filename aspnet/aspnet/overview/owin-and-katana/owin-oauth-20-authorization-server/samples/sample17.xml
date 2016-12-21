@@ -1,0 +1,7 @@
+<configuration>
+   <!-- Markup removed for clarity. -->
+  
+  <dotNetOpenAuth>
+    <messaging relaxSslRequirements="true"/>
+  </dotNetOpenAuth>
+</configuration>

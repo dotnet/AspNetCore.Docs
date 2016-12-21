@@ -78,91 +78,14 @@ In ASP.NET Web Pages 2, you can use the `Validator` helper to test user input. T
     `Validator.DateTime ([error message])Validator.Decimal([error message])Validator.EqualsTo(otherField [, error message]) Validator.Float([error message])Validator.Integer([error message])Validator.Range(min, max [, error message]) Validator.RegEx(pattern [, error message]) Validator.Required([error message])Validator.StringLength(length) Validator.Url([error message])`
 3. When the page is submitted, check whether validation has passed by checking `Validation.IsValid`:
 
-        if(IsPost && Validation.IsValid()){
-            // Process form submit
-        }
+    [!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample1.xml)]
 
     If there are any validation errors, you skip normal page processing. For example, if the purpose of the page is to update a database, you don't do that until all validation errors have been fixed.
 4. If there are validation errors, display error messages in the page's markup by using `Html.ValidationSummary` or `Html.ValidationMessage`, or both.
 
 The following example shows a page that illustrates these steps.
 
-    @{
-        var message="";
-        // Specify validation requirements for different fields.
-        Validation.RequireField("coursename", "Class name is required");
-        Validation.RequireField("credits", "Credits is required");
-        Validation.Add("coursename", Validator.StringLength(5));
-        Validation.Add("credits", Validator.Integer("Credits must be an integer"));
-        Validation.Add("credits", Validator.Range(1, 5, "Credits must be between 1 and 5"));
-        Validation.Add("startDate", Validator.DateTime("Start date must be a date"));
-    
-        if (IsPost)  {
-            // Before processing anything, make sure that all user input is valid.
-            if (Validation.IsValid()) {
-                var coursename = Request["coursename"];
-                var credits = Request["credits"].AsInt();
-                var startDate = Request["startDate"].AsDateTime();
-                message += @"For Class, you entered " + coursename;
-                message += @"<br/>For Credits, you entered " + credits.ToString();
-                message += @"<br/>For Start Date, you entered " + startDate.ToString("dd-MMM-yyyy");
-    
-                // Further processing here
-            }
-        }
-    }
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <title>Validation Example</title>
-      <style>
-          body {margin: 1in; font-family: 'Segoe UI'; font-size: 11pt; }
-       </style>
-    </head>
-    <body>
-      <h1>Validation Example</h1>
-      <p>This example page asks the user to enter information about some classes at school.</p>
-      <form method="post">
-        @Html.ValidationSummary()
-        <div>
-          <label for="coursename">Course name: </label>
-          <input type="text"
-             name="coursename"
-             value="@Request["coursename"]"
-          />
-          @Html.ValidationMessage("coursename")
-        </div>
-    
-        <div>
-          <label for="credits">Credits: </label>
-          <input type="text"
-             name="credits"
-             value="@Request["credits"]"
-          />
-          @Html.ValidationMessage("credits")
-        </div>
-    
-        <div>
-          <label for="startDate">Start date: </label>
-          <input type="text"
-             name="startDate"
-             value="@Request["startDate"]"
-          />
-          @Html.ValidationMessage("startDate")
-        </div>
-    
-       <div>
-          <input type="submit" value="Submit" class="submit" />
-        </div>
-    
-        <div>
-          @if(IsPost){
-            <p>@Html.Raw(message)</p>
-          }
-        </div>
-      </form>
-    </body>
-    </html>
+[!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample2.xml)]
 
 To see how validation works, run this page and deliberately make mistakes. For example, here's what the page looks like if you forget to enter a course name, if you enter an , and if you enter an invalid date:
 
@@ -180,20 +103,14 @@ You can add support to perform validation in client script. In that case, the va
 
 1. Register the following JavaScript libraries in the page:  
 
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js">
-        </script>
-        <script
-        src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js">
-        </script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.js">
-        </script>
+    [!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample3.xml)]
 
  Two of the libraries are loadable from a content delivery network (CDN), so you don't necessarily have to have them on your computer or server. However, you must have a local copy of     *jquery.validate.unobtrusive.js* . If you are not already working with a WebMatrix template (like     **Starter Site** ) that includes the library, create a Web Pages site that's based on     **Starter Site** . Then copy the     *.js* file to your current site.
 2. In markup, for each element that you're validating, add a call to `Validation.For(field)`. This method emits attributes that are used by client-side validation. (Rather than emitting actual JavaScript code, the method emits attributes like `data-val-...`. These attributes support unobtrusive client validation that uses jQuery to do the work.)
 
 The following page shows how to add client validation features to the example shown earlier.
 
-[!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample1.xml?highlight=35-39,51,61,71)]
+[!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample4.xml?highlight=35-39,51,61,71)]
 
 Not all validation checks run on the client. In particular, data-type validation (integer, date, and so on) don't run on the client. The following checks work on both the client and server:
 
@@ -219,27 +136,7 @@ You can control how validation errors are displayed by defining CSS classes that
 
 The following `<style>` block shows rules for error conditions.
 
-    <style>
-    .validation-summary-errors {
-      border:2px solid red;
-      color:red;
-      font-weight:bold;
-      margin:6px;
-      width:30%;
-    }
-    
-    .field-validation-error{
-      color:red;
-       font-weight:bold;
-       background-color:yellow;
-    }
-    
-    .input-validation-error{
-      color:red;
-      font-weight:bold;
-      background-color:pink;
-    }
-    </style>
+[!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample5.xml)]
 
 If you include this style block in the example pages from earlier in the article, the error display will look like the following illustration:
 
@@ -274,14 +171,7 @@ In this case, you want to make sure that the value that's passed to the page (he
 
 The following example shows how you might validate a value that's passed in a query string. The code tests that the value is not empty and that it's an integer.
 
-    if(!IsPost){
-        if(!Request.QueryString["classid"].IsEmpty() && Request.QueryString["classid"].IsInt()) {
-            // Process the value
-        }
-        else{
-            Validation.AddFormError("No class was selected.");
-        }
-    }
+[!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample6.xml)]
 
 Notice that the test is performed when the request is not a form submission (`if(!IsPost)`). This test would pass the first time that the page is requested, but not when the request is a form submission.
 

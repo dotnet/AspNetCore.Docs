@@ -1,40 +1,37 @@
 //
-// POST: /Account/Login
+// POST: /Account/Register
 [HttpPost]
 [AllowAnonymous]
 [ValidateAntiForgeryToken]
-public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+public async Task<ActionResult> Register(RegisterViewModel model)
 {
-    if (!ModelState.IsValid)
-    {
-        return View(model);
-    }
+   if (ModelState.IsValid)
+   {
+      var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+      var result = await UserManager.CreateAsync(user, model.Password);
+      if (result.Succeeded)
+      {
+         //  Comment the following line to prevent log in until the user is confirmed.
+         //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-    // Require the user to have a confirmed email before they can log on.
-    var user = await UserManager.FindByNameAsync(model.Email);
-    if (user != null)
-    {
-       if (!await UserManager.IsEmailConfirmedAsync(user.Id))
-       {
-          ViewBag.errorMessage = "You must have a confirmed email to log on.";
-          return View("Error");
-       }
-    }
+         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+         var callbackUrl = Url.Action("ConfirmEmail", "Account",
+            new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+         await UserManager.SendEmailAsync(user.Id, "Confirm your account",
+            "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-    // This doesn't count login failures towards account lockout
-    // To enable password failures to trigger account lockout, change to shouldLockout: true
-    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-    switch (result)
-    {
-        case SignInStatus.Success:
-            return RedirectToLocal(returnUrl);
-        case SignInStatus.LockedOut:
-            return View("Lockout");
-        case SignInStatus.RequiresVerification:
-            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-        case SignInStatus.Failure:
-        default:
-            ModelState.AddModelError("", "Invalid login attempt.");
-            return View(model);
-    }
+         // Uncomment to debug locally 
+         // TempData["ViewBagLink"] = callbackUrl;
+
+         ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
+                         + "before you can log in.";
+
+         return View("Info");
+         //return RedirectToAction("Index", "Home");
+      }
+      AddErrors(result);
+   }
+
+   // If we got this far, something failed, redisplay form
+   return View(model);
 }

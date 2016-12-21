@@ -1,5 +1,6 @@
-catch (Exception e)
-{
-    log.Error(e, "Error in FixItTaskRepository.FindTasksByOwnerAsync(userName={0})", userName);
-    return null;
-}
+<system.web>
+  <customErrors mode="On"/>
+  <authentication mode="None" />
+  <compilation debug="true" targetFramework="4.5" />
+  <httpRuntime targetFramework="4.5" />
+</system.web>

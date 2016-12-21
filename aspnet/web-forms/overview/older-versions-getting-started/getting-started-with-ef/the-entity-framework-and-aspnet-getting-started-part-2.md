@@ -46,17 +46,11 @@ Specify *Site.Master*as the master page. All of the pages you create for these t
 
 In **Source** view, add an `h2` heading to the `Content` control named `Content2`, as shown in the following example:
 
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-       <h2>Student List</h2>
-    </asp:Content>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample1.xml)]
 
 From the **Data** tab of the **Toolbox**, drag an `EntityDataSource` control to the page, drop it below the heading, and change the ID to `StudentsEntityDataSource`:
 
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        <h2>Student List</h2>
-        <asp:EntityDataSource ID="StudentsEntityDataSource" runat="server">
-        </asp:EntityDataSource>
-    </asp:Content>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample2.xml)]
 
 Switch to **Design** view, click the data source control's smart tag, and then click **Configure Data Source** to launch the **Configure Data Source** wizard.
 
@@ -134,55 +128,17 @@ Do the same for **EnrollmentDate**.
 
 Click **OK** and then switch to **Source** view. The remaining changes will be easier to do directly in markup. The `GridView` control markup now looks like the following example.
 
-    <asp:GridView ID="StudentsGridView" runat="server" AllowPaging="True" 
-            AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="PersonID" 
-            DataSourceID="StudentsEntityDataSource">
-            <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                <asp:TemplateField HeaderText="FirstMidName" SortExpression="FirstMidName">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("FirstMidName") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("FirstMidName") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="EnrollmentDate" SortExpression="EnrollmentDate">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("EnrollmentDate") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("EnrollmentDate") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample3.xml)]
 
 The first column after the command field is a template field that currently displays the first name. Change the markup for this template field to look like the following example:
 
-    <asp:TemplateField HeaderText="Name" SortExpression="LastName">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="LastNameTextBox" runat="server" Text='<%# Bind("LastName") %>'></asp:TextBox>
-                        <asp:TextBox ID="FirstNameTextBox" runat="server" Text='<%# Bind("FirstMidName") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="LastNameLabel" runat="server" Text='<%# Eval("LastName") %>'></asp:Label>,
-                        <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Eval("FirstMidName") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample4.xml)]
 
 In display mode, two `Label` controls display the first and last name. In edit mode, two text boxes are provided so you can change the first and last name. As with the `Label` controls in display mode, you use `Bind` and `Eval` expressions exactly as you would with ASP.NET data source controls that connect directly to databases. The only difference is that you're specifying entity properties instead of database columns.
 
 The last column is a template field that displays the enrollment date. Change the markup for this field to look like the following example:
 
-    <asp:TemplateField HeaderText="Enrollment Date" SortExpression="EnrollmentDate">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="EnrollmentDateTextBox" runat="server" Text='<%# Bind("EnrollmentDate", "{0:d}") %>'></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="EnrollmentDateLabel" runat="server" Text='<%# Eval("EnrollmentDate", "{0:d}") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample5.xml)]
 
 In both display and edit mode, the format string "{0,d}" causes the date to be displayed in the "short date" format. (Your computer might be configured to display this format differently from the screen images shown in this tutorial.)
 
@@ -198,11 +154,7 @@ In the markup for the `EntityDataSource` control, remove the `ConnectionString` 
 
 The markup will now resemble the following example (the order of the properties might be different):
 
-    <asp:EntityDataSource ID="StudentsEntityDataSource" runat="server"
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False"
-            EntitySetName="People"
-            EnableDelete="True" EnableUpdate="True">
-        </asp:EntityDataSource>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample6.xml)]
 
 The `EnableFlattening` attribute refers to a feature that was needed in earlier versions of the Entity Framework because foreign key columns were not exposed as entity properties. The current version makes it possible to use *foreign key associations*, which means foreign key properties are exposed for all but many-to-many associations. If your entities have foreign key properties and no [complex types](https://msdn.microsoft.com/en-us/library/bb738472.aspx), you can leave this attribute set to `False`. Don't remove the attribute from the markup, because the default value is `True`. For more information, see [Flattening Objects (EntityDataSource)](https://msdn.microsoft.com/en-us/library/ee404746.aspx).
 
@@ -232,11 +184,7 @@ Open or switch to *Students.aspx*, switch to **Design** view, select `StudentsEn
 
 Switch to **Source** view. In the `StudentsGridView` control, after the last `asp:TemplateField` element, add the following new template field:
 
-    <asp:TemplateField HeaderText="Number of Courses">
-                    <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("StudentGrades.Count") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample7.xml)]
 
 In the `Eval` expression, you can reference the navigation property `StudentGrades`. Because this property contains a collection, it has a `Count` property that you can use to display the number of courses in which the student is enrolled. In a later tutorial you'll see how to display data from navigation properties that contain single entities instead of collections. (Note that you cannot use `BoundField` elements to display data from navigation properties.)
 
@@ -250,26 +198,7 @@ The next step is to create a page that has a `DetailsView` control that will let
 
 Add the following markup to replace the existing markup for the `Content` control named `Content2`:
 
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        <h2>Add New Students</h2>
-        <asp:EntityDataSource ID="StudentsEntityDataSource" runat="server"
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False"
-            EnableInsert="True" EntitySetName="People">
-        </asp:EntityDataSource>
-        <asp:DetailsView ID="StudentsDetailsView" runat="server" 
-            DataSourceID="StudentsEntityDataSource" AutoGenerateRows="False"
-            DefaultMode="Insert">
-            <Fields>
-                <asp:BoundField DataField="FirstMidName" HeaderText="First Name" 
-                    SortExpression="FirstMidName" />
-                <asp:BoundField DataField="LastName" HeaderText="Last Name" 
-                    SortExpression="LastName" />
-                <asp:BoundField DataField="EnrollmentDate" HeaderText="Enrollment Date" 
-                    SortExpression="EnrollmentDate" />
-                 <asp:CommandField ShowInsertButton="True" />
-           </Fields>
-        </asp:DetailsView>
-    </asp:Content>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample8.xml)]
 
 This markup creates an `EntityDataSource` control that is similar to the one you created in *Students.aspx*, except it enables insertion. As with the `GridView` control, the bound fields of the `DetailsView` control are coded exactly as they would be for a data control that connects directly to a database, except that they reference entity properties. In this case, the `DetailsView` control is used only for inserting rows, so you have set the default mode to `Insert`.
 
@@ -285,9 +214,7 @@ In the following steps you'll databind a `DropDownList` control to an entity set
 
 Create a new web page named *Courses.aspx*. In **Source** view, add a heading to the `Content` control that's named `Content2`:
 
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        <h2>Courses by Department</h2>
-    </asp:Content>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample9.xml)]
 
 In **Design** view, add an `EntityDataSource` control to the page as you did before, except this time name it `DepartmentsEntityDataSource`. Select **Departments** as the **EntitySetName** value, and select only the **DepartmentID** and **Name** properties.
 
@@ -305,11 +232,7 @@ The method you use to databind the control using the Entity Framework is the sam
 
 Switch to **Source** view and add "Select a department:" immediately before the `DropDownList` control.
 
-    Select a department:
-        <asp:DropDownList ID="DropDownList1" runat="server" 
-            DataSourceID="EntityDataSource1" DataTextField="Name" 
-            DataValueField="DepartmentID">
-        </asp:DropDownList>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-2/samples/sample10.xml)]
 
 As a reminder, change the markup for the `EntityDataSource` control at this point by replacing the `ConnectionString` and `DefaultContainerName` attributes with a `ContextTypeName="ContosoUniversity.DAL.SchoolEntities"` attribute. It's often best to wait until after you've created the data-bound control that is linked to the data source control before you change the `EntityDataSource` control markup, because after you make the change, the designer will not provide you with a **Refresh Schema** option in the data-bound control.
 

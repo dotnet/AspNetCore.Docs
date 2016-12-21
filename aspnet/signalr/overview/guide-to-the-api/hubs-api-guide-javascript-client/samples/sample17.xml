@@ -1,1 +1,1 @@
-var contosoChatHubProxy = connection.createHubProxy('contosoChatHub');
+$.connection.hub.start( { transport: ['webSockets', 'longPolling'] });

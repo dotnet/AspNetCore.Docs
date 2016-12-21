@@ -132,33 +132,13 @@ The combination of *await*, *async*, and the *Task* object makes it much easier 
 
 Suppose that you want to perform asynchronous work within a method that returns a *Task* object. The following code example defines an asynchronous method that makes an asynchronous call to download the Microsoft home page. Notice the use of the *async* keyword in the method signature and the *await* call to *DownloadStringTaskAsync*.
 
-    private async Task
-    ScrapeHtmlPage(object caller, EventArgs e)
-     {
-    WebClient wc = new WebClient();
-    var result = await wc.DownloadStringTaskAsync("https://www.microsoft.com");
-    // Do something with the result
-    }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample1.xml)]
 
 That's all you have to write — the .NET Framework will automatically handle unwinding the call stack while waiting for the download to complete, as well as automatically restoring the call stack after the download is done.
 
 Now suppose that you want to use this asynchronous method in an asynchronous ASP.NET HTTP module. ASP.NET 4.5 includes a helper method (*EventHandlerTaskAsyncHelper*) and a new delegate type (*TaskEventHandler*) that you can use to integrate task-based asynchronous methods with the older asynchronous programming model exposed by the ASP.NET HTTP pipeline. This example shows how:
 
-    public void Init(HttpApplication
-    context)
-     {
-       // Wrap the Task-based method so that it can be used with 
-       // the older async programming model.
-       EventHandlerTaskAsyncHelper helper = 
-     	   new EventHandlerTaskAsyncHelper(ScrapeHtmlPage);
-     
-     	   // The helper object makes it easy to extract Begin/End methods out of
-     	   // a method that returns a Task object. The ASP.NET pipeline calls the 
-     	   // Begin and End methods to start and complete calls on asynchronous 
-     	   // HTTP modules.
-     	   context.AddOnPostAuthorizeRequestAsync(
-     		   helper.BeginEventHandler, helper.EndEventHandler);
-    }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample2.xml)]
 
 <a id="_Toc318097378"></a>
 #### Asynchronous HTTP handlers
@@ -169,20 +149,7 @@ The *HttpTaskAsyncHandler* type is abstract and requires you to override the *Pr
 
 The following example shows how you can use *Task* and *await* as part of the implementation of an asynchronous HTTP handler:
 
-    public class MyAsyncHandler : HttpTaskAsyncHandler
-    {
-    // ...
-     
-    // ASP.NET automatically takes care of integrating the Task based override
-    // with the ASP.NET pipeline.
-    public override async Task ProcessRequestAsync(HttpContext context)
-    {
-     	   WebClient wc = new WebClient();
-     	   var result = await 
-     		   wc.DownloadStringTaskAsync("https://www.microsoft.com");
-     	   // Do something with the result
-    }
-    }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample3.xml)]
 
 <a id="_Toc318097379"></a>
 ### New ASP.NET Request Validation Features
@@ -200,7 +167,7 @@ ASP.NET 4.5 introduces two features that make it easy for you to selectively wor
 
 In ASP.NET 4.5, by default all request data is subject to request validation. However, you can configure the application to defer request validation until you actually access request data. (This is sometimes referred to as lazy request validation, based on terms like lazy loading for certain data scenarios.) You can configure the application to use deferred validation in the Web.config file by setting the *requestValidationMode* attribute to 4.5 in the *httpRUntime* element, as in the following example:
 
-    <httpRuntime requestValidationMode="4.5" ... />
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample4.xml)]
 
 When request validation mode is set to 4.5, request validation is triggered only for a specific request value and only when your code accesses that value. For example, if your code gets the value of Request.Form["forum\_post"], request validation is invoked only for that element in the form collection. None of the other elements in the *Form* collection are validated. In previous versions of ASP.NET, request validation was triggered for the entire request collection when any element in the collection was accessed. The new behavior makes it easier for different application components to look at different pieces of request data without triggering request validation on other pieces.
 
@@ -213,12 +180,11 @@ To allow this, ASP.NET 4.5 now supports unvalidated access to request data. ASP.
 
 Using the forum example, to be able to read unvalidated request data, you first need to configure the application to use the new request validation mode:
 
-    <httpRuntime requestValidationMode="4.5" ...
-    />
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample5.xml)]
 
 You can then use the *HttpRequest.Unvalidated* property to read the unvalidated form value:
 
-    var s = context.Request.Unvalidated.Form["forum_post"];
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample6.xml)]
 
 
 **Security Note**: *Use unvalidated request data with care!* ASP.NET 4.5 added the unvalidated request properties and collections to make it easier for you to access very specific unvalidated request data. However, you must still perform custom validation on the raw request data to ensure that dangerous text is not rendered to users.
@@ -231,8 +197,7 @@ Due to the popularity of the Microsoft AntiXSS Library, ASP.NET 4.5 now incorpor
 
 The encoding routines are implemented by the *AntiXssEncoder* type in the new *System.Web.Security.AntiXss* namespace. You can use the *AntiXssEncoder* type directly by calling any of the static encoding methods that are implemented in the type. However, the easiest approach for using the new anti-XSS routines is to configure an ASP.NET application to use the *AntiXssEncoder* class by default. To do this, add the following attribute to the Web.config file:
 
-    <httpRuntime ...
-      encoderType="System.Web.Security.AntiXss.AntiXssEncoder,System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample7.xml)]
 
 When the *encoderType* attribute is set to use the *AntiXssEncoder* type, all output encoding in ASP.NET automatically uses the new encoding routines.
 
@@ -254,57 +219,25 @@ ASP.NET 4.5 and IIS 8 include low-level WebSockets support, enabling ASP.NET dev
 
 A browser client establishes a WebSockets connection by creating a DOM *WebSocket* object that points to a URL in an ASP.NET application, as in the following example:
 
-    socket = new WebSocket("ws://contoso.com/MyWebSocketApplication.ashx");
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample8.xml)]
 
 You can create WebSockets endpoints in ASP.NET using any kind of module or handler. In the previous example, an .ashx file was used, because .ashx files are a quick way to create a handler.
 
 According to the WebSockets protocol, an ASP.NET application accepts a client's WebSockets request by indicating that the request should be upgraded from an HTTP GET request to a WebSockets request. Here's an example:
 
-    HttpContext.Current.AcceptWebSocketRequest(// WebSocket delegate goes here)
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample9.xml)]
 
 The *AcceptWebSocketRequest* method accepts a function delegate because ASP.NET unwinds the current HTTP request and then transfers control to the function delegate. Conceptually this approach is similar to how you use *System.Threading.Thread*, where you define a thread-start delegate in which background work is performed.
 
 After ASP.NET and the client have successfully completed a WebSockets handshake, ASP.NET calls your delegate and the WebSockets application starts running. The following code example shows a simple echo application that uses the built-in WebSockets support in ASP.NET:
 
-    public async Task MyWebSocket(AspNetWebSocketContext context)
-     {
-    WebSocket socket = context.WebSocket;
-    while (true)
-    {
-     	   ArraySegment<byte> buffer = new ArraySegment<byte>(new byte[1024]);
-     
-     	   // Asynchronously wait for a message to arrive from a client
-     	   WebSocketReceiveResult result = 
-     		   await socket.ReceiveAsync(buffer, CancellationToken.None);
-     
-     	   // If the socket is still open, echo the message back to the client
-     	   if (socket.State == WebSocketState.Open)
-     	   {
-     		   string userMessage = Encoding.UTF8.GetString(buffer.Array, 0,
-     			   result.Count);
-     		   userMessage = "You sent: " + userMessage + " at " + 
-     			   DateTime.Now.ToLongTimeString();
-     		   buffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes(userMessage));
-     
-     		   // Asynchronously send a message to the client
-     		   await socket.SendAsync(buffer, WebSocketMessageType.Text,
-     			   true, CancellationToken.None);
-     	   }
-     	   else { break; }
-    }
-    }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample10.xml)]
 
 The support in .NET 4.5 for the *await* keyword and asynchronous task-based operations is a natural fit for writing WebSockets applications. The code example shows that a WebSockets request runs completely asynchronously inside ASP.NET. The application waits asynchronously for a message to be sent from a client by calling *await socket.ReceiveAsync*. Similarly, you can send an asynchronous message to a client by calling *await socket.SendAsync*.
 
 In the browser, an application receives WebSockets messages through an *onmessage* function. To send a message from a browser, you call the *send* method of the *WebSocket* DOM type, as shown in this example:
 
-    // Receive a string message from the server.
-     socket.onmessage = function(msg)
-     {
-    document.getElementById("serverData").innerHTML = msg.data; 
-    };
-    // Send a string message from the browser.
-     socket.send(document.getElementById("msgText"));
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample11.xml)]
 
 In the future, we might release updates to this functionality that abstract away some of the low-level coding that is required in this release for WebSockets applications.
 
@@ -317,13 +250,11 @@ Bundles are created using the Bundle class or one of its child classes, ScriptBu
 
 Bundles are referenced from within views by using one of a couple possible helper methods. In order to support rendering different markup for a bundle when in debug vs. release mode, the ScriptBundle and StyleBundle classes have the helper method, Render. When in debug mode, Render will generate markup for each resource in the bundle. When in release mode, Render will generate a single markup element for the entire bundle. Toggling between debug and release mode can be accomplished by modifying the debug attribute of the compilation element in web.config as shown below:
 
-    <system.web>
-     <compilation targetframework="4.5" debug="true" />
-     ...</system.web>
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample12.xml)]
 
 Additionally, enabling or disabling optimization can be set directly via the BundleTable.EnableOptimizations property.
 
-    BundleTable.EnableOptimizations = true;
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample13.xml)]
 
 When files are bundled, they are first sorted alphabetically (the way they are displayed in **Solution Explorer**). They are then organized so that known libraries and their custom extensions (such as jQuery, MooTools, and Dojo) are loaded first. For example, the final order for the bundling of the Scripts folder as shown above will be:
 
@@ -382,8 +313,7 @@ Sharing assemblies using symbolic links requires a new tool named aspnet\_intern
 
 To make sure all eligible assemblies have been interned, you run aspnet\_intern.exe periodically (for example, once a week as a scheduled task). A typical use is as follows:
 
-    aspnet_intern -mode exec -sourcedir
-    "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files" -interndir C:\ASPNETCommonAssemblies
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample14.xml)]
 
 To see all options, run the tool with no arguments.
 
@@ -396,11 +326,7 @@ For a cold site startup, not only do assemblies have to be read from disk, but t
 
 JIT-compiling using multiple cores is enabled by default in ASP.NET, so you do not need to do anything to take advantage of this feature. If you want to disable this feature, make the following setting in the Web.config file:
 
-    <configuration>
-      <!-- ... -->
-      <system.web>
-    <compilation profileGuidedOptimizations="None"  />
-      <!-- ... -->
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample15.xml)]
 
 <a id="_Toc_perf_5"></a>
 #### Tuning garbage collection to optimize for memory
@@ -413,11 +339,7 @@ For the .NET Framework 4.5, instead of multiple standalone settings, a workload-
 
 To enable GC memory tuning, add the following setting to the Windows\Microsoft.NET\Framework\v4.0.30319\aspnet.config file:
 
-    <configuration>
-      <!-- ... -->
-      <runtime>
-    <performanceScenario value="HighDensityWebHosting"  />
-      <!-- ... -->
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample16.xml)]
 
 (If you're familiar with the previous guidance for changes to aspnet.config, note that this setting replaces the old settings — for example, there is no need to set gcServer, gcConcurrent, etc. You do not have to remove the old settings.)
 
@@ -430,18 +352,11 @@ For several releases, Windows has included a technology known as the [prefetcher
 
 For Windows Server, the prefetcher is not enabled by default. To enable and configure the prefetcher for high-density web hosting, run the following set of commands at the command line:
 
-    sc config sysmain start=auto
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v EnablePrefetcher /t REG_DWORD /d 2 /f
-    reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Prefetcher" /v MaxPrefetchFiles /t REG_DWORD /d 8192 /f
-    net start sysmain
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample17.xml)]
 
 Then, to integrate the prefetcher with ASP.NET applications, add the following to the Web.config file:
 
-    <configuration>
-      <!-- ... -->
-      <system.web>
-    <compilation enablePrefetchOptimization="true" />
-      <!-- ... -->
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample18.xml)]
 
 <a id="_Toc318097385"></a>
 ## ASP.NET Web Forms
@@ -451,37 +366,11 @@ Then, to integrate the prefetcher with ASP.NET applications, add the following t
 
 In ASP.NET 4.5, Web Forms includes some improvements for working with data. The first improvement is strongly typed data controls. For Web Forms controls in previous versions of ASP.NET, you display a data-bound value using *Eval* and a data-binding expression:
 
-    <ul>
-    <asp:Repeater runat="server" ID="customers">
-     	   <ItemTemplate>
-     		   <li>
-     			   First Name: <%# Eval("FirstName")%><br />
-     			   Last Name: <%# Eval("LastName")%><br />
-     		   </li>
-     	   </ItemTemplate>
-    </asp:Repeater>
-    </ul>
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample19.xml)]
 
 For two-way data binding, you use *Bind*:
 
-    <asp:FormView runat="server" ID="editCustomer">
-    <EditItemTemplate>
-     	   <div>
-     		   <asp:Label runat="server" AssociatedControlID="firstName">
-     			   First Name:</asp:Label>
-     		   <asp:TextBox ID="firstName" runat="server"
-     			   Text='<%#Bind("FirstName") %>' />
-     	   </div>
-     	   <div>
-     		   <asp:Label runat="server" AssociatedControlID="lastName">
-     			   First Name:</asp:Label>
-     		   <asp:TextBox ID="lastName" runat="server"
-     			   Text='<%#
-    Bind("LastName") %>' />
-     	   </div>
-     	   <asp:Button runat="server" CommandName="Update"/>
-    </EditItemTemplate>
-    </asp:FormView>
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample20.xml)]
 
 At run time, these calls use reflection to read the value of the specified member and then display the result in the markup. This approach makes it easy to data bind against arbitrary, unshaped data.
 
@@ -492,23 +381,7 @@ To address this issue, ASP.NET 4.5 adds the ability to declare the data type of 
 
 For two-way data-binding expressions, use the *BindItem* variable:
 
-    <asp:FormView runat="server" ID="editCustomer">
-    <EditItemTemplate>
-     	   <div>
-     		   <asp:Label runat="server" AssociatedControlID="firstName">
-     			   First Name:</asp:Label>
-     		   <asp:TextBox ID="firstName" runat="server"  
-     			   Text='<%#BindItem.FirstName %>' />
-     	   </div>
-     	   <div>
-     		   <asp:Label runat="server" AssociatedControlID="lastName">
-     			   First Name:</asp:Label>
-     		   <asp:TextBox ID="lastName" runat="server" 
-     			   Text='<%#BindItem.LastName %>' />
-     	   </div>
-     	   <asp:Button runat="server" CommandName="Update"/>
-    </EditItemTemplate>
-    </asp:FormView>
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample21.xml)]
 
 
 Most controls in the ASP.NET Web Forms framework that support data binding have been updated to support the *ItemType* property.
@@ -525,30 +398,13 @@ To configure a data control to use model binding to select data, you set the con
 
 In the following example, the *GridView* control is configured to use a method named *GetCategories*:
 
-    <asp:GridView ID="categoriesGrid"
-    runat="server"
-    ItemType="WebApplication1.Model.Category"
-    SelectMethod="GetCategories" AutoGenerateColumns="false">
-    <Columns>
-     	   <asp:BoundField DataField="CategoryID" HeaderText="ID" />
-     	   <asp:BoundField DataField="CategoryName" HeaderText="Name" />
-     	   <asp:BoundField DataField="Description" HeaderText="Description" />
-     	   <asp:TemplateField HeaderText="# of Products">
-     		   <ItemTemplate><%# Item.Products.Count %></ItemTemplate>
-     	   </asp:TemplateField>
-    </Columns>
-    </asp:GridView>
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample22.xml)]
 
 You create the *GetCategories* method in the page's code. For a simple select operation, the method needs no parameters and should return an *IEnumerable* or *IQueryable* object. If the new *ItemType* property is set (which enables strongly typed data-binding expressions, as explained under [Strongly Typed Data Controls](#_Strongly_Typed_Data) earlier), the generic versions of these interfaces should be returned — *IEnumerable&lt;T&gt;* or *IQueryable&lt;T&gt;*, with the *T* parameter matching the type of the *ItemType* property (for example, *IQueryable&lt;Category&gt;*).
 
 The following example shows the code for a *GetCategories* method. This example uses the Entity Framework Code First model with the Northwind sample database. The code makes sure that the query returns details of the related products for each category by way of the *Include* method. (This ensures that the *TemplateField* element in the markup displays the count of products in each category without requiring an [n+1 select](http://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem).)
 
-    public IQueryable<Category>
-    GetCategories()
-    {
-    var db = new Northwind();
-    return db.Categories.Include(c => c.Products);
-     }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample23.xml)]
 
 When the page runs, the *GridView* control calls the *GetCategories* method automatically and renders the returned data using the configured fields:
 
@@ -558,24 +414,7 @@ Because the select method returns an *IQueryable* object, the *GridView* control
 
 The following example shows the *GridView* control modified to allow sorting and paging:
 
-    <asp:GridView ID="categoriesGrid"
-    runat="server"
-    AutoGenerateColumns="false"
-    AllowSorting="true" AllowPaging="true" PageSize="5"
-    ItemType="WebApplication1.Model.Category" DataKeyNames="CategoryID"
-    SelectMethod="GetCategories"
-    UpdateMethod="UpdateCategory">
-    <Columns>
-     	   <asp:BoundField DataField="CategoryID" HeaderText="ID" SortExpression="CategoryID" />
-     	   <asp:BoundField DataField="CategoryName" HeaderText="Name" SortExpression="CategoryName" />
-     	   <asp:BoundField DataField="Description" HeaderText="Description" />
-     	   <asp:TemplateField HeaderText="# of Products">
-     		   <ItemTemplate><%# Item.Products.Count %></ItemTemplate>
-     	   </asp:TemplateField>
-    </Columns>
-    <EmptyDataTemplate>No categories found with a product count of 
-     	  <%# minProductsCount.SelectedValue %></EmptyDataTemplate>
-    </asp:GridView>
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample24.xml)]
 
 Now when the page runs, the control can make sure that only the current page of data is displayed and that it's ordered by the selected column:
 
@@ -585,17 +424,7 @@ To filter the returned data, parameters have to be added to the select method. T
 
 For example, assume that you want to let users filter products by entering a keyword in the query string. You can add a parameter to the method and update the code to use the parameter value:
 
-    public IQueryable<Product>
-    GetProducts(string keyword)
-     {
-    IQueryable<Product> query = _db.Products;
-     
-    if (!String.IsNullOrWhiteSpace(keyword))
-    {
-     	   query = query.Where(p => p.ProductName.Contains(keyword));
-    }
-    return query;
-     }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample25.xml)]
 
 This code includes a *Where* expression if a value is provided for *keyword* and then returns the query results.
 
@@ -604,17 +433,7 @@ This code includes a *Where* expression if a value is provided for *keyword* and
 
 The previous example was not specific about where the value for the *keyword* parameter was coming from. To indicate this information, you can use a parameter attribute. For this example, you can use the *QueryStringAttribute* class that's in the *System.Web.ModelBinding* namespace:
 
-    public IQueryable<Product>
-    GetProducts([QueryString]string keyword)
-     {
-    IQueryable<Product> query = _db.Products;
-     
-    if (!String.IsNullOrWhiteSpace(keyword))
-    {
-     	   query = query.Where(p => p.ProductName.Contains(keyword));
-    }
-    return query;
-     }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample26.xml)]
 
 This instructs model binding to try to bind a value from the query string to the *keyword* parameter at run time. (This might involve performing type conversion, although it doesn't in this case.) If a value cannot be provided and the type is non-nullable, an exception is thrown.
 
@@ -622,17 +441,7 @@ The sources of values for these methods are referred to as value providers, and 
 
 By default, the parameter name is used as the key to find a value in the value provider collection. In the example, the code will look for a query-string value named keyword (for example, ~/default.aspx?keyword=chef). You can specify a custom key by passing it as an argument to the parameter attribute. For example, to use the value of the query-string variable named q, you could do this:
 
-    public IQueryable<Product>
-    GetProducts([QueryString("q")]string keyword)
-     {
-    IQueryable<Product> query = _db.Products;
-     
-    if (!String.IsNullOrWhiteSpace(keyword))
-    {
-     	   query = query.Where(p => p.ProductName.Contains(keyword));
-    }
-    return query;
-     }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample27.xml)]
 
 If this method is in the page's code, users can filter the results by passing a keyword using the query string:
 
@@ -645,61 +454,19 @@ Model binding accomplishes many tasks that you would otherwise have to code by h
 
 Suppose you want to extend the example to let the user choose a filter value from a drop-down list. Add the following drop-down list to the markup and configure it to get its data from another method using the *SelectMethod* property:
 
-    <asp:Label runat="server" AssociatedControlID="categories"
-    Text="Select a category to show products for: " />
-    <asp:DropDownList runat="server" ID="categories"
-    SelectMethod="GetCategories" AppendDataBoundItems="true"
-    DataTextField="CategoryName" DataValueField="CategoryID"
-    AutoPostBack="true">
-      <asp:ListItem Value="" Text="- all -" />
-    </asp:DropDownList>
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample28.xml)]
 
 Typically you would also add an *EmptyDataTemplate* element to the *GridView* control so that the control will display a message if no matching products are found:
 
-    <asp:GridView ID="productsGrid"
-    runat="server" DataKeyNames="ProductID"
-    AllowPaging="true" AllowSorting="true" AutoGenerateColumns="false"
-    SelectMethod="GetProducts" >
-    <Columns>
-     	   <asp:BoundField DataField="ProductID" HeaderText="ID" />
-     	   <asp:BoundField DataField="ProductName" HeaderText="Name"				  
-     			SortExpression="ProductName" />
-     	   <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" 
-     			SortExpression="UnitPrice" />
-     	   <asp:BoundField DataField="UnitsInStock" HeaderText="# in Stock" 
-     			SortExpression="UnitsInStock" />
-    </Columns>
-    <EmptyDataTemplate>
-     		No products matching the filter criteria were found</EmptyDataTemplate>
-    </asp:GridView>
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample29.xml)]
 
 In the page code, add the new select method for the drop-down list:
 
-    public IQueryable<Category>
-    GetCategories()
-    {
-    return _db.Categories;
-     }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample30.xml)]
 
 Finally, update the *GetProducts* select method to take a new parameter that contains the ID of the selected category from the drop-down list:
 
-    public IQueryable<Product>
-    GetProducts(
-    [QueryString("q")] string keyword,
-    [Control("categories")] int? categoryId)
-     {
-    IQueryable<Product> query = _db.Products;
-     
-    if (!String.IsNullOrWhiteSpace(keyword))
-    {
-     	   query = query.Where(p => p.ProductName.Contains(keyword));
-    }
-    if (categoryId.HasValue && categoryId > 0)
-    {
-     	   query = query.Where(p => p.CategoryID == categoryId);
-    }
-    return query;
-     }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample31.xml)]
 
 Now when the page runs, users can select a category from the drop-down list, and the *GridView* control is automatically re-bound to show the filtered data. This is possible because model binding tracks the values of parameters for select methods and detects whether any parameter value has changed after a postback. If so, model binding forces the associated data control to re-bind to the data.
 
@@ -710,9 +477,7 @@ Now when the page runs, users can select a category from the drop-down list, and
 
 You can now HTML-encode the result of data-binding expressions. Add a colon (:) to the end of the &lt;%# prefix that marks the data-binding expression:
 
-    <asp:TemplateField HeaderText="Name">
-    <ItemTemplate><%#: Item.Products.Name %></ItemTemplate>
-    </asp:TemplateField>
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample32.xml)]
 
 <a id="_Toc318097392"></a>
 ### Unobtrusive Validation
@@ -721,7 +486,7 @@ You can now configure the built-in validator controls to use unobtrusive JavaScr
 
 - Globally by adding the following setting to the *&lt;appSettings&gt;* element in the Web.config file: 
 
-        <add name="ValidationSettings:UnobtrusiveValidationMode" value="WebForms" />
+    [!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample33.xml)]
 - Globally by setting the static *System.Web.UI.ValidationSettings.UnobtrusiveValidationMode* property to *UnobtrusiveValidationMode.WebForms* (typically in the *Application\_Start* method in the Global.asax file).
 - Individually for a page by setting the new *UnobtrusiveValidationMode* property of the *Page* class to *UnobtrusiveValidationMode.WebForms*.
 
@@ -806,7 +571,7 @@ This is not a change to ASP.NET as such, but a change in templates for new websi
 
 In ASP.NET, you can add the following configuration setting to applications in order to support routing:
 
-[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample1.xml?highlight=3)]
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample34.xml?highlight=3)]
 
 When **runAllManagedModulesForAllRequests** is true, a URL like `http://mysite/myapp/home` goes to ASP.NET, even though there is no *.aspx*, *.mvc*, or similar extension on the URL.
 
@@ -977,25 +742,7 @@ IntelliSense for DOM APIs has been improved, with support for many new HTML5 API
 
 Detailed IntelliSense comments can now be declared for separate overloads of JavaScript functions by using the new *&lt;signature&gt;* element, as shown in this example:
 
-    function GetOrSet(key, value) {
-    /// <signature>
-    ///	 <summary>Gets the value</summary>
-    ///	 <param name="key" type="String">The key to get the value for</param>
-    ///	 <returns type="String" />
-    /// </signature>
-    /// <signature>
-    ///	 <summary>Sets the value</summary>
-    ///	 <param name="key" type="String">The key to set the value for</param>
-    ///	 <param name="value" type="String">The value to set</param>
-    ///	 <returns type="MyLib" />
-    /// </signature>
-    if (value) {
-     	   values[key] = value;
-     	   return this;
-    } else {
-     	   return values[key];
-    }
-    }
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample35.xml)]
 
 <a id="_Toc318097414"></a>
 #### Implicit references
@@ -1124,7 +871,7 @@ Each profile is an MSBuild file. During publishing, this file is imported into t
 
 You can now also leverage publish profiles from MSBuild. To do so, use the following command when you build the project:
 
-    msbuild.exe project.csproj /t:WebPublish /p:PublishProfile=ProfileName
+[!code[Main](whats-new-in-aspnet-45-and-visual-studio-2012/samples/sample36.xml)]
 
 The project.csproj value is the path of the project, and ProfileName is the name of the profile to publish. Alternatively, instead of passing the profile name for the *PublishProfile* property, you can pass in the full path to the publish profile.
 

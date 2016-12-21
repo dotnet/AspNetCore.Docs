@@ -34,18 +34,7 @@ The scenarios shown apply to both Azure and third-party hosting providers. For m
 
 After deploying a site to a remote host, you get an error message that mentions the customErrors setting in the Web.config file but doesn't indicate what the actual cause of the error was:
 
-    Server Error in '/' Application.
-    Runtime Error 
-    
-    Description: An application error occurred on the server. The current custom error settings 
-    for this application prevent the details of the application error from being viewed remotely 
-    (for security reasons). It could, however, be viewed by browsers running on the local server 
-    machine. 
-    
-    Details: To enable the details of this specific error message to be viewable on remote machines,
-    please create a <customErrors> tag within a "web.config" configuration file located in the
-    root directory of the current web application. This <customErrors> tag should then have its
-    "mode" attribute set to "Off".
+[!code[Main](troubleshooting/samples/sample1.xml)]
 
 ### Possible Cause and Solution
 
@@ -55,11 +44,7 @@ To enable the application to display detailed error messages when it runs on the
 
 1. If the application Web.config file has acustomErrors element in thesystem.web element, change themode attribute to "off". Otherwise add acustomErrors element in thesystem.web element with themode attribute set to "off", as shown in the following example: 
 
-        <configuration>
-          <system.web>
-            <customErrors mode="off"/>
-          </system.web>
-        </configuration>
+    [!code[Main](troubleshooting/samples/sample2.xml)]
 2. Deploy the application.
 3. Run the application and repeat whatever you did earlier that caused the error to occur. Now you can see what the actual error message is.
 4. When you have resolved the error, restore the original customErrors setting and redeploy the application.
@@ -106,9 +91,7 @@ To use one-click publish to IIS on your local machine, you must be running Visua
 
 When you click the Visual Studio publish button to deploy an application, publishing fails and the **Output** window shows an error message similar to this:
 
-    Web deployment task failed.(Could not connect to the destination computer ("<server URL>") using the specified process
-    ("The Web Management Service"). This can happen if a proxy server is interrupting communication with the destination server. 
-    Disable the proxy server and try again.) ... The remote server returned an error: (502) Bad Gateway.
+[!code[Main](troubleshooting/samples/sample3.xml)]
 
 ### Possible Cause and Solution
 
@@ -128,8 +111,7 @@ The default .NET 4.0 application pool does not exist or the application could no
 
 ASP.NET 4 is not installed in IIS. If the server you are deploying to is your development computer and has Visual Studio 2010 installed on it, ASP.NET 4 is installed on the computer but might not be installed in IIS. On the server that you are deploying to, open an elevated command prompt and install ASP.NET 4 in IIS by running the following commands:
 
-    cd %windir%\Microsoft.NET\Framework\v4.0.30319
-    aspnet_regiis.exe –iru
+[!code[Main](troubleshooting/samples/sample4.xml)]
 
 You might also need to manually set the .NET Framework version of the default application pool. For more information, see the Deploying to IIS as a Test Environment tutorial in this series.
 
@@ -145,14 +127,11 @@ Format of the initialization string does not conform to specification starting a
 
 Open the *Web.config* file in the deployed site and check to see whether the connection string values begin with $(ReplacableToken\_ , as in the following example:
 
-    <connectionStrings>
-      <add name="DefaultConnection" connectionString="$(ReplacableToken_DefaultConnection-Web.config Connection String_0)" providerName="System.Data.SqlServerCe.4.0" />
-      <add name="SchoolContext" connectionString="$(ReplacableToken_SchoolContext-Web.config Connection String_0)" providerName="System.Data.SqlServerCe.4.0" />
-    </connectionStrings>
+[!code[Main](troubleshooting/samples/sample5.xml)]
 
 If the connection strings look like this example, edit the project file and add the following property to the PropertyGroup element that is for all build configurations:
 
-    <AutoParameterizationWebConfigConnectionStrings>False</AutoParameterizationWebConfigConnectionStrings>
+[!code[Main](troubleshooting/samples/sample6.xml)]
 
 Then redeploy the application.
 
@@ -180,8 +159,7 @@ HTTP Error 500.21 - Internal Server Error. Handler "PageHandlerFactory-Integrate
 
 The site you have deployed targets ASP.NET 4, but ASP.NET 4 is not registered in IIS on the server. On the server open an elevated command prompt and register ASP.NET 4 by running the following commands:
 
-    cd %windir%\Microsoft.NET\Framework\v4.0.30319
-    aspnet_regiis.exe –iru
+[!code[Main](troubleshooting/samples/sample7.xml)]
 
 You might also need to manually set the .NET Framework version of the default application pool. For more information, see the Deploying to IIS as a Test Environment tutorial in this series.
 
@@ -215,10 +193,7 @@ If the database name you put in the Web.config file was ever used before on your
 
 You are using database deployment configured on the **Package/Publish SQL** tab, SQL scripts that run during deployment include Create User or Create Role commands, and script execution fails when those commands are executed. You might see more detailed messages, such as the following:
 
-    The approximate location of the error was between lines '1' and '3' of the script. 
-    The verbose log may have more information about the error. The command started with:
-    CREATE USER [user2] FOR LOGIN [user2] WITH DEFAULT
-    Error: User does not have permission to perform this action.
+[!code[Main](troubleshooting/samples/sample8.xml)]
 
 If this error occurs when you have configured database deployment in the **Publish Web** wizard rather than the **Package/Publish SQL** tab, create a thread in the [Configuration and Deployment](https://forums.asp.net/26.aspx/1?Configuration+and+Deployment) forum, and the solution will be added to this troubleshooting page.
 
@@ -226,7 +201,7 @@ If this error occurs when you have configured database deployment in the **Publi
 
 The user account you are using to perform deployment does not have permission to create users or roles. For example, the hosting company might assign the db\_datareader, db\_datawriter, and db\_ddladmin roles to the user account that it sets up for you. These are sufficient for creating most database objects, but not for creating users or roles. One way to avoid the error is by excluding users and roles from database deployment. You can do this by editing the PreSource element for the database's automatically generated script so that it includes the following attributes:
 
-    CopyAllUsers=false, CopyAllRoles=false
+[!code[Main](troubleshooting/samples/sample9.xml)]
 
 For information about how to edit the PreSource element in the project file, see [How to: Edit Deployment Settings in the Project File](https://msdn.microsoft.com/en-us/library/ff398069(v=vs.100).aspx). If the users or roles in your development database need to be in the destination database, contact your hosting provider for assistance.
 
@@ -266,8 +241,7 @@ The application pool that you are trying to use has the 'managedRuntimeVersion' 
 
 ASP.NET 4 is not installed in IIS. If the server you are deploying to is your development computer and has Visual Studio 2010 installed on it, ASP.NET 4 is installed on the computer but might not be installed in IIS. On the server that you are deploying to, open an elevated command prompt and install ASP.NET 4 in IIS by running the following commands:
 
-    cd %windir%\Microsoft.NET\Framework\v4.0.30319
-    aspnet_regiis.exe –i
+[!code[Main](troubleshooting/samples/sample10.xml)]
 
 ## Unable to cast Microsoft.Web.Deployment.DeploymentProviderOptions
 
@@ -374,13 +348,7 @@ Many third-party hosting providers run your web site in medium trust, which mean
 
 You can configure the application to run in medium trust in the local IIS environment in order to troubleshoot. To do that, open the application *Web.config* file, and add a **trust** element in the **system.web** element, as shown in this example.
 
-    <configuration>
-      <!-- Settings -->
-      <system.web>
-        <trust level="Medium" />
-        <!-- Settings -->
-      </system.web>
-    </configuration>
+[!code[Main](troubleshooting/samples/sample11.xml)]
 
 The application will now run in medium trust in IIS even on your local computer.
 

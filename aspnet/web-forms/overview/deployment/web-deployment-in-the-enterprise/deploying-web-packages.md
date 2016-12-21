@@ -49,14 +49,7 @@ Before you use the *.deploy.cmd* file to deploy a web package, you should ensure
 The *.deploy.cmd* file supports various command-line options. When you run the file from a command prompt, this is the basic syntax:
 
 
-    [project name].deploy.cmd [/T | /Y]
-                              [/M:<computer name>]
-                              [/A:<Basic | NTLM>]
-                              [/U:<user name>]
-                              [/P:<password>]
-                              [/L]
-                              [/G:<true | false>]
-                              [Additional MSDeploy.exe flags]
+[!code[Main](deploying-web-packages/samples/sample1.xml)]
 
 
 You must specify either a **/T** flag or a **/Y** flag, to indicate whether you want to perform a trial run or a live deployment respectively (don&#x27;t use both flags in the same command). This table explains the purpose of each of these flags.
@@ -86,7 +79,7 @@ Suppose you want to deploy the ContactManager.Mvc web application project to a t
 3. Open a Command Prompt window and navigate to the location of the *ContactManager.Mvc.deploy.cmd* file.
 4. Type this command, and then press Enter:
 
-        ContactManager.Mvc.deploy.cmd /Y /M:TESTWEB1 /A:NTLM
+    [!code[Main](deploying-web-packages/samples/sample2.xml)]
 
 In this example:
 
@@ -97,17 +90,7 @@ In this example:
 To illustrate how using the *.deploy.cmd* file simplifies the deployment process, take a look at the MSDeploy.exe command that gets generated and executed when you run *ContactManager.Mvc.deploy.cmd* using the options shown above.
 
 
-    msdeploy.exe 
-    -source:package='C:\Users\matt.FABRIKAM\Desktop\ContactManager-03\ContactManager\
-     Publish\Out\_PublishedWebsites\ContactManager.Mvc_Package\ContactManager.Mvc.zip' -dest:auto,computerName='TESTWEB1.fabrikam.net', authtype='NTLM',
-     includeAcls='False' 
-    -verb:sync 
-    -disableLink:AppPoolExtension 
-    -disableLink:ContentExtension 
-    -disableLink:CertificateExtension 
-    -setParamFile:"C:\Users\matt.FABRIKAM\Desktop\ContactManager-03\ContactManager\
-     Publish\Out\_PublishedWebsites\ContactManager.Mvc_Package\
-     ContactManager.Mvc.SetParameters.xml"
+[!code[Main](deploying-web-packages/samples/sample3.xml)]
 
 
 For more information on using the *.deploy.cmd* file to deploy a web package, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx).
@@ -130,13 +113,13 @@ MSDeploy.exe relies on [Web Deploy providers](https://technet.microsoft.com/en-u
 
 - The **–source** provider is always [package](https://technet.microsoft.com/en-us/library/dd569019(WS.10).aspx). For example:
 
-        -source:package='[path to web package]'
+    [!code[Main](deploying-web-packages/samples/sample4.xml)]
 - The **–dest** provider is always [auto](https://technet.microsoft.com/en-us/library/dd569016(WS.10).aspx). For example:
 
-        -dest:auto='[server name or service URL]'
+    [!code[Main](deploying-web-packages/samples/sample5.xml)]
 - The **–verb** is always **sync**.
 
-        -verb:sync
+    [!code[Main](deploying-web-packages/samples/sample6.xml)]
 
 In addition, you&#x27;ll need to specify various other [provider-specific settings](https://technet.microsoft.com/en-us/library/dd569001(WS.10).aspx) and general [operation settings](https://technet.microsoft.com/en-us/library/dd569089(WS.10).aspx). For example, suppose you want to deploy the ContactManager.Mvc web application to a staging environment. The deployment will target the Web Deploy Handler and must use basic authentication. To deploy the web application, you need to complete the next steps.
 
@@ -147,20 +130,7 @@ In addition, you&#x27;ll need to specify various other [provider-specific settin
 3. Open a Command Prompt window and browse to the location of MSDeploy.exe. This is typically at %PROGRAMFILES%\IIS\Microsoft Web Deploy V2\msdeploy.exe.
 4. Type this command, and then press Enter (disregard the line breaks):
 
-        MSDeploy.exe
-          -source:package="[path]\ContactManager.Mvc.zip"
-          -dest:auto,
-                computerName="https://stageweb1:8172/MSDeploy.axd?site=DemoSite",
-                username="FABRIKAM\stagingdeployer",
-                password="Pa$$w0rd",
-                authtype="Basic",
-                includeAcls="False"
-          -verb:sync
-          -disableLink:AppPoolExtension
-          -disableLink:ContentExtension
-          -disableLink:CertificateExtension
-          -setParamFile:"[path]\ContactManager.Mvc.SetParameters.xml"
-          -allowUntrusted
+    [!code[Main](deploying-web-packages/samples/sample7.xml)]
 
 In this example:
 
@@ -178,19 +148,7 @@ In a lot of enterprise scenarios, you&#x27;ll want to deploy your web packages a
 In the Contact Manager sample solution, take a look at the **PublishWebPackages** target in the *Publish.proj* file. This target runs once for each *.deploy.cmd* file identified by an item list named **PublishPackages**. The target uses properties and item metadata to build up a full set of argument values for each *.deploy.cmd* file and then uses the **Exec** task to run the command.
 
 
-    <Target Name="PublishWebPackages" Outputs="%(PublishPackages.Identity)">
-      ...
-      <PropertyGroup>
-        <_WhatIfSwitch>/Y</_WhatIfSwitch>
-        <_WhatIfSwitch Condition=" '$(_WhatIf)'=='true' ">/T</_WhatIfSwitch>
-        <_Cmd>
-          %(PublishPackages.FullPath) $(_WhatifSwitch) /M:$(MSDeployComputerName) 
-          /U:$(MSDeployUsername) /P:$(Password) /A:$(MSDeployAuth) 
-          %(PublishPackages.AdditionalMSDeployParameters)
-        </_Cmd>
-      </PropertyGroup>
-      <Exec Command="$(_Cmd)"/>
-    </Target>
+[!code[Main](deploying-web-packages/samples/sample8.xml)]
 
 
 > [!NOTE] For a broader overview of the project file model in the sample solution, and an introduction to custom project files in general, see [Understanding the Project File](understanding-the-project-file.md) and [Understanding the Build Process](understanding-the-build-process.md).
@@ -203,25 +161,25 @@ Regardless of whether you deploy your web package by running the *.deploy.cmd* f
 If the destination web server is configured for deployment using the Web Deploy Remote Agent service, you specify the target service URL as your destination.
 
 
-    http://[server name]/MSDeployAgentService
+[!code[Main](deploying-web-packages/samples/sample9.xml)]
 
 
 Alternatively, you can specify the server name alone as your destination, and Web Deploy will infer the remote agent service URL.
 
 
-    [server name]
+[!code[Main](deploying-web-packages/samples/sample10.xml)]
 
 
 If the destination web server is configured for deployment using the Web Deploy Handler, you need to specify the endpoint address of the IIS Web Management Service (WMSvc) as your destination. By default, this takes the form:
 
 
-    https://[server name]:8172/MSDeploy.axd
+[!code[Main](deploying-web-packages/samples/sample11.xml)]
 
 
 You can target any of these endpoints using either the *.deploy.cmd* file or MSDeploy.exe directly. However, if you want to deploy to the Web Deploy Handler as a non-administrator user, as described in [Configure a Web Server for Web Deploy Publishing (Web Deploy Handler)](../configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler.md), you need to add a query string to the service endpoint address.
 
 
-    https://[server name]:8172/MSDeploy.axd?site=[IIS website name]
+[!code[Main](deploying-web-packages/samples/sample12.xml)]
 
 
 This is because the non-administrator user doesn&#x27;t have server-level access to IIS; he or she only has access to a specific IIS website. At the time of writing, due to a bug in the Web Publishing Pipeline (WPP), you can&#x27;t run the *.deploy.cmd* file using an endpoint address that includes a query string. In this scenario, you need to deploy your web package by using MSDeploy.exe directly.

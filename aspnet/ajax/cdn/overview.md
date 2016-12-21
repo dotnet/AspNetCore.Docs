@@ -95,10 +95,7 @@ When using ASP.NET 4, you can redirect all requests for ASP.NET framework script
 
 Use the ScriptManager EnableCDN property to redirect all ASP.NET framework script requests to the Microsoft Ajax CDN:
 
-    <asp:ScriptManager
-        ID="ScriptManager1"
-        EnableCdn="true"
-        Runat="Server" />
+[!code[Main](overview/samples/sample1.xml)]
 
 <a id="Using_jQuery_from_the_CDN_21"></a>
 
@@ -106,51 +103,19 @@ Use the ScriptManager EnableCDN property to redirect all ASP.NET framework scrip
 
 You can use jQuery scripts hosted on CDN in your Web application by adding the following script element to a page:
 
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+[!code[Main](overview/samples/sample2.xml)]
 
 The CDN also includes the minified version of the jQuery script, which you can get using the following element:
 
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+[!code[Main](overview/samples/sample3.xml)]
 
 To allow your page to fallback to loading jQuery from a local path on your own website if the CDN happens to be unavailable, add the following element immediately after the element referencing the CDN:
 
-    <script>
-      // Fallback to loading jQuery from a local path if the CDN is unavailable
-      (window.jQuery || document.write('<script src="/scripts/jquery-1.9.0.min.js"><\/script>'));
-    </script>
+[!code[Main](overview/samples/sample4.xml)]
 
 The following sample page uses the CDN version of the jQuery library (with fallback to a local copy) to display the contents of a div element when a button is clicked.
 
-    <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>jQuery from Microsoft AJAX CDN</title>
-    </head>
-    <body>
-        <button id="btn">Show Message</button>
-     
-        <div id="message" style="display:none">         
-            <h1>Hello from jQuery!</h1>         
-        </div>
-     
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
-        <script>
-            // Fallback to loading jQuery from a local path if the CDN is unavailable
-            (window.jQuery || document.write('<script src="/scripts/jquery-1.9.0.min.js"><\/script>'));
-        </script>
-        <script>                
-            function domReady() {
-                $('#btn').click( showMessage );
-            }
-            
-            function showMessage() {
-                $('#message').fadeIn('slow');
-            }
-            
-            $( domReady );
-        </script>
-    </body>
-    </html>
+[!code[Main](overview/samples/sample5.xml)]
 
 You can learn more about jQuery and download a local copy of jQuery by visiting the [jQuery](http://jquery.com/) Web site.
 
@@ -160,26 +125,7 @@ You can learn more about jQuery and download a local copy of jQuery by visiting 
 
 The CDN also hosts the jQuery UI library. The jQuery UI library includes a rich set of widgets and effects that you can use in your ASP.NET applications. For example, the following page illustrates how you can use the jQuery UI Datepicker in the context of an ASP.NET Web Forms application to display a pop-up calendar:
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="TestjQueryUICDN.WebForm1" %>
-    <!DOCTYPE html >
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head runat="server">
-        <title>Using jQuery UI from the CDN</title>
-        <link rel="Stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/redmond/jquery-ui.css" />
-    </head>
-    <body>
-        <form id="form1" runat="server">
-        <div>    
-            <asp:TextBox ID="txtStartDate" ClientIDMode="Static" runat="server" />
-        </div>
-        </form>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
-        <script>
-            $("#txtStartDate").datepicker();
-        </script>
-    </body>
-    </html>
+[!code[Main](overview/samples/sample6.xml)]
 
 When you move focus to the TextBox using your keyboard, a calendar is displayed:
 

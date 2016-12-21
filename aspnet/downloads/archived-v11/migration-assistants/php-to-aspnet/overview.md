@@ -76,10 +76,10 @@ The command line syntax for PHPConvert.exe is:
 
 - Running 
 
-        PHPConvert[.exe] { <DirectoryName> [/Out <DirectoryName>] [/NoLog | /LogFile <filename>] [/NoLogo] [/Verbose] [/ProjectName <ProjectName>] [/ForceOverwrite] }
+    [!code[Main](overview/samples/sample1.xml)]
 - Help 
 
-        PHPConvert[.exe] /? or /Help
+    [!code[Main](overview/samples/sample2.xml)]
 
 ### Options
 
@@ -231,8 +231,7 @@ Review the Conversion Report file in order to work around issues that may have c
 
 Review all Error Warning and Issues inside your code and follow, if any, the instructions specified to achieve functionality. For example this could be a converted code snipped:
 
-    <!--CONVERSION_TODO: Language construct 'include' was converted to '#include' which has a different behavior.-->
-    <!-- #include file = "file.aspx" -->
+[!code[Main](overview/samples/sample3.xml)]
 
 <a id="QuestionsFeedback"></a>
 

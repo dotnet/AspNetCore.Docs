@@ -24,19 +24,7 @@ This tutorial shows how to upload files to a web API. It also describes how to p
 
 Here is an example of an HTML form for uploading a file:
 
-    <form name="form1" method="post" enctype="multipart/form-data" action="api/upload">
-        <div>
-            <label for="caption">Image Caption</label>
-            <input name="caption" type="text" />
-        </div>
-        <div>
-            <label for="image1">Image File</label>
-            <input name="image1" type="file" />
-        </div>
-        <div>
-            <input type="submit" value="Submit" />
-        </div>
-    </form>
+[!code[Main](sending-html-form-data-part-2/samples/sample1.xml)]
 
 ![](sending-html-form-data-part-2/_static/image1.png)
 
@@ -44,24 +32,7 @@ This form contains a text input control and a file input control. When a form co
 
 The format of a multipart MIME message is easiest to understand by looking at an example request:
 
-    POST http://localhost:50460/api/values/1 HTTP/1.1
-    User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0
-    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-    Accept-Language: en-us,en;q=0.5
-    Accept-Encoding: gzip, deflate
-    Content-Type: multipart/form-data; boundary=---------------------------41184676334
-    Content-Length: 29278
-    
-    -----------------------------41184676334
-    Content-Disposition: form-data; name="caption"
-    
-    Summer vacation
-    -----------------------------41184676334
-    Content-Disposition: form-data; name="image1"; filename="GrandCanyon.jpg"
-    Content-Type: image/jpeg
-    
-    (Binary data not shown)
-    -----------------------------41184676334--
+[!code[Main](sending-html-form-data-part-2/samples/sample2.xml)]
 
 This message is divided into two *parts*, one for each form control. Part boundaries are indicated by the lines that start with dashes.
 
@@ -79,46 +50,7 @@ In the previous example, the user uploaded a file named GrandCanyon.jpg, with co
 
 Now let's look at a Web API controller that reads files from a multipart MIME message. The controller will read the files asynchronously. Web API supports asynchronous actions using the [task-based programming model](https://msdn.microsoft.com/library/dd460693.aspx). First, here is the code if you are targeting .NET Framework 4.5, which supports the **async** and **await** keywords.
 
-    using System.Diagnostics;
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using System.Web;
-    using System.Web.Http;
-    
-    public class UploadController : ApiController
-    {
-        public async Task<HttpResponseMessage> PostFormData()
-        {
-            // Check if the request contains multipart/form-data.
-            if (!Request.Content.IsMimeMultipartContent())
-            {
-                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-            }
-    
-            string root = HttpContext.Current.Server.MapPath("~/App_Data");
-            var provider = new MultipartFormDataStreamProvider(root);
-    
-            try
-            {
-                // Read the form data.
-                await Request.Content.ReadAsMultipartAsync(provider);
-    
-                // This illustrates how to get the file names.
-                foreach (MultipartFileData file in provider.FileData)
-                {
-                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
-                    Trace.WriteLine("Server file path: " + file.LocalFileName);
-                }
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            catch (System.Exception e)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-            }
-        }
-    
-    }
+[!code[Main](sending-html-form-data-part-2/samples/sample3.xml)]
 
 Notice that the controller action does not take any parameters. That's because we process the request body inside the action, without invoking a media-type formatter.
 
@@ -135,108 +67,27 @@ As the name suggests, **ReadAsMultipartAsync** is an asynchronous method. To per
 
 Here is the .NET Framework 4.0 version of the previous code:
 
-    public Task<HttpResponseMessage> PostFormData()
-    {
-        // Check if the request contains multipart/form-data.
-        if (!Request.Content.IsMimeMultipartContent())
-        {
-            throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-        }
-    
-        string root = HttpContext.Current.Server.MapPath("~/App_Data");
-        var provider = new MultipartFormDataStreamProvider(root);
-    
-        // Read the form data and return an async task.
-        var task = Request.Content.ReadAsMultipartAsync(provider).
-            ContinueWith<HttpResponseMessage>(t =>
-            {
-                if (t.IsFaulted || t.IsCanceled)
-                {
-                    Request.CreateErrorResponse(HttpStatusCode.InternalServerError, t.Exception);
-                }
-    
-                // This illustrates how to get the file names.
-                foreach (MultipartFileData file in provider.FileData)
-                {
-                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
-                    Trace.WriteLine("Server file path: " + file.LocalFileName);
-                }
-                return Request.CreateResponse(HttpStatusCode.OK);
-            });
-    
-        return task;
-    }
+[!code[Main](sending-html-form-data-part-2/samples/sample4.xml)]
 
 ## Reading Form Control Data
 
 The HTML form that I showed earlier had a text input control.
 
-    <div>
-            <label for="caption">Image Caption</label>
-            <input name="caption" type="text" />
-        </div>
+[!code[Main](sending-html-form-data-part-2/samples/sample5.xml)]
 
 You can get the value of the control from the **FormData** property of the **MultipartFormDataStreamProvider**.
 
-[!code[Main](sending-html-form-data-part-2/samples/sample1.xml?highlight=15)]
+[!code[Main](sending-html-form-data-part-2/samples/sample6.xml?highlight=15)]
 
 **FormData** is a **NameValueCollection** that contains name/value pairs for the form controls. The collection can contain duplicate keys. Consider this form:
 
-    <form name="trip_search" method="post" enctype="multipart/form-data" action="api/upload">
-        <div>
-            <input type="radio" name="trip" value="round-trip"/>
-            Round-Trip
-        </div>
-        <div>
-            <input type="radio" name="trip" value="one-way"/>
-            One-Way
-        </div>
-    
-        <div>
-            <input type="checkbox" name="options" value="nonstop" />
-            Only show non-stop flights
-        </div>
-        <div>
-            <input type="checkbox" name="options" value="airports" />
-            Compare nearby airports
-        </div>
-        <div>
-            <input type="checkbox" name="options" value="dates" />
-            My travel dates are flexible
-        </div>
-    
-        <div>
-            <label for="seat">Seating Preference</label>
-            <select name="seat">
-                <option value="aisle">Aisle</option>
-                <option value="window">Window</option>
-                <option value="center">Center</option>
-                <option value="none">No Preference</option>
-            </select>
-        </div>
-    </form>
+[!code[Main](sending-html-form-data-part-2/samples/sample7.xml)]
 
 ![](sending-html-form-data-part-2/_static/image2.png)
 
 The request body might look like this:
 
-    -----------------------------7dc1d13623304d6
-    Content-Disposition: form-data; name="trip"
-    
-    round-trip
-    -----------------------------7dc1d13623304d6
-    Content-Disposition: form-data; name="options"
-    
-    nonstop
-    -----------------------------7dc1d13623304d6
-    Content-Disposition: form-data; name="options"
-    
-    dates
-    -----------------------------7dc1d13623304d6
-    Content-Disposition: form-data; name="seat"
-    
-    window
-    -----------------------------7dc1d13623304d6--
+[!code[Main](sending-html-form-data-part-2/samples/sample8.xml)]
 
 In that case, the **FormData** collection would contain the following key/value pairs:
 

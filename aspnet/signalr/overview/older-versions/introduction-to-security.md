@@ -89,12 +89,7 @@ Here is an example of a CSRF attack:
 2. The server authenticates the user. The response from the server includes an authentication cookie.
 3. Without logging out, the user visits a malicious web site. This malicious site contains the following HTML form: 
 
-        <h1>You Are a Winner!</h1>
-        <form action="http://example.com/api/account" method="post">
-            <input type="hidden" name="Transaction" value="withdraw" />
-            <input type="hidden" name="Amount" value="1000000" />
-            <input type="submit" value="Click Me"/>
-        </form>
+    [!code[Main](introduction-to-security/samples/sample1.xml)]
 
  Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 4. The user clicks the submit button. The browser includes the authentication cookie with the request.
@@ -137,7 +132,7 @@ Groups are a convenient way of collecting related users, but they are not a secu
 
 All input from clients that is intended for broadcast to other clients must be encoded to ensure that a malicious user does not send script to other users. It is best to encode messages on the receiving clients rather than the server, because your SignalR application may have many different types of clients. Therefore, HTML-encoding works for a web client, but not for other types of clients. For example, a web client method to display a chat message would safely handle the user name and message by calling the `html()` function.
 
-[!code[Main](introduction-to-security/samples/sample1.xml?highlight=3-4)]
+[!code[Main](introduction-to-security/samples/sample2.xml?highlight=3-4)]
 
 <a id="reconcile"></a>
 
@@ -149,33 +144,11 @@ However, it is important to note that most applications will not need to manuall
 
 The following example shows how to stop and start a connection when the user status has changed.
 
-    <script type="text/javascript">
-        $(function () {
-            var chat = $.connection.sampleHub;
-            $.connection.hub.start().done(function () {
-                $('#logoutbutton').click(function () {
-                    chat.connection.stop();
-                    $.ajax({
-                        url: "Services/SampleWebService.svc/LogOut",
-                        type: "POST"
-                    }).done(function () {
-                        chat.connection.start();
-                    });
-                });
-            });
-        });
-    </script>
+[!code[Main](introduction-to-security/samples/sample3.xml)]
 
 Or, the user's authentication status may change if your site uses sliding expiration with Forms Authentication, and there is no activity to keep the authentication cookie valid. In that case, the user will be logged out and the user name will no longer match the user name in the connection token. You can fix this problem by adding some script that periodically requests a resource on the web server to keep the authentication cookie valid. The following example shows how to request a resource every 30 minutes.
 
-    $(function () {
-        setInterval(function() {
-            $.ajax({
-                url: "Ping.aspx",
-                cache: false
-            });
-        }, 1800000);
-    });
+[!code[Main](introduction-to-security/samples/sample4.xml)]
 
 <a id="autogen"></a>
 
@@ -183,9 +156,7 @@ Or, the user's authentication status may change if your site uses sliding expira
 
 If you do not want to include all of the hubs and methods in the JavaScript proxy file for each user, you can disable the automatic generation of the file. You might choose this option if you have multiple hubs and methods, but do not want every user to be aware of all of the methods. You disable automatic generation by setting **EnableJavaScriptProxies** to **false**.
 
-    var hubConfiguration = new HubConfiguration();
-    hubConfiguration.EnableJavaScriptProxies = false;
-    RouteTable.Routes.MapHubs("/signalr", hubConfiguration);
+[!code[Main](introduction-to-security/samples/sample5.xml)]
 
 For more information about the JavaScript proxy files, see [The generated proxy and what it does for you](../guide-to-the-api/hubs-api-guide-javascript-client.md). <a id="exceptions"></a>
 
@@ -193,16 +164,4 @@ For more information about the JavaScript proxy files, see [The generated proxy 
 
 You should avoid passing exception objects to clients because the objects may expose sensitive information to the clients. Instead, call a method on the client that displays the relevant error message.
 
-    public Task SampleMethod()
-    {
-        try
-        { 
-            // code that can throw an exception
-        }
-        catch(Exception e)
-        {
-            // add code to log exception and take remedial steps
-    
-            return Clients.Caller.DisplayError("Sorry, the request could not be processed.");
-        }
-    }
+[!code[Main](introduction-to-security/samples/sample6.xml)]

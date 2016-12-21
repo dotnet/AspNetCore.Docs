@@ -38,7 +38,7 @@ A master page is analogous to a template for other pages. Page elements that sho
 
 A master page can contain any number of ContentPlaceHolder controls (or none at all.) On the content page, the content from the ContentPlaceHolder controls appears inside of **Content** controls, another new control in ASP.NET 2.0. By default, the content pages Content controls are empty so that you can provide your own content. If you want to use the content from the master page inside of the Content controls, you can do so as you will see later in this module. The Content control is mapped to the ContentPlaceHolder control via the ContentPlaceHolderID attribute of the Content control. The code below maps a Content control to a ContentPlaceHolder control called mainBody on a master page.
 
-    <asp:Content ID="Content1" ContentPlaceHolderID="mainBody" Runat="Server">
+[!code[Main](master-pages/samples/sample1.xml)]
 
 > [!NOTE] You will often hear people describe master pages as being a base class for other pages. Thats actually not true. The relationship between master pages and content pages is not one of inheritance.
 
@@ -156,11 +156,11 @@ You can configure a master page for your pages by setting the masterPageFile att
 
 A master page can expose properties by simply making those properties public within the master page. For example, the following code defines a property called SomeProperty:
 
-    private string _SomeProperty; public string SomeProperty { get { return _SomeProperty; } set { _SomeProperty = value; } }
+[!code[Main](master-pages/samples/sample2.xml)]
 
 To access the SomeProperty property from the Content page, you will need to use the Master property like so:
 
-    void Page_Load() { Master.SomeProperty = "Master Page Property"; }
+[!code[Main](master-pages/samples/sample3.xml)]
 
 ## Nesting Master Pages
 
@@ -168,11 +168,11 @@ Master pages are the perfect solution for ensuring a common look and feel across
 
 Here is the code for a typical master page:
 
-    <%@ Master Language="C#" AutoEventWireup="true" CodeFile="parent.master.cs" Inherits="parent" %> <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns="http://www.w3.org/1999/xhtml" > <head runat="server"> <title>Typical Master Page</title> </head> <body> <form id="form1" runat="server"> <div> <asp:contentplaceholder id="MainMenuContent" runat="server" /> </div> </form> </body> </html>
+[!code[Main](master-pages/samples/sample4.xml)]
 
 In a nested master scenario, this would be the parent master. Another master page would use this page as its master page, and that code would look like this:
 
-    <%@ Master Language="C#" MasterPageFile="~/parent.master" AutoEventWireup="true" CodeFile="child.master.cs" Inherits="child" %> <asp:Content ID="Content1" ContentPlaceHolderID="MainMenuContent" Runat="Server"> <span>From the Child Master.</span> <asp:contentplaceholder id="ChildPlaceHolder1" runat="server" /> </asp:Content>
+[!code[Main](master-pages/samples/sample5.xml)]
 
 Note that in this scenario, the child master is also a content page for the parent master. All of the child master's content appears inside of a Content control that gets its content from the parent's ContentPlaceHolder control.
 

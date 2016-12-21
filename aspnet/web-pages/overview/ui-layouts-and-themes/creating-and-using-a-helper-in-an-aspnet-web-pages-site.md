@@ -51,14 +51,7 @@ This procedure shows you how to create the helper that creates the note, as just
 2. In the *App\_Code* folder create a new *.cshtml* file and name it *MyHelpers.cshtml*.
 3. Replace the existing content with the following:
 
-        @helper MakeNote(string content) {
-          <div class="note" 
-               style="border: 1px solid black; width: 90%; padding: 5px; margin-left: 15px;">
-            <p>
-              <strong>Note</strong>   @content
-            </p>
-          </div>
-        }
+    [!code[Main](creating-and-using-a-helper-in-an-aspnet-web-pages-site/samples/sample1.xml)]
 
     The code uses the `@helper` syntax to declare a new helper named `MakeNote`. This particular helper lets you pass a parameter named `content` that can contain a combination of text and markup. The helper inserts the string into the note body using the `@content` variable.
 
@@ -70,19 +63,7 @@ This procedure shows you how to create the helper that creates the note, as just
 1. In the root folder, create a new blank file called *TestHelper.cshtml*.
 2. Add the following code to the file:
 
-        <!DOCTYPE html>
-          <head>
-            <title>Test Helpers Page</title>
-          </head>
-          <body>
-            <p>This is some opening paragraph text.</p>
-        
-            <!-- Insert the call to your note helper here. -->
-            @MyHelpers.MakeNote("My test note content.")
-        
-            <p>This is some following text.</p>
-          </body>
-        </html>
+    [!code[Main](creating-and-using-a-helper-in-an-aspnet-web-pages-site/samples/sample2.xml)]
 
     To call the helper you created, use `@` followed by the file name where the helper is, a dot, and then the helper name. (If you had multiple folders in the *App\_Code* folder, you could use the syntax `@FolderName.FileName.HelperName` to call your helper within any nested folder level). The text that you add in quotation marks within the parentheses is the text that the helper will display as part of the note in the web page.
 3. Save the page and run it in a browser. The helper generates the note item right where you called the helper: between the two paragraphs.

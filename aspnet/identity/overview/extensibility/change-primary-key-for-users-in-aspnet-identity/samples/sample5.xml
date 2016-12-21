@@ -1,2 +1,4 @@
-public class ApplicationSignInManager : SignInManager<ApplicationUser, int>
-{ ... }
+    public ApplicationDbContext() 
+        : base("DefaultConnection") 
+    { 
+    }

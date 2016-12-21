@@ -1,20 +1,16 @@
-<td>
-    @if (item.OfficeAssignment != null)
+public ActionResult Edit(int? id)
+{
+    if (id == null)
     {
-        @item.OfficeAssignment.Location
+        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
     }
-</td>
-<td>
-    @{
-        foreach (var course in item.Courses)
-        {
-            @course.CourseID @:  @course.Title <br />
-        }
+    Instructor instructor = db.Instructors
+        .Include(i => i.OfficeAssignment)
+        .Where(i => i.ID == id)
+        .Single();
+    if (instructor == null)
+    {
+        return HttpNotFound();
     }
-</td>
-<td>
-    @Html.ActionLink("Select", "Index", new { id = item.ID }) |
-    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-</td>
+    return View(instructor);
+}

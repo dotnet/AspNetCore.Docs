@@ -64,35 +64,4 @@ Using a backplane, the maximum message throughput is lower than it is when clien
 
 To enable tracing for the backplanes, add the following sections to the web.config file, under the root **configuration** element:
 
-    <configuration>
-      <system.diagnostics>
-        <sources>
-          <source name="SignalR.SqlMessageBus">
-            <listeners>
-              <add name="SignalR-Bus" />
-            </listeners>
-          </source>
-          <source name="SignalR.ServiceBusMessageBus">
-            <listeners>
-              <add name="SignalR-Bus" />
-            </listeners>
-          </source>
-          <source name="SignalR.ScaleoutMessageBus">
-            <listeners>
-              <add name="SignalR-Bus" />
-            </listeners>
-          </source>
-        </sources>
-        <switches>
-          <add name="SignalRSwitch" value="Verbose" />
-          <!-- Off, Critical, Error, Warning, Information, Verbose -->
-        </switches>
-        <sharedListeners>
-          <add name="SignalR-Bus" 
-              type="System.Diagnostics.TextWriterTraceListener" 
-              initializeData="bus.log.txt" />
-        </sharedListeners>
-        <trace autoflush="true" />
-      </system.diagnostics>
-      . . .
-    </configuration>
+[!code[Main](scaleout-in-signalr/samples/sample1.xml)]

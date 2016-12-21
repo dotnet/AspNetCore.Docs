@@ -32,29 +32,7 @@ The Global.asax file in Listing 1 contains a new custom route, named Blog, which
 
 **Listing 1 - Global.asax (with custom route)**
 
-    Public Class MvcApplication
-        Inherits System.Web.HttpApplication
-        Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}")
-            ' MapRoute takes the following parameters, in order:
-            ' (1) Route name
-            ' (2) URL with parameters
-            ' (3) Parameter defaults
-            routes.MapRoute( _
-                "Blog", _
-                "Archive/{entryDate}", _
-                New With {.controller = "Archive", .action = "Entry"} _
-            )
-            routes.MapRoute( _
-                "Default", _
-                "{controller}/{action}/{id}", _
-                New With {.controller = "Home", .action = "Index", .id = ""} _
-            )
-        End Sub
-        Sub Application_Start()
-            RegisterRoutes(RouteTable.Routes)
-        End Sub
-    End Class
+[!code[Main](creating-custom-routes-vb/samples/sample1.xml)]
 
 The order of the routes that you add to the route table is important. Our new custom Blog route is added before the existing Default route. If you reversed the order, then the Default route always will get called instead of the custom route.
 
@@ -72,12 +50,7 @@ You can use the Blog custom route with the controller in Listing 2.
 
 **Listing 2 - ArchiveController.vb**
 
-    Public Class ArchiveController
-        Inherits System.Web.Mvc.Controller
-        Function Entry(ByVal entryDate As DateTime)
-            Return "You requested the entry from " & entryDate.ToString()
-        End Function
-    End Class
+[!code[Main](creating-custom-routes-vb/samples/sample2.xml)]
 
 Notice that the Entry() method in Listing 2 accepts a parameter of type DateTime. The MVC framework is smart enough to convert the entry date from the URL into a DateTime value automatically. If the entry date parameter from the URL cannot be converted to a DateTime, an error is raised (see Figure 1).
 

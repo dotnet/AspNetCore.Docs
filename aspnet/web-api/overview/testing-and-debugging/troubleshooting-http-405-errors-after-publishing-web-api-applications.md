@@ -77,66 +77,17 @@ There are several reasons why a specific HTTP verb may not be allowed, but there
 
 The following example is an excerpt from an applicationHost.config file for an IIS server that was returning an HTTP 405 error when using the PUT method to submit data to a Web API application. In this excerpt, several HTTP handlers are defined, and each handler has a different set of HTTP methods for which it is configured - the last entry in the list is the static content handler, which is the default handler that is used after the other handlers have had a chance to examine the request:
 
-    <handlers accessPolicy="Read, Script">
-       <add name="WebDAV"
-          path="*"
-          verb="PROPFIND,PROPPATCH,MKCOL,PUT,COPY,DELETE,MOVE,LOCK,UNLOCK"
-          modules="WebDAVModule"
-          resourceType="Unspecified"
-          requireAccess="None" />
-       <add name="ISAPI-dll"
-          path="*.dll"
-          verb="*"
-          modules="IsapiModule"
-          resourceType="File"
-          requireAccess="Execute"
-          allowPathInfo="true" />
-       <add name="ExtensionlessUrlHandler-ISAPI-4.0_64bit"
-          path="*."
-          verb="GET,HEAD,POST,DEBUG"
-          modules="IsapiModule"
-          scriptProcessor="%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll"
-          preCondition="classicMode,runtimeVersionv4.0,bitness64"
-          responseBufferLimit="0" />
-    
-       <!-- Additional handlers will be defined here. -->
-    
-       <add name="StaticFile"
-          path="*"
-          verb="*"
-          modules="StaticFileModule,DefaultDocumentModule,DirectoryListingModule"
-          resourceType="Either"
-          requireAccess="Read" />
-    </handlers>
+[!code[Main](troubleshooting-http-405-errors-after-publishing-web-api-applications/samples/sample1.xml)]
 
 In the above example, the WebDAV handler and the Extension-less URL Handler for ASP.NET (which is used for Web API) are clearly defined for separate lists of HTTP methods. Note that the ISAPI DLL handler is configured for all HTTP methods, although this configuration will not necessarily cause an error. However, configuration settings like this need to be considered when troubleshooting HTTP 405 errors.
 
 In the above example, the ISAPI DLL handler was not the problem; in fact, the problem was not defined in the applicationHost.config file for the IIS server - the problem was caused by an entry that was made in the web.config file when the Web API application was created in Visual Studio. The following excerpt from the application's web.config file shows the location of the problem:
 
-    <handlers accessPolicy="Read, Script">
-       <remove name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" />
-       <add name="ExtensionlessUrlHandler-ISAPI-4.0_64bit"
-          path="*."
-          verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS"
-          modules="IsapiModule"
-          scriptProcessor="%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll"
-          preCondition="classicMode,runtimeVersionv4.0,bitness64"
-          responseBufferLimit="0" />
-    </handlers>
+[!code[Main](troubleshooting-http-405-errors-after-publishing-web-api-applications/samples/sample2.xml)]
 
 In this excerpt, the Extension-less URL Handler for ASP.NET is redefined to include additional HTTP methods that will be used with the Web API application. However, since a similar set of HTTP methods is defined for the WebDAV handler, a conflict occurs. In this specific case, the WebDAV handler is defined and loaded by IIS, even though WebDAV is disabled for the website that includes the Web API application. During the processing of an HTTP PUT request, IIS calls the WebDAV module since it is defined for the PUT verb. When the WebDAV module is called, it checks its configuration and sees that it is disabled, so it will return an HTTP 405 ***Method Not Allowed*** error for any request that resembles a WebDAV request. To resolve this issue, you should remove WebDAV from the list of HTTP modules for the website where your Web API application is defined. The following example shows what that might look like:
 
-    <handlers accessPolicy="Read, Script">
-       <remove name="WebDAV" />
-       <remove name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" />
-       <add name="ExtensionlessUrlHandler-ISAPI-4.0_64bit"
-          path="*."
-          verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS"
-          modules="IsapiModule"
-          scriptProcessor="%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll"
-          preCondition="classicMode,runtimeVersionv4.0,bitness64"
-          responseBufferLimit="0" />
-    </handlers>
+[!code[Main](troubleshooting-http-405-errors-after-publishing-web-api-applications/samples/sample3.xml)]
 
 This scenario is often encountered after an application is published from a development environment to a production environment, and this occurs because the list of handlers/modules is different between your development and production environments. For example, if you are using Visual Studio 2012 or 2013 to develop a Web API application, IIS Express 8 is the default web server for testing. This development web server is a scaled-down version of the full IIS functionality that ships in a server product, and this development web server contains a few changes that were added for development scenarios. For example, the WebDAV module is often installed on a production web server that is running the full version of IIS, although it may not be in actual use. The development version of IIS, (IIS Express), installs the WebDAV module, but the entries for the WebDAV module are intentionally commented out, so the WebDAV module is never loaded on IIS Express unless you specifically alter your IIS Express configuration settings to add WebDAV functionality to your IIS Express installation. As a result, your web application may work correctly on your development computer, but you may encounter HTTP 405 errors when you publish your Web API application to your production web server.
 

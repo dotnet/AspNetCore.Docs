@@ -1,2 +1,9 @@
-return from p in db.Products select new ProductDTO() 
-    { Id = p.Id, Name = p.Name, Price = p.Price };
+    namespace ProductStore.Models
+    {
+        public class ProductDTO
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public decimal Price { get; set; }
+        }
+    }

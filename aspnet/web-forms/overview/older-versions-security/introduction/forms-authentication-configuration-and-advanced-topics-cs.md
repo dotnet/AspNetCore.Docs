@@ -30,21 +30,7 @@ In this tutorial we will examine the various forms authentication settings and s
 
 The forms authentication system in ASP.NET offers a number of configuration settings that can be customized on an application-by-application basis. This includes settings like: the lifetime of the forms authentication ticket; what sort of protection is applied to the ticket; under what conditions cookieless authentication tickets are used; the path to the login page; and other information. To modify the default values, add a [&lt;forms&gt; element](https://msdn.microsoft.com/en-us/library/1d3t3c61.aspx) as a child of the [&lt;authentication&gt; element](https://msdn.microsoft.com/en-us/library/532aee0e.aspx), specifying those property values you want to customize as XML attributes like so:
 
-    <authentication mode="Forms">
-    
-      <forms
-    
-     propertyName1="value1"
-    
-     propertyName2="value2"
-    
-      ...
-    
-     propertyNameN="valueN"
-    
-      />
-    
-    </authentication>
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample1.xml)]
 
 Table 1 summarizes the properties that can be customized through the &lt;forms&gt; element. Since Web.config is an XML file, the attribute names in the left column are case-sensitive.
 
@@ -114,17 +100,7 @@ The timeout and slidingExpiration concepts already discussed apply the same to b
 
 Let's update our website's authentication ticket timeout policies so that tickets timeout after one hour (60 minutes), using a sliding expiration. To effect this change, update the Web.config file, adding a &lt;forms&gt; element to the &lt;authentication&gt; element with the following markup:
 
-    <authentication mode="Forms">
-    
-      <forms
-    
-      slidingExpiration="true"
-    
-      timeout="60"
-    
-      />
-    
-    </authentication>
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample2.xml)]
 
 ### Using an Login Page URL Other than Login.aspx
 
@@ -132,15 +108,7 @@ Since the FormsAuthenticationModule automatically redirects unauthorized users t
 
 For example, if your login page was named SignIn.aspx and was located in the Users directory, you could point the loginUrl configuration setting to ~/Users/SignIn.aspx like so:
 
-    <authentication mode="Forms">
-    
-      <forms
-    
-      loginUrl="~/Users/SignIn.aspx"
-    
-      />
-    
-    </authentication>
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample3.xml)]
 
 Since our current application already has a login page named Login.aspx, there's no need to specify a custom value in the &lt;forms&gt; element.
 
@@ -168,19 +136,7 @@ Cookies are a natural medium for including information from the browser in each 
 
 The best way to see how such information can be embedded within the URL is to force the site to use cookieless authentication tickets. This can be accomplished by setting the cookieless configuration setting to UseUri:
 
-    <authentication mode="Forms">
-    
-      <forms
-    
-      cookieless="UseUri"
-    
-      slidingExpiration="true"
-    
-      timeout="60"
-    
-      />
-    
-    </authentication>
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample4.xml)]
 
 Once you have made this change, visit the site through a browser. When visiting as an anonymous user, the URLs will look exactly like they did before. For example, when visiting Default.aspx page my browser's address bar shows the following URL:
 
@@ -252,27 +208,7 @@ When working in a web farm setting or sharing authentication tickets across appl
 
 While neither of the above scenarios applies to our sample application, we can still specify explicit decryptionKey and validationKey values and define the algorithms to be used. Add a &lt;machineKey&gt; setting to the Web.config file:
 
-    <configuration> 
-    
-      <system.web>
-    
-      ... Some markup was removed for brevity ...
-    
-      <machineKey
-    
-      decryption="AES"
-    
-      validation="SHA1"
-    
-      decryptionKey="1513F567EE75F7FB5AC0AC4D79E1D9F25430E3E2F1BCDD3370BCFC4EFC97A541"
-    
-      validationKey="32CBA563F26041EE5B5FE9581076C40618DCC1218F5F447634EDE8624508A129"
-    
-      />
-    
-      </system.web>
-    
-    </configuration>
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample5.xml)]
 
 For more information check out [How To: Configure MachineKey in ASP.NET 2.0](https://msdn.microsoft.com/en-us/library/ms998288.aspx).
 
@@ -301,71 +237,7 @@ Unfortunately, adding user-specific information to a forms authentication ticket
 
 Let's explore the necessary code for working with UserData by updating the Login.aspx page to record additional information about the user to the authentication ticket. Pretend that our user store contains information about the company the user works for and their title, and that we want to capture this information in the authentication ticket. Update the Login.aspx page's LoginButton Click event handler so that the code looks like the following:
 
-    protected void LoginButton_Click(object sender, EventArgs e)
-    
-    {
-    
-      // Three valid username/password pairs: Scott/password, Jisun/password, and Sam/password.
-    
-      string[] users = { "Scott", "Jisun", "Sam" };
-    
-      string[] passwords = { "password", "password", "password" };
-    
-      string[] companyName = { "Northwind Traders", "Adventure Works", "Contoso" };
-    
-      string[] titleAtCompany = { "Janitor", "Scientist", "Mascot" };
-    
-      for (int i = 0; i < users.Length; i++)
-    
-      {
-    
-      bool validUsername = (string.Compare(UserName.Text, users[i], true) == 0);
-    
-      bool validPassword = (string.Compare(Password.Text, passwords[i], false) == 0);
-    
-      if (validUsername && validPassword)
-    
-      {
-    
-      // Query the user store to get this user's User Data
-    
-      string userDataString = string.Concat(companyName[i], "|", titleAtCompany[i]);
-    
-      // Create the cookie that contains the forms authentication ticket
-    
-      HttpCookie authCookie = FormsAuthentication.GetAuthCookie(UserName.Text, RememberMe.Checked);
-    
-      // Get the FormsAuthenticationTicket out of the encrypted cookie
-    
-      FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
-    
-      // Create a new FormsAuthenticationTicket that includes our custom User Data
-    
-      FormsAuthenticationTicket newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, userDataString);
-    
-      // Update the authCookie's Value to use the encrypted version of newTicket
-    
-      authCookie.Value = FormsAuthentication.Encrypt(newTicket);
-    
-      // Manually add the authCookie to the Cookies collection
-    
-      Response.Cookies.Add(authCookie);
-    
-      // Determine redirect URL and send user there
-    
-      string redirUrl = FormsAuthentication.GetRedirectUrl(UserName.Text, RememberMe.Checked);
-    
-      Response.Redirect(redirUrl);
-    
-      }
-    
-      }
-    
-      // If we reach here, the user's credentials were invalid
-    
-      InvalidCredentialsMessage.Visible = true;
-    
-    }
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample6.xml)]
 
 Let's step through this code one line at a time. The method starts by defining four string arrays: users, passwords, companyName, and titleAtCompany. These arrays hold the usernames, passwords, company names, and titles for the user accounts in the system, of which there are three: Scott, Jisun, and Sam. In a real application, these values would be queried from the user store, not hard-coded in the page's source code.
 
@@ -397,11 +269,7 @@ authCookie.Value = FormsAuthentication.Encrypt(newTicket);
 
 Finally, authCookie is added to the Response.Cookies collection and the GetRedirectUrl method is called to determine the appropriate page to send the user.
 
-    Response.Cookies.Add(authCookie);
-    
-    string redirUrl = FormsAuthentication.GetRedirectUrl(UserName.Text, RememberMe.Checked);
-    
-    Response.Redirect(redirUrl);
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample7.xml)]
 
 All of this code is needed because the UserData property is read-only and the FormsAuthentication class does not provide any methods for specifying UserData information in its GetAuthCookie, SetAuthCookie, or RedirectFromLoginPage methods.
 
@@ -414,57 +282,7 @@ At this point each user's company name and title is stored in the forms authenti
 
 Currently, Default.aspx contains an AuthenticatedMessagePanel Panel with a Label control named WelcomeBackMessage. This Panel is only displayed to authenticated users. Update the code in Default.aspx's Page\_Load event handler so that it looks like the following:
 
-    protected void Page_Load(object sender, EventArgs e)
-    
-    {
-    
-      if (Request.IsAuthenticated)
-    
-      {
-    
-      WelcomeBackMessage.Text = "Welcome back, " + User.Identity.Name + "!";
-    
-      // Get User Data from FormsAuthenticationTicket and show it in WelcomeBackMessage
-    
-      FormsIdentity ident = User.Identity as FormsIdentity;
-    
-      if (ident != null)
-    
-      {
-    
-      FormsAuthenticationTicket ticket = ident.Ticket;
-    
-      string userDataString = ticket.UserData;
-    
-      // Split on the |
-    
-      string[] userDataPieces = userDataString.Split("|".ToCharArray());
-    
-      string companyName = userDataPieces[0];
-    
-      string titleAtCompany = userDataPieces[1];
-    
-      WelcomeBackMessage.Text += string.Format(" You are the {0} of {1}.", titleAtCompany, companyName);
-    
-      }
-    
-      AuthenticatedMessagePanel.Visible = true;
-    
-      AnonymousMessagePanel.Visible = false;
-    
-      }
-    
-      else
-    
-      {
-    
-      AuthenticatedMessagePanel.Visible = false;
-    
-      AnonymousMessagePanel.Visible = true;
-    
-      }
-    
-    }
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample8.xml)]
 
 If Request.IsAuthenticated is true, then the WelcomeBackMessage's Text property is first set to Welcome back, *username*. Then, the User.Identity property is cast to a FormsIdentity object so that we can access the underlying FormsAuthenticationTicket. Once we have the FormsAuthenticationTicket, we deserialize the UserData property into the company name and title. This is accomplished by splitting the string on the pipe character. The company name and title are then displayed in the WelcomeBackMessage Label.
 
@@ -511,157 +329,13 @@ Next, add two new class files to the App\_Code folder, one named CustomIdentity.
 
 The CustomIdentity class is responsible for implementing the IIdentity interface, which defines the AuthenticationType, IsAuthenticated, and Name properties. In addition to those required properties, we are interested in exposing the underlying forms authentication ticket as well as properties for the user's company name and title. Enter the following code into the CustomIdentity class.
 
-    using System;
-    
-    using System.Data;
-    
-    using System.Configuration;
-    
-    using System.Web;
-    
-    using System.Web.Security;
-    
-    using System.Web.UI;
-    
-    using System.Web.UI.WebControls;
-    
-    using System.Web.UI.WebControls.WebParts;
-    
-    using System.Web.UI.HtmlControls;
-    
-    public class CustomIdentity : System.Security.Principal.IIdentity
-    
-    {
-    
-      private FormsAuthenticationTicket _ticket;
-    
-      public CustomIdentity(FormsAuthenticationTicket ticket)
-    
-      {
-    
-      _ticket = ticket;
-    
-      }
-    
-      public string AuthenticationType
-    
-      {
-    
-      get { return "Custom"; }
-    
-      }
-    
-      public bool IsAuthenticated
-    
-      {
-    
-      get { return true; }
-    
-      }
-    
-      public string Name
-    
-      {
-    
-      get { return _ticket.Name; }
-    
-      }
-    
-      public FormsAuthenticationTicket Ticket
-    
-      {
-    
-      get { return _ticket; }
-    
-      }
-    
-      public string CompanyName
-    
-      {
-    
-      get 
-    
-      {
-    
-      string[] userDataPieces = _ticket.UserData.Split("|".ToCharArray());
-    
-      return userDataPieces[0];
-    
-      }
-    
-      }
-    
-      public string Title
-    
-      {
-    
-      get 
-    
-      {
-    
-      string[] userDataPieces = _ticket.UserData.Split("|".ToCharArray());
-    
-      return userDataPieces[1];
-    
-      }
-    
-      }
-    
-    }
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample9.xml)]
 
 Note that the class includes a FormsAuthenticationTicket member variable (\_ticket) and that this ticket information must be supplied through the constructor. This ticket data is used in returning the identity's Name; its UserData property is parsed to return the values for the CompanyName and Title properties.
 
 Next, create the CustomPrincipal class. Since we are not concerned with roles at this juncture, the CustomPrincipal class's constructor accepts only a CustomIdentity object; its IsInRole method always returns false.
 
-    using System;
-    
-    using System.Data;
-    
-    using System.Configuration;
-    
-    using System.Web;
-    
-    using System.Web.Security;
-    
-    using System.Web.UI;
-    
-    using System.Web.UI.WebControls;
-    
-    using System.Web.UI.WebControls.WebParts;
-    
-    using System.Web.UI.HtmlControls;
-    
-    public class CustomPrincipal : System.Security.Principal.IPrincipal
-    
-    {
-    
-      private CustomIdentity _identity;
-    
-      public CustomPrincipal(CustomIdentity identity)
-    
-      {
-    
-      _identity = identity;
-    
-      }
-    
-      public System.Security.Principal.IIdentity Identity
-    
-      {
-    
-      get { return _identity; }
-    
-      }
-    
-      public bool IsInRole(string role)
-    
-      {
-    
-      return false;
-    
-      }
-    
-    }
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample10.xml)]
 
 ### Assigning a CustomPrincipal Object to the Incoming Request's Security Context
 
@@ -687,49 +361,7 @@ In order to execute code in response to an ASP.NET pipeline event, we can either
 
 The default Global.asax template includes event handlers for a number of the ASP.NET pipeline events, including the Start, End and [Error event](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.error.aspx), among others. Feel free to remove these event handlers, as we do not need them for this application. The event we are interested in is PostAuthenticateRequest. Update your Global.asax file so its markup looks similar to the following:
 
-    <%@ Application Language="C#" %>
-    
-    <%@ Import Namespace="System.Security.Principal" %>
-    
-    <%@ Import Namespace="System.Threading" %>
-    
-    <script runat="server">
-    
-      void Application_OnPostAuthenticateRequest(object sender, EventArgs e)
-    
-      {
-    
-      // Get a reference to the current User
-    
-      IPrincipal usr = HttpContext.Current.User;
-    
-      // If we are dealing with an authenticated forms authentication request
-    
-      if (usr.Identity.IsAuthenticated && usr.Identity.AuthenticationType == "Forms")
-    
-      {
-    
-      FormsIdentity fIdent = usr.Identity as FormsIdentity;
-    
-      // Create a CustomIdentity based on the FormsAuthenticationTicket  
-    
-      CustomIdentity ci = new CustomIdentity(fIdent.Ticket);
-    
-      // Create the CustomPrincipal
-    
-      CustomPrincipal p = new CustomPrincipal(ci);
-    
-      // Attach the CustomPrincipal to HttpContext.User and Thread.CurrentPrincipal
-    
-      HttpContext.Current.User = p;
-    
-      Thread.CurrentPrincipal = p;
-    
-      }
-    
-      }
-    
-    </script>
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample11.xml)]
 
 The Application\_OnPostAuthenticateRequest method executes each time the ASP.NET runtime raises the PostAuthenticateRequest event, which happens once on each incoming page request. The event handler starts by checking to see if the user is authenticated and was authenticated via forms authentication. If so, a new CustomIdentity object is created and passed the current request's authentication ticket in its constructor. Following that, a CustomPrincipal object is created and passed the just-created CustomIdentity object in its constructor. Finally, the current request's security context is assigned to the newly created CustomPrincipal object.
 
@@ -747,11 +379,7 @@ Whenever a request arrives and is dispatched to the ASP.NET engine, the Applicat
 
 Return to the Page\_Load event handler in Default.aspx, where in Step 4 we wrote code to retrieve the form authentication ticket and parse the UserData property in order to display the user's company name and title. With the CustomPrincipal and CustomIdentity objects in use now, there's no need to parse the values out of the ticket's UserData property. Instead, simply get a reference to the CustomIdentity object and use its CompanyName and Title properties:
 
-    CustomIdentity ident = User.Identity as CustomIdentity;
-    
-    if (ident != null)
-    
-      WelcomeBackMessage.Text += string.Format(" You are the {0} of {1}.", ident.Title, ident.CompanyName);
+[!code[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample12.xml)]
 
 ## Summary
 

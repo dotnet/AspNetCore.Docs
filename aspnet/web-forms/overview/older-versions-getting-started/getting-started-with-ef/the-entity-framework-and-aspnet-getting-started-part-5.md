@@ -34,34 +34,7 @@ You'll also create a page that works with a many-to-many relationship by assigni
 
 Create a new web page named *CoursesAdd.aspx* that uses the *Site.Master* master page, and add the following markup to the `Content` control named `Content2`:
 
-    <h2>Add Courses</h2>
-        <asp:EntityDataSource ID="CoursesEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False"
-            EntitySetName="Courses" 
-            EnableInsert="True" EnableDelete="True" >
-        </asp:EntityDataSource>
-        <asp:DetailsView ID="CoursesDetailsView" runat="server" AutoGenerateRows="False"
-            DataSourceID="CoursesEntityDataSource" DataKeyNames="CourseID"
-            DefaultMode="Insert" oniteminserting="CoursesDetailsView_ItemInserting">
-            <Fields>
-                <asp:BoundField DataField="CourseID" HeaderText="ID" />
-                <asp:BoundField DataField="Title" HeaderText="Title" />
-                <asp:BoundField DataField="Credits" HeaderText="Credits" />
-                <asp:TemplateField HeaderText="Department">
-                    <InsertItemTemplate>
-                        <asp:EntityDataSource ID="DepartmentsEntityDataSource" runat="server" ConnectionString="name=SchoolEntities"
-                            DefaultContainerName="SchoolEntities" EnableDelete="True" EnableFlattening="False"
-                            EntitySetName="Departments" EntityTypeFilter="Department">
-                        </asp:EntityDataSource>
-                        <asp:DropDownList ID="DepartmentsDropDownList" runat="server" DataSourceID="DepartmentsEntityDataSource"
-                            DataTextField="Name" DataValueField="DepartmentID"
-                            oninit="DepartmentsDropDownList_Init">
-                        </asp:DropDownList>
-                    </InsertItemTemplate>
-                </asp:TemplateField>
-                <asp:CommandField ShowInsertButton="True" />
-            </Fields>
-        </asp:DetailsView>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample1.xml)]
 
 This markup creates an `EntityDataSource` control that selects courses, that enables inserting, and that specifies a handler for the `Inserting` event. You'll use the handler to update the `Department` navigation property when a new `Course` entity is created.
 
@@ -71,22 +44,15 @@ You use a template field for the `Department` navigation property because naviga
 
 In *CoursesAdd.aspx.cs* just after the partial-class declaration, add a class field to hold a reference to the `DepartmentsDropDownList` control:
 
-    private DropDownList departmentDropDownList;
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample2.xml)]
 
 Add a handler for the `DepartmentsDropDownList` control's `Init` event so that you can store a reference to the control. This lets you get the value the user has entered and use it to update the `DepartmentID` value of the `Course` entity.
 
-    protected void DepartmentsDropDownList_Init(object sender, EventArgs e)
-            {
-                departmentDropDownList = sender as DropDownList;
-            }
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample3.xml)]
 
 Add a handler for the `DetailsView` control's `Inserting` event:
 
-    protected void CoursesDetailsView_ItemInserting(object sender, DetailsViewInsertEventArgs e)
-            {
-                var departmentID = Convert.ToInt32(departmentDropDownList.SelectedValue);
-                e.Values["DepartmentID"] = departmentID;
-            }
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample4.xml)]
 
 When the user clicks `Insert`, the `Inserting` event is raised before the new record is inserted. The code in the handler gets the `DepartmentID` from the `DropDownList` control and uses it to set the value that will be used for the `DepartmentID` property of the `Course` entity.
 
@@ -108,42 +74,7 @@ The relationship between the `Courses` entity set and the `People` entity set is
 
 Create a new web page named *InstructorsCourses.aspx* that uses the *Site.Master* master page, and add the following markup to the `Content` control named `Content2`:
 
-    <h2>Assign Instructors to Courses or Remove from Courses</h2>
-        <br />
-        <asp:EntityDataSource ID="InstructorsEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False" 
-            EntitySetName="People"
-            Where="it.HireDate is not null" Select="it.LastName + ', ' + it.FirstMidName AS Name, it.PersonID">
-        </asp:EntityDataSource>
-        Select an Instructor:
-        <asp:DropDownList ID="InstructorsDropDownList" runat="server" DataSourceID="InstructorsEntityDataSource"
-            AutoPostBack="true" DataTextField="Name" DataValueField="PersonID"
-            OnSelectedIndexChanged="InstructorsDropDownList_SelectedIndexChanged" 
-            OnDataBound="InstructorsDropDownList_DataBound">
-        </asp:DropDownList>
-        <h3>
-            Assign a Course</h3>
-        <br />
-        Select a Course:
-        <asp:DropDownList ID="UnassignedCoursesDropDownList" runat="server"
-            DataTextField="Title" DataValueField="CourseID">
-        </asp:DropDownList>
-        <br />
-        <asp:Button ID="AssignCourseButton" runat="server" Text="Assign" OnClick="AssignCourseButton_Click" />
-        <br />
-        <asp:Label ID="CourseAssignedLabel" runat="server" Visible="false" Text="Assignment successful"></asp:Label>
-        <br />
-        <h3>
-            Remove a Course</h3>
-        <br />
-        Select a Course:
-        <asp:DropDownList ID="AssignedCoursesDropDownList" runat="server"
-            DataTextField="title" DataValueField="courseiD">
-        </asp:DropDownList>
-        <br />
-        <asp:Button ID="RemoveCourseButton" runat="server" Text="Remove" OnClick="RemoveCourseButton_Click" />
-        <br />
-        <asp:Label ID="CourseRemovedLabel" runat="server" Visible="false" Text="Removal successful"></asp:Label>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample5.xml)]
 
 This markup creates an `EntityDataSource` control that retrieves the name and `PersonID` of `Person` entities for instructors. A `DropDrownList` control is bound to the `EntityDataSource` control. The `DropDownList` control specifies a handler for the `DataBound` event. You'll use this handler to databind the two drop-down lists that display courses.
 
@@ -157,125 +88,29 @@ Finally, the markup also creates a group of controls to use for removing a cours
 
 In *InstructorsCourses.aspx.cs*, add a using statement:
 
-    using ContosoUniversity.DAL;
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample6.xml)]
 
 Add a method for populating the two drop-down lists that display courses:
 
-    private void PopulateDropDownLists()
-            {
-                using (var context = new SchoolEntities())
-                {
-                    var allCourses = (from c in context.Courses
-                                      select c).ToList();
-    
-                    var instructorID = Convert.ToInt32(InstructorsDropDownList.SelectedValue);
-                    var instructor = (from p in context.People.Include("Courses")
-                                      where p.PersonID == instructorID
-                                      select p).First();
-    
-                    var assignedCourses = instructor.Courses.ToList();
-                    var unassignedCourses = allCourses.Except(assignedCourses.AsEnumerable()).ToList();
-    
-                    UnassignedCoursesDropDownList.DataSource = unassignedCourses;
-                    UnassignedCoursesDropDownList.DataBind();
-                    UnassignedCoursesDropDownList.Visible = true;
-    
-                    AssignedCoursesDropDownList.DataSource = assignedCourses;
-                    AssignedCoursesDropDownList.DataBind();
-                    AssignedCoursesDropDownList.Visible = true;
-                }
-            }
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample7.xml)]
 
 This code gets all courses from the `Courses` entity set and gets the courses from the `Courses` navigation property of the `Person` entity for the selected instructor. It then determines which courses are assigned to that instructor and populates the drop-down lists accordingly.
 
 Add a handler for the `Assign` button's `Click` event:
 
-    protected void AssignCourseButton_Click(object sender, EventArgs e)
-            {
-                using (var context = new SchoolEntities())
-                {
-                    var instructorID = Convert.ToInt32(InstructorsDropDownList.SelectedValue);
-                    var instructor = (from p in context.People
-                                      where p.PersonID == instructorID
-                                      select p).First();
-                    var courseID = Convert.ToInt32(UnassignedCoursesDropDownList.SelectedValue);
-                    var course = (from c in context.Courses
-                                  where c.CourseID == courseID
-                                  select c).First();
-                    instructor.Courses.Add(course);
-                    try
-                    {
-                        context.SaveChanges();
-                        PopulateDropDownLists();
-                        CourseAssignedLabel.Text = "Assignment successful.";
-                    }
-                    catch (Exception)
-                    {
-                        CourseAssignedLabel.Text = "Assignment unsuccessful.";
-                        //Add code to log the error.
-                    }
-                    CourseAssignedLabel.Visible = true;
-                }
-            }
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample8.xml)]
 
 This code gets the `Person` entity for the selected instructor, gets the `Course` entity for the selected course, and adds the selected course to the `Courses` navigation property of the instructor's `Person` entity. It then saves the changes to the database and repopulates the drop-down lists so the results can be seen immediately.
 
 Add a handler for the `Remove` button's `Click` event:
 
-    protected void RemoveCourseButton_Click(object sender, EventArgs e)
-            {
-                using (var context = new SchoolEntities())
-                {
-                    var instructorID = Convert.ToInt32(InstructorsDropDownList.SelectedValue);
-                    var instructor = (from p in context.People
-                                      where p.PersonID == instructorID
-                                      select p).First();
-                    var courseID = Convert.ToInt32(AssignedCoursesDropDownList.SelectedValue);
-                    var courses = instructor.Courses;
-                    var courseToRemove = new Course();
-                    foreach (Course c in courses)
-                    {
-                        if (c.CourseID == courseID)
-                        {
-                            courseToRemove = c;
-                            break;
-                        }
-                    }
-                    try
-                    {
-                        courses.Remove(courseToRemove);
-                        context.SaveChanges();
-                        PopulateDropDownLists();
-                        CourseRemovedLabel.Text = "Removal successful.";
-                    }
-                    catch (Exception)
-                    {
-                        CourseRemovedLabel.Text = "Removal unsuccessful.";
-                        //Add code to log the error.
-                    }
-                    CourseRemovedLabel.Visible = true;
-                }
-            }
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample9.xml)]
 
 This code gets the `Person` entity for the selected instructor, gets the `Course` entity for the selected course, and removes the selected course from the `Person` entity's `Courses` navigation property. It then saves the changes to the database and repopulates the drop-down lists so the results can be seen immediately.
 
 Add code to the `Page_Load` method that makes sure the error messages are not visible when there's no error to report, and add handlers for the `DataBound` and `SelectedIndexChanged` events of the instructors drop-down list to populate the courses drop-down lists:
 
-    protected void Page_Load(object sender, EventArgs e)
-            {
-                CourseAssignedLabel.Visible = false;
-                CourseRemovedLabel.Visible = false;
-            }
-    
-            protected void InstructorsDropDownList_DataBound(object sender, EventArgs e)
-            {
-                PopulateDropDownLists();
-            }
-    
-            protected void InstructorsDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-            {
-                PopulateDropDownLists();
-            }
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample10.xml)]
 
 Run the page.
 

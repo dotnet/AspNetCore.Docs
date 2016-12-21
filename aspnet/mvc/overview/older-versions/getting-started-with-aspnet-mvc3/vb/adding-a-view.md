@@ -30,9 +30,7 @@ In this section we're going to modify the `HelloWorldController` class to use a 
 
 Let's start by using a view template with the `Index` method in the `HelloWorldController` class. Currently the `Index` method returns a string with a message that is hard-coded within the controller class. Change the `Index` method to return a `View` object, as shown in the following:
 
-    Public Function Index() As ActionResult
-                Return View()
-            End Function
+[!code[Main](adding-a-view/samples/sample1.xml)]
 
 Let's now add a view template to our project that we can invoke with the `Index` method. To do this, right-click inside the `Index` method and click **Add View**.
 
@@ -48,13 +46,7 @@ The *MvcMovie\Views\HelloWorld* folder and the *MvcMovie\Views\HelloWorld\Index.
 
 Add some HTML under the `<h2>` tag. The modified *MvcMovie\Views\HelloWorld\Index.vbhtml* file is shown below.
 
-    @Code
-        ViewData("Title") = "Index"
-    End Code
-    
-    <h2>Index</h2>
-    
-    <b>Hello</b> World!
+[!code[Main](adding-a-view/samples/sample2.xml)]
 
 Run the application and browse to the &quot;hello world&quot; controller (`http://localhost:xxxx/HelloWorld`). The `Index` method in your controller didn't do much work; it simply ran the statement `return View()`, which indicated that we wanted to use a view template file to render a response to the client. Because we did not explicitly specify the name of the view template file to use, ASP.NET MVC defaulted to using the *Index.vbhtml* view file within the *\Views\HelloWorld* folder. The image below shows the string hard-coded in the view.
 
@@ -68,57 +60,17 @@ First, let's change the text &quot;My MVC Application.&quot; That text is shared
 
 Note the `@RenderBody()` line of code near the bottom of the file. `RenderBody` is a placeholder where all the pages you create show up, &quot;wrapped&quot; in the layout page. Change the `<h1>` heading from **&quot;** My MVC Application&quot; to &quot;MVC Movie App&quot;.
 
-    <div id="title">
-            <h1>MVC Movie App</h1>
-      </div>
+[!code[Main](adding-a-view/samples/sample3.xml)]
 
 Run the application and note it now says &quot;MVC Movie App&quot;. Click the **About** link, and that page shows &quot;MVC Movie App&quot;, too.
 
 The complete *\_Layout.vbhtml* file is shown below:
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewData("Title")</title>
-        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-        <script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
-    </head>
-    <body>
-        <div class="page">
-            <header>
-                <div id="title">
-                    <h1>MVC Movie App</h1>
-                </div>
-                <div id="logindisplay">
-                    @Html.Partial("_LogOnPartial")
-                </div>
-                <nav>
-                    <ul id="menu">
-                        <li>@Html.ActionLink("Home", "Index", "HelloWorld")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                    </ul>
-                </nav>
-            </header>
-            <section id="main">
-                @RenderBody()
-            </section>
-            <footer>
-            </footer>
-        </div>
-    </body>
-    </html>
+[!code[Main](adding-a-view/samples/sample4.xml)]
 
 Now, let's change the title of the Index page (view).
 
-    @Code
-        ViewData("Title") = "Movie List"
-    End Code
-    
-    <h2>My Movie List</h2>
-    
-    <p>Hello from our View Template!</p>
+[!code[Main](adding-a-view/samples/sample5.xml)]
 
 Open *MvcMovie\Views\HelloWorld\Index.vbhtml*. There are two places to make a change: first, the text that appears in the title of the browser, and then in the secondary header (the `<h2>` element). We'll make them slightly different so you can see which bit of code changes which part of the app.
 
@@ -140,28 +92,11 @@ Return to the *HelloWorldController.vb* file change the `Welcome` method inside 
 
 The complete `HelloWorldController.vb` with the new class in the same file.
 
-    Namespace MvcMovie
-        Public Class HelloWorldController
-            Inherits System.Web.Mvc.Controller
-            '
-            ' GET: /HelloWorld
-    
-            Function Index() As ActionResult
-                Return View()
-            End Function
-    
-            Public Function Welcome(ByVal name As String, Optional ByVal numTimes As Integer = 1) As ActionResult
-                ViewBag.Message = "Hello " & name
-                ViewBag.NumTimes = numTimes
-                Return View()
-            End Function
-    
-        End Class
-    End Namespace
+[!code[Main](adding-a-view/samples/sample6.xml)]
 
 Now our ViewBag contains data that will be passed over to the View automatically. Again, alternatively we could have passed in our own object like this if we liked:
 
-    return View(myCustomObject)
+[!code[Main](adding-a-view/samples/sample7.xml)]
 
 Now we need a `WelcomeView` template! Run the application so the new code is compiled. Close the browser, right-click inside the `Welcome` method, and then click **Add View**.
 
@@ -171,11 +106,7 @@ Here's what your **Add View** dialog box looks like.
 
 Add the following code under the `<h2>` element in the new *Welcome.*vbhtml file. We'll make a loop and say &quot;Hello&quot; as many times as the user says we should!
 
-    @Code 
-        For i As Integer = 0 To ViewBag.NumTimes
-    @<h3> @ViewBag.Message @i.ToString </h3>
-         Next i
-     End Code
+[!code[Main](adding-a-view/samples/sample8.xml)]
 
 Run the application and browse to `http://localhost:xx/HelloWorld/Welcome?name=Scott&numtimes=4`
 

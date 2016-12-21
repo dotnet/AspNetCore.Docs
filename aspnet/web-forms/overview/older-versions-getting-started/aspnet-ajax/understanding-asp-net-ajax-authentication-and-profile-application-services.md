@@ -42,13 +42,7 @@ Incorporating the ASP.NET Authentication and Profiling services themselves into 
 
 The ASP.NET AJAX Authentication service must be enabled in the web.config file:
 
-    <system.web.extensions> 
-     <scripting>
-     <webServices>
-     <authenticationService enabled="true" /> 
-     </webServices>
-     </scripting> 
-    </system.web.extensions>
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample1.xml)]
 
 The Authentication service requires ASP.NET Forms authentication to be enabled and requires cookies to be enabled on the client browser (a script cannot enable a cookieless session since cookieless sessions require URL parameters).
 
@@ -108,7 +102,7 @@ This property specifies a function that should be called if a failure to communi
 
 The function reference specified by this property should have the following signature:
 
-    function AuthenticationFailureCallback(error, userContext, methodName);
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample2.xml)]
 
 *Parameters:*
 
@@ -124,7 +118,7 @@ This property specifies a function that should be called when the login web serv
 
 The function reference specified by this property should have the following signature:
 
-    function AuthenticationLoginCompletedCallback(validCredentials, userContext, methodName);
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample3.xml)]
 
 *Parameters:*
 
@@ -140,7 +134,7 @@ This property specifies a function that should be called when the logout web ser
 
 The function reference specified by this property should have the following signature:
 
-    function AuthenticationLogoutCompletedCallback(result, userContext, methodName);
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample4.xml)]
 
 *Parameters:*
 
@@ -176,62 +170,7 @@ This property is a `Number` object representing the number of milliseconds to wa
 
 The following markup is an example ASP.NET page with a simple script call to the login and logout methods of the AuthenticationService class.
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-     <head runat="server">
-     <title>Login Example</title>
-     <script type="text/javascript">
-     function Login()
-     {
-     var userTextbox = $get("txtUser");
-     var passTextbox = $get("txtPassword");
-     Sys.Services.AuthenticationService.login(userTextbox.value, 
-     passTextbox.value, false, null, null, LoginServiceCompleted, 
-     LoginServiceFailed, "Context Info");
-     }
-     function Logout()
-     {
-     Sys.Services.AuthenticationService.logout(null, LogoutServiceCompleted, 
-     LoginServiceFailed, "Context Info");
-     }
-     function LoginServiceFailed(error, userContext, methodName)
-     {
-     alert('There was an error with the authentication service:\n\n' + error);
-     }
-     function LoginServiceCompleted(validCredentials, userContext, methodName)
-     {
-     if (validCredentials)
-     {
-     alert('Great! You successfully logged in.');
-     }
-     else
-     {
-     alert('Oops! You gave us bad credentials!');
-     }
-     }
-     function LogoutServiceCompleted(result, userContext, methodName)
-     {
-     alert('You have been logged out from the web site.');
-     }
-     </script>
-     </head>
-     <body>
-     <form id="form1" runat="server">
-     <asp:ScriptManager ID="ScriptManager1" runat="server" 
-     EnableScriptLocalization="true">
-     </asp:ScriptManager>
-     <div>
-     <asp:TextBox ID="txtUser" runat="Server"></asp:TextBox>
-     <br />
-     <asp:TextBox ID="txtPassword" runat="Server" TextMode="Password"/>
-     <br />
-     <asp:Button Text="Log in" ID="btnLogin" runat="server" 
-     OnClientClick="Login(); return false;" />
-     </div>
-     </form>
-     </body>
-    </html>
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample5.xml)]
 
 ## Accessing ASP.NET Profiling Data via AJAX
 
@@ -239,31 +178,11 @@ The ASP.NET profiling service is also exposed through the ASP.NET AJAX Extension
 
 The profile service must be enabled in web.config; it is not by default. To do so, ensure that the `profileService` child element has enabled= true specified in web.config, and that you have specified which properties can be read or written as follows:
 
-    <system.web.extensions>
-     <scripting>
-     <webServices>
-     <profileService enabled="true"
-     readAccessProperties= Name,Address,BackgroundColor 
-     writeAccessProperties= BackgroundColor />
-     </webServices>
-     </scripting>
-    </system.web.extensions>
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample6.xml)]
 
 The profile service must also be configured. Although configuration of the profiling service is outside of the scope of this whitepaper, it is worthwhile to note that groups as defined in profile configuration settings will be accessible as sub-properties of the group name. For example, with the following profile section specified:
 
-    <profile enabled="true">
-     <properties>
-     <add name="Name" type="System.String"/>
-     <group name="Address">
-     <add name="Line1" type="System.String"/>
-     <add name="Line2" type="System.String"/>
-     <add name="City" type="System.String"/>
-     <add name="State" type="System.String"/>
-     <add name="Zip" type="System.String"/>
-     </group>
-     <add name="BackgroundColor" type="System.Drawing.Color"/>
-     </properties>
-    </profile>
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample7.xml)]
 
 Client script would be able to access Name, Address.Line1, Address.Line2, Address.City, Address.State, Address.Zip, and BackgroundColor as properties of the properties field of the ProfileService class.
 
@@ -275,7 +194,7 @@ Once the AJAX Profiling Service is configured, it will be immediately available 
 
 The properties field exposes all configured profile data as child properties that can be referenced by the dot-operator-name convention. Properties that are children of property groups are referred to as GroupName.PropertyName. In the example profile configuration presented above, to get the state of the user, you could use the following identifier:
 
-    Sys.Services.ProfileService.properties.Address.State
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample8.xml)]
 
 *load method:*
 
@@ -317,7 +236,7 @@ This property specifies a function that should be called if a failure to communi
 
 The function reference specified by this property should have the following signature:
 
-    function AuthenticationFailureCallback(error, userContext, methodName);
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample9.xml)]
 
 *Parameters:*
 
@@ -333,7 +252,7 @@ This property specifies a function that should be called upon the completion of 
 
 The function reference specified by this property should have the following signature:
 
-    function ProfileSaveComplete(numPropsSaved, userContext, methodName);
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample10.xml)]
 
 *Parameters:*
 
@@ -349,7 +268,7 @@ This property specifies a function that should be called upon the completion of 
 
 The function reference specified by this property should have the following signature:
 
-    function ProfileLoadComplete(numPropsLoaded, userContext, methodName);
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample11.xml)]
 
 *Parameters:*
 
@@ -379,17 +298,7 @@ This property is a `Number` object representing the number of milliseconds to wa
 
 The following code will check to see whether a user is authenticated, and if so, will load the user's preferred background color as the page's.
 
-    function Page_Load()
-    {
-     if (Sys.Services.AuthenticationService.get_isLoggedIn())
-     {
-     Sys.Services.ProfileService.load();
-     }
-    }
-    function ProfileLoaded(numPropsLoaded, userContext, methodName)
-    {
-     document.documentElement.style.backgroundColor = Sys.Services.ProfileService.properties.BackgroundColor;
-    }
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample12.xml)]
 
 ## *Using a Custom Authentication Service Provider*
 
@@ -401,55 +310,23 @@ Once you have created the custom web service, you will need to specify the path 
 
 To set the path declaratively, include the AuthenticationService child of the ScriptManager object on your ASP.NET page:
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-     <AuthenticationService Path="~/AuthService.asmx" />
-    </asp:ScriptManager>
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample13.xml)]
 
 *To set the path in code:*
 
 To set the path programmatically, specify the path via the instance of your script manager:
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-     this.ScriptManager1.AuthenticationService.Path = "~/AuthService.asmx";
-    }
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample14.xml)]
 
 *To set the path in script:*
 
 To set the path programmatically in script, utilize the `path` property of the AuthenticationService class:
 
-    function Login()
-    {
-     var userTextbox = $get("txtUser");
-     var passTextbox = $get("txtPassword");
-     Sys.Services.AuthenticationService.set_path("./AuthService.asmx");
-     Sys.Services.AuthenticationService.login(userTextbox.value, passTextbox.value, false, null, null, LoginServiceCompleted, LoginServiceFailed, "Context Info");
-    }
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample15.xml)]
 
 *Sample Web Service for Custom Authentication*
 
-    <%@ WebService Language="C#" Class="AuthService" %>
-    using System;
-    using System.Web;
-    using System.Web.Services;
-    using System.Web.Services.Protocols;
-    using System.Web.Script.Services;
-    [ScriptService]
-    [WebService]
-    public class AuthService : WebService
-    {
-     [WebMethod]
-     public bool Login(string userName, string password, bool createCookie)
-     {
-     Session["LoggedInUser"] = userName;
-     return true;
-     }
-     [WebMethod]
-     public void Logout()
-     {
-     Session.Abandon();
-     }
-    }
+[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample16.xml)]
 
 ## Summary
 

@@ -39,36 +39,19 @@ For this tutorial we need to have the bulleted list of categories appear to the 
 Open the `CategoriesAndProducts.aspx` page from the `DataListRepeaterFiltering` folder and add to the page a Repeater and a DataList. Set the Repeater s `ID` to `Categories` and the DataList s to `CategoryProducts`. Go to the Source view and put the Repeater and DataList controls within their own `<div>` elements. That is, enclose the Repeater within a `<div>` element first and then the DataList in its own `<div>` element directly after the Repeater. Your markup at this point should look similar to the following:
 
 
-    <div>
-        <asp:Repeater ID="Categories" runat="server">
-        </asp:Repeater>
-    </div>
-    <div>
-        <asp:DataList ID="CategoryProducts" runat="server">
-        </asp:DataList>
-    </div>
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample1.xml)]
 
 To float the Repeater to the left of the DataList, we need to use the `float` CSS style attribute, like so:
 
 
-    <div>
-        Repeater
-    </div>
-    <div>
-        DataList
-    </div>
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample2.xml)]
 
 The `float: left;` floats the first `<div>` element to the left of the second one. The `width` and `padding-right` settings indicate the first `<div>` s `width` and how much padding is added between the `<div>` element s content and its right margin. For more information on floating elements in CSS check out the [Floatutorial](http://css.maxdesign.com.au/floatutorial/).
 
 Rather than specify the style setting directly through the first `<p>` element s `style` attribute, let s instead create a new CSS class in `Styles.css` named `FloatLeft`:
 
 
-    .FloatLeft
-    {
-        float: left;
-        width: 33%;
-        padding-right: 10px;
-    }
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample3.xml)]
 
 Then we can replace the `<div>` with `<div class="FloatLeft">`.
 
@@ -109,21 +92,7 @@ Alternatively, we can make each category a LinkButton, which is the approach we'
 The following markup shows the declarative syntax for the Repeater and the ObjectDataSource. Note that the Repeater s templates render a bulleted list with each item as a LinkButton:
 
 
-    <asp:Repeater ID="Categories" runat="server" DataSourceID="CategoriesDataSource">
-        <HeaderTemplate>
-            <ul>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <li><asp:LinkButton runat="server" ID="ViewCategory"></asp:LinkButton></li>
-        </ItemTemplate>
-        <FooterTemplate>
-            </ul>
-        </FooterTemplate>
-    </asp:Repeater>
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetCategories" TypeName="CategoriesBLL">
-    </asp:ObjectDataSource>
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample4.xml)]
 
 > [!NOTE] For this tutorial the Repeater must have its view state enabled (note the omission of the `EnableViewState="False"` from the Repeater s declarative syntax). In step 3 we'll be creating an event handler for the Repeater s `ItemCommand` event in which we'll be updating the DataList s ObjectDataSource s `SelectParameters` collection. The Repeater s `ItemCommand`, however, won t fire if view state is disabled. See [A Stumper of an ASP.NET Question](http://scottonwriting.net/sowblog/posts/1263.aspx) and [its solution](http://scottonwriting.net/sowBlog/posts/1268.aspx) for more information on why view state must be enabled for a Repeater s `ItemCommand` event to fire.
 
@@ -131,31 +100,12 @@ The following markup shows the declarative syntax for the Repeater and the Objec
 The LinkButton with the `ID` property value of `ViewCategory` does not have its `Text` property set. If we had just wanted to display the category name, we would have set the Text property declaratively, through databinding syntax, like so:
 
 
-    <asp:LinkButton runat="server" ID="ViewCategory"
-        Text='<%# Eval("CategoryName") %>' />
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample5.xml)]
 
 However, we want to show both the category s name *and* the number of products belonging to that category. This information can be retrieved from the Repeater s `ItemDataBound` event handler by making a call to the `ProductBLL` class s `GetCategoriesByProductID(categoryID)` method and determining how many records are returned in the resulting `ProductsDataTable`, as the following code illustrates:
 
 
-    Protected Sub Categories_ItemDataBound(sender As Object, e As RepeaterItemEventArgs)
-        ' Make sure we're working with a data item...
-        If e.Item.ItemType = ListItemType.Item OrElse _
-            e.Item.ItemType = ListItemType.AlternatingItem Then
-            ' Reference the CategoriesRow instance bound to this RepeaterItem
-            Dim category As Northwind.CategoriesRow = _
-                CType(CType(e.Item.DataItem, System.Data.DataRowView).Row, _
-                    Northwind.CategoriesRow)
-            ' Determine how many products are in this category
-            Dim productsAPI As New NorthwindTableAdapters.ProductsTableAdapter
-            Dim productCount As Integer = _
-                productsAPI.GetProductsByCategoryID(category.CategoryID).Count
-            ' Reference the ViewCategory LinkButton and set its Text property
-            Dim ViewCategory As LinkButton = _
-                CType(e.Item.FindControl("ViewCategory"), LinkButton)
-            ViewCategory.Text = _
-                String.Format("{0} ({1:N0})", category.CategoryName, productCount)
-        End If
-    End Sub
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample6.xml)]
 
 We start out by ensuring that we re working with a data item (one whose `ItemType` is `Item` or `AlternatingItem`) and then reference the `CategoriesRow` instance that has just been bound to the current `RepeaterItem`. Next, we determine the number of products for this category by creating an instance of the `ProductsBLL` class, calling its `GetCategoriesByProductID(categoryID)` method, and determining the number of records returned using the `Count` property. Finally, the `ViewCategory` LinkButton in the ItemTemplate is references and its `Text` property is set to *CategoryName* (*NumberOfProductsInCategory*) , where *NumberOfProductsInCategory* is formatted as a number with zero decimal places.
 
@@ -206,10 +156,7 @@ To add this new `GetCategoriesAndNumberOfProducts()` method, right-click on the 
 The next wizard screen prompts us for the query to use. To return each category s `CategoryID`, `CategoryName`, and `Description` fields, along with the number of products associated with the category, use the following `SELECT` statement:
 
 
-    SELECT CategoryID, CategoryName, Description,
-           (SELECT COUNT(*) FROM Products p WHERE p.CategoryID = c.CategoryID)
-                as NumberOfProducts
-    FROM Categories c
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample7.xml)]
 
 
 [![Specify the Query to Use](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/_static/image24.png)](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/_static/image23.png)
@@ -230,11 +177,7 @@ After entering this query, the last step is to choose the name for the new metho
 At this point the Data Access Layer has been extended to include the number of products per category. Since all our presentation layer routes all calls to the DAL through a separate Business Logic Layer we need to add a corresponding `GetCategoriesAndNumberOfProducts` method to the `CategoriesBLL` class:
 
 
-    <System.ComponentModel.DataObjectMethodAttribute _
-        (System.ComponentModel.DataObjectMethodType.Select, False)> _
-    Public Function GetCategoriesAndNumberOfProducts() As Northwind.CategoriesDataTable
-        Return Adapter.GetCategoriesAndNumberOfProducts()
-    End Function
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample8.xml)]
 
 With the DAL and BLL complete, we re ready to bind this data to the `Categories` Repeater in `CategoriesAndProducts.aspx`! If you ve already created an ObjectDataSource for the Repeater from the Determining the Number of Products in the `ItemDataBound` Event Handler section, delete this ObjectDataSource and remove the Repeater s `DataSourceID` property setting; also unwire the Repeater s `ItemDataBound` event from the event handler by removing the `Handles Categories.OnItemDataBound` syntax in the ASP.NET code-behind class.
 
@@ -249,24 +192,7 @@ With the Repeater back in its original state, add a new ObjectDataSource named `
 Next, update the `ItemTemplate` so that the LinkButton s `Text` property is declaratively assigned using databinding syntax and includes both the `CategoryName` and `NumberOfProducts` data fields. The complete declarative markup for the Repeater and the `CategoriesDataSource` ObjectDataSource follow:
 
 
-    <asp:Repeater ID="Categories" runat="server" DataSourceID="CategoriesDataSource">
-        <HeaderTemplate>
-            <ul>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <li><asp:LinkButton runat="server" ID="ViewCategory"
-                    Text='<%# String.Format("{0} ({1:N0})", _
-                        Eval("CategoryName"), Eval("NumberOfProducts")) %>' />
-            </li>
-        </ItemTemplate>
-        <FooterTemplate>
-            </ul>
-        </FooterTemplate>
-    </asp:Repeater>
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetCategoriesAndNumberOfProducts" TypeName="CategoriesBLL">
-    </asp:ObjectDataSource>
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample9.xml)]
 
 The output rendered by updating the DAL to include a `NumberOfProducts` column is the same as using the `ItemDataBound` event handler approach (refer back to Figure 4 to see a screen shot of the Repeater showing the category names and number of products).
 
@@ -302,24 +228,7 @@ For now, set the Parameter source drop-down list to None. We'll end up programma
 After completing the Configure Data Source wizard, Visual Studio auto-generates the DataList s `ItemTemplate`. Replace this default `ItemTemplate` with the template we used in the preceding tutorial; also, set the DataList s `RepeatColumns` property to 2. After making these changes the declarative markup for your DataList and its associated ObjectDataSource should look like the following:
 
 
-    <asp:DataList ID="CategoryProducts" runat="server" DataKeyField="ProductID"
-        DataSourceID="CategoryProductsDataSource" RepeatColumns="2"
-        EnableViewState="False">
-        <ItemTemplate>
-            <h5><%# Eval("ProductName") %></h5>
-            <p>
-                Supplied by <%# Eval("SupplierName") %><br />
-                <%# Eval("UnitPrice", "{0:C}") %>
-            </p>
-        </ItemTemplate>
-    </asp:DataList>
-    <asp:ObjectDataSource ID="CategoryProductsDataSource"
-        OldValuesParameterFormatString="original_{0}"  runat="server"
-        SelectMethod="GetProductsByCategoryID" TypeName="ProductsBLL">
-        <SelectParameters>
-            <asp:Parameter Name="categoryID" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample10.xml)]
 
 Currently, the `CategoryProductsDataSource` ObjectDataSource s *`categoryID`* parameter is never set, so no products are displayed when viewing the page. What we need to do is have this parameter value set based on the `CategoryID` of the clicked category in the Repeater. This introduces two challenges: first, how do we determine when a LinkButton in the Repeater s `ItemTemplate` has been clicked; and second, how can we determine the `CategoryID` of the corresponding category whose LinkButton was clicked?
 
@@ -334,31 +243,14 @@ When a `Command` event is raised from within a template in the Repeater, the Rep
 The following `ItemTemplate` markup for the Categories Repeater implements steps 1 and 2. Note how the `CommandArgument` value is assigned the data item s `CategoryID` using databinding syntax:
 
 
-    <ItemTemplate>
-        <li>
-            <asp:LinkButton CommandName="ListProducts"  runat="server"
-                CommandArgument='<%# Eval("CategoryID") %>' ID="ViewCategory"
-                Text='<%# string.Format("{0} ({1:N0})", _
-                    Eval("CategoryName"), Eval("NumberOfProducts")) %>'>
-            </asp:LinkButton>
-        </li>
-    </ItemTemplate>
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample11.xml)]
 
 Whenever creating an `ItemCommand` event handler it is prudent to always first check the incoming `CommandName` value because *any*`Command` event raised by *any* Button, LinkButton, or ImageButton within the Repeater will cause the `ItemCommand` event to fire. While we currently only have one such LinkButton now, in the future we (or another developer on our team) might add additional button Web controls to the Repeater that, when clicked, raises the same `ItemCommand` event handler. Therefore, it s best to always make sure you check the `CommandName` property and only proceed with your programmatic logic if it matches up to the value expected.
 
 After ensuring that the passed-in `CommandName` value equals ListProducts , the event handler then assigns the `CategoryProductsDataSource` ObjectDataSource s `CategoryID` parameter to the value of the passed-in `CommandArgument`. This modification to the ObjectDataSource s `SelectParameters` automatically causes the DataList to rebind itself to the data source, showing the products for the newly selected category.
 
 
-    Protected Sub Categories_ItemCommand(source As Object, e As RepeaterCommandEventArgs) _
-        Handles Categories.ItemCommand
-        ' If it's the "ListProducts" command that has been issued...
-        If String.Compare(e.CommandName, "ListProducts", True) = 0 Then
-            ' Set the CategoryProductsDataSource ObjectDataSource's CategoryID parameter
-            ' to the CategoryID of the category that was just clicked (e.CommandArgument)...
-            CategoryProductsDataSource.SelectParameters("CategoryID").DefaultValue = _
-                e.CommandArgument.ToString()
-        End If
-    End Sub
+[!code[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample12.xml)]
 
 With these additions, our tutorial is complete! Take a moment to test it out in a browser. Figure 14 shows the screen when first visiting the page. Since a category has yet to be selected, no products are displayed. Clicking on a category, such as Produce, displays those products in the Product category in a two-column view (see Figure 15).
 

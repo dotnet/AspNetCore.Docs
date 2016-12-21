@@ -40,24 +40,7 @@ This will bring up the "Add Controller" dialog. Name the controller "HomeControl
 
 This will create a new file, HomeController.cs, with the following code:
 
-    using System;
-     using System.Collections.Generic;
-     using System.Linq;
-     using System.Web;
-     using System.Web.Mvc;
-     
-    namespace MvcMusicStore.Controllers
-    {
-        public class HomeController : Controller
-        {
-            //
-            // GET: /Home/
-            public ActionResult Index()
-            {
-                return View();
-            }
-        }
-    }
+[!code[Main](mvc-music-store-part-2/samples/sample1.xml)]
 
 To start as simply as possible, let's replace the Index method with a simple method that just returns a string. We'll make two changes:
 
@@ -66,10 +49,7 @@ To start as simply as possible, let's replace the Index method with a simple met
 
 The method should now look like this:
 
-    public string Index()
-    {
-        return "Hello from Home";
-    }
+[!code[Main](mvc-music-store-part-2/samples/sample2.xml)]
 
 ## Running the Application
 
@@ -111,36 +91,7 @@ These methods (Index, Browse and Details) within our Controller are called "Cont
 
 We'll start our StoreController implementation by changing theIndex() method to return the string "Hello from Store.Index()" and we'll add similar methods for Browse() and Details():
 
-    using System;
-     using System.Collections.Generic;
-     using System.Linq;
-     using System.Web;
-     using System.Web.Mvc;
-     
-    namespace MvcMusicStore.Controllers
-    {
-        public class StoreController : Controller
-        {
-            //
-            // GET: /Store/
-            public string Index()
-            {
-                return "Hello from Store.Index()";
-            }
-            //
-            // GET: /Store/Browse
-            public string Browse()
-            {
-                return "Hello from Store.Browse()";
-            }
-            //
-            // GET: /Store/Details
-            public string Details()
-            {
-                return "Hello from Store.Details()";
-            }
-        }
-    }
+[!code[Main](mvc-music-store-part-2/samples/sample3.xml)]
 
 Run the project again and browse the following URLs:
 
@@ -156,15 +107,7 @@ That's great, but these are just constant strings. Let's make them dynamic, so t
 
 First we'll change the Browse action method to retrieve a querystring value from the URL. We can do this by adding a "genre" parameter to our action method. When we do this ASP.NET MVC will automatically pass any querystring or form post parameters named "genre" to our action method when it is invoked.
 
-    //
-    // GET: /Store/Browse?genre=Disco
-    public string Browse(string genre)
-     {
-        string message = HttpUtility.HtmlEncode("Store.Browse, Genre = "
-    + genre);
-     
-        return message;
-     }
+[!code[Main](mvc-music-store-part-2/samples/sample4.xml)]
 
 *Note: We're using the HttpUtility.HtmlEncode utility method to sanitize the user input. This prevents users from injecting Javascript into our View with a link like /Store/Browse?Genre=&lt;script&gt;window.location='http://hackersite.com'&lt;/script&gt;.*
 
@@ -176,14 +119,7 @@ Let's next change the Details action to read and display an input parameter name
 
 ASP.NET MVC lets us easily do this without having to configure anything. ASP.NET MVC's default routing convention is to treat the segment of a URL after the action method name as a parameter named "ID". If your action method has a parameter named ID then ASP.NET MVC will automatically pass the URL segment to you as a parameter.
 
-    //
-    // GET: /Store/Details/5
-    public string Details(int id)
-     {
-        string message = "Store.Details, ID = " + id;
-     
-        return message;
-     }
+[!code[Main](mvc-music-store-part-2/samples/sample5.xml)]
 
 Run the application and browse to /Store/Details/5:
 

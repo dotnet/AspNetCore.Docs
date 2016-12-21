@@ -29,40 +29,27 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 The first step is as usual to include the `ScriptManager` in the page so that the ASP.NET AJAX library is loaded and the Control Toolkit can be used:
 
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](dynamically-controlling-updatepanel-animations-cs/samples/sample1.xml)]
 
 The animation in this scenario will be applied to a display of the current time. This information can be written into a label using the `Page_Load()` method, or (for the sake of simplicity) the following inline code is used:
 
 
-    <%= DateTime.Now.ToLongTimeString() %>
+[!code[Main](dynamically-controlling-updatepanel-animations-cs/samples/sample2.xml)]
 
 Also, a button to trigger updating the time is created:
 
 
-    <asp:Button ID="Button1" runat="server" Text="Update" />
+[!code[Main](dynamically-controlling-updatepanel-animations-cs/samples/sample3.xml)]
 
 This code is then put into the `<ContentTemplate>` section of an `UpdatePanel` element. The panel's `UpdateMode` attribute must be set to `"Conditional"`, since only triggers may update the panel's contents. In the `<Triggers>` section of the `UpdatePanel`, an asynchronous postback trigger is created and tied to the `Click` event of the button. Thus, if the user clicks on the button, the `UpdatePanel` is refreshed. Here is the markup for the `UpdatePanel` control:
 
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
-     <ContentTemplate>
-     <%= DateTime.Now.ToLongTimeString() %>
-     </ContentTemplate>
-     <Triggers>
-     <asp:AsyncPostBackTrigger ControlID="Button1" EventName="Click" />
-     </Triggers>
-    </asp:UpdatePanel>
+[!code[Main](dynamically-controlling-updatepanel-animations-cs/samples/sample4.xml)]
 
 Finally, the `UpdatePanelAnimationExtender` must be configured: Set the `TargetControlID` attribute to the ID of the panel, and define an animation within the extender. Fading in makes sense, which creates a nice visual emphasis on the updated time. Your extender markup may then look like this:
 
 
-    <ajaxToolkit:UpdatePanelAnimationExtender ID="upae" runat="server" TargetControlID="UpdatePanel1">
-     <Animations>
-     <OnUpdated>
-     <FadeIn Duration="1.0" Fps="24" />
-     </OnUpdated>
-     </Animations>
-    </ajaxToolkit:UpdatePanelAnimationExtender>
+[!code[Main](dynamically-controlling-updatepanel-animations-cs/samples/sample5.xml)]
 
 Run the file in the browser. Whenever you click on the button, the current time is shown in the panel, always fading in for the duration of one second.
 

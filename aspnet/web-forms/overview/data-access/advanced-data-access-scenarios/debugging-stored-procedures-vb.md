@@ -89,12 +89,7 @@ Additionally, we need to update the database connection string used by the appli
 To disabled connection pooling, update the `NORTHWNDConnectionString` in `Web.config` so that it includes the setting `Pooling=false` .
 
 
-    <connectionStrings>
-        <add name="NORTHWNDConnectionString" connectionString=
-            "Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\NORTHWND.MDF;
-                Integrated Security=True;User Instance=True;Pooling=false"
-            providerName="System.Data.SqlClient" />
-    </connectionStrings>
+[!code[Main](debugging-stored-procedures-vb/samples/sample1.xml)]
 
 > [!NOTE] Once you have finished debugging SQL Server through the ASP.NET application be sure to reinstate connection pooling by removing the `Pooling` setting from the connection string (or by setting it to `Pooling=true` ).
 
@@ -164,7 +159,7 @@ The second task requires that the Windows user account you use to debug the appl
 An example should help clarify things. Imagine that there is a Windows account named `SQLDebug` within the Windows domain. This account would need to be added to the remote SQL Server instance as a valid login and as a member of the `sysadmin` role. Then, to debug the remote SQL Server instance from Visual Studio, we would need to run Visual Studio as the `SQLDebug` user. This could be done by logging out of our workstation, logging back in as `SQLDebug`, and then launching Visual Studio, but a simpler approach would be to login to our workstation using our own credentials and then use `runas.exe` to launch Visual Studio as the `SQLDebug` user. `runas.exe` allows a particular application to be executed under the guise of a different user account. To launch Visual Studio as `SQLDebug`, you could enter the following statement at the command line:
 
 
-    runas.exe /user:SQLDebug "%PROGRAMFILES%\Microsoft Visual Studio 8\Common7\IDE\devenv.exe"
+[!code[Main](debugging-stored-procedures-vb/samples/sample2.xml)]
 
 For a more detailed explanation on this process, see [William R. Vaughn](http://betav.com/BLOG/billva/) s *Hitchhiker s Guide to Visual Studio and SQL Server, Seventh Edition* as well as [How To: Set SQL Server Permissions for Debugging](https://msdn.microsoft.com/en-us/library/w1bhybwz(VS.80).aspx).
 

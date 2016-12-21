@@ -76,8 +76,7 @@ From the Designer in `InsertUpdateDelete.aspx`, click on the `ProductsDataSource
 
 Click the ellipses in the DeleteQuery property to bring up the Command and Parameter Editor dialog box (see Figure 3). From this dialog box you can specify the `DELETE` SQL statement and specify the parameters. Enter the following query into the `DELETE` command textbox (either manually or using the Query Builder, if you prefer):
 
-    DELETE FROM Products
-    WHERE ProductID = @ProductID
+[!code[Main](inserting-updating-and-deleting-data-with-the-sqldatasource-vb/samples/sample1.xml)]
 
 Next, click the Refresh Parameters button to add the `@ProductID` parameter to the list of parameters below.
 
@@ -96,15 +95,7 @@ If the parameter name and `DataKeyNames` value doesn t match, the GridView canno
 
 After entering the delete-related information into the Command and Parameter Editor dialog box click OK and go to the Source view to examine the resulting declarative markup:
 
-    <asp:SqlDataSource ID="ProductsDataSource" runat="server"
-        ConnectionString="<%$ ConnectionStrings:NORTHWNDConnectionString %>"
-        SelectCommand=
-            "SELECT [ProductID], [ProductName], [UnitPrice] FROM [Products]"
-        DeleteCommand="DELETE FROM Products WHERE ProductID = @ProductID">
-        <DeleteParameters>
-            <asp:Parameter Name="ProductID" />
-        </DeleteParameters>
-    </asp:SqlDataSource>
+[!code[Main](inserting-updating-and-deleting-data-with-the-sqldatasource-vb/samples/sample2.xml)]
 
 Note the addition of the `DeleteCommand` property as well as the `<DeleteParameters>` section and the Parameter object named `productID`.
 
@@ -167,49 +158,7 @@ After checking the Generate `INSERT`, `UPDATE`, and `DELETE` statements checkbox
 
 Notice that the smart tag has the Enable Inserting , Enable Editing , and Enable Deleting options available. This is because the SqlDataSource contains values for its `InsertCommand`, `UpdateCommand`, and `DeleteCommand`, as the following declarative syntax shows:
 
-    <asp:DetailsView ID="ManageProducts" runat="server" AllowPaging="True"
-        AutoGenerateRows="False" DataKeyNames="ProductID"
-        DataSourceID="ManageProductsDataSource" EnableViewState="False">
-        <Fields>
-            <asp:BoundField DataField="ProductID" HeaderText="ProductID"
-                InsertVisible="False" ReadOnly="True" SortExpression="ProductID" />
-            <asp:BoundField DataField="ProductName" HeaderText="ProductName"
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="UnitPrice"
-                SortExpression="UnitPrice" />
-            <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued"
-                SortExpression="Discontinued" />
-        </Fields>
-    </asp:DetailsView>
-    <asp:SqlDataSource ID="ManageProductsDataSource" runat="server"
-        ConnectionString="<%$ ConnectionStrings:NORTHWNDConnectionString %>"
-        DeleteCommand=
-            "DELETE FROM [Products] WHERE [ProductID] = @ProductID"
-        InsertCommand=
-            "INSERT INTO [Products] ([ProductName], [UnitPrice], [Discontinued])
-             VALUES (@ProductName, @UnitPrice, @Discontinued)"
-        SelectCommand=
-            "SELECT [ProductID], [ProductName], [UnitPrice], [Discontinued]
-             FROM [Products]"
-        UpdateCommand=
-            "UPDATE [Products] SET [ProductName] = @ProductName,
-             [UnitPrice] = @UnitPrice, [Discontinued] = @Discontinued
-             WHERE [ProductID] = @ProductID">
-        <DeleteParameters>
-            <asp:Parameter Name="ProductID" Type="Int32" />
-        </DeleteParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="ProductName" Type="String" />
-            <asp:Parameter Name="UnitPrice" Type="Decimal" />
-            <asp:Parameter Name="Discontinued" Type="Boolean" />
-            <asp:Parameter Name="ProductID" Type="Int32" />
-        </UpdateParameters>
-        <InsertParameters>
-            <asp:Parameter Name="ProductName" Type="String" />
-            <asp:Parameter Name="UnitPrice" Type="Decimal" />
-            <asp:Parameter Name="Discontinued" Type="Boolean" />
-        </InsertParameters>
-    </asp:SqlDataSource>
+[!code[Main](inserting-updating-and-deleting-data-with-the-sqldatasource-vb/samples/sample3.xml)]
 
 Note how the SqlDataSource control has had values automatically set for its `InsertCommand`, `UpdateCommand`, and `DeleteCommand` properties. The set of columns referenced in the `InsertCommand` and `UpdateCommand` properties are based on those in the `SELECT` statement. That is, rather than having *every* Products column in the `InsertCommand` and `UpdateCommand`, there are only those columns specified in the `SelectCommand` (less `ProductID`, which is omitted because it s an [`IDENTITY` column](http://www.sqlteam.com/item.asp?ItemID=102), whose value cannot be changed when edited and which is automatically assigned when inserting). Moreover, for each parameter in the `InsertCommand`, `UpdateCommand`, and `DeleteCommand` properties there are corresponding parameters in the `InsertParameters`, `UpdateParameters`, and `DeleteParameters` collections.
 

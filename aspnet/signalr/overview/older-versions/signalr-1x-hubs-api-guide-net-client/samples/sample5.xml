@@ -1,12 +1,3 @@
-public class StockTickerHub : Hub
-{
-    public override Task OnConnected()
-    {
-        var version = Context.QueryString["contosochatversion"];
-        if (version != "1.0")
-        {
-            Clients.Caller.notifyWrongVersion();
-        }
-        return base.OnConnected();
-    }
-}
+    var querystringData = new Dictionary<string, string>();
+    querystringData.Add("contosochatversion", "1.0");
+    var connection = new HubConnection("http://contoso.com/", querystringData);

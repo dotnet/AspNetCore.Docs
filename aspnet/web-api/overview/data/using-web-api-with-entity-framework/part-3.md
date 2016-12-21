@@ -21,7 +21,7 @@ In this section, you will use [Code First Migrations](https://msdn.microsoft.com
 
 From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-    Enable-Migrations
+[!code[Main](part-3/samples/sample1.xml)]
 
 This command adds a folder named Migrations to your project, plus a code file named Configuration.cs in the Migrations folder.
 
@@ -29,34 +29,15 @@ This command adds a folder named Migrations to your project, plus a code file na
 
 Open the Configuration.cs file. Add the following **using** statement.
 
-    using BookService.Models;
+[!code[Main](part-3/samples/sample2.xml)]
 
 Then add the following code to the **Configuration.Seed** method:
 
-    protected override void Seed(BookService.Models.BookServiceContext context)
-    {
-        context.Authors.AddOrUpdate(x => x.Id,
-            new Author() { Id = 1, Name = "Jane Austen" },
-            new Author() { Id = 2, Name = "Charles Dickens" },
-            new Author() { Id = 3, Name = "Miguel de Cervantes" }
-            );
-    
-        context.Books.AddOrUpdate(x => x.Id,
-            new Book() { Id = 1, Title = "Pride and Prejudice", Year = 1813, AuthorId = 1, 
-                Price = 9.99M, Genre = "Comedy of manners" },
-            new Book() { Id = 2, Title = "Northanger Abbey", Year = 1817, AuthorId = 1, 
-                Price = 12.95M, Genre = "Gothic parody" },
-            new Book() { Id = 3, Title = "David Copperfield", Year = 1850, AuthorId = 2, 
-                Price = 15, Genre = "Bildungsroman" },
-            new Book() { Id = 4, Title = "Don Quixote", Year = 1617, AuthorId = 3, 
-                Price = 8.95M, Genre = "Picaresque" }
-            );
-    }
+[!code[Main](part-3/samples/sample3.xml)]
 
 In the Package Manager Console window, type the following commands:
 
-    Add-Migration Initial
-    Update-Database
+[!code[Main](part-3/samples/sample4.xml)]
 
 The first command generates code that creates the database, and the second command executes that code. The database is created locally, using [LocalDB](https://msdn.microsoft.com/en-us/library/hh510202.aspx).
 

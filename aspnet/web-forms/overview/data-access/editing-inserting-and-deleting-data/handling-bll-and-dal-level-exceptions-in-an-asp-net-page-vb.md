@@ -41,31 +41,7 @@ In the previous tutorial we created an editable GridView with just two fields, `
 To accommodate this scenario we'll need another overload of the `UpdateProduct` method, one that accepts four parameters: the product's name, unit price, units in stock, and ID. Add the following method to the `ProductsBLL` class:
 
 
-    <System.ComponentModel.DataObjectMethodAttribute _
-        (System.ComponentModel.DataObjectMethodType.Update, True)> _
-    Public Function UpdateProduct _
-        (ByVal productName As String, ByVal unitPrice As Nullable(Of Decimal), _
-    ByVal unitsInStock As Nullable(Of Short), ByVal productID As Integer) As Boolean
-        Dim products As Northwind.ProductsDataTable = _
-            Adapter.GetProductByProductID(productID)
-        If products.Count = 0 Then
-            Return False
-        End If
-        Dim product As Northwind.ProductsRow = products(0)
-        product.ProductName = productName
-        If Not unitPrice.HasValue Then
-            product.SetUnitPriceNull()
-        Else
-            product.UnitPrice = unitPrice.Value
-        End If
-        If Not unitsInStock.HasValue Then
-            product.SetUnitsInStockNull()
-        Else
-            product.UnitsInStock = unitsInStock.Value
-        End If
-        Dim rowsAffected As Integer = Adapter.Update(product)
-        Return rowsAffected = 1
-    End Function
+[!code[Main](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb/samples/sample1.xml)]
 
 With this method complete, we're ready to create the ASP.NET page that allows for editing these four particular product fields. Open the `ErrorHandling.aspx` page in the `EditInsertDelete` folder and add a GridView to the page through the Designer. Bind the GridView to a new ObjectDataSource, mapping the `Select()` method to the `ProductsBLL` class's `GetProducts()` method and the `Update()` method to the `UpdateProduct` overload just created.
 
@@ -90,14 +66,7 @@ In the previous tutorial we looked at how to format the `UnitPrice` BoundField a
 Formatting the `UnitPrice` as a currency in the editing interface requires creating an event handler for the GridView's `RowUpdating` event that parses the currency-formatted string into a `decimal` value. Recall that the `RowUpdating` event handler from the last tutorial also checked to ensure that the user provided a `UnitPrice` value. However, for this tutorial let's allow the user to omit the price.
 
 
-    Protected Sub GridView1_RowUpdating(ByVal sender As Object, _
-        ByVal e As System.Web.UI.WebControls.GridViewUpdateEventArgs) _
-        Handles GridView1.RowUpdating
-        If e.NewValues("UnitPrice") IsNot Nothing Then
-            e.NewValues("UnitPrice") = _
-                Decimal.Parse(e.NewValues("UnitPrice").ToString(), _
-                System.Globalization.NumberStyles.Currency)
-        End If
+[!code[Main](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb/samples/sample2.xml)]
 
 Our GridView includes a `QuantityPerUnit` BoundField, but this BoundField should be only for display purposes and should not be editable by the user. To arrange this, simply set the BoundFields' `ReadOnly` property to `true`.
 
@@ -152,9 +121,7 @@ Start by adding a Label to the ASP.NET page, setting its `ID` property to `Excep
 Since we want this Label Web control to be visible only immediately after an exception has occurred, set its `Visible` property to false in the `Page_Load` event handler:
 
 
-    Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        ExceptionDetails.Visible = False
-    End Sub
+[!code[Main](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb/samples/sample3.xml)]
 
 With this code, on the first page visit and subsequent postbacks the `ExceptionDetails` control will have its `Visible` property set to `false`. In the face of a DAL- or BLL-level exception, which we can detect in the GridView's `RowUpdated` event handler, we will set the `ExceptionDetails` control's `Visible` property to true. Since Web control event handlers occur after the `Page_Load` event handler in the page lifecycle, the Label will be shown. However, on the next postback, the `Page_Load` event handler will revert the `Visible` property back to `false`, hiding it from view again.
 
@@ -175,10 +142,7 @@ With the Label control added, our next step is to create the event handler for t
 Creating this event handler will add the following code to the ASP.NET page's code-behind class:
 
 
-    Protected Sub GridView1_RowUpdated(ByVal sender As Object, _
-        ByVal e As System.Web.UI.WebControls.GridViewUpdatedEventArgs) _
-        Handles GridView1.RowUpdated
-    End Sub
+[!code[Main](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb/samples/sample4.xml)]
 
 This event handler's second input parameter is an object of type [GridViewUpdatedEventArgs](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.gridviewupdatedeventargs.aspx), which has three properties of interest for handling exceptions:
 
@@ -195,34 +159,7 @@ Our code, then, should check to see if `Exception` is not `null`, meaning that a
 This following code accomplishes these objectives:
 
 
-    Protected Sub GridView1_RowUpdated(ByVal sender As Object, _
-        ByVal e As System.Web.UI.WebControls.GridViewUpdatedEventArgs) _
-        Handles GridView1.RowUpdated
-        If e.Exception IsNot Nothing Then
-            ExceptionDetails.Visible = True
-            ExceptionDetails.Text = "There was a problem updating the product. "
-            If e.Exception.InnerException IsNot Nothing Then
-                Dim inner As Exception = e.Exception.InnerException
-                If TypeOf inner Is System.Data.Common.DbException Then
-                    ExceptionDetails.Text &= _
-                    "Our database is currently experiencing problems." & _
-                    "Please try again later."
-                ElseIf TypeOf inner _
-                 Is System.Data.NoNullAllowedException Then
-                    ExceptionDetails.Text += _
-                        "There are one or more required fields that are missing."
-                ElseIf TypeOf inner Is ArgumentException Then
-                    Dim paramName As String = CType(inner, ArgumentException).ParamName
-                    ExceptionDetails.Text &= _
-                        String.Concat("The ", paramName, " value is illegal.")
-                ElseIf TypeOf inner Is ApplicationException Then
-                    ExceptionDetails.Text += inner.Message
-                End If
-            End If
-            e.ExceptionHandled = True
-            e.KeepInEditMode = True
-        End If
-    End Sub
+[!code[Main](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb/samples/sample5.xml)]
 
 This event handler begins by checking to see if `e.Exception` is `null`. If it's not, the `ExceptionDetails` Label's `Visible` property is set to `true` and its `Text` property to "There was a problem updating the product." The details of the actual exception that was thrown reside in the `e.Exception` object's `InnerException` property. This inner exception is examined and, if it is of a particular type, an additional, helpful message is appended to the `ExceptionDetails` Label's `Text` property. Lastly, the `ExceptionHandled` and `KeepInEditMode` properties are both set to `true`.
 
@@ -251,37 +188,7 @@ When inserting, updating, or deleting data, the Data Access Layer may throw an e
 For the `UpdateProduct` overload created in this tutorial, let's add a business rule that prohibits the `UnitPrice` field from being set to a new value that's more than twice the original `UnitPrice` value. To accomplish this, adjust the `UpdateProduct` overload so that it performs this check and throws an `ApplicationException` if the rule is violated. The updated method follows:
 
 
-    <System.ComponentModel.DataObjectMethodAttribute _
-        (System.ComponentModel.DataObjectMethodType.Update, True)> _
-        Public Function UpdateProduct(ByVal productName As String, _
-        ByVal unitPrice As Nullable(Of Decimal), ByVal unitsInStock As Nullable(Of Short), _
-        ByVal productID As Integer) As Boolean
-        Dim products As Northwind.ProductsDataTable = Adapter.GetProductByProductID(productID)
-        If products.Count = 0 Then
-            Return False
-        End If
-        Dim product As Northwind.ProductsRow = products(0)
-        If unitPrice.HasValue AndAlso Not product.IsUnitPriceNull() Then
-            If unitPrice > product.UnitPrice * 2 Then
-                Throw New ApplicationException( _
-                    "When updating a product price," & _
-                    " the new price cannot exceed twice the original price.")
-            End If
-        End If
-        product.ProductName = productName
-        If Not unitPrice.HasValue Then
-            product.SetUnitPriceNull()
-        Else
-            product.UnitPrice = unitPrice.Value
-        End If
-        If Not unitsInStock.HasValue Then
-            product.SetUnitsInStockNull()
-        Else
-            product.UnitsInStock = unitsInStock.Value
-        End If
-        Dim rowsAffected As Integer = Adapter.Update(product)
-        Return rowsAffected = 1
-    End Function
+[!code[Main](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb/samples/sample6.xml)]
 
 With this change, any price update that is more than twice the existing price will cause an `ApplicationException` to be thrown. Just like the exception raised from the DAL, this BLL-raised `ApplicationException` can be detected and handled in the GridView's `RowUpdated` event handler. In fact, the `RowUpdated` event handler's code, as written, will correctly detect this exception and display the `ApplicationException`'s `Message` property value. Figure 11 shows a screen shot when a user attempts to update the price of Chai to $50.00, which is more than double its current price of $19.95.
 

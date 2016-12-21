@@ -68,8 +68,7 @@ After installing IIS, run **IIS Manager** to make sure that the .NET Framework v
 
     For Windows 8, see the instructions in the previous section for making sure that ASP.NET 4.5 is installed, or see [this KB article](https://support.microsoft.com/kb/2736284). For Windows 7, open a command prompt window by right-clicking **Command Prompt** in the Windows **Start** menu and selecting **Run as Administrator**. Then run [aspnet\_regiis.exe](https://msdn.microsoft.com/en-us/library/k6h9cz8h.aspx) to install ASP.NET 4 in IIS, using the following commands. (In 32-bit systems, replace "Framework64" with "Framework".)
 
-        cd %windir%\Microsoft.NET\Framework64\v4.0.30319
-        aspnet_regiis.exe –i
+    [!code[Main](deploying-to-iis/samples/sample1.xml)]
 
     This command creates new application pools for the .NET Framework 4, but the default application pool will still be set to 2.0. You'll be deploying an application that targets .NET 4 to that application pool, so you have to change the application pool to .NET 4.
 5. If you closed **IIS Manager**, run it again, expand the server node, and click **Application Pools** to display the **Application Pools** pane again.
@@ -118,18 +117,7 @@ When the application runs in IIS on your development computer, the application a
 
 Right-click the solution (not one of the projects), and click **Add New Item**, and then create a new **SQL File** named *Grant.sql*. Copy the following SQL commands into the file, and then save and close the file:
 
-    IF NOT EXISTS (SELECT name FROM sys.server_principals WHERE name = 'IIS APPPOOL\DefaultAppPool')
-    BEGIN
-        CREATE LOGIN [IIS APPPOOL\DefaultAppPool] 
-          FROM WINDOWS WITH DEFAULT_DATABASE=[master], 
-          DEFAULT_LANGUAGE=[us_english]
-    END
-    GO
-    CREATE USER [ContosoUniversityUser] 
-      FOR LOGIN [IIS APPPOOL\DefaultAppPool]
-    GO
-    EXEC sp_addrolemember 'db_owner', 'ContosoUniversityUser'
-    GO
+[!code[Main](deploying-to-iis/samples/sample2.xml)]
 
 > [!NOTE] This script is designed to work with SQL Server Express 2012 and with the IIS settings in Windows 8 or Windows 7 as they are specified in this tutorial. If you're using a different version of SQL Server or of Windows, or if you set up IIS on your computer differently, changes to this script might be required. For more information about SQL Server scripts, see [SQL Server Books Online](https://go.microsoft.com/fwlink/?LinkId=132511).
 
@@ -217,7 +205,7 @@ The following steps apply to the **DefaultConnection** database in the **Databas
 
 1. In the **Remote connection string** box, enter the following connection string that points to the new SQL Server Express membership database.
 
-        Data Source=.\SQLExpress;Initial Catalog=aspnet-ContosoUniversity;Integrated Security=True
+    [!code[Main](deploying-to-iis/samples/sample3.xml)]
 
     The deployment process will put this connection string in the deployed Web.config file because **Use this connection string at runtime** is selected.
 
@@ -242,7 +230,7 @@ The following steps apply to the **SchoolContext** database in the **Databases**
 
 1. In the **Remote connection string** box, enter the following connection string that points to the new SQL Server Express application database.
 
-        Data Source=.\SQLExpress;Initial Catalog=ContosoUniversity;Integrated Security=True
+    [!code[Main](deploying-to-iis/samples/sample4.xml)]
 
     The deployment process will put this connection string in the deployed Web.config file because **Use this connection string at runtime** is selected.
 
@@ -262,9 +250,7 @@ The following steps apply to the **SchoolContext** database in the **Databases**
     Visual Studio creates the *Web.Test.config* transform file and opens it.
 4. In the *Web.Test.config* transform file, insert the following code immediately after the opening configuration tag.
 
-        <appSettings>
-            <add key="Environment" value="Test" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
-        </appSettings>
+    [!code[Main](deploying-to-iis/samples/sample5.xml)]
 
     When you use the Test publish profile, this transform sets the environment indicator to "Test". In the deployed site you'll see "(Test)" after the "Contoso University" H1 heading.
 5. Save and close the file.

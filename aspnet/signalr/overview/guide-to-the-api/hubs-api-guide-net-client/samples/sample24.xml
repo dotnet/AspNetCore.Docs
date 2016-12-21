@@ -1,3 +1,7 @@
-var hubConfiguration = new HubConfiguration();
-hubConfiguration.EnableDetailedErrors = true;
-App.MapSignalR(hubConfiguration);
+public class StockTickerHub : Hub
+{
+    public void JoinGroup(string groupName)
+    {
+        Groups.Add(Context.ConnectionId, groupName); 
+    }
+}

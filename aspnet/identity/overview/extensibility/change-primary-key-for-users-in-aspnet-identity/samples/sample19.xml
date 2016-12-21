@@ -1,10 +1,20 @@
-public async Task<ActionResult> DisableTwoFactorAuthentication()
+public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
 {
-    await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId<int>(), false);
-    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId<int>());
-    if (user != null)
+    if (!ModelState.IsValid)
     {
-        await SignInAsync(user, isPersistent: false);
+        return View(model);
     }
-    return RedirectToAction("Index", "Manage");
+    // Generate the token and send it
+    var code = await UserManager.GenerateChangePhoneNumberTokenAsync(
+        User.Identity.GetUserId<int>(), model.Number);
+    if (UserManager.SmsService != null)
+    {
+        var message = new IdentityMessage
+        {
+            Destination = model.Number,
+            Body = "Your security code is: " + code
+        };
+        await UserManager.SmsService.SendAsync(message);
+    }
+    return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
 }

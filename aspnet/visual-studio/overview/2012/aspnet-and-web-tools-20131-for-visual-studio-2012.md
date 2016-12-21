@@ -131,46 +131,14 @@ To fix this error for Web API:
 
 1. Add the following WebApiConfig class to your project.
 
-        public static class WebApiConfig
-        {
-            public static void Register(HttpConfiguration config)
-            {
-                config.MapHttpAttributeRoutes();
-                config.Routes.MapHttpRoute(
-                    name: "DefaultApi",
-                    routeTemplate: "api/{controller}/{id}",
-                    defaults: new { id = RouteParameter.Optional }
-                );
-            }
-        }
+    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample1.xml)]
 
-        Public Module WebApiConfig
-            Public Sub Register(ByVal config As HttpConfiguration)
-                config.MapHttpAttributeRoutes()
-                config.Routes.MapHttpRoute(
-                  name:="DefaultApi",
-                  routeTemplate:="api/{controller}/{id}",
-                  defaults:=New With {.id = RouteParameter.Optional}
-                )
-            End Sub
-        End Module
+    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample2.xml)]
 2. Configure WebApiConfig.Register in the Application\_Start method in Global.asax as follows:
 
-        public class WebApiApplication : System.Web.HttpApplication
-        {
-            protected void Application_Start()
-            {
-                GlobalConfiguration.Configure(WebApiConfig.Register);    
-            }
-        }
+    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample3.xml)]
 
-        Public Class WebApiApplication
-             Inherits System.Web.HttpApplication
-         
-             Sub Application_Start()     
-               GlobalConfiguration.Configure(AddressOf WebApiConfig.Register)       
-             End Sub
-        End Class
+    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample4.xml)]
 
 <a id="expressissue"></a>
 #### Visual Studio Express 2012 for Web stops working after adding a scaffolded item
@@ -184,9 +152,7 @@ To correct this problem, configure Visual Studio Express to work with the MSIL i
 3. Open VWDExpress.exe.config in a text editor.
 4. Add the following line under the &lt;configuration&gt;/&lt;runtime&gt; element:  
 
-        <disableNativeImageLoad>
-            <assemblyIdentity name="System.Web.Extensions" />
-        </disableNativeImageLoad>
+    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample5.xml)]
 5. Restart Visual Studio Express 2012 for Web.
 
 <a id="issuerazor"></a>

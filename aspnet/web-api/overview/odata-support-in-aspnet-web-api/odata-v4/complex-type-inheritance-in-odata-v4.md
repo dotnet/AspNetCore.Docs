@@ -36,119 +36,17 @@ To illustrate complex type inheritance, we'll use the following class hierarchy.
 
 Here are the CLR classes that define these types.
 
-    public class Window
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public Shape Shape { get; set; }
-    }
-    
-    public abstract class Shape
-    {
-        public bool HasBorder { get; set; }
-        public Color Color { get; set; }
-    }
-    
-    public class Rectangle : Shape
-    {
-        public Point P1 { get; set; }
-        public Point P2 { get; set; }
-        public Point P3 { get; set; }
-    }
-    
-    public class RoundRectangle : Rectangle
-    {
-        public double Round { get; set; }
-    }
-    
-    public class Triangle : Shape
-    {
-        public Point LeftTop { get; set; }
-        public int Height { get; set; }
-        public int Weight { get; set; }
-    }
-    
-    public class Circle : Shape
-    {
-        public Point Center { get; set; }
-        public int Radius { get; set; }
-    }
-    
-    public class Point
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-    }
-    
-    public enum Color
-    {
-        Red,
-        Blue,
-        Green,
-        Yellow
-    }
+[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample1.xml)]
 
 ## Build the EDM Model
 
 To create the EDM, you can use **ODataConventionModelBuilder**, which infers the inheritance relationships from the CLR types.
 
-    private IEdmModel GetEdmModel()
-    {
-        ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-        builder.EntitySet<Window>("Windows");
-        return builder.GetEdmModel();
-    }
+[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample2.xml)]
 
 You can also build the EDM explicitly, using **ODataModelBuilder**. This takes more code, but gives you more control over the EDM.
 
-    private IEdmModel GetExplicitEdmModel()
-    {
-      ODataModelBuilder builder = new ODataModelBuilder();
-    
-      EnumTypeConfiguration<Color> color = builder.EnumType<Color>();
-      color.Member(Color.Red);
-      color.Member(Color.Blue);
-      color.Member(Color.Green);
-      color.Member(Color.Yellow);
-    
-      ComplexTypeConfiguration<Point> point = builder.ComplexType<Point>();
-      point.Property(c => c.X);
-      point.Property(c => c.Y);
-    
-      ComplexTypeConfiguration<Shape> shape = builder.ComplexType<Shape>();
-      shape.EnumProperty(c => c.Color);
-      shape.Property(c => c.HasBorder);
-      shape.Abstract();
-    
-      ComplexTypeConfiguration<Triangle> triangle = builder.ComplexType<Triangle>();
-        triangle.ComplexProperty(c => c.P1);
-        triangle.ComplexProperty(c => c.P2);
-        triangle.ComplexProperty(c => c.P2);
-        triangle.DerivesFrom<Shape>();
-    
-        ComplexTypeConfiguration<Rectangle> rectangle = builder.ComplexType<Rectangle>();
-        rectangle.ComplexProperty(c => c.LeftTop);
-        rectangle.Property(c => c.Height);
-        rectangle.Property(c => c.Weight);
-        rectangle.DerivesFrom<Shape>();
-    
-      ComplexTypeConfiguration<RoundRectangle> roundRectangle = builder.ComplexType<RoundRectangle>();
-        roundRectangle.Property(c => c.Round);
-        roundRectangle.DerivesFrom<Rectangle>();
-    
-        ComplexTypeConfiguration<Circle> circle = builder.ComplexType<Circle>();
-        circle.ComplexProperty(c => c.Center);
-        circle.Property(c => c.Radius);
-        circle.DerivesFrom<Shape>();
-    
-        EntityTypeConfiguration<Window> window = builder.EntityType<Window>();
-        window.HasKey(c => c.Id);
-        window.Property(c => c.Title);
-        window.ComplexProperty(c => c.Shape);
-    
-        builder.EntitySet<Window>("Windows");
-        return builder.GetEdmModel();
-    }
+[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample3.xml)]
 
 These two examples create the same EDM schema.
 
@@ -156,7 +54,7 @@ These two examples create the same EDM schema.
 
 Here is the OData metadata document, showing complex type inheritance.
 
-[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample1.xml?highlight=13,17,25,30)]
+[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample4.xml?highlight=13,17,25,30)]
 
 From the metadata document, you can see that:
 
@@ -168,11 +66,8 @@ From the metadata document, you can see that:
 
 Casting on complex types is now supported. For example, the following query casts a `Shape` to a `Rectangle`.
 
-    GET ~/odata/Windows(1)/Shape/NS.Rectangle/LeftTop
+[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample5.xml)]
 
 Here's the response payload:
 
-    { 
-       "@odata.context":"http://localhost/odata/$metadata#Windows(1)/Shape/NS.Rectangle/LeftTop",
-        "X":100,"Y":100
-    }
+[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample6.xml)]

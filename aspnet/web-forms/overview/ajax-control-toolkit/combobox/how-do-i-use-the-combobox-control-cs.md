@@ -58,49 +58,7 @@ The second option is to add the list of items in between the opening and closing
 
 **Listing 1 - Static.aspx**
 
-    <%@ Page Language="C#" %>
-    <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
-    <script runat="server">
-        
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            lblSelection.Text = "You picked " + ComboBox1.SelectedItem.Text;        
-        }
-    </script>
-    
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-        <title>Static</title>
-    </head>
-    <body>
-        <form id="form1" runat="server">
-        <div>
-            <asp:ScriptManager ID="ScriptManager1" runat="server" />
-            
-            Describe how spicy you like your food:
-            <br />
-            <cc1:ComboBox ID="ComboBox1" runat="server">
-                <asp:ListItem Text="Mild" Value="0" />
-                <asp:ListItem Text="Medium" Value="1" />
-                <asp:ListItem Text="Hot" Value="2" />
-            </cc1:ComboBox>
-            
-            <asp:Button
-                ID="btnSubmit"
-                Text="Submit"
-                Runat="server" OnClick="btnSubmit_Click" />
-    
-            <hr />
-            <asp:Label
-                ID="lblSelection"
-                Runat="server" />
-        
-        </div>
-        </form>
-    </body>
-    </html>
+[!code[Main](how-do-i-use-the-combobox-control-cs/samples/sample1.xml)]
 
 When you open the page in Listing 1, you can select one of the pre-existing options from the ComboBox. In other words, the ComboBox works just like a DropDownList control.
 
@@ -156,43 +114,7 @@ After you complete the steps above, the ComboBox is bound to a SqlDataSource con
 
 **Listing 2 - Movies.aspx**
 
-    <%@ Page Language="C#" %>
-    <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head id="Head1" runat="server">
-        <title></title>
-    </head>
-    <body>
-        <form id="form1" runat="server">
-        <div>
-        
-            <asp:ScriptManager ID="ScriptManager1" runat="server" />
-            <br />
-            
-            Select your favorite movie:
-            <br />
-            <cc1:ComboBox 
-                ID="ComboBox1"
-                DataSourceID="SqlDataSource1" 
-                DataTextField="Title" 
-                DataValueField="Id" 
-                MaxLength="0" 
-                runat="server" >
-            </cc1:ComboBox>
-         
-            <asp:SqlDataSource 
-                ID="SqlDataSource1"  
-                ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
-                SelectCommand="SELECT * FROM [Movies]"
-                runat="server">
-            </asp:SqlDataSource>
-         
-        </div>
-        </form>
-    </body>
-    </html>
+[!code[Main](how-do-i-use-the-combobox-control-cs/samples/sample2.xml)]
 
 Notice that the ComboBox control has a DataSourceID property that points to the SqlDataSource control. When you open the page in a browser, the list of movies from the database is displayed (see Figure 7). You can either a pick a movie from the list or enter a new movie by typing the movie into the ComboBox.
 

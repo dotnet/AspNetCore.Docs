@@ -28,17 +28,15 @@ The Slider control in the AJAX Control Toolkit provides a graphical slider that 
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](databinding-the-slider-control-cs/samples/sample1.xml)]
 
 Next, add two `TextBox` controls to the page. One will be transformed into a graphical slider, and the other one will hold the position of the slider.
 
-    <asp:TextBox ID="Slider1" runat="server" />
-    <asp:TextBox ID="SliderValue" runat="server" />
+[!code[Main](databinding-the-slider-control-cs/samples/sample2.xml)]
 
 The next step is already the final step. The `SliderExtender` control from the ASP.NET AJAX Control Toolkit makes a slider out of the first text box and automatically updates the second text box when the slider position changes. In order for that to work, The `SliderExtender`'s `TargetControlID` attribute must be set to the ID of the first text box; the `BoundControlID` attribute must be set to the ID of the second text box.
 
-    <ajaxToolkit:SliderExtender ID="se1" runat="server" TargetControlID="Slider1"
-     BoundControlID="SliderValue" />
+[!code[Main](databinding-the-slider-control-cs/samples/sample3.xml)]
 
 As you can see in the browser, the data binding works in both directions: entering a new value in the text box updates the slider's position. If you make the second text box read only, you may add a weak protection to the text field so that it is harder for the user to manually update the value in there.
 

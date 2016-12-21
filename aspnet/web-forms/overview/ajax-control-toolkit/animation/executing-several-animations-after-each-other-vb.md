@@ -28,44 +28,23 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](executing-several-animations-after-each-other-vb/samples/sample1.xml)]
 
 The animation will be applied to a panel of text which looks like this:
 
-    <asp:Panel ID="panelShadow" runat="server" CssClass="panelClass">
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-    </asp:Panel>
+[!code[Main](executing-several-animations-after-each-other-vb/samples/sample2.xml)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-    <style type="text/css">
-     .panelClass {background-color: lime; width: 300px;}
-    </style>
+[!code[Main](executing-several-animations-after-each-other-vb/samples/sample3.xml)]
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server":`
 
-    <ajaxToolkit:AnimationExtender ID="ae" runat="server" TargetControlID="Panel1">
+[!code[Main](executing-several-animations-after-each-other-vb/samples/sample4.xml)]
 
 Within the `<Animations>` node, use `<OnLoad>` to run the animations once the page has been fully loaded. Generally, `<OnLoad>` only accepts one animation. The Animation framework allows you to join several animations into one using the `<Sequence>` element. All animations within `<Sequence>` are executed one after the other. Here is the a possible markup for the `AnimationExtender` control, first making the panel wider and then decreasing its height:
 
-    <ajaxToolkit:AnimationExtender ID="ae" runat="server" TargetControlID="Panel1">
-     <Animations>
-     <OnLoad>
-     <Sequence>
-     <Resize Width="1000" Unit="px" />
-     <Resize Height="150" Unit="px" />
-     </Sequence>
-     </OnLoad>
-     </Animations>
-    </ajaxToolkit:AnimationExtender>
+[!code[Main](executing-several-animations-after-each-other-vb/samples/sample5.xml)]
 
 When you run this script, the panel first gets wider and then smaller.
 

@@ -38,37 +38,7 @@ The customer feedback website uses the `controller` in Listing 1. This `controll
 
 **Listing 1 – `HomeController.cs`**
 
-    using System;
-    using System.Web.Mvc;
-    using CustomerFeedback.Models;
-    
-    namespace CustomerFeedback.Controllers
-    {
-         [HandleError]
-         public class HomeController : Controller
-         {
-              private FeedbackDataContext db = new FeedbackDataContext();
-    
-              public ActionResult Index()
-              {
-                   return View(db.Feedbacks);
-              }
-    
-              public ActionResult Create(string message)
-    
-              {
-                   // Add feedback
-                   var newFeedback = new Feedback();
-                   newFeedback.Message = message;
-                   newFeedback.EntryDate = DateTime.Now;
-                   db.Feedbacks.InsertOnSubmit(newFeedback);
-                   db.SubmitChanges();
-    
-                   // Redirect
-                   return RedirectToAction("Index");
-              }
-         }
-    }
+[!code[Main](preventing-javascript-injection-attacks-cs/samples/sample1.xml)]
 
 The `Index()` method displays the `Index` view. This method passes all of the previous customer feedback to the `Index` view by retrieving the feedback from the database (using a LINQ to SQL query).
 
@@ -78,35 +48,7 @@ The `Index` view is contained in Listing 2.
 
 **Listing 2 – `Index.aspx`**
 
-    <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="CustomerFeedback.Views.Home.Index"%>
-    
-    <%@ Import Namespace="CustomerFeedback.Models" %>
-    
-    <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
-         <h1>Customer Feedback</h1>
-         <p>
-              Please use the following form to enter feedback about our product.
-         </p>
-    
-         <form method="post" action="/Home/Create">
-    
-              <label for="message">Message:</label>
-              <br />
-              <textarea name="message" cols="50" rows="2"></textarea>
-              <br /><br />
-              <input type="submit" value="Submit Feedback" />
-         </form>
-    
-         <% foreach (Feedback feedback in ViewData.Model)
-         {%>
-              <p>
-              <%=feedback.EntryDate.ToShortTimeString()%>
-              --
-              <%=feedback.Message%>
-              </p>
-         <% }%>
-    
-    </asp:Content>
+[!code[Main](preventing-javascript-injection-attacks-cs/samples/sample2.xml)]
 
 The `Index` view has two sections. The top section contains the actual customer feedback form. The bottom section contains a For..Each loop that loops through all of the previous customer feedback items and displays the EntryDate and Message properties for each feedback item.
 
@@ -114,7 +56,7 @@ The customer feedback website is a simple website. Unfortunately, the website is
 
 Imagine that you enter the following text into the customer feedback form:
 
-    <script>alert("Boo!")</script>
+[!code[Main](preventing-javascript-injection-attacks-cs/samples/sample3.xml)]
 
 This text represents a JavaScript script that displays an alert message box. After someone submits this script into the feedback form, the message *Boo!*will appear whenever anyone visits the customer feedback website in the future (see Figure 2).
 
@@ -138,39 +80,11 @@ One easy method of preventing JavaScript injection attacks is to HTML encode any
 
 **Listing 3 – `Index.aspx` (HTML Encoded)**
 
-    <%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="CustomerFeedback.Views.Home.Index"%>
-    
-    <%@ Import Namespace="CustomerFeedback.Models" %>
-    
-    <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
-         <h1>Customer Feedback</h1>
-         <p>
-              Please use the following form to enter feedback about our product.
-         </p>
-    
-         <form method="post" action="/Home/Create">
-              <label for="message">Message:</label>
-              <br />
-              <textarea name="message" cols="50" rows="2"></textarea>
-              <br /><br />
-              <input type="submit" value="Submit Feedback" />
-    
-         </form>
-    
-         <% foreach (Feedback feedback in ViewData.Model)
-         {%>
-              <p>
-              <%=feedback.EntryDate.ToShortTimeString()%>
-              --
-              <%=Html.Encode(feedback.Message)%>
-              </p>
-         <% }%>
-    
-    </asp:Content>
+[!code[Main](preventing-javascript-injection-attacks-cs/samples/sample4.xml)]
 
 Notice that the value of `feedback.Message` is HTML encoded before the value is displayed with the following code:
 
-    <%=Html.Encode(feedback.Message)%>
+[!code[Main](preventing-javascript-injection-attacks-cs/samples/sample5.xml)]
 
 What does it mean to HTML encode a string? When you HTML encode a string, dangerous characters such as `<` and `>` are replaced by HTML entity references such as `&lt;` and `&gt;`. So when the string `<script>alert("Boo!")</script>` is HTML encoded, it gets converted to `&lt;script&gt;alert(&quot;Boo!&quot;)&lt;/script&gt;`. The encoded string no longer executes as a JavaScript script when interpreted by a browser. Instead, you get the harmless page in Figure 3.
 
@@ -188,36 +102,7 @@ Instead of HTML encoding data when you display the data in a view, you can HTML 
 
 **Listing 4 – `HomeController.cs` (HTML Encoded)**
 
-    using System;
-    using System.Web.Mvc;
-    using CustomerFeedback.Models;
-    namespace CustomerFeedback.Controllers
-    {
-         [HandleError]
-         public class HomeController : Controller
-         {
-              private FeedbackDataContext db = new FeedbackDataContext();
-    
-              public ActionResult Index()
-              {
-                   return View(db.Feedbacks);
-              }
-    
-              public ActionResult Create(string message)
-              {
-                   // Add feedback
-                   var newFeedback = new Feedback();
-                   newFeedback.Message = Server.HtmlEncode(message);
-                   newFeedback.EntryDate = DateTime.Now;
-                   db.Feedbacks.InsertOnSubmit(newFeedback);
-    
-                   db.SubmitChanges();
-    
-                   // Redirect
-                   return RedirectToAction("Index");
-              }
-         }
-    }
+[!code[Main](preventing-javascript-injection-attacks-cs/samples/sample6.xml)]
 
 Notice that the value of Message is HTML encoded before the value is submitted to the database within the `Create()` action. When the Message is redisplayed in the view, the Message is HTML encoded and any JavaScript injected in the Message is not executed.
 

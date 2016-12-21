@@ -67,22 +67,7 @@ Start by dragging a GridView from the Toolbox onto the Designer of the `DisplayO
 After completing the Configure Data Source wizard, Visual Studio will automatically add a BoundField to the `Categories` GridView for the `CategoryID`, `CategoryName`, `Description`, `NumberOfProducts`, and `BrochurePath` `DataColumn` s. Go ahead and remove the `NumberOfProducts` BoundField since the `GetCategories()` method s query does not retrieve this information. Also remove the `CategoryID` BoundField and rename the `CategoryName` and `BrochurePath` BoundFields `HeaderText` properties to Category and Brochure , respectively. After making these changes, your GridView and ObjectDataSource s declarative markup should look like the following:
 
 
-    <asp:GridView ID="Categories" runat="server" 
-        AutoGenerateColumns="False" DataKeyNames="CategoryID"
-        DataSourceID="CategoriesDataSource" EnableViewState="False">
-        <Columns>
-            <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                SortExpression="CategoryName" />
-            <asp:BoundField DataField="Description" HeaderText="Description" 
-                SortExpression="Description" />
-            <asp:BoundField DataField="BrochurePath" HeaderText="Brochure" 
-                SortExpression="BrochurePath" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetCategories" TypeName="CategoriesBLL">
-    </asp:ObjectDataSource>
+[!code[Main](displaying-binary-data-in-the-data-web-controls-cs/samples/sample1.xml)]
 
 View this page through a browser (see Figure 5). Each of the eight categories is listed. The seven categories with `BrochurePath` values have the `BrochurePath` value displayed in the respective BoundField. Seafood, which has a `NULL` value for its `BrochurePath`, displays an empty cell.
 
@@ -130,23 +115,12 @@ Turn the HyperLinkField into a TemplateField by selecting the `BrochurePath` Hyp
 This will create a TemplateField with an `ItemTemplate` that contains a HyperLink Web control whose `NavigateUrl` property is bound to the `BrochurePath` value. Replace this markup with a call to the method `GenerateBrochureLink`, passing in the value of `BrochurePath`:
 
 
-    <asp:TemplateField HeaderText="Brochure">
-        <ItemTemplate>
-            <%# GenerateBrochureLink(Eval("BrochurePath")) %>
-        </ItemTemplate>
-    </asp:TemplateField>
+[!code[Main](displaying-binary-data-in-the-data-web-controls-cs/samples/sample2.xml)]
 
 Next, create a `protected` method in the ASP.NET page s code-behind class named `GenerateBrochureLink` that returns a `string` and accepts an `object` as an input parameter.
 
 
-    protected string GenerateBrochureLink(object BrochurePath)
-    {
-        if (Convert.IsDBNull(BrochurePath))
-            return "No Brochure Available";
-        else
-            return string.Format(@"<a href="{0}">View Brochure</a>", 
-                ResolveUrl(BrochurePath.ToString()));
-    }
+[!code[Main](displaying-binary-data-in-the-data-web-controls-cs/samples/sample3.xml)]
 
 This method determines if the passed-in `object` value is a database `NULL` and, if so, returns a message indicating that the category lacks a brochure. Otherwise, if there is a `BrochurePath` value, it s displayed in a hyperlink. Note that if the `BrochurePath` value is present it s passed into the [`ResolveUrl(url)` method](https://msdn.microsoft.com/en-us/library/system.web.ui.control.resolveurl.aspx). This method resolves the passed-in *url*, replacing the `~` character with the appropriate virtual path. For example, if the application is rooted at `/Tutorial55`, `ResolveUrl("~/Brochures/Meats.pdf")` will return `/Tutorial55/Brochures/Meat.pdf`.
 
@@ -165,7 +139,7 @@ When a user visits an ASP.NET page, they receive the ASP.NET page s HTML. The re
 For example, in HTML the `<img>` element is used to reference a picture, with the `src` attribute pointing to the image file like so:
 
 
-    <img src="MyPicture.jpg" ... />
+[!code[Main](displaying-binary-data-in-the-data-web-controls-cs/samples/sample4.xml)]
 
 When a browser receives this HTML, it makes another request to the web server to retrieve the binary contents of the image file, which it then displays in the browser. The same concept applies to any binary data. In Step 2, the brochure was not sent down to the browser as part of the page s HTML markup. Rather, the rendered HTML provided hyperlinks that, when clicked, caused the browser to request the PDF document directly.
 
@@ -174,35 +148,14 @@ To display or allow users to download binary data that resides within the databa
 Add a new ASP.NET page to the `BinaryData` folder named `DisplayCategoryPicture.aspx`. When doing so, leave the Select master page checkbox unchecked. This page expects a `CategoryID` value in the querystring and returns the binary data of that category s `Picture` column. Since this page returns binary data and nothing else, it does not need any markup in the HTML section. Therefore, click on the Source tab in the lower left corner and remove all of the page s markup except for the `<%@ Page %>` directive. That is, `DisplayCategoryPicture.aspx` s declarative markup should consist of a single line:
 
 
-    <%@ Page Language="C#" AutoEventWireup="true" 
-        CodeFile="DisplayCategoryPicture.aspx.cs" 
-        Inherits="BinaryData_DisplayCategoryPicture" %>
+[!code[Main](displaying-binary-data-in-the-data-web-controls-cs/samples/sample5.xml)]
 
 If you see the `MasterPageFile` attribute in the `<%@ Page %>` directive, remove it.
 
 In the page s code-behind class, add the following code to the `Page_Load` event handler:
 
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        int categoryID = Convert.ToInt32(Request.QueryString["CategoryID"]);
-        // Get information about the specified category
-        CategoriesBLL categoryAPI = new CategoriesBLL();
-        Northwind.CategoriesDataTable categories = 
-            categoryAPI.GetCategoryWithBinaryDataByCategoryID(categoryID);
-        Northwind.CategoriesRow category = categories[0];
-        // Output HTTP headers providing information about the binary data
-        Response.ContentType = "image/bmp";
-        // Output the binary data
-        // But first we need to strip out the OLE header
-        const int OleHeaderLength = 78;
-        int strippedImageLength = category.Picture.Length - OleHeaderLength;
-        byte[] strippedImageData = new byte[strippedImageLength];
-        Array.Copy(category.Picture, OleHeaderLength, 
-            strippedImageData, 0, strippedImageLength);
-        
-        Response.BinaryWrite(strippedImageData);
-    }
+[!code[Main](displaying-binary-data-in-the-data-web-controls-cs/samples/sample6.xml)]
 
 This code starts by reading in the `CategoryID` querystring value into a variable named `categoryID`. Next, the picture data is retrieved via a call to the `CategoriesBLL` class s `GetCategoryWithBinaryDataByCategoryID(categoryID)` method. This data is returned to the client by using the `Response.BinaryWrite(data)` method, but before this is called, the `Picture` column value s OLE header must be removed. This is accomplished by creating a `byte` array named `strippedImageData` that will hold precisely 78 characters less than what is in the `Picture` column. The [`Array.Copy` method](https://msdn.microsoft.com/en-us/library/z50k9bft.aspx) is used to copy the data from `category.Picture` starting at position 78 over to `strippedImageData`.
 
@@ -219,17 +172,7 @@ With this page created, a particular category s picture can be viewed by visitin
 If, when visiting `DisplayCategoryPicture.aspx?CategoryID=categoryID`, you get an exception that reads Unable to cast object of type 'System.DBNull' to type 'System.Byte[]' , there are two things that may be causing this. First, the `Categories` table s `Picture` column does allow `NULL` values. The `DisplayCategoryPicture.aspx` page, however, assumes there is a non-`NULL` value present. The `Picture` property of the `CategoriesDataTable` cannot be directly accessed if it has a `NULL` value. If you do want to allow `NULL` values for the `Picture` column, you d want to include the following condition:
 
 
-    if (category.IsPictureNull())
-    {
-        // Display some "No Image Available" picture
-        Response.Redirect("~/Images/NoPictureAvailable.gif");
-    }
-    else
-    {
-        // Send back the binary contents of the Picture column
-        // ... Set ContentType property and write out ...
-        // ... data via Response.BinaryWrite ...
-    }
+[!code[Main](displaying-binary-data-in-the-data-web-controls-cs/samples/sample7.xml)]
 
 The above code assumes that there s some image file named `NoPictureAvailable.gif` in the `Images` folder that you want to display for those categories without a picture.
 
@@ -255,24 +198,7 @@ Let s augment the `Categories` GridView in `DisplayOrDownloadData.aspx` by addin
 After adding the ImageField, your GridView s declarative syntax should look like soothe following:
 
 
-    <asp:GridView ID="Categories" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="CategoryID" DataSourceID="CategoriesDataSource" 
-        EnableViewState="False">
-        <Columns>
-            <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                SortExpression="CategoryName" />
-            <asp:BoundField DataField="Description" HeaderText="Description" 
-                SortExpression="Description" />
-            <asp:TemplateField HeaderText="Brochure">
-                <ItemTemplate>
-                    <%# GenerateBrochureLink(Eval("BrochurePath")) %>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:ImageField DataImageUrlField="CategoryID" 
-                DataImageUrlFormatString="DisplayCategoryPicture.aspx?CategoryID={0}">
-            </asp:ImageField>
-        </Columns>
-    </asp:GridView>
+[!code[Main](displaying-binary-data-in-the-data-web-controls-cs/samples/sample8.xml)]
 
 Take a moment to view this page through a browser. Note how each record now includes a picture for the category.
 

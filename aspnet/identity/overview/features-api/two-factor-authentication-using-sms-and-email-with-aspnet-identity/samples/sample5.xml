@@ -1,44 +1,25 @@
-public static ApplicationUserManager Create(
-   IdentityFactoryOptions<ApplicationUserManager> options, 
-   IOwinContext context) 
+// POST: /Account/AddPhoneNumber
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
 {
-    var manager = new ApplicationUserManager(
-       new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
-    // Configure validation logic for usernames
-    manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+    if (!ModelState.IsValid)
     {
-        AllowOnlyAlphanumericUserNames = false,
-        RequireUniqueEmail = true
-    };
-    // Configure validation logic for passwords
-    manager.PasswordValidator = new PasswordValidator
-    {
-        RequiredLength = 6,
-        RequireNonLetterOrDigit = true,
-        RequireDigit = true,
-        RequireLowercase = true,
-        RequireUppercase = true,
-    };
-    // Register two factor authentication providers. This application uses Phone and Emails as a 
-    // step of receiving a code for verifying the user
-    // You can write your own provider and plug it in here.
-    manager.RegisterTwoFactorProvider("PhoneCode", new PhoneNumberTokenProvider<ApplicationUser>
-    {
-        MessageFormat = "Your security code is: {0}"
-    });
-    manager.RegisterTwoFactorProvider("EmailCode", new EmailTokenProvider<ApplicationUser>
-    {
-        Subject = "Security Code",
-        BodyFormat = "Your security code is: {0}"
-    });
-    manager.EmailService = new EmailService();
-    manager.SmsService = new SmsService();
-
-    var dataProtectionProvider = options.DataProtectionProvider;
-    if (dataProtectionProvider != null)
-    {
-        manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>
-           (dataProtectionProvider.Create("ASP.NET Identity"));
+        return View(model);
     }
-    return manager;
+
+    // Generate the token 
+    var code = await UserManager.GenerateChangePhoneNumberTokenAsync(
+                               User.Identity.GetUserId(), model.Number);
+    if (UserManager.SmsService != null)
+    {
+        var message = new IdentityMessage
+        {
+            Destination = model.Number,
+            Body = "Your security code is: " + code
+        };
+        // Send token
+        await UserManager.SmsService.SendAsync(message);
+    }
+    return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
 }

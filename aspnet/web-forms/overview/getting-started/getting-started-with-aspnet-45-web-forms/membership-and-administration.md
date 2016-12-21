@@ -126,15 +126,7 @@ By adding a *Web.config* file to the *Admin* folder, you can restrict access to 
 2. From the list of Visual C# web templates, select **Web Configuration File**from the middle list, accept the default name of *Web.config***,** and then select **Add**.
 3. Replace the existing XML content in the *Web.config* file with the following:  
 
-        <?xml version="1.0"?>
-        <configuration>
-          <system.web>
-            <authorization>
-              <allow roles="canEdit"/>
-              <deny users="*"/>
-            </authorization>
-          </system.web>
-        </configuration>
+    [!code[Main](membership-and-administration/samples/sample4.xml)]
 
 Save the *Web.config* file. The *Web.config* file specifies that only user belonging to the "canEdit" role of the application can access the page contained in the *Admin* folder.
 
@@ -145,10 +137,10 @@ To enable the user of the custom "canEdit" role to navigate to the administratio
 1. In Solution Explorer, find and open the *Site.Master* page.
 2. To create a link for the user of the "canEdit" role, add the markup highlighted in yellow to the following unordered list `<ul>` element so that the list appears as follows:  
 
-    [!code[Main](membership-and-administration/samples/sample4.xml?highlight=2-3)]
+    [!code[Main](membership-and-administration/samples/sample5.xml?highlight=2-3)]
 3. Open the *Site.Master.cs* file. Make the **Admin** link visible only to the "canEditUser" user by adding the code highlighted in yellow to the `Page_Load` handler. The `Page_Load` handler will appear as follows:   
 
-    [!code[Main](membership-and-administration/samples/sample5.xml?highlight=3-6)]
+    [!code[Main](membership-and-administration/samples/sample6.xml?highlight=3-6)]
 
 When the page loads, the code checks whether the logged-in user has the role of "canEdit". If the user belongs to the "canEdit" role, the span element containing the link to the *AdminPage.aspx* page (and consequently the link inside the span) is made visible.
 
@@ -159,191 +151,11 @@ So far, you have created the "canEdit" role and added an "canEditUser" user, an 
 1. In **Solution Explorer**, open the *AdminPage.aspx* file from the *Admin* folder.
 2. Replace the existing markup with the following:  
 
-        <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdminPage.aspx.cs" Inherits="WingtipToys.Admin.AdminPage" %>
-        <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <h1>Administration</h1>
-            <hr />
-            <h3>Add Product:</h3>
-            <table>
-                <tr>
-                    <td><asp:Label ID="LabelAddCategory" runat="server">Category:</asp:Label></td>
-                    <td>
-                        <asp:DropDownList ID="DropDownAddCategory" runat="server" 
-                            ItemType="WingtipToys.Models.Category" 
-                            SelectMethod="GetCategories" DataTextField="CategoryName" 
-                            DataValueField="CategoryID" >
-                        </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td><asp:Label ID="LabelAddName" runat="server">Name:</asp:Label></td>
-                    <td>
-                        <asp:TextBox ID="AddProductName" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Text="* Product name required." ControlToValidate="AddProductName" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td><asp:Label ID="LabelAddDescription" runat="server">Description:</asp:Label></td>
-                    <td>
-                        <asp:TextBox ID="AddProductDescription" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" Text="* Description required." ControlToValidate="AddProductDescription" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td><asp:Label ID="LabelAddPrice" runat="server">Price:</asp:Label></td>
-                    <td>
-                        <asp:TextBox ID="AddProductPrice" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" Text="* Price required." ControlToValidate="AddProductPrice" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Text="* Must be a valid price without $." ControlToValidate="AddProductPrice" SetFocusOnError="True" Display="Dynamic" ValidationExpression="^[0-9]*(\.)?[0-9]?[0-9]?$"></asp:RegularExpressionValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td><asp:Label ID="LabelAddImageFile" runat="server">Image File:</asp:Label></td>
-                    <td>
-                        <asp:FileUpload ID="ProductImage" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" Text="* Image path required." ControlToValidate="ProductImage" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-            </table>
-            <p></p>
-            <p></p>
-            <asp:Button ID="AddProductButton" runat="server" Text="Add Product" OnClick="AddProductButton_Click"  CausesValidation="true"/>
-            <asp:Label ID="LabelAddStatus" runat="server" Text=""></asp:Label>
-            <p></p>
-            <h3>Remove Product:</h3>
-            <table>
-                <tr>
-                    <td><asp:Label ID="LabelRemoveProduct" runat="server">Product:</asp:Label></td>
-                    <td><asp:DropDownList ID="DropDownRemoveProduct" runat="server" ItemType="WingtipToys.Models.Product" 
-                            SelectMethod="GetProducts" AppendDataBoundItems="true" 
-                            DataTextField="ProductName" DataValueField="ProductID" >
-                        </asp:DropDownList>
-                    </td>
-                </tr>
-            </table>
-            <p></p>
-            <asp:Button ID="RemoveProductButton" runat="server" Text="Remove Product" OnClick="RemoveProductButton_Click" CausesValidation="false"/>
-            <asp:Label ID="LabelRemoveStatus" runat="server" Text=""></asp:Label>
-        </asp:Content>
+    [!code[Main](membership-and-administration/samples/sample7.xml)]
 3. Next, open the *AdminPage.aspx.cs* code-behind file by right-clicking the *AdminPage.aspx* and clicking **View Code**.
 4. Replace the existing code in the *AdminPage.aspx.cs* code-behind file with the following code:  
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.UI;
-        using System.Web.UI.WebControls;
-        using WingtipToys.Models;
-        using WingtipToys.Logic;
-        
-        namespace WingtipToys.Admin
-        {
-          public partial class AdminPage : System.Web.UI.Page
-          {
-            protected void Page_Load(object sender, EventArgs e)
-            {
-              string productAction = Request.QueryString["ProductAction"];
-              if (productAction == "add")
-              {
-                LabelAddStatus.Text = "Product added!";
-              }
-        
-              if (productAction == "remove")
-              {
-                LabelRemoveStatus.Text = "Product removed!";
-              }
-            }
-        
-            protected void AddProductButton_Click(object sender, EventArgs e)
-            {
-              Boolean fileOK = false;
-              String path = Server.MapPath("~/Catalog/Images/");
-              if (ProductImage.HasFile)
-              {
-                String fileExtension = System.IO.Path.GetExtension(ProductImage.FileName).ToLower();
-                String[] allowedExtensions = { ".gif", ".png", ".jpeg", ".jpg" };
-                for (int i = 0; i < allowedExtensions.Length; i++)
-                {
-                  if (fileExtension == allowedExtensions[i])
-                  {
-                    fileOK = true;
-                  }
-                }
-              }
-        
-              if (fileOK)
-              {
-                try
-                {
-                  // Save to Images folder.
-                  ProductImage.PostedFile.SaveAs(path + ProductImage.FileName);
-                  // Save to Images/Thumbs folder.
-                  ProductImage.PostedFile.SaveAs(path + "Thumbs/" + ProductImage.FileName);
-                }
-                catch (Exception ex)
-                {
-                  LabelAddStatus.Text = ex.Message;
-                }
-        
-                // Add product data to DB.
-                AddProducts products = new AddProducts();
-                bool addSuccess = products.AddProduct(AddProductName.Text, AddProductDescription.Text,
-                    AddProductPrice.Text, DropDownAddCategory.SelectedValue, ProductImage.FileName);
-                if (addSuccess)
-                {
-                  // Reload the page.
-                  string pageUrl = Request.Url.AbsoluteUri.Substring(0, Request.Url.AbsoluteUri.Count() - Request.Url.Query.Count());
-                  Response.Redirect(pageUrl + "?ProductAction=add");
-                }
-                else
-                {
-                  LabelAddStatus.Text = "Unable to add new product to database.";
-                }
-              }
-              else
-              {
-                LabelAddStatus.Text = "Unable to accept file type.";
-              }
-            }
-        
-            public IQueryable GetCategories()
-            {
-              var _db = new WingtipToys.Models.ProductContext();
-              IQueryable query = _db.Categories;
-              return query;
-            }
-        
-            public IQueryable GetProducts()
-            {
-              var _db = new WingtipToys.Models.ProductContext();
-              IQueryable query = _db.Products;
-              return query;
-            }
-        
-            protected void RemoveProductButton_Click(object sender, EventArgs e)
-            {
-              using (var _db = new WingtipToys.Models.ProductContext())
-              {
-                int productId = Convert.ToInt16(DropDownRemoveProduct.SelectedValue);
-                var myItem = (from c in _db.Products where c.ProductID == productId select c).FirstOrDefault();
-                if (myItem != null)
-                {
-                  _db.Products.Remove(myItem);
-                  _db.SaveChanges();
-        
-                  // Reload the page.
-                  string pageUrl = Request.Url.AbsoluteUri.Substring(0, Request.Url.AbsoluteUri.Count() - Request.Url.Query.Count());
-                  Response.Redirect(pageUrl + "?ProductAction=remove");
-                }
-                else
-                {
-                  LabelRemoveStatus.Text = "Unable to locate product.";
-                }
-              }
-            }
-          }
-        }
+    [!code[Main](membership-and-administration/samples/sample8.xml)]
 
 In the code that you entered for the *AdminPage.aspx.cs* code-behind file, a class called `AddProducts` does the actual work of adding products to the database. This class doesn't exist yet, so you will create it now.
 
@@ -353,36 +165,7 @@ In the code that you entered for the *AdminPage.aspx.cs* code-behind file, a cla
  The new class file is displayed.
 3. Replace the existing code with the following:  
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using WingtipToys.Models;
-        
-        namespace WingtipToys.Logic
-        {
-          public class AddProducts
-          {
-            public bool AddProduct(string ProductName, string ProductDesc, string ProductPrice, string ProductCategory, string ProductImagePath)
-            {
-              var myProduct = new Product();
-              myProduct.ProductName = ProductName;
-              myProduct.Description = ProductDesc;
-              myProduct.UnitPrice = Convert.ToDouble(ProductPrice);
-              myProduct.ImagePath = ProductImagePath;
-              myProduct.CategoryID = Convert.ToInt32(ProductCategory);
-        
-              using (ProductContext _db = new ProductContext())
-              {
-                // Add product to DB.
-                _db.Products.Add(myProduct);
-                _db.SaveChanges();
-              }
-              // Success.
-              return true;
-            }
-          }
-        }
+    [!code[Main](membership-and-administration/samples/sample9.xml)]
 
 The *AdminPage.aspx* page allows the user belonging to the "canEdit" role to add and remove products. When a new product is added, the details about the product are validated and then entered into the database. The new product is immediately available to all users of the web application.
 
@@ -390,18 +173,13 @@ The *AdminPage.aspx* page allows the user belonging to the "canEdit" role to add
 
 The product details that the user provides on the *AdminPage.aspx* page are validated using validation controls (`RequiredFieldValidator` and `RegularExpressionValidator`). These controls automatically use unobtrusive validation. Unobtrusive validation allows the validation controls to use JavaScript for client-side validation logic, which means the page does not require a trip to the server to be validated. By default, unobtrusive validation is included in the *Web.config* file based on the following configuration setting:
 
-    <add key="ValidationSettings:UnobtrusiveValidationMode" value="WebForms" />
+[!code[Main](membership-and-administration/samples/sample10.xml)]
 
 #### Regular Expressions
 
 The product price on the *AdminPage.aspx* page is validated using a **RegularExpressionValidator** control. This control validates whether the value of the associated input control (the "AddProductPrice" TextBox) matches the pattern specified by the regular expression. A regular expression is a pattern-matching notation that enables you to quickly find and match specific character patterns. The **RegularExpressionValidator** control includes a property named `ValidationExpression` that contains the regular expression used to validate price input, as shown below:
 
-    <asp:RegularExpressionValidator 
-        ID="RegularExpressionValidator1" runat="server"
-        Text="* Must be a valid price without $." ControlToValidate="AddProductPrice" 
-        SetFocusOnError="True" Display="Dynamic" 
-        ValidationExpression="^[0-9]*(\.)?[0-9]?[0-9]?$">
-    </asp:RegularExpressionValidator>
+[!code[Main](membership-and-administration/samples/sample11.xml)]
 
 #### FileUpload Control
 
@@ -413,36 +191,15 @@ Earlier in this tutorial series you used model binding to populate a **ListView*
 
 The markup that you added to the *AdminPage.aspx* file contains a **DropDownList** control called `DropDownAddCategory`:
 
-    <asp:DropDownList ID="DropDownAddCategory" runat="server" 
-            ItemType="WingtipToys.Models.Category" 
-            SelectMethod="GetCategories" DataTextField="CategoryName" 
-            DataValueField="CategoryID" >
-        </asp:DropDownList>
+[!code[Main](membership-and-administration/samples/sample12.xml)]
 
 You use model binding to populate this **DropDownList** by setting the `ItemType` attribute and the `SelectMethod` attribute. The `ItemType` attribute specifies that you use the `WingtipToys.Models.Category` type when populating the control. You defined this type at the beginning of this tutorial series by creating the `Category` class (shown below). The `Category` class is in the *Models* folder inside the *Category.cs* file.
 
-    public class Category
-        {
-            [ScaffoldColumn(false)]
-            public int CategoryID { get; set; }
-    
-            [Required, StringLength(100), Display(Name = "Name")]
-            public string CategoryName { get; set; }
-    
-            [Display(Name = "Product Description")]
-            public string Description { get; set; }
-    
-            public virtual ICollection<Product> Products { get; set; }
-        }
+[!code[Main](membership-and-administration/samples/sample13.xml)]
 
 The `SelectMethod` attribute of the **DropDownList** control specifies that you use the `GetCategories` method (shown below) that is included in the code-behind file (*AdminPage.aspx.cs*).
 
-    public IQueryable GetCategories()
-        {
-          var _db = new WingtipToys.Models.ProductContext();
-          IQueryable query = _db.Categories;
-          return query;
-        }
+[!code[Main](membership-and-administration/samples/sample14.xml)]
 
 This method specifies that an `IQueryable` interface is used to evaluate a query against a `Category` type. The returned value is used to populate the **DropDownList** in the markup of the page (*AdminPage.aspx*).
 
@@ -452,32 +209,17 @@ The text displayed for each item in the list is specified by setting the `DataTe
 
 When the user belonging to the "canEdit" role navigates to the page for the first time, the `DropDownAddCategory`**DropDownList** control is populated as described above. The `DropDownRemoveProduct`**DropDownList** control is also populated with products using the same approach. The user belonging to the "canEdit" role selects the category type and adds product details (**Name**, **Description**, **Price**, and **Image File**). When the user belonging to the "canEdit" role clicks the **Add Product** button, the `AddProductButton_Click` event handler is triggered. The `AddProductButton_Click` event handler located in the code-behind file (*AdminPage.aspx.cs*) checks the image file to make sure it matches the allowed file types *(.gif*, *.png*, *.jpeg*, or *.jpg*). Then, the image file is saved into a folder of the Wingtip Toys sample application. Next, the new product is added to the database. To accomplish adding a new product, a new instance of the `AddProducts` class is created and named products. The `AddProducts` class has a method named `AddProduct`, and the products object calls this method to add products to the database.
 
-    // Add product data to DB.
-        AddProducts products = new AddProducts();
-        bool addSuccess = products.AddProduct(AddProductName.Text, AddProductDescription.Text,
-            AddProductPrice.Text, DropDownAddCategory.SelectedValue, ProductImage.FileName);
+[!code[Main](membership-and-administration/samples/sample15.xml)]
 
 If the code successfully adds the new product to the database, the page is reloaded with the query string value `ProductAction=add`.
 
-    Response.Redirect(pageUrl + "?ProductAction=add");
+[!code[Main](membership-and-administration/samples/sample16.xml)]
 
 When the page reloads, the query string is included in the URL. By reloading the page, the user belonging to the "canEdit" role can immediately see the updates in the **DropDownList** controls on the *AdminPage.aspx* page. Also, by including the query string with the URL, the page can display a success message to the user belonging to the "canEdit" role.
 
 When the *AdminPage.aspx* page reloads, the `Page_Load` event is called.
 
-    protected void Page_Load(object sender, EventArgs e)
-        {
-            string productAction = Request.QueryString["ProductAction"];
-            if (productAction == "add")
-            {
-                LabelAddStatus.Text = "Product added!";
-            }
-    
-            if (productAction == "remove")
-            {
-                LabelRemoveStatus.Text = "Product removed!";
-            }
-        }
+[!code[Main](membership-and-administration/samples/sample17.xml)]
 
 The `Page_Load` event handler checks the query string value and determines whether to show a success message.
 

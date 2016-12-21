@@ -60,12 +60,7 @@ At this point your project's Solution Explorer should look similar to the screen
 
 Each page should, at this point, have the two Content controls, one for each of the master page's ContentPlaceHolders: `MainContent` and `LoginContent`.
 
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent"
-    Runat="Server"> 
-    </asp:Content> 
-    <asp:Content ID="Content2" ContentPlaceHolderID="LoginContent"
-    Runat="Server"> 
-    </asp:Content>
+[!code[Main](creating-user-accounts-vb/samples/sample1.xml)]
 
 Recall that the `LoginContent` ContentPlaceHolder's default markup displays a link to log on or log off the site, depending on whether the user is authenticated. The presence of the `Content2` Content control, however, overrides the master page's default markup. As we discussed in *<a id="_msoanchor_6"></a>[An Overview of Forms Authentication](../introduction/an-overview-of-forms-authentication-vb.md)* tutorial, this is useful in pages where we do not want to display login-related options in the left column.
 
@@ -91,16 +86,7 @@ The XML site map file defines the website's structure as a hierarchy. This hiera
 
 Enter the following XML into the `Web.sitemap` file:
 
-    <?xml version="1.0" encoding="utf-8" ?> 
-    <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0"> 
-     <siteMapNode url="~/Default.aspx" title="Home"> 
-     <siteMapNode title="Membership">
-     <siteMapNode url="~/Membership/CreatingUserAccounts.aspx" title="Creating User Accounts" /> 
-     <siteMapNode url="~/Membership/UserBasedAuthorization.aspx" title="User-Based Authorization" /> 
-     <siteMapNode url="~/Membership/Guestbook.aspx" title="Storing Additional User Information" /> 
-     </siteMapNode> 
-     </siteMapNode> 
-    </siteMap>
+[!code[Main](creating-user-accounts-vb/samples/sample2.xml)]
 
 The above site map markup defines the hierarchy shown in Figure 3.
 
@@ -120,35 +106,7 @@ Since a thorough discussion of the Site Map framework and the Navigation control
 
 To create this interface, add the following declarative markup to the `Site.master` master page's left column where the text TODO: Menu will go here... currently resides.
 
-    <ul> 
-     <li> 
-     <asp:HyperLink runat="server" ID="lnkHome" NavigateUrl="~/Default.aspx">Home</asp:HyperLink>
-     </li> 
-     <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSource1"> 
-     <ItemTemplate>
-     <li> 
-     <asp:HyperLink ID="lnkMenuItem" runat="server" 
-     NavigateUrl='<%# Eval("Url") %>'><%# Eval("Title") %></asp:HyperLink>
-     <asp:Repeater ID="submenu" runat="server" DataSource="<%# 
-     CType(Container.DataItem, SiteMapNode).ChildNodes %>"> 
-     <HeaderTemplate> 
-     <ul> 
-     </HeaderTemplate> 
-     <ItemTemplate>
-     <li> 
-     <asp:HyperLink ID="lnkMenuItem" 
-     runat="server" NavigateUrl='<%#  Eval("Url") %>'><%# Eval("Title") %></asp:HyperLink> 
-     </li>
-     </ItemTemplate> 
-     <FooterTemplate> 
-     </ul> 
-     </FooterTemplate>
-     </asp:Repeater> 
-     </li> 
-     </ItemTemplate> 
-     </asp:Repeater> 
-    </ul>
-    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false"/>
+[!code[Main](creating-user-accounts-vb/samples/sample3.xml)]
 
 The above markup binds a Repeater control named `menu` to a SiteMapDataSource, which returns the site map hierarchy defined in `Web.sitemap`. Since the SiteMapDataSource control's [`ShowStartingNode` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sitemapdatasource.showstartingnode.aspx) is set to False it starts returning the site map's hierarchy starting with the descendents of the Home node. The Repeater displays each of these nodes (currently just Membership ) in an `<li>` element. Another, inner Repeater then displays the current node's children in a nested unordered list.
 
@@ -166,13 +124,7 @@ In addition to the list of links in the left column, let's also have each page d
 
 Specifically, add a `<span>` element to the master page's header `<div>` element, and set the new `<span>` element's `class` attribute to breadcrumb . (The `Styles.css` class contains a rule for a breadcrumb class.) Next, add a SiteMapPath to this new `<span>` element.
 
-    <div id="header"> 
-     <span class="title">User Account Tutorials</span><br /> 
-     <span class="breadcrumb"> 
-     <asp:SiteMapPath ID="SiteMapPath1" runat="server"> 
-     </asp:SiteMapPath> 
-     </span> 
-    </div>
+[!code[Main](creating-user-accounts-vb/samples/sample4.xml)]
 
 Figure 5 shows the output of the SiteMapPath when visiting `~/Membership/CreatingUserAccounts.aspx`.
 
@@ -230,39 +182,11 @@ The `SecurityQuestion` Label and `SecurityAnswer` TextBox are intended to displa
 
 To implement this pre-defined security question, add a constant to the page's code-behind class named `passwordQuestion`, assigning it the security question. Then, in the `Page_Load` event handler, assign this constant to the `SecurityQuestion` Label's `Text` property:
 
-    Const passwordQuestion As String = "What is your favorite color"
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load 
-     If Not Page.IsPostBack Then 
-     SecurityQuestion.Text = passwordQuestion 
-     End If 
-    End Sub
+[!code[Main](creating-user-accounts-vb/samples/sample5.xml)]
 
 Next, create an event handler for the `CreateAccountButton'` s `Click` event and add the following code:
 
-    Protected Sub CreateAccountButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles CreateAccountButton.Click 
-     Dim createStatus As MembershipCreateStatus 
-     Dim newUser As MembershipUser = _ 
-     Membership.CreateUser(Username.Text, Password.Text, _ 
-     Email.Text, passwordQuestion, _ 
-     SecurityAnswer.Text, True, _ 
-     createStatus)
-     Select Case createStatus 
-     Case MembershipCreateStatus.Success 
-     CreateAccountResults.Text = "The user account was successfully created!" 
-     Case MembershipCreateStatus.DuplicateUserName 
-     CreateAccountResults.Text = "There already exists a user with this username." 
-     Case MembershipCreateStatus.DuplicateEmail 
-     CreateAccountResults.Text = "There already exists a user with this email address." 
-     Case MembershipCreateStatus.InvalidEmail
-     CreateAccountResults.Text = "There email address you provided in invalid." 
-     Case MembershipCreateStatus.InvalidAnswer 
-     CreateAccountResults.Text = "There security answer was invalid." 
-     Case MembershipCreateStatus.InvalidPassword 
-     CreateAccountResults.Text = "The password you provided is invalid. It must be seven characters long and have at least one non-alphanumeric character." 
-     Case Else 
-     CreateAccountResults.Text = "There was an unknown error; the user account was NOT created."
-     End Select 
-    End Sub
+[!code[Main](creating-user-accounts-vb/samples/sample6.xml)]
 
 The `Click` event handler starts by defining a variable named `createStatus` of type [`MembershipCreateStatus`](https://msdn.microsoft.com/En-US/library/system.web.security.membershipcreatestatus.aspx). `MembershipCreateStatus` is an enumeration that indicates the status of the `CreateUser` operation. For example, if the user account is created successfully, the resulting `MembershipCreateStatus` instance will be set to a value of `Success;` on the other hand, if the operation fails because there already exists a user with the same username, it will be set to a value of `DuplicateUserName`. In the `CreateUser` overload we use, we need to pass a `MembershipCreateStatus` instance into the method. This parameter is set to the appropriate value within the `CreateUser` method, and we can examine its value after the method call to determine whether the user account was successfully created.
 
@@ -395,33 +319,13 @@ In certain scenarios we may want to tap into the CreateUserWizard workflow, whic
 
 To accomplish this we will create an event handler for the `CreatingUser` event to perform our extra validation checks. If the supplied data is not valid we need to cancel the creation process. We also need to add a Label Web control to the page to display a message explaining that the username or password is invalid. Start by adding a Label control beneath the CreateUserWizard control, setting its `ID` property to `InvalidUserNameOrPasswordMessage` and its `ForeColor` property to `Red`. Clear out its `Text` property and set its `EnableViewState` and `Visible` properties to False.
 
-    <asp:Label runat="server"" id="InvalidUserNameOrPasswordMessage"
-     Visible="false" ForeColor="Red" EnableViewState="false"> 
-    </asp:Label>
+[!code[Main](creating-user-accounts-vb/samples/sample7.xml)]
 
 Next, create an event handler for the CreateUserWizard control's `CreatingUser` event. To create an event handler, select the control in the Designer and then go to the Properties window. From there, click on the lightning bolt icon and then double-click the appropriate event to create the event handler.
 
 Add the following code to the `CreatingUser` event handler:
 
-    Protected Sub RegisterUser_CreatingUser(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.LoginCancelEventArgs) Handles RegisterUser.CreatingUser
-     Dim trimmedUserName As String = RegisterUser.UserName.Trim() 
-     If RegisterUser.UserName.Length <> trimmedUserName.Length Then 
-     ' Show the error message 
-     InvalidUserNameOrPasswordMessage.Text = "The username cannot contain leading or trailing spaces." 
-     InvalidUserNameOrPasswordMessage.Visible = True 
-     ' Cancel the create user workflow 
-     e.Cancel = True 
-     Else 
-     ' Username is valid, make sure that the password does not contain the username 
-     If RegisterUser.Password.IndexOf(RegisterUser.UserName, StringComparison.OrdinalIgnoreCase) >= 0 Then 
-     ' Show the error message 
-     InvalidUserNameOrPasswordMessage.Text = "The username may not appear anywhere in the password." 
-     InvalidUserNameOrPasswordMessage.Visible = True 
-     ' Cancel the create user workflow 
-     e.Cancel = True 
-     End If 
-     End If 
-    End Sub
+[!code[Main](creating-user-accounts-vb/samples/sample8.xml)]
 
 Note that the username and password entered into the CreateUserWizard control are available through its [`UserName`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.username.aspx) and [`Password` properties](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.password.aspx), respectively. We use these properties in the above event handler to determine whether the supplied username contains leading or trailing spaces and whether the username is found within the password. If either of these conditions is met, an error message is displayed in the `InvalidUserNameOrPasswordMessage` Label and the event handler's `e.Cancel` property is set to `True`. If `e.Cancel` is set to `True`, the CreateUserWizard short-circuits its workflow, effectively cancelling the user account creation process.
 

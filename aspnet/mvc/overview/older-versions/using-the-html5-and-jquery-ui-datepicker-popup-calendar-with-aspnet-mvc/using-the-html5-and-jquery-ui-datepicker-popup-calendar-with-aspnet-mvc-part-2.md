@@ -22,13 +22,11 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 In the first part of this tutorial, you saw how you can add attributes to the model to explicitly specify formatting, and how you can explicitly specify the template that's used to render the model. For example, the [DisplayFormat](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute in the following code explicity specifies the formatting for the `ReleaseDate` property.
 
-    [DisplayFormat(DataFormatString = "{0:d}")]
-            public DateTime  ReleaseDate { get; set; }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample1.xml)]
 
 In the following example, the [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) attribute, using the `Date` enumeration, specifies that the date template should be used to render the model. If there's no date template in your project, the built-in date template is used.
 
-    [DataType(DataType.Date)]
-            public DateTime  ReleaseDate { get; set; }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample2.xml)]
 
 However, ASP.MVC can perform type matching using convention-over-configuration, by looking for a template that matches the name of a type. This lets you create a template that automatically formats data without using any attributes or code at all. For this part of the tutorial, you'll create a template that's automatically applied to model properties of type [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx). You won't need to use an attribute or other configuration to specify that the template should be used to render all model properties of type [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx).
 
@@ -38,8 +36,7 @@ To begin, let's remove existing formatting information and display full dates in
 
 Open the *Movie.cs* file and comment out the `DataType` attribute on the `ReleaseDate` property:
 
-    // [DataType(DataType.Date)]
-    public DateTime ReleaseDate { get; set; }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample3.xml)]
 
 Press CTRL+F5 to run the application.
 
@@ -53,21 +50,7 @@ Before you create a template for formatting dates, you'll add a few CSS style ru
 
 Open the *Content\Site.cs*s file and add the following CSS rules to the bottom of the file:
 
-    /* Styles to test new editor and display templates.
-    ----------------------------------------------------------*/
-    .loud-1 {
-        font-weight: bold;
-        color: Red;
-    }
-    .loud-2 {
-        font-size:  2.0em;
-        color:Green;
-    }
-    .loud-3 {
-        font-style: italic;
-        color: yellow;
-        background-color: blue;
-    }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample4.xml)]
 
 ### Adding DateTime Display Templates
 
@@ -95,13 +78,11 @@ The following image shows the *Views* folder in **Solution Explorer** after the 
 
 Open the *Views\Shared\DisplayTemplates\DateTime.cshtml* file and add the following markup, which uses the [String.Format](https://msdn.microsoft.com/en-us/library/system.string.format.aspx) method to format the property as a date without the time. (The `{0:d}` format specifies short date format.)
 
-    @String.Format("{0:d}", Model.Date)
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample5.xml)]
 
 Repeat this step to create a `DateTime` template in the *Views\Movie\DisplayTemplates* folder. Use the following code in the *Views\Movie\DisplayTemplates\DateTime.cshtml* file.
 
-    <span class="loud-1">   
-    @String.Format("{0:d}", Model.Date)
-    </span>
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample6.xml)]
 
 The `loud-1` CSS class causes the date to be display in bold red text. You added the `loud-1` CSS class just as a temporary measure so you can easily see when this particular template is being used.
 
@@ -129,16 +110,13 @@ If your web application has many `DateTime` fields and by default you want to di
 
 Open the *Views\Movies\DisplayTemplates\LoudDateTime.cshtml* file and replace the existing code with the following:
 
-    <span class="loud-2">   
-    @Model.ToString()
-    </span>
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample7.xml)]
 
 This causes the full date and time to be displayed and adds the CSS class that makes the text green and large.
 
 Open the *Movie.cs* file and add the [UIHint](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.uihintattribute.uihint.aspx) attribute to the `ReleaseDate` property, as shown in the following example:
 
-    [UIHint("LoudDateTime")]
-    public DateTime ReleaseDate { get; set; }
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample8.xml)]
 
 This tells ASP.NET MVC that when it displays the `ReleaseDate` property (specifically, and not just any `DateTime` object), it should use the *LoudDateTime.cshtml* template.
 
@@ -150,10 +128,7 @@ Return to the `UIHint` attribute in the *Movie.cs* file and comment it out so th
 
 As mentioned earlier, you can also apply a template in a view, which lets you apply the template to an individual instance of some data. Open the *Views\Movies\Details.cshtml* view. Add `"LoudDateTime"` as the second parameter of the [Html.DisplayFor](https://msdn.microsoft.com/en-us/library/ee407420.aspx) call for the `ReleaseDate` field. The completed code looks like this:
 
-    <div class="display-label">ReleaseDate</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ReleaseDate,"LoudDateTime")
-    </div>
+[!code[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample9.xml)]
 
 This specifies that the `LoudDateTime` template should be used to display the model property, regardless of what attributes are applied to the model.
 

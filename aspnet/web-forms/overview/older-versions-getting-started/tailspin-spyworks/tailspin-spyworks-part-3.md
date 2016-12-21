@@ -24,32 +24,11 @@ by [Joe Stagner](https://github.com/JoeStagner)
 
 In our site master page we'll add a div for the left side column that will contain our product category menu.
 
-    <div id="content">
-      <div id="rightColumn"></div>
-      <div id="mainContent">
-        <div id="centerColumn">
-           <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
-        </div>
-      </div>
-      <div id="leftColumn">
-    <!-- Our menu will go here -->       
-      </div>
-      <div class="clear"></div>
-    </div>
+[!code[Main](tailspin-spyworks-part-3/samples/sample1.xml)]
 
 Note that the desired aligning and other formatting will be provided by the CSS class that we added to our Style.css file.
 
-    #leftColumn
-    {
-    position: relative;
-    float: left;
-    width: 14em;
-    padding: 2em 1.5em 2em;
-    background: #fff url('images/a1.gif') repeat-y right top;
-        	top: 1px;
-        	left: 0px;
-        	height: 100%;
-    }
+[!code[Main](tailspin-spyworks-part-3/samples/sample2.xml)]
 
 The product category menu will be dynamically created at runtime by querying the Commerce database for existing product categories and creating the menu items and corresponding links.
 
@@ -77,23 +56,7 @@ Now let's set the ID property of the ListView control instance that we placed on
 
 Though we could use control options to format the data item display and formatting, our menu creation will only require simple markup so we will enter the code in the source view.
 
-    <asp:ListView ID="ListView_ProductsMenu" runat="server" DataKeyNames="CategoryID" 
-    	DataSourceID="EDS_Category_Menu">
-       <EmptyDataTemplate>No Menu Items.</EmptyDataTemplate>
-       <ItemSeparatorTemplate></ItemSeparatorTemplate>
-       <ItemTemplate>
-          <li>
-             <a href='<%# VirtualPathUtility.ToAbsolute("~/ProductsList.aspx?CategoryId=" + 
-                                    Eval("CategoryID")) %>'><%# Eval("CategoryName") %></a>
-          </li>
-       </ItemTemplate>               
-       <LayoutTemplate>
-          <ul ID="itemPlaceholderContainer" runat="server">
-             <li runat="server" id="itemPlaceholder" />
-          </ul>
-          <div>
-          </div>
-       </LayoutTemplate>
+[!code[Main](tailspin-spyworks-part-3/samples/sample3.xml)]
 
 Please note the "Eval" statement : &lt;%# Eval("CategoryName") %&gt;
 

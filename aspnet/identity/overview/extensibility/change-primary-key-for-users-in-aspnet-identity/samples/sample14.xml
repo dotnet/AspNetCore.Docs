@@ -1,11 +1,9 @@
-public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
+private bool HasPassword()
 {
-    var userId = await SignInManager.GetVerifiedUserIdAsync();
-    if (userId == default(int))
+    var user = UserManager.FindById(User.Identity.GetUserId<int>());
+    if (user != null)
     {
-        return View("Error");
+        return user.PasswordHash != null;
     }
-    var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
-    var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-    return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
+    return false;
 }

@@ -61,61 +61,33 @@ The other Identity classes, such as IdentityUserRole, IdentityUserClaim, Identit
 
 Add the following classes to your IdentityModels.cs file.
 
-    public class CustomUserRole : IdentityUserRole<int> { } 
-    public class CustomUserClaim : IdentityUserClaim<int> { } 
-    public class CustomUserLogin : IdentityUserLogin<int> { } 
-    
-    public class CustomRole : IdentityRole<int, CustomUserRole> 
-    { 
-        public CustomRole() { } 
-        public CustomRole(string name) { Name = name; } 
-    } 
-    
-    public class CustomUserStore : UserStore<ApplicationUser, CustomRole, int, 
-        CustomUserLogin, CustomUserRole, CustomUserClaim> 
-    { 
-        public CustomUserStore(ApplicationDbContext context) 
-            : base(context) 
-        { 
-        } 
-    } 
-    
-    public class CustomRoleStore : RoleStore<CustomRole, int, CustomUserRole> 
-    { 
-        public CustomRoleStore(ApplicationDbContext context) 
-            : base(context) 
-        { 
-        } 
-    }
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample3.xml)]
 
 <a id="context"></a>
 ## Change the context class and user manager to use the key type
 
 In IdentityModels.cs, change the definition of the **ApplicationDbContext** class to use your new customized classes and an **int** for the key, as shown in the highlighted code.
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample3.xml?highlight=1-2)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample4.xml?highlight=1-2)]
 
 The ThrowIfV1Schema parameter is no longer valid in the constructor. Change the constructor so it does not pass a ThrowIfV1Schema value.
 
-    public ApplicationDbContext() 
-        : base("DefaultConnection") 
-    { 
-    }
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample5.xml)]
 
 Open IdentityConfig.cs, and change the **ApplicationUserManger** class to use your new user store class for persisting data and an **int** for the key.
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample4.xml?highlight=1,3,12,14,32,37,48)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample6.xml?highlight=1,3,12,14,32,37,48)]
 
 In the Update 3 template, you must change the ApplicationSignInManager class.
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample5.xml?highlight=1)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample7.xml?highlight=1)]
 
 <a id="startup"></a>
 ## Change start-up configuration to use the key type
 
 In Startup.Auth.cs, replace the OnValidateIdentity code, as highlighted below. Notice that the getUserIdCallback definition, parses the string value into an integer.
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample6.xml?highlight=7-12)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample8.xml?highlight=7-12)]
 
 If your project does not recognize the generic implementation of the **GetUserId** method, you may need to update the ASP.NET Identity NuGet package to version 2.1
 
@@ -135,27 +107,27 @@ Open the AccountController.cs file. You need to change the following methods.
 
 **ConfirmEmail** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample7.xml?highlight=1,3)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample9.xml?highlight=1,3)]
 
 **Disassociate** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample8.xml?highlight=5,9)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample10.xml?highlight=5,9)]
 
 **Manage(ManageUserViewModel)** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample9.xml?highlight=11,17,41)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample11.xml?highlight=11,17,41)]
 
 **LinkLoginCallback** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample10.xml?highlight=10)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample12.xml?highlight=10)]
 
 **RemoveAccountList** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample11.xml?highlight=3)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample13.xml?highlight=3)]
 
 **HasPassword** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample12.xml?highlight=3)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample14.xml?highlight=3)]
 
 You can now [run the application](#run) and register a new user.
 
@@ -166,65 +138,65 @@ Open the AccountController.cs file. You need to change the following method.
 
 **ConfirmEmail** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample13.xml?highlight=1,3)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample15.xml?highlight=1,3)]
 
 **SendCode** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample14.xml?highlight=4)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample16.xml?highlight=4)]
 
 Open the ManageController.cs file. You need to change the following methods.
 
 **Index** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample15.xml?highlight=15-17)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample17.xml?highlight=15-17)]
 
 **RemoveLogin** methods
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample16.xml?highlight=3,13,17)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample18.xml?highlight=3,13,17)]
 
 **AddPhoneNumber** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample17.xml?highlight=9)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample19.xml?highlight=9)]
 
 **EnableTwoFactorAuthentication** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample18.xml?highlight=3-4)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample20.xml?highlight=3-4)]
 
 **DisableTwoFactorAuthentication** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample19.xml?highlight=3-4)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample21.xml?highlight=3-4)]
 
 **VerifyPhoneNumber** methods
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample20.xml?highlight=4,18,21)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample22.xml?highlight=4,18,21)]
 
 **RemovePhoneNumber** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample21.xml?highlight=3,8)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample23.xml?highlight=3,8)]
 
 **ChangePassword** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample22.xml?highlight=10,13)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample24.xml?highlight=10,13)]
 
 **SetPassword** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample23.xml?highlight=5,8)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample25.xml?highlight=5,8)]
 
 **ManageLogins** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample24.xml?highlight=7,12)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample26.xml?highlight=7,12)]
 
 **LinkLoginCallback** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample25.xml?highlight=8)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample27.xml?highlight=8)]
 
 **HasPassword** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample26.xml?highlight=3)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample28.xml?highlight=3)]
 
 **HasPhoneNumber** method
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample27.xml?highlight=3)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample29.xml?highlight=3)]
 
 You can now [run the application](#run) and register a new user.
 
@@ -235,15 +207,15 @@ For Web Forms with Update 2, you need to change the following pages.
 
 **Confirm.aspx.cx**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample28.xml?highlight=8)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample30.xml?highlight=8)]
 
 **RegisterExternalLogin.aspx.cs**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample29.xml?highlight=36)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample31.xml?highlight=36)]
 
 **Manage.aspx.cs**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample30.xml?highlight=3,22,47,52,69,85,93,98)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample32.xml?highlight=3,22,47,52,69,85,93,98)]
 
 You can now [run the application](#run) and register a new user.
 
@@ -254,35 +226,35 @@ For Web Forms with Update 3, you need to change the following pages.
 
 **Confirm.aspx.cx**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample31.xml?highlight=8)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample33.xml?highlight=8)]
 
 **RegisterExternalLogin.aspx.cs**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample32.xml?highlight=36)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample34.xml?highlight=36)]
 
 **Manage.aspx.cs**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample33.xml?highlight=11,27,32,34,82,87,99,108)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample35.xml?highlight=11,27,32,34,82,87,99,108)]
 
 **VerifyPhoneNumber.aspx.cs**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample34.xml?highlight=8,23,27)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample36.xml?highlight=8,23,27)]
 
 **AddPhoneNumber.aspx.cs**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample35.xml?highlight=7)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample37.xml?highlight=7)]
 
 **ManagePassword.aspx.cs**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample36.xml?highlight=11,47,50,68)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample38.xml?highlight=11,47,50,68)]
 
 **ManageLogins.aspx.cs**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample37.xml?highlight=16,23,32,41,45)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample39.xml?highlight=16,23,32,41,45)]
 
 **TwoFactorAuthenticationSignIn.aspx.cs**
 
-[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample38.xml?highlight=14-15,29,53)]
+[!code[Main](change-primary-key-for-users-in-aspnet-identity/samples/sample40.xml?highlight=14-15,29,53)]
 
 <a id="run"></a>
 ## Run application

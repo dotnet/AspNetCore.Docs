@@ -24,10 +24,7 @@ You'll create a view template file using the [Razor view engine](https://weblogs
 
 Currently the `Index` method returns a string with a message that is hard-coded in the controller class. Change the `Index` method to return a `View` object, as shown in the following code:
 
-    public ActionResult Index() 
-    { 
-        return View(); 
-    }
+[!code[Main](adding-a-view/samples/sample1.xml)]
 
 The `Index` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as [action methods](http://rachelappel.com/asp.net-mvc-actionresults-explained)), such as the `Index` method above, generally return an [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult.aspx) (or a class derived from [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult.aspx)), not primitive types like string.
 
@@ -49,11 +46,11 @@ The following shows the *Index.cshtml* file that was created:
 
 Add the following HTML under the `<h2>` tag.
 
-    <p>Hello from our View Template!</p>
+[!code[Main](adding-a-view/samples/sample2.xml)]
 
 The complete *MvcMovie\Views\HelloWorld\Index.cshtml* file is shown below.
 
-[!code[Main](adding-a-view/samples/sample1.xml?highlight=7-8)]
+[!code[Main](adding-a-view/samples/sample3.xml?highlight=7-8)]
 
 If you are using Visual Studio 2012, in solution explorer, right click the*Index.cshtml*file and select **View in Page Inspector**.
 
@@ -77,13 +74,11 @@ Layout templates allow you to specify the HTML container layout of your site in 
 
 Change the site-title heading in the layout template from &quot;your logo here&quot; to &quot;MVC Movie&quot;.
 
-    <div class="float-left">
-        <p class="site-title">@Html.ActionLink("MVC Movie", "Index", "Home")</p>
-    </div>
+[!code[Main](adding-a-view/samples/sample4.xml)]
 
 Replace the contents of the title element with the following markup:
 
-    <title>@ViewBag.Title - Movie App</title>
+[!code[Main](adding-a-view/samples/sample5.xml)]
 
 Run the application and notice that it now says &quot;MVC Movie &quot;. Click the **About** link, and you see how that page shows &quot;MVC Movie&quot;, too. We were able to make the change once in the layout template and have all pages on the site reflect the new title.
 
@@ -93,13 +88,7 @@ Now, let's change the title of the Index view.
 
 Open *MvcMovie\Views\HelloWorld\Index.cshtml*. There are two places to make a change: first, the text that appears in the title of the browser, and then in the secondary header (the `<h2>` element). You'll make them slightly different so you can see which bit of code changes which part of the app.
 
-    @{
-        ViewBag.Title = "Movie List";
-    }
-    
-    <h2>My Movie List</h2>
-    
-    <p>Hello from our View Template!</p>
+[!code[Main](adding-a-view/samples/sample6.xml)]
 
 To indicate the HTML title to display, the code above sets a `Title` property of the `ViewBag` object (which is in the *Index.cshtml* view template). If you look back at the source code of the layout template, you'll notice that the template uses this value in the `<title>` element as part of the `<head>` section of the HTML that we modified previously. Using this `ViewBag` approach, you can easily pass other parameters between your view template and your layout file.
 
@@ -121,27 +110,7 @@ Currently, the `Welcome` action method in the `HelloWorldController` class takes
 
 Return to the *HelloWorldController.cs* file and change the `Welcome` method to add a `Message` and `NumTimes` value to the `ViewBag` object. `ViewBag` is a dynamic object, which means you can put whatever you want in to it; the `ViewBag` object has no defined properties until you put something inside it. The [ASP.NET MVC model binding system](http://odetocode.com/Blogs/scott/archive/2009/04/27/6-tips-for-asp-net-mvc-model-binding.aspx) automatically maps the named parameters (`name` and `numTimes`) from the query string in the address bar to parameters in your method. The complete *HelloWorldController.cs* file looks like this:
 
-    using System.Web;
-    using System.Web.Mvc;
-    
-    namespace MvcMovie.Controllers
-    {
-        public class HelloWorldController : Controller
-        {
-            public ActionResult Index()
-            {
-                return View();
-            }
-    
-            public ActionResult Welcome(string name, int numTimes = 1)
-            {
-                ViewBag.Message = "Hello " + name;
-                ViewBag.NumTimes = numTimes;
-    
-                return View();
-            }
-        }
-    }
+[!code[Main](adding-a-view/samples/sample7.xml)]
 
 Now the `ViewBag` object contains data that will be passed to the view automatically.
 
@@ -157,17 +126,7 @@ Here's what the **Add View** dialog box looks like:
 
 Click **Add**, and then add the following code under the `<h2>` element in the new *Welcome.cshtml* file. You'll create a loop that says &quot;Hello&quot; as many times as the user says it should. The complete *Welcome.cshtml* file is shown below.
 
-    @{
-        ViewBag.Title = "Welcome";
-    }
-    
-    <h2>Welcome</h2>
-    
-    <ul> 
-       @for (int i=0; i < ViewBag.NumTimes; i++) { 
-          <li>@ViewBag.Message</li> 
-       } 
-    </ul>
+[!code[Main](adding-a-view/samples/sample8.xml)]
 
 Run the application and browse to the following URL:
 

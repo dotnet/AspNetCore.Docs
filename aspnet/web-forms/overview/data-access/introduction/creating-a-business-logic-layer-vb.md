@@ -66,190 +66,7 @@ For the `ProductsBLL` class we need to add a total of seven methods:
 ProductsBLL.vb
 
 
-    Imports NorthwindTableAdapters
-    
-    <System.ComponentModel.DataObject()> _
-    Public Class ProductsBLL
-    
-        Private _productsAdapter As ProductsTableAdapter = Nothing
-        Protected ReadOnly Property Adapter() As ProductsTableAdapter
-            Get
-                If _productsAdapter Is Nothing Then
-                    _productsAdapter = New ProductsTableAdapter()
-                End If
-    
-                Return _productsAdapter
-            End Get
-        End Property
-    
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (System.ComponentModel.DataObjectMethodType.Select, True)> _
-        Public Function GetProducts() As Northwind.ProductsDataTable
-            Return Adapter.GetProducts()
-        End Function
-    
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (System.ComponentModel.DataObjectMethodType.Select, False)> _
-        Public Function GetProductByProductID(ByVal productID As Integer) _
-            As Northwind.ProductsDataTable
-            Return Adapter.GetProductByProductID(productID)
-        End Function
-    
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (System.ComponentModel.DataObjectMethodType.Select, False)> _
-        Public Function GetProductsByCategoryID(ByVal categoryID As Integer) _
-            As Northwind.ProductsDataTable
-            Return Adapter.GetProductsByCategoryID(categoryID)
-        End Function
-    
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (System.ComponentModel.DataObjectMethodType.Select, False)> _
-        Public Function GetProductsBySupplierID(ByVal supplierID As Integer) _
-            As Northwind.ProductsDataTable
-            Return Adapter.GetProductsBySupplierID(supplierID)
-        End Function
-    
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (System.ComponentModel.DataObjectMethodType.Insert, True)> _
-        Public Function AddProduct( _
-            productName As String, supplierID As Nullable(Of Integer), _
-            categoryID As Nullable(Of Integer), quantityPerUnit As String, _
-            unitPrice As Nullable(Of Decimal), unitsInStock As Nullable(Of Short), _
-            unitsOnOrder As Nullable(Of Short), reorderLevel As Nullable(Of Short), _
-            discontinued As Boolean) _
-            As Boolean
-    
-            Dim products As New Northwind.ProductsDataTable()
-            Dim product As Northwind.ProductsRow = products.NewProductsRow()
-    
-            product.ProductName = productName
-            If Not supplierID.HasValue Then
-                product.SetSupplierIDNull()
-            Else
-                product.SupplierID = supplierID.Value
-            End If
-    
-            If Not categoryID.HasValue Then
-                product.SetCategoryIDNull()
-            Else
-                product.CategoryID = categoryID.Value
-            End If
-    
-            If quantityPerUnit Is Nothing Then
-                product.SetQuantityPerUnitNull()
-            Else
-                product.QuantityPerUnit = quantityPerUnit
-            End If
-    
-            If Not unitPrice.HasValue Then
-                product.SetUnitPriceNull()
-            Else
-                product.UnitPrice = unitPrice.Value
-            End If
-    
-            If Not unitsInStock.HasValue Then
-                product.SetUnitsInStockNull()
-            Else
-                product.UnitsInStock = unitsInStock.Value
-            End If
-    
-            If Not unitsOnOrder.HasValue Then
-                product.SetUnitsOnOrderNull()
-            Else
-                product.UnitsOnOrder = unitsOnOrder.Value
-            End If
-    
-            If Not reorderLevel.HasValue Then
-                product.SetReorderLevelNull()
-            Else
-                product.ReorderLevel = reorderLevel.Value
-            End If
-    
-            product.Discontinued = discontinued
-    
-            products.AddProductsRow(product)
-            Dim rowsAffected As Integer = Adapter.Update(products)
-    
-            Return rowsAffected = 1
-        End Function
-    
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (System.ComponentModel.DataObjectMethodType.Update, True)> _
-        Public Function UpdateProduct(_
-            productName As String, supplierID As Nullable(Of Integer), _
-            categoryID As Nullable(Of Integer), quantityPerUnit As String, _
-            unitPrice As Nullable(Of Decimal), unitsInStock As Nullable(Of Short), _
-            unitsOnOrder As Nullable(Of Short), reorderLevel As Nullable(Of Short), _
-            discontinued As Boolean, productID As Integer) _
-            As Boolean
-    
-            Dim products As Northwind.ProductsDataTable = _
-                Adapter.GetProductByProductID(productID)
-    
-            If products.Count = 0 Then
-                Return False
-            End If
-    
-            Dim product as Northwind.ProductsRow = products(0)
-    
-            product.ProductName = productName
-            If Not supplierID.HasValue Then
-                product.SetSupplierIDNull()
-            Else
-                product.SupplierID = supplierID.Value
-            End If
-    
-            If Not categoryID.HasValue Then
-                product.SetCategoryIDNull()
-            Else
-                product.CategoryID = categoryID.Value
-            End If
-    
-            If quantityPerUnit Is Nothing Then
-                product.SetQuantityPerUnitNull()
-            Else
-                product.QuantityPerUnit = quantityPerUnit
-            End If
-    
-            If Not unitPrice.HasValue Then
-                product.SetUnitPriceNull()
-            Else
-                product.UnitPrice = unitPrice.Value
-            End If
-    
-            If Not unitsInStock.HasValue Then
-                product.SetUnitsInStockNull()
-            Else
-                product.UnitsInStock = unitsInStock.Value
-            End If
-    
-            If Not unitsOnOrder.HasValue Then
-                product.SetUnitsOnOrderNull()
-            Else
-                product.UnitsOnOrder = unitsOnOrder.Value
-            End If
-    
-            If Not reorderLevel.HasValue Then
-                product.SetReorderLevelNull()
-            Else
-                product.ReorderLevel = reorderLevel.Value
-            End If
-    
-            product.Discontinued = discontinued
-    
-            Dim rowsAffected As Integer = Adapter.Update(product)
-    
-            Return rowsAffected = 1
-        End Function
-    
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (System.ComponentModel.DataObjectMethodType.Delete, True)> _
-        Public Function DeleteProduct(ByVal productID As Integer) As Boolean
-            Dim rowsAffected As Integer = Adapter.Delete(productID)
-    
-            Return rowsAffected = 1
-        End Function
-    End Class
+[!code[Main](creating-a-business-logic-layer-vb/samples/sample1.xml)]
 
 The methods that simply return data `GetProducts`, `GetProductByProductID`, `GetProductsByCategoryID`, and `GetProductBySuppliersID` are fairly straightforward as they simply call down into the DAL. While in some scenarios there may be business rules that need to be implemented at this level (such as authorization rules based on the currently logged on user or the role to which the user belongs), we'll simply leave these methods as-is. For these methods, then, the BLL serves merely as a proxy through which the presentation layer accesses the underlying data from the Data Access Layer.
 
@@ -288,43 +105,7 @@ With the `ProductsBLL` class complete, we still need to add the classes for work
 The one method worth noting is the `SuppliersBLL` class's `UpdateSupplierAddress` method. This method provides an interface for updating just the supplier's address information. Internally, this method reads in the `SupplierDataRow` object for the specified `supplierID` (using `GetSupplierBySupplierID`), sets its address-related properties, and then calls down into the `SupplierDataTable`'s `Update` method. The `UpdateSupplierAddress` method follows:
 
 
-    <System.ComponentModel.DataObjectMethodAttribute _
-        (System.ComponentModel.DataObjectMethodType.Update, True)> _
-    Public Function UpdateSupplierAddress(ByVal supplierID As Integer, _
-        ByVal address As String, ByVal city As String, ByVal country As String) _
-        As Boolean
-    
-        Dim suppliers As Northwind.SuppliersDataTable = _
-            Adapter.GetSupplierBySupplierID(supplierID)
-    
-        If suppliers.Count = 0 Then
-            Return False
-        Else
-            Dim supplier As Northwind.SuppliersRow = suppliers(0)
-    
-            If address Is Nothing Then
-                supplier.SetAddressNull()
-            Else
-                supplier.Address = address
-            End If
-    
-            If city Is Nothing Then
-                supplier.SetCityNull()
-            Else
-                supplier.City = city
-            End If
-    
-            If country Is Nothing Then
-                supplier.SetCountryNull()
-            Else
-                supplier.Country = country
-            End If
-    
-            Dim rowsAffected As Integer = Adapter.Update(supplier)
-    
-            Return rowsAffected = 1
-        End If
-    End Function
+[!code[Main](creating-a-business-logic-layer-vb/samples/sample2.xml)]
 
 Refer to this article's download for my complete implementation of the BLL classes.
 
@@ -333,16 +114,12 @@ Refer to this article's download for my complete implementation of the BLL class
 In the first tutorial we saw examples of working directly with the Typed DataSet programmatically, but with the addition of our BLL classes, the presentation tier should work against the BLL instead. In the `AllProducts.aspx` example from the first tutorial, the `ProductsTableAdapter` was used to bind the list of products to a GridView, as shown in the following code:
 
 
-    Dim productsAdapter As New ProductsTableAdapter()
-    GridView1.DataSource = productsAdapter.GetProducts()
-    GridView1.DataBind()
+[!code[Main](creating-a-business-logic-layer-vb/samples/sample3.xml)]
 
 To use the new BLL classes, all that needs to be changed is the first line of code simply replace the `ProductsTableAdapter` object with a `ProductBLL` object:
 
 
-    Dim productLogic As New ProductsBLL()
-    GridView1.DataSource = productLogic.GetProducts()
-    GridView1.DataBind()
+[!code[Main](creating-a-business-logic-layer-vb/samples/sample4.xml)]
 
 The BLL classes can also be accessed declaratively (as can the Typed DataSet) by using the ObjectDataSource. We'll be discussing the ObjectDataSource in greater detail in the following tutorials.
 
@@ -384,34 +161,7 @@ Next, create an event handler for the `ColumnChanging` event that ensures that t
 ProductsDataTable.ColumnChanging.vb
 
 
-    Imports System.data
-    
-    Partial Public Class Northwind
-        Partial Public Class ProductsDataTable
-            Public Overrides Sub BeginInit()
-                AddHandler Me.ColumnChanging, AddressOf ValidateColumn
-            End Sub
-    
-            Sub ValidateColumn(sender As Object, e As DataColumnChangeEventArgs)
-                If e.Column.Equals(Me.UnitPriceColumn) Then
-                    If Not Convert.IsDBNull(e.ProposedValue) AndAlso _
-                        CType(e.ProposedValue, Decimal) < 0 Then
-                        Throw New ArgumentException( _
-                            "UnitPrice cannot be less than zero", "UnitPrice")
-                    End If
-                ElseIf e.Column.Equals(Me.UnitsInStockColumn) OrElse _
-                    e.Column.Equals(Me.UnitsOnOrderColumn) OrElse _
-                    e.Column.Equals(Me.ReorderLevelColumn) Then
-                    If Not Convert.IsDBNull(e.ProposedValue) AndAlso _
-                        CType(e.ProposedValue, Short) < 0 Then
-                        Throw New ArgumentException(String.Format( _
-                            "{0} cannot be less than zero", e.Column.ColumnName), _
-                            e.Column.ColumnName)
-                    End If
-                End If
-            End Sub
-        End Class
-    End Class
+[!code[Main](creating-a-business-logic-layer-vb/samples/sample5.xml)]
 
 ## Step 4: Adding Custom Business Rules to the BLL's Classes
 
@@ -428,100 +178,14 @@ Imagine that our business rules dictate that a product could not be marked disco
 To enforce this business rule in the `UpdateProducts` method we'd start by checking if `Discontinued` was set to `True` and, if so, we'd call `GetProductsBySupplierID` to determine how many products we purchased from this product's supplier. If only one product is purchased from this supplier, we throw an `ApplicationException`.
 
 
-    <System.ComponentModel.DataObjectMethodAttribute_
-        (System.ComponentModel.DataObjectMethodType.Update, True)> _
-    Public Function UpdateProduct( _
-        productName As String, supplierID As Nullable(Of Integer), _
-        categoryID As Nullable(Of Integer), quantityPerUnit As String, _
-        unitPrice As Nullable(Of Decimal), unitsInStock As Nullable(Of Short), _
-        unitsOnOrder As Nullable(Of Short), reorderLevel As Nullable(Of Short), _
-        discontinued As Boolean, productID As Integer) _
-        As Boolean
-    
-        Dim products As Northwind.ProductsDataTable = _
-            Adapter.GetProductByProductID(productID)
-    
-        If products.Count = 0 Then
-            Return False
-        End If
-    
-        Dim product As Northwind.ProductsRow = products(0)
-    
-        If discontinued Then
-            Dim productsBySupplier As Northwind.ProductsDataTable = _
-                Adapter.GetProductsBySupplierID(product.SupplierID)
-    
-            If productsBySupplier.Count = 1 Then
-                Throw New ApplicationException( _
-                    "You cannot mark a product as discontinued if it is " & _
-                    "the only product purchased from a supplier")
-            End If
-        End If
-    
-        product.ProductName = productName
-    
-        If Not supplierID.HasValue Then
-            product.SetSupplierIDNull()
-        Else
-            product.SupplierID = supplierID.Value
-        End If
-    
-        If Not categoryID.HasValue Then
-            product.SetCategoryIDNull()
-        Else
-            product.CategoryID = categoryID.Value
-        End If
-    
-        If quantityPerUnit Is Nothing Then
-            product.SetQuantityPerUnitNull()
-        Else
-            product.QuantityPerUnit = quantityPerUnit
-        End If
-    
-        If Not unitPrice.HasValue Then
-            product.SetUnitPriceNull()
-        Else
-            product.UnitPrice = unitPrice.Value
-        End If
-    
-        If Not unitsInStock.HasValue Then
-            product.SetUnitsInStockNull()
-        Else
-            product.UnitsInStock = unitsInStock.Value
-        End If
-    
-        If Not unitsOnOrder.HasValue Then
-            product.SetUnitsOnOrderNull()
-        Else
-            product.UnitsOnOrder = unitsOnOrder.Value
-        End If
-    
-        If Not reorderLevel.HasValue Then
-            product.SetReorderLevelNull()
-        Else
-            product.ReorderLevel = reorderLevel.Value
-        End If
-    
-        product.Discontinued = discontinued
-    
-        Dim rowsAffected As Integer = Adapter.Update(product)
-    
-        Return rowsAffected = 1
-    End Function
+[!code[Main](creating-a-business-logic-layer-vb/samples/sample6.xml)]
 
 ## Responding to Validation Errors in the Presentation Tier
 
 When calling the BLL from the presentation tier we can decide whether to attempt to handle any exceptions that might be raised or let them bubble up to ASP.NET (which will raise the `HttpApplication`'s `Error` event). To handle an exception when working with the BLL programmatically, we can use a [Try...Catch](https://msdn.microsoft.com/en-us/library/fk6t46tz%28VS.80%29.aspx) block, as the following example shows:
 
 
-    Dim productLogic As New ProductsBLL()
-    
-    Try
-        productLogic.UpdateProduct("Scotts Tea", 1, 1, Nothing, _
-          -14, 10, Nothing, Nothing, False, 1)
-    Catch ae As ArgumentException
-        Response.Write("There was a problem: " & ae.Message)
-    End Try
+[!code[Main](creating-a-business-logic-layer-vb/samples/sample7.xml)]
 
 As we'll see in future tutorials, handling exceptions that bubble up from the BLL when using a data Web control for inserting, updating, or deleting data can be handled directly in an event handler as opposed to having to wrap code in `Try...Catch` blocks.
 

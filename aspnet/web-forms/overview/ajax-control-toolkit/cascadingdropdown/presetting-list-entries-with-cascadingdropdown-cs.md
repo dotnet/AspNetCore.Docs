@@ -28,52 +28,23 @@ The CascadingDropDown control in the AJAX Control Toolkit extends a DropDownList
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample1.xml)]
 
 Then, a DropDownList control is required:
 
-    <div>
-     Vendor: <asp:DropDownList ID="VendorsList" runat="server"/>
-    </div>
+[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample2.xml)]
 
 For this list, a CascadingDropDown extender is added, providing web service URL and method information:
 
-    <ajaxToolkit:CascadingDropDown ID="ccd1" runat="server"
-     ServicePath="CascadingDropdown2.cs.asmx" ServiceMethod="GetVendors"
-     TargetControlID="VendorsList" Category="Vendor" />
+[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample3.xml)]
 
 The CascadingDropDown extender then asynchronously calls a web service with the following method signature:
 
-    public CascadingDropDownNameValue[] MethodNameHere(string knownCategoryValues, string
-     category)
+[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample4.xml)]
 
 The method returns an array of type CascadingDropDown value. The type's constructor expects first the list entry's caption and then the value (HTML `value` attribute). If the third argument is set to true, the list element is automatically selected in the browser.
 
-    <%@ WebService Language="C#" Class="CascadingDropdown2" %>
-    using System.Web.Script.Services;
-    using AjaxControlToolkit;
-    using System;
-    using System.Web;
-    using System.Web.Services;
-    using System.Web.Services.Protocols;
-    using System.Collections.Generic;
-    [ScriptService]
-    public class CascadingDropdown2 : System.Web.Services.WebService
-    {
-     [WebMethod]
-     public CascadingDropDownNameValue[] GetVendors(string knownCategoryValues, string
-     category)
-     {
-     List<CascadingDropDownNameValue> l = new List<CascadingDropDownNameValue>();
-     l.Add(new CascadingDropDownNameValue(
-     "International", "1"));
-     l.Add(new CascadingDropDownNameValue(
-     "Electronic Bike Repairs & Supplies", "2", true));
-     l.Add(new CascadingDropDownNameValue(
-     "Premier Sport, Inc.", "3"));
-     return l.ToArray();
-     }
-    }
+[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample5.xml)]
 
 Loading the page in the browser will fill the dropdown list with three vendors, the second one being preselected.
 

@@ -102,31 +102,7 @@ The changes are highlighted.
 
 In *Views\Home\Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
-    @{
-        ViewBag.Title = "Home Page";
-    }
-    
-    <div class="jumbotron">
-        <h1>Contoso University</h1>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Welcome to Contoso University</h2>
-            <p>Contoso University is a sample application that
-            demonstrates how to use Entity Framework 6 in an 
-            ASP.NET MVC 5 web application.</p>
-        </div>
-        <div class="col-md-4">
-            <h2>Build it from scratch</h2>
-            <p>You can build the application by following the steps in the tutorial series on the ASP.NET site.</p>
-            <p><a class="btn btn-default" href="https://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/">See the tutorial &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Download it</h2>
-            <p>You can download the completed project from the Microsoft Code Gallery.</p>
-            <p><a class="btn btn-default" href="https://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8">Download &raquo;</a></p>
-        </div>
-    </div>
+[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample2.xml)]
 
 Press CTRL+F5 to run the site. You see the home page with the main menu.
 
@@ -165,21 +141,7 @@ In the following sections you'll create a class for each one of these entities.
 
 In the *Models* folder, create a class file named *Student.cs* and replace the template code with the following code:
 
-    using System;
-    using System.Collections.Generic;
-    
-    namespace ContosoUniversity.Models
-    {
-        public class Student
-        {
-            public int ID { get; set; }
-            public string LastName { get; set; }
-            public string FirstMidName { get; set; }
-            public DateTime EnrollmentDate { get; set; }
-            
-            public virtual ICollection<Enrollment> Enrollments { get; set; }
-        }
-    }
+[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample3.xml)]
 
 The `ID` property will become the primary key column of the database table that corresponds to this class. By default, the Entity Framework interprets a property that's named `ID` or *classname*`ID` as the primary key.
 
@@ -195,24 +157,7 @@ If a navigation property can hold multiple entities (as in many-to-many or one-t
 
 In the *Models* folder, create *Enrollment.cs* and replace the existing code with the following code:
 
-    namespace ContosoUniversity.Models
-    {
-        public enum Grade
-        {
-            A, B, C, D, F
-        }
-    
-        public class Enrollment
-        {
-            public int EnrollmentID { get; set; }
-            public int CourseID { get; set; }
-            public int StudentID { get; set; }
-            public Grade? Grade { get; set; }
-            
-            public virtual Course Course { get; set; }
-            public virtual Student Student { get; set; }
-        }
-    }
+[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample4.xml)]
 
 The `EnrollmentID` property will be the primary key; this entity uses the *classname*`ID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a later tutorial, you'll see how using `ID` without `classname` makes it easier to implement inheritance in the data model.
 
@@ -230,21 +175,7 @@ Entity Framework interprets a property as a foreign key property if it's named *
 
 In the *Models* folder, create*Course.cs*, replacing the template code with the following code:
 
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
-    namespace ContosoUniversity.Models
-    {
-        public class Course
-        {
-            [DatabaseGenerated(DatabaseGeneratedOption.None)]
-            public int CourseID { get; set; }
-            public string Title { get; set; }
-            public int Credits { get; set; }
-            
-            public virtual ICollection<Enrollment> Enrollments { get; set; }
-        }
-    }
+[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample5.xml)]
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
@@ -256,29 +187,7 @@ The main class that coordinates Entity Framework functionality for a given data 
 
 To create a folder in the ContosoUniversity project, right-click the project in **Solution Explorer** and click **Add**, and then click **New Folder**. Name the new folder *DAL* (for Data Access Layer). In that folder create a new class file named *SchoolContext.cs*, and replace the template code with the following code:
 
-    using ContosoUniversity.Models;
-    using System.Data.Entity;
-    using System.Data.Entity.ModelConfiguration.Conventions;
-    
-    namespace ContosoUniversity.DAL
-    {
-        public class SchoolContext : DbContext
-        {
-        
-            public SchoolContext() : base("SchoolContext")
-            {
-            }
-            
-            public DbSet<Student> Students { get; set; }
-            public DbSet<Enrollment> Enrollments { get; set; }
-            public DbSet<Course> Courses { get; set; }
-    
-            protected override void OnModelCreating(DbModelBuilder modelBuilder)
-            {
-                modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            }
-        }
-    }
+[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample6.xml)]
 
 ### Specifying entity sets
 
@@ -293,7 +202,7 @@ This code creates a [DbSet](https://msdn.microsoft.com/en-us/library/system.data
 
 The name of the connection string (which you'll add to the Web.config file later) is passed in to the constructor.
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample2.xml?highlight=1)]
+[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample7.xml?highlight=1)]
 
 You could also pass in the connection string itself instead of the name of one that is stored in the Web.config file. For more information about options for specifying the database to use, see [Entity Framework - Connections and Models](https://msdn.microsoft.com/en-us/data/jj592674).
 
@@ -312,65 +221,7 @@ The default behavior is to create a database only if it doesn't exist (and throw
 In the DAL folder, create a new class file named *SchoolInitializer.cs* and replace the template code with the  
 following code, which causes a database to be created when needed and loads test data into the new database.
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Data.Entity;
-    using ContosoUniversity.Models;
-    
-    namespace ContosoUniversity.DAL
-    {
-        public class SchoolInitializer : System.Data.Entity. DropCreateDatabaseIfModelChanges<SchoolContext>
-        {
-            protected override void Seed(SchoolContext context)
-            {
-                var students = new List<Student>
-                {
-                new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
-                new Student{FirstMidName="Meredith",LastName="Alonso",EnrollmentDate=DateTime.Parse("2002-09-01")},
-                new Student{FirstMidName="Arturo",LastName="Anand",EnrollmentDate=DateTime.Parse("2003-09-01")},
-                new Student{FirstMidName="Gytis",LastName="Barzdukas",EnrollmentDate=DateTime.Parse("2002-09-01")},
-                new Student{FirstMidName="Yan",LastName="Li",EnrollmentDate=DateTime.Parse("2002-09-01")},
-                new Student{FirstMidName="Peggy",LastName="Justice",EnrollmentDate=DateTime.Parse("2001-09-01")},
-                new Student{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse("2003-09-01")},
-                new Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse("2005-09-01")}
-                };
-    
-                students.ForEach(s => context.Students.Add(s));
-                context.SaveChanges();
-                var courses = new List<Course>
-                {
-                new Course{CourseID=1050,Title="Chemistry",Credits=3,},
-                new Course{CourseID=4022,Title="Microeconomics",Credits=3,},
-                new Course{CourseID=4041,Title="Macroeconomics",Credits=3,},
-                new Course{CourseID=1045,Title="Calculus",Credits=4,},
-                new Course{CourseID=3141,Title="Trigonometry",Credits=4,},
-                new Course{CourseID=2021,Title="Composition",Credits=3,},
-                new Course{CourseID=2042,Title="Literature",Credits=4,}
-                };
-                courses.ForEach(s => context.Courses.Add(s));
-                context.SaveChanges();
-                var enrollments = new List<Enrollment>
-                {
-                new Enrollment{StudentID=1,CourseID=1050,Grade=Grade.A},
-                new Enrollment{StudentID=1,CourseID=4022,Grade=Grade.C},
-                new Enrollment{StudentID=1,CourseID=4041,Grade=Grade.B},
-                new Enrollment{StudentID=2,CourseID=1045,Grade=Grade.B},
-                new Enrollment{StudentID=2,CourseID=3141,Grade=Grade.F},
-                new Enrollment{StudentID=2,CourseID=2021,Grade=Grade.F},
-                new Enrollment{StudentID=3,CourseID=1050},
-                new Enrollment{StudentID=4,CourseID=1050,},
-                new Enrollment{StudentID=4,CourseID=4022,Grade=Grade.F},
-                new Enrollment{StudentID=5,CourseID=4041,Grade=Grade.C},
-                new Enrollment{StudentID=6,CourseID=1045},
-                new Enrollment{StudentID=7,CourseID=3141,Grade=Grade.A},
-                };
-                enrollments.ForEach(s => context.Enrollments.Add(s));
-                context.SaveChanges();
-            }
-        }
-    }
+[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample8.xml)]
 
 The `Seed` method takes the database context object as an input parameter, and the code in the method uses  
 that object to add new entities to the database. For each entity type, the code creates a collection of new  
@@ -380,7 +231,7 @@ you locate the source of a problem if an exception occurs while the code is writ
 
 To tell Entity Framework to use your initializer class, add an element to the `entityFramework` element in the application *Web.config* file (the one in the root project folder), as shown in the following example:
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample3.xml?highlight=2-6)]
+[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample9.xml?highlight=2-6)]
 
 The `context type` specifies the fully qualified context class name and the assembly it's in, and the `databaseinitializer type` specifies the fully qualified name of the initializer class and the assembly it's in. (When you don't want EF to use the initializer, you can set an attribute on the `context` element: `disableDatabaseInitialization="true"`.) For more information, see [Entity Framework - Config File Settings](https://msdn.microsoft.com/en-us/data/jj556606).
 
@@ -402,7 +253,7 @@ In this tutorial you'll work with LocalDB. Open the application *Web.config* fil
 
 If you are using Visual Studio 2015, replace "v11.0" in the connection string with "MSSQLLocalDB", as the default SQL Server instance name has changed.
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample4.xml?highlight=1-3)]
+[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample10.xml?highlight=1-3)]
 
 The connection string you've added specifies that Entity Framework will use a LocalDB database named *ContosoUniversity1.mdf*. (The database doesn't exist yet; EF will create it.) If you wanted the database to be created in your *App\_Data* folder, you could add `AttachDBFilename=|DataDirectory|\ContosoUniversity1.mdf` to the connection string. For more information about connection strings, see [SQL Server Connection Strings for ASP.NET Web Applications](https://msdn.microsoft.com/en-us/library/jj653752.aspx).
 
@@ -429,49 +280,15 @@ the creation of the database. You'll begin by creating a new controller. But bef
     When you click **Add**, the scaffolder creates a StudentController.cs file and a set of views (.cshtml files) that work with the controller. In the future when you create projects that use Entity Framework you can also take advantage of some additional functionality of the scaffolder: just create your first model class, don't create a connection string, and then in the **Add Controller** box specify new context class. The scaffolder will create your `DbContext` class and your connection string as well as the controller and views.
 - Visual Studio opens the *Controllers\StudentController.cs* file. You see a class variable has been created that instantiates a database context object:
 
-        private SchoolContext db = new SchoolContext();
+    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.xml)]
 
     The `Index` action method gets a list of students from the *Students* entity set by reading the `Students` property of the database context instance:
 
-        public ViewResult Index()
-        {
-            return View(db.Students.ToList());
-        }
+    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample12.xml)]
 
     The *Student\Index.cshtml* view displays this list in a table:
 
-        <table>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstMidName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EnrollmentDate)
-                </th>
-                <th></th>
-            </tr>
-        
-        @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstMidName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-                </td>
-            </tr>
-        }
+    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.xml)]
 - Press CTRL+F5 to run the project. (If you get a "Cannot create Shadow Copy" error, close the browser and try again.)
 
     Click the **Students** tab to see the test data that the `Seed` method inserted. Depending on how narrow your browser window is, you'll see the Student tab link in the top address bar or you'll have to click the upper right corner to see the link.

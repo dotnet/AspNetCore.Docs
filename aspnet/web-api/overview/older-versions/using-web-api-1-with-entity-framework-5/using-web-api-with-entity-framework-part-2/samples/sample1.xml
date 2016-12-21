@@ -1,18 +1,14 @@
-public static class WebApiConfig
-{
-    public static void Register(HttpConfiguration config)
+    namespace ProductStore.Models
     {
-        config.Routes.MapHttpRoute(
-            name: "DefaultApi",
-            routeTemplate: "api/{controller}/{id}",
-            defaults: new { id = RouteParameter.Optional }
-        );
-
-        // New code:
-        var json = config.Formatters.JsonFormatter;
-        json.SerializerSettings.PreserveReferencesHandling =
-            Newtonsoft.Json.PreserveReferencesHandling.Objects;
-
-        config.Formatters.Remove(config.Formatters.XmlFormatter);
+        using System.ComponentModel.DataAnnotations;
+    
+        public class Product
+        {
+            [ScaffoldColumn(false)]
+            public int Id { get; set; }
+            [Required]
+            public string Name { get; set; }
+            public decimal Price { get; set; }
+            public decimal ActualCost { get; set; }
+        }
     }
-}

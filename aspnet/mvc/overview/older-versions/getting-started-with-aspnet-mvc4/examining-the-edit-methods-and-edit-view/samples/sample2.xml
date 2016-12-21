@@ -1,13 +1,11 @@
-public ActionResult SearchIndex(string id) 
-{ 
-    string searchString = id; 
-    var movies = from m in db.Movies 
-                 select m; 
- 
-    if (!String.IsNullOrEmpty(searchString)) 
-    { 
-        movies = movies.Where(s => s.Title.Contains(searchString)); 
-    } 
- 
-    return View(movies); 
-}
+    public static void RegisterRoutes(RouteCollection routes)
+    {
+        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+    
+        routes.MapRoute(
+            name: "Default",
+            url: "{controller}/{action}/{id}",
+            defaults: new { controller = "Home", action = "Index", 
+                id = UrlParameter.Optional }
+        );
+    }

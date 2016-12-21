@@ -1,5 +1,1 @@
-public void Configuration(IAppBuilder app) 
-{ 
-    GlobalHost.HubPipeline.AddModule(new LoggingPipelineModule()); 
-    app.MapSignalR();
-}
+        Clients.Users(new string[] { "myUser", "myUser2" }).broadcastMessage(name, message);

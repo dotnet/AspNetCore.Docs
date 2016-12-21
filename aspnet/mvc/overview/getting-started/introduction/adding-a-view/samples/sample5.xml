@@ -1,7 +1,11 @@
+@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
 @{
-    ViewBag.Title = "Movie List";
+    ViewBag.Title = "Index";
 }
 
-<h2>My Movie List</h2>
+<h2>Index</h2>
 
 <p>Hello from our View Template!</p>

@@ -1,39 +1,54 @@
-public partial class VerifyPhoneNumber : System.Web.UI.Page
+protected void Page_Load()
 {
-    protected void Page_Load(object sender, EventArgs e)
+    // Process the result from an auth provider in the request
+    ProviderName = IdentityHelper.GetProviderNameFromRequest(Request);
+    if (String.IsNullOrEmpty(ProviderName))
+    {
+        RedirectOnFail();
+        return;
+    }
+    if (!IsPostBack)
     {
         var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        var phonenumber = Request.QueryString["PhoneNumber"];
-        var code = manager.GenerateChangePhoneNumberToken(
-            User.Identity.GetUserId<int>(), phonenumber);           
-        PhoneNumber.Value = phonenumber;
-    }
-
-    protected void Code_Click(object sender, EventArgs e)
-    {
-        if (!ModelState.IsValid)
+        var loginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo();
+        if (loginInfo == null)
         {
-            ModelState.AddModelError("", "Invalid code");
+            RedirectOnFail();
             return;
         }
-
-        var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-        var result = manager.ChangePhoneNumber(
-            User.Identity.GetUserId<int>(), PhoneNumber.Value, Code.Text);
-
-        if (result.Succeeded)
+        var user = manager.Find(loginInfo.Login);
+        if (user != null)
         {
-            var user = manager.FindById(User.Identity.GetUserId<int>());
-
-            if (user != null)
+            IdentityHelper.SignIn(manager, user, isPersistent: false);
+            IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+        }
+        else if (User.Identity.IsAuthenticated)
+        {
+            // Apply Xsrf check when linking
+            var verifiedloginInfo = Context.GetOwinContext().Authentication
+                .GetExternalLoginInfo(IdentityHelper.XsrfKey, User.Identity.GetUserId());
+            if (verifiedloginInfo == null)
             {
-                IdentityHelper.SignIn(manager, user, false);
-                Response.Redirect("/Account/Manage?m=AddPhoneNumberSuccess");
+                RedirectOnFail();
+                return;
+            }
+
+            var result = manager.AddLogin(User.Identity.GetUserId<int>(), 
+                verifiedloginInfo.Login);
+            if (result.Succeeded)
+            {
+                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], 
+                    Response);
+            }
+            else
+            {
+                AddErrors(result);
+                return;
             }
         }
-
-        // If we got this far, something failed, redisplay form
-        ModelState.AddModelError("", "Failed to verify phone");
+        else
+        {
+            email.Text = loginInfo.Email;
+        }
     }
 }

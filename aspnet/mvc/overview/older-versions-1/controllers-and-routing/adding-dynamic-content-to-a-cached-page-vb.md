@@ -36,44 +36,13 @@ Imagine, for example, that you want to randomly display different news items in 
 
 **Listing 1 – Models\News.vb**
 
-    Public Class News
-    
-        Shared Function RenderNews(ByVal context As HttpContext) As String
-            Dim newsItems As New List(Of String)
-            newsItems.Add("Gas prices go up!")
-            newsItems.Add("Life discovered on Mars!")
-            newsItems.Add("Moon disappears!")
-    
-            Dim rnd As New Random()
-            Return newsItems(rnd.Next(newsItems.Count))
-        End Function
-    
-    End Class
+[!code[Main](adding-dynamic-content-to-a-cached-page-vb/samples/sample1.xml)]
 
 To take advantage of post-cache substitution, you call the HttpResponse.WriteSubstitution() method. The WriteSubstitution() method sets up the code to replace a region of the cached page with dynamic content. The WriteSubstitution() method is used to display the random news item in the view in Listing 2.
 
 **Listing 2 – Views\Home\Index.aspx**
 
-    <%@ Page Language="VB" Inherits="System.Web.Mvc.ViewPage" %>
-    <%@ Import Namespace="MvcApplication1" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-        <title>Index</title>
-    </head>
-    <body>
-        <div>
-        
-        <% Response.WriteSubstitution(AddressOf News.RenderNews)%>
-            
-        <hr />
-        
-        The content of this page is output cached.
-        <%= DateTime.Now %>
-    
-        </div>
-    </body>
-    </html>
+[!code[Main](adding-dynamic-content-to-a-cached-page-vb/samples/sample2.xml)]
 
 The RenderNews method is passed to the WriteSubstitution() method. Notice that the RenderNews method is not called. Instead a reference to the method is passed to WriteSubstitution() with the help of the AddressOf operator.
 
@@ -81,16 +50,7 @@ The Index view is cached. The view is returned by the controller in Listing 3. N
 
 **Listing 3 – Controllers\HomeController.vb**
 
-    <HandleError()> _
-    Public Class HomeController
-        Inherits System.Web.Mvc.Controller
-    
-        <OutputCache(Duration:=60, VaryByParam:="none")> _
-        Function Index()
-            Return View()
-        End Function
-    
-    End Class
+[!code[Main](adding-dynamic-content-to-a-cached-page-vb/samples/sample3.xml)]
 
 Even though the Index view is cached, different random news items are displayed when you request the Index page. When you request the Index page, the time displayed by the page does not change for 60 seconds (see Figure 1). The fact that the time does not change proves that the page is cached. However, the content injected by the WriteSubstitution() method – the random news item – changes with each request .
 
@@ -104,28 +64,7 @@ An easier way to take advantage of post-cache substitution is to encapsulate the
 
 **Listing 4 – Helpers\AdHelper.vb**
 
-    Imports System.Runtime.CompilerServices
-    
-    Public Module AdHelper
-    
-        <Extension()> _
-        Sub RenderBanner(ByVal helper As HtmlHelper)
-            Dim context = helper.ViewContext.HttpContext
-            context.Response.WriteSubstitution(AddressOf RenderBannerInternal)
-        End Sub
-    
-        Private Function RenderBannerInternal(ByVal context As HttpContext) As String
-            Dim ads As New List(Of String)
-            ads.Add("/ads/banner1.gif")
-            ads.Add("/ads/banner2.gif")
-            ads.Add("/ads/banner3.gif")
-    
-            Dim rnd As New Random()
-            Dim ad = ads(rnd.Next(ads.Count))
-            Return String.Format("<img src='{0}' />", ad)
-        End Function
-    
-    End Module
+[!code[Main](adding-dynamic-content-to-a-cached-page-vb/samples/sample4.xml)]
 
 Listing 4 contains a Visual Basic module that exposes two methods: RenderBanner() and RenderBannerInternal(). The RenderBanner() method represents the actual helper method. This method extends the standard ASP.NET MVC HtmlHelper class so that you can call Html.RenderBanner() in a view just like any other helper method.
 
@@ -137,30 +76,7 @@ The modified Index view in Listing 5 illustrates how you can use the RenderBanne
 
 **Listing 5 – Views\Home\Index.aspx (with RenderBanner() method)**
 
-    <%@ Page Language="VB" Inherits="System.Web.Mvc.ViewPage" %>
-    <%@ Import Namespace="MvcApplication1" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-        <title>Index</title>
-    </head>
-    <body>
-        <div>
-        
-        <% Response.WriteSubstitution(AddressOf News.RenderNews)%>
-        
-        <hr />
-        
-        <% Html.RenderBanner()%>
-        
-        <hr />
-        
-        The content of this page is output cached.
-        <%= DateTime.Now %>
-        
-        </div>
-    </body>
-    </html>
+[!code[Main](adding-dynamic-content-to-a-cached-page-vb/samples/sample5.xml)]
 
 When you request the page rendered by the view in Listing 5, a different banner advertisement is displayed with each request (see Figure 2). The page is cached, but the banner advertisement is injected dynamically by the RenderBanner() helper method.
 

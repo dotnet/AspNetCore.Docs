@@ -1,3 +1,20 @@
-<h2>Delete</h2>
-<p class="error">@ViewBag.ErrorMessage</p>
-<h3>Are you sure you want to delete this?</h3>
+[HttpPost]
+[ValidateAntiForgeryToken]
+public ActionResult Create([Bind(Include = "LastName, FirstMidName, EnrollmentDate")]Student student)
+{
+    try
+    {
+        if (ModelState.IsValid)
+        {
+            db.Students.Add(student);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+    catch (DataException /* dex */)
+    {
+        //Log the error (uncomment dex variable name and add a line here to write a log.
+        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+    }
+    return View(student);
+}

@@ -100,27 +100,7 @@ Since the `GetProductsByCategoryID(categoryID)` method takes in an input paramet
 After completing the wizard the GridView will have a BoundField for each of the product properties. Let's clean up these BoundFields so that only the `ProductName`, `UnitPrice`, `UnitsInStock`, and `UnitsOnOrder` BoundFields are displayed. Feel free to add any field-level settings to the remaining BoundFields (such as formatting the `UnitPrice` as a currency). After making these changes, the GridView's declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="ProductsInCategory" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="ProductsInCategoryDataSource"
-        EnableViewState="False">
-        <Columns>
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-              SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice" DataFormatString="{0:c}"
-              HeaderText="Price"
-                HtmlEncode="False" SortExpression="UnitPrice">
-                <ItemStyle HorizontalAlign="Right" />
-            </asp:BoundField>
-            <asp:BoundField DataField="UnitsInStock"
-              HeaderText="Units In Stock" SortExpression="UnitsInStock">
-                <ItemStyle HorizontalAlign="Right" />
-            </asp:BoundField>
-            <asp:BoundField DataField="UnitsOnOrder"
-              HeaderText="Units On Order" SortExpression="UnitsOnOrder">
-                <ItemStyle HorizontalAlign="Right" />
-            </asp:BoundField>
-        </Columns>
-    </asp:GridView>
+[!code[Main](displaying-summary-information-in-the-gridview-s-footer-vb/samples/sample1.xml)]
 
 At this point we have a fully functioning master/detail report that shows the name, unit price, units in stock, and units on order for those products that belong to the selected category.
 
@@ -153,25 +133,14 @@ The footer row in Figure 11 doesn't stand out, as it has a white background. Let
 Start by adding the following CSS class to `Styles.css`:
 
 
-    .FooterStyle
-    {
-        background-color: #a33;
-        color: White;
-        text-align: right;
-    }
+[!code[Main](displaying-summary-information-in-the-gridview-s-footer-vb/samples/sample2.xml)]
 
 The `FooterStyle` CSS class is similar in style to the `HeaderStyle` class, although the `HeaderStyle`'s background color is subtlety darker and its text is displayed in a bold font. Furthermore, the text in the footer is right-aligned whereas the header's text is centered.
 
 Next, to associate this CSS class with every GridView's footer, open the `GridView.skin` file in the `DataWebControls` Theme and set the `FooterStyle`'s `CssClass` property. After this addition the file's markup should look like:
 
 
-    <asp:GridView runat="server" CssClass="DataWebControlStyle">
-       <AlternatingRowStyle CssClass="AlternatingRowStyle" />
-       <RowStyle CssClass="RowStyle" />
-       <HeaderStyle CssClass="HeaderStyle" />
-       <FooterStyle CssClass="FooterStyle" />
-       <SelectedRowStyle CssClass="SelectedRowStyle" />
-    </asp:GridView>
+[!code[Main](displaying-summary-information-in-the-gridview-s-footer-vb/samples/sample3.xml)]
 
 As the screen shot below shows, this change makes the footer stand out more clearly.
 
@@ -197,10 +166,7 @@ I typically employ the second approach as it saves a trip to the database and th
 Create a `RowDataBound` event handler for the GridView by selecting the GridView in the Designer, clicking the lightning bolt icon from the Properties window, and double-clicking the `RowDataBound` event. Alternatively, you can select the GridView and its RowDataBound event from the drop-down lists at the top of the ASP.NET code-behind class file. This will create a new event handler named `ProductsInCategory_RowDataBound` in the `SummaryDataInFooter.aspx` page's code-behind class.
 
 
-    Protected Sub ProductsInCategory_RowDataBound _
-        (sender As Object, e As GridViewRowEventArgs) _
-            Handles ProductsInCategory.RowDataBound
-    End Sub
+[!code[Main](displaying-summary-information-in-the-gridview-s-footer-vb/samples/sample4.xml)]
 
 In order to maintain a running total we need to define variables outside of the scope of the event handler. Create the following four page-level variables:
 
@@ -212,34 +178,7 @@ In order to maintain a running total we need to define variables outside of the 
 Next, write the code to increment these three variables for each data row encountered in the `RowDataBound` event handler.
 
 
-    Dim _totalUnitPrice As Decimal = 0
-    Dim _totalNonNullUnitPriceCount As Integer = 0
-    Dim _totalUnitsInStock As Integer = 0
-    Dim _totalUnitsOnOrder As Integer = 0
-    Protected Sub ProductsInCategory_RowDataBound _
-        (sender As Object, e As GridViewRowEventArgs) _
-            Handles ProductsInCategory.RowDataBound
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim product As Northwind.ProductsRow = _
-                CType(CType(e.Row.DataItem, DataRowView).Row, Northwind.ProductsRow)
-            If Not product.IsUnitPriceNull() Then
-                _totalUnitPrice += product.UnitPrice
-                _totalNonNullUnitPriceCount += 1
-            End If
-            If Not product.IsUnitsInStockNull() Then
-                _totalUnitsInStock += product.UnitsInStock
-            End If
-            If Not product.IsUnitsOnOrderNull() Then
-                _totalUnitsOnOrder += product.UnitsOnOrder
-            End If
-        ElseIf e.Row.RowType = DataControlRowType.Footer Then
-            Dim avgUnitPrice As Decimal = _
-                _totalUnitPrice / CType(_totalNonNullUnitPriceCount, Decimal)
-            e.Row.Cells(1).Text = "Avg.: " & avgUnitPrice.ToString("c")
-            e.Row.Cells(2).Text = "Total: " & _totalUnitsInStock.ToString()
-            e.Row.Cells(3).Text = "Total: " & _totalUnitsOnOrder.ToString()
-        End If
-    End Sub
+[!code[Main](displaying-summary-information-in-the-gridview-s-footer-vb/samples/sample5.xml)]
 
 The `RowDataBound` event handler starts by ensuring that we're dealing with a DataRow. Once that's been established, the `Northwind.ProductsRow` instance that was just bound to the `GridViewRow` object in `e.Row` is stored in the variable `product`. Next, running total variables are incremented by the current product's corresponding values (assuming that they don't contain a database `NULL` value). We keep track of both the running `UnitPrice` total and the number of non-`NULL` `UnitPrice` records because the average price is the quotient of these two numbers.
 
@@ -248,34 +187,14 @@ The `RowDataBound` event handler starts by ensuring that we're dealing with a Da
 With the summary data totaled, the last step is to display it in the GridView's footer row. This task, too, can be accomplished programmatically through the `RowDataBound` event handler. Recall that the `RowDataBound` event handler fires for *every* row that's bound to the GridView, including the footer row. Therefore, we can augment our event handler to display the data in the footer row using the following code:
 
 
-    Protected Sub ProductsInCategory_RowDataBound _
-        (sender As Object, e As GridViewRowEventArgs) _
-            Handles ProductsInCategory.RowDataBound
-        If e.Row.RowType = DataControlRowType.DataRow Then
-          ... Increment the running totals ...
-        ElseIf e.Row.RowType = DataControlRowType.Footer
-          ... Display the summary data in the footer ...
-        End If
-    End Sub
+[!code[Main](displaying-summary-information-in-the-gridview-s-footer-vb/samples/sample6.xml)]
 
 Since the footer row is added to the GridView after all of the data rows have been added, we can be confident that by the time we're ready to display the summary data in the footer the running total calculations will have completed. The last step, then, is to set these values in the footer's cells.
 
 To display text in a particular footer cell, use `e.Row.Cells(index).Text = value`, where the `Cells` indexing starts at 0. The following code computes the average price (the total price divided by the number of products) and displays it along with the total number of units in stock and units on order in the appropriate footer cells of the GridView.
 
 
-    Protected Sub ProductsInCategory_RowDataBound _
-        (sender As Object, e As GridViewRowEventArgs) _
-            Handles ProductsInCategory.RowDataBound
-        If e.Row.RowType = DataControlRowType.DataRow Then
-          ... <i>Increment the running totals</i> ...
-        ElseIf e.Row.RowType = DataControlRowType.Footer
-          Dim avgUnitPrice As Decimal = _
-            _totalUnitPrice / CType(_totalNonNullUnitPriceCount, Decimal)
-          e.Row.Cells(1).Text = "Avg.: " & avgUnitPrice.ToString("c")
-          e.Row.Cells(2).Text = "Total: " & _totalUnitsInStock.ToString()
-          e.Row.Cells(3).Text = "Total: " & _totalUnitsOnOrder.ToString()
-        End If
-    End Sub
+[!code[Main](displaying-summary-information-in-the-gridview-s-footer-vb/samples/sample7.xml)]
 
 Figure 13 shows the report after this code has been added. Note how the `ToString("c")` causes the average price summary information to be formatted like a currency.
 

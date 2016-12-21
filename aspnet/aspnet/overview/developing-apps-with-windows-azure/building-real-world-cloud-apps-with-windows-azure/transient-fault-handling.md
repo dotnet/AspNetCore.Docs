@@ -34,33 +34,14 @@ There are several ways you can implement smart retry logic.
 
 - The Microsoft Patterns &amp; Practices group has a [Transient Fault Handling Application Block](https://msdn.microsoft.com/en-us/library/dn440719(v=pandp.60).aspx) that does everything for you if you're using ADO.NET for SQL Database access (not through Entity Framework). You just set a policy for retries – how many times to retry a query or command and how long to wait between tries – and wrap your SQL code in a *using* block.
 
-        public void HandleTransients()
-        {
-            var connStr = "some database";
-            var _policy = RetryPolicy.Create < SqlAzureTransientErrorDetectionStrategy(
-                retryCount: 3,
-                retryInterval: TimeSpan.FromSeconds(5));
-        
-            using (var conn = new ReliableSqlConnection(connStr, _policy))
-            {
-                // Do SQL stuff here.
-            }
-        }
+    [!code[Main](transient-fault-handling/samples/sample1.xml)]
 
     TFH also supports [Azure In-Role Cache](https://msdn.microsoft.com/en-us/library/windowsazure/dn386103.aspx) and [Service Bus](https://www.windowsazure.com/en-us/services/messaging/).
 - When you use the Entity Framework you typically aren't working directly with SQL connections, so you can't use this Patterns and Practices package, but Entity Framework 6 builds this kind of retry logic right into the framework. In a similar way you specify the retry strategy, and then EF uses that strategy whenever it accesses the database.
 
     To use this feature in the Fix It app, all we have to do is add a class that derives from *DbConfiguration* and turn on the retry logic.
 
-        // EF follows a Code based Configuration model and will look for a class that
-        // derives from DbConfiguration for executing any Connection Resiliency strategies
-        public class EFConfiguration : DbConfiguration
-        {
-            public EFConfiguration()
-            {
-                AddExecutionStrategy(() => new SqlAzureExecutionStrategy());
-            }
-        }
+    [!code[Main](transient-fault-handling/samples/sample2.xml)]
 
     For SQL Database exceptions that the framework identifies as typically transient errors, the code shown instructs EF to retry the operation up to 3 times, with an exponential back-off delay between retries, and a maximum delay of 5 seconds. Exponential back-off means that after each failed retry it will wait for a longer period of time before trying again. If three tries in a row fail, it will throw an exception. The following section about circuit breakers explains why you want exponential back-off and a limited number of retries.
 

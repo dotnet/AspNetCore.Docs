@@ -28,31 +28,19 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](animating-in-response-to-user-interaction-cs/samples/sample1.xml)]
 
 The animation will be applied to a panel of text which looks like this:
 
-    <asp:Panel ID="panelShadow" runat="server" CssClass="panelClass">
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more 
-     efficient, more interactive and highly-personalized Web experiences that work 
-     across all the most popular browsers.<br />
-    </asp:Panel>
+[!code[Main](animating-in-response-to-user-interaction-cs/samples/sample2.xml)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-    <style type="text/css">
-     .panelClass {background-color: lime; width: 300px;}
-    </style>
+[!code[Main](animating-in-response-to-user-interaction-cs/samples/sample3.xml)]
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server"`:
 
-    <ajaxToolkit:AnimationExtender ID="ae" runat="server" TargetControlID="Panel1">
+[!code[Main](animating-in-response-to-user-interaction-cs/samples/sample4.xml)]
 
 Within the `<Animations>` node, there are five ways to start the animation via user interaction (the missing element is `<OnLoad>` which is executed once the whole page has been fully loaded):
 
@@ -64,16 +52,7 @@ Within the `<Animations>` node, there are five ways to start the animation via u
 
 In this scenario, `<OnClick>` is used. When the user clicks on the panel, it is resized and fades out at the same time.
 
-    <ajaxToolkit:AnimationExtender ID="ae" runat="server" TargetControlID="Panel1">
-     <Animations>
-     <OnClick>
-     <Parallel>
-     <FadeOut Duration="1.5" Fps="24" />
-     <Resize Width="1000" Height="150" Unit="px" />
-     </Parallel>
-     </OnClick>
-     </Animations>
-    </ajaxToolkit:AnimationExtender>
+[!code[Main](animating-in-response-to-user-interaction-cs/samples/sample5.xml)]
 
 
 [![A mouse click starts the animation](animating-in-response-to-user-interaction-cs/_static/image2.png)](animating-in-response-to-user-interaction-cs/_static/image1.png)

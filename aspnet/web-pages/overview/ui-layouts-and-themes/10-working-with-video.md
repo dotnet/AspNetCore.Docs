@@ -107,32 +107,14 @@ This procedure shows you how to play a Flash video named *sample.swf*. The proce
 2. In the website, add a page and name it *FlashVideo.cshtml*.
 3. Add the following markup to the page: 
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Flash Video</title>
-        </head>
-        <body>
-            @Video.Flash(path: "Media/sample.swf",
-                         width: "400",
-                         height: "600",
-                         play: true,
-                         loop: true,
-                         menu:  false,
-                         bgColor: "red",
-                         quality: "medium",
-                         scale: "exactfit",
-                         windowMode: "transparent")
-        </body>
-        </html>
+    [!code[Main](10-working-with-video/samples/sample2.xml)]
 4. Run the page in a browser. (Make sure the page is selected in the **Files** workspace before you run it.) The page is displayed and the video plays automatically. 
 
     ![[image]](10-working-with-video/_static/image1.jpg "ch08_video-1.jpg")
 
 You can set the `quality` parameter for a Flash video to `low`, `autolow`, `autohigh`, `medium`, `high`, and `best`:
 
-    <!-- Set the Flash video quality -->
-    @Video.Flash(path: "Media/sample.swf", quality: "autohigh")
+[!code[Main](10-working-with-video/samples/sample3.xml)]
 
 You can change the Flash video to play at a specific size using the `scale` parameter, which you can set to the following:
 
@@ -142,9 +124,7 @@ You can change the Flash video to play at a specific size using the `scale` para
 
 If you don't specify a `scale` parameter, the entire video will be visible and the original aspect ratio will be maintained without any cropping. The following example shows how to use the `scale` parameter:
 
-    <!-- Set the Flash video to an exact size -->
-    @Video.Flash(path: "Media/sample.swf", width: "1000", height: "100",
-        scale: "exactfit")
+[!code[Main](10-working-with-video/samples/sample4.xml)]
 
 The Flash player supports a video mode setting named `windowMode`. You can set this to `window`, `opaque`, and `transparent`. By default, the `windowMode` is set to `window`, which displays the video in a separate window on the web page. The `opaque` setting hides everything behind the video on the web page. The `transparent` setting lets the background of the web page show through the video, assuming any part of the video is transparent.
 
@@ -157,48 +137,26 @@ The following procedure shows you how to play a Window Media video named *sample
 2. Create a new page named *MediaPlayerVideo.cshtml*.
 3. Add the following markup to the page: 
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>MediaPlayer Video</title>
-        </head>
-        <body>
-            @Video.MediaPlayer(
-                path: "Media/sample.wmv",
-                width: "400",
-                height: "600",
-                autoStart: true,
-                playCount: 2,
-                uiMode:  "full",
-                stretchToFit: true,
-                enableContextMenu: true,
-                mute: false,
-                volume: 75)
-        </body>
-        </html>
+    [!code[Main](10-working-with-video/samples/sample5.xml)]
 4. Run the page in a browser. The video loads and plays automatically. 
 
     ![[image]](10-working-with-video/_static/image2.jpg "ch08_video-2.jpg")
 
 You can set `playCount` to an integer that indicates how many times to play the video automatically:
 
-    <!-- Set the MediaPlayer video playCount -->
-    @Video.MediaPlayer(path: "Media/sample.wmv", playCount: 2)
+[!code[Main](10-working-with-video/samples/sample6.xml)]
 
 The `uiMode` parameter lets you specify which controls show up in the user interface. You can set `uiMode` to `invisible`, `none`, `mini`, or `full`. If you don't specify a `uiMode` parameter, the video will be displayed with the status window, seek bar, control buttons, and volume controls in addition to the video window. These controls will also be displayed if you use the player to play an audio file. Here's an example of how to use the `uiMode` parameter:
 
-    <!-- Set the MediaPlayer control UI -->
-    @Video.MediaPlayer(path: "Media/sample.wmv", uiMode: "mini")
+[!code[Main](10-working-with-video/samples/sample7.xml)]
 
 By default, audio is on when the video plays. You can mute the audio by setting the `mute` parameter to true:
 
-    <!-- Play the MediaPlayer video without audio -->
-    @Video.MediaPlayer(path: "Media/sample.wmv", mute: true)
+[!code[Main](10-working-with-video/samples/sample8.xml)]
 
 You can control the audio level of the MediaPlayer video by setting the `volume` parameter to a value between 0 and 100. The default value is 50. Here's an example:
 
-    <!-- Play the MediaPlayer video without audio -->
-    @Video.MediaPlayer(path: "Media/sample.wmv", volume: 75)
+[!code[Main](10-working-with-video/samples/sample9.xml)]
 
 <a id="Playing_Silverlight"></a>
 ## Playing Silverlight Videos
@@ -209,20 +167,7 @@ This procedure shows you how to play video contained in a Silverlight *.xap* pag
 2. Create a new page named *SilverlightVideo.cshtml*.
 3. Add the following markup to the page: 
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Silverlight Video</title>
-        </head>
-        <body>
-            @Video.Silverlight(
-                path: "Media/sample.xap",
-                width: "400",
-                height: "600",
-                bgColor: "red",
-                autoUpgrade: true)
-        </body>
-        </html>
+    [!code[Main](10-working-with-video/samples/sample10.xml)]
 4. Run the page in a browser. 
 
     ![[image]](10-working-with-video/_static/image3.jpg "ch08_video-3.jpg")

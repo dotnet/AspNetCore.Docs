@@ -1,26 +1,25 @@
-public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-{
-    var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-    if (loginInfo == null)
-    {
-        return RedirectToAction("Login");
-    }
+public void ConfigureAuth(IAppBuilder app) {
+    // Configure the db context, user manager and role manager to use a single instance per request
+    app.CreatePerOwinContext(ApplicationDbContext.Create);
+    app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+    app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+    app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
-    // Sign in the user with this external login provider if the user already has a login
-    var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-    switch (result)
-    {
-        case SignInStatus.Success:
-            return RedirectToLocal(returnUrl);
-        case SignInStatus.LockedOut:
-            return View("Lockout");
-        case SignInStatus.RequiresVerification:
-            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
-        case SignInStatus.Failure:
-        default:
-            // If the user does not have an account, then prompt the user to create an account
-            ViewBag.ReturnUrl = returnUrl;
-            ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-            return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
-    }
-}
+    // Enable the application to use a cookie to store information for the signed in user
+    // and to use a cookie to temporarily store information about a user logging in with a 
+    // third party login provider
+    // Configure the sign in cookie
+    app.UseCookieAuthentication(new CookieAuthenticationOptions {
+        AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+        LoginPath = new PathString("/Account/Login"),
+        Provider = new CookieAuthenticationProvider {
+            // Enables the application to validate the security stamp when the user logs in.
+            // This is a security feature which is used when you change a password or add 
+            // an external login to your account.  
+            OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+                //validateInterval: TimeSpan.FromMinutes(30),
+                validateInterval: TimeSpan.FromSeconds(5),
+                regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+        }
+    });
+    app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);

@@ -1,1 +1,4 @@
-var contosoChatHubProxy = $.connection.contosoChatHub;
+    var hubConfiguration = new HubConfiguration();
+    hubConfiguration.EnableDetailedErrors = true;
+    hubConfiguration.EnableJavaScriptProxies = false;
+    app.MapSignalR("/signalr", hubConfiguration);

@@ -1,0 +1,5 @@
+        <remove name="DynamicDataModule"/>
+        <add name="DynamicDataModule" preCondition="managedHandler"    
+        type="System.Web.DynamicData.DynamicDataHttpModule,
+            System.Web.Extensions, Version=3.6.0.0, Culture=neu4tral,
+            PublicKeyToken=31BF3856AD364E35"/>

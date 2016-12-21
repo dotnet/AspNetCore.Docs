@@ -75,37 +75,7 @@ The SQL syntax includes a number of statements for creating and modifying variou
 
 Returning to our earlier example, image that during development of an already-deployed application you add a new column to the `Employees` table, remove a column from the `Orders` table, and add a new table (`ProductCategories`). Such actions would result in a change log file with the following SQL commands:
 
-    -- Add the DepartmentID column 
-    
-    ALTER TABLE [Employees] ADD [DepartmentID] 
-    int NOT NULL 
-    
-    -- Add a foreign key constraint between Departments.DepartmentID and Employees.DepartmentID
-    ALTER TABLE [Employees] ADD 
-    CONSTRAINT [FK_Departments_DepartmentID]
-          FOREIGN 
-    KEY ([DepartmentID]) 
-          REFERENCES 
-    [Departments] ([DepartmentID]) 
-    
-    -- Remove TotalWeight column from Orders
-    ALTER TABLE [Orders] DROP COLUMN 
-    [TotalWeight] 
-    
-    -- Create the ProductCategories table
-    
-    CREATE TABLE [ProductCategories]
-    (
-          [ProductCategoryID] 
-    int IDENTITY(1,1) NOT NULL,
-          [CategoryName] 
-    nvarchar(50) NOT NULL,
-          [Active] 
-    bit NOT NULL CONSTRAINT [DF_ProductCategories_Active]  DEFAULT 
-    ((1)),
-          CONSTRAINT 
-    [PK_ProductCategories] PRIMARY KEY CLUSTERED ( [ProductCategoryID])
-    )
+[!code[Main](strategies-for-database-development-and-deployment-cs/samples/sample1.xml)]
 
 Pushing these changes to the production database at deploy-time is a one-click operation: open SQL Server Management Studio, connect to your production database, open a New Query window, paste the contents of the change log, and click Execute to run the script.
 

@@ -148,30 +148,13 @@ Once a user creates a new local account, they are emailed a confirmation link th
 
 1. In Visual Studio, open the **Login.aspx.cs** code-behind and add the following event handler after the `LogIn` event handler:   
 
-        protected void SendEmailConfirmationToken(object sender, EventArgs e)
-            {
-              var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-              var user = manager.FindByName(Email.Text);
-              if (user != null)
-              {
-                if (!user.EmailConfirmed)
-                {
-                  string code = manager.GenerateEmailConfirmationToken(user.Id);
-                  string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                  manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-        
-                  FailureText.Text = "Confirmation email sent. Please view the email and confirm your account.";
-                  ErrorMessage.Visible = true;
-                  ResendConfirm.Visible = false;
-                }
-              }
-            }
+    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample10.xml)]
 2. Modify the `LogIn` event handler in the *Login.aspx.cs* code-behind by changing the code highlighted in yellow as follows: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample10.xml?highlight=15-17)]
+    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample11.xml?highlight=15-17)]
 3. Update the *Login.aspx* page by adding the code highlighted in yellow as follows: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample11.xml?highlight=45-46)]
+    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample12.xml?highlight=45-46)]
 4. Delete any accounts in the **AspNetUsers** table that contain the email alias you wish to test.
 5. Run the app (**F5**) and register your email address.
 6. Before confirming your new account via the email that was just sent, attempt to log in with the new account.  

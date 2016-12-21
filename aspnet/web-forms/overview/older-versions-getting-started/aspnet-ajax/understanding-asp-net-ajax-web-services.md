@@ -36,30 +36,20 @@ When a new Web Site project is created with Visual Studio 2008, the web.config f
 
 **Listing 1. ASP.NET AJAX Web Service Handler Configuration**
 
-    <httpHandlers>
-         <remove verb="*" path="*.asmx"/>
-         <add verb="*" path="*.asmx" validate="false"
-              type="System.Web.Script.Services.ScriptHandlerFactory,
-              System.Web.Extensions, Version=1.0.61025.0, Culture=neutral,
-              PublicKeyToken=31bf3856ad364e35"/>
-    </httpHandlers>
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample1.xml)]
 
 This HttpHandler replacement is made in order to allow JavaScript Object Notation (JSON) calls to be made from ASP.NET AJAX pages to .NET Web Services using a JavaScript Web Service proxy. ASP.NET AJAX sends JSON messages to Web Services as opposed to the standard Simple Object Access Protocol (SOAP) calls typically associated with Web Services. This results in smaller request and response messages overall. It also allows for more efficient client-side processing of data since the ASP.NET AJAX JavaScript library is optimized to work with JSON objects. Listing 2 and Listing 3 show examples of Web Service request and response messages serialized to JSON format. The request message shown in Listing 2 passes a country parameter with a value of "Belgium" while the response message in Listing 3 passes an array of Customer objects and their associated properties.
 
 **Listing 2. Web Service Request Message Serialized to JSON**
 
-    {"country":"Belgium"}
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample2.xml)]
 
 > *> [!NOTE] the operation name is defined as part of the URL to the web service; additionally, request messages are not always submitted via JSON. Web Services can utilize the ScriptMethod attribute with the UseHttpGet parameter set to true, which causes parameters to be passed via a the query string parameters.*
 
 
 **Listing 3. Web Service Response Message Serialized to JSON**
 
-    [{"__type":"Model.Customer","Country":"Belgium","CompanyName":"Maison
-         Dewey","CustomerID":"MAISD","ContactName":"Catherine
-         Dewey"},{"__type":"Model.Customer","Country":"Belgium","CompanyName":"Suprêmes
-         délices","CustomerID":"SUPRD","ContactName":"Pascale
-         Cartrain"}]
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample3.xml)]
 
 In the next section you'll see how to create Web Services capable of handling JSON request messages and responding with both simple and complex types.
 
@@ -73,11 +63,7 @@ Listing 4 shows an example of applying the WebMethod attribute to a method named
 
 **Listing 4. Using the WebMethod Attribute in a Web Service**
 
-    [WebMethod]
-    public Customer[] GetCustomersByCountry(string country)
-    {
-         return Biz.BAL.GetCustomersByCountry(country);
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample4.xml)]
 
 The GetCustomersByCountry() method accepts a country parameter and returns a Customer object array. The country value passed into the method is forwarded to a business layer class which in turn calls a data layer class to retrieve the data from the database, fill the Customer object properties with data and return the array.
 
@@ -89,17 +75,7 @@ Listing 5 shows an example of applying the ScriptService attribute to a Web Serv
 
 **Listing 5. Using the ScriptService Attribute to AJAX-enable a Web Service**
 
-    [System.Web.Script.Services.ScriptService]
-    [WebService(Namespace = "http://xmlforasp.net")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    public class CustomersService : System.Web.Services.WebService
-    {
-         [WebMethod]
-         public Customer[] GetCustomersByCountry(string country)
-         {
-              return Biz.BAL.GetCustomersByCountry(country);
-         }
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample5.xml)]
 
 The ScriptService attribute acts as a marker that indicates it can be called from AJAX script code. It doesn't actually handle any of the JSON serialization or deserialization tasks that occur behind the scenes. The ScriptHandlerFactory (configured in web.config) and other related classes do the bulk of JSON processing.
 
@@ -111,12 +87,7 @@ The UseHttpGet property can be used when a Web Method should accept GET requests
 
 **Listing 6. Using the ScriptMethod attribute with the UseHttpGet property.**
 
-    [WebMethod]
-    [ScriptMethod(UseHttpGet = true)]
-    public string HttpGetEcho(string input)
-    {
-         return input;
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample6.xml)]
 
 An example of the headers sent when the HttpGetEcho Web Method shown in Listing 6 is called are shown next:
 
@@ -128,14 +99,7 @@ Listing 7 shows an example of using the ResponseFormat property to specify that 
 
 **Listing 7. Using the ScriptMethod attribute with the ResponseFormat property.**
 
-    [WebMethod]
-    [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
-    public XmlElement GetRssFeed(string url)
-    {
-         XmlDocument doc = new XmlDocument();
-         doc.Load(url);
-         return doc.DocumentElement;
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample7.xml)]
 
 The ResponseFormat property can also be used along with the XmlSerializeString property. The XmlSerializeString property has a default value of false which means that all return types except strings returned from a Web Method are serialized as XML when the `ResponseFormat` property is set to `ResponseFormat.Xml`. When `XmlSerializeString` is set to `true`, all types returned from a Web Method are serialized as XML including string types. If the ResponseFormat property has a value of `ResponseFormat.Json` the XmlSerializeString property is ignored.
 
@@ -143,17 +107,11 @@ Listing 8 shows an example of using the XmlSerializeString property to force str
 
 **Listing 8. Using the ScriptMethod attribute with the XmlSerializeString property**
 
-    [WebMethod]
-    [ScriptMethod(ResponseFormat = ResponseFormat.Xml,XmlSerializeString=true)]
-    public string GetXmlString(string input)
-    {
-         return input;
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample8.xml)]
 
 The value returned from calling the GetXmlString Web Method shown in Listing 8 is shown next:
 
-    <?xml version="1.0"?>
-         <string>Test</string>
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample9.xml)]
 
 Although the default JSON format minimizes the overall size of request and response messages and is more readily consumed by ASP.NET AJAX clients in a cross-browser manner, the ResponseFormat and XmlSerializeString properties can be utilized when client applications such as Internet Explorer 5 or higher expect XML data to be returned from a Web Method.
 
@@ -165,51 +123,19 @@ In cases where a nested complex type used by a Web Service must also be used in 
 
 **Listing 9. The CustomerDetails class shown here contains two nested complex types.**
 
-    public class CustomerDetails : Customer
-    {
-         public CustomerDetails()
-         {
-         }
-         Address _Address;
-         Gender _Gender = Gender.Unknown;
-         public Address Address
-         {
-              get { return _Address; }
-              set { _Address = value; }
-         }
-         public Gender Gender
-         {
-              get { return _Gender; }
-              set { _Gender = value; }
-         }
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample10.xml)]
 
 The Address and Gender objects defined within the CustomerDetails class shown in Listing 9 won't automatically be made available for use on the client-side via JavaScript since they are nested types (Address is a class and Gender is an enumeration). In situations where a nested type used within a Web Service must be available on the client-side, the GenerateScriptType attribute mentioned earlier can be used (see Listing 10). This attribute can be added multiple times in cases where different nested complex types are returned from a service. It can be applied directly to the Web Service class or above specific Web Methods.
 
 **Listing 10. Using the GenerateScriptService attribute to define nested types that should be available to the client.**
 
-    [System.Web.Script.Services.ScriptService]
-    [System.Web.Script.Services.GenerateScriptType(typeof(Address))]
-    [System.Web.Script.Services.GenerateScriptType(typeof(Gender))]
-    [WebService(Namespace = "http://tempuri.org/")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    public class NestedComplexTypeService : System.Web.Services.WebService
-    {
-         //Web Methods
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample11.xml)]
 
 By applying the `GenerateScriptType` attribute to the Web Service, the Address and Gender types will automatically be made available for use by client-side ASP.NET AJAX JavaScript code. An example of the JavaScript that is automatically generated and sent to the client by adding the GenerateScriptType attribute on a Web Service is shown in Listing 11. You'll see how to use nested complex types later in the article.
 
 **Listing 11. Nested complex types made available to an ASP.NET AJAX page.**
 
-    if (typeof(Model.Address) === 'undefined')
-    {
-         Model.Address=gtc("Model.Address");
-         Model.Address.registerClass('Model.Address');
-    }
-    Model.Gender = function() { throw Error.invalidOperation(); }
-    Model.Gender.prototype = {Unknown: 0,Male: 1,Female: 2}
-    Model.Gender.registerEnum('Model.Gender', true);
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample12.xml)]
 
 Now that you've seen how to create Web Services and make them accessible to ASP.NET AJAX pages, let's take a look at how to create and use JavaScript proxies so that data can be retrieved or sent to Web Services.
 
@@ -219,28 +145,24 @@ Calling a standard Web Service (.NET or another platform) typically involves cre
 
 Creating a JavaScript proxy that can call Web Services is accomplished by using the ScriptManager's Services property. This property allows you to define one or more services that an ASP.NET AJAX page can call asynchronously to send or receive data without requiring postback operations. You define a service by using the ASP.NET AJAX `ServiceReference` control and assigning the Web Service URL to the control's `Path` property. Listing 12 shows an example of referencing a service named CustomersService.asmx.
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-         <Services>
-              <asp:ServiceReference Path="~/CustomersService.asmx" />
-         </Services>
-    </asp:ScriptManager>
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample13.xml)]
 
 **Listing 12. Defining a Web Service used in an ASP.NET AJAX page.**
 
 Adding a reference to the CustomersService.asmx through the ScriptManager control causes a JavaScript proxy to be dynamically generated and referenced by the page. The proxy is embedded by using the &lt;script&gt; tag and dynamically loaded by calling the CustomersService.asmx file and appending /js to the end of it. The following example shows how the JavaScript proxy is embedded in the page when debugging is disabled in web.config:
 
-    <script src="CustomersService.asmx/js" type="text/javascript"></script>
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample14.xml)]
 
 > *> [!NOTE] If you'd like to see the actual JavaScript proxy code that is generated you can type the URL to the desired .NET Web Service into Internet Explorer's address box and append /js to the end of it.*
 
 
 If debugging is enabled in web.config a debug version of the JavaScript proxy will be embedded in the page as shown next:
 
-    <script src="CustomersService.asmx/jsdebug" type="text/javascript"></script>
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample15.xml)]
 
 The JavaScript proxy created by the ScriptManager can also be embedded directly into the page rather than referenced using the &lt;script&gt; tag's src attribute. This can be done by setting the ServiceReference control's InlineScript property to true (the default is false). This can be useful when a proxy isn't shared across multiple pages and when you'd like to reduce the number of network calls made to the server. When InlineScript is set to true the proxy script won't be cached by the browser so the default value of false is recommended in cases where the proxy is used by multiple pages in an ASP.NET AJAX application. An example of using the InlineScript property is shown next:
 
-    <asp:ServiceReference InlineScript="true" Path="~/CustomersService.asmx"/>
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample16.xml)]
 
 ## Using JavaScript Proxies
 
@@ -250,19 +172,7 @@ An example of using a JavaScript proxy to call a Web Method named GetCustomersBy
 
 **Listing 13. Calling a Web Service with a JavaScript proxy.**
 
-    function GetCustomerByCountry()
-    {
-         var country = $get("txtCountry").value;
-         InterfaceTraining.CustomersService.GetCustomersByCountry(country, OnWSRequestComplete);
-    }
-    function OnWSRequestComplete(results)
-    {
-         if (results != null)
-         {
-              CreateCustomersTable(results);
-              GetMap(results);
-         }
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample17.xml)]
 
 This call references the InterfaceTraining namespace, CustomersService class and GetCustomersByCountry Web Method defined in the service. It passes a country value obtained from a textbox as well as a callback function named OnWSRequestComplete that should be invoked when the asynchronous Web Service call returns. OnWSRequestComplete handles the array of Customer objects returned from the service and converts them into a table that is displayed in the page. The output generated from the call is shown in Figure 1.
 
@@ -280,20 +190,7 @@ Asynchronous callbacks to Web Services can encounter different types of errors s
 
 **Listing 14. Defining an error callback function and displaying errors.**
 
-    function GetCustomersByCountry() 
-    {
-         var country = $get("txtCountry").value;
-         InterfaceTraining.CustomersService.GetCustomersByCountry(country, 
-              OnWSRequestComplete, OnWSRequestFailed);
-    }
-    function OnWSRequestFailed(error)
-    {
-         alert("Stack Trace: " + error.get_stackTrace() + "/r/n" +
-              "Error: " + error.get_message() + "/r/n" +
-              "Status Code: " + error.get_statusCode() + "/r/n" +
-              "Exception Type: " + error.get_exceptionType() + "/r/n" +
-              "Timed Out: " + error.get_timedOut());
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample18.xml)]
 
 Any errors that occur when the Web Service is called will trigger the OnWSRequestFailed() callback function to be called which accepts an object representing the error as a parameter. The error object exposes several different functions to determine the cause of the error as well as whether or not the call timed out. Listing 14 shows an example of using the different error functions and Figure 2 shows an example of the output generated by the functions.
 
@@ -313,30 +210,7 @@ Listing 15 shows an example of calling a Web Method named GetRssFeed() that retu
 
 **Listing 15. Working with XML data returned from a Web Service.**
 
-    function GetRss()
-    {
-         InterfaceTraining.DemoService.GetRssFeed(
-              "http://blogs.interfacett.com/dan-wahlins-blog/rss.xml",
-              OnWSRequestComplete);
-    }
-    function OnWSRequestComplete(result)
-    {
-         if (document.all) //Filter for IE DOM since other browsers are limited
-         {
-              var items = result.selectNodes("//item");
-              for (var i=0;i<items.length;i++)
-              {
-                   var title = items[i].selectSingleNode("title").text;
-                   var href = items[i].selectSingleNode("link").text;
-                   $get("divOutput").innerHTML +=
-                   "<a href='" + href + "'>" + title + "</a><br/>";
-              }
-         }
-         else
-         {
-              $get("divOutput").innerHTML = "RSS only available in IE5+";
-         }
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample19.xml)]
 
 This example passes a URL to an RSS feed and processes the returned XML data in the OnWSRequestComplete() function. OnWSRequestComplete() first checks to see if the browser is Internet Explorer to know whether or not the MSXML parser is available. If it is, an XPath statement is used to locate all &lt;item&gt; tags within the RSS feed. Each item is then iterated through and the associated &lt;title&gt; and &lt;link&gt; tags are located and processed to display each item's data. Figure 3 shows an example of the output generated from making an ASP.NET AJAX call through a JavaScript proxy to the GetRssFeed() Web Method.
 
@@ -356,25 +230,7 @@ Listing 16 shows an example of client-side code that invokes an Address object d
 
 **Listing 16. Using nested complex types**
 
-    function UpdateAddress()
-    {
-         var cust = new Model.CustomerDetails();
-         cust.CustomerID = $get("hidCustomerID").value;
-         cust.Address = CreateAddress();
-         InterfaceTraining.DemoService.UpdateAddress(cust,OnWSUpdateComplete);
-    }
-    function CreateAddress()
-    {
-         var addr = new Model.Address();
-         addr.Street = $get("txtStreet").value;
-         addr.City = $get("txtCity").value;
-         addr.State = $get("txtState").value;
-         return addr;
-    }
-    function OnWSUpdateComplete(result)
-    {
-         alert("Update " + ((result)?"succeeded":"failed")+ "!");
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample20.xml)]
 
 ## Creating and Using Page Methods
 
@@ -382,44 +238,19 @@ Web Services provide an excellent way to expose re-useable services to a variety
 
 ASP.NET AJAX provides another mechanism for making Web Service-like calls without creating standalone .asmx files. This is done by using a technique referred to as "page methods". Page methods are static (shared in VB.NET) methods embedded directly in a page or code-beside file that have the WebMethod attribute applied to them. By applying the WebMethod attribute they can be called using a special JavaScript object named PageMethods that gets dynamically created at runtime. The PageMethods object acts as a proxy that shields you from the JSON serialization/deserialization process. Note that in order to use the PageMethods object you must set the ScriptManager's EnablePageMethods property to true.
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
-    </asp:ScriptManager>
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample21.xml)]
 
 Listing 17 shows an example of defining two page methods in an ASP.NET code-beside class. These methods retrieve data from a business layer class located in the App\_Code folder of the Website.
 
 **Listing 17. Defining page methods.**
 
-    [WebMethod]
-    public static Customer[] GetCustomersByCountry(string country)
-    {
-         return Biz.BAL.GetCustomersByCountry(country);
-    }
-    [WebMethod]
-    public static Customer[] GetCustomersByID(string id)
-    {
-         return Biz.BAL.GetCustomersByID(id);
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample22.xml)]
 
 When ScriptManager detects the presence of Web Methods in the page it generates a dynamic reference to the PageMethods object mentioned earlier. Calling a Web Method is accomplished by referencing the PageMethods class followed by the name of the method and any necessary parameter data that should be passed. Listing 18 shows examples of calling the two page methods shown earlier.
 
 **Listing 18. Calling page methods with the PageMethods JavaScript object.**
 
-    function GetCustomerByCountry() 
-    {
-         var country = $get("txtCountry").value;
-         PageMethods.GetCustomersByCountry(country, OnWSRequestComplete);
-    }
-    function GetCustomerByID() 
-    {
-         var custID = $get("txtCustomerID").value;
-         PageMethods.GetCustomersByID(custID, OnWSRequestComplete);
-    }
-    function OnWSRequestComplete(results) 
-    {
-         var searchResults = $get("searchResults");
-         searchResults.control.set_data(results);
-         if (results != null) GetMap(results[0].Country,results);
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample23.xml)]
 
 Using the PageMethods object is very similar to using a JavaScript proxy object. You first specify all of the parameter data that should be passed to the page method and then define the callback function that should be called when the asynchronous call returns. A failure callback can also be specified (refer to Listing 14 for an example of handling failures).
 
@@ -431,12 +262,11 @@ The AutoCompleteExtender control can be used to extend existing functionality of
 
 Using the AutoCompleteExtender within an ASP.NET AJAX page requires that the AjaxControlToolkit.dll assembly be added to the Website's bin folder. Once the toolkit assembly has been added, you'll want to reference it in web.config so that the controls it contains are available to all pages in an application. This can be done by adding the following tag within web.config's &lt;controls&gt; tag:
 
-    <add namespace="AjaxControlToolkit" assembly="AjaxControlToolkit" tagPrefix="ajaxToolkit"/>
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample24.xml)]
 
 In cases where you only need to use the control in a specific page you can reference it by adding the Reference directive to the top of a page as shown next rather than updating web.config:
 
-    <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" 
-         TagPrefix="ajaxToolkit" %>
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample25.xml)]
 
 
 [![Using the AutoCompleteExtender control.](understanding-asp-net-ajax-web-services/_static/image11.png)](understanding-asp-net-ajax-web-services/_static/image10.png)
@@ -448,10 +278,7 @@ Once the Website has been configured to use the ASP.NET AJAX Toolkit, an AutoCom
 
 **Listing 19. Using the ASP.NET AJAX Toolkit AutoCompleteExtender control.**
 
-    <ajaxToolkit:AutoCompleteExtender ID="extTxtCustomerID" runat="server"
-         MinimumPrefixLength="1" ServiceMethod="GetCustomerIDs"
-         ServicePath="~/CustomersService.asmx"
-         TargetControlID="txtCustomerID" />
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample26.xml)]
 
 The AutoCompleteExtender has several different properties including the standard ID and runat properties found on server controls. In addition to these, it allows you to define how many characters an end user types before the Web Service is queried for data. The MinimumPrefixLength property shown in Listing 19 causes the service to be called each time a character is typed into the textbox. You'll want to be careful setting this value since each time the user types a character the Web Service will be called to search for values that match the characters in the textbox. The Web Service to call as well as the target Web Method are defined using the ServicePath and ServiceMethod properties respectively. Finally, the TargetControlID property identifies which textbox to hook the AutoCompleteExtender control to.
 
@@ -459,53 +286,11 @@ The Web Service being called must have the ScriptService attribute applied as di
 
 **Listing 20. Filtering data sent from the AutoCompleteExtender control.**
 
-    [WebMethod]
-    public string[] GetCustomerIDs(string prefixText, int count) 
-    {
-         return Biz.BAL.GetCustomerIDs(prefixText, count);
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample27.xml)]
 
 **Listing 21. Filtering results based upon end user input.**
 
-    public static string[] GetCustomerIDs(string prefixText, int count)
-    {
-         //Customer IDs cached in _CustomerIDs field to improve performance
-         if (_CustomerIDs == null)
-         {
-              List<string> ids = new List<string>();
-              //SQL text used for simplicity...recommend using sprocs
-              string sql = "SELECT CustomerID FROM Customers";
-              DbConnection conn = GetDBConnection();
-              conn.Open();
-              DbCommand cmd = conn.CreateCommand();
-              cmd.CommandText = sql;
-              DbDataReader reader = cmd.ExecuteReader();
-              while (reader.Read())
-              {
-                   ids.Add(reader["CustomerID"].ToString());
-              }
-              reader.Close();
-              conn.Close();
-              _CustomerIDs = ids.ToArray();
-         }
-         int index = Array.BinarySearch(_CustomerIDs, prefixText, new CaseInsensitiveComparer());
-         //~ is bitwise complement (reverse each bit)
-         if (index < 0) index = ~index;
-         int matchingCount;
-         for (matchingCount = 0; matchingCount < count && index + matchingCount < _CustomerIDs.Length; matchingCount++)
-         {
-              if (!_CustomerIDs[index + matchingCount].StartsWith(prefixText, StringComparison.CurrentCultureIgnoreCase))
-              {
-                   break;
-              }
-         }
-         String[] returnValue = new string[matchingCount];
-         if (matchingCount > 0)
-         {
-              Array.Copy(_CustomerIDs, index, returnValue, 0, matchingCount);
-         }
-         return returnValue;
-    }
+[!code[Main](understanding-asp-net-ajax-web-services/samples/sample28.xml)]
 
 ## Conclusion
 

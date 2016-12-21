@@ -1,7 +1,2 @@
-public class ContosoChatHub : Hub
-{
-    public void NewContosoChatMessage(string name, string message)
-    {
-        Clients.All.addNewMessageToPage(name, message);
-    }
-}
+[HubMethodName("PascalCaseNewContosoChatMessage")]
+public void NewContosoChatMessage(string userName, string message)

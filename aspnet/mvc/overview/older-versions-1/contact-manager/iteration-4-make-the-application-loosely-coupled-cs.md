@@ -77,71 +77,13 @@ First, we need to create an interface that describes all of the data access meth
 
 **Listing 1 - Models\<wbr />IContactManagerRepositiory.cs**
 
-    using System;
-    using System.Collections.Generic;
-    
-    namespace ContactManager.Models
-    {
-        public interface IContactRepository
-        {
-            Contact CreateContact(Contact contactToCreate);
-            void DeleteContact(Contact contactToDelete);
-            Contact EditContact(Contact contactToUpdate);
-            Contact GetContact(int id);
-            IEnumerable<Contact> ListContacts();
-    
-        }
-    }
+[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample1.xml)]
 
 Next, we need to create a concrete class that implements the IContactManagerRepository interface. Because we are using the Microsoft Entity Framework to access the database, we'll create a new class named EntityContactManagerRepository<wbr />. This class is contained in Listing 2.
 
 **Listing 2 - Models\<wbr />EntityContactManagerRepository<wbr />.cs**
 
-    using System.Collections.Generic;
-    using System.Linq;
-    
-    namespace ContactManager.Models
-    {
-        public class EntityContactManagerRepository : ContactManager.Models.IContactManagerRepository
-        {
-            private ContactManagerDBEntities _entities = new ContactManagerDBEntities();
-    
-            public Contact GetContact(int id)
-            {
-                return (from c in _entities.ContactSet
-                        where c.Id == id
-                        select c).FirstOrDefault();
-            }
-    
-            public IEnumerable ListContacts()
-            {
-                return _entities.ContactSet.ToList();
-            }
-    
-            public Contact CreateContact(Contact contactToCreate)
-            {
-                _entities.AddToContactSet(contactToCreate);
-                _entities.SaveChanges();
-                return contactToCreate;
-            }
-    
-            public Contact EditContact(Contact contactToEdit)
-            {
-                var originalContact = GetContact(contactToEdit.Id);
-                _entities.ApplyPropertyChanges(originalContact.EntityKey.EntitySetName, contactToEdit);
-                _entities.SaveChanges();
-                return contactToEdit;
-            }
-    
-            public void DeleteContact(Contact contactToDelete)
-            {
-                var originalContact = GetContact(contactToDelete.Id);
-                _entities.DeleteObject(originalContact);
-                _entities.SaveChanges();
-            }
-    
-        }
-    }
+[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample2.xml)]
 
 Notice that the EntityContactManagerRepository class implements the IContactManagerRepository interface. The class implements all five of the methods described by that interface.
 
@@ -168,113 +110,7 @@ The modified Contact controller is contained in Listing 3.
 
 **Listing 3 - Controllers\ContactController.<wbr />cs**
 
-    using System.Text.RegularExpressions;
-    using System.Web.Mvc;
-    using ContactManager.Models;
-    
-    namespace ContactManager.Controllers
-    {
-        public class ContactController : Controller
-        {
-            private IContactManagerRepository _repository;
-    
-            public ContactController()
-                : this(new EntityContactManagerRepository())
-            {}
-    
-            public ContactController(IContactManagerRepository repository)
-            {
-                _repository = repository;
-            }
-    
-            protected void ValidateContact(Contact contactToValidate)
-            {
-                if (contactToValidate.FirstName.Trim().Length == 0)
-                    ModelState.AddModelError("FirstName", "First name is required.");
-                if (contactToValidate.LastName.Trim().Length == 0)
-                    ModelState.AddModelError("LastName", "Last name is required.");
-                if (contactToValidate.Phone.Length > 0 && !Regex.IsMatch(contactToValidate.Phone, @"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"))
-                    ModelState.AddModelError("Phone", "Invalid phone number.");
-                if (contactToValidate.Email.Length > 0 && !Regex.IsMatch(contactToValidate.Email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
-                    ModelState.AddModelError("Email", "Invalid email address.");
-            }
-    
-            public ActionResult Index()
-            {
-                return View(_repository.ListContacts());
-            }
-    
-            public ActionResult Create()
-            {
-                return View();
-            } 
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Create([Bind(Exclude = "Id")] Contact contactToCreate)
-            {
-                // Validation logic
-                ValidateContact(contactToCreate);
-                if (!ModelState.IsValid)
-                    return View();
-    
-                // Database logic
-                try
-                {
-                    _repository.CreateContact(contactToCreate);
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-    
-            public ActionResult Edit(int id)
-            {
-                return View(_repository.GetContact(id));
-            }
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Edit(Contact contactToEdit)
-            {
-                // Validation logic
-                ValidateContact(contactToEdit);
-                if (!ModelState.IsValid)
-                    return View();
-    
-                // Database logic
-                try
-                {
-                    _repository.EditContact(contactToEdit);
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-    
-            public ActionResult Delete(int id)
-            {
-                return View(_repository.GetContact(id));
-            }
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Delete(Contact contactToDelete)
-            {
-                try
-                {
-                    _repository.DeleteContact(contactToDelete);
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-    
-        }
-    }
+[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample3.xml)]
 
 Notice that the Contact controller in Listing 3 has two constructors. The first constructor passes a concrete instance of the IContactManagerRepository interface to the second constructor. The Contact controller class uses *Constructor Dependency Injection*.
 
@@ -299,105 +135,7 @@ The ContactManagerService is contained in Listing 4. It contains the validation 
 
 **Listing 4 - Models\ContactManagerService.<wbr />cs**
 
-    using System.Collections.Generic;
-    using System.Text.RegularExpressions;
-    using System.Web.Mvc;
-    using ContactManager.Models.Validation;
-    
-    namespace ContactManager.Models
-    {
-        public class ContactManagerService : IContactManagerService
-        {
-            private IValidationDictionary _validationDictionary;
-            private IContactManagerRepository _repository;
-    
-            public ContactManagerService(IValidationDictionary validationDictionary) 
-                : this(validationDictionary, new EntityContactManagerRepository())
-            {}
-    
-            public ContactManagerService(IValidationDictionary validationDictionary, IContactManagerRepository repository)
-            {
-                _validationDictionary = validationDictionary;
-                _repository = repository;
-            }
-    
-            public bool ValidateContact(Contact contactToValidate)
-            {
-                if (contactToValidate.FirstName.Trim().Length == 0)
-                    _validationDictionary.AddError("FirstName", "First name is required.");
-                if (contactToValidate.LastName.Trim().Length == 0)
-                    _validationDictionary.AddError("LastName", "Last name is required.");
-                if (contactToValidate.Phone.Length > 0 && !Regex.IsMatch(contactToValidate.Phone, @"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"))
-                    _validationDictionary.AddError("Phone", "Invalid phone number.");
-                if (contactToValidate.Email.Length > 0 && !Regex.IsMatch(contactToValidate.Email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
-                    _validationDictionary.AddError("Email", "Invalid email address.");
-                return _validationDictionary.IsValid;
-            }
-    
-            #region IContactManagerService Members
-    
-            public bool CreateContact(Contact contactToCreate)
-            {
-                // Validation logic
-                if (!ValidateContact(contactToCreate))
-                    return false;
-    
-                // Database logic
-                try
-                {
-                    _repository.CreateContact(contactToCreate);
-                }
-                catch
-                {
-                    return false;
-                }
-                return true;
-            }
-    
-            public bool EditContact(Contact contactToEdit)
-            {
-                // Validation logic
-                if (!ValidateContact(contactToEdit))
-                    return false;
-    
-                // Database logic
-                try
-                {
-                    _repository.EditContact(contactToEdit);
-                }
-                catch
-                {
-                    return false;
-                }
-                return true;
-            }
-    
-            public bool DeleteContact(Contact contactToDelete)
-            {
-                try
-                {
-                    _repository.DeleteContact(contactToDelete);
-                }
-                catch
-                {
-                    return false;
-                }
-                return true;
-            }
-    
-            public Contact GetContact(int id)
-            {
-                return _repository.GetContact(id);
-            }
-    
-            public IEnumerable<Contact> ListContacts()
-            {
-                return _repository.ListContacts();
-            }
-    
-            #endregion
-        }
-    }
+[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample4.xml)]
 
 Notice that the constructor for the ContactManagerService requires a ValidationDictionary. The service layer communicates with the controller layer through this ValidationDictionary. We discuss the ValidationDictionary in detail in the following section when we discuss the Decorator pattern.
 
@@ -407,90 +145,13 @@ The IContactManagerService interface is contained in Listing 5.
 
 **Listing 5 - Models\IContactManagerService.<wbr />cs**
 
-    using System.Collections.Generic;
-    
-    namespace ContactManager.Models
-    {
-        public interface IContactManagerService
-        {
-            bool CreateContact(Contact contactToCreate);
-            bool DeleteContact(Contact contactToDelete);
-            bool EditContact(Contact contactToEdit);
-            Contact GetContact(int id);
-            IEnumerable ListContacts();
-        }
-    }
+[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample5.xml)]
 
 The modified Contact controller class is contained in Listing 6. Notice that the Contact controller no longer interacts with the ContactManager repository. Instead, the Contact controller interacts with the ContactManager service. Each layer is isolated as much as possible from other layers.
 
 **Listing 6 - Controllers\ContactController.<wbr />cs**
 
-    using System.Web.Mvc;
-    using ContactManager.Models;
-    
-    namespace ContactManager.Controllers
-    {
-        public class ContactController : Controller
-        {
-            private IContactManagerService _service;
-    
-            public ContactController()
-            {
-                _service = new ContactManagerService(new ModelStateWrapper(this.ModelState));
-    
-            }
-    
-            public ContactController(IContactManagerService service)
-            {
-                _service = service;
-            }
-            
-            public ActionResult Index()
-            {
-                return View(_service.ListContacts());
-            }
-    
-            public ActionResult Create()
-            {
-                return View();
-            }
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Create([Bind(Exclude = "Id")] Contact contactToCreate)
-            {
-                if (_service.CreateContact(contactToCreate))
-                    return RedirectToAction("Index");
-                return View();
-            }
-    
-            public ActionResult Edit(int id)
-            {
-                return View(_service.GetContact(id));
-            }
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Edit(Contact contactToEdit)
-            {
-                if (_service.EditContact(contactToEdit))
-                    return RedirectToAction("Index");
-                return View();
-            }
-    
-            public ActionResult Delete(int id)
-            {
-                return View(_service.GetContact(id));
-            }
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Delete(Contact contactToDelete)
-            {
-                if (_service.DeleteContact(contactToDelete))
-                    return RedirectToAction("Index");
-                return View();
-            }
-    
-        }
-    }
+[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample6.xml)]
 
 Our application no longer runs afoul of the Single Responsibility Principle (SRP). The Contact controller in Listing 6 has been stripped of every responsibility other than controlling the flow of application execution. All the validation logic has been removed from the Contact controller and pushed into the service layer. All of the database logic has been pushed into the repository layer.
 
@@ -506,45 +167,15 @@ The Decorator pattern enables you to wrap an existing class in a new class in or
 
 **Listing 7 - Models\Validation\<wbr />ModelStateWrapper.cs**
 
-    using System.Web.Mvc;
-    
-    namespace ContactManager.Models.Validation
-    {
-        public class ModelStateWrapper : IValidationDictionary
-        {
-            private ModelStateDictionary _modelState;
-    
-            public ModelStateWrapper(ModelStateDictionary modelState)
-            {
-                _modelState = modelState;
-            }
-    
-            public void AddError(string key, string errorMessage)
-            {
-                _modelState.AddModelError(key, errorMessage);
-            }
-    
-            public bool IsValid
-            {
-                get { return _modelState.IsValid; }
-            }
-        }
-    }
+[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample7.xml)]
 
 **Listing 8 - Models\Validation\<wbr />IValidationDictionary.cs**
 
-    namespace ContactManager.Models.Validation
-    {
-        public interface IValidationDictionary
-        {
-            void AddError(string key, string errorMessage);
-            bool IsValid {get;}
-        }
-    }
+[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample8.xml)]
 
 If you take a close look at Listing 5 then you'll see that the ContactManager service layer uses the IValidationDictionary interface exclusively. The ContactManager service is not dependent on the ModelStateDictionary class. When the Contact controller creates the ContactManager service, the controller wraps its ModelState like this:
 
-    _service = new ContactManagerService(new ModelStateWrapper(this.ModelState));
+[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample9.xml)]
 
 ## Summary
 

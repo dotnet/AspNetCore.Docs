@@ -82,16 +82,7 @@ By default, the role cache cookie mechanism is disabled. It can be enabled throu
 
 Let's configure our application to use non-persistent role cache cookies. To accomplish this, update the `<roleManager>` element in `Web.config` to include the following cookie-related attributes:
 
-    <roleManager enabled="true"    
-              defaultProvider="SecurityTutorialsSqlRoleProvider"    
-              cacheRolesInCookie="true"    
-              createPersistentCookie="false"    
-              cookieProtection="All">    
-    
-         <providers>    
-         ...    
-         </providers>    
-    </roleManager>
+[!code[Main](role-based-authorization-cs/samples/sample1.xml)]
 
 I updated the `<roleManager>` element by adding three attributes: `cacheRolesInCookie`, `createPersistentCookie`, and `cookieProtection`. By setting `cacheRolesInCookie` to `true`, the `RoleManagerModule` will now automatically cache the user's roles in a cookie rather than having to lookup the user's role information on each request. I explicitly set the `createPersistentCookie` and `cookieProtection` attributes to `false` and `All`, respectively. Technically, I didn't need to specify values for these attributes since I just assigned them to their default values, but I put them here to make it explicitly clear that I am not using persistent cookies and that the cookie is both encrypted and validated.
 
@@ -109,10 +100,7 @@ As discussed in the <a id="_msoanchor_6"></a>[*User-Based Authorization*](../mem
 
 For example, the URL authorization rules grant access to those users in the Administrators and Supervisors roles, but deny access to all others:
 
-    <authorization>
-         <allow roles="Administrators, Supervisors" />
-         <deny users="*" />
-    </authorization>
+[!code[Main](role-based-authorization-cs/samples/sample2.xml)]
 
 The `<allow>` element in the above markup states that the Administrators and Supervisors roles are allowed; the `<deny>` element instructs that *all* users are denied.
 
@@ -128,27 +116,7 @@ To accomplish this, start by adding a `Web.config` file to the `Roles` folder.
 
 Next, add the following configuration markup to `Web.config`:
 
-    <?xml version="1.0"?>    
-    
-    <configuration>    
-         <system.web>    
-              <authorization>    
-                   <allow roles="Administrators" />    
-                   <deny users="*"/>    
-              </authorization>    
-    
-         </system.web>
-    
-         <!-- Allow all users to visit RoleBasedAuthorization.aspx -->    
-         <location path="RoleBasedAuthorization.aspx">    
-              <system.web>    
-                   <authorization>    
-                        <allow users="*" />    
-    
-                   </authorization>    
-              </system.web>    
-         </location>    
-    </configuration>
+[!code[Main](role-based-authorization-cs/samples/sample3.xml)]
 
 The `<authorization>` element in the `<system.web>` section indicates that only users in the Administrators role may access the ASP.NET resources in the `Roles` directory. The `<location>` element defines an alternate set of URL authorization rules for the `RoleBasedAuthorization.aspx` page, allowing all users to visit the page.
 
@@ -202,66 +170,17 @@ For the "Email" TemplateField, add a TextBox named `Email` to its `EditItemTempl
 
 After configuring these TemplateFields, their declarative markup should look similar to the following:
 
-    <asp:TemplateField HeaderText="Email">    
-         <ItemTemplate>    
-              <asp:Label runat="server" ID="Label1" Text='<%# Eval("Email") %>'></asp:Label>    
-    
-         </ItemTemplate>    
-         <EditItemTemplate>    
-              <asp:TextBox runat="server" ID="Email" Text='<%# Bind("Email") %>'></asp:TextBox>    
-    
-              <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"    
-                   ControlToValidate="Email" Display="Dynamic"    
-                   ErrorMessage="You must provide an email address." 
-                   SetFocusOnError="True">*</asp:RequiredFieldValidator>    
-    
-              <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"    
-                   ControlToValidate="Email" Display="Dynamic"    
-                   ErrorMessage="The email address you have entered is not valid. Please fix 
-                   this and try again."    
-                   SetFocusOnError="True"    
-    
-                   ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*
-              </asp:RegularExpressionValidator>    
-         </EditItemTemplate>    
-    </asp:TemplateField>
-    
-    <asp:TemplateField HeaderText="Comment">    
-         <ItemTemplate>    
-              <asp:Label runat="server" ID="Label2" Text='<%# Eval("Comment") %>'></asp:Label>    
-    
-         </ItemTemplate>    
-         <EditItemTemplate>    
-              <asp:TextBox runat="server" ID="Comment" TextMode="MultiLine"
-                   Columns="40" Rows="4" Text='<%# Bind("Comment") %>'>
-    
-              </asp:TextBox>    
-         </EditItemTemplate>    
-    </asp:TemplateField>
+[!code[Main](role-based-authorization-cs/samples/sample4.xml)]
 
 When editing or deleting a user account we will need to know that user's `UserName` property value. Set the GridView's `DataKeyNames` property to "UserName" so that this information is available through the GridView's `DataKeys` collection.
 
 Finally, add a ValidationSummary control to the page and set its `ShowMessageBox` property to True and its `ShowSummary` property to False. With these settings, the ValidationSummary will display a client-side alert if the user attempts to edit a user account with a missing or invalid email address.
 
-    <asp:ValidationSummary ID="ValidationSummary1"
-                   runat="server"
-                   ShowMessageBox="True"
-                   ShowSummary="False" />
+[!code[Main](role-based-authorization-cs/samples/sample5.xml)]
 
 We have now completed this page's declarative markup. Our next task is to bind the set of user accounts to the GridView. Add a method named `BindUserGrid` to the `RoleBasedAuthorization.aspx` page's code-behind class that binds the `MembershipUserCollection` returned by `Membership.GetAllUsers` to the `UserGrid` GridView. Call this method from the `Page_Load` event handler on the first page visit.
 
-    protected void Page_Load(object sender, EventArgs e)    
-    {    
-         if (!Page.IsPostBack)    
-              BindUserGrid();    
-    }
-    
-    private void BindUserGrid()    
-    {    
-         MembershipUserCollection allUsers = Membership.GetAllUsers();    
-         UserGrid.DataSource = allUsers;    
-         UserGrid.DataBind();    
-    }
+[!code[Main](role-based-authorization-cs/samples/sample6.xml)]
 
 With this code in place, visit the page through a browser. As Figure 7 shows, you should see a GridView listing information about each user account in the system.
 
@@ -278,47 +197,7 @@ The GridView control offers built-in editing and deleting support when the contr
 
 Start by creating the event handlers for the GridView's `RowEditing`, `RowCancelingEdit`, and `RowUpdating` events and then add the following code:
 
-    protected void UserGrid_RowEditing(object sender, GridViewEditEventArgs e)
-    {
-         // Set the grid's EditIndex and rebind the data
-    
-         UserGrid.EditIndex = e.NewEditIndex;
-         BindUserGrid();
-    }
-    
-    protected void UserGrid_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-    {
-         // Revert the grid's EditIndex to -1 and rebind the data
-         UserGrid.EditIndex = -1;
-         BindUserGrid();
-    }
-    
-    protected void UserGrid_RowUpdating(object sender, GridViewUpdateEventArgs e)
-    {
-         // Exit if the page is not valid
-         if (!Page.IsValid)
-              return;
-    
-         // Determine the username of the user we are editing
-         string UserName = UserGrid.DataKeys[e.RowIndex].Value.ToString();
-    
-         // Read in the entered information and update the user
-         TextBox EmailTextBox = UserGrid.Rows[e.RowIndex].FindControl("Email") as TextBox;
-         TextBox CommentTextBox = UserGrid.Rows[e.RowIndex].FindControl("Comment") as TextBox;
-    
-         // Return information about the user
-         MembershipUser UserInfo = Membership.GetUser(UserName);
-    
-         // Update the User account information
-         UserInfo.Email = EmailTextBox.Text.Trim();
-         UserInfo.Comment = CommentTextBox.Text.Trim();
-    
-         Membership.UpdateUser(UserInfo);
-    
-         // Revert the grid's EditIndex to -1 and rebind the data
-         UserGrid.EditIndex = -1;
-         BindUserGrid();
-    }
+[!code[Main](role-based-authorization-cs/samples/sample7.xml)]
 
 The `RowEditing` and `RowCancelingEdit` event handlers simply set the GridView's `EditIndex` property and then rebind the list of user accounts to the grid. The interesting stuff happens in the `RowUpdating` event handler. This event handler starts by ensuring that the data is valid and then grabs the `UserName` value of the edited user account from the `DataKeys` collection. The `Email` and `Comment` TextBoxes in the two TemplateFields' `EditItemTemplate` s are then programmatically referenced. Their `Text` properties contain the edited email address and comment.
 
@@ -326,18 +205,7 @@ In order to update a user account through the Membership API we need to first ge
 
 Next, create the `RowDeleting` event handler and then add the following code:
 
-    protected void UserGrid_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-         // Determine the username of the user we are editing
-         string UserName = UserGrid.DataKeys[e.RowIndex].Value.ToString();
-    
-         // Delete the user
-         Membership.DeleteUser(UserName);
-    
-         // Revert the grid's EditIndex to -1 and rebind the data
-         UserGrid.EditIndex = -1;
-         BindUserGrid();
-    }
+[!code[Main](role-based-authorization-cs/samples/sample8.xml)]
 
 The above event handler starts by grabbing the `UserName` value from the GridView's `DataKeys` collection; this `UserName` value is then passed into the Membership class's [`DeleteUser` method](https://msdn.microsoft.com/en-us/library/system.web.security.membership.deleteuser.aspx). The `DeleteUser` method deletes the user account from the system, including related membership data (such as what roles this user belongs to). After deleting the user, the grid's `EditIndex` is set to -1 (in case the user clicked Delete while another row was in edit mode) and the `BindUserGrid` method is called.
 
@@ -354,17 +222,7 @@ As we've seen in past tutorials, the LoginView control is useful for displaying 
 
 Start by adding a LoginView above the `UserGrid` GridView. As we've discussed earlier, the LoginView control has two built-in templates: `AnonymousTemplate` and `LoggedInTemplate`. Enter a brief message in both of these templates that informs the user that they cannot edit or delete any user information.
 
-    <asp:LoginView ID="LoginView1" runat="server">
-         <LoggedInTemplate>
-              You are not a member of the Supervisors or Administrators roles. Therefore you
-              cannot edit or delete any user information.
-         </LoggedInTemplate>
-         <AnonymousTemplate>
-              You are not logged into the system. Therefore you cannot edit or delete any user
-    
-              information.
-         </AnonymousTemplate>
-    </asp:LoginView>
+[!code[Main](role-based-authorization-cs/samples/sample9.xml)]
 
 In addition to the `AnonymousTemplate` and `LoggedInTemplate`, the LoginView control can include *RoleGroups*, which are role-specific templates. Each RoleGroup contains a single property, `Roles`, which specifies what roles the RoleGroup applies to. The `Roles` property can be set to a single role (like "Administrators") or to a comma-delimited list of roles (like "Administrators, Supervisors").
 
@@ -380,32 +238,7 @@ Click OK to close the RoleGroup Collection Editor; this updates the LoginView's 
 
 Edit the RoleGroups so that users in the Supervisors role are displayed instructions on how to edit user accounts, while users in the Administrators role are shown instructions for editing and deleting. After making these changes, your LoginView's declarative markup should look similar to the following.
 
-    <asp:LoginView ID="LoginView1" runat="server">
-         <RoleGroups>
-              <asp:RoleGroup Roles="Administrators">
-                   <ContentTemplate>
-                        As an Administrator, you may edit and delete user accounts. 
-                        Remember: With great power comes great responsibility!
-    
-                   </ContentTemplate>
-              </asp:RoleGroup>
-              <asp:RoleGroup Roles="Supervisors">
-                   <ContentTemplate>
-                        As a Supervisor, you may edit users' Email and Comment information. 
-                        Simply click the Edit button, make your changes, and then click Update.
-                   </ContentTemplate>
-              </asp:RoleGroup>
-         </RoleGroups>
-    
-         <LoggedInTemplate>
-              You are not a member of the Supervisors or Administrators roles. 
-              Therefore you cannot edit or delete any user information.
-         </LoggedInTemplate>
-         <AnonymousTemplate>
-              You are not logged into the system. Therefore you cannot edit or delete any user
-              information.
-         </AnonymousTemplate>
-    </asp:LoginView>
+[!code[Main](role-based-authorization-cs/samples/sample10.xml)]
 
 After making these changes, save the page and then visit it through a browser. First visit the page as an anonymous user. You should be shown the message, "You are not logged into the system. Therefore you cannot edit or delete any user information." Then log in as an authenticated user, but one that is neither in the Supervisors nor Administrators role. This time you should see the message, "You are not a member of the Supervisors or Administrators roles. Therefore you cannot edit or delete any user information."
 
@@ -446,42 +279,13 @@ The easiest way to programmatically reference controls in a CommandField is to f
 
 Update the Edit and Delete LinkButtons in the `ItemTemplate`, setting their `ID` properties to values of `EditButton` and `DeleteButton`, respectively.
 
-    <asp:TemplateField ShowHeader="False">
-         <EditItemTemplate>
-              <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True"
-                   CommandName="Update" Text="Update"></asp:LinkButton>
-    
-               <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False"
-                    CommandName="Cancel" Text="Cancel"></asp:LinkButton>
-    
-         </EditItemTemplate>
-         <ItemTemplate>
-              <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False"
-                   CommandName="Edit" Text="Edit"></asp:LinkButton>
-    
-               <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False"
-                   CommandName="Delete" Text="Delete"></asp:LinkButton>
-    
-         </ItemTemplate>
-    </asp:TemplateField>
+[!code[Main](role-based-authorization-cs/samples/sample11.xml)]
 
 Whenever data is bound to the GridView, the GridView enumerates the records in its `DataSource` property and generates a corresponding `GridViewRow` object. As each `GridViewRow` object is created, the `RowCreated` event is fired. In order to hide the Edit and Delete buttons for unauthorized users, we need to create an event handler for this event and programmatically reference the Edit and Delete LinkButtons, setting their `Visible` properties accordingly.
 
 Create an event handler the `RowCreated` event and then add the following code:
 
-    protected void UserGrid_RowCreated(object sender, GridViewRowEventArgs e)
-    {
-         if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != UserGrid.EditIndex)
-         {
-              // Programmatically reference the Edit and Delete LinkButtons
-              LinkButton EditButton = e.Row.FindControl("EditButton") as LinkButton;
-    
-              LinkButton DeleteButton = e.Row.FindControl("DeleteButton") as LinkButton;
-    
-              EditButton.Visible = (User.IsInRole("Administrators") || User.IsInRole("Supervisors"));
-              DeleteButton.Visible = User.IsInRole("Administrators");
-         }
-    }
+[!code[Main](role-based-authorization-cs/samples/sample12.xml)]
 
 Keep in mind that the `RowCreated` event fires for *all* of the GridView rows, including the header, the footer, the pager interface, and so forth. We only want to programmatically reference the Edit and Delete LinkButtons if we are dealing with a data row not in edit mode (since the row in edit mode has Update and Cancel buttons instead of Edit and Delete). This check is handled by the `if` statement.
 
@@ -528,18 +332,7 @@ We looked at using the `PrincipalPermission` attribute back in the <a id="_msoan
 
 Let's demonstrate using the `PrincipalPermission` attribute on the GridView's `RowUpdating` and `RowDeleting` event handlers to prohibit execution for non-authorized users. All we need to do is add the appropriate attribute atop each function definition:
 
-    [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
-    [PrincipalPermission(SecurityAction.Demand, Role = "Supervisors")]
-    protected void UserGrid_RowUpdating(object sender, GridViewUpdateEventArgs e)
-    {
-         ...
-    }
-    
-    [PrincipalPermission(SecurityAction.Demand, Role = "Administrators")]
-    protected void UserGrid_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-         ...
-    }
+[!code[Main](role-based-authorization-cs/samples/sample13.xml)]
 
 The attribute for the `RowUpdating` event handler dictates that only users in the Administrators or Supervisors roles can execute the event handler, where as the attribute on the `RowDeleting` event handler limits the execution to users in the Administrators role.
 

@@ -77,8 +77,7 @@ If you see only two application pools and both of them are set to the .NET Frame
 
 - Open a command prompt window by right-clicking **Command Prompt** in the Windows **Start** menu and selecting **Run as Administrator**. Then run [aspnet\_regiis.exe](https://msdn.microsoft.com/en-us/library/k6h9cz8h.aspx) to install ASP.NET 4 in IIS, using the following commands. (In 64-bit systems, replace "Framework" with "Framework64".)
 
-        cd %windir%\Microsoft.NET\Framework\v4.0.30319
-        aspnet_regiis.exe –iru
+    [!code[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample2.xml)]
 
     [![aspnet_regiis_installing_ASP.NET_4](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/_static/image4.png)](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/_static/image3.png)
 
@@ -148,7 +147,7 @@ Leave the **Remove additional files at destination** check box cleared. Since th
 
 In the **Databases** section, enter the following value in the connection string box for **SchoolContext**:
 
-    Data Source=|DataDirectory|School-Prod.sdf
+[!code[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample3.xml)]
 
 The deployment process will put this connection string in the deployed Web.config file because **Use this connection string at runtime** is selected.
 
@@ -156,7 +155,7 @@ Also under **SchoolContext**, select **Apply Code First Migrations**. This optio
 
 In the connection string box for **DefaultConnection**, enter the following value:
 
-    Data Source=|DataDirectory|aspnet-Prod.sdf
+[!code[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample4.xml)]
 
 Leave **Update database** cleared. The membership database will be deployed by copying the .sdf file in App\_Data, and you don't want the deployment process to do anything else with this database.
 

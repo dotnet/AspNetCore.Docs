@@ -1,4 +1,5 @@
-public void SendMessage(string name, string message)
-{
-    Clients.All.addContosoChatMessageToPage(new ContosoChatMessage() { UserName = name, Message = message });
-}
+    public IEnumerable<Stock> GetAllStocks()
+    {
+            // Returns data from memory.
+            return _stockTicker.GetAllStocks();
+    }

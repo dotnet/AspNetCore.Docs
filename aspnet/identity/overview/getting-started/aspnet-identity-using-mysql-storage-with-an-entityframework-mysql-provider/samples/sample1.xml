@@ -1,5 +1,13 @@
-<connectionStrings>
-  <add name="DefaultConnection"
-    providerName="MySql.Data.MySqlClient"
-    connectionString="[Insert your ConnectionString from Azure here]"/>
-</connectionStrings>
+        <entityFramework>
+          <defaultConnectionFactory
+              type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+            <parameters>
+              <parameter value="v11.0" />
+            </parameters>
+          </defaultConnectionFactory>
+          <providers>
+            <provider
+              invariantName="System.Data.SqlClient"
+              type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+          </providers>
+        </entityFramework>

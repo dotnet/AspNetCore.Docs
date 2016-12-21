@@ -38,33 +38,7 @@ We can create the map.ascx partial by right-clicking on the \Views\Dinners direc
 
 When we click the "Add" button our partial template will be created. We'll then update the Map.ascx file to have the following content:
 
-    <script src="http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2" type="text/javascript"></script>
-    <script src="/Scripts/Map.js" type="text/javascript"></script>
-    
-    <div id="theMap">
-    </div>
-    
-    <script type="text/javascript">
-       
-        $(document).ready(function() {
-            var latitude = <%=Model.Latitude%>;
-            var longitude = <%=Model.Longitude%>;
-                    
-            if ((latitude == 0) || (longitude == 0))
-                LoadMap();
-            else
-                LoadMap(latitude, longitude, mapLoaded);
-        });
-          
-       function mapLoaded() {
-            var title = "<%=Html.Encode(Model.Title) %>";
-            var address = "<%=Html.Encode(Model.Address) %>";
-        
-            LoadPin(center, title, address);
-            map.SetZoomLevel(14);
-        } 
-          
-    </script>
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample1.xml)]
 
 The first &lt;script&gt; reference points to the Microsoft Virtual Earth 6.2 mapping library. The second &lt;script&gt; reference points to a map.js file that we will shortly create which will encapsulate our common Javascript mapping logic. The &lt;div id="theMap"&gt; element is the HTML container that Virtual Earth will use to host the map.
 
@@ -78,90 +52,7 @@ Let's now create the Map.js file that we can use to encapsulate the JavaScript f
 
 Below is the JavaScript code we'll add to the Map.js file that will interact with Virtual Earth to display our map and add locations pins to it for our dinners:
 
-    var map = null;
-    var points = [];
-    var shapes = [];
-    var center = null;
-    
-    function LoadMap(latitude, longitude, onMapLoaded) {
-        map = new VEMap('theMap');
-        options = new VEMapOptions();
-        options.EnableBirdseye = false;
-    
-        // Makes the control bar less obtrusize.
-        map.SetDashboardSize(VEDashboardSize.Small);
-        
-        if (onMapLoaded != null)
-            map.onLoadMap = onMapLoaded;
-    
-        if (latitude != null && longitude != null) {
-            center = new VELatLong(latitude, longitude);
-        }
-    
-        map.LoadMap(center, null, null, null, null, null, null, options);
-    }
-    
-    function LoadPin(LL, name, description) {
-        var shape = new VEShape(VEShapeType.Pushpin, LL);
-    
-        //Make a nice Pushpin shape with a title and description
-        shape.SetTitle("<span class=\"pinTitle\"> " + escape(name) + "</span>");
-        if (description !== undefined) {
-            shape.SetDescription("<p class=\"pinDetails\">" + 
-            escape(description) + "</p>");
-        }
-        map.AddShape(shape);
-        points.push(LL);
-        shapes.push(shape);
-    }
-    
-    function FindAddressOnMap(where) {
-        var numberOfResults = 20;
-        var setBestMapView = true;
-        var showResults = true;
-    
-        map.Find("", where, null, null, null,
-               numberOfResults, showResults, true, true,
-               setBestMapView, callbackForLocation);
-    }
-    
-    function callbackForLocation(layer, resultsArray, places,
-                hasMore, VEErrorMessage) {
-                
-        clearMap();
-    
-        if (places == null) 
-            return;
-    
-        //Make a pushpin for each place we find
-        $.each(places, function(i, item) {
-            description = "";
-            if (item.Description !== undefined) {
-                description = item.Description;
-            }
-            var LL = new VELatLong(item.LatLong.Latitude,
-                            item.LatLong.Longitude);
-                            
-            LoadPin(LL, item.Name, description);
-        });
-    
-        //Make sure all pushpins are visible
-        if (points.length > 1) {
-            map.SetMapView(points);
-        }
-    
-        //If we've found exactly one place, that's our address.
-        if (points.length === 1) {
-            $("#Latitude").val(points[0].Latitude);
-            $("#Longitude").val(points[0].Longitude);
-        }
-    }
-    
-    function clearMap() {
-        map.Clear();
-        points = [];
-        shapes = [];
-    }
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample2.xml)]
 
 ### Integrating the Map with Create and Edit Forms
 
@@ -169,49 +60,11 @@ We'll now integrate the Map support with our existing Create and Edit scenarios.
 
 All we need to-do is to open the \Views\Dinners\DinnerForm.ascx partial view and update it to include our new map partial. Below is what the updated DinnerForm will look like once the map is added (note: the HTML form elements are omitted from the code snippet below for brevity):
 
-    <%= Html.ValidationSummary() %>
-     
-    <% using (Html.BeginForm()) { %>
-     
-        <fieldset>
-    
-            <div id="dinnerDiv">
-                <p>
-                   [HTML Form Elements Removed for Brevity]
-                </p>                 
-                <p>
-                   <input type="submit" value="Save"/>
-                </p>
-            </div>
-            
-            <div id="mapDiv">    
-                <%Html.RenderPartial("Map", Model.Dinner); %>
-            </div> 
-                
-        </fieldset>
-    
-        <script type="text/javascript">
-    
-            $(document).ready(function() {
-                $("#Address").blur(function(evt) {
-                    $("#Latitude").val("");
-                    $("#Longitude").val("");
-    
-                    var address = jQuery.trim($("#Address").val());
-                    if (address.length < 1)
-                        return;
-    
-                    FindAddressOnMap(address);
-                });
-            });
-        
-        </script>
-    
-    <% } %>
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample3.xml)]
 
 The DinnerForm partial above takes an object of type "DinnerFormViewModel" as its model type (because it needs both a Dinner object, as well as a SelectList to populate the dropdownlist of countries). Our Map partial just needs an object of type "Dinner" as its model type, and so when we render the map partial we are passing just the Dinner sub-property of DinnerFormViewModel to it:
 
-    <% Html.RenderPartial("Map", Model.Dinner); %>
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample4.xml)]
 
 The JavaScript function we've added to the partial uses jQuery to attach a "blur" event to the "Address" HTML textbox. You've probably heard of "focus" events that fire when a user clicks or tabs into a textbox. The opposite is a "blur" event that fires when a user exits a textbox. The above event handler clears the latitude and longitude textbox values when this happens, and then plots the new address location on our map. A callback event handler that we defined within the map.js file will then update the longitude and latitude textboxes on our form using values returned by virtual earth based on the address we gave it.
 
@@ -231,10 +84,7 @@ Every time the address field is changed, the map and the latitude/longitude coor
 
 Now that the map displays the Dinner location, we can also change the Latitude and Longitude form fields from being visible textboxes to instead be hidden elements (since the map is automatically updating them each time an address is entered). To-do this we'll switch from using the Html.TextBox() HTML helper to using the Html.Hidden()helper method:
 
-    <p>
-        <%= Html.Hidden("Latitude", Model.Dinner.Latitude)%>
-        <%= Html.Hidden("Longitude", Model.Dinner.Longitude)%>
-    </p>
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample5.xml)]
 
 And now our forms are a little more user-friendly and avoid displaying the raw latitude/longitude (while still storing them with each Dinner in the database):
 
@@ -246,47 +96,7 @@ Now that we have the map integrated with our Create and Edit scenarios, let's al
 
 Below is what the source code to the complete Details view (with map integration) looks like:
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent"runat="server">
-        <%= Html.Encode(Model.Title) %>
-    </asp:Content>
-    
-    <asp:Content ID="details" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <div id="dinnerDiv">
-    
-            <h2><%=Html.Encode(Model.Title) %></h2>
-            <p>
-                <strong>When:</strong> 
-                <%=Model.EventDate.ToShortDateString() %> 
-    
-                <strong>@</strong>
-                <%=Model.EventDate.ToShortTimeString() %>
-            </p>
-            <p>
-                <strong>Where:</strong> 
-                <%=Html.Encode(Model.Address) %>,
-                <%=Html.Encode(Model.Country) %>
-            </p>
-             <p>
-                <strong>Description:</strong> 
-                <%=Html.Encode(Model.Description) %>
-            </p>       
-            <p>
-                <strong>Organizer:</strong> 
-                <%=Html.Encode(Model.HostedBy) %>
-                (<%=Html.Encode(Model.ContactPhone) %>)
-            </p>
-        
-            <%Html.RenderPartial("RSVPStatus"); %>
-            <%Html.RenderPartial("EditAndDeleteLinks"); %>
-     
-        </div>
-        
-        <div id="mapDiv">
-            <%Html.RenderPartial("map"); %>    
-        </div>   
-             
-    </asp:Content>
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample6.xml)]
 
 And now when a user navigates to a /Dinners/Details/[id] URL they'll see details about the dinner, the location of the dinner on the map (complete with a push-pin that when hovered over displays the title of the dinner and the address of it), and have an AJAX link to RSVP for it:
 
@@ -306,41 +116,7 @@ To implement this technique, we will open the "Server Explorer" within Visual St
 
 We'll then paste in the following DistanceBetween function:
 
-    CREATE FUNCTION [dbo].[DistanceBetween](@Lat1 as real,
-                    @Long1 as real, @Lat2 as real, @Long2 as real)
-    RETURNS real
-    AS
-    BEGIN
-    
-    DECLARE @dLat1InRad as float(53);
-    SET @dLat1InRad = @Lat1 * (PI()/180.0);
-    DECLARE @dLong1InRad as float(53);
-    SET @dLong1InRad = @Long1 * (PI()/180.0);
-    DECLARE @dLat2InRad as float(53);
-    SET @dLat2InRad = @Lat2 * (PI()/180.0);
-    DECLARE @dLong2InRad as float(53);
-    SET @dLong2InRad = @Long2 * (PI()/180.0);
-    
-    DECLARE @dLongitude as float(53);
-    SET @dLongitude = @dLong2InRad - @dLong1InRad;
-    DECLARE @dLatitude as float(53);
-    SET @dLatitude = @dLat2InRad - @dLat1InRad;
-    /* Intermediate result a. */
-    DECLARE @a as float(53);
-    SET @a = SQUARE (SIN (@dLatitude / 2.0)) + COS (@dLat1InRad)
-                     * COS (@dLat2InRad)
-                     * SQUARE(SIN (@dLongitude / 2.0));
-    /* Intermediate result c (great circle distance in Radians). */
-    DECLARE @c as real;
-    SET @c = 2.0 * ATN2 (SQRT (@a), SQRT (1.0 - @a));
-    DECLARE @kEarthRadius as real;
-    /* SET kEarthRadius = 3956.0 miles */
-    SET @kEarthRadius = 6376.5;        /* kms */
-    
-    DECLARE @dDistance as real;
-    SET @dDistance = @kEarthRadius * @c;
-    return (@dDistance);
-    END
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample7.xml)]
 
 We'll then create a new table-valued function in SQL Server that we'll call "NearestDinners":
 
@@ -348,17 +124,7 @@ We'll then create a new table-valued function in SQL Server that we'll call "Nea
 
 This "NearestDinners" table function uses the DistanceBetween helper function to return all Dinners within 100 miles of the latitude and longitude we supply it:
 
-    CREATE FUNCTION [dbo].[NearestDinners]
-          (
-          @lat real,
-          @long real
-          )
-    RETURNS  TABLE
-    AS
-          RETURN
-          SELECT Dinners.DinnerID
-          FROM   Dinners 
-          WHERE  dbo.DistanceBetween(@lat, @long, Latitude, Longitude) <100
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample8.xml)]
 
 To call this function, we'll first open up the LINQ to SQL designer by double-clicking on the NerdDinner.dbml file within our \Models directory:
 
@@ -370,15 +136,7 @@ We'll then drag the NearestDinners and DistanceBetween functions onto the LINQ t
 
 We can then expose a "FindByLocation" query method on our DinnerRepository class that uses the NearestDinner function to return upcoming Dinners that are within 100 miles of the specified location:
 
-    public IQueryable<Dinner> FindByLocation(float latitude, float longitude) {
-    
-       var dinners = from dinner in FindUpcomingDinners()
-                     join i in db.NearestDinners(latitude, longitude)
-                     on dinner.DinnerID equals i.DinnerID
-                     select dinner;
-    
-       return dinners;
-    }
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample9.xml)]
 
 ### Implementing a JSON-based AJAX Search Action Method
 
@@ -386,145 +144,33 @@ We'll now implement a controller action method that takes advantage of the new F
 
 To implement this, we'll create a new "SearchController" class by right-clicking on the \Controllers directory and choosing the Add-&gt;Controller menu command. We'll then implement a "SearchByLocation" action method within the new SearchController class like below:
 
-    public class JsonDinner {
-        public int      DinnerID    { get; set; }
-        public string   Title       { get; set; }
-        public double   Latitude    { get; set; }
-        public double   Longitude   { get; set; }
-        public string   Description { get; set; }
-        public int      RSVPCount   { get; set; }
-    }
-    
-    public class SearchController : Controller {
-    
-        DinnerRepository dinnerRepository = new DinnerRepository();
-    
-        //
-        // AJAX: /Search/SearchByLocation
-    
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult SearchByLocation(float longitude, float latitude) {
-    
-            var dinners = dinnerRepository.FindByLocation(latitude,longitude);
-    
-            var jsonDinners = from dinner in dinners
-                              select new JsonDinner {
-                                  DinnerID = dinner.DinnerID,
-                                  Latitude = dinner.Latitude,
-                                  Longitude = dinner.Longitude,
-                                  Title = dinner.Title,
-                                  Description = dinner.Description,
-                                  RSVPCount = dinner.RSVPs.Count
-                              };
-    
-            return Json(jsonDinners.ToList());
-        }
-    }
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample10.xml)]
 
 The SearchController's SearchByLocation action method internally calls the FindByLocation method on DinnerRespository to get a list of nearby dinners. Rather than return the Dinner objects directly to the client, though, it instead returns JsonDinner objects. The JsonDinner class exposes a subset of Dinner properties (for example: for security reasons it doesn't disclose the names of the people who have RSVP'd for a dinner). It also includes an RSVPCount property that doesn't exist on Dinner– and which is dynamically calculated by counting the number of RSVP objects associated with a particular dinner.
 
 We are then using the Json() helper method on the Controller base class to return the sequence of dinners using a JSON-based wire format. JSON is a standard text format for representing simple data-structures. Below is an example of what a JSON-formatted list of two JsonDinner objects looks like when returned from our action method:
 
-    [{"DinnerID":53,"Title":"Dinner with the Family","Latitude":47.64312,"Longitude":-122.130609,"Description":"Fun dinner","RSVPCount":2}, 
-    {"DinnerID":54,"Title":"Another Dinner","Latitude":47.632546,"Longitude":-122.21201,"Description":"Dinner with Friends","RSVPCount":3}]
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample11.xml)]
 
 ### Calling the JSON-based AJAX method using jQuery
 
 We are now ready to update the home page of the NerdDinner application to use the SearchController's SearchByLocation action method. To-do this, we'll open the /Views/Home/Index.aspx view template and update it to have a textbox, search button, our map, and a &lt;div&gt; element named dinnerList:
 
-    <h2>Find a Dinner</h2>
-    
-    <div id="mapDivLeft">
-    
-        <div id="searchBox">
-            Enter your location: <%=Html.TextBox("Location") %>
-            <input id="search" type="submit" value="Search"/>
-        </div>
-    
-        <div id="theMap">
-        </div>
-    
-    </div>
-    
-    <div id="mapDivRight">
-        <div id="dinnerList"></div>
-    </div>
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample12.xml)]
 
 We can then add two JavaScript functions to the page:
 
-    <script type="text/javascript">
-    
-        $(document).ready(function() {
-            LoadMap();
-        });
-    
-        $("#search").click(function(evt) {
-            var where = jQuery.trim($("#Location").val());
-            if (where.length < 1) 
-                return;
-    
-            FindDinnersGivenLocation(where);
-        });
-    
-    </script>
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample13.xml)]
 
 The first JavaScript function loads the map when the page first loads. The second JavaScript function wires up a JavaScript click event handler on the search button. When the button is pressed it calls the FindDinnersGivenLocation() JavaScript function which we'll add to our Map.js file:
 
-    function FindDinnersGivenLocation(where) {
-        map.Find("", where, null, null, null, null, null, false,
-           null, null, callbackUpdateMapDinners);
-    }
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample14.xml)]
 
 This FindDinnersGivenLocation() function calls map.Find() on the Virtual Earth Control to center it on the entered location. When the virtual earth map service returns, the map.Find() method invokes the callbackUpdateMapDinners callback method we passed it as the final argument.
 
 The callbackUpdateMapDinners() method is where the real work is done. It uses jQuery's $.post() helper method to perform an AJAX call to our SearchController's SearchByLocation() action method – passing it the latitude and longitude of the newly centered map. It defines an inline function that will be called when the $.post() helper method completes, and the JSON-formatted dinner results returned from the SearchByLocation() action method will be passed it using a variable called "dinners". It then does a foreach over each returned dinner, and uses the dinner's latitude and longitude and other properties to add a new pin on the map. It also adds a dinner entry to the HTML list of dinners to the right of the map. It then wires-up a hover event for both the pushpins and the HTML list so that details about the dinner are displayed when a user hovers over them:
 
-    function callbackUpdateMapDinners(layer, resultsArray, places, hasMore, VEErrorMessage) {
-    
-        $("#dinnerList").empty();
-        clearMap();
-        var center = map.GetCenter();
-    
-        $.post("/Search/SearchByLocation", { latitude: center.Latitude, 
-                                             longitude: center.Longitude },     
-        function(dinners) {
-            $.each(dinners, function(i, dinner) {
-    
-                var LL = new VELatLong(dinner.Latitude, 
-                                       dinner.Longitude, 0, null);
-    
-                var RsvpMessage = "";
-    
-                if (dinner.RSVPCount == 1)
-                    RsvpMessage = "" + dinner.RSVPCount + "RSVP";
-                else
-                    RsvpMessage = "" + dinner.RSVPCount + "RSVPs";
-    
-                // Add Pin to Map
-                LoadPin(LL, '<a href="/Dinners/Details/' + dinner.DinnerID + '">'
-                            + dinner.Title + '</a>',
-                            "<p>" + dinner.Description + "</p>" + RsvpMessage);
-    
-                //Add a dinner to the <ul> dinnerList on the right
-                $('#dinnerList').append($('<li/>')
-                                .attr("class", "dinnerItem")
-                                .append($('<a/>').attr("href",
-                                          "/Dinners/Details/" + dinner.DinnerID)
-                                .html(dinner.Title))
-                                .append(" ("+RsvpMessage+")"));
-            });
-    
-            // Adjust zoom to display all the pins we just added.
-            map.SetMapView(points);
-    
-            // Display the event's pin-bubble on hover.
-            $(".dinnerItem").each(function(i, dinner) {
-                $(dinner).hover(
-                    function() { map.ShowInfoBox(shapes[i]); },
-                    function() { map.HideInfoBox(shapes[i]); }
-                );
-            });
-        }, "json");
+[!code[Main](use-ajax-to-implement-mapping-scenarios/samples/sample15.xml)]
 
 And now when we run the application and visit the home-page we'll be presented with a map. When we enter the name of a city the map will display the upcoming dinners near it:
 

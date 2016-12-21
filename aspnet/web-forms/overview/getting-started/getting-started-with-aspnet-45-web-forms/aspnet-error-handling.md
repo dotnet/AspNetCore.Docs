@@ -68,16 +68,7 @@ Unfortunately, when you use the configuration to redirect the user to a differen
 
 However, you can trap errors that occur anywhere in your application by adding code to the `Application_Error` handler in the *Global.asax* file.
 
-    void Application_Error(object sender, EventArgs e)
-    {
-        Exception exc = Server.GetLastError();
-    
-        if (exc is HttpUnhandledException)
-        {
-            // Pass the error on to the error page.
-            Server.Transfer("ErrorPage.aspx?handler=Application_Error%20-%20Global.asax", true);
-        }
-    }
+[!code[Main](aspnet-error-handling/samples/sample2.xml)]
 
 ### Page Level Error Event Handling
 
@@ -87,19 +78,7 @@ You would typically use a page-level error handler to log unhandled errors or to
 
 This code example shows a handler for the Error event in an ASP.NET Web page. This handler catches all exceptions that are not already handled within `try`/`catch` blocks in the page.
 
-    private void Page_Error(object sender, EventArgs e)
-            {
-                Exception exc = Server.GetLastError();
-    
-                // Handle specific exception.
-                if (exc is HttpUnhandledException)
-                {
-                    ErrorMsgTextBox.Text = "An error occurred on this page. Please verify your " +                  
-                    "information to resolve the issue."
-                }
-                // Clear the error from the server.
-                Server.ClearError();
-            }
+[!code[Main](aspnet-error-handling/samples/sample3.xml)]
 
 After you handle an error, you must clear it by calling the `ClearError` method of the Server object (`HttpServerUtility` class), otherwise you will see an error that has previously occurred.
 
@@ -109,26 +88,7 @@ The try-catch statement consists of a try block followed by one or more catch cl
 
 The following code example shows a common way of using `try`/`catch`/`finally` to handle errors.
 
-    try
-        {
-            file.ReadBlock(buffer, index, buffer.Length);
-        }
-        catch (FileNotFoundException e)
-        {
-            Server.Transfer("NoFileErrorPage.aspx", true);
-        }
-        catch (System.IO.IOException e)
-        {
-            Server.Transfer("IOErrorPage.aspx", true);
-        }
-    
-        finally
-        {
-            if (file != null)
-            {
-                file.Close();
-            }
-        }
+[!code[Main](aspnet-error-handling/samples/sample4.xml)]
 
 In the above code, the try block contains the code that needs to be guarded against a possible exception. The block is executed until either an exception is thrown or the block is completed successfully. If either a `FileNotFoundException` exception or an `IOException` exception occurs, the execution is transferred to a different page. Then, the code contained in the finally block is executed, whether an error occurred or not.
 
@@ -142,60 +102,7 @@ Before adding error handling to the Wingtip Toys sample application, you will ad
 3. Choose **Add**. The new class file is displayed.
 4. Replace the existing code with the following:  
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.IO;
-        
-        namespace WingtipToys.Logic
-        {
-          // Create our own utility for exceptions
-          public sealed class ExceptionUtility
-          {
-            // All methods are static, so this can be private
-            private ExceptionUtility()
-            { }
-        
-            // Log an Exception
-            public static void LogException(Exception exc, string source)
-            {
-              // Include logic for logging exceptions
-              // Get the absolute path to the log file
-              string logFile = "App_Data/ErrorLog.txt";
-              logFile = HttpContext.Current.Server.MapPath(logFile);
-        
-              // Open the log file for append and write the log
-              StreamWriter sw = new StreamWriter(logFile, true);
-              sw.WriteLine("********** {0} **********", DateTime.Now);
-              if (exc.InnerException != null)
-              {
-                sw.Write("Inner Exception Type: ");
-                sw.WriteLine(exc.InnerException.GetType().ToString());
-                sw.Write("Inner Exception: ");
-                sw.WriteLine(exc.InnerException.Message);
-                sw.Write("Inner Source: ");
-                sw.WriteLine(exc.InnerException.Source);
-                if (exc.InnerException.StackTrace != null)
-                {
-                  sw.WriteLine("Inner Stack Trace: ");
-                  sw.WriteLine(exc.InnerException.StackTrace);
-                }
-              }
-              sw.Write("Exception Type: ");
-              sw.WriteLine(exc.GetType().ToString());
-              sw.WriteLine("Exception: " + exc.Message);
-              sw.WriteLine("Source: " + source);
-              sw.WriteLine("Stack Trace: ");
-              if (exc.StackTrace != null)
-              {
-                sw.WriteLine(exc.StackTrace);
-                sw.WriteLine();
-              }
-              sw.Close();
-            }
-          }
-        }
+    [!code[Main](aspnet-error-handling/samples/sample5.xml)]
 
 When an exception occurs, the exception can be written to an exception log file by calling the `LogException` method. This method takes two parameters, the exception object and a string containing details about the source of the exception. The exception log is written to the *ErrorLog.txt* file in the *App\_Data* folder.
 
@@ -210,118 +117,10 @@ In the Wingtip Toys sample application, one page will be used to display errors.
 4. Select the *Site.Master* file as the master page, and then choose **OK**.
 5. Replace the existing markup with the following:   
 
-        <%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master"  CodeBehind="ErrorPage.aspx.cs" Inherits="WingtipToys.ErrorPage" %>
-        <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <h2>Error:</h2>
-            <p></p>
-            <asp:Label ID="FriendlyErrorMsg" runat="server" Text="Label" Font-Size="Large" style="color: red"></asp:Label>
-        
-            <asp:Panel ID="DetailedErrorPanel" runat="server" Visible="false">
-                <p> </p>
-                <h4>Detailed Error:</h4>
-                <p>
-                    <asp:Label ID="ErrorDetailedMsg" runat="server" Font-Size="Small" /><br />
-                </p>
-        
-                <h4>Error Handler:</h4>
-                <p>
-                    <asp:Label ID="ErrorHandler" runat="server" Font-Size="Small" /><br />
-                </p>
-        
-                <h4>Detailed Error Message:</h4>
-                <p>
-                    <asp:Label ID="InnerMessage" runat="server" Font-Size="Small" /><br />
-                </p>
-                <p>
-                    <asp:Label ID="InnerTrace" runat="server"  />
-                </p>
-            </asp:Panel>
-        </asp:Content>
+    [!code[Main](aspnet-error-handling/samples/sample6.xml)]
 6. Replace the existing code of the code-behind (*ErrorPage.aspx.cs*) so that it appears as follows:   
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.UI;
-        using System.Web.UI.WebControls;
-        using WingtipToys.Logic;
-        
-        namespace WingtipToys
-        {
-          public partial class ErrorPage : System.Web.UI.Page
-          {
-            protected void Page_Load(object sender, EventArgs e)
-            {
-              // Create safe error messages.
-              string generalErrorMsg = "A problem has occurred on this web site. Please try again. " +
-                  "If this error continues, please contact support.";
-              string httpErrorMsg = "An HTTP error occurred. Page Not found. Please try again.";
-              string unhandledErrorMsg = "The error was unhandled by application code.";
-        
-              // Display safe error message.
-              FriendlyErrorMsg.Text = generalErrorMsg;
-        
-              // Determine where error was handled.
-              string errorHandler = Request.QueryString["handler"];
-              if (errorHandler == null)
-              {
-                errorHandler = "Error Page";
-              }
-        
-              // Get the last error from the server.
-              Exception ex = Server.GetLastError();
-        
-              // Get the error number passed as a querystring value.
-              string errorMsg = Request.QueryString["msg"];
-              if (errorMsg == "404")
-              {
-                ex = new HttpException(404, httpErrorMsg, ex);
-                FriendlyErrorMsg.Text = ex.Message;
-              }
-        
-              // If the exception no longer exists, create a generic exception.
-              if (ex == null)
-              {
-                ex = new Exception(unhandledErrorMsg);
-              }
-        
-              // Show error details to only you (developer). LOCAL ACCESS ONLY.
-              if (Request.IsLocal)
-              {
-                // Detailed Error Message.
-                ErrorDetailedMsg.Text = ex.Message;
-        
-                // Show where the error was handled.
-                ErrorHandler.Text = errorHandler;
-        
-                // Show local access details.
-                DetailedErrorPanel.Visible = true;
-        
-                if (ex.InnerException != null)
-                {
-                  InnerMessage.Text = ex.GetType().ToString() + "<br/>" +
-                      ex.InnerException.Message;
-                  InnerTrace.Text = ex.InnerException.StackTrace;
-                }
-                else
-                {
-                  InnerMessage.Text = ex.GetType().ToString();
-                  if (ex.StackTrace != null)
-                  {
-                    InnerTrace.Text = ex.StackTrace.ToString().TrimStart();
-                  }
-                }
-              }
-        
-              // Log the exception.
-              ExceptionUtility.LogException(ex, errorHandler);
-        
-              // Clear the error from the server.
-              Server.ClearError();
-            }
-          }
-        }
+    [!code[Main](aspnet-error-handling/samples/sample7.xml)]
 
 When the error page is displayed, the `Page_Load` event handler is executed. In the `Page_Load` handler, the location of where the error was first handled is determined. Then, the last error that occurred is determined by call the `GetLastError` method of the Server object. If the exception no longer exists, a generic exception is created. Then, if the HTTP request was made locally, all error details are shown. In this case, only the local machine running the web application will see these error details. After the error information has been displayed, the error is added to the log file and the error is cleared from the server.
 
@@ -336,7 +135,7 @@ Update the configuration by adding a `customErrors` section to the *Web.config* 
 1. In **Solution Explorer**, find and open the *Web.config* file at the root of the Wingtip Toys sample application.
 2. Add the `customErrors` section to the *Web.config* file within the `<system.web>` node as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample2.xml?highlight=3-5)]
+    [!code[Main](aspnet-error-handling/samples/sample8.xml?highlight=3-5)]
 3. Save the *Web.config* file.
 
 The `customErrors` section specifies the mode, which is set to "On". It also specifies the `defaultRedirect`, which tells the application which page to navigate to when an error occurs. In addition, you have added a specific error element that specifies how to handle a 404 error when a page is not found. Later in this tutorial, you will add additional error handling that will capture the details of an error at the application level.
@@ -363,7 +162,7 @@ To verify how your application will function when an error occurs, you can delib
  The     *Default.aspx.cs* code-behind page will be displayed.
 2. In the `Page_Load` handler, add code so that the handler appears as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample3.xml?highlight=3-4)]
+    [!code[Main](aspnet-error-handling/samples/sample9.xml?highlight=3-4)]
 
 It is possible to create various different types of exceptions. In the above code, you are creating an `InvalidOperationException` when the *Default.aspx* page is loaded.
 
@@ -390,23 +189,7 @@ Rather than trap the exception using the `customErrors` section in the *Web.conf
 1. In **Solution Explorer**, find and open the *Global.asax.cs* file.
 2. Add an **Application\_Error** handler so that it appears as follows:   
 
-        void Application_Error(object sender, EventArgs e)
-        {
-          // Code that runs when an unhandled error occurs.
-        
-          // Get last error from the server
-          Exception exc = Server.GetLastError();
-        
-          if (exc is HttpUnhandledException)
-          {
-            if (exc.InnerException != null)
-            {
-              exc = new Exception(exc.InnerException.Message);
-              Server.Transfer("ErrorPage.aspx?handler=Application_Error%20-%20Global.asax",
-                  true);
-            }
-          }
-        }
+    [!code[Main](aspnet-error-handling/samples/sample10.xml)]
 
 When an error occurs in the application, the `Application_Error` handler is called. In this handler, the last exception is retrieved and reviewed. If the exception was unhandled and the exception contains inner-exception details (that is, `InnerException` is not null), the application transfers execution to the error page where the exception details are displayed.
 
@@ -427,7 +210,7 @@ You can add page-level error handling to a page either by using adding an `Error
 1. In **Solution Explorer**, find and open the *Default.aspx.cs* file.
 2. Add a `Page_Error` handler so that the code-behind appears as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample4.xml?highlight=18-30)]
+    [!code[Main](aspnet-error-handling/samples/sample11.xml?highlight=18-30)]
 
 When an error occurs on the page, the `Page_Error` event handler is called. In this handler, the last exception is retrieved and reviewed. If an `InvalidOperationException` occurs, the `Page_Error` event handler transfers execution to the error page where the exception details are displayed.
 
@@ -449,10 +232,7 @@ To allow the Wingtip Toys sample application to function without throwing the ex
 1. Open the code-behind of the *Default.aspx* page.
 2. In the `Page_Load` handler, remove the code that throws the exception so that the handler appears as follows:   
 
-        protected void Page_Load(object sender, EventArgs e)
-            {
-        
-            }
+    [!code[Main](aspnet-error-handling/samples/sample12.xml)]
 
 ### Adding Code-Level Error Logging
 
@@ -461,7 +241,7 @@ As mentioned earlier in this tutorial, you can add try/catch statements to attem
 1. In **Solution Explorer**, in the *Logic* folder, find and open the *PayPalFunctions.cs* file.
 2. Update the `HttpCall` method so that the code appears as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample5.xml?highlight=20,22-23)]
+    [!code[Main](aspnet-error-handling/samples/sample13.xml?highlight=20,22-23)]
 
 The above code calls the `LogException` method that is contained in the `ExceptionUtility` class. You added the *ExceptionUtility.cs* class file to the *Logic* folder earlier in this tutorial. The `LogException` method takes two parameters. The first parameter is the exception object. The second parameter is a string used to recognize the source of the error.
 

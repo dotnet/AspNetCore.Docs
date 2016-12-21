@@ -43,14 +43,7 @@ Before we get to the detailed tutorial, here is a quick overview of what you wil
 3. Create a SignalR application.
 4. Add the following code to Startup.cs to configure the backplane: 
 
-        public void Configuration(IAppBuilder app)
-        {
-            string connectionString = "Service Bus connection string";
-            GlobalHost.DependencyResolver.UseServiceBus(connectionString, "YourAppName");
-        
-            app.MapSignalR();
-            // ...
-        }
+    [!code[Main](scaleout-with-windows-azure-service-bus/samples/sample1.xml)]
 
 This code configures the backplane with the default values for [TopicCount](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.servicebusscaleoutconfiguration.topiccount(v=vs.118).aspx) and [MaxQueueLength](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.messaging.scaleoutconfiguration.maxqueuelength(v=vs.118).aspx). For information on changing these values, see [SignalR Performance: Scaleout Metrics](signalr-performance.md).
 
@@ -98,8 +91,7 @@ To create the chat application, follow the steps in the tutorial [Getting Starte
 
 Use NuGet to install the required libraries. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the **Package Manager Console** window, enter the following commands:
 
-    Install-Package -ProjectName SignalRChat Microsoft.AspNet.SignalR
-    Install-Package -ProjectName SignalRChat Microsoft.AspNet.SignalR.ServiceBus
+[!code[Main](scaleout-with-windows-azure-service-bus/samples/sample2.xml)]
 
 Use the `-ProjectName` option to install the packages to the ASP.NET MVC project, rather than the Windows Azure project.
 
@@ -107,14 +99,7 @@ Use the `-ProjectName` option to install the packages to the ASP.NET MVC project
 
 In your application's Startup.cs file, add the following code:
 
-    public void Configuration(IAppBuilder app)
-    {
-        // Any connection or hub wire up and configuration should go here
-        string connectionString = "";
-        GlobalHost.DependencyResolver.UseServiceBus(connectionString, "Chat");  
-    
-        app.MapSignalR();
-    }
+[!code[Main](scaleout-with-windows-azure-service-bus/samples/sample3.xml)]
 
 Now you need to get your service bus connection string. In the Azure portal, select the service bus namespace that you created and click the Access Key icon.
 
@@ -124,8 +109,7 @@ Copy the connection string to the clipboard, then paste it into the *connectionS
 
 ![](scaleout-with-windows-azure-service-bus/_static/image8.png)
 
-    string connectionString = "Endpoint=sb://xxxx.servicebus.windows.net/;
-    SharedSecretIssuer=owner;SharedSecretValue=XXXXXXXX";
+[!code[Main](scaleout-with-windows-azure-service-bus/samples/sample4.xml)]
 
 ## Deploy to Azure
 

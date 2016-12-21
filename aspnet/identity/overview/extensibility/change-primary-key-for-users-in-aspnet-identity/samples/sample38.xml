@@ -1,63 +1,87 @@
-public partial class TwoFactorAuthenticationSignIn : System.Web.UI.Page
+public partial class ManagePassword : System.Web.UI.Page
 {
-    private ApplicationSignInManager signinManager;
-    private ApplicationUserManager manager;
-
-    public TwoFactorAuthenticationSignIn()
+    protected string SuccessMessage
     {
-        manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+        get;
+        private set;
+    }
+
+    private bool HasPassword(ApplicationUserManager manager)
+    {
+        return manager.HasPassword(User.Identity.GetUserId<int>());
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        var userId = signinManager.GetVerifiedUserId<ApplicationUser, int>();
-        if (userId == default(int))
-        {
-            Response.Redirect("/Account/Error", true);
-        }
-        var userFactors = manager.GetValidTwoFactorProviders(userId);
-        Providers.DataSource = userFactors.Select(x => x).ToList();
-        Providers.DataBind();            
-    }
+        var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
-    protected void CodeSubmit_Click(object sender, EventArgs e)
-    {
-        bool rememberMe = false;
-        bool.TryParse(Request.QueryString["RememberMe"], out rememberMe);
-            
-        var result = signinManager.TwoFactorSignIn<ApplicationUser, int>(SelectedProvider.Value, Code.Text, isPersistent: rememberMe, rememberBrowser: RememberBrowser.Checked);
-        switch (result)
+        if (!IsPostBack)
         {
-            case SignInStatus.Success:
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                break;
-            case SignInStatus.LockedOut:
-                Response.Redirect("/Account/Lockout");
-                break;
-            case SignInStatus.Failure:
-            default:
-                FailureText.Text = "Invalid code";
-                ErrorMessage.Visible = true;
-                break;
+            // Determine the sections to render
+            if (HasPassword(manager))
+            {
+                changePasswordHolder.Visible = true;
+            }
+            else
+            {
+                setPassword.Visible = true;
+                changePasswordHolder.Visible = false;
+            }
+
+            // Render success message
+            var message = Request.QueryString["m"];
+            if (message != null)
+            {
+                // Strip the query string from action
+                Form.Action = ResolveUrl("~/Account/Manage");
+            }
         }
     }
 
-    protected void ProviderSubmit_Click(object sender, EventArgs e)
+    protected void ChangePassword_Click(object sender, EventArgs e)
     {
-        if (!signinManager.SendTwoFactorCode(Providers.SelectedValue))
+        if (IsValid)
         {
-            Response.Redirect("/Account/Error");
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            IdentityResult result = manager.ChangePassword(
+                User.Identity.GetUserId<int>(), CurrentPassword.Text, NewPassword.Text);
+            if (result.Succeeded)
+            {
+                var user = manager.FindById(User.Identity.GetUserId<int>());
+                IdentityHelper.SignIn(manager, user, isPersistent: false);
+                Response.Redirect("~/Account/Manage?m=ChangePwdSuccess");
+            }
+            else
+            {
+                AddErrors(result);
+            }
         }
+    }
 
-        var user = manager.FindById(signinManager.GetVerifiedUserId<ApplicationUser, int>());
-        if (user != null)
+    protected void SetPassword_Click(object sender, EventArgs e)
+    {
+        if (IsValid)
         {
-            var code = manager.GenerateTwoFactorToken(user.Id, Providers.SelectedValue);
+            // Create the local login info and link the local account to the user
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            IdentityResult result = manager.AddPassword(
+                User.Identity.GetUserId<int>(), password.Text);
+            if (result.Succeeded)
+            {
+                Response.Redirect("~/Account/Manage?m=SetPwdSuccess");
+            }
+            else
+            {
+                AddErrors(result);
+            }
         }
+    }
 
-        SelectedProvider.Value = Providers.SelectedValue;
-        sendcode.Visible = false;
-        verifycode.Visible = true;
+    private void AddErrors(IdentityResult result)
+    {
+        foreach (var error in result.Errors)
+        {
+            ModelState.AddModelError("", error);
+        }
     }
 }

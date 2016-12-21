@@ -93,11 +93,7 @@ You can now close the browser window.
 
 Now we can restrict access to the StoreManagerController using the [Authorize] attribute, specifying that the user must be in the Administrator role to access any controller action in the class.
 
-    [Authorize(Roles = "Administrator")]
-    public class StoreManagerController : Controller
-    {
-        // Controller code here
-    }
+[!code[Main](mvc-music-store-part-7/samples/sample1.xml)]
 
 *Note: The [Authorize] attribute can be placed on specific action methods as well as at the Controller class level.*
 

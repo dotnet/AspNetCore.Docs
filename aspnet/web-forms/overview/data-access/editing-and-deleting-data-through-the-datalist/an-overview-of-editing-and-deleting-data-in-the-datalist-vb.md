@@ -62,48 +62,7 @@ Like in the other folders, `Default.aspx` in the `EditDeleteDataList` folder lis
 Lastly, add the pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Master/Detail Reports with the DataList and Repeater `<siteMapNode>`:
 
 
-    <siteMapNode
-        title="Editing and Deleting with the DataList"
-        description="Samples of Reports that Provide Editing and Deleting Capabilities"
-        url="~/EditDeleteDataList/Default.aspx" >
-        <siteMapNode
-            title="Basics"
-            description="Examines the basics of editing and deleting with the
-                         DataList control."
-            url="~/EditDeleteDataList/Basics.aspx" />
-        <siteMapNode
-            title="Batch Update"
-            description="Examines how to update multiple records at once in a
-                         fully-editable DataList."
-            url="~/EditDeleteDataList/BatchUpdate.aspx" />
-        <siteMapNode
-            title="Error Handling"
-            description="Learn how to gracefully handle exceptions raised during the
-                         data modification workflow."
-            url="~/EditDeleteDataList/ErrorHandling.aspx" />
-        <siteMapNode
-            title="Adding Data Entry Validation"
-            description="Help prevent data entry errors by providing validation."
-            url="~/EditDeleteDataList/UIValidation.aspx" />
-        <siteMapNode
-            title="Customize the User Interface"
-            description="Customize the editing user interfaces."
-            url="~/EditDeleteDataList/CustomizedUI.aspx" />
-        <siteMapNode
-            title="Optimistic Concurrency"
-            description="Learn how to help prevent simultaneous users from
-                         overwritting one another s changes."
-            url="~/EditDeleteDataList/OptimisticConcurrency.aspx" />
-        <siteMapNode
-            title="Confirm On Delete"
-            description="Prompt a user for confirmation when deleting a record."
-            url="~/EditDeleteDataList/ConfirmationOnDelete.aspx" />
-        <siteMapNode
-            title="Limit Capabilities Based on User"
-            description="Learn how to limit the data modification functionality
-                         based on the user s role or permissions."
-            url="~/EditDeleteDataList/UserLevelAccess.aspx" />
-    </siteMapNode>
+[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the DataList editing and deleting tutorials.
 
@@ -169,23 +128,7 @@ After configuring the ObjectDataSource, click Finish, returning to the Designer.
 After replacing the default DataList `ItemTemplate` with a customized one, the declarative markup on your page should look similar to the following:
 
 
-    <asp:DataList ID="DataList1" runat="server" DataKeyField="ProductID"
-        DataSourceID="ObjectDataSource1" RepeatColumns="2">
-        <ItemTemplate>
-            <h5>
-                <asp:Label runat="server" ID="ProductNameLabel"
-                    Text='<%# Eval("ProductName") %>'></asp:Label>
-            </h5>
-            Price: <asp:Label runat="server" ID="Label1"
-                        Text='<%# Eval("UnitPrice", "{0:C}") %>' />
-            <br />
-            <br />
-        </ItemTemplate>
-    </asp:DataList>
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
-        SelectMethod="GetProducts" TypeName="ProductsBLL"
-        OldValuesParameterFormatString="original_{0}">
-    </asp:ObjectDataSource>
+[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample2.xml)]
 
 Take a moment to view our progress through a browser. As Figure 7 shows, the DataList displays the product name and unit price for each product in two columns.
 
@@ -255,32 +198,7 @@ Add to the `EditItemTemplate` two Button Web controls, one whose `CommandName` i
 With the `EditItemTemplate` complete your DataList s declarative markup should look similar to the following:
 
 
-    <asp:DataList ID="DataList1" runat="server" DataKeyField="ProductID"
-        DataSourceID="ObjectDataSource1" RepeatColumns="2">
-        <ItemTemplate>
-            <h5>
-                <asp:Label runat="server" ID="ProductNameLabel"
-                    Text='<%# Eval("ProductName") %>' />
-            </h5>
-            Price: <asp:Label runat="server" ID="Label1"
-                        Text='<%# Eval("UnitPrice", "{0:C}") %>' />
-            <br />
-            <br />
-        </ItemTemplate>
-        <EditItemTemplate>
-            Product name:
-                <asp:TextBox ID="ProductName" runat="server"
-                    Text='<%# Eval("ProductName") %>' /><br />
-            Price:
-                <asp:TextBox ID="UnitPrice" runat="server"
-                    Text='<%# Eval("UnitPrice", "{0:C}") %>' /><br />
-            <br />
-            <asp:Button ID="UpdateProduct" runat="server"
-                CommandName="Update" Text="Update" /> 
-            <asp:Button ID="CancelUpdate" runat="server"
-                CommandName="Cancel" Text="Cancel" />
-        </EditItemTemplate>
-    </asp:DataList>
+[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample3.xml)]
 
 ## Step 5: Adding the Plumbing to Enter Edit Mode
 
@@ -302,14 +220,7 @@ Clicking the button causes a postback, but does *not* bring the product listing 
 Since the DataList s `EditCommand` event is fired when the Edit button is clicked, create an `EditCommand` event handler with the following code:
 
 
-    Protected Sub DataList1_EditCommand(source As Object, e As DataListCommandEventArgs) _
-        Handles DataList1.EditCommand
-        ' Set the DataList's EditItemIndex property to the
-        ' index of the DataListItem that was clicked
-        DataList1.EditItemIndex = e.Item.ItemIndex
-        ' Rebind the data to the DataList
-        DataList1.DataBind()
-    End Sub
+[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample4.xml)]
 
 The `EditCommand` event handler is passed in an object of type `DataListCommandEventArgs` as its second input parameter, which includes a reference to the `DataListItem` whose Edit button was clicked (`e.Item`). The event handler first sets the DataList s `EditItemIndex` to the `ItemIndex` of the editable `DataListItem` and then rebinds the data to the DataList by calling the DataList s `DataBind()` method.
 
@@ -333,13 +244,7 @@ To have the DataList render all of its items in the read-only mode, we need to:
 These steps can be accomplished with the following event handler code:
 
 
-    Protected Sub DataList1_CancelCommand(source As Object, e As DataListCommandEventArgs) _
-        Handles DataList1.CancelCommand
-        ' Set the DataList's EditItemIndex property to -1
-        DataList1.EditItemIndex = -1
-        ' Rebind the data to the DataList
-        DataList1.DataBind()
-    End Sub
+[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample5.xml)]
 
 With this addition, clicking the Cancel button returns the DataList to its pre-editing state.
 
@@ -357,28 +262,7 @@ To get the updated product name and price, we need to use the `FindControl` meth
 The following code implements the four steps:
 
 
-    Protected Sub DataList1_UpdateCommand(source As Object, e As DataListCommandEventArgs) _
-        Handles DataList1.UpdateCommand
-        ' Read in the ProductID from the DataKeys collection
-        Dim productID As Integer = Convert.ToInt32(DataList1.DataKeys(e.Item.ItemIndex))
-        ' Read in the product name and price values
-        Dim productName As TextBox = CType(e.Item.FindControl("ProductName"), TextBox)
-        Dim unitPrice As TextBox = CType(e.Item.FindControl("UnitPrice"), TextBox)
-        Dim productNameValue As String = Nothing
-        If productName.Text.Trim().Length > 0 Then
-            productNameValue = productName.Text.Trim()
-        End If
-        Dim unitPriceValue As Nullable(Of Decimal) = Nothing
-        If unitPrice.Text.Trim().Length > 0 Then
-            unitPriceValue = Decimal.Parse(unitPrice.Text.Trim(), NumberStyles.Currency)
-        End If
-        ' Call the ProductsBLL's UpdateProduct method...
-        Dim productsAPI As New ProductsBLL()
-        productsAPI.UpdateProduct(productNameValue, unitPriceValue, productID)
-        ' Revert the DataList back to its pre-editing state
-        DataList1.EditItemIndex = -1
-        DataList1.DataBind()
-    End Sub
+[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample6.xml)]
 
 The event handler starts by reading in the edited product s `ProductID` from the `DataKeys` collection. Next, the two TextBoxes in the `EditItemTemplate` are referenced and their `Text` properties stored in local variables, `productNameValue` and `unitPriceValue`. We use the `Decimal.Parse()` method to read the value from the `UnitPrice` TextBox so that if the value entered has a currency symbol, it can still be correctly converted into a `Decimal` value.
 
@@ -420,36 +304,12 @@ When clicked, a Button whose `CommandName` is Edit , Update , or Cancel raises t
 Add a Delete button next to the Edit button in the `ItemTemplate`, setting its `CommandName` property to Delete . After adding this Button control your DataList s `ItemTemplate` declarative syntax should look like:
 
 
-    <ItemTemplate>
-        <h5>
-            <asp:Label runat="server" ID="ProductNameLabel"
-                Text='<%# Eval("ProductName") %>' />
-        </h5>
-        Price: <asp:Label runat="server" ID="Label1"
-                Text='<%# Eval("UnitPrice", "{0:C}") %>' />
-        <br />
-        <asp:Button runat="server" id="EditProduct" CommandName="Edit"
-            Text="Edit" />
-         
-        <asp:Button runat="server" id="DeleteProduct" CommandName="Delete"
-            Text="Delete" />
-        <br />
-        <br />
-    </ItemTemplate>
+[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample7.xml)]
 
 Next, create an event handler for the DataList s `DeleteCommand` event, using the following code:
 
 
-    Protected Sub DataList1_DeleteCommand(source As Object, e As DataListCommandEventArgs) _
-        Handles DataList1.DeleteCommand
-        ' Read in the ProductID from the DataKeys collection
-        Dim productID As Integer = Convert.ToInt32(DataList1.DataKeys(e.Item.ItemIndex))
-        ' Delete the data
-        Dim productsAPI As New ProductsBLL()
-        productsAPI.DeleteProduct(productID)
-        ' Rebind the data to the DataList
-        DataList1.DataBind()
-    End Sub
+[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample8.xml)]
 
 Clicking the Delete button causes a postback and fires the DataList s `DeleteCommand` event. In the event handler, the clicked product s `ProductID` value is accessed from the `DataKeys` collection. Next, the product is deleted by calling the `ProductsBLL` class s `DeleteProduct` method.
 

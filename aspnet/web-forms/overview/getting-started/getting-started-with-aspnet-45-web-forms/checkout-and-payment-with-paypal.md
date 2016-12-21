@@ -51,96 +51,11 @@ Earlier in this tutorial series, you defined the schema for categories, products
  The new class file is displayed in the editor.
 2. Replace the default code with the following:   
 
-        using System.ComponentModel.DataAnnotations;
-        using System.Collections.Generic;
-        using System.ComponentModel;
-        
-        namespace WingtipToys.Models
-        {
-          public class Order
-          {
-            public int OrderId { get; set; }
-        
-            public System.DateTime OrderDate { get; set; }
-        
-            public string Username { get; set; }
-        
-            [Required(ErrorMessage = "First Name is required")]
-            [DisplayName("First Name")]
-            [StringLength(160)]
-            public string FirstName { get; set; }
-        
-            [Required(ErrorMessage = "Last Name is required")]
-            [DisplayName("Last Name")]
-            [StringLength(160)]
-            public string LastName { get; set; }
-        
-            [Required(ErrorMessage = "Address is required")]
-            [StringLength(70)]
-            public string Address { get; set; }
-        
-            [Required(ErrorMessage = "City is required")]
-            [StringLength(40)]
-            public string City { get; set; }
-        
-            [Required(ErrorMessage = "State is required")]
-            [StringLength(40)]
-            public string State { get; set; }
-        
-            [Required(ErrorMessage = "Postal Code is required")]
-            [DisplayName("Postal Code")]
-            [StringLength(10)]
-            public string PostalCode { get; set; }
-        
-            [Required(ErrorMessage = "Country is required")]
-            [StringLength(40)]
-            public string Country { get; set; }
-        
-            [StringLength(24)]
-            public string Phone { get; set; }
-        
-            [Required(ErrorMessage = "Email Address is required")]
-            [DisplayName("Email Address")]
-            [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
-                ErrorMessage = "Email is is not valid.")]
-            [DataType(DataType.EmailAddress)]
-            public string Email { get; set; }
-        
-            [ScaffoldColumn(false)]
-            public decimal Total { get; set; }
-        
-            [ScaffoldColumn(false)]
-            public string PaymentTransactionId { get; set; }
-        
-            [ScaffoldColumn(false)]
-            public bool HasBeenShipped { get; set; }
-        
-            public List<OrderDetail> OrderDetails { get; set; }
-          }
-        }
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample1.xml)]
 3. Add an *OrderDetail.cs* class to the *Models* folder.
 4. Replace the default code with the following code:   
 
-        using System.ComponentModel.DataAnnotations;
-        
-        namespace WingtipToys.Models
-        {
-          public class OrderDetail
-          {
-            public int OrderDetailId { get; set; }
-        
-            public int OrderId { get; set; }
-        
-            public string Username { get; set; }
-        
-            public int ProductId { get; set; }
-        
-            public int Quantity { get; set; }
-        
-            public double? UnitPrice { get; set; }
-        
-          }
-        }
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample2.xml)]
 
 The `Order` and `OrderDetail` classes contain the schema to define the order information used for purchasing and shipping.
 
@@ -149,7 +64,7 @@ In addition, you will need to update the database context class that manages the
 1. In **Solution Explorer**, find and open the *ProductContext.cs* file.
 2. Add the highlighted code to the *ProductContext.cs* file as shown below:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample1.xml?highlight=14-15)]
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample3.xml?highlight=14-15)]
 
 As mentioned previously in this tutorial series, the code in the *ProductContext.cs* file adds the `System.Data.Entity` namespace so that you have access to all the core functionality of the Entity Framework. This functionality includes the capability to query, insert, update, and delete data by working with strongly typed objects. The above code in the `ProductContext` class adds Entity Framework access to the newly added `Order` and `OrderDetail` classes.
 
@@ -189,14 +104,7 @@ By adding a new *Web.config* file to the *Checkout* folder, you will be able to 
 2. Select the **Visual C#** -&gt; **Web** templates group on the left. Then, from the middle pane, select **Web Configuration File**, accept the default name of *Web.config*, and then select **Add**.
 3. Replace the existing XML content in the *Web.config* file with the following:  
 
-        <?xml version="1.0"?>
-        <configuration>
-          <system.web>
-            <authorization>
-              <deny users="?"/>
-            </authorization>
-          </system.web>
-        </configuration>
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample4.xml)]
 4. Save the *Web.config* file.
 
 The *Web.config* file specifies that all unknown users of the Web application must be denied access to the pages contained in the *Checkout* folder. However, if the user has registered an account and is logged on, they will be a known user and will have access to the pages in the *Checkout* folder.
@@ -245,11 +153,7 @@ The following steps will allow you to add a Google authentication provider.
 1. Open the *App\_Start\Startup.Auth.cs* file.
 2. Remove the comment characters from the `app.UseGoogleAuthentication()` method so that the method appears as follows: 
 
-        app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-                    {
-                        ClientId = "",
-                        ClientSecret = ""
-                    });
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample5.xml)]
 3. Navigate to the [Google Developers Console](https://console.developers.google.com/). You will also need to sign-in with your Google developer email account (gmail.com). If you do not have a Google account, select the **Create an account** link.   
  Next, you'll see the     **Google Developers Console** .   
     ![Google Developers Console](checkout-and-payment-with-paypal/_static/image8.png)
@@ -267,7 +171,7 @@ The following steps will allow you to add a Google authentication provider.
  This URL is the origin for your application. For this sample, you will only enter the localhost test URL. However, you can enter multiple URLs to account for localhost and production.
 9. Set the **Authorized Redirect URI** to the following: 
 
-        https://localhost:44300/signin-google
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample6.xml)]
 
  This value is the URI that ASP.NET OAuth users to communicate with the google OAuth server. Remember the SSL URL you used above (    `https://localhost:44300/` unless you've created other SSL projects).
 10. Click the **Create Client ID** button.
@@ -279,7 +183,7 @@ The following steps will allow you to add a Google authentication provider.
  From the     **Manage NuGet Packages** window, find and update the     **Microsoft.Owin** package to version 3.0.0.
 14. In Visual Studio, update the `UseGoogleAuthentication` method of the *Startup.Auth.cs* page by copying and pasting the **Client ID** and **Client Secret** into the method. The **Client ID** and **Client Secret** values shown below are samples and will not work. 
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample2.xml?highlight=64-65)]
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample7.xml?highlight=64-65)]
 15. Press **CTRL+F5** to build and run the application. Click the **Log in** link.
 16. Under **Use another service to log in**, click **Google**.  
     ![Log in](checkout-and-payment-with-paypal/_static/image11.png)
@@ -298,7 +202,7 @@ As previously mentioned in this tutorial series, much of the user registration f
 1. In **Solution Explorer**, find and open the *Account* folder.
 2. Modify the code-behind page named *Login.aspx.cs* to include the code highlighted in yellow, so that it appears as follows:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample3.xml?highlight=41-43)]
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample8.xml?highlight=41-43)]
 3. Save the *Login.aspx.cs* file.
 
 For now, you can ignore the warning that there is no definition for the `MigrateCart` method. You will be adding it a bit later in this tutorial.
@@ -312,7 +216,7 @@ In addition to modifying the *Login.aspx.cs* code-behind file to migrate the sho
 1. In the *Account* folder, open the code-behind file named *Register.aspx.cs*.
 2. Modify the code-behind file by including the code in yellow, so that it appears as follows:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample4.xml?highlight=28-32)]
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample9.xml?highlight=28-32)]
 3. Save the *Register.aspx.cs* file. Once again, ignore the warning about the `MigrateCart` method.
 
 Notice that the code you used in the `CreateUser_Click` event handler is very similar to the code you used in the `LogIn` method. When the user registers or logs in to the site, a call to the `MigrateCart` method will be made.
@@ -324,7 +228,7 @@ Now that you have the log-in and registration process updated, you can add the c
 1. In **Solution Explorer**, find the *Logic* folder and open the *ShoppingCartActions.cs*class file.
 2. Add the code highlighted in yellow to the existing code in the *ShoppingCartActions.cs* file, so that the code in the *ShoppingCartActions.cs* file appears as follows:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample5.xml?highlight=215-224)]
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample10.xml?highlight=215-224)]
 
 The `MigrateCart` method uses the existing cartId to find the shopping cart of the user. Next, the code loops through all the shopping cart items and replaces the `CartId` property (as specified by the `CartItem` schema) with the logged-in user name.
 
@@ -335,7 +239,7 @@ If you are following this tutorial using the **prebuilt** Wingtip Toys sample ap
 1. Open the *Web.config* file at the root of the project.
 2. Update the default connection string so that it appears as follows:   
 
-        <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-WingtipToys;Integrated Security=True" providerName="System.Data.SqlClient" />
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample11.xml)]
 
 <a id="PayPalWebForms"></a>
 ## Integrating PayPal
@@ -389,322 +293,10 @@ You will place the majority of the PayPal code into a single class. This class c
  The new class file is displayed in the editor.
 5. Replace the default code with the following code:  
 
-        using System;
-        using System.Collections;
-        using System.Collections.Specialized;
-        using System.IO;
-        using System.Net;
-        using System.Text;
-        using System.Data;
-        using System.Configuration;
-        using System.Web;
-        using WingtipToys;
-        using WingtipToys.Models;
-        using System.Collections.Generic;
-        using System.Linq;
-        
-        public class NVPAPICaller
-        {
-          //Flag that determines the PayPal environment (live or sandbox)
-          private const bool bSandbox = true;
-          private const string CVV2 = "CVV2";
-        
-          // Live strings.
-          private string pEndPointURL = "https://api-3t.paypal.com/nvp";
-          private string host = "www.paypal.com";
-        
-          // Sandbox strings.
-          private string pEndPointURL_SB = "https://api-3t.sandbox.paypal.com/nvp";
-          private string host_SB = "www.sandbox.paypal.com";
-        
-          private const string SIGNATURE = "SIGNATURE";
-          private const string PWD = "PWD";
-          private const string ACCT = "ACCT";
-        
-          //Replace <Your API Username> with your API Username
-          //Replace <Your API Password> with your API Password
-          //Replace <Your Signature> with your Signature
-          public string APIUsername = "<Your API Username>";
-          private string APIPassword = "<Your API Password>";
-          private string APISignature = "<Your Signature>";
-          private string Subject = "";
-          private string BNCode = "PP-ECWizard";
-        
-          //HttpWebRequest Timeout specified in milliseconds 
-          private const int Timeout = 15000;
-          private static readonly string[] SECURED_NVPS = new string[] { ACCT, CVV2, SIGNATURE, PWD };
-        
-          public void SetCredentials(string Userid, string Pwd, string Signature)
-          {
-            APIUsername = Userid;
-            APIPassword = Pwd;
-            APISignature = Signature;
-          }
-        
-          public bool ShortcutExpressCheckout(string amt, ref string token, ref string retMsg)
-          {
-            if (bSandbox)
-            {
-              pEndPointURL = pEndPointURL_SB;
-              host = host_SB;
-            }
-        
-            string returnURL = "https://localhost:44300/Checkout/CheckoutReview.aspx";
-            string cancelURL = "https://localhost:44300/Checkout/CheckoutCancel.aspx";
-        
-            NVPCodec encoder = new NVPCodec();
-            encoder["METHOD"] = "SetExpressCheckout";
-            encoder["RETURNURL"] = returnURL;
-            encoder["CANCELURL"] = cancelURL;
-            encoder["BRANDNAME"] = "Wingtip Toys Sample Application";
-            encoder["PAYMENTREQUEST_0_AMT"] = amt;
-            encoder["PAYMENTREQUEST_0_ITEMAMT"] = amt;
-            encoder["PAYMENTREQUEST_0_PAYMENTACTION"] = "Sale";
-            encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = "USD";
-        
-            // Get the Shopping Cart Products
-            using (WingtipToys.Logic.ShoppingCartActions myCartOrders = new WingtipToys.Logic.ShoppingCartActions())
-            {
-              List<CartItem> myOrderList = myCartOrders.GetCartItems();
-        
-              for (int i = 0; i < myOrderList.Count; i++)
-              {
-                encoder["L_PAYMENTREQUEST_0_NAME" + i] = myOrderList[i].Product.ProductName.ToString();
-                encoder["L_PAYMENTREQUEST_0_AMT" + i] = myOrderList[i].Product.UnitPrice.ToString();
-                encoder["L_PAYMENTREQUEST_0_QTY" + i] = myOrderList[i].Quantity.ToString();
-              }
-            }
-        
-            string pStrrequestforNvp = encoder.Encode();
-            string pStresponsenvp = HttpCall(pStrrequestforNvp);
-        
-            NVPCodec decoder = new NVPCodec();
-            decoder.Decode(pStresponsenvp);
-        
-            string strAck = decoder["ACK"].ToLower();
-            if (strAck != null && (strAck == "success" || strAck == "successwithwarning"))
-            {
-              token = decoder["TOKEN"];
-              string ECURL = "https://" + host + "/cgi-bin/webscr?cmd=_express-checkout" + "&token=" + token;
-              retMsg = ECURL;
-              return true;
-            }
-            else
-            {
-              retMsg = "ErrorCode=" + decoder["L_ERRORCODE0"] + "&" +
-                  "Desc=" + decoder["L_SHORTMESSAGE0"] + "&" +
-                  "Desc2=" + decoder["L_LONGMESSAGE0"];
-              return false;
-            }
-          }
-        
-          public bool GetCheckoutDetails(string token, ref string PayerID, ref NVPCodec decoder, ref string retMsg)
-          {
-            if (bSandbox)
-            {
-              pEndPointURL = pEndPointURL_SB;
-            }
-        
-            NVPCodec encoder = new NVPCodec();
-            encoder["METHOD"] = "GetExpressCheckoutDetails";
-            encoder["TOKEN"] = token;
-        
-            string pStrrequestforNvp = encoder.Encode();
-            string pStresponsenvp = HttpCall(pStrrequestforNvp);
-        
-            decoder = new NVPCodec();
-            decoder.Decode(pStresponsenvp);
-        
-            string strAck = decoder["ACK"].ToLower();
-            if (strAck != null && (strAck == "success" || strAck == "successwithwarning"))
-            {
-              PayerID = decoder["PAYERID"];
-              return true;
-            }
-            else
-            {
-              retMsg = "ErrorCode=" + decoder["L_ERRORCODE0"] + "&" +
-                  "Desc=" + decoder["L_SHORTMESSAGE0"] + "&" +
-                  "Desc2=" + decoder["L_LONGMESSAGE0"];
-        
-              return false;
-            }
-          }
-        
-          public bool DoCheckoutPayment(string finalPaymentAmount, string token, string PayerID, ref NVPCodec decoder, ref string retMsg)
-          {
-            if (bSandbox)
-            {
-              pEndPointURL = pEndPointURL_SB;
-            }
-        
-            NVPCodec encoder = new NVPCodec();
-            encoder["METHOD"] = "DoExpressCheckoutPayment";
-            encoder["TOKEN"] = token;
-            encoder["PAYERID"] = PayerID;
-            encoder["PAYMENTREQUEST_0_AMT"] = finalPaymentAmount;
-            encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = "USD";
-            encoder["PAYMENTREQUEST_0_PAYMENTACTION"] = "Sale";
-        
-            string pStrrequestforNvp = encoder.Encode();
-            string pStresponsenvp = HttpCall(pStrrequestforNvp);
-        
-            decoder = new NVPCodec();
-            decoder.Decode(pStresponsenvp);
-        
-            string strAck = decoder["ACK"].ToLower();
-            if (strAck != null && (strAck == "success" || strAck == "successwithwarning"))
-            {
-              return true;
-            }
-            else
-            {
-              retMsg = "ErrorCode=" + decoder["L_ERRORCODE0"] + "&" +
-                  "Desc=" + decoder["L_SHORTMESSAGE0"] + "&" +
-                  "Desc2=" + decoder["L_LONGMESSAGE0"];
-        
-              return false;
-            }
-          }
-        
-          public string HttpCall(string NvpRequest)
-          {
-            string url = pEndPointURL;
-        
-            string strPost = NvpRequest + "&" + buildCredentialsNVPString();
-            strPost = strPost + "&BUTTONSOURCE=" + HttpUtility.UrlEncode(BNCode);
-        
-            HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
-            objRequest.Timeout = Timeout;
-            objRequest.Method = "POST";
-            objRequest.ContentLength = strPost.Length;
-        
-            try
-            {
-              using (StreamWriter myWriter = new StreamWriter(objRequest.GetRequestStream()))
-              {
-                myWriter.Write(strPost);
-              }
-            }
-            catch (Exception)
-            {
-              // No logging for this tutorial.
-            }
-        
-            //Retrieve the Response returned from the NVP API call to PayPal.
-            HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
-            string result;
-            using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
-            {
-              result = sr.ReadToEnd();
-            }
-        
-            return result;
-          }
-        
-          private string buildCredentialsNVPString()
-          {
-            NVPCodec codec = new NVPCodec();
-        
-            if (!IsEmpty(APIUsername))
-              codec["USER"] = APIUsername;
-        
-            if (!IsEmpty(APIPassword))
-              codec[PWD] = APIPassword;
-        
-            if (!IsEmpty(APISignature))
-              codec[SIGNATURE] = APISignature;
-        
-            if (!IsEmpty(Subject))
-              codec["SUBJECT"] = Subject;
-        
-            codec["VERSION"] = "88.0";
-        
-            return codec.Encode();
-          }
-        
-          public static bool IsEmpty(string s)
-          {
-            return s == null || s.Trim() == string.Empty;
-          }
-        }
-        
-        public sealed class NVPCodec : NameValueCollection
-        {
-          private const string AMPERSAND = "&";
-          private const string EQUALS = "=";
-          private static readonly char[] AMPERSAND_CHAR_ARRAY = AMPERSAND.ToCharArray();
-          private static readonly char[] EQUALS_CHAR_ARRAY = EQUALS.ToCharArray();
-        
-          public string Encode()
-          {
-            StringBuilder sb = new StringBuilder();
-            bool firstPair = true;
-            foreach (string kv in AllKeys)
-            {
-              string name = HttpUtility.UrlEncode(kv);
-              string value = HttpUtility.UrlEncode(this[kv]);
-              if (!firstPair)
-              {
-                sb.Append(AMPERSAND);
-              }
-              sb.Append(name).Append(EQUALS).Append(value);
-              firstPair = false;
-            }
-            return sb.ToString();
-          }
-        
-          public void Decode(string nvpstring)
-          {
-            Clear();
-            foreach (string nvp in nvpstring.Split(AMPERSAND_CHAR_ARRAY))
-            {
-              string[] tokens = nvp.Split(EQUALS_CHAR_ARRAY);
-              if (tokens.Length >= 2)
-              {
-                string name = HttpUtility.UrlDecode(tokens[0]);
-                string value = HttpUtility.UrlDecode(tokens[1]);
-                Add(name, value);
-              }
-            }
-          }
-        
-          public void Add(string name, string value, int index)
-          {
-            this.Add(GetArrayName(index, name), value);
-          }
-        
-          public void Remove(string arrayName, int index)
-          {
-            this.Remove(GetArrayName(index, arrayName));
-          }
-        
-          public string this[string name, int index]
-          {
-            get
-            {
-              return this[GetArrayName(index, name)];
-            }
-            set
-            {
-              this[GetArrayName(index, name)] = value;
-            }
-          }
-        
-          private static string GetArrayName(int index, string name)
-          {
-            if (index < 0)
-            {
-              throw new ArgumentOutOfRangeException("index", "index cannot be negative : " + index);
-            }
-            return name + index;
-          }
-        }
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample12.xml)]
 6. Add the Merchant API credentials (Username, Password, and Signature) that you displayed earlier in this tutorial so that you can make function calls to the PayPal testing environment.  
 
-        public string APIUsername = "<Your API Username>";
-            private string APIPassword = "<Your API Password>";
-            private string APISignature = "<Your Signature>";
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample13.xml)]
 
 > [!NOTE] 
 > 
@@ -726,8 +318,7 @@ The `ShortcutExpressCheckout` method collects the test purchase information and 
 
 Notice that the return and cancel URLs that are specified in the **ShortcutExpressCheckout** method use a port number.
 
-    string returnURL = "https://localhost:44300/Checkout/CheckoutReview.aspx";
-           string cancelURL = "https://localhost:44300/Checkout/CheckoutCancel.aspx";
+[!code[Main](checkout-and-payment-with-paypal/samples/sample14.xml)]
 
 When Visual Web Developer runs a web project using SSL, commonly the port 44300 is used for the web server. As shown above, the port number is 44300. When you run the application, you could see a different port number. Your port number needs to be correctly set in the code so that you can successful run the Wingtip Toys sample application at the end of this tutorial. The next section of this tutorial explains how to retrieve the local host port number and update the PayPal class.
 
@@ -740,7 +331,7 @@ The Wingtip Toys sample application purchases products by navigating to the PayP
 3. Retrieve the port number from the **Project Url** box.
 4. If needed, update the `returnURL` and `cancelURL` in the PayPal class (`NVPAPICaller`) in the *PayPalFunctions.cs* file to use the port number of your web application:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample6.xml?highlight=1-2)]
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample15.xml?highlight=1-2)]
 
 Now the code that you added will match the expected port for your local Web application. PayPal will be able to return to the correct URL on your local machine.
 
@@ -752,24 +343,13 @@ Now that the primary PayPal functions have been added to the sample application,
 2. Scroll to the bottom of the file and find the `<!--Checkout Placeholder -->` comment.
 3. Replace the comment with an `ImageButton` control so that the mark up is replaced as follows:  
 
-        <asp:ImageButton ID="CheckoutImageBtn" runat="server" 
-                              ImageUrl="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" 
-                              Width="145" AlternateText="Check out with PayPal" 
-                              OnClick="CheckoutBtn_Click" 
-                              BackColor="Transparent" BorderWidth="0" />
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample16.xml)]
 4. In the *ShoppingCart.aspx.cs* file, after the `UpdateBtn_Click` event handler near the end of the file, add the `CheckOutBtn_Click` event handler:  
 
-        protected void CheckoutBtn_Click(object sender, ImageClickEventArgs e)
-        {
-          using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
-          {
-            Session["payment_amt"] = usersShoppingCart.GetTotal();
-          }
-          Response.Redirect("Checkout/CheckoutStart.aspx");
-        }
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample17.xml)]
 5. Also in the *ShoppingCart.aspx.cs* file, add a reference to the `CheckoutBtn`, so that the new image button is referenced as follows:  
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample7.xml?highlight=18)]
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample18.xml?highlight=18)]
 6. Save your changes to both the *ShoppingCart.aspx* file and the *ShoppingCart.aspx.cs* file.
 7. From the menu, select **Debug**-&gt;**Build WingtipToys**.  
  The project will be rebuilt with the newly added     **ImageButton** control.
@@ -782,45 +362,7 @@ When the user clicks the **Checkout** button on the shopping cart page (*Shoppin
  Be sure to open the code-behind file.
 2. Replace the existing code with the following:   
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.UI;
-        using System.Web.UI.WebControls;
-        
-        namespace WingtipToys.Checkout
-        {
-          public partial class CheckoutStart : System.Web.UI.Page
-          {
-            protected void Page_Load(object sender, EventArgs e)
-            {
-              NVPAPICaller payPalCaller = new NVPAPICaller();
-              string retMsg = "";
-              string token = "";
-        
-              if (Session["payment_amt"] != null)
-              {
-                string amt = Session["payment_amt"].ToString();
-        
-                bool ret = payPalCaller.ShortcutExpressCheckout(amt, ref token, ref retMsg);
-                if (ret)
-                {
-                  Session["token"] = token;
-                  Response.Redirect(retMsg);
-                }
-                else
-                {
-                  Response.Redirect("CheckoutError.aspx?" + retMsg);
-                }
-              }
-              else
-              {
-                Response.Redirect("CheckoutError.aspx?ErrorCode=AmtMissing");
-              }
-            }
-          }
-        }
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample19.xml)]
 
 When the user of the application clicks the **Checkout** button on the shopping cart page, the browser will navigate to the *CheckoutStart.aspx* page. When the *CheckoutStart.aspx* page loads, the `ShortcutExpressCheckout` method is called. At this point, the user is transferred to the PayPal testing web site. On the PayPal site, the user enters their PayPal credentials, reviews the purchase details, accepts the PayPal agreement and returns to the Wingtip Toys sample application where the `ShortcutExpressCheckout` method completes. When the `ShortcutExpressCheckout` method is complete, it will redirect the user to the *CheckoutReview.aspx* page specified in the `ShortcutExpressCheckout` method. This allows the user to review the order details from within the Wingtip Toys sample application.
 
@@ -831,161 +373,10 @@ After returning from PayPal, the *CheckoutReview.aspx* page of the Wingtip Toys 
 1. In the *Checkout* folder, open the page named *CheckoutReview.aspx*.
 2. Replace the existing markup with the following:   
 
-        <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CheckoutReview.aspx.cs" Inherits="WingtipToys.Checkout.CheckoutReview" %>
-        <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <h1>Order Review</h1>
-            <p></p>
-            <h3 style="padding-left: 33px">Products:</h3>
-            <asp:GridView ID="OrderItemList" runat="server" AutoGenerateColumns="False" GridLines="Both" CellPadding="10" Width="500" BorderColor="#efeeef" BorderWidth="33">              
-                <Columns>
-                    <asp:BoundField DataField="ProductId" HeaderText=" Product ID" />        
-                    <asp:BoundField DataField="Product.ProductName" HeaderText=" Product Name" />        
-                    <asp:BoundField DataField="Product.UnitPrice" HeaderText="Price (each)" DataFormatString="{0:c}"/>     
-                    <asp:BoundField DataField="Quantity" HeaderText="Quantity" />        
-                </Columns>    
-            </asp:GridView>
-            <asp:DetailsView ID="ShipInfo" runat="server" AutoGenerateRows="false" GridLines="None" CellPadding="10" BorderStyle="None" CommandRowStyle-BorderStyle="None">
-                <Fields>
-                <asp:TemplateField>
-                    <ItemTemplate>
-                        <h3>Shipping Address:</h3>
-                        <br />
-                        <asp:Label ID="FirstName" runat="server" Text='<%#: Eval("FirstName") %>'></asp:Label>  
-                        <asp:Label ID="LastName" runat="server" Text='<%#: Eval("LastName") %>'></asp:Label>
-                        <br />
-                        <asp:Label ID="Address" runat="server" Text='<%#: Eval("Address") %>'></asp:Label>
-                        <br />
-                        <asp:Label ID="City" runat="server" Text='<%#: Eval("City") %>'></asp:Label>
-                        <asp:Label ID="State" runat="server" Text='<%#: Eval("State") %>'></asp:Label>
-                        <asp:Label ID="PostalCode" runat="server" Text='<%#: Eval("PostalCode") %>'></asp:Label>
-                        <p></p>
-                        <h3>Order Total:</h3>
-                        <br />
-                        <asp:Label ID="Total" runat="server" Text='<%#: Eval("Total", "{0:C}") %>'></asp:Label>
-                    </ItemTemplate>
-                    <ItemStyle HorizontalAlign="Left" />
-                </asp:TemplateField>
-                  </Fields>
-            </asp:DetailsView>
-            <p></p>
-            <hr />
-            <asp:Button ID="CheckoutConfirm" runat="server" Text="Complete Order" OnClick="CheckoutConfirm_Click" />
-        </asp:Content>
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample20.xml)]
 3. Open the code-behind page named *CheckoutReview.aspx.cs*and replace the existing code with the following:   
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.UI;
-        using System.Web.UI.WebControls;
-        using WingtipToys.Models;
-        
-        namespace WingtipToys.Checkout
-        {
-          public partial class CheckoutReview : System.Web.UI.Page
-          {
-            protected void Page_Load(object sender, EventArgs e)
-            {
-              if (!IsPostBack)
-              {
-                NVPAPICaller payPalCaller = new NVPAPICaller();
-        
-                string retMsg = "";
-                string token = "";
-                string PayerID = "";
-                NVPCodec decoder = new NVPCodec();
-                token = Session["token"].ToString();
-        
-                bool ret = payPalCaller.GetCheckoutDetails(token, ref PayerID, ref decoder, ref retMsg);
-                if (ret)
-                {
-                  Session["payerId"] = PayerID;
-        
-                  var myOrder = new Order();
-                  myOrder.OrderDate = Convert.ToDateTime(decoder["TIMESTAMP"].ToString());
-                  myOrder.Username = User.Identity.Name;
-                  myOrder.FirstName = decoder["FIRSTNAME"].ToString();
-                  myOrder.LastName = decoder["LASTNAME"].ToString();
-                  myOrder.Address = decoder["SHIPTOSTREET"].ToString();
-                  myOrder.City = decoder["SHIPTOCITY"].ToString();
-                  myOrder.State = decoder["SHIPTOSTATE"].ToString();
-                  myOrder.PostalCode = decoder["SHIPTOZIP"].ToString();
-                  myOrder.Country = decoder["SHIPTOCOUNTRYCODE"].ToString();
-                  myOrder.Email = decoder["EMAIL"].ToString();
-                  myOrder.Total = Convert.ToDecimal(decoder["AMT"].ToString());
-        
-                  // Verify total payment amount as set on CheckoutStart.aspx.
-                  try
-                  {
-                    decimal paymentAmountOnCheckout = Convert.ToDecimal(Session["payment_amt"].ToString());
-                    decimal paymentAmoutFromPayPal = Convert.ToDecimal(decoder["AMT"].ToString());
-                    if (paymentAmountOnCheckout != paymentAmoutFromPayPal)
-                    {
-                      Response.Redirect("CheckoutError.aspx?" + "Desc=Amount%20total%20mismatch.");
-                    }
-                  }
-                  catch (Exception)
-                  {
-                    Response.Redirect("CheckoutError.aspx?" + "Desc=Amount%20total%20mismatch.");
-                  }
-        
-                  // Get DB context.
-                  ProductContext _db = new ProductContext();
-        
-                  // Add order to DB.
-                  _db.Orders.Add(myOrder);
-                  _db.SaveChanges();
-        
-                  // Get the shopping cart items and process them.
-                  using (WingtipToys.Logic.ShoppingCartActions usersShoppingCart = new WingtipToys.Logic.ShoppingCartActions())
-                  {
-                    List<CartItem> myOrderList = usersShoppingCart.GetCartItems();
-        
-                    // Add OrderDetail information to the DB for each product purchased.
-                    for (int i = 0; i < myOrderList.Count; i++)
-                    {
-                      // Create a new OrderDetail object.
-                      var myOrderDetail = new OrderDetail();
-                      myOrderDetail.OrderId = myOrder.OrderId;
-                      myOrderDetail.Username = User.Identity.Name;
-                      myOrderDetail.ProductId = myOrderList[i].ProductId;
-                      myOrderDetail.Quantity = myOrderList[i].Quantity;
-                      myOrderDetail.UnitPrice = myOrderList[i].Product.UnitPrice;
-        
-                      // Add OrderDetail to DB.
-                      _db.OrderDetails.Add(myOrderDetail);
-                      _db.SaveChanges();
-                    }
-        
-                    // Set OrderId.
-                    Session["currentOrderId"] = myOrder.OrderId;
-        
-                    // Display Order information.
-                    List<Order> orderList = new List<Order>();
-                    orderList.Add(myOrder);
-                    ShipInfo.DataSource = orderList;
-                    ShipInfo.DataBind();
-        
-                    // Display OrderDetails.
-                    OrderItemList.DataSource = myOrderList;
-                    OrderItemList.DataBind();
-                  }
-                }
-                else
-                {
-                  Response.Redirect("CheckoutError.aspx?" + retMsg);
-                }
-              }
-            }
-        
-            protected void CheckoutConfirm_Click(object sender, EventArgs e)
-            {
-              Session["userCheckoutCompleted"] = "true";
-              Response.Redirect("~/Checkout/CheckoutComplete.aspx");
-            }
-          }
-        }
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample21.xml)]
 
 The **DetailsView** control is used to display the order details that have been returned from PayPal. Also, the above code saves the order details to the Wingtip Toys database as an `OrderDetail` object. When the user clicks on the **Complete Order** button, they are redirected to the *CheckoutComplete.aspx* page.
 
@@ -1009,102 +400,10 @@ The **DetailsView** control is used to display the order details that have been 
 1. In the *Checkout* folder, open the page named *CheckoutComplete.aspx*.
 2. Replace the existing markup with the following:   
 
-        <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CheckoutComplete.aspx.cs" Inherits="WingtipToys.Checkout.CheckoutComplete" %>
-        <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <h1>Checkout Complete</h1>
-            <p></p>
-            <h3>Payment Transaction ID:</h3> <asp:Label ID="TransactionId" runat="server"></asp:Label>
-            <p></p>
-            <h3>Thank You!</h3>
-            <p></p>
-            <hr />
-            <asp:Button ID="Continue" runat="server" Text="Continue Shopping" OnClick="Continue_Click" />
-        </asp:Content>
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample22.xml)]
 3. Open the code-behind page named *CheckoutComplete.aspx.cs*and replace the existing code with the following:   
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.UI;
-        using System.Web.UI.WebControls;
-        using WingtipToys.Models;
-        
-        namespace WingtipToys.Checkout
-        {
-          public partial class CheckoutComplete : System.Web.UI.Page
-          {
-            protected void Page_Load(object sender, EventArgs e)
-            {
-              if (!IsPostBack)
-              {
-                // Verify user has completed the checkout process.
-                if ((string)Session["userCheckoutCompleted"] != "true")
-                {
-                  Session["userCheckoutCompleted"] = string.Empty;
-                  Response.Redirect("CheckoutError.aspx?" + "Desc=Unvalidated%20Checkout.");
-                }
-        
-                NVPAPICaller payPalCaller = new NVPAPICaller();
-        
-                string retMsg = "";
-                string token = "";
-                string finalPaymentAmount = "";
-                string PayerID = "";
-                NVPCodec decoder = new NVPCodec();
-        
-                token = Session["token"].ToString();
-                PayerID = Session["payerId"].ToString();
-                finalPaymentAmount = Session["payment_amt"].ToString();
-        
-                bool ret = payPalCaller.DoCheckoutPayment(finalPaymentAmount, token, PayerID, ref decoder, ref retMsg);
-                if (ret)
-                {
-                  // Retrieve PayPal confirmation value.
-                  string PaymentConfirmation = decoder["PAYMENTINFO_0_TRANSACTIONID"].ToString();
-                  TransactionId.Text = PaymentConfirmation;
-        
-                  ProductContext _db = new ProductContext();
-                  // Get the current order id.
-                  int currentOrderId = -1;
-                  if (Session["currentOrderId"] != string.Empty)
-                  {
-                    currentOrderId = Convert.ToInt32(Session["currentOrderID"]);
-                  }
-                  Order myCurrentOrder;
-                  if (currentOrderId >= 0)
-                  {
-                    // Get the order based on order id.
-                    myCurrentOrder = _db.Orders.Single(o => o.OrderId == currentOrderId);
-                    // Update the order to reflect payment has been completed.
-                    myCurrentOrder.PaymentTransactionId = PaymentConfirmation;
-                    // Save to DB.
-                    _db.SaveChanges();
-                  }
-        
-                  // Clear shopping cart.
-                  using (WingtipToys.Logic.ShoppingCartActions usersShoppingCart =
-                      new WingtipToys.Logic.ShoppingCartActions())
-                  {
-                    usersShoppingCart.EmptyCart();
-                  }
-        
-                  // Clear order id.
-                  Session["currentOrderId"] = string.Empty;
-                }
-                else
-                {
-                  Response.Redirect("CheckoutError.aspx?" + retMsg);
-                }
-              }
-            }
-        
-            protected void Continue_Click(object sender, EventArgs e)
-            {
-              Response.Redirect("~/Default.aspx");
-            }
-          }
-        }
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample23.xml)]
 
 When the *CheckoutComplete.aspx* page is loaded, the `DoCheckoutPayment` method is called. As mentioned earlier, the `DoCheckoutPayment` method completes the purchase from the PayPal testing environment. Once PayPal has completed the purchase of the order, the *CheckoutComplete.aspx* page displays a payment transaction `ID` to the purchaser.
 
@@ -1115,12 +414,7 @@ If the user decides to cancel the purchase, they will be directed to the *Checko
 1. Open the page named *CheckoutCancel.aspx* in the *Checkout* folder.
 2. Replace the existing markup with the following:   
 
-        <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CheckoutCancel.aspx.cs" Inherits="WingtipToys.Checkout.CheckoutCancel" %>
-        <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <h1>Checkout Cancelled</h1>
-            <p></p>
-            <h3>Your purchase has been cancelled.</h3>
-        </asp:Content>
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample24.xml)]
 
 ### Handle Purchase Errors
 
@@ -1129,26 +423,7 @@ Errors during the purchase process will be handled by the *CheckoutError.aspx* p
 1. Open the page named *CheckoutError.aspx* in the *Checkout* folder.
 2. Replace the existing markup with the following:   
 
-        <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CheckoutError.aspx.cs" Inherits="WingtipToys.Checkout.CheckoutError" %>
-        <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <h1>Checkout Error</h1>
-            <p></p>
-        <table id="ErrorTable">
-        	<tr>
-        		<td class="field"></td>
-        		<td><%=Request.QueryString.Get("ErrorCode")%></td>
-        	</tr>
-        	<tr>
-        		<td class="field"></td>
-        		<td><%=Request.QueryString.Get("Desc")%></td>
-        	</tr>
-        	<tr>
-        		<td class="field"></td>
-        		<td><%=Request.QueryString.Get("Desc2")%></td>
-        	</tr>
-        </table>
-            <p></p>
-        </asp:Content>
+    [!code[Main](checkout-and-payment-with-paypal/samples/sample25.xml)]
 
 The *CheckoutError.aspx* page is displayed with the error details when an error occurs during the checkout process.
 

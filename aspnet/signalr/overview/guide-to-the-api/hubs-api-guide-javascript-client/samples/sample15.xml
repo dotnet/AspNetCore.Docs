@@ -1,1 +1,1 @@
-public class ContosoChatHub : Hub
+$.connection.hub.start( { transport: 'longPolling' });

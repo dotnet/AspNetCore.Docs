@@ -68,25 +68,12 @@ Creating a nested master based on one of the existing master pages and then upda
 Create a new folder named `NestedMasterPages` and then add a new master page file to that folder named `Simple.master`. (See Figure 1 for a screen shot of the Solution Explorer after this folder and file have been added.) Drag the `AlternateStyles.css` style sheet file from the Solution Explorer onto the Designer. This adds a `<link>` element to the style sheet file in the `<head>` element, after which the master page's `<head>` element's markup should look like:
 
 
-    <head runat="server">
-     <title>Untitled Page</title> 
-     <asp:ContentPlaceHolder id="head" runat="server"> 
-     </asp:ContentPlaceHolder>
-     <link href="../AlternateStyles.css" rel="stylesheet" type="text/css" /> 
-    </head>
+[!code[Main](nested-master-pages-cs/samples/sample1.xml)]
 
 Next, add the following markup within the Web Form of `Simple.master`:
 
 
-    <div id="topContent"> 
-     <asp:HyperLink ID="lnkHome" runat="server" 
-     NavigateUrl="~/NestedMasterPages/Default.aspx"
-     Text="Nested Master Pages Tutorial (Simple)" /> 
-    </div> 
-    <div id="mainContent"> 
-     <asp:ContentPlaceHolder id="MainContent" runat="server"> 
-     </asp:ContentPlaceHolder>
-    </div>
+[!code[Main](nested-master-pages-cs/samples/sample2.xml)]
 
 This markup displays a link titled "Nested Master Pages (Simple)" at the top of the page in a large white font on a navy background. Beneath that is the `MainContent` ContentPlaceHolder. Figure 1 shows the `Simple.master` master page when loaded in the Visual Studio Designer.
 
@@ -120,20 +107,14 @@ Next, click the Add button. This will display the same Select a Master Page dial
 The nested master page's declarative markup, shown below, contains two Content controls referencing the top-level master page's two ContentPlaceHolder controls.
 
 
-    <%@ Master Language="C#" MasterPageFile="~/NestedMasterPages/Simple.master" AutoEventWireup="false" CodeFile="SimpleNested.master.cs" Inherits="NestedMasterPages_SimpleNested" %> 
-     <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server"> 
-     </asp:Content> 
-     <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server"> 
-     </asp:Content>
+[!code[Main](nested-master-pages-cs/samples/sample3.xml)]
 
 Except for the `<%@ Master %>` directive, the nested master page's initial declarative markup is identical to the markup that is initially generated when binding a content page to the same top-level master page. Like a content page's `<%@ Page %>` directive, the `<%@ Master %>` directive here includes a `MasterPageFile` attribute that specifies the nested master page's parent master page. The main difference between the nested master page and a content page bound to the same top-level master page is that the nested master page can include ContentPlaceHolder controls. The nested master page's ContentPlaceHolder controls define the regions where the content pages can customize the markup.
 
 Update this nested master page so that it displays the text "Hello, from SimpleNested!" in the Content control that corresponds to the `MainContent` ContentPlaceHolder control.
 
 
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server"> 
-     <p>Hello, from SimpleNested!</p>
-    </asp:Content>
+[!code[Main](nested-master-pages-cs/samples/sample4.xml)]
 
 After making this addition, save the nested master page and then add a new content page to the `NestedMasterPages` folder named `Default.aspx`, and bind it to the `SimpleNested.master` master page. Upon adding this page you may be surprised to see that it contains no Content controls (see Figure 4)! A content page can only access its *parent* master page's ContentPlaceHolders. `SimpleNested.master` does not contain any ContentPlaceHolder controls; therefore, any content page bound to this master page cannot contain any Content controls.
 
@@ -153,16 +134,7 @@ Update the `SimpleNested.master` master page to include a ContentPlaceHolder in 
 After making these additions your `SimpleNested.master` master page's declarative markup should look similar to the following:
 
 
-    <%@ Master Language="C#" MasterPageFile="~/NestedMasterPages/Simple.master"AutoEventWireup="false" CodeFile="SimpleNested.master.cs" Inherits="NestedMasterPages_SimpleNested" %> 
-     <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server"> 
-     <asp:ContentPlaceHolder ID="head" runat="server"> 
-     </asp:ContentPlaceHolder>
-     </asp:Content> 
-     <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server"> 
-     <p>Hello, from SimpleNested!</p>
-     <asp:ContentPlaceHolder ID="MainContent" runat="server"> 
-     </asp:ContentPlaceHolder>
-     </asp:Content>
+[!code[Main](nested-master-pages-cs/samples/sample5.xml)]
 
 Delete the `Default.aspx` content page we just created and then re-add it, binding it to the `SimpleNested.master` master page. This time Visual Studio adds two Content controls to the `Default.aspx`, referencing the ContentPlaceHolders now defined in `SimpleNested.master` (see Figure 6). Add the text, "Hello, from Default.aspx!" in the Content control that referenced `MainContent`.
 
@@ -187,16 +159,7 @@ This behavior illustrates how a content page or master page is only cognizant of
 The benefit of nested master pages is more evident when there are multiple nested master pages. To illustrate this benefit, create another nested master page in the `NestedMasterPages` folder; name this new nested master page `SimpleNestedAlternate.master` and bind it to the `Simple.master` master page. Add ContentPlaceHolder controls in the nested master page's two Content controls like we did in Step 2. Also add the text, "Hello, from SimpleNestedAlternate!" in the Content control that corresponds to the top-level master page's `MainContent` ContentPlaceHolder. After making these changes your new nested master page's declarative markup should look similar to the following:
 
 
-    <%@ Master Language="C#" MasterPageFile="~/NestedMasterPages/Simple.master" AutoEventWireup="false" CodeFile="SimpleNestedAlternate.master.cs" Inherits="NestedMasterPages_SimpleNestedAlternate" %> 
-     <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <asp:ContentPlaceHolder ID="head" runat="server">
-     </asp:ContentPlaceHolder> 
-     </asp:Content> 
-     <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-     <p>Hello, from SimpleNestedAlternate!</p> 
-     <asp:ContentPlaceHolder ID="MainContent" runat="server">
-     </asp:ContentPlaceHolder> 
-     </asp:Content>
+[!code[Main](nested-master-pages-cs/samples/sample6.xml)]
 
 Create a content page named `Alternate.aspx` in the `NestedMasterPages` folder and bind it to the `SimpleNestedAlternate.master` nested master page. Add the text, "Hello, from Alternate!" in the Content control that corresponds to `MainContent`. Figure 7 shows `Alternate.aspx` when viewed through the Visual Studio Designer.
 
@@ -213,15 +176,7 @@ Now, imagine that we needed to make a change to the overarching site layout. For
 To demonstrate the ease with which we can change the overarching site layout, open the `Simple.master` master page and add the following markup between the `topContent` and `mainContent` `<div>` elements:
 
 
-    <div id="navContent"> 
-     <asp:HyperLink ID="lnkDefault" runat="server" 
-     NavigateUrl="~/NestedMasterPages/Default.aspx" 
-     Text="Nested Master Page Example 1" /> 
-     | 
-     <asp:HyperLink ID="lnkAlternate" runat="server" 
-     NavigateUrl="~/NestedMasterPages/Alternate.aspx" 
-     Text="Nested Master Page Example 2" /> 
-    </div>
+[!code[Main](nested-master-pages-cs/samples/sample7.xml)]
 
 This adds two links to the top of every page that binds to `Simple.master`, `SimpleNested.master`, or `SimpleNestedAlternate.master`; these changes apply to all nested master pages and their content pages immediately. Figure 8 shows `Alternate.aspx` when viewed through a browser. Note the addition of the links at the top of the page (compared to Figure 7).
 
@@ -264,52 +219,19 @@ Let's use the second option. Create a single nested master page file in the `~/A
 Because the nested master page is bound to a master page with four ContentPlaceHolder controls, Visual Studio adds four Content controls to the new nested master page file's initial markup. Like we did in Steps 2 and 3, add a ContentPlaceHolder control in each Content control, giving it the same name as the top-level master page's ContentPlaceHolder control. Also add the following markup to the Content control that corresponds to the `MainContent` ContentPlaceHolder:
 
 
-    <div class="instructions"> 
-     <b>Administration Instructions:</b>
-     <br /> 
-     The pages in the Administration section allow you, the Administrator, to 
-     add new products and view existing products. 
-    </div>
+[!code[Main](nested-master-pages-cs/samples/sample8.xml)]
 
 Next, define the `instructions` CSS class in the `Styles.css` and `AlternateStyles.css` CSS files. The following CSS rules cause HTML elements styled with the `instructions` class to be displayed with a light yellow background color and a black, solid border:
 
 
-    .instructions 
-    { 
-     padding: 6px; 
-     border: dashed 1px black; 
-     background-color: #ffb; 
-     margin-bottom: 10px; 
-    }
+[!code[Main](nested-master-pages-cs/samples/sample9.xml)]
 
 Because this markup has been added to the nested master page, it will only appear in those pages that use this nested master page (namely, the pages in the Administration section).
 
 After making these additions to your nested master page, its declarative markup should look similar to the following:
 
 
-    <%@ Master Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="false" CodeFile="AdminNested.master.cs" Inherits="Admin_AdminNested" %> 
-     <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server"> 
-     <asp:ContentPlaceHolder ID="head" runat="server"> 
-     </asp:ContentPlaceHolder>
-     </asp:Content> 
-     <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server"> 
-     <div class="instructions">
-     <b>Administration Instructions:</b>
-     <br /> 
-     The pages in the Administration section allow you, the Administrator, to 
-     add new products and view existing products. 
-     </div> 
-     <asp:ContentPlaceHolder ID="MainContent" runat="server"> 
-     </asp:ContentPlaceHolder>
-     </asp:Content> 
-     <asp:Content ID="Content3" ContentPlaceHolderID="QuickLoginUI" Runat="Server"> 
-     <asp:ContentPlaceHolder ID="QuickLoginUI" runat="server"> 
-     </asp:ContentPlaceHolder>
-     </asp:Content> 
-     <asp:Content ID="Content4" ContentPlaceHolderID="LeftColumnContent" Runat="Server"> 
-     <asp:ContentPlaceHolder ID="LeftColumnContent" runat="server"> 
-     </asp:ContentPlaceHolder>
-     </asp:Content>
+[!code[Main](nested-master-pages-cs/samples/sample10.xml)]
 
 Note that each Content control has a ContentPlaceHolder control and that the ContentPlaceHolder controls' `ID` properties are assigned the same values as the corresponding ContentPlaceHolder controls in the top-level master page. Moreover, the Administration section-specific markup appears in the `MainContent` ContentPlaceHolder.
 
@@ -330,23 +252,17 @@ To best way to achieve this desired behavior is to create a new custom base page
 Start by adding a new class file to the `App_Code` folder named `AdminBasePage.cs`. Have `AdminBasePage` extend `BasePage` and then override the `SetMasterPageFile` method. In that method assign the `MasterPageFile` the value "~/Admin/AdminNested.master". After making these changes your class file should look similar to the following:
 
 
-    public class AdminBasePage : BasePage 
-    { 
-     protected override void SetMasterPageFile() 
-     { 
-     this.MasterPageFile = "~/Admin/AdminNested.master"; 
-     } 
-    }
+[!code[Main](nested-master-pages-cs/samples/sample11.xml)]
 
 We now need to have the existing content pages in the Administration section derive from `AdminBasePage` instead of `BasePage`. Go to the code-behind class file for each content page in the `~/Admin` folder and make this change. For example, in `~/Admin/Default.aspx` you'd change the code-behind class declaration from:
 
 
-    public partial class Admin_Default : BasePage
+[!code[Main](nested-master-pages-cs/samples/sample12.xml)]
 
 To:
 
 
-    public partial class Admin_Default : AdminBasePage
+[!code[Main](nested-master-pages-cs/samples/sample13.xml)]
 
 Figure 11 depicts how the top-level master page (`Site.master` or `Alternate.master`), the nested master page (`AdminNested.master`), and the Administration section content pages relate to one another.
 
@@ -365,12 +281,12 @@ The `~/Admin/AddProduct.aspx` and `~/Admin/Products.aspx` pages assume that thei
 To fix this we need to have the `AdminNested.master` code-behind class extend `BaseMasterPage`. Update the nested master page's code-behind class declaration from:
 
 
-    public partial class Admin_AdminNested : System.Web.UI.MasterPage
+[!code[Main](nested-master-pages-cs/samples/sample14.xml)]
 
 To:
 
 
-    public partial class Admin_AdminNested : BaseMasterPage
+[!code[Main](nested-master-pages-cs/samples/sample15.xml)]
 
 We're not done yet. Because the `BaseMasterPage` class is abstract, we need to override the `abstract` members, `RefreshRecentProductsGrid` and `GridMessageText`. These members are used by the top-level master pages to update their user interfaces. (Actually, only the `Site.master` master page uses these methods, although both top-level master pages implement these methods, since both extend `BaseMasterPage`.)
 
@@ -379,29 +295,12 @@ While we need to implement these members in `AdminNested.master`, all these impl
 To achieve this, start by adding the following `@MasterType` directive to the top of `AdminNested.master`:
 
 
-    <%@ MasterType TypeName="BaseMasterPage" %>
+[!code[Main](nested-master-pages-cs/samples/sample16.xml)]
 
 Recall that the `@MasterType` directive adds a strongly-typed property to the code-behind class named `Master`. Then override the `RefreshRecentProductsGrid` and `GridMessageText` members and simply delegate the call to the `Master`'s corresponding method:
 
 
-    public partial class Admin_AdminNested : BaseMasterPage 
-    { 
-     public override void RefreshRecentProductsGrid() 
-     { 
-     Master.RefreshRecentProductsGrid();
-     } 
-     public override string GridMessageText
-     { 
-     get 
-     {
-     return Master.GridMessageText;
-     } 
-     set
-     { 
-     Master.GridMessageText = value; 
-     } 
-     }
-    }
+[!code[Main](nested-master-pages-cs/samples/sample17.xml)]
 
 With this code in place, you should be able to visit and use the content pages in the Administration section. Figure 12 shows the `~/Admin/Products.aspx` page when viewed through a browser. As you can see, the page includes the Administration Instructions box, which is defined in the nested master page.
 
@@ -420,14 +319,7 @@ To use the top-level master page selected by the end user we need to set the `Ad
 Therefore, we need to set the nested master page's `MasterPageFile` property from the content pages. The only content pages that use the `AdminNested.master` master page derive from `AdminBasePage`. Therefore, we can put this logic there. In Step 5 we overrode the `SetMasterPageFile` method, setting the `Page` object's `MasterPageFile` property to "~/Admin/AdminNested.master". Update `SetMasterPageFile` to also set the master page's `MasterPageFile` property to the result stored in Session:
 
 
-    public class AdminBasePage : BasePage 
-    { 
-     protected override void SetMasterPageFile() 
-     { 
-     this.MasterPageFile = "~/Admin/AdminNested.master"; 
-     Page.Master.MasterPageFile = base.GetMasterPageFileFromSession(); 
-     } 
-    }
+[!code[Main](nested-master-pages-cs/samples/sample18.xml)]
 
 The `GetMasterPageFileFromSession` method, which we added to the `BasePage` class in the preceding tutorial, returns the appropriate master page file path based on the Session variable value.
 

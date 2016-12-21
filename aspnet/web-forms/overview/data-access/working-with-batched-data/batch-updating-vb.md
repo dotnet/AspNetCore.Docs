@@ -73,10 +73,7 @@ Like the GridView, the ObjectDataSource s modification features are designed to 
 After completing the Configure Data Source wizard, the ObjectDataSource s declarative markup should look like the following:
 
 
-    <asp:ObjectDataSource ID="ProductsDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProducts" TypeName="ProductsBLL">
-    </asp:ObjectDataSource>
+[!code[Main](batch-updating-vb/samples/sample1.xml)]
 
 Completing the Configure Data Source wizard also causes Visual Studio to create BoundFields and a CheckBoxField for the product data fields in the GridView. For this tutorial, let s only allow the user to view and edit the product s name, category, price, and discontinued status. Remove all but the `ProductName`, `CategoryName`, `UnitPrice`, and `Discontinued` fields and rename the `HeaderText` properties of the first three fields to Product , Category , and Price , respectively. Lastly, check the Enable Paging and Enable Sorting checkboxes in the GridView s smart tag.
 
@@ -153,10 +150,7 @@ Since this ObjectDataSource is used merely to retrieve data, set the drop-down l
 After completing the wizard, the `CategoriesDataSource` s declarative markup should look like the following:
 
 
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetCategories" TypeName="CategoriesBLL">
-    </asp:ObjectDataSource>
+[!code[Main](batch-updating-vb/samples/sample2.xml)]
 
 With the `CategoriesDataSource` created and configured, return to the `CategoryName` TemplateField s `ItemTemplate` and, from the DropDownList s smart tag, click on the Choose Data Source link. In the Data Source Configuration wizard, select the `CategoriesDataSource` option from the first drop-down list and choose to have `CategoryName` used for the display and `CategoryID` as the value.
 
@@ -178,11 +172,7 @@ At this point the `Categories` DropDownList lists all of the categories, but it 
 One last problem remains: if the product doesn t have a `CategoryID` value specified then the databinding statement on `SelectedValue` will result in an exception. This is because the DropDownList contains only items for the categories and does not offer an option for those products that have a `NULL` database value for `CategoryID`. To remedy this, set the DropDownList s `AppendDataBoundItems` property to `True` and add a new item to the DropDownList, omitting the `Value` property from the declarative syntax. That is, make sure that the `Categories` DropDownList s declarative syntax looks like the following:
 
 
-    <asp:DropDownList ID="Categories" runat="server" AppendDataBoundItems="True" 
-        DataSourceID="CategoriesDataSource" DataTextField="CategoryName" 
-        DataValueField="CategoryID" SelectedValue='<%# Bind("CategoryID") %>'>
-        <asp:ListItem Value=">-- Select One --</asp:ListItem>
-    </asp:DropDownList>
+[!code[Main](batch-updating-vb/samples/sample3.xml)]
 
 Note how the `<asp:ListItem Value="">` -- Select One -- has its `Value` attribute explicitly set to an empty string. Refer back to the [Customizing the Data Modification Interface](../editing-inserting-and-deleting-data/customizing-the-data-modification-interface-vb.md) tutorial for a more thorough discussion on why this additional DropDownList item is needed to handle the `NULL` case and why assignment of the `Value` property to an empty string is essential.
 
@@ -223,73 +213,7 @@ Since the GridView s editing interface is defined in its TemplateFields `ItemTem
 After making the above mentioned formatting changes, adding the Button controls, and removing the unnecessary `EditItemTemplate` s, your page s declarative syntax should look like the following:
 
 
-    <p>
-        <asp:Button ID="UpdateAllProducts1" runat="server" Text="Update Products" />
-    </p>
-    <p>
-        <asp:GridView ID="ProductsGrid" runat="server" AutoGenerateColumns="False" 
-            DataKeyNames="ProductID" DataSourceID="ProductsDataSource" 
-            AllowPaging="True" AllowSorting="True">
-            <Columns>
-                <asp:TemplateField HeaderText="Product" SortExpression="ProductName">
-                    <ItemTemplate>
-                        <asp:TextBox ID="ProductName" runat="server" 
-                            Text='<%# Bind("ProductName") %>'></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
-                            ControlToValidate="ProductName"
-                            ErrorMessage="You must provide the product's name." 
-                            runat="server">*</asp:RequiredFieldValidator>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Category" 
-                    SortExpression="CategoryName">
-                    <ItemTemplate>
-                        <asp:DropDownList ID="Categories" runat="server" 
-                            AppendDataBoundItems="True" 
-                            DataSourceID="CategoriesDataSource"
-                            DataTextField="CategoryName" 
-                            DataValueField="CategoryID" 
-                            SelectedValue='<%# Bind("CategoryID") %>'>
-                            <asp:ListItem>-- Select One --</asp:ListItem>
-                        </asp:DropDownList>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Price" 
-                    SortExpression="UnitPrice">
-                    <ItemTemplate>
-                        $<asp:TextBox ID="UnitPrice" runat="server" Columns="8" 
-                            Text='<%# Bind("UnitPrice", "{0:N}") %>'></asp:TextBox>
-                        <asp:CompareValidator ID="CompareValidator1" runat="server" 
-                            ControlToValidate="UnitPrice"
-                            ErrorMessage="You must enter a valid currency value. 
-                                          Please omit any currency symbols."
-                            Operator="GreaterThanEqual" Type="Currency" 
-                            ValueToCompare="0">*</asp:CompareValidator>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Discontinued" SortExpression="Discontinued">
-                    <ItemTemplate>
-                        <asp:CheckBox ID="Discontinued" runat="server" 
-                            Checked='<%# Bind("Discontinued") %>' />
-                    </ItemTemplate>
-                    <ItemStyle HorizontalAlign="Center" />
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
-    </p>
-    <p>
-        <asp:Button ID="UpdateAllProducts2" runat="server" Text="Update Products" />
-        <asp:ObjectDataSource ID="ProductsDataSource" runat="server" 
-            OldValuesParameterFormatString="original_{0}"
-            SelectMethod="GetProducts" TypeName="ProductsBLL">
-        </asp:ObjectDataSource>
-        <asp:ObjectDataSource ID="CategoriesDataSource" runat="server" 
-            OldValuesParameterFormatString="original_{0}"
-            SelectMethod="GetCategories" TypeName="CategoriesBLL">
-        </asp:ObjectDataSource>
-        <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
-            ShowMessageBox="True" ShowSummary="False" />
-    </p>
+[!code[Main](batch-updating-vb/samples/sample4.xml)]
 
 Figure 16 shows this page when viewed through a browser after the Button Web controls have been added and the formatting changes made.
 
@@ -306,44 +230,7 @@ When a user visits this page they will make their modifications and then click o
 Create a method named `BatchUpdate` in `BatchUpdate.aspx.vb` and add the following code:
 
 
-    Private Sub BatchUpdate()
-        ' Enumerate the GridView's Rows collection and create a ProductRow
-        Dim productsAPI As New ProductsBLL()
-        Dim products As Northwind.ProductsDataTable = productsAPI.GetProducts()
-        For Each gvRow As GridViewRow In ProductsGrid.Rows
-            ' Find the ProductsRow instance in products that maps to gvRow
-            Dim productID As Integer = _
-                Convert.ToInt32(ProductsGrid.DataKeys(gvRow.RowIndex).Value)
-            Dim product As Northwind.ProductsRow = products.FindByProductID(productID)
-            If product IsNot Nothing Then
-                ' Programmatically access the form field elements in the 
-                ' current GridViewRow
-                Dim productName As TextBox = _
-                    CType(gvRow.FindControl("ProductName"), TextBox)
-                Dim categories As DropDownList = _
-                    CType(gvRow.FindControl("Categories"), DropDownList)
-                Dim unitPrice As TextBox = _
-                    CType(gvRow.FindControl("UnitPrice"), TextBox)
-                Dim discontinued As CheckBox = _
-                    CType(gvRow.FindControl("Discontinued"), CheckBox)
-                ' Assign the user-entered values to the current ProductRow
-                product.ProductName = productName.Text.Trim()
-                If categories.SelectedIndex = 0 Then 
-                    product.SetCategoryIDNull() 
-                Else 
-                    product.CategoryID = Convert.ToInt32(categories.SelectedValue)
-                End If
-                If unitPrice.Text.Trim().Length = 0 Then 
-                    product.SetUnitPriceNull() 
-                Else 
-                    product.UnitPrice = Convert.ToDecimal(unitPrice.Text)
-                End If
-                product.Discontinued = discontinued.Checked
-            End If
-        Next
-        ' Now have the BLL update the products data using a transaction
-        productsAPI.UpdateWithTransaction(products)
-    End Sub
+[!code[Main](batch-updating-vb/samples/sample5.xml)]
 
 This method starts out by getting all of the products back in a `ProductsDataTable` via a call to the BLL s `GetProducts` method. It then enumerates the `ProductGrid` GridView s [`Rows` collection](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rows(VS.80).aspx). The `Rows` collection contains a [`GridViewRow` instance](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridviewrow.aspx) for each row displayed in the GridView. Since we are showing at most ten rows per page, the GridView s `Rows` collection will have no more than ten items.
 
@@ -359,9 +246,7 @@ The code used in `BatchUpdate` is similar to that used in the BLL s `UpdateProdu
 To complete this tutorial, we need to have the `BatchUpdate` method invoked when either of the Update Products buttons is clicked. Create event handlers for the `Click` events of these two Button controls and add the following code in the event handlers:
 
 
-    BatchUpdate()
-    ClientScript.RegisterStartupScript(Me.GetType(), "message", _
-        "alert('The products have been updated.');", True)
+[!code[Main](batch-updating-vb/samples/sample6.xml)]
 
 First a call is made to `BatchUpdate`. Next, the [`ClientScript` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.clientscript(VS.80).aspx) is used to inject JavaScript that will display a messagebox that reads The products have been updated.
 
@@ -374,46 +259,7 @@ The `BatchUpdate` method we just examined retrieves *all* of the products from t
 For those types of situations, consider using the following `BatchUpdateAlternate` method instead:
 
 
-    Private Sub BatchUpdateAlternate()
-        ' Enumerate the GridView's Rows collection and create a ProductRow
-        Dim productsAPI As New ProductsBLL()
-        Dim products As New Northwind.ProductsDataTable()
-        For Each gvRow As GridViewRow In ProductsGrid.Rows
-            ' Create a new ProductRow instance
-            Dim productID As Integer = _
-                Convert.ToInt32(ProductsGrid.DataKeys(gvRow.RowIndex).Value)
-            Dim currentProductDataTable As Northwind.ProductsDataTable = _
-                productsAPI.GetProductByProductID(productID)
-            If currentProductDataTable.Rows.Count > 0 Then
-                Dim product As Northwind.ProductsRow = currentProductDataTable(0)
-                Dim productName As TextBox = _
-                    CType(gvRow.FindControl("ProductName"), TextBox)
-                Dim categories As DropDownList = _
-                    CType(gvRow.FindControl("Categories"), DropDownList)
-                Dim unitPrice As TextBox = _
-                    CType(gvRow.FindControl("UnitPrice"), TextBox)
-                Dim discontinued As CheckBox = _
-                    CType(gvRow.FindControl("Discontinued"), CheckBox)
-                ' Assign the user-entered values to the current ProductRow
-                product.ProductName = productName.Text.Trim()
-                If categories.SelectedIndex = 0 Then 
-                    product.SetCategoryIDNull() 
-                Else 
-                    product.CategoryID = Convert.ToInt32(categories.SelectedValue)
-                End If
-                If unitPrice.Text.Trim().Length = 0 Then 
-                    product.SetUnitPriceNull() 
-                Else 
-                    product.UnitPrice = Convert.ToDecimal(unitPrice.Text)
-                End If
-                product.Discontinued = discontinued.Checked
-                ' Import the ProductRow into the products DataTable
-                products.ImportRow(product)
-            End If
-        Next
-        ' Now have the BLL update the products data using a transaction
-        productsAPI.UpdateProductsWithTransaction(products)
-    End Sub
+[!code[Main](batch-updating-vb/samples/sample7.xml)]
 
 `BatchMethodAlternate` starts by creating a new empty `ProductsDataTable` named `products`. It then steps through the GridView s `Rows` collection and for each row gets the particular product information using the BLL s `GetProductByProductID(productID)` method. The retrieved `ProductsRow` instance has its properties updated in the same fashion as `BatchUpdate`, but after updating the row it is imported into the `products` `ProductsDataTable` via the DataTable s [`ImportRow(DataRow)` method](https://msdn.microsoft.com/en-us/library/system.data.datatable.importrow(VS.80).aspx).
 
@@ -422,16 +268,7 @@ After the `For Each` loop completes, `products` contains one `ProductsRow` insta
 This can be accomplished by adding a new method to the BLL named `UpdateProductsWithTransaction`. `UpdateProductsWithTransaction`, shown below, sets the `RowState` of each of the `ProductsRow` instances in the `ProductsDataTable` to `Modified` and then passes the `ProductsDataTable` to the DAL s `UpdateWithTransaction` method.
 
 
-    Public Function UpdateProductsWithTransaction _
-        (ByVal products As Northwind.ProductsDataTable) As Integer
-        ' Mark each product as Modified
-        products.AcceptChanges()
-        For Each product As Northwind.ProductsRow In products
-            product.SetModified()
-        Next
-        ' Update the data via a transaction
-        Return UpdateWithTransaction(products)
-    End Function
+[!code[Main](batch-updating-vb/samples/sample8.xml)]
 
 ## Summary
 

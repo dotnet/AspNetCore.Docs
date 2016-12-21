@@ -28,16 +28,7 @@ The `ReorderList` control in the AJAX Control Toolkit provides a list that can b
 
 There are several possible data sources for the `ReorderList` control. One is to use an `XmlDataSource` control:
 
-    <asp:XmlDataSource ID="XmlDataSource1" runat="server" XPath="acronym/letter">
-     <Data>
-     <acronym>
-     <letter char="A" description="Asynchronous" />
-     <letter char="J" description="JavaScript" />
-     <letter char="A" description="And" />
-     <letter char="X" description="XML" />
-     </acronym>
-     </Data>
-    </asp:XmlDataSource>
+[!code[Main](using-postbacks-with-reorderlist-cs/samples/sample1.xml)]
 
 In order to bind this XML to a `ReorderList` control and enable postbacks, the following attributes must be set:
 
@@ -48,45 +39,23 @@ In order to bind this XML to a `ReorderList` control and enable postbacks, the f
 
 Here is the appropriate markup for the control:
 
-    <ajaxToolkit:ReorderList ID="rl1" runat="server" SortOrderField="char"
-     AllowReorder="true"
-     DataSourceID="XmlDataSource1" PostBackOnReorder="true">
+[!code[Main](using-postbacks-with-reorderlist-cs/samples/sample2.xml)]
 
 Within the `ReorderList` control, specific data from the data source may be bound using the `Eval()` method:
 
-    <DragHandleTemplate>
-     <div class="DragHandleClass">
-     </div>
-     </DragHandleTemplate>
-     <ItemTemplate>
-     <div>
-     <asp:Label ID="ItemLabel" Text='<%# Eval("description") %>' runat="server" />
-     </div>
-     </ItemTemplate>
-    </ajaxToolkit:ReorderList>
+[!code[Main](using-postbacks-with-reorderlist-cs/samples/sample3.xml)]
 
 At an arbitrary position on the page, a label will hold the information when the last reordering occurred:
 
-    <div>
-     <asp:Label ID="lastUpdate" runat="server" />
-    </div>
+[!code[Main](using-postbacks-with-reorderlist-cs/samples/sample4.xml)]
 
 This label is filled with text in the server-side code, handling the postback:
 
-    <script runat="server">
-     void Page_Load()
-     {
-     if (Page.IsPostBack)
-     {
-     lastUpdate.Text = "List last reordered at " + 
-     DateTime.Now.ToLongTimeString();
-     }
-     }
-    </script>
+[!code[Main](using-postbacks-with-reorderlist-cs/samples/sample5.xml)]
 
 Finally, in order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put on the page:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](using-postbacks-with-reorderlist-cs/samples/sample6.xml)]
 
 
 [![Each reordering triggers a postback](using-postbacks-with-reorderlist-cs/_static/image2.png)](using-postbacks-with-reorderlist-cs/_static/image1.png)

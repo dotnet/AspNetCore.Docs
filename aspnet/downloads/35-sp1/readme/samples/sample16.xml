@@ -1,0 +1,7 @@
+        <add name="DynamicDataModule"
+            type="System.Web.DynamicData.DynamicDataHttpModule,
+            System.Web.Extensions, Version=3.6.0.0, Culture=neutral,
+            PublicKeyToken=31BF3856AD364E35"/>
+        <add name="UrlRoutingModule" type="System.Web.Mvc.UrlRoutingModule,
+            System.Web.Extensions, Version=3.6.0.0, Culture=neutral,
+            PublicKeyToken=31BF3856AD364E35"/>

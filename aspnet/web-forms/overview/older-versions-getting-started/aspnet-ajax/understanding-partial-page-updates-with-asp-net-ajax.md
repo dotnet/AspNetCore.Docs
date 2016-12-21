@@ -51,31 +51,11 @@ The ability to integrate partial page rendering is integrated into ASP.NET with 
 
 **Listing 1: Markup for default.aspx before partial rendering is enabled**
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-     <head runat="server">
-     <title>Untitled Page</title>
-     </head>
-     <body>
-     <form id="form1" runat="server">
-     <div>
-     <asp:Label ID="Label1" runat="server" Text="This is a label!"></asp:Label>
-     <asp:Button ID="Button1" runat="server" Text="Click Me" OnClick="Button1_Click" />
-     </div>
-     </form>
-     </body>
-    </html>
+[!code[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample1.xml)]
 
 **Listing 2: Codebehind (trimmed) in default.aspx.cs**
 
-    public partial class _Default : System.Web.UI.Page
-    {
-     protected void Button1_Click(object sender, EventArgs e)
-     {
-     Label1.Text = "You clicked the button!";
-     }
-    }
+[!code[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample2.xml)]
 
 1. Press F5 to launch your web site. Visual Studio will prompt you to add a web.config file to enable debugging; do so. When you click the button, notice that the page refreshes to change the text in the label, and there is a brief flicker as the page is redrawn.
 2. After closing your browser window, return to Visual Studio and to the markup page. Scroll down in the Visual Studio toolbox, and find the tab labeled AJAX Extensions. (If you do not have this tab because you are using an older version of AJAX or Atlas extensions, refer to the walkthrough for registering the AJAX Extensions toolbox items later in this whitepaper, or install the current version with the Windows Installer downloadable from the website).
@@ -103,35 +83,7 @@ The ability to integrate partial page rendering is integrated into ASP.NET with 
 
 **Listing 3: Markup for default.aspx with partial rendering enabled**
 
-    <%@ Page Language="C#" AutoEventWireup="true"
-     CodeFile="Default.aspx.cs" Inherits="_Default" %>
-    <%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral,
-     PublicKeyToken=31bf3856ad364e35"
-     Namespace="System.Web.UI" TagPrefix="asp" %>
-    <!DOCTYPE html PUBLIC
-     "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-     <head runat="server">
-     <title>Untitled Page</title>
-     </head>
-     <body>
-     <form id="form1" runat="server">
-     <asp:ScriptManager EnablePartialRendering="true"
-     ID="ScriptManager1" runat="server"></asp:ScriptManager>
-     <div>
-     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-     <ContentTemplate>
-     <asp:Label ID="Label1" runat="server"
-     Text="This is a label!"></asp:Label>
-     <asp:Button ID="Button1" runat="server"
-     Text="Click Me" OnClick="Button1_Click" />
-     </ContentTemplate>
-     </asp:UpdatePanel>
-     </div>
-     </form>
-     </body>
-    </html>
+[!code[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample3.xml)]
 
 1. Open your web.config file. Notice that Visual Studio has automatically added a compilation reference to System.Web.Extensions.dll.
 
@@ -215,30 +167,7 @@ Client-side customization is also possible instead of using the default alert bo
 
 **Listing 5: Client-side script to display custom errors**
 
-    <script type= text/javascript >
-     <!--
-     Sys.WebForms.PageRequestManager.getInstance().add_EndRequest(Request_End);
-     function Request_End(sender, args)
-     {
-     if (args.get_error() != undefined)
-     {
-     var errorMessage =  ;
-     if (args.get_response().get_statusCode() ==  200 )
-     {
-     errorMessage = args.get_error().message;
-     }
-     else
-     {
-     // the server wasn't the problem...
-     errorMessage =  An unknown error occurred... ;
-     }
-     // do something with the errorMessage here.
-     // now make sure the system knows we handled the error.
-     args.set_errorHandled(true);
-     }
-     }
-     // -->
-    </script>
+[!code[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample4.xml)]
 
 Quite simply, the above script registers a callback with the client-side AJAX runtime for when the asynchronous request has been completed. It then checks to see whether an error was reported, and if so, processes the details of it, finally indicating to the runtime that the error was handled in custom script.
 

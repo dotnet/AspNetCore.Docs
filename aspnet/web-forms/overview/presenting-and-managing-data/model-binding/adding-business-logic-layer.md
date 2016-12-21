@@ -49,104 +49,7 @@ The most important change to note is that you are no longer executing the code f
 
 Replace the code in SchoolBL.cs with the following code.
 
-    using System;
-    using System.Linq;
-    using ContosoUniversityModelBinding.Models;
-    using System.Web.ModelBinding;
-    using System.Web.UI.WebControls;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
-    namespace ContosoUniversityModelBinding.BLL
-    {
-        public class SchoolBL : IDisposable
-        {
-            SchoolContext db = new SchoolContext();
-    
-            public IQueryable<Student> GetStudents([Control] AcademicYear? displayYear)
-            {
-                var query = db.Students.Include(s => s.Enrollments.Select(e => e.Course));
-    
-                if (displayYear != null)
-                {
-                    query = query.Where(s => s.Year == displayYear);
-                }
-    
-                return query;
-            }
-    
-            public void InsertStudent(ModelMethodContext context)
-            {
-                var item = new Student();
-    
-                context.TryUpdateModel(item);
-                if (context.ModelState.IsValid)
-                {
-                    db.Students.Add(item);
-                    db.SaveChanges();
-                }
-            }
-    
-            public void DeleteStudent(int studentID, ModelMethodContext context)
-            {
-                var item = new Student { StudentID = studentID };
-                db.Entry(item).State = EntityState.Deleted;
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    context.ModelState.AddModelError("",
-                        String.Format("Item with id {0} no longer exists in the database.", studentID));
-                }
-            }
-    
-            public void UpdateStudent(int studentID, ModelMethodContext context)
-            {
-                Student item = null;
-                item = db.Students.Find(studentID);
-                if (item == null)
-                {
-                    context.ModelState.AddModelError("", String.Format("Item with id {0} was not found", studentID));
-                    return;
-                }
-    
-                context.TryUpdateModel(item);
-                if (context.ModelState.IsValid)
-                {
-                    db.SaveChanges();
-                }
-            }
-    
-            public IQueryable<Enrollment> GetCourses([QueryString] int? studentID)
-            {
-                var query = db.Enrollments.Include(e => e.Course)
-                    .Where(e => e.StudentID == studentID);
-                return query;
-            }
-    
-            private bool disposedValue = false;
-    
-            protected virtual void Dispose(bool disposing)
-            {
-                if (!this.disposedValue)
-                {
-                    if (disposing)
-                    {
-                        db.Dispose();
-                    }
-                }
-                this.disposedValue = true;
-            }
-    
-            public void Dispose()
-            {
-                Dispose(true);
-                GC.SuppressFinalize(this);
-            }
-        }
-    }
+[!code[Main](adding-business-logic-layer/samples/sample1.xml)]
 
 ## Revise existing pages to retrieve data from business logic layer
 
@@ -164,32 +67,23 @@ You now should have no code in the code-behind file that pertains to data operat
 
 The **OnCallingDataMethods** event handler enables you to specify an object to use for the data methods. In Students.aspx, add a value for that event handler and change the names of the data methods to the names of the methods in the business logic class.
 
-[!code[Main](adding-business-logic-layer/samples/sample1.xml?highlight=3-4,8)]
+[!code[Main](adding-business-logic-layer/samples/sample2.xml?highlight=3-4,8)]
 
 In the code-behind file for Students.aspx, define the event handler for the CallingDataMethods event. In this event handler, you specify the business logic class for data operations.
 
-    protected void studentsGrid_CallingDataMethods(object sender, CallingDataMethodsEventArgs e)
-    {
-        e.DataMethodsObject = new ContosoUniversityModelBinding.BLL.SchoolBL();
-    }
+[!code[Main](adding-business-logic-layer/samples/sample3.xml)]
 
 In AddStudent.aspx, make similar changes.
 
-[!code[Main](adding-business-logic-layer/samples/sample2.xml?highlight=3-4)]
+[!code[Main](adding-business-logic-layer/samples/sample4.xml?highlight=3-4)]
 
-    protected void addStudentForm_CallingDataMethods(object sender, CallingDataMethodsEventArgs e)
-    {
-        e.DataMethodsObject = new ContosoUniversityModelBinding.BLL.SchoolBL();
-    }
+[!code[Main](adding-business-logic-layer/samples/sample5.xml)]
 
 In Courses.aspx, make similar changes.
 
-[!code[Main](adding-business-logic-layer/samples/sample3.xml?highlight=3-4)]
+[!code[Main](adding-business-logic-layer/samples/sample6.xml?highlight=3-4)]
 
-    protected void coursesGrid_CallingDataMethods(object sender, CallingDataMethodsEventArgs e)
-    {
-        e.DataMethodsObject = new ContosoUniversityModelBinding.BLL.SchoolBL();
-    }
+[!code[Main](adding-business-logic-layer/samples/sample7.xml)]
 
 Run the application and notice that all of the pages function as they had previously. The validation logic also works correctly.
 

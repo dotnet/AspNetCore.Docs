@@ -77,22 +77,11 @@ In the code-behind file, modify the select method to receive a value from the co
 
 You must add a **using** statement for the **System.Web.ModelBinding** namespace to resolve the Control attribute.
 
-    using System.Web.ModelBinding;
+[!code[Main](sorting-paging-and-filtering-data/samples/sample4.xml)]
 
 The following code shows the select method re-worked to filter the returned data based on the value of the drop down list. Adding a control attribute before a parameter specifies that the value for this parameter comes from a control with the same name.
 
-    public IQueryable<Student> studentsGrid_GetData([Control] AcademicYear? displayYear)
-    {
-        SchoolContext db = new SchoolContext();
-        var query = db.Students.Include(s => s.Enrollments.Select(e => e.Course));
-    
-        if (displayYear != null)
-        {
-            query = query.Where(s => s.Year == displayYear);   
-        }
-    
-        return query;    
-    }
+[!code[Main](sorting-paging-and-filtering-data/samples/sample5.xml)]
 
 Run the web application and select different values from the drop down list to filter the list of students.
 

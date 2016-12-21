@@ -1,9 +1,11 @@
-public ActionResult Details(int id = 0)
-{
-    Movie movie = db.Movies.Find(id);
-    if (movie == null)
+    public class MoviesController : Controller
     {
-        return HttpNotFound();
-    }
-    return View(movie);
-}
+        private MovieDBContext db = new MovieDBContext();
+    
+        //
+        // GET: /Movies/
+    
+        public ActionResult Index()
+        {
+            return View(db.Movies.ToList());
+        }

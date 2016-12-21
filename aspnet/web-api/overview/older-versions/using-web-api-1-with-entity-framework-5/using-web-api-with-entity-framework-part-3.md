@@ -48,25 +48,15 @@ Here's what got added to the project:
 
 Open the OrdersContext.cs file. Notice that the constructor specifies the name of the database connection string. This name refers to the connection string that was added to Web.config.
 
-    public OrdersContext() : base("name=OrdersContext")
+[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample1.xml)]
 
 Add the following properties to the `OrdersContext` class:
 
-    public DbSet<Order> Orders { get; set; }
-    public DbSet<OrderDetail> OrderDetails { get; set; }
+[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample2.xml)]
 
 A **DbSet** represents a set of entities that can be queried. Here is the complete listing for the `OrdersContext` class:
 
-    public class OrdersContext : DbContext
-    {
-        public OrdersContext() : base("name=OrdersContext")
-        {
-        }
-    
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Product> Products { get; set; }
-    }
+[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample3.xml)]
 
 The `AdminController` class defines five methods that implement basic CRUD functionality. Each method corresponds to a URI that the client can invoke:
 
@@ -86,39 +76,7 @@ Entity Framework has a nice feature that lets you populate the database on start
 
 In Solution Explorer, right-click the Models folder and create a new class named `OrdersContextInitializer`. Paste in the following implementation:
 
-    namespace ProductStore.Models
-    {
-        using System;
-        using System.Collections.Generic;
-        using System.Data.Entity;
-    
-        public class OrdersContextInitializer : DropCreateDatabaseIfModelChanges<OrdersContext>
-        {
-            protected override void Seed(OrdersContext context)
-            {
-                var products = new List<Product>()            
-                {
-                    new Product() { Name = "Tomato Soup", Price = 1.39M, ActualCost = .99M },
-                    new Product() { Name = "Hammer", Price = 16.99M, ActualCost = 10 },
-                    new Product() { Name = "Yo yo", Price = 6.99M, ActualCost = 2.05M }
-                };
-    
-                products.ForEach(p => context.Products.Add(p));
-                context.SaveChanges();
-    
-                var order = new Order() { Customer = "Bob" };
-                var od = new List<OrderDetail>()
-                {
-                    new OrderDetail() { Product = products[0], Quantity = 2, Order = order},
-                    new OrderDetail() { Product = products[1], Quantity = 4, Order = order }
-                };
-                context.Orders.Add(order);
-                od.ForEach(o => context.OrderDetails.Add(o));
-    
-                context.SaveChanges();
-            }
-        }
-    }
+[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample4.xml)]
 
 By inheriting from the **DropCreateDatabaseIfModelChanges** class, we are telling Entity Framework to drop the database whenever we modify the model classes. When Entity Framework creates (or recreates) the database, it calls the **Seed** method to populate the tables. We use the **Seed** method to add some example products plus an example order.
 
@@ -126,8 +84,7 @@ This feature is great for testing, but don't use the **DropCreateDatabaseIfModel
 
 Next, open Global.asax and add the following code to the **Application\_Start** method:
 
-    System.Data.Entity.Database.SetInitializer(
-        new ProductStore.Models.OrdersContextInitializer());
+[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample5.xml)]
 
 ## Send a Request to the Controller
 
@@ -135,19 +92,6 @@ At this point, we haven't written any client code, but you can invoke the web AP
 
 Send an HTTP request to "`http://localhost:*portnum*/api/admin`. The first request may be slow to complete, because Entify Framework needs to create and seed the database. The response should something similar to the following:
 
-    HTTP/1.1 200 OK
-    Server: ASP.NET Development Server/10.0.0.0
-    Date: Mon, 18 Jun 2012 04:30:33 GMT
-    X-AspNet-Version: 4.0.30319
-    Cache-Control: no-cache
-    Pragma: no-cache
-    Expires: -1
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 175
-    Connection: Close
-    
-    [{"Id":1,"Name":"Tomato Soup","Price":1.39,"ActualCost":0.99},{"Id":2,"Name":"Hammer",
-    "Price":16.99,"ActualCost":10.00},{"Id":3,"Name":"Yo yo","Price":6.99,"ActualCost":
-    2.05}]
+[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample6.xml)]
 
 >[!div class="step-by-step"] [Previous](using-web-api-with-entity-framework-part-2.md) [Next](using-web-api-with-entity-framework-part-4.md)

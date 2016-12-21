@@ -45,82 +45,25 @@ You'll begin by adding some validation logic to the `Movie` class.
 
 Open the *Movie.cs* file. Add a `using` statement at the top of the file that references the [`System.ComponentModel.DataAnnotations`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace:
 
-    using System.ComponentModel.DataAnnotations;
+[!code[Main](adding-validation-to-the-model/samples/sample1.xml)]
 
 The namespace is part of the .NET Framework. It provides a built-in set of validation attributes that you can apply declaratively to any class or property.
 
 Now update the `Movie` class to take advantage of the built-in [`Required`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx), [`StringLength`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.stringlengthattribute.aspx), and [`Range`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.rangeattribute.aspx) validation attributes. Use the following code as an example of where to apply the attributes.
 
-    public class Movie
-    {
-        public int ID { get; set; }
-    
-        [Required(ErrorMessage = "Title is required")]
-        public string Title { get; set; }
-    
-        [Required(ErrorMessage = "Date is required")]
-        public DateTime ReleaseDate { get; set; }
-    
-        [Required(ErrorMessage = "Genre must be specified")]
-        public string Genre { get; set; }
-    
-        [Required(ErrorMessage = "Price Required")]
-        [Range(1, 100, ErrorMessage = "Price must be between $1 and $100")]
-        public decimal Price { get; set; }
-    
-        [StringLength(5)]
-        public string Rating { get; set; }
-    }
+[!code[Main](adding-validation-to-the-model/samples/sample2.xml)]
 
 The validation attributes specify behavior that you want to enforce on the model properties they are applied to. The `Required` attribute indicates that a property must have a value; in this sample, a movie has to have values for the `Title`, `ReleaseDate`, `Genre`, and `Price` properties in order to be valid. The `Range` attribute constrains a value to within a specified range. The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length.
 
 Code First ensures that the validation rules you specify on a model class are enforced before the application saves changes in the database. For example, the code below will throw an exception when the `SaveChanges` method is called, because several required `Movie` property values are missing and the price is zero (which is out of the valid range).
 
-    MovieDBContext db = new MovieDBContext();
-    
-    Movie movie = new Movie();
-    movie.Title = "Gone with the Wind";
-    movie.Price = 0.0M;
-    
-    db.Movies.Add(movie);
-    db.SaveChanges();        // <= Will throw validation exception
+[!code[Main](adding-validation-to-the-model/samples/sample3.xml)]
 
 Having validation rules automatically enforced by the .NET Framework helps make your application more robust. It also ensures that you can't forget to validate something and inadvertently let bad data into the database.
 
 Here's a complete code listing for the updated *Movie.cs* file:
 
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace MvcMovie.Models
-    {
-        public class Movie
-        {
-            public int ID { get; set; }
-    
-            [Required(ErrorMessage = "Title is required")]
-            public string Title { get; set; }
-    
-            [Required(ErrorMessage = "Date is required")]
-            public DateTime ReleaseDate { get; set; }
-    
-            [Required(ErrorMessage = "Genre must be specified")]
-            public string Genre { get; set; }
-    
-            [Required(ErrorMessage = "Price Required")]
-            [Range(1, 100, ErrorMessage = "Price must be between $1 and $100")]
-            public decimal Price { get; set; }
-    
-            [StringLength(5)]
-            public string Rating { get; set; }
-        }
-    
-        public class MovieDBContext : DbContext
-        {
-            public DbSet<Movie> Movies { get; set; }
-        }
-    }
+[!code[Main](adding-validation-to-the-model/samples/sample4.xml)]
 
 ## Validation Error UI in ASP.NET MVC
 
@@ -138,90 +81,13 @@ A real benefit is that you didn't need to change a single line of code in the `M
 
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The next listing shows what the `Create` methods in the `MovieController` class look like. They're unchanged from how you created them earlier in this tutorial.
 
-    //
-    // GET: /Movies/Create
-    
-    public ActionResult Create()
-    {
-        return View();
-    }
-    
-    //
-    // POST: /Movies/Create
-    
-    [HttpPost]
-    public ActionResult Create(Movie movie)
-    {
-        if (ModelState.IsValid)
-        {
-            db.Movies.Add(movie);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-    
-        return View(movie);
-    }
+[!code[Main](adding-validation-to-the-model/samples/sample5.xml)]
 
 The first action method displays the initial Create form. The second handles the form post. The second `Create` method calls `ModelState.IsValid` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the `Create` method redisplays the form. If there are no errors, the method saves the new movie in the database.
 
 Below is the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
-    @model MvcMovie.Models.Movie
-    @{
-        ViewBag.Title = "Create";
-    }
-    <h2>
-        Create</h2>
-    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-    @using (Html.BeginForm())
-    {
-        @Html.ValidationSummary(true)
-        <fieldset>
-            <legend>Movie</legend>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Title)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.ReleaseDate)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.ReleaseDate)
-                @Html.ValidationMessageFor(model => model.ReleaseDate)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Genre)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Genre)
-                @Html.ValidationMessageFor(model => model.Genre)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Price)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Price)
-                @Html.ValidationMessageFor(model => model.Price)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Rating)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Rating)
-                @Html.ValidationMessageFor(model => model.Rating)
-            </div>
-            <p>
-                <input type="submit" value="Create" />
-            </p>
-        </fieldset>
-    }
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+[!code[Main](adding-validation-to-the-model/samples/sample6.xml)]
 
 Notice how the code uses an `Html.EditorFor` helper to output the `<input>` element for each `Movie` property. Next to this helper is a call to the `Html.ValidationMessageFor` helper method. These two helper methods work with the model object that's passed by the controller to the view (in this case, a `Movie` object). They automatically look for validation attributes specified on the model and display error messages as appropriate.
 
@@ -233,46 +99,19 @@ If you want to change the validation logic later, you can do so in exactly one p
 
 Open the *Movie.cs* file. The [`System.ComponentModel.DataAnnotations`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace provides formatting attributes in addition to the built-in set of validation attributes. You'll apply the [`DisplayFormat`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute and a [`DataType`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate [`DisplayFormat`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute.
 
-    [DataType(DataType.Date)] 
-            public DateTime ReleaseDate { get; set; }
-           
-            [DataType(DataType.Currency)] 
-            public decimal Price { get; set; }
+[!code[Main](adding-validation-to-the-model/samples/sample7.xml)]
 
 Alternatively, you could explicitly set a [`DataFormatString`](https://msdn.microsoft.com/en-us/library/system.string.format.aspx) value. The following code shows the release date property with a date format string (namely, "d"). You'd use this to specify that you don't want to time as part of the release date.
 
-    [DisplayFormat(DataFormatString = "{0:d}")]
-           public DateTime ReleaseDate { get; set; }
+[!code[Main](adding-validation-to-the-model/samples/sample8.xml)]
 
 The following code formats the `Price` property as currency.
 
-    [DisplayFormat(DataFormatString = "{0:c}")]
-           public decimal Price { get; set; }
+[!code[Main](adding-validation-to-the-model/samples/sample9.xml)]
 
 The complete `Movie` class is shown below.
 
-    public class Movie
-    {
-        public int ID { get; set; }
-    
-        [Required(ErrorMessage = "Title is required")]
-        public string Title { get; set; }
-    
-        [Required(ErrorMessage = "Date is required")]
-        [DisplayFormat(DataFormatString = "{0:d}")]
-        public DateTime ReleaseDate { get; set; }
-    
-        [Required(ErrorMessage = "Genre must be specified")]
-        public string Genre { get; set; }
-    
-        [Required(ErrorMessage = "Price Required")]
-        [Range(1, 100, ErrorMessage = "Price must be between $1 and $100")]
-        [DisplayFormat(DataFormatString = "{0:c}")]
-        public decimal Price { get; set; }
-    
-        [StringLength(5)]
-        public string Rating { get; set; }
-    }
+[!code[Main](adding-validation-to-the-model/samples/sample10.xml)]
 
 Run the application and browse to the `Movies` controller.
 

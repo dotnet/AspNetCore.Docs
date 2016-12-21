@@ -46,15 +46,7 @@ The `ServerInfo` helper is a diagnostic tool that gives you an overview of infor
 1. Create a new web page named *ServerInfo.cshtml*.
 2. At the end of the page, just before the closing `</body>` tag, add `@ServerInfo.GetHtml()`:
 
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title></title>
-            </head>
-            <body>
-           @ServerInfo.GetHtml()
-            </body>
-        </html>
+    [!code[Main](introduction-to-debugging/samples/sample1.xml)]
 
     You can add the `ServerInfo` code anywhere in the page. But adding it at the end will keep its output separate from your other page content, which makes it easier to read.
 
@@ -81,61 +73,7 @@ Another way to see what's happening in your code is to embed output expressions 
 1. Create a new WebMatrix page that's named *OutputExpression.cshtml*.
 2. Replace the page content with the following:
 
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title></title>
-            </head>
-            <body>   
-        
-            @{
-                var weekday = DateTime.Now.DayOfWeek;
-                // As a test, add 1 day to the current weekday.
-                if(weekday.ToString() != "Saturday") {
-                    // If weekday is not Saturday, simply add one day.
-                    weekday = weekday + 1; 
-                }
-                else {
-                    // If weekday is Saturday, reset the day to 0, or Sunday.
-                    weekday = 0; 
-                }
-                // Convert weekday to a string value for the switch statement.
-                var weekdayText = weekday.ToString(); 
-        
-                var greeting = "";
-                
-                switch(weekdayText) 
-                { 
-                    case "Monday":
-                        greeting = "Ok, it's a marvelous Monday."; 
-                        break; 
-                    case "Tuesday":
-                        greeting = "It's a tremendous Tuesday.";
-                        break; 
-                    case "Wednesday":
-                        greeting = "Wild Wednesday is here!";
-                        break; 
-                    case "Thursday":
-                        greeting = "All right, it's thrifty Thursday.";
-                        break;
-                    case "Friday":
-                        greeting = "It's finally Friday!";
-                        break;
-                    case "Saturday":
-                        greeting = "Another slow Saturday is here.";
-                        break;
-                    case "Sunday":
-                        greeting = "The best day of all: serene Sunday.";
-                        break;
-                    default:
-                        break; 
-                }
-            }
-            
-            <h2>@greeting</h2>
-        
-            </body>
-        </html>
+    [!code[Main](introduction-to-debugging/samples/sample2.xml)]
 
     The example uses a `switch` statement to check the value of the `weekday` variable and then display a different output message depending on which day of the week it is. In the example, the `if` block within the first code block arbitrarily changes the day of the week by adding one day to the current weekday value. This is an error introduced for illustration purposes.
 3. Save the page and run it in a browser.
@@ -143,7 +81,7 @@ Another way to see what's happening in your code is to embed output expressions 
     The page displays the message for the wrong day of the week. Whatever day of the week it actually is, you'll see the message for one day later. Although in this case you know why the message is off (because the code deliberately sets the incorrect day value), in reality it's often hard to know where things are going wrong in the code. To debug, you need to find out what's happening to the value of key objects and variables such as `weekday`.
 4. Add output expressions by inserting `@weekday` as shown in the two places indicated by comments in the code. These output expressions will display the values of the variable at that point in the code execution.
 
-    [!code[Main](introduction-to-debugging/samples/sample1.xml?highlight=2-3,15-16)]
+    [!code[Main](introduction-to-debugging/samples/sample3.xml?highlight=2-3,15-16)]
 5. Save and run the page in a browser.
 
     The page displays the real day of the week first, then the updated day of the week that results from adding one day, and then the resulting message from the `switch` statement. The output from the two variable expressions (`@weekday`) has no spaces between the days because you didn't add any HTML `<p>` tags to the output; the expressions are just for testing.
@@ -153,39 +91,7 @@ Another way to see what's happening in your code is to embed output expressions 
     Now you can see where the error is. When you first display the `weekday` variable in the code, it shows the correct day. When you display it the second time, after the `if` block in the code, the day is off by one. So you know that something has happened between the first and second appearance of the weekday variable. If this were a real bug, this kind of approach would help you narrow down the location of the code that's causing the problem.
 6. Fix the code in the page by removing the two output expressions you added, and removing the code that changes the day of the week. The remaining, complete block of code looks like the following example:
 
-        @{
-            var weekday = DateTime.Now.DayOfWeek;
-            var weekdayText = weekday.ToString(); 
-        
-            var greeting = "";
-                
-            switch(weekdayText) 
-            { 
-                case "Monday":
-                    greeting = "Ok, it's a marvelous Monday."; 
-                    break; 
-                case "Tuesday":
-                    greeting = "It's a tremendous Tuesday.";
-                    break; 
-                case "Wednesday":
-                    greeting = "Wild Wednesday is here!";
-                    break; 
-                case "Thursday":
-                    greeting = "All right, it's thrifty Thursday.";
-                    break;
-                case "Friday":
-                    greeting = "It's finally Friday!";
-                    break;
-                case "Saturday":
-                    greeting = "Another slow Saturday is here.";
-                    break;
-                case "Sunday":
-                    greeting = "The best day of all: serene Sunday.";
-                    break;
-                default:
-                    break; 
-            }
-        }
+    [!code[Main](introduction-to-debugging/samples/sample4.xml)]
 7. Run the page in a browser. This time you see the correct message displayed for the actual day of the week.
 
 ## Using the ObjectInfo Helper to Display Object Values
@@ -195,51 +101,7 @@ The `ObjectInfo` helper displays the type and the value of each object you pass 
 1. Open the file named *OutputExpression.cshtml* that you created earlier.
 2. Replace all code in the page with the following block of code:
 
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title></title>
-            </head>
-            <body>
-            @{
-              var weekday = DateTime.Now.DayOfWeek;
-              @ObjectInfo.Print(weekday)
-              var weekdayText = weekday.ToString(); 
-          
-              var greeting = "";
-          
-              switch(weekdayText) 
-              { 
-                  case "Monday":
-                      greeting = "Ok, it's a marvelous Monday."; 
-                      break; 
-                  case "Tuesday":
-                      greeting = "It's a tremendous Tuesday.";
-                      break; 
-                  case "Wednesday":
-                      greeting = "Wild Wednesday is here!";
-                      break; 
-                  case "Thursday":
-                      greeting = "All right, it's thrifty Thursday.";
-                      break;
-                  case "Friday":
-                      greeting = "It's finally Friday!";
-                      break;
-                   case "Saturday":
-                      greeting = "Another slow Saturday is here.";
-                      break;
-                   case "Sunday":
-                      greeting = "The best day of all: serene Sunday.";
-                      break;
-                  default:
-                      break; 
-              }
-            }
-            @ObjectInfo.Print(greeting)
-            <h2>@greeting</h2>
-        
-            </body>
-        </html>
+    [!code[Main](introduction-to-debugging/samples/sample5.xml)]
 3. Save and run the page in a browser.
 
     ![Debugging-4](introduction-to-debugging/_static/image3.jpg)

@@ -26,27 +26,7 @@ We'll implement these two steps within two Create() methods within our MoviesCon
 
 Below is the code we'll add to our MoviesController class to implement this:
 
-    public ActionResult Create()
-    {
-        return View();
-    }
-    
-    [HttpPost]
-    public ActionResult Create(Movie newMovie)
-    {
-    
-        if (ModelState.IsValid)
-        {
-            db.AddToMovies(newMovie);
-            db.SaveChanges();
-    
-            return RedirectToAction("Index");
-        }
-        else
-        {
-            return View(newMovie);
-        }
-    }
+[!code[Main](getting-started-with-mvc-part6/samples/sample1.xml)]
 
 The above code contains all of the code that we'll need within our Controller.
 
@@ -58,58 +38,7 @@ We'll select that we are going to pass the view template a "Movie" as its view d
 
 After you click the Add button, \Movies\Create.aspx View template will be created for you. Because we selected "Create" from the "view content" dropdown, the Add View dialog automatically "scaffolded" some default content for us. The scaffolding created an HTML &lt;form&gt;, a place for validation error messages to go, and since scaffolding knows about Movies, it created Label and Fields for each property of our class.
 
-    <% using (Html.BeginForm()) {%>
-        <%: Html.ValidationSummary(true) %>
-    
-        <fieldset>
-            <legend>Fields</legend>
-           
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Id) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Id) %>
-                <%: Html.ValidationMessageFor(model => model.Id) %>
-            </div>
-           
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Title) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Title) %>
-                <%: Html.ValidationMessageFor(model => model.Title) %>
-            </div>
-           
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.ReleaseDate) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.ReleaseDate) %>
-                <%: Html.ValidationMessageFor(model => model.ReleaseDate) %>
-            </div>
-           
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Genre) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Genre) %>
-                <%: Html.ValidationMessageFor(model => model.Genre) %>
-            </div>
-           
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Price) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Price) %>
-                <%: Html.ValidationMessageFor(model => model.Price) %>
-            </div>
-           
-            <p>
-                <input type="submit" value="Create" />
-            </p>
-        </fieldset>
-    
-    <% } %>
+[!code[Main](getting-started-with-mvc-part6/samples/sample2.xml)]
 
 Since our database automatically gives a Movie an ID, let's remove those fields that reference model.Id from our Create View. Remove the 7 lines after &lt;legend&gt;Fields&lt;/legend&gt; as they show the ID field that we don't want.
 
@@ -121,21 +50,7 @@ When we click the Create button, we'll be posting back (via HTTP POST) the data 
 
 Let's look at the second Create method from our MoviesController again. Notice how it takes a "Movie" object as an argument:
 
-    [HttpPost]
-    public ActionResult Create(Movie newMovie)
-    {
-        if (ModelState.IsValid)
-        {
-            db.AddToMovies(newMovie);
-            db.SaveChanges();
-    
-            return RedirectToAction("Index");
-        }
-        else
-        {
-            return View(newMovie);
-        }
-    }
+[!code[Main](getting-started-with-mvc-part6/samples/sample3.xml)]
 
 This Movie object was then passed to the [HttpPost] version of our Create action method, and we saved it in the database and then redirected the user back to the Index() action method which will show the saved result in the movie list:
 

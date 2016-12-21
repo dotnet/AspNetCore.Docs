@@ -32,18 +32,7 @@ It is not uncommon for configuration information to differ between the developme
 
 The connection string used by the Book Reviews web application is stored in the application s configuration file, `Web.config`. `Web.config` includes a special section for storing connection strings, aptly named [&lt;connectionStrings&gt;](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx). The `Web.config` file for the Book Reviews website has one connection string defined in this section named `ReviewsConnectionString`:
 
-    <configuration>
-        ...
-        <connectionStrings>
-            
-            <add name="ReviewsConnectionString" 
-                connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Reviews.mdf;Integrated 
-                Security=True;User Instance=True"            
-                providerName="System.Data.SqlClient" />
-        
-        </connectionStrings>
-        ...
-    </configuration>
+[!code[Main](configuring-the-production-web-application-to-use-the-production-database-vb/samples/sample1.xml)]
 
 The connection string - Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Reviews.mdf;Integrated Security=True;User Instance=True - is composed of a number of options and values, with option/value pairs delimited by a semicolon and each option and value delimited by an equals sign. The four options used in this connection string are:
 
@@ -85,19 +74,7 @@ The preceding tutorial stepped through copying the development database to the p
 
 Take a moment to deploy the data-driven application from the development environment to production. This process was covered in detail in previous tutorials. If you need a refresher, see the *Deploying Your Website Using an FTP Client* or the *Deploying Your Website Using Visual Studio* tutorials. You will need to ensure that the production database connection string is the one used in the production environment, which means that an alternate `Web.config` file must be deployed. Specifically, this modified `Web.config` file s `<connectionStrings>` element needs to contain the production database connection string and should look similar to the following:
 
-    <configuration>
-    
-        ...
-        <connectionStrings>
-            
-            <add name="ReviewsConnectionString" 
-                connectionString="Data Source=serverName; Initial Catalog=databaseName; 
-                Persist Security Info=True; User ID=username; Password=password"
-                providerName="System.Data.SqlClient" />
-    
-        </connectionStrings>
-        ...
-    </configuration>
+[!code[Main](configuring-the-production-web-application-to-use-the-production-database-vb/samples/sample2.xml)]
 
 Note that the connection string in the `<connectionStrings>` element is named the same (`ReviewsConnectionString`), but now contains the production database connection string instead of the development database connection string.
 
@@ -122,14 +99,7 @@ Instead of maintaining two separate `Web.config` files you can, optionally, prov
 
 To use this technique, start by creating a new folder in the web application named `ConfigSections`. Next, add two files to this new folder named databaseConnectionStrings.dev.config and databaseConnectionStrings.production.config. Next, copy the `<connectionStrings>` element from `Web.config` into the databaseConnectionStrings.dev.config and databaseConnectionStrings.production.config files, and then modify the connection string in the databaseConnectionStrings.production.config file so that it specifies the production database connection string. For example, the databaseConnectionStrings.dev.config file should contain just the `<connectionStrings>` element with a connection string that references the development database:
 
-    <?xml version="1.0"?>
-    <connectionStrings>
-        <add name="ReviewsConnectionString" 
-            connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Reviews.mdf;Integrated 
-            Security=True;User Instance=True"
-            providerName="System.Data.SqlClient" />
-    
-    </connectionStrings>
+[!code[Main](configuring-the-production-web-application-to-use-the-production-database-vb/samples/sample3.xml)]
 
 Similarly, the databaseConnectionStrings.production.config file should contain just a `<connectionStrings>` element, but one that has the production database connection string.
 
@@ -148,13 +118,7 @@ At this point the `ConfigSections` folder should contain three files (see Figure
 
 We now need to instruct `Web.config` to use the databaseConnectionStrings.config file for its connection string store. Open `Web.config` and replace the existing `<connectionStrings>` element with the following:
 
-    <configuration>
-        ...
-        <connectionStrings 
-            configSource="ConfigSections\databaseConnectionStrings.config" 
-        />
-        ...
-    </configuration>
+[!code[Main](configuring-the-production-web-application-to-use-the-production-database-vb/samples/sample4.xml)]
 
 The `configSource` attribute specifies a physical path relative to the `Web.config` file. If the external `.config` file is in the same directory as `Web.config` then set this attribute to the file name of the `.config` file. If it s in a subdirectory, as is the case with databaseConnectionStrings.config, specify the subfolder using a backslash to delimit the folder and file names, like ConfigSections\databaseConnectionStrings.config.
 

@@ -41,12 +41,7 @@ Open the Typed DataSet and, from the Designer, right-click on the `CategoriesTab
 We now need to specify the `UPDATE` SQL statement. The wizard automatically suggests an `UPDATE` statement corresponding to the TableAdapter s main query (one that updates the `CategoryName`, `Description`, and `BrochurePath` values). Change the statement so that the `Picture` column is included along with a `@Picture` parameter, like so:
 
 
-    UPDATE [Categories] SET 
-        [CategoryName] = @CategoryName, 
-        [Description] = @Description, 
-        [BrochurePath] = @BrochurePath ,
-        [Picture] = @Picture
-    WHERE (([CategoryID] = @Original_CategoryID))
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample1.xml)]
 
 The final screen of the wizard asks us to name the new TableAdapter method. Enter `UpdateWithPicture` and click Finish.
 
@@ -63,44 +58,14 @@ In addition to updating the DAL, we need to update the BLL to include methods fo
 For deleting a category, we can use the `CategoriesTableAdapter` s auto-generated `Delete` method. Add the following method to the `CategoriesBLL` class:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Delete, true)]
-    public bool DeleteCategory(int categoryID)
-    {
-        int rowsAffected = Adapter.Delete(categoryID);
-        // Return true if precisely one row was deleted, otherwise false
-        return rowsAffected == 1;
-    }
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample2.xml)]
 
 For this tutorial, let s create two methods for updating a category - one that expects the binary picture data and invokes the `UpdateWithPicture` method we just added to the `CategoriesTableAdapter` and another that accepts just the `CategoryName`, `Description`, and `BrochurePath` values and uses `CategoriesTableAdapter` class s auto-generated `Update` statement. The rationale behind using two methods is that in some circumstances, a user might want to update the category s picture along with its other fields, in which case the user will have to upload the new picture. The uploaded picture s binary data can then be used in the `UPDATE` statement. In other cases, the user might only be interested in updating, say, the name and description. But if the `UPDATE` statement expects the binary data for the `Picture` column as well, then we d need to provide that information as well. This would require an extra trip to the database to bring back the picture data for the record being edited. Therefore, we want two `UPDATE` methods. The Business Logic Layer will determine which one to use based on whether picture data is provided when updating the category.
 
 To facilitate this, add two methods to the `CategoriesBLL` class, both named `UpdateCategory`. The first one should accept three `string` s, a `byte` array, and an `int` as its input parameters; the second, just three `string` s and an `int`. The `string` input parameters are for the category s name, description, and brochure file path, the `byte` array is for the binary contents of the category s picture, and the `int` identifies the `CategoryID` of the record to update. Notice that the first overload invokes the second if the passed-in `byte` array is `null`:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Update, false)]
-    public bool UpdateCategory(string categoryName, string description, 
-        string brochurePath, byte[] picture, int categoryID)
-    {
-        // If no picture is specified, use other overload
-        if (picture == null)
-            return UpdateCategory(categoryName, description, brochurePath, categoryID);
-        // Update picture, as well
-        int rowsAffected = Adapter.UpdateWithPicture
-            (categoryName, description, brochurePath, picture, categoryID);
-        // Return true if precisely one row was updated, otherwise false
-        return rowsAffected == 1;
-    }
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Update, true)]
-    public bool UpdateCategory(string categoryName, string description, 
-        string brochurePath, int categoryID)
-    {
-        int rowsAffected = Adapter.Update
-            (categoryName, description, brochurePath, categoryID);
-        // Return true if precisely one row was updated, otherwise false
-        return rowsAffected == 1;
-    }
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample3.xml)]
 
 ## Step 3: Copying Over the Insert and View Functionality
 
@@ -138,20 +103,7 @@ The ObjectDataSource will now include a value for its `DeleteMethod` property as
 After completing the wizard and fixing the `OldValuesParameterFormatString`, the ObjectDataSource s declarative markup should look similar like the following:
 
 
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server" 
-        OldValuesParameterFormatString="{0}" SelectMethod="GetCategories" 
-        TypeName="CategoriesBLL" InsertMethod="InsertWithPicture" 
-        DeleteMethod="DeleteCategory">
-        <InsertParameters>
-            <asp:Parameter Name="categoryName" Type="String" />
-            <asp:Parameter Name="description" Type="String" />
-            <asp:Parameter Name="brochurePath" Type="String" />
-            <asp:Parameter Name="picture" Type="Object" />
-        </InsertParameters>
-        <DeleteParameters>
-            <asp:Parameter Name="categoryID" Type="Int32" />
-        </DeleteParameters>
-    </asp:ObjectDataSource>
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample4.xml)]
 
 After configuring the ObjectDataSource, add deleting capabilities to the GridView by checking the Enable Deleting checkbox from the GridView s smart tag. This will add a CommandField to the GridView whose `ShowDeleteButton` property is set to `true`.
 
@@ -194,33 +146,7 @@ One of the downsides of storing binary data external to the database is that ext
 The GridView s [`RowDeleting` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rowdeleting.aspx) fires before the ObjectDataSource s delete command has been invoked, while its [`RowDeleted` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rowdeleted.aspx) fires after. Create event handlers for these two events using the following code:
 
 
-    // A page variable to "remember" the deleted category's BrochurePath value 
-    string deletedCategorysPdfPath = null;
-    protected void Categories_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        // Determine the PDF path for the category being deleted...
-        int categoryID = Convert.ToInt32(e.Keys["CategoryID"]);
-        CategoriesBLL categoryAPI = new CategoriesBLL();
-        Northwind.CategoriesDataTable categories = 
-            categoryAPI.GetCategoryByCategoryID(categoryID);
-        Northwind.CategoriesRow category = categories[0];
-        if (category.IsBrochurePathNull())
-            deletedCategorysPdfPath = null;
-        else
-            deletedCategorysPdfPath = category.BrochurePath;
-    }
-    protected void Categories_RowDeleted(object sender, GridViewDeletedEventArgs e)
-    {
-        // Delete the brochure file if there were no problems deleting the record
-        if (e.Exception == null)
-        {
-            // Is there a file to delete?
-            if (deletedCategorysPdfPath != null)
-            {
-                System.IO.File.Delete(Server.MapPath(deletedCategorysPdfPath));
-            }
-        }
-    }
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample5.xml)]
 
 In the `RowDeleting` event handler, the `CategoryID` of the row being deleted is grabbed from the GridView s `DataKeys` collection, which can be accessed in this event handler through the `e.Keys` collection. Next, the `CategoriesBLL` class s `GetCategoryByCategoryID(categoryID)` is invoked to return information about the record being deleted. If the returned `CategoriesDataRow` object has a non-`NULL``BrochurePath` value then it is stored in the page variable `deletedCategorysPdfPath` so that the file can be deleted in the `RowDeleted` event handler.
 
@@ -250,27 +176,7 @@ The ObjectDataSource will now include a value for its `UpdateMethod` property as
 After completing the wizard and fixing the `OldValuesParameterFormatString`, the ObjectDataSource s declarative markup should look like the following:
 
 
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server" 
-        OldValuesParameterFormatString="{0}" SelectMethod="GetCategories" 
-        TypeName="CategoriesBLL" InsertMethod="InsertWithPicture" 
-        DeleteMethod="DeleteCategory" UpdateMethod="UpdateCategory">
-        <InsertParameters>
-            <asp:Parameter Name="categoryName" Type="String" />
-            <asp:Parameter Name="description" Type="String" />
-            <asp:Parameter Name="brochurePath" Type="String" />
-            <asp:Parameter Name="picture" Type="Object" />
-        </InsertParameters>
-        <DeleteParameters>
-            <asp:Parameter Name="categoryID" Type="Int32" />
-        </DeleteParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="categoryName" Type="String" />
-            <asp:Parameter Name="description" Type="String" />
-            <asp:Parameter Name="brochurePath" Type="String" />
-            <asp:Parameter Name="picture" Type="Object" />
-            <asp:Parameter Name="categoryID" Type="Int32" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample6.xml)]
 
 To turn on the GridView s built-in editing features, check the Enable Editing option from the GridView s smart tag. This will set the CommandField s `ShowEditButton` property to `true`, resulting in the addition of an Edit button (and Update and Cancel buttons for the row being edited).
 
@@ -324,18 +230,7 @@ Beneath the RadioButtonList, add a FileUpload control named `BrochureUpload`. Se
 This RadioButtonList provides the three options for the user. The idea is that the FileUpload control will be displayed only if the last option, Upload new brochure , is selected. To accomplish this, create an event handler for the RadioButtonList s `SelectedIndexChanged` event and add the following code:
 
 
-    protected void BrochureOptions_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        // Get a reference to the RadioButtonList and its Parent
-        RadioButtonList BrochureOptions = (RadioButtonList)sender;
-        Control parent = BrochureOptions.Parent;
-        // Now use FindControl("controlID") to get a reference of the 
-        // FileUpload control
-        FileUpload BrochureUpload = 
-            (FileUpload)parent.FindControl("BrochureUpload");
-        // Only show BrochureUpload if SelectedValue = "3"
-        BrochureUpload.Visible = (BrochureOptions.SelectedValue == "3");
-    }
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample7.xml)]
 
 Since the RadioButtonList and FileUpload controls are within a template, we have to write a bit of code to programmatically access these controls. The `SelectedIndexChanged` event handler is passed a reference of the RadioButtonList in the `sender` input parameter. To get the FileUpload control, we need to get the RadioButtonList s parent control and use the `FindControl("controlID")` method from there. Once we have a reference to both the RadioButtonList and FileUpload controls, the FileUpload control s `Visible` property is set to `true` only if the RadioButtonList s `SelectedValue` equals 3 , which is the `Value` for the Upload new brochure `ListItem`.
 
@@ -368,116 +263,12 @@ The steps needed to be completed when the RadioButtonList s `SelectedValue` is 3
 The code for these two methods follows. Note the similarity between `ProcessBrochureUpload` and the DetailsView s `ItemInserting` event handler from the previous tutorial. In this tutorial I have updated the DetailsView s event handlers to use these new methods. Download the code associated with this tutorial to see the modifications to the DetailsView s event handlers.
 
 
-    private string ProcessBrochureUpload
-        (FileUpload BrochureUpload, out bool CancelOperation)
-    {
-        CancelOperation = false;    // by default, do not cancel operation
-        if (BrochureUpload.HasFile)
-        {
-            // Make sure that a PDF has been uploaded
-            if (string.Compare(System.IO.Path.GetExtension(BrochureUpload.FileName), 
-                ".pdf", true) != 0)
-            {
-                UploadWarning.Text = 
-                    "Only PDF documents may be used for a category's brochure.";
-                UploadWarning.Visible = true;
-                CancelOperation = true;
-                return null;
-            }
-            const string BrochureDirectory = "~/Brochures/";
-            string brochurePath = BrochureDirectory + BrochureUpload.FileName;
-            string fileNameWithoutExtension = 
-                System.IO.Path.GetFileNameWithoutExtension(BrochureUpload.FileName);
-            int iteration = 1;
-            while (System.IO.File.Exists(Server.MapPath(brochurePath)))
-            {
-                brochurePath = string.Concat(BrochureDirectory, fileNameWithoutExtension, 
-                    "-", iteration, ".pdf");
-                iteration++;
-            }
-            // Save the file to disk and set the value of the brochurePath parameter
-            BrochureUpload.SaveAs(Server.MapPath(brochurePath));
-            return brochurePath;
-        }
-        else
-        {
-            // No file uploaded
-            return null;
-        }
-    }
-    private void DeleteRememberedBrochurePath()
-    {
-        // Is there a file to delete?
-        if (deletedCategorysPdfPath != null)
-        {
-            System.IO.File.Delete(Server.MapPath(deletedCategorysPdfPath));
-        }
-    }
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample8.xml)]
 
 The GridView s `RowUpdating` and `RowUpdated` event handlers use the `ProcessBrochureUpload` and `DeleteRememberedBrochurePath` methods, as the following code shows:
 
 
-    protected void Categories_RowUpdating(object sender, GridViewUpdateEventArgs e)
-    {
-        // Reference the RadioButtonList
-        RadioButtonList BrochureOptions = 
-            (RadioButtonList)Categories.Rows[e.RowIndex].FindControl("BrochureOptions");
-        // Get BrochurePath information about the record being updated
-        int categoryID = Convert.ToInt32(e.Keys["CategoryID"]);
-        CategoriesBLL categoryAPI = new CategoriesBLL();
-        Northwind.CategoriesDataTable categories = 
-            categoryAPI.GetCategoryByCategoryID(categoryID);
-        Northwind.CategoriesRow category = categories[0];
-        if (BrochureOptions.SelectedValue == "1")
-        {
-            // Use current value for BrochurePath
-            if (category.IsBrochurePathNull())
-                e.NewValues["brochurePath"] = null;
-            else
-                e.NewValues["brochurePath"] = category.BrochurePath;
-        }
-        else if (BrochureOptions.SelectedValue == "2")
-        {
-            // Remove the current brochure (set it to NULL in the database)
-            e.NewValues["brochurePath"] = null;
-        }
-        else if (BrochureOptions.SelectedValue == "3")
-        {
-            // Reference the BrochurePath FileUpload control
-            FileUpload BrochureUpload = 
-                (FileUpload)Categories.Rows[e.RowIndex].FindControl("BrochureUpload");
-            // Process the BrochureUpload
-            bool cancelOperation = false;
-            e.NewValues["brochurePath"] = 
-                ProcessBrochureUpload(BrochureUpload, out cancelOperation);
-            e.Cancel = cancelOperation;
-        }
-        else
-        {
-            // Unknown value!
-            throw new ApplicationException(
-                string.Format("Invalid BrochureOptions value, {0}", 
-                    BrochureOptions.SelectedValue));
-        }
-        if (BrochureOptions.SelectedValue == "2" || 
-            BrochureOptions.SelectedValue == "3")
-        {
-            // "Remember" that we need to delete the old PDF file
-            if (category.IsBrochurePathNull())
-                deletedCategorysPdfPath = null;
-            else
-                deletedCategorysPdfPath = category.BrochurePath;
-        }
-    }
-    protected void Categories_RowUpdated(object sender, GridViewUpdatedEventArgs e)
-    {
-        // If there were no problems and we updated the PDF file, 
-        // then delete the existing one
-        if (e.Exception == null)
-        {
-            DeleteRememberedBrochurePath();
-        }
-    }
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample9.xml)]
 
 Note how the `RowUpdating` event handler uses a series of conditional statements to perform the appropriate action based on the `BrochureOptions` RadioButtonList s `SelectedValue` property value.
 
@@ -502,17 +293,7 @@ To customize the ImageField s editing interface, we need to convert it into a Te
 Converting the ImageField into a TemplateField in this manner generates a TemplateField with two templates. As the following declarative syntax shows, the `ItemTemplate` contains an Image Web control whose `ImageUrl` property is assigned using databinding syntax based on the ImageField s `DataImageUrlField` and `DataImageUrlFormatString` properties. The `EditItemTemplate` contains a TextBox whose `Text` property is bound to the value specified by the `DataImageUrlField` property.
 
 
-    <asp:TemplateField>
-        <EditItemTemplate>
-            <asp:TextBox ID="TextBox1" runat="server" 
-                Text='<%# Eval("CategoryID") %>'></asp:TextBox>
-        </EditItemTemplate>
-        <ItemTemplate>
-            <asp:Image ID="Image1" runat="server" 
-                ImageUrl='<%# Eval("CategoryID", 
-                    "DisplayCategoryPicture.aspx?CategoryID={0}") %>' />
-        </ItemTemplate>
-    </asp:TemplateField>
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample10.xml)]
 
 We need to update the `EditItemTemplate` to use a FileUpload control. From the GridView s smart tag click on the Edit Templates link and then select the `Picture` TemplateField s `EditItemTemplate` from the drop-down list. In the template you should see a TextBox remove this. Next, drag a FileUpload control from the Toolbox into the template, setting its `ID` to `PictureUpload`. Also add the text To change the category s picture, specify a new picture. To keep the category s picture the same, leave the field empty to the template, as well.
 
@@ -537,47 +318,14 @@ Like with the code used in Step 6, much of the code needed here already exists i
 Add the following code to the start of the GridView s `RowUpdating` event handler. It s important that this code come before the code that saves the brochure file since we don t want to save the brochure to the web server s file system if an invalid picture file is uploaded.
 
 
-    // Reference the PictureUpload FileUpload
-    FileUpload PictureUpload = 
-        (FileUpload)Categories.Rows[e.RowIndex].FindControl("PictureUpload");
-    if (PictureUpload.HasFile)
-    {
-        // Make sure the picture upload is valid
-        if (ValidPictureUpload(PictureUpload))
-        {
-            e.NewValues["picture"] = PictureUpload.FileBytes;
-        }
-        else
-        {
-            // Invalid file upload, cancel update and exit event handler
-            e.Cancel = true;
-            return;
-        }
-    }
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample11.xml)]
 
 The `ValidPictureUpload(FileUpload)` method takes in a FileUpload control as its sole input parameter and checks the uploaded file s extension to ensure that the uploaded file is a JPG; it is only called if a picture file is uploaded. If no file is uploaded, then the picture parameter is not set, and therefore uses its default value of `null`. If a picture was uploaded and `ValidPictureUpload` returns `true`, the `picture` parameter is assigned the binary data of the uploaded image; if the method returns `false`, the update workflow is cancelled and the event handler exited.
 
 The `ValidPictureUpload(FileUpload)` method code, which was refactored from the DetailsView s `ItemInserting` event handler, follows:
 
 
-    private bool ValidPictureUpload(FileUpload PictureUpload)
-    {
-        // Make sure that a JPG has been uploaded
-        if (string.Compare(System.IO.Path.GetExtension(PictureUpload.FileName), 
-                ".jpg", true) != 0 &&
-            string.Compare(System.IO.Path.GetExtension(PictureUpload.FileName), 
-                ".jpeg", true) != 0)
-        {
-            UploadWarning.Text = 
-                "Only JPG documents may be used for a category's picture.";
-            UploadWarning.Visible = true;
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample12.xml)]
 
 ## Step 8: Replacing the Original Categories Pictures with JPGs
 
@@ -591,21 +339,7 @@ Recall that the original eight categories pictures are bitmap files wrapped in a
 After editing a category and uploading the JPG image, the image will not render in the browser because the `DisplayCategoryPicture.aspx` page is stripping the first 78 bytes from the pictures of the first eight categories. Fix this by removing the code that performs the OLE header stripping. After doing this, the `DisplayCategoryPicture.aspx``Page_Load` event handler should have just the following code:
 
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        int categoryID = Convert.ToInt32(Request.QueryString["CategoryID"]);
-        // Get information about the specified category
-        CategoriesBLL categoryAPI = new CategoriesBLL();
-        Northwind.CategoriesDataTable categories = _
-            categoryAPI.GetCategoryWithBinaryDataByCategoryID(categoryID);
-        Northwind.CategoriesRow category = categories[0];
-        // For new categories, images are JPGs...
-        
-        // Output HTTP headers providing information about the binary data
-        Response.ContentType = "image/jpeg";
-        // Output the binary data
-        Response.BinaryWrite(category.Picture);
-    }
+[!code[Main](updating-and-deleting-existing-binary-data-cs/samples/sample13.xml)]
 
 > [!NOTE] The `UpdatingAndDeleting.aspx` page s inserting and editing interfaces could use a bit more work. The `CategoryName` and `Description` BoundFields in the DetailsView and GridView should be converted into TemplateFields. Since `CategoryName` does not allow `NULL` values, a RequiredFieldValidator should be added. And the `Description` TextBox should probably be converted into a multi-line TextBox. I leave these finishing touches as an exercise for you.
 

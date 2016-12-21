@@ -76,21 +76,11 @@ Create a couple more movie entries. Try the **Edit**, **Details**, and **Delete*
 
 Open the *Controllers\MoviesController.cs* file and examine the generated `Index` method. A portion of the movie controller with the `Index` method is shown below.
 
-    public class MoviesController : Controller
-    {
-        private MovieDBContext db = new MovieDBContext();
-    
-        //
-        // GET: /Movies/
-    
-        public ViewResult Index()
-        {
-            return View(db.Movies.ToList());
-        }
+[!code[Main](accessing-your-models-data-from-a-controller/samples/sample1.xml)]
 
 The following line from the `MoviesController` class instantiates a movie database context, as described previously. You can use the movie database context to query, edit, and delete movies.
 
-    private MovieDBContext db = new MovieDBContext();
+[!code[Main](accessing-your-models-data-from-a-controller/samples/sample2.xml)]
 
 A request to the `Movies` controller returns all the entries in the `Movies` table of the movie database and then passes the results to the `Index` view.
 
@@ -102,38 +92,15 @@ ASP.NET MVC also provides the ability to pass strongly typed data or objects to 
 
 Notice how the code creates a [`List`](https://msdn.microsoft.com/en-us/library/6sh2ey19.aspx) object when it calls the `View` helper method in the `Index` action method. The code then passes this `Movies` list from the controller to the view:
 
-    public ViewResult Index()
-    {
-        return View(db.Movies.ToList());
-    }
+[!code[Main](accessing-your-models-data-from-a-controller/samples/sample3.xml)]
 
 By including a `@model` statement at the top of the view template file, you can specify the type of object that the view expects. When you created the movie controller, Visual Web Developer automatically included the following `@model` statement at the top of the *Index.cshtml* file:
 
-    @model IEnumerable<MvcMovie.Models.Movie>
+[!code[Main](accessing-your-models-data-from-a-controller/samples/sample4.xml)]
 
 This `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.cshtml* template, the code loops through the movies by doing a `foreach` statement over the strongly typed `Model` object:
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
+[!code[Main](accessing-your-models-data-from-a-controller/samples/sample5.xml)]
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each `item` object in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code and full IntelliSense support in the code editor:
 

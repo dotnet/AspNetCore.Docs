@@ -1,24 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
-
-namespace WebApplication1
-{
-    public static class WebApiConfig
+    using System.Web.Http;
+    namespace WebApplication1
     {
-        public static void Register(HttpConfiguration config)
+        public class WebApiApplication : System.Web.HttpApplication
         {
-            // TODO: Add any additional configuration code.
-
-            // Web API routes
-            config.MapHttpAttributeRoutes();
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            protected void Application_Start()
+            {
+                GlobalConfiguration.Configure(config =>
+                {
+                    config.MapHttpAttributeRoutes();
+    
+                    config.Routes.MapHttpRoute(
+                        name: "DefaultApi",
+                        routeTemplate: "api/{controller}/{id}",
+                        defaults: new { id = RouteParameter.Optional }
+                    );
+                });
+            }
         }
     }
-}

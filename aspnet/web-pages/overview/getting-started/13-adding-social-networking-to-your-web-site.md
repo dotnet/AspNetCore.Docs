@@ -47,19 +47,7 @@ To display these glyphs, add the `LinkSharecode` helper to a page. People who vi
 
 1. Add the ASP.NET Web Helpers Library to your website as described in [Installing Helpers in an ASP.NET Web Pages Site](https://go.microsoft.com/fwlink/?LinkId=252372), if you haven't already added it.- Create a page named *ListLinkShare.cshtml* and add the following markup:
 
-        @using Microsoft.Web.Helpers;
-        
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>LinkShare Example</title>
-          </head>
-          <body>
-            <h1>LinkShare Example</h1>
-            Share: @LinkShare.GetHtml("LinkShare Example", linkSites: new[]{
-                LinkShareSite.Reddit, LinkShareSite.Facebook, LinkShareSite.Twitter})
-          </body>
-        </html>
+    [!code[Main](13-adding-social-networking-to-your-web-site/samples/sample1.xml)]
 
     In this example, when the `LinkShare` helper runs, the page title is passed as a parameter, which in turn passes the page title to the social networking site. However, you could pass in any string you want. This example also specifies which social networking sites to include in the list. You can specify the social networking sites that are relevant to your site.
 - Run the *ListLinkShare.cshtml* page in a browser. (Make sure the page is selected in the **Files** workspace before you run it.)
@@ -81,7 +69,7 @@ To add Facebook features (such as the Like button) to your site, you can retriev
 
 The following highlighted code is the code that was retrieved from the Like Button tool on the developers.facebook.com site. You must provide your own app ID.
 
-[!code[Main](13-adding-social-networking-to-your-web-site/samples/sample1.xml?highlight=7-14,16-17)]
+[!code[Main](13-adding-social-networking-to-your-web-site/samples/sample2.xml?highlight=7-14,16-17)]
 
 <a id="Rendering_a_Gravatar_Image"></a>
 ## Rendering a Gravatar Image
@@ -94,19 +82,7 @@ In this example, you're using a single Gravatar that represents yourself. Anothe
 2. Create a new web page named *Gravatar.cshtml*.
 3. Add the following markup to the file: 
 
-        @using Microsoft.Web.Helpers;
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title>Gravatar Example</title>
-            </head>
-            <body>
-                <h1>Gravatar Example</h1>
-                @Gravatar.GetHtml("<Your Gravatar account here>")
-                   
-                @Gravatar.GetHtml("<Your Gravatar account here>", 40)
-            </body>
-        </html>
+    [!code[Main](13-adding-social-networking-to-your-web-site/samples/sample3.xml)]
 
     The `Gravatar.GetHtml` method displays the Gravatar image on the page. To change the size of the image, you can include a number as a second parameter. The default size is 80. Numbers less than 80 make the image smaller. Numbers greater than 80 make the image larger.
 4. In the `Gravatar.GetHtml` methods, replace `<Your Gravatar account here>` with the email address that you use for your Gravatar account. (If you don't have a Gravatar account, you can use the email address of someone who does.)
@@ -122,17 +98,7 @@ When people play Microsoft Xbox games online, each user has a unique ID. Statist
 1. Add the ASP.NET Web Helpers Library to your website as described in [Installing Helpers in an ASP.NET Web Pages Site](https://go.microsoft.com/fwlink/?LinkId=252372), if you haven't already.
 2. Create a new page named *XboxGamer.cshtml* and add the following markup.
 
-        @using Microsoft.Web.Helpers;
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>Xbox Gamer Card</title>
-          </head>
-          <body>
-            <h1>Xbox Gamer Card</h1>
-            @GamerCard.GetHtml("major nelson")
-          </body>
-        </html>
+    [!code[Main](13-adding-social-networking-to-your-web-site/samples/sample4.xml)]
 
     You use the `GamerCard.GetHtml` property to specify the alias for the gamer card to be displayed.
 3. Run the page in your browser. The page displays the Xbox gamer card that you specified.

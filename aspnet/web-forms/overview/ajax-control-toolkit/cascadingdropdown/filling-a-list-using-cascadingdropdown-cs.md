@@ -28,13 +28,11 @@ The CascadingDropDown control in the AJAX Control Toolkit extends a DropDownList
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](filling-a-list-using-cascadingdropdown-cs/samples/sample1.xml)]
 
 Then, a DropDownList control is required:
 
-    <div>
-     Vendor: <asp:DropDownList ID="VendorsList" runat="server" />
-    </div>
+[!code[Main](filling-a-list-using-cascadingdropdown-cs/samples/sample2.xml)]
 
 For this list, a CascadingDropDown extender is added. It will send an asynchronous request to a web service which will then return a list of entries to be displayed in the list. For this to work, the following CascadingDropDown attributes need to be set:
 
@@ -46,39 +44,15 @@ For this list, a CascadingDropDown extender is added. It will send an asynchrono
 
 Here is the markup for the `CascadingDropDown` element. The only difference between C# and VB is the name of the associated web service:
 
-    <ajaxToolkit:CascadingDropDown ID="ccd1" runat="server"
-     ServicePath="CascadingDropdown0.cs.asmx" ServiceMethod="GetVendors"
-     TargetControlID="VendorsList" Category="Vendor" />
+[!code[Main](filling-a-list-using-cascadingdropdown-cs/samples/sample3.xml)]
 
 The JavaScript code coming from the `CascadingDropDown` extender calls a web service method with the following signature:
 
-    public CascadingDropDownNameValue[] MethodNameHere(string knownCategoryValues, 
-     string category)
+[!code[Main](filling-a-list-using-cascadingdropdown-cs/samples/sample4.xml)]
 
 So the important aspect is that the method needs to return an array of type `CascadingDropDownNameValue` (defined by the ASP.NET AJAX Control Toolkit). In the `CascadingDropDownNameValue` contructor, first the list entry's text and then its value must be provided, just as `<option value="VALUE">NAME</option>` would do in HTML. Here is some sample data:
 
-    <%@ WebService Language="C#" Class="CascadingDropdown0" %>
-    using System.Web.Script.Services;
-    using AjaxControlToolkit;
-    using System;
-    using System.Web;
-    using System.Web.Services;
-    using System.Web.Services.Protocols;
-    using System.Collections.Generic;
-    [ScriptService]
-    public class CascadingDropdown0 : System.Web.Services.WebService
-    {
-     [WebMethod]
-     public CascadingDropDownNameValue[] GetVendors(string knownCategoryValues, 
-     string category)
-     {
-     List<CascadingDropDownNameValue> l = new List<CascadingDropDownNameValue>();
-     l.Add(new CascadingDropDownNameValue("International", "1"));
-     l.Add(new CascadingDropDownNameValue("Electronic Bike Repairs & Supplies", "2"));
-     l.Add(new CascadingDropDownNameValue("Premier Sport, Inc.", "3"));
-     return l.ToArray();
-     }
-    }
+[!code[Main](filling-a-list-using-cascadingdropdown-cs/samples/sample5.xml)]
 
 Loading the page in the browser will trigger the list to be filled with three vendors.
 

@@ -54,14 +54,7 @@ If your application performs any custom authentication logic, you must set the p
 
 The following code shows how to set the principal:
 
-    private void SetPrincipal(IPrincipal principal)
-    {
-        Thread.CurrentPrincipal = principal;
-        if (HttpContext.Current != null)
-        {
-            HttpContext.Current.User = principal;
-        }
-    }
+[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample1.xml)]
 
 For web-hosting, you must set the principal in both places; otherwise the security context may become inconsistent. For self-hosting, however, **HttpContext.Current** is null. To ensure your code is host-agnostic, therefore, check for null before assigning to **HttpContext.Current**, as shown.
 
@@ -83,56 +76,23 @@ You can apply the filter globally, at the controller level, or at the level of i
 
 **Globally**: To restrict access for every Web API controller, add the **AuthorizeAttribute** filter to the global filter list:
 
-    public static void Register(HttpConfiguration config)
-    {
-        config.Filters.Add(new AuthorizeAttribute());
-    }
+[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample2.xml)]
 
 **Controller**: To restrict access for a specific controller, add the filter as an attribute to the controller:
 
-    // Require authorization for all actions on the controller.
-    [Authorize]
-    public class ValuesController : ApiController
-    {
-        public HttpResponseMessage Get(int id) { ... }
-        public HttpResponseMessage Post() { ... }
-    }
+[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample3.xml)]
 
 **Action**: To restrict access for specific actions, add the attribute to the action method:
 
-    public class ValuesController : ApiController
-    {
-        public HttpResponseMessage Get() { ... }
-    
-        // Require authorization for a specific action.
-        [Authorize]
-        public HttpResponseMessage Post() { ... }
-    }
+[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample4.xml)]
 
 Alternatively, you can restrict the controller and then allow anonymous access to specific actions, by using the `[AllowAnonymous]` attribute. In the following example, the `Post` method is restricted, but the `Get` method allows anonymous access.
 
-    [Authorize]
-    public class ValuesController : ApiController
-    {
-        [AllowAnonymous]
-        public HttpResponseMessage Get() { ... }
-    
-        public HttpResponseMessage Post() { ... }
-    }
+[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample5.xml)]
 
 In the previous examples, the filter allows any authenticated user to access the restricted methods; only anonymous users are kept out. You can also limit access to specific users or to users in specific roles:
 
-    // Restrict by user:
-    [Authorize(Users="Alice,Bob")]
-    public class ValuesController : ApiController
-    {
-    }
-       
-    // Restrict by role:
-    [Authorize(Roles="Administrators")]
-    public class ValuesController : ApiController
-    {
-    }
+[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample6.xml)]
 
 > [!NOTE] The **AuthorizeAttribute** filter for Web API controllers is located in the **System.Web.Http** namespace. There is a similar filter for MVC controllers in the **System.Web.Mvc** namespace, which is not compatible with Web API controllers.
 
@@ -153,10 +113,4 @@ The following diagram shows the class hierarchy for the **AuthorizeAttribute** c
 
 In some cases, you might allow a request to proceed, but change the behavior based on the principal. For example, the information that you return might change depending on the user's role. Within a controller method, you can get the current principle from the **ApiController.User** property.
 
-    public HttpResponseMessage Get()
-    {
-        if (User.IsInRole("Administrators"))
-        {
-            // ...
-        }
-    }
+[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample7.xml)]

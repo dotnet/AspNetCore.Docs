@@ -40,20 +40,7 @@ Add a new web form that uses the Site.master master page, and name the page **Co
 
 In the **Courses.aspx** file, add a grid view to display the courses for the selected student.
 
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <asp:GridView runat="server" ID="coursesGrid"
-            ItemType="ContosoUniversityModelBinding.Models.Enrollment"
-            SelectMethod="coursesGrid_GetData" AutoGenerateColumns="false">
-            <Columns>
-                <asp:BoundField HeaderText="Title" DataField="Course.Title" />
-                <asp:BoundField HeaderText="Credits" DataField="Course.Credits" />
-                <asp:BoundField HeaderText="Grade" DataField="Grade" />
-            </Columns>
-            <EmptyDataTemplate>
-                <asp:Label Text="No Enrolled Courses" runat="server" />
-            </EmptyDataTemplate>
-        </asp:GridView>
-    </asp:Content>
+[!code[Main](using-query-string-values-to-retrieve-data/samples/sample1.xml)]
 
 ## Define the select method
 
@@ -61,19 +48,11 @@ In **Courses.aspx.cs**, you will add the select method with the name you specifi
 
 First, you must add the following **using** statements.
 
-    using ContosoUniversityModelBinding.Models;
-    using System.Web.ModelBinding;
-    using System.Data.Entity;
+[!code[Main](using-query-string-values-to-retrieve-data/samples/sample2.xml)]
 
 Then, add the following code to Courses.aspx.cs:
 
-    public IQueryable<Enrollment> coursesGrid_GetData([QueryString] int? studentID)
-    {
-        SchoolContext db = new SchoolContext();
-        var query = db.Enrollments.Include(e => e.Course)
-            .Where(e => e.StudentID == studentID);
-        return query;
-    }
+[!code[Main](using-query-string-values-to-retrieve-data/samples/sample3.xml)]
 
 The QueryString attribute means that a query string value named StudentID is automatically assigned to the parameter in this method.
 
@@ -83,7 +62,7 @@ In the grid view on Students.aspx, you will add a hyperlink field that links to 
 
 In Students.aspx, add the following field to the grid view columns just below the field for Total Credits.
 
-[!code[Main](using-query-string-values-to-retrieve-data/samples/sample1.xml?highlight=7-8)]
+[!code[Main](using-query-string-values-to-retrieve-data/samples/sample4.xml?highlight=7-8)]
 
 Run the application and notice that the grid view now includes the Courses link.
 

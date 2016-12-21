@@ -59,89 +59,11 @@ Using the steps below, you'll modify the markup in the *ProductList.aspx* page s
 1. In **Solution Explorer**, open the *ProductList.aspx* page.
 2. Replace the existing markup with the following markup:   
 
-        <%@ Page Title="Products" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
-                 CodeBehind="ProductList.aspx.cs" Inherits="WingtipToys.ProductList" %>
-        <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <section>
-                <div>
-                    <hgroup>
-                        <h2><%: Page.Title %></h2>
-                    </hgroup>
-        
-                    <asp:ListView ID="productList" runat="server" 
-                        DataKeyNames="ProductID" GroupItemCount="4"
-                        ItemType="WingtipToys.Models.Product" SelectMethod="GetProducts">
-                        <EmptyDataTemplate>
-                            <table >
-                                <tr>
-                                    <td>No data was returned.</td>
-                                </tr>
-                            </table>
-                        </EmptyDataTemplate>
-                        <EmptyItemTemplate>
-                            <td/>
-                        </EmptyItemTemplate>
-                        <GroupTemplate>
-                            <tr id="itemPlaceholderContainer" runat="server">
-                                <td id="itemPlaceholder" runat="server"></td>
-                            </tr>
-                        </GroupTemplate>
-                        <ItemTemplate>
-                            <td runat="server">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <a href="ProductDetails.aspx?productID=<%#:Item.ProductID%>">
-                                                <img src="/Catalog/Images/Thumbs/<%#:Item.ImagePath%>"
-                                                    width="100" height="75" style="border: solid" /></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="ProductDetails.aspx?productID=<%#:Item.ProductID%>">
-                                                <span>
-                                                    <%#:Item.ProductName%>
-                                                </span>
-                                            </a>
-                                            <br />
-                                            <span>
-                                                <b>Price: </b><%#:String.Format("{0:c}", Item.UnitPrice)%>
-                                            </span>
-                                            <br />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> </td>
-                                    </tr>
-                                </table>
-                                </p>
-                            </td>
-                        </ItemTemplate>
-                        <LayoutTemplate>
-                            <table style="width:100%;">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <table id="groupPlaceholderContainer" runat="server" style="width:100%">
-                                                <tr id="groupPlaceholder"></tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                    </tr>
-                                    <tr></tr>
-                                </tbody>
-                            </table>
-                        </LayoutTemplate>
-                    </asp:ListView>
-                </div>
-            </section>
-        </asp:Content>
+    [!code[Main](display_data_items_and_details/samples/sample1.xml)]
 
 This code uses a **ListView** control named "productList" to display the products.
 
-    <asp:ListView ID="productList" runat="server"
+[!code[Main](display_data_items_and_details/samples/sample2.xml)]
 
 The **ListView** control displays data in a format that you define by using templates and styles. It is useful for data in any repeating structure. This **ListView** example simply shows data from the database, however you can enable users to edit, insert, and delete data, and to sort and page data, all without code.
 
@@ -158,42 +80,13 @@ In this step, you'll add code to populate the **ListView** control with product 
 1. In **Solution Explorer**, right-click *ProductList.aspx* and then click **View Code**.
 2. Replace the existing code in the *ProductList.aspx.cs* file with the following code:   
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.UI;
-        using System.Web.UI.WebControls;
-        using WingtipToys.Models;
-        using System.Web.ModelBinding;
-        
-        namespace WingtipToys
-        {
-            public partial class ProductList : System.Web.UI.Page
-            {
-                protected void Page_Load(object sender, EventArgs e)
-                {
-        
-                }
-        
-                public IQueryable<Product> GetProducts([QueryString("id")] int? categoryId)
-                {
-                    var _db = new WingtipToys.Models.ProductContext();
-                        IQueryable<Product> query = _db.Products;
-                        if (categoryId.HasValue && categoryId > 0)
-                        {
-                            query = query.Where(p => p.CategoryID == categoryId);
-                        }
-                        return query;
-                }
-            }
-        }
+    [!code[Main](display_data_items_and_details/samples/sample3.xml)]
 
 This code shows the `GetProducts` method that's referenced by the `ItemType` property of the **ListView** control in the *ProductList.aspx* page. To limit the results to a specific category in the database, the code sets the `categoryId` value from the query string value passed to the *ProductList.aspx* page when the *ProductList.aspx* page is navigated to. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the value of the query string variable id. This instructs model binding to try to bind a value from the query string to the `categoryId` parameter at run time.
 
 When a valid category is passed as a query string to the page, the results of the query are limited to those products in the database that match the `categoryId` value. For instance, if the URL to the *ProductsList.aspx* page is the following:
 
-    http://localhost/ProductList.aspx?id=1
+[!code[Main](display_data_items_and_details/samples/sample4.xml)]
 
 The page displays only the products where the `category` equals `1`.
 
@@ -224,34 +117,7 @@ Next, you'll modify the markup in the *ProductDetails.aspx* page that you added 
 1. In **Solution Explorer**, open the *ProductDetails.aspx* page.
 2. Replace the existing markup with the following markup:   
 
-        <%@ Page Title="Product Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
-                 CodeBehind="ProductDetails.aspx.cs" Inherits="WingtipToys.ProductDetails" %>
-        <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <asp:FormView ID="productDetail" runat="server" ItemType="WingtipToys.Models.Product" SelectMethod ="GetProduct" RenderOuterTable="false">
-                <ItemTemplate>
-                    <div>
-                        <h1><%#:Item.ProductName %></h1>
-                    </div>
-                    <br />
-                    <table>
-                        <tr>
-                            <td>
-                                <img src="/Catalog/Images/<%#:Item.ImagePath %>" style="border:solid; height:300px" alt="<%#:Item.ProductName %>"/>
-                            </td>
-                            <td> </td>  
-                            <td style="vertical-align: top; text-align:left;">
-                                <b>Description:</b><br /><%#:Item.Description %>
-                                <br />
-                                <span><b>Price:</b> <%#: String.Format("{0:c}", Item.UnitPrice) %></span>
-                                <br />
-                                <span><b>Product Number:</b> <%#:Item.ProductID %></span>
-                                <br />
-                            </td>
-                        </tr>
-                    </table>
-                </ItemTemplate>
-            </asp:FormView>
-        </asp:Content>
+    [!code[Main](display_data_items_and_details/samples/sample5.xml)]
 
 This code uses a **FormView** control to display details about an individual product. This markup uses methods like those that are used to display data in the *ProductList.aspx* page. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. The templates contain controls, binding expressions, and formatting that define the look and functionality of the form.
 
@@ -261,40 +127,7 @@ To connect the above markup to the database, you must add additional code to the
  The     *ProductDetails.aspx.cs* file will be displayed.
 2. Replace the existing code with the following code:   
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.UI;
-        using System.Web.UI.WebControls;
-        using WingtipToys.Models;
-        using System.Web.ModelBinding;
-        
-        namespace WingtipToys
-        {
-            public partial class ProductDetails : System.Web.UI.Page
-            {
-                protected void Page_Load(object sender, EventArgs e)
-                {
-        
-                }
-        
-                public IQueryable<Product> GetProduct([QueryString("productID")] int? productId)
-                {
-                    var _db = new WingtipToys.Models.ProductContext();
-                        IQueryable<Product> query = _db.Products;
-                        if (productId.HasValue && productId > 0)
-                        {
-                            query = query.Where(p => p.ProductID == productId);
-                        }
-                        else
-                        {
-                            query = null;
-                        }
-                        return query;
-                }
-            }
-        }
+    [!code[Main](display_data_items_and_details/samples/sample6.xml)]
 
 This code checks for a "`productID`" query-string value. If a valid query-string value is found, the matching product is displayed. If no query-string is found, or the query-string value is not valid, no product is displayed on the *ProductDetails.aspx* page.
 

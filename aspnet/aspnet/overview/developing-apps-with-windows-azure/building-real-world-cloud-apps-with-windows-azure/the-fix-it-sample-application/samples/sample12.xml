@@ -1,4 +1,1 @@
-<appSettings>
-    <!-- Other settings not shown -->
-    <add key="UseQueues" value="true"/>
-</appSettings>
+    <a href="/Tasks/Create" class="btn btn-primary btn-large">Create a New FixIt &raquo;</a>

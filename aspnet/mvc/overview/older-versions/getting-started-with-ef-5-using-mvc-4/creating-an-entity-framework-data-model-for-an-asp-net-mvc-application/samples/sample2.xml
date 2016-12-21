@@ -1,6 +1,13 @@
-public ActionResult Index()
-{
-    ViewBag.Message = "Welcome to Contoso University";
-
-    return View();
-}
+    @{
+        ViewBag.Title = "Home Page";
+    }
+    @section featured {
+        <section class="featured">
+            <div class="content-wrapper">
+                <hgroup class="title">
+                    <h1>@ViewBag.Title.</h1>
+                    <h2>@ViewBag.Message</h2>
+                </hgroup>
+            </div>
+        </section>
+    }

@@ -93,36 +93,17 @@ To get started, run the app and click the **Call API** button. When the request 
 
 The **Call API** button sends an AJAX request to ~/api/values, which invokes a Web API controller action. Here is the section of JavaScript code that sends the AJAX request. In the sample app, all of the JavaScript app code is located in the Scripts\app.js file.
 
-    // If we already have a bearer token, set the Authorization header.
-    var token = sessionStorage.getItem(tokenKey);
-    var headers = {};
-    if (token) {
-        headers.Authorization = 'Bearer ' + token;
-    }
-    
-    $.ajax({
-        type: 'GET',
-        url: 'api/values/1',
-        headers: headers
-    }).done(function (data) {
-        self.result(data);
-    }).fail(showError);
+[!code[Main](individual-accounts-in-web-api/samples/sample1.xml)]
 
 Until the user logs in, there is no bearer token, and therefore no Authorization header in the request. This causes the request to return a 401 error.
 
 Here is the HTTP request. (I used [Fiddler](http://www.telerik.com/fiddler) to capture the HTTP traffic.)
 
-    GET https://localhost:44305/api/values HTTP/1.1
-    Host: localhost:44305
-    User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:32.0) Gecko/20100101 Firefox/32.0
-    Accept: */*
-    Accept-Language: en-US,en;q=0.5
-    X-Requested-With: XMLHttpRequest
-    Referer: https://localhost:44305/
+[!code[Main](individual-accounts-in-web-api/samples/sample2.xml)]
 
 HTTP response:
 
-[!code[Main](individual-accounts-in-web-api/samples/sample1.xml?highlight=1,4)]
+[!code[Main](individual-accounts-in-web-api/samples/sample3.xml?highlight=1,4)]
 
 Notice that the response includes a Www-Authenticate header with the challenge set to Bearer. That indicates the server expects a bearer token.
 
@@ -136,31 +117,15 @@ You don't need to use a valid email address for this sample, but a real app woul
 
 The **Register** button sends a POST request to ~/api/Account/Register/. The request body is a JSON object that holds the name and password. Here is the JavaScript code that sends the request:
 
-    var data = {
-        Email: self.registerEmail(),
-        Password: self.registerPassword(),
-        ConfirmPassword: self.registerPassword2()
-    };
-    
-    $.ajax({
-        type: 'POST',
-        url: '/api/Account/Register',
-        contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(data)
-    }).done(function (data) {
-        self.result("Done!");
-    }).fail(showError);
+[!code[Main](individual-accounts-in-web-api/samples/sample4.xml)]
 
 HTTP request:
 
-[!code[Main](individual-accounts-in-web-api/samples/sample2.xml?highlight=5,10)]
+[!code[Main](individual-accounts-in-web-api/samples/sample5.xml?highlight=5,10)]
 
 HTTP response:
 
-    HTTP/1.1 200 OK
-    Server: Microsoft-IIS/8.0
-    Date: Wed, 01 Oct 2014 00:57:58 GMT
-    Content-Length: 0
+[!code[Main](individual-accounts-in-web-api/samples/sample6.xml)]
 
 This request is handled by the `AccountController` class. Internally, `AccountController` uses ASP.NET Identity to manage the membership database.
 
@@ -182,19 +147,19 @@ The **Log In** button sends a request to the token endpoint. The body of the req
 
 Here is the JavaScript code that sends the AJAX request:
 
-[!code[Main](individual-accounts-in-web-api/samples/sample3.xml?highlight=14)]
+[!code[Main](individual-accounts-in-web-api/samples/sample7.xml?highlight=14)]
 
 If the request succeeds, the authorization server returns an access token in the response body. Notice that we store the token in session storage, to use later when sending requests to the API. Unlike some forms of authentication (such as cookie-based authentication), the browser will not automatically include the access token in subsequent requests. The application must do so explicitly. That's a good thing, because it limits [CSRF vulnerabilities](preventing-cross-site-request-forgery-csrf-attacks.md).
 
 HTTP request:
 
-[!code[Main](individual-accounts-in-web-api/samples/sample4.xml?highlight=5,10)]
+[!code[Main](individual-accounts-in-web-api/samples/sample8.xml?highlight=5,10)]
 
 You can see that the request contains the user's credentials. You *must* use HTTPS to provide transport layer security.
 
 HTTP response:
 
-[!code[Main](individual-accounts-in-web-api/samples/sample5.xml?highlight=8)]
+[!code[Main](individual-accounts-in-web-api/samples/sample9.xml?highlight=8)]
 
 For readability, I indented the JSON and truncated the access token, which is a quite long.
 
@@ -208,25 +173,17 @@ Now that we have a bearer token, we can make an authenticated request to the API
 
 HTTP request:
 
-[!code[Main](individual-accounts-in-web-api/samples/sample6.xml?highlight=5)]
+[!code[Main](individual-accounts-in-web-api/samples/sample10.xml?highlight=5)]
 
 HTTP response:
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json; charset=utf-8
-    Server: Microsoft-IIS/8.0
-    Date: Wed, 01 Oct 2014 01:41:29 GMT
-    Content-Length: 27
-    
-    "Hello, alice@example.com."
+[!code[Main](individual-accounts-in-web-api/samples/sample11.xml)]
 
 ## Log Out
 
 Because the browser does not cache the credentials or the access token, logging out is simply a matter of "forgetting" the token, by removing it from session storage:
 
-    self.logout = function () {
-        sessionStorage.removeItem(tokenKey)
-    }
+[!code[Main](individual-accounts-in-web-api/samples/sample12.xml)]
 
 ## Understanding the Individual Accounts Project Template
 
@@ -249,19 +206,7 @@ Here are the main application classes that implement these features:
 
 In StartupAuth.cs, the following code configures the OAuth2 authorization server.
 
-    PublicClientId = "self";
-    OAuthOptions = new OAuthAuthorizationServerOptions
-    {
-        TokenEndpointPath = new PathString("/Token"),
-        Provider = new ApplicationOAuthProvider(PublicClientId),
-        AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-        AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-        // Note: Remove the following line before you deploy to production:
-        AllowInsecureHttp = true
-    };
-    
-    // Enable the application to use bearer tokens to authenticate users
-    app.UseOAuthBearerTokens(OAuthOptions);
+[!code[Main](individual-accounts-in-web-api/samples/sample13.xml)]
 
 The `TokenEndpointPath` property is the URL path to the authorization server endpoint. That's the URL that app uses to get the bearer tokens.
 
@@ -282,8 +227,7 @@ The OAuth middleware doesn't know anything about the user accounts. The provider
 
 In the `WebApiConfig.Register` method, the following code sets up authentication for the Web API pipeline:
 
-    config.SuppressDefaultHostAuthentication();
-    config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+[!code[Main](individual-accounts-in-web-api/samples/sample14.xml)]
 
 The **HostAuthenticationFilter** class enables authentication using bearer tokens.
 

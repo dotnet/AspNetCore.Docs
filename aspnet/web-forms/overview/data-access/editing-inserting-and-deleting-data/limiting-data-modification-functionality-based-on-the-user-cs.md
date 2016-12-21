@@ -74,11 +74,7 @@ At this point, the DropDownList lists the company names of the suppliers in the 
 After the `AppendDataBoundItems` property has been set and the `ListItem` added, the DropDownList s declarative markup should look like:
 
 
-    <asp:DropDownList ID="Suppliers" runat="server" AppendDataBoundItems="True"
-        DataSourceID="AllSuppliersDataSource" DataTextField="CompanyName"
-        DataValueField="SupplierID">
-        <asp:ListItem Value="-1">Show/Edit ALL Suppliers</asp:ListItem>
-    </asp:DropDownList>
+[!code[Main](limiting-data-modification-functionality-based-on-the-user-cs/samples/sample1.xml)]
 
 Figure 5 shows a screen shot of our current progress, when viewed through a browser.
 
@@ -104,33 +100,7 @@ Since the `SuppliersBLL` class s `UpdateSupplierAddress` method only accepts fou
 After configuring the `SupplierDetails` DetailsView and `AllSuppliersDataSource` ObjectDataSource, we will have the following declarative markup:
 
 
-    <asp:ObjectDataSource ID="AllSuppliersDataSource" runat="server"
-        SelectMethod="GetSuppliers" TypeName="SuppliersBLL"
-        UpdateMethod="UpdateSupplierAddress">
-        <UpdateParameters>
-            <asp:Parameter Name="supplierID" Type="Int32" />
-            <asp:Parameter Name="address" Type="String" />
-            <asp:Parameter Name="city" Type="String" />
-            <asp:Parameter Name="country" Type="String" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
-    <asp:DetailsView ID="SupplierDetails" runat="server" AllowPaging="True"
-        AutoGenerateRows="False" DataKeyNames="SupplierID"
-        DataSourceID="AllSuppliersDataSource">
-        <Fields>
-            <asp:BoundField DataField="CompanyName" HeaderText="Company"
-                ReadOnly="True" SortExpression="CompanyName" />
-            <asp:BoundField DataField="Address" HeaderText="Address"
-                SortExpression="Address" />
-            <asp:BoundField DataField="City" HeaderText="City"
-                SortExpression="City" />
-            <asp:BoundField DataField="Country" HeaderText="Country"
-                SortExpression="Country" />
-            <asp:BoundField DataField="Phone" HeaderText="Phone" ReadOnly="True"
-                SortExpression="Phone" />
-            <asp:CommandField ShowEditButton="True" />
-        </Fields>
-    </asp:DetailsView>
+[!code[Main](limiting-data-modification-functionality-based-on-the-user-cs/samples/sample2.xml)]
 
 At this point the DetailsView can be paged through and the selected supplier s address information can be updated, regardless of the selection made in the `Suppliers` DropDownList (see Figure 6).
 
@@ -163,23 +133,7 @@ Next, we re prompted to specify the parameter source for the `GetSupplierBySuppl
 Even with this second ObjectDataSource added, the DetailsView control is currently configured to always use the `AllSuppliersDataSource` ObjectDataSource. We need to add logic to adjust the data source used by the DetailsView depending on the `Suppliers` DropDownList item selected. To accomplish this, create a `SelectedIndexChanged` event handler for the Suppliers DropDownList. This can most easily be created by double-clicking the DropDownList in the Designer. This event handler needs to determine what data source to use and must rebind the data to the DetailsView. This is accomplished with the following code:
 
 
-    protected void Suppliers_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (Suppliers.SelectedValue == "-1")
-        {
-            // The "Show/Edit ALL" option has been selected
-            SupplierDetails.DataSourceID = "AllSuppliersDataSource";
-            // Reset the page index to show the first record
-            SupplierDetails.PageIndex = 0;
-        }
-        else
-            // The user picked a particular supplier
-            SupplierDetails.DataSourceID = "SingleSupplierDataSource";
-        // Ensure that the DetailsView is in read-only mode
-        SupplierDetails.ChangeMode(DetailsViewMode.ReadOnly);
-        // Need to "refresh" the DetailsView
-        SupplierDetails.DataBind();
-    }
+[!code[Main](limiting-data-modification-functionality-based-on-the-user-cs/samples/sample3.xml)]
 
 The event handler begins by determining whether the "Show/Edit ALL Suppliers" option was selected. If it was, it sets the `SupplierDetails` DetailsView s `DataSourceID` to `AllSuppliersDataSource` and returns the user to the first record in the set of suppliers by setting the `PageIndex` property to 0. If, however, the user has selected a particular supplier from the DropDownList, the DetailsView s `DataSourceID` is assigned to `SingleSuppliersDataSource`. Regardless of what data source is used, the `SuppliersDetails` mode is reverted back to the read-only mode and the data is rebound to the DetailsView by a call to the `SuppliersDetails` control s `DataBind()` method.
 
@@ -204,25 +158,7 @@ With this event handler in place, the DetailsView control now shows the selected
 With the DetailsView complete, our next step is to include an editable GridView that lists those products provided by the selected supplier. This GridView should allow edits to only the `ProductName` and `QuantityPerUnit` fields. Moreover, if the user visiting the page is from a particular supplier, it should only allow updates to those products that are *not* discontinued. To accomplish this we'll need to first add an overload of the `ProductsBLL` class s `UpdateProducts` method that takes in just the `ProductID`, `ProductName`, and `QuantityPerUnit` fields as inputs. We ve stepped through this process beforehand in numerous tutorials, so let s just look at the code here, which should be added to `ProductsBLL`:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute(
-    System.ComponentModel.DataObjectMethodType.Update, false)]
-    public bool UpdateProduct(string productName, string quantityPerUnit, int productID)
-    {
-        Northwind.ProductsDataTable products = Adapter.GetProductByProductID(productID);
-        if (products.Count == 0)
-            // no matching record found, return false
-            return false;
-        Northwind.ProductsRow product = products[0];
-        product.ProductName = productName;
-        if (quantityPerUnit == null)
-            product.SetQuantityPerUnitNull();
-        else
-            product.QuantityPerUnit = quantityPerUnit;
-        // Update the product record
-        int rowsAffected = Adapter.Update(product);
-        // Return true if precisely one row was updated, otherwise false
-        return rowsAffected == 1;
-    }
+[!code[Main](limiting-data-modification-functionality-based-on-the-user-cs/samples/sample4.xml)]
 
 With this overload created, we re ready to add the GridView control and its associated ObjectDataSource. Add a new GridView to the page, set its `ID` property to `ProductsBySupplier`, and configure it to use a new ObjectDataSource named `ProductsBySupplierDataSource`. Since we want this GridView to list those products by the selected supplier, use the `ProductsBLL` class s `GetProductsBySupplierID(supplierID)` method. Also map the `Update()` method to the new `UpdateProduct` overload we just created.
 
@@ -243,31 +179,7 @@ We re prompted to select the parameter source for the `GetProductsBySupplierID(s
 Returning to the GridView, remove all of the GridView fields except for `ProductName`, `QuantityPerUnit`, and `Discontinued`, marking the `Discontinued` CheckBoxField as read-only. Also, check the Enable Editing option from the GridView s smart tag. After these changes have been made, the declarative markup for the GridView and ObjectDataSource should look similar to the following:
 
 
-    <asp:GridView ID="ProductsBySupplier" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="ProductsBySupplierDataSource">
-        <Columns>
-            <asp:CommandField ShowEditButton="True" />
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="QuantityPerUnit" HeaderText="Qty/Unit"
-                SortExpression="QuantityPerUnit" />
-            <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued"
-                ReadOnly="True" SortExpression="Discontinued" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="ProductsBySupplierDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}" TypeName="ProductsBLL"
-        SelectMethod="GetProductsBySupplierID" UpdateMethod="UpdateProduct">
-        <UpdateParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="quantityPerUnit" Type="String" />
-            <asp:Parameter Name="productID" Type="Int32" />
-        </UpdateParameters>
-        <SelectParameters>
-            <asp:ControlParameter ControlID="SupplierDetails" Name="supplierID"
-                PropertyName="SelectedValue" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](limiting-data-modification-functionality-based-on-the-user-cs/samples/sample5.xml)]
 
 As with our previous ObjectDataSources, this one s `OldValuesParameterFormatString` property is set to `original_{0}`, which will cause problems when attempting to update a product s name or quantity per unit. Remove this property from the declarative syntax altogether or set it to its default, `{0}`.
 
@@ -291,27 +203,7 @@ While the `ProductsBySupplier` GridView is fully functional, it currently grants
 Create an event handler for the GridView s `RowDataBound` event. In this event handler we need to determine whether or not the user is associated with a particular supplier, which, for this tutorial, can be determined by checking the Suppliers DropDownList s `SelectedValue` property - if it s something other than -1, then the user is associated with a particular supplier. For such users, we then need to determine whether or not the product is discontinued. We can grab a reference to the actual `ProductRow` instance bound to the GridView row via the `e.Row.DataItem` property, as discussed in the [*Displaying Summary Information in the GridView s Footer*](../custom-formatting/displaying-summary-information-in-the-gridview-s-footer-cs.md) tutorial. If the product is discontinued, we can grab a programmatic reference to the Edit button in the GridView s CommandField using the techniques discussed in the previous tutorial, [*Adding Client-Side Confirmation When Deleting*](adding-client-side-confirmation-when-deleting-cs.md). Once we have a reference we can then hide or disable the button.
 
 
-    protected void ProductsBySupplier_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            // Is this a supplier-specific user?
-            if (Suppliers.SelectedValue != "-1")
-            {
-                // Get a reference to the ProductRow
-                Northwind.ProductsRow product =
-                    (Northwind.ProductsRow)((System.Data.DataRowView)e.Row.DataItem).Row;
-                // Is this product discontinued?
-                if (product.Discontinued)
-                {
-                    // Get a reference to the Edit LinkButton
-                    LinkButton editButton = (LinkButton)e.Row.Cells[0].Controls[0];
-                    // Hide the Edit button
-                    editButton.Visible = false;
-                }
-            }
-        }
-    }
+[!code[Main](limiting-data-modification-functionality-based-on-the-user-cs/samples/sample6.xml)]
 
 With this event handler in place, when visiting this page as a user from a specific supplier those products that are discontinued are not editable, as the Edit button is hidden for these products. For example, Chef Anton s Gumbo Mix is a discontinued product for the New Orleans Cajun Delights supplier. When visiting the page for this particular supplier, the Edit button for this product is hidden from sight (see Figure 14). However, when visiting using the "Show/Edit ALL Suppliers," the Edit button is available (see Figure 15).
 

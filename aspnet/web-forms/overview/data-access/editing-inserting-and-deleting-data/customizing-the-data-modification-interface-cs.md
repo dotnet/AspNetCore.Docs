@@ -45,26 +45,7 @@ For brevity, for this particular overload I've omitted the business rule check t
 The following code shows the new `UpdateProduct` overload in the `ProductsBLL` class:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, false)]
-    public bool UpdateProduct(string productName, int? categoryID,
-        int? supplierID, bool discontinued, int productID)
-    {
-        Northwind.ProductsDataTable products = Adapter.GetProductByProductID(productID);
-        if (products.Count == 0)
-            // no matching record found, return false
-            return false;
-        Northwind.ProductsRow product = products[0];
-        product.ProductName = productName;
-        if (supplierID == null) product.SetSupplierIDNull();
-          else product.SupplierID = supplierID.Value;
-        if (categoryID == null) product.SetCategoryIDNull();
-          else product.CategoryID = categoryID.Value;
-        product.Discontinued = discontinued;
-        // Update the product record
-        int rowsAffected = Adapter.Update(product);
-        // Return true if precisely one row was updated, otherwise false
-        return rowsAffected == 1;
-    }
+[!code[Main](customizing-the-data-modification-interface-cs/samples/sample1.xml)]
 
 ## Step 2: Crafting the Editable GridView
 
@@ -81,17 +62,7 @@ As we've seen throughout the data modification tutorials, the declarative syntax
 After this change, the ObjectDataSource's declarative markup should look like the following:
 
 
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
-        SelectMethod="GetProducts" TypeName="ProductsBLL"
-        UpdateMethod="UpdateProduct">
-        <UpdateParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="categoryID" Type="Int32" />
-            <asp:Parameter Name="supplierID" Type="Int32" />
-            <asp:Parameter Name="discontinued" Type="Boolean" />
-            <asp:Parameter Name="productID" Type="Int32" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
+[!code[Main](customizing-the-data-modification-interface-cs/samples/sample2.xml)]
 
 Note that the `OldValuesParameterFormatString` property has been removed and that there is a `Parameter` in the `UpdateParameters` collection for each of the input parameters expected by our `UpdateProduct` overload.
 
@@ -110,21 +81,7 @@ After these changes, the Designer will look similar to Figure 3, with the GridVi
 **Figure 3**: Remove the Unneeded Fields from the GridView ([Click to view full-size image](customizing-the-data-modification-interface-cs/_static/image9.png))
 
 
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="ObjectDataSource1">
-        <Columns>
-            <asp:BoundField DataField="ProductName"
-               HeaderText="ProductName" SortExpression="ProductName" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category"
-               ReadOnly="True"
-               SortExpression="CategoryName" />
-            <asp:BoundField DataField="SupplierName" HeaderText="Supplier"
-               ReadOnly="True"
-               SortExpression="SupplierName" />
-            <asp:CheckBoxField DataField="Discontinued"
-               HeaderText="Discontinued" SortExpression="Discontinued" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](customizing-the-data-modification-interface-cs/samples/sample3.xml)]
 
 At this point the GridView's read-only behavior is complete. When viewing the data, each product is rendered as a row in the GridView, showing the product's name, category, supplier, and discontinued status.
 
@@ -155,16 +112,7 @@ To provide this behavior, we need to convert the `SupplierName` and `CategoryNam
 Start by converting the `SupplierName` and `CategoryName` BoundFields into TemplateFields by: clicking on the Edit Columns link from the GridView's smart tag; selecting the BoundField from the list in the lower left; and clicking the "Convert this field into a TemplateField" link. The conversion process will create a TemplateField with both an `ItemTemplate` and an `EditItemTemplate`, as shown in the declarative syntax below:
 
 
-    <asp:TemplateField HeaderText="Category" SortExpression="CategoryName">
-        <EditItemTemplate>
-            <asp:Label ID="Label1" runat="server"
-              Text='<%# Eval("CategoryName") %>'></asp:Label>
-        </EditItemTemplate>
-        <ItemTemplate>
-            <asp:Label ID="Label1" runat="server"
-              Text='<%# Bind("CategoryName") %>'></asp:Label>
-        </ItemTemplate>
-    </asp:TemplateField>
+[!code[Main](customizing-the-data-modification-interface-cs/samples/sample4.xml)]
 
 Since the BoundField was marked as read-only, both the `ItemTemplate` and `EditItemTemplate` contain a Label Web control whose `Text` property is bound to the applicable data field (`CategoryName`, in the syntax above). We need to modify the `EditItemTemplate`, replacing the Label Web control with a DropDownList control.
 
@@ -203,22 +151,7 @@ Finally, configure the DropDownList's settings such that the `CategoryName` fiel
 After making these changes the declarative markup for the `EditItemTemplate` in the `CategoryName` TemplateField will include both a DropDownList and an ObjectDataSource:
 
 
-    <asp:TemplateField HeaderText="Category" SortExpression="CategoryName">
-        <EditItemTemplate>
-            <asp:DropDownList ID="Categories" runat="server"
-              DataSourceID="CategoriesDataSource"
-              DataTextField="CategoryName" DataValueField="CategoryID">
-            </asp:DropDownList>
-            <asp:ObjectDataSource ID="CategoriesDataSource" runat="server"
-                OldValuesParameterFormatString="original_{0}"
-                SelectMethod="GetCategories" TypeName="CategoriesBLL">
-            </asp:ObjectDataSource>
-        </EditItemTemplate>
-        <ItemTemplate>
-            <asp:Label ID="Label1" runat="server"
-              Text='<%# Bind("CategoryName") %>'></asp:Label>
-        </ItemTemplate>
-    </asp:TemplateField>
+[!code[Main](customizing-the-data-modification-interface-cs/samples/sample5.xml)]
 
 > [!NOTE] The DropDownList in the `EditItemTemplate` must have its view state enabled. We will soon add databinding syntax to the DropDownList's declarative syntax and databinding commands like `Eval()` and `Bind()` can only appear in controls whose view state is enabled.
 
@@ -267,12 +200,7 @@ In order to support `NULL` `CategoryID` and `SupplierID` values, we need to add 
 Start by setting both DropDownLists' `AppendDataBoundItems` property to `true`. Next, add the `NULL` `ListItem` by adding the following `<asp:ListItem>` element to each DropDownList so that the declarative markup looks like:
 
 
-    <asp:DropDownList ID="Categories" runat="server"
-        DataSourceID="CategoriesDataSource" DataTextField="CategoryName"
-        DataValueField="CategoryID" SelectedValue='<%# Bind("CategoryID") %>'
-        AppendDataBoundItems="True">
-        <asp:ListItem Value="">(None)</asp:ListItem>
-    </asp:DropDownList>
+[!code[Main](customizing-the-data-modification-interface-cs/samples/sample6.xml)]
 
 I've chosen to use "(None)" as the Text value for this `ListItem`, but you can change it to also be a blank string if you'd like.
 
@@ -310,22 +238,7 @@ We still need to assign the RadioButtonList controls' `SelectedValue` properties
 After adding the two RadioButtonLists and configuring them, the `Discontinued` TemplateField's declarative markup should look like:
 
 
-    <asp:TemplateField HeaderText="Discontinued" SortExpression="Discontinued">
-        <ItemTemplate>
-            <asp:RadioButtonList ID="DiscontinuedChoice" runat="server"
-              Enabled="False" SelectedValue='<%# Bind("Discontinued") %>'>
-                <asp:ListItem Value="False">Active</asp:ListItem>
-                <asp:ListItem Value="True">Discontinued</asp:ListItem>
-            </asp:RadioButtonList>
-        </ItemTemplate>
-        <EditItemTemplate>
-            <asp:RadioButtonList ID="DiscontinuedChoice" runat="server"
-                SelectedValue='<%# Bind("Discontinued") %>'>
-                <asp:ListItem Value="False">Active</asp:ListItem>
-                <asp:ListItem Value="True">Discontinued</asp:ListItem>
-            </asp:RadioButtonList>
-        </EditItemTemplate>
-    </asp:TemplateField>
+[!code[Main](customizing-the-data-modification-interface-cs/samples/sample7.xml)]
 
 With these changes, the `Discontinued` column has been transformed from a list of checkboxes to a list of radio button pairs (see Figure 14). When editing a product, the appropriate radio button is selected and the product's discontinued status can be updated by selecting the other radio button and clicking Update.
 

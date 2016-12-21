@@ -68,13 +68,13 @@ You can send messages to all of the members of a group or only specified members
 
 - **All** connected clients in a specified group. 
 
-        Clients.Group(groupName).addChatMessage(name, message);
+    [!code[Main](working-with-groups/samples/sample4.xml)]
 - All connected clients in a specified group **except the specified clients**, identified by connection ID. 
 
-        Clients.Group(groupName, connectionId1, connectionId2).addChatMessage(name, message);
+    [!code[Main](working-with-groups/samples/sample5.xml)]
 - All connected clients in a specified group **except the calling client**. 
 
-        Clients.OthersInGroup(groupName).addChatMessage(name, message);
+    [!code[Main](working-with-groups/samples/sample6.xml)]
 
 <a id="storedatabase"></a>
 
@@ -82,127 +82,11 @@ You can send messages to all of the members of a group or only specified members
 
 The following examples show how to retain group and user information in a database. You can use any data access technology; however, the example below shows how to define models using Entity Framework. These entity models correspond to database tables and fields. Your data structure could vary considerably depending on the requirements of your application. This example includes a class named `ConversationRoom` which would be unique to an application that enables users to join conversations about different subjects, such as sports or gardening. This example also includes a class for the connections. The connection class is not absolutely required for tracking group membership but is frequently part of robust solution to tracking users.
 
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Data.Entity;
-    
-    namespace GroupsExample
-    {
-        public class UserContext : DbContext
-        {
-            public DbSet<User> Users { get; set; }
-            public DbSet<Connection> Connections { get; set; }
-            public DbSet<ConversationRoom> Rooms { get; set; }
-        }
-    
-        public class User
-        {
-            [Key]
-            public string UserName { get; set; }
-            public ICollection<Connection> Connections { get; set; }
-            public virtual ICollection<ConversationRoom> Rooms { get; set; } 
-        }
-    
-        public class Connection
-        {
-            public string ConnectionID { get; set; }
-            public string UserAgent { get; set; }
-            public bool Connected { get; set; }
-        }
-    
-        public class ConversationRoom
-        {
-            [Key]
-            public string RoomName { get; set; }
-            public virtual ICollection<User> Users { get; set; }
-        }
-    }
+[!code[Main](working-with-groups/samples/sample7.xml)]
 
 Then, in the hub, you can retrieve the group and user information from the database and manually add the user to the appropriate groups. The example does not include code for tracking the user connections. In this example, the `await` keyword is not applied before `Groups.Add` because a message is not immediately sent to members of the group. If you want to send a message to all members of the group immediately after adding the new member, you would want to apply the `await` keyword to make sure the asynchronous operation has completed.
 
-    using Microsoft.AspNet.SignalR;
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Linq;
-    using System.Threading.Tasks;
-    
-    namespace GroupsExample
-    {
-        [Authorize]
-        public class ChatHub : Hub
-        {
-            public override Task OnConnected()
-            {
-                using (var db = new UserContext())
-                {
-                    // Retrieve user.
-                    var user = db.Users
-                        .Include(u => u.Rooms)
-                        .SingleOrDefault(u => u.UserName == Context.User.Identity.Name);
-    
-                    // If user does not exist in database, must add.
-                    if (user == null)
-                    {
-                        user = new User()
-                        {
-                            UserName = Context.User.Identity.Name
-                        };
-                        db.Users.Add(user);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        // Add to each assigned group.
-                        foreach (var item in user.Rooms)
-                        {
-                            Groups.Add(Context.ConnectionId, item.RoomName);
-                        }
-                    }
-                }
-                return base.OnConnected();
-            }
-    
-            public void AddToRoom(string roomName)
-            {
-                using (var db = new UserContext())
-                {
-                    // Retrieve room.
-                    var room = db.Rooms.Find(roomName);
-    
-                    if (room != null)
-                    {
-                        var user = new User() { UserName = Context.User.Identity.Name};
-                        db.Users.Attach(user);
-    
-                        room.Users.Add(user);
-                        db.SaveChanges();
-                        Groups.Add(Context.ConnectionId, roomName);
-                    }
-                }
-            }
-    
-            public void RemoveFromRoom(string roomName)
-            {
-                using (var db = new UserContext())
-                {
-                    // Retrieve room.
-                    var room = db.Rooms.Find(roomName);
-                    if (room != null)
-                    {
-                        var user = new User() { UserName = Context.User.Identity.Name };
-                        db.Users.Attach(user);
-    
-                        room.Users.Remove(user);
-                        db.SaveChanges();
-                        
-                        Groups.Remove(Context.ConnectionId, roomName);
-                    }
-                }
-            }
-        }
-    }
+[!code[Main](working-with-groups/samples/sample8.xml)]
 
 <a id="storeazuretable"></a>
 
@@ -210,100 +94,11 @@ Then, in the hub, you can retrieve the group and user information from the datab
 
 Using Azure table storage to store group and user information is similar to using a database. The following example shows a table entity that stores the user name and group name.
 
-    using Microsoft.WindowsAzure.Storage.Table;
-    using System;
-    
-    namespace GroupsExample
-    {
-        public class UserGroupEntity : TableEntity
-        {
-            public UserGroupEntity() { }
-    
-            public UserGroupEntity(string userName, string groupName)
-            {
-                this.PartitionKey = userName;
-                this.RowKey = groupName;
-            }
-        }
-    }
+[!code[Main](working-with-groups/samples/sample9.xml)]
 
 In the hub, you retrieve the assigned groups when the user connects.
 
-    using Microsoft.AspNet.SignalR;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Microsoft.WindowsAzure.Storage.Table;
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure;
-    
-    namespace GroupsExample
-    {
-        [Authorize]
-        public class ChatHub : Hub
-        {
-            public override Task OnConnected()
-            {
-                string userName = Context.User.Identity.Name;
-    
-                var table = GetRoomTable();
-                table.CreateIfNotExists();
-                var query = new TableQuery<UserGroupEntity>()
-                    .Where(TableQuery.GenerateFilterCondition(
-                    "PartitionKey", QueryComparisons.Equal, userName));
-                
-                foreach (var entity in table.ExecuteQuery(query))
-                {
-                    Groups.Add(Context.ConnectionId, entity.RowKey);
-                }
-    
-                return base.OnConnected();
-            }
-    
-            public Task AddToRoom(string roomName)
-            {
-                string userName = Context.User.Identity.Name;
-    
-                var table = GetRoomTable();
-    
-                var insertOperation = TableOperation.InsertOrReplace(
-                    new UserGroupEntity(userName, roomName));
-                table.Execute(insertOperation);
-    
-                return Groups.Add(Context.ConnectionId, roomName);
-            }
-    
-            public Task RemoveFromRoom(string roomName)
-            {
-                string userName = Context.User.Identity.Name;
-    
-                var table = GetRoomTable();
-    
-                var retrieveOperation = TableOperation.Retrieve<UserGroupEntity>(
-                    userName, roomName);
-                var retrievedResult = table.Execute(retrieveOperation);
-    
-                var deleteEntity = (UserGroupEntity)retrievedResult.Result;
-    
-                if (deleteEntity != null)
-                {
-                    var deleteOperation = TableOperation.Delete(deleteEntity);
-                    table.Execute(deleteOperation);
-                }
-    
-                return Groups.Remove(Context.ConnectionId, roomName);
-            }
-    
-           private CloudTable GetRoomTable()
-            {
-                var storageAccount =
-                    CloudStorageAccount.Parse(
-                    CloudConfigurationManager.GetSetting("StorageConnectionString"));
-                var tableClient = storageAccount.CreateCloudTableClient();
-                return tableClient.GetTableReference("room");
-            }
-        }
-    }
+[!code[Main](working-with-groups/samples/sample10.xml)]
 
 <a id="verify"></a>
 
@@ -315,41 +110,8 @@ In general, you should use the default behavior of automatically rejoining group
 
 If you must verify group membership on reconnect, create a new hub pipeline module that returns a list of assigned groups, as shown below.
 
-    using Microsoft.AspNet.SignalR;
-    using Microsoft.AspNet.SignalR.Hubs;
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Linq;
-    
-    namespace GroupsExample
-    {
-        public class RejoingGroupPipelineModule : HubPipelineModule
-        {
-            public override Func<HubDescriptor, IRequest, IList<string>, IList<string>> 
-                BuildRejoiningGroups(Func<HubDescriptor, IRequest, IList<string>, IList<string>> 
-                rejoiningGroups)
-            {
-                rejoiningGroups = (hb, r, l) => 
-                {
-                    List<string> assignedRooms = new List<string>();
-                    using (var db = new UserContext())
-                    {
-                        var user = db.Users.Include(u => u.Rooms)
-                            .Single(u => u.UserName == r.User.Identity.Name);
-                        foreach (var item in user.Rooms)
-                        {
-                            assignedRooms.Add(item.RoomName);
-                        }
-                    }
-                    return assignedRooms;
-                };
-    
-                return rejoiningGroups;
-            }
-        }
-    }
+[!code[Main](working-with-groups/samples/sample11.xml)]
 
 Then, add that module to the hub pipeline, as highlighted below.
 
-[!code[Main](working-with-groups/samples/sample4.xml?highlight=10)]
+[!code[Main](working-with-groups/samples/sample12.xml?highlight=10)]

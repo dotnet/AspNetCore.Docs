@@ -81,11 +81,7 @@ In the subsequent screen, shown in Figure 4, the wizard asks us what type of que
 Next we are prompted for the `SELECT` query. Enter the following query into the wizard:
 
 
-    SELECT ProductID, ProductName, SupplierID, CategoryID, 
-           QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-           ReorderLevel, Discontinued,
-           NTILE(4) OVER (ORDER BY UnitPrice DESC) as PriceQuartile
-    FROM Products
+[!code[Main](adding-additional-datatable-columns-vb/samples/sample1.xml)]
 
 The above query uses SQL Server 2005 s new [`NTILE` function](https://msdn.microsoft.com/en-us/library/ms175126.aspx) to divide the results into four groups where the groups are determined by the `UnitPrice` values sorted in descending order.
 
@@ -139,11 +135,7 @@ At this point we have performed the necessary steps for adding an additional col
 Before we use the new `GetProductsWithPriceQuartile` method from the Presentation Layer, we should first add a corresponding method to the BLL. Open the `ProductsBLLWithSprocs` class file and add the following code:
 
 
-    <System.ComponentModel.DataObjectMethodAttribute_
-        (System.ComponentModel.DataObjectMethodType.Select, False)> _
-    Public Function GetProductsWithPriceQuartile() As NorthwindWithSprocs.ProductsDataTable
-        Return Adapter.GetProductsWithPriceQuartile()
-    End Function
+[!code[Main](adding-additional-datatable-columns-vb/samples/sample2.xml)]
 
 Like the other data retrieval methods in `ProductsBLLWithSprocs`, the `GetProductsWithPriceQuartile` method simply calls the DAL s corresponding `GetProductsWithPriceQuartile` method and returns its results.
 
@@ -169,28 +161,7 @@ Edit the GridView s fields, removing all but the `ProductName`, `UnitPrice`, and
 After these modifications, the GridView and ObjectDataSource s declarative markup should look like the following:
 
 
-    <asp:GridView ID="Products" runat="server" AllowSorting="True"
-        AutoGenerateColumns="False" DataKeyNames="ProductID" 
-        DataSourceID="ProductsDataSource">
-        <Columns>
-            <asp:BoundField DataField="ProductName" HeaderText="Product" 
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice" DataFormatString="{0:c}" 
-                HeaderText="Price" HtmlEncode="False" 
-                SortExpression="UnitPrice">
-                <ItemStyle HorizontalAlign="Right" />
-            </asp:BoundField>
-            <asp:BoundField DataField="PriceQuartile" HeaderText="Price Quartile" 
-                SortExpression="PriceQuartile">
-                <ItemStyle HorizontalAlign="Center" />
-            </asp:BoundField>
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="ProductsDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProductsWithPriceQuartile" 
-        TypeName="ProductsBLLWithSprocs">
-    </asp:ObjectDataSource>
+[!code[Main](adding-additional-datatable-columns-vb/samples/sample3.xml)]
 
 Figure 11 shows this page when visited through a browser. Note that, initially, the products are ordered by their price in descending order with each product assigned an appropriate `PriceQuartile` value. Of course this data can be sorted by other criteria with the Price Quartile column value still reflecting the product s ranking with respect to price (see Figure 12).
 

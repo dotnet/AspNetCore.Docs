@@ -45,10 +45,7 @@ The ASP.NET runtime tracks the current `changeId` for a table when caching data 
 With the polling approach the database must be setup to contain the infrastructure described above: a predefined table (`AspNet_SqlCacheTablesForChangeNotification`), a handful of stored procedures, and triggers on each of the tables that may be used in SQL cache dependencies in the web application. These tables, stored procedures, and triggers can be created through the command line program `aspnet_regsql.exe`, which is found in the `$WINDOWS$\Microsoft.NET\Framework\version` folder. To create the `AspNet_SqlCacheTablesForChangeNotification` table and associated stored procedures, run the following from the command line:
 
 
-    /* For SQL Server authentication... */
-    aspnet_regsql.exe -S server -U user -P password -d database -ed
-    /* For Windows Authentication... */
-    aspnet_regsql.exe -S server -E -d database -ed
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample1.xml)]
 
 > [!NOTE] To execute these commands the specified database login must be in the [`db_securityadmin`](https://msdn.microsoft.com/en-us/library/ms188685.aspx) and [`db_ddladmin`](https://msdn.microsoft.com/en-us/library/ms190667.aspx) roles. To examine the T-SQL sent to the database by the `aspnet_regsql.exe` command line program, refer to [this blog entry](http://scottonwriting.net/sowblog/posts/10709.aspx).
 
@@ -56,23 +53,17 @@ With the polling approach the database must be setup to contain the infrastructu
 For example, to add the infrastructure for polling to a Microsoft SQL Server database named `pubs` on a database server named `ScottsServer` using Windows Authentication, navigate to the appropriate directory and, from the command line, enter:
 
 
-    aspnet_regsql.exe -S ScottsServer -E -d pubs -ed
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample2.xml)]
 
 After the database-level infrastructure has been added, we need to add the triggers to those tables that will be used in SQL cache dependencies. Use the `aspnet_regsql.exe` command line program again, but specify the table name using the `-t` switch and instead of using the `-ed` switch use `-et`, like so:
 
 
-    /* For SQL Server authentication... */
-    aspnet_regsql.exe -S <i>server</i>
-    -U <i>user</i> -P <i>password</i> -d <i>database</i> -t <i>tableName</i> -et
-    /* For Windows Authentication... */
-    aspnet_regsql.exe -S <i>server</i>
-    -E -d <i>database</i> -t <i>tableName</i> -et
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample3.xml)]
 
 To add the triggers to the `authors` and `titles` tables on the `pubs` database on `ScottsServer`, use:
 
 
-    aspnet_regsql.exe -S ScottsServer -E -d pubs -t authors -et
-    aspnet_regsql.exe -S ScottsServer -E -d pubs -t titles -et
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample4.xml)]
 
 For this tutorial add the triggers to the `Products`, `Categories`, and `Suppliers` tables. We'll look at the particular command line syntax in Step 3.
 
@@ -110,10 +101,7 @@ This will add the database to the Databases folder. The database name might be t
 Now that we have attached the `NORTHWND.MDF` database from the `App_Data` folder, we re ready to add the polling infrastructure. Assuming that you ve renamed the database to DataTutorials , run the following four commands:
 
 
-    aspnet_regsql.exe -S localhost\SQLExpress -E -d DataTutorials -ed
-    aspnet_regsql.exe -S localhost\SQLExpress -E -d DataTutorials -t Products -et
-    aspnet_regsql.exe -S localhost\SQLExpress -E -d DataTutorials -t Categories -et
-    aspnet_regsql.exe -S localhost\SQLExpress -E -d DataTutorials -t Suppliers -et
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample5.xml)]
 
 After running these four commands, right-click on the database name in Management Studio, go to the Tasks submenu, and choose Detach. Then close Management Studio and reopen Visual Studio.
 
@@ -130,27 +118,7 @@ Once Visual Studio has reopened, drill into the database through the Server Expl
 After creating the needed tables, triggers, and stored procedures in the database, the final step is to configure the polling service, which is done through `Web.config` by specifying the databases to use and the polling frequency in milliseconds. The following markup polls the Northwind database once every second.
 
 
-    <?xml version="1.0"?>
-    <configuration>
-       <connectionStrings>
-          <add name="NORTHWNDConnectionString" connectionString=
-              "Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\NORTHWND.MDF;
-               Integrated Security=True;User Instance=True" 
-               providerName="System.Data.SqlClient"/>
-       </connectionStrings>
-       <system.web>
-          ...
-          <!-- Configure the polling service used for SQL cache dependencies -->
-          <caching>
-             <sqlCacheDependency enabled="true" pollTime="1000" >
-                <databases>
-                   <add name="NorthwindDB" 
-                        connectionStringName="NORTHWNDConnectionString" />
-                </databases>
-             </sqlCacheDependency>
-          </caching>
-       </system.web>
-    </configuration>
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample6.xml)]
 
 The `name` value in the `<add>` element ( NorthwindDB ) associates a human-readable name with a particular database. When working with SQL cache dependencies, we'll need to refer to the database name defined here as well as the table that the cached data is based on. We'll see how to use the `SqlCacheDependency` class to programmatically associate SQL cache dependencies with cached data in Step 6.
 
@@ -193,69 +161,12 @@ After completing the Configure Data Source wizard, Visual Studio will create Bou
 Finally, add a Label Web control above the GridView and set its `ID` property to `ODSEvents` and its `EnableViewState` property to `false`. After making these changes, your page s declarative markup should look similar to the following. Note that I ve made a number of aesthetic customizations to the GridView fields that are not necessary to demonstrate the SQL cache dependency functionality.
 
 
-    <asp:Label ID="ODSEvents" runat="server" EnableViewState="False" />
-    <asp:GridView ID="ProductsDeclarative" runat="server" 
-        AutoGenerateColumns="False" DataKeyNames="ProductID" 
-        DataSourceID="ProductsDataSourceDeclarative" 
-        AllowPaging="True" AllowSorting="True">
-        <Columns>
-            <asp:CommandField ShowEditButton="True" />
-            <asp:TemplateField HeaderText="Product" SortExpression="ProductName">
-                <EditItemTemplate>
-                    <asp:TextBox ID="ProductName" runat="server" 
-                        Text='<%# Bind("ProductName") %>' />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
-                        ControlToValidate="ProductName" Display="Dynamic" 
-                        ErrorMessage="You must provide a name for the product." 
-                        SetFocusOnError="True"
-                        runat="server">*</asp:RequiredFieldValidator>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server" 
-                        Text='<%# Bind("ProductName") %>' />
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                ReadOnly="True" SortExpression="CategoryName" />
-            <asp:TemplateField HeaderText="Price" SortExpression="UnitPrice">
-                <EditItemTemplate>
-                    $<asp:TextBox ID="UnitPrice" runat="server" Columns="8" 
-                        Text='<%# Bind("UnitPrice", "{0:N2}") %>'></asp:TextBox>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" 
-                        ControlToValidate="UnitPrice"
-                        ErrorMessage="You must enter a valid currency value with 
-                            no currency symbols. Also, the value must be greater than 
-                            or equal to zero."
-                        Operator="GreaterThanEqual" SetFocusOnError="True" 
-                        Type="Currency" Display="Dynamic" 
-                        ValueToCompare="0">*</asp:CompareValidator>
-                </EditItemTemplate>
-                <ItemStyle HorizontalAlign="Right" />
-                <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server" 
-                        Text='<%# Bind("UnitPrice", "{0:c}") %>' />
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="ProductsDataSourceDeclarative" runat="server" 
-        SelectMethod="GetProducts" TypeName="ProductsBLL" 
-        UpdateMethod="UpdateProduct">
-        <UpdateParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="productID" Type="Int32" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample7.xml)]
 
 Next, create an event handler for the ObjectDataSource s `Selecting` event and in it add the following code:
 
 
-    protected void ProductsDataSourceDeclarative_Selecting
-        (object sender, ObjectDataSourceSelectingEventArgs e)
-    {
-        ODSEvents.Text = "-- Selecting event fired";
-    }
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample8.xml)]
 
 Recall that the ObjectDataSource s `Selecting` event fires only when retrieving data from its underlying object. If the ObjectDataSource accesses the data from its own cache, this event is not fired.
 
@@ -270,7 +181,7 @@ Now, visit this page through a browser. Since we ve yet to implement any caching
 As we saw in the [Caching Data with the ObjectDataSource](caching-data-with-the-objectdatasource-cs.md) tutorial, setting the `EnableCaching` property to `true` causes the ObjectDataSource to cache its data for the duration specified by its `CacheDuration` property. The ObjectDataSource also has a [`SqlCacheDependency` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.objectdatasource.sqlcachedependency.aspx), which adds one or more SQL cache dependencies to the cached data using the pattern:
 
 
-    databaseName1:tableName1;databaseName2:tableName2;...
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample9.xml)]
 
 Where *databaseName* is the name of the database as specified in the `name` attribute of the `<add>` element in `Web.config`, and *tableName* is the name of the database table. For example, to create an ObjectDataSource that caches data indefinitely based on a SQL cache dependency against the Northwind s `Products` table, set the ObjectDataSource s `EnableCaching` property to `true` and its `SqlCacheDependency` property to NorthwindDB:Products .
 
@@ -302,51 +213,24 @@ The [Caching Data in the Architecture](caching-data-in-the-architecture-cs.md) t
 With the polling system, a `SqlCacheDependency` object must be associated with a particular database and table pair. The following code, for example, creates a `SqlCacheDependency` object based on the Northwind database s `Products` table:
 
 
-    Caching.SqlCacheDependency productsTableDependency = 
-        new Caching.SqlCacheDependency("NorthwindDB", "Products");
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample10.xml)]
 
 The two input parameters to the `SqlCacheDependency` s constructor are the database and table names, respectively. Like with the ObjectDataSource s `SqlCacheDependency` property, the database name used is the same as the value specified in the `name` attribute of the `<add>` element in `Web.config`. The table name is the actual name of the database table.
 
 To associate a `SqlCacheDependency` with an item added to the data cache, use one of the `Insert` method overloads that accepts a dependency. The following code adds *value* to the data cache for an indefinite duration, but associates it with a `SqlCacheDependency` on the `Products` table. In short, *value* will remain in the cache until it is evicted due to memory constraints or because the polling system has detected that the `Products` table has changed since it was cached.
 
 
-    Caching.SqlCacheDependency productsTableDependency = 
-        new Caching.SqlCacheDependency("NorthwindDB", "Products");
-    Cache.Insert(key, 
-                 value, 
-                 productsTableDependency, 
-                 System.Web.Caching.Cache.NoAbsoluteExpiration, 
-                 System.Web.Caching.Cache.NoSlidingExpiration);
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample11.xml)]
 
 The Caching Layer s `ProductsCL` class currently caches data from the `Products` table using a time-based expiry of 60 seconds. Let s update this class so that it uses SQL cache dependencies instead. The `ProductsCL` class s `AddCacheItem` method, which is responsible for adding the data to the cache, currently contains the following code:
 
 
-    private void AddCacheItem(string rawKey, object value)
-    {
-        System.Web.Caching.Cache DataCache = HttpRuntime.Cache;
-        // Make sure MasterCacheKeyArray[0] is in the cache
-        DataCache[MasterCacheKeyArray[0]] = DateTime.Now;
-        // Add a CacheDependency
-        Caching.CacheDependency dependency =
-            new Caching.CacheDependency(null, MasterCacheKeyArray);
-        DataCache.Insert(GetCacheKey(rawKey), value, dependency, 
-            DateTime.Now.AddSeconds(CacheDuration), 
-            System.Web.Caching.Cache.NoSlidingExpiration);
-    }
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample12.xml)]
 
 Update this code to use a `SqlCacheDependency` object instead of the `MasterCacheKeyArray` cache dependency:
 
 
-    private void AddCacheItem(string rawKey, object value)
-    {
-        System.Web.Caching.Cache DataCache = HttpRuntime.Cache;
-        // Add the SqlCacheDependency objects for Products
-        Caching.SqlCacheDependency productsTableDependency = 
-            new Caching.SqlCacheDependency("NorthwindDB", "Products");
-        // Add the item to the data cache using productsTableDependency
-        DataCache.Insert(GetCacheKey(rawKey), value, productsTableDependency, 
-            Caching.Cache.NoAbsoluteExpiration, Caching.Cache.NoSlidingExpiration);
-    }
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample13.xml)]
 
 To test this functionality, add a GridView to the page beneath the existing `ProductsDeclarative` GridView. Set this new GridView s `ID` to `ProductsProgrammatic` and, through its smart tag, bind it to a new ObjectDataSource named `ProductsDataSourceProgrammatic`. Configure the ObjectDataSource to use the `ProductsCL` class, setting the drop-down lists in the SELECT and UPDATE tabs to `GetProducts` and `UpdateProduct`, respectively.
 
@@ -371,58 +255,7 @@ After completing the Configure Data Source wizard, Visual Studio will create Bou
 After completing these tasks, the resulting GridView and ObjectDataSource declarative markup should look like the following:
 
 
-    <asp:GridView ID="ProductsProgrammatic" runat="server" 
-        AutoGenerateColumns="False" DataKeyNames="ProductID" 
-        DataSourceID="ProductsDataSourceProgrammatic" AllowPaging="True" 
-        AllowSorting="True">
-        <Columns>
-            <asp:CommandField ShowEditButton="True" />
-            <asp:TemplateField HeaderText="Product" SortExpression="ProductName">
-                <EditItemTemplate>
-                    <asp:TextBox ID="ProductName" runat="server" 
-                        Text='<%# Bind("ProductName") %>' />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"  
-                        ControlToValidate="ProductName" Display="Dynamic" 
-                        ErrorMessage="You must provide a name for the product." 
-                        SetFocusOnError="True"
-                        runat="server">*</asp:RequiredFieldValidator>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server" 
-                        Text='<%# Bind("ProductName") %>' />
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                ReadOnly="True" SortExpression="CategoryName" />
-            <asp:TemplateField HeaderText="Price" SortExpression="UnitPrice">
-                <EditItemTemplate>
-                    $<asp:TextBox ID="UnitPrice" runat="server" Columns="8" 
-                        Text='<%# Bind("UnitPrice", "{0:N2}") %>'></asp:TextBox>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" 
-                        ControlToValidate="UnitPrice" Display="Dynamic" 
-                        ErrorMessage="You must enter a valid currency value with 
-                            no currency symbols. Also, the value must be greater than 
-                            or equal to zero."
-                        Operator="GreaterThanEqual" SetFocusOnError="True" 
-                        Type="Currency" ValueToCompare="0">*</asp:CompareValidator>
-                </EditItemTemplate>
-                <ItemStyle HorizontalAlign="Right" />
-                <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server" 
-                        Text='<%# Bind("UnitPrice", "{0:c}") %>' />
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="ProductsDataSourceProgrammatic" runat="server" 
-        OldValuesParameterFormatString="{0}" SelectMethod="GetProducts" 
-        TypeName="ProductsCL" UpdateMethod="UpdateProduct">
-        <UpdateParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="productID" Type="Int32" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample14.xml)]
 
 To test the SQL cache dependency in the Caching Layer set a breakpoint in the `ProductCL` class s `AddCacheItem` method and then start debugging. When you first visit `SqlCacheDependencies.aspx`, the breakpoint should be hit as the data is requested for the first time and placed into the cache. Next, move to another page in the GridView or sort one of the columns. This causes the GridView to requery its data, but the data should be found in the cache since the `Products` database table has not been modified. If the data is repeatedly not found in the cache, make sure there is sufficient memory available on your computer and try again.
 
@@ -444,28 +277,7 @@ The [`AggregateCacheDependency` class](https://msdn.microsoft.com/en-us/library/
 The following shows the updated code for the `ProductsCL` class s `AddCacheItem` method. The method creates the `MasterCacheKeyArray` cache dependency along with `SqlCacheDependency` objects for the `Products`, `Categories`, and `Suppliers` tables. These are all combined into one `AggregateCacheDependency` object named `aggregateDependencies`, which is then passed into the `Insert` method.
 
 
-    private void AddCacheItem(string rawKey, object value)
-    {
-        System.Web.Caching.Cache DataCache = HttpRuntime.Cache;
-        // Make sure MasterCacheKeyArray[0] is in the cache and create a depedency
-        DataCache[MasterCacheKeyArray[0]] = DateTime.Now;
-        Caching.CacheDependency masterCacheKeyDependency = 
-            new Caching.CacheDependency(null, MasterCacheKeyArray);
-        // Add the SqlCacheDependency objects for Products, Categories, and Suppliers
-        Caching.SqlCacheDependency productsTableDependency = 
-            new Caching.SqlCacheDependency("NorthwindDB", "Products");
-        Caching.SqlCacheDependency categoriesTableDependency = 
-            new Caching.SqlCacheDependency("NorthwindDB", "Categories");
-        Caching.SqlCacheDependency suppliersTableDependency = 
-            new Caching.SqlCacheDependency("NorthwindDB", "Suppliers");
-        // Create an AggregateCacheDependency
-        Caching.AggregateCacheDependency aggregateDependencies = 
-            new Caching.AggregateCacheDependency();
-        aggregateDependencies.Add(masterCacheKeyDependency, productsTableDependency, 
-            categoriesTableDependency, suppliersTableDependency);
-        DataCache.Insert(GetCacheKey(rawKey), value, aggregateDependencies, 
-            Caching.Cache.NoAbsoluteExpiration, Caching.Cache.NoSlidingExpiration);
-    }
+[!code[Main](using-sql-cache-dependencies-cs/samples/sample15.xml)]
 
 Test this new code out. Now changes to the `Products`, `Categories`, or `Suppliers` tables cause the cached data to be evicted. Moreover, the `ProductsCL` class s `UpdateProduct` method, which is called when editing a product through the GridView, evicts the `MasterCacheKeyArray` cache dependency, which causes the cached `ProductsDataTable` to be evicted and the data to be re-retrieved on the next request.
 

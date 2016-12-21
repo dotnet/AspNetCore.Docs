@@ -41,20 +41,7 @@ To create each class, right-click the Models folder in Solution Explorer. From t
 
 Add a `Product` class with the following implementation:
 
-    namespace ProductStore.Models
-    {
-        using System.ComponentModel.DataAnnotations;
-    
-        public class Product
-        {
-            [ScaffoldColumn(false)]
-            public int Id { get; set; }
-            [Required]
-            public string Name { get; set; }
-            public decimal Price { get; set; }
-            public decimal ActualCost { get; set; }
-        }
-    }
+[!code[Main](using-web-api-with-entity-framework-part-2/samples/sample1.xml)]
 
 By convention, Entity Framework uses the `Id` property as the primary key and maps it to an identity column in the database table. When you create a new `Product` instance, you won't set a value for `Id`, because the database generates the value.
 
@@ -62,38 +49,11 @@ The **ScaffoldColumn** attribute tells ASP.NET MVC to skip the `Id` property whe
 
 Add the `Order` class:
 
-    namespace ProductStore.Models
-    {
-        using System.Collections.Generic;
-        using System.ComponentModel.DataAnnotations;
-    
-        public class Order
-        {
-            public int Id { get; set; }
-            [Required]
-            public string Customer { get; set; }
-    
-            // Navigation property
-            public  ICollection<OrderDetail> OrderDetails { get; set; }
-        }
-    }
+[!code[Main](using-web-api-with-entity-framework-part-2/samples/sample2.xml)]
 
 Add the `OrderDetail` class:
 
-    namespace ProductStore.Models
-    {
-        public class OrderDetail
-        {
-            public int Id { get; set; }
-            public int Quantity { get; set; }
-            public int OrderId { get; set; }
-            public int ProductId { get; set; }
-    
-            // Navigation properties
-            public Product Product { get; set; }
-            public Order Order { get; set; }
-        }
-    }
+[!code[Main](using-web-api-with-entity-framework-part-2/samples/sample3.xml)]
 
 ## Foreign Key Relations
 
@@ -113,7 +73,7 @@ Serialization by value creates a problem if an object graph contains circular re
 
 In Solution Explorer, expand the App\_Start folder and open the file named WebApiConfig.cs. Add the following code to the `WebApiConfig` class:
 
-[!code[Main](using-web-api-with-entity-framework-part-2/samples/sample1.xml?highlight=11)]
+[!code[Main](using-web-api-with-entity-framework-part-2/samples/sample4.xml?highlight=11)]
 
 This code sets the JSON formatter to preserve object references, and removes the XML formatter from the pipeline entirely. (You can configure the XML formatter to preserve object references, but it's a little more work, and we only need JSON for this application. For more information, see [Handling Circular Object References](../../formats-and-model-binding/json-and-xml-serialization.md#handling_circular_object_references).)
 

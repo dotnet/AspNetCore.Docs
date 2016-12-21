@@ -1,2 +1,1 @@
-var connection = $.hubConnection();
-connection.start({ transport: ['webSockets', 'longPolling'] });
+$.connection.hub.qs = { 'version' : '1.0' };

@@ -1,7 +1,1 @@
-protected void Application_Start()
-{
-    // Add this code, if not present.
-    AreaRegistration.RegisterAllAreas();
-
-    // ...
-}
+    @Html.ActionLink("API", "Index", "Help", new { area = "" }, null)

@@ -1,7 +1,5 @@
-stockTickerHub.On<Stock>("notify", () =>
-    // Context is a reference to SynchronizationContext.Current
-    Context.Post(delegate
+    public class Stock
     {
-        textBox.Text += "Notified!";
-    }, null)
-);
+        public string Symbol { get; set; }
+        public decimal Price { get; set; }
+    }

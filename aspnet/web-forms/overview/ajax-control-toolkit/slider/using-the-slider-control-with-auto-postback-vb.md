@@ -28,31 +28,23 @@ The Slider control in the AJAX Control Toolkit provides a graphical slider that 
 
 In order to make the slider automatically postback upon a change, both text boxes need the attribute `AutoPostBack="true"`: The text box that will become the slider itself, and the text box that holds the slider's position. Here is the required markup for that:
 
-    <asp:TextBox ID="Slider1" runat="server" AutoPostBack="true" />
-    <asp:TextBox ID="SliderValue" runat="server" AutoPostBack="true" />
+[!code[Main](using-the-slider-control-with-auto-postback-vb/samples/sample1.xml)]
 
 The `SliderExtender` control from the ASP.NET AJAX Control Toolkit assigns the slider functionality to the two text boxes:
 
-    <ajaxToolkit:SliderExtender ID="se1" runat="server"
-     TargetControlId="Slider1" BoundControlID="SliderValue" />
+[!code[Main](using-the-slider-control-with-auto-postback-vb/samples/sample2.xml)]
 
 An additional label element will later be used to inform the user of a postback:
 
-    <asp:Label ID="LastUpdate" runat="server" />
+[!code[Main](using-the-slider-control-with-auto-postback-vb/samples/sample3.xml)]
 
 Finally, the `ScriptManager` control of ASP.NET AJAX loads the required JavaScript for the Control Toolkit to work:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](using-the-slider-control-with-auto-postback-vb/samples/sample4.xml)]
 
 Now the slider is posting back; on the server-side, this event may be caught and acted upon:
 
-    <script runat="server">
-     Sub Page_Load()
-     If Page.IsPostBack Then
-     LastUpdate.Text = "Last update: " & DateTime.Now.ToLongTimeString()
-     End If
-     End Sub
-    </script>
+[!code[Main](using-the-slider-control-with-auto-postback-vb/samples/sample5.xml)]
 
 
 [![Moving the slider triggers a postback](using-the-slider-control-with-auto-postback-vb/_static/image2.png)](using-the-slider-control-with-auto-postback-vb/_static/image1.png)

@@ -69,40 +69,15 @@ This template creates a web application project that already includes a style sh
 
 Open the *Site.Master* file and change "My ASP.NET Application" to "Contoso University".
 
-    <h1>
-        Contoso University
-    </h1>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-1/samples/sample1.xml)]
 
 Find the *Menu* control named `NavigationMenu` and replace it with the following markup, which adds menu items for the pages you'll be creating.
 
-    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false"
-                        IncludeStyleBlock="false" Orientation="Horizontal">
-                        <Items>
-                            <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home" />
-                            <asp:MenuItem NavigateUrl="~/About.aspx" Text="About" />
-                            <asp:MenuItem NavigateUrl="~/Students.aspx" Text="Students">
-                                <asp:MenuItem NavigateUrl="~/StudentsAdd.aspx" Text="Add Students" />
-                            </asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/Courses.aspx" Text="Courses">
-                                <asp:MenuItem NavigateUrl="~/CoursesAdd.aspx" Text="Add Courses" />
-                            </asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/Instructors.aspx" Text="Instructors">
-                                <asp:MenuItem NavigateUrl="~/InstructorsCourses.aspx" Text="Course Assignments" />
-                                <asp:MenuItem NavigateUrl="~/OfficeAssignments.aspx" Text="Office Assignments" />
-                            </asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/Departments.aspx" Text="Departments">
-                                <asp:MenuItem NavigateUrl="~/DepartmentsAdd.aspx" Text="Add Departments" />
-                            </asp:MenuItem>
-                        </Items>
-                    </asp:Menu>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-1/samples/sample2.xml)]
 
 Open the *Default.aspx* page and change the `Content` control named `BodyContent` to this:
 
-    <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-        <h2>
-            Welcome to Contoso University!
-       </h2>
-    </asp:Content>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-1/samples/sample3.xml)]
 
 You now have a simple home page with links to the various pages that you'll be creating:
 

@@ -1,10 +1,8 @@
-function init() {
-    return stockTickerProxy.invoke('getAllStocks').done(function (stocks) {
-        $.each(stocks, function () {
-            var stock = this;
-            console.log("Symbol=" + stock.Symbol + " Price=" + stock.Price);
-        });
-    }).fail(function (error) {
-        console.log('Error: ' + error);
-    });
+public class ContosoChatHub : Hub
+{
+    [HubMethodName("NewContosoChatMessage")]
+    public void NewContosoChatMessage(string name, string message)
+    {
+        Clients.All.addContosoChatMessageToPage(name, message);
+    }
 }

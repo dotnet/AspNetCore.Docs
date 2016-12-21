@@ -61,29 +61,7 @@ This method of keeping the database in sync with the data model works well until
 
     Like the initializer class that you saw earlier, the `Configuration` class includes a `Seed` method.
 
-        internal sealed class Configuration : DbMigrationsConfiguration<ContosoUniversity.DAL.SchoolContext>
-        {
-            public Configuration()
-            {
-                AutomaticMigrationsEnabled = false;
-            }
-        
-            protected override void Seed(ContosoUniversity.DAL.SchoolContext context)
-            {
-                //  This method will be called after migrating to the latest version.
-        
-                //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-                //  to avoid creating duplicate seed data. E.g.
-                //
-                //    context.People.AddOrUpdate(
-                //      p => p.FullName,
-                //      new Person { FullName = "Andrew Peters" },
-                //      new Person { FullName = "Brice Lambson" },
-                //      new Person { FullName = "Rowan Miller" }
-                //    );
-                //
-            }
-        }
+    [!code[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml)]
 
     The purpose of the [Seed](https://msdn.microsoft.com/en-us/library/hh829453(v=vs.103).aspx) method is to enable you to insert or update test data after Code First creates or updates the database. The method is called when the database is created and every time the database schema is updated after a data model change.
 
@@ -95,132 +73,7 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
 1. Replace the contents of the *Configuration.cs*file with the following code, which will load test data into the new database. 
 
-        namespace ContosoUniversity.Migrations
-        {
-            using ContosoUniversity.Models;
-            using System;
-            using System.Collections.Generic;
-            using System.Data.Entity;
-            using System.Data.Entity.Migrations;
-            using System.Linq;
-        
-            internal sealed class Configuration : DbMigrationsConfiguration<ContosoUniversity.DAL.SchoolContext>
-            {
-                public Configuration()
-                {
-                    AutomaticMigrationsEnabled = false;
-                }
-        
-                protected override void Seed(ContosoUniversity.DAL.SchoolContext context)
-                {
-                    var students = new List<Student>
-                    {
-                        new Student { FirstMidName = "Carson",   LastName = "Alexander", 
-                            EnrollmentDate = DateTime.Parse("2010-09-01") },
-                        new Student { FirstMidName = "Meredith", LastName = "Alonso",    
-                            EnrollmentDate = DateTime.Parse("2012-09-01") },
-                        new Student { FirstMidName = "Arturo",   LastName = "Anand",     
-                            EnrollmentDate = DateTime.Parse("2013-09-01") },
-                        new Student { FirstMidName = "Gytis",    LastName = "Barzdukas", 
-                            EnrollmentDate = DateTime.Parse("2012-09-01") },
-                        new Student { FirstMidName = "Yan",      LastName = "Li",        
-                            EnrollmentDate = DateTime.Parse("2012-09-01") },
-                        new Student { FirstMidName = "Peggy",    LastName = "Justice",   
-                            EnrollmentDate = DateTime.Parse("2011-09-01") },
-                        new Student { FirstMidName = "Laura",    LastName = "Norman",    
-                            EnrollmentDate = DateTime.Parse("2013-09-01") },
-                        new Student { FirstMidName = "Nino",     LastName = "Olivetto",  
-                            EnrollmentDate = DateTime.Parse("2005-08-11") }
-                    };
-                    students.ForEach(s => context.Students.AddOrUpdate(p => p.LastName, s));
-                    context.SaveChanges();
-        
-                    var courses = new List<Course>
-                    {
-                        new Course {CourseID = 1050, Title = "Chemistry",      Credits = 3, },
-                        new Course {CourseID = 4022, Title = "Microeconomics", Credits = 3, },
-                        new Course {CourseID = 4041, Title = "Macroeconomics", Credits = 3, },
-                        new Course {CourseID = 1045, Title = "Calculus",       Credits = 4, },
-                        new Course {CourseID = 3141, Title = "Trigonometry",   Credits = 4, },
-                        new Course {CourseID = 2021, Title = "Composition",    Credits = 3, },
-                        new Course {CourseID = 2042, Title = "Literature",     Credits = 4, }
-                    };
-                    courses.ForEach(s => context.Courses.AddOrUpdate(p => p.Title, s));
-                    context.SaveChanges();
-        
-                    var enrollments = new List<Enrollment>
-                    {
-                        new Enrollment { 
-                            StudentID = students.Single(s => s.LastName == "Alexander").ID, 
-                            CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID, 
-                            Grade = Grade.A 
-                        },
-                         new Enrollment { 
-                            StudentID = students.Single(s => s.LastName == "Alexander").ID,
-                            CourseID = courses.Single(c => c.Title == "Microeconomics" ).CourseID, 
-                            Grade = Grade.C 
-                         },                            
-                         new Enrollment { 
-                            StudentID = students.Single(s => s.LastName == "Alexander").ID,
-                            CourseID = courses.Single(c => c.Title == "Macroeconomics" ).CourseID, 
-                            Grade = Grade.B
-                         },
-                         new Enrollment { 
-                             StudentID = students.Single(s => s.LastName == "Alonso").ID,
-                            CourseID = courses.Single(c => c.Title == "Calculus" ).CourseID, 
-                            Grade = Grade.B 
-                         },
-                         new Enrollment { 
-                             StudentID = students.Single(s => s.LastName == "Alonso").ID,
-                            CourseID = courses.Single(c => c.Title == "Trigonometry" ).CourseID, 
-                            Grade = Grade.B 
-                         },
-                         new Enrollment {
-                            StudentID = students.Single(s => s.LastName == "Alonso").ID,
-                            CourseID = courses.Single(c => c.Title == "Composition" ).CourseID, 
-                            Grade = Grade.B 
-                         },
-                         new Enrollment { 
-                            StudentID = students.Single(s => s.LastName == "Anand").ID,
-                            CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID
-                         },
-                         new Enrollment { 
-                            StudentID = students.Single(s => s.LastName == "Anand").ID,
-                            CourseID = courses.Single(c => c.Title == "Microeconomics").CourseID,
-                            Grade = Grade.B         
-                         },
-                        new Enrollment { 
-                            StudentID = students.Single(s => s.LastName == "Barzdukas").ID,
-                            CourseID = courses.Single(c => c.Title == "Chemistry").CourseID,
-                            Grade = Grade.B         
-                         },
-                         new Enrollment { 
-                            StudentID = students.Single(s => s.LastName == "Li").ID,
-                            CourseID = courses.Single(c => c.Title == "Composition").CourseID,
-                            Grade = Grade.B         
-                         },
-                         new Enrollment { 
-                            StudentID = students.Single(s => s.LastName == "Justice").ID,
-                            CourseID = courses.Single(c => c.Title == "Literature").CourseID,
-                            Grade = Grade.B         
-                         }
-                    };
-        
-                    foreach (Enrollment e in enrollments)
-                    {
-                        var enrollmentInDataBase = context.Enrollments.Where(
-                            s =>
-                                 s.Student.ID == e.StudentID &&
-                                 s.Course.CourseID == e.CourseID).SingleOrDefault();
-                        if (enrollmentInDataBase == null)
-                        {
-                            context.Enrollments.Add(e);
-                        }
-                    }
-                    context.SaveChanges();
-                }
-            }
-        }
+    [!code[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml)]
 
     The [Seed](https://msdn.microsoft.com/en-us/library/hh829453(v=vs.103).aspx) method takes the database context object as an input parameter, and the code in the method uses that object to add new entities to the database. For each entity type, the code creates a collection of new entities, adds them to the appropriate [DbSet](https://msdn.microsoft.com/en-us/library/system.data.entity.dbset(v=vs.103).aspx) property, and then saves the changes to the database. It isn't necessary to call the [SaveChanges](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext.savechanges(v=VS.103).aspx) method after each group of entities, as is done here, but doing that helps you locate the source of a problem if an exception occurs while the code is writing to the database.
 
@@ -228,7 +81,7 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
     The first parameter passed to the [AddOrUpdate](https://msdn.microsoft.com/en-us/library/system.data.entity.migrations.idbsetextensions.addorupdate(v=vs.103).aspx) method specifies the property to use to check if a row already exists. For the test student data that you are providing, the `LastName` property can be used for this purpose since each last name in the list is unique:
 
-        context.Students.AddOrUpdate(p => p.LastName, s)
+    [!code[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml)]
 
     This code assumes that last names are unique. If you manually add a student with a duplicate last name, you'll get the following exception the next time you perform a migration.
 
@@ -238,81 +91,20 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
     The code that creates `Enrollment` entities assumes you have the `ID` value in the entities in the `students` collection, although you didn't set that property in the code that creates the collection.
 
-    [!code[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=2)]
+    [!code[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml?highlight=2)]
 
     You can use the `ID` property here because the `ID` value is set when you call `SaveChanges` for the `students` collection. EF automatically gets the primary key value when it inserts an entity into the database, and it updates the `ID` property of the entity in memory.
 
     The code that adds each `Enrollment` entity to the `Enrollments` entity set doesn't use the `AddOrUpdate` method. It checks if an entity already exists and inserts the entity if it doesn't exist. This approach will preserve changes you make to an enrollment grade by using the application UI. The code loops through each member of the `Enrollment`[List](https://msdn.microsoft.com/en-us/library/6sh2ey19.aspx) and if the enrollment is not found in the database, it adds the enrollment to the database. The first time you update the database, the database will be empty, so it will add each enrollment.
 
-        foreach (Enrollment e in enrollments)
-        {
-            var enrollmentInDataBase = context.Enrollments.Where(
-                s => s.Student.ID == e.Student.ID &&
-                     s.Course.CourseID == e.Course.CourseID).SingleOrDefault();
-            if (enrollmentInDataBase == null)
-            {
-                context.Enrollments.Add(e);
-            }
-        }
+    [!code[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml)]
 2. Build the project.
 
 ### Execute the First Migration
 
 When you executed the `add-migration` command, Migrations generated the code that would create the database from scratch. This code is also in the *Migrations* folder, in the file named *&lt;timestamp&gt;\_InitialCreate.cs*. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets, and the `Down` method deletes them.
 
-    public partial class InitialCreate : DbMigration
-    {
-        public override void Up()
-        {
-            CreateTable(
-                "dbo.Course",
-                c => new
-                    {
-                        CourseID = c.Int(nullable: false),
-                        Title = c.String(),
-                        Credits = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.CourseID);
-            
-            CreateTable(
-                "dbo.Enrollment",
-                c => new
-                    {
-                        EnrollmentID = c.Int(nullable: false, identity: true),
-                        CourseID = c.Int(nullable: false),
-                        StudentID = c.Int(nullable: false),
-                        Grade = c.Int(),
-                    })
-                .PrimaryKey(t => t.EnrollmentID)
-                .ForeignKey("dbo.Course", t => t.CourseID, cascadeDelete: true)
-                .ForeignKey("dbo.Student", t => t.StudentID, cascadeDelete: true)
-                .Index(t => t.CourseID)
-                .Index(t => t.StudentID);
-            
-            CreateTable(
-                "dbo.Student",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        LastName = c.String(),
-                        FirstMidName = c.String(),
-                        EnrollmentDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-        }
-        
-        public override void Down()
-        {
-            DropForeignKey("dbo.Enrollment", "StudentID", "dbo.Student");
-            DropForeignKey("dbo.Enrollment", "CourseID", "dbo.Course");
-            DropIndex("dbo.Enrollment", new[] { "StudentID" });
-            DropIndex("dbo.Enrollment", new[] { "CourseID" });
-            DropTable("dbo.Student");
-            DropTable("dbo.Enrollment");
-            DropTable("dbo.Course");
-        }
-    }
+[!code[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml)]
 
 Migrations calls the `Up` method to implement the data model changes for a migration. When you enter a command to roll back the update, Migrations calls the `Down` method.
 

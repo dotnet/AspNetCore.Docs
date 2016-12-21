@@ -33,63 +33,33 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 First we need to add a new entity type to our OData feed. We'll add a `Supplier` class.
 
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace ProductService.Models
-    {
-        public class Supplier
-        {
-            [Key]
-            public string Key { get; set; }
-            public string Name { get; set; }
-        }
-    }
+[!code[Main](working-with-entity-relations/samples/sample1.xml)]
 
 This class uses a string for the entity key. In practice, that might be less common than using an integer key. But it's worth seeing how OData handles other key types besides integers.
 
 Next, we'll create a relation by adding a `Supplier` property to the `Product` class:
 
-    public class Product
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public string Category { get; set; }
-    
-        // New code
-        [ForeignKey("Supplier")]
-        public string SupplierId { get; set; }
-        public virtual Supplier Supplier { get; set; }
-    }
+[!code[Main](working-with-entity-relations/samples/sample2.xml)]
 
 Add a new **DbSet** to the `ProductServiceContext` class, so that Entity Framework will include the `Supplier` table in the database.
 
-[!code[Main](working-with-entity-relations/samples/sample1.xml?highlight=9)]
+[!code[Main](working-with-entity-relations/samples/sample3.xml?highlight=9)]
 
 In WebApiConfig.cs, add a "Suppliers" entity to the EDM model:
 
-[!code[Main](working-with-entity-relations/samples/sample2.xml?highlight=4)]
+[!code[Main](working-with-entity-relations/samples/sample4.xml?highlight=4)]
 
 ## Navigation Properties
 
 To get the supplier for a product, the client sends a GET request:
 
-    GET /Products(1)/Supplier
+[!code[Main](working-with-entity-relations/samples/sample5.xml)]
 
 Here "Supplier" is a navigation property on the `Product` type. In this case, `Supplier` refers to a single item, but a navigation property can also return a collection (one-to-many or many-to-many relation).
 
 To support this request, add the following method to the `ProductsController` class:
 
-    // GET /Products(1)/Supplier
-    public Supplier GetSupplier([FromODataUri] int key)
-    {
-        Product product = _context.Products.FirstOrDefault(p => p.ID == key);
-        if (product == null)
-        {
-            throw new HttpResponseException(HttpStatusCode.NotFound);
-        }
-        return product.Supplier;
-    }
+[!code[Main](working-with-entity-relations/samples/sample6.xml)]
 
 The *key* parameter is the key of the product. The method returns the related entity&#8212in this case, a `Supplier` instance. The method name and parameter name are both important. In general, if the navigation property is named "X", you need to add a method named "GetX". The method must take a parameter named "*key*" that matches the data type of the parent's key.
 
@@ -99,15 +69,11 @@ It is also important to include the **[FromOdataUri]** attribute in the *key* pa
 
 OData supports creating or removing relationships between two entities. In OData terminology, the relationship is a "link." Each link has a URI with the form *entity*/$links/*entity*. For example, the link from product to supplier looks like this:
 
-    /Products(1)/$links/Supplier
+[!code[Main](working-with-entity-relations/samples/sample7.xml)]
 
 To create a new link, the client sends a POST request to the link URI. The body of the request is the URI of the target entity. For example, suppose there is a supplier with the key "CTSO". To create a link from "Product(1)" to "Supplier('CTSO')", the client sends a request like the following:
 
-    POST http://localhost/odata/Products(1)/$links/Supplier
-    Content-Type: application/json
-    Content-Length: 50
-    
-    {"url":"http://localhost/odata/Suppliers('CTSO')"}
+[!code[Main](working-with-entity-relations/samples/sample8.xml)]
 
 To delete a link, the client sends a DELETE request to the link URI.
 
@@ -115,37 +81,7 @@ To delete a link, the client sends a DELETE request to the link URI.
 
 To enable a client to create product-supplier links, add the following code to the `ProductsController` class:
 
-    [AcceptVerbs("POST", "PUT")]
-    public async Task<IHttpActionResult> CreateLink([FromODataUri] int key, string navigationProperty, [FromBody] Uri link)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-                
-        Product product = await db.Products.FindAsync(key);
-        if (product == null)
-        {
-            return NotFound();
-        }
-                
-        switch (navigationProperty)
-        {
-            case "Supplier":
-                string supplierKey = GetKeyFromLinkUri<string>(link);
-                Supplier supplier = await db.Suppliers.FindAsync(supplierKey);
-                if (supplier == null)
-                {
-                    return NotFound();
-                }
-                product.Supplier = supplier;
-                await db.SaveChangesAsync();
-                return StatusCode(HttpStatusCode.NoContent);
-    
-            default:
-                return NotFound();
-        }
-    }
+[!code[Main](working-with-entity-relations/samples/sample9.xml)]
 
 This method takes three parameters:
 
@@ -157,73 +93,20 @@ The method uses the link to look up the supplier. If the matching supplier is fo
 
 The hardest part is parsing the link URI. Basically, you need to simulate the result of sending a GET request to that URI. The following helper method shows how to do this. The method invokes the Web API routing process and gets back an **ODataPath** instance that represents the parsed OData path. For a link URI, one of the segments should be the entity key. (If not, the client sent a bad URI.)
 
-    // Helper method to extract the key from an OData link URI.
-    private TKey GetKeyFromLinkUri<TKey>(Uri link)
-    {
-        TKey key = default(TKey);
-    
-        // Get the route that was used for this request.
-        IHttpRoute route = Request.GetRouteData().Route;
-    
-        // Create an equivalent self-hosted route. 
-        IHttpRoute newRoute = new HttpRoute(route.RouteTemplate, 
-            new HttpRouteValueDictionary(route.Defaults), 
-            new HttpRouteValueDictionary(route.Constraints),
-            new HttpRouteValueDictionary(route.DataTokens), route.Handler);
-    
-        // Create a fake GET request for the link URI.
-        var tmpRequest = new HttpRequestMessage(HttpMethod.Get, link);
-    
-        // Send this request through the routing process.
-        var routeData = newRoute.GetRouteData(
-            Request.GetConfiguration().VirtualPathRoot, tmpRequest);
-    
-        // If the GET request matches the route, use the path segments to find the key.
-        if (routeData != null)
-        {
-            ODataPath path = tmpRequest.GetODataPath();
-            var segment = path.Segments.OfType<KeyValuePathSegment>().FirstOrDefault();
-            if (segment != null)
-            {
-                // Convert the segment into the key type.
-                key = (TKey)ODataUriUtils.ConvertFromUriLiteral(
-                    segment.Value, ODataVersion.V3);
-            }
-        }
-        return key;
-    }
+[!code[Main](working-with-entity-relations/samples/sample10.xml)]
 
 **Deleting Links**
 
 To delete a link, add the following code to the `ProductsController` class:
 
-    public async Task<IHttpActionResult> DeleteLink([FromODataUri] int key, string navigationProperty)
-    {
-        Product product = await db.Products.FindAsync(key);
-        if (product == null)
-        {
-            return NotFound();
-        }
-    
-        switch (navigationProperty)
-        {
-            case "Supplier":
-                product.Supplier = null;
-                await db.SaveChangesAsync();
-                return StatusCode(HttpStatusCode.NoContent);
-    
-            default:
-                return NotFound();
-    
-        }
-    }
+[!code[Main](working-with-entity-relations/samples/sample11.xml)]
 
 In this example, the navigation property is a single `Supplier` entity. If the navigation property is a collection, the URI to delete a link must include a key for the related entity. For example:
 
-    DELETE /odata/Customers(1)/$links/Orders(1)
+[!code[Main](working-with-entity-relations/samples/sample12.xml)]
 
 This request removes order 1 from customer 1. In this case, the DeleteLink method will have the following signature:
 
-    void DeleteLink([FromODataUri] int key, string relatedKey, string navigationProperty);
+[!code[Main](working-with-entity-relations/samples/sample13.xml)]
 
 The *relatedKey* parameter gives the key for the related entity. So in your `DeleteLink` method, look up the primary entity by the *key* parameter, find the related entity by the *relatedKey* parameter, and then remove the association. Depending on your data model, you might need to implement both versions of `DeleteLink`. Web API will call the correct version based on the request URI.

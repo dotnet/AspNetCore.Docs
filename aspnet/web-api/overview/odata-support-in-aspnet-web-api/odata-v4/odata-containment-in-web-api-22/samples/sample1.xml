@@ -1,11 +1,13 @@
-<EntityType Name="Account">   
-  <Key>     
-    <PropertyRef Name="AccountID" />   
-  </Key>   
-  <Property Name="AccountID" Type="Edm.Int32" Nullable="false" />   
-  <Property Name="Name" Type="Edm.String" />   
-  <NavigationProperty 
-    Name="PayinPIs" 
-    Type="Collection(ODataContrainmentSample.PaymentInstrument)" 
-    ContainsTarget="true" /> 
-</EntityType>
+        public class Account     
+        {         
+            public int AccountID { get; set; }         
+            public string Name { get; set; }         
+            [Contained]         
+            public IList<PaymentInstrument> PayinPIs { get; set; }     
+        }     
+        
+        public class PaymentInstrument     
+        {         
+            public int PaymentInstrumentID { get; set; }        
+            public string FriendlyName { get; set; }     
+        }

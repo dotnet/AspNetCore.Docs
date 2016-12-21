@@ -26,29 +26,7 @@ You add a new action to a controller by adding a new method to the controller. F
 
 **Listing 1 - Controllers\HomeController.cs**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-        [HandleError]
-        public class HomeController : Controller
-        {
-            public ActionResult Index()
-            {
-                return View();
-            }
-    
-            public string SayHello()
-            {
-                return "Hello!";
-            }
-        
-        }
-    }
+[!code[Main](creating-an-action-cs/samples/sample1.xml)]
 
 In order to be exposed to the universe as an action, a method must meet certain requirements:
 
@@ -70,20 +48,7 @@ If you need to create a public method in a controller class and you don't want t
 
 **Listing 2 - Controllers\WorkController.cs**
 
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class WorkController : Controller
-        {
-            [NonAction]
-            public string CompanySecrets()
-            {
-                return "This information is secret.";
-            }
-    
-        }
-    }
+[!code[Main](creating-an-action-cs/samples/sample2.xml)]
 
 If you attempt to invoke the CompanySecrets() controller action by typing /Work/CompanySecrets into the address bar of your browser then you'll get the error message in Figure 1.
 

@@ -48,31 +48,7 @@ For example, Listing 1 contains an Image HTML helper. The Image helper is implem
 
 **Listing 1 – Helpers\ImageHelper.vb**
 
-    Public Module ImageHelper
-    
-    <System.Runtime.CompilerServices.Extension> _
-    Function Image(ByVal helper As HtmlHelper, ByVal id As String, ByVal url As String, ByVal alternateText As String) As String
-    	Return Image(helper, id, url, alternateText, Nothing)
-    End Function
-    
-    <System.Runtime.CompilerServices.Extension> _
-    Function Image(ByVal helper As HtmlHelper, ByVal id As String, ByVal url As String, ByVal alternateText As String, ByVal htmlAttributes As Object) As String
-    	' Create tag builder
-    	Dim builder = New TagBuilder("img")
-    
-    	' Create valid id
-    	builder.GenerateId(id)
-    
-    	' Add attributes
-    	builder.MergeAttribute("src", url)
-    	builder.MergeAttribute("alt", alternateText)
-    	builder.MergeAttributes(New RouteValueDictionary(htmlAttributes))
-    
-    	' Render tag
-    	Return builder.ToString(TagRenderMode.SelfClosing)
-    End Function
-    
-    End Module
+[!code[Main](using-the-tagbuilder-class-to-build-html-helpers-vb/samples/sample1.xml)]
 
 The module in Listing 1 contains two overloaded methods named Image(). When you call the Image() method, you can pass an object which represents a set of HTML attributes or not.
 
@@ -82,17 +58,7 @@ After you create the Image helper, you can use the helper in your ASP.NET MVC vi
 
 **Listing 2 – Home\Index.aspx**
 
-    <%@ Page Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-    <%@ Import Namespace="MvcApplication1" %>
-    <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <!-- Calling helper without HTML attributes -->
-        <%= Html.Image("img1", ResolveUrl("~/Content/XBox.jpg"), "XBox Console") %>
-    
-        <!-- Calling helper with HTML attributes -->
-        <%= Html.Image("img1", ResolveUrl("~/Content/XBox.jpg"), "XBox Console", New With {.border="4px"})%>
-    
-    </asp:Content>
+[!code[Main](using-the-tagbuilder-class-to-build-html-helpers-vb/samples/sample2.xml)]
 
 
 [![The New Project dialog box](using-the-tagbuilder-class-to-build-html-helpers-vb/_static/image1.jpg)](using-the-tagbuilder-class-to-build-html-helpers-vb/_static/image1.png)
@@ -102,7 +68,7 @@ After you create the Image helper, you can use the helper in your ASP.NET MVC vi
 
 Notice that you must import the namespace associated with the Image helper at the top of the Index.aspx view. The helper is imported with the following directive:
 
-    <%@ Import Namespace="MvcApplication1" %>
+[!code[Main](using-the-tagbuilder-class-to-build-html-helpers-vb/samples/sample3.xml)]
 
 In a Visual Basic application, the default namespace is the same as the name of the application.
 

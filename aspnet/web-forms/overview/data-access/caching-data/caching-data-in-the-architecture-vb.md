@@ -55,13 +55,7 @@ The `ProductsCL` class should include the same set of data access and modificati
 The ObjectDataSource caching feature explored in the preceding tutorial internally uses the ASP.NET data cache to store the data retrieved from the BLL. The data cache can also be accessed programmatically from ASP.NET pages code-behind classes or from the classes in the web application s architecture. To read and write to the data cache from an ASP.NET page s code-behind class, use the following pattern:
 
 
-    ' Read from the cache
-    Dim value as Object = Cache("key")
-    ' Add a new item to the cache
-    Cache("key") = value
-    Cache.Insert(key, value)
-    Cache.Insert(key, value, CacheDependency)
-    Cache.Insert(key, value, CacheDependency, DateTime, TimeSpan)
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample1.xml)]
 
 The [`Cache` class](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.aspx) s [`Insert` method](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.insert.aspx) has a number of overloads. `Cache("key") = value` and `Cache.Insert(key, value)` are synonymous and both add an item to the cache using the specified key without a defined expiry. Typically, we want to specify an expiry when adding an item to the cache, either as a dependency, a time-based expiry, or both. Use one of the other `Insert` method s overloads to provide dependency- or time-based expiry information.
 
@@ -77,22 +71,14 @@ The Caching Layer s methods need to first check if the requested data is in the 
 The sequence depicted in Figure 3 is accomplished in the CL classes using the following pattern:
 
 
-    Dim instance As Type = TryCast(Cache("key"), Type)
-    If instance Is Nothing Then
-        instance = BllMethodToGetInstance()
-        Cache.Insert(key, instance, ...)
-    End If
-    Return instance
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample2.xml)]
 
 Here, *Type* is the type of data being stored in the cache `Northwind.ProductsDataTable`, for example while *key* is the key that uniquely identifies the cache item. If the item with the specified *key* is not in the cache, then *instance* will be `Nothing` and the data will be retrieved from the appropriate BLL method and added to the cache. By the time `Return instance` is reached, *instance* contains a reference to the data, either from the cache or pulled from the BLL.
 
 Be sure to use the above pattern when accessing data from the cache. The following pattern, which, at first glance, looks equivalent, contains a subtle difference that introduces a race condition. Race conditions are difficult to debug because they reveal themselves sporadically and are difficult to reproduce.
 
 
-    If Cache("key") Is Nothing Then
-        Cache.Insert(key, BllMethodToGetInstance(), ...)
-    End If
-    Return Cache("key")
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample3.xml)]
 
 The difference in this second, incorrect code snippet is that rather than storing a reference to the cached item in a local variable, the data cache is accessed directly in the conditional statement *and* in the `Return`. Imagine that when this code is reached, `Cache("key")` is not `Nothing`, but before the `Return` statement is reached, the system evicts *key* from the cache. In this rare case, the code will return `Nothing` rather than an object of the expected type.
 
@@ -102,7 +88,7 @@ The difference in this second, incorrect code snippet is that rather than storin
 An item can be programmatically evicted from the data cache using the [`Remove` method](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.remove.aspx) like so:
 
 
-    Cache.Remove(key)
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample4.xml)]
 
 ## Step 3: Returning Product Information from the`ProductsCL`Class
 
@@ -111,51 +97,7 @@ For this tutorial let s implement two methods for returning product information 
 The following code shows a portion of the methods in the `ProductsCL` class:
 
 
-    <System.ComponentModel.DataObject()> _
-    Public Class ProductsCL
-        Private _productsAPI As ProductsBLL = Nothing
-        Protected ReadOnly Property API() As ProductsBLL
-            Get
-                If _productsAPI Is Nothing Then
-                    _productsAPI = New ProductsBLL()
-                End If
-                Return _productsAPI
-            End Get
-        End Property
-        <System.ComponentModel.DataObjectMethodAttribute _
-        (DataObjectMethodType.Select, True)> _
-        Public Function GetProducts() As Northwind.ProductsDataTable
-            Const rawKey As String = "Products"
-            ' See if the item is in the cache
-            Dim products As Northwind.ProductsDataTable = _
-                TryCast(GetCacheItem(rawKey), Northwind.ProductsDataTable)
-            If products Is Nothing Then
-                ' Item not found in cache - retrieve it and insert it into the cache
-                products = API.GetProducts()
-                AddCacheItem(rawKey, products)
-            End If
-            Return products
-        End Function
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (DataObjectMethodType.Select, False)> _
-        Public Function GetProductsByCategoryID(ByVal categoryID As Integer) _
-            As Northwind.ProductsDataTable
-            If (categoryID < 0) Then
-                Return GetProducts()
-            Else
-                Dim rawKey As String = String.Concat("ProductsByCategory-", categoryID)
-                ' See if the item is in the cache
-                Dim products As Northwind.ProductsDataTable = _
-                    TryCast(GetCacheItem(rawKey), Northwind.ProductsDataTable)
-                If products Is Nothing Then
-                    ' Item not found in cache - retrieve it and insert it into the cache
-                    products = API.GetProductsByCategoryID(categoryID)
-                    AddCacheItem(rawKey, products)
-                End If
-                Return products
-            End If
-        End Function
-    End Class
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample5.xml)]
 
 First, note the `DataObject` and `DataObjectMethodAttribute` attributes applied to the class and methods. These attributes provide information to the ObjectDataSource s wizard, indicating what classes and methods should appear in the wizard s steps. Since the CL classes and methods will be accessed from an ObjectDataSource in the Presentation Layer, I added these attributes to enhance the design-time experience. Refer back to the [Creating a Business Logic Layer](../introduction/creating-a-business-logic-layer-vb.md) tutorial for a more thorough description on these attributes and their effects.
 
@@ -164,13 +106,7 @@ In the `GetProducts()` and `GetProductsByCategoryID(categoryID)` methods, the da
 The `GetCacheItem(key)` and `AddCacheItem(key, value)` methods interface with the data cache, reading and writing values, respectively. The `GetCacheItem(key)` method is the simpler of the two. It simply returns the value from the Cache class using the passed-in *key*:
 
 
-    Private Function GetCacheItem(ByVal rawKey As String) As Object
-        Return HttpRuntime.Cache(GetCacheKey(rawKey))
-    End Function
-    Private ReadOnly MasterCacheKeyArray() As String = {"ProductsCache"}
-    Private Function GetCacheKey(ByVal cacheKey As String) As String
-        Return String.Concat(MasterCacheKeyArray(0), "-", cacheKey)
-    End Function
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample6.xml)]
 
 `GetCacheItem(key)` does not use *key* value as supplied, but instead calls the `GetCacheKey(key)` method, which returns the *key* prepended with ProductsCache- . The `MasterCacheKeyArray`, which holds the string ProductsCache , is also used by the `AddCacheItem(key, value)` method, as we'll see momentarily.
 
@@ -182,12 +118,7 @@ From an ASP.NET page s code-behind class, the data cache can be accessed using t
 If the item is not found in the cache, the `ProductsCL` class s methods get the data from the BLL and add it to the cache using the `AddCacheItem(key, value)` method. To add *value* to the cache we could use the following code, which uses a 60 second time expiry:
 
 
-    Const CacheDuration As Double = 60.0
-    Private Sub AddCacheItem(ByVal rawKey As String, ByVal value As Object)
-        DataCache.Insert(GetCacheKey(rawKey), value, Nothing, _
-            DateTime.Now.AddSeconds(CacheDuration), _
-            System.Web.Caching.Cache.NoSlidingExpiration)
-    End Sub
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample7.xml)]
 
 `DateTime.Now.AddSeconds(CacheDuration)` specifies the time-based expiry 60 seconds in the future while [`System.Web.Caching.Cache.NoSlidingExpiration`](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.noslidingexpiration(vs.80).aspx) indicates that there s no sliding expiration. While this `Insert` method overload has input parameters for both an absolute and sliding expiry, you can only provide one of the two. If you attempt to specify both an absolute time and a time span, the `Insert` method will throw an `ArgumentException` exception.
 
@@ -201,14 +132,7 @@ Along with data retrieval methods, the Caching Layer needs to provide the same m
 The following `UpdateProduct` overload illustrates how to implement the data modification methods in the CL:
 
 
-    <DataObjectMethodAttribute(DataObjectMethodType.Update, False)> _
-    Public Function UpdateProduct(productName As String, _
-        unitPrice As Nullable(Of Decimal), productID As Integer) _
-        As Boolean
-        Dim result As Boolean = API.UpdateProduct(productName, unitPrice, productID)
-        ' TODO: Invalidate the cache
-        Return result
-    End Function
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample8.xml)]
 
 The appropriate data modification Business Logic Layer method is invoked, but before its response is returned we need to invalidate the cache. Unfortunately, invalidating the cache is not straightforward because the `ProductsCL` class s `GetProducts()` and `GetProductsByCategoryID(categoryID)` methods each add items to the cache with different keys, and the `GetProductsByCategoryID(categoryID)` method adds a different cache item for each unique *categoryID*.
 
@@ -217,37 +141,14 @@ When invalidating the cache, we need to remove *all* of the items that may have 
 Let s update the `AddCacheItem(key, value)` method so that each item added to the cache through this method is associated with a single cache dependency:
 
 
-    Private Sub AddCacheItem(ByVal rawKey As String, ByVal value As Object)
-        Dim DataCache As System.Web.Caching.Cache = HttpRuntime.Cache
-        ' Make sure MasterCacheKeyArray[0] is in the cache - if not, add it
-        If DataCache(MasterCacheKeyArray(0)) Is Nothing Then
-            DataCache(MasterCacheKeyArray(0)) = DateTime.Now
-        End If
-        ' Add a CacheDependency
-        Dim dependency As New Caching.CacheDependency(Nothing, MasterCacheKeyArray) _
-            DataCache.Insert(GetCacheKey(rawKey), value, dependency, _
-            DateTime.Now.AddSeconds(CacheDuration), _
-            System.Web.Caching.Cache.NoSlidingExpiration)
-    End Sub
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample9.xml)]
 
 `MasterCacheKeyArray` is a string array that holds a single value, ProductsCache . First, a cache item is added to the cache and assigned the current date and time. If the cache item already exists, it is updated. Next, a cache dependency is created. The [`CacheDependency` class](https://msdn.microsoft.com/en-US/library/system.web.caching.cachedependency(VS.80).aspx) s constructor has a number of overloads, but the one being used in here expects two `String` array inputs. The first one specifies the set of files to be used as dependencies. Since we don t want to use any file-based dependencies, a value of `Nothing` is used for the first input parameter. The second input parameter specifies the set of cache keys to use as dependencies. Here we specify our single dependency, `MasterCacheKeyArray`. The `CacheDependency` is then passed into the `Insert` method.
 
 With this modification to `AddCacheItem(key, value)`, invaliding the cache is as simple as removing the dependency.
 
 
-    <DataObjectMethodAttribute(DataObjectMethodType.Update, False)> _
-    Public Function UpdateProduct(ByVal productName As String, _
-        ByVal unitPrice As Nullable(Of Decimal), ByVal productID As Integer) _
-        As Boolean
-        Dim result As Boolean = API.UpdateProduct(productName, unitPrice, productID)
-        ' Invalidate the cache
-        InvalidateCache()
-        Return result
-    End Function
-    Public Sub InvalidateCache()
-        ' Remove the cache dependency
-        HttpRuntime.Cache.Remove(MasterCacheKeyArray(0))
-    End Sub
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample10.xml)]
 
 ## Step 5: Calling the Caching Layer from the Presentation Layer
 
@@ -272,57 +173,7 @@ After completing the wizard, Visual Studio will set the ObjectDataSource s `OldV
 In the preceding tutorial we defined a GridView to include fields for the `ProductName`, `CategoryName`, and `UnitPrice` fields. Feel free to replicate this formatting and structure, in which case your GridView and ObjectDataSource s declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="Products" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="ProductID" DataSourceID="ProductsDataSource" 
-        AllowPaging="True" AllowSorting="True">
-        <Columns>
-            <asp:CommandField ShowEditButton="True" />
-            <asp:TemplateField HeaderText="Product" SortExpression="ProductName">
-                <EditItemTemplate>
-                    <asp:TextBox ID="ProductName" runat="server" 
-                        Text='<%# Bind("ProductName") %>' />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
-                        ControlToValidate="ProductName" Display="Dynamic" 
-                        ErrorMessage="You must provide a name for the product." 
-                        SetFocusOnError="True"
-                        runat="server">*</asp:RequiredFieldValidator>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server" 
-                        Text='<%# Bind("ProductName") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                ReadOnly="True" SortExpression="CategoryName" />
-            <asp:TemplateField HeaderText="Price" SortExpression="UnitPrice">
-                <EditItemTemplate>
-                    $<asp:TextBox ID="UnitPrice" runat="server" Columns="8" 
-                        Text='<%# Bind("UnitPrice", "{0:N2}") %>'></asp:TextBox>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" 
-                        ControlToValidate="UnitPrice" Display="Dynamic" 
-                        ErrorMessage="You must enter a valid currency value with 
-                            no currency symbols. Also, the value must be greater than 
-                            or equal to zero."
-                        Operator="GreaterThanEqual" SetFocusOnError="True" 
-                        Type="Currency" ValueToCompare="0">*</asp:CompareValidator>
-                </EditItemTemplate>
-                <ItemStyle HorizontalAlign="Right" />
-                <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server" 
-                        Text='<%# Bind("UnitPrice", "{0:c}") %>' />
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="ProductsDataSource" runat="server" 
-        OldValuesParameterFormatString="{0}" SelectMethod="GetProducts" 
-        TypeName="ProductsCL" UpdateMethod="UpdateProduct">
-        <UpdateParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="productID" Type="Int32" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
+[!code[Main](caching-data-in-the-architecture-vb/samples/sample11.xml)]
 
 At this point we have a page that uses the Caching Layer. To see the cache in action, set breakpoints in the `ProductsCL` class s `GetProducts()` and `UpdateProduct` methods. Visit the page in a browser and step through the code when sorting and paging in order to see the data pulled from the cache. Then update a record and note that the cache is invalidated and, consequently, it is retrieved from the BLL when the data is rebound to the GridView.
 

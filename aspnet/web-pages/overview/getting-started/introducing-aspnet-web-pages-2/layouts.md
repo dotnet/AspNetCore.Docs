@@ -50,26 +50,7 @@ The leading underscore ( `_` ) character is significant. If a page's name starts
 
 Replace the content in the page with the following:
 
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>My Movie Site</title>
-        <link href="~/Styles/Movies.css" rel="stylesheet" type="text/css" />
-      </head>
-      <body>
-        <div id="container">
-            <div id="header">
-              <h1>My Movie Site</h1>
-            </div>
-            <div id="main">
-              @RenderBody()
-            </div>
-            <div id="footer">
-              &copy; @DateTime.Now.Year My Movie Site
-            </div>
-        </div>
-      </body>
-    </html>
+[!code[Main](layouts/samples/sample1.xml)]
 
 As you can see, this markup is just HTML that uses `<div>` elements to define three sections in the page plus one more `<div>` element to hold the three sections. The footer contains a bit of Razor code: `@DateTime.Now.Year`, which will render the current year at that location in the page.
 
@@ -95,53 +76,7 @@ Inside the new *Styles* folder, create a file named *Movies.css*.
 
 Replace the contents of the new *.css* file with the following:
 
-    html{ height:100%; margin:0; padding:0; }
-    
-    body {
-      height:60%;
-      font-family:'Trebuchet MS',  'Arial', 'Helvetica', 'sans-serif';
-      font-size:10pt;
-      background-color: LightGray;
-      line-height:1.6em;
-    }
-    
-    h1{ font-size:1.6em; }
-    h2{ font-size:1.4em; }
-    
-    #container{
-       min-height:100%;
-       position:relative;
-       left:10%;
-    }
-    
-    #header{
-      padding:8px;
-      width:80%;
-      background-color:#4b6c9e;
-      color:White;
-    }
-    
-    #main{
-      width:80%;
-      padding: 8px;
-      padding-bottom:4em;
-      background-color:White;
-    }
-    
-    #footer{
-      width:80%;
-      height:2em;
-      padding:8px;
-      margin-top:-2em;
-      background-color:LightGray;
-    }
-    
-    .head { background-color: #E8E8E8; font-weight: bold; color: #FFF; }
-    .grid th, .grid td { border: 1px solid #C0C0C0; padding: 5px; }
-    .alt { background-color: #E8E8E8; color: #000; }
-    .selected {background-color:Yellow;}
-    span.caption {width:100px;}
-    span.dataDisplay {font-weight:bold;}
+[!code[Main](layouts/samples/sample2.xml)]
 
 We won't say much about these CSS rules, except to note two things. One is that in addition to setting fonts and sizes, the rules use absolute positioning to establish the location of the header, footer, and main content area. If you're new to positioning in CSS, you can read the [CSS Positioning](http://www.w3schools.com/css/css_positioning.asp) tutorial at the W3Schools site.
 
@@ -151,11 +86,11 @@ The other thing to note is that at the bottom, we've copied the style rules that
 
 Now you can update the existing files in your site to use the new layout. Open the *Movies.cshtml* file. At the top, as the first line of code, add the following:
 
-    Layout = "~/_Layout.cshtml";
+[!code[Main](layouts/samples/sample3.xml)]
 
 The page now starts out this way:
 
-[!code[Main](layouts/samples/sample1.xml?highlight=2)]
+[!code[Main](layouts/samples/sample4.xml?highlight=2)]
 
 This one line of code tells ASP.NET that when the *Movies* page runs, it should be merged with the *\_Layout.cshtml* file.
 
@@ -165,56 +100,7 @@ Normally you wouldn't have to make these sorts of changes in a content page. Whe
 
 When you're finished, the *Movies.cshtml* page will look like the following:
 
-    @{
-        Layout = "~/_Layout.cshtml";
-    
-        var db = Database.Open("WebPagesMovies") ;
-        var selectCommand = "SELECT * FROM Movies";
-        var searchTerm = "";
-    
-        if(!Request.QueryString["searchGenre"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Genre = @0";
-            searchTerm = Request.QueryString["searchGenre"];
-        }
-    
-        if(!Request.QueryString["searchTitle"].IsEmpty() ) {
-          selectCommand = "SELECT * FROM Movies WHERE Title LIKE @0";
-          searchTerm = "%" + Request.QueryString["searchTitle"] + "%";
-        }
-    
-        var selectedData = db.Query(selectCommand, searchTerm);
-        var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:3);
-    }
-      <h2>List Movies</h2>
-      <form method="get">
-        <div>
-          <label for="searchGenre">Genre to look for:</label>
-          <input type="text" name="searchGenre"
-             value="@Request.QueryString["searchGenre"]" />
-          <input type="Submit" value="Search Genre" /><br/>
-          (Leave blank to list all movies.)<br/>
-        </div>
-        <div>
-           <label for="SearchTitle">Movie title contains the following:</label>
-           <input type="text" name="searchTitle" value="@Request.QueryString["searchTitle"]" />
-           <input type="Submit" value="Search Title" /><br/>
-        </div>
-      </form>
-      <div>
-        @grid.GetHtml(
-            tableStyle: "grid",
-            headerStyle: "head",
-            alternatingRowStyle: "alt",
-            columns: grid.Columns(
-                grid.Column(format: @<a href="~/EditMovie?id=@item.ID">Edit</a>),
-                grid.Column("Title"),
-                grid.Column("Genre"),
-                grid.Column("Year"),
-                grid.Column(format: @<a href="~/DeleteMovie?id=@item.ID">Delete</a>)
-           )
-        )
-      </div>
-      <p><a href="~/AddMovie">Add a movie</a></p>
+[!code[Main](layouts/samples/sample5.xml)]
 
 ### Testing the Layout
 
@@ -230,68 +116,11 @@ The real benefit of layouts is that you can use them for all the pages in your s
 
 You might remember that the *AddMovie.cshtml* page originally had some CSS rules in it to define the look of validation error messages. Since you have a *.css* file for your site now, you can move those rules to the *.css* file. Remove them from the *AddMovie.cshtml* file and add them to the bottom of the *Movies.css* file. You are moving the following rules:
 
-    .field-validation-error {
-      font-weight:bold;
-      color:red;
-      background-color:yellow;
-     }
-    .validation-summary-errors{
-      border:2px dashed red;
-      color:red;
-      background-color:yellow;
-      font-weight:bold;
-      margin:12px;
-    }
+[!code[Main](layouts/samples/sample6.xml)]
 
 Now make the same sorts of changes in *AddMovie.cshtml* that you did for *Movies.cshtml* — add `Layout="~/_Layout.cshtml;` and remove the HTML markup that's now extraneous. Change the `<h1>` element to `<h2>`. When you're done, the page will look like this example:
 
-    @{
-        Layout = "~/_Layout.cshtml";
-        Validation.RequireField("title", "You must enter a title");
-        Validation.RequireField("genre", "Genre is required");
-        Validation.RequireField("year", "You haven't entered a year");
-    
-        var title = "";
-        var genre = "";
-        var year = "";
-    
-        if(IsPost){
-            if(Validation.IsValid()){
-                title = Request.Form["title"];
-                genre = Request.Form["genre"];
-                year = Request.Form["year"];
-    
-                var db = Database.Open("WebPagesMovies");
-                var insertCommand =
-                    "INSERT INTO Movies (Title, Genre, Year) Values(@0, @1, @2)";
-                db.Execute(insertCommand, title, genre, year);
-                Response.Redirect("~/Movies");
-            }
-        }
-    }
-      <h2>Add a Movie</h2>
-        @Html.ValidationSummary()
-     <form method="post">
-      <fieldset>
-        <legend>Movie Information</legend>
-        <p><label for="title">Title:</label>
-          <input type="text" name="title" value="@Request.Form["title"]" />
-          @Html.ValidationMessage("title")
-        </p>
-    
-        <p><label for="genre">Genre:</label>
-          <input type="text" name="genre" value="@Request.Form["genre"]" />
-          @Html.ValidationMessage("genre")
-        </p>
-    
-        <p><label for="year">Year:</label>
-          <input type="text" name="year" value="@Request.Form["year"]" />
-          @Html.ValidationMessage("year")
-        </p>
-    
-        <p><input type="submit" name="buttonSubmit" value="Add Movie" /></p>
-      </fieldset>
-      </form>
+[!code[Main](layouts/samples/sample7.xml)]
 
 Run the page. Now it looks like this illustration:
 
@@ -309,13 +138,13 @@ This title information is generic. Suppose that you want the title text to be mo
 
 Open the *Movies.cshtml* page again. In the code at the top, add the following line:
 
-    Page.Title = "List Movies";
+[!code[Main](layouts/samples/sample8.xml)]
 
 The `Page` object is available on all *.cshtml* pages and is for this purpose, namely to share information between a page and its layout.
 
 Open the*\_Layout.cshtml* page. Change the `<title>` element so that it looks like this markup:
 
-    <title>@Page.Title</title>
+[!code[Main](layouts/samples/sample9.xml)]
 
 This code renders whatever is in the `Page.Title` property right at that location in the page.
 
@@ -338,7 +167,7 @@ If you want, view the page source in the browser. You can see that the `<title>`
 
 Open the *AddMovie.cshtml* page and add a line to the top of the code that provides a title for the *AddMovie.cshtml* page:
 
-    Page.Title = "Add a Movie";
+[!code[Main](layouts/samples/sample10.xml)]
 
 Run the *AddMovie.cshtml* page. You see the new title there:
 
@@ -350,15 +179,15 @@ Now you can finish the remaining pages in your site so that they use the new lay
 
 Add the line of code that links to the layout page:
 
-    Layout = "~/_Layout.cshtml";
+[!code[Main](layouts/samples/sample11.xml)]
 
 Add a line to set the title of the page:
 
-    Page.Title = "Edit a Movie";
+[!code[Main](layouts/samples/sample12.xml)]
 
 or:
 
-    Page.Title = "Delete a Movie";
+[!code[Main](layouts/samples/sample13.xml)]
 
 Remove all the extraneous HTML markup — basically, leave only the bits that are inside the `<body>` element (plus the code block at the top).
 
@@ -378,262 +207,19 @@ The combination of layout pages and *.css* files is powerful. As you'll see in t
 
 ## Complete Listing for Movie Page (Updated to Use a Layout Page)
 
-    @{
-        Layout = "~/_Layout.cshtml";
-        Page.Title = "List Movies";
-    
-        var db = Database.Open("WebPagesMovies") ;
-        var selectCommand = "SELECT * FROM Movies";
-        var searchTerm = "";
-    
-        if(!Request.QueryString["searchGenre"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Genre = @0";
-            searchTerm = Request.QueryString["searchGenre"];
-        }
-    
-        if(!Request.QueryString["searchTitle"].IsEmpty() ) {
-            selectCommand = "SELECT * FROM Movies WHERE Title LIKE @0";
-            searchTerm = "%" + Request.QueryString["searchTitle"] + "%";
-        }
-    
-        var selectedData = db.Query(selectCommand, searchTerm);
-        var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:3);
-    }
-    
-    <h2>List Movies</h2>
-        <form method="get">
-          <div>
-            <label for="searchGenre">Genre to look for:</label>
-            <input type="text" name="searchGenre" value="@Request.QueryString["searchGenre"]" />
-            <input type="Submit" value="Search Genre" /><br/>
-            (Leave blank to list all movies.)<br/>
-          </div>
-    
-          <div>
-            <label for="SearchTitle">Movie title contains the following:</label>
-            <input type="text" name="searchTitle" value="@Request.QueryString["searchTitle"]" />
-            <input type="Submit" value="Search Title" /><br/>
-          </div>
-        </form>
-    
-    <div>
-        @grid.GetHtml(
-            tableStyle: "grid",
-            headerStyle: "head",
-            alternatingRowStyle: "alt",
-            columns: grid.Columns(
-        grid.Column(format: @<a href="~/EditMovie?id=@item.ID">Edit</a>),
-        grid.Column("Title"),
-        grid.Column("Genre"),
-        grid.Column("Year"),
-        grid.Column(format: @<a href="~/DeleteMovie?id=@item.ID">Delete</a>)
-            )
-        )
-    </div>
-    <p><a href="~/AddMovie">Add a movie</a></p>
+[!code[Main](layouts/samples/sample14.xml)]
 
 ## Complete Page Listing for Add Movie Page (Updated for Layout)
 
-    @{
-        Layout = "~/_Layout.cshtml";
-        Page.Title = "Add a Movie";
-    
-        Validation.RequireField("title", "You must enter a title");
-        Validation.RequireField("genre", "Genre is required");
-        Validation.RequireField("year", "You haven't entered a year");
-    
-        var title = "";
-        var genre = "";
-        var year = "";
-    
-        if(IsPost){
-            if(Validation.IsValid()){
-                title = Request.Form["title"];
-                genre = Request.Form["genre"];
-                year = Request.Form["year"];
-    
-                var db = Database.Open("WebPagesMovies");
-                var insertCommand = "INSERT INTO Movies (Title, Genre, Year) VALUES(@0, @1, @2)";
-                db.Execute(insertCommand, title, genre, year);
-    
-                Response.Redirect("~/Movies");
-            }
-        }
-    }
-    
-    <h2>Add a Movie</h2>
-    @Html.ValidationSummary()
-    <form method="post">
-    <fieldset>
-        <legend>Movie Information</legend>
-        <p><label for="title">Title:</label>
-            <input type="text" name="title" value="@Request.Form["title"]" />
-            @Html.ValidationMessage("title")
-    
-        <p><label for="genre">Genre:</label>
-            <input type="text" name="genre" value="@Request.Form["genre"]" />
-            @Html.ValidationMessage("genre")
-    
-        <p><label for="year">Year:</label>
-            <input type="text" name="year" value="@Request.Form["year"]" />
-            @Html.ValidationMessage("year")
-    
-        <p><input type="submit" name="buttonSubmit" value="Add Movie" /></p>
-    </fieldset>
-    </form>
+[!code[Main](layouts/samples/sample15.xml)]
 
 ## Complete Page Listing for Delete Movie Page (Updated for Layout)
 
-    @{
-        Layout = "~/_Layout.cshtml";
-        Page.Title = "Delete a Movie";
-    
-        var title = "";
-        var genre = "";
-        var year = "";
-        var movieId = "";
-    
-        if(!IsPost){
-            if(!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].AsInt() > 0){
-                movieId = Request.QueryString["ID"];
-                var db = Database.Open("WebPagesMovies");
-                var dbCommand = "SELECT * FROM Movies WHERE ID = @0";
-                var row = db.QuerySingle(dbCommand, movieId);
-                if(row != null) {
-                    title = row.Title;
-                    genre = row.Genre;
-                    year = row.Year;
-                }
-                else{
-                    Validation.AddFormError("No movie was found for that ID.");
-                    // If you are using a version of ASP.NET Web Pages 2 that's
-                    // earlier than the RC release, comment out the preceding
-                    // statement and uncomment the following one.
-                    //ModelState.AddFormError("No movie was found for that ID.");
-                }
-            }
-            else{
-                Validation.AddFormError("No movie was found for that ID.");
-                // If you are using a version of ASP.NET Web Pages 2 that's
-                // earlier than the RC release, comment out the preceding
-                // statement and uncomment the following one.
-                //ModelState.AddFormError("No movie was found for that ID.");
-            }
-        }
-    
-        if(IsPost && !Request["buttonDelete"].IsEmpty()){
-            movieId = Request.Form["movieId"];
-            var db = Database.Open("WebPagesMovies");
-            var deleteCommand = "DELETE FROM Movies WHERE ID = @0";
-            db.Execute(deleteCommand, movieId);
-            Response.Redirect("~/Movies");
-        }
-    
-    }
-    
-    <h2>Delete a Movie</h2>
-    @Html.ValidationSummary()
-    <p><a href="~/Movies">Return to movie listing</a></p>
-    
-    <form method="post">
-    <fieldset>
-    <legend>Movie Information</legend>
-    
-    <p><span>Title:</span>
-        <span>@title</span></p>
-    
-    <p><span>Genre:</span>
-        <span>@genre</span></p>
-    
-    <p><span>Year:</span>
-        <span>@year</span></p>
-    
-    <input type="hidden" name="movieid" value="@movieId" />
-    <p><input type="submit" name="buttonDelete" value="Delete Movie" /></p>
-    </fieldset>
-    </form>
+[!code[Main](layouts/samples/sample16.xml)]
 
 ## Complete Page Listing for Edit Movie Page (Updated for Layout)
 
-    @{
-        Layout = "~/_Layout.cshtml";
-        Page.Title = "Edit a Movie";
-    
-        var title = "";
-        var genre = "";
-        var year = "";
-        var movieId = "";
-    
-        if(!IsPost){
-            if(!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].IsInt()) {
-                movieId = Request.QueryString["ID"];
-                var db = Database.Open("WebPagesMovies");
-                var dbCommand = "SELECT * FROM Movies WHERE ID = @0";
-                var row = db.QuerySingle(dbCommand, movieId);
-    
-                if(row != null) {
-                    title = row.Title;
-                    genre = row.Genre;
-                    year = row.Year;
-                }
-                else{
-                    Validation.AddFormError("No movie was selected.");
-                    // If you are using a version of ASP.NET Web Pages 2 that's
-                    // earlier than the RC release, comment out the preceding
-                    // statement and uncomment the following one.
-                    //ModelState.AddFormError("No movie was selected.");
-                }
-            }
-            else{
-                Validation.AddFormError("No movie was selected.");
-                // If you are using a version of ASP.NET Web Pages 2 that's
-                // earlier than the RC release, comment out the preceding
-                // statement and uncomment the following one.
-                //ModelState.AddFormError("No movie was selected.");
-            }
-        }
-    
-        if(IsPost){
-            Validation.RequireField("title", "You must enter a title");
-            Validation.RequireField("genre", "Genre is required");
-            Validation.RequireField("year", "You haven't entered a year");
-            Validation.RequireField("movieid", "No movie ID was submitted!");
-    
-            title = Request.Form["title"];
-            genre = Request.Form["genre"];
-            year = Request.Form["year"];
-            movieId = Request.Form["movieId"];
-    
-            if(Validation.IsValid()){
-                var db = Database.Open("WebPagesMovies");
-                var updateCommand = "UPDATE Movies SET Title=@0, Genre=@1, Year=@2 WHERE Id=@3";
-                db.Execute(updateCommand, title, genre, year, movieId);
-                Response.Redirect("~/Movies");
-            }
-        }
-    }
-    
-    <h2>Edit a Movie</h2>
-    @Html.ValidationSummary()
-    <form method="post">
-    <fieldset>
-        <legend>Movie Information</legend>
-    
-        <p><label for="title">Title:</label>
-            <input type="text" name="title" value="@title" /></p>
-    
-        <p><label for="genre">Genre:</label>
-            <input type="text" name="genre" value="@genre" /></p>
-    
-        <p><label for="year">Year:</label>
-            <input type="text" name="year" value="@year" /></p>
-    
-        <input type="hidden" name="movieid" value="@movieId" />
-    
-        <p><input type="submit" name="buttonSubmit" value="Submit Changes" /></p>
-    </fieldset>
-    </form>
-    <p><a href="~/Movies">Return to movie listing</a></p>
+[!code[Main](layouts/samples/sample17.xml)]
 
 ## Coming Up Next
 

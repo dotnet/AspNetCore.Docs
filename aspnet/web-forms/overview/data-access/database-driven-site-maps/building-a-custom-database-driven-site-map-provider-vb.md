@@ -60,10 +60,7 @@ Since there is only one tutorial for this section, we don t need `Default.aspx` 
 Next, update `Web.sitemap` to include a reference to the `Default.aspx` page. Specifically, add the following markup after the Caching `<siteMapNode>`:
 
 
-    <siteMapNode 
-        title="Customizing the Site Map" url="~/SiteMapProvider/Default.aspx" 
-        description="Learn how to create a custom provider that retrieves the site map 
-                     from the Northwind database." />
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes an item for the sole site map provider tutorial.
 
@@ -105,23 +102,7 @@ Next, add a HyperLinkField and position it so that it s the left-most field. Set
 After creating the ObjectDataSource and customizing the GridView s fields, the two controls declarative markup will look like the following:
 
 
-    <asp:GridView ID="Categories" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="CategoryID" DataSourceID="CategoriesDataSource" 
-        EnableViewState="False">
-        <Columns>
-            <asp:HyperLinkField DataNavigateUrlFields="CategoryID" 
-                DataNavigateUrlFormatString=
-                    "~/SiteMapProvider/ProductsByCategory.aspx?CategoryID={0}"
-                Text="View Products" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                SortExpression="CategoryName" />
-            <asp:BoundField DataField="Description" HeaderText="Description" 
-                SortExpression="Description" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}" SelectMethod="GetCategories" 
-        TypeName="CategoriesBLL"></asp:ObjectDataSource>
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample2.xml)]
 
 Figure 7 shows `Default.aspx` when viewed through a browser. Clicking a category s View Products link takes you to `ProductsByCategory.aspx?CategoryID=categoryID`, which we will build in Step 3.
 
@@ -162,31 +143,7 @@ Next, add a HyperLinkField and move it to the left-most position. Set its `Text`
 After making these customizations, the GridView and ObjectDataSource s declarative markup should resemble the following:
 
 
-    <asp:GridView ID="ProductsByCategory" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="ProductsByCategoryDataSource" 
-        EnableViewState="False">
-        <Columns>
-            <asp:HyperLinkField DataNavigateUrlFields="ProductID" 
-                DataNavigateUrlFormatString=
-                    "~/SiteMapProvider/ProductDetails.aspx?ProductID={0}"
-                Text="View Details" />
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice" DataFormatString="{0:c}" 
-                HeaderText="Price" HtmlEncode="False" 
-                SortExpression="UnitPrice" />
-            <asp:BoundField DataField="SupplierName" HeaderText="Supplier" 
-                ReadOnly="True" SortExpression="SupplierName" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="ProductsByCategoryDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProductsByCategoryID" TypeName="ProductsBLL">
-        <SelectParameters>
-            <asp:QueryStringParameter Name="categoryID" 
-                QueryStringField="CategoryID" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample3.xml)]
 
 Return to viewing `Default.aspx` through a browser and click on the View Products link for Beverages. This will take you to `ProductsByCategory.aspx?CategoryID=1`, displaying the names, prices, and suppliers of the products in the Northwind database that belong to the Beverages category (see Figure 11). Feel free to further enhance this page to include a link to return users to the category listing page (`Default.aspx`) and a DetailsView or FormView control that displays the selected category s name and description.
 
@@ -217,39 +174,7 @@ The last step of the Configure Data Source wizard prompts for the source of the 
 After completing the Configure Data Source wizard, Visual Studio will create corresponding BoundFields and a CheckBoxField in the DetailsView for the product data fields. Remove the `ProductID`, `SupplierID`, and `CategoryID` BoundFields and configure the remaining fields as you see fit. After a handful of aesthetic configurations, my DetailsView and ObjectDataSource s declarative markup looked like the following:
 
 
-    <asp:DetailsView ID="ProductInfo" runat="server" AutoGenerateRows="False" 
-        DataKeyNames="ProductID" DataSourceID="ProductDataSource" 
-        EnableViewState="False">
-        <Fields>
-            <asp:BoundField DataField="ProductName" HeaderText="Product" 
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                ReadOnly="True" SortExpression="CategoryName" />
-            <asp:BoundField DataField="SupplierName" HeaderText="Supplier" 
-                ReadOnly="True" SortExpression="SupplierName" />
-            <asp:BoundField DataField="QuantityPerUnit" HeaderText="Qty/Unit" 
-                SortExpression="QuantityPerUnit" />
-            <asp:BoundField DataField="UnitPrice" DataFormatString="{0:c}" 
-                HeaderText="Price" HtmlEncode="False" 
-                SortExpression="UnitPrice" />
-            <asp:BoundField DataField="UnitsInStock" HeaderText="Units In Stock" 
-                SortExpression="UnitsInStock" />
-            <asp:BoundField DataField="UnitsOnOrder" HeaderText="Units On Order" 
-                SortExpression="UnitsOnOrder" />
-            <asp:BoundField DataField="ReorderLevel" HeaderText="Reorder Level" 
-                SortExpression="ReorderLevel" />
-            <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued" 
-                SortExpression="Discontinued" />
-        </Fields>
-    </asp:DetailsView>
-    <asp:ObjectDataSource ID="ProductDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProductByProductID" TypeName="ProductsBLL">
-        <SelectParameters>
-            <asp:QueryStringParameter Name="productID" 
-                QueryStringField="ProductID" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample4.xml)]
 
 To test this page, return to `Default.aspx` and click on View Products for the Beverages category. From the listing of beverage products, click on the View Details link for Chai Tea. This will take you to `ProductDetails.aspx?ProductID=1`, which shows a Chai Tea s details (see Figure 14).
 
@@ -282,16 +207,7 @@ When creating a custom site map provider that extends `StaticSiteMapProvider`, t
 Before a web application can use a site map provider it must be registered in the application s configuration. By default, the `XmlSiteMapProvider` class is registered using the name `AspNetXmlSiteMapProvider`. To register additional site map providers, add the following markup to `Web.config`:
 
 
-    <configuration>
-        <system.web>
-            ...
-            <siteMap defaultProvider="defaultProviderName">
-              <providers>
-                <add name="name" type="type" />
-              </providers>
-            </siteMap>
-        </system.web>
-    </configuration>
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample5.xml)]
 
 The *name* value assigns a human-readable name to the provider while *type* specifies the fully-qualified type name of the site map provider. We'll explore concrete values for the *name* and *type* values in Step 7, after we ve created our custom site map provider.
 
@@ -307,107 +223,7 @@ For performance and scalability reasons, it s important that we cache the in-mem
 To create a custom site map provider that builds the site map from the categories and products in the Northwind database, we need to create a class that extends `StaticSiteMapProvider`. In Step 1 I asked you to add a `CustomProviders` folder in the `App_Code` folder - add a new class to this folder named `NorthwindSiteMapProvider`. Add the following code to the `NorthwindSiteMapProvider` class:
 
 
-    Imports System.Web
-    Imports System.Web.Caching
-    Public Class NorthwindSiteMapProvider
-        Inherits StaticSiteMapProvider
-        Private ReadOnly siteMapLock As New Object()
-        Private root As SiteMapNode = Nothing
-        Public Const CacheDependencyKey As String = "NorthwindSiteMapProviderCacheDependency"
-        Public Overrides Function BuildSiteMap() As System.Web.SiteMapNode
-            ' Use a lock to make this method thread-safe
-            SyncLock siteMapLock
-                ' First, see if we already have constructed the
-                ' rootNode. If so, return it...
-                If root IsNot Nothing Then
-                    Return root
-                End If
-                ' We need to build the site map!
-                ' Clear out the current site map structure
-                MyBase.Clear()
-                ' Get the categories and products information from the database
-                Dim productsAPI As New ProductsBLL()
-                Dim products As Northwind.ProductsDataTable = productsAPI.GetProducts()
-                ' Create the root SiteMapNode
-                root = New SiteMapNode( _
-                    Me, "root", "~/SiteMapProvider/Default.aspx", "All Categories")
-                AddNode(root)
-                ' Create SiteMapNodes for the categories and products
-                For Each product As Northwind.ProductsRow In products
-                    ' Add a new category SiteMapNode, if needed
-                    Dim categoryKey, categoryName As String
-                    Dim createUrlForCategoryNode As Boolean = True
-                    If product.IsCategoryIDNull() Then
-                        categoryKey = "Category:None"
-                        categoryName = "None"
-                        createUrlForCategoryNode = False
-                    Else
-                        categoryKey = String.Concat("Category:", product.CategoryID)
-                        categoryName = product.CategoryName
-                    End If
-                    Dim categoryNode As SiteMapNode = FindSiteMapNodeFromKey(categoryKey)
-                    ' Add the category SiteMapNode if it does not exist
-                    If categoryNode Is Nothing Then
-                        Dim productsByCategoryUrl As String = String.Empty
-                        If createUrlForCategoryNode Then
-                            productsByCategoryUrl = _
-                                "~/SiteMapProvider/ProductsByCategory.aspx?CategoryID=" & _
-                                product.CategoryID
-                        End If
-                        categoryNode = New SiteMapNode _
-                            (Me, categoryKey, productsByCategoryUrl, categoryName)
-                        AddNode(categoryNode, root)
-                    End If
-                    ' Add the product SiteMapNode
-                    Dim productUrl As String = _
-                        "~/SiteMapProvider/ProductDetails.aspx?ProductID=" & _
-                        product.ProductID
-                    Dim productNode As New SiteMapNode _
-                        (Me, String.Concat("Product:", product.ProductID), _
-                        productUrl, product.ProductName)
-                    AddNode(productNode, categoryNode)
-                Next
-                ' Add a "dummy" item to the cache using a SqlCacheDependency
-                ' on the Products and Categories tables
-                Dim productsTableDependency As New _
-                    System.Web.Caching.SqlCacheDependency("NorthwindDB", "Products")
-                Dim categoriesTableDependency As New _
-                    System.Web.Caching.SqlCacheDependency("NorthwindDB", "Categories")
-                ' Create an AggregateCacheDependency
-                Dim aggregateDependencies As New System.Web.Caching.AggregateCacheDependency()
-                aggregateDependencies.Add(productsTableDependency, categoriesTableDependency)
-                ' Add the item to the cache specifying a callback function
-                HttpRuntime.Cache.Insert( _
-                    CacheDependencyKey, DateTime.Now, aggregateDependencies, _
-                    Cache.NoAbsoluteExpiration, Cache.NoSlidingExpiration, _
-                    CacheItemPriority.Normal, AddressOf OnSiteMapChanged)
-                ' Finally, return the root node
-                Return root
-            End SyncLock
-        End Function
-        Protected Overrides Function GetRootNodeCore() As System.Web.SiteMapNode
-            Return BuildSiteMap()
-        End Function
-        Protected Sub OnSiteMapChanged _
-        (key As String, value As Object, reason As CacheItemRemovedReason)
-            SyncLock siteMapLock
-                If String.Compare(key, CacheDependencyKey) = 0 Then
-                    ' Refresh the site map
-                    root = Nothing
-                End If
-            End SyncLock
-        End Sub
-        Public ReadOnly Property CachedDate() As Nullable(Of DateTime)
-            Get
-                Dim value As Object = HttpRuntime.Cache(CacheDependencyKey)
-                If value Is Nothing OrElse Not TypeOf value Is Nullable(Of DateTime) Then
-                    Return Nothing
-                Else
-                    Return CType(value, Nullable(Of DateTime))
-                End If
-            End Get
-        End Property
-    End Class
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample6.xml)]
 
 Let s start with exploring this class s `BuildSiteMap` method, which starts with a [`lock` statement](https://msdn.microsoft.com/en-us/library/c5kehkcz.aspx). The `lock` statement only allows one thread at a time to enter, thereby serializing access to its code and preventing two concurrent threads from stepping on one another s toes.
 
@@ -441,11 +257,7 @@ The remaining methods are fairly straightforward. `GetRootNodeCore` is responsib
 In order for our web application to use the `NorthwindSiteMapProvider` site map provider created in Step 6, we need to register it in the `<siteMap>` section of `Web.config`. Specifically, add the following markup within the `<system.web>` element in `Web.config`:
 
 
-    <siteMap defaultProvider="AspNetXmlSiteMapProvider">
-      <providers>
-        <add name="Northwind" type="NorthwindSiteMapProvider" />
-      </providers>
-    </siteMap>
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample7.xml)]
 
 This markup does two things: first, it indicates that the built-in `AspNetXmlSiteMapProvider` is the default site map provider; second, it registers the custom site map provider created in Step 6 with the human-friendly name Northwind .
 
@@ -501,29 +313,19 @@ Other navigation user interface elements can be used in addition to the SiteMapP
 As mentioned earlier in this tutorial, the site map structure can be accessed programmatically through the `SiteMap` class. The following code returns the root `SiteMapNode` of the default provider:
 
 
-    Dim root As SiteMapNode = SiteMap.RootNode
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample8.xml)]
 
 Since the `AspNetXmlSiteMapProvider` is the default provider for our application, the above code would return the root node defined in `Web.sitemap`. To reference a site map provider other than the default, use the `SiteMap` class s [`Providers` property](https://msdn.microsoft.com/en-us/library/system.web.sitemap.providers.aspx) like so:
 
 
-    Dim root As SiteMapNode = SiteMap.Providers("name").RootNode
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample9.xml)]
 
 Where *name* is the name of the custom site map provider ( Northwind , for our web application).
 
 To access a member specific to a site map provider, use `SiteMap.Providers["name"]` to retrieve the provider instance and then cast it to the appropriate type. For example, to display the `NorthwindSiteMapProvider` s `CachedDate` property in an ASP.NET page, use the following code:
 
 
-    Dim customProvider As NorthwindSiteMapProvider = _
-        TryCast(SiteMap.Providers("Northwind"), NorthwindSiteMapProvider)
-    If customProvider IsNot Nothing Then
-        Dim lastCachedDate As Nullable(Of DateTime) = customProvider.CachedDate
-        If lastCachedDate.HasValue Then
-            SiteMapLastCachedDate.Text = _
-                "Site map cached on: " & lastCachedDate.Value.ToString()
-        Else
-            SiteMapLastCachedDate.Text = "The site map is being reconstructed!"
-        End If
-    End If
+[!code[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample10.xml)]
 
 > [!NOTE] Be sure to test out the SQL cache dependency feature. After visiting the `Default.aspx`, `ProductsByCategory.aspx`, and `ProductDetails.aspx` pages, go to one of the tutorials in the Editing, Inserting, and Deleting section and edit the name of a category or product. Then return to one of the pages in the `SiteMapProvider` folder. Assuming enough time has passed for the polling mechanism to note the change to the underlying database, the site map should be updated to show the new product or category name.
 

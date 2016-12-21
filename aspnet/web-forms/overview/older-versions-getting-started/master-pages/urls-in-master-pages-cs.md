@@ -33,18 +33,14 @@ A URL on a web page is said to be a *relative URL* if the location of the resour
 For example, our website has an `~/Images/` folder with a single image file, `PoweredByASPNET.gif`. The master page file `Site.master` has an `<img>` element in the `footerContent` region with the following markup:
 
 
-    <div id="footerContent">
-     <img src="Images/PoweredByASPNET.gif" alt="Powered by ASP.NET!" />
-    </div>
+[!code[Main](urls-in-master-pages-cs/samples/sample1.xml)]
 
 The `src` attribute value in the `<img>` element is a relative URL because it does not start with `/` or `http://`. In short, the `src` attribute value tells the browser to look in the `Images` subfolder for a file named `PoweredByASPNET.gif`.
 
 When visiting a content page, the above markup is sent directly to the browser. Take a moment to visit `About.aspx` and view the HTML source sent to the browser. You will find that the exact same markup in the master page was sent to the browser.
 
 
-    <div id="footerContent">
-     <img src="Images/PoweredByASPNET.gif" alt="Powered by ASP.NET!" />
-    </div>
+[!code[Main](urls-in-master-pages-cs/samples/sample2.xml)]
 
 If the content page is in the root folder (as is `About.aspx`) everything works as expected because there is an `Images` subfolder relative to the root folder. However, things break down if the content page is in a different folder than the master page. To illustrate this, create a subfolder named `Admin`. Next, add a content page named `Default.aspx` to the `Admin` folder, making sure to bind the new page to the `Site.master` master page.
 
@@ -62,23 +58,14 @@ After you have created this content page, your Solution Explorer should look sim
 Next, update the `Web.sitemap` file to include a new `<siteMapNode>` entry for this lesson. The following XML shows the complete `Web.sitemap` markup, which now includes the addition of a third `<siteMapNode>` element.
 
 
-    <?xml version="1.0" encoding="utf-8" ?>
-    <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-     <siteMapNode url="~/Default.aspx" title="Home">
-     <siteMapNode url="~/About.aspx" title="About the Author" />
-     <siteMapNode url="~/MultipleContentPlaceHolders.aspx" title="Using Multiple ContentPlaceHolder Controls" />
-     <siteMapNode url="~/Admin/Default.aspx" title="Rebasing URLs" />
-     </siteMapNode>
-    </siteMap>
+[!code[Main](urls-in-master-pages-cs/samples/sample3.xml)]
 
 The newly created `Default.aspx` page should have four Content controls corresponding to the four ContentPlaceHolders in `Site.master`. Add some text to the Content control referencing the `MainContent` ContentPlaceHolder and then visit the page through a browser. As Figure 2 shows, the browser cannot find the `PoweredByASPNET.gif` image file. What's going on here?
 
 The `~/Admin/Default.aspx` content page is sent the same HTML for the `footerContent` region as was the `About.aspx` page:
 
 
-    <div id="footerContent">
-     <img src="Images/PoweredByASPNET.gif" alt="Powered by ASP.NET!" />
-    </div>
+[!code[Main](urls-in-master-pages-cs/samples/sample4.xml)]
 
 Because the `<img>` element's `src` attribute is a relative URL, the browser attempts to look for an `Images` folder relative to the web page's folder location. In other words, the browser is looking for the image file `Admin/Images/PoweredByASPNET.gif`.
 
@@ -127,17 +114,12 @@ Keep in mind that only ASP.NET server controls transform the `~` in their URL-re
 To fix the image markup in `Site.master`, replace the existing `<img>` element with an ASP.NET Image Web control. Set the Image Web control's `ID` to `PoweredByImage`, its `ImageUrl` property to `~/Images/PoweredByASPNET.gif`, and its `AlternateText` property to "Powered by ASP.NET!"
 
 
-    <div id="footerContent">
-     <asp:Image ID="PoweredByImage" runat="server" ImageUrl="~/Images/PoweredByASPNET.gif" 
-        AlternateText="Powered by ASP.NET!" />
-    </div>
+[!code[Main](urls-in-master-pages-cs/samples/sample5.xml)]
 
 After making this change to the master page, revisit the `~/Admin/Default.aspx` page again. This time the `PoweredByASPNET.gif` image file appears in the page (see Figure 3). When the Image Web control is rendered it uses the `ResolveClientUrl` method to resolve its `ImageUrl` property value. In `~/Admin/Default.aspx` the `ImageUrl` is converted into an appropriate relative URL, as the following snippet of HTML source shows:
 
 
-    <div id="footerContent">
-     <img id="ctl00_PoweredByImage" src="../Images/PoweredByASPNET.gif" alt="Powered by ASP.NET!" />
-    </div>
+[!code[Main](urls-in-master-pages-cs/samples/sample6.xml)]
 
 > [!NOTE] In addition to being used in URL-based Web control properties, the `~` can also be used when calling the `Response.Redirect` and `Server.MapPath` methods, among others. Also, the `ResolveClientUrl` method may be invoked directly from an ASP.NET or master page's declarative markup, if needed; see [Fritz Onion](https://www.pluralsight.com/blogs/fritz/)'s blog entry [Using `ResolveClientUrl` in Markup](https://www.pluralsight.com/blogs/fritz/archive/2006/02/06/18596.aspx).
 
@@ -147,19 +129,14 @@ After making this change to the master page, revisit the `~/Admin/Default.aspx` 
 In addition to the `<img>` element in the `footerContent` that we just fixed, the master page contains one more relative URL that requires our attention. The `topContent` region includes the link "Master Pages Tutorials," which points to `Default.aspx`.
 
 
-    <div id="topContent">
-     <a href="Default.aspx">Master Pages Tutorials</a>
-    </div>
+[!code[Main](urls-in-master-pages-cs/samples/sample7.xml)]
 
 Because this URL is relative, it will send the user to the `Default.aspx` page in the folder of the content page they are visiting. To have this link always point to `Default.aspx` in the root folder we need to replace the `<a>` element with a HyperLink Web control so that we can use the `~` notation.
 
 Remove the `<a>` element markup and add a HyperLink control in its place. Set the HyperLink's `ID` to `lnkHome`, its `NavigateUrl` property to `~/Default.aspx`, and its `Text` property to "Master Pages Tutorials."
 
 
-    <div id="topContent">
-     <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Default.aspx"
-        Text="Master Pages Tutorials" />
-    </div>
+[!code[Main](urls-in-master-pages-cs/samples/sample8.xml)]
 
 That's it! At this point all the URLs in our master page are properly based when rendered by a content page regardless of what folders the master page and content page are located in.
 
@@ -168,24 +145,14 @@ That's it! At this point all the URLs in our master page are properly based when
 In the [*Creating a Site-Wide Layout Using Master Pages*](creating-a-site-wide-layout-using-master-pages-cs.md) tutorial we added a `<link>` to the `Styles.css` file in the `<head>` region:
 
 
-    <head runat="server">
-     <title>Untitled Page</title>
-     <asp:ContentPlaceHolder id="head" runat="server">
-     </asp:ContentPlaceHolder>
-     <link href="Styles.css" rel="stylesheet" type="text/css" />
-    </head>
+[!code[Main](urls-in-master-pages-cs/samples/sample9.xml)]
 
 While the `<link>` element's `href` attribute is relative, it's automatically converted to an appropriate path at runtime. As we discussed in the [*Specifying the Title, Meta Tags, and Other HTML Headers in the Master Page*](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-cs.md) tutorial, the `<head>` region is actually a server-side control, which enables it to modify the contents of its inner controls when it is rendered.
 
 To verify this, revisit the `~/Admin/Default.aspx` page and view the HTML source sent to the browser. As the snippet below illustrates, the `<link>` element's `href` attribute has been automatically modified to an appropriate relative URL, `../Styles.css`.
 
 
-    <head>
-     <title>
-     Default
-     </title>
-     <link href="../Styles.css" rel="stylesheet" type="text/css" />
-    </head>
+[!code[Main](urls-in-master-pages-cs/samples/sample10.xml)]
 
 ## Summary
 

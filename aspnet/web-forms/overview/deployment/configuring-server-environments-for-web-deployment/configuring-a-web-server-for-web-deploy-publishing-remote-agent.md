@@ -106,11 +106,11 @@ If you installed the .NET Framework 4.0 before you installed IIS, you&#x27;ll ne
 3. In the Command Prompt window, navigate to the **%WINDIR%\Microsoft.NET\Framework\v4.0.30319** directory.
 4. Type this command, and then press Enter:
 
-        aspnet_regiis -iru
+    [!code[Main](configuring-a-web-server-for-web-deploy-publishing-remote-agent/samples/sample1.xml)]
 5. If you plan to host 64-bit web applications at any point, you should also register the 64-bit version of ASP.NET with IIS. To do this, in the Command Prompt window, navigate to the **%WINDIR%\Microsoft.NET\Framework64\v4.0.30319** directory.
 6. Type this command, and then press Enter:
 
-        aspnet_regiis -iru
+    [!code[Main](configuring-a-web-server-for-web-deploy-publishing-remote-agent/samples/sample2.xml)]
 
 As a good practice, use Windows Update again at this point to download and install any available updates for the new products and components you&#x27;ve installed.
 

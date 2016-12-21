@@ -32,9 +32,7 @@ ASP.NET web pages are divided into declarative markup and source code. The decla
 
 Consider an ASP.NET page named `Clock.aspx` that contains a Label control whose Text property is set to the current date and time when the page loads. The declarative markup portion (in `Clock.aspx`) would contain the markup for a Label Web control - `<asp:Label runat="server" id="TimeLabel" />` - while the code portion (in `Clock.aspx.vb`) would have a `Page_Load` event hander with the following code:
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As  System.EventArgs) Handles Me.Load
-        TimeLabel.Text =  "The time at the beep is: " & DateTime.Now.ToString()
-    End Sub
+[!code[Main](determining-what-files-need-to-be-deployed-vb/samples/sample1.xml)]
 
 In order for the ASP.NET engine to service a request for this page, the page's code portion (the*`WebPage`*`.aspx.vb` file) must first be compiled. This compilation can happen explicitly or automatically.
 

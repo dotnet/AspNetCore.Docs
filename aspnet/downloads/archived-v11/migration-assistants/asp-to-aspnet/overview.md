@@ -74,10 +74,10 @@ The command line syntax for AspUpgrade.exe is:
 
 - Running 
 
-        ASPUpgrade[.exe] <DirectoryName> [/Out ] [/NoLog | /LogFile ] [/Verbose] [ /ProjectName ] [/ForceOverwrite]
+    [!code[Main](overview/samples/sample1.xml)]
 - Help 
 
-        ASPUpgrade[.exe] /? or /Help
+    [!code[Main](overview/samples/sample2.xml)]
 
 #### Options
 

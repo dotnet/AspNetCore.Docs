@@ -52,7 +52,7 @@ Request validation has detected a potentially dangerous client input value, and 
 
 To disable request validation on a page you must set the `validateRequest` attribute of the Page directive to `false`:
 
-    <%@ Page validateRequest="false" %>
+[!code[Main](request-validation/samples/sample1.xml)]
 
 **Caution:** When request validation is disabled, content can be submitted to a page; it is the responsibility of the page developer to ensure that content is properly encoded or processed.
 
@@ -60,11 +60,7 @@ To disable request validation on a page you must set the `validateRequest` attri
 
 To disable request validation for your application, you must modify or create a Web.config file for your application and set the validateRequest attribute of the `<pages />` section to `false`:
 
-    <configuration>
-       <system.web>
-          <pages validateRequest="false" />
-       </system.web>
-    </configuration>
+[!code[Main](request-validation/samples/sample2.xml)]
 
 If you wish to disable request validation for all applications on your server, you can make this modification to your Machine.config file.
 

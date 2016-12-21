@@ -1,5 +1,7 @@
-public ViewResult Index()
-{
-    var courses = unitOfWork.CourseRepository.Get();
-    return View(courses.ToList());
-}
+    var data = from student in db.Students
+               group student by student.EnrollmentDate into dateGroup
+               select new EnrollmentDateGroup()
+               {
+                   EnrollmentDate = dateGroup.Key,
+                   StudentCount = dateGroup.Count()
+               };

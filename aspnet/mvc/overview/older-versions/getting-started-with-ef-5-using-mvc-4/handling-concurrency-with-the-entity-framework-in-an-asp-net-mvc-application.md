@@ -81,8 +81,7 @@ In *Models\Department.cs*, add a tracking property named `RowVersion`:
 
 The [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) attribute specifies that this column will be included in the `Where` clause of `Update` and `Delete` commands sent to the database. The attribute is called [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) because previous versions of SQL Server used a SQL [timestamp](https://msdn.microsoft.com/en-us/library/ms182776(v=SQL.90).aspx) data type before the SQL [rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) replaced it. The .Net type for[rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) is a byte array. If you prefer to use the fluent API, you can use the [IsConcurrencyToken](https://msdn.microsoft.com/en-us/library/gg679501(v=VS.103).aspx) method to specify the tracking property, as shown in the following example:
 
-    modelBuilder.Entity<Department>()
-        .Property(p => p.RowVersion).IsConcurrencyToken();
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml)]
 
 By adding a property you changed the database model, so you need to do another migration. In the Package Manager Console (PMC), enter the following commands:
 
@@ -96,137 +95,39 @@ Create a `Department` controller and views the same way you did the other contro
 
 In *Controllers\DepartmentController.cs*, add a `using` statement:
 
-    using System.Data.Entity.Infrastructure;
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml)]
 
 Change "LastName" to "FullName" everywhere in this file (four occurrences) so that the department administrator drop-down lists will contain the full name of the instructor rather than just the last name.
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml?highlight=1)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=1)]
 
 Replace the existing code for the `HttpPost` `Edit` method with the following code:
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Edit(
-       [Bind(Include = "DepartmentID, Name, Budget, StartDate, RowVersion, InstructorID")]
-        Department department)
-    {
-       try
-       {
-          if (ModelState.IsValid)
-          {
-             db.Entry(department).State = EntityState.Modified;
-             db.SaveChanges();
-             return RedirectToAction("Index");
-          }
-       }
-       catch (DbUpdateConcurrencyException ex)
-       {
-          var entry = ex.Entries.Single();
-          var clientValues = (Department)entry.Entity;
-          var databaseValues = (Department)entry.GetDatabaseValues().ToObject();
-    
-          if (databaseValues.Name != clientValues.Name)
-             ModelState.AddModelError("Name", "Current value: "
-                 + databaseValues.Name);
-          if (databaseValues.Budget != clientValues.Budget)
-             ModelState.AddModelError("Budget", "Current value: "
-                 + String.Format("{0:c}", databaseValues.Budget));
-          if (databaseValues.StartDate != clientValues.StartDate)
-             ModelState.AddModelError("StartDate", "Current value: "
-                 + String.Format("{0:d}", databaseValues.StartDate));
-          if (databaseValues.InstructorID != clientValues.InstructorID)
-             ModelState.AddModelError("InstructorID", "Current value: "
-                 + db.Instructors.Find(databaseValues.InstructorID).FullName);
-          ModelState.AddModelError(string.Empty, "The record you attempted to edit "
-              + "was modified by another user after you got the original value. The "
-              + "edit operation was canceled and the current values in the database "
-              + "have been displayed. If you still want to edit this record, click "
-              + "the Save button again. Otherwise click the Back to List hyperlink.");
-          department.RowVersion = databaseValues.RowVersion;
-       }
-       catch (DataException /* dex */)
-       {
-          //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
-          ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
-       }
-    
-       ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FullName", department.InstructorID);
-       return View(department);
-    }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml)]
 
 The view will store the original `RowVersion` value in a hidden field. When the model binder creates the `department` instance, that object will have the original `RowVersion` property value and the new values for the other properties, as entered by the user on the Edit page. Then when the Entity Framework creates a SQL `UPDATE` command, that command will include a `WHERE` clause that looks for a row that has the original `RowVersion` value.
 
 If no rows are affected by the `UPDATE` command (no rows have the original `RowVersion` value), the Entity Framework throws a `DbUpdateConcurrencyException` exception, and the code in the `catch` block gets the affected `Department` entity from the exception object. This entity has both the values read from the database and the new values entered by the user:
 
-    var entry = ex.Entries.Single();
-    var clientValues = (Department)entry.Entity;
-    var databaseValues = (Department)entry.GetDatabaseValues().ToObject();
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml)]
 
 Next, the code adds a custom error message for each column that has database values different from what the user entered on the Edit page:
 
-    if (databaseValues.Name != currentValues.Name)
-        ModelState.AddModelError("Name", "Current value: " + databaseValues.Name);
-        // ...
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml)]
 
 A longer error message explains what happened and what to do about it:
 
-    ModelState.AddModelError(string.Empty, "The record you attempted to edit "
-        + "was modified by another user after you got the original value. The"
-        + "edit operation was canceled and the current values in the database "
-        + "have been displayed. If you still want to edit this record, click "
-        + "the Save button again. Otherwise click the Back to List hyperlink.");
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml)]
 
 Finally, the code sets the `RowVersion` value of the `Department` object to the new value retrieved from the database. This new `RowVersion` value will be stored in the hidden field when the Edit page is redisplayed, and the next time the user clicks **Save**, only concurrency errors that happen since the redisplay of the Edit page will be caught.
 
 In *Views\Department\Edit.cshtml*, add a hidden field to save the `RowVersion` property value, immediately following the hidden field for the `DepartmentID` property:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=17)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.xml?highlight=17)]
 
 In *Views\Department\Index.cshtml*, replace the existing code with the following code to move row links to the left and change the page title and column headings to display `FullName` instead of `LastName` in the **Administrator** column:
 
-    @model IEnumerable<ContosoUniversity.Models.Department>
-    
-    @{
-        ViewBag.Title = "Departments";
-    }
-    
-    <h2>Departments</h2>
-    
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table>
-        <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Budget</th>
-            <th>Start Date</th>
-            <th>Administrator</th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.DepartmentID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.DepartmentID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.DepartmentID })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Budget)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Administrator.FullName)
-            </td>
-        </tr>
-    }
-    
-    </table>
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.xml)]
 
 ## Testing Optimistic Concurrency Handling
 
@@ -264,65 +165,21 @@ For the Delete page, the Entity Framework detects concurrency conflicts caused b
 
 In *DepartmentController.cs*, replace the `HttpGet` `Delete` method with the following code:
 
-    public ActionResult Delete(int id, bool? concurrencyError)
-    {
-        Department department = db.Departments.Find(id);
-    
-        if (concurrencyError.GetValueOrDefault())
-        {
-            if (department == null)
-            {
-                ViewBag.ConcurrencyErrorMessage = "The record you attempted to delete "
-                    + "was deleted by another user after you got the original values. "
-                    + "Click the Back to List hyperlink.";
-            }
-            else
-            {
-                ViewBag.ConcurrencyErrorMessage = "The record you attempted to delete "
-                    + "was modified by another user after you got the original values. "
-                    + "The delete operation was canceled and the current values in the "
-                    + "database have been displayed. If you still want to delete this "
-                    + "record, click the Delete button again. Otherwise "
-                    + "click the Back to List hyperlink.";
-            }
-        }
-    
-        return View(department);
-    }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.xml)]
 
 The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is `true`, an error message is sent to the view using a `ViewBag` property.
 
 Replace the code in the `HttpPost` `Delete` method (named `DeleteConfirmed`) with the following code:
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Delete(Department department)
-    {
-        try
-        {
-            db.Entry(department).State = EntityState.Deleted;
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            return RedirectToAction("Delete", new { concurrencyError=true } );
-        }
-        catch (DataException /* dex */)
-        {
-            //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
-            ModelState.AddModelError(string.Empty, "Unable to delete. Try again, and if the problem persists contact your system administrator.");
-            return View(department);
-        }
-    }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.xml)]
 
 In the scaffolded code that you just replaced, this method accepted only a record ID:
 
-    public ActionResult DeleteConfirmed(int id)
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample13.xml)]
 
 You've changed this parameter to a `Department` entity instance created by the model binder. This gives you access to the `RowVersion` property value in addition to the record key.
 
-    public ActionResult Delete(Department department)
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample14.xml)]
 
 You have also changed the action method name from `DeleteConfirmed` to `Delete`. The scaffolded code named the `HttpPost` `Delete` method `DeleteConfirmed` to give the `HttpPost` method a unique signature. ( The CLR requires overloaded methods to have different method parameters.) Now that the signatures are unique, you can stick with the MVC convention and use the same name for the `HttpPost` and `HttpGet` delete methods.
 
@@ -330,25 +187,19 @@ If a concurrency error is caught, the code redisplays the Delete confirmation pa
 
 In *Views\Department\Delete.cshtml*, replace the scaffolded code with the following code that makes some formatting changes and adds an error message field. The changes are highlighted.
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=9,37,40,45-46)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample15.xml?highlight=9,37,40,45-46)]
 
 This code adds an error message between the `h2` and `h3` headings:
 
-    <p class="error">@ViewBag.ConcurrencyErrorMessage</p>
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.xml)]
 
 It replaces `LastName` with `FullName` in the `Administrator` field:
 
-    <div class="display-label">
-        @Html.LabelFor(model => model.InstructorID)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Administrator.FullName)
-    </div>
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.xml)]
 
 Finally, it adds hidden fields for the `DepartmentID` and `RowVersion` properties after the `Html.BeginForm` statement:
 
-    @Html.HiddenFor(model => model.DepartmentID)
-    @Html.HiddenFor(model => model.RowVersion)
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.xml)]
 
 Run the Departments Index page. Right click the **Delete** hyperlink for the English department and select **Open in new window,** then in the first window click the **Edit** hyperlink for the English department.
 

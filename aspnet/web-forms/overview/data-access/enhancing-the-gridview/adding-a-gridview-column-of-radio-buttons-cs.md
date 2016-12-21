@@ -56,25 +56,7 @@ Like in the other folders, `Default.aspx` in the `EnhancedGridView` folder will 
 Lastly, add these four pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Using the SqlDataSource Control `<siteMapNode>`:
 
 
-    <siteMapNode 
-        title="Enhancing the GridView" 
-        url="~/EnhancedGridView/Default.aspx" 
-        description="Augment the user experience of the GridView control.">
-        <siteMapNode 
-            url="~/EnhancedGridView/RadioButtonField.aspx" 
-            title="Selection via a Radio Button Column" 
-            description="Explore how to add a column of radio buttons in the GridView." />
-        <siteMapNode 
-            url="~/EnhancedGridView/CheckBoxField.aspx" 
-            title="Selection via a Checkbox Column" 
-            description="Select multiple records in the GridView by using a column of 
-                checkboxes." />
-        <siteMapNode 
-            url="~/EnhancedGridView/InsertThroughFooter.aspx" 
-            title="Add New Records through the Footer" 
-            description="Learn how to allow users to add new records through the 
-                GridView's footer." />
-    </siteMapNode>
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the editing, inserting, and deleting tutorials.
 
@@ -129,25 +111,7 @@ Since the `GetSuppliersByCountry(country)` method accepts a parameter, the Confi
 After completing the wizard, the GridView will include a BoundField for each of the supplier data fields. Remove all but the `CompanyName`, `City`, and `Country` BoundFields, and rename the `CompanyName` BoundFields `HeaderText` property to Supplier . After doing so, the GridView and ObjectDataSource declarative syntax should look similar to the following.
 
 
-    <asp:GridView ID="Suppliers" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="SupplierID" DataSourceID="SuppliersDataSource" 
-        EnableViewState="False">
-        <Columns>
-            <asp:BoundField DataField="CompanyName" HeaderText="Supplier" 
-                SortExpression="CompanyName" />
-            <asp:BoundField DataField="City" HeaderText="City" 
-                SortExpression="City" />
-            <asp:BoundField DataField="Country" HeaderText="Country" 
-                SortExpression="Country" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="SuppliersDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetSuppliersByCountry" TypeName="SuppliersBLL">
-        <SelectParameters>
-            <asp:Parameter DefaultValue="USA" Name="country" Type="String" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample2.xml)]
 
 For this tutorial, let s allow the user to view the selected supplier s products on the same page as the supplier list, or on a different page. To accommodate this, add two Button Web controls to the page. I ve set the `ID` s of these two Buttons to `ListProducts` and `SendToProducts`, with the idea that when `ListProducts` is clicked a postback will occur and the selected supplier s products will be listed on the same page, but when `SendToProducts` is clicked, the user will be whisked to a another page that lists the products.
 
@@ -176,24 +140,7 @@ Even though using a TemplateField of RadioButton Web controls does not offer the
 After making these additions through the Designer, your GridView s markup should look similar to the following:
 
 
-    <asp:GridView ID="Suppliers" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="SupplierID" DataSourceID="SuppliersDataSource" 
-        EnableViewState="False">
-        <Columns>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:RadioButton ID="RowSelector" runat="server" 
-                        GroupName="SuppliersGroup" />
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:BoundField DataField="CompanyName" HeaderText="Supplier" 
-                SortExpression="CompanyName" />
-            <asp:BoundField DataField="City" HeaderText="City" 
-                SortExpression="City" />
-            <asp:BoundField DataField="Country" HeaderText="Country" 
-                SortExpression="Country" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample3.xml)]
 
 The RadioButton s [`GroupName` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.radiobutton.groupname(VS.80).aspx) is what is used to group a series of radio buttons. All RadioButton controls with the same `GroupName` value are considered grouped; only one radio button can be selected from a group at a time. The `GroupName` property specifies the value for the rendered radio button s `name` attribute. The browser examines the radio buttons `name` attributes to determine the radio button groupings.
 
@@ -208,18 +155,7 @@ With the RadioButton Web control added to the `ItemTemplate`, visit this page th
 The reason the radio buttons are not grouped is because their rendered `name` attributes are different, despite having the same `GroupName` property setting. To see these differences, do a View/Source from the browser and examine the radio button markup:
 
 
-    <input id="ctl00_MainContent_Suppliers_ctl02_RowSelector" 
-        name="ctl00$MainContent$Suppliers$ctl02$SuppliersGroup" 
-        type="radio" value="RowSelector" />
-    <input id="ctl00_MainContent_Suppliers_ctl03_RowSelector" 
-        name="ctl00$MainContent$Suppliers$ctl03$SuppliersGroup" 
-        type="radio" value="RowSelector" />
-    <input id="ctl00_MainContent_Suppliers_ctl04_RowSelector" 
-        name="ctl00$MainContent$Suppliers$ctl04$SuppliersGroup" 
-        type="radio" value="RowSelector" />
-    <input id="ctl00_MainContent_Suppliers_ctl05_RowSelector" 
-        name="ctl00$MainContent$Suppliers$ctl05$SuppliersGroup" 
-        type="radio" value="RowSelector" />
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample4.xml)]
 
 Notice how both the `name` and `id` attributes are not the exact values as specified in the Properties window, but are prepended with a number of other `ID` values. The additional `ID` values added to the front of the rendered `id` and `name` attributes are the `ID` s of the radio buttons parent controls the `GridViewRow` s `ID` s, the GridView s `ID`, the Content control s `ID`, and the Web Form s `ID`. These `ID` s are added so that each rendered Web control in the GridView has a unique `id` and `name` values.
 
@@ -237,8 +173,7 @@ In order to correctly group all of the radio buttons within the GridView, we nee
 There are two approaches that can be taken in order to inject low-level markup into a template. One is to do a mix of markup and calls to formatting methods defined in the code-behind class. This technique was first discussed in the [Using TemplateFields in the GridView Control](../custom-formatting/using-templatefields-in-the-gridview-control-cs.md) tutorial. In our case it might look something like:
 
 
-    <input type="radio" id='<%# GetUniqueRadioButtonID(...) %>' 
-        name='SuppliersGroup' value='<%# GetRadioButtonValue(...) %>' ... />
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample5.xml)]
 
 Here, `GetUniqueRadioButton` and `GetRadioButtonValue` would be methods defined in the code-behind class that returned the appropriate `id` and `value` attribute values for each radio button. This approach works well for assigning the `id` and `value` attributes, but falls short when needing to specify the `checked` attribute value because the databinding syntax is only executed when data is first bound to the GridView. Therefore, if the GridView has view state enabled, the formatting methods will only fire when the page is first loaded (or when the GridView is explicitly rebound to the data source), and therefore the function that sets the `checked` attribute won t be called on postback. It s a rather subtle problem and a bit beyond the scope of this article, so I'll leave it at this. I do, however, encourage you to try using the above approach and work it through to the point where you'll get stuck. While such an exercise won t get you any closer to a working version, it will help foster a deeper understanding of the GridView and the databinding lifecycle.
 
@@ -257,18 +192,7 @@ Next, create an event handler for the GridView s `RowCreated` event. The `RowCre
 In this event handler, we only want to proceed if we re dealing with a data row. For each data row we want to programmatically reference the `RadioButtonMarkup` Literal control and set its `Text` property to the markup to emit. As the following code shows, the markup emitted creates a radio button whose `name` attribute is set to `SuppliersGroup`, whose `id` attribute is set to `RowSelectorX`, where *X* is the index of the GridView row, and whose `value` attribute is set to the index of the GridView row.
 
 
-    protected void Suppliers_RowCreated(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            // Grab a reference to the Literal control
-            Literal output = (Literal)e.Row.FindControl("RadioButtonMarkup");
-            // Output the markup except for the "checked" attribute
-            output.Text = string.Format(
-                @"<input type="radio" name="SuppliersGroup" " +
-                @"id="RowSelector{0}" value="{0}" />", e.Row.RowIndex);
-        }
-    }
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample6.xml)]
 
 When a GridView row is selected and a postback occurs, we are interested in the `SupplierID` of the selected supplier. Therefore, one might think that the value of each radio button should be the actual `SupplierID` (rather than the index of the GridView row). While this may work in certain circumstances, it would be a security risk to blindly accept and process a `SupplierID`. Our GridView, for example, lists only those suppliers in the USA. However, if the `SupplierID` is passed directly from the radio button, what s to stop a mischievous user from manipulating the `SupplierID` value sent back on postback? By using the row index as the `value`, and then getting the `SupplierID` on postback from the `DataKeys` collection, we can ensure that the user is only using one of the `SupplierID` values associated with one of the GridView rows.
 
@@ -279,37 +203,12 @@ When a postback occurs, the browser sends back the `name` and `value` of the sel
 Since we'll need to determine the selected radio button index not only in the `RowCreated` event handler, but in the `Click` event handlers for the Button Web controls, let s add a `SuppliersSelectedIndex` property to the code-behind class that returns `-1` if no radio button was selected and the selected index if one of the radio buttons is selected.
 
 
-    private int SuppliersSelectedIndex
-    {
-        get
-        {
-            if (string.IsNullOrEmpty(Request.Form["SuppliersGroup"]))
-                return -1;
-            else
-                return Convert.ToInt32(Request.Form["SuppliersGroup"]);
-        }
-    }
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample7.xml)]
 
 With this property added, we know to add the `checked="checked"` markup in the `RowCreated` event handler when `SuppliersSelectedIndex` equals `e.Row.RowIndex`. Update the event handler to include this logic:
 
 
-    protected void Suppliers_RowCreated(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.DataRow)
-        {
-            // Grab a reference to the Literal control
-            Literal output = (Literal)e.Row.FindControl("RadioButtonMarkup");
-            // Output the markup except for the "checked" attribute
-            output.Text = string.Format(
-                @"<input type="radio" name="SuppliersGroup" " +
-                @"id="RowSelector{0}" value="{0}"", e.Row.RowIndex);
-            // See if we need to add the "checked" attribute
-            if (SuppliersSelectedIndex == e.Row.RowIndex)
-                output.Text += @" checked="checked"";
-            // Add the closing tag
-            output.Text += " />";
-        }
-    }
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample8.xml)]
 
 With this change, the selected radio button remains selected after a postback. Now that we have the ability to specify what radio button is selected, we could change the behavior so that when the page was first visited, the first GridView row s radio button was selected (rather than having no radio buttons selected by default, which is the current behavior). To have the first radio button selected by default, simply change the `if (SuppliersSelectedIndex == e.Row.RowIndex)` statement to the following: `if (SuppliersSelectedIndex == e.Row.RowIndex || (!Page.IsPostBack && e.Row.RowIndex == 0))`.
 
@@ -329,16 +228,7 @@ Currently there are two Button Web controls on the page `ListProducts` and `Send
 To provide this functionality, create an event handler for the `SendToProducts` Button s `Click` event. In Step 3 we added the `SuppliersSelectedIndex` property, which returns the index of the row whose radio button is selected. The corresponding `SupplierID` can be retrieved from the GridView s `DataKeys` collection and the user can then be sent to `~/Filtering/ProductsForSupplierDetails.aspx?SupplierID=SupplierID` using `Response.Redirect("url")`.
 
 
-    protected void SendToProducts_Click(object sender, EventArgs e)
-    {
-        // Send the user to ~/Filtering/ProductsForSupplierDetails.aspx
-        int supplierID = 
-            Convert.ToInt32(Suppliers.DataKeys[SuppliersSelectedIndex].Value);
-        Response.Redirect(
-            "~/Filtering/ProductsForSupplierDetails.aspx?SupplierID=" 
-            + supplierID);
-        }
-    }
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample9.xml)]
 
 This code works wonderfully as long as one of the radio buttons is selected from the GridView. If, initially, the GridView does not have any radio buttons selected, and the user clicks the `SendToProducts` button, `SuppliersSelectedIndex` will be `-1`, which will cause an exception to be thrown since `-1` is out of the index range of the `DataKeys` collection. This is not a concern, however, if you decided to update the `RowCreated` event handler as discussed in Step 3 so as to have the first radio button in the GridView initially selected.
 
@@ -353,21 +243,7 @@ To accommodate a `SuppliersSelectedIndex` value of `-1`, add a Label Web control
 Next, augment the `Click` event handler to display the `ChooseSupplierMsg` Label if `SuppliersSelectedIndex` is less than zero, and redirect the user to `~/Filtering/ProductsForSupplierDetails.aspx?SupplierID=SupplierID` otherwise.
 
 
-    protected void SendToProducts_Click(object sender, EventArgs e)
-    {
-        // make sure one of the radio buttons has been selected
-        if (SuppliersSelectedIndex < 0)
-            ChooseSupplierMsg.Visible = true;
-        else
-        {
-            // Send the user to ~/Filtering/ProductsForSupplierDetails.aspx
-            int supplierID = 
-                Convert.ToInt32(Suppliers.DataKeys[SuppliersSelectedIndex].Value);
-            Response.Redirect(
-                "~/Filtering/ProductsForSupplierDetails.aspx?SupplierID=" 
-                + supplierID);
-        }
-    }
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample10.xml)]
 
 Visit the page in a browser and click the `SendToProducts` button before selecting a supplier from the GridView. As Figure 14 shows, this displays the `ChooseSupplierMsg` label. Next, select a supplier and click the `SendToProducts` button. This will whisk you to a page that lists the products supplied by the selected supplier. Figure 15 shows the `ProductsForSupplierDetails.aspx` page when the Bigfoot Breweries supplier was selected.
 
@@ -422,53 +298,12 @@ Alternatively, we can use a ControlParameter and refer to the `Suppliers` GridVi
 Upon completing the wizard, Visual Studio will automatically add fields for the product s data fields. Remove all but the `ProductName`, `CategoryName`, and `UnitPrice` BoundFields, and change the `HeaderText` properties to Product , Category , and Price . Configure the `UnitPrice` BoundField so that its value is formatted as a currency. After making these changes, the Panel, GridView, and ObjectDataSource s declarative markup should look like the following:
 
 
-    <asp:Panel runat="server" ID="ProductsBySupplierPanel" Visible="False">
-        <h3>
-            Products for the Selected Supplier</h3>
-        <p>
-            <asp:GridView ID="ProductsBySupplier" runat="server" 
-                AutoGenerateColumns="False" DataKeyNames="ProductID"
-                DataSourceID="ProductsBySupplierDataSource" EnableViewState="False">
-                <Columns>
-                    <asp:BoundField DataField="ProductName" HeaderText="Product" 
-                        SortExpression="ProductName" />
-                    <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                        ReadOnly="True" SortExpression="CategoryName" />
-                    <asp:BoundField DataField="UnitPrice" DataFormatString="{0:c}" 
-                        HeaderText="Price" HtmlEncode="False" 
-                        SortExpression="UnitPrice" />
-                </Columns>
-            </asp:GridView>
-            <asp:ObjectDataSource ID="ProductsBySupplierDataSource" runat="server" 
-                OldValuesParameterFormatString="original_{0}"
-                SelectMethod="GetProductsBySupplierID" TypeName="ProductsBLL">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="Suppliers" Name="supplierID" 
-                        PropertyName="SelectedValue" Type="Int32" />
-                </SelectParameters>
-            </asp:ObjectDataSource>
-        </p>
-    </asp:Panel>
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample11.xml)]
 
 To complete this exercise, we need to set the GridView s `SelectedIndex` property to the `SelectedSuppliersIndex` and the `ProductsBySupplierPanel` Panel s `Visible` property to `true` when the `ListProducts` button is clicked. To accomplish this, create an event handler for the `ListProducts` Button Web control s `Click` event and add the following code:
 
 
-    protected void ListProducts_Click(object sender, EventArgs e)
-    {
-        // make sure one of the radio buttons has been selected
-        if (SuppliersSelectedIndex < 0)
-        {
-            ChooseSupplierMsg.Visible = true;
-            ProductsBySupplierPanel.Visible = false;
-        }
-        else
-        {
-            // Set the GridView's SelectedIndex
-            Suppliers.SelectedIndex = SuppliersSelectedIndex;
-            // Show the ProductsBySupplierPanel panel
-            ProductsBySupplierPanel.Visible = true;
-        }
-    }
+[!code[Main](adding-a-gridview-column-of-radio-buttons-cs/samples/sample12.xml)]
 
 If a supplier has not been selected from the GridView, the `ChooseSupplierMsg` Label is displayed and the `ProductsBySupplierPanel` Panel hidden. Otherwise, if a supplier has been selected, the `ProductsBySupplierPanel` is displayed and the GridView s `SelectedIndex` property is updated.
 

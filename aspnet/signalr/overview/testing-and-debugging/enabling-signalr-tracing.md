@@ -78,74 +78,7 @@ The following code shows how to enable tracing for each category of event. This 
 
 **XML server code for enabling tracing**
 
-    <system.diagnostics>
-        <sources> 
-          <source name="SignalR.SqlMessageBus">
-            <listeners>
-              <add name="SignalR-Bus" />
-            </listeners>
-          </source>
-          <source name="SignalR.ServiceBusMessageBus">
-            <listeners>
-              <add name="SignalR-Bus" />
-            </listeners>
-          </source>
-          <source name="SignalR.RedisMessageBus">
-            <listeners>
-              <add name="SignalR-Bus" />
-            </listeners>
-          </source>
-          <source name="SignalR.ScaleoutMessageBus">
-            <listeners>
-              <add name="SignalR-Bus" />
-            </listeners>
-          </source>
-          <source name="SignalR.Transports.WebSocketTransport">
-            <listeners>
-              <add name="SignalR-Transports" />
-            </listeners>
-          </source>     
-          <source name="SignalR.Transports.ServerSentEventsTransport">
-            <listeners>
-              <add name="SignalR-Transports" />
-            </listeners>
-          </source>
-          <source name="SignalR.Transports.ForeverFrameTransport">
-            <listeners>
-              <add name="SignalR-Transports" />
-            </listeners>
-          </source>
-          <source name="SignalR.Transports.LongPollingTransport">
-            <listeners>
-              <add name="SignalR-Transports" />
-            </listeners>
-          </source>
-          <source name="SignalR.Transports.TransportHeartBeat">
-            <listeners>
-              <add name="SignalR-Transports" />
-            </listeners>
-          </source>
-          <source name="SignalR.ReflectedHubDescriptorProvider">
-            <listeners>
-              <add name="SignalR-Init" />
-            </listeners>
-          </source>
-        </sources>
-        <!-- Sets the trace verbosity level -->
-        <switches>
-          <add name="SignalRSwitch" value="Verbose" />
-        </switches>
-        <!-- Specifies the trace writer for output -->
-        <sharedListeners>
-          <!-- Listener for transport events -->
-          <add name="SignalR-Transports" type="System.Diagnostics.TextWriterTraceListener" initializeData="transports.log.txt" />
-          <!-- Listener for scaleout provider events -->
-          <add name="SignalR-Bus" type="System.Diagnostics.TextWriterTraceListener" initializeData="bus.log.txt" />
-          <!-- Listener for hub discovery events -->
-          <add name="SignalR-Init" type="System.Diagnostics.TextWriterTraceListener" initializeData="init.log.txt" />
-        </sharedListeners>
-        <trace autoflush="true" />
-      </system.diagnostics>
+[!code[Main](enabling-signalr-tracing/samples/sample1.xml)]
 
 In the code above, the `SignalRSwitch` entry specifies the [TraceLevel](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracelevel(v=vs.110).aspx) used for events sent to the specified log. In this case, it is set to `Verbose` which means all debugging and tracing messages are logged.
 
@@ -160,14 +93,7 @@ To log events to the event log rather than a text file, change the values for th
 
 **XML server code for logging events to the event log**
 
-    <sharedListeners>
-      <!-- Listener for transport events -->
-      <add name="SignalR-Transports" type="System.Diagnostics.EventLogTraceListener" initializeData="SignalRScaleoutLog" />
-      <!-- Listener for scaleout provider events -->
-      <add name="SignalR-Bus" type="System.Diagnostics.EventLogTraceListener" initializeData="SignalRTransportLog" />
-      <!-- Listener for hub discovery events -->
-      <add name="SignalR-Init" type="System.Diagnostics.EventLogTraceListener" initializeData="SignalRInitLog" />
-    </sharedListeners>
+[!code[Main](enabling-signalr-tracing/samples/sample2.xml)]
 
 The events are logged in the Application log, and are available through the Event Viewer, as shown below:
 
@@ -187,14 +113,14 @@ To enable logging in the .NET client, set the connection's `TraceLevel` property
 
 The following C# code shows how to log events in the .NET client to the console:
 
-[!code[Main](enabling-signalr-tracing/samples/sample1.xml?highlight=2-3)]
+[!code[Main](enabling-signalr-tracing/samples/sample3.xml?highlight=2-3)]
 
 <a id="desktop_text"></a>
 ### Logging Desktop client events to a text file
 
 The following C# code shows how to log events in the .NET client to a text file:
 
-[!code[Main](enabling-signalr-tracing/samples/sample2.xml?highlight=4-5)]
+[!code[Main](enabling-signalr-tracing/samples/sample4.xml?highlight=4-5)]
 
 The following output shows entries from the `ClientLog.txt` file for an application using the above configuration file. It shows the client connecting to the server, and the hub invoking a client method called `addMessage`:
 
@@ -210,10 +136,7 @@ SignalR applications for Windows Phone apps use the same .NET client as desktop 
 
 The [SignalR codebase](https://github.com/SignalR/SignalR/archive/master.zip) includes a Windows Phone sample that writes trace output to a [TextBlock](https://msdn.microsoft.com/library/windows/apps/windows.ui.xaml.controls.textblock.aspx) using a custom [TextWriter](https://msdn.microsoft.com/en-us/library/system.io.textwriter(v=vs.110).aspx) implementation called `TextBlockWriter`. This class can be found in the **samples/Microsoft.AspNet.SignalR.Client.WP8.Samples** project. When creating an instance of `TextBlockWriter`, pass in the current [SynchronizationContext](https://msdn.microsoft.com/en-us/library/system.threading.synchronizationcontext(v=vs.110).aspx), and a [StackPanel](https://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.stackpanel.aspx) where it will create a [TextBlock](https://msdn.microsoft.com/library/windows/apps/windows.ui.xaml.controls.textblock.aspx) to use for trace output:
 
-    Connection = new HubConnection(ServerURI);
-    var writer = new TextBlockWriter(SynchronizationContext.Current, StackPanelConsole);
-    Connection.TraceWriter = writer;
-    Connection.TraceLevel = TraceLevels.All;
+[!code[Main](enabling-signalr-tracing/samples/sample5.xml)]
 
 The trace output will then be written to a new [TextBlock](https://msdn.microsoft.com/library/windows/apps/windows.ui.xaml.controls.textblock.aspx) created in the [StackPanel](https://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.stackpanel.aspx) you passed in:
 
@@ -224,50 +147,7 @@ The trace output will then be written to a new [TextBlock](https://msdn.microsof
 
 To send output to the debug console rather than the UI, create an implementation of [TextWriter](https://msdn.microsoft.com/en-us/library/system.io.textwriter(v=vs.110).aspx) that writes to the debug window, and assign it to your connection's [TraceWriter](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.client.connection.tracewriter(v=vs.118).aspx) property:
 
-    Connection = new HubConnection(ServerURI);
-    var writer = new DebugTextWriter();
-    Connection.TraceWriter = writer;
-    Connection.TraceLevel = TraceLevels.All;
-    
-    ...
-    
-    private class DebugTextWriter : TextWriter
-    {
-        private StringBuilder buffer;
-    
-        public DebugTextWriter()
-        {
-            buffer = new StringBuilder();
-        }
-    
-        public override void Write(char value)
-        {
-            switch (value)
-            {
-                case '\n':
-                    return;
-                case '\r':
-                    Debug.WriteLine(buffer.ToString());
-                    buffer.Clear();
-                    return;
-                default:
-                    buffer.Append(value);
-                    break;
-            }
-        }
-                
-        public override void Write(string value)
-        {
-            Debug.WriteLine(value);
-                    
-        }
-        #region implemented abstract members of TextWriter
-        public override Encoding Encoding
-        {
-            get { throw new NotImplementedException(); }
-        }
-        #endregion
-    }
+[!code[Main](enabling-signalr-tracing/samples/sample6.xml)]
 
 Trace information will then be written to the debug window in Visual Studio:
 
@@ -280,11 +160,11 @@ To enable client-side logging on a connection, set the `logging` property on the
 
 **Client JavaScript code for enabling tracing to the browser console (with the generated proxy)**
 
-[!code[Main](enabling-signalr-tracing/samples/sample3.xml?highlight=1)]
+[!code[Main](enabling-signalr-tracing/samples/sample7.xml?highlight=1)]
 
 **Client JavaScript code for enabling tracing to the browser console (without the generated proxy)**
 
-[!code[Main](enabling-signalr-tracing/samples/sample4.xml?highlight=2)]
+[!code[Main](enabling-signalr-tracing/samples/sample8.xml?highlight=2)]
 
 When tracing is enabled, the JavaScript client logs events to the browser console. To access the browser console, see [Monitoring Transports](../getting-started/introduction-to-signalr.md).
 

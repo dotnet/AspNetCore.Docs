@@ -62,52 +62,7 @@ Since there are close to 80 products in the database, a user will have to scroll
 At this point, the GridView and ObjectDataSource s declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="Products" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="ProductID" DataSourceID="ProductsDataSource" 
-        AllowPaging="True" EnableViewState="False">
-        <Columns>
-            <asp:BoundField DataField="ProductID" HeaderText="ProductID" 
-                InsertVisible="False" ReadOnly="True" 
-                SortExpression="ProductID" />
-            <asp:BoundField DataField="ProductName" HeaderText="ProductName" 
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="SupplierID" HeaderText="SupplierID" 
-                SortExpression="SupplierID" />
-            <asp:BoundField DataField="CategoryID" HeaderText="CategoryID" 
-                SortExpression="CategoryID" />
-            <asp:BoundField DataField="QuantityPerUnit" HeaderText="QuantityPerUnit" 
-                SortExpression="QuantityPerUnit" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="UnitPrice" 
-                SortExpression="UnitPrice" />
-            <asp:BoundField DataField="UnitsInStock" HeaderText="UnitsInStock" 
-                SortExpression="UnitsInStock" />
-            <asp:BoundField DataField="UnitsOnOrder" HeaderText="UnitsOnOrder" 
-                SortExpression="UnitsOnOrder" />
-            <asp:BoundField DataField="ReorderLevel" HeaderText="ReorderLevel" 
-                SortExpression="ReorderLevel" />
-            <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued" 
-                SortExpression="Discontinued" />
-            <asp:BoundField DataField="CategoryName" HeaderText="CategoryName" 
-                ReadOnly="True" SortExpression="CategoryName" />
-            <asp:BoundField DataField="SupplierName" HeaderText="SupplierName" 
-                ReadOnly="True" SortExpression="SupplierName" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="ProductsDataSource" runat="server" 
-        InsertMethod="AddProduct" OldValuesParameterFormatString="original_{0}" 
-        SelectMethod="GetProducts" TypeName="ProductsBLL">
-        <InsertParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="supplierID" Type="Int32" />
-            <asp:Parameter Name="categoryID" Type="Int32" />
-            <asp:Parameter Name="quantityPerUnit" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="unitsInStock" Type="Int16" />
-            <asp:Parameter Name="unitsOnOrder" Type="Int16" />
-            <asp:Parameter Name="reorderLevel" Type="Int16" />
-            <asp:Parameter Name="discontinued" Type="Boolean" />
-        </InsertParameters>
-    </asp:ObjectDataSource>
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample1.xml)]
 
 
 [![All Product Data Fields are Displayed in a Paged GridView](inserting-a-new-record-from-the-gridview-s-footer-vb/_static/image5.gif)](inserting-a-new-record-from-the-gridview-s-footer-vb/_static/image9.png)
@@ -128,12 +83,7 @@ Along with its header and data rows, the GridView includes a footer row. The hea
 Note that the footer row has a dark red background color. This is due to the DataWebControls Theme we created and applied to all pages back in the [Displaying Data With the ObjectDataSource](../basic-reporting/displaying-data-with-the-objectdatasource-vb.md) tutorial. Specifically, the `GridView.skin` file configures the `FooterStyle` property such that is uses the `FooterStyle` CSS class. The `FooterStyle` class is defined in `Styles.css` as follows:
 
 
-    .FooterStyle
-    {
-        background-color: #a33;
-        color: White;
-        text-align: right;
-    }
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample2.xml)]
 
 > [!NOTE] We ve explored using the GridView s footer row in previous tutorials. If needed, refer back to the [Displaying Summary Information in the GridView's Footer](../custom-formatting/displaying-summary-information-in-the-gridview-s-footer-vb.md) tutorial for a refresher.
 
@@ -161,108 +111,14 @@ Along with the `ItemTemplate` and `EditItemTemplate`, the TemplateField also inc
 Clicking the Convert this field into a TemplateField turns the current field type into an equivalent TemplateField. For example, each BoundField is replaced by a TemplateField with an `ItemTemplate` that contains a Label that displays the corresponding data field and an `EditItemTemplate` that displays the data field in a TextBox. The `ProductName` BoundField has been converted into the following TemplateField markup:
 
 
-    <asp:TemplateField HeaderText="ProductName" SortExpression="ProductName">
-        <EditItemTemplate>
-            <asp:TextBox ID="TextBox1" runat="server" 
-                Text='<%# Bind("ProductName") %>'></asp:TextBox>
-        </EditItemTemplate>
-        <ItemTemplate>
-            <asp:Label ID="Label2" runat="server" 
-                Text='<%# Bind("ProductName") %>'></asp:Label>
-        </ItemTemplate>
-    </asp:TemplateField>
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample3.xml)]
 
 Likewise, the `Discontinued` CheckBoxField has been converted into a TemplateField whose `ItemTemplate` and `EditItemTemplate` contain a CheckBox Web control (with the `ItemTemplate` s CheckBox disabled). The read-only `ProductID` BoundField has been converted into a TemplateField with a Label control in both the `ItemTemplate` and `EditItemTemplate`. In short, converting an existing GridView field into a TemplateField is a quick and easy way to switch to the more customizable TemplateField without losing any of the existing field s functionality.
 
 Since the GridView we re working with doesn t support editing, feel free to remove the `EditItemTemplate` from each TemplateField, leaving just the `ItemTemplate`. After doing this, your GridView s declarative markup should look like the following:
 
 
-    <asp:GridView ID="Products" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="ProductID" DataSourceID="ProductsDataSource" 
-        AllowPaging="True" EnableViewState="False" ShowFooter="True">
-        <Columns>
-            <asp:TemplateField HeaderText="ProductID" InsertVisible="False" 
-                SortExpression="ProductID">
-                <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server" 
-                        Text='<%# Bind("ProductID") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="ProductName" SortExpression="ProductName">
-                <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server" 
-                        Text='<%# Bind("ProductName") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="SupplierID" SortExpression="SupplierID">
-                <ItemTemplate>
-                    <asp:Label ID="Label3" runat="server" 
-                        Text='<%# Bind("SupplierID") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="CategoryID" SortExpression="CategoryID">
-                <ItemTemplate>
-                    <asp:Label ID="Label4" runat="server" 
-                        Text='<%# Bind("CategoryID") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="QuantityPerUnit" 
-                SortExpression="QuantityPerUnit">
-                <ItemTemplate>
-                    <asp:Label ID="Label5" runat="server" 
-                        Text='<%# Bind("QuantityPerUnit") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="UnitPrice" SortExpression="UnitPrice">
-                <ItemTemplate>
-                    <asp:Label ID="Label6" runat="server" 
-                        Text='<%# Bind("UnitPrice") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="UnitsInStock" 
-                SortExpression="UnitsInStock">
-                <ItemTemplate>
-                    <asp:Label ID="Label7" runat="server" 
-                        Text='<%# Bind("UnitsInStock") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="UnitsOnOrder" 
-                SortExpression="UnitsOnOrder">
-                <ItemTemplate>
-                    <asp:Label ID="Label8" runat="server" 
-                        Text='<%# Bind("UnitsOnOrder") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="ReorderLevel" 
-                SortExpression="ReorderLevel">
-                <ItemTemplate>
-                    <asp:Label ID="Label9" runat="server" 
-                        Text='<%# Bind("ReorderLevel") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Discontinued" 
-                SortExpression="Discontinued">
-                <ItemTemplate>
-                    <asp:CheckBox ID="CheckBox1" runat="server" 
-                        Checked='<%# Bind("Discontinued") %>' Enabled="false" />
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="CategoryName" 
-                SortExpression="CategoryName">
-                <ItemTemplate>
-                    <asp:Label ID="Label10" runat="server" 
-                        Text='<%# Bind("CategoryName") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="SupplierName" 
-                SortExpression="SupplierName">
-                <ItemTemplate>
-                    <asp:Label ID="Label11" runat="server" 
-                        Text='<%# Bind("SupplierName") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample4.xml)]
 
 Now that each GridView field has been converted into a TemplateField, we can enter the appropriate inserting interface into each field s `FooterTemplate`. Some of the fields will not have an inserting interface (`ProductID`, for instance); others will vary in the Web controls used to collect the new product s information.
 
@@ -300,156 +156,7 @@ Feel free to improve the appearance of the various GridView fields. For example,
 After creating the slew of inserting interfaces in the `FooterTemplate` s, removing the `SupplierID`, and `CategoryID` TemplateFields, and improving the aesthetics of the grid through formatting and aligning the TemplateFields, your GridView s declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="Products" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="ProductID" DataSourceID="ProductsDataSource" 
-        AllowPaging="True" EnableViewState="False" ShowFooter="True">
-        <Columns>
-            <asp:TemplateField HeaderText="ProductID" InsertVisible="False" 
-                SortExpression="ProductID">
-                <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server" 
-                        Text='<%# Bind("ProductID") %>'></asp:Label>
-                </ItemTemplate>
-                <ItemStyle HorizontalAlign="Center" />
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Product" SortExpression="ProductName">
-                <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server" 
-                        Text='<%# Bind("ProductName") %>'></asp:Label>
-                </ItemTemplate>
-                <FooterTemplate>
-                    <asp:TextBox ID="NewProductName" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
-                        runat="server" ControlToValidate="NewProductName"
-                        Display="Dynamic"  ForeColor="
-                        ErrorMessage="You must enter a name for the new product.">
-                        * </asp:RequiredFieldValidator>
-                </FooterTemplate>
-                <FooterStyle Wrap="False" />
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Category" SortExpression="CategoryName">
-                <ItemTemplate>
-                    <asp:Label ID="Label10" runat="server" 
-                        Text='<%# Bind("CategoryName") %>'></asp:Label>
-                </ItemTemplate>
-                <FooterTemplate>
-                    <asp:DropDownList ID="NewCategoryID" runat="server" 
-                        DataSourceID="CategoriesDataSource"
-                        DataTextField="CategoryName" DataValueField="CategoryID">
-                    </asp:DropDownList>
-                    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server"
-                        OldValuesParameterFormatString="original_{0}" 
-                        SelectMethod="GetCategories" TypeName="CategoriesBLL">
-                    </asp:ObjectDataSource>
-                </FooterTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Supplier" SortExpression="SupplierName">
-                <ItemTemplate>
-                    <asp:Label ID="Label11" runat="server" 
-                        Text='<%# Bind("SupplierName") %>'></asp:Label>
-                </ItemTemplate>
-                <FooterTemplate>
-                    <asp:DropDownList ID="NewSupplierID" runat="server" 
-                        DataSourceID="SuppliersDataSource"
-                        DataTextField="CompanyName" DataValueField="SupplierID">
-                    </asp:DropDownList><asp:ObjectDataSource ID="SuppliersDataSource" 
-                        runat="server" OldValuesParameterFormatString="original_{0}" 
-                        SelectMethod="GetSuppliers" TypeName="SuppliersBLL">
-                    </asp:ObjectDataSource>
-                </FooterTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Qty/Unit" SortExpression="QuantityPerUnit">
-                <ItemTemplate>
-                    <asp:Label ID="Label5" runat="server" 
-                        Text='<%# Bind("QuantityPerUnit") %>'></asp:Label>
-                </ItemTemplate>
-                <FooterTemplate>
-                    <asp:TextBox ID="NewQuantityPerUnit" runat="server"></asp:TextBox>
-                </FooterTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Price" SortExpression="UnitPrice">
-                <ItemTemplate>
-                    <asp:Label ID="Label6" runat="server" 
-                        Text='<%# Bind("UnitPrice", "{0:c}") %>'></asp:Label>
-                </ItemTemplate>
-                <FooterTemplate>
-                    $<asp:TextBox ID="NewUnitPrice" runat="server" Columns="8" />
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" 
-                        ControlToValidate="NewUnitPrice"
-                        ErrorMessage="You must enter a valid currency value greater than 
-                            or equal to 0.00. Do not include the currency symbol."
-                        ForeColor="" Operator="GreaterThanEqual" Type="Currency" 
-                        ValueToCompare="0" Display="Dynamic">
-                        * </asp:CompareValidator>
-                </FooterTemplate>
-                <ItemStyle HorizontalAlign="Right" />
-                <FooterStyle Wrap="False" />
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Units In Stock" 
-                SortExpression="Units In Stock">
-                <ItemTemplate>
-                    <asp:Label ID="Label7" runat="server" 
-                        Text='<%# Bind("UnitsInStock") %>'></asp:Label>
-                </ItemTemplate>
-                <FooterTemplate>
-                    <asp:TextBox ID="NewUnitsInStock" runat="server" Columns="5" />
-                    <asp:CompareValidator ID="CompareValidator2" runat="server" 
-                        ControlToValidate="NewUnitsInStock" Display="Dynamic" 
-                        ErrorMessage="You must enter a valid numeric value for units 
-                            in stock that's greater than or equal to zero."
-                        ForeColor="" Operator="GreaterThanEqual" Type="Integer" 
-                            ValueToCompare="0">*</asp:CompareValidator>
-                </FooterTemplate>
-                <ItemStyle HorizontalAlign="Right" />
-                <FooterStyle Wrap="False" />
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Units On Order" SortExpression="UnitsOnOrder">
-                <ItemTemplate>
-                    <asp:Label ID="Label8" runat="server" 
-                        Text='<%# Bind("UnitsOnOrder") %>'></asp:Label>
-                </ItemTemplate>
-                <FooterTemplate>
-                    <asp:TextBox ID="NewUnitsOnOrder" runat="server" Columns="5" />
-                    <asp:CompareValidator ID="CompareValidator3" runat="server" 
-                        ControlToValidate="NewUnitsOnOrder" Display="Dynamic" 
-                        ErrorMessage="You must enter a valid numeric value for units on 
-                            order that's greater than or equal to zero."
-                        ForeColor="" Operator="GreaterThanEqual" Type="Integer" 
-                        ValueToCompare="0">*</asp:CompareValidator>
-                </FooterTemplate>
-                <ItemStyle HorizontalAlign="Right" />
-                <FooterStyle Wrap="False" />
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Reorder Level" SortExpression="ReorderLevel">
-                <ItemTemplate>
-                    <asp:Label ID="Label9" runat="server" 
-                        Text='<%# Bind("ReorderLevel") %>'></asp:Label>
-                </ItemTemplate>
-                <FooterTemplate>
-                    <asp:TextBox ID="NewReorderLevel" runat="server" Columns="5" />
-                    <asp:CompareValidator ID="CompareValidator4" runat="server" 
-                        ControlToValidate="NewReorderLevel" Display="Dynamic" 
-                        ErrorMessage="You must enter a valid numeric value for reorder 
-                            level that's greater than or equal to zero."
-                        ForeColor="" Operator="GreaterThanEqual" Type="Integer" 
-                        ValueToCompare="0">*</asp:CompareValidator>
-                </FooterTemplate>
-                <ItemStyle HorizontalAlign="Right" />
-                <FooterStyle Wrap="False" />
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Discontinued" SortExpression="Discontinued">
-                <ItemTemplate>
-                    <asp:CheckBox ID="CheckBox1" runat="server" 
-                        Checked='<%# Bind("Discontinued") %>' Enabled="false" />
-                </ItemTemplate>
-                <FooterTemplate>
-                    <asp:CheckBox ID="NewDiscontinued" runat="server" />
-                </FooterTemplate>
-                <ItemStyle HorizontalAlign="Center" />
-                <FooterStyle HorizontalAlign="Center" />
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample5.xml)]
 
 When viewed through a browser, the GridView s footer row now includes the completed inserting interface (see Figure 10). At this point, the inserting interface doesn t include a means for the user to indicate that she s entered the data for the new product and wants to insert a new record into the database. Also, we ve yet to address how the data entered into the footer will translate into a new record in the `Products` database. In Step 4 we'll look at how to include an Add button to the inserting interface and how to execute code on postback when it s clicked. Step 5 shows how to insert a new record using the data from the footer.
 
@@ -491,15 +198,7 @@ This insert logic should be executed after the Add button has been clicked. As d
 Therefore, to respond to the user clicking the Add button, we need to create an event handler for the GridView s `RowCommand` event. Since this event fires whenever *any* Button, LinkButton, or ImageButton in the GridView is clicked, it s vital that we only proceed with the inserting logic if the `CommandName` property passed into the event handler maps to the `CommandName` value of the Add button ( Insert ). Moreover, we should also only proceed if the validation controls report valid data. To accommodate this, create an event handler for the `RowCommand` event with the following code:
 
 
-    Protected Sub Products_RowCommand(sender As Object, e As GridViewCommandEventArgs) _
-        Handles Products.RowCommand
-        
-        ' Insert data if the CommandName == "Insert" 
-        ' and the validation controls indicate valid data...
-        If e.CommandName = "Insert" AndAlso Page.IsValid Then
-            ' TODO: Insert new record...
-        End If
-    End Sub
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample6.xml)]
 
 > [!NOTE] You may be wondering why the event handler bothers checking the `Page.IsValid` property. After all, won t the postback be suppressed if invalid data is provided in the inserting interface? This assumption is correct as long as the user has not disabled JavaScript or has taken steps to circumvent the client-side validation logic. In short, one should never rely strictly on client-side validation; a server-side check for validity should always be performed before working with the data.
 
@@ -507,76 +206,12 @@ Therefore, to respond to the user clicking the Add button, we need to create an 
 In Step 1 we created the `ProductsDataSource` ObjectDataSource such that its `Insert()` method is mapped to the `ProductsBLL` class s `AddProduct` method. To insert the new record into the `Products` table, we can simply invoke the ObjectDataSource s `Insert()` method:
 
 
-    Protected Sub Products_RowCommand(sender As Object, e As GridViewCommandEventArgs) _
-        Handles Products.RowCommand
-        
-        ' Insert data if the CommandName == "Insert" 
-        ' and the validation controls indicate valid data...
-        If e.CommandName = "Insert" AndAlso Page.IsValid Then
-            ' Insert new record
-            ProductsDataSource.Insert()
-        End If
-    End Sub
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample7.xml)]
 
 Now that the `Insert()` method has been invoked, all that remains is to copy the values from the inserting interface to the parameters passed to the `ProductsBLL` class s `AddProduct` method. As we saw back in the [Examining the Events Associated with Inserting, Updating, and Deleting](../editing-inserting-and-deleting-data/examining-the-events-associated-with-inserting-updating-and-deleting-vb.md) tutorial, this can be accomplished through the ObjectDataSource s `Inserting` event. In the `Inserting` event we need to programmatically reference the controls from the `Products` GridView s footer row and assign their values to the `e.InputParameters` collection. If the user omits a value such as leaving the `ReorderLevel` TextBox blank we need to specify that the value inserted into the database should be `NULL`. Since the `AddProducts` method accepts nullable types for the nullable database fields, simply use a nullable type and set its value to `Nothing` in the case where user input is omitted.
 
 
-    Protected Sub ProductsDataSource_Inserting _
-        (sender As Object, e As .ObjectDataSourceMethodEventArgs) _
-        Handles ProductsDataSource.Inserting
-        
-        ' Programmatically reference Web controls in the inserting interface...
-        Dim NewProductName As TextBox = _
-            Products.FooterRow.FindControl("NewProductName")
-        Dim NewCategoryID As DropDownList = _
-            Products.FooterRow.FindControl("NewCategoryID")
-        Dim NewSupplierID As DropDownList = _
-            Products.FooterRow.FindControl("NewSupplierID")
-        Dim NewQuantityPerUnit As TextBox = _
-            Products.FooterRow.FindControl("NewQuantityPerUnit")
-        Dim NewUnitPrice As TextBox = _
-            Products.FooterRow.FindControl("NewUnitPrice")
-        Dim NewUnitsInStock As TextBox = _
-            Products.FooterRow.FindControl("NewUnitsInStock")
-        Dim NewUnitsOnOrder As TextBox = _
-            Products.FooterRow.FindControl("NewUnitsOnOrder")
-        Dim NewReorderLevel As TextBox = _
-            Products.FooterRow.FindControl("NewReorderLevel")
-        Dim NewDiscontinued As CheckBox = _
-            Products.FooterRow.FindControl("NewDiscontinued")
-        ' Set the ObjectDataSource's InsertParameters values...
-        e.InputParameters("productName") = NewProductName.Text
-        e.InputParameters("supplierID") = _
-            Convert.ToInt32(NewSupplierID.SelectedValue)
-        e.InputParameters("categoryID") = _
-            Convert.ToInt32(NewCategoryID.SelectedValue)
-        Dim quantityPerUnit As String = Nothing
-        If Not String.IsNullOrEmpty(NewQuantityPerUnit.Text) Then
-            quantityPerUnit = NewQuantityPerUnit.Text
-        End If
-        e.InputParameters("quantityPerUnit") = quantityPerUnit
-        Dim unitPrice As Nullable(Of Decimal) = Nothing
-        If Not String.IsNullOrEmpty(NewUnitPrice.Text) Then
-            unitPrice = Convert.ToDecimal(NewUnitPrice.Text)
-        End If
-        e.InputParameters("unitPrice") = unitPrice
-        Dim unitsInStock As Nullable(Of Short) = Nothing
-        If Not String.IsNullOrEmpty(NewUnitsInStock.Text) Then
-            unitsInStock = Convert.ToInt16(NewUnitsInStock.Text)
-        End If
-        e.InputParameters("unitsInStock") = unitsInStock
-        Dim unitsOnOrder As Nullable(Of Short) = Nothing
-        If Not String.IsNullOrEmpty(NewUnitsOnOrder.Text) Then
-            unitsOnOrder = Convert.ToInt16(NewUnitsOnOrder.Text)
-        End If
-        e.InputParameters("unitsOnOrder") = unitsOnOrder
-        Dim reorderLevel As Nullable(Of Short) = Nothing
-        If Not String.IsNullOrEmpty(NewReorderLevel.Text) Then
-            reorderLevel = Convert.ToInt16(NewReorderLevel.Text)
-        End If
-        e.InputParameters("reorderLevel") = reorderLevel
-        e.InputParameters("discontinued") = NewDiscontinued.Checked
-    End Sub
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample8.xml)]
 
 With the `Inserting` event handler completed, new records can be added to the `Products` database table via the GridView s footer row. Go ahead and try adding several new products.
 
@@ -587,20 +222,12 @@ Currently, clicking the Add button adds a new record to the database table but d
 The GridView used in this tutorial does not apply any sort order to the listed products, nor does it allow the end user to sort the data. Consequently, the records are ordered as they are in the database by their primary key field. Since each new record has a `ProductID` value greater than the last one, every time a new product is added it is tacked on to the end of the grid. Therefore, you may want to automatically send the user to the last page of the GridView after adding a new record. This can be accomplished by adding the following line of code after the call to `ProductsDataSource.Insert()` in the `RowCommand` event handler to indicate that the user needs to be sent to the last page after binding the data to the GridView:
 
 
-    ' Indicate that the user needs to be sent to the last page
-    SendUserToLastPage = True
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample9.xml)]
 
 `SendUserToLastPage` is a page-level Boolean variable that is initially assigned a value of `False`. In the GridView s `DataBound` event handler, if `SendUserToLastPage` is false, the `PageIndex` property is updated to send the user to the last page.
 
 
-    Protected Sub Products_DataBound(sender As Object, e As EventArgs) _
-        Handles Products.DataBound
-        
-        ' Send user to last page of data, if needed
-        If SendUserToLastPage Then
-            Products.PageIndex = Products.PageCount - 1
-        End If
-    End Sub
+[!code[Main](inserting-a-new-record-from-the-gridview-s-footer-vb/samples/sample10.xml)]
 
 The reason the `PageIndex` property is set in the `DataBound` event handler (as opposed to the `RowCommand` event handler) is because when the `RowCommand` event handler fires we ve yet to add the new record to the `Products` database table. Therefore, in the `RowCommand` event handler the last page index (`PageCount - 1`) represents the last page index *before* the new product has been added. For the majority of products being added, the last page index is the same after adding the new product. But when the added product results in a new last page index, if we incorrectly update the `PageIndex` in the `RowCommand` event handler then we'll be taken to the second to last page (the last page index prior to adding the new product) as opposed to the new last page index. Since the `DataBound` event handler fires after the new product has been added and the data rebound to the grid, by setting the `PageIndex` property there we know we re getting the correct last page index.
 

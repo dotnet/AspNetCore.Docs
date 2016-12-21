@@ -50,10 +50,7 @@ Open the Typed DataSet and, from the Designer, right-click on the `CategoriesTab
 We now need to specify the `INSERT` SQL statement. The wizard automatically suggests an `INSERT` statement corresponding to the TableAdapter s main query. In this case, it s an `INSERT` statement that inserts the `CategoryName`, `Description`, and `BrochurePath` values. Update the statement so that the `Picture` column is included along with a `@Picture` parameter, like so:
 
 
-    INSERT INTO [Categories] 
-        ([CategoryName], [Description], [BrochurePath], [Picture]) 
-    VALUES 
-        (@CategoryName, @Description, @BrochurePath, @Picture)
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample1.xml)]
 
 The final screen of the wizard asks us to name the new TableAdapter method. Enter `InsertWithPicture` and click Finish.
 
@@ -68,13 +65,7 @@ The final screen of the wizard asks us to name the new TableAdapter method. Ente
 Since the Presentation Layer should only interface with the Business Logic Layer rather than bypassing it to go directly to the Data Access Layer, we need to create a BLL method that invokes the DAL method we just created (`InsertWithPicture`). For this tutorial, create a method in the `CategoriesBLL` class named `InsertWithPicture` that accepts as input three `String` s and a `Byte` array. The `String` input parameters are for the category s name, description, and brochure file path, while the `Byte` array is for the binary contents of the category s picture. As the following code shows, this BLL method invokes the corresponding DAL method:
 
 
-    <System.ComponentModel.DataObjectMethodAttribute _
-        (System.ComponentModel.DataObjectMethodType.Insert, False)> _
-    Public Sub InsertWithPicture(categoryName As String, description As String, _
-        brochurePath As String, picture() As Byte)
-        
-        Adapter.InsertWithPicture(categoryName, description, brochurePath, picture)
-    End Sub
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample2.xml)]
 
 > [!NOTE] Make sure that you have saved the Typed DataSet before adding the `InsertWithPicture` method to the BLL. Since the `CategoriesTableAdapter` class code is auto-generated based on the Typed DataSet, if you don t first save your changes to the Typed DataSet the `Adapter` property won t know about the `InsertWithPicture` method.
 
@@ -117,16 +108,7 @@ Start by clicking the Configure Data Source link from the ObjectDataSource s sma
 After completing the wizard, the ObjectDataSource will now include a value for its `InsertMethod` property as well as `InsertParameters` for the four category columns, as the following declarative markup illustrates:
 
 
-    <asp:ObjectDataSource ID="CategoriesDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}" SelectMethod="GetCategories" 
-        TypeName="CategoriesBLL" InsertMethod="InsertWithPicture">
-        <InsertParameters>
-            <asp:Parameter Name="categoryName" Type="String" />
-            <asp:Parameter Name="description" Type="String" />
-            <asp:Parameter Name="brochurePath" Type="String" />
-            <asp:Parameter Name="picture" Type="Object" />
-        </InsertParameters>
-    </asp:ObjectDataSource>
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample3.xml)]
 
 ## Step 5: Creating the Inserting Interface
 
@@ -156,27 +138,7 @@ and Enable Inserting](including-a-file-upload-option-when-adding-a-new-record-vb
 If you converted the `BrochurePath` BoundField into a TemplateField through the Edit Fields dialog box, the TemplateField includes an `ItemTemplate`, `EditItemTemplate`, and `InsertItemTemplate`. Only the `InsertItemTemplate` is needed, however, so feel free to remove the other two templates. At this point your DetailsView s declarative syntax should look like the following:
 
 
-    <asp:DetailsView ID="NewCategory" runat="server" AutoGenerateRows="False" 
-        DataKeyNames="CategoryID" DataSourceID="CategoriesDataSource" 
-        DefaultMode="Insert">
-        <Fields>
-            <asp:BoundField DataField="CategoryID" HeaderText="CategoryID" 
-                InsertVisible="False" ReadOnly="True" 
-                SortExpression="CategoryID" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category" 
-                SortExpression="CategoryName" />
-            <asp:BoundField DataField="Description" HeaderText="Description" 
-                SortExpression="Description" />
-            <asp:TemplateField HeaderText="Brochure" SortExpression="BrochurePath">
-                <InsertItemTemplate>
-                    <asp:TextBox ID="TextBox1" runat="server"
-                        Text='<%# Bind("BrochurePath") %>'></asp:TextBox>
-                </InsertItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Picture"></asp:TemplateField>
-            <asp:CommandField ShowInsertButton="True" />
-        </Fields>
-    </asp:DetailsView>
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample4.xml)]
 
 ## Adding FileUpload Controls for the Brochure and Picture Fields
 
@@ -193,16 +155,7 @@ From the DetailsView s smart tag, choose the Edit Templates option and then sele
 After making these additions, the two TemplateField s declarative syntax will be:
 
 
-    <asp:TemplateField HeaderText="Brochure" SortExpression="BrochurePath">
-        <InsertItemTemplate>
-            <asp:FileUpload ID="BrochureUpload" runat="server" />
-        </InsertItemTemplate>
-    </asp:TemplateField>
-    <asp:TemplateField HeaderText="Picture">
-        <InsertItemTemplate>
-            <asp:FileUpload ID="PictureUpload" runat="server" />
-        </InsertItemTemplate>
-    </asp:TemplateField>
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample5.xml)]
 
 When a user adds a new category, we want to ensure that the brochure and picture are of the correct file type. For the brochure, the user must supply a PDF. For the picture, we need the user to upload an image file, but do we allow *any* image file or only image files of a particular type, such as GIFs or JPGs? In order to allow for different file types, we d need to extend the `Categories` schema to include a column that captures the file type so that this type can be sent to the client through `Response.ContentType` in `DisplayCategoryPicture.aspx`. Since we don t have such a column, it would be prudent to restrict users to only providing a specific image file type. The `Categories` table s existing images are bitmaps, but JPGs are a more appropriate file format for images served over the web.
 
@@ -218,20 +171,7 @@ When the user enters the values for a new category and clicks the Insert button,
 Before the ObjectDataSource s `Insert()` method is invoked, we must first ensure that the appropriate file types were uploaded by the user and then save the brochure PDF to the web server s file system. Create an event handler for the DetailsView s `ItemInserting` event and add the following code:
 
 
-    ' Reference the FileUpload controls
-    Dim BrochureUpload As FileUpload = _
-        CType(NewCategory.FindControl("BrochureUpload"), FileUpload)
-    If BrochureUpload.HasFile Then
-        ' Make sure that a PDF has been uploaded
-        If String.Compare(System.IO.Path.GetExtension _
-            (BrochureUpload.FileName), ".pdf", True) <> 0 Then
-            UploadWarning.Text = _
-                "Only PDF documents may be used for a category's brochure."
-            UploadWarning.Visible = True
-            e.Cancel = True
-            Exit Sub
-        End If
-    End If
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample6.xml)]
 
 The event handler starts by referencing the `BrochureUpload` FileUpload control from the DetailsView s templates. Then, if a brochure has been uploaded, the uploaded file s extension is examined. If the extension is not .PDF , then a warning is displayed, the insert is cancelled, and the execution of the event handler ends.
 
@@ -243,23 +183,12 @@ As discussed in the [Uploading Files](uploading-files-vb.md) tutorial, care must
 The following code uses the [`File.Exists(path)` method](https://msdn.microsoft.com/en-us/library/system.io.file.exists.aspx) to determine if a file already exists with the specified file name. If so, it continues to try new file names for the brochure until no conflict is found.
 
 
-    Const BrochureDirectory As String = "~/Brochures/"
-    Dim brochurePath As String = BrochureDirectory & BrochureUpload.FileName
-    Dim fileNameWithoutExtension As String = _
-        System.IO.Path.GetFileNameWithoutExtension(BrochureUpload.FileName)
-    Dim iteration As Integer = 1
-    While System.IO.File.Exists(Server.MapPath(brochurePath))
-        brochurePath = String.Concat(BrochureDirectory, _
-            fileNameWithoutExtension, "-", iteration, ".pdf")
-        iteration += 1
-    End While
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample7.xml)]
 
 Once a valid file name has been found, the file needs to be saved to the file system and the ObjectDataSource s `brochurePath``InsertParameter` value needs to be updated so that this file name is written to the database. As we saw back in the *Uploading Files* tutorial, the file can be saved using the FileUpload control s `SaveAs(path)` method. To update the ObjectDataSource s `brochurePath` parameter, use the `e.Values` collection.
 
 
-    ' Save the file to disk and set the value of the brochurePath parameter
-    BrochureUpload.SaveAs(Server.MapPath(brochurePath))
-    e.Values("brochurePath") = brochurePath
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample8.xml)]
 
 ## Step 7: Saving the Uploaded Picture to the Database
 
@@ -268,103 +197,21 @@ To store the uploaded picture in the new `Categories` record, we need to assign 
 While the `Categories` table allows `NULL` values for the `Picture` column, all categories currently have a picture. Let s force the user to provide a picture when adding a new category through this page. The following code checks to ensure that a picture has been uploaded and that it has an appropriate extension.
 
 
-    ' Reference the FileUpload controls
-    Dim PictureUpload As FileUpload = _
-        CType(NewCategory.FindControl("PictureUpload"), FileUpload)
-    If PictureUpload.HasFile Then
-        ' Make sure that a JPG has been uploaded
-        If  String.Compare(System.IO.Path.GetExtension(PictureUpload.FileName), _
-                ".jpg", True) <> 0 AndAlso _
-            String.Compare(System.IO.Path.GetExtension(PictureUpload.FileName), _
-                ".jpeg", True) <> 0 Then
-            
-            UploadWarning.Text = _
-                "Only JPG documents may be used for a category's picture."
-            UploadWarning.Visible = True
-            e.Cancel = True
-            Exit Sub
-        End If
-    Else
-        ' No picture uploaded!
-        UploadWarning.Text = _
-            "You must provide a picture for the new category."
-        UploadWarning.Visible = True
-        e.Cancel = True
-        Exit Sub
-    End If
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample9.xml)]
 
 This code should be placed *before* the code from Step 6 so that if there is a problem with the picture upload, the event handler will terminate before the brochure file is saved to the file system.
 
 Assuming that an appropriate file has been uploaded, assign the uploaded binary content to the picture parameter s value with the following line of code:
 
 
-    ' Set the value of the picture parameter
-    e.Values("picture") = PictureUpload.FileBytes
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample10.xml)]
 
 ## The Complete`ItemInserting`Event Handler
 
 For completeness, here is the `ItemInserting` event handler in its entirety:
 
 
-    Protected Sub NewCategory_ItemInserting _
-        (sender As Object, e As DetailsViewInsertEventArgs) _
-        Handles NewCategory.ItemInserting
-        
-        ' Reference the FileUpload controls
-        Dim PictureUpload As FileUpload = _
-            CType(NewCategory.FindControl("PictureUpload"), FileUpload)
-        If PictureUpload.HasFile Then
-            ' Make sure that a JPG has been uploaded
-            If  String.Compare(System.IO.Path.GetExtension(PictureUpload.FileName), _
-                    ".jpg", True) <> 0 AndAlso _
-                String.Compare(System.IO.Path.GetExtension(PictureUpload.FileName), _
-                    ".jpeg", True) <> 0 Then
-                
-                UploadWarning.Text = _
-                    "Only JPG documents may be used for a category's picture."
-                UploadWarning.Visible = True
-                e.Cancel = True
-                Exit Sub
-            End If
-        Else
-            ' No picture uploaded!
-            UploadWarning.Text = _
-                "You must provide a picture for the new category."
-            UploadWarning.Visible = True
-            e.Cancel = True
-            Exit Sub
-        End If
-        ' Set the value of the picture parameter
-        e.Values("picture") = PictureUpload.FileBytes
-        ' Reference the FileUpload controls
-        Dim BrochureUpload As FileUpload = _
-            CType(NewCategory.FindControl("BrochureUpload"), FileUpload)
-        If BrochureUpload.HasFile Then
-            ' Make sure that a PDF has been uploaded
-            If String.Compare(System.IO.Path.GetExtension(BrochureUpload.FileName), _
-                ".pdf", True) <> 0 Then
-                
-                UploadWarning.Text = _
-                    "Only PDF documents may be used for a category's brochure."
-                UploadWarning.Visible = True
-                e.Cancel = True
-                Exit Sub
-            End If
-            Const BrochureDirectory As String = "~/Brochures/"
-            Dim brochurePath As String = BrochureDirectory & BrochureUpload.FileName
-            Dim fileNameWithoutExtension As String = _
-                System.IO.Path.GetFileNameWithoutExtension(BrochureUpload.FileName)
-            Dim iteration As Integer = 1
-            While System.IO.File.Exists(Server.MapPath(brochurePath))
-                brochurePath = String.Concat(BrochureDirectory, _
-                    fileNameWithoutExtension, "-", iteration, ".pdf")
-                iteration += 1
-            End While
-            ' Save the file to disk and set the value of the brochurePath parameter
-            BrochureUpload.SaveAs(Server.MapPath(brochurePath))
-            e.Values("brochurePath") = brochurePath
-        End If
-    End Sub
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample11.xml)]
 
 ## Step 8: Fixing the`DisplayCategoryPicture.aspx`Page
 
@@ -389,33 +236,7 @@ The reason the new picture is not displayed is because the `DisplayCategoryPictu
 Since there are now both bitmaps with OLE headers and JPGs in the `Categories` table, we need to update `DisplayCategoryPicture.aspx` so that it does the OLE header stripping for the original eight categories and bypasses this stripping for the newer category records. In our next tutorial we'll examine how to update an existing record s image, and we'll update all of the old category pictures so that they are JPGs. For now, though, use the following code in `DisplayCategoryPicture.aspx` to strip the OLE headers only for those original eight categories:
 
 
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim categoryID As Integer = Convert.ToInt32(Request.QueryString("CategoryID"))
-        ' Get information about the specified category
-        Dim categoryAPI As New CategoriesBLL()
-        Dim categories As Northwind.CategoriesDataTable = _
-            categoryAPI.GetCategoryWithBinaryDataByCategoryID(categoryID)
-        Dim category As Northwind.CategoriesRow = categories(0)
-        If categoryID <= 8 Then
-            ' Output HTTP headers providing information about the binary data
-            Response.ContentType = "image/bmp"
-            ' Output the binary data
-            ' But first we need to strip out the OLE header
-            Const OleHeaderLength As Integer = 78
-            Dim strippedImageLength As Integer = _
-                category.Picture.Length - OleHeaderLength
-            Dim strippedImageData(strippedImageLength) As Byte
-            Array.Copy(category.Picture, OleHeaderLength, _
-                strippedImageData, 0, strippedImageLength)
-            Response.BinaryWrite(strippedImageData)
-        Else
-            ' For new categories, images are JPGs...
-            ' Output HTTP headers providing information about the binary data
-            Response.ContentType = "image/jpeg"
-            ' Output the binary data
-            Response.BinaryWrite(category.Picture)
-        End If
-    End Sub
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample12.xml)]
 
 With this change, the JPG image is now rendered correctly in the GridView.
 
@@ -434,18 +255,7 @@ Now, what happens if the database is offline, or if there is an error in the `IN
 As discussed previously in the [Handling BLL- and DAL-Level Exceptions in an ASP.NET Page](../editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb.md) tutorial, when an exception is thrown from within the depths of the architecture it is bubbled up through the various layers. At the Presentation Layer, we can determine if an exception has occurred from the DetailsView s `ItemInserted` event. This event handler also provides the values of the ObjectDataSource s `InsertParameters`. Therefore, we can create an event handler for the `ItemInserted` event that checks if there was an exception and, if so, deletes the file specified by the ObjectDataSource s `brochurePath` parameter:
 
 
-    Protected Sub NewCategory_ItemInserted _
-        (sender As Object, e As DetailsViewInsertedEventArgs) _
-        Handles NewCategory.ItemInserted
-        
-        If e.Exception IsNot Nothing Then
-            ' Need to delete brochure file, if it exists
-            If e.Values("brochurePath") IsNot Nothing Then
-                System.IO.File.Delete(Server.MapPath _
-                    (e.Values("brochurePath").ToString()))
-            End If
-        End If
-    End Sub
+[!code[Main](including-a-file-upload-option-when-adding-a-new-record-vb/samples/sample13.xml)]
 
 ## Summary
 

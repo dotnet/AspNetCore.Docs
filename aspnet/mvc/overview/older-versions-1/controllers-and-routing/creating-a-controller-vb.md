@@ -43,17 +43,7 @@ If you create a controller that is missing the *Controller* suffix then you won'
 
 **Listing 1 - Controllers\ProductController.vb**
 
-    Public Class ProductController
-        Inherits System.Web.Mvc.Controller
-    
-        '
-        ' GET: /Product/
-    
-        Function Index() As ActionResult
-            Return View()
-        End Function
-    
-    End Class
+[!code[Main](creating-a-controller-vb/samples/sample1.xml)]
 
 You should always create controllers in the Controllers folder. Otherwise, you'll be violating the conventions of ASP.NET MVC and other developers will have a more difficult time understanding your application.
 
@@ -69,64 +59,7 @@ When you create a controller, you have the option to generate Create, Update, an
 
 **Listing 2 - Controllers\CustomerController.vb**
 
-    Public Class CustomerController
-        Inherits System.Web.Mvc.Controller
-    
-        '
-        ' GET: /Customer/
-    
-        Function Index() As ActionResult
-            Return View()
-        End Function
-    
-        '
-        ' GET: /Customer/Details/5
-    
-        Function Details(ByVal id As Integer) As ActionResult
-            Return View()
-        End Function
-    
-        '
-        ' GET: /Customer/Create
-    
-        Function Create() As ActionResult
-            Return View()
-        End Function
-    
-        '
-        ' POST: /Customer/Create
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Create(ByVal collection As FormCollection) As ActionResult
-            Try
-                ' TODO: Add insert logic here
-                Return RedirectToAction("Index")
-            Catch
-                Return View()
-            End Try
-        End Function
-    
-        '
-        ' GET: /Customer/Edit/5
-    
-        Function Edit(ByVal id As Integer) As ActionResult
-            Return View()
-        End Function
-    
-        '
-        ' POST: /Customer/Edit/5
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Edit(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
-            Try
-                ' TODO: Add update logic here
-    
-                Return RedirectToAction("Index")
-            Catch
-                Return View()
-            End Try
-        End Function
-    End Class
+[!code[Main](creating-a-controller-vb/samples/sample2.xml)]
 
 These generated methods are stub methods. You must add the actual logic for creating, updating, and showing details for a customer yourself. But, the stub methods provide you with a nice starting point.
 
@@ -146,14 +79,7 @@ The ASP.NET MVC controller is just a class. If you prefer, you can ignore the co
 
 **Listing 3 - Controllers\PersonController.vb**
 
-    Public Class PersonController
-        inherits Controller
-    
-        Function Index AS String
-            Return "Hello World!"
-        End Function
-    
-    End Class
+[!code[Main](creating-a-controller-vb/samples/sample3.xml)]
 
 The controller in Listing 3 exposes one action named Index() that returns the string "Hello World!". You can invoke this controller action by running your application and requesting a URL like the following:
 

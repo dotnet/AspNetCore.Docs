@@ -1,15 +1,9 @@
-protected void Page_Load(object sender, EventArgs e) {
-    TextBox1.ToolTip = Column.Description;
-            
-    SetUpValidator(RequiredFieldValidator1);
-    SetUpValidator(RegularExpressionValidator1);
-    SetUpValidator(DynamicValidator1);
-    SetUpCustomValidator(DateValidator);
+<%@ Control Language="C#" CodeBehind="DateTime_Edit.ascx.cs" Inherits="ContosoUniversityModelBinding.DateTime_EditField" %>
 
-    RangeAttribute ra = (RangeAttribute)Column.Attributes[typeof(RangeAttribute)];
-    if (ra != null)
-    {
-        t1.MinDate = ra.Minimum.ToString();
-        t1.MaxDate = ra.Maximum.ToString();
-    }
-}
+<juice:Datepicker runat="server" ID="t1" TargetControlID="TextBox1"/>
+<asp:TextBox ID="TextBox1" runat="server" CssClass="DDTextBox" Text='<%# FieldValueEditString %>' Columns="20"></asp:TextBox>
+
+<asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" Enabled="false" />
+<asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" Enabled="false" />
+<asp:DynamicValidator runat="server" ID="DynamicValidator1" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" />
+<asp:CustomValidator runat="server" ID="DateValidator" CssClass="DDControl DDValidator" ControlToValidate="TextBox1" Display="Static" EnableClientScript="false" Enabled="false" OnServerValidate="DateValidator_ServerValidate" />

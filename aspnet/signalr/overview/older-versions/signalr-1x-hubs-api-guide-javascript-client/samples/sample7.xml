@@ -1,2 +1,1 @@
-$.connection.hub.url = 'http://fabrikam.com/signalr'
-$.connection.hub.start().done(init);
+    <script src='<%: ResolveClientUrl("~/signalr/hubs") %>'></script>

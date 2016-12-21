@@ -1,5 +1,7 @@
-contosoChatHubProxy.invoke('NewContosoChatMessage', userName, message).done(function () {
-        console.log ('Invocation of NewContosoChatMessage succeeded');
-    }).fail(function (error) {
-        console.log('Invocation of NewContosoChatMessage failed. Error: ' + error);
-    });
+public class ContosoChatHub : Hub
+{
+    public void NewContosoChatMessage(ChatMessage message)
+    {
+        Clients.All.addContosoChatMessageToPage(message);
+    }
+}

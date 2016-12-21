@@ -74,32 +74,7 @@ After adding these controls, the Design view in Visual Studio should look simila
 
 With the user interface complete, our next task is to set the `IsApproved` CheckBox and other controls based on the selected user's information. Create an event handler for the page's `Load` event and add the following code:
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-         if (!Page.IsPostBack)
-         {
-    
-              // If querystring value is missing, send the user to ManageUsers.aspx
-              string userName = Request.QueryString["user"];
-              if (string.IsNullOrEmpty(userName))
-                   Response.Redirect("ManageUsers.aspx");
-    
-              // Get information about this user
-              MembershipUser usr = Membership.GetUser(userName);
-              if (usr == null)
-                   Response.Redirect("ManageUsers.aspx");
-    
-              UserNameLabel.Text = usr.UserName;
-              IsApproved.Checked = usr.IsApproved;
-              if (usr.LastLockoutDate.Year < 2000)
-    
-                   LastLockoutDateLabel.Text = string.Empty;
-              else
-                   LastLockoutDateLabel.Text = usr.LastLockoutDate.ToShortDateString();
-    
-              UnlockUserButton.Enabled = usr.IsLockedOut;
-         }
-    }
+[!code[Main](unlocking-and-approving-user-accounts-cs/samples/sample1.xml)]
 
 The above code starts by ensuring that this is the first visit to the page and not a subsequent postback. It then reads the username passed through the `user` querystring field and retrieves information about that user account via the `Membership.GetUser(username)` method. If no username was supplied through the querystring, or if the specified user could not be found, the administrator is sent back to the `ManageUsers.aspx` page.
 
@@ -111,26 +86,7 @@ Take a moment to test the `UserInformation.aspx` page through a browser. You wil
 
 Return to Visual Studio and create event handlers for the `IsApproved` CheckBox's `CheckedChanged` event and the `UnlockUser` Button's `Click` event. In the `CheckedChanged` event handler, set the user's `IsApproved` property to the `Checked` property of the CheckBox and then save the changes via a call to `Membership.UpdateUser`. In the `Click` event handler, simply call the `MembershipUser` object's `UnlockUser` method. In both event handlers, display a suitable message in the `StatusMessage` Label.
 
-    protected void IsApproved_CheckedChanged(object sender, EventArgs e)
-    {
-         // Toggle the user's approved status
-         string userName = Request.QueryString["user"];
-         MembershipUser usr = Membership.GetUser(userName);
-         usr.IsApproved = IsApproved.Checked;
-         Membership.UpdateUser(usr);
-         StatusMessage.Text = "The user's approved status has been updated.";
-    }
-    
-    protected void UnlockUserButton_Click(object sender, EventArgs e)
-    {
-         // Unlock the user account
-         string userName = Request.QueryString["user"];
-         MembershipUser usr = Membership.GetUser(userName);
-    
-         usr.UnlockUser();
-         UnlockUserButton.Enabled = false;
-         StatusMessage.Text = "The user account has been unlocked.";
-    }
+[!code[Main](unlocking-and-approving-user-accounts-cs/samples/sample2.xml)]
 
 ### Testing the`UserInformation.aspx`Page
 
@@ -188,16 +144,7 @@ To send an email from the CreateUserWizard control, configure its `MailDefinitio
 
 Start by creating a new email template named `CreateUserWizard.txt` in the `EmailTemplates` folder. Use the following text for the template:
 
-    Hello <%UserName%>! Welcome aboard.
-    
-    Your new account is almost ready, but before you can login you must first visit:
-    <%VerificationUrl%>
-    
-    Once you have visited the verification URL you will be redirected to the login page.
-    
-    If you have any problems or questions, please reply to this email.
-    
-    Thanks!
+[!code[Main](unlocking-and-approving-user-accounts-cs/samples/sample3.xml)]
 
 Set the `MailDefinition'` s `BodyFileName` property to "~/EmailTemplates/CreateUserWizard.txt" and its `Subject` property to "Welcome to My Website! Please activate your account."
 
@@ -205,23 +152,7 @@ Note that the `CreateUserWizard.txt` email template includes a `<%VerificationUr
 
 To accomplish this, create an event handler for the CreateUserWizard's [`SendingMail` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.sendingmail.aspx) and add the following code:
 
-    protected void NewUserWizard_SendingMail(object sender, MailMessageEventArgs e)
-    {
-         // Get the UserId of the just-added user
-         MembershipUser newUser = Membership.GetUser(NewUserWizard.UserName);
-    
-         Guid newUserId = (Guid)newUser.ProviderUserKey;
-    
-         // Determine the full verification URL (i.e., http://yoursite.com/Verification.aspx?ID=...)
-         string urlBase = Request.Url.GetLeftPart(UriPartial.Authority) + 
-              Request.ApplicationPath;
-    
-         string verifyUrl = "/Verification.aspx?ID=" + newUserId.ToString();
-         string fullUrl = urlBase + verifyUrl;
-    
-         // Replace <%VerificationUrl%> with the appropriate URL and querystring
-         e.Message.Body = e.Message.Body.Replace("<%VerificationUrl%>", fullUrl);
-    }
+[!code[Main](unlocking-and-approving-user-accounts-cs/samples/sample4.xml)]
 
 The `SendingMail` event fires after the `CreatedUser` event, meaning that by the time the above event handler executes the new user account has already been created. We can access the new user's `UserId` value by calling the `Membership.GetUser` method, passing in the `UserName` entered into the CreateUserWizard control. Next, the verification URL is formed. The statement `Request.Url.GetLeftPart(UriPartial.Authority)` returns the `http://yourserver.com` portion of the URL; `Request.ApplicationPath` returns path where the application is rooted. The verification URL is then defined as `Verification.aspx?ID=userId`. These two strings are then concatenated to form the complete URL. Finally, the email message body (`e.Message.Body`) has all occurrences of `<%VerificationUrl%>` replaced with the full URL.
 
@@ -242,39 +173,7 @@ Our final task is to create the `Verification.aspx` page. Add this page to the r
 
 Add a Label Web control to the `Verification.aspx` page, set its `ID` to `StatusMessage` and clear out its text property. Next, create the `Page_Load` event handler and add the following code:
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-         if (string.IsNullOrEmpty(Request.QueryString["ID"]))
-              StatusMessage.Text = "The UserId was not included in the querystring...";
-         else
-         {
-              Guid userId;
-              try
-              {
-                   userId = new Guid(Request.QueryString["ID"]);
-              }
-    
-              catch
-              {
-                   StatusMessage.Text = "The UserId passed into the querystring is not in the
-                        proper format...";
-                   return;
-              }
-    
-              MembershipUser usr = Membership.GetUser(userId);
-              if (usr == null)
-                   StatusMessage.Text = "User account could not be found...";
-              else
-              {
-                   // Approve the user
-                   usr.IsApproved = true;
-    
-                   Membership.UpdateUser(usr);
-                   StatusMessage.Text = "Your account has been approved. 
-                        Please <a href=\"Login.aspx\">login</a> to the site.";
-              }
-         }
-    }
+[!code[Main](unlocking-and-approving-user-accounts-cs/samples/sample5.xml)]
 
 The bulk of the above code verifies that the `UserId` supplied through the querystring exists, that it is a valid `Guid` value, and that it references an existing user account. If all of these checks pass, the user account is approved; otherwise, a suitable status message is displayed.
 

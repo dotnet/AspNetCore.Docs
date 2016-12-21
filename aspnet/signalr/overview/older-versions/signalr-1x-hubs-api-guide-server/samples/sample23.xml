@@ -1,5 +1,5 @@
-public void NewContosoChatMessage(string name, string message)
-{
-    (Clients.Others.addContosoChatMessageToPage(data) as Task).ContinueWith(antecedent =>
-        Clients.Caller.notifyMessageSent());
-}
+contosoChatHubProxy.client.addNewMessageToPage = function (name, message) {
+    // Add the message to the page. 
+    $('#discussion').append('<li><strong>' + htmlEncode(name)
+        + '</strong>: ' + htmlEncode(message) + '<li>');
+};

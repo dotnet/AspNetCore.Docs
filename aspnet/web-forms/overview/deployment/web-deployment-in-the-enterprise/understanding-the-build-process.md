@@ -64,7 +64,7 @@ You can use the sample solution to trace this process in more detail.
 To deploy the Contact Manager solution to a developer test environment, the developer runs the *Publish-Dev.cmd* command file. This invokes MSBuild.exe, specifying *Publish.proj* as the project file to execute and *Env-Dev.proj* as a parameter value.
 
 
-    msbuild.exe Publish.proj /fl /p:TargetEnvPropsFile=EnvConfig\Env-Dev.proj
+[!code[Main](understanding-the-build-process/samples/sample1.xml)]
 
 
 > [!NOTE] The **/fl** switch (short for **/fileLogger**) logs the build output to a file named *msbuild.log* in the current directory. For more information, see the [MSBuild Command Line Reference](https://msdn.microsoft.com/en-us/library/ms164311.aspx).
@@ -73,7 +73,7 @@ To deploy the Contact Manager solution to a developer test environment, the deve
 At this point, MSBuild starts running, loads the *Publish.proj* file, and starts processing the instructions within it. The first instruction tells MSBuild to import the project file that the **TargetEnvPropsFile** parameter specifies.
 
 
-    <Import Project="$(TargetEnvPropsFile)" />
+[!code[Main](understanding-the-build-process/samples/sample2.xml)]
 
 
 The **TargetEnvPropsFile** parameter specifies the *Env-Dev.proj* file, so MSBuild merges the contents of the *Env-Dev.proj* file into the *Publish.proj* file.
@@ -81,8 +81,7 @@ The **TargetEnvPropsFile** parameter specifies the *Env-Dev.proj* file, so MSBui
 The next elements that MSBuild encounters in the merged project file are property groups. Properties are processed in the order in which they appear in the file. MSBuild creates a key-value pair for each property, providing that any specified conditions are met. Properties defined later in the file will overwrite any properties with the same name defined earlier in the file. For example, consider the **OutputRoot** properties.
 
 
-    <OutputRoot Condition=" '$(OutputRoot)'=='' ">..\Publish\Out\</OutputRoot>
-    <OutputRoot Condition=" '$(BuildingInTeamBuild)'=='true' ">$(OutDir)</OutputRoot>
+[!code[Main](understanding-the-build-process/samples/sample3.xml)]
 
 
 When MSBuild processes the first **OutputRoot** element, providing a similarly named parameter has not been provided, it sets the value of the **OutputRoot** property to **..\Publish\Out**. When it encounters the second **OutputRoot** element, if the condition evaluates to **true**, it will overwrite the value of the **OutputRoot** property with the value of the **OutDir** parameter.
@@ -90,9 +89,7 @@ When MSBuild processes the first **OutputRoot** element, providing a similarly n
 The next element that MSBuild encounters is a single item group, containing an item named **ProjectsToBuild**.
 
 
-    <ItemGroup>
-       <ProjectsToBuild Include="$(SourceRoot)ContactManager-WCF.sln"/>
-    </ItemGroup>
+[!code[Main](understanding-the-build-process/samples/sample4.xml)]
 
 
 MSBuild processes this instruction by building an item list named **ProjectsToBuild**. In this case, the item list contains a single value&#x2014;the path and filename of the solution file.
@@ -100,24 +97,13 @@ MSBuild processes this instruction by building an item list named **ProjectsToBu
 At this point, the remaining elements are targets. Targets are processed differently from properties and items&#x2014;essentially, targets are not processed unless they are either explicitly specified by the user or invoked by another construct within the project file. Recall that the opening **Project** tag includes a **DefaultTargets** attribute.
 
 
-    <Project ToolsVersion="4.0" 
-             DefaultTargets="FullPublish" 
-             xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+[!code[Main](understanding-the-build-process/samples/sample5.xml)]
 
 
 This instructs MSBuild to invoke the **FullPublish** target, if targets are not specified when MSBuild.exe is invoked. The **FullPublish** target doesn&#x27;t contain any tasks; instead it simply specifies a list of dependencies.
 
 
-    <PropertyGroup>   
-      <FullPublishDependsOn>
-         Clean;
-         BuildProjects;      
-         GatherPackagesForPublishing;
-         PublishDbPackages;
-         PublishWebPackages;
-      </FullPublishDependsOn>
-    </PropertyGroup>
-    <Target Name="FullPublish" DependsOnTargets="$(FullPublishDependsOn)" />
+[!code[Main](understanding-the-build-process/samples/sample6.xml)]
 
 
 This dependency tells MSBuild that in order to execute the **FullPublish** target, it needs to invoke this list of targets in the order provided:
@@ -133,14 +119,7 @@ This dependency tells MSBuild that in order to execute the **FullPublish** targe
 The **Clean** target basically deletes the output directory and all its contents, as preparation for a fresh build.
 
 
-    <Target Name="Clean" Condition=" '$(BuildingInTeamBuild)'!='true' ">
-      <Message Text="Cleaning up the output directory [$(OutputRoot)]"/>
-      <ItemGroup>
-         <_FilesToDelete Include="$(OutputRoot)**\*"/>
-      </ItemGroup>
-      <Delete Files="@(_FilesToDelete)"/>
-      <RemoveDir Directories="$(OutputRoot)"/>
-    </Target>
+[!code[Main](understanding-the-build-process/samples/sample7.xml)]
 
 
 Notice that the target includes an **ItemGroup** element. When you define properties or items within a **Target** element, you're creating *dynamic* properties and items. In other words, the properties or items aren&#x27;t processed until the target is executed. The output directory might not exist or contain any files until the build process begins, so you can&#x27;t build the **\_FilesToDelete** list as a static item; you have to wait until execution is underway. As such, you build the list as a dynamic item within the target.
@@ -161,14 +140,7 @@ Dynamic items aside, the **Clean** target is fairly straightforward and makes us
 The **BuildProjects** target basically builds all the projects in the sample solution.
 
 
-    <Target Name="BuildProjects" Condition=" '$(BuildingInTeamBuild)'!='true' ">
-       <MSBuild Projects="@(ProjectsToBuild)"
-                Properties="OutDir=$(OutputRoot);
-                            Configuration=$(Configuration);
-                            DeployOnBuild=true;
-                            DeployTarget=Package"
-                Targets="Build" />
-      </Target>
+[!code[Main](understanding-the-build-process/samples/sample8.xml)]
 
 
 This target was described in some detail in the previous topic, [Understanding the Project File](understanding-the-project-file.md), to illustrate how tasks and targets reference properties and items. At this point, you&#x27;re mainly interested in the **MSBuild** task. You can use this task to build multiple projects. The task does not create a new instance of MSBuild.exe; it uses the current running instance to build each project. The key points of interest in this example are the deployment properties:
@@ -184,24 +156,7 @@ This target was described in some detail in the previous topic, [Understanding t
 If you study the **GatherPackagesForPublishing** target, you&#x27;ll notice that it doesn&#x27;t actually contain any tasks. Instead, it contains a single item group that defines three dynamic items.
 
 
-    <Target Name="GatherPackagesForPublishing">
-       <ItemGroup>
-          <PublishPackages 
-             Include="$(_ContactManagerDest)ContactManager.Mvc.deploy.cmd">
-             <WebPackage>true</WebPackage>
-             <!-- More item metadata -->  
-          </PublishPackages>
-          <PublishPackages 
-             Include="$(_ContactManagerSvcDest)ContactManager.Service.deploy.cmd">
-             <WebPackage>true</WebPackage>
-             <!-- More item metadata -->
-          </PublishPackages>
-          <DbPublishPackages Include="$(_DbDeployManifestPath)">
-             <DbPackage>true</DbPackage>
-             <!-- More item metadata -->
-          </DbPublishPackages>
-       </ItemGroup>
-    </Target>
+[!code[Main](understanding-the-build-process/samples/sample9.xml)]
 
 
 These items refer to the deployment packages that were created when the **BuildProjects** target was executed. You couldn&#x27;t define these items statically in the project file, because the files to which the items refer don&#x27;t exist until the **BuildProjects** target is executed. Instead, the items must be defined dynamically within a target that is not invoked until after the **BuildProjects** target is executed.
@@ -222,7 +177,7 @@ Briefly speaking, the **PublishDbPackages** target invokes the VSDBCMD utility t
 First, notice that the opening tag includes an **Outputs** attribute.
 
 
-    <Target Name="PublishDbPackages" Outputs="%(DbPublishPackages.Identity)">
+[!code[Main](understanding-the-build-process/samples/sample10.xml)]
 
 
 This is an example of *target batching*. In MSBuild project files, batching is a technique for iterating over collections. The value of the **Outputs** attribute, **"%(DbPublishPackages.Identity)"**, refers to the **Identity** metadata property of the **DbPublishPackages** item list. This notation, **Outputs=%***(ItemList.ItemMetadataName)*, is translated as:
@@ -238,20 +193,13 @@ In this case, because there should never be more than one item with the same pat
 You can see a similar notation in the **\_Cmd** property, which builds a VSDBCMD command with the appropriate switches.
 
 
-    <_Cmd>"$(VsdbCmdExe)" 
-       /a:Deploy 
-       /cs:"%(DbPublishPackages.DatabaseConnectionString)" 
-       /p:TargetDatabase=%(DbPublishPackages.TargetDatabase)             
-       /manifest:"%(DbPublishPackages.FullPath)" 
-       /script:"$(_CmDbScriptPath)" 
-       $(_DbDeployOrScript)
-    </_Cmd>
+[!code[Main](understanding-the-build-process/samples/sample11.xml)]
 
 
 In this case, **%(DbPublishPackages.DatabaseConnectionString)**, **%(DbPublishPackages.TargetDatabase)**, and **%(DbPublishPackages.FullPath)** all refer to metadata values of the **DbPublishPackages** item collection. The **\_Cmd** property is used by the **Exec** task, which invokes the command.
 
 
-    <Exec Command="$(_Cmd)"/>
+[!code[Main](understanding-the-build-process/samples/sample12.xml)]
 
 
 As a result of this notation, the **Exec** task will create batches based on unique combinations of the **DatabaseConnectionString**, **TargetDatabase**, and **FullPath** metadata values, and the task will execute once for each batch. This is an example of *task batching*. However, because the target-level batching has already divided our item collection into single-item batches, the **Exec** task will run once and only once for each iteration of the target. In other words, this task invokes the VSDBCMD utility once for each database package in the solution.
@@ -269,21 +217,13 @@ By this point, you&#x27;ve invoked the **BuildProjects** target, which generates
 Just like the **PublishDbPackages** target, the **PublishWebPackages** target uses target batching to ensure that the target is executed once for each web package.
 
 
-    <Target Name="PublishWebPackages" Outputs="%(PublishPackages.Identity)">
+[!code[Main](understanding-the-build-process/samples/sample13.xml)]
 
 
 Within the target, the **Exec** task is used to run the *deploy.cmd* file for each web package.
 
 
-    <PropertyGroup>
-       <_Cmd>
-          %(PublishPackages.FullPath) 
-          $(_WhatifSwitch) 
-          /M:$(MSDeployComputerName) 
-          %(PublishPackages.AdditionalMSDeployParameters)
-       </_Cmd>
-    </PropertyGroup>
-    <Exec Command="$(_Cmd)"/>
+[!code[Main](understanding-the-build-process/samples/sample14.xml)]
 
 
 For more information on configuring the deployment of web packages, see [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md).

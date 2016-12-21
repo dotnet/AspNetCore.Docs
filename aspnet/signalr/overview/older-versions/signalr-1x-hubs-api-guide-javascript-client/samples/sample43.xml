@@ -1,4 +1,5 @@
-var connection = $.hubConnection();
-connection.connectionSlow(function () {
-    console.log('We are currently experiencing difficulties with the connection.')
-});
+contosoChatHubProxy.invoke('NewContosoChatMessage', userName, message).done(function () {
+        console.log ('Invocation of NewContosoChatMessage succeeded');
+    }).fail(function (error) {
+        console.log('Invocation of NewContosoChatMessage failed. Error: ' + error);
+    });

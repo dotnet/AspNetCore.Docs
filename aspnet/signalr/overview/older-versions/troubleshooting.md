@@ -53,19 +53,19 @@ SignalR uses two communication models: Hubs and PersistentConnections. The synta
 
 **JavaScript client code that creates a PersistentConnection in a JavaScript client**
 
-    var myConnection = $.connection('/echo');
+[!code[Main](troubleshooting/samples/sample1.xml)]
 
 **JavaScript client code that creates a Hub Proxy in a Javascript client**
 
-    var myHub = $.connection.MyHub;
+[!code[Main](troubleshooting/samples/sample2.xml)]
 
 **C# server code that maps a route to a PersistentConnection**
 
-    RouteTable.Routes.MapConnection<MyConnection>("my", "/echo");
+[!code[Main](troubleshooting/samples/sample3.xml)]
 
 **C# server code that maps a route to a Hub, or to mulitple hubs if you have multiple applications**
 
-    RouteTable.Routes.MapHubs();
+[!code[Main](troubleshooting/samples/sample4.xml)]
 
 ### Connection started before subscriptions are added
 
@@ -73,20 +73,13 @@ If the Hub's connection is started before methods that can be called from the se
 
 **Incorrect JavaScript client code that will not allow Hubs messages to be received**
 
-    var chat = $.connection.chatHub;
-    $.connection.hub.start().done(function () {
-        chat.client.broadcastMessage = function (name, message) {...};
-                });
+[!code[Main](troubleshooting/samples/sample5.xml)]
 
 Instead, add the method subscriptions before calling Start:
 
 **JavaScript client code that correctly adds subscriptions to a hub**
 
-    var chat = $.connection.chatHub;
-    chat.client.broadcastMessage = function (name, message) {...};
-        $.connection.hub.start().done(function () {
-            ...
-        });
+[!code[Main](troubleshooting/samples/sample6.xml)]
 
 ### Missing method name on the hub proxy
 
@@ -94,13 +87,7 @@ Verify that the method defined on the server is subscribed to on the client. Eve
 
 **JavaScript client code that adds methods to a hub proxy**
 
-    // Method added to proxy in JavaScript:
-    myHubProxy.server.method1 = function (param1, param2) {...};
-    //Multiple methods added to proxy in JavaScript using jQuery:
-    $.extend(myHubProxy.server, {
-        method1: function (param1, param2) {...},
-        method2: function (param3, param4) {...}
-    });
+[!code[Main](troubleshooting/samples/sample7.xml)]
 
 ### Hub or hub methods not declared as Public
 
@@ -120,14 +107,7 @@ This behavior is by design. When `OnDisconnected` is called, the hub has already
 
 **C# server code that correctly executes code in the OnDisconnected event**
 
-    public class MyHub : Hub
-    {
-        public override Task OnDisconnected()
-        {
-            // Do what you want here
-            return base.OnDisconnected();
-        }
-    }
+[!code[Main](troubleshooting/samples/sample8.xml)]
 
 ### Connection limit reached
 
@@ -143,7 +123,7 @@ A connection in a .NET client application that uses Domain security may fail if 
 
 **C# client code that implements connection credentials**
 
-    connection.Credentials = CredentialCache.DefaultCredentials;
+[!code[Main](troubleshooting/samples/sample9.xml)]
 
 <a id="other"></a>
 
@@ -157,7 +137,7 @@ This error is commonly seen if code references SignalR objects before the connec
 
 **JavaScript client code that correctly adds event handlers that reference SignalR objects**
 
-[!code[Main](troubleshooting/samples/sample1.xml?highlight=1)]
+[!code[Main](troubleshooting/samples/sample10.xml?highlight=1)]
 
 This error will also be seen if a connection stops while SignalR objects are still being referenced.
 
@@ -210,7 +190,7 @@ This error results from not having jQuery or the hubs proxy referenced properly.
 
 **HTML client-side code that correctly references the Hubs proxy**
 
-    <script src="/signalr/hubs"></script>
+[!code[Main](troubleshooting/samples/sample11.xml)]
 
 ### "RuntimeBinderException was unhandled by user code" error
 
@@ -218,7 +198,7 @@ This error may occur when the incorrect overload of `Hub.On` is used. If the met
 
 **Method defined on the client (without generated proxy)**
 
-[!code[Main](troubleshooting/samples/sample2.xml?highlight=1)]
+[!code[Main](troubleshooting/samples/sample12.xml?highlight=1)]
 
 ### Connection ID is inconsistent or connection breaks between page loads
 
@@ -252,7 +232,7 @@ jQuery Mobile's `initializePage` function forces the scripts in each page to be 
 
 Messages are delayed when using server sent events on Silverlight. To force long polling to be used instead, use the following when starting the connection:
 
-    connection.Start(new LongPollingTransport());
+[!code[Main](troubleshooting/samples/sample13.xml)]
 
 ### "Permission Denied" using Forever Frame protocol
 

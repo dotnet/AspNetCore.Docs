@@ -55,30 +55,7 @@ Open the `Default.aspx` page and drag the `SectionLevelTutorialListing.ascx` Use
 In order to have the bulleted list display the DataList and Repeater tutorials we'll be creating, we need to add them to the site map. Open the `Web.sitemap` file and add the following markup after the Adding Custom Buttons site map node markup:
 
 
-    <siteMapNode
-        title="Displaying Data with the DataList and Repeater"
-        description="Samples of Reports that Use the DataList and Repeater Controls"
-        url="~/DataListRepeaterBasics/Default.aspx" >
-        <siteMapNode
-            title="Basic Examples"
-            description="Examines the basics for displaying data using the
-                          DataList and Repeater controls."
-            url="~/DataListRepeaterBasics/Basics.aspx"  />
-        <siteMapNode
-            title="Formatting"
-            description="Learn how to format the DataList and the Web controls within
-                          the DataList and Repeater's templates."
-            url="~/DataListRepeaterBasics/Formatting.aspx" />
-        <siteMapNode
-            title="Adjusting the DataList s Layout"
-            description="Illustrates how to alter the DataList's layout, showing
-                          multiple data source records per table row."
-            url="~/DataListRepeaterBasics/RepeatColumnAndDirection.aspx" />
-        <siteMapNode
-            title="Nesting a Repeater within a DataList"
-            description="Learn how to nest a Repeater within the template of a DataList."
-            url="~/DataListRepeaterBasics/NestedControls.aspx" />
-    </siteMapNode>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample1.xml)]
 
 
 ![Update the Site Map to Include the New ASP.NET Pages](displaying-data-with-the-datalist-and-repeater-controls-cs/_static/image5.png)
@@ -117,40 +94,7 @@ From the DataList s smart tag, add a new ObjectDataSource and configure it to us
 After configuring the ObjectDataSource and associating it with the DataList through its smart tag, Visual Studio will automatically create an `ItemTemplate` in the DataList that displays the name and value of each data field returned by the data source (see the markup below). This default `ItemTemplate` s appearance is identical to that of the templates automatically created when binding a data source to the FormView through the Designer.
 
 
-    <asp:DataList ID="DataList1" runat="server" DataKeyField="ProductID"
-        DataSourceID="ObjectDataSource1" EnableViewState="False">
-        <ItemTemplate>
-            ProductID:       <asp:Label ID="ProductIDLabel" runat="server"
-                                Text='<%# Eval("ProductID") %>' /><br />
-            ProductName:     <asp:Label ID="ProductNameLabel" runat="server"
-                                Text='<%# Eval("ProductName") %>' /><br />
-            SupplierID:      <asp:Label ID="SupplierIDLabel" runat="server"
-                                Text='<%# Eval("SupplierID") %>' /><br />
-            CategoryID:      <asp:Label ID="CategoryIDLabel" runat="server"
-                                Text='<%# Eval("CategoryID") %>'/><br />
-            QuantityPerUnit: <asp:Label ID="QuantityPerUnitLabel" runat="server"
-                                Text='<%# Eval("QuantityPerUnit") %>' /><br />
-            UnitPrice:       <asp:Label ID="UnitPriceLabel" runat="server"
-                                Text='<%# Eval("UnitPrice") %>' /><br />
-            UnitsInStock:    <asp:Label ID="UnitsInStockLabel" runat="server"
-                                Text='<%# Eval("UnitsInStock") %>' /><br />
-            UnitsOnOrder:    <asp:Label ID="UnitsOnOrderLabel" runat="server"
-                                Text='<%# Eval("UnitsOnOrder") %>' /><br />
-            ReorderLevel:    <asp:Label ID="ReorderLevelLabel" runat="server"
-                                Text='<%# Eval("ReorderLevel") %>' /><br />
-            Discontinued:    <asp:Label ID="DiscontinuedLabel" runat="server"
-                                Text='<%# Eval("Discontinued") %>' /><br />
-            CategoryName:    <asp:Label ID="CategoryNameLabel" runat="server"
-                                Text='<%# Eval("CategoryName") %>' /><br />
-            SupplierName:    <asp:Label ID="SupplierNameLabel" runat="server"
-                                Text='<%# Eval("SupplierName") %>' /><br />
-            <br />
-        </ItemTemplate>
-    </asp:DataList>
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProducts" TypeName="ProductsBLL">
-    </asp:ObjectDataSource>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample2.xml)]
 
 > [!NOTE] Recall that when binding a data source to a FormView control through the FormView s smart tag, Visual Studio created an `ItemTemplate`, `InsertItemTemplate`, and `EditItemTemplate`. With the DataList, however, only an `ItemTemplate` is created. This is because the DataList does not have the same built-in editing and inserting support offered by the FormView. The DataList does contain edit- and delete-related events, and editing and deleting support can be added with a bit of code, but there s no simple out-of-the-box support as with the FormView. We'll see how to include editing and deleting support with the DataList in a future tutorial.
 
@@ -160,31 +104,7 @@ Let s take a moment to improve the appearance of this template. Rather than disp
 To make these changes you can either use the template editing features in the Designer from the DataList s smart tag click on the Edit Templates link or you can modify the template manually through the page s declarative syntax. If you use the Edit Templates option in the Designer, your resulting markup may not match the following markup exactly, but when viewed through a browser should look very similar to the screen shot shown in Figure 8.
 
 
-    <asp:DataList ID="DataList1" runat="server" DataKeyField="ProductID"
-        DataSourceID="ObjectDataSource1" EnableViewState="False">
-        <ItemTemplate>
-            <h4><asp:Label ID="ProductNameLabel" runat="server"
-                Text='<%# Eval("ProductName") %>' /></h4>
-            <table border="0">
-                <tr>
-                    <td class="ProductPropertyLabel">Category:</td>
-                    <td><asp:Label ID="CategoryNameLabel" runat="server"
-                        Text='<%# Eval("CategoryName") %>' /></td>
-                    <td class="ProductPropertyLabel">Supplier:</td>
-                    <td><asp:Label ID="SupplierNameLabel" runat="server"
-                        Text='<%# Eval("SupplierName") %>' /></td>
-                </tr>
-                <tr>
-                    <td class="ProductPropertyLabel">Qty/Unit:</td>
-                    <td><asp:Label ID="QuantityPerUnitLabel" runat="server"
-                        Text='<%# Eval("QuantityPerUnit") %>' /></td>
-                    <td class="ProductPropertyLabel">Price:</td>
-                    <td><asp:Label ID="UnitPriceLabel" runat="server"
-                        Text='<%# Eval("UnitPrice", "{0:C}") %>' /></td>
-                </tr>
-            </table>
-        </ItemTemplate>
-    </asp:DataList>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample3.xml)]
 
 > [!NOTE] The example above uses Label Web controls whose `Text` property is assigned the value of the databinding syntax. Alternatively, we could have omitted the Labels altogether, typing in just the databinding syntax. That is, instead of using `<asp:Label ID="CategoryNameLabel" runat="server" Text='<%# Eval("CategoryName") %>' />` we could have instead used the declarative syntax `<%# Eval("CategoryName") %>`.
 
@@ -216,13 +136,7 @@ To add a Skin file, right-click on the `App_Themes/DataWebControls` folder, choo
 Use the following markup for the `DataList.skin` file:
 
 
-    <asp:DataList runat="server" CssClass="DataWebControlStyle">
-       <AlternatingItemStyle CssClass="AlternatingRowStyle" />
-       <ItemStyle CssClass="RowStyle" />
-       <HeaderStyle CssClass="HeaderStyle" />
-       <FooterStyle CssClass="FooterStyle" />
-       <SelectedItemStyle CssClass="SelectedRowStyle" />
-    </asp:DataList>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample4.xml)]
 
 These settings assign the same CSS classes to the appropriate DataList properties as were used with the GridView and DetailsView controls. The CSS classes used here `DataWebControlStyle`, `AlternatingRowStyle`, `RowStyle`, and so on are defined in the `Styles.css` file and were added in previous tutorials.
 
@@ -261,16 +175,12 @@ For our example, let s have the title Product Information displayed at the top o
 Alternatively, this can be added declaratively by entering the following markup within the `<asp:DataList>` tags:
 
 
-    <HeaderTemplate>
-       <h3>Product Information</h3>
-    </HeaderTemplate>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample5.xml)]
 
 To add a bit of space between each product listing, let s add a `SeparatorTemplate` that includes a line between each section. The horizontal rule tag (`<hr>`), adds such a divider. Create the `SeparatorTemplate` so that it has the following markup:
 
 
-    <SeparatorTemplate>
-        <hr />
-    </SeparatorTemplate>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample6.xml)]
 
 > [!NOTE] Like the `HeaderTemplate` and `FooterTemplates`, the `SeparatorTemplate` is not bound to any record from the data source and therefore cannot directly access the data source records bound to the DataList.
 
@@ -336,32 +246,12 @@ Unlike the DataList, Visual Studio does not automatically create an ItemTemplate
 To display the categories as a single-row `<table>` with a column for each category, we need the Repeater to emit markup similar to the following:
 
 
-    <table>
-       <tr>
-          <td>Category 1</td>
-          <td>Category 2</td>
-          ...
-          <td>Category N</td>
-       </tr>
-    </table>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample7.xml)]
 
 Since the `<td>Category X</td>` text is the portion that repeats, this will appear in the Repeater s ItemTemplate. The markup that appears before it - `<table><tr>` - will be placed in the `HeaderTemplate` while the ending markup - `</tr></table>` - will placed in the `FooterTemplate`. To enter these template settings, go to the declarative portion of the ASP.NET page by clicking on the Source button in the lower left corner and type in the following syntax:
 
 
-    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="ObjectDataSource2"
-        EnableViewState="False">
-        <HeaderTemplate>
-            <table>
-                <tr>
-        </HeaderTemplate>
-        <ItemTemplate>
-                    <td><%# Eval("CategoryName") %></td>
-        </ItemTemplate>
-        <FooterTemplate>
-                </tr>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample8.xml)]
 
 The Repeater emits the precise markup as specified by its templates, nothing more, nothing less. Figure 17 shows the Repeater s output when viewed through a browser.
 
@@ -378,64 +268,17 @@ Since the Repeater emits precisely the markup specified by its templates, it sho
 For our example, let s have the category columns alternate background colors, like with the alternating rows in the DataList. To accomplish this, we need to assign the `RowStyle` CSS class to each Repeater item and the `AlternatingRowStyle` CSS class to each alternating Repeater item through the `ItemTemplate` and `AlternatingItemTemplate` templates, like so:
 
 
-    <ItemTemplate>
-        <td class="RowStyle"><%# Eval("CategoryName") %></td>
-    </ItemTemplate>
-    <AlternatingItemTemplate>
-        <td class="AlternatingRowStyle"><%# Eval("CategoryName") %></td>
-    </AlternatingItemTemplate>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample9.xml)]
 
 Let s also add a header row to the output with the text Product Categories . Since we don t know how many columns our resulting `<table>` will be comprised of, the simplest way to generate a header row that is guaranteed to span all columns is to use *two*`<table>` s. The first `<table>` will contain two rows the header row and a row that will contain the second, single-row `<table>` that has a column for each category in the system. That is, we want to emit the following markup:
 
 
-    <table>
-       <tr>
-          <th>Product Categories</th>
-       </tr>
-       <tr>
-          <td>
-             <table>
-                <tr>
-                   <td>Category 1</td>
-                   <td>Category 2</td>
-                   ...
-                   <td>Category N</td>
-                </tr>
-             </table>
-          </td>
-       </tr>
-    </table>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample10.xml)]
 
 The following `HeaderTemplate` and `FooterTemplate` result in the desired markup:
 
 
-    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="ObjectDataSource2"
-        EnableViewState="False">
-        <HeaderTemplate>
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th class="HeaderStyle">Product Categories</th>
-                </tr>
-                <tr>
-                    <td>
-                        <table cellpadding="4" cellspacing="0">
-                            <tr>
-        </HeaderTemplate>
-        <ItemTemplate>
-                                <td class="RowStyle"><%# Eval("CategoryName") %></td>
-        </ItemTemplate>
-        <AlternatingItemTemplate>
-                                <td class="AlternatingRowStyle">
-                                    <%# Eval("CategoryName") %></td>
-        </AlternatingItemTemplate>
-        <FooterTemplate>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
+[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample11.xml)]
 
 Figure 18 shows the Repeater after these changes have been made.
 

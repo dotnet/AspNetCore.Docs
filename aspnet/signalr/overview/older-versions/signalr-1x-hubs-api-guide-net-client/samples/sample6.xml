@@ -1,4 +1,12 @@
-var hubConnection = new HubConnection("http://www.contoso.com/");
-IHubProxy stockTickerHubProxy = hubConnection.CreateHubProxy("StockTickerHub");
-stockTickerHubProxy.On<Stock>("UpdateStockPrice", stock => Console.WriteLine("Stock update for {0} new price {1}", stock.Symbol, stock.Price));
-await hubConnection.Start(new LongPollingTransport());
+public class StockTickerHub : Hub
+{
+    public override Task OnConnected()
+    {
+        var version = Context.QueryString["contosochatversion"];
+        if (version != "1.0")
+        {
+            Clients.Caller.notifyWrongVersion();
+        }
+        return base.OnConnected();
+    }
+}

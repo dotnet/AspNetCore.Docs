@@ -36,31 +36,22 @@ In this section, you add a birth date column to the `Person` base class for the 
 
 1. In the *ContosoUniversity.DAL* project, open *Person.cs* and add the following property at the end of the `Person` class (there should be two closing curly braces following it):
 
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Birth Date")]
-        public DateTime? BirthDate { get; set; }
+    [!code[Main](deploying-a-database-update/samples/sample1.xml)]
 
     Next, update the `Seed` method so that it provides a value for the new column. Open *Migrations\Configuration.cs* and replace the code block that begins `var instructors = new List<Instructor>` with the following code block which includes birth date information:
 
-        var instructors = new List<Instructor>
-        {
-            new Instructor { FirstMidName = "Kim",     LastName = "Abercrombie", HireDate = DateTime.Parse("1995-03-11"), BirthDate = DateTime.Parse("1918-08-12"), OfficeAssignment = new OfficeAssignment { Location = "Smith 17" } },
-            new Instructor { FirstMidName = "Fadi",    LastName = "Fakhouri",    HireDate = DateTime.Parse("2002-07-06"), BirthDate = DateTime.Parse("1960-03-15"), OfficeAssignment = new OfficeAssignment { Location = "Gowan 27" } },
-            new Instructor { FirstMidName = "Roger",   LastName = "Harui",       HireDate = DateTime.Parse("1998-07-01"), BirthDate = DateTime.Parse("1970-01-11"), OfficeAssignment = new OfficeAssignment { Location = "Thompson 304" } },
-            new Instructor { FirstMidName = "Candace", LastName = "Kapoor",      HireDate = DateTime.Parse("2001-01-15"), BirthDate = DateTime.Parse("1975-04-11") },
-            new Instructor { FirstMidName = "Roger",   LastName = "Zheng",       HireDate = DateTime.Parse("2004-02-12"), BirthDate = DateTime.Parse("1957-10-12") }
-        };
+    [!code[Main](deploying-a-database-update/samples/sample2.xml)]
 2. Build the solution, and then open the **Package Manager Console** window. Make sure that ContosoUniversity.DAL is still selected as the **Default project**.
 3. In the **Package Manager Console** window, select **ContosoUniversity.DAL** as the **Default project**, and then enter the following command:
 
-        add-migration AddBirthDate
+    [!code[Main](deploying-a-database-update/samples/sample3.xml)]
 
     When this command finishes, Visual Studio opens the class file that defines the new `DbMIgration` class, and in the `Up` method you can see the code that creates the new column. The `Up` method creates the column when you are implementing the change, and the `Down` method deletes the column when you are rolling back the change.
 
     ![AddBirthDate_migration_code](deploying-a-database-update/_static/image1.png)
 4. Build the solution, and then enter the following command in the **Package Manager Console** window (make sure the ContosoUniversity.DAL project is still selected):
 
-        update-database
+    [!code[Main](deploying-a-database-update/samples/sample4.xml)]
 
     The Entity Framework runs the `Up` method and then runs the `Seed` method.
 
@@ -68,7 +59,7 @@ In this section, you add a birth date column to the `Person` base class for the 
 
 1. In the ContosoUniversity project, open *Instructors.aspx* and add a new template field to display the birth date. Add it between the ones for hire date and office assignment:
 
-    [!code[Main](deploying-a-database-update/samples/sample1.xml?highlight=9-17)]
+    [!code[Main](deploying-a-database-update/samples/sample5.xml?highlight=9-17)]
 
     (If code indentation gets out of sync, you can press CTRL-K and then CTRL-D to automatically reformat the file.)
 2. Run the application and click the **Instructors** link.
@@ -122,27 +113,7 @@ In this section, you add a *Comments* column to the *User* table in the membersh
 2. Create a new **Web Form Using Master Page** and name it *UserInfo.aspx*. Accept the default *Site.Master* file as the master page.
 3. Copy the following markup into the `MainContent` `Content` element (the last of the 3 `Content` elements):
 
-        <h2>User Information</h2>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" 
-                SelectCommand="SELECT UserId, UserName, Comments FROM [Users]" 
-                UpdateCommand="UPDATE [Users] SET [UserName] = @UserName, [Comments] = @Comments WHERE [UserId] = @UserId">
-                <DeleteParameters>
-                    <asp:Parameter Name="UserId" Type="Object" />
-                </DeleteParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="UserId" Type="Object" />
-                    <asp:Parameter Name="UserName" Type="String" />
-                    <asp:Parameter Name="Comments" Type="String" />
-                </UpdateParameters>
-            </asp:SqlDataSource>
-        
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="UserId" DataSourceID="SqlDataSource1">
-                <Columns>
-                    <asp:CommandField ShowEditButton="True" />
-                    <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />
-                    <asp:BoundField DataField="Comments" HeaderText="Comments" SortExpression="Comments" />
-                </Columns>
-            </asp:GridView>
+    [!code[Main](deploying-a-database-update/samples/sample6.xml)]
 4. Right-click the *UserInfo.aspx* page and click **View in Browser**.
 5. Log in with your *admin* user credentials (password is *devpwd*) and add some comments to a user to verify that the page works correctly.
 

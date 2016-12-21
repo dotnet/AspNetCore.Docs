@@ -1,9 +1,12 @@
-private bool HasPhoneNumber()
+public async Task<ActionResult> LinkLoginCallback()
 {
-    var user = UserManager.FindById(User.Identity.GetUserId<int>());
-    if (user != null)
+    var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+    if (loginInfo == null)
     {
-        return user.PhoneNumber != null;
+        return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
     }
-    return false;
+    var result = await UserManager.AddLoginAsync(User.Identity.GetUserId<int>(), 
+        loginInfo.Login);
+    return result.Succeeded ? RedirectToAction("ManageLogins") : 
+        RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
 }

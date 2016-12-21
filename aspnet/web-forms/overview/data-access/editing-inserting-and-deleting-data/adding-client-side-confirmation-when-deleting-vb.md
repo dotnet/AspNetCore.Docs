@@ -48,36 +48,14 @@ Start by adding a FormView to the `ConfirmationOnDelete.aspx` page in the `EditI
 After these steps, the new ObjectDataSource s declarative markup will look like the following:
 
 
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
-        DeleteMethod="DeleteProduct" OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProducts" TypeName="ProductsBLL">
-        <DeleteParameters>
-            <asp:Parameter Name="productID" Type="Int32" />
-        </DeleteParameters>
-    </asp:ObjectDataSource>
+[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample1.xml)]
 
 As in our past examples that did not use optimistic concurrency, take a moment to clear out the ObjectDataSource s `OldValuesParameterFormatString` property.
 
 Since it has been bound to an ObjectDataSource control that only supports deleting, the FormView s `ItemTemplate` offers only the Delete button, lacking the New and Update buttons. The FormView s declarative markup, however, includes a superfluous `EditItemTemplate` and `InsertItemTemplate`, which can be removed. Take a moment to customize the `ItemTemplate` so that is shows only a subset of the product data fields. I ve configured mine to show the product s name in an `<h3>` heading above its supplier and category names (along with the Delete button).
 
 
-    <asp:FormView ID="FormView1" AllowPaging="True" DataKeyNames="ProductID"
-        DataSourceID="ObjectDataSource1" runat="server">
-        <ItemTemplate>
-            <h3><i><%# Eval("ProductName") %></i></h3>
-            <b>Category:</b>
-            <asp:Label ID="CategoryNameLabel" runat="server"
-                Text='<%# Eval("CategoryName") %>'>
-            </asp:Label><br />
-            <b>Supplier:</b>
-            <asp:Label ID="SupplierNameLabel" runat="server"
-                Text='<%# Eval("SupplierName") %>'>
-            </asp:Label><br />
-            <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False"
-                CommandName="Delete" Text="Delete">
-            </asp:LinkButton>
-        </ItemTemplate>
-    </asp:FormView>
+[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample2.xml)]
 
 With these changes, we have a fully functional web page that allows a user to toggle through the products one at a time, with the ability to delete a product by simply clicking the Delete button. Figure 2 shows a screen shot of our progress thus far when viewed through a browser.
 
@@ -94,10 +72,7 @@ With the FormView created, the final step is to configure the Delete button such
 After this change the Delete LinkButton s declarative syntax should look something like:
 
 
-    <asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False"
-        CommandName="Delete" Text="Delete"
-        OnClientClick="return confirm('Are you certain you want to delete this product?');">
-    </asp:LinkButton>
+[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample3.xml)]
 
 That s all there is to it! Figure 3 shows a screen shot of this confirmation in action. Clicking the Delete button brings up the confirm dialog box. If the user clicks Cancel, the postback is cancelled and the product is not deleted. If, however, the user clicks OK, the postback continues and the ObjectDataSource s `Delete()` method is invoked, culminating in the database record being deleted.
 
@@ -121,46 +96,17 @@ To practice setting the `OnClientClick` property for the Delete button(s) in a C
 After making these changes, your GridView s declarative markup should look like the following:
 
 
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="ObjectDataSource1">
-        <Columns>
-            <asp:CommandField ShowDeleteButton="True" />
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category" ReadOnly="True"
-                SortExpression="CategoryName" />
-            <asp:BoundField DataField="SupplierName" HeaderText="Supplier" ReadOnly="True"
-                SortExpression="SupplierName" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample4.xml)]
 
 The CommandField contains a single Delete LinkButton instance that can be accessed programmatically from the GridView s `RowDataBound` event handler. Once referenced, we can set its `OnClientClick` property accordingly. Create an event handler for the `RowDataBound` event using the following code:
 
 
-    Protected Sub GridView1_RowDataBound(ByVal sender As Object, _
-        ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) _
-        Handles GridView1.RowDataBound
-    
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            ' reference the Delete LinkButton
-            Dim db As LinkButton = CType(e.Row.Cells(0).Controls(0), LinkButton)
-    
-            ' Get information about the product bound to the row
-            Dim product As Northwind.ProductsRow = _
-                CType(CType(e.Row.DataItem, System.Data.DataRowView).Row, _
-                Northwind.ProductsRow)
-    
-            db.OnClientClick = String.Format( _
-                "return confirm('Are you certain you want to delete the {0} product?');", _
-                product.ProductName.Replace("'", "\'"))
-        End If
-    End Sub
+[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample5.xml)]
 
 This event handler works with data rows (those that will have the Delete button) and begins by programmatically referencing the Delete button. In general use the following pattern:
 
 
-    Dim obj As ButtonType = _
-        CType(e.Row.Cells(commandFieldIndex).Controls(controlIndex), ButtonType)
+[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample6.xml)]
 
 *ButtonType* is the type of button being used by the CommandField - Button, LinkButton, or ImageButton. By default, the CommandField uses LinkButtons, but this can be customized via the CommandField s `ButtonType property`. The *commandFieldIndex* is the ordinal index of the CommandField within the GridView s `Columns` collection, whereas the *controlIndex* is the index of the Delete button within the CommandField s `Controls` collection. The *controlIndex* value depends on the button s position relative to other buttons in the CommandField. For example, if the only button displayed in the CommandField is the Delete button, use an index of 0. If, however, there s an Edit button that precedes the Delete button, use an index of 2. The reason an index of 2 is used is because two controls are added by the CommandField before the Delete button: the Edit button and a LiteralControl that s used to add some space between the Edit and Delete buttons.
 
@@ -185,7 +131,7 @@ One of the disadvantages of the CommandField is that its buttons must be accesse
 An alternative approach is to convert the GridView and DetailsView s CommandFields into TemplateFields. This will generate a TemplateField with an `ItemTemplate` that has a LinkButton (or Button or ImageButton) for each button in the CommandField. These buttons `OnClientClick` properties can be assigned declaratively, as we saw with the FormView, or can be programmatically accessed in the appropriate `DataBound` event handler using the following pattern:
 
 
-    Dim obj As ButtonType = CType(e.Row.FindControl("controlID"), ButtonType)
+[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample7.xml)]
 
 Where *controlID* is the value of the button s `ID` property. While this pattern still requires a hard-coded type for the cast, it removes the need for indexing, allowing for the layout to change without resulting in a runtime error.
 

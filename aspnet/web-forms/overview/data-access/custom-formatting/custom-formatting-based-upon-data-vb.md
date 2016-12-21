@@ -53,23 +53,7 @@ Once you've bound the ObjectDataSource to the DetailsView, take a moment to modi
 After these changes, the DetailsView markup will be:
 
 
-    <asp:DetailsView ID="DetailsView1" runat="server" AllowPaging="True"
-        AutoGenerateRows="False" DataKeyNames="ProductID"
-        DataSourceID="ObjectDataSource1" EnableViewState="False">
-        <Fields>
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-              SortExpression="ProductName" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category"
-              ReadOnly="True" SortExpression="CategoryName" />
-            <asp:BoundField DataField="SupplierName" HeaderText="Supplier"
-              ReadOnly="True" SortExpression="SupplierName" />
-            <asp:BoundField DataField="QuantityPerUnit"
-              HeaderText="Qty/Unit" SortExpression="QuantityPerUnit" />
-            <asp:BoundField DataField="UnitPrice" DataFormatString="{0:c}"
-              HeaderText="Price"
-                HtmlEncode="False" SortExpression="UnitPrice" />
-        </Fields>
-    </asp:DetailsView>
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample1.xml)]
 
 Take a moment to test out this page in your browser.
 
@@ -95,26 +79,14 @@ In order to display the price in a bold, italic font for those products whose `U
 Doing so will automatically create the event handler and take you to the code portion where it has been added. At this point you will see:
 
 
-    Protected Sub ExpensiveProductsPriceInBoldItalic_DataBound _
-        (sender As Object, e As System.EventArgs) _
-        Handles ExpensiveProductsPriceInBoldItalic.DataBound
-    End Sub
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample2.xml)]
 
 The data bound to the DetailsView can be accessed via the `DataItem` property. Recall that we are binding our controls to a strongly-typed DataTable, which is composed of a collection of strongly-typed DataRow instances. When the DataTable is bound to the DetailsView, the first DataRow in the DataTable is assigned to the DetailsView's `DataItem` property. Specifically, the `DataItem` property is assigned a `DataRowView` object. We can use the `DataRowView`'s `Row` property to get access to the underlying DataRow object, which is actually a `ProductsRow` instance. Once we have this `ProductsRow` instance we can make our decision by simply inspecting the object's property values.
 
 The following code illustrates how to determine whether the `UnitPrice` value bound to the DetailsView control is greater than $75.00:
 
 
-    Protected Sub ExpensiveProductsPriceInBoldItalic_DataBound _
-        (sender As Object, e As System.EventArgs) _
-        Handles ExpensiveProductsPriceInBoldItalic.DataBound
-    
-        Dim product As Northwind.ProductsRow = _
-            CType(CType(ExpensiveProductsPriceInBoldItalic.DataItem, _
-                System.Data.DataRowView).Row, Northwind.ProductsRow)
-        If Not product.IsUnitPriceNull() AndAlso product.UnitPrice > 75 Then
-        End If
-    End Sub
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample3.xml)]
 
 > [!NOTE] Since `UnitPrice` can have a `NULL` value in the database, we first check to make sure that we're not dealing with a `NULL` value before accessing the `ProductsRow`'s `UnitPrice` property. This check is important because if we attempt to access the `UnitPrice` property when it has a `NULL` value the `ProductsRow` object will throw a [StrongTypingException exception](https://msdn.microsoft.com/en-us/library/system.data.strongtypingexception.aspx).
 
@@ -126,39 +98,22 @@ At this point we can determine whether the `UnitPrice` value bound to the Detail
 Accessing a row programmatically requires that you know the row's index, which starts at 0. The `UnitPrice` row is the fifth row in the DetailsView, giving it an index of 4 and making it programmatically accessible using `ExpensiveProductsPriceInBoldItalic.Rows(4)`. At this point we could have the entire row's content displayed in a bold, italic font by using the following code:
 
 
-    ExpensiveProductsPriceInBoldItalic.Rows(4).Font.Bold = True
-    ExpensiveProductsPriceInBoldItalic.Rows(4).Font.Italic = True
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample4.xml)]
 
 However, this will make *both* the label (Price) and the value bold and italic. If we want to make just the value bold and italic we need to apply this formatting to the second cell in the row, which can be accomplished using the following:
 
 
-    ExpensiveProductsPriceInBoldItalic.Rows(4).Cells(1).Font.Bold = True
-    ExpensiveProductsPriceInBoldItalic.Rows(4).Cells(1).Font.Italic = True
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample5.xml)]
 
 Since our tutorials thus far have used stylesheets to maintain a clean separation between the rendered markup and style-related information, rather than setting the specific style properties as shown above let's instead use a CSS class. Open the `Styles.css` stylesheet and add a new CSS class named `ExpensivePriceEmphasis` with the following definition:
 
 
-    .ExpensivePriceEmphasis
-    {
-        font-weight: bold;
-        font-style: italic;
-    }
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample6.xml)]
 
 Then, in the `DataBound` event handler, set the cell's `CssClass` property to `ExpensivePriceEmphasis`. The following code shows the `DataBound` event handler in its entirety:
 
 
-    Protected Sub ExpensiveProductsPriceInBoldItalic_DataBound _
-        (sender As Object, e As System.EventArgs) _
-        Handles ExpensiveProductsPriceInBoldItalic.DataBound
-    
-        Dim product As Northwind.ProductsRow = _
-            CType(CType(ExpensiveProductsPriceInBoldItalic.DataItem, _
-                System.Data.DataRowView).Row, Northwind.ProductsRow)
-        If Not product.IsUnitPriceNull() AndAlso product.UnitPrice > 75 Then
-           ExpensiveProductsPriceInBoldItalic.Rows(4).Cells(1).CssClass = _
-                "ExpensivePriceEmphasis"
-        End If
-    End Sub
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample7.xml)]
 
 When viewing Chai, which costs less than $75.00, the price is displayed in a normal font (see Figure 4). However, when viewing Mishi Kobe Niku, which has a price of $97.00, the price is displayed in a bold, italic font (see Figure 5).
 
@@ -188,20 +143,7 @@ Add a FormView to the `CustomColors.aspx` page beneath the DetailsView and set i
 After these edits your FormView's markup should look similar to the following:
 
 
-    <asp:FormView ID="LowStockedProductsInRed" runat="server"
-        DataKeyNames="ProductID" DataSourceID="ObjectDataSource1"
-        AllowPaging="True" EnableViewState="False">
-        <ItemTemplate>
-            <b>Product:</b>
-            <asp:Label ID="ProductNameLabel" runat="server"
-             Text='<%# Bind("ProductName") %>'>
-            </asp:Label><br />
-            <b>Units In Stock:</b>
-            <asp:Label ID="UnitsInStockLabel" runat="server"
-              Text='<%# Bind("UnitsInStock") %>'>
-            </asp:Label>
-        </ItemTemplate>
-    </asp:FormView>
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample8.xml)]
 
 Note that the `ItemTemplate` contains:
 
@@ -222,55 +164,24 @@ With the FormView's markup complete, the next step is to programmatically determ
 In the event handler cast the FormView's `DataItem` property to a `ProductsRow` instance and determine whether the `UnitsInPrice` value is such that we need to display it in a red font.
 
 
-    Protected Sub LowStockedProductsInRed_DataBound _
-        (sender As Object, e As System.EventArgs) _
-        Handles LowStockedProductsInRed.DataBound
-    
-        Dim product As Northwind.ProductsRow = _
-            CType(CType(LowStockedProductsInRed.DataItem, System.Data.DataRowView).Row, _
-                Northwind.ProductsRow)
-        If Not product.IsUnitsInStockNull() AndAlso product.UnitsInStock <= 10 Then
-            Dim unitsInStock As Label = _
-                CType(LowStockedProductsInRed.FindControl("UnitsInStockLabel"), Label)
-    
-            If unitsInStock IsNot Nothing Then
-            End If
-        End If
-    End Sub
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample9.xml)]
 
 ## Step 6: Formatting the UnitsInStockLabel Label Control in the FormView's ItemTemplate
 
 The final step is to format the displayed `UnitsInStock` value in a red font if the value is 10 or less. To accomplish this we need to programmatically access the `UnitsInStockLabel` control in the `ItemTemplate` and set its style properties so that its text is displayed in red. To access a Web control in a template, use the `FindControl("controlID")` method like this:
 
 
-    Dim someName As WebControlType = _
-        CType(FormViewID.FindControl("controlID"), WebControlType)
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample10.xml)]
 
 For our example we want to access a Label control whose `ID` value is `UnitsInStockLabel`, so we'd use:
 
 
-    Dim unitsInStock As Label = _
-        CType(LowStockedProductsInRed.FindControl("UnitsInStockLabel"), Label)
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample11.xml)]
 
 Once we have a programmatic reference to the Web control, we can modify its style-related properties as needed. As with the earlier example, I've created a CSS class in `Styles.css` named `LowUnitsInStockEmphasis`. To apply this style to the Label Web control, set its `CssClass` property accordingly.
 
 
-    Protected Sub LowStockedProductsInRed_DataBound _
-        (sender As Object, e As System.EventArgs) _
-        Handles LowStockedProductsInRed.DataBound
-    
-        Dim product As Northwind.ProductsRow = _
-            CType(CType(LowStockedProductsInRed.DataItem, System.Data.DataRowView).Row, _
-                Northwind.ProductsRow)
-        If Not product.IsUnitsInStockNull() AndAlso product.UnitsInStock <= 10 Then
-            Dim unitsInStock As Label = _
-                CType(LowStockedProductsInRed.FindControl("UnitsInStockLabel"), Label)
-    
-            If unitsInStock IsNot Nothing Then
-                unitsInStock.CssClass = "LowUnitsInStockEmphasis"
-            End If
-        End If
-    End Sub
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample12.xml)]
 
 > [!NOTE] The syntax for formatting a template programmatically accessing the Web control using `FindControl("controlID")` and then setting its style-related properties can also be used when using [TemplateFields](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.templatefield(VS.80).aspx) in the DetailsView or GridView controls. We'll examine TemplateFields in our next tutorial.
 
@@ -324,19 +235,7 @@ To customize the format of the GridView's individual records, then, we need to c
 Add a GridView beneath the FormView from the previous example and set its `ID` property to `HighlightCheapProducts`. Since we already have an ObjectDataSource that returns all products on the page, bind the GridView to that. Finally, edit the GridView's BoundFields to include just the products' names, categories, and prices. After these edits the GridView's markup should look like:
 
 
-    <asp:GridView ID="HighlightCheapProducts" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="ObjectDataSource1"
-        EnableViewState="False" runat="server">
-        <Columns>
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-              SortExpression="ProductName" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Category"
-              ReadOnly="True" SortExpression="CategoryName" />
-            <asp:BoundField DataField="UnitPrice" DataFormatString="{0:c}"
-              HeaderText="Price"
-                HtmlEncode="False" SortExpression="UnitPrice" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample13.xml)]
 
 Figure 9 shows our progress to this point when viewed through a browser.
 
@@ -361,24 +260,12 @@ This event handler can be created using the same series of steps as with the For
 Creating the event hander in this manner will cause the following code to be automatically added to the ASP.NET page's code portion:
 
 
-    Protected Sub HighlightCheapProducts_RowDataBound _
-        (sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) _
-        Handles HighlightCheapProducts.RowDataBound
-    
-    End Sub
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample14.xml)]
 
 When the `RowDataBound` event fires, the event handler is passed as its second parameter an object of type `GridViewRowEventArgs`, which has a property named `Row`. This property returns a reference to the `GridViewRow` that was just data bound. To access the `ProductsRow` instance bound to the `GridViewRow` we use the `DataItem` property like so:
 
 
-    Protected Sub HighlightCheapProducts_RowDataBound _
-        (sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) _
-        Handles HighlightCheapProducts.RowDataBound
-    
-        Dim product As Northwind.ProductsRow = _
-            CType(CType(e.Row.DataItem, System.Data.DataRowView).Row, Northwind.ProductsRow)
-        If Not product.IsUnitPriceNull() AndAlso product.UnitPrice < 10 Then
-        End If
-    End Sub
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample15.xml)]
 
 When working with the `RowDataBound` event handler it is important to keep in mind that the GridView is composed of different types of rows and that this event is fired for *all* row types. A `GridViewRow`'s type can be determined by its `RowType` property, and can have one of the possible values:
 
@@ -392,17 +279,7 @@ When working with the `RowDataBound` event handler it is important to keep in mi
 Since the `EmptyDataRow`, `Header`, `Footer`, and `Pager` rows aren't associated with a `DataSource` record, they will always have a value of `Nothing` for their `DataItem` property. For this reason, before attempting to work with the current `GridViewRow`'s `DataItem` property, we first must make sure that we're dealing with a `DataRow`. This can be accomplished by checking the `GridViewRow`'s `RowType` property like so:
 
 
-    Protected Sub HighlightCheapProducts_RowDataBound _
-        (sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) _
-        Handles HighlightCheapProducts.RowDataBound
-    
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim product As Northwind.ProductsRow = _
-                CType(CType(e.Row.DataItem, System.Data.DataRowView).Row, Northwind.ProductsRow)
-            If Not product.IsUnitPriceNull() AndAlso product.UnitPrice < 10 Then
-            End If
-        End If
-    End Sub
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample16.xml)]
 
 ## Step 9: Highlighting the Row Yellow When the UnitPrice Value is Less than $10.00
 
@@ -411,23 +288,12 @@ The last step is to programmatically highlight the entire `GridViewRow` if the `
 Instead of `GridViewID.Rows(index)`, we can reference the current `GridViewRow` instance in the `RowDataBound` event handler using `e.Row`. That is, in order to highlight the current `GridViewRow` instance from the `RowDataBound` event handler we would use:
 
 
-    e.Row.BackColor = System.Drawing.Color.Yellow
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample17.xml)]
 
 Rather than set the `GridViewRow`'s `BackColor` property directly, let's stick with using CSS classes. I've created a CSS class named `AffordablePriceEmphasis` that sets the background color to yellow. The completed `RowDataBound` event handler follows:
 
 
-    Protected Sub HighlightCheapProducts_RowDataBound _
-        (sender As Object, e As System.Web.UI.WebControls.GridViewRowEventArgs) _
-        Handles HighlightCheapProducts.RowDataBound
-    
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim product As Northwind.ProductsRow = _
-                CType(CType(e.Row.DataItem, System.Data.DataRowView).Row, Northwind.ProductsRow)
-            If Not product.IsUnitPriceNull() AndAlso product.UnitPrice < 10 Then
-                e.Row.CssClass = "AffordablePriceEmphasis"
-            End If
-        End If
-    End Sub
+[!code[Main](custom-formatting-based-upon-data-vb/samples/sample18.xml)]
 
 
 [![The Most Affordable Products are Highlighted Yellow](custom-formatting-based-upon-data-vb/_static/image26.png)](custom-formatting-based-upon-data-vb/_static/image25.png)

@@ -57,42 +57,7 @@ Define the site-wide page layout here in the master page. You can use the Design
 Site.master
 
 
-    <%@ Master Language="VB" AutoEventWireup="true"
-        CodeFile="Site.master.vb" Inherits="Site" %>
-    
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head runat="server">
-        <title>Working with Data Tutorials</title>
-        <link href="Styles.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <div id="wrapper">
-    
-            <form id="form1" runat="server">
-    
-                <div id="header">
-                    <span class="title">Working with Data Tutorials</span>
-                    <span class="breadcrumb">
-                     TODO: Breadcrumb will go here...</span>
-                </div>
-    
-                <div id="content">
-                    <asp:contentplaceholder id="MainContent"
-                      runat="server">
-                      <!-- Page-specific content will go here... -->
-                    </asp:contentplaceholder>
-                </div>
-    
-                <div id="navigation">
-                    TODO: Menu will go here...
-                </div>
-            </form>
-        </div>
-    </body>
-    </html>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample1.xml)]
 
 A master page defines both the static page layout and the regions that can be edited by the ASP.NET pages that use the master page. These content editable regions are indicated by the ContentPlaceHolder control, which can be seen within the content `<div>`. Our master page has a single ContentPlaceHolder (`MainContent`), but master page's may have multiple ContentPlaceHolders.
 
@@ -127,48 +92,14 @@ After picking the master page, the new ASP.NET pages will contain the following 
 Default.aspx
 
 
-    <%@ Page Language="VB" MasterPageFile="~/Site.master"
-        AutoEventWireup="true" CodeFile="Default.aspx.vb"
-        Inherits="_Default" Title="Untitled Page" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent"
-      Runat="Server">
-    </asp:Content>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample2.xml)]
 
 In the `@Page` directive there's a reference to the master page file used (`MasterPageFile="~/Site.master"`), and the ASP.NET page's markup contains a Content control for each of the ContentPlaceHolder controls defined in the master page, with the control's `ContentPlaceHolderID` mapping the Content control to a specific ContentPlaceHolder. The Content control is where you place the markup you want to appear in the corresponding ContentPlaceHolder. Set the `@Page` directive's `Title` attribute to Home and add some welcoming content to the Content control:
 
 Default.aspx
 
 
-    <%@ Page Language="VB" MasterPageFile="~/Site.master"
-        AutoEventWireup="true" CodeFile="Default.aspx.vb"
-        Inherits="_Default" Title="Home" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent"
-        Runat="Server">
-        <h1>Welcome to the Working with Data Tutorial Site</h1>
-    
-        <p>This site is being built as part of a set of tutorials
-          that illustrate some of the new data access and databinding
-          features in ASP.NET 2.0 and Visual Web Developer.</p>
-    
-        <p>Over time, it will include a host of samples that
-         demonstrate:</p>
-    
-        <ul>
-            <li>Building a DAL (data access layer),</li>
-            <li>Using strongly typed TableAdapters and DataTables</li>
-            <li>Master-Detail reports</li>
-            <li>Filtering</li>
-            <li>Paging,</li>
-            <li>Two-way databinding,</li>
-            <li>Editing,</li>
-            <li>Deleting,</li>
-            <li>Inserting,</li>
-            <li>Hierarchical data browsing,</li>
-            <li>Hierarchical drill-down,</li>
-            <li>Optimistic concurrency,</li>
-            <li>And more!</li>
-        </ul>
-    </asp:Content>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample3.xml)]
 
 The `Title` attribute in the `@Page` directive allows us to set the page's title from the ASP.NET page, even though the `<title>` element is defined in the master page. We can also set the title programmatically, using `Page.Title`. Also note that the master page's references to stylesheets (such as `Style.css`) are automatically updated so that they work in any ASP.NET page, regardless of what directory the ASP.NET page is in relative to the master page.
 
@@ -219,70 +150,7 @@ Define the site map to mimic the file system structure. That is, add a `<siteMap
 Web.sitemap
 
 
-    <?xml version="1.0" encoding="utf-8" ?>
-    <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-    
-      <siteMapNode url="~/Default.aspx" title="Home" description="Home">
-          <siteMapNode title="Basic Reporting"
-            url="~/BasicReporting/Default.aspx"
-            description="Basic Reporting Samples">
-            <siteMapNode url="~/BasicReporting/SimpleDisplay.aspx"
-             title="Simple Display"
-             description="Displays the complete contents
-              of a database table." />
-            <siteMapNode url="~/BasicReporting/DeclarativeParams.aspx"
-              title="Declarative Parameters"
-              description="Displays a subset of the contents
-                of a database table using parameters." />
-            <siteMapNode url="~/BasicReporting/ProgrammaticParams.aspx"
-             title="Setting Parameter Values"
-             description="Shows how to set parameter values
-              programmatically." />
-          </siteMapNode>
-    
-          <siteMapNode title="Filtering Reports"
-           url="~/Filtering/Default.aspx"
-           description="Samples of Reports that Support Filtering">
-            <siteMapNode url="~/Filtering/FilterByDropDownList.aspx"
-              title="Filter by Drop-Down List"
-              description="Filter results using a drop-down list." />
-            <siteMapNode url="~/Filtering/MasterDetailsDetails.aspx"
-             title="Master-Details-Details"
-             description="Filter results two levels down." />
-            <siteMapNode url="~/Filtering/DetailsBySelecting.aspx"
-              title="Details of Selected Row"
-              description="Show detail results for a selected item in a GridView." />
-          </siteMapNode>
-    
-          <siteMapNode title="Customized Formatting"
-             url="~/CustomFormatting/Default.aspx"
-             description="Samples of Reports Whose Formats are Customized">
-            <siteMapNode url="~/CustomFormatting/CustomColors.aspx"
-             title="Format Colors"
-             description="Format the grid s colors based
-               on the underlying data." />
-            <siteMapNode
-              url="~/CustomFormatting/GridViewTemplateField.aspx"
-              title="Custom Content in a GridView"
-              description="Shows using the TemplateField to
-              customize the contents of a field in a GridView." />
-            <siteMapNode
-              url="~/CustomFormatting/DetailsViewTemplateField.aspx"
-              title="Custom Content in a DetailsView"
-              description="Shows using the TemplateField to customize
-               the contents of a field in a DetailsView." />
-            <siteMapNode url="~/CustomFormatting/FormView.aspx"
-              title="Custom Content in a FormView"
-              description="Illustrates using a FormView for a
-               highly customized view." />
-            <siteMapNode url="~/CustomFormatting/SummaryDataInFooter.aspx"
-              title="Summary Data in Footer"
-              description="Display summary data in the grids footer." />
-          </siteMapNode>
-    
-      </siteMapNode>
-    
-    </siteMap>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample4.xml)]
 
 The site map defines the website's navigational structure, which is a hierarchy that describes the various sections of the site. Each `<siteMapNode>` element in `Web.sitemap` represents a section in the site's navigational structure.
 
@@ -303,122 +171,31 @@ The data source controls serve as a proxy between your ASP.NET page and the unde
 To aid in working with the site map's data, ASP.NET includes the SiteMapDataSource control, which allows us to bind a Web control against our website's site map. Two Web controls the TreeView and Menu are commonly used to provide a navigation user interface. To bind the site map data to one of these two controls, simply add a SiteMapDataSource to the page along with a TreeView or Menu control whose `DataSourceID` property is set accordingly. For example, we could add a Menu control to the master page using the following markup:
 
 
-    <div id="navigation">
-        <asp:Menu ID="Menu1" runat="server"
-          DataSourceID="SiteMapDataSource1">
-        </asp:Menu>
-    
-        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
-    </div>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample5.xml)]
 
 For a finer degree of control over the emitted HTML, we can bind the SiteMapDataSource control to the Repeater control, like so:
 
 
-    <div id="navigation">
-        <ul>
-            <li><asp:HyperLink runat="server" ID="lnkHome"
-             NavigateUrl="~/Default.aspx">Home</asp:HyperLink></li>
-    
-            <asp:Repeater runat="server" ID="menu"
-              DataSourceID="SiteMapDataSource1">
-                <ItemTemplate>
-                    <li>
-                        <asp:HyperLink runat="server"
-                        NavigateUrl='<%# Eval("Url") %>'>
-                        <%# Eval("Title") %></asp:HyperLink>
-                    </li>
-                </ItemTemplate>
-            </asp:Repeater>
-        </ul>
-    
-        <asp:SiteMapDataSource ID="SiteMapDataSource1"
-          runat="server" ShowStartingNode="false" />
-    </div>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample6.xml)]
 
 The SiteMapDataSource control returns the site map hierarchy one level at a time, starting with the root site map node (Home, in our site map), then the next level (Basic Reporting, Filtering Reports, and Customized Formatting), and so on. When binding the SiteMapDataSource to a Repeater, it enumerates the first level returned and instantiates the `ItemTemplate` for each `SiteMapNode` instance in that first level. To access a particular property of the `SiteMapNode`, we can use `Eval(propertyName)`, which is how we get each `SiteMapNode`'s `Url` and `Title` properties for the HyperLink control.
 
 The Repeater example above will render the following markup:
 
 
-    <li>
-        <a href="/Code/BasicReporting/Default.aspx">Basic Reporting</a>
-    </li>
-    
-    <li>
-        <a href="/Code/Filtering/Default.aspx">Filtering Reports</a>
-    </li>
-    
-    <li>
-        <a href="/Code/CustomFormatting/Default.aspx">
-          Customized Formatting</a>
-    </li>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample7.xml)]
 
 These site map nodes (Basic Reporting, Filtering Reports, and Customized Formatting) comprise the *second* level of the site map being rendered, not the first. This is because the SiteMapDataSource's `ShowStartingNode` property is set to False, causing the SiteMapDataSource to bypass the root site map node and instead begin by returning the second level in the site map hierarchy.
 
 To display the children for the Basic Reporting, Filtering Reports, and Customized Formatting `SiteMapNode` s, we can add another Repeater to the initial Repeater's `ItemTemplate`. This second Repeater will be bound to the `SiteMapNode` instance's `ChildNodes` property, like so:
 
 
-    <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSource1">
-        <ItemTemplate>
-            <li>
-                <asp:HyperLink runat="server"
-                 NavigateUrl='<%# Eval("Url") %>'>
-                 <%# Eval("Title") %></asp:HyperLink>
-    
-                <asp:Repeater runat="server"
-                 DataSource="<%# CType(Container.DataItem,
-                 SiteMapNode).ChildNodes %>">
-                    <HeaderTemplate>
-                        <ul>
-                    </HeaderTemplate>
-    
-                    <ItemTemplate>
-                        <li>
-                            <asp:HyperLink runat="server"
-                             NavigateUrl='<%# Eval("Url") %>'>
-                             <%# Eval("Title") %></asp:HyperLink>
-                        </li>
-                    </ItemTemplate>
-    
-                    <FooterTemplate>
-                        </ul>
-                    </FooterTemplate>
-                </asp:Repeater>
-            </li>
-        </ItemTemplate>
-    </asp:Repeater>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample8.xml)]
 
 These two Repeaters result in the following markup (some markup has been removed for brevity):
 
 
-    <li>
-        <a href="/Code/BasicReporting/Default.aspx">Basic Reporting</a>
-        <ul>
-           <li>
-              <a href="/Code/BasicReporting/SimpleDisplay.aspx">
-               Simple Display</a>
-           </li>
-           <li>
-              <a href="/Code/BasicReporting/DeclarativeParams.aspx">
-               Declarative Parameters</a>
-           </li>
-           <li>
-              <a href="/Code/BasicReporting/ProgrammaticParams.aspx">
-               Setting Parameter Values</a>
-           </li>
-        </ul>
-    </li>
-    
-    <li>
-        <a href="/Code/Filtering/Default.aspx">Filtering Reports</a>
-        ...
-    </li>
-    
-    <li>
-        <a href="/Code/CustomFormatting/Default.aspx">
-            Customized Formatting</a>
-        ...
-    </li>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample9.xml)]
 
 Using CSS styles chosen from [Rachel Andrew](http://www.rachelandrew.co.uk/)'s book [The CSS Anthology: 101 Essential Tips, Tricks, &amp; Hacks](https://www.amazon.com/gp/product/0957921888/qid=1137565739/sr=8-1/ref=pd_bbs_1/103-0562306-3386214?n=507846&amp;s=books&amp;v=glance), the `<ul>` and `<li>` elements are styled such that the markup produces the following visual output:
 
@@ -443,12 +220,7 @@ View state can be disabled at the page or control level by setting the `EnableVi
 To reduce the page's view state let's set the Repeater control's `EnableViewState` property to `False`. This can be done through the Properties window in the Designer or declaratively in the Source view. After making this change the Repeater's declarative markup should look like:
 
 
-    <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSource1"
-        EnableViewState="False">
-        <ItemTemplate>
-            ... <i>ItemTemplate contents omitted for brevity</i> ...
-        </ItemTemplate>
-    </asp:Repeater>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample10.xml)]
 
 After this change, the page's rendered view state size has shrunk to a mere 52 bytes, a 97% savings in view state size! In the tutorials throughout this series we'll disable the view state of the data Web controls by default in order to reduce the size of the rendered markup. In the majority of the examples the `EnableViewState` property will be set to `False` and done so without mention. The only time view state will be discussed is in scenarios where it must be enabled in order for the data Web control to provide its expected functionality.
 
@@ -459,10 +231,7 @@ To complete the master page, let's add a breadcrumb navigation UI element to eac
 For our site, add this control to the header `<div>`:
 
 
-    <span class="breadcrumb">
-        <asp:SiteMapPath ID="SiteMapPath1" runat="server">
-        </asp:SiteMapPath>
-    </span>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample11.xml)]
 
 The breadcrumb shows the current page the user is visiting in the site map hierarchy as well as that site map node's "ancestors," all the way up to the root (Home, in our site map).
 
@@ -487,33 +256,12 @@ Let's display an unordered list using a Repeater again, but this time we'll disp
 SectionLevelTutorialListing.ascx
 
 
-    <%@ Control Language="VB" AutoEventWireup="true"
-        CodeFile="SectionLevelTutorialListing.ascx.vb"
-        Inherits="UserControls_SectionLevelTutorialListing" %>
-    <asp:Repeater ID="TutorialList" runat="server" EnableViewState="False">
-        <HeaderTemplate><ul></HeaderTemplate>
-        <ItemTemplate>
-            <li><asp:HyperLink runat="server"
-             NavigateUrl='<%# Eval("Url") %>'
-             Text='<%# Eval("Title") %>'></asp:HyperLink>
-                    - <%# Eval("Description") %></li>
-        </ItemTemplate>
-        <FooterTemplate></ul></FooterTemplate>
-    </asp:Repeater>
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample12.xml)]
 
 SectionLevelTutorialListing.ascx.vb
 
 
-    Partial Class UserControls_SectionLevelTutorialListing 
-        Inherits UserControl
-    
-        Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-            If SiteMap.CurrentNode IsNot Nothing Then
-                TutorialList.DataSource = SiteMap.CurrentNode.ChildNodes
-                TutorialList.DataBind()
-            End If
-        End Sub
-    End Class
+[!code[Main](master-pages-and-site-navigation-vb/samples/sample13.xml)]
 
 In the previous Repeater example we bound the `SiteMap` data to the Repeater declaratively; the `SectionLevelTutorialListing` User Control, however, does so programmatically. In the `Page_Load` event handler, a check is made to ensure that this page s URL maps to a node in the site map. If this User Control is used in a page that does not have a corresponding `<siteMapNode>` entry, `SiteMap.CurrentNode` will return `Nothing` and no data will be bound to the Repeater. Assuming we have a `CurrentNode`, we bind its `ChildNodes` collection to the Repeater. Since our site map is set up such that the `Default.aspx` page in each section is the parent node of all of the tutorials within that section, this code will display links to and descriptions of all of the section's tutorials, as shown in the screen shot below.
 

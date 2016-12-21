@@ -131,18 +131,14 @@ In this task, you will customize the StoreManager Index action method to return 
 
     C#
 
-        using System.Data;
-        using System.Data.Entity;
-        using MvcMusicStore.Models;
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample1.xml)]
 2. Add a field to the **StoreManagerController** to hold an instance of **MusicStoreEntities.**
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex1 MusicStoreEntities*)
 
     C#
 
-        public class StoreManagerController : Controller
-        {
-            private MusicStoreEntities db = new MusicStoreEntities();
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample2.xml)]
 3. Implement the StoreManagerController Index action to return a View with the list of albums.
 
     The Controller action logic will be very similar to the StoreController's Index action written earlier. Use LINQ to retrieve all albums, including Genre and Artist information for display.
@@ -151,16 +147,7 @@ In this task, you will customize the StoreManager Index action method to return 
 
     C#
 
-        //
-        // GET: /StoreManager/
-        
-        public ActionResult Index()
-        {
-            var albums = this.db.Albums.Include(a => a.Genre).Include(a => a.Artist)
-                 .OrderBy(a => a.Price);
-        
-            return this.View(albums.ToList());
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample3.xml)]
 
 <a id="Ex1Task3"></a>
 
@@ -195,108 +182,17 @@ In this task, you will adjust the simple View template created with ASP.NET MVC 
 
     HTML
 
-        @model IEnumerable<MvcMusicStore.Models.Album>
-        
-        @{
-             ViewBag.Title = "Index";
-        }
-        
-        <h2>Index</h2>
-        
-        <p>
-             @Html.ActionLink("Create New", "Create")
-        </p>
-        <table>
-             <tr>
-                  <th>
-                        @Html.DisplayNameFor(model => model.GenreId)
-                  </th>
-                  <th>
-                        @Html.DisplayNameFor(model => model.ArtistId)
-                  </th>
-                  <th>
-                        @Html.DisplayNameFor(model => model.Title)
-                  </th>
-                  <th>
-                        @Html.DisplayNameFor(model => model.Price)
-                  </th>
-                  <th>
-                        @Html.DisplayNameFor(model => model.AlbumArtUrl)
-                  </th>
-                  <th></th>
-             </tr>
-        
-        @foreach (var item in Model) {
-             <tr>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.GenreId)
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.ArtistId)
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.AlbumArtUrl)
-                  </td>
-                  <td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.AlbumId }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.AlbumId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })
-                  </td>
-             </tr>
-        }
-        
-        </table>
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample4.xml)]
 2. Replace the **&lt;table&gt;** code with the following code to display only the **Genre**, **Artist**, **Album Title**, and **Price** fields. This deletes the **AlbumId** and **Album Art URL** columns. Also, it changes GenreId and ArtistId columns to display their linked class properties of **Artist.Name** and **Genre.Name**, and removes the **Details** link.
 
     HTML
 
-        <table>
-            <tr>
-              <th></th>
-              <th>Genre</th>
-              <th>Artist</th>
-              <th>Title</th>
-              <th>Price</th>
-            </tr>
-        
-            @foreach (var item in Model) {
-             <tr>
-                  <td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.AlbumId }) |
-        
-                        @Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.Genre.Name)
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.Artist.Name)
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                  </td>
-             </tr>
-            }
-        </table>
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample5.xml)]
 3. Change the following descriptions.
 
     HTML
 
-        @model IEnumerable<MvcMusicStore.Models.Album>
-        @{
-            ViewBag.Title = "Store Manager - All Albums";
-        }
-        
-        <h2>Albums</h2>
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample6.xml)]
 
 <a id="Ex1Task5"></a>
 
@@ -347,22 +243,7 @@ In this task, you will add a new method **Truncate** to the **HTML** object expo
 
     C#
 
-        @model IEnumerable<MvcMusicStore.Models.Album>
-        
-        @helper Truncate(string input, int length)
-        {
-             if (input.Length <= length) {
-                  @input
-             } else {
-                  @input.Substring(0, length)<text>...</text>
-             }
-        } 
-        
-        @{
-             ViewBag.Title = "Store Manager - All Albums";
-        }
-        
-        <h2>Albums</h2>
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample7.xml)]
 
 <a id="Ex2Task2"></a>
 
@@ -376,25 +257,7 @@ In this task, you will use the **Truncate** method to truncate the text in the V
 
     HTML
 
-        <tr>
-             <td>
-                  @Html.ActionLink("Edit", "Edit", new { id=item.AlbumId }) |
-        
-                  @Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })
-             </td>
-             <td>
-                  @Html.DisplayFor(modelItem => item.Genre.Name)
-             </td>
-             <td>
-                  @Truncate(item.Artist.Name, 25)
-             </td>
-             <td>
-                  @Truncate(item.Title, 25)
-             </td>
-             <td>
-                  @Html.DisplayFor(modelItem => item.Price)
-             </td>
-        </tr>
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample8.xml)]
 
 <a id="Ex2Task3"></a>
 
@@ -442,20 +305,7 @@ In this task, you will implement the HTTP-GET version of the Edit action method 
 
     C#
 
-        public ActionResult Edit(int id)
-        {
-            Album album = this.db.Albums.Find(id);
-        
-            if (album == null)
-            {
-                 return this.HttpNotFound();
-            }
-        
-            this.ViewBag.GenreId = new SelectList(this.db.Genres, "GenreId", "Name", album.GenreId);
-            this.ViewBag.ArtistId = new SelectList(this.db.Artists, "ArtistId", "Name", album.ArtistId);
-        
-            return this.View(album);
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample9.xml)]
 
     > [!NOTE] You are using **System.Web.Mvc** **SelectList** for Artists and Genres instead of the **System.Collections.Generic** List.
     > 
@@ -500,55 +350,7 @@ In this task, you will add drop-downs to the View template created in the last t
 
     HTML
 
-        <fieldset>
-             <legend>Album</legend>
-        
-             @Html.HiddenFor(model => model.AlbumId)
-        
-             <div class="editor-label">
-                  @Html.LabelFor(model => model.Title)
-             </div>
-             <div class="editor-field">
-                  @Html.EditorFor(model => model.Title)
-                  @Html.ValidationMessageFor(model => model.Title)
-             </div>
-        
-             <div class="editor-label">
-                  @Html.LabelFor(model => model.Price)
-             </div>
-             <div class="editor-field">
-                  @Html.EditorFor(model => model.Price)
-                  @Html.ValidationMessageFor(model => model.Price)
-             </div>
-        
-             <div class="editor-label">
-                  @Html.LabelFor(model => model.AlbumArtUrl)
-             </div>
-             <div class="editor-field">
-                  @Html.EditorFor(model => model.AlbumArtUrl)
-                  @Html.ValidationMessageFor(model => model.AlbumArtUrl)
-             </div>
-        
-             <div class="editor-label">
-                  @Html.LabelFor(model => model.Artist)
-             </div>
-             <div class="editor-field">
-                  @Html.DropDownList("ArtistId", (SelectList) ViewData["Artists"])
-                  @Html.ValidationMessageFor(model => model.ArtistId)
-             </div>
-        
-             <div class="editor-label">
-                  @Html.LabelFor(model => model.Genre)
-             </div>
-             <div class="editor-field">
-                  @Html.DropDownList("GenreId", (SelectList) ViewData["Genres"])
-                  @Html.ValidationMessageFor(model => model.GenreId)
-             </div>
-        
-             <p>
-                  <input type="submit" value="Save" />
-             </p>
-        </fieldset>
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample10.xml)]
 
     > [!NOTE] An **Html.DropDownList** helper has been added to render drop-downs for choosing Artists and Genres. The parameters passed to **Html.DropDownList** are:
     > 
@@ -583,22 +385,7 @@ Now that the Edit View displays as expected, you need to implement the HTTP-POST
 
     C#
 
-        [HttpPost]
-        public ActionResult Edit(Album album)
-        {
-             if (ModelState.IsValid)
-             {
-                  this.db.Entry(album).State = EntityState.Modified;
-                  this.db.SaveChanges();
-        
-                  return this.RedirectToAction("Index");
-             }
-        
-             this.ViewBag.GenreId = new SelectList(this.db.Genres, "GenreId", "Name", album.GenreId);
-             this.ViewBag.ArtistId = new SelectList(this.db.Artists, "ArtistId", "Name", album.ArtistId);
-        
-             return this.View(album);
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample11.xml)]
 
     > [!NOTE] This method will be executed when the user clicks the **Save** button of the View and performs an HTTP-POST of the form values back to the server to persist them in the database. The decorator **[HttpPost]** indicates that the method should be used for those HTTP-POST scenarios. The method takes an **Album** object. ASP.NET MVC will automatically create the Album object from the posted &lt;form&gt; values.
     > 
@@ -657,16 +444,7 @@ In this task, you will implement the HTTP-GET version of the Create action metho
 
     C#
 
-        //
-        // GET: /StoreManager/Create
-        
-        public ActionResult Create()
-        {
-             this.ViewBag.GenreId = new SelectList(this.db.Genres, "GenreId", "Name");
-             this.ViewBag.ArtistId = new SelectList(this.db.Artists, "ArtistId", "Name");
-        
-             return this.View();
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample12.xml)]
 
 <a id="Ex4Task2"></a>
 
@@ -685,30 +463,7 @@ In this task, you will add the Create View template that will display a new (emp
 
     HTML
 
-        ...
-        <fieldset>
-             <legend>Album</legend>
-        
-             <div class="editor-label">
-                  @Html.LabelFor(model => model.GenreId, "Genre")
-             </div>
-             <div class="editor-field">
-                  @Html.DropDownList("GenreId", String.Empty)
-                  @Html.ValidationMessageFor(model => model.GenreId)
-             </div>
-        
-             <div class="editor-label">
-                  @Html.LabelFor(model => model.ArtistId, "Artist")
-             </div>
-             <div class="editor-field">
-                  @Html.DropDownList("ArtistId", String.Empty)
-                  @Html.ValidationMessageFor(model => model.ArtistId)
-             </div>
-        
-             <div class="editor-label">
-                  @Html.LabelFor(model => model.Title)
-             </div>
-            ...
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample13.xml)]
 
 <a id="Ex4Task3"></a>
 
@@ -738,22 +493,7 @@ In this task, you will implement the HTTP-POST version of the Create action meth
 
     C#
 
-        [HttpPost]
-        public ActionResult Create(Album album)
-        {
-             if (ModelState.IsValid)
-             {
-                  this.db.Albums.Add(album);
-                  this.db.SaveChanges();
-        
-                  return this.RedirectToAction("Index");
-             }
-        
-             this.ViewBag.GenreId = new SelectList(this.db.Genres, "GenreId", "Name", album.GenreId);
-             this.ViewBag.ArtistId = new SelectList(this.db.Artists, "ArtistId", "Name", album.ArtistId);
-        
-             return this.View(album);
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample14.xml)]
 
     > [!NOTE] The Create action is pretty similar to the previous Edit action method but instead of setting the object as modified, it is being added to the context.
 
@@ -807,20 +547,7 @@ In this task, you will implement the HTTP-GET version of the Delete action metho
 
     C#
 
-        //
-        // GET: /StoreManager/Delete/5
-        
-        public ActionResult Delete(int id)
-        {
-             Album album = this.db.Albums.Find(id);
-        
-             if (album == null)
-             {
-                  return this.HttpNotFound();
-             }
-        
-             return this.View(album);
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample15.xml)]
 4. Right-click inside the **Delete** action method and select **Add View**. This will bring up the Add View dialog.
 5. In the Add View dialog, verify that the View name is **Delete**. Select the **Create a strongly-typed view** option and select **Album (MvcMusicStore.Models)** from the **Model class** drop-down. Select **Delete** from the **Scaffold template** drop-down. Leave the other fields with their default value and then click **Add**.
 
@@ -831,20 +558,7 @@ In this task, you will implement the HTTP-GET version of the Delete action metho
 
     HTML
 
-        @model MvcMusicStore.Models.Album
-        @{
-             ViewBag.Title = "Delete";
-        }
-        <h2>Delete Confirmation</h2>
-        
-        <h3> Are you sure you want to delete the album title <strong>@Model.Title </strong> ? </h3>
-        
-        @using (Html.BeginForm()) {
-             <p>
-                  <input type="submit" value="Delete" /> |
-                  @Html.ActionLink("Back to List", "Index")
-             </p>
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample16.xml)]
 
 <a id="Ex05Task2"></a>
 
@@ -874,18 +588,7 @@ In this task, you will implement the HTTP-POST version of the Delete action meth
 
     C#
 
-        //
-        // POST: /StoreManager/Delete/5
-        
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-             Album album = this.db.Albums.Find(id);
-             this.db.Albums.Remove(album);
-             this.db.SaveChanges();
-        
-             return this.RedirectToAction("Index"); 
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample17.xml)]
 
 <a id="Ex5Task4"></a>
 
@@ -922,17 +625,7 @@ For a simple Model class, adding a Data Annotation is just handled by adding a *
 
 C#
 
-    using System.ComponentModel.DataAnnotations;
-    namespace SuperheroSample.Models
-    {
-        public class Superhero
-        {
-            [Required]
-            public string Name { get; set; }
-    
-            public bool WearsCape { get; set; }
-        }
-    }
+[!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample18.xml)]
 
 This is a little more complex in cases like this application where the Entity Data Model is generated. If you added Data Annotations directly to the model classes, they would be overwritten if you update the model from the database. Instead, you can make use of metadata partial classes which will exist to hold the annotations and are associated with the model classes using the **[MetadataType]** attribute.
 
@@ -952,42 +645,7 @@ This is a little more complex in cases like this application where the Entity Da
 
     C#
 
-        namespace MvcMusicStore.Models
-        {
-             using System.ComponentModel;
-             using System.ComponentModel.DataAnnotations;
-        
-             public class Album
-             {
-                  [ScaffoldColumn(false)]
-                  public int AlbumId { get; set; }
-        
-                  [DisplayName("Genre")]
-                  public int GenreId { get; set; }
-        
-                  [DisplayName("Artist")]
-                  public int ArtistId { get; set; }
-        
-                  [Required(ErrorMessage = "An Album Title is required")]
-                  [DisplayFormat(ConvertEmptyStringToNull = false)]
-                  [StringLength(160, MinimumLength = 2)]
-                  public string Title { get; set; }
-        
-                  [Required(ErrorMessage = "Price is required")]
-                  [Range(0.01, 100.00, ErrorMessage = "Price must be between 0.01 and 100.00")]
-                  [DataType(DataType.Currency)]
-                  public decimal Price { get; set; }
-        
-                  [DisplayName("Album Art URL")]
-                  [DataType(DataType.ImageUrl)]
-                  [StringLength(1024)]
-                  public string AlbumArtUrl { get; set; }
-        
-                  public virtual Genre Genre { get; set; }
-        
-                  public virtual Artist Artist { get; set; }
-             }
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample19.xml)]
 
     > [!NOTE] This **Album** partial class has a **MetadataType** attribute which points to the **AlbumMetaData** class for the Data Annotations. These are some of the Data Annotation attributes you are using to annotate the Album model:
     > 
@@ -1052,34 +710,7 @@ In this task, you will run the application before including jQuery in order to c
 
     HTML
 
-        ...
-                  <div class="editor-label">
-                        <label for="Price">Price</label>
-                  </div>
-                  <div class="editor-field">
-                        <input class="text-box single-line" id="Price" name="Price" type="text" value="" />
-                        <span class="field-validation-valid" id="Price_validationMessage"></span>
-                  </div>
-        
-                  <div class="editor-label">
-                        <label for="AlbumArtUrl">Album Art URL</label>
-                  </div>
-                  <div class="editor-field">
-                        <input class="text-box single-line" id="AlbumArtUrl" name="AlbumArtUrl" type="text" value="" />
-                        <span class="field-validation-valid" id="AlbumArtUrl_validationMessage"></span>
-                  </div>
-        
-                  <p>
-                        <input type="submit" value="Create" />
-                  </p>
-             </fieldset>
-        </form><script type="text/javascript">
-        //<![CDATA[
-        if (!window.mvcClientValidationMetadata) { window.mvcClientValidationMetadata = []; }
-        window.mvcClientValidationMetadata.push({"Fields":[{"FieldName":"GenreId","ReplaceValidationMessageContents":true,"ValidationMessageId":"GenreId_validationMessage","ValidationRules":[{"ErrorMessage":"The Genre field is required.","ValidationParameters":{},"ValidationType":"required"},{"ErrorMessage":"The field Genre must be a number.","ValidationParameters":{},"ValidationType":"number"}]},{"FieldName":"ArtistId","ReplaceValidationMessageContents":true,"ValidationMessageId":"ArtistId_validationMessage","ValidationRules":[{"ErrorMessage":"The Artist field is required.","ValidationParameters":{},"ValidationType":"required"},{"ErrorMessage":"The field Artist must be a number.","ValidationParameters":{},"ValidationType":"number"}]},{"FieldName":"Title","ReplaceValidationMessageContents":true,"ValidationMessageId":"Title_validationMessage","ValidationRules":[{"ErrorMessage":"An Album Title is required","ValidationParameters":{},"ValidationType":"required"},{"ErrorMessage":"The field Title must be a string with a minimum length of 2 and a maximum length of 160.","ValidationParameters":{"min":2,"max":160},"ValidationType":"length"}]},{"FieldName":"Price","ReplaceValidationMessageContents":true,"ValidationMessageId":"Price_validationMessage","ValidationRules":[{"ErrorMessage":"Price must be between 0.01 and 100.00","ValidationParameters":{"min":0.01,"max":100},"ValidationType":"range"},{"ErrorMessage":"Price is required","ValidationParameters":{},"ValidationType":"required"},{"ErrorMessage":"The field Price must be a number.","ValidationParameters":{},"ValidationType":"number"}]},{"FieldName":"AlbumArtUrl","ReplaceValidationMessageContents":true,"ValidationMessageId":"AlbumArtUrl_validationMessage","ValidationRules":[{"ErrorMessage":"The field Album Art URL must be a string with a maximum length of 1024.","ValidationParameters":{"max":1024},"ValidationType":"length"}]}],"FormId":"form0","ReplaceValidationSummary":false,"ValidationSummaryId":"validationSummary"});
-        //]]>
-        </script>
-        ...
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample20.xml)]
 
 <a id="Ex7Task2"></a>
 
@@ -1092,16 +723,7 @@ In this task, you will enable jQuery **unobtrusive client validation** from **We
 
     XML
 
-        ...
-        <configuration>
-          <appSettings>
-             <add key="webpages:Version" value="2.0.0.0" />
-             <add key="webpages:Enabled" value="false" />
-             <add key="PreserveLoginUrl" value="true" />
-             <add key="ClientValidationEnabled" value="true" />
-             <add key="UnobtrusiveJavaScriptEnabled" value="true" />
-        </appSettings>
-        ...
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample21.xml)]
 
     > [!NOTE] You can also enable client validation by code at Global.asax.cs to get the same results:
     > 
@@ -1113,10 +735,7 @@ In this task, you will enable jQuery **unobtrusive client validation** from **We
 
     CSHTML
 
-        ...
-        @section Scripts {
-             @Scripts.Render("~/bundles/jqueryval")
-        }
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample22.xml)]
 
     > [!NOTE] All these jQuery libraries are included in MVC 4 new projects. You can find more libraries in the **/Scripts** folder of you project.
     > 
@@ -1139,31 +758,7 @@ In this task, you will test that the **StoreManager** create view template perfo
 
     HTML
 
-        ...
-        <div class="editor-label">
-            <label for="Title">Title</label>
-        </div>
-        <div class="editor-field">
-            <input class="text-box single-line" data-val="true" data-val-length="The field Title must be a string with a minimum length of 2 and a maximum length of 160." data-val-length-max="160" data-val-length-min="2" data-val-required="An Album Title is required" id="Title" name="Title" type="text" value="" />
-            <span class="field-validation-valid" data-valmsg-for="Title" data-valmsg-replace="true"></span>
-        </div>
-        
-        <div class="editor-label">
-            <label for="Price">Price</label>
-        </div>
-        <div class="editor-field">
-            <input class="text-box single-line" data-val="true" data-val-number="The field Price must be a number." data-val-range="Price must be between 0.01 and 100.00" data-val-range-max="100" data-val-range-min="0.01" data-val-required="Price is required" id="Price" name="Price" type="text" value="" />
-            <span class="field-validation-valid" data-valmsg-for="Price" data-valmsg-replace="true"></span>
-        </div>
-        
-        <div class="editor-label">
-            <label for="AlbumArtUrl">Album Art URL</label>
-        </div>
-        <div class="editor-field">
-            <input class="text-box single-line" data-val="true" data-val-length="The field Album Art URL must be a string with a maximum length of 1024." data-val-length-max="1024" id="AlbumArtUrl" name="AlbumArtUrl" type="text" value="" />
-            <span class="field-validation-valid" data-valmsg-for="AlbumArtUrl" data-valmsg-replace="true"></span>
-        </div>        
-        ...
+    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample23.xml)]
 
     > [!NOTE] For each client validation rule, Unobtrusive jQuery adds an attribute with data-val-*rulename*=&quot;*message*&quot;. Below is a list of tags that Unobtrusive jQuery inserts into the html input field to perform client validation:
     > 
@@ -1179,21 +774,13 @@ In this task, you will test that the **StoreManager** create view template perfo
     > 
     > C#
     > 
-    >     [Required(ErrorMessage = "Price is required")]
-    >     [Range(0.01, 100.00, ErrorMessage = "Price must be between 0.01 and 100.00")]
-    >     public object Price { get; set; }
+    > [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample24.xml)]
     > 
     > After using Unobtrusive jQuery, the generated code is:
     > 
     > HTML
     > 
-    >     <input data-val="true"
-    >     data-val-number="The field Price must be a number."
-    >     data-val-range="Price must be between 0.01 and 100.00"
-    >     data-val-range-max="100"
-    >     data-val-range-min="0.01"
-    >     data-val-required="Price is required"
-    >     id="Album_Price" name="Album.Price" type="text" value="0" />
+    > [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample25.xml)]
 
 * * *
 

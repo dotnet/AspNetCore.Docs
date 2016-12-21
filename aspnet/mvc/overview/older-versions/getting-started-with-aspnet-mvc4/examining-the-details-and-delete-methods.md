@@ -26,19 +26,7 @@ Open the `Movie` controller and examine the `Details` method.
 
 ![](examining-the-details-and-delete-methods/_static/image1.png)
 
-    public ActionResult Details(int? id)
-    {
-        if (id == null)
-        {
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        }
-        Movie movie = db.Movies.Find(id);
-        if (movie == null)
-        {
-            return HttpNotFound();
-        }
-        return View(movie);
-    }
+[!code[Main](examining-the-details-and-delete-methods/samples/sample1.xml)]
 
 The MVC scaffolding engine that created this action method adds a comment showing a HTTP request that invokes the method. In this case it's a `GET` request with three URL segments, the `Movies` controller, the `Details` method and a `ID` value.
 
@@ -46,19 +34,13 @@ Code First makes it easy to search for data using the `Find` method. An importan
 
 Examine the `Delete` and `DeleteConfirmed` methods.
 
-[!code[Main](examining-the-details-and-delete-methods/samples/sample1.xml?highlight=17)]
+[!code[Main](examining-the-details-and-delete-methods/samples/sample2.xml?highlight=17)]
 
 Note that the `HTTP Get``Delete` method doesn't delete the specified movie, it returns a view of the movie where you can submit (`HttpPost`) the deletion.. Performing a delete operation in response to a GET request (or for that matter, performing an edit operation, create operation, or any other operation that changes data) opens up a security hole. For more information about this, see Stephen Walther's blog entry [ASP.NET MVC Tip #46 — Don't use Delete Links because they create Security Holes](http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx).
 
 The `HttpPost` method that deletes the data is named `DeleteConfirmed` to give the HTTP POST method a unique signature or name. The two method signatures are shown below:
 
-    // GET: /Movies/Delete/5
-    public ActionResult Delete(int? id)
-    
-    //
-    // POST: /Movies/Delete/5
-    [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
+[!code[Main](examining-the-details-and-delete-methods/samples/sample3.xml)]
 
 The common language runtime (CLR) requires overloaded methods to have a unique parameter signature (same method name but different list of parameters). However, here you need two Delete methods -- one for GET and one for POST -- that both have the same parameter signature. (They both need to accept a single integer as a parameter.)
 
@@ -66,17 +48,7 @@ To sort this out, you can do a couple of things. One is to give the methods diff
 
 Another common way to avoid a problem with methods that have identical names and signatures is to artificially change the signature of the POST method to include an unused parameter. For example, some developers add a parameter type `FormCollection` that is passed to the POST method, and then simply don't use the parameter:
 
-    public ActionResult Delete(FormCollection fcNotUsed, int id = 0)
-    {
-        Movie movie = db.Movies.Find(id);
-        if (movie == null)
-        {
-            return HttpNotFound();
-        }
-        db.Movies.Remove(movie);
-        db.SaveChanges();
-        return RedirectToAction("Index");
-    }
+[!code[Main](examining-the-details-and-delete-methods/samples/sample4.xml)]
 
 ## Summary
 

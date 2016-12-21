@@ -38,13 +38,7 @@ This tutorial uses the same model and controller classes as the [Getting Started
 
 First, add a model class. In **Solution Explorer**, right-click the project and select **Add Class**. Name the class Product, and add the following implementation:
 
-    public class Product
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public string Category { get; set; }
-    }
+[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample1.xml)]
 
 Next, add a Web API controller to the project., A *controller* is the object that handles HTTP requests for Web API.
 
@@ -58,48 +52,7 @@ Under **Installed Templates**, expand **Visual C#** and select **Web**. Then, fr
 
 The **Add New Item** wizard will create a file named ProductsController.cs. Delete the methods that the wizard included and add the following methods:
 
-    namespace WebForms
-    {
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Net;
-        using System.Net.Http;
-        using System.Web.Http;
-    
-        public class ProductsController : ApiController
-        {
-    
-            Product[] products = new Product[] 
-            { 
-                new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 }, 
-                new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M }, 
-                new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M } 
-            };
-    
-            public IEnumerable<Product> GetAllProducts()
-            {
-                return products;
-            }
-    
-            public Product GetProductById(int id)
-            {
-                var product = products.FirstOrDefault((p) => p.Id == id);
-                if (product == null)
-                {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
-                }
-                return product;
-            }
-    
-            public IEnumerable<Product> GetProductsByCategory(string category)
-            {
-                return products.Where(
-                    (p) => string.Equals(p.Category, category,
-                        StringComparison.OrdinalIgnoreCase));
-            }
-        }
-    }
+[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample2.xml)]
 
 For more information about the code in this controller, see the [Getting Started](tutorial-your-first-web-api.md) tutorial.
 
@@ -109,15 +62,11 @@ Next, we'll add a URI route so that URIs of the form &quot;/api/products/&quot; 
 
 In **Solution Explorer**, double-click Global.asax to open the code-behind file Global.asax.cs. Add the following **using** statement.
 
-    using System.Web.Http;
+[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample3.xml)]
 
 Then add the following code to the **Application\_Start** method:
 
-    RouteTable.Routes.MapHttpRoute(
-        name: "DefaultApi",
-        routeTemplate: "api/{controller}/{id}",
-        defaults: new { id = System.Web.Http.RouteParameter.Optional }
-        );
+[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample4.xml)]
 
 For more information about routing tables, see [Routing in ASP.NET Web API](../web-api-routing-and-actions/routing-in-aspnet-web-api.md).
 
@@ -127,26 +76,11 @@ That's all you need to create a web API that clients can access. Now let's add a
 
 Open the file Default.aspx. Replace the boilerplate text that is in the main content section, as shown:
 
-    <%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" 
-        AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebForms._Default" %>
-    
-    <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-    </asp:Content>
-    
-    <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-        <h2>Products</h2>
-        <table>
-        <thead>
-            <tr><th>Name</th><th>Price</th></tr>
-        </thead>
-        <tbody id="products">
-        </tbody>
-        </table>
-    </asp:Content>
+[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample5.xml)]
 
 Next, add a reference to the jQuery source file in the `HeaderContent` section:
 
-[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample1.xml?highlight=2)]
+[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample6.xml?highlight=2)]
 
 Note: You can easily add the script reference by dragging and dropping the file from **Solution Explorer** into the code editor window.
 
@@ -154,24 +88,7 @@ Note: You can easily add the script reference by dragging and dropping the file 
 
 Below the jQuery script tag, add the following script block:
 
-    <script type="text/javascript">
-        function getProducts() {
-            $.getJSON("api/products",
-                function (data) {
-                    $('#products').empty(); // Clear the table body.
-    
-                    // Loop through the list of products.
-                    $.each(data, function (key, val) {
-                        // Add a table row for the product.
-                        var row = '<td>' + val.Name + '</td><td>' + val.Price + '</td>';
-                        $('<tr/>', { text: row })  // Append the name.
-                            .appendTo($('#products'));
-                    });
-                });
-            }
-    
-            $(document).ready(getProducts);
-    </script>
+[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample7.xml)]
 
 When the document loads, this script makes an AJAX request to &quot;api/products&quot;. The request returns a list of products in JSON format. The script adds the product information to the HTML table.
 

@@ -1,6 +1,5 @@
-var updateStockPriceHandler = stockTickerHubProxy.On<Stock>("UpdateStockPrice", stock => 
-    Context.Post(delegate
+    public class Stock
     {
-        textBox.Text += string.Format("Stock update for {0} new price {1}\n", stock.Symbol, stock.Price);
-    }, null)
-);
+        public string Symbol { get; set; }
+        public decimal Price { get; set; }
+    }

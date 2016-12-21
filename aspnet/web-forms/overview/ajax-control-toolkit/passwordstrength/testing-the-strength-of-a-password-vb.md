@@ -35,25 +35,7 @@ The `PasswordStrength` control extends a text box and checks whether the passwor
 
 The `StrengthIndicatorType` provides the information how to present the strength of the password, as text (value `"Text"`) or as a kind of progress bar (value `"BarIndicator"`). In the `DisplayPosition` attribute, you configure where the information appears. Here is a complete example, including the ASP.NET AJAX `ScriptManager` control, the `PasswordStrength` control and of course a text box where the user may enter a password. For the sake of demonstration, the latter form field is a regular text field and not a password field so that you can see during development what you are typing.
 
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head runat="server">
-     <title>Control Toolkit</title>
-    </head>
-    <body>
-     <form id="form1" runat="server">
-     <asp:ScriptManager ID="asm" runat="server" />
-     <div>
-     <asp:TextBox ID="Password" runat="server" />
-     <ajaxToolkit:PasswordStrength ID="ps1" runat="server" 
-     TargetControlID="Password" RequiresUpperAndLowerCaseCharacters="true" 
-     MinimumNumericCharacters="1" MinimumSymbolCharacters="1" 
-     PreferredPasswordLength="8" DisplayPosition="RightSide" 
-     StrengthIndicatorType="Text" />
-     </div>
-     </form>
-    </body>
-    </html>
+[!code[Main](testing-the-strength-of-a-password-vb/samples/sample1.xml)]
 
 Run the page and type away: Only after you have entered lowercase letters, uppercase letters, digits and symbols, the password is deemed as unbreakable .
 

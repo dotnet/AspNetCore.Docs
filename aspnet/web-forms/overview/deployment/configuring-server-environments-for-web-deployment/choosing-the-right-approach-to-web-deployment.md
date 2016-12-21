@@ -42,7 +42,7 @@ This table shows the main advantages and disadvantages of each deployment approa
 When you install Web Deploy using the default settings on a destination server, the Web Deployment Agent Service (the "remote agent") is automatically installed and started. By default, the remote agent exposes an HTTP endpoint at this address:
 
 
-    http://[server]/MSDEPLOYAGENTSERVICE
+[!code[Main](choosing-the-right-approach-to-web-deployment/samples/sample1.xml)]
 
 
 > [!NOTE] You can replace [*server*<u>]</u> with the machine name of your web server, an IP address for your web server, or a hostname that resolves to your web server.
@@ -51,13 +51,13 @@ When you install Web Deploy using the default settings on a destination server, 
 Server administrators can deploy web packages from a remote location, like a developer machine or a build server, by specifying this endpoint address. For example, suppose Matt Hink at Fabrikam, Inc. has built the ContactManager.Mvc web application project on his developer machine. The build process generates a web package, together with a *.deploy.cmd* file that contains the Web Deploy commands required to install the package. If Matt is a server administrator on the TESTWEB1 server, he can deploy the web application to the test web server by running this command on his developer machine:
 
 
-    ContactManager.Mvc.deploy.cmd /y /m:http://TESTWEB1/MSDEPLOYAGENTSERVICE a/:NTLM
+[!code[Main](choosing-the-right-approach-to-web-deployment/samples/sample2.xml)]
 
 
 In actual fact, the Web Deploy executable can infer the endpoint address of the remote agent if you provide the machine name, so Matt only needs to type this:
 
 
-    ContactManager.Mvc.deploy.cmd /y /m:TESTWEB1 /a:NTLM
+[!code[Main](choosing-the-right-approach-to-web-deployment/samples/sample3.xml)]
 
 
 > [!NOTE] For more information on Web Deploy command-line syntax and *.deploy.cmd* files, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx).
@@ -76,7 +76,7 @@ The temp agent approach to deployment is similar to the remote agent approach. H
 If you want to use the temp agent provider setting, add the **/g** flag to your deployment command:
 
 
-    ContactManager.Mvc.deploy.cmd /y /m:TESTWEB1 /g:true
+[!code[Main](choosing-the-right-approach-to-web-deployment/samples/sample4.xml)]
 
 
 > [!NOTE] You can't use the temp agent if the web deployment agent service is installed on the destination computer, even if the service is not running.
@@ -93,7 +93,7 @@ For IIS 7 onwards, Web Deploy offers an alternative deployment approach through 
 By default, the remote agent exposes an HTTP endpoint at this address:
 
 
-    https://[server]:8172/MSDeploy.axd
+[!code[Main](choosing-the-right-approach-to-web-deployment/samples/sample5.xml)]
 
 
 > [!NOTE] You can replace [*server*<u>]</u> with the machine name of your web server, an IP address for your web server, or a hostname that resolves to your web server.
@@ -104,22 +104,13 @@ The big advantage of the Web Deploy Handler over the remote agent, and the temp 
 In the case of non-administrator users, the Web Management Service (WMSvc) will only allow the user to connect to IIS using a site-level connection, rather than a server-level connection. To access a particular site, you can include a site-specific query string in the endpoint address:
 
 
-    https://[server]:8172/MSDeploy.axd?site=DemoSite
+[!code[Main](choosing-the-right-approach-to-web-deployment/samples/sample6.xml)]
 
 
 For example, suppose a build process is configured to automatically deploy a web application to a staging environment after every successful build. If you used the remote agent approach, you&#x27;d need to make the build process identity an administrator on your destination servers. In contrast, using the Web Deploy Handler approach you can give a non-administrator user&#x2014;**FABRIKAM\stagingdeployer** in this case&#x2014;permission to a specific IIS website only, and the build process can provide these credentials to deploy the web package.
 
 
-    msdeploy.exe 
-      -source:package='…\ContactManager.Mvc.zip' 
-      -dest:auto,
-            computerName='https://STAGEWEB1:8172/MSDeploy.axd?site=DemoSite',
-            userName='FABRIKAM\stagingdeployer',
-            password='Pa$$w0rd',
-            authtype='Basic', 
-      -verb:sync 
-      -setParamFile:"…\ContactManager.Mvc.SetParameters.xml"   
-      -allowUntrusted
+[!code[Main](choosing-the-right-approach-to-web-deployment/samples/sample7.xml)]
 
 
 > [!NOTE] For more information on Web Deploy command-line operations and syntax, see [Web Deploy Command Line Reference](https://technet.microsoft.com/en-us/library/dd568991(v=ws.10).aspx). For more information on using the *.deploy.cmd* file, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx).

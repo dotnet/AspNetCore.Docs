@@ -55,9 +55,7 @@ The following diagram shows how the *\_AppStart.cshtml* page works. When a reque
 1. In the root folder of a WebMatrix website, create a file named *\_AppStart.cshtml*. The file must be in the root of the site.
 2. Replace the existing content with the following: 
 
-        @{
-          AppState["customAppName"] = "Application Name";
-        }
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample1.xml)]
 
     This code stores a value in the `AppState` dictionary, which is automatically available to all pages in the site. Notice that the *\_AppStart.cshtml* file does not have any markup in it. The page will run the code and then redirect to the page that was originally requested.
 
@@ -65,15 +63,7 @@ The following diagram shows how the *\_AppStart.cshtml* page works. When a reque
 3. In the root folder, create a new page named *AppName.cshtml*.
 4. Replace the default markup and code with the following: 
 
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title>Show Application Name</title>
-            </head>
-            <body>
-                <h1>@AppState["customAppName"]</h1>
-            </body>
-        </html>
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample2.xml)]
 
     This code extracts the value from the `AppState` object that you set in the *\_AppStart.cshtml* page.
 5. Run the *AppName.cshtml* page in a browser. (Make sure the page is selected in the **Files** workspace before you run it.) The page displays the global value. 
@@ -91,7 +81,7 @@ This procedure shows you how to set `WebMail` settings globally. (For more infor
 2. If you don't already have a *\_AppStart.cshtml* file, in the root folder of a website create a file named *\_AppStart.cshtml*.
 3. Add the following `WebMail` settings to the *\_AppStart.cshtml* file: 
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample1.xml?highlight=2-7)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample3.xml?highlight=2-7)]
 
     Modify the following email related settings in the code:
 
@@ -105,50 +95,7 @@ This procedure shows you how to set `WebMail` settings globally. (For more infor
 - In the root folder of a website, create new page named *TestEmail.cshtml*.
 - Replace the existing content with the following: 
 
-        @{
-            var message = "";
-            try{
-                if(IsPost){
-                    WebMail.Send(
-                        to: Request.Form["emailAddress"],
-                        subject: Request.Form["emailSubject"],
-                        body:Request.Form["emailBody"]
-                   );
-                   message = "Email sent!";
-                }
-            }
-            catch(Exception ex){
-                message = "Email could not be sent!";
-            }
-        }
-        <!DOCTYPE html>
-        <html lang="en">
-          <head>
-             <meta charset="utf-8" />
-             <title>Test Email</title>
-          </head>
-          <body>
-            <h1>Test Email</h1>
-            <form method="post">
-              <p>
-                <label for="emailAddress">Email address:</label>
-                <input type="text" name="emailAddress" />
-              </p>
-              <p>
-                <label for="emailSubject">Subject:</label>
-                <input type="text" name="emailSubject" />
-              </p>
-              <p>
-                <label for="emailBody">Text to send:</label><br/>
-                <textarea name="emailBody" rows="6"></textarea>
-              </p>
-            <p><input type="submit" value="Send!" /></p>
-            @if(IsPost){
-                <p>@message</p>
-            }
-            </form>
-          </body>
-        </html>
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample4.xml)]
 - Run the *TestEmail.cshtml* page in a browser.
 - Fill in the fields to send yourself an email message and then click **Send**.
 - Check your email to make sure you've gotten the message.
@@ -170,24 +117,11 @@ ASP.NET lets you create a hierarchy of *\_PageStart.cshtml* files. You can put a
 
 For example, you might have the following combination of *\_PageStart.cshtml* files and *Default.cshtml* file:
 
-    @* ~/_PageStart.cshtml *@
-    @{
-      PageData["Color1"] = "Red";
-      PageData["Color2"] = "Blue";
-    }
+[!code[Main](18-customizing-site-wide-behavior/samples/sample5.xml)]
 
-    @* ~/myfolder/_PageStart.cshtml *@
-    @{
-      PageData["Color2"] = "Yellow";
-      PageData["Color3"] = "Green";
-    }
+[!code[Main](18-customizing-site-wide-behavior/samples/sample6.xml)]
 
-    @* ~/myfolder/default.cshtml *@
-    @PageData["Color1"]
-    <br/>
-    @PageData["Color2"]
-    <br/>
-    @PageData["Color3"]
+[!code[Main](18-customizing-site-wide-behavior/samples/sample7.xml)]
 
 When you run */myfolder/default.cshtml*, you'll see the following:
 
@@ -200,43 +134,17 @@ A good use for *\_PageStart.cshtml* files is to initialize the same layout page 
 1. In the root folder, create a new folder named *InitPages*.
 2. In the *InitPages* folder of your website, create a file named *\_PageStart.cshtml* and replace the default markup and code with the following: 
 
-        @{
-            // Sets the layout page for all pages in the folder.
-            Layout = "~/Shared/_Layout1.cshtml";
-        
-            // Sets a variable available to all pages in the folder.
-            PageData["MyBackground"] = "Yellow";
-        }
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample8.xml)]
 3. In the root of the website, create a folder named *Shared*.
 4. In the *Shared* folder, create a file named *\_Layout1.cshtml* and replace the default markup and code with the following: 
 
-        @{
-          var backgroundColor = PageData["MyBackground"];
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Page Title</title>
-          <link type="text/css" href="/Styles/Site.css" rel="stylesheet" />
-        </head>
-        <body>
-          <div id="header">
-            Using the _PageStart.cshtml file
-          </div>
-          <div id="main" style="background-color:@backgroundColor">
-            @RenderBody()
-          </div>
-        <div id="footer">
-          &copy; 2012 Contoso. All rights reserved
-        </div>
-        </body>
-        </html>
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample9.xml)]
 5. In the *InitPages* folder, create a file named *Content1.cshtml* and replace the existing content with the following: 
 
-        <p>This is content page 1.</p>
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample10.xml)]
 6. In the *InitPages* folder, create another file named *Content2.cshtml* and replace the default markup with the following: 
 
-        <p>This is content page 2.</p>
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample11.xml)]
 7. Run *Content1.cshtml* in a browser. 
 
     ![[image]](18-customizing-site-wide-behavior/_static/image4.jpg)
@@ -253,38 +161,17 @@ Another good use for the *\_PageStart.cshtml* file is to create a way to handle 
 1. In the root folder, create a folder named *InitCatch*.
 2. In the *InitCatch* folder of your website, create a file named *\_PageStart.cshtml* and replace the existing markup and code with the following: 
 
-        @{
-            try
-            {
-                RunPage();
-            }
-            catch (Exception ex)
-            {
-                Response.Redirect("~/Error.cshtml?source=" +
-                    HttpUtility.UrlEncode(Request.AppRelativeCurrentExecutionFilePath));
-            }
-        }
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample12.xml)]
 
     In this code, you try running the requested page explicitly by calling the `RunPage` method inside a `try` block. If any programming errors occur in the requested page, the code inside the `catch` block runs. In this case, the code redirects to a page (*Error.cshtml*) and passes the name of the file that experienced the error as part of the URL. (You'll create the page shortly.)
 3. In the *InitCatch* folder of your website, create a file named *Exception.cshtml* and replace the existing markup and code with the following: 
 
-        @{
-            var db = Database.Open("invalidDatabaseFile");
-        }
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample13.xml)]
 
     For purposes of this example, what you're doing in this page is deliberately creating an error by trying to open a database file that doesn't exist.
 4. In the root folder, create a file named *Error.cshtml* and replace the existing markup and code with the following: 
 
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title>Error Page</title>
-            </head>
-            <body>
-        <h1>Error report</h1>
-        <p>An error occurred while running the following file: @Request["source"]</p>
-            </body>
-        </html>
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample14.xml)]
 
     In this page, the expression `@Request["source"]` gets the value out of the URL and displays it.
 5. In the toolbar, click **Save**.
@@ -306,31 +193,13 @@ You can also use the *\_PageStart.cshtml* file to restrict access to all the fil
 3. In the root folder, create a folder named *AuthenticatedContent*.
 4. In the *AuthenticatedContent* folder, create a file named *\_PageStart.cshtml* and replace the existing markup and code with the following: 
 
-        @{
-            Response.CacheControl = "no-cache";
-            if (!WebSecurity.IsAuthenticated) {
-                var returnUrl = "~/Account/Login?ReturnUrl=" + Request.Url.LocalPath;
-                Response.Redirect(returnUrl);
-            }
-        }
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample15.xml)]
 
     The code starts by preventing all files in the folder from being cached. (This is required for scenarios like public computers, where you don't want one user's cached pages to be available to the next user.) Next, the code determines whether the user has signed in to the site before they can view any of the pages in the folder. If the user is not signed in, the code redirects to the login page. The login page can return the user to the page that was originally requested if you include a query string value named `ReturnUrl`.
 5. Create a new page in the *AuthenticatedContent* folder named *Page.cshtml*.
 6. Replace the default markup with the following:  
 
-        @{
-            Layout = "~/_SiteLayout.cshtml";
-            Page.Title = "Authenticated Content";
-        }
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8" />
-          </head>
-          <body>
-            Thank you for authenticating!
-          </body>
-        </html>
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample16.xml)]
 7. Run *Page.cshtml* in a browser. The code redirects you to a login page. You must register before logging in. After you've registered and logged in, you can navigate to the page and view its contents.
 
 <a id="Additional_Resources"></a>

@@ -1,16 +1,18 @@
-public async Task<ActionResult> LinkLoginCallback()
-{
-    var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, 
-        User.Identity.GetUserId());
-    if (loginInfo == null)
-    {
-        return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
-    }
-    IdentityResult result = await UserManager.AddLoginAsync(
-        User.Identity.GetUserId<int>(), loginInfo.Login);
-    if (result.Succeeded)
-    {
-        return RedirectToAction("Manage");
-    }
-    return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+public async Task<ActionResult> Disassociate(string loginProvider, string providerKey) 
+{ 
+    ManageMessageId? message = null; 
+    IdentityResult result = await UserManager.RemoveLoginAsync(
+        User.Identity.GetUserId<int>(), 
+        new UserLoginInfo(loginProvider, providerKey)); 
+    if (result.Succeeded) 
+    { 
+        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId<int>()); 
+        await SignInAsync(user, isPersistent: false); 
+        message = ManageMessageId.RemoveLoginSuccess; 
+    } 
+    else 
+    { 
+        message = ManageMessageId.Error; 
+    } 
+    return RedirectToAction("Manage", new { Message = message }); 
 }

@@ -187,22 +187,7 @@ If you want to disable keepalive functionality, set `KeepAlive` to null. Keepali
 
 To change the default values for these settings, set them in `Application_Start` in your *Global.asax* file, as shown in the following example. The values shown in the sample code are the same as the default values.
 
-    protected void Application_Start(object sender, EventArgs e)
-    {
-        // Make long polling connections wait a maximum of 110 seconds for a
-        // response. When that time expires, trigger a timeout command and
-        // make the client reconnect.
-        GlobalHost.Configuration.ConnectionTimeout = TimeSpan.FromSeconds(110);
-        
-        // Wait a maximum of 30 seconds after a transport connection is lost
-        // before raising the Disconnected event to terminate the SignalR connection.
-        GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(30);
-        
-        // For transports other than long polling, send a keepalive packet every
-        // 10 seconds. 
-        // This value must be no more than 1/3 of the DisconnectTimeout value.
-        GlobalHost.Configuration.KeepAlive = TimeSpan.FromSeconds(10);
-    }
+[!code[Main](handling-connection-lifetime-events/samples/sample1.xml)]
 
 <a id="notifydisconnect"></a>
 
@@ -212,31 +197,13 @@ In some applications you might want to display a message to the user when there 
 
 - Handle the `connectionSlow` event to display a message as soon as SignalR is aware of connection problems, before it goes into reconnecting mode.
 
-        $.connection.hub.connectionSlow(function() {
-            notifyUserOfConnectionProblem(); // Your function to notify user.
-        });
+    [!code[Main](handling-connection-lifetime-events/samples/sample2.xml)]
 - Handle the `reconnecting` event to display a message when SignalR is aware of a disconnection and is going into reconnecting mode.
 
-        $.connection.hub.reconnecting(function() {
-            notifyUserOfTryingToReconnect(); // Your function to notify user.
-        });
+    [!code[Main](handling-connection-lifetime-events/samples/sample3.xml)]
 - Handle the `disconnected` event to display a message when an attempt to reconnect has timed out. In this scenario, the only way to re-establish a connection with the server again is to restart the SignalR connection by calling the `Start` method, which will create a new connection ID. The following code sample uses a flag to make sure that you issue the notification only after a reconnecting timeout, not after a normal end to the SignalR connection caused by calling the `Stop` method.
 
-        var tryingToReconnect = false;
-        
-        $.connection.hub.reconnecting(function() {
-            tryingToReconnect = true;
-        });
-        
-        $.connection.hub.reconnected(function() {
-            tryingToReconnect = false;
-        });
-        
-        $.connection.hub.disconnected(function() {
-            if(tryingToReconnect) {
-                notifyUserOfDisconnect(); // Your function to notify user.
-            }
-        });
+    [!code[Main](handling-connection-lifetime-events/samples/sample4.xml)]
 
 <a id="continuousreconnect"></a>
 
@@ -244,11 +211,7 @@ In some applications you might want to display a message to the user when there 
 
 In some applications you might want to automatically re-establish a connection after it has been lost and the attempt to reconnect has timed out. To do that, you can call the `Start` method from your `Closed` event handler (`disconnected` event handler on JavaScript clients). You might want to wait a period of time before calling `Start` in order to avoid doing this too frequently when the server or the physical connection are unavailable. The following code sample is for a JavaScript client using the generated proxy.
 
-    $.connection.hub.disconnected(function() {
-       setTimeout(function() {
-           $.connection.hub.start();
-       }, 5000); // Restart connection after 5 seconds.
-    });
+[!code[Main](handling-connection-lifetime-events/samples/sample5.xml)]
 
 A potential problem to be aware of in mobile clients is that continuous reconnection attempts when the server or physical connection isn't available could cause unnecessary battery drain.
 
@@ -258,10 +221,7 @@ A potential problem to be aware of in mobile clients is that continuous reconnec
 
 SignalR version 1.1.1 does not have a built-in server API for disconnecting clients. There are [plans for adding this functionality in the future](https://github.com/SignalR/SignalR/issues/2101). In the current SignalR release, the simplest way to disconnect a client from the server is to implement a disconnect method on the client and call that method from the server. The following code sample shows a disconnect method for a JavaScript client using the generated proxy.
 
-    var myHubProxy = $.connection.myHub
-    myHubProxy.client.stopClient = function() {
-        $.connection.hub.stop();
-    };
+[!code[Main](handling-connection-lifetime-events/samples/sample6.xml)]
 
 > [!NOTE] 
 > 

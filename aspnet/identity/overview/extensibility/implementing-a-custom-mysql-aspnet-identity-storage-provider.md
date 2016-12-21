@@ -121,26 +121,13 @@ If needed, install either [Visual Studio Express 2013 for Web](https://go.micros
      `using AspNet.Identity.MySQL;`
 7. In IdentityModels.cs, set **ApplicationDbContext** to derive from **MySqlDatabase** and include a contructor that take a single parameter with the connection name.  
 
-        public class ApplicationDbContext : MySQLDatabase
-        {
-            public ApplicationDbContext(string connectionName)
-                : base(connectionName)
-            {
-            }
-        
-            public static ApplicationDbContext Create()
-            {
-                return new ApplicationDbContext("DefaultConnection");
-            }
-        }
+    [!code[Main](implementing-a-custom-mysql-aspnet-identity-storage-provider/samples/sample1.xml)]
 8. Open the IdentityConfig.cs file. In the **ApplicationUserManager.Create** method, replace instantiating UserManager with the following code:  
 
-        var manager = new ApplicationUserManager(
-            new UserStore<ApplicationUser>(
-            context.Get<ApplicationDbContext>() as MySQLDatabase));
+    [!code[Main](implementing-a-custom-mysql-aspnet-identity-storage-provider/samples/sample2.xml)]
 9. Open the web.config file and replace the DefaultConnection string with this entry replacing the highlighted values with the connection string of the MySQL database you created on previous steps:  
 
-    [!code[Main](implementing-a-custom-mysql-aspnet-identity-storage-provider/samples/sample1.xml?highlight=2)]
+    [!code[Main](implementing-a-custom-mysql-aspnet-identity-storage-provider/samples/sample3.xml?highlight=2)]
 
 ## Run the app and connect to the MySQL DB
 

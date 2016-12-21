@@ -1,8 +1,6 @@
-<tr> 
-    <th></th> 
-    <th>Last Name</th> 
-    <th>First Name</th> 
-    <th>Hire Date</th> 
-    <th>Office</th>
-    <th>Courses</th>
-</tr>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CourseID)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.CourseID)
+    </div>

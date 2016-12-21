@@ -56,27 +56,7 @@ This code adds a simple piece of middleware to the OWIN pipeline, implemented as
 > [!NOTE] The OWIN Startup class template is available in Visual Studio 2013. If you are using Visual Studio 2012, just add a new empty class named `Startup1`, and paste in the following code:
 
 
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.Owin;
-    using Owin;
-    
-    [assembly: OwinStartup(typeof(OwinApp.Startup1))]
-    
-    namespace OwinApp
-    {
-        public class Startup1
-        {
-            public void Configuration(IAppBuilder app)
-            {
-              app.Run(context =>
-              {
-                  context.Response.ContentType = "text/plain";
-                  return context.Response.WriteAsync("Hello, world.");
-              });
-            }
-        }
-    }
+[!code[Main](getting-started-with-owin-and-katana/samples/sample2.xml)]
 
 ### Run the Application
 
@@ -96,17 +76,7 @@ Add a `Startup1` class from part 1 of this tutorial to the project. You don't ne
 
 Implement the application's `Main` method as follows.
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            using (Microsoft.Owin.Hosting.WebApp.Start<Startup1>("http://localhost:9000"))
-            {
-                Console.WriteLine("Press [enter] to quit...");
-                Console.ReadLine();
-            }
-        }
-    }
+[!code[Main](getting-started-with-owin-and-katana/samples/sample3.xml)]
 
 When you run the console application, the server starts listening to `http://localhost:9000`. If you navigate to this address in a web browser, you will see the "Hello world" page.
 
@@ -122,7 +92,7 @@ To install the Diagnostics package in your project, type the following command i
 
 Change the code in your `Startup1.Configuration` method as follows:
 
-[!code[Main](getting-started-with-owin-and-katana/samples/sample2.xml?highlight=4,9-12)]
+[!code[Main](getting-started-with-owin-and-katana/samples/sample4.xml?highlight=4,9-12)]
 
 Now use CTRL+F5 to run the application without debugging, so that Visual Studio will not break on the exception. The application behaves the same as before, until you navigate to `http://localhost/fail`, at which point the application throws the exception. The error page middleware will catch the exception and display an HTML page with information about the error. You can click the tabs to see the stack, query string, cookies, request header, and OWIN environment variables.
 

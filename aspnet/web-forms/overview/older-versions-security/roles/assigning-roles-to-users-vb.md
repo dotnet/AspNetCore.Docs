@@ -43,17 +43,11 @@ We will start with creating the "by user" interface. This interface will consist
 
 Open the `UsersAndRoles.aspx` page. At the top of the page, add a Label Web control named `ActionStatus` and clear out its `Text` property. We will use this Label to provide feedback on the actions performed, displaying messages like, "User Tito has been added to the Administrators role," or "User Jisun has been removed from the Supervisors role." In order to make these messages stand out, set the Label's `CssClass` property to "Important".
 
-    <p align="center"> 
-         <asp:Label ID="ActionStatus" runat="server" CssClass="Important"> </asp:Label> 
-    </p>
+[!code[Main](assigning-roles-to-users-vb/samples/sample1.xml)]
 
 Next, add the following CSS class definition to the `Styles.css` stylesheet:
 
-    .Important 
-    { 
-         font-size: large; 
-         color: Red; 
-    }
+[!code[Main](assigning-roles-to-users-vb/samples/sample2.xml)]
 
 This CSS definition instructs the browser to display the Label using a large, red font. Figure 1 shows this effect through the Visual Studio Designer.
 
@@ -67,50 +61,17 @@ Next, add a DropDownList to the page, set its `ID` property to `UserList`, and s
 
 Underneath the DropDownList, add a Repeater named `UsersRoleList`. This Repeater will list all of the roles in the system as a series of checkboxes. Define the Repeater's `ItemTemplate` using the following declarative markup:
 
-    <asp:Repeater ID="UsersRoleList" runat="server"> 
-         <ItemTemplate> 
-              <asp:CheckBox runat="server" ID="RoleCheckBox" AutoPostBack="true" 
-                   Text='<%# Container.DataItem %>' /> 
-              <br /> 
-         </ItemTemplate> 
-    </asp:Repeater>
+[!code[Main](assigning-roles-to-users-vb/samples/sample3.xml)]
 
 The `ItemTemplate` markup includes a single CheckBox Web control named `RoleCheckBox`. The CheckBox's `AutoPostBack` property is set to True and the `Text` property is bound to `Container.DataItem`. The reason the databinding syntax is simply `Container.DataItem` is because the Roles framework returns the list of role names as a string array, and it is this string array that we will be binding to the Repeater. A thorough description of why this syntax is used to display the contents of an array bound to a data Web control is beyond the scope of this tutorial. For more information on this matter, refer to [Binding a Scalar Array to a Data Web Control](http://aspnet.4guysfromrolla.com/articles/082504-1.aspx).
 
 At this point your "by user" interface's declarative markup should look similar to the following:
 
-    <h3>Manage Roles By User</h3> 
-    <p> 
-         <b>Select a User:</b> 
-         <asp:DropDownList ID="UserList" runat="server" AutoPostBack="True" 
-              DataTextField="UserName" DataValueField="UserName"> 
-         </asp:DropDownList> 
-    </p> 
-    <p> 
-         <asp:Repeater ID="UsersRoleList" runat="server"> 
-              <ItemTemplate> 
-                   <asp:CheckBox runat="server" ID="RoleCheckBox" AutoPostBack="true" 
-                        Text='<%# Container.DataItem %>' /> 
-                   <br /> 
-              </ItemTemplate> 
-         </asp:Repeater> 
-    </p>
+[!code[Main](assigning-roles-to-users-vb/samples/sample4.xml)]
 
 We are now ready to write the code to bind the set of user accounts to the DropDownList and the set of roles to the Repeater. In the page's code-behind class, add a method named `BindUsersToUserList` and another named `BindRolesList`, using the following code:
 
-    Private Sub BindUsersToUserList() 
-         ' Get all of the user accounts 
-         Dim users As MembershipUserCollection = Membership.GetAllUsers() 
-         UserList.DataSource = users 
-         UserList.DataBind() 
-    End Sub 
-     
-    Private Sub BindRolesToList() 
-         ' Get all of the roles 
-         Dim roleNames() As String = Roles.GetAllRoles() 
-         UsersRoleList.DataSource = roleNames 
-         UsersRoleList.DataBind() 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample5.xml)]
 
 The `BindUsersToUserList` method retrieves all of the user accounts in the system via the [`Membership.GetAllUsers` method](https://msdn.microsoft.com/en-us/library/dy8swhya.aspx). This returns a [`MembershipUserCollection` object](https://msdn.microsoft.com/en-us/library/system.web.security.membershipusercollection.aspx), which is a collection of [`MembershipUser` instances](https://msdn.microsoft.com/en-us/library/system.web.security.membershipuser.aspx). This collection is then bound to the `UserList` DropDownList. The `MembershipUser` instances that makeup the collection contain a variety of properties, like `UserName`, `Email`, `CreationDate`, and `IsOnline`. In order to instruct the DropDownList to display the value of the `UserName` property, ensure that the `UserList` DropDownList's `DataTextField` and `DataValueField` properties have been set to "UserName".
 
@@ -121,13 +82,7 @@ The `BindRolesToList` method starts by calling the `Roles` class's [`GetAllRoles
 
 Finally, we need to call these two methods when the page is first loaded. Add the following code to the `Page_Load` event handler:
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load 
-         If Not Page.IsPostBack Then 
-              ' Bind the users and roles 
-              BindUsersToUserList() 
-              BindRolesToList() 
-         End If 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample6.xml)]
 
 With this code in place, take a moment to visit the page through a browser; your screen should look similar to Figure 2. All of the user accounts are populated in the drop-down list and, underneath that, each role appears as a checkbox. Because we set the `AutoPostBack` properties of the DropDownList and CheckBoxes to True, changing the selected user or checking or unchecking a role causes a postback. No action is performed, however, because we have yet to write code to handle these actions. We'll tackle these tasks in the next two sections.
 
@@ -141,23 +96,7 @@ With this code in place, take a moment to visit the page through a browser; your
 
 When the page is first loaded, or whenever the visitor selects a new user from the drop-down list, we need to update the `UsersRoleList`'s checkboxes so that a given role checkbox is checked only if the selected user belongs to that role. To accomplish this, create a method named `CheckRolesForSelectedUser` with the following code:
 
-    Private Sub CheckRolesForSelectedUser() 
-         ' Determine what roles the selected user belongs to 
-         Dim selectedUserName As String = UserList.SelectedValue 
-         Dim selectedUsersRoles() As String = Roles.GetRolesForUser(selectedUserName) 
-     
-         ' Loop through the Repeater's Items and check or uncheck the checkbox as needed 
-         For Each ri As RepeaterItem In UsersRoleList.Items 
-              ' Programmatically reference the CheckBox 
-              Dim RoleCheckBox As CheckBox = CType(ri.FindControl("RoleCheckBox"), CheckBox) 
-              ' See if RoleCheckBox.Text is in selectedUsersRoles 
-              If Linq.Enumerable.Contains(Of String)(selectedUsersRoles, RoleCheckBox.Text) Then 
-                   RoleCheckBox.Checked = True 
-              Else 
-                   RoleCheckBox.Checked = False 
-              End If 
-         Next 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample7.xml)]
 
 The above code starts by determining who the selected user is. It then uses the Roles class's [`GetRolesForUser(userName)` method](https://msdn.microsoft.com/en-us/library/system.web.security.roles.getrolesforuser.aspx) to return the specified user's set of roles as a string array. Next, the Repeater's items are enumerated and each item's `RoleCheckBox` CheckBox is programmatically referenced. The CheckBox is checked only if the role it corresponds to is contained within the `selectedUsersRoles` string array.
 
@@ -166,21 +105,7 @@ The above code starts by determining who the selected user is. It then uses the 
 
 The `CheckRolesForSelectedUser` method needs to be called in two cases: when the page is first loaded and whenever the `UserList` DropDownList's selected index is changed. Therefore, call this method from the `Page_Load` event handler (after the calls to `BindUsersToUserList` and `BindRolesToList`). Also, create an event handler for the DropDownList's `SelectedIndexChanged` event and call this method from there.
 
-    Protected Sub Page_Load(ByVal sender As Object,ByVal e As System.EventArgs) Handles Me.Load 
-         If Not Page.IsPostBack Then 
-              ' Bind the users and roles 
-              BindUsersToUserList() 
-              BindRolesToList() 
-              ' Check the selected user's roles 
-              CheckRolesForSelectedUser() 
-         End If 
-    End Sub 
-     
-    ... 
-     
-    Protected Sub UserList_SelectedIndexChanged(ByVal sender As Object,ByVal e As System.EventArgs) Handles UserList.SelectedIndexChanged 
-         CheckRolesForSelectedUser() 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample8.xml)]
 
 With this code in place, you can test the page through the browser. However, since the `UsersAndRoles.aspx` page currently lacks the ability to assign users to roles, no users have roles. We will create the interface for assigning users to roles in a moment, so you can either take my word that this code works and verify that it does so later, or you can manually add users to roles by inserting records into the `aspnet_UsersInRoles` table in order to test this functionality now.
 
@@ -188,40 +113,15 @@ With this code in place, you can test the page through the browser. However, sin
 
 When the visitor checks or unchecks a CheckBox in the `UsersRoleList` Repeater we need to add or remove the selected user from the corresponding role. The CheckBox's `AutoPostBack` property is currently set to True, which causes a postback anytime a CheckBox in the Repeater is checked or unchecked. In short, we need to create an event handler for the CheckBox's `CheckChanged` event. Since the CheckBox is in a Repeater control, we need to manually add the event handler plumbing. Start by adding the event handler to the code-behind class as a `Protected` method, like so:
 
-    Protected Sub RoleCheckBox_CheckChanged(ByVal sender As Object, ByVal e As EventArgs) 
-     
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample9.xml)]
 
 We will return to write the code for this event handler in a moment. But first let's complete the event handling plumbing. From the CheckBox within the Repeater's `ItemTemplate`, add `OnCheckedChanged="RoleCheckBox_CheckChanged"`. This syntax wires the `RoleCheckBox_CheckChanged` event handler to the `RoleCheckBox`'s `CheckedChanged` event.
 
-    <asp:CheckBox runat="server" ID="RoleCheckBox" 
-         AutoPostBack="true" 
-         Text='<%# Container.DataItem %>' 
-         OnCheckedChanged="RoleCheckBox_CheckChanged" />
+[!code[Main](assigning-roles-to-users-vb/samples/sample10.xml)]
 
 Our final task is to complete the `RoleCheckBox_CheckChanged` event handler. We need to start by referencing the CheckBox control that raised the event because this CheckBox instance tells us what role was checked or unchecked via its `Text` and `Checked` properties. Using this information along with the UserName of the selected user, we add or remove the user from the role via the `Roles` class's [`AddUserToRole`](https://msdn.microsoft.com/en-us/library/system.web.security.roles.addusertorole.aspx) or [`RemoveUserFromRole` method](https://msdn.microsoft.com/en-us/library/system.web.security.roles.removeuserfromrole.aspx).
 
-    Protected Sub RoleCheckBox_CheckChanged(ByVal sender As Object, ByVal e As EventArgs) 
-         'Reference the CheckBox that raised this event 
-         Dim RoleCheckBox As CheckBox = CType(sender, CheckBox) 
-     
-         ' Get the currently selected user and role 
-         Dim selectedUserName As String = UserList.SelectedValue 
-         Dim roleName As String = RoleCheckBox.Text 
-     
-         ' Determine if we need to add or remove the user from this role 
-         If RoleCheckBox.Checked Then 
-              ' Add the user to the role 
-              Roles.AddUserToRole(selectedUserName, roleName) 
-              ' Display a status message 
-              ActionStatus.Text = String.Format("User {0} was added to role {1}.", selectedUserName,roleName) 
-         Else 
-              ' Remove the user from the role 
-              Roles.RemoveUserFromRole(selectedUserName, roleName) 
-              ' Display a status message 
-              ActionStatus.Text = String.Format("User {0} was removed from role {1}.", selectedUserName,roleName) 
-         End If 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample11.xml)]
 
 The above code starts by programmatically referencing the CheckBox that raised the event, which is available via the `sender` input parameter. If the CheckBox is checked, the selected user is added to the specified role, otherwise they are removed from the role. In either case, the `ActionStatus` Label displays a message summarizing the action just performed.
 
@@ -251,36 +151,11 @@ Add another DropDownList control to the `UsersAndRoles.aspx page`. Place this on
 
 After adding and configuring the GridView, your "by role" interface's declarative markup should look similar to the following:
 
-    <h3>Manage Users By Role</h3> 
-    <p> 
-         <b>Select a Role:</b> 
-         <asp:DropDownList ID="RoleList" runat="server" AutoPostBack="true"></asp:DropDownList> 
-    </p> 
-    <p> 
-         <asp:GridView ID="RolesUserList" runat="server" AutoGenerateColumns="false" 
-              EmptyDataText="No users belong to this role."> 
-              <Columns> 
-                   <asp:TemplateField HeaderText="Users"> 
-                        <ItemTemplate> 
-                             <asp:Label runat="server" id="UserNameLabel" 
-                                  Text='<%# Container.DataItem %>'></asp:Label> 
-                        </ItemTemplate> 
-                   </asp:TemplateField> 
-              </Columns> 
-         </asp:GridView> 
-    </p>
+[!code[Main](assigning-roles-to-users-vb/samples/sample12.xml)]
 
 We need to populate the `RoleList` DropDownList with the set of roles in the system. To accomplish this, update the `BindRolesToList` method so that is binds the string array returned by the `Roles.GetAllRoles` method to the `RolesList` DropDownList (as well as the `UsersRoleList` Repeater).
 
-    Private Sub BindRolesToList() 
-         ' Get all of the roles 
-         Dim roleNames() As String = Roles.GetAllRoles() 
-         UsersRoleList.DataSource = roleNames 
-         UsersRoleList.DataBind() 
-     
-         RoleList.DataSource = roleNames 
-         RoleList.DataBind() 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample13.xml)]
 
 The last two lines in the `BindRolesToList` method have been added to bind the set of roles to the `RoleList` DropDownList control. Figure 5 shows the end result when viewed through a browser – a drop-down list populated with the system's roles.
 
@@ -294,41 +169,13 @@ The last two lines in the `BindRolesToList` method have been added to bind the s
 
 When the page is first loaded, or when a new role is selected from the `RoleList` DropDownList, we need to display the list of users that belong to that role in the GridView. Create a method named `DisplayUsersBelongingToRole` using the following code:
 
-    Private Sub DisplayUsersBelongingToRole() 
-         ' Get the selected role 
-         Dim selectedRoleName As String = RoleList.SelectedValue 
-     
-         ' Get the list of usernames that belong to the role 
-         Dim usersBelongingToRole() As String = Roles.GetUsersInRole(selectedRoleName) 
-     
-         ' Bind the list of users to the GridView 
-         RolesUserList.DataSource = usersBelongingToRole 
-         RolesUserList.DataBind() 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample14.xml)]
 
 This method starts by getting the selected role from the `RoleList` DropDownList. It then uses the [`Roles.GetUsersInRole(roleName)` method](https://msdn.microsoft.com/en-us/library/system.web.security.roles.getusersinrole.aspx) to retrieve a string array of the UserNames of the users that belong to that role. This array is then bound to the `RolesUserList` GridView.
 
 This method needs to be called in two circumstances: when the page is initially loaded and when the selected role in the `RoleList` DropDownList changes. Therefore, update the `Page_Load` event handler so that this method is invoked after the call to `CheckRolesForSelectedUser`. Next, create an event handler for the `RoleList`'s `SelectedIndexChanged` event, and call this method from there, too.
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load 
-         If Not Page.IsPostBack Then 
-              ' Bind the users and roles 
-              BindUsersToUserList() 
-              BindRolesToList() 
-     
-              ' Check the selected user's roles 
-              CheckRolesForSelectedUser() 
-     
-              'Display those users belonging to the currently selected role 
-              DisplayUsersBelongingToRole() 
-         End If 
-    End Sub 
-     
-    ... 
-     
-    Protected Sub RoleList_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles RoleList.SelectedIndexChanged 
-         DisplayUsersBelongingToRole() 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample15.xml)]
 
 With this code in place, the `RolesUserList` GridView should display those users that belong to the selected role. As Figure 6 shows, the Supervisors role consists of two members: Bruce and Tito.
 
@@ -352,22 +199,7 @@ Start by adding a Delete button field to the GridView. Make this field appear as
 
 When the "Remove" button is clicked a postback ensues and the GridView's `RowDeleting` event is raised. We need to create an event handler for this event and write code that removes the user from the selected role. Create the event handler and then add the following code:
 
-    Protected Sub RolesUserList_RowDeleting(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles RolesUserList.RowDeleting 
-         ' Get the selected role 
-         Dim selectedRoleName As String = RoleList.SelectedValue 
-     
-         ' Reference the UserNameLabel 
-         Dim UserNameLabel As Label = CType(RolesUserList.Rows(e.RowIndex).FindControl("UserNameLabel"),Label) 
-     
-         ' Remove the user from the role 
-         Roles.RemoveUserFromRole(UserNameLabel.Text, selectedRoleName) 
-     
-         ' Refresh the GridView 
-         DisplayUsersBelongingToRole() 
-     
-         ' Display a status message 
-         ActionStatus.Text = String.Format("User {0} was removed from role {1}.", UserNameLabel.Text,selectedRoleName) 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample16.xml)]
 
 The code starts by determining the selected role name. It then programmatically references the `UserNameLabel` control from the row whose "Remove" button was clicked in order to determine the UserName of the user to remove. The user is then removed from the role via a call to the `Roles.RemoveUserFromRole` method. The `RolesUserList` GridView is then refreshed and a message is displayed via the `ActionStatus` Label control.
 
@@ -390,51 +222,11 @@ For this page let's use a very simple interface that works regardless of the num
 
 Add a TextBox and Button beneath the GridView. Set the TextBox's `ID` to `UserNameToAddToRole` and set the Button's `ID` and `Text` properties to `AddUserToRoleButton` and "Add User to Role", respectively.
 
-    <p> 
-         <b>UserName:</b> 
-         <asp:TextBox ID="UserNameToAddToRole" runat="server"></asp:TextBox> 
-         <br /> 
-         <asp:Button ID="AddUserToRoleButton" runat="server" Text="Add User to Role" /> 
-    </p>
+[!code[Main](assigning-roles-to-users-vb/samples/sample17.xml)]
 
 Next, create a `Click` event handler for the `AddUserToRoleButton` and add the following code:
 
-    Protected Sub AddUserToRoleButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles AddUserToRoleButton.Click 
-         ' Get the selected role and username 
-         Dim selectedRoleName As String = RoleList.SelectedValue 
-         Dim userToAddToRole As String = UserNameToAddToRole.Text 
-     
-         ' Make sure that a value was entered 
-         If userToAddToRole.Trim().Length = 0 Then 
-              ActionStatus.Text = "You must enter a username in the textbox." 
-              Exit Sub 
-         End If 
-     
-         ' Make sure that the user exists in the system 
-         Dim userInfo As MembershipUser = Membership.GetUser(userToAddToRole) 
-         If userInfo Is Nothing Then 
-              ActionStatus.Text = String.Format("The user {0} does not exist in the system.",userNameToAddToRole) 
-              Exit Sub 
-         End If 
-     
-         ' Make sure that the user doesn't already belong to this role 
-         If Roles.IsUserInRole(userToAddToRole, selectedRoleName) Then 
-              ActionStatus.Text = String.Format("User {0} already is a member of role {1}.", UserNameToAddToRole,selectedRoleName) 
-              Exit Sub 
-         End If 
-     
-         ' If we reach here, we need to add the user to the role 
-         Roles.AddUserToRole(userToAddToRole, selectedRoleName) 
-     
-         ' Clear out the TextBox 
-         userNameToAddToRole.Text = String.Empty 
-     
-         ' Refresh the GridView 
-         DisplayUsersBelongingToRole() 
-     
-         ' Display a status message 
-         ActionStatus.Text = String.Format("User {0} was added to role {1}.", UserNameToAddToRole,selectedRoleName) 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample18.xml)]
 
 The majority of the code in the `Click` event handler performs various validation checks. It ensures that the visitor supplied a username in the `UserNameToAddToRole` TextBox, that the user exists in the system, and that they don't already belong to the selected role. If any of these checks fails, an appropriate message is displayed in `ActionStatus` and the event handler is exited. If all of the checks pass, the user is added to the role via the `Roles.AddUserToRole` method. Following that, the TextBox's `Text` property is cleared out, the GridView is refreshed, and the `ActionStatus` Label displays a message indicating that the specified user was successfully added to the selected role.
 
@@ -465,28 +257,11 @@ To fix this we need to refresh the GridView whenever a role is checked or unchec
 
 The Repeater in the "by user" interface is refreshed by calling the `CheckRolesForSelectedUser` method. The "by role" interface can be modified in the `RolesUserList` GridView's `RowDeleting` event handler and the `AddUserToRoleButton` Button's `Click` event handler. Therefore, we need to call the `CheckRolesForSelectedUser` method from each of these methods.
 
-    Protected Sub RolesUserList_RowDeleting(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles RolesUserList.RowDeleting 
-         ... Code removed for brevity ... 
-     
-         ' Refresh the "by user" interface 
-         CheckRolesForSelectedUser() 
-    End Sub 
-     
-    Protected Sub AddUserToRoleButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles AddUserToRoleButton.Click 
-         ... Code removed for brevity ... 
-     
-         ' Refresh the "by user" interface 
-         CheckRolesForSelectedUser() 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample19.xml)]
 
 Similarly, the GridView in the "by role" interface is refreshed by calling the `DisplayUsersBelongingToRole` method and the "by user" interface is modified through the `RoleCheckBox_CheckChanged` event handler. Therefore, we need to call the `DisplayUsersBelongingToRole` method from this event handler.
 
-    Protected Sub RoleCheckBox_CheckChanged(ByVal sender As Object, ByVal e As EventArgs) 
-         ... Code removed for brevity ... 
-     
-         ' Refresh the "by role" interface 
-         DisplayUsersBelongingToRole() 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample20.xml)]
 
 With these minor code changes, the "by user" and "by role" interfaces now correctly cross-update. To verify this, visit the page through a browser and select Tito and Supervisors from the `UserList` and `RoleList` DropDownLists, respectively. Note that as you uncheck the Supervisors role for Tito from the Repeater in the "by user" interface, Tito is automatically removed from the GridView in the "by role" interface. Adding Tito back to the Supervisors role from the "by role" interface automatically re-checks the Supervisors checkbox in the "by user" interface.
 
@@ -513,36 +288,13 @@ Next, select the "Add/Remove `WizardSteps`…" option from the CreateUserWizard'
 
 After this change your CreateUserWizard's declarative markup should look like the following:
 
-    <asp:CreateUserWizard ID="RegisterUserWithRoles" runat="server" 
-         ContinueDestinationPageUrl="~/Default.aspx" LoginCreatedUser="False"> 
-         <WizardSteps> 
-              <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"> 
-              </asp:CreateUserWizardStep> 
-              <asp:WizardStep ID="SpecifyRolesStep" runat="server" StepType="Step" 
-                   Title="Specify Roles" AllowReturn="False"> 
-              </asp:WizardStep> 
-              <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"> 
-              </asp:CompleteWizardStep> 
-         </WizardSteps> 
-    </asp:CreateUserWizard>
+[!code[Main](assigning-roles-to-users-vb/samples/sample21.xml)]
 
 In the "Specify Roles" `WizardStep`, add a CheckBoxList named `RoleList.` This CheckBoxList will list the available roles, enabling the person visiting the page to check what roles the newly created user belongs to.
 
 We are left with two coding tasks: first we must populate the `RoleList` CheckBoxList with the roles in the system; second, we need to add the created user to the selected roles when the user moves from the "Specify Roles" step to the "Complete" step. We can accomplish the first task in the `Page_Load` event handler. The following code programmatically references the `RoleList` CheckBox on the first visit to the page and binds the roles in the system to it.
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load 
-         If Not Page.IsPostBack Then 
-              ' Reference the SpecifyRolesStep WizardStep 
-              Dim SpecifyRolesStep As WizardStep = CType(RegisterUserWithRoles.FindControl("SpecifyRolesStep"),WizardStep) 
-     
-              ' Reference the RoleList CheckBoxList 
-              Dim RoleList As CheckBoxList = CType(SpecifyRolesStep.FindControl("RoleList"), CheckBoxList) 
-     
-              ' Bind the set of roles to RoleList 
-              RoleList.DataSource = Roles.GetAllRoles() 
-              RoleList.DataBind() 
-         End If 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample22.xml)]
 
 The above code should look familiar. In the <a id="_msoanchor_5"></a>[*Storing* *Additional User Information*](../membership/storing-additional-user-information-vb.md) tutorial we used two `FindControl` statements to reference a Web control from within a custom `WizardStep`. And the code that binds the roles to the CheckBoxList was taken from earlier in this tutorial.
 
@@ -550,23 +302,7 @@ In order to perform the second programming task we need to know when the "Specif
 
 Create an event handler for the `ActiveStepChanged` event and add the following code:
 
-    Protected Sub RegisterUserWithRoles_ActiveStepChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles RegisterUserWithRoles.ActiveStepChanged 
-         'Have we JUST reached the Complete step? 
-         If RegisterUserWithRoles.ActiveStep.Title = "Complete" Then 
-              ' Reference the SpecifyRolesStep WizardStep 
-              Dim SpecifyRolesStep As WizardStep = CType(RegisterUserWithRoles.FindControl("SpecifyRolesStep"),WizardStep) 
-     
-              ' Reference the RoleList CheckBoxList 
-              Dim RoleList As CheckBoxList = CType(SpecifyRolesStep.FindControl("RoleList"), CheckBoxList) 
-     
-              ' Add the checked roles to the just-added user 
-              For Each li As ListItem In RoleList.Items 
-                   If li.Selected Then 
-                        Roles.AddUserToRole(RegisterUserWithRoles.UserName, li.Text) 
-                   End If 
-              Next 
-         End If 
-    End Sub
+[!code[Main](assigning-roles-to-users-vb/samples/sample23.xml)]
 
 If the user has just reached the "Completed" step, the event handler enumerates the items of the `RoleList` CheckBoxList and the just-created user is assigned to the selected roles.
 

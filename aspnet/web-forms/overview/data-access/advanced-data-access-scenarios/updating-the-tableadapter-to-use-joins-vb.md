@@ -35,30 +35,14 @@ In this tutorial we will briefly compare and contrast correlated subqueries and 
 Recall that the `ProductsTableAdapter` created in the first tutorial in the `Northwind` DataSet uses correlated subqueries to bring back each product s corresponding category and supplier name. The `ProductsTableAdapter` s main query is shown below.
 
 
-    SELECT ProductID, ProductName, SupplierID, CategoryID, 
-           QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-           ReorderLevel, Discontinued,
-           (SELECT CategoryName FROM Categories WHERE Categories.CategoryID = 
-                Products.CategoryID) as CategoryName, 
-           (SELECT CompanyName FROM Suppliers WHERE Suppliers.SupplierID = 
-                Products.SupplierID) as SupplierName
-    FROM Products
+[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample1.xml)]
 
 The two correlated subqueries - `(SELECT CategoryName FROM Categories WHERE Categories.CategoryID = Products.CategoryID)` and `(SELECT CompanyName FROM Suppliers WHERE Suppliers.SupplierID = Products.SupplierID)` - are `SELECT` queries that return a single value per product as an additional column in the outer `SELECT` statement s column list.
 
 Alternatively, a `JOIN` can be used to return each product s supplier and category name. The following query returns the same output as the above one, but uses `JOIN` s in place of subqueries:
 
 
-    SELECT ProductID, ProductName, Products.SupplierID, Products.CategoryID, 
-           QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-           ReorderLevel, Discontinued,
-           Categories.CategoryName, 
-           Suppliers.CompanyName as SupplierName
-    FROM Products
-        LEFT JOIN Categories ON
-            Categories.CategoryID = Products.CategoryID
-        LEFT JOIN Suppliers ON
-            Suppliers.SupplierID = Products.SupplierID
+[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample2.xml)]
 
 A `JOIN` merges the records from one table with records from another table based on some criteria. In the above query, for example, the `LEFT JOIN Categories ON Categories.CategoryID = Products.CategoryID` instructs SQL Server to merge each product record with the category record whose `CategoryID` value matches the product s `CategoryID` value. The merged result allows us to work with the corresponding category fields for each product (such as `CategoryName`).
 
@@ -72,16 +56,7 @@ When building a Data Access Layer using Typed DataSets, the tools work better wh
 To explore this shortcoming, create a temporary Typed DataSet in the `~/App_Code/DAL` folder. During the TableAdapter Configuration wizard, choose to use ad-hoc SQL statements and enter the following `SELECT` query (see Figure 1):
 
 
-    SELECT ProductID, ProductName, Products.SupplierID, Products.CategoryID, 
-           QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-           ReorderLevel, Discontinued,
-           Categories.CategoryName, 
-           Suppliers.CompanyName as SupplierName
-    FROM Products
-        LEFT JOIN Categories ON
-            Categories.CategoryID = Products.CategoryID
-        LEFT JOIN Suppliers ON
-            Suppliers.SupplierID = Products.SupplierID
+[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample3.xml)]
 
 
 [![Enter a Main Query that Contains JOINs](updating-the-tableadapter-to-use-joins-vb/_static/image2.png)](updating-the-tableadapter-to-use-joins-vb/_static/image1.png)
@@ -137,8 +112,7 @@ Start by opening the `NorthwindWithSprocs` DataSet in the `~/App_Code/DAL` folde
 Use the following `SELECT` statement for the TableAdapter s main query:
 
 
-    SELECT EmployeeID, LastName, FirstName, Title, HireDate, ReportsTo, Country
-    FROM Employees
+[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample4.xml)]
 
 Since this query does not include any `JOIN` s, the TableAdapter wizard will automatically create stored procedures with corresponding `INSERT`, `UPDATE`, and `DELETE` statements, as well as a stored procedure for executing the main query.
 
@@ -173,15 +147,7 @@ With the insert, update, and delete stored procedures automatically created and 
 Start by going to the Server Explorer, drilling down into the Northwind database s Stored Procedures folder, and opening the `Employees_Select` stored procedure. If you do not see this stored procedure, right-click on the Stored Procedures folder and choose Refresh. Update the stored procedure so that it uses a `LEFT JOIN` to return the manager s first and last name:
 
 
-    SELECT Employees.EmployeeID, Employees.LastName, 
-           Employees.FirstName, Employees.Title, 
-           Employees.HireDate, Employees.ReportsTo, 
-           Employees.Country,
-           Manager.FirstName as ManagerFirstName, 
-           Manager.LastName as ManagerLastName
-    FROM Employees
-        LEFT JOIN Employees AS Manager ON
-            Employees.ReportsTo = Manager.EmployeeID
+[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample5.xml)]
 
 After updating the `SELECT` statement, save the changes by going to the File menu and choosing Save `Employees_Select` . Alternatively, you can click the Save icon in the toolbar or hit Ctrl+S. After saving your changes, right-click on the `Employees_Select` stored procedure in the Server Explorer and choose Execute. This will run the stored procedure and show its results in the Output window (see Figure 9).
 
@@ -223,31 +189,7 @@ To illustrate that the updated `Employees_Select` stored procedure is in effect 
 Create a new class file in the `~/App_Code/BLL` folder named `EmployeesBLLWithSprocs.vb`. This class mimics the semantics of the existing `EmployeesBLL` class, only this new one provides fewer methods and uses the `NorthwindWithSprocs` DataSet (instead of the `Northwind` DataSet). Add the following code to the `EmployeesBLLWithSprocs` class.
 
 
-    Imports NorthwindWithSprocsTableAdapters
-    <System.ComponentModel.DataObject()> _
-    Public Class EmployeesBLLWithSprocs
-        Private _employeesAdapter As EmployeesTableAdapter = Nothing
-        Protected ReadOnly Property Adapter() As EmployeesTableAdapter
-            Get
-                If _employeesAdapter Is Nothing Then
-                    _employeesAdapter = New EmployeesTableAdapter()
-                End If
-                Return _employeesAdapter
-            End Get
-        End Property
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (System.ComponentModel.DataObjectMethodType.Select, True)> _
-        Public Function GetEmployees() As NorthwindWithSprocs.EmployeesDataTable
-            Return Adapter.GetEmployees()
-        End Function
-        <System.ComponentModel.DataObjectMethodAttribute _
-            (System.ComponentModel.DataObjectMethodType.Delete, True)> _
-        Public Function DeleteEmployee(ByVal employeeID As Integer) As Boolean
-            Dim rowsAffected = Adapter.Delete(employeeID)
-            'Return true if precisely one row was deleted, otherwise false
-            Return rowsAffected = 1
-        End Function
-    End Class
+[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample6.xml)]
 
 The `EmployeesBLLWithSprocs` class s `Adapter` property returns an instance of the `NorthwindWithSprocs` DataSet s `EmployeesTableAdapter`. This is used by the class s `GetEmployees` and `DeleteEmployee` methods. The `GetEmployees` method calls the `EmployeesTableAdapter` s corresponding `GetEmployees` method, which invokes the `Employees_Select` stored procedure and populates its results in an `EmployeeDataTable`. The `DeleteEmployee` method similarly calls the `EmployeesTableAdapter` s `Delete` method, which invokes the `Employees_Delete` stored procedure.
 
@@ -273,34 +215,7 @@ Visual Studio will add a BoundField to the GridView for each of the `EmployeesDa
 To allow users to delete employees from this page we need to do two things. First, instruct the GridView to provide deleting capabilities by checking the Enable Deleting option from its smart tag. Second, change the ObjectDataSource s `OldValuesParameterFormatString` property from the value set by the ObjectDataSource wizard (`original_{0}`) to its default value (`{0}`). After making these changes, your GridView and ObjectDataSource s declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="Employees" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="EmployeeID" DataSourceID="EmployeesDataSource">
-        <Columns>
-            <asp:CommandField ShowDeleteButton="True" />
-            <asp:BoundField DataField="Title" 
-                HeaderText="Title" 
-                SortExpression="Title" />
-            <asp:BoundField DataField="LastName" 
-                HeaderText="Last Name" 
-                SortExpression="LastName" />
-            <asp:BoundField DataField="FirstName" 
-                HeaderText="First Name" 
-                SortExpression="FirstName" />
-            <asp:BoundField DataField="ManagerFirstName" 
-                HeaderText="Manager's First Name" 
-                SortExpression="ManagerFirstName" />
-            <asp:BoundField DataField="ManagerLastName" 
-                HeaderText="Manager's Last Name" 
-                SortExpression="ManagerLastName" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="EmployeesDataSource" runat="server" 
-        DeleteMethod="DeleteEmployee" OldValuesParameterFormatString="{0}" 
-        SelectMethod="GetEmployees" TypeName="EmployeesBLLWithSprocs">
-        <DeleteParameters>
-            <asp:Parameter Name="employeeID" Type="Int32" />
-        </DeleteParameters>
-    </asp:ObjectDataSource>
+[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample7.xml)]
 
 Test out the page by visiting it through a browser. As Figure 14 shows, the page will list each employee and his or her manager s name (assuming they have one).
 

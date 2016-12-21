@@ -1,4 +1,5 @@
-var connection = $.hubConnection();
-connection.error(function (error) {
-    console.log('SignalR error: ' + error)
-});
+public class Stock
+{
+    public string Symbol { get; set; }
+    public decimal Price { get; set; }
+}

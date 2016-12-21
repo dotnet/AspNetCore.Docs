@@ -62,78 +62,21 @@ TPH inheritance patterns generally deliver better performance in the Entity Fram
 
 In the *Models* folder, create *Person.cs* and replace the template code with the following code:
 
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
-    namespace ContosoUniversity.Models
-    {
-       public abstract class Person
-       {
-          [Key]
-          public int PersonID { get; set; }
-    
-          [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
-          [StringLength(50, MinimumLength = 1)]
-          [Display(Name = "Last Name")]
-          public string LastName { get; set; }
-    
-          [Column("FirstName")]
-          [Display(Name = "First Name")]
-          [StringLength(50, MinimumLength = 2, ErrorMessage = "First name must be between 2 and 50 characters.")]
-          public string FirstMidName { get; set; }
-    
-          public string FullName
-          {
-             get
-             {
-                return LastName + ", " + FirstMidName;
-             }
-          }
-       }
-    }
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml)]
 
 In *Instructor.cs*, derive the `Instructor` class from the `Person` class and remove the key and name fields. The code will look like the following example:
 
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace ContosoUniversity.Models
-    {
-        public class Instructor : Person
-        {
-            [DataType(DataType.Date)]
-            [Display(Name = "Hire Date")]
-            public DateTime HireDate { get; set; }
-    
-            public virtual ICollection<Course> Courses { get; set; }
-            public virtual OfficeAssignment OfficeAssignment { get; set; }
-        }
-    }
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml)]
 
 Make similar changes to *Student.cs*. The `Student` class will look like the following example:
 
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace ContosoUniversity.Models
-    {
-        public class Student : Person
-        {
-            [DataType(DataType.Date)]
-            [Display(Name = "Enrollment Date")]
-            public DateTime EnrollmentDate { get; set; }
-    
-            public virtual ICollection<Enrollment> Enrollments { get; set; }
-        }
-    }
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml)]
 
 ## Adding the Person Entity Type to the Model
 
 In *SchoolContext.cs*, add a `DbSet` property for the `Person` entity type:
 
-    public DbSet<Person> People { get; set; }
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml)]
 
 This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is re-created, it will have a `Person` table in place of the `Student` and `Instructor` tables.<mark></mark>
 
@@ -141,11 +84,11 @@ This is all that the Entity Framework needs in order to configure table-per-hier
 
 In *SchoolContext.cs*, in the Instructor-Course mapping statement, change `MapRightKey("InstructorID")` to `MapRightKey("PersonID")`:
 
-[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=4)]
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml?highlight=4)]
 
 This change isn't required; it just changes the name of the InstructorID column in the many-to-many join table. If you left the name as InstructorID, the application would still work correctly. Here is the completed *SchoolContext.cs*:
 
-[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml?highlight=15,24)]
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml?highlight=15,24)]
 
 Next you need to change `InstructorID` to `PersonID` and `StudentID` to `PersonID` throughout the project ***except*** in the time-stamped migrations files in the *Migrations* folder. To do that you'll find and open only the files that need to be changed, then perform a global change on the opened files. The only file in the *Migrations* folder you should change is *Migrations\Configuration.cs.*
 
@@ -184,13 +127,13 @@ Run the `Update-Database` command in the PMC. The command will fail at this poin
 
 Open *Migrations\&lt;timestamp&gt;\_Inheritance.cs* and replace the `Up` method with the following code:
 
-[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=25,29-40)]
+[!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml?highlight=25,29-40)]
 
 Run the `update-database` command again.
 
 > [!NOTE] It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can continue with the tutorial by changing the connection string in the *Web.config* file or deleting the database. The simplest approach is to rename the database in the *Web.config* file. For example, change the database name to CU\_test as shown in the following example:
 > 
-> [!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=1-2)]
+> [!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml?highlight=1-2)]
 > 
 > With a new database, there is no data to migrate, and the `update-database` command is much more likely to complete without errors. For instructions on how to delete the database, see [How to Drop a Database from Visual Studio 2012](http://romiller.com/2013/05/17/how-to-drop-a-database-from-visual-studio-2012/). If you take this approach in order to continue with the tutorial, skip the deployment step at the end of this tutorial, since the deployed site would get the same error when it runs migrations automatically. If you want to troubleshoot a migrations error, the best resource is one of the Entity Framework forums or StackOverflow.com.
 

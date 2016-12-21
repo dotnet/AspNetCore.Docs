@@ -1,18 +1,12 @@
-// PUT api/Product/5
-public IHttpActionResult PutProduct(int id, Product product)
-{
-    if (!ModelState.IsValid)
-    {
-        return BadRequest(ModelState);
-    }
-
-    if (id != product.Id)
-    {
-        return BadRequest();
-    }
-
-    //db.Entry(product).State = EntityState.Modified;
-    db.MarkAsModified(product);
+    using System;
+    using System.Data.Entity;
     
-    // rest of method not shown
-}
+    namespace StoreApp.Models
+    {
+        public interface IStoreAppContext : IDisposable
+        {
+            DbSet<Product> Products { get; }
+            int SaveChanges();
+            void MarkAsModified(Product item);    
+        }
+    }

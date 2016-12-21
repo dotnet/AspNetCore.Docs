@@ -125,72 +125,14 @@ Here are some rules for the method signatures:
 
 For reference, here is an example that shows method signatures for every built-in OData routing convention.
 
-    public class ProductsController : ODataController
-    {
-        // GET /odata/Products
-        public IQueryable<Product> Get()
-    
-        // GET /odata/Products(1)
-        public Product Get([FromODataUri] int key)
-    
-        // GET /odata/Products(1)/ODataRouting.Models.Book
-        public Book GetBook([FromODataUri] int key)
-    
-        // POST /odata/Products 
-        public HttpResponseMessage Post(Product item)
-    
-        // PUT /odata/Products(1)
-        public HttpResponseMessage Put([FromODataUri] int key, Product item)
-    
-        // PATCH /odata/Products(1)
-        public HttpResponseMessage Patch([FromODataUri] int key, Delta<Product> item)
-    
-        // DELETE /odata/Products(1)
-        public HttpResponseMessage Delete([FromODataUri] int key)
-    
-        // PUT /odata/Products(1)/ODataRouting.Models.Book
-        public HttpResponseMessage PutBook([FromODataUri] int key, Book item)
-    
-        // PATCH /odata/Products(1)/ODataRouting.Models.Book
-        public HttpResponseMessage PatchBook([FromODataUri] int key, Delta<Book> item)
-    
-        // DELETE /odata/Products(1)/ODataRouting.Models.Book
-        public HttpResponseMessage DeleteBook([FromODataUri] int key)
-    
-        //  GET /odata/Products(1)/Supplier
-        public Supplier GetSupplierFromProduct([FromODataUri] int key)
-    
-        // GET /odata/Products(1)/ODataRouting.Models.Book/Author
-        public Author GetAuthorFromBook([FromODataUri] int key)
-    
-        // POST /odata/Products(1)/$links/Supplier
-        public HttpResponseMessage CreateLink([FromODataUri] int key, 
-            string navigationProperty, [FromBody] Uri link)
-    
-        // DELETE /odata/Products(1)/$links/Supplier
-        public HttpResponseMessage DeleteLink([FromODataUri] int key, 
-            string navigationProperty, [FromBody] Uri link)
-    
-        // DELETE /odata/Products(1)/$links/Parts(1)
-        public HttpResponseMessage DeleteLink([FromODataUri] int key, string relatedKey, string navigationProperty)
-    
-        // GET odata/Products(1)/Name
-        // GET odata/Products(1)/Name/$value
-        public HttpResponseMessage GetNameFromProduct([FromODataUri] int key)
-    
-        // GET /odata/Products(1)/ODataRouting.Models.Book/Title
-        // GET /odata/Products(1)/ODataRouting.Models.Book/Title/$value
-        public HttpResponseMessage GetTitleFromBook([FromODataUri] int key)
-    }
+[!code[Main](odata-routing-conventions/samples/sample1.xml)]
 
 <a id="custom"></a>
 ## Custom Routing Conventions
 
 Currently the built-in conventions do not cover all possible OData URIs. You can add new conventions by implementing the **IODataRoutingConvention** interface. This interface has two methods:
 
-    string SelectController(ODataPath odataPath, HttpRequestMessage request);
-    string SelectAction(ODataPath odataPath, HttpControllerContext controllerContext, 
-        ILookup<string, HttpActionDescriptor> actionMap);
+[!code[Main](odata-routing-conventions/samples/sample2.xml)]
 
 - **SelectController** returns the name of the controller.
 - **SelectAction** returns the name of the action.
@@ -209,49 +151,11 @@ Typically, an implementation of **IODataRoutingConvention** does the following:
 
 Let's look at a specific example. The built-in routing conventions do not support indexing into a navigation collection. In other words, there is no convention for URIs like the following:
 
-    /odata/Products(1)/Suppliers(1)
+[!code[Main](odata-routing-conventions/samples/sample3.xml)]
 
 Here is a custom routing convention to handle this type of query.
 
-    using Microsoft.Data.Edm;
-    using System.Linq;
-    using System.Net.Http;
-    using System.Web.Http.Controllers;
-    using System.Web.Http.OData.Routing;
-    using System.Web.Http.OData.Routing.Conventions;
-    
-    namespace ODataRouting
-    {
-        public class NavigationIndexRoutingConvention : EntitySetRoutingConvention
-        {
-            public override string SelectAction(ODataPath odataPath, HttpControllerContext context, 
-                ILookup<string, HttpActionDescriptor> actionMap)
-            {
-                if (context.Request.Method == HttpMethod.Get && 
-                    odataPath.PathTemplate == "~/entityset/key/navigation/key")
-                {
-                    NavigationPathSegment navigationSegment = odataPath.Segments[2] as NavigationPathSegment;
-                    IEdmNavigationProperty navigationProperty = navigationSegment.NavigationProperty.Partner;
-                    IEdmEntityType declaringType = navigationProperty.DeclaringType as IEdmEntityType;
-    
-                    string actionName = "Get" + declaringType.Name;
-                    if (actionMap.Contains(actionName))
-                    {
-                        // Add keys to route data, so they will bind to action parameters.
-                        KeyValuePathSegment keyValueSegment = odataPath.Segments[1] as KeyValuePathSegment;
-                        context.RouteData.Values[ODataRouteConstants.Key] = keyValueSegment.Value;
-    
-                        KeyValuePathSegment relatedKeySegment = odataPath.Segments[3] as KeyValuePathSegment;
-                        context.RouteData.Values[ODataRouteConstants.RelatedKey] = relatedKeySegment.Value;
-    
-                        return actionName;
-                    }
-                }
-                // Not a match.
-                return null;
-            }
-        }
-    }
+[!code[Main](odata-routing-conventions/samples/sample4.xml)]
 
 Notes:
 
@@ -262,35 +166,7 @@ Notes:
 
 The next step is adding the new convention to the list of routing conventions. This happens during configuration, as shown in the following code:
 
-    using ODataRouting.Models;
-    using System.Web.Http;
-    using System.Web.Http.OData.Builder;
-    using System.Web.Http.OData.Routing;
-    using System.Web.Http.OData.Routing.Conventions;
-    
-    namespace ODataRouting
-    {
-        public static class WebApiConfig
-        {
-            public static void Register(HttpConfiguration config)
-            {
-                ODataModelBuilder modelBuilder = new ODataConventionModelBuilder();
-                // Create EDM (not shown).
-    
-                // Create the default collection of built-in conventions.
-                var conventions = ODataRoutingConventions.CreateDefault();
-                // Insert the custom convention at the start of the collection.
-                conventions.Insert(0, new NavigationIndexRoutingConvention());
-    
-                config.Routes.MapODataRoute(routeName: "ODataRoute",
-                    routePrefix: "odata",
-                    model: modelBuilder.GetEdmModel(),
-                    pathHandler: new DefaultODataPathHandler(),
-                    routingConventions: conventions);
-    
-            }
-        }
-    }
+[!code[Main](odata-routing-conventions/samples/sample5.xml)]
 
 Here are some other sample routing conventions that be useful to study:
 

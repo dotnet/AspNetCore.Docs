@@ -1,1 +1,5 @@
-System.Collections.Specialized.NameValueCollection headers = Context.Request.Headers;
+public class ContosoChatMessage
+{
+    public string UserName { get; set; }
+    public string Message { get; set; }
+}

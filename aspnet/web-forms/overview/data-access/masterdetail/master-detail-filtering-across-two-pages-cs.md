@@ -41,10 +41,7 @@ When creating these two new pages be certain to associate them with the `Site.ma
 Also, when adding new pages to the project, be sure to update the site map file, `Web.sitemap`, accordingly. For this tutorial simply add the `SupplierListMaster.aspx` page to the site map using the following XML content as a child of the Filtering Reports `<siteMapNode>` element:
 
 
-    <siteMapNode url="~/Filtering/SupplierListMaster.aspx"
-      title="Master/Detail Across Two Pages"
-      description="Master records on one page, detail records on another."
-    />
+[!code[Main](master-detail-filtering-across-two-pages-cs/samples/sample1.xml)]
 
 > [!NOTE] You can help automate the process of updating the site map file when adding new ASP.NET pages using [K. Scott Allen](http://odetocode.com/Blogs/scott/)'s free Visual Studio [Site Map Macro](http://odetocode.com/Blogs/scott/archive/2005/11/29/2537.aspx).
 
@@ -97,22 +94,7 @@ Applying this to our tutorial, we need to set the `DataNavigateUrlFields` proper
 After adding the HyperLinkField, feel free to customize and reorder the GridView's fields. The following markup shows the GridView after I've made some minor field-level customizations.
 
 
-    <asp:GridView ID="GridView1" runat="server"
-        AutoGenerateColumns="False" DataKeyNames="SupplierID"
-        DataSourceID="ObjectDataSource1" EnableViewState="False">
-        <Columns>
-            <asp:HyperLinkField DataNavigateUrlFields="SupplierID"
-                DataNavigateUrlFormatString=
-                "ProductsForSupplierDetails.aspx?SupplierID={0}"
-                Text="View Products" />
-            <asp:BoundField DataField="CompanyName"
-              HeaderText="Company" SortExpression="CompanyName" />
-            <asp:BoundField DataField="City" HeaderText="City"
-              SortExpression="City" />
-            <asp:BoundField DataField="Country" HeaderText="Country"
-              SortExpression="Country" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](master-detail-filtering-across-two-pages-cs/samples/sample2.xml)]
 
 Take a moment to view the `SupplierListMaster.aspx` page through a browser. As Figure 7 shows, the page currently lists all of the suppliers including a View Products link. Clicking on the View Products link will take you to `ProductsForSupplierDetails.aspx`, passing along the supplier's `SupplierID` in the querystring.
 
@@ -188,23 +170,7 @@ When binding the FormView to the ObjectDataSource in the Design view, Visual Stu
 After these edits the FormView's declarative markup should look similar to the following:
 
 
-    <asp:FormView ID="FormView1" runat="server" DataKeyNames="SupplierID"
-        DataSourceID="suppliersDataSource" EnableViewState="False">
-        <ItemTemplate>
-            <h3><%# Eval("CompanyName") %></h3>
-            <p>
-                <asp:Label ID="AddressLabel" runat="server"
-                    Text='<%# Bind("Address") %>'></asp:Label><br />
-                <asp:Label ID="CityLabel" runat="server"
-                    Text='<%# Bind("City") %>'></asp:Label>,
-                <asp:Label ID="CountryLabel" runat="server"
-                    Text='<%# Bind("Country") %>'></asp:Label><br />
-                Phone:
-                <asp:Label ID="PhoneLabel" runat="server"
-                    Text='<%# Bind("Phone") %>'></asp:Label>
-            </p>
-        </ItemTemplate>
-    </asp:FormView>
+[!code[Main](master-detail-filtering-across-two-pages-cs/samples/sample3.xml)]
 
 Figure 16 shows a screen shot of the `ProductsForSupplierDetails.aspx` page after the supplier information detailed above has been included.
 

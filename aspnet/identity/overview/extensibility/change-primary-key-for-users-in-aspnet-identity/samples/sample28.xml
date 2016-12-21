@@ -1,17 +1,9 @@
-protected void Page_Load(object sender, EventArgs e)
+private bool HasPassword()
 {
-    string code = IdentityHelper.GetCodeFromRequest(Request);
-    string userId = IdentityHelper.GetUserIdFromRequest(Request);
-    if (code != null && userId != null)
+    var user = UserManager.FindById(User.Identity.GetUserId<int>());
+    if (user != null)
     {
-        var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        var result = manager.ConfirmEmail(Int32.Parse(userId), code);
-        if (result.Succeeded)
-        {
-            StatusMessage = "Thank you for confirming your account.";
-            return;
-        }
+        return user.PasswordHash != null;
     }
-
-    StatusMessage = "An error has occurred";
+    return false;
 }

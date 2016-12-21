@@ -39,84 +39,10 @@ The following example shows how to enable mobile rendering by adding a content p
 
 1. In an ASP.NET Web Pages site, create a file named *Page1.cshtml* and replace the current content with following markup.
 
-        <!DOCTYPE html>
-        
-        <html lang="en">
-            <head>
-                <meta charset="utf-8" />
-                <title></title>
-                <style type="text/css">
-                    #navigation {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 10em;
-                    }
-                    #content {
-                    margin-left: 13em;
-                        margin-right: 10em;
-                    } 
-                </style>
-            </head>
-            <body>
-                <div id="navigation"> 
-                    <h3>Related Sites</h3>
-                    <ul>
-                        <li><a href="http://www.adventure-works.com/">Adventure Works</a></li>
-                        <li><a href="http://www.contoso.com/">Contoso, Ltd</a></li>
-                        <li><a href="http://www.treyresearch.net/">Trey Research</a></li>
-                    </ul>
-                </div> 
-                <div id="content">
-                    <h1>Lorem ipsum dolor</h1>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy 
-                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, 
-                    no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit 
-                    amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
-                    labore et dolore magna aliquyam erat, sed diam voluptua. </p>
-                    <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd 
-                    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum 
-                    dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt 
-                    ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                    et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
-                    sanctus est Lorem ipsum dolor sit amet.</p>
-                </div>
-            </body>
-        </html>
+    [!code[Main](rendering-aspnet-web-pages-sites-for-mobile-devices/samples/sample1.xml)]
 2. Create a file named *Page1.Mobile.cshtml* and replace the existing content with the following markup. Notice that the mobile version of the page omits the navigation section for better rendering on a smaller screen.
 
-        <!DOCTYPE html>
-        
-        <html lang="en">
-            <head>
-                <meta charset="utf-8" />
-                <title></title>
-                <style type="text/css">
-                    #content {
-                    margin-left: 2em;
-                        margin-right: 5em;
-                    } 
-                </style>
-            </head>
-            <body>
-                <div id="content">
-                    <h1>Lorem ipsum dolor</h1>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy 
-                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, 
-                    no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit 
-                    amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut 
-                    labore et dolore magna aliquyam erat, sed diam voluptua. </p>
-                    <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd 
-                    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum 
-                    dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt 
-                    ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam 
-                    et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
-                    sanctus est Lorem ipsum dolor sit amet.</p>
-                </div>
-            </body>
-        </html>
+    [!code[Main](rendering-aspnet-web-pages-sites-for-mobile-devices/samples/sample2.xml)]
 3. Run a desktop browser and browse to *Page1.cshtml*. ![mobilesites-1](rendering-aspnet-web-pages-sites-for-mobile-devices/_static/image1.png)
 4. Run a mobile browser (or a mobile device emulator) and browse to *Page1.cshtml*. (Notice that you do not include *.mobile.* as part of the URL.) Even though the request is to *Page1.cshtml*, ASP.NET renders *Page1.Mobile.cshtml*.
 

@@ -35,14 +35,7 @@ Before we get to the detailed tutorial, here is a quick overview of what you wil
 3. Create a SignalR application.
 4. Add the following code to Global.asax to configure the backplane: 
 
-        protected void Application_Start()
-        {
-            string sqlConnectionString = "Connecton string to your SQL DB";
-            GlobalHost.DependencyResolver.UseSqlServer(sqlConnectionString);
-        
-            RouteTable.Routes.MapHubs();
-            // ...
-        }
+    [!code[Main](scaleout-with-sql-server/samples/sample1.xml)]
 
 ## Configure the Database
 
@@ -58,14 +51,13 @@ It is recommended to enable Service Broker for the backplane database. Service B
 
 To check whether Service Broker is enabled, query the **is\_broker\_enabled** column in the **sys.databases** catalog view.
 
-    SELECT [name], [service_broker_guid], [is_broker_enabled]
-    FROM [master].[sys].[databases]
+[!code[Main](scaleout-with-sql-server/samples/sample2.xml)]
 
 ![](scaleout-with-sql-server/_static/image3.png)
 
 To enable Service Broker, use the following SQL query:
 
-    ALTER DATABASE YOUR_DATABASE SET ENABLE_BROKER
+[!code[Main](scaleout-with-sql-server/samples/sample3.xml)]
 
 > [!NOTE] If this query appears to deadlock, make sure there are no applications connected to the DB.
 
@@ -81,17 +73,11 @@ Create a SignalR application by following either of these tutorials:
 
 Next, we'll modify the chat application to support scaleout with SQL Server. First, add the SignalR.SqlServer NuGet package to your project. In Visual Studio, from the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-    Install-Package Microsoft.AspNet.SignalR.SqlServer
+[!code[Main](scaleout-with-sql-server/samples/sample4.xml)]
 
 Next, open the Global.asax file. Add the following code to the **Application\_Start** method:
 
-    protected void Application_Start()
-    {
-            string sqlConnectionString = "<add your SQL connection string here>";
-            GlobalHost.DependencyResolver.UseSqlServer(sqlConnectionString);
-    
-            RouteTable.Routes.MapHubs();
-    }
+[!code[Main](scaleout-with-sql-server/samples/sample5.xml)]
 
 ## Deploy and Run the Application
 

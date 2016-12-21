@@ -28,60 +28,35 @@ The ModalPopup control in the AJAX Control Toolkit offers a simple way to create
 
 First of all, an ASP.NET Button web control is required to demonstrate how the ModalPopup control works. Add such a button within the &lt;form&gt; element on a new page:
 
-    <asp:Button ID="ClientButton" runat="server" Text="Launch
-     Modal Popup (Client)" />
+[!code[Main](launching-a-modal-popup-window-from-server-code-vb/samples/sample1.xml)]
 
 Then, you need the markup for the popup you want to create. Define it as an `<asp:Panel>` control and make sure that it includes a Button control. The ModalPopup control offers the functionality to make such a button close the popup; otherwise there is no easy way to let it vanish.
 
-    <asp:Panel ID="ModalPanel" runat="server" Width="500px">
-     ASP.NET AJAX is a free framework for quickly creating a new generation of more efficient,
-     more interactive and highly-personalized Web experiences that work across all the
-     most popular browsers.<br />
-     <asp:Button ID="OKButton" runat="server" Text="Close" />
-    </asp:Panel>
+[!code[Main](launching-a-modal-popup-window-from-server-code-vb/samples/sample2.xml)]
 
 Next add the ModalPopup control from the ASP.NET AJAX Toolkit to the page. Set properties for the button which loads the control, the button which makes it disappear, and the ID of the actual popup.
 
-    <ajaxToolkit:ModalPopupExtender ID="mpe" runat="server"
-     TargetControlId="ClientButton" PopupControlID="ModalPanel" 
-     OkControlID="OKButton" />
+[!code[Main](launching-a-modal-popup-window-from-server-code-vb/samples/sample3.xml)]
 
 As with all web pages based on ASP.NET AJAX; the Script Manager is required to load the necessary JavaScript libraries for the different target browsers:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](launching-a-modal-popup-window-from-server-code-vb/samples/sample4.xml)]
 
 Run the example in the browser. When you click on the button, the modal popup appears. In order to achieve the same effect using server-side code, a new button is required:
 
-    <asp:Button ID="ServerButton" runat="server" Text="Launch Modal Popup (Server)" 
-     OnClick="ServerButton_Click" />
+[!code[Main](launching-a-modal-popup-window-from-server-code-vb/samples/sample5.xml)]
 
 As you can see, a click on the button generates a postback and executes the `ServerButton_Click()` method on the server. In this method, a JavaScript function called `launchModal()` is executed to be exact, the JavaScript function will be executed once the page has been loaded:
 
-    <script runat="server">
-     Sub ServerButton_Click(ByVal sender As Object, ByVal e As EventArgs)
-     ClientScript.RegisterStartupScript(Me.GetType(), "key", "launchModal();", True)
-     End Sub
-    </script>
+[!code[Main](launching-a-modal-popup-window-from-server-code-vb/samples/sample6.xml)]
 
 The job of `launchModal()` is to display the ModalPopup. The `launchModal()` function is executed once the complete HTML page has been loaded. At that moment, however, the ASP.NET AJAX framework has not been fully loaded yet. Therefore, the `launchModal()` function just sets a variable that the ModalPopup control must be shown later on:
 
-    <script type="text/javascript">
-     var launch = false;
-     function launchModal() 
-     {
-     launch = true;
-     }
+[!code[Main](launching-a-modal-popup-window-from-server-code-vb/samples/sample7.xml)]
 
 The `pageLoad()` JavaScript function is a special function that gets executed once ASP.NET AJAX has been fully loaded. Therefore we add code to this function to show the ModalPopup control, but only if `launchModal()` has been called before:
 
-    function pageLoad() 
-     {
-     if (launch) 
-     {
-     $find("mpe").show();
-     }
-     }
-    </script>
+[!code[Main](launching-a-modal-popup-window-from-server-code-vb/samples/sample8.xml)]
 
 The `$find()` function is looking for a named element on the page and expects the server-side ID as a parameter. Therefore, `$find("mpe")` returns the client representation of the ModalPopup control; its `show()` method lets the popup appear.
 

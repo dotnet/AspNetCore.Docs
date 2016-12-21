@@ -60,11 +60,7 @@ If you'd rather build up the `ItemTemplate` manually, you can add and configure 
 Regardless of what approach you decided to take, at this point your FormView's declarative markup should look like:
 
 
-    <asp:FormView ID="FormView1" runat="server" DataSourceID="ObjectDataSource1">
-        <ItemTemplate>
-    
-        </ItemTemplate>
-    </asp:FormView>
+[!code[Main](using-the-formview-s-templates-vb/samples/sample1.xml)]
 
 Take a moment to check the Enable Paging checkbox in the FormView's smart tag; this will add the `AllowPaging="True"` attribute to the FormView's declarative syntax. Also, set the `EnableViewState` property to False.
 
@@ -77,50 +73,7 @@ This markup can be entered in through the FormView's template editing interface 
 The following markup shows the FormView declarative markup after the `ItemTemplate`'s structure has been completed:
 
 
-    <asp:FormView ID="FormView1" runat="server" DataSourceID="ObjectDataSource1"
-        AllowPaging="True" EnableViewState="False">
-        <ItemTemplate>
-            <hr />
-            <h3><%# Eval("ProductName") %></h3>
-            <table border="0">
-                <tr>
-                    <td class="ProductPropertyLabel">Category:</td>
-                    <td class="ProductPropertyValue">
-                      <%# Eval("CategoryName") %></td>
-                    <td class="ProductPropertyLabel">Supplier:</td>
-                    <td class="ProductPropertyValue">
-                      <%# Eval("SupplierName")%></td>
-                </tr>
-                <tr>
-                    <td class="ProductPropertyLabel">Price:</td>
-                    <td class="ProductPropertyValue"><%# Eval("UnitPrice",
-                      "{0:C}") %></td>
-                    <td class="ProductPropertyLabel">Units In Stock:</td>
-                    <td class="ProductPropertyValue">
-                      <%# Eval("UnitsInStock")%></td>
-                </tr>
-                <tr>
-                    <td class="ProductPropertyLabel">Units On Order:</td>
-                    <td class="ProductPropertyValue">
-                      <%# Eval("UnitsOnOrder") %></td>
-                    <td class="ProductPropertyLabel">Reorder Level:</td>
-                    <td class="ProductPropertyValue">
-                      <%# Eval("ReorderLevel")%></td>
-                </tr>
-                <tr>
-                    <td class="ProductPropertyLabel">Qty/Unit</td>
-                    <td class="ProductPropertyValue">
-                      <%# Eval("QuantityPerUnit") %></td>
-                    <td class="ProductPropertyLabel">Discontinued:</td>
-                    <td class="ProductPropertyValue">
-                        <asp:CheckBox runat="server" Enabled="false"
-                          Checked='<%# Eval("Discontinued") %>' />
-                    </td>
-                </tr>
-            </table>
-            <hr />
-        </ItemTemplate>
-    </asp:FormView>
+[!code[Main](using-the-formview-s-templates-vb/samples/sample2.xml)]
 
 Notice that the databinding syntax - `<%# Eval("ProductName") %>`, for example can be injected directly into the template's output. That is, it need not be assigned to a Label control's `Text` property. For example, we have the `ProductName` value displayed in an `<h3>` element using `<h3><%# Eval("ProductName") %></h3>`, which for the product Chai will render as `<h3>Chai</h3>`.
 

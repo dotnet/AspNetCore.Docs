@@ -1,8 +1,5 @@
-public class ContosoChatHub : Hub
-{
-    [HubMethodName("NewContosoChatMessage")]
-    public void NewContosoChatMessage(string name, string message)
-    {
-        Clients.All.addContosoChatMessageToPage(name, message);
-    }
-}
+var connection = $.hubConnection();
+var contosoChatHubProxy = connection.createHubProxy('contosoChatHub');
+chatHubProxy.on('addMessageToPage', function (message) {
+    console.log(message.UserName + ' ' + message.Message);
+});

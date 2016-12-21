@@ -1,12 +1,12 @@
-public class ContosoChatHub : Hub
-{
-    public Task JoinGroup(string groupName)
+    public class ProgressHub : Hub
     {
-        return Groups.Add(Context.ConnectionId, groupName);
+        public async Task<string> DoLongRunningThing(IProgress<int> progress)
+        {
+            for (int i = 0; i <= 100; i+=5)
+            {
+                await Task.Delay(200);
+                progress.Report(i);
+            }
+            return "Job complete!";
+        }
     }
-
-    public Task LeaveGroup(string groupName)
-    {
-        return Groups.Remove(Context.ConnectionId, groupName);
-    }
-}

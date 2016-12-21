@@ -1,17 +1,35 @@
-public ActionResult Delete(int? id, bool? saveChangesError=false)
-{
-    if (id == null)
-    {
-        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-    }
-    if (saveChangesError.GetValueOrDefault())
-    {
-        ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
-    }
-    Student student = db.Students.Find(id);
-    if (student == null)
-    {
-        return HttpNotFound();
-    }
-    return View(student);
-}
+<dt>
+            @Html.DisplayNameFor(model => model.EnrollmentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnrollmentDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Enrollments)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Course Title</th>
+                    <th>Grade</th>
+                </tr>
+                @foreach (var item in Model.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Course.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grade)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

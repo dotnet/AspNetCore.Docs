@@ -69,18 +69,13 @@ The next step is to modify your deployment logic to copy the file to the destina
 To deploy an *App\_offline* file to a destination IIS website, you need to invoke MSDeploy.exe using the [Web Deploy **contentPath** provider](https://technet.microsoft.com/en-us/library/dd569034(WS.10).aspx). The **contentPath** provider supports both physical directory paths and IIS website or application paths, which makes it the ideal choice for synchronizing a file between a Visual Studio project folder and an IIS web application. To deploy the file, your MSDeploy command should resemble this:
 
 
-    msdeploy.exe –verb:sync
-                 -source:contentPath="[Project folder]\App_offline.template.htm"
-                 -dest:contentPath="[IIS application path]/App_offline.htm",
-                  computerName="[Destination web server]"
+[!code[Main](taking-web-applications-offline-with-web-deploy/samples/sample1.xml)]
 
 
 To remove the file from the destination site at the end of the deployment process, your MSDeploy command should resemble this:
 
 
-    msdeploy.exe –verb:delete
-                 -dest:contentPath="[IIS application path]/App_offline.htm",
-                  computerName="[Destination web server]"
+[!code[Main](taking-web-applications-offline-with-web-deploy/samples/sample2.xml)]
 
 
 To automate these commands as part of a build and deployment process, you need to integrate them into your custom MSBuild project file. The next procedure describes how to do this.
@@ -90,69 +85,24 @@ To automate these commands as part of a build and deployment process, you need t
 1. In Visual Studio 2010, open the MSBuild project file that controls your deployment process. In the [Contact Manager](../web-deployment-in-the-enterprise/the-contact-manager-solution.md) sample solution, this is the *Publish.proj* file.
 2. In the root **Project** element, create a new **PropertyGroup** element to store variables for the *App\_offline* deployment:
 
-        <PropertyGroup>
-          <AppOfflineTemplateFilename   
-            Condition=" '$(AppOfflineTemplateFilename)'=='' ">
-              app_offline-template.htm
-          </AppOfflineTemplateFilename>
-          <AppOfflineSourcePath 
-            Condition=" '$(AppOfflineSourcePath)'==''">
-              $(SourceRoot)ContactManager.Mvc\$(AppOfflineTemplateFilename)
-          </AppOfflineSourcePath>
-        </PropertyGroup>
+    [!code[Main](taking-web-applications-offline-with-web-deploy/samples/sample3.xml)]
 3. The **SourceRoot** property is defined elsewhere in the *Publish.proj* file. It indicates the location of the root folder for the source content relative to the current path&#x2014;in other words, relative to the location of the *Publish.proj* file.
 4. The **contentPath** provider will not accept relative file paths, so you need to get an absolute path to your source file before you can deploy it. You can use the [ConvertToAbsolutePath](https://msdn.microsoft.com/en-us/library/bb882668.aspx) task to do this.
 5. Add a new **Target** element named **GetAppOfflineAbsolutePath**. Within this target, use the **ConvertToAbsolutePath** task to get an absolute path to the *App\_offline-template* file in your project folder.
 
-        <Target Name="GetAppOfflineAbsolutePath" BeforeTargets="DeployAppOffline">
-          <ConvertToAbsolutePath Paths="$(AppOfflineSourcePath)">
-            <Output TaskParameter="AbsolutePaths"       
-                    PropertyName="AppOfflineAbsoluteSourcePath" />
-          </ConvertToAbsolutePath>
-        </Target>
+    [!code[Main](taking-web-applications-offline-with-web-deploy/samples/sample4.xml)]
 6. This target takes the relative path to the *App\_offline-template* file in your project folder and saves it to a new property as an absolute file path. The **BeforeTargets** attribute specifies that you want this target to execute before the **DeployAppOffline** target, which you&#x27;ll create in the next step.
 7. Add a new target named **DeployAppOffline**. Within this target, invoke the MSDeploy.exe command that deploys your *App\_offline* file to the destination web server.
 
-        <Target Name="DeployAppOffline" 
-                Condition=" '$(EnableAppOffline'!='false' ">
-          <PropertyGroup> 
-            <_Cmd>"$(MSDeployPath)\msdeploy.exe" -verb:sync 
-                   -source:contentPath="$(AppOfflineAbsoluteSourcePath)" 
-                   -dest:contentPath="$(ContactManagerIisPath)/App_offline.htm",
-                    computerName="$(MSDeployComputerName)"
-            </_Cmd>
-          </PropertyGroup>
-          <Exec Command="$(_Cmd)"/> 
-        </Target>
+    [!code[Main](taking-web-applications-offline-with-web-deploy/samples/sample5.xml)]
 8. In this example, the **ContactManagerIisPath** property is defined elsewhere in the project file. This is simply an IIS application path, in the form *[IIS Website Name]/[Application Name]*. Including a condition in the target enables users to switch the *App\_offline* deployment on or off by changing a property value or providing a command-line parameter.
 9. Add a new target named **DeleteAppOffline**. Within this target, invoke the MSDeploy.exe command that removes your *App\_offline* file from the destination web server.
 
-        <Target Name="DeleteAppOffline" 
-                Condition=" '$(EnableAppOffline'!='false' ">
-          <PropertyGroup> 
-            <_Cmd>"$(MSDeployPath)\msdeploy.exe" -verb:delete 
-                   -dest:contentPath="$(ContactManagerIisPath)/App_offline.htm",
-                    computerName="$(MSDeployComputerName)"
-            </_Cmd>
-          </PropertyGroup>
-          <Exec Command="$(_Cmd)"/> 
-        </Target>
+    [!code[Main](taking-web-applications-offline-with-web-deploy/samples/sample6.xml)]
 10. The final task is to invoke these new targets at appropriate points during the execution of your project file. You can do this in various ways. For example, in the *Publish.proj* file, the **FullPublishDependsOn** property specifies a list of targets that must be executed in order when the **FullPublish** default target is invoked.
 11. Modify your MSBuild project file to invoke the **DeployAppOffline** and **DeleteAppOffline** targets at appropriate points in the publishing process.
 
-        <PropertyGroup>
-          <FullPublishDependsOn>
-            Clean;
-            BuildProjects; 
-            DeployAppOffline;
-            GatherPackagesForPublishing;
-            PublishDbPackages;
-            DeployTestDBPermissions;
-            PublishWebPackages;
-            DeleteAppOffline;
-          </FullPublishDependsOn> 
-        </PropertyGroup>
-        <Target Name="FullPublish" DependsOnTargets="$(FullPublishDependsOn)" />
+    [!code[Main](taking-web-applications-offline-with-web-deploy/samples/sample7.xml)]
 
 When you run your custom MSBuild project file, the *App\_offline* file will be deployed to the server immediately after a successful build. It will then be deleted from the server once all the deployment tasks are complete.
 
@@ -174,17 +124,7 @@ The Web Publishing Pipeline (WPP) uses an item list named **FilesForPackagingFro
 The *.wpp.targets* file should resemble this:
 
 
-    <Project ToolsVersion="4.0" 
-             xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-      <Target Name="AddAppOfflineToPackage"
-              BeforeTargets="CopyAllFilesToSingleFolderForPackage">
-        <ItemGroup>   
-          <FilesForPackagingFromProject Include="App_offline-template.htm">
-            <DestinationRelativePath>App_offline.htm</DestinationRelativePath>
-        </FilesForPackagingFromProject>
-      </ItemGroup>
-      </Target>
-    </Project>
+[!code[Main](taking-web-applications-offline-with-web-deploy/samples/sample8.xml)]
 
 
 These are the key points of note in this example:
@@ -206,17 +146,7 @@ The next procedure shows you how to add this *.wpp.targets* file to a web applic
     > [!NOTE] If you add a new item to the root node of a project, the file is created in the same folder as the project file. You can verify this by opening the folder in Windows Explorer.
 5. In the file, add the MSBuild markup described previously.
 
-        <Project ToolsVersion="4.0" 
-                 xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-          <Target Name="AddAppOfflineToPackage"
-                  BeforeTargets="CopyAllFilesToSingleFolderForPackage">
-            <ItemGroup>   
-              <FilesForPackagingFromProject Include="App_offline-template.htm">
-                <DestinationRelativePath>App_offline.htm</DestinationRelativePath>
-            </FilesForPackagingFromProject>
-          </ItemGroup>
-          </Target>
-        </Project>
+    [!code[Main](taking-web-applications-offline-with-web-deploy/samples/sample9.xml)]
 6. Save and close the *[project name].wpp.targets* file.
 
 The next time you build and package your web application project, the WPP will automatically detect the *.wpp.targets* file. The *App\_offline-template.htm* file will be included in the resulting web deployment package as *App\_offline.htm*.

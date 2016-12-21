@@ -40,18 +40,7 @@ In **Server Explorer**, expand *School.mdf*, right-click **Stored Procedures**, 
 
 Copy the following SQL statements and paste them into the stored procedure window, replacing the skeleton stored procedure.
 
-    CREATE PROCEDURE [dbo].[InsertStudent]
-    	@LastName nvarchar(50),
-    	@FirstName nvarchar(50),
-    	@EnrollmentDate datetime
-    	AS
-    	INSERT INTO dbo.Person (LastName, 
-    				FirstName, 
-    				EnrollmentDate)
-    	VALUES (@LastName, 
-    		@FirstName, 
-    		@EnrollmentDate);
-    	SELECT SCOPE_IDENTITY() as NewPersonID;
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample1.xml)]
 
 [![image14](the-entity-framework-and-aspnet-getting-started-part-7/_static/image4.png)](the-entity-framework-and-aspnet-getting-started-part-7/_static/image3.png)
 
@@ -61,50 +50,19 @@ Save and close the stored procedure window.
 
 Create an `InsertInstructor` stored procedure in the same manner, using the following SQL statements:
 
-    CREATE PROCEDURE [dbo].[InsertInstructor]
-    		@LastName nvarchar(50),
-    	@FirstName nvarchar(50),
-    	@HireDate datetime
-    	AS
-    	INSERT INTO dbo.Person (LastName, 
-    				FirstName, 
-    				HireDate)
-    	VALUES (@LastName, 
-    		@FirstName, 
-    		@HireDate);
-    	SELECT SCOPE_IDENTITY() as NewPersonID;
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample2.xml)]
 
 Create `Update` stored procedures for `Student` and `Instructor` entities also. (The database already has a `DeletePerson` stored procedure which will work for both `Instructor` and `Student` entities.)
 
-    CREATE PROCEDURE [dbo].[UpdateStudent]
-    	@PersonID int,
-    	@LastName nvarchar(50),
-    	@FirstName nvarchar(50),
-    	@EnrollmentDate datetime
-    	AS
-    	UPDATE Person SET LastName=@LastName, 
-    			FirstName=@FirstName,
-    			EnrollmentDate=@EnrollmentDate
-    	WHERE PersonID=@PersonID;
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample3.xml)]
 
-    CREATE PROCEDURE [dbo].[UpdateInstructor]
-    	@PersonID int,
-    	@LastName nvarchar(50),
-    	@FirstName nvarchar(50),
-    	@HireDate datetime
-    	AS
-    	UPDATE Person SET LastName=@LastName, 
-    			FirstName=@FirstName,
-    			HireDate=@HireDate
-    	WHERE PersonID=@PersonID;
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample4.xml)]
 
 In this tutorial you'll map all three functions -- insert, update, and delete -- for each entity type. The Entity Framework version 4 allows you to map just one or two of these functions to stored procedures without mapping the others, with one exception: if you map the update function but not the delete function, the Entity Framework will throw an exception when you attempt to delete an entity. In the Entity Framework version 3.5, you did not have this much flexibility in mapping stored procedures: if you mapped one function you were required to map all three.
 
 To create a stored procedure that reads rather than updates data, create one that selects all `Course` entities, using the following SQL statements:
 
-    CREATE PROCEDURE [dbo].[GetCourses]
-                AS
-                SELECT CourseID, Title, Credits, DepartmentID FROM dbo.Course
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample5.xml)]
 
 ## Adding the Stored Procedures to the Data Model
 
@@ -162,12 +120,11 @@ The Entity Framework does not automatically run stored procedures such as `GetCo
 
 Open the *InstructorsCourses.aspx.cs* file. The `PopulateDropDownLists` method uses a LINQ-to-Entities query to retrieve all course entities so that it can loop through the list and determine which ones an instructor is assigned to and which ones are unassigned:
 
-    var allCourses = (from c in context.Courses
-                                  select c).ToList();
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample6.xml)]
 
 Replace this with the following code:
 
-    var allCourses = context.GetCourses();
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample7.xml)]
 
 The page now uses the `GetCourses` stored procedure to retrieve the list of all courses. Run the page to verify that it works as it did before.
 

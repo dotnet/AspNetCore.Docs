@@ -215,58 +215,19 @@ The connection string in the *Web.config* file is named appdb (here pointing to 
 
 The Entity Framework creates a *FixItTasks* table based on the properties included in the `FixItTask` entity class. This is a simple POCO (Plain Old CLR Object) class, which means it doesn't inherit from or have any dependencies on the Entity Framework. But Entity Framework knows how to create a table based on it and execute CRUD (create-read-update-delete) operations with it.
 
-    public class FixItTask
-    {
-        public int FixItTaskId  { get; set; }
-        public string CreatedBy { get; set; }
-        [Required]
-        public string Owner     { get; set; }
-        [Required]
-        public string Title     { get; set; }
-        public string Notes     { get; set; }
-        public string PhotoUrl  { get; set; }
-        public bool IsDone      { get; set; } 
-    }
+[!code[Main](data-storage-options/samples/sample3.xml)]
 
 ![FixItTasks table](data-storage-options/_static/image15.png)
 
 The Fix It app includes a repository interface that it uses for CRUD operations working with the data store.
 
-    public interface IFixItTaskRepository
-    {
-        Task<List<FixItTask>> FindOpenTasksByOwnerAsync(string userName);
-        Task<List<FixItTask>> FindTasksByCreatorAsync(string userName); 
-    
-        Task<MyFixIt.Persistence.FixItTask> FindTaskByIdAsync(int id);
-    
-        Task CreateAsync(FixItTask taskToAdd);
-        Task UpdateAsync(FixItTask taskToSave);
-        Task DeleteAsync(int id);
-    }
+[!code[Main](data-storage-options/samples/sample4.xml)]
 
 Notice that the repository methods are all async, so all data access can be done in a completely asynchronous way.
 
 The repository implementation calls Entity Framework async methods to work with the data, including LINQ queries as well as for insert, update, and delete operations. Here's an example of the code for looking up a Fix It task.
 
-    public async Task<FixItTask> FindTaskByIdAsync(int id)
-    {
-        FixItTask fixItTask = null;
-        Stopwatch timespan = Stopwatch.StartNew();
-    
-        try
-        {
-            fixItTask = await db.FixItTasks.FindAsync(id);
-            
-            timespan.Stop();
-            log.TraceApi("SQL Database", "FixItTaskRepository.FindTaskByIdAsync", timespan.Elapsed, "id={0}", id);
-        }
-        catch(Exception e)
-        {
-            log.Error(e, "Error in FixItTaskRepository.FindTaskByIdAsynx(id={0})", id);
-        }
-    
-        return fixItTask;
-    }
+[!code[Main](data-storage-options/samples/sample5.xml)]
 
 You'll notice there's also some timing and error logging code here, we'll look at that later in the [Monitoring and Telemetry chapter](monitoring-and-telemetry.md).
 

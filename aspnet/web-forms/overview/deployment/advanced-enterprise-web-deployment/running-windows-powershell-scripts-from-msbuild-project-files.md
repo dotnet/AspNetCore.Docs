@@ -52,21 +52,13 @@ This topic will show you how to perform these procedures. The tasks and walkthro
 The tasks in this topic use a sample Windows PowerShell script named **LogDeploy.ps1** to illustrate how to run scripts from MSBuild. The **LogDeploy.ps1** script contains a simple function that writes a single-line entry to a log file:
 
 
-    function LogDeployment
-    {
-      param([string]$filepath,[string]$deployDestination)
-      $datetime = Get-Date
-      $filetext = "Deployed package to " + $deployDestination + " on " + $datetime
-      $filetext | Out-File -filepath $filepath -Append
-    }
-    
-    LogDeployment $args[0] $args[1]
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample1.xml)]
 
 
 The **LogDeploy.ps1** script accepts two parameters. The first parameter represents the full path to the log file to which you want to add an entry, and the second parameter represents the deployment destination that you want to record in the log file. When you run the script, it adds a line to the log file in this format:
 
 
-    Deployed package to TESTWEB1 on 02/11/2012 09:28:18
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample2.xml)]
 
 
 To make the **LogDeploy.ps1** script available to MSBuild, you need to:
@@ -87,23 +79,19 @@ In some scenarios, you may want to run Windows PowerShell scripts on the compute
 In terms of syntax, running a Windows PowerShell script from an MSBuild project file is the same as running a Windows PowerShell script from a regular command prompt. You need to invoke the powershell.exe executable and use the **–command** switch to provide the commands you want Windows PowerShell to run. (In Windows PowerShell v2, you can also use the **–file** switch). The command should take this format:
 
 
-    powershell.exe –command "& { [Path to script] 'parameter1' 'parameter2' ... }"
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample3.xml)]
 
 
 For example:
 
 
-    powershell.exe –command 
-      "& { C:\LogDeploy.ps1 'C:\DeployLogs\log.txt' 'TESTWEB1' }"
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample4.xml)]
 
 
 If the path to your script includes spaces, you need to enclose the file path in single quotes preceded by an ampersand. You can&#x27;t use double quotes, because you&#x27;ve already used them to enclose the command:
 
 
-    powershell.exe –command 
-      "& { &'C:\Path With Spaces\LogDeploy.ps1' 
-            'C:\Path With Spaces\log.txt' 
-            'TESTWEB1' }"
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample5.xml)]
 
 
 There are a few additional considerations when you invoke this command from MSBuild. First, you should include the **–NonInteractive** flag to ensure that the script executes quietly. Next, you should include the **–ExecutionPolicy** flag with an appropriate argument value. This specifies the execution policy that Windows PowerShell will apply to your script and allows you to override the default execution policy, which may prevent execution of your script. You can choose from these argument values:
@@ -123,33 +111,13 @@ Finally, you need to escape any reserved XML characters that occur in your Windo
 - When you make these changes, your command will resemble this:
 
 
-    powershell.exe –NonInteractive –ExecutionPolicy Unrestricted 
-                   –command &quot;&amp; { &amp;&apos;[Path to script]&apos; 
-                            &apos;[parameter1]&apos; 
-                            &apos;[parameter2]&apos; } &quot;
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample6.xml)]
 
 
 Within your custom MSBuild project file, you can create a new target and use the **Exec** task to run this command:
 
 
-    <Target Name="WriteLogEntry" Condition=" '$(WriteLogEntry)'!='false' ">
-      <PropertyGroup>
-        <PowerShellExe Condition=" '$(PowerShellExe)'=='' "> 
-          %WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe
-        </PowerShellExe>
-        <ScriptLocation Condition=" '$(ScriptLocation)'=='' ">
-          C:\Path With Spaces\LogDeploy.ps1
-        </ScriptLocation>
-        <LogFileLocation Condition=" '$(LogFileLocation)'=='' ">
-          C:\Path With Spaces\ContactManagerDeployLog.txt
-        </LogFileLocation>
-      </PropertyGroup>
-      <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted 
-                     -command &quot;&amp; { 
-                              &amp;&apos;$(ScriptLocation)&apos; 
-                              &apos;$(LogFileLocation)&apos; 
-                              &apos;$(MSDeployComputerName)&apos;} &quot;" />
-    </Target>
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample7.xml)]
 
 
 In this example, note that:
@@ -170,10 +138,7 @@ Windows PowerShell is capable of running scripts on remote computers through [Wi
 From a Windows PowerShell window, you&#x27;d use this syntax to run the **LogDeploy.ps1** script on a remote computer:
 
 
-    Invoke-Command –ComputerName 'REMOTESERVER1' 
-                   –ScriptBlock { &"C:\Path With Spaces\LogDeploy.ps1"
-                                   'C:\Path With Spaces\Log.txt'
-                                   'TESTWEB1' }
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample8.xml)]
 
 
 > [!NOTE] There are various other ways of using **Invoke-Command** to run a script file, but this approach is the most straightforward when you need to provide parameter values and manage paths with spaces.
@@ -182,46 +147,19 @@ From a Windows PowerShell window, you&#x27;d use this syntax to run the **LogDep
 When you run this from a command prompt, you need to invoke the Windows PowerShell executable and use the **–command** parameter to provide your instructions:
 
 
-    powershell.exe –command 
-      "& {Invoke-Command –ComputerName 'REMOTESERVER1' 
-                         –ScriptBlock { &'C:\Path With Spaces\LogDeploy.ps1'
-                                         'C:\Path With Spaces\Log.txt'
-                                         'TESTWEB1' } "
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample9.xml)]
 
 
 As before, you need to provide some additional switches and escape any reserved XML characters when you run the command from MSBuild:
 
 
-    powershell.exe -NonInteractive -executionpolicy Unrestricted 
-                   -command &quot;&amp; Invoke-Command 
-                     –ComputerName &apos;REMOTESERVER1&apos;
-                     -ScriptBlock { &amp;&apos;C:\Path With Spaces\LogDeploy.ps1&apos; 
-                                    &apos; C:\Path With Spaces\Log.txt &apos;  
-                                    &apos;TESTWEB1&apos; } &quot;
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample10.xml)]
 
 
 Finally, as before, you can use the **Exec** task within a custom MSBuild target to execute your command:
 
 
-    <Target Name="WriteLogEntry" Condition=" '$(WriteLogEntry)'!='false' ">
-      <PropertyGroup>
-        <PowerShellExe Condition=" '$(PowerShellExe)'=='' "> 
-          %WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe
-        </PowerShellExe>
-        <ScriptLocation Condition=" '$(ScriptLocation)'=='' ">
-          C:\Path With Spaces\LogDeploy.ps1
-        </ScriptLocation>
-        <LogFileLocation Condition=" '$(LogFileLocation)'=='' ">
-          C:\Path With Spaces\ContactManagerDeployLog.txt
-        </LogFileLocation>
-      </PropertyGroup>
-      <Exec Command="$(PowerShellExe) -NonInteractive -executionpolicy Unrestricted 
-                     -command &quot;&amp; invoke-command -scriptblock { 
-                              &amp;&apos;$(ScriptLocation)&apos; 
-                              &apos;$(LogFileLocation)&apos;  
-                              &apos;$(MSDeployComputerName)&apos;}
-                              &quot;"/>  
-    </Target>
+[!code[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample11.xml)]
 
 
 When you execute this target as part of your build process, Windows PowerShell will run your script on the computer you specified in the **–computername** argument.

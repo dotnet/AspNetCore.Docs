@@ -1,17 +1,37 @@
-public class FixItTask
+public async Task<ActionResult> Edit(int id)
 {
-    public int FixItTaskId  { get; set; }
-    [StringLength(80)]
-    public string CreatedBy { get; set; }
-    [Required]
-    [StringLength(80)]
-    public string Owner { get; set; }
-    [Required]
-    [StringLength(80)]
-    public string Title { get; set; }
-    [StringLength(1000)]
-    public string Notes { get; set; }
-    [StringLength(200)]
-    public string PhotoUrl { get; set; }
-    public bool IsDone      { get; set; }  
+    FixItTask fixittask = await fixItRepository.FindTaskByIdAsync(id);
+    if (fixittask == null)
+    {
+        return HttpNotFound();
+    }
+
+    // Verify logged in user owns this FixIt task.
+    if (User.Identity.Name != fixittask.Owner)
+    {
+       return HttpNotFound();
+    }
+
+    return View(fixittask);
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<ActionResult> Edit(int id, [Bind(Include = "CreatedBy,Owner,Title,Notes,PhotoUrl,IsDone")]FormCollection form)
+{
+    FixItTask fixittask = await fixItRepository.FindTaskByIdAsync(id);
+
+    // Verify logged in user owns this FixIt task.
+    if (User.Identity.Name != fixittask.Owner)
+    {
+       return HttpNotFound();
+    }
+
+    if (TryUpdateModel(fixittask, form))
+    {
+        await fixItRepository.UpdateAsync(fixittask);
+        return RedirectToAction("Index");
+    }
+
+    return View(fixittask);
 }

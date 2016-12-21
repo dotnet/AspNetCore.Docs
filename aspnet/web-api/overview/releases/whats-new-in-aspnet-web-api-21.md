@@ -38,7 +38,7 @@ The runtime features are released as NuGet packages on the NuGet gallery. All th
 
 You can install or update to the released NuGet packages by using the NuGet Package Manager Console:
 
-    Install-Package Microsoft.AspNet.WebApi -Version 5.1.2
+[!code[Main](whats-new-in-aspnet-web-api-21/samples/sample1.xml)]
 
 <a id="documentation"></a>
 ## Documentation
@@ -57,28 +57,7 @@ The framework supports multiple exception loggers, which all see the unhandled e
 
 For example, the following code uses System.Diagnostics.TraceSource to log all unhandled exceptions:
 
-    public class TraceSourceExceptionLogger : ExceptionLogger
-    {
-        private readonly TraceSource _traceSource;
-    
-        public TraceSourceExceptionLogger(TraceSource traceSource)
-        {
-            _traceSource = traceSource;
-        }
-    
-        public override void Log(ExceptionLoggerContext context)
-        {
-            _traceSource.TraceEvent(TraceEventType.Error, 1,
-                "Unhandled exception processing {0} for {1}: {2}",
-                context.Request.Method,
-                context.Request.RequestUri,
-                context.Exception);
-        }
-    }
-    
-    config.Services.Add(typeof(IExceptionLogger), 
-        new TraceSourceExceptionLogger(new 
-        TraceSource("MyTraceSource", SourceLevels.All)));
+[!code[Main](whats-new-in-aspnet-web-api-21/samples/sample2.xml)]
 
 You can also replace the default exception handler, so that you can fully customize the HTTP response message that is sent when an unhandled exception occurs.
 
@@ -108,8 +87,7 @@ Web API 2.1 supports ignoring URL patterns in Web API routing, through a set of 
 
 The following example ignores URIs that start with a &quot;content&quot; segment:
 
-    routes.IgnoreRoute("IgnoreContent", "content/{*paths}");
-    routes.MapHttpRoute("Default", "{controller}/{id}");
+[!code[Main](whats-new-in-aspnet-web-api-21/samples/sample3.xml)]
 
 <a id="bson"></a>
 ### BSON Media-Type Formatter
@@ -118,21 +96,11 @@ Web API now supports the [BSON](http://bsonspec.org/) wire format, both on the c
 
 To enable BSON on the server side, add the **BsonMediaTypeFormatter** to the formatters collection:
 
-    config.Formatters.Add(new BsonMediaTypeFormatter());
+[!code[Main](whats-new-in-aspnet-web-api-21/samples/sample4.xml)]
 
 Here is how a .NET client can consume BSON format:
 
-    // Add Accept header.
-    client.DefaultRequestHeaders.Accept.Add(
-        new MediaTypeWithQualityHeaderValue("application/bson"));
-    
-    // POST data in BSON format.
-    HttpResponseMessage response = await client.PostAsync<MyData>("api/MyData", data, new 
-    BsonMediaTypeFormatter());
-    
-    // GET data in BSON format.
-    data = await response.Content.ReadAsAsync<MyData>(new MediaTypeFormatter[] { 
-      new BsonMediaTypeFormatter() });
+[!code[Main](whats-new-in-aspnet-web-api-21/samples/sample5.xml)]
 
 We have provided a [sample](http://aspnet.codeplex.com/SourceControl/latest#Samples/WebApi/BSONSample/ReadMe.txt) that shows both the client and server side.
 
@@ -145,15 +113,7 @@ Web API now supports an easy way to create filters that execute asynchronously. 
 
 For example:
 
-    public class AsyncLoggingFilter : ActionFilterAttribute
-    {
-        public override async Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
-        {
-            await Trace.WriteAsync("Executing action named {0} for request {1}.", 
-                actionContext.ActionDescriptor.ActionName, 
-                actionContext.Request.GetCorrelationId());
-        }
-    }
+[!code[Main](whats-new-in-aspnet-web-api-21/samples/sample6.xml)]
 
 The **AuthorizationFilterAttribute**, **ActionFilterAttribute**, and **ExceptionFilterAttribute** classes all support async in Web API 2.1.
 
@@ -164,34 +124,7 @@ Previously, **System.Net.Http.Formatting** supported parsing and updating URI qu
 
 The following examples show how to parse, modify, and generate URI queries. (The examples show a console application for simplicity.)
 
-    // Query parsing
-    HttpValueCollection collection = new Uri("http://api/something?catId=3&catId=4&dogId=1,2").ParseQueryString();
-    
-    Console.WriteLine(collection["catId"]); // output: 3,4
-    Console.WriteLine(collection["dogId"]); // output: 1,2
-    
-    // Modify the query
-    collection.Add("dogId", "7");
-    
-    // Index into the values
-    Console.WriteLine(collection["catId"]); // output: 3,4
-    Console.WriteLine(collection["dogId"]); // output: 1,2,7
-    
-    // Recreate the query string
-    Console.WriteLine(collection.ToString()); // output: catId=3&catId=4&dogId=1%2C2&dogId=7
-    
-    // Query generation
-    HttpValueCollection newCollection = new HttpValueCollection();
-    
-    newCollection.Add("catId", "1");
-    newCollection.Add("dogId", "7");
-    
-    // Index into the values
-    Console.WriteLine(newCollection["catId"]); // output: 1
-    Console.WriteLine(newCollection["dogId"]); // output: 7
-    
-    // Create the query string
-    Console.WriteLine(newCollection.ToString()); // catId=1&dogId=7
+[!code[Main](whats-new-in-aspnet-web-api-21/samples/sample7.xml)]
 
 <a id="known-issues"></a>
 ## Known Issues and Breaking Changes

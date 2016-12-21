@@ -1,8 +1,1 @@
-public static void RegisterBundles(BundleCollection bundles)
-{
-    bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                 "~/Scripts/jquery-{version}.js"));
-
-    // Code removed for clarity.
-    BundleTable.EnableOptimizations = true;
-}
+    AddAltToImg = function (n, t) { var i = $(n, t); i.attr("alt", i.attr("id").replace(/ID/, "")) }

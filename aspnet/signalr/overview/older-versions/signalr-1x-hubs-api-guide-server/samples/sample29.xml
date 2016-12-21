@@ -1,1 +1,1 @@
-System.Collections.Specialized.NameValueCollection headers = Context.Request.Headers;
+        Clients.Others.addContosoChatMessageToPage(name, message);

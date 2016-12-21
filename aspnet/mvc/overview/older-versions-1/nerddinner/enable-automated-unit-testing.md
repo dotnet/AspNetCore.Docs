@@ -66,67 +66,13 @@ When we click the "ok" button Visual Studio will add (and open) a DinnerTest.cs 
 
 The default Visual Studio unit test template has a bunch of boiler-plate code within it that I find a little messy. Let's clean it up to just contain the code below:
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using NerdDinner.Models;
-    
-    namespace NerdDinner.Tests.Models {
-     
-        [TestClass]
-        public class DinnerTest {
-    
-        }
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample1.xml)]
 
 The [TestClass] attribute on the DinnerTest class above identifies it as a class that will contain tests, as well as optional test initialization and teardown code. We can define tests within it by adding public methods that have a [TestMethod] attribute on them.
 
 Below are the first of two tests we'll add that exercise our Dinner class. The first test verifies that our Dinner is invalid if a new Dinner is created without all properties being set correctly. The second test verifies that our Dinner is valid when a Dinner has all properties set with valid values:
 
-    [TestClass]
-    public class DinnerTest {
-    
-        [TestMethod]
-        public void Dinner_Should_Not_Be_Valid_When_Some_Properties_Incorrect() {
-    
-            //Arrange
-            Dinner dinner = new Dinner() {
-                Title = "Test title",
-                Country = "USA",
-                ContactPhone = "BOGUS"
-            };
-    
-            // Act
-            bool isValid = dinner.IsValid;
-    
-            //Assert
-            Assert.IsFalse(isValid);
-        }
-    
-        [TestMethod]
-        public void Dinner_Should_Be_Valid_When_All_Properties_Correct() {
-            
-            //Arrange
-            Dinner dinner = new Dinner {
-                Title = "Test title",
-                Description = "Some description",
-                EventDate = DateTime.Now,
-                HostedBy = "ScottGu",
-                Address = "One Microsoft Way",
-                Country = "USA",
-                ContactPhone = "425-703-8072",
-                Latitude = 93,
-                Longitude = -92,
-            };
-    
-            // Act
-            bool isValid = dinner.IsValid;
-    
-            //Assert
-            Assert.IsTrue(isValid);
-        }
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample2.xml)]
 
 You'll notice above that our test names are very explicit (and somewhat verbose). We are doing this because we might end up creating hundreds or thousands of small tests, and we want to make it easy to quickly determine the intent and behavior of each of them (especially when we are looking through a list of failures in a test runner). The test names should be named after the functionality they are testing. Above we are using a "Noun\_Should\_Verb" naming pattern.
 
@@ -158,35 +104,7 @@ Let's now create some unit tests that verify our DinnersController functionality
 
 We'll create two test methods that verify the Details() action method on the DinnersController. The first will verify that a View is returned when an existing Dinner is requested. The second will verify that a "NotFound" view is returned when a non-existent Dinner is requested:
 
-    [TestClass]
-    public class DinnersControllerTest {
-    
-        [TestMethod]
-        public void DetailsAction_Should_Return_View_For_ExistingDinner() {
-    
-            // Arrange
-            var controller = new DinnersController();
-    
-            // Act
-            var result = controller.Details(1) as ViewResult;
-    
-            // Assert
-            Assert.IsNotNull(result, "Expected View");
-        }
-    
-        [TestMethod]
-        public void DetailsAction_Should_Return_NotFoundView_For_BogusDinner() {
-    
-            // Arrange
-            var controller = new DinnersController();
-    
-            // Act
-            var result = controller.Details(999) as ViewResult;
-    
-            // Assert
-            Assert.AreEqual("NotFound", result.ViewName);
-        } 
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample3.xml)]
 
 The above code compiles clean. When we run the tests, though, they both fail:
 
@@ -207,22 +125,7 @@ Let's look at a design pattern called "dependency injection" that can help us wo
 
 Right now DinnersController is tightly "coupled" to the DinnerRepository class. "Coupling" refers to a situation where a class explicitly relies on another class in order to work:
 
-    public class DinnersController : Controller {
-    
-        DinnerRepository dinnerRepository = new DinnerRepository();
-    
-        //
-        // GET: /Dinners/Details/5
-    
-        public ActionResult Details(int id) {
-    
-            Dinner dinner = dinnerRepository.FindDinner(id);
-    
-            if (dinner == null)
-                return View("NotFound");
-    
-            return View(dinner);
-        }
+[!code[Main](enable-automated-unit-testing/samples/sample4.xml)]
 
 Because the DinnerRepository class requires access to a database, the tightly coupled dependency the DinnersController class has on the DinnerRepository ends up requiring us to have a database in order for the DinnersController action methods to be tested.
 
@@ -246,24 +149,11 @@ This will launch the "Extract Interface" dialog and prompt us for the name of th
 
 When we click the "ok" button, Visual Studio will add a new IDinnerRepository interface to our application:
 
-    public interface IDinnerRepository {
-    
-        IQueryable<Dinner> FindAllDinners();
-        IQueryable<Dinner> FindByLocation(float latitude, float longitude);
-        IQueryable<Dinner> FindUpcomingDinners();
-        Dinner             GetDinner(int id);
-    
-        void Add(Dinner dinner);
-        void Delete(Dinner dinner);
-        
-        void Save();
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample5.xml)]
 
 And our existing DinnerRepository class will be updated so that it implements the interface:
 
-    public class DinnerRepository : IDinnerRepository {
-       ...
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample6.xml)]
 
 #### Updating DinnersController to support constructor injection
 
@@ -271,28 +161,11 @@ We'll now update the DinnersController class to use the new interface.
 
 Currently DinnersController is hard-coded such that its "dinnerRepository" field is always a DinnerRepository class:
 
-    public class DinnersController : Controller {
-    
-        DinnerRepository dinnerRepository = new DinnerRepository();
-    
-        ...
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample7.xml)]
 
 We'll change it so that the "dinnerRepository" field is of type IDinnerRepository instead of DinnerRepository. We'll then add two public DinnersController constructors. One of the constructors allows an IDinnerRepository to be passed as an argument. The other is a default constructor that uses our existing DinnerRepository implementation:
 
-    public class DinnersController : Controller {
-    
-        IDinnerRepository dinnerRepository;
-    
-        public DinnersController()
-            : this(new DinnerRepository()) {
-        }
-    
-        public DinnersController(IDinnerRepository repository) {
-            dinnerRepository = repository;
-        }
-        ...
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample8.xml)]
 
 Because ASP.NET MVC by default creates controller classes using default constructors, our DinnersController at runtime will continue to use the DinnerRepository class to perform data access.
 
@@ -312,82 +185,11 @@ We'll update the code so that the FakeDinnerRepository class implements the IDin
 
 This will cause Visual Studio to automatically add all of the IDinnerRepository interface members to our FakeDinnerRepository class with default "stub out" implementations:
 
-    public class FakeDinnerRepository : IDinnerRepository {
-    
-        public IQueryable<Dinner> FindAllDinners() {
-            throw new NotImplementedException();
-        }
-    
-        public IQueryable<Dinner> FindByLocation(float lat, float long){
-            throw new NotImplementedException();
-        }
-    
-        public IQueryable<Dinner> FindUpcomingDinners() {
-            throw new NotImplementedException();
-        }
-    
-        public Dinner GetDinner(int id) {
-            throw new NotImplementedException();
-        }
-    
-        public void Add(Dinner dinner) {
-            throw new NotImplementedException();
-        }
-    
-        public void Delete(Dinner dinner) {
-            throw new NotImplementedException();
-        }
-    
-        public void Save() {
-            throw new NotImplementedException();
-        }
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample9.xml)]
 
 We can then update the FakeDinnerRepository implementation to work off of an in-memory List&lt;Dinner&gt; collection passed to it as a constructor argument:
 
-    public class FakeDinnerRepository : IDinnerRepository {
-    
-        private List<Dinner> dinnerList;
-    
-        public FakeDinnerRepository(List<Dinner> dinners) {
-            dinnerList = dinners;
-        }
-    
-        public IQueryable<Dinner> FindAllDinners() {
-            return dinnerList.AsQueryable();
-        }
-    
-        public IQueryable<Dinner> FindUpcomingDinners() {
-            return (from dinner in dinnerList
-                    where dinner.EventDate > DateTime.Now
-                    select dinner).AsQueryable();
-        }
-    
-        public IQueryable<Dinner> FindByLocation(float lat, float lon) {
-            return (from dinner in dinnerList
-                    where dinner.Latitude == lat && dinner.Longitude == lon
-                    select dinner).AsQueryable();
-        }
-    
-        public Dinner GetDinner(int id) {
-            return dinnerList.SingleOrDefault(d => d.DinnerID == id);
-        }
-    
-        public void Add(Dinner dinner) {
-            dinnerList.Add(dinner);
-        }
-    
-        public void Delete(Dinner dinner) {
-            dinnerList.Remove(dinner);
-        }
-    
-        public void Save() {
-            foreach (Dinner dinner in dinnerList) {
-                if (!dinner.IsValid)
-                    throw new ApplicationException("Rule violations");
-            }
-        }
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample10.xml)]
 
 We now have a fake IDinnerRepository implementation that does not require a database, and can instead work off an in-memory list of Dinner objects.
 
@@ -395,65 +197,7 @@ We now have a fake IDinnerRepository implementation that does not require a data
 
 Let's return to the DinnersController unit tests that failed earlier because the database wasn't available. We can update the test methods to use a FakeDinnerRepository populated with sample in-memory Dinner data to the DinnersController using the code below:
 
-    [TestClass]
-    public class DinnersControllerTest {
-    
-        List<Dinner> CreateTestDinners() {
-    
-            List<Dinner> dinners = new List<Dinner>();
-    
-            for (int i = 0; i < 101; i++) {
-    
-                Dinner sampleDinner = new Dinner() {
-                    DinnerID = i,
-                    Title = "Sample Dinner",
-                    HostedBy = "SomeUser",
-                    Address = "Some Address",
-                    Country = "USA",
-                    ContactPhone = "425-555-1212",
-                    Description = "Some description",
-                    EventDate = DateTime.Now.AddDays(i),
-                    Latitude = 99,
-                    Longitude = -99
-                };
-                
-                dinners.Add(sampleDinner);
-            }
-            
-            return dinners;
-        }
-    
-        DinnersController CreateDinnersController() {
-            var repository = new FakeDinnerRepository(CreateTestDinners());
-            return new DinnersController(repository);
-        }
-    
-        [TestMethod]
-        public void DetailsAction_Should_Return_View_For_Dinner() {
-    
-            // Arrange
-            var controller = CreateDinnersController();
-    
-            // Act
-            var result = controller.Details(1);
-    
-            // Assert
-            Assert.IsInstanceOfType(result, typeof(ViewResult));
-        }
-    
-        [TestMethod]
-        public void DetailsAction_Should_Return_NotFoundView_For_BogusDinner() {
-    
-            // Arrange
-            var controller = CreateDinnersController();
-    
-            // Act
-            var result = controller.Details(999) as ViewResult;
-    
-            // Assert
-            Assert.AreEqual("NotFound", result.ViewName);
-        }
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample11.xml)]
 
 And now when we run these tests they both pass:
 
@@ -469,34 +213,11 @@ Best of all, they take only a fraction of a second to run, and do not require an
 
 Let's now create some unit tests that verify the Edit functionality of the DinnersController. We'll start by testing the HTTP-GET version of our Edit action:
 
-    //
-    // GET: /Dinners/Edit/5
-    
-    [Authorize]
-    public ActionResult Edit(int id) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-    
-        if (!dinner.IsHostedBy(User.Identity.Name))
-            return View("InvalidOwner");
-    
-        return View(new DinnerFormViewModel(dinner));
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample12.xml)]
 
 We'll create a test that verifies that a View backed by a DinnerFormViewModel object is rendered back when a valid dinner is requested:
 
-    [TestMethod]
-    public void EditAction_Should_Return_View_For_ValidDinner() {
-    
-        // Arrange
-        var controller = CreateDinnersController();
-    
-        // Act
-        var result = controller.Edit(1) as ViewResult;
-    
-        // Assert
-        Assert.IsInstanceOfType(result.ViewData.Model, typeof(DinnerFormViewModel));
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample13.xml)]
 
 When we run the test, though, we'll find that it fails because a null reference exception is thrown when the Edit method accesses the User.Identity.Name property to perform the Dinner.IsHostedBy() check.
 
@@ -514,17 +235,7 @@ Once downloaded, we'll add a reference in our NerdDinner.Tests project to the Mo
 
 We'll then add a "CreateDinnersControllerAs(username)" helper method to our test class that takes a username as a parameter, and which then "mocks" the User.Identity.Name property on the DinnersController instance:
 
-    DinnersController CreateDinnersControllerAs(string userName) {
-    
-        var mock = new Mock<ControllerContext>();
-        mock.SetupGet(p => p.HttpContext.User.Identity.Name).Returns(userName);
-        mock.SetupGet(p => p.HttpContext.Request.IsAuthenticated).Returns(true);
-    
-        var controller = CreateDinnersController();
-        controller.ControllerContext = mock.Object;
-    
-        return controller;
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample14.xml)]
 
 Above we are using Moq to create a Mock object that fakes a ControllerContext object (which is what ASP.NET MVC passes to Controller classes to expose runtime objects like User, Request, Response, and Session). We are calling the "SetupGet" method on the Mock to indicate that the HttpContext.User.Identity.Name property on ControllerContext should return the username string we passed to the helper method.
 
@@ -532,31 +243,7 @@ We can mock any number of ControllerContext properties and methods. To illustrat
 
 We can now write unit tests that use this helper method to test Edit scenarios involving different users:
 
-    [TestMethod]
-    public void EditAction_Should_Return_EditView_When_ValidOwner() {
-    
-        // Arrange
-        var controller = CreateDinnersControllerAs("SomeUser");
-    
-        // Act
-        var result = controller.Edit(1) as ViewResult;
-    
-        // Assert
-        Assert.IsInstanceOfType(result.ViewData.Model, typeof(DinnerFormViewModel));
-    }
-    
-    [TestMethod]
-    public void EditAction_Should_Return_InvalidOwnerView_When_InvalidOwner() {
-    
-        // Arrange
-        var controller = CreateDinnersControllerAs("NotOwnerUser");
-    
-        // Act
-        var result = controller.Edit(1) as ViewResult;
-    
-        // Assert
-        Assert.AreEqual(result.ViewName, "InvalidOwner");
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample15.xml)]
 
 And now when we run the tests they pass:
 
@@ -566,30 +253,7 @@ And now when we run the tests they pass:
 
 We've created tests that cover the HTTP-GET version of the Edit action. Let's now create some tests that verify the HTTP-POST version of the Edit action:
 
-    //
-    // POST: /Dinners/Edit/5
-    
-    [AcceptVerbs(HttpVerbs.Post), Authorize]
-    public ActionResult Edit (int id, FormCollection collection) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-    
-        if (!dinner.IsHostedBy(User.Identity.Name))
-            return View("InvalidOwner");
-    
-        try {
-            UpdateModel(dinner);
-    
-            dinnerRepository.Save();
-    
-            return RedirectToAction("Details", new { id=dinner.DinnerID });
-        }
-        catch {
-            ModelState.AddModelErrors(dinner.GetRuleViolations());
-            
-            return View(new DinnerFormViewModel(dinner));
-        }
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample16.xml)]
 
 The interesting new testing scenario for us to support with this action method is its usage of the UpdateModel() helper method on the Controller base class. We are using this helper method to bind form-post values to our Dinner object instance.
 
@@ -598,45 +262,7 @@ Below are two tests that demonstrates how we can supply form posted values for t
 The first test verifies that on a successful save the browser is redirected to the details action. The second test verifies that when invalid input is posted the action redisplays the edit view again with an error message.
 
 
-    [TestMethod]
-    public void EditAction_Should_Redirect_When_Update_Successful() {
-    
-        // Arrange      
-        var controller = CreateDinnersControllerAs("SomeUser");
-    
-        var formValues = new FormCollection() {
-            { "Title", "Another value" },
-            { "Description", "Another description" }
-        };
-    
-        controller.ValueProvider = formValues.ToValueProvider();
-        
-        // Act
-        var result = controller.Edit(1, formValues) as RedirectToRouteResult;
-    
-        // Assert
-        Assert.AreEqual("Details", result.RouteValues["Action"]);
-    }
-    
-    [TestMethod]
-    public void EditAction_Should_Redisplay_With_Errors_When_Update_Fails() {
-    
-        // Arrange
-        var controller = CreateDinnersControllerAs("SomeUser");
-    
-        var formValues = new FormCollection() {
-            { "EventDate", "Bogus date value!!!"}
-        };
-    
-        controller.ValueProvider = formValues.ToValueProvider();
-    
-        // Act
-        var result = controller.Edit(1, formValues) as ViewResult;
-    
-        // Assert
-        Assert.IsNotNull(result, "Expected redisplay of view");
-        Assert.IsTrue(result.ViewData.ModelState.Count > 0, "Expected errors");
-    }
+[!code[Main](enable-automated-unit-testing/samples/sample17.xml)]
 
 ### Testing Wrap-Up
 

@@ -141,58 +141,19 @@ In this task you will create a custom filter attribute class that will contain t
 
     C#
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.Mvc;
-        using MvcMusicStore.Models;
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample1.xml)]
 4. Inherit the **CustomActionFilter** class from **ActionFilterAttribute** and then make **CustomActionFilter** class implement **IActionFilter** interface.
 
     C#
 
-        ...
-        namespace MvcMusicStore.Filters
-        {
-            public class CustomActionFilter : 
-        
-        ActionFilterAttribute, IActionFilter
-            {
-                ...
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample2.xml)]
 5. Make **CustomActionFilter** class override the method **OnActionExecuting** and add the necessary logic to log the filter's execution. To do this, add the following highlighted code within **CustomActionFilter** class.
 
     (Code Snippet - *ASP.NET MVC 4 Custom Action Filters - Ex1-LoggingActions*)
 
     C#
 
-        public class 
-        
-        CustomActionFilter : ActionFilterAttribute, IActionFilter
-        {
-            void IActionFilter.OnActionExecuting(ActionExecutingContext filterContext)
-        
-            {
-                // TODO: Add your acction filter's tasks here
-        
-                // Log Action Filter Call
-                MusicStoreEntities storeDB = new MusicStoreEntities();
-        
-                ActionLog log = new ActionLog()
-                {
-                    Controller = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName,
-                    Action = filterContext.ActionDescriptor.ActionName + " (Logged By: Custom 
-        
-        Action Filter)",
-                    IP = filterContext.HttpContext.Request.UserHostAddress,
-                    DateTime = filterContext.HttpContext.Timestamp
-                };
-        
-                storeDB.ActionLogs.Add(log);
-                storeDB.SaveChanges();
-        
-                this.OnActionExecuting(filterContext);
-            }
-        }
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample3.xml)]
 
     > [!NOTE] **OnActionExecuting** method is using **Entity Framework** to add a new ActionLog register. It creates and fills a new entity instance with the context information from **filterContext**.
     > 
@@ -213,36 +174,18 @@ It is also possible to intercept a specific controller method.
 
     C#
 
-        using System.Linq;
-        using System.Web.Mvc;
-        using MvcMusicStore.Models;
-        using MvcMusicStore.Filters;
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample4.xml)]
 2. Inject the custom filter **CustomActionFilter** into **StoreController** class by adding **[CustomActionFilter]** attribute before the class declaration.
 
     C#
 
-        ...
-        [CustomActionFilter]
-        public class StoreController : Controller
-        {
-            ...
-        }
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample5.xml)]
 
     > [!NOTE] When a filter is injected into a controller class, all its actions are also injected. If you would like to apply the filter only for a set of actions, you would have to inject **[CustomActionFilter]** to each one of them:
     > 
     > C#
     > 
-    >     [CustomActionFilter]
-    >     public ActionResult Index()
-    >     {
-    >       ...
-    >     }
-    >     
-    >     [CustomActionFilter]
-    >     public ActionResult Browse(string genre)
-    >     {
-    >       ...
-    >     }
+    > [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample6.xml)]
 
 <a id="Ex1Task3"></a>
 
@@ -266,16 +209,7 @@ In this task, you will test that the logging filter is working. You will start t
     > 
     > C#
     > 
-    >     // Clean up Logs Table
-    >     MusicStoreEntities storeDB = new MusicStoreEntities();
-    >     foreach (var log in 
-    >     
-    >     storeDB.ActionLogs.ToList())
-    >     {
-    >        storeDB.ActionLogs.Remove(log);
-    >     }
-    >     
-    >     storeDB.SaveChanges();
+    > [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample7.xml)]
 3. Click one of the **Genres** from the menu and perform some actions there, like browsing an available album.
 4. Browse to **/ActionLog** and if the log is empty press **F5** to refresh the page. Check that your visits were tracked:
 
@@ -321,44 +255,14 @@ In this task, you will create a new Custom Action Filter to inject into the Stor
 
     C#
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using System.Web.Mvc;
-        using MvcMusicStore.Models;
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample8.xml)]
 4. Replace the default class declaration with the following code.
 
     (Code Snippet - *ASP.NET MVC 4 Custom Action Filters - Ex2-MyNewCustomActionFilterClass*)
 
     C#
 
-        public class MyNewCustomActionFilter : ActionFilterAttribute, IActionFilter
-        {
-          void IActionFilter.OnActionExecuting(ActionExecutingContext filterContext)
-        
-          {
-                // TODO: Add your acction filter's tasks here
-        
-                // Log Action Filter Call
-                MusicStoreEntities storeDB = new MusicStoreEntities();
-        
-                ActionLog log = new ActionLog()
-                {
-                     Controller = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName,
-                     Action = filterContext.ActionDescriptor.ActionName + " (Logged By: 
-        
-        MyNewCustomActionFilter)",
-                     IP = filterContext.HttpContext.Request.UserHostAddress,
-                     DateTime = filterContext.HttpContext.Timestamp
-                };
-        
-                storeDB.ActionLogs.Add(log);
-                storeDB.SaveChanges();
-        
-                this.OnActionExecuting(filterContext);
-          }
-        }
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample9.xml)]
 
     > [!NOTE] This Custom Action Filter is almost the same than the one you created in the previous exercise. The main difference is that it has the *&quot;Logged By&quot;* attribute updated with this new class' name to identify wich filter registered the log.
 
@@ -373,12 +277,7 @@ In this task, you will add a new custom filter into the StoreController Class an
 
     C#
 
-        [MyNewCustomActionFilter]
-        [CustomActionFilter]
-        public class StoreController : Controller
-        {
-        ...
-        }
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample10.xml)]
 2. Now, run the application in order to see how these two Custom Action Filters work. To do this, press **F5** and wait until the application starts.
 3. Browse to **/ActionLog** to see log view initial state.
 
@@ -404,12 +303,7 @@ In this task, you will learn how to manage the filters' execution order by using
 
     C#
 
-        [MyNewCustomActionFilter(Order = 2)]
-        [CustomActionFilter(Order = 1)]
-        public class StoreController : Controller
-        {
-        ...
-        }
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample11.xml)]
 2. Now, verify how the filters are executed depending on its Order property's value. You will find that the filter with the smallest Order value (**CustomActionFilter**) is the first one that is executed. Press **F5** and wait until the application starts.
 3. Browse to **/ActionLog** to see log view initial state.
 
@@ -426,12 +320,7 @@ In this task, you will learn how to manage the filters' execution order by using
 
     C#
 
-        [MyNewCustomActionFilter(Order = 1)]
-        [CustomActionFilter(Order = 2)]
-        public class StoreController : Controller
-        {
-        ...
-        }
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample12.xml)]
 7. Run the application again by pressing **F5**.
 8. Click one of the **Genres** from the menu and perform some actions there, like browsing an available album.
 9. Check that this time, the logs created by **MyNewCustomActionFilter** filter appears first.
@@ -451,11 +340,7 @@ In this task, you will update the solution to register the new filter (**MyNewCu
 
     C#
 
-        [CustomActionFilter]
-        public class StoreController : Controller
-        {
-        ...
-        }
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample13.xml)]
 2. Open **Global.asax** file and locate the **Application\_Start** method. Notice that each thime the application starts it is registering the global filters by calling **RegisterGlobalFilters** method within **FilterConfig** class.
 
     ![Registering Global Filters in Global.asax](aspnet-mvc-4-custom-action-filters/_static/image10.png "Registering Global Filters in Global.asax")
@@ -466,19 +351,12 @@ In this task, you will update the solution to register the new filter (**MyNewCu
 
     C#
 
-        using System.Web.Mvc;
-        using MvcMusicStore.Filters;
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample14.xml)]
 5. Update **RegisterGlobalFilters** method adding your custom filter. To do this, add the highlighted code:
 
     C#
 
-        public static 
-        
-        void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {
-            filters.Add(new HandleErrorAttribute());
-            filters.Add(new MyNewCustomActionFilter());
-        }
+    [!code[Main](aspnet-mvc-4-custom-action-filters/samples/sample15.xml)]
 6. Run the application by pressing **F5**.
 7. Click one of the **Genres** from the menu and perform some actions there, like browsing an available album.
 8. Check that now **[MyNewCustomActionFilter]** is being injected in HomeController and ActionLogController too.

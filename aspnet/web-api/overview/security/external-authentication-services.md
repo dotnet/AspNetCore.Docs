@@ -100,76 +100,7 @@ When Visual Studio 2013 has finished creating your project, open the *Startup.Au
 
 When you first create the project, none of the external authentication services are enabled in *Startup.Auth.cs* file; the following illustrates what your code might resemble, with the sections highlighted for where you would enable an external authentication service and any relevant settings in order to use Microsoft Accounts, Twitter, Facebook, or Google authentication with your ASP.NET application:
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Microsoft.Owin.Security.Cookies;
-    using Microsoft.Owin.Security.OAuth;
-    using Owin;
-    using WebApplication1.Providers;
-    
-    namespace WebApplication1
-    {
-        public partial class Startup
-        {
-            public const string ExternalCookieAuthenticationType = CookieAuthenticationDefaults.ExternalAuthenticationType;
-            public const string ExternalOAuthAuthenticationType = "ExternalToken";
-    
-            static Startup()
-            {
-                PublicClientId = "self";
-    
-                IdentityManagerFactory = new IdentityManagerFactory(IdentityConfig.Settings, () => new IdentityStore());
-    
-                CookieOptions = new CookieAuthenticationOptions();
-    
-                OAuthOptions = new OAuthAuthorizationServerOptions
-                {
-                    TokenEndpointPath = "/Token",
-                    AuthorizeEndpointPath = "/api/Account/ExternalLogin",
-                    Provider = new ApplicationOAuthProvider(PublicClientId, IdentityManagerFactory, CookieOptions)
-                };
-            }
-    
-            public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
-    
-            public static CookieAuthenticationOptions CookieOptions { get; private set; }
-    
-            public static IdentityManagerFactory IdentityManagerFactory { get; set; }
-    
-            public static string PublicClientId { get; private set; }
-    
-            // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
-            public void ConfigureAuth(IAppBuilder app)
-            {
-                // Enable the application to use cookies to authenticate users
-                app.UseCookieAuthentication(CookieOptions);
-    
-                // Enable the application to use a cookie to store temporary information about a user logging in with a third party login provider
-                app.UseExternalSignInCookie(ExternalCookieAuthenticationType);
-    
-                // Enable the application to use bearer tokens to authenticate users
-                app.UseOAuthBearerTokens(OAuthOptions, ExternalOAuthAuthenticationType);
-    
-                // Uncomment the following lines to enable logging in with third party login providers
-                //app.UseMicrosoftAccountAuthentication(
-                //    clientId: "",
-                //    clientSecret: "");
-    
-                //app.UseTwitterAuthentication(
-                //    consumerKey: "",
-                //    consumerSecret: "");
-    
-                //app.UseFacebookAuthentication(
-                //    appId: "",
-                //    appSecret: "");
-    
-                //app.UseGoogleAuthentication();
-            }
-        }
-    }
+[!code[Main](external-authentication-services/samples/sample1.xml)]
 
 When you press F5 to build and debug your web application, it will display a login screen where you will see that no external authentication services have been defined.
 
@@ -189,36 +120,10 @@ Once you have obtained your application ID and secret key, use the following ste
     [![](external-authentication-services/_static/image18.png "Click to Expand the Image")](external-authentication-services/_static/image17.png)
 2. Locate the highlighted section of code:
 
-        // Uncomment the following lines to enable logging in with third party login providers
-        //app.UseMicrosoftAccountAuthentication(
-        //    clientId: "",
-        //    clientSecret: "");
-        
-        //app.UseTwitterAuthentication(
-        //   consumerKey: "",
-        //   consumerSecret: "");
-        
-        //app.UseFacebookAuthentication(
-        //   appId: "",
-        //   appSecret: "");
-        
-        //app.UseGoogleAuthentication();
+    [!code[Main](external-authentication-services/samples/sample2.xml)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your application ID and secret key. Once you have added those parameters, you can recompile your project:
 
-        // Uncomment the following lines to enable logging in with third party login providers
-        //app.UseMicrosoftAccountAuthentication(
-        //    clientId: "",
-        //    clientSecret: "");
-        
-        //app.UseTwitterAuthentication(
-        //   consumerKey: "",
-        //   consumerSecret: "");
-        
-        app.UseFacebookAuthentication(
-           appId: "426f62526f636b73",
-           appSecret: "57686f6120447564652c2049495320526f636b73");
-        
-        //app.UseGoogleAuthentication();
+    [!code[Main](external-authentication-services/samples/sample3.xml)]
 4. When you press F5 to open your web application in your web browser, you will see that Facebook has been defined as an external authentication service:
 
     [![](external-authentication-services/_static/image20.png "Click to Expand the Image")](external-authentication-services/_static/image19.png)
@@ -244,36 +149,10 @@ To enable Google authentication for your web application, use the following step
     [![](external-authentication-services/_static/image28.png "Click to Expand the Image")](external-authentication-services/_static/image27.png)
 2. Locate the highlighted section of code:
 
-        // Uncomment the following lines to enable logging in with third party login providers
-        //app.UseMicrosoftAccountAuthentication(
-        //    clientId: "",
-        //    clientSecret: "");
-        
-        //app.UseTwitterAuthentication(
-        //   consumerKey: "",
-        //   consumerSecret: "");
-        
-        //app.UseFacebookAuthentication(
-        //   appId: "",
-        //   appSecret: "");
-        
-        //app.UseGoogleAuthentication();
+    [!code[Main](external-authentication-services/samples/sample4.xml)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted line of code, and then recompile your project:
 
-        // Uncomment the following lines to enable logging in with third party login providers
-        //app.UseMicrosoftAccountAuthentication(
-        //    clientId: "",
-        //    clientSecret: "");
-        
-        //app.UseTwitterAuthentication(
-        //   consumerKey: "",
-        //   consumerSecret: "");
-        
-        //app.UseFacebookAuthentication(
-        //   appId: "",
-        //   appSecret: "");
-        
-        app.UseGoogleAuthentication();
+    [!code[Main](external-authentication-services/samples/sample5.xml)]
 4. When you press F5 to open your web application in your web browser, you will see that Google has been defined as an external authentication service:
 
     [![](external-authentication-services/_static/image30.png "Click to Expand the Image")](external-authentication-services/_static/image29.png)
@@ -302,36 +181,10 @@ Once you have obtained your consumer key and consumer secret, use the following 
     [![](external-authentication-services/_static/image40.png "Click to Expand the Image")](external-authentication-services/_static/image39.png)
 2. Locate the highlighted section of code:
 
-        // Uncomment the following lines to enable logging in with third party login providers
-        //app.UseMicrosoftAccountAuthentication(
-        //    clientId: "",
-        //    clientSecret: "");
-        
-        //app.UseTwitterAuthentication(
-        //   consumerKey: "",
-        //   consumerSecret: "");
-        
-        //app.UseFacebookAuthentication(
-        //   appId: "",
-        //   appSecret: "");
-        
-        //app.UseGoogleAuthentication();
+    [!code[Main](external-authentication-services/samples/sample6.xml)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your client ID and client secret. Once you have added those parameters, you can recompile your project:
 
-        // Uncomment the following lines to enable logging in with third party login providers
-        app.UseMicrosoftAccountAuthentication(
-            clientId: "426f62526f636b73",
-            clientSecret: "57686f6120447564652c2049495320526f636b73");
-        
-        //app.UseTwitterAuthentication(
-        //   consumerKey: "",
-        //   consumerSecret: "");
-        
-        //app.UseFacebookAuthentication(
-        //   appId: "",
-        //   appSecret: "");
-        
-        //app.UseGoogleAuthentication();
+    [!code[Main](external-authentication-services/samples/sample7.xml)]
 4. When you press F5 to open your web application in your web browser, you will see that Microsoft has been defined as an external authentication service:
 
     [![](external-authentication-services/_static/image42.png "Click to Expand the Image")](external-authentication-services/_static/image41.png)
@@ -360,36 +213,10 @@ Once you have obtained your consumer key and consumer secret, use the following 
     [![](external-authentication-services/_static/image52.png "Click to Expand the Image")](external-authentication-services/_static/image51.png)
 2. Locate the highlighted section of code:
 
-        // Uncomment the following lines to enable logging in with third party login providers
-        //app.UseMicrosoftAccountAuthentication(
-        //    clientId: "",
-        //    clientSecret: "");
-        
-        //app.UseTwitterAuthentication(
-        //   consumerKey: "",
-        //   consumerSecret: "");
-        
-        //app.UseFacebookAuthentication(
-        //   appId: "",
-        //   appSecret: "");
-        
-        //app.UseGoogleAuthentication();
+    [!code[Main](external-authentication-services/samples/sample8.xml)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your consumer key and consumer secret. Once you have added those parameters, you can recompile your project:
 
-        // Uncomment the following lines to enable logging in with third party login providers
-        //app.UseMicrosoftAccountAuthentication(
-        //    clientId: "",
-        //    clientSecret: "");
-        
-        app.UseTwitterAuthentication(
-           consumerKey: "426f62526f636b73",
-           consumerSecret: "57686f6120447564652c2049495320526f636b73");
-        
-        //app.UseFacebookAuthentication(
-        //   appId: "",
-        //   appSecret: "");
-        
-        //app.UseGoogleAuthentication();
+    [!code[Main](external-authentication-services/samples/sample9.xml)]
 4. When you press F5 to open your web application in your web browser, you will see that Twitter has been defined as an external authentication service:
 
     [![](external-authentication-services/_static/image54.png "Click to Expand the Image")](external-authentication-services/_static/image53.png)
@@ -470,69 +297,7 @@ Linking an application to Windows Live for Microsoft Authentication is a simple 
 
 The current ASP.NET local registration functionality does not prevent automated programs (bots) from creating member accounts; for example, by using a bot-prevention and validation technology like [CAPTCHA](../../../web-pages/overview/security/16-adding-security-and-membership.md). Because of this, you should remove the local login form and registration link on the login page. To do so, open the *\_Login.cshtml* page in your project, and then comment out the lines for the local login panel and the registration link. The resulting page should like like the following code sample:
 
-    <!-- ko with: login -->
-    <hgroup class="title">
-        <h1>Log in</h1>
-    </hgroup>
-    <div class="row-fluid">
-        @*<section class="span7">
-            <form>
-                <fieldset class="form-horizontal">
-                    <legend>Use a local account to log in.</legend>
-                    <ul class="text-error" data-bind="foreach: errors">
-                        <li data-bind="text: $data"></li>
-                    </ul>
-                    <div class="control-group">
-                        <label for="UserName" class="control-label">User name</label>
-                        <div class="controls">
-                            <input type="text" name="UserName" data-bind="value: userName, hasFocus: true" />
-                            <span class="text-error" data-bind="visible: userName.hasError, text: userName.errorMessage"></span>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label for="Password" class="control-label">Password</label>
-                        <div class="controls">
-                            <input type="password" name="Password" data-bind="value: password" />
-                            <span class="text-error" data-bind="visible: password.hasError, text: password.errorMessage"></span>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <label class="checkbox">
-                                <input type="checkbox" name="RememberMe" data-bind="checked: rememberMe" />
-                                <label for="RememberMe">Remember me?</label>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-actions no-color">
-                        <button type="submit" class="btn" data-bind="click: login, disable: loggingIn">Log in</button>
-                    </div>
-                    <p><a href="#" data-bind="click: register">Register</a> if you don't have a local account.</p>
-                </fieldset>
-            </form>
-        </section>*@
-        <section class="span5">
-            <h2>Log in using another service</h2>
-            <div data-bind="visible: loadingExternalLogin">Loading...</div>
-            <div data-bind="visible: !loadingExternalLogin()">
-                <div class="message-info" data-bind="visible: !hasExternalLogin()">
-                    <p>
-                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=252166">this article</a>
-                        for details on setting up this ASP.NET application to support logging in via external services.
-                    </p>
-                </div>
-                <form data-bind="visible: hasExternalLogin">
-                    <fieldset class="form-horizontal">
-                        <legend>Use another service to log in.</legend>
-                        <p data-bind="foreach: externalLoginProviders">
-                            <button type="submit" class="btn" data-bind="text: name, attr: { title: 'Log in using your ' + name() + ' account' }, click: login"></button>
-                        </p>
-                    </fieldset>
-                </form>
-            </div>
-        </section>
-    </div>
-    <!-- /ko -->
+[!code[Main](external-authentication-services/samples/sample10.xml)]
 
 Once the local login panel and the registration link have been disabled, your login page will only display the external authentication providers that you have enabled:
 

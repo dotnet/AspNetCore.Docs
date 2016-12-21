@@ -52,82 +52,15 @@ This is actually very simple to do, as our ShoppingCart class already has a meth
 
 Open the **AccountController** class that we added when we were setting up Membership and Authorization. Add a using statement referencing MvcMusicStore.Models, then add the following MigrateShoppingCart method:
 
-    private void MigrateShoppingCart(string UserName)
-     {
-        // Associate shopping cart items with logged-in user
-        var cart = ShoppingCart.GetCart(this.HttpContext);
-     
-        cart.MigrateCart(UserName);
-        Session[ShoppingCart.CartSessionKey] = UserName;
-     }
+[!code[Main](mvc-music-store-part-9/samples/sample1.xml)]
 
 Next, modify the LogOn post action to call MigrateShoppingCart after the user has been validated, as shown below:
 
-    //
-    // POST: /Account/LogOn
-    [HttpPost]
-     public ActionResult LogOn(LogOnModel model, string returnUrl)
-     {
-        if (ModelState.IsValid)
-        {
-            if (Membership.ValidateUser(model.UserName, model.Password))
-            {
-                MigrateShoppingCart(model.UserName);
-                        
-                FormsAuthentication.SetAuthCookie(model.UserName,
-                    model.RememberMe);
-                if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1
-                    && returnUrl.StartsWith("/")
-                    && !returnUrl.StartsWith("//") &&
-                    !returnUrl.StartsWith("/\\"))
-                {
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            }
-        }
-        // If we got this far, something failed, redisplay form
-        return View(model);
-     }
+[!code[Main](mvc-music-store-part-9/samples/sample2.xml)]
 
 Make the same change to the Register post action, immediately after the user account is successfully created:
 
-    //
-    // POST: /Account/Register
-    [HttpPost]
-     public ActionResult Register(RegisterModel model)
-     {
-        if (ModelState.IsValid)
-        {
-            // Attempt to register the user
-            MembershipCreateStatus createStatus;
-            Membership.CreateUser(model.UserName, model.Password, model.Email, 
-                   "question", "answer", true, null, out
-                   createStatus);
-     
-            if (createStatus == MembershipCreateStatus.Success)
-            {
-                MigrateShoppingCart(model.UserName);
-                        
-                FormsAuthentication.SetAuthCookie(model.UserName, false /*
-                      createPersistentCookie */);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                ModelState.AddModelError("", ErrorCodeToString(createStatus));
-            }
-        }
-        // If we got this far, something failed, redisplay form
-        return View(model);
-     }
+[!code[Main](mvc-music-store-part-9/samples/sample3.xml)]
 
 That's it - now an anonymous shopping cart will be automatically transferred to a user account upon successful registration or login.
 
@@ -139,10 +72,7 @@ Right-click on the Controllers folder and add a new Controller to the project na
 
 First, add the Authorize attribute above the Controller class declaration to require users to register before checkout:
 
-    namespace MvcMusicStore.Controllers
-    {
-        [Authorize]
-        public class CheckoutController : Controller
+[!code[Main](mvc-music-store-part-9/samples/sample4.xml)]
 
 *Note: This is similar to the change we previously made to the StoreManagerController, but in that case the Authorize attribute required that the user be in an Administrator role. In the Checkout Controller, we're requiring the user be logged in but aren't requiring that they be administrators.*
 
@@ -150,18 +80,7 @@ For the sake of simplicity, we won't be dealing with payment information in this
 
 As in the StoreController, we'll declare a field to hold an instance of the MusicStoreEntities class, named storeDB. In order to make use of the MusicStoreEntities class, we will need to add a using statement for the MvcMusicStore.Models namespace. The top of our Checkout controller appears below.
 
-    using System;
-     using System.Linq;
-     using System.Web.Mvc;
-     using MvcMusicStore.Models;
-     
-    namespace MvcMusicStore.Controllers
-    {
-        [Authorize]
-        public class CheckoutController : Controller
-        {
-            MusicStoreEntities storeDB = new MusicStoreEntities();
-            const string PromoCode = "FREE";
+[!code[Main](mvc-music-store-part-9/samples/sample5.xml)]
 
 The CheckoutController will have the following controller actions:
 
@@ -173,155 +92,23 @@ The CheckoutController will have the following controller actions:
 
 First, let's rename the Index controller action (which was generated when we created the controller) to AddressAndPayment. This controller action just displays the checkout form, so it doesn't require any model information.
 
-    //
-    // GET: /Checkout/AddressAndPayment
-    public ActionResult AddressAndPayment()
-    {
-        return View();
-    }
+[!code[Main](mvc-music-store-part-9/samples/sample6.xml)]
 
 Our AddressAndPayment POST method will follow the same pattern we used in the StoreManagerController: it will try to accept the form submission and complete the order, and will re-display the form if it fails.
 
 After validating the form input meets our validation requirements for an Order, we will check the PromoCode form value directly. Assuming everything is correct, we will save the updated information with the order, tell the ShoppingCart object to complete the order process, and redirect to the Complete action.
 
-    //
-    // POST: /Checkout/AddressAndPayment
-    [HttpPost]
-     public ActionResult AddressAndPayment(FormCollection values)
-     {
-        var order = new Order();
-        TryUpdateModel(order);
-     
-        try
-        {
-            if (string.Equals(values["PromoCode"], PromoCode,
-                StringComparison.OrdinalIgnoreCase) == false)
-            {
-                return View(order);
-            }
-            else
-            {
-                order.Username = User.Identity.Name;
-                order.OrderDate = DateTime.Now;
-     
-                //Save Order
-                storeDB.Orders.Add(order);
-                storeDB.SaveChanges();
-                //Process the order
-                var cart = ShoppingCart.GetCart(this.HttpContext);
-                cart.CreateOrder(order);
-     
-                return RedirectToAction("Complete",
-                    new { id = order.OrderId });
-            }
-        }
-        catch
-        {
-            //Invalid - redisplay with errors
-            return View(order);
-        }
-    }
+[!code[Main](mvc-music-store-part-9/samples/sample7.xml)]
 
 Upon successful completion of the checkout process, users will be redirected to the Complete controller action. This action will perform a simple check to validate that the order does indeed belong to the logged-in user before showing the order number as a confirmation.
 
-    //
-    // GET: /Checkout/Complete
-    public ActionResult Complete(int id)
-     {
-        // Validate customer owns this order
-        bool isValid = storeDB.Orders.Any(
-            o => o.OrderId == id &&
-            o.Username == User.Identity.Name);
-     
-        if (isValid)
-        {
-            return View(id);
-        }
-        else
-        {
-            return View("Error");
-        }
-    }
+[!code[Main](mvc-music-store-part-9/samples/sample8.xml)]
 
 *Note: The Error view was automatically created for us in the /Views/Shared folder when we began the project.*
 
 The complete CheckoutController code is as follows:
 
-    using System;
-     using System.Linq;
-     using System.Web.Mvc;
-     using MvcMusicStore.Models;
-     
-    namespace MvcMusicStore.Controllers
-    {
-        [Authorize]
-        public class CheckoutController : Controller
-        {
-            MusicStoreEntities storeDB = new MusicStoreEntities();
-            const string PromoCode = "FREE";
-            //
-            // GET: /Checkout/AddressAndPayment
-            public ActionResult AddressAndPayment()
-            {
-                return View();
-            }
-            //
-            // POST: /Checkout/AddressAndPayment
-            [HttpPost]
-            public ActionResult AddressAndPayment(FormCollection values)
-            {
-                var order = new Order();
-                TryUpdateModel(order);
-     
-                try
-                {
-                    if (string.Equals(values["PromoCode"], PromoCode,
-                        StringComparison.OrdinalIgnoreCase) == false)
-                    {
-                        return View(order);
-                    }
-                    else
-                    {
-                        order.Username = User.Identity.Name;
-                        order.OrderDate = DateTime.Now;
-     
-                        //Save Order
-                        storeDB.Orders.Add(order);
-                        storeDB.SaveChanges();
-                        //Process the order
-                        var cart = ShoppingCart.GetCart(this.HttpContext);
-                        cart.CreateOrder(order);
-     
-                        return RedirectToAction("Complete",
-                            new { id = order.OrderId });
-                    }
-                }
-                catch
-                {
-                    //Invalid - redisplay with errors
-                    return View(order);
-                }
-            }
-            //
-            // GET: /Checkout/Complete
-            public ActionResult Complete(int id)
-            {
-                // Validate customer owns this order
-                bool isValid = storeDB.Orders.Any(
-                    o => o.OrderId == id &&
-                    o.Username == User.Identity.Name);
-     
-                if (isValid)
-                {
-                    return View(id);
-                }
-                else
-                {
-                    return View("Error");
-                }
-            }
-        }
-    }
+[!code[Main](mvc-music-store-part-9/samples/sample9.xml)]
 
 ## Adding the AddressAndPayment view
 
@@ -336,95 +123,13 @@ This view will make use of two of the techniques we looked at while building the
 
 We'll start by updating the form code to use Html.EditorForModel(), followed by an additional textbox for the Promo Code. The complete code for the AddressAndPayment view is shown below.
 
-    @model MvcMusicStore.Models.Order
-    @{
-        ViewBag.Title = "Address And Payment";
-    }
-    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"
-    type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"
-    type="text/javascript"></script>
-    @using (Html.BeginForm()) {
-        
-        <h2>Address And Payment</h2>
-        <fieldset>
-            <legend>Shipping Information</legend>
-            @Html.EditorForModel()
-        </fieldset>
-        <fieldset>
-            <legend>Payment</legend>
-            <p>We're running a promotion: all music is free 
-                with the promo code: "FREE"</p>
-            <div class="editor-label">
-                @Html.Label("Promo Code")
-            </div>
-            <div class="editor-field">
-                @Html.TextBox("PromoCode")
-            </div>
-        </fieldset>
-        
-        <input type="submit" value="Submit Order" />
-    }
+[!code[Main](mvc-music-store-part-9/samples/sample10.xml)]
 
 ## Defining validation rules for the Order
 
 Now that our view is set up, we will set up the validation rules for our Order model as we did previously for the Album model. Right-click on the Models folder and add a class named Order. In addition to the validation attributes we used previously for the Album, we will also be using a Regular Expression to validate the user's e-mail address.
 
-    using System.Collections.Generic;
-     using System.ComponentModel;
-     using System.ComponentModel.DataAnnotations;
-     using System.Web.Mvc;
-     
-    namespace MvcMusicStore.Models
-    {
-        [Bind(Exclude = "OrderId")]
-        public partial class Order
-        {
-            [ScaffoldColumn(false)]
-            public int OrderId { get; set; }
-            [ScaffoldColumn(false)]
-            public System.DateTime OrderDate { get; set; }
-            [ScaffoldColumn(false)]
-            public string Username { get; set; }
-            [Required(ErrorMessage = "First Name is required")]
-            [DisplayName("First Name")]
-            [StringLength(160)]
-            public string FirstName { get; set; }
-            [Required(ErrorMessage = "Last Name is required")]
-            [DisplayName("Last Name")]
-            [StringLength(160)]
-            public string LastName { get; set; }
-            [Required(ErrorMessage = "Address is required")]
-            [StringLength(70)]
-            public string Address { get; set; }
-            [Required(ErrorMessage = "City is required")]
-            [StringLength(40)]
-            public string City { get; set; }
-            [Required(ErrorMessage = "State is required")]
-            [StringLength(40)]
-            public string State { get; set; }
-            [Required(ErrorMessage = "Postal Code is required")]
-            [DisplayName("Postal Code")]
-            [StringLength(10)]
-            public string PostalCode { get; set; }
-            [Required(ErrorMessage = "Country is required")]
-            [StringLength(40)]
-            public string Country { get; set; }
-            [Required(ErrorMessage = "Phone is required")]
-            [StringLength(24)]
-            public string Phone { get; set; }
-            [Required(ErrorMessage = "Email Address is required")]
-            [DisplayName("Email Address")]
-           
-            [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
-                ErrorMessage = "Email is is not valid.")]
-            [DataType(DataType.EmailAddress)]
-            public string Email { get; set; }
-            [ScaffoldColumn(false)]
-            public decimal Total { get; set; }
-            public List<OrderDetail> OrderDetails { get; set; }
-        }
-    }
+[!code[Main](mvc-music-store-part-9/samples/sample11.xml)]
 
 Attempting to submit the form with missing or invalid information will now show error message using client-side validation.
 
@@ -440,16 +145,7 @@ The Checkout Complete view is pretty simple, as it just needs to display the Ord
 
 Now we will update the view code to display the Order ID, as shown below.
 
-    @model int
-    @{
-        ViewBag.Title = "Checkout Complete";
-    }
-    <h2>Checkout Complete</h2>
-    <p>Thanks for your order! Your order number is: @Model</p>
-    <p>How about shopping for some more music in our 
-        @Html.ActionLink("store",
-    "Index", "Home")
-    </p>
+[!code[Main](mvc-music-store-part-9/samples/sample12.xml)]
 
 ## Updating The Error view
 
@@ -457,15 +153,7 @@ The default template includes an Error view in the Shared views folder so that i
 
 Since this is a generic error page, the content is very simple. We'll include a message and a link to navigate to the previous page in history if the user wants to re-try their action.
 
-    @{
-        ViewBag.Title = "Error";
-    }
-     
-    <h2>Error</h2>
-     
-    <p>We're sorry, we've hit an unexpected error.
-        <a href="javascript:history.go(-1)">Click here</a> 
-        if you'd like to go back and try that again.</p>
+[!code[Main](mvc-music-store-part-9/samples/sample13.xml)]
 
 *Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 

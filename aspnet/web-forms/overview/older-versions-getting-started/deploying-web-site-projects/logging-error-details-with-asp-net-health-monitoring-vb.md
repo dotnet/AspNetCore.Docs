@@ -46,29 +46,7 @@ This information is specified through three children configuration elements: [`<
 
 The default health monitoring system configuration information can be found in the `Web.config` file in `%WINDIR%\Microsoft.NET\Framework\version\CONFIG` folder. This default configuration information, with some markup removed for brevity, is shown below:
 
-    <configuration>
-      <system.web>
-      <healthMonitoring>
-      <eventMappings>
-      <add name="All Errors" type="System.Web.Management.WebBaseErrorEvent,System.Web,Version=2.0.0.0,Culture=neutral,PublicKeyToken=b03f5f7f11d50a3a" startEventCode="0" endEventCode="2147483647"/>
-    
-      <add name="Failure Audits" type="System.Web.Management.WebFailureAuditEvent,System.Web,Version=2.0.0.0,Culture=neutral,PublicKeyToken=b03f5f7f11d50a3a" startEventCode="0" endEventCode="2147483647"/>
-      </eventMappings>
-    
-      <providers>
-      <add name="EventLogProvider" type="System.Web.Management.EventLogWebEventProvider,System.Web,Version=2.0.0.0,Culture=neutral,PublicKeyToken=b03f5f7f11d50a3a"/>
-    
-      <add connectionStringName="LocalSqlServer" maxEventDetailsLength="1073741823" buffer="false" bufferMode="Notification" name="SqlWebEventProvider" type="System.Web.Management.SqlWebEventProvider,System.Web,Version=2.0.0.0,Culture=neutral,PublicKeyToken=b03f5f7f11d50a3a"/>
-      </providers>
-    
-      <rules>
-      <add name="All Errors Default" eventName="All Errors" provider="EventLogProvider" profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:01:00" custom=""/>
-    
-      <add name="Failure Audits Default" eventName="Failure Audits" provider="EventLogProvider" profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:01:00" custom=""/>
-      </rules>
-      </healthMonitoring>
-      </system.web>
-    </configuration>
+[!code[Main](logging-error-details-with-asp-net-health-monitoring-vb/samples/sample1.xml)]
 
 The health monitoring events of interest are defined in the `<eventMappings>` element, which gives a human-friendly name to a class of health monitoring events. In the markup above, the `<eventMappings>` element assigns the human-friendly name "All Errors" to the health monitoring events of type `WebBaseErrorEvent` and the name "Failure Audits" to health monitoring events of type `WebFailureAuditEvent`.
 
@@ -87,35 +65,7 @@ The `SqlWebEventProvider` class is part of the health monitoring system and logs
 
 Once you have the necessary stored procedure and table added to your database, all that remains is to instruct health monitoring to log all unhandled exceptions to the database. Accomplish this by adding the following markup to your website's `Web.config` file:
 
-    <configuration>
-      ...
-      <system.web>
-      ...
-      <healthMonitoring enabled="true">
-      <eventMappings>
-      <clear />
-    
-      <add name="All Errors" type="System.Web.Management.WebBaseErrorEvent"
-      startEventCode="0" endEventCode="2147483647" />
-      </eventMappings>
-    
-      <providers>
-      <clear />
-    
-      <add connectionStringName="ReviewsConnectionString" maxEventDetailsLength="1073741823"
-      buffer="false" name="SqlWebEventProvider"
-      type="System.Web.Management.SqlWebEventProvider" />
-      </providers>
-    
-      <rules>
-      <clear />
-    
-      <add name="All Errors Default" eventName="All Errors" provider="SqlWebEventProvider"
-      profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:00:00" />
-      </rules>
-      </healthMonitoring>
-      </system.web>
-    </configuration>
+[!code[Main](logging-error-details-with-asp-net-health-monitoring-vb/samples/sample2.xml)]
 
 The health monitoring configuration markup above uses `<clear />` elements to wipe the pre-defined health monitoring configuration information from the `<eventMappings>`, `<providers>`, and `<rules>` sections. It then adds a single entry to each of these sections.
 
@@ -158,32 +108,13 @@ The health monitoring system includes two e-mail log source provider classes: `S
 
 Update the health monitoring system's `<providers>` element in the `Web.config` file to include a log source for the `SimpleMailWebEventProvider` class:
 
-    <providers>
-      <clear />
-    
-      <add type="System.Web.Management.SimpleMailWebEventProvider"
-      name="EmailWebEventProvider" buffer="false"
-      from="support@example.com" to="support@example.com"
-      subjectPrefix="Book Reviews Runtime Error: " />
-      
-      <add connectionStringName="ReviewsConnectionString" maxEventDetailsLength="1073741823"
-      buffer="false" name="SqlWebEventProvider"
-      type="System.Web.Management.SqlWebEventProvider" />
-    </providers>
+[!code[Main](logging-error-details-with-asp-net-health-monitoring-vb/samples/sample3.xml)]
 
 The above markup uses the `SimpleMailWebEventProvider` class as the log source provider, and assigns it the friendly name "EmailWebEventProvider". Moreover, the `<add>` attribute includes additional configuration options, such as the To and From addresses of the e-mail message.
 
 With the e-mail log source defined, all that remains is to instruct the health monitoring system to use this source to "log" unhandled exceptions. This is accomplished by adding a new rule in the `<rules>` section:
 
-    <rules>
-      <clear />
-    
-      <add name="All Errors To E-Mail" eventName="All Errors" provider="EmailWebEventProvider"
-      profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:00:00" />
-    
-      <add name="All Errors To Database" eventName="All Errors" provider="SqlWebEventProvider"
-      profile="Default" minInstances="1" maxLimit="Infinite" minInterval="00:00:00" />
-    </rules>
+[!code[Main](logging-error-details-with-asp-net-health-monitoring-vb/samples/sample4.xml)]
 
 The `<rules>` section now includes two rules. The first one, named "All Errors To E-Mail", sends all unhandled exceptions to the "EmailWebEventProvider" log source. This rule has the effect of sending details about errors on the website to the specified To address. The "All Errors To Database" rule logs the error details to the site's database. Consequently, whenever an unhandled exception occurs on the site its details are both logged to the database and sent to specified e-mail address.
 

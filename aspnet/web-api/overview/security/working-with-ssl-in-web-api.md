@@ -34,31 +34,11 @@ For local testing, you can enable SSL in IIS Express from Visual Studio. In the 
 
 If you have both an HTTPS and an HTTP binding, clients can still use HTTP to access the site. You might allow some resources to be available through HTTP, while other resources require SSL. In that case, use an action filter to require SSL for the protected resources. The following code shows a Web API authentication filter that checks for SSL:
 
-    public class RequireHttpsAttribute : AuthorizationFilterAttribute
-    {
-        public override void OnAuthorization(HttpActionContext actionContext)
-        {
-            if (actionContext.Request.RequestUri.Scheme != Uri.UriSchemeHttps)
-            {
-                actionContext.Response = new HttpResponseMessage(System.Net.HttpStatusCode.Forbidden)
-                {
-                    ReasonPhrase = "HTTPS Required"
-                };
-            }
-            else
-            {
-                base.OnAuthorization(actionContext);
-            }
-        }
-    }
+[!code[Main](working-with-ssl-in-web-api/samples/sample1.xml)]
 
 Add this filter to any Web API actions that require SSL:
 
-    public class ValuesController : ApiController
-    {
-        [RequireHttps]
-        public HttpResponseMessage Get() { ... }
-    }
+[!code[Main](working-with-ssl-in-web-api/samples/sample2.xml)]
 
 ## SSL Client Certificates
 
@@ -79,13 +59,7 @@ To configure IIS to accept client certificates, open IIS Manager and perform the
 
 You can also set these options in the ApplicationHost.config file:
 
-    <system.webServer>
-        <security>
-            <access sslFlags="Ssl, SslNegotiateCert" />
-            <!-- To require a client cert: -->
-            <!-- <access sslFlags="Ssl, SslRequireCert" /> -->
-        </security>
-    </system.webServer>
+[!code[Main](working-with-ssl-in-web-api/samples/sample3.xml)]
 
 The **SslNegotiateCert** flag means IIS will accept a certificate from the client, but does not require one (equivalent to the "Accept" option in IIS Manager). To require a certificate, set the **SslRequireCert** flag. For testing, you can also set these options in IIS Express, in the local applicationhost.Config file, located in "Documents\IISExpress\config".
 
@@ -93,7 +67,7 @@ The **SslNegotiateCert** flag means IIS will accept a certificate from the clien
 
 For testing purposes, you can use [MakeCert.exe](https://msdn.microsoft.com/en-US/library/bfsktky3.aspx) to create a client certificate. First, create a test root authority:
 
-    makecert.exe -n "CN=Development CA" -r -sv TempCA.pvk TempCA.cer
+[!code[Main](working-with-ssl-in-web-api/samples/sample4.xml)]
 
 Makecert will prompt you to enter a password for the private key.
 
@@ -110,13 +84,10 @@ Next, add the certificate to the test server's "Trusted Root Certification Autho
 
 Now create a client certificate that is signed by the first certificate:
 
-    makecert.exe -pe -ss My -sr CurrentUser -a sha1 -sky exchange -n "CN=name" 
-         -eku 1.3.6.1.5.5.7.3.2 -sk SignedByCA -ic TempCA.cer -iv TempCA.pvk
+[!code[Main](working-with-ssl-in-web-api/samples/sample5.xml)]
 
 ### Using Client Certificates in Web API
 
 On the server side, you can get the client certificate by calling [GetClientCertificate](https://msdn.microsoft.com/en-us/library/system.net.http.httprequestmessageextensions.getclientcertificate.aspx) on the request message. The method returns null if there is no client certificate. Otherwise, it returns an **X509Certificate2** instance. Use this object to get information from the certificate, such as the issuer and subject. Then you can use this information for authentication and/or authorization.
 
-    X509Certificate2 cert = Request.GetClientCertificate();
-    string issuer = cert.Issuer;
-    string subject = cert.Subject;
+[!code[Main](working-with-ssl-in-web-api/samples/sample6.xml)]

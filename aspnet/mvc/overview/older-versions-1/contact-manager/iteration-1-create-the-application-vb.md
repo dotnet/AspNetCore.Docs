@@ -247,64 +247,7 @@ When you create the Home controller, you get the class in Listing 1.
 
 **Listing 1 - Controllers\HomeController.vb**
 
-    Public Class HomeController
-        Inherits System.Web.Mvc.Controller
-    
-        '
-        ' GET: /Home/
-    
-        Function Index() As ActionResult
-            Return View()
-        End Function
-    
-        '
-        ' GET: /Home/Details/5
-    
-        Function Details(ByVal id As Integer) As ActionResult
-            Return View()
-        End Function
-    
-        '
-        ' GET: /Home/Create
-    
-        Function Create() As ActionResult
-            Return View()
-        End Function
-    
-        '
-        ' POST: /Home/Create
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Create(ByVal collection As FormCollection) As ActionResult
-            Try
-                ' TODO: Add insert logic here
-                Return RedirectToAction("Index")
-            Catch
-                Return View()
-            End Try
-        End Function
-    
-        '
-        ' GET: /Home/Edit/5
-    
-        Function Edit(ByVal id As Integer) As ActionResult
-            Return View()
-        End Function
-    
-        '
-        ' POST: /Home/Edit/5
-    
-        <AcceptVerbs(HttpVerbs.Post)> _
-        Function Edit(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
-            Try
-                ' TODO: Add update logic here
-    
-                Return RedirectToAction("Index")
-            Catch
-                Return View()
-            End Try
-        End Function
-    End Class
+[!code[Main](iteration-1-create-the-application-vb/samples/sample1.xml)]
 
 ## Listing the Contacts
 
@@ -314,18 +257,7 @@ The Home controller already contains an Index() action. We need to modify this m
 
 **Listing 2 - Controllers\HomeController.vb**
 
-    Public Class HomeController
-        Inherits System.Web.Mvc.Controller
-    
-        Private _entities As New ContactManagerDBEntities()
-    
-        '
-        ' GET: /Home/
-    
-        Function Index() As ActionResult
-            Return View(_entities.ContactSet.ToList())
-        End Function
-    …
+[!code[Main](iteration-1-create-the-application-vb/samples/sample2.xml)]
 
 Notice that the Home controller class in Listing 2 contains a private field named \_entities. The \_entities field represents the entities from the data model. We use the \_entities field to communicate with the database.
 
@@ -355,69 +287,7 @@ The body of the Index view contains a foreach loop that iterates through each of
 
 **Listing 3 - Views\Home\Index.aspx (unmodified)**
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of IEnumerable(Of ContactManager.Contact))" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Index</title>
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Index</h2>
-    
-        <p>
-            <%=Html.ActionLink("Create New", "Create")%>
-        </p>
-        
-        <table>
-            <tr>
-                <th></th>
-                <th>
-                    Id
-                </th>
-                <th>
-                    FirstName
-                </th>
-                <th>
-                    LastName
-                </th>
-                <th>
-                    Phone
-                </th>
-                <th>
-                    Email
-                </th>
-            </tr>
-    
-        <% For Each item In Model%>
-        
-            <tr>
-                <td>
-                    <%=Html.ActionLink("Edit", "Edit", New With {.id = item.Id})%> |
-                    <%=Html.ActionLink("Details", "Details", New With {.id = item.Id})%>
-                </td>
-                <td>
-                    <%=Html.Encode(item.Id)%>
-                </td>
-                <td>
-                    <%=Html.Encode(item.FirstName)%>
-                </td>
-                <td>
-                    <%=Html.Encode(item.LastName)%>
-                </td>
-                <td>
-                    <%=Html.Encode(item.Phone)%>
-                </td>
-                <td>
-                    <%=Html.Encode(item.Email)%>
-                </td>
-            </tr>
-        
-        <% Next%>
-    
-        </table>
-    
-    </asp:Content>
+[!code[Main](iteration-1-create-the-application-vb/samples/sample3.xml)]
 
 We need to make one modification to the Index view. Because we are not creating a Details view, we can remove the Details link. Find and remove the following code from the Index view:
 
@@ -449,30 +319,7 @@ The new Create() methods that we need to add to the Home controller are containe
 
 **Listing 4 - Controllers\HomeController.vb (with Create methods)**
 
-    '
-    ' GET: /Home/Create
-    
-    Function Create() As ActionResult
-        Return View()
-    End Function
-    
-    '
-    ' POST: /Home/Create
-    
-    <AcceptVerbs(HttpVerbs.Post)> _
-    Function Create(<Bind(Exclude:="Id")> ByVal contactToCreate As Contact) As ActionResult
-        If Not ModelState.IsValid Then
-            Return View()
-        End If
-    
-        Try
-            _entities.AddToContactSet(contactToCreate)
-            _entities.SaveChanges()
-            Return RedirectToAction("Index")
-        Catch
-            Return View()
-        End Try
-    End Function
+[!code[Main](iteration-1-create-the-application-vb/samples/sample4.xml)]
 
 The first Create() method can be invoked with an HTTP GET while the second Create() method can be invoked only by an HTTP POST. In other words, the second Create() method can be invoked only when posting an HTML form. The first Create() method simply returns a view that contains the HTML form for creating a new contact. The second Create() method is much more interesting: it adds the new contact to the database.
 
@@ -502,54 +349,7 @@ The Create view contains form fields for each of the properties of the Contact c
 
 **Listing 5 - Views\Home\Create.aspx**
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of ContactManager.Contact)" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Create</title>
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Create</h2>
-    
-        <%= Html.ValidationSummary() %>
-    
-        <% Using Html.BeginForm()%>
-    
-            <fieldset>
-                <legend>Fields</legend>
-                <p>
-                    <label for="FirstName">FirstName:</label>
-                    <%= Html.TextBox("FirstName") %>
-                    <%= Html.ValidationMessage("FirstName", "*") %>
-                </p>
-                <p>
-                    <label for="LastName">LastName:</label>
-                    <%= Html.TextBox("LastName") %>
-                    <%= Html.ValidationMessage("LastName", "*") %>
-                </p>
-                <p>
-                    <label for="Phone">Phone:</label>
-                    <%= Html.TextBox("Phone") %>
-                    <%= Html.ValidationMessage("Phone", "*") %>
-                </p>
-                <p>
-                    <label for="Email">Email:</label>
-                    <%= Html.TextBox("Email") %>
-                    <%= Html.ValidationMessage("Email", "*") %>
-                </p>
-                <p>
-                    <input type="submit" value="Create" />
-                </p>
-            </fieldset>
-    
-        <% End Using %>
-    
-        <div>
-            <%=Html.ActionLink("Back to List", "Index") %>
-        </div>
-    
-    </asp:Content>
+[!code[Main](iteration-1-create-the-application-vb/samples/sample5.xml)]
 
 After you modify the Create() methods and add the Create view, you can run the Contact Manger application and create new contacts. Click the **Create New** link that appears in the Index view to navigate to the Create view. You should see the view in Figure 18.
 
@@ -565,37 +365,7 @@ Adding the functionality for editing a contact record is very similar to adding 
 
 **Listing 6 - Controllers\HomeController.vb (with Edit methods)**
 
-    '
-    ' GET: /Home/Edit/5
-    
-    Function Edit(ByVal id As Integer) As ActionResult
-        Dim contactToEdit = (from c in _entities.ContactSet _
-                           where c.Id = id _
-                           select c).FirstOrDefault()
-    
-        Return View(contactToEdit)
-    End Function
-    
-    '
-    ' POST: /Home/Edit/5
-    
-    <AcceptVerbs(HttpVerbs.Post)> _
-    Function Edit(ByVal contactToEdit As Contact) As ActionResult
-        If Not ModelState.IsValid Then
-            Return View()
-        End If
-    
-        Try
-            Dim originalContact = (from c in _entities.ContactSet _
-                             where c.Id = contactToEdit.Id _
-                             select c).FirstOrDefault()
-            _entities.ApplyPropertyChanges( originalContact.EntityKey.EntitySetName, contactToEdit)
-            _entities.SaveChanges()
-            Return RedirectToAction("Index")
-        Catch
-            Return View()
-        End Try
-    End Function
+[!code[Main](iteration-1-create-the-application-vb/samples/sample6.xml)]
 
 The first Edit() method is invoked by an HTTP GET operation. An Id parameter is passed to this method which represents the Id of the contact record being edited. The Entity Framework is used to retrieve a contact that matches the Id. A view that contains an HTML form for editing a record is returned.
 
@@ -615,54 +385,7 @@ When you click the Add button, a new Edit view is generated automatically. The H
 
 **Listing 7 - Views\Home\Edit.aspx**
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of ContactManager.Contact)" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Edit</title>
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Edit</h2>
-    
-        <%=Html.ValidationSummary()%>
-    
-        <% Using Html.BeginForm() %>
-    
-            <fieldset>
-                <legend>Fields</legend>
-                <p>
-                    <label for="FirstName">FirstName:</label>
-                    <%= Html.TextBox("FirstName") %>
-                    <%= Html.ValidationMessage("FirstName", "*") %>
-                </p>
-                <p>
-                    <label for="LastName">LastName:</label>
-                    <%= Html.TextBox("LastName") %>
-                    <%= Html.ValidationMessage("LastName", "*") %>
-                </p>
-                <p>
-                    <label for="Phone">Phone:</label>
-                    <%= Html.TextBox("Phone") %>
-                    <%= Html.ValidationMessage("Phone", "*") %>
-                </p>
-                <p>
-                    <label for="Email">Email:</label>
-                    <%= Html.TextBox("Email") %>
-                    <%= Html.ValidationMessage("Email", "*") %>
-                </p>
-                <p>
-                    <input type="submit" value="Save" />
-                </p>
-            </fieldset>
-    
-        <% End Using %>
-    
-        <div>
-            <%=Html.ActionLink("Back to List", "Index") %>
-        </div>
-    
-    </asp:Content>
+[!code[Main](iteration-1-create-the-application-vb/samples/sample7.xml)]
 
 ## Deleting Contacts
 
@@ -677,33 +400,7 @@ The two new Delete() methods are contained in Listing 8.
 
 **Listing 8 - Controllers\HomeController.vb (Delete methods)**
 
-    '
-    ' GET: /Home/Delete/5
-    
-    Function Delete(ByVal id As Integer) As ActionResult
-        Dim contactToDelete = (from c in _entities.ContactSet _
-                           where c.Id = id _
-                           select c).FirstOrDefault()
-    
-        Return View(contactToDelete)
-    End Function
-    
-    '
-    ' POST: /Home/Delete/5
-    
-    <AcceptVerbs(HttpVerbs.Post)> _
-    Function Delete(ByVal contactToDelete As Contact) As ActionResult
-        Try
-            Dim originalContact = (from c in _entities.ContactSet _
-                             where c.Id = contactToDelete.Id _
-                             select c).FirstOrDefault()
-            _entities.DeleteObject(originalContact)
-            _entities.SaveChanges()
-            Return RedirectToAction("Index")
-        Catch
-            Return View()
-        End Try
-    End Function
+[!code[Main](iteration-1-create-the-application-vb/samples/sample8.xml)]
 
 The first Delete() method returns a confirmation form for deleting a contact record from the database (see Figure20). The second Delete() method performs the actual delete operation against the database. After the original contact has been retrieved from the database, the Entity Framework DeleteObject() and SaveChanges() methods are called to perform the database delete.
 
@@ -737,32 +434,7 @@ The content of the Delete view is contained in Listing 9. This view contains a f
 
 **Listing 9 - Views\Home\Delete.aspx**
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of ContactManager.Contact)" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Delete</title>
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Delete</h2>
-        
-        <p>
-        Are you sure that you want to delete the entry for
-        <%= Model.FirstName %> <%= Model.LastName %>?
-        </p>
-    
-        <% Using Html.BeginForm(New With { .Id = Model.Id }) %>
-           <p> 
-                <input type="submit" value="Delete" />
-            </p>
-        <% End Using %>
-    
-        <div>
-            <%=Html.ActionLink("Back to List", "Index") %>
-        </div>
-    
-    </asp:Content>
+[!code[Main](iteration-1-create-the-application-vb/samples/sample9.xml)]
 
 ## Changing the Name of the Default Controller
 
@@ -795,28 +467,7 @@ We need to update the default route in the Global.asax file to use the Contact c
 
 **Listing 10 - Global.asax.vb**
 
-    Public Class MvcApplication
-        Inherits System.Web.HttpApplication
-    
-        Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}")
-    
-            ' MapRoute takes the following parameters, in order:
-            ' (1) Route name
-            ' (2) URL with parameters
-            ' (3) Parameter defaults
-            routes.MapRoute( _
-                "Default", _
-                "{controller}/{action}/{id}", _
-                New With {.controller = "Home", .action = "Index", .id = ""} _
-            )
-    
-        End Sub
-    
-        Sub Application_Start()
-            RegisterRoutes(RouteTable.Routes)
-        End Sub
-    End Class
+[!code[Main](iteration-1-create-the-application-vb/samples/sample10.xml)]
 
 After you make these changes, the Contact Manager will run correctly. Now, it will use the Contact controller class as the default controller.
 

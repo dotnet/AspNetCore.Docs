@@ -145,28 +145,7 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 Project
 
     C#
 
-        public static class AuthConfig
-        {
-            public static void RegisterAuth()
-            {
-                // To let users of this site log in using their accounts from other sites such as Microsoft, Facebook, and Twitter,
-                // you must update this site. For more information visit https://go.microsoft.com/fwlink/?LinkID=252166
-        
-                //OAuthWebSecurity.RegisterMicrosoftClient(
-                //    clientId: "",
-                //    clientSecret: "");
-        
-                //OAuthWebSecurity.RegisterTwitterClient(
-                //    consumerKey: "",
-                //    consumerSecret: "");
-        
-                //OAuthWebSecurity.RegisterFacebookClient(
-                //    appId: "",
-                //    appSecret: "");
-        
-                OAuthWebSecurity.RegisterGoogleClient();
-            }
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample1.xml)]
 
     > [!NOTE] Notice you can easily enable authentication using any OpenID or OAuth service like Facebook, Twitter, Microsoft, etc.
 8. Press **F5** to run the solution and navigate to the login page.
@@ -240,11 +219,7 @@ ASP.NET MVC 4 facilitates the development of websites for mobile and tablet brow
 
     HTML
 
-        ...
-         <meta charset="utf-8" />
-         <title>@ViewBag.Title</title> 
-         @* <meta name="viewport" content="width=device-width" /> *@
-        ...
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample2.xml)]
 
     ![The site after commenting the viewport meta tag](whats-new-in-aspnet-mvc-4/_static/image15.png "The site after commenting the viewport meta tag")
 
@@ -254,11 +229,7 @@ ASP.NET MVC 4 facilitates the development of websites for mobile and tablet brow
 
     HTML
 
-        ...
-         <meta charset="utf-8" />
-         <title>@ViewBag.Title</title> 
-           <meta name="viewport" content="width=device-width" /> 
-        ...
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample3.xml)]
 
 <a id="Task_3_-_Using_Adaptive_Rendering"></a>
 #### Task 3 - Using Adaptive Rendering
@@ -342,13 +313,7 @@ In this task, you will create a mock of the photo service to retrieve the conten
 
     C#
 
-        public class PhotoController : Controller
-        {
-           public ActionResult Gallery()
-           {
-              return this.File("~/App_Data/Photos.json", "application/json");
-           }
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample4.xml)]
 7. Press **F5** to run the solution, and then browse to the following URL in order to test the mocked photo service: `http://localhost:[port]/photo/gallery` (the [port] value depends on the current port where the application was launched). The request to this URL should retrieve the content of the **Photos.json** file.
 
     ![Testing the mocked photo service](whats-new-in-aspnet-mvc-4/_static/image20.png "Testing the mocked photo service")
@@ -370,16 +335,7 @@ In this task, you will update the Home page to show the photo gallery by using t
 
     C#
 
-        public class Photo
-        {
-            public string Title { get; set; }
-        
-            public string FileName { get; set; }
-        
-            public string Description { get; set; }
-        
-            public DateTime UploadDate { get; set; }
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample5.xml)]
 4. Open the **HomeController.cs** file from the **Controllers** folder.
 5. Add the following using statements.
 
@@ -387,26 +343,14 @@ In this task, you will update the Home page to show the photo gallery by using t
 
     C#
 
-        using System.Net.Http;
-        using System.Web.Script.Serialization;
-        using Newtonsoft.Json;
-        using PhotoGallery.Models;
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample6.xml)]
 6. Update the **Index** action to use **HttpClient** to retrieve the gallery data, and then use the **JavaScriptSerializer** to deserialize it to the view model.
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex02 - Index Action*)
 
     C#
 
-        public ActionResult Index()
-        {
-            var client = new HttpClient();
-            var response = client.GetAsync(Url.Action("gallery", "photo", null, Request.Url.Scheme)).Result;
-            var value = response.Content.ReadAsStringAsync().Result;
-        
-            var result = JsonConvert.DeserializeObject<List<Photo>>(value);
-        
-            return View(result);
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample7.xml)]
 7. Open the **Index.cshtml** file located under the **Views\Home** folder and replace all the content with the following code.
 
     This code loops through all the photos retrieved from the service and displays them into an unordered list.
@@ -415,22 +359,7 @@ In this task, you will update the Home page to show the photo gallery by using t
 
     HTML
 
-        @model List<PhotoGallery.Models.Photo>
-        @{
-            ViewBag.Title = "Photo Gallery";
-        }
-        
-        <ul class="thumbnails">
-            @foreach (var photo in Model)
-            {
-                <li class="item">
-                    <a href="@Url.Content("~/photos/" + photo.FileName)">
-                        <img alt="@photo.Description" src="@Url.Content("~/photos/" + photo.FileName)" class="thumbnail-border" width="180" />
-                    </a>
-                        <span class="image-overlay">@photo.Title</span>
-                </li>
-            }
-        </ul>
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample8.xml)]
 8. In the **Solution Explorer**, right-click the **Content** folder of your project, and select **Add | Existing Item**. Browse to the **Source\Assets\Content** folder of this lab and add the **Site.css** file. You will have to confirm its replacement. If you have the **Site.css** file open, you will have to confirm to reload the file also.
 9. Open File Explorer and copy the entire **Photos** folder located under the **Source\Assets** folder of this lab to the root folder of your project in Solution Explorer.
 10. Run the application. You should now see the home page displaying the photos in the gallery.
@@ -470,7 +399,7 @@ One of the key updates in ASP.NET MVC 4 is the support for mobile development. I
 
     PM
 
-        Install-Package jQuery.Mobile.MVC
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample9.xml)]
 
     This command installs jQuery Mobile and some helper files, including the following:
 
@@ -485,17 +414,7 @@ One of the key updates in ASP.NET MVC 4 is the support for mobile development. I
 
     C#
 
-        protected void Application_Start()
-        {
-             AreaRegistration.RegisterAllAreas();
-        
-             WebApiConfig.Register(GlobalConfiguration.Configuration);
-             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-             RouteConfig.RegisterRoutes(RouteTable.Routes);
-             BundleConfig.RegisterBundles(BundleTable.Bundles);
-             BundleMobileConfig.RegisterBundles(BundleTable.Bundles);
-             AuthConfig.RegisterAuth();
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample10.xml)]
 5. Run the application using a desktop web browser.
 6. Open the **Windows Phone 7 Emulator,** located in **Start Menu | All Programs | Windows Phone SDK 7.1 | Windows Phone Emulator.**
 7. In the phone start screen, open Internet Explorer. Check out the URL where the application started and browse to that URL with the phone browser (e.g. `http://localhost:[PortNumber]/`).
@@ -521,7 +440,7 @@ In this task, you will create a mobile version of the index view with content ad
 
     HTML
 
-        <ul data-role="listview" data-inset="true" data-filter="true">
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample11.xml)]
 
     > [!NOTE] 
     > 
@@ -547,18 +466,7 @@ In this task, you will create a mobile version of the index view with content ad
 
     CSS
 
-        .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
-            padding: 0px !important;
-        }
-        
-        li.item span.image-overlay
-        {
-            position:relative;
-            left:100px;
-            top:-40px;
-            height:0px;
-            display:block;
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample12.xml)]
 7. Press **CTRL + S** to save the changes.
 8. Switch back to the **Windows Phone Emulator** and refresh the site. Notice the photo title is properly positioned now.
 
@@ -581,7 +489,7 @@ In this task, you will update the mobile layout to use a different theme than th
 
     XML
 
-        <div data-role="page" data-theme="e">
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample13.xml)]
 4. Press **CTRL + S** to save the changes.
 5. Refresh the site in the **Windows Phone Emulator** and notice the new colors scheme.
 
@@ -638,13 +546,7 @@ In this task, you will update the desktop layout to include the view-switcher. T
 
     HTML
 
-        <div class="float-right">
-            <section id="login">
-                @Html.Partial("_LogOnPartial")
-        
-                @Html.Partial("_ViewSwitcher")
-            </section>
-            <nav>
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample14.xml)]
 5. Press **CTRL + S** to save the changes.
 6. Refresh the page in the Windows Phone Emulator and double-click the screen to zoom in. Notice that the home page now shows the **Mobile view** link that switches from mobile to desktop view.
 
@@ -676,24 +578,14 @@ In this task, you will create a customized layout for iPhone devices, and you wi
 
     C#
 
-        using System.Web.WebPages;
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample15.xml)]
 3. Add the following highlighted code into the Application\_Start method.
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex03 - iPhone DisplayMode*)
 
     C#
 
-        protected void Application_Start()
-        {
-            // ...
-        
-            DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("iPhone")
-            {
-                ContextCondition = context =>
-                    context.Request.UserAgent != null &&
-                    context.Request.UserAgent.IndexOf("iPhone", StringComparison.OrdinalIgnoreCase) >= 0
-            });
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample16.xml)]
 
     You have registered a new **DefaultDisplayMode named &quot;iPhone&quot;**, within the static **DisplayModeProvider.Instance.Modes** static list, that will be matched against each incoming request. If the incoming request contains the string &quot;iPhone&quot;, ASP.NET MVC will find the views whose name contain the &quot;iPhone&quot; suffix. The 0 parameter indicates how specific is the new mode; for instance, this view is more specific than the general &quot;.mobile&quot; rule that matches requests from mobile devices.
 
@@ -706,10 +598,7 @@ In this task, you will create a customized layout for iPhone devices, and you wi
 
     XML
 
-        <body> 
-            <div data-role="page" data-theme="a">
-                @Html.Partial("_ViewSwitcher")
-        ...
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample17.xml)]
 
     Now you have 3 layouts in your ASP.NET MVC 4 application:
 
@@ -747,20 +636,17 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
 
     C#
 
-        using System.Threading.Tasks;
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample18.xml)]
 4. Update the **HomeController** class to inherit from **AsyncController**. Controllers that derive from AsyncController enable ASP.NET to process asynchronous requests, and they can still service synchronous action methods.
 
     C#
 
-        public class HomeController : AsyncController
-        {
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample19.xml)]
 5. Add the **async** keyword to the **Index** method and make it return the type **Task&lt;ActionResult&gt;**.
 
     C#
 
-        public async Task<ActionResult> Index()
-        {
-            ...
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample20.xml)]
 
     > [!NOTE] The **async** keyword is one of the new keywords the .NET Framework 4.5 provides; it tells the compiler that this method contains asynchronous code. A **Task** object represents an asynchronous operation that may complete at some point in the future.
 6. Replace the **client.GetAsync()** call with the full async version using await keyword as shown below.
@@ -769,11 +655,7 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
 
     C#
 
-        public async Task<ActionResult> Index()
-        {
-            var client = new HttpClient();
-            var response = await client.GetAsync(Url.Action("gallery", "photo", null, Request.Url.Scheme));
-            ...
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample21.xml)]
 
     > [!NOTE] In the previous version, you were using the **Result** property from the **Task** object to block the thread until the result is returned (sync version).
     > 
@@ -784,15 +666,7 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
 
     C#
 
-        public async Task<ActionResult> Index()
-        {
-            var client = new HttpClient();
-            var response = await client.GetAsync(Url.Action("gallery", "photo", null, Request.Url.Scheme));
-            var value = await response.Content.ReadAsStringAsync();
-            var result = await JsonConvert.DeserializeObjectAsync<List<Photo>>(value);
-        
-            return View(result);
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample22.xml)]
 8. Run the application. You will notice no major changes, but your code will not block a thread from the thread pool making a better usage of the server resources and improving performance.
 
     > [!NOTE] You can learn more about the new asynchronous programming features in the lab &quot;**Asynchronous Programming in .NET 4.5 with C# and Visual Basic**&quot; included in the Visual Studio Training Kit.
@@ -807,56 +681,36 @@ Asynchronous action methods that return Task instances can also support time-out
 
     C#
 
-        using System.Threading;
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample23.xml)]
 3. Update the Index action to receive a **CancellationToken** argument.
 
     C#
 
-        public async Task<ActionResult> Index(CancellationToken cancellationToken)
-        {
-            ...
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample24.xml)]
 4. Update the **GetAsync** call to pass the cancellation token.
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex04 - SendAsync with CancellationToken*)
 
     C#
 
-        public async Task<ActionResult> Index(CancellationToken cancellationToken)
-        {
-            var client = new HttpClient();
-            var response = await client.GetAsync(Url.Action("gallery", "photo", null, Request.Url.Scheme), cancellationToken);
-            var value = await response.Content.ReadAsStringAsync();
-            var result = await JsonConvert.DeserializeObjectAsync<List<Photo>>(value);
-        
-            return View(result);
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample25.xml)]
 5. Decorate the *Index* method with an **AsyncTimeout** attribute set to 500 milliseconds and a **HandleError** attribute configured to handle **TaskCanceledException** by redirecting to a **TimedOut** view.
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex04 - Attributes*)
 
     C#
 
-        [AsyncTimeout(500)]
-        [HandleError(ExceptionType = typeof(TimeoutException), View = "TimedOut")]
-        public async Task<ActionResult> Index(CancellationToken cancellationToken)
-        {
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample26.xml)]
 6. Open the **PhotoController** class and update the **Gallery** method to delay the execution 1000 miliseconds (1 second) to simulate a long running task.
 
     C#
 
-        public ActionResult Gallery()
-        {
-            System.Threading.Thread.Sleep(1000);
-        
-            return this.File("~/App_Data/Photos.json", "application/json");
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample27.xml)]
 7. Open the **Web.config** file and enable custom errors by adding the following element.
 
     XML
 
-        <system.web>
-          <customErrors mode="On"></customErrors>
-          ...
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample28.xml)]
 8. Create a new view in **Views\Shared** named **TimedOut** and use the default layout. In the Solution Explorer, right-click the **Views\Shared** folder and select **Add | View**.
 
     ![Using different views for each mobile device](whats-new-in-aspnet-mvc-4/_static/image36.png "Using different views for each mobile device")
@@ -866,12 +720,7 @@ Asynchronous action methods that return Task instances can also support time-out
 
     HTML
 
-        @{
-            ViewBag.Title = "TimedOut";
-            Layout = "~/Views/Shared/_Layout.cshtml";
-        }
-        
-        <h2>Timed Out!</h2>
+    [!code[Main](whats-new-in-aspnet-mvc-4/samples/sample29.xml)]
 10. Run the application and navigate to the root URL. As you have added a **Thread.Sleep** of 1000 milliseconds, you will get a time-out error, generated by the **AsyncTimeout** attribute and catch by the **HandleError** attribute.
 
     ![Time-out exception handled](whats-new-in-aspnet-mvc-4/_static/image37.png "Time-out exception handled")

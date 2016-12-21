@@ -1,4 +1,3 @@
-<head>
-    <meta charset="utf-8" />
-    <title>Movies</title>
-</head>
+    var db = Database.Open("WebPagesMovies");
+    var selectedData = db.Query("SELECT * FROM Movies");
+    var grid = new WebGrid(source: selectedData);

@@ -52,32 +52,7 @@ For example, consider the form in Listing 1. This form is rendered with the help
 
 **Listing 1 – `Views\Home\Index.aspx`**
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="MvcApplication1.Views.Home.Index"%>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
-    <html xmlns= "http://www.w3.org/1999/xhtml ">
-    <head id="Head1" runat="server">
-         <title>Index</title>
-    </head>
-    <body>
-          <div>
-              <% using (Html.BeginForm())
-              { %>
-    
-                   <label for="firstName">First Name:</label>
-                   <br />
-                   <%= Html.TextBox("firstName")%>
-                   <br /><br />
-                   <label for="lastName">Last Name:</label>
-                   <br />
-    
-                   <%= Html.TextBox("lastName")%>
-                   <br /><br />
-                   <input type="submit" value="Register" />    
-              <% } %>
-         1     </div>
-    </body>
-    </html>
+[!code[Main](creating-custom-html-helpers-cs/samples/sample1.xml)]
 
 The Html.BeginForm() Helper method is used to create the opening and closing HTML `<form>` tags. Notice that the `Html.BeginForm()` method is called within a using statement. The using statement ensures that the `<form>` tag gets closed at the end of the using block.
 
@@ -91,31 +66,7 @@ The ASP.NET MVC framework contains a small set of helpers. Most likely, you will
 
 **Listing 2 – `Index.aspx Source`**
 
-    <%@ Page Language="C#" AutoEventWireup="false" CodeBehind="Index.aspx.cs" Inherits="MvcApplication1.Index" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    
-    <head>
-         <title>Index</title>
-    </head>
-    <body>
-         <div>
-              <form action="http://localhost:33102/" method="post">
-                   <label for="firstName">First Name:</label>
-    
-                   <br />
-                   <input id="firstName" name="firstName" type="text" value="" />
-                   <br /><br />
-                   <label for="lastName">Last Name:</label>
-                   <br />
-                   <input id="lastName" name="lastName" type="text" value="" />
-                   <br /><br />
-    
-                   <input id="btnRegister" name="btnRegister" type="submit" value="Register" />
-              </form>
-         </div>
-    </body>
-    </html>
+[!code[Main](creating-custom-html-helpers-cs/samples/sample2.xml)]
 
 ### Creating HTML Helpers with Static Methods
 
@@ -123,18 +74,7 @@ The easiest way to create a new HTML Helper is to create a static method that re
 
 **Listing 2 – `Helpers\LabelHelper.cs`**
 
-    using System;
-    namespace MvcApplication1.Helpers
-    {
-              public class LabelHelper
-    
-              {
-                   public static string Label(string target, string text)
-                   {
-                        return String.Format("<label for='{0}'>{1}</label>", target, text);
-                   }
-              }
-    }
+[!code[Main](creating-custom-html-helpers-cs/samples/sample3.xml)]
 
 There is nothing special about the class in Listing 2. The `Label()` method simply returns a string.
 
@@ -142,33 +82,7 @@ The modified Index view in Listing 3 uses the `LabelHelper` to render HTML `<lab
 
 **Listing 2 – `Views\Home\Index2.aspx`**
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index2.aspx.cs" Inherits="MvcApplication1.Views.Home.Index2"%>
-    <%@ Import Namespace="MvcApplication1.Helpers" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-    
-         <title>Index2</title>
-    </head>
-    <body>
-         <div>
-              <% using (Html.BeginForm())
-              { %>
-                   <%= LabelHelper.Label("firstName", "First Name:") %>
-                   <br />
-    
-                   <%= Html.TextBox("firstName")%>
-                   <br /><br />
-                   <%= LabelHelper.Label("lastName", "Last Name:") %>
-                   <br />
-                   <%= Html.TextBox("lastName")%>
-                   <br /><br />
-                   <input type="submit" value="Register" />
-              <% } %>
-    
-         </div>
-    </body>
-    </html>
+[!code[Main](creating-custom-html-helpers-cs/samples/sample4.xml)]
 
 ### Creating HTML Helpers with Extension Methods
 
@@ -180,20 +94,7 @@ Second, notice that the first parameter of the `Label()` method is preceded by t
 
 **Listing 3 – `Helpers\LabelExtensions.cs`**
 
-    using System;
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Helpers
-    {
-         public static class LabelExtensions
-         {
-              public static string Label(this HtmlHelper helper, string target, string text)
-              {
-                   return String.Format("<label for='{0}'>{1}</label>", target, text);
-    
-              }
-         }
-    }
+[!code[Main](creating-custom-html-helpers-cs/samples/sample5.xml)]
 
 After you create an extension method, and build your application successfully, the extension method appears in Visual Studio Intellisense like all of the other methods of a class (see Figure 2). The only difference is that extension methods appear with a special symbol next to them (an icon of a downward arrow).
 
@@ -207,33 +108,7 @@ The modified Index view in Listing 4 uses the Html.Label() extension method to r
 
 **Listing 4 – `Views\Home\Index3.aspx`**
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index3.aspx.cs" Inherits="MvcApplication1.Views.Home.Index3" %>
-    
-    <%@ Import Namespace="MvcApplication1.Helpers" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-         <title>Index3</title>
-    </head>
-    <body>
-         <div>
-    
-              <% using (Html.BeginForm())
-              { %>
-                   <%= Html.Label("firstName", "First Name:") %>    
-                   <br />
-                   <%= Html.TextBox("firstName")%>
-                   <br /><br />
-                   <%= Html.Label("lastName", "Last Name:") %>    
-                   <br />
-                   <%= Html.TextBox("lastName")%>
-    
-                   <br /><br />
-                   <input type="submit" value="Register" />
-              <% } %>
-         </div>
-    </body>
-    </html>
+[!code[Main](creating-custom-html-helpers-cs/samples/sample6.xml)]
 
 ## Summary
 

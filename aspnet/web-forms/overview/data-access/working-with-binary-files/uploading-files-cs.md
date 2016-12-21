@@ -56,31 +56,7 @@ Like in the other folders, `Default.aspx` in the `BinaryData` folder will list t
 Lastly, add these pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Enhancing the GridView `<siteMapNode>`:
 
 
-    <siteMapNode 
-        title="Working with Binary Data" 
-        url="~/BinaryData/Default.aspx" 
-        description="Extend the data model to include collecting binary data.">
-        
-        <siteMapNode 
-            title="Uploading Files" 
-            url="~/BinaryData/FileUpload.aspx" 
-            description="Examine the different ways to store binary data on the 
-                         web server and see how to accept uploaded files from users 
-                         with the FileUpload control." />
-        <siteMapNode 
-            title="Display or Download Binary Data" 
-            url="~/BinaryData/DisplayOrDownloadData.aspx" 
-            description="Let users view or download the captured binary data." />
-        <siteMapNode 
-            title="Adding New Binary Data" 
-            url="~/BinaryData/UploadInDetailsView.aspx" 
-            description="Learn how to augment the inserting interface to 
-                         include a FileUpload control." />
-        <siteMapNode 
-            title="Updating and Deleting Existing Binary Data" 
-            url="~/BinaryData/UpdatingAndDeleting.aspx" 
-            description="Learn how to update and delete existing binary data." />
-    </siteMapNode>
+[!code[Main](uploading-files-cs/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the Working with Binary Data tutorials.
 
@@ -173,12 +149,7 @@ To update the main TableAdapter query, right-click on the `CategoriesTableAdapte
 When using ad-hoc SQL statements for the TableAdapter, updating the column list in the main query updates the column list for all of the `SELECT` query methods in the TableAdapter. That means the `GetCategoryByCategoryID(categoryID)` method has been updated to return the `BrochurePath` column, which might be what we intended. However, it also updated the column list in the `GetCategoriesAndNumberOfProducts()` method, removing the subquery that returns the number of products for each category! Therefore, we need to update this method s `SELECT` query. Right-click on the `GetCategoriesAndNumberOfProducts()` method, choose Configure, and revert the `SELECT` query back to its original value:
 
 
-    SELECT CategoryID, CategoryName, Description, 
-           (SELECT COUNT(*) 
-                FROM Products p 
-                WHERE p.CategoryID = c.CategoryID) 
-           as NumberOfProducts
-    FROM Categories c
+[!code[Main](uploading-files-cs/samples/sample2.xml)]
 
 Next, create a new TableAdapter method that returns a particular category s `Picture` column value. Right-click on the `CategoriesTableAdapter` s header and choose the Add Query option to launch the TableAdapter Query Configuration Wizard. The first step of this wizard asks us if we want to query data using an ad-hoc SQL statement, a new stored procedure, or an existing one. Select Use SQL statements and click Next. Since we will be returning a row, choose the SELECT which returns rows option from the second step.
 
@@ -196,9 +167,7 @@ Next, create a new TableAdapter method that returns a particular category s `Pic
 In the third step, enter the following SQL query and click Next:
 
 
-    SELECT     CategoryID, CategoryName, Description, BrochurePath, Picture
-    FROM       Categories
-    WHERE      CategoryID = @CategoryID
+[!code[Main](uploading-files-cs/samples/sample3.xml)]
 
 The last step is to choose the name for the new method. Use `FillCategoryWithBinaryDataByCategoryID` and `GetCategoryWithBinaryDataByCategoryID` for the Fill a DataTable and Return a DataTable patterns, respectively. Click Finish to complete the wizard.
 
@@ -226,13 +195,7 @@ After adding the two `DataColumn` s to the `CategoriesDataTable` and the `GetCat
 With the DAL updated, all that remains is to augment the Business Logic Layer (BLL) to include a method for the new `CategoriesTableAdapter` method. Add the following method to the `CategoriesBLL` class:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Select, false)] 
-    public Northwind.CategoriesDataTable 
-        GetCategoryWithBinaryDataByCategoryID(int categoryID)
-    {
-        return Adapter.GetCategoryWithBinaryDataByCategoryID(categoryID);
-    }
+[!code[Main](uploading-files-cs/samples/sample4.xml)]
 
 ## Step 5: Uploading a File From the Client to the Web Server
 
@@ -259,29 +222,7 @@ Figure 13 shows this page when viewed through a browser. Note that clicking the 
 On postback, the uploaded file can be saved to the file system or its binary data can be worked with directly through a Stream. For this example, let s create a `~/Brochures` folder and save the uploaded file there. Start by adding the `Brochures` folder to the site as a subfolder of the root directory. Next, create an event handler for the `UploadButton` s `Click` event and add the following code:
 
 
-    protected void UploadButton_Click(object sender, EventArgs e)
-    {
-        if (UploadTest.HasFile == false)
-        {
-            // No file uploaded!
-            UploadDetails.Text = "Please first select a file to upload...";            
-        }
-        else
-        {
-            // Display the uploaded file's details
-            UploadDetails.Text = string.Format(
-                    @"Uploaded file: {0}<br />
-                      File size (in bytes): {1:N0}<br />
-                      Content-type: {2}", 
-                      UploadTest.FileName, 
-                      UploadTest.FileBytes.Length,
-                      UploadTest.PostedFile.ContentType);
-            // Save the file
-            string filePath = 
-                Server.MapPath("~/Brochures/" + UploadTest.FileName);
-            UploadTest.SaveAs(filePath);
-        }
-    }
+[!code[Main](uploading-files-cs/samples/sample5.xml)]
 
 The FileUpload control provides a variety of properties for working with the uploaded data. For instance, the [`HasFile` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.fileupload.hasfile.aspx) indicates whether a file was uploaded by the user, while the [`FileBytes` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.fileupload.filebytes.aspx) provides access to the uploaded binary data as an array of bytes. The `Click` event handler starts by ensuring that a file has been uploaded. If a file has been uploaded, the Label shows the name of the uploaded file, its size in bytes, and its content-type.
 

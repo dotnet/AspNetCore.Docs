@@ -52,10 +52,7 @@ Perform the same steps again, but add a scaffold for the Enrollment class. When 
 
 To make it easier for you to navigate to your new views, you can add a couple of hyperlinks to the Index views for students and enrollments. Open the file at **Views/Home/Index.cshtml**, which is the home page for your site. Add the following code below the jumbotron.
 
-    <div>
-        @Html.ActionLink("List of students", "Index", "Students")<br />
-        @Html.ActionLink("List of enrollments", "Index", "Enrollments")
-    </div>
+[!code[Main](generating-views/samples/sample1.xml)]
 
 For the ActionLink method, the first parameter is the text to display in the link. The second parameter is the action and the third parameter is the name of the controller. For example, the first link points to the Index action in StudentsController. The actual hyperlink is constructed from these values. The first link ultimately takes users to the **Index.cshtml** file within the **Views/Students** folder.
 

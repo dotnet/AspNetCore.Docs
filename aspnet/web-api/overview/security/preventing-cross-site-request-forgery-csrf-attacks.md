@@ -23,12 +23,7 @@ Here is an example of a CSRF attack:
 2. The server authenticates the user. The response from the server includes an authentication cookie.
 3. Without logging out, the user visits a malicious web site. This malicious site contains the following HTML form: 
 
-        <h1>You Are a Winner!</h1>
-          <form action="http://example.com/api/account" method="post">
-            <input type="hidden" name="Transaction" value="withdraw" />
-            <input type="hidden" name="Amount" value="1000000" />
-          <input type="submit" value="Click Me"/>
-        </form>
+    [!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample1.xml)]
 
     Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 4. The user clicks the submit button. The browser includes the authentication cookie with the request.
@@ -49,11 +44,7 @@ To help prevent CSRF attacks, ASP.NET MVC uses anti-forgery tokens, also called 
 
 Here is an example of an HTML form with a hidden form token:
 
-    <form action="/Home/Test" method="post">
-        <input name="__RequestVerificationToken" type="hidden"   
-               value="6fGBtLZmVBZ59oUad1Fr33BuPxANKY9q3Srr5y[...]" />    
-        <input type="submit" value="Submit" />
-    </form>
+[!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample2.xml)]
 
 Anti-forgery tokens work because the malicious page cannot read the user's tokens, due to same-origin policies. ([Same-orgin policies](http://www.w3.org/Security/wiki/Same_Origin_Policy) prevent documents hosted on two different sites from accessing each other's content. So in the earlier example, the malicious page can send requests to example.com, but it cannot read the response.)
 
@@ -65,9 +56,7 @@ You should require anti-forgery tokens for any nonsafe methods (POST, PUT, DELET
 
 To add the anti-forgery tokens to a Razor page, use the **HtmlHelper.AntiForgeryToken** helper method:
 
-    @using (Html.BeginForm("Manage", "Account")) {
-        @Html.AntiForgeryToken()
-    }
+[!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample3.xml)]
 
 This method adds the hidden form field and also sets the cookie token.
 
@@ -75,43 +64,8 @@ This method adds the hidden form field and also sets the cookie token.
 
 The form token can be a problem for AJAX requests, because an AJAX request might send JSON data, not HTML form data. One solution is to send the tokens in a custom HTTP header. The following code uses Razor syntax to generate the tokens, and then adds the tokens to an AJAX request. The tokens are generated at the server by calling **AntiForgery.GetTokens**.
 
-    <script>
-        @functions{
-            public string TokenHeaderValue()
-            {
-                string cookieToken, formToken;
-                AntiForgery.GetTokens(null, out cookieToken, out formToken);
-                return cookieToken + ":" + formToken;                
-            }
-        }
-    
-        $.ajax("api/values", {
-            type: "post",
-            contentType: "application/json",
-            data: {  }, // JSON data goes here
-            dataType: "json",
-            headers: {
-                'RequestVerificationToken': '@TokenHeaderValue()'
-            }
-        });
-    </script>
+[!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample4.xml)]
 
 When you process the request, extract the tokens from the request header. Then call the **AntiForgery.Validate** method to validate the tokens. The **Validate** method throws an exception if the tokens are not valid.
 
-    void ValidateRequestHeader(HttpRequestMessage request)
-    {
-        string cookieToken = "";
-        string formToken = "";
-    
-        IEnumerable<string> tokenHeaders;
-        if (request.Headers.TryGetValues("RequestVerificationToken", out tokenHeaders))
-        {
-            string[] tokens = tokenHeaders.First().Split(':');
-            if (tokens.Length == 2)
-            {
-                cookieToken = tokens[0].Trim();
-                formToken = tokens[1].Trim();
-            }
-        }
-        AntiForgery.Validate(cookieToken, formToken);
-    }
+[!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample5.xml)]

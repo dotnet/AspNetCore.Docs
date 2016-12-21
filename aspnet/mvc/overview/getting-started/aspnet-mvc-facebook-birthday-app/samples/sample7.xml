@@ -1,7 +1,13 @@
-header h1 {
-        font-size: 80px;
-        color: #004C66;
-        /*margin: 0;*/
-        padding-top: 20px;
-        font-weight: normal;
-    }
+public class HomeController : Controller
+{
+   [FacebookAuthorize("email", "user_photos")]
+   public async Task<ActionResult> Index(FacebookContext context)
+   {
+      if (ModelState.IsValid)
+      {
+         var user = await context.Client.GetCurrentUserAsync<MyAppUser>();
+         return View(user);
+      }
+
+      return View("Error");
+   }

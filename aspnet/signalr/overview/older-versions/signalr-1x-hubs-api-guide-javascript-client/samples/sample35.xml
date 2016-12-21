@@ -1,8 +1,5 @@
-public class ContosoChatHub : Hub
+public class ContosoChatMessage
 {
-    [HubMethodName("NewContosoChatMessage")]
-    public void NewContosoChatMessage(string name, string message)
-    {
-        Clients.All.addContosoChatMessageToPage(name, message);
-    }
+    public string UserName { get; set; }
+    public string Message { get; set; }
 }

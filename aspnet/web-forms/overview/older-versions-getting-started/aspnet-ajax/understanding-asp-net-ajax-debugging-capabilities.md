@@ -69,7 +69,7 @@ The Visual Studio 2008 debugger treats JavaScript embedded in a page different t
 You can get around this issue by moving the code into an external .js file and referencing it using the src attribute of the &lt;script&gt; tag:
 
 
-    <script type="text/javascript" src="Scripts/YourScript.js"></script>
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample1.xml)]
 
 What if moving the code into an external file isn't an option or requires more work than it's worth? While you can't set a breakpoint using the editor, you can add the debugger statement directly into the code where you'd like to start debugging. You can also use the Sys.Debug class available in the ASP.NET AJAX library to force debugging to start. You'll learn more about the Sys.Debug class later in this article.
 
@@ -78,22 +78,7 @@ An example of using the `debugger` keyword is shown in Listing 1. This example f
 **Listing 1. Using the debugger keyword to force the Visual Studio .NET debugger to break.**
 
 
-    function BuildPerson()
-    {
-     var person =
-     {
-     FirstName: $get("txtFirstName").value,
-     LastName: $get("txtLastName").value,
-     Address:
-     {
-     Street: $get("txtStreet").value,
-     City: $get("txtCity").value,
-     State: $get("txtState").value
-     }
-     };
-     debugger;
-     UpdatePerson(person);
-    }
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample2.xml)]
 
 Once the debugger statement is hit you will be prompted to debug the page using Visual Studio .NET and can begin stepping through the code. While doing this you may encounter an issue with accessing ASP.NET AJAX library script files used in the page so let's take a look at using Visual Studio .NET's Script Explorer.
 
@@ -149,47 +134,14 @@ The immediate window can be used to execute script commands or even load or save
 **Listing 2. Writing out a client-side trace message using the Debug class.**
 
 
-    function BuildPerson()
-    {
-     var person =
-     {
-     FirstName: $get("txtFirstName").value,
-     LastName: $get("txtLastName").value,
-     Address:
-     {
-     Street: $get("txtStreet").value,
-     City: $get("txtCity").value,
-     State: $get("txtState").value
-     }
-     };
-     Debug.writeln("Person name: " + person.LastName);
-     UpdatePerson(person);
-    }
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample3.xml)]
 
 If the LastName property contains a value of Doe, Web Development Helper will display the message "Person name: Doe" in the script console's command window (assuming that debugging has been enabled). Web Development Helper also adds a top-level debugService object into pages that can be used to write out trace information or view the content of JSON objects. Listing 3 shows an example of using the debugService class's trace function.
 
 **Listing 3. Using Web Development Helper's debugService class to write a trace message.**
 
 
-    function BuildPerson()
-    {
-     var person =
-     {
-     FirstName: $get("txtFirstName").value,
-     LastName: $get("txtLastName").value,
-     Address:
-     {
-     Street: $get("txtStreet").value,
-     City: $get("txtCity").value,
-     State: $get("txtState").value
-     }
-     };
-     if (window.debugService)
-     {
-     window.debugService.trace("Person name: " + person.LastName);
-     }
-     UpdatePerson(person);
-    }
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample4.xml)]
 
 A nice feature of the debugService class is that it will work even if debugging isn't enabled in Internet Explorer making it easy to always access trace data when Web Development Helper is running. When the tool isn't being used to debug a page, trace statements will be ignored since the call to window.debugService will return false.
 
@@ -198,25 +150,7 @@ The debugService class also allows JSON object data to be viewed using Web Devel
 **Listing 4. Using the debugService.inspect function to view JSON object data.**
 
 
-    function BuildPerson()
-    {
-     var person =
-     {
-     FirstName: $get("txtFirstName").value,
-     LastName: $get("txtLastName").value,
-     Address:
-     {
-     Street: $get("txtStreet").value,
-     City: $get("txtCity").value,
-     State: $get("txtState").value
-     }
-     };
-     if (window.debugService)
-     {
-     window.debugService.inspect("Person Object",person);
-     }
-     UpdatePerson(person);
-    }
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample5.xml)]
 
 Calling the GetPerson() function in the page or through the immediate window will result in the Object Inspector dialog window appearing as shown in Figure 5. Properties within the object can be changed dynamically by highlighting them, changing the value shown in the Value text box and then clicking the Update link. Using the Object Inspector makes it straightforward to view JSON object data and experiment with applying different values to properties.
 
@@ -317,18 +251,12 @@ Client-side tracing can be used in much the same way as the tracing functionalit
 **Listing 5. Using the Sys.Debug.trace function.**
 
 
-    function BuildPerson()
-    {
-     var address = new XmlForAsp.Address($get("txtStreet").value, $get("txtCity").value, $get("txtState").value, $get("txtZip").value);
-     var person = new XmlForAsp.Person(null, $get("txtFirstName").value, $get("txtLastName").value, address);
-     Sys.Debug.trace("Person's name: " + person.get_firstName() + " " + person.get_lastName());
-     UpdatePerson(person);
-    }
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample6.xml)]
 
 If you execute the code shown in Listing 5 you won't see any trace output in the page. The only way to see it is to use a console window available in Visual Studio .NET, Web Development Helper or Firebug. If you do want to see the trace output in the page then you'll need to add a TextArea tag and give it an id of TraceConsole as shown next:
 
 
-    <textArea id="TraceConsole" rows="10" cols="50"></textArea>
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample7.xml)]
 
 Any Sys.Debug.trace statements in the page will be written to the TraceConsole TextArea.
 
@@ -337,13 +265,7 @@ In cases where you want to see the data contained within a JSON object you can u
 **Listing 6. Using the Sys.Debug.traceDump function.**
 
 
-    function UpdatePerson(person)
-    {
-     //Dump contents of the person object to the trace output
-     Sys.Debug.traceDump(person,"Person Data");
-    
-     alert("Person updated! " + person.get_firstName() + " " + person.get_lastName());
-    }
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample8.xml)]
 
 Figure 11 shows the output from calling the Sys.Debug.traceDump function. Notice that in addition to writing out the Person object's data, it also writes out the Address sub-object's data.
 
@@ -360,20 +282,14 @@ Listing 7 shows an example of using the Sys.Debug.assert function to test a cond
 **Listing 7. Using the debug.assert function.**
 
 
-    function UpdatePerson(person)
-    {
-     //Check if address is null
-     Sys.Debug.assert(person.get_address() == null,"Address is null!",true);
-    
-     alert("Person updated! " + person.get_firstName() + " " + person.get_lastName());
-    }
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample9.xml)]
 
 Three parameters are passed including the condition to evaluate, the message to display if the assertion returns false and whether or not information about the caller should be displayed. In cases where an assertion fails, the message will be displayed as well as caller information if the third parameter was true. Figure 12 shows an example of the failure dialog that appears if the assertion shown in Listing 7 fails.
 
 The final function to cover is Sys.Debug.fail. When you want to force code to fail on a particular line in a script you can add a Sys.Debug.fail call rather than the debugger statement typically used in JavaScript applications. The Sys.Debug.fail function accepts a single string parameter that represents the reason for the failure as shown next:
 
 
-    Sys.Debug.fail("My forced failure of script.");
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample10.xml)]
 
 
 [![A Sys.Debug.assert failure message.](understanding-asp-net-ajax-debugging-capabilities/_static/image35.png)](understanding-asp-net-ajax-debugging-capabilities/_static/image34.png)
@@ -394,23 +310,19 @@ ScriptMode defaults to a value of Auto which means that the ScriptManager will c
 **Listing 8. Loading debug scripts using the ScriptManager**.
 
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server" ScriptMode="Debug"></asp:ScriptManager>
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample11.xml)]
 
 You can also load different versions (debug or release) of your own custom scripts by using the ScriptManager's Scripts property along with the ScriptReference component as shown in Listing 9.
 
 **Listing 9. Loading custom scripts using the ScriptManager.**
 
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-     <Scripts>
-     <asp:ScriptReference Path="~/Scripts/Person.js" ScriptMode="Debug"/>
-     </Scripts>
-    </asp:ScriptManager>
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample12.xml)]
 
 > [!NOTE] If you're loading custom scripts using the ScriptReference component you must notify the ScriptManager when the script has finished loading by adding the following code at the bottom of the script:
 
 
-    if (typeof(Sys) !== 'undefined') Sys.Application.notifyScriptLoaded();
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample13.xml)]
 
 The code shown in Listing 9 tells the ScriptManager to look for a debug version of the Person script so it will automatically look for Person.debug.js instead of Person.js. If the Person.debug.js file is not found an error will be raised.
 
@@ -419,11 +331,7 @@ In cases where you want a debug or release version of a custom script to be load
 **Listing 10. Inheriting the ScriptMode from the ScriptManager for custom scripts.**
 
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server" ScriptMode="Debug">
-     <Scripts>
-     <asp:ScriptReference Path="~/Scripts/Person.js" ScriptMode="Inherit"/>
-     </Scripts>
-    </asp:ScriptManager>
+[!code[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample14.xml)]
 
 By using the ScriptMode property appropriately you can more easily debug applications and simplify the overall process. The ASP.NET AJAX library's release scripts are rather difficult to step through and read since code formatting has been removed while the debug scripts are formatted specifically for debugging purposes.
 

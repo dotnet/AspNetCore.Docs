@@ -62,58 +62,13 @@ Similarly, the `<asp:PostBackTrigger>` element can be used to trigger a partial 
 
 **Listing 1: Markup for default.aspx:** 
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-     <head runat="server">
-     <title>Untitled Page</title>
-     </head>
-     <body>
-     <form id="form1" runat="server">
-     <asp:ScriptManager EnablePartialRendering="true"
-     ID="ScriptManager1" runat="server"></asp:ScriptManager>
-     <div>
-     <asp:UpdatePanel ID="UpdatePanel1" runat="server"
-     UpdateMode="Conditional">
-     <ContentTemplate>
-     <asp:Label ID="Label1" runat="server" /><br />
-     <asp:Button ID="Button1" runat="server"
-     Text="Update Both Panels" OnClick="Button1_Click" />
-     <asp:Button ID="Button2" runat="server"
-     Text="Update This Panel" OnClick="Button2_Click" />
-     </ContentTemplate>
-     </asp:UpdatePanel>
-     <asp:UpdatePanel ID="UpdatePanel2" runat="server"
-     UpdateMode="Conditional">
-     <ContentTemplate>
-     <asp:Label ID="Label2" runat="server" ForeColor="red" />
-     </ContentTemplate>
-     <Triggers>
-     <asp:AsyncPostBackTrigger ControlID="Button1" EventName="Click" />
-     </Triggers>
-     </asp:UpdatePanel>
-     </div>
-     </form>
-     </body>
-    </html>
+[!code[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample1.xml)]
 
 1. In the Click event handler for Button1, set Label1.Text and Label2.Text to something time-dependent (such as DateTime.Now.ToLongTimeString()). For the Click event handler for Button2, set only Label1.Text to the time-dependent value.
 
 **Listing 2: Codebehind (trimmed) in default.aspx.cs:** 
 
-    public partial class _Default : System.Web.UI.Page
-    {
-     protected void Button1_Click(object sender, EventArgs e)
-     {
-     Label1.Text = DateTime.Now.ToLongTimeString();
-     Label2.Text = DateTime.Now.ToLongTimeString();
-     }
-     protected void Button2_Click(object sender, EventArgs e)
-     {
-     Label1.Text = DateTime.Now.ToLongTimeString();
-     }
-    }
+[!code[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample2.xml)]
 
 1. Press F5 to build and run the project. Note that, when you click Update Both Panels , both labels change text; however, when you click Update This Panel, only Label1 updates.
 
@@ -159,97 +114,13 @@ For example, let's add two additional controls to the page, leaving one control 
 
 **Listing 3: New Markup**
 
-    <%@ Page Language="C#" AutoEventWireup="true"
-     CodeFile="Default.aspx.cs" Inherits="_Default" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-     <head id="Head1" runat="server">
-     <title>Untitled Page</title>
-     </head>
-     <body>
-     <form id="form1" runat="server">
-     <asp:ScriptManager EnablePartialRendering="true"
-     ID="ScriptManager1" runat="server"></asp:ScriptManager>
-     <div>
-     <asp:UpdatePanel ID="UpdatePanel1" runat="server"
-     UpdateMode="Conditional">
-     <ContentTemplate>
-     <asp:Label ID="Label1" runat="server" /><br />
-     <asp:Button ID="Button1" runat="server"
-     Text="Update Both Panels" OnClick="Button1_Click" />
-     <asp:Button ID="Button2" runat="server"
-     Text="Update This Panel" OnClick="Button2_Click" />
-     <asp:CheckBox ID="cbDate" runat="server"
-     Text="Include Date" AutoPostBack="false"
-     OnCheckedChanged="cbDate_CheckedChanged" />
-     </ContentTemplate>
-     </asp:UpdatePanel>
-     <asp:UpdatePanel ID="UpdatePanel2" runat="server"
-     UpdateMode="Conditional">
-     <ContentTemplate>
-     <asp:Label ID="Label2" runat="server"
-     ForeColor="red" />
-     </ContentTemplate>
-     <Triggers>
-     <asp:AsyncPostBackTrigger ControlID="Button1" 
-     EventName="Click" />
-     <asp:AsyncPostBackTrigger ControlID="ddlColor" 
-     EventName="SelectedIndexChanged" />
-     </Triggers>
-     </asp:UpdatePanel>
-     <asp:DropDownList ID="ddlColor" runat="server"
-     AutoPostBack="true"
-     OnSelectedIndexChanged="ddlColor_SelectedIndexChanged">
-     <asp:ListItem Selected="true" Value="Red" />
-     <asp:ListItem Value="Blue" />
-     <asp:ListItem Value="Green" />
-     </asp:DropDownList>
-     </div>
-     </form>
-     </body>
-    </html>
+[!code[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample3.xml)]
 
 And here is the new code-behind:
 
 **Listing 4: Codebehind**
 
-    public partial class _Default : System.Web.UI.Page
-    {
-     protected void Button1_Click(object sender, EventArgs e)
-     {
-     if (cbDate.Checked)
-     {
-     Label1.Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss");
-     Label2.Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss");
-     }
-     else
-     {
-     Label1.Text = DateTime.Now.ToLongTimeString();
-     Label2.Text = DateTime.Now.ToLongTimeString();
-     }
-     }
-     protected void Button2_Click(object sender, EventArgs e)
-     {
-     if (cbDate.Checked)
-     {
-     Label1.Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss");
-     }
-     else
-     {
-     Label1.Text = DateTime.Now.ToLongTimeString();
-     }
-     }
-     protected void cbDate_CheckedChanged(object sender, EventArgs e)
-     {
-     cbDate.Font.Bold = cbDate.Checked;
-     }
-     protected void ddlColor_SelectedIndexChanged(object sender, EventArgs e)
-     {
-     Color c = Color.FromName(ddlColor.SelectedValue);
-     Label2.ForeColor = c;
-     }
-    }
+[!code[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample4.xml)]
 
 The idea behind this page is that the drop-down list selects one of three colors to show the second label, that the check box determines both whether it is bold, and whether the labels display the date as well as the time. The check box should not cause an AJAX update, but the drop-down list should, even though it is not housed within an UpdatePanel.
 

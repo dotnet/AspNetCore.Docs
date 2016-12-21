@@ -1,9 +1,8 @@
-class Program
-{
-    static void Main(string[] args)
+    public class Global : HttpApplication
     {
-        var connection = new HubConnection("http://www.contoso.com/");
-        connection.AddClientCertificate(X509Certificate.CreateFromCertFile("MyCert.cer"));
-        connection.Start().Wait();
+        void Application_Start(object sender, EventArgs e)
+        {
+            RouteTable.Routes.MapHubs();
+            GlobalHost.HubPipeline.RequireAuthentication();
+        }
     }
-}

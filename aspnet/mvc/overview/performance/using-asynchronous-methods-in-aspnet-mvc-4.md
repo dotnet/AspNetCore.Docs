@@ -83,31 +83,11 @@ You can download the sample application from [https://github.com/RickAndMSFT/Asy
 
  The following code shows the `Gizmos` synchronous action method that is used to display a list of gizmos. (For this article, a gizmo is a fictional mechanical device.) 
 
-    public ActionResult Gizmos()
-    {
-        ViewBag.SyncOrAsync = "Synchronous";
-        var gizmoService = new GizmoService();
-        return View("Gizmos", gizmoService.GetGizmos());
-    }
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample1.xml)]
 
 The following code shows the `GetGizmos` method of the gizmo service.
 
-    public class GizmoService
-    {
-        public async Task<List<Gizmo>> GetGizmosAsync(
-            // Implementation removed.
-           
-        public List<Gizmo> GetGizmos()
-        {
-            var uri = Util.getServiceUri("Gizmos");
-            using (WebClient webClient = new WebClient())
-            {
-                return JsonConvert.DeserializeObject<List<Gizmo>>(
-                    webClient.DownloadString(uri)
-                );
-            }
-        }
-    }
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample2.xml)]
 
 The `GizmoService GetGizmos` method passes a URI to an ASP.NET Web API HTTP service which returns a list of gizmos data. The *WebAPIpgw* project contains the implementation of the Web API `gizmos, widget` and `product` controllers.  
 The following image shows the gizmos view from the sample project.
@@ -120,14 +100,9 @@ The sample uses the new [async](https://msdn.microsoft.com/en-us/library/hh15651
 
 The following code shows the `Gizmos` synchronous method and the `GizmosAsync` asynchronous method. If your browser supports the [HTML 5 `<mark>` element](http://www.w3.org/wiki/HTML/Elements/mark), you'll see the changes in `GizmosAsync` in yellow highlight.
 
-    public ActionResult Gizmos()
-    {
-        ViewBag.SyncOrAsync = "Synchronous";
-        var gizmoService = new GizmoService();
-        return View("Gizmos", gizmoService.GetGizmos());
-    }
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample3.xml)]
 
-[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample1.xml?highlight=1,3,5)]
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample4.xml?highlight=1,3,5)]
 
  The following changes were applied to allow the `GizmosAsync` to be asynchronous.
 
@@ -143,18 +118,9 @@ The **await** keyword does not block the thread until the task is complete. It s
 
 The following code shows the `GetGizmos` and `GetGizmosAsync` methods.
 
-    public List<Gizmo> GetGizmos()
-        {
-            var uri = Util.getServiceUri("Gizmos");
-            using (WebClient webClient = new WebClient())
-            {
-                return JsonConvert.DeserializeObject<List<Gizmo>>(
-                    webClient.DownloadString(uri)
-                );
-            }
-        }
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample5.xml)]
 
-[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample2.xml?highlight=1,4-8)]
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample6.xml?highlight=1,4-8)]
 
  The asynchronous changes are similar to those made to the **GizmosAsync** above. 
 
@@ -172,25 +138,11 @@ The browsers presentation of the gizmos data is identical to the view created by
 
 Asynchronous action methods have a significant advantage over synchronous methods when an action must perform several independent operations. In the sample provided, the synchronous method `PWG`(for Products, Widgets and Gizmos) displays the results of three web service calls to get a list of products, widgets, and gizmos. The [ASP.NET Web API](../../../web-api/index.md) project that provides these services uses [Task.Delay](https://msdn.microsoft.com/en-us/library/hh139096(VS.110).aspx) to simulate latency or slow network calls. When the delay is set to 500 milliseconds, the asynchronous `PWGasync` method takes a little over 500 milliseconds to complete while the synchronous `PWG` version takes over 1,500 milliseconds. The synchronous `PWG` method is shown in the following code.
 
-    public ActionResult PWG()
-    {
-        ViewBag.SyncType = "Synchronous";
-        var widgetService = new WidgetService();
-        var prodService = new ProductService();
-        var gizmoService = new GizmoService();
-    
-        var pwgVM = new ProdGizWidgetVM(
-            widgetService.GetWidgets(),
-            prodService.GetProducts(),
-            gizmoService.GetGizmos()
-           );
-    
-        return View("PWG", pwgVM);
-    }
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample7.xml)]
 
 The asynchronous `PWGasync` method is shown in the following code.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample3.xml?highlight=1,3,12)]
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample8.xml?highlight=1,3,12)]
 
 The following image shows the view returned from the **PWGasync** method.
 
@@ -200,19 +152,11 @@ The following image shows the view returned from the **PWGasync** method.
 
 Asynchronous action methods returning `Task<ActionResult>`are cancelable, that is they take a [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken(VS.110).aspx) parameter when one is provided with the [AsyncTimeout](https://msdn.microsoft.com/en-us/library/system.web.mvc.asynctimeoutattribute(VS.108).aspx) attribute. The following code shows the `GizmosCancelAsync` method with a timeout of 150 milliseconds.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample4.xml?highlight=1-3,5,10)]
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample9.xml?highlight=1-3,5,10)]
 
 The following code shows the GetGizmosAsync overload, which takes a [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken(VS.110).aspx) parameter.
 
-    public async Task<List<Gizmo>> GetGizmosAsync(string uri,
-            CancellationToken cancelToken = default(CancellationToken))
-        {
-            using (HttpClient httpClient = new HttpClient())
-            {
-                var response = await httpClient.GetAsync(uri, cancelToken);
-                return (await response.Content.ReadAsAsync<List<Gizmo>>());
-            }
-        }
+[!code[Main](using-asynchronous-methods-in-aspnet-mvc-4/samples/sample10.xml)]
 
 In the sample application provided, selecting the *Cancellation Token Demo* link calls the `GizmosCancelAsync` method and demonstrates the cancelation of the asynchronous call.
 

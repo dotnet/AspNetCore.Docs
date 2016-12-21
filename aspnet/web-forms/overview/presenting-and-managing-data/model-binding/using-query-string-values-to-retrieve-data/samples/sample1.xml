@@ -1,8 +1,14 @@
-<asp:TemplateField HeaderText="Total Credits">  
-    <ItemTemplate>
-        <asp:Label Text="<%# Item.Enrollments.Sum(en => en.Course.Credits) %>" 
-            runat="server" />
-    </ItemTemplate>
-</asp:TemplateField>
-<asp:HyperLinkField Text="Courses" DataNavigateUrlFormatString="~/Courses.aspx?StudentID={0}"
-    DataNavigateUrlFields="StudentID" />
+    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+        <asp:GridView runat="server" ID="coursesGrid"
+            ItemType="ContosoUniversityModelBinding.Models.Enrollment"
+            SelectMethod="coursesGrid_GetData" AutoGenerateColumns="false">
+            <Columns>
+                <asp:BoundField HeaderText="Title" DataField="Course.Title" />
+                <asp:BoundField HeaderText="Credits" DataField="Course.Credits" />
+                <asp:BoundField HeaderText="Grade" DataField="Grade" />
+            </Columns>
+            <EmptyDataTemplate>
+                <asp:Label Text="No Enrolled Courses" runat="server" />
+            </EmptyDataTemplate>
+        </asp:GridView>
+    </asp:Content>

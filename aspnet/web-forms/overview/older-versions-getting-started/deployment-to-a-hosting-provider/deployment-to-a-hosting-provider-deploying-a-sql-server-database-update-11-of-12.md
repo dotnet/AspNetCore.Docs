@@ -34,31 +34,15 @@ In this section of the tutorial you'll make a database change and corresponding 
 
 In the ContosoUniversity.DAL project, open *Instructor.cs* and add the following property between the `HireDate` and `Courses` properties:
 
-    [MaxLength(50)]
-    public string OfficeHours { get; set; }
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12/samples/sample1.xml)]
 
 Update the initializer class so that it seeds the new column with test data. Open *Migrations\Configuration.cs* and replace the code block that begins `var instructors = new List<Instructor>` with the following code block which includes the new column:
 
-    var instructors = new List<Instructor>
-    {
-        new Instructor { FirstMidName = "Kim",     LastName = "Abercrombie", HireDate = DateTime.Parse("1995-03-11"), BirthDate = DateTime.Parse("1918-08-12"), OfficeHours = "8-9AM, 4-5PM", OfficeAssignment = new OfficeAssignment { Location = "Smith 17" } },
-        new Instructor { FirstMidName = "Fadi",    LastName = "Fakhouri",    HireDate = DateTime.Parse("2002-07-06"), BirthDate = DateTime.Parse("1960-03-15"), OfficeAssignment = new OfficeAssignment { Location = "Gowan 27" } },
-        new Instructor { FirstMidName = "Roger",   LastName = "Harui",       HireDate = DateTime.Parse("1998-07-01"), BirthDate = DateTime.Parse("1970-01-11"), OfficeHours = "6AM-6PM", OfficeAssignment = new OfficeAssignment { Location = "Thompson 304" } },
-        new Instructor { FirstMidName = "Candace", LastName = "Kapoor",      HireDate = DateTime.Parse("2001-01-15"), BirthDate = DateTime.Parse("1975-04-11") },
-        new Instructor { FirstMidName = "Roger",   LastName = "Zheng",       HireDate = DateTime.Parse("2004-02-12"), BirthDate = DateTime.Parse("1957-10-12"), OfficeHours = "By appointment only" }
-    };
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12/samples/sample2.xml)]
 
 In the ContosoUniversity project, open *Instructors.aspx* and add a new template field for office hours just before the closing `</Columns>` tag in the first `GridView` control:
 
-    <asp:TemplateField HeaderText="Office Hours">
-        <ItemTemplate>
-            <asp:Label ID="InstructorOfficeHoursLabel" runat="server" Text='<%# Eval("OfficeHours") %>'></asp:Label>
-        </ItemTemplate>
-        <EditItemTemplate>
-            <asp:TextBox ID="InstructorOfficeHoursTextBox" runat="server" Text='<%# Bind("OfficeHours") %>'
-                Width="14em"></asp:TextBox>
-        </EditItemTemplate>
-    </asp:TemplateField>
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12/samples/sample3.xml)]
 
 Build the solution.
 
@@ -66,9 +50,7 @@ Open the **Package Manager Console** window, and select ContosoUniversity.DAL as
 
 Enter the following commands:
 
-    add-migration AddOfficeHoursColumn
-    
-    update-database
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12/samples/sample4.xml)]
 
 Run the application and select the **Instructors** page. The page takes a little longer than usual to load, because the Entity Framework re-creates the database and seeds it with test data.
 
@@ -94,13 +76,13 @@ Click **enable the new database publishing improvements**.
 
 In the connection string box for **SchoolContext**, enter the same value that you used in the *Web.Test.config* transformation file in the previous tutorial:
 
-    Data Source=.\SQLExpress;Initial Catalog=School-Test;Integrated Security=True;Pooling=False;MultipleActiveResultSets=True
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12/samples/sample5.xml)]
 
 Select **Execute Code First Migrations (runs on application start)**. (In your version of Visual Studio, the check box might be labeled **Apply Code First Migrations**.)
 
 In the connection string box for **DefaultConnection**, enter the same value that you used in the *Web.Test.config*transformation file in the previous tutorial:
 
-    Data Source=.\SQLExpress;Initial Catalog=aspnet-Test;Integrated Security=True;Pooling=False;MultipleActiveResultSets=True
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12/samples/sample6.xml)]
 
 Leave **Update database** cleared.
 

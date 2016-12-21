@@ -64,10 +64,7 @@ Then, change the header text from **Application name** to **Contoso University**
 
 Also in Site.Master, change the navigation links that appear in the header to reflect the pages that are relevant to this site. You will not need either the **About** page or the **Contact** page so those links can be removed. Instead, you will need a link to a page called **Students**. This page has not been created yet.
 
-    <ul class="nav navbar-nav">
-        <li><a runat="server" href="~/">Home</a></li>
-        <li><a runat="server" href="~/Students">Students</a></li>
-    </ul>
+[!code[Main](retrieving-data/samples/sample3.xml)]
 
 Save and close Site.Master.
 
@@ -87,66 +84,7 @@ In the Models folder, add a new class named **UniversityModels.cs**.
 
 In this file, define the SchoolContext, Student, Enrollment, and Course classes as follows:
 
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace ContosoUniversityModelBinding.Models
-    {
-        public class SchoolContext : DbContext
-        {
-            public DbSet<Student> Students { get; set; }
-            public DbSet<Enrollment> Enrollments { get; set; }
-            public DbSet<Course> Courses { get; set; }
-        }
-    
-        public class Student
-        {
-            [Key, Display(Name = "ID")]
-            [ScaffoldColumn(false)]
-            public int StudentID { get; set; }
-    
-            [Required, StringLength(40), Display(Name="Last Name")]
-            public string LastName { get; set; }
-    
-            [Required, StringLength(20), Display(Name = "First Name")]
-            public string FirstName { get; set; }
-    
-            [EnumDataType(typeof(AcademicYear)), Display(Name = "Academic Year")]
-            public AcademicYear Year { get; set; }
-    
-            public virtual ICollection<Enrollment> Enrollments { get; set; }
-        }
-    
-        public class Enrollment
-        {
-            [Key]
-            public int EnrollmentID { get; set; }
-            public int CourseID { get; set; }
-            public int StudentID { get; set; }
-            public decimal? Grade { get; set; }
-            public virtual Course Course { get; set; }
-            public virtual Student Student { get; set; }
-        }
-    
-        public class Course
-        {
-            [Key]
-            public int CourseID { get; set; }
-            public string Title { get; set; }
-            public int Credits { get; set; }
-            public virtual ICollection<Enrollment> Enrollments { get; set; }
-        } 
-    
-        public enum AcademicYear
-        {
-            Freshman,
-            Sophomore,
-            Junior,
-            Senior
-        }
-    }
+[!code[Main](retrieving-data/samples/sample4.xml)]
 
 The SchoolContext class derives from DbContext, which manages the database connection and changes in the data.
 
@@ -167,92 +105,7 @@ Notice that a new file named **Configuration.cs** has been created. In Visual St
 
 Add the following code to the Seed method. You'll need to add a **using** statement for the **ContosoUniversityModelBinding.Models** namespace.
 
-    namespace ContosoUniversityModelBinding.Migrations
-    {
-        using System;
-        using System.Data.Entity;
-        using System.Data.Entity.Migrations;
-        using System.Linq;
-        using ContosoUniversityModelBinding.Models;
-    
-        internal sealed class Configuration : DbMigrationsConfiguration<SchoolContext>
-        {
-            public Configuration()
-            {
-                AutomaticMigrationsEnabled = false;
-            }
-    
-            protected override void Seed(SchoolContext context)
-            {
-    
-                context.Students.AddOrUpdate(
-                     new Student { 
-                         FirstName = "Carson", 
-                         LastName = "Alexander", 
-                         Year = AcademicYear.Freshman },
-                     new Student { 
-                         FirstName = "Meredith", 
-                         LastName = "Alonso", 
-                         Year = AcademicYear.Freshman },
-                     new Student { 
-                         FirstName = "Arturo", 
-                         LastName = "Anand", 
-                         Year = AcademicYear.Sophomore },
-                     new Student { 
-                         FirstName = "Gytis", 
-                         LastName = "Barzdukas", 
-                         Year = AcademicYear.Sophomore },
-                     new Student { 
-                         FirstName = "Yan", 
-                         LastName = "Li", 
-                         Year = AcademicYear.Junior },
-                     new Student { 
-                         FirstName = "Peggy", 
-                         LastName = "Justice", 
-                         Year = AcademicYear.Junior },
-                     new Student { 
-                         FirstName = "Laura", 
-                         LastName = "Norman", 
-                         Year = AcademicYear.Senior },
-                     new Student { 
-                         FirstName = "Nino", 
-                         LastName = "Olivetto", 
-                         Year = AcademicYear.Senior }
-                     );
-    
-                context.SaveChanges();
-    
-                context.Courses.AddOrUpdate(
-                    new Course { Title = "Chemistry", Credits = 3 },
-                    new Course { Title = "Microeconomics", Credits = 3 },
-                    new Course { Title = "Macroeconomics", Credits = 3 },
-                    new Course { Title = "Calculus", Credits = 4 },
-                    new Course { Title = "Trigonometry", Credits = 4 },
-                    new Course { Title = "Composition", Credits = 3 },
-                    new Course { Title = "Literature", Credits = 4 }
-                    );
-    
-                context.SaveChanges();
-    
-                context.Enrollments.AddOrUpdate(
-                    new Enrollment { StudentID = 1, CourseID = 1, Grade = 1 },
-                    new Enrollment { StudentID = 1, CourseID = 2, Grade = 3 },
-                    new Enrollment { StudentID = 1, CourseID = 3, Grade = 1 },
-                    new Enrollment { StudentID = 2, CourseID = 4, Grade = 2 },
-                    new Enrollment { StudentID = 2, CourseID = 5, Grade = 4 },
-                    new Enrollment { StudentID = 2, CourseID = 6, Grade = 4 },
-                    new Enrollment { StudentID = 3, CourseID = 1 },
-                    new Enrollment { StudentID = 4, CourseID = 1 },
-                    new Enrollment { StudentID = 4, CourseID = 2, Grade = 4 },
-                    new Enrollment { StudentID = 5, CourseID = 3, Grade = 3 },
-                    new Enrollment { StudentID = 6, CourseID = 4 },
-                    new Enrollment { StudentID = 7, CourseID = 5, Grade = 2 }
-                    );
-    
-                context.SaveChanges();
-            }
-        }
-    }
+[!code[Main](retrieving-data/samples/sample5.xml)]
 
 Save Configuration.cs.
 
@@ -280,41 +133,17 @@ With data in the database, you are now ready to retrieve that data and display i
 
 Open Students.aspx, and locate the **MainContent** placeholder. Within that placeholder, add a **GridView** control that includes the following code.
 
-    <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <asp:GridView runat="server" ID="studentsGrid"
-            ItemType="ContosoUniversityModelBinding.Models.Student" DataKeyNames="StudentID" 
-            SelectMethod="studentsGrid_GetData"
-            AutoGenerateColumns="false">
-            <Columns>
-                <asp:DynamicField DataField="StudentID" />
-                <asp:DynamicField DataField="LastName" />
-                <asp:DynamicField DataField="FirstName" />
-                <asp:DynamicField DataField="Year" />          
-                <asp:TemplateField HeaderText="Total Credits">
-                  <ItemTemplate>
-                    <asp:Label Text="<%# Item.Enrollments.Sum(en => en.Course.Credits) %>" 
-                        runat="server" />
-                  </ItemTemplate>
-                </asp:TemplateField>        
-            </Columns>
-        </asp:GridView>
-    </asp:Content>
+[!code[Main](retrieving-data/samples/sample6.xml)]
 
 There are a couple of important concepts in this markup code for you to notice. First, notice that a value is set for the **SelectMethod** property in the GridView element. This value specifies the name of the method that is used for retrieving data for the GridView. You will create this method in the next step. Second, notice that the **ItemType** property is set to the Student class that you created earlier. By setting this value, you can refer to properties of that class in the markup code. For example, the Student class contains a collection named Enrollments. You can use **Item.Enrollments** to retrieve that collection and then use LINQ syntax to retrieve the sum of enrolled credits for each student.
 
 In the code-behind file, you need to add the method that is specified for the **SelectMethod** value. Open **Students.aspx.cs**, and add **using** statements for the **ContosoUniversityModelBinding.Models** and **System.Data.Entity** namespaces.
 
-    using ContosoUniversityModelBinding.Models;
-    using System.Data.Entity;
+[!code[Main](retrieving-data/samples/sample7.xml)]
 
 Then, add the following method. Notice that the name of this method matches the name you provided for SelectMethod.
 
-    public IQueryable<Student> studentsGrid_GetData()
-    {
-        SchoolContext db = new SchoolContext();
-        var query = db.Students.Include(s => s.Enrollments.Select(e => e.Course));
-        return query;
-    }
+[!code[Main](retrieving-data/samples/sample8.xml)]
 
 The **Include** clause improves the performance of this query but is not essential for the query to work. Without the Include clause, the data would be retrieved using lazy loading, which involves sending a separate query to the database each time related data is retrieved. By providing the Include clause, the data is retrieved using eager loading, which means all of the related data is retrieved through a single query of the database. In cases where most of the related data is not be used, eager loading can be less efficient because more data is retrieved. However, in this case, eager loading provides the best performance because the related data is displayed for each record.
 
@@ -336,24 +165,7 @@ When setting a value for the **SelectMethod**, **UpdateMethod**, **InsertMethod*
 
 Visual Studio not only creates a method in the code-behind with the proper signature, but also generates implementation code to assist you with performing the operation. If you first set the **ItemType** property before using the automatic code generation feature, the generated code will use that type for the operations. For example, when setting the UpdateMethod property, the following code is automatically generated:
 
-    // The id parameter name should match the DataKeyNames value set on the control
-    public void studentsGrid_UpdateItem(int id)
-    {
-        ContosoUniversityModelBinding.Models.Student item = null;
-        // Load the item here, e.g. item = MyDataLayer.Find(id);
-        if (item == null)
-        {
-            // The item wasn't found
-            ModelState.AddModelError("", String.Format("Item with id {0} was not found", id));
-            return;
-        }
-        TryUpdateModel(item);
-        if (ModelState.IsValid)
-        {
-            // Save changes here, e.g. MyDataLayer.SaveChanges();
-    
-        }
-    }
+[!code[Main](retrieving-data/samples/sample9.xml)]
 
 Again, the above code does not need to be added to your project. In the next tutorial, you will implement methods for updating, deleting and adding new data.
 

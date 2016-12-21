@@ -21,57 +21,23 @@ In this section, you will start to define the HTML for the app, and add data bin
 
 Open the file Views/Home/Index.cshtml. Replace the entire contents of that file with the following.
 
-    @section scripts {
-      @Scripts.Render("~/bundles/app")
-    }
-    
-    <div class="page-header">
-      <h1>BookService</h1>
-    </div>
-    
-    <div class="row">
-    
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h2 class="panel-title">Books</h2>
-          </div>
-          <div class="panel-body">
-            <ul class="list-unstyled" data-bind="foreach: books">
-              <li>
-                <strong><span data-bind="text: AuthorName"></span></strong>: <span data-bind="text: Title"></span>
-                <small><a href="#">Details</a></small>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
-      </div>
-    
-      <div class="col-md-4">
-        <!-- TODO: Book details -->
-      </div>
-    
-      <div class="col-md-4">
-        <!-- TODO: Add new book -->
-      </div>
-    </div>
+[!code[Main](part-7/samples/sample1.xml)]
 
 Most of the `div` elements are there for [Bootstrap](http://getbootstrap.com/) styling. The important elements are the ones with `data-bind` attributes. This attribute links the HTML to the view model.
 
 For example:
 
-    <p data-bind="text: error">
+[!code[Main](part-7/samples/sample2.xml)]
 
 In this example, the &quot;`text`&quot; binding causes the `<p>` element to show the value of the `error` property from the view model. Recall that `error` was declared as a `ko.observable`:
 
-    self.error = ko.observable();
+[!code[Main](part-7/samples/sample3.xml)]
 
 Whenever a new value is assigned to `error`, Knockout updates the text in the `<p>` element.
 
 The `foreach` binding tells Knockout to loop through the contents of the `books` array. For each item in the array, Knockout creates a new &lt;li&gt; element. Bindings inside the context of the `foreach` refer to properties on the array item. For example:
 
-    <span data-bind="text: Author"></span>
+[!code[Main](part-7/samples/sample4.xml)]
 
 Here the `text` binding reads the Author property of each book.
 

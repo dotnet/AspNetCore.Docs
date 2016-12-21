@@ -32,42 +32,27 @@ For this sample, we assume that the instance of the SQL Server 2005 Express Edit
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-    <asp:ScriptManager ID="asm" runat="server"/>
+[!code[Main](databinding-to-an-accordion-vb/samples/sample1.xml)]
 
 Then, add a data source to the page. In order to use a limited amount of data, we only select the first five entries in the Vendor table of the AdventureWorks database. If you are using the Visual Studio assistant to create the data source, mind that a bug in the current version does not prefix the table name (`Vendor`) with `Purchasing`. The following markup shows the correct syntax:
 
-    <asp:SqlDataSource ID="sds1" runat="server" ConnectionString="Data
-     Source=(local)\SQLEXPRESS;Initial Catalog=AdventureWorks;Integrated Security=True" 
-     ProviderName="System.Data.SqlClient" SelectCommand="SELECT TOP 5 
-     [VendorID], [Name] FROM [Purchasing].[Vendor]" />
+[!code[Main](databinding-to-an-accordion-vb/samples/sample2.xml)]
 
 Remember the name (ID) of the data source. This very identification must then be used in the `DataSourceID` property of the Accordion control:
 
-    <ajaxToolkit:Accordion ID="acc1" runat="server"
-     HeaderCssClass="header" ContentCssClass="content"Width="300px" 
-     DataSourceID="sds1" FadeTransitions="true">
+[!code[Main](databinding-to-an-accordion-vb/samples/sample3.xml)]
 
 Within the Accordion control, you can provide templates for various parts of the control, including the header (`<HeaderTemplate>`) and the content (`<ContentTemplate>`). Within these elements, just output the data from the data source, using the `DataBinder.Eval()` method:
 
-    <HeaderTemplate><b>Vendor #<%#DataBinder.Eval(Container.DataItem, "VendorID")%></b>
-     </HeaderTemplate> 
-     <ContentTemplate><%#DataBinder.Eval(Container.DataItem, "Name")%></ContentTemplate> 
-    </ajaxToolkit:Accordion>
+[!code[Main](databinding-to-an-accordion-vb/samples/sample4.xml)]
 
 When the page is loaded, the data source must be bound to the accordion with this server-side code:
 
-    <script runat="server"> 
-     Sub Page_Load() 
-     acc1.DataBind()
-     End Sub 
-    </script>
+[!code[Main](databinding-to-an-accordion-vb/samples/sample5.xml)]
 
 To conclude this sample, you need to define the two CSS classes that are referenced in the Accordion control (in its properties `HeaderCssClass` and `ContentCssClass`). Put the following markup in the `<head>` section of the page:
 
-    <style type="text/css"> 
-     .header {background-color: blue;} 
-     .content {border: solid;}
-    </style>
+[!code[Main](databinding-to-an-accordion-vb/samples/sample6.xml)]
 
 
 [![The data in the accordion comes directly from the data source](databinding-to-an-accordion-vb/_static/image2.png)](databinding-to-an-accordion-vb/_static/image1.png)

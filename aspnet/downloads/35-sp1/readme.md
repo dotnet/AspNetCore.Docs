@@ -109,25 +109,11 @@ For an overview of ASP.NET AJAX Script Combining, see the [Script Combining](../
     > [!NOTE] This is not a required step. The `ScriptReferenceProfiler` control is not part of the installation, and you must install it separately. For more information, see [Downloads](#_Downloads) earlier in this document.
 6. Run the page. You will see a list of script references like those in the following example. You can see that the example list of script references below includes script references for a number of controls from the ASP.NET AJAX Control Toolkit. 
 
-        <asp:ScriptReference name="MicrosoftAjax.js"/>
-        <asp:ScriptReference name="MicrosoftAjaxWebForms.js"/>
-        <asp:ScriptReference name="AjaxControlToolkit.Common.Common.js" assembly=" AjaxControlToolkit"/>
-        <asp:ScriptReference name="AjaxControlToolkit.Common.DateTime.js" assembly=" AjaxControlToolkit"/>
-        <asp:ScriptReference name="AjaxControlToolkit.Compat.Timer.Timer.js" assembly=" AjaxControlToolkit"/>
+    [!code[Main](readme/samples/sample1.xml)]
 7. In the page, add `<CompositeScript>` and `<Scripts>` elements as children of the `ScriptManager` control.
 8. Copy the script references from the page and paste them into the `<Scripts>` element inside the `ScriptManager` control in the .aspx page. The resulting markup will look like the following example. 
 
-        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="false">
-           <CompositeScript>
-                <Scripts>
-                    <asp:ScriptReference name="MicrosoftAjax.js"/>
-                    <asp:ScriptReference name="MicrosoftAjaxWebForms.js"/>
-                    <asp:ScriptReference name="AjaxControlToolkit.Common.Common.js" assembly="AjaxControlToolkit"/>
-                    <asp:ScriptReference name="AjaxControlToolkit.Common.DateTime.js" assembly="AjaxControlToolkit"/>
-                    <asp:ScriptReference name="AjaxControlToolkit.Compat.Timer.Timer.js" assembly=" AjaxControlToolkit"/>   
-                </Scripts>
-            </CompositeScript>
-        </asp:ScriptManager>
+    [!code[Main](readme/samples/sample2.xml)]
 9. Run the page and view the source. You will see just one script reference now instead of many. If you want to understand the effect on performance, run Fiddler or Firebug to see the network traffic.<a id="ASP.NET_AJAX_History"></a>
 
 <a id="_Toc198012548"></a>
@@ -155,33 +141,11 @@ For an overview of browser history, see the [ASP.NET AJAX history](../../web-for
 9. Create a handler for the `ActiveStepChanged` event of the `Wizard` control.
 10. In the generated handler, enter the following code: 
 
-        protected void Wizard1_ActiveStepChanged(object sender, EventArgs e)
-        {
-        if (ScriptManager1.IsInAsyncPostBack && !ScriptManager1.IsNavigating)
-            {
-                ScriptManager1.AddHistoryPoint("index",
-                    Wizard1.ActiveStepIndex.ToString(), "Wizard step " +
-                    Wizard1.ActiveStepIndex.ToString());
-            }
-        }
+    [!code[Main](readme/samples/sample3.xml)]
 11. Create a handler for the `Navigate` event of the `ScriptManager` control.
 12. In the generated handler, enter the following code: 
 
-        protected void ScriptManager1_Navigate(object sender, HistoryEventArgs e)
-        {
-            string indexString = e.State["index"];
-        
-            if (!string.IsNullOrEmpty(indexString))
-            {
-                Wizard1.ActiveStepIndex = 0;
-            }
-            else
-            {
-                Wizard1.ActiveStepIndex = Int32.Parse(indexString);
-            }
-            
-            Page.Title = "Wizard step " + indexString;
-         }
+    [!code[Main](readme/samples/sample4.xml)]
 13. Run the application.Move through the wizard steps, entering information into each text box. Use the browser's Back and Forward button. Instead of moving to the page where you were before you started the current page, you can navigate to the next and previous steps of the wizard.
 
 <a id="_Toc198012550"></a><a id="_Toc195437078"></a>
@@ -224,19 +188,7 @@ Dynamic Data projects have undergone major changes since the ASP.NET 3.5 Extensi
 
 The December CTP of Dynamic Data has its own routing mechanism that is configured by using the `<mappings>` element in the `DynamicData` configuration block in the Web.config file. This routing mechanism has been changed to use the URL-routing APIs that are used with ASP.NET MVC Preview 2 and later projects. Routes are now configured in the Global.asax file. The following example shows how default routes are enabled in a new Dynamic Data
 
-    project.routes.Add(new DynamicDataRoute("{table}/ListDetails.aspx"){
-        Action = PageAction.List,
-        ViewName = "ListDetails",
-        Model = model
-    });
-    routes.Add(new DynamicDataRoute("{table}/ListDetails.aspx") {
-        Action = PageAction.Details,
-        ViewName = "ListDetails",
-        Model = model});
-    //routes.Add(new DynamicDataRoute("{table}/{action}.aspx") {
-    //Constraints = new RouteValueDictionary(new
-        { action = "List|Details|Edit|Insert" }),
-    //Model = model//});
+[!code[Main](readme/samples/sample5.xml)]
 
 The first route in the example sends users to the `ListDetails` template for both List and Details views. You can comment out these sections and uncomment the subsequent section. In that case, the bottom route supports having separate List and Details pages.
 
@@ -246,16 +198,7 @@ The first route in the example sends users to the `ListDetails` template for bot
 
 The December CTP release automatically finds the data model that the project is using. Alternatively, you can specify a single data model in the Web.config file. The 3.5 Service Pack 1 release requires that all data models be registered in the Global.asax file. The following example shows how to register the `NorthwindDataContext` data model class in the `RegisterRoutes` method in the Global.asax file so that it can be used with Dynamic Data. The example also shows how to enable scaffolding for the whole data model.
 
-    MetaModel model = new MetaModel();
-    // Uncomment this line to register your LINQ to SQL or ADO.NET Entity data model
-    // for ASP.NET Dynamic Data. Set ScaffoldAllTables = true only if you are sure
-    // that you want all tables in the data model to support a scaffold (i.e. templates)
-    // view. To control scaffolding for individual tables, create a partial class for
-    // the table and apply the [Scaffold(true)] attribute to the partial class.
-    // Note: Make sure that you change "YourDataContextType" to the name of the data context
-    // class in your application.model.
-    RegisterContext(typeof(NorthwindDataContext), new
-        ContextConfiguration() { ScaffoldAllTables = true });
+[!code[Main](readme/samples/sample6.xml)]
 
 Scaffolding can be enabled on a table-by-table and field-by-field basis by applying the `Scaffold` attribute to a table in the data model. The `Scaffold` attribute also works on fields in the table.
 
@@ -265,20 +208,11 @@ Scaffolding can be enabled on a table-by-table and field-by-field basis by apply
 
 The directory structure and placement of default templates has changed in Dynamic Data since the December CTP release. The following example shows the directory layout for the December CTP release.
 
-    /App_Shared
-        /DynamicDataFields
-        /DynamicDataPages
-        /Images/Products/ListDetails.aspx
+[!code[Main](readme/samples/sample7.xml)]
 
 The directory structure has been completely revamped to make it clear that it is for Dynamic Data. In addition, overrides for .aspx files for the scaffolding have been moved into their own directory named CustomPages inside the DynamicData directory to make sure that they have no directory or naming conflicts with the rest of the site. The following example shows the directory layout for the .NET 3.5 Service Pack 1 release.
 
-    /DynamicData
-      /Content
-      /CustomPages
-        /Products
-          ListDetails.aspx
-      /FieldTemplates
-      /PagesTemplates
+[!code[Main](readme/samples/sample8.xml)]
 
 <a id="_Toc198012557"></a><a id="_Toc195437064"></a><a id="_Attributes"></a>
 
@@ -286,25 +220,11 @@ The directory structure has been completely revamped to make it clear that it is
 
 Field template controls in the December CTP release referenced metadata that was added to the model as a dictionary of name/value pairs. The .NET 3.5 Service Pack 1 release exposes the metadata as a list of the actual CLR attributes that are available to a field template control, which provides easier access that is also type safe.In addition, in the December CTP release, metadata was applied directly to the top of the partial class for the data model. This was not optimal, because you could not determine easily which fields in the table the metadata was being applied to. The .NET Framework currently does not support adding metadata to existing members in a partial class. To work around this limitation, Dynamic Data uses a secondary class that is used exclusively for applying metadata. The following example shows a secondary class with the attribute applied.
 
-    [MetadataType(typeof(ProductMetadata))]
-    public partial class Product {}
+[!code[Main](readme/samples/sample9.xml)]
 
 In the previous example, a `MetaDatatype` attribute has been added to the partial class for the Product table. The attribute points to the `ProductMetadata` class, which contains the metadata for the fields in the Product table.The following example shows the `ProductMetadata` class, which contains the metadata for the fields in the Product table. Placeholder fields have been added to the `ProductMetadata` class that map to the fields in the actual Product class. Metadata attributes can then be added on a field-by-field basis, as shown for the `UnitsOnOrder` field.
 
-    public class ProductMetadata {
-        public object ProductID { get; set; }
-        public object ProductName { get; set; }
-        public object Supplier { get; set; }
-        public object Category { get; set; }
-        public object QuantityPerUnit { get; set; }
-        public object UnitPrice { get; set; }
-        public object UnitsInStock { get; set; }
-        [Range(0, 100)]
-        [Description("Enter the units in stock in this field.")]
-        public object UnitsOnOrder { get; set; }
-        public object ReorderLevel { get; set; }
-        public object Discontinued { get; set; }
-    }
+[!code[Main](readme/samples/sample10.xml)]
 
 The Dynamic Data Wizard, which is available on the Dynamic Data Preview site, is a tool that will automatically generate the partial classes. We are also working on adding a mechanism in future .NET Framework runtimes to be able to apply the metadata directly to partial classes.
 
@@ -333,81 +253,32 @@ The following steps describe changes that you must make in the Web.config file i
 3. Start Visual Studio 2008 Service Pack 1 and open the existing Dynamic Data application.
 4. Change all references of `System.Web.Extensions, Version=3.6.0.0` to `System.Web.Extensions, Version=3.5.0.0`. - 5.Remove the following configuration section: 
 
-        <section name="dynamicData"
-            type="System.Web.DynamicData.DynamicDataControlsSection"
-            requirePermission="false"
-            allowDefinition="MachineToApplication"/>
+    [!code[Main](readme/samples/sample11.xml)]
 - In the `<assemblies>` element, add the following elements: 
 
-        <add assembly="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral,
-            PublicKeyToken=31BF3856AD364E35"/>
-        <add assembly="System.Web.Routing, Version=3.5.0.0, Culture=neutral,
-            PublicKeyToken=31BF3856AD364E35"/>
-        <add assembly="System.ComponentModel.DataAnnotations, Version=3.5.0.0,
-            Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
-        <add assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral,
-            PublicKeyToken=31BF3856AD364E35"/>
+    [!code[Main](readme/samples/sample12.xml)]
 - In the `<assemblies>` element, remove the following item: 
 
-        <add assembly="System.Web.DynamicData, Version=3.6.0.0,
-            Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+    [!code[Main](readme/samples/sample13.xml)]
 - In the `<controls>` section, remove the following elements: 
 
-        <add tagPrefix="asp" namespace="System.Web.DynamicData"
-            assembly="System.Web.Extensions, Version=3.6.0.0, Culture=neutral,
-            PublicKeyToken=31BF3856AD364E35"/>
-        <add tagPrefix="asp" tagName="DynamicFilter"
-            src="~/App_Shared/DynamicDataFields/FilterUserControl.ascx"/>
+    [!code[Main](readme/samples/sample14.xml)]
 - In the `<controls>` section, add the following element: 
 
-        <add tagPrefix="asp" namespace="System.Web.DynamicData"
-            assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+    [!code[Main](readme/samples/sample15.xml)]
 - In the `<httpModules>` section, remove the following elements: 
 
-        <add name="DynamicDataModule"
-            type="System.Web.DynamicData.DynamicDataHttpModule,
-            System.Web.Extensions, Version=3.6.0.0, Culture=neutral,
-            PublicKeyToken=31BF3856AD364E35"/>
-        <add name="UrlRoutingModule" type="System.Web.Mvc.UrlRoutingModule,
-            System.Web.Extensions, Version=3.6.0.0, Culture=neutral,
-            PublicKeyToken=31BF3856AD364E35"/>
+    [!code[Main](readme/samples/sample16.xml)]
 - In the `<httpModules>` section, add the following entry: 
 
-        <add name="UrlRoutingModule"
-            type="System.Web.Routing.UrlRoutingModule, System.Web.Routing,Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+    [!code[Main](readme/samples/sample17.xml)]
 - Remove the `<dynamicData>` configuration section. - In the `<runtime>` section, replace the following section: 
 
-        <runtime>
-          <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-            <dependentAssembly>
-              <assemblyIdentity name="System.Web.Extensions"
-                   publicKeyToken="31bf3856ad364e35"/>
-              <bindingRedirect oldVersion="1.0.0.0-3.5.0.0" newVersion="3.6.0.0"/>
-            </dependentAssembly>
-            <dependentAssembly>
-              <assemblyIdentity name="System.Web.Extensions.Design"
-                publicKeyToken="31bf3856ad364e35"/>
-              <bindingRedirect oldVersion="1.0.0.0-3.5.0.0" newVersion="3.6.0.0"/>
-            </dependentAssembly>
-          </assemblyBinding>
-        </runtime>
+    [!code[Main](readme/samples/sample18.xml)]
 
  With the following section: 
 
-        <runtime>
-          <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-            <dependentAssembly>
-              <assemblyIdentity name="System.Web.Extensions"
-                  publicKeyToken="31bf3856ad364e35"/>
-              <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="3.5.0.0"/>
-            </dependentAssembly>
-            <dependentAssembly>
-              <assemblyIdentity name="System.Web.Extensions.Design"
-                  publicKeyToken="31bf3856ad364e35"/>
-              <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="3.5.0.0"/>
-            </dependentAssembly>
-          </assemblyBinding>
-        </runtime>
+    [!code[Main](readme/samples/sample19.xml)]
 
 <a id="_Toc198012560"></a><a id="_Toc195437067"></a>
 
@@ -417,27 +288,13 @@ If you are using IIS 7, you must make the following additional changes in the `<
 
 1. In the `<modules>` section, remove the following elements: 
 
-        <remove name="DynamicDataModule"/>
-        <add name="DynamicDataModule" preCondition="managedHandler"    
-        type="System.Web.DynamicData.DynamicDataHttpModule,
-            System.Web.Extensions, Version=3.6.0.0, Culture=neu4tral,
-            PublicKeyToken=31BF3856AD364E35"/>
+    [!code[Main](readme/samples/sample20.xml)]
 2. In the `<handlers>` section, remove the following elements: 
 
-        <add name="MvcScriptMap" preCondition="classicMode" verb="*"
-            path="*.mvc" modules="IsapiModule"
-            scriptProcessor="%windir%\Microsoft.NET\Framework\v2.0.50727\aspnet_isapi.dll"/>
-        <add name="MvcHandler" preCondition="integratedMode" verb="*"
-            path="Mvc.axd"
-            type="System.Web.Mvc.MvcHandler, System.Web.Extensions, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+    [!code[Main](readme/samples/sample21.xml)]
 3. In the `<modules>` section, add the following element: 
 
-        <add name="UrlRoutingModule"
-            type="System.Web.Routing.UrlRoutingModule, System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+    [!code[Main](readme/samples/sample22.xml)]
 4. In the `<handlers>` section, add the following element: 
 
-        <add name="UrlRoutingHandler"
-            preCondition="integratedMode"
-            verb="*"
-            path="UrlRouting.axd"
-            type="System.Web.Routing.UrlRoutingHandler, System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+    [!code[Main](readme/samples/sample23.xml)]

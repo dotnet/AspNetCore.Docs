@@ -1,7 +1,2 @@
-public class StockTickerHub : Hub
-{
-    public IEnumerable<Stock> GetAllStocks()
-    {
-        return _stockTicker.GetAllStocks();
-    }
-}
+[HubName("PascalCaseContosoChatHub")]
+public class ContosoChatHub : Hub

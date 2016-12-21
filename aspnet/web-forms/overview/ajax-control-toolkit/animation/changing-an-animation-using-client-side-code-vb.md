@@ -28,35 +28,23 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-    <asp:ScriptManager ID="asm" runat="server"/>
+[!code[Main](changing-an-animation-using-client-side-code-vb/samples/sample1.xml)]
 
 The animation will be applied to a panel of text which looks like this:
 
-    <asp:Panel ID="panelShadow" runat="server" CssClass="panelClass">
-     ASP.NET AJAX is a free framework for quickly creating a new generation of  
-     more efficient, more interactive and highly-personalized Web experiences 
-     that work across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of  
-     more efficient, more interactive and highly-personalized Web experiences 
-     that work across all the most popular browsers.<br />
-     ASP.NET AJAX is a free framework for quickly creating a new generation of 
-     more efficient, more interactive and highly-personalized Web experiences 
-     that work across all the most popular browsers.<br />
-    </asp:Panel>
+[!code[Main](changing-an-animation-using-client-side-code-vb/samples/sample2.xml)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-    <style type="text/css">
-     .panelClass {background-color: lime; width: 300px;}
-    </style>
+[!code[Main](changing-an-animation-using-client-side-code-vb/samples/sample3.xml)]
 
 The actual animation is launched by an HTML button:
 
-    <input type="button" id="Button1" runat="server" value="Launch Animation" />
+[!code[Main](changing-an-animation-using-client-side-code-vb/samples/sample4.xml)]
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server"`:
 
-    <ajaxToolkit:AnimationExtender ID="ae" runat="server" TargetControlID="Button1" />
+[!code[Main](changing-an-animation-using-client-side-code-vb/samples/sample5.xml)]
 
 Note that there is no `<Animations>` node within the `AnimationExtender` control. Custom JavaScript code is used to provide the animations to be used with the control.
 
@@ -72,46 +60,11 @@ The format of the return value of the `get_*()` functions and the format of the 
 
 Here is a JSON string (without the delimiting quotes and formatted nicely) representing an animation triggered by the button, but animating the panel by resizing it and fading it out at the same time:
 
-    {
-     "AnimationName":"Sequence",
-     "AnimationChildren":[
-     {
-     "AnimationName":"EnableAction",
-     "Enabled":"false",
-     "AnimationChildren":[]
-     },
-     {
-     "AnimationName":"Parallel",
-     "AnimationChildren":[
-     {
-     "AnimationName":"FadeOut",
-     "Duration":"1.5",
-     "Fps":"24",
-     "AnimationTarget":"Panel1",
-     "AnimationChildren":[]
-     },
-     {
-     "AnimationName":"Resize",
-     "Width":"1000",
-     "Height":"150",
-     "Unit":"px",
-     "AnimationTarget":"Panel1",
-     "AnimationChildren":[]
-     }]
-     }]
-    }
+[!code[Main](changing-an-animation-using-client-side-code-vb/samples/sample6.xml)]
 
 The following JavaScript code assigns this JSON descripting to the `OnClick` animation of the current extender and runs it:
 
-    <script type="text/javascript">
-     function pageLoad() 
-     {
-     var ae = $find("ae");
-     var animation = '{"AnimationName":"Sequence","AnimationChildren":[{"AnimationName":"EnableAction","Enabled":"false","AnimationChildren":[]},{"AnimationName":"Parallel","AnimationChildren":[{"AnimationName":"FadeOut","Duration":"1.5","Fps":"24","AnimationTarget":"Panel1","AnimationChildren":[]},{"AnimationName":"Resize","Width":"1000","Height":"150","Unit":"px","AnimationTarget":"Panel1","AnimationChildren":[]}]}]}';
-     ae.set_OnClick(animation);
-     ae.OnClick();
-     }
-    </script>
+[!code[Main](changing-an-animation-using-client-side-code-vb/samples/sample7.xml)]
 
 
 [![The animation runs immediately, without a mouse click (and with very little markup)](changing-an-animation-using-client-side-code-vb/_static/image2.png)](changing-an-animation-using-client-side-code-vb/_static/image1.png)

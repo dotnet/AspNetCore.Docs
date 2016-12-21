@@ -1,23 +1,19 @@
-if (user == null)
-{
-    // Insert name into the profile table
-    UserProfile newUser = db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
-    db.SaveChanges();
-
-    db.ExternalUsers.Add(new ExternalUserInformation 
-    { 
-        UserId = newUser.UserId, 
-        FullName = model.FullName, 
-        Link = model.Link 
-    });
-    db.SaveChanges();
-
-    OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
-    OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
-
-    return RedirectToLocal(returnUrl);
-}
-else
-{
-    ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
-}
+    public static class AuthConfig
+    {
+        public static void RegisterAuth()
+        {
+            //OAuthWebSecurity.RegisterMicrosoftClient(
+            //    clientId: "",
+            //    clientSecret: "");
+    
+            //OAuthWebSecurity.RegisterTwitterClient(
+            //    consumerKey: "",
+            //    consumerSecret: "");
+    
+            OAuthWebSecurity.RegisterFacebookClient(
+                appId: "111111111111111",
+                appSecret: "a1a1aa111111111a111a111aaa111111");
+    
+            //OAuthWebSecurity.RegisterGoogleClient();
+        }
+    }

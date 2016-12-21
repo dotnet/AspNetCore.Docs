@@ -1,7 +1,10 @@
-<configuration>
-  <system.web>
-    <customErrors mode="On" defaultRedirect="ErrorPage.aspx?handler=customErrors%20section%20-%20Web.config">
-      <error statusCode="404" redirect="ErrorPage.aspx?msg=404&amp;handler=customErrors%20section%20-%20Web.config"/>
-    </customErrors>
-  </system.web>
-</configuration>
+    void Application_Error(object sender, EventArgs e)
+    {
+        Exception exc = Server.GetLastError();
+    
+        if (exc is HttpUnhandledException)
+        {
+            // Pass the error on to the error page.
+            Server.Transfer("ErrorPage.aspx?handler=Application_Error%20-%20Global.asax", true);
+        }
+    }

@@ -1,1 +1,1 @@
-var hubConnection = new HubConnection("http://contoso.com/signalr", useDefaultUrl: false);
+var connection = $.hubConnection("/signalr", { useDefaultPath: false });

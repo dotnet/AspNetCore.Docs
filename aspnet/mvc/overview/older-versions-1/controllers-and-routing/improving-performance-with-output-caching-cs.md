@@ -30,21 +30,7 @@ You enable output caching by adding an [OutputCache] attribute to either an indi
 
 **Listing 1 – Controllers\HomeController.cs**
 
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-        [HandleError]
-        public class HomeController : Controller
-        {
-            [OutputCache(Duration=10, VaryByParam="none")]
-            public ActionResult Index()
-            {
-                return View();
-            }
-    
-        }
-    }
+[!code[Main](improving-performance-with-output-caching-cs/samples/sample1.xml)]
 
 In the Beta versions of ASP.NET MVC, output caching does not work for a URL like [http://www.MySite.com/](http://www.mysite.com/). Instead, you must enter a URL like [http://www.MySite.com/Home/Index](http://www.mysite.com/Home/Index). 
 
@@ -56,20 +42,7 @@ The Home controller in Listing 1 returns the Index view in Listing 2. There is n
 
 **Listing 2 – Views\Home\Index.aspx**
 
-    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="MvcApplication1.Views.Home.Index" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head runat="server">
-        <title>Index</title>
-    </head>
-    <body>
-        <div>
-        
-        The current time is: <%= DateTime.Now.ToString("T") %>
-    
-        </div>
-    </body>
-    </html>
+[!code[Main](improving-performance-with-output-caching-cs/samples/sample2.xml)]
 
 **Figure 1 – Cached Index view**
 
@@ -108,20 +81,7 @@ For example, the controller in Listing 3 exposes an action named GetName() that 
 
 **Listing 3 – Controllers\BadUserController.cs**
 
-    using System.Web.Mvc;
-    using System.Web.UI;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class BadUserController : Controller
-        {
-            [OutputCache(Duration = 3600, VaryByParam = "none")]
-            public string GetName()
-            {
-                return "Hi " + User.Identity.Name;
-            }
-        }
-    }
+[!code[Main](improving-performance-with-output-caching-cs/samples/sample3.xml)]
 
 Most likely, the controller in Listing 3 does not work the way that you want. You don't want to display the message "Hi Jack" to Jill.
 
@@ -131,20 +91,7 @@ The modified controller in Listing 4 caches the output of the GetName() action. 
 
 **Listing 4 – Controllers\UserController.cs**
 
-    using System.Web.Mvc;
-    using System.Web.UI;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class UserController : Controller
-        {
-            [OutputCache(Duration=3600, VaryByParam="none", Location=OutputCacheLocation.Client, NoStore=true)]
-            public string GetName()
-            {
-                return "Hi " + User.Identity.Name;
-            }
-        }
-    }
+[!code[Main](improving-performance-with-output-caching-cs/samples/sample4.xml)]
 
 Notice that the [OutputCache] attribute in Listing 4 includes a Location property set to the value OutputCacheLocation.Client. The [OutputCache] attribute also includes a NoStore property. The NoStore property is used to inform proxy servers and browser that they should not store a permanent copy of the cached content.
 
@@ -160,38 +107,7 @@ For example, the controller in Listing 5 exposes two actions named Master() and 
 
 **Listing 5 – Controllers\MoviesController.cs**
 
-    using System.Linq;
-    using System.Web.Mvc;
-    using MvcApplication1.Models;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class MoviesController : Controller
-        {
-            private MovieDataContext _dataContext;
-    
-            public MoviesController()
-            {
-                _dataContext = new MovieDataContext();
-            }
-    
-            [OutputCache(Duration=int.MaxValue, VaryByParam="none")]
-            public ActionResult Master()
-            {
-                ViewData.Model = (from m in _dataContext.Movies 
-                                  select m).ToList();
-                return View();
-            }
-    
-            [OutputCache(Duration = int.MaxValue, VaryByParam = "id")]
-            public ActionResult Details(int id)
-            {
-                ViewData.Model = _dataContext.Movies.SingleOrDefault(m => m.Id == id);
-                return View();
-            }
-    
-        }
-    }
+[!code[Main](improving-performance-with-output-caching-cs/samples/sample5.xml)]
 
 The Master() action includes a VaryByParam property with the value "none". When the Master() action is invoked, the same cached version of the Master view is returned. Any form parameters or query string parameters are ignored (see Figure 2).
 
@@ -228,32 +144,13 @@ For example, the &lt;caching&gt; web configuration section in Listing 6 defines 
 
 **Listing 6 – Caching section for web.config**
 
-    <caching>
-    <outputCacheSettings>
-        <outputCacheProfiles>
-            <add name="Cache1Hour" duration="3600" varyByParam="none"/>
-        </outputCacheProfiles>
-    </outputCacheSettings>
-    </caching>
+[!code[Main](improving-performance-with-output-caching-cs/samples/sample6.xml)]
 
 The controller in Listing 7 illustrates how you can apply the Cache1Hour profile to a controller action with the [OutputCache] attribute.
 
 **Listing 7 – Controllers\ProfileController.cs**
 
-    using System;
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-        public class ProfileController : Controller
-        {
-            [OutputCache(CacheProfile="Cache1Hour")]
-            public string Index()
-            {
-                return DateTime.Now.ToString("T");
-            }
-        }
-    }
+[!code[Main](improving-performance-with-output-caching-cs/samples/sample7.xml)]
 
 If you invoke the Index() action exposed by the controller in Listing 7 then the same time will be returned for 1 hour.
 

@@ -61,18 +61,17 @@ There are two packages, one for C# and one for Visual Basic. Make sure to use th
 
 This command installs the necessary assemblies and adds the MVC views for the help pages (located in the Areas/HelpPage folder). You'll need to manually add a link to the Help page. The URI is /Help. To create a link in a razor view, add the following:
 
-    @Html.ActionLink("API", "Index", "Help", new { area = "" }, null)
+[!code[Main](creating-api-help-pages/samples/sample1.xml)]
 
 Also, make sure to register areas. In the Global.asax file, add the following code to the **Application\_Start** method, if it is not there already:
 
-[!code[Main](creating-api-help-pages/samples/sample1.xml?highlight=4)]
+[!code[Main](creating-api-help-pages/samples/sample2.xml?highlight=4)]
 
 ## Adding API Documentation
 
 By default, the help pages have placeholder strings for documentation. You can use [XML documentation comments](https://msdn.microsoft.com/en-us/library/b2s063f7.aspx) to create the documentation. To enable this feature, open the file Areas/HelpPage/App\_Start/HelpPageConfig.cs and uncomment the following line:
 
-    config.SetDocumentationProvider(new XmlDocumentationProvider(
-        HttpContext.Current.Server.MapPath("~/App_Data/XmlDocument.xml")));
+[!code[Main](creating-api-help-pages/samples/sample3.xml)]
 
 Now enable XML documentation. In Solution Explorer, right-click the project and select **Properties**. Select the **Build** page.
 
@@ -84,22 +83,7 @@ Under **Output**, check **XML documentation file**. In the edit box, type "App\_
 
 Next, open the code for the `ValuesController` API controller, which is defined in /Controllers/ValuesControler.cs. Add some documentation comments to the controller methods. For example:
 
-    /// <summary>
-    /// Gets some very important data from the server.
-    /// </summary>
-    public IEnumerable<string> Get()
-    {
-        return new string[] { "value1", "value2" };
-    }
-    
-    /// <summary>
-    /// Looks up some data by ID.
-    /// </summary>
-    /// <param name="id">The ID of the data.</param>
-    public string Get(int id)
-    {
-        return "value";
-    }
+[!code[Main](creating-api-help-pages/samples/sample4.xml)]
 
 > [!NOTE] Tip: If you position the caret on the line above the method and type three forward slashes, Visual Studio automatically inserts the XML elements. Then you can fill in the blanks.
 
@@ -122,8 +106,7 @@ If a controller action supports multiple HTTP methods, the **ApiExplorer** treat
 
 To hide an API from the **ApiExplorer**, add the **ApiExplorerSettings** attribute to the action and set *IgnoreApi* to true.
 
-    [ApiExplorerSettings(IgnoreApi=true)]
-    public HttpResponseMessage Get(int id) {  }
+[!code[Main](creating-api-help-pages/samples/sample5.xml)]
 
 You can also add this attribute to the controller, to exclude the entire controller.
 

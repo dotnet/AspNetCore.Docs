@@ -61,99 +61,10 @@ With the new attribute routing extensibility of IDirectRouteProvider, a user cou
 
 1. Support Inheritance of attribute routes. For example, in the following scenario Blog and Store controllers are using an attribute route convention that is defined by the BaseController. 
 
-        [InheritedRoute("attributerouting/{controller}/{action=Index}/{id?}")]
-        public abstract class BaseController : Controller
-        {
-        }
-        public class BlogController : BaseController
-        {
-            public string Index()
-            {
-                return "Hello from blog!";
-            }
-        }
-        public class StoreController : BaseController
-        {
-            public string Index()
-            {
-                return "Hello from store!";
-            }
-        }
-        [AttributeUsage(AttributeTargets.Class, Inherited=true, AllowMultiple=true)]
-        public class InheritedRouteAttribute : Attribute, IDirectRouteFactory
-        {
-            public InheritedRouteAttribute(string template)
-            {
-                Template=template;
-            }
-            public string Name { get; set; }
-            public int Order { get; set; }
-            public string Template { get; private set; }
-            public new RouteEntry CreateRoute(DirectRouteFactoryContext context)
-            {
-                // context.Actions will always contain at least one action - and all of the 
-                // actions will always belong to the same controller.
-                var controllerDescriptor=context.Actions.First().ControllerDescriptor;
-                var template=Template.Replace("{controller}", 
-                    controllerDescriptor.ControllerName);
-                IDirectRouteBuilder builder=context.CreateBuilder(template);
-                builder.Name=Name;
-                builder.Order=Order;
-                return builder.Build();
-            }
-        }
-        // Custom direct route provider which looks for route attributes of type 
-        // InheritedRouteAttribute and also supports attribute route inheritance.
-        public class InheritedDirectRouteProvider : DefaultDirectRouteProvider
-        {
-            protected override IReadOnlyList<IDirectRouteFactory> 
-                 GetControllerRouteFactories(ControllerDescriptor controllerDescriptor)
-            {
-                return controllerDescriptor
-                    .GetCustomAttributes(typeof(InheritedRouteAttribute), inherit: true)
-                    .Cast<IDirectRouteFactory>()
-                    .ToArray();
-            }
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-52/samples/sample1.xml)]
 2. Automatically generate route names for attribute routes. 
 
-        protected override IReadOnlyList<IDirectRouteFactory> 
-                 GetActionRouteFactories(ActionDescriptor actionDescriptor)
-        {
-            // Get all the route attributes decorated directly on the actions
-            IReadOnlyList<IDirectRouteFactory> actionRouteFactories=base.GetActionRouteFactories(actionDescriptor);
-            // Check if the route attribute on each action already has a route name and if no, 
-            // generate a route name automatically
-            // based on the convention: <ControllerName>_<ActionName> (ex: Customers_GetById)
-            foreach (IDirectRouteFactory routeFactory in actionRouteFactories)
-            {
-                RouteAttribute routeAttr=routeFactory as RouteAttribute;
-                if (string.IsNullOrEmpty(routeAttr.Name))
-                {
-                    routeAttr.Name=actionDescriptor.ControllerDescriptor.ControllerName + "_" 
-                          + actionDescriptor.ActionName;
-                }
-            }
-            return actionRouteFactories;
-        }
-        protected override IReadOnlyList<IDirectRouteFactory> 
-              GetControllerRouteFactories(ControllerDescriptor controllerDescriptor)
-        {
-            // Get all the route attributes decorated directly on the controllers
-            IReadOnlyList<IDirectRouteFactory> controllerRouteFactories=base.GetControllerRouteFactories(controllerDescriptor);
-            // Check if the route attribute on each controller already has a route name and if no, 
-            // generate a route name automatically
-            // based on the convention: <ControllerName>Route (ex: CustomersRoute)
-            foreach (IDirectRouteFactory routeFactory in controllerRouteFactories)
-            {
-                RouteAttribute routeAttr=routeFactory as RouteAttribute;
-                if (string.IsNullOrEmpty(routeAttr.Name))
-                {
-                    routeAttr.Name=controllerDescriptor.ControllerName + "Route";
-                }
-            }
-            return controllerRouteFactories;
-        }
+    [!code[Main](whats-new-in-aspnet-mvc-52/samples/sample2.xml)]
 3. Modify route prefixes in one central place before the routes get added to the route table.
 4. Filter out the controllers on which you want the attribute routing to look for. We hope to blog on 3 and 4 soon.
 

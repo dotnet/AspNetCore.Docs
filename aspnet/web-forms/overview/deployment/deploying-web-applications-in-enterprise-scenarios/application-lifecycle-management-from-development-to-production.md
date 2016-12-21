@@ -120,7 +120,7 @@ The end result is that if the solution builds successfully and passes unit tests
 The **DeployToTest** build definition supplies these arguments to MSBuild:
 
 
-    /p:DeployOnBuild=true;DeployTarget=package;TargetEnvPropsFile=[path]\Env-Dev.proj
+[!code[Main](application-lifecycle-management-from-development-to-production/samples/sample1.xml)]
 
 
 The **DeployOnBuild=true** and **DeployTarget=package** properties are used when Team Build builds the projects within the solution. When the project is a web application project, these properties instruct MSBuild to create a web deployment package for the project. The **TargetEnvPropsFile** property tells the *Publish.proj* file where to find the environment-specific project file to import.
@@ -158,7 +158,7 @@ This is the high-level process for a deployment to the staging environment:
 The **DeployToStaging** build definition supplies these arguments to MSBuild:
 
 
-    /p:TargetEnvPropsFile=[path]\Env-Stage.proj;OutputRoot=[path to build folder]
+[!code[Main](application-lifecycle-management-from-development-to-production/samples/sample2.xml)]
 
 
 The **TargetEnvPropsFile** property tells the *Publish.proj* file where to find the environment-specific project file to import. The **OutputRoot** property overrides the built-in value and indicates the location of the build folder that contains the resources you want to deploy. When Rob queues the build, he uses the **Parameters** tab to provide an updated value for the **OutputRoot** property.
@@ -171,9 +171,7 @@ The **TargetEnvPropsFile** property tells the *Publish.proj* file where to find 
 The **DeployToStaging-WhatIf** build definition contains the same deployment logic as the **DeployToStaging** build definition. However, it includes the additional argument **WhatIf=true**:
 
 
-    /p:TargetEnvPropsFile=[path]\Env-Stage.proj;
-       OutputRoot=[path to build folder];
-       WhatIf=true
+[!code[Main](application-lifecycle-management-from-development-to-production/samples/sample3.xml)]
 
 
 Within the *Publish.proj* file, the **WhatIf** property indicates that all deployment resources should be published in "what if" mode. In other words, log files are generated as if the deployment had gone ahead, but nothing is actually changed in the destination environment. This lets you evaluate the impact of a proposed deployment&#x2014;in particular, what will get added, what will get updated, and what will get deleted&#x2014;before you actually make any changes.

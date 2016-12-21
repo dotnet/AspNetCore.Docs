@@ -107,35 +107,7 @@ Now that we have our class library, we can start building our extender control. 
 
 **Listing 1 - MyCustomExtender.cs**
 
-    using System.ComponentModel;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-    using AjaxControlToolkit;
-    
-    [assembly: System.Web.UI.WebResource("CustomExtenders.MyControlBehavior.js", "text/javascript")]
-    
-    namespace CustomExtenders
-    {
-        [ClientScriptResource("CustomExtenders.MyControlBehavior", "CustomExtenders.MyControlBehavior.js")]
-        [TargetControlType(typeof(TextBox))]
-        public class MyControlExtender : ExtenderControlBase
-        {
-    
-            [ExtenderControlProperty]
-            [DefaultValue("")]
-            public string MyProperty
-            {
-                get
-                {
-                    return GetPropertyValue("MyProperty", "");
-                }
-                set
-                {
-                    SetPropertyValue("MyProperty", value);
-                }
-            }
-        }
-    }
+[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample1.xml)]
 
 There are several things that you notice about the control extender class in Listing 1. First, notice that the class inherits from the base ExtenderControlBase class. All AJAX Control Toolkit extender controls derive from this base class. For example, the base class includes the TargetID property that is a required property of every control extender.
 
@@ -158,50 +130,7 @@ Let�s go ahead and implement the code for our DisabledButton extender. The cod
 
 **Listing 2 - DisabledButtonExtender.cs**
 
-    using System.ComponentModel;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-    using AjaxControlToolkit;
-    
-    [assembly: System.Web.UI.WebResource("CustomExtenders.DisabledButtonBehavior.js", "text/javascript")]
-    
-    namespace CustomExtenders
-    {
-        [ClientScriptResource("CustomExtenders.DisabledButtonBehavior", "CustomExtenders.DisabledButtonBehavior.js")]
-        [TargetControlType(typeof(TextBox))]
-        public class DisabledButtonExtender : ExtenderControlBase
-        {
-            [ExtenderControlProperty]
-            [DefaultValue("")]
-            [IDReferenceProperty(typeof(Button))]
-            public string TargetButtonID
-            {
-                get
-                {
-                    return GetPropertyValue("TargetButtonID", "");
-                }
-                set
-                {
-                    SetPropertyValue("TargetButtonID", value);
-                }
-            }
-    
-            [ExtenderControlProperty]
-            [DefaultValue("")]
-            public string DisabledText
-            {
-                get
-                {
-                    return GetPropertyValue("DisabledText", "");
-                }
-                set
-                {
-                    SetPropertyValue("DisabledText", value);
-                }
-            }
-    
-        }
-    }
+[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample2.xml)]
 
 The DisabledButton extender in Listing 2 has two properties named TargetButtonID and DisabledText. The IDReferenceProperty applied to the TargetButtonID property prevents you from assigning anything other than the ID of a Button control to this property.
 
@@ -213,76 +142,7 @@ The client-side component of a control extender is called a behavior. The actual
 
 **Listing 3 - DisabledButton.js**
 
-    Type.registerNamespace('CustomExtenders');
-    
-    CustomExtenders.DisabledButtonBehavior = function(element) {
-    
-        CustomExtenders.DisabledButtonBehavior.initializeBase(this, [element]);
-    
-        this._targetButtonIDValue = null;
-        this._disabledTextValue = null;
-    
-    }
-    
-    CustomExtenders.DisabledButtonBehavior.prototype = {
-    
-        initialize : function() {
-            CustomExtenders.DisabledButtonBehavior.callBaseMethod(this, 'initialize');
-    
-            // Initalization code
-            $addHandler(this.get_element(), 'keyup', 
-            Function.createDelegate(this, this._onkeyup));
-            this._onkeyup();
-        },
-    
-        dispose : function() {
-            // Cleanup code 
-    
-            CustomExtenders.DisabledButtonBehavior.callBaseMethod(this, 'dispose');
-        },
-    
-        // Property accessors 
-        //
-        get_TargetButtonID : function() {
-            return this._targetButtonIDValue;
-        },
-    
-        set_TargetButtonID : function(value) {
-            this._targetButtonIDValue = value;
-        },
-    
-        get_DisabledText : function() {
-            return this._disabledTextValue;
-        },
-    
-        set_DisabledText : function(value) {
-            this._disabledTextValue = value;
-        },
-    
-      _onkeyup : function() {
-      
-        var e = $get(this._targetButtonIDValue);
-        if (e) {
-          var disabled = ("" == this.get_element().value);
-          e.disabled = disabled;
-          if ( this._disabledTextValue) {
-            if (disabled) {
-              this._oldValue = e.value;
-              e.value = this._disabledTextValue;
-            }
-            else
-            {
-              if(this._oldValue){
-                e.value = this._oldValue;
-              }
-            }
-          }
-        }
-      }
-    
-    }
-    
-    CustomExtenders.DisabledButtonBehavior.registerClass('CustomExtenders.DisabledButtonBehavior', AjaxControlToolkit.BehaviorBase);
+[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample3.xml)]
 
 The JavaScript file in Listing 3 contains a client-side class named DisabledButtonBehavior. This class, like its server-side twin, includes two properties named TargetButtonID and DisabledText which you can access using get\_TargetButtonID/set\_<wbr />TargetButtonID and get\_DisabledText/set\_<wbr />DisabledText.
 
@@ -302,23 +162,11 @@ There is one last class that we need to create to complete our extender. We need
 
 **Listing 4 - DisabledButtonDesigner.cs**
 
-    using System.Web.UI.WebControls;
-    using System.Web.UI;
-    
-    namespace CustomExtenders
-    {
-        class DisabledButtonDesigner : AjaxControlToolkit.Design.ExtenderControlBaseDesigner
-        {
-        }
-    }
+[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample4.xml)]
 
 You associate the designer in Listing 4 with the DisabledButton extender with the Designer attribute.You need to apply the Designer attribute to the DisabledButtonExtender class like this:
 
-    [Designer(typeof(DisabledButtonDesigner))]
-    [ClientScriptResource("CustomExtenders.DisabledButtonBehavior", "CustomExtenders.DisabledButtonBehavior.js")]
-    [TargetControlType(typeof(TextBox))]
-    public class DisabledButtonExtender : ExtenderControlBase
-    {
+[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample5.xml)]
 
 ## Using the Custom Extender
 

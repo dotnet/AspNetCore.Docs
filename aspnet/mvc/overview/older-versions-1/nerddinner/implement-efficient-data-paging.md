@@ -32,14 +32,7 @@ If our site is successful, it will have thousands of upcoming dinners. We need t
 
 The Index() action method within our DinnersController class currently looks like below:
 
-    //
-    // GET: /Dinners/
-    
-    public ActionResult Index() {
-    
-        var dinners = dinnerRepository.FindUpcomingDinners().ToList();
-        return View(dinners);
-    }
+[!code[Main](implement-efficient-data-paging/samples/sample1.xml)]
 
 When a request is made to the */Dinners* URL, it retrieves a list of all upcoming dinners and then renders a listing of all of them out:
 
@@ -51,35 +44,13 @@ When a request is made to the */Dinners* URL, it retrieves a list of all upcomin
 
 In our DinnerRepository we are returning an IQueryable&lt;Dinner&gt; sequence from our FindUpcomingDinners() method:
 
-    public class DinnerRepository {
-    
-        private NerdDinnerDataContext db = new NerdDinnerDataContext();
-    
-        //
-        // Query Methods
-    
-        public IQueryable<Dinner> FindUpcomingDinners() {
-        
-            return from dinner in db.Dinners
-                   where dinner.EventDate > DateTime.Now
-                   orderby dinner.EventDate
-                   select dinner;
-        }
+[!code[Main](implement-efficient-data-paging/samples/sample2.xml)]
 
 The IQueryable&lt;Dinner&gt; object returned by our FindUpcomingDinners() method encapsulates a query to retrieve Dinner objects from our database using LINQ to SQL. Importantly, it won't execute the query against the database until we attempt to access/iterate over the data in the query, or until we call the ToList() method on it. The code calling our FindUpcomingDinners() method can optionally choose to add additional "chained" operations/filters to the IQueryable&lt;Dinner&gt; object before executing the query. LINQ to SQL is then smart enough to execute the combined query against the database when the data is requested.
 
 To implement paging logic we can update our DinnersController's Index() action method so that it applies additional "Skip" and "Take" operators to the returned IQueryable&lt;Dinner&gt; sequence before calling ToList() on it:
 
-    //
-    // GET: /Dinners/
-    
-    public ActionResult Index() {
-    
-        var upcomingDinners = dinnerRepository.FindUpcomingDinners();
-        var paginatedDinners = upcomingDinners.Skip(10).Take(20).ToList();
-    
-        return View(paginatedDinners);
-    }
+[!code[Main](implement-efficient-data-paging/samples/sample3.xml)]
 
 The above code skips over the first 10 upcoming dinners in the database, and then returns back 20 dinners. LINQ to SQL is smart enough to construct an optimized SQL query that performs this skipping logic in the SQL database – and not in the web-server. This means that even if we have millions of upcoming Dinners in the database, only the 10 we want will be retrieved as part of this request (making it efficient and scalable).
 
@@ -91,22 +62,7 @@ Instead of hard-coding a specific page range, we'll want our URLs to include a "
 
 The code below demonstrates how we can update our Index() action method to support a querystring parameter and enable URLs like */Dinners?page=2*:
 
-    //
-    // GET: /Dinners/
-    //      /Dinners?page=2
-    
-    public ActionResult Index(int? page) {
-    
-        const int pageSize = 10;
-    
-        var upcomingDinners = dinnerRepository.FindUpcomingDinners();
-    
-        var paginatedDinners = upcomingDinners.Skip((page ?? 0) * pageSize)
-                                              .Take(pageSize)
-                                              .ToList();
-    
-        return View(paginatedDinners);
-    }
+[!code[Main](implement-efficient-data-paging/samples/sample4.xml)]
 
 The Index() action method above has a parameter named "page". The parameter is declared as a nullable integer (that is what int? indicates). This means that the */Dinners?page=2* URL will cause a value of "2" to be passed as the parameter value. The */Dinners* URL (without a querystring value) will cause a null value to be passed.
 
@@ -122,47 +78,13 @@ We can register custom routing rules that map any incoming URL or URL format to 
 
 And then register a new mapping rule using the MapRoute() helper method like the first call to routes.MapRoute() below:
 
-    public void RegisterRoutes(RouteCollection routes) {
-    
-       routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-    
-        routes.MapRoute(                                        
-            "UpcomingDinners",                               // Route name
-            "Dinners/Page/{page}",                           // URL with params
-            new { controller = "Dinners", action = "Index" } // Param defaults
-        );
-    
-        routes.MapRoute(
-            "Default",                                       // Route name
-            "{controller}/{action}/{id}",                    // URL with params
-            new { controller="Home", action="Index",id="" }  // Param defaults
-        );
-    }
-    
-    void Application_Start() {
-        RegisterRoutes(RouteTable.Routes);
-    }
+[!code[Main](implement-efficient-data-paging/samples/sample5.xml)]
 
 Above we are registering a new routing rule named "UpcomingDinners". We are indicating it has the URL format "Dinners/Page/{page}" – where {page} is a parameter value embedded within the URL. The third parameter to the MapRoute() method indicates that we should map URLs that match this format to the Index() action method on the DinnersController class.
 
 We can use the exact same Index() code we had before with our Querystring scenario – except now our "page" parameter will come from the URL and not the querystring:
 
-    //
-    // GET: /Dinners/
-    //      /Dinners/Page/2
-    
-    public ActionResult Index(int? page) {
-    
-        const int pageSize = 10;
-    
-        var upcomingDinners = dinnerRepository.FindUpcomingDinners();
-        
-        var paginatedDinners = upcomingDinners.Skip((page ?? 0) * pageSize)
-                                              .Take(pageSize)
-                                              .ToList();
-    
-        return View(paginatedDinners);
-    }
+[!code[Main](implement-efficient-data-paging/samples/sample6.xml)]
 
 And now when we run the application and type in */Dinners* we'll see the first 10 upcoming dinners:
 
@@ -180,66 +102,17 @@ To implement this correctly, we'll need to know the total number of Dinners in t
 
 Below is a simple "PaginatedList" helper class that derives from the List&lt;T&gt; collection class built-into the .NET Framework. It implements a re-usable collection class that can be used to paginate any sequence of IQueryable data. In our NerdDinner application we'll have it work over IQueryable&lt;Dinner&gt; results, but it could just as easily be used against IQueryable&lt;Product&gt; or IQueryable&lt;Customer&gt; results in other application scenarios:
 
-    public class PaginatedList<T> : List<T> {
-    
-        public int PageIndex  { get; private set; }
-        public int PageSize   { get; private set; }
-        public int TotalCount { get; private set; }
-        public int TotalPages { get; private set; }
-    
-        public PaginatedList(IQueryable<T> source, int pageIndex, int pageSize) {
-            PageIndex = pageIndex;
-            PageSize = pageSize;
-            TotalCount = source.Count();
-            TotalPages = (int) Math.Ceiling(TotalCount / (double)PageSize);
-    
-            this.AddRange(source.Skip(PageIndex * PageSize).Take(PageSize));
-        }
-    
-        public bool HasPreviousPage {
-            get {
-                return (PageIndex > 0);
-            }
-        }
-    
-        public bool HasNextPage {
-            get {
-                return (PageIndex+1 < TotalPages);
-            }
-        }
-    }
+[!code[Main](implement-efficient-data-paging/samples/sample7.xml)]
 
 Notice above how it calculates and then exposes properties like "PageIndex", "PageSize", "TotalCount", and "TotalPages". It also then exposes two helper properties "HasPreviousPage" and "HasNextPage" that indicate whether the page of data in the collection is at the beginning or end of the original sequence. The above code will cause two SQL queries to be run - the first to retrieve the count of the total number of Dinner objects (this doesn't return the objects – rather it performs a "SELECT COUNT" statement that returns an integer), and the second to retrieve just the rows of data we need from our database for the current page of data.
 
 We can then update our DinnersController.Index() helper method to create a PaginatedList&lt;Dinner&gt; from our DinnerRepository.FindUpcomingDinners() result, and pass it to our view template:
 
-    //
-    // GET: /Dinners/
-    //      /Dinners/Page/2
-    
-    public ActionResult Index(int? page) {
-    
-        const int pageSize = 10;
-    
-        var upcomingDinners = dinnerRepository.FindUpcomingDinners();
-        var paginatedDinners = new PaginatedList<Dinner>(upcomingDinners, page ?? 0, pageSize);
-    
-        return View(paginatedDinners);
-    }
+[!code[Main](implement-efficient-data-paging/samples/sample8.xml)]
 
 We can then update the \Views\Dinners\Index.aspx view template to inherit from ViewPage&lt;NerdDinner.Helpers.PaginatedList&lt;Dinner&gt;&gt; instead of ViewPage&lt;IEnumerable&lt;Dinner&gt;&gt;, and then add the following code to the bottom of our view-template to show or hide next and previous navigation UI:
 
-    <% if (Model.HasPreviousPage) { %>
-    
-        <%= Html.RouteLink("<<<", "UpcomingDinners", new { page = (Model.PageIndex-1) }) %>
-    
-    <% } %>
-    
-    <% if (Model.HasNextPage) {  %>
-    
-        <%= Html.RouteLink(">>>", "UpcomingDinners", new { page = (Model.PageIndex + 1) }) %>
-    
-    <% } %>
+[!code[Main](implement-efficient-data-paging/samples/sample9.xml)]
 
 Notice above how we are using the Html.RouteLink() helper method to generate our hyperlinks. This method is similar to the Html.ActionLink() helper method we've used previously. The difference is that we are generating the URL using the "UpcomingDinners" routing rule we setup within our Global.asax file. This ensures that we'll generate URLs to our Index() action method that have the format: */Dinners/Page/{page}* – where the {page} value is a variable we are providing above based on the current PageIndex.
 

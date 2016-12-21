@@ -90,31 +90,7 @@ ASP.NET Routing uses a route table to handle incoming requests. This route table
 
 **Listing 1 - Global.asax**
 
-    ' Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    ' visit https://go.microsoft.com/?LinkId=9394802
-    
-    Public Class MvcApplication
-        Inherits System.Web.HttpApplication
-    
-        Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}")
-    
-            ' MapRoute takes the following parameters, in order:
-            ' (1) Route name
-            ' (2) URL with parameters
-            ' (3) Parameter defaults
-            routes.MapRoute( _
-                "Default", _
-                "{controller}/{action}/{id}", _
-                New With {.controller = "Home", .action = "Index", .id = ""} _
-            )
-    
-        End Sub
-    
-        Sub Application_Start()
-            RegisterRoutes(RouteTable.Routes)
-        End Sub
-    End Class
+[!code[Main](understanding-models-views-and-controllers-vb/samples/sample1.xml)]
 
 When an ASP.NET application first starts, the Application\_Start() method is called. In Listing 1, this method calls the RegisterRoutes() method and the RegisterRoutes() method creates the default route table.
 
@@ -162,23 +138,7 @@ A controller is just a class (for example, a Visual Basic or C# class). The samp
 
 **Listing 2 - HomeController.cs**
 
-    <HandleError()> _
-    Public Class HomeController
-        Inherits System.Web.Mvc.Controller
-    
-        Function Index()
-            ViewData("Title") = "Home Page"
-            ViewData("Message") = "Welcome to ASP.NET MVC!"
-    
-            Return View()
-        End Function
-    
-        Function About()
-            ViewData("Title") = "About Page"
-    
-            Return View()
-        End Function
-    End Class
+[!code[Main](understanding-models-views-and-controllers-vb/samples/sample2.xml)]
 
 Notice that the HomeController has two methods named Index() and About(). These two methods correspond to the two actions exposed by the controller. The URL /Home/Index invokes the HomeController.Index() method and the URL /Home/About invokes the HomeController.About() method.
 
@@ -202,14 +162,7 @@ The file in Listing 3 contains the About.aspx view.
 
 **Listing 3 - About.aspx**
 
-    <%@ Page Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-    
-    <asp:Content ID="aboutContent" ContentPlaceHolderID="MainContent" runat="server">
-        <h2>About</h2>
-        <p>
-            Put content here.
-        </p>
-    </asp:Content>
+[!code[Main](understanding-models-views-and-controllers-vb/samples/sample3.xml)]
 
 If you ignore the first line in Listing 3, most of the rest of the view consists of standard HTML. You can modify the contents of the view by entering any HTML that you want here.
 

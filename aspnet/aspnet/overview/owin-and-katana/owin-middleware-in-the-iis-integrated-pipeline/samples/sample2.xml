@@ -1,39 +1,16 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.Owin;
-using Owin;
-using System.Web;
-using System.IO;
-using Microsoft.Owin.Extensions;
-[assembly: OwinStartup(typeof(owin2.Startup))]
-namespace owin2
+public class MyModule : IHttpModule
 {
-    public class Startup
+    public void Dispose()
     {
-        public void Configuration(IAppBuilder app)
-        {
-            app.Use((context, next) =>
-            {
-                PrintCurrentIntegratedPipelineStage(context, "Middleware 1");
-                return next.Invoke();
-            });
-            app.Use((context, next) =>
-            {
-                PrintCurrentIntegratedPipelineStage(context, "2nd MW");
-                return next.Invoke();
-            }); 
-            app.Run(context =>
-            {
-                PrintCurrentIntegratedPipelineStage(context, "3rd MW");
-                return context.Response.WriteAsync("Hello world");
-            });            
-        }
-        private void PrintCurrentIntegratedPipelineStage(IOwinContext context, string msg)
-        {
-            var currentIntegratedpipelineStage = HttpContext.Current.CurrentNotification;
-            context.Get<TextWriter>("host.TraceOutput").WriteLine(
-                "Current IIS event: " + currentIntegratedpipelineStage
-                + " Msg: " + msg);
-        }
+        //clean-up code here.
+    }
+    public void Init(HttpApplication context)
+    {
+        // An example of how you can handle AuthenticateRequest events.
+        context.AuthenticateRequest += ctx_AuthRequest;
+    }
+    void ctx_AuthRequest(object sender, EventArgs e)
+    {
+        // Handle event.
     }
 }

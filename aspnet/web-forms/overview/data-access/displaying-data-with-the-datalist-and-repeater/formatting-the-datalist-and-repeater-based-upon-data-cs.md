@@ -83,23 +83,7 @@ Since only those products with a price under $20.00 will have the custom formatt
 Create an `ItemDataBound` event for the DataList and add the following code:
 
 
-    protected void ItemDataBoundFormattingExample_ItemDataBound
-        (object sender, DataListItemEventArgs e)
-    {
-        if (e.Item.ItemType == ListItemType.Item ||
-            e.Item.ItemType == ListItemType.AlternatingItem)
-        {
-            // Programmatically reference the ProductsRow instance bound
-            // to this DataListItem
-            Northwind.ProductsRow product =
-                (Northwind.ProductsRow)((System.Data.DataRowView)e.Item.DataItem).Row;
-            // See if the UnitPrice is not NULL and less than $20.00
-            if (!product.IsUnitPriceNull() && product.UnitPrice < 20)
-            {
-                // TODO: Highlight the product's name and price
-            }
-        }
-    }
+[!code[Main](formatting-the-datalist-and-repeater-based-upon-data-cs/samples/sample1.xml)]
 
 While the concept and semantics behind the DataList s `ItemDataBound` event handler are the same as those used by the GridView s `RowDataBound` event handler in the *Custom Formatting Based Upon Data* tutorial, the syntax differs slightly. When the `ItemDataBound` event fires, the `DataListItem` just bound to data is passed into corresponding event handler via `e.Item` (instead of `e.Row`, as with the GridView s `RowDataBound` event handler). The DataList s `ItemDataBound` event handler fires for *each* row added to the DataList, including header rows, footer rows, and separator rows. However, the product information is only bound to the data rows. Therefore, when using the `ItemDataBound` event to inspect the data bound to the DataList, we need to first ensure that we re working with a data item. This can be accomplished by checking the `DataListItem` s [`ItemType` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalistitem.itemtype.aspx), which can have one of [the following eight values](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.listitemtype.aspx):
 
@@ -123,15 +107,7 @@ Once we know that a product s price is less than $20.00, all that remains is to 
 To apply the formatting, simply set the two Label Web controls `CssClass` properties to `AffordablePriceEmphasis`, as shown in the following code:
 
 
-    // Highlight the product name and unit price Labels
-    // First, get a reference to the two Label Web controls
-    Label ProductNameLabel = (Label)e.Item.FindControl("ProductNameLabel");
-    Label UnitPriceLabel = (Label)e.Item.FindControl("UnitPriceLabel");
-    // Next, set their CssClass properties
-    if (ProductNameLabel != null)
-        ProductNameLabel.CssClass = "AffordablePriceEmphasis";
-    if (UnitPriceLabel != null)
-        UnitPriceLabel.CssClass = "AffordablePriceEmphasis";
+[!code[Main](formatting-the-datalist-and-repeater-based-upon-data-cs/samples/sample2.xml)]
 
 With the `ItemDataBound` event handler completed, revisit the `Formatting.aspx` page in a browser. As Figure 2 illustrates, those products with a price under $20.00 have both their name and price highlighted.
 
@@ -169,42 +145,14 @@ To demonstrate formatting functions, let s have the product information include 
 For this example we need two formatting functions, one that displays the product name along with the text [DISCONTINUED] , if needed, and another that displays either a highlighted price if it s less than $20.00, or the text, Please call for a price quote otherwise. Let s create these functions in the ASP.NET page s code-behind class and name them `DisplayProductNameAndDiscontinuedStatus` and `DisplayPrice`. Both methods need to return the HTML to render as a string and both need to be marked `Protected` (or `Public`) in order to be invoked from the ASP.NET page s declarative syntax portion. The code for these two methods follows:
 
 
-    protected string DisplayProductNameAndDiscontinuedStatus
-        (string productName, bool discontinued)
-    {
-        // Return just the productName if discontinued is false
-        if (!discontinued)
-            return productName;
-        else
-            // otherwise, return the productName appended with the text "[DISCONTINUED]"
-            return string.Concat(productName, " [DISCONTINUED]");
-    }
-    protected string DisplayPrice(Northwind.ProductsRow product)
-    {
-        // If price is less than $20.00, return the price, highlighted
-        if (!product.IsUnitPriceNull() && product.UnitPrice < 20)
-            return string.Concat("<span class=\"AffordablePriceEmphasis\">",
-                                  product.UnitPrice.ToString("C"), "</span>");
-        else
-            // Otherwise return the text, "Please call for a price quote"
-            return "<span>Please call for a price quote</span>";
-    }
+[!code[Main](formatting-the-datalist-and-repeater-based-upon-data-cs/samples/sample3.xml)]
 
 Note that the `DisplayProductNameAndDiscontinuedStatus` method accepts the values of the `productName` and `discontinued` data fields as scalar values, whereas the `DisplayPrice` method accepts a `ProductsRow` instance (rather than a `unitPrice` scalar value). Either approach will work; however, if the formatting function is working with scalar values that can contain database `NULL` values (such as `UnitPrice`; neither `ProductName` nor `Discontinued` allow `NULL` values), special care must be taken in handling these scalar inputs.
 
 In particular, the input parameter must be of type `Object` since the incoming value might be a `DBNull` instance instead of the expected data type. Additionally, a check must be made to determine whether or not the incoming value is a database `NULL` value. That is, if we wanted the `DisplayPrice` method to accept the price as a scalar value, we d have to use the following code:
 
 
-    protected string DisplayPrice(object unitPrice)
-    {
-        // If price is less than $20.00, return the price, highlighted
-        if (!Convert.IsDBNull(unitPrice) && ((decimal) unitPrice) < 20)
-            return string.Concat("<span class=\"AffordablePriceEmphasis\">",
-                                  ((decimal) unitPrice).ToString("C"), "</span>");
-        else
-            // Otherwise return the text, "Please call for a price quote"
-            return "<span>Please call for a price quote</span>";
-    }
+[!code[Main](formatting-the-datalist-and-repeater-based-upon-data-cs/samples/sample4.xml)]
 
 Note that the `unitPrice` input parameter is of type `Object` and that the conditional statement has been modified to ascertain if `unitPrice` is `DBNull` or not. Furthermore, since the `unitPrice` input parameter is passed in as an `Object`, it must be cast to a decimal value.
 
@@ -213,25 +161,17 @@ Note that the `unitPrice` input parameter is of type `Object` and that the condi
 With the formatting functions added to our ASP.NET page s code-behind class, all that remains is to invoke these formatting functions from the DataList s `ItemTemplate`. To call a formatting function from a template, place the function call within the databinding syntax:
 
 
-    <%# MethodName(inputParameter1, inputParameter2, ...) %>
+[!code[Main](formatting-the-datalist-and-repeater-based-upon-data-cs/samples/sample5.xml)]
 
 In the DataList s `ItemTemplate` the `ProductNameLabel` Label Web control currently displays the product s name by assigning its `Text` property the result of `<%# Eval("ProductName") %>`. In order to have it display the name plus the text [DISCONTINUED] (if needed), update the declarative syntax so that it instead assigns the `Text` property the value of the `DisplayProductNameAndDiscontinuedStatus` method. When doing so, we must pass in the product s name and discontinued values using the `Eval("columnName")` syntax. `Eval` returns a value of type `Object`, but the `DisplayProductNameAndDiscontinuedStatus` method expects input parameters of type `String` and `Boolean`; therefore, we must cast the values returned by the `Eval` method to the expected input parameter types, like so:
 
 
-    <h4>
-        <asp:Label ID="ProductNameLabel" runat="server"
-            Text='<%# DisplayProductNameAndDiscontinuedStatus((string) Eval("ProductName"),
-                  (bool) Eval("Discontinued")) %>'>
-        </asp:Label>
-    </h4>
+[!code[Main](formatting-the-datalist-and-repeater-based-upon-data-cs/samples/sample6.xml)]
 
 To display the price, we can simply set the `UnitPriceLabel` Label s `Text` property to the value returned by the `DisplayPrice` method, just like we did for displaying the product s name and [DISCONTINUED] text. However, instead of passing in the `UnitPrice` as a scalar input parameter, we instead pass in the entire `ProductsRow` instance:
 
 
-    <asp:Label ID="UnitPriceLabel" runat="server"
-        Text='<%# DisplayPrice((Northwind.ProductsRow)
-              ((System.Data.DataRowView) Container.DataItem).Row) %>'>
-    </asp:Label>
+[!code[Main](formatting-the-datalist-and-repeater-based-upon-data-cs/samples/sample7.xml)]
 
 With the calls to the formatting functions in place, take a moment to view our progress in a browser. Your screen should look similar to Figure 5, with the discontinued products including the text [DISCONTINUED] and those products costing more than $20.00 having their price replaced with the text Please call for a price quote .
 

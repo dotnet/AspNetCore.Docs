@@ -100,16 +100,7 @@ In this task, you will discover the new features of the CSS Editor. This new edi
 
     CSS
 
-        .main
-        {
-          padding: 0px 12px;
-          margin: 12px 8px 8px 8px;
-          min-height: 420px;
-        }
-          .main div
-          {
-            border: 0px;
-          }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample1.xml)]
 
     ![Hierarchical alignment in CSS ](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image10.png "Hierarchical alignment in CSS")
 
@@ -168,17 +159,7 @@ In this task, you will learn how to use cross-browser compatible CSS3 snippets i
 
     CSS
 
-        .page
-        {
-            width: 960px;
-            background-color: #fff;
-            margin: 20px auto 0px auto;
-            border: 1px solid #496077;
-            /*border radius*/
-            -moz-border-radius: 15px;
-            -webkit-border-radius: 15px;
-            border-radius: 15px;
-        }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample2.xml)]
 3. Press **F5** to run the solution. Notice that each page now has rounded borders.
 
     ![Rounded corners](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image18.png "Rounded corners")
@@ -197,35 +178,12 @@ In this task, you will learn how to use cross-browser compatible CSS3 snippets i
 
     CSS
 
-        div.images ul li img
-        {
-          ...
-        }
-        
-        div.images ul li img:hover
-        {
-        
-        }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample3.xml)]
 8. Type **transform** and press the **TAB** key twice in order to insert the transform snippet. Then, enter **rotate(-15deg)** to change the rotation angle value when images are hovered.
 
     CSS
 
-        div.images ul li img
-        {
-          padding-top: 50px;
-          padding-right: 15px;
-          width: 150px;
-          ...
-        }
-        
-        div.images ul li img:hover
-        {
-          -moz-transform: rotate(-15deg);
-          -ms-transform: rotate(-15deg);
-          -o-transform: rotate(-15deg);
-          -webkit-transform: rotate(-15deg);
-          transform: rotate(-15deg);
-        }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample4.xml)]
 9. Press **F5** to run the solution and browse to the CSS3 page. Notice that the images have rounded corners and box shadows. Hover the mouse over the images and watch them rotate.
 
     ![Transform snippet rotating an image](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image20.png "Transform snippet rotating an image")
@@ -293,11 +251,7 @@ Visual Studio now updates the HTML opening or closing tags of the element that y
 
     HTML
 
-        <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-          <br />
-          <asp:Image ImageUrl="~/images/Web11.JPG" runat="server" />
-          <h3>Visual Studio 2012 Rocks!!</h3>
-        </asp:Content>
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample5.xml)]
 2. Change the **H3** tag and type **H2** or **H1.**
 
     Notice that the end tag automatically updates. You can also modify the end tag to see that the start tag updates accordingly too.
@@ -325,14 +279,7 @@ Visual Studio now includes several HTML5 code snippets. In this task, you will u
 
     HTML
 
-        <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-          <br />
-          <asp:Image ImageUrl="~/images/Web11.JPG" runat="server" />
-          <h2>Visual Studio 2012 Rocks!!</h2>
-          <audio controls="controls">
-            <source src="audio/Kalimba.mp3" />
-          </audio>
-        </asp:Content>
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample6.xml)]
 
     > [!NOTE] You will need to add the audio file to the solution.
 4. Press **F5** to run the site and play the audio.
@@ -452,24 +399,7 @@ This task will introduce you to some of the new JavaScript editor features, whic
 
     JavaScript
 
-        <script>
-          addCount(1);
-          document.getElementById('count').innerHTML = getCount();
-        
-          function getCount() {
-            var storage = window.localStorage;
-            if (!storage.pageLoadCount)
-              storage.pageLoadCount = 0;
-        
-            return storage.pageLoadCount;
-          }
-        
-          function addCount(value) {
-            window.localStorage.pageLoadCount = parseInt(getCount(), 10) + value;
-          }
-        
-          ...   
-        </script>
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample7.xml)]
 
     > [!NOTE] Ensure the DOCTYPE is set to XHTML5 before proceeding with the next steps.
 5. Edit the code and notice that IntelliSense for JavaScript includes HTML5 features, like local storage, and their inner methods.
@@ -502,13 +432,7 @@ In this task, you will discover the new JavaScript validation for the ECMAScript
 
     JavaScript
 
-        "use strict";
-        
-        if (true) {
-            function StrictModeError()
-            {
-            }
-        }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample8.xml)]
 
     You can check out the &quot; **use strict** &quot; direction in the first line of the file, which enables ECMAScript5 **strict mode**. This mode consists in a subset of the language that clarifies ambiguities from the past edition, and adds some new features, such as getters and setters, library support for JSON, and more complete reflection on object properties.
 2. Open the **Error List** if not already opened (**View** menu | **Error List**). Notice the **function** declaration is underlined. This is because in ECMA5 standard functions cannot be nested inside language structures. In the error list below you will see the warning details.
@@ -542,9 +466,7 @@ In this task, you will explore Visual Studio features for XML documentation in J
 
     JavaScript
 
-        function test() {
-          multiply(
-        }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample9.xml)]
 
     ![XML documentation for JavaScript functions](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image45.png "XML documentation for JavaScript functions")
 
@@ -617,32 +539,21 @@ In this task, you will learn how to enable and reference the bundled and minifie
 
     C#
 
-        using System;
-        using Microsoft.Web.Optimization;
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample10.xml)]
 4. Locate the **Application\_Start** method.
 
     In this method, uncomment the EnableDefaultBundles call as shown in the snippet below. This enables us to reference a bundled collection of CSS files in a folder by using the path to that folder, plus the &quot;CSS&quot; or the &quot;JS&quot; suffix.
 
     C#
 
-        void Application_Start(object sender, EventArgs e)
-        {
-          // Default behavior
-          // Bundles all .js files in folders such as "scripts" if URL pointed to it: http://localhost:54716/scripts/custom/js 
-          BundleTable.Bundles.EnableDefaultBundles();
-        
-          ...
-        }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample11.xml)]
 5. Open the **Optimization.aspx** file and locate the content control for **HeadContent**.
 
     Notice the CSS files and the JS files have a single referenced tag.
 
     HTML
 
-        <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-          <link href="Styles/CSS" rel="stylesheet" type="text/css" />
-          <script src="Scripts/custom/JS"></script>
-        </asp:Content>
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample12.xml)]
 
     > [!NOTE] This code is for demo purposes. Ideally, you will reference the bundles in the Site.Master file. In this sample code, you will find that some of the bundled files are also being referenced by the Site.Master file, making this last reference redundant.
 6. Notice that the links are using the bundling conventions in the **href** attribute to get all the CSS or JS files from the Styles and Scripts\custom folder respectively.
@@ -651,14 +562,7 @@ In this task, you will learn how to enable and reference the bundled and minifie
 
     HTML
 
-        <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-          <ul>
-            <li>
-              <h2><a href="Styles/CSS">CSS Bundle</a></h2>
-            </li>
-            <li>
-              <h2><a href="Scripts/custom/JS">JS Bundle</a></h2>
-            </li>
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample13.xml)]
 7. Open the **Styles\Site.css** file.
 
     Notice that the original CSS file contains indented code, blank spaces and comments that enlarge the file. (Also the JavaScript file contains blank spaces and comments).
@@ -701,49 +605,14 @@ In this task, you will configure a static bundle to define a specific set of fil
 
     C#
 
-        void Application_Start(object sender, EventArgs e)
-        {
-            // Default behavior
-            // Bundles all .js files in folders such as "scripts" if URL pointed to it: http://localhost:54716/scripts/custom/js
-            BundleTable.Bundles.EnableDefaultBundles();
-        
-            // Static bundle.
-            // Access on url http://localhosthost:54716/StaticBundle
-            Bundle b = new Bundle("~/StaticBundle", typeof(JsMinify));
-            b.AddFile("~/scripts/custom/ECMAScript5.js");
-            b.AddFile("~/scripts/custom/GoToDefinition.js");
-            b.AddFile("~/scripts/bundle/JScript1.js");
-            b.AddFile("~/scripts/bundle/JScript2.js");
-        
-            BundleTable.Bundles.Add(b);
-        
-            // Dynamic bundle
-            // Bundles all .coffee files in folders such as "script" when "coffee" is appended to it: http://localhost:54716/scripts/coffee
-            // DynamicFolderBundle fb = new DynamicFolderBundle("coffee", typeof(CoffeeMinify), "*.coffee");
-            // BundleTable.Bundles.Add(fb);
-        }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample14.xml)]
 4. Open the **Optimization.aspx** file.
 
     Notice that the link to **Static JS Bundle** is using the path you have declared when you configured the static bundle in the Global.asax.cs file: **/StaticBundle**.
 
     HTML
 
-        <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-          <ul>
-            <li>
-              <h2><a href="Styles/CSS">CSS Bundle</a></h2>
-            </li>
-            <li>
-              <h2><a href="Scripts/custom/JS">JS Bundle</a></h2>
-            </li>
-            <li>
-              <h2><a href="StaticBundle">Static JS Bundle</a></h2>
-            </li>
-            <li>
-              <h2><a href="Scripts/bundle/Coffee">Dynamic JS Bundle</a></h2>
-            </li>
-          </ul>
-        </asp:Content>
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample15.xml)]
 5. Press **F5** to run the application, and then navigate to the **Optimization** page.
 6. Click on the **Static JS Bundle** link to open the file.
 
@@ -770,22 +639,7 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     C#
 
-        void Application_Start(object sender, EventArgs e)
-        {
-            // Default behavior
-            // Bundles all .js files in folders such as "scripts" if URL pointed to it: http://localhost:54716/scripts/custom/js
-            BundleTable.Bundles.EnableDefaultBundles();
-        
-            // Static bundle.
-            // Access on url http://localhosthost:54716/StaticBundle
-            ...
-        
-            // Dynamic bundle
-            // Bundles all .coffee files in folders such as "script" when "coffee" is appended to it:
-                 // http://localhost:54716/scripts/coffee
-            DynamicFolderBundle fb = new DynamicFolderBundle("coffee", typeof(CoffeeMinify), "*.coffee");
-            BundleTable.Bundles.Add(fb);
-        }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample16.xml)]
 3. Open the NuGet Package Manager Console. To do this, use the menu **View** | **Other Windows** | **Package Manager Console**.
 4. In the **Package Manager Console,** type **Install-Package CoffeeSharp** and press **ENTER**.
 5. Click the **Show All Files** button in the **Solution Explorer** window
@@ -804,16 +658,7 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     C#
 
-        public class CoffeeMinify : JsMinify
-        {
-            public override void Process(BundleResponse bundle)
-            {
-                var compiler = new CoffeeScriptEngine();
-                bundle.Content = compiler.Compile(bundle.Content);
-        
-                base.Process(bundle);
-            }
-        }
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample17.xml)]
 8. Open the **Script1.coffee** and **Script2.coffee** files from the **Scripts/bundle** folder.
 
     These files will include the CoffeScript code to be compiled while performing the bundling with the CoffeeMinify class.
@@ -831,22 +676,7 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     HTML
 
-        <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-          <ul>
-            <li>
-              <h2><a href="Styles/CSS">CSS Bundle</a></h2>
-            </li>
-            <li>
-              <h2><a href="Scripts/custom/JS">JS Bundle</a></h2>
-            </li>
-            <li>
-              <h2><a href="StaticBundle">Static JS Bundle</a></h2>
-            </li>
-            <li>
-              <h2><a href="Scripts/bundle/Coffee">Dynamic JS Bundle</a></h2>
-            </li>
-          </ul>
-        </asp:Content>
+    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample18.xml)]
 10. Press **F5** to run the application, and then navigate to the **Optimization** page.
 11. Click on the **Dynamic JS Bundle** link to open the generated file.
 

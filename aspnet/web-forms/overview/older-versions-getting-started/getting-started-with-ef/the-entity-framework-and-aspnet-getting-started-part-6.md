@@ -114,22 +114,13 @@ However, because you've changed the markup for `EntityDataSource` controls to us
 
 Open the *Students.aspx* page. In the `StudentsEntityDataSource` control, remove the `Where` attribute and add an `EntityTypeFilter="Student"` attribute. The markup will now resemble the following example:
 
-    <asp:EntityDataSource ID="StudentsEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False"
-            EntitySetName="People" EntityTypeFilter="Student"
-            Include="StudentGrades"
-            EnableDelete="True" EnableUpdate="True" 
-            OrderBy="it.LastName" >
-        </asp:EntityDataSource>
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-6/samples/sample1.xml)]
 
 Setting the `EntityTypeFilter` attribute ensures that the `EntityDataSource` control will select only the specified entity type. If you wanted to retrieve both `Student` and `Instructor` entity types, you would not set this attribute. (You have the option of retrieving multiple entity types with one `EntityDataSource` control only if you're using the control for read-only data access. If you're using an `EntityDataSource` control to insert, update, or delete entities, and if the entity set it's bound to can contain multiple types, you can only work with one entity type, and you have to set this attribute.)
 
 Repeat the procedure for the `SearchEntityDataSource` control, except remove only the part of the `Where` attribute that selects `Student` entities instead of removing the property altogether. The opening tag of the control will now resemble the following example:
 
-    <asp:EntityDataSource ID="SearchEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False" 
-            EntitySetName="People" EntityTypeFilter="Student"
-            Where="it.FirstMidName Like '%' + @StudentName + '%' or it.LastName Like '%' + @StudentName + '%'" >
+[!code[Main](the-entity-framework-and-aspnet-getting-started-part-6/samples/sample2.xml)]
 
 Run the page to verify that it still works as it did before.
 
@@ -139,41 +130,23 @@ Update the following pages that you created in earlier tutorials so that they us
 
 - In *StudentsAdd.aspx*, add `EntityTypeFilter="Student"` to the `StudentsEntityDataSource` control. The markup will now resemble the following example: 
 
-        <asp:EntityDataSource ID="StudentsEntityDataSource" runat="server" 
-                ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False"
-                EntitySetName="People" EntityTypeFilter="Student"
-                EnableInsert="True" 
-            </asp:EntityDataSource>
+    [!code[Main](the-entity-framework-and-aspnet-getting-started-part-6/samples/sample3.xml)]
 
     [![image16](the-entity-framework-and-aspnet-getting-started-part-6/_static/image30.png)](the-entity-framework-and-aspnet-getting-started-part-6/_static/image29.png)
 - In *About.aspx*, add `EntityTypeFilter="Student"` to the `StudentStatisticsEntityDataSource` control and remove `Where="it.EnrollmentDate is not null"`. The markup will now resemble the following example: 
 
-        <asp:EntityDataSource ID="StudentStatisticsEntityDataSource" runat="server" 
-                ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False" 
-                EntitySetName="People" EntityTypeFilter="Student"
-                Select="it.EnrollmentDate, Count(it.EnrollmentDate) AS NumberOfStudents"
-                OrderBy="it.EnrollmentDate" GroupBy="it.EnrollmentDate" >
-            </asp:EntityDataSource>
+    [!code[Main](the-entity-framework-and-aspnet-getting-started-part-6/samples/sample4.xml)]
 
     [![image17](the-entity-framework-and-aspnet-getting-started-part-6/_static/image32.png)](the-entity-framework-and-aspnet-getting-started-part-6/_static/image31.png)
 - In *Instructors.aspx* and *InstructorsCourses.aspx*, add `EntityTypeFilter="Instructor"` to the `InstructorsEntityDataSource` control and remove `Where="it.HireDate is not null"`. The markup in *Instructors.aspx* now resembles the following example: 
 
-        <asp:EntityDataSource ID="InstructorsEntityDataSource" runat="server" 
-                    ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="false"
-                    EntitySetName="People" EntityTypeFilter="Instructor" 
-                    Include="OfficeAssignment" 
-                    EnableUpdate="True">
-                </asp:EntityDataSource>
+    [!code[Main](the-entity-framework-and-aspnet-getting-started-part-6/samples/sample5.xml)]
 
     [![image18](the-entity-framework-and-aspnet-getting-started-part-6/_static/image34.png)](the-entity-framework-and-aspnet-getting-started-part-6/_static/image33.png)
 
     The markup in *InstructorsCourses.aspx* will now resemble the following example:
 
-        <asp:EntityDataSource ID="InstructorsEntityDataSource" runat="server" 
-                ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="False" 
-                EntitySetName="People" EntityTypeFilter="Instructor" 
-                Select="it.LastName + ',' + it.FirstMidName AS Name, it.PersonID">
-            </asp:EntityDataSource>
+    [!code[Main](the-entity-framework-and-aspnet-getting-started-part-6/samples/sample6.xml)]
 
     [![image19](the-entity-framework-and-aspnet-getting-started-part-6/_static/image36.png)](the-entity-framework-and-aspnet-getting-started-part-6/_static/image35.png)
 

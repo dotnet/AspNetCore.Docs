@@ -1,9 +1,16 @@
-public async Task<List<Gizmo>> GetGizmosAsync()
+    public class GizmoService
     {
-        var uri = Util.getServiceUri("Gizmos");
-        using (HttpClient httpClient = new HttpClient())
+        public async Task<List<Gizmo>> GetGizmosAsync(
+            // Implementation removed.
+           
+        public List<Gizmo> GetGizmos()
         {
-            var response = await httpClient.GetAsync(uri);
-            return (await response.Content.ReadAsAsync<List<Gizmo>>());
+            var uri = Util.getServiceUri("Gizmos");
+            using (WebClient webClient = new WebClient())
+            {
+                return JsonConvert.DeserializeObject<List<Gizmo>>(
+                    webClient.DownloadString(uri)
+                );
+            }
         }
     }

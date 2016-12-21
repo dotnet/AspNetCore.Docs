@@ -1,35 +1,54 @@
-public string HttpCall(string NvpRequest)
-{
-  string url = pEndPointURL;
-
-  string strPost = NvpRequest + "&" + buildCredentialsNVPString();
-  strPost = strPost + "&BUTTONSOURCE=" + HttpUtility.UrlEncode(BNCode);
-
-  HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
-  objRequest.Timeout = Timeout;
-  objRequest.Method = "POST";
-  objRequest.ContentLength = strPost.Length;
-
-  try
-  {
-    using (StreamWriter myWriter = new StreamWriter(objRequest.GetRequestStream()))
-    {
-      myWriter.Write(strPost);
-    }
-  }
-  catch (Exception e)
-  {
-    // Log the exception.
-    WingtipToys.Logic.ExceptionUtility.LogException(e, "HttpCall in PayPalFunction.cs");
-  }
-
-  //Retrieve the Response returned from the NVP API call to PayPal.
-  HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
-  string result;
-  using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
-  {
-    result = sr.ReadToEnd();
-  }
-
-  return result;
-}
+        using System;
+        using System.Collections.Generic;
+        using System.Linq;
+        using System.Web;
+        using System.IO;
+        
+        namespace WingtipToys.Logic
+        {
+          // Create our own utility for exceptions
+          public sealed class ExceptionUtility
+          {
+            // All methods are static, so this can be private
+            private ExceptionUtility()
+            { }
+        
+            // Log an Exception
+            public static void LogException(Exception exc, string source)
+            {
+              // Include logic for logging exceptions
+              // Get the absolute path to the log file
+              string logFile = "App_Data/ErrorLog.txt";
+              logFile = HttpContext.Current.Server.MapPath(logFile);
+        
+              // Open the log file for append and write the log
+              StreamWriter sw = new StreamWriter(logFile, true);
+              sw.WriteLine("********** {0} **********", DateTime.Now);
+              if (exc.InnerException != null)
+              {
+                sw.Write("Inner Exception Type: ");
+                sw.WriteLine(exc.InnerException.GetType().ToString());
+                sw.Write("Inner Exception: ");
+                sw.WriteLine(exc.InnerException.Message);
+                sw.Write("Inner Source: ");
+                sw.WriteLine(exc.InnerException.Source);
+                if (exc.InnerException.StackTrace != null)
+                {
+                  sw.WriteLine("Inner Stack Trace: ");
+                  sw.WriteLine(exc.InnerException.StackTrace);
+                }
+              }
+              sw.Write("Exception Type: ");
+              sw.WriteLine(exc.GetType().ToString());
+              sw.WriteLine("Exception: " + exc.Message);
+              sw.WriteLine("Source: " + source);
+              sw.WriteLine("Stack Trace: ");
+              if (exc.StackTrace != null)
+              {
+                sw.WriteLine(exc.StackTrace);
+                sw.WriteLine();
+              }
+              sw.Close();
+            }
+          }
+        }

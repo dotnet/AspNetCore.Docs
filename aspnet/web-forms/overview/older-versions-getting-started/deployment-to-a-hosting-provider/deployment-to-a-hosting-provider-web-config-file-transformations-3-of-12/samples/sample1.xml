@@ -1,10 +1,3 @@
-<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
-    <location path="elmah.axd" xdt:Transform="Insert">
-      <system.web>
-        <authorization>
-          <allow roles="Administrator" />
-          <deny users="*" />
-        </authorization>
-      </system.web>
-    </location>
-</configuration>
+    <customErrors mode="RemoteOnly" defaultRedirect="~/GenericErrorPage.aspx">
+      <error statusCode="404" redirect="~/GenericErrorPage.aspx" />
+    </customErrors>

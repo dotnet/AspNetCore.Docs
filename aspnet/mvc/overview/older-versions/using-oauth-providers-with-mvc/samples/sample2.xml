@@ -1,10 +1,19 @@
-public class UsersContext : DbContext
-{
-    public UsersContext()
-        : base("DefaultConnection")
+    public static class AuthConfig
     {
+        public static void RegisterAuth()
+        {
+            //OAuthWebSecurity.RegisterMicrosoftClient(
+            //    clientId: "",
+            //    clientSecret: "");
+    
+            //OAuthWebSecurity.RegisterTwitterClient(
+            //    consumerKey: "",
+            //    consumerSecret: "");
+    
+            OAuthWebSecurity.RegisterFacebookClient(
+                appId: "",
+                appSecret: "");
+    
+            //OAuthWebSecurity.RegisterGoogleClient();        
+        }
     }
-
-    public DbSet<UserProfile> UserProfiles { get; set; }
-    public DbSet<ExternalUserInformation> ExternalUsers { get; set; }
-}

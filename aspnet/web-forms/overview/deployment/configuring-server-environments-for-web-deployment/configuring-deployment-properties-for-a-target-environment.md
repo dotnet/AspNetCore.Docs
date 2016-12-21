@@ -83,29 +83,7 @@ In this example:
 - You&#x27;re using integrated authentication to deploy the **ContactManager** database to TESTDB1. The database will be deployed using the credentials you used to invoke MSBuild.
 
 
-    <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-      <PropertyGroup>    
-        <MSDeployComputerName Condition=" '$(MSDeployComputerName)'=='' ">
-          TESTWEB1.fabrikam.net
-        </MSDeployComputerName>
-        <MSDeployAuth Condition=" '$(MSDeployAuth)'=='' ">NTLM</MSDeployAuth>
-        <ContactManagerTargetUrl Condition =" '$(ContactManagerTargetUrl)'=='' ">
-          http://localhost:85/ContactManagerService/ContactService.svc
-        </ContactManagerTargetUrl>
-        <ContactManagerIisPath Condition=" '$(ContactManagerIisPath)'=='' ">
-          DemoSite/ContactManager
-        </ContactManagerIisPath>
-        <ContactManagerServiceIisPath 
-          Condition=" '$(ContactManagerServiceIisPath)'=='' ">
-            DemoSite/ContactManagerService
-        </ContactManagerServiceIisPath>
-        <CmDatabaseConnectionString Condition=" '$(CmDatabaseConnectionString)'=='' ">
-          Data Source=TESTDB1;Integrated Security=true</CmDatabaseConnectionString>
-        <CmTargetDatabase Condition=" '$(CmTargetDatabase)'=='' ">
-          ContactManager
-        </CmTargetDatabase>
-      </PropertyGroup>  
-    </Project>
+[!code[Main](configuring-deployment-properties-for-a-target-environment/samples/sample1.xml)]
 
 
 ### Example 2&#x2014;Deployment to the Web Deploy Handler Endpoint
@@ -118,36 +96,7 @@ In this example:
 - You&#x27;re using SQL Server authentication to deploy the **ContactManager** database to STAGEDB1.
 
 
-    <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-      <PropertyGroup>    
-        <MSDeployComputerName Condition=" '$(MSDeployComputerName)'=='' ">
-          https://STAGEWEB1:8172/MSDeploy.axd?site=DemoSite
-        </MSDeployComputerName>
-        <MSDeployAuth Condition=" '$(MSDeployAuth)'=='' ">Basic</MSDeployAuth>
-        <MSDeployUsername Condition=" '$(MSDeployUsername)'=='' ">
-          FABRIKAM\stagingdeployer
-        </MSDeployUsername>
-        <MSDeployPassword Condition=" '$(MSDeployPassword)'=='' ">
-          Pa$$w0rd
-        </MSDeployPassword>
-        <ContactManagerTargetUrl Condition =" '$(ContactManagerTargetUrl)'=='' ">
-          http://localhost:85/ContactManagerService/ContactService.svc
-        </ContactManagerTargetUrl>
-        <ContactManagerIisPath Condition=" '$(ContactManagerIisPath)'=='' ">
-          DemoSite/ContactManager
-        </ContactManagerIisPath>
-        <ContactManagerServiceIisPath 
-          Condition=" '$(ContactManagerServiceIisPath)'=='' ">
-            DemoSite/ContactManagerService
-        </ContactManagerServiceIisPath>
-        <CmDatabaseConnectionString Condition=" '$(CmDatabaseConnectionString)'=='' ">
-          Data Source=STAGEDB1;User ID=sa;Password=Pa$$w0rd;
-        </CmDatabaseConnectionString>
-        <CmTargetDatabase Condition=" '$(CmTargetDatabase)'=='' ">
-          ContactManager
-        </CmTargetDatabase>
-      </PropertyGroup>  
-    </Project>
+[!code[Main](configuring-deployment-properties-for-a-target-environment/samples/sample2.xml)]
 
 
 ## Conclusion

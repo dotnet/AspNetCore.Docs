@@ -27,7 +27,7 @@ The runtime features are released as NuGet packages on the NuGet gallery. All th
 
 You can install or update to the released NuGet packages by using the NuGet Package Manager Console:
 
-    Install-Package Microsoft.AspNet.WebPages -Version 3.2.0
+[!code[Main](whats-new-in-aspnet-web-pages-32/samples/sample1.xml)]
 
 ## New Feature and Bug Fix
 

@@ -42,26 +42,11 @@ Let's start by creating a new ASP.NET application, using the "ASP.NET Empty Web 
 
 Next, add NuGet packages. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-    Install-Package Microsoft.Owin.Host.SystemWeb -pre
+[!code[Main](enabling-windows-authentication-in-katana/samples/sample1.xml)]
 
 Now add a class named `Startup` with the following code:
 
-    using Owin;
-    
-    namespace KatanaWebHost
-    {
-        public class Startup
-        {
-            public void Configuration(IAppBuilder app)
-            {
-                app.Run(context =>
-                {
-                    context.Response.ContentType = "text/plain";
-                    return context.Response.WriteAsync("Hello World!");
-                });
-            }
-        }
-    }
+[!code[Main](enabling-windows-authentication-in-katana/samples/sample2.xml)]
 
 That's all you need to create a "Hello world" application for OWIN, running on IIS. Press F5 to debug the application. You should see "Hello World!" in the browser window.
 
@@ -75,7 +60,7 @@ In the **Properties** window, set **Anonymous Authentication** to **Disabled** a
 
 When you run the application from Visual Studio, IIS Express will require the user's Windows credentials. You can see this by using [Fiddler](http://fiddler2.com/home) or another HTTP debugging tool. Here is an example HTTP response:
 
-[!code[Main](enabling-windows-authentication-in-katana/samples/sample1.xml?highlight=1,5-6)]
+[!code[Main](enabling-windows-authentication-in-katana/samples/sample3.xml?highlight=1,5-6)]
 
 The WWW-Authenticate headers in this response indicate that the server supports the [Negotiate](http://www.ietf.org/rfc/rfc4559.txt) protocol, which uses either Kerberos or NTLM.
 
@@ -87,58 +72,21 @@ If you are using Microsoft.Owin.Host.HttpListener to self-host Katana, you can e
 
 First, create a new console application. Next, add NuGet packages. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-    Install-Package Microsoft.Owin.SelfHost -Pre
+[!code[Main](enabling-windows-authentication-in-katana/samples/sample4.xml)]
 
 Now add a class named `Startup` with the following code:
 
-    using Owin;
-    using System.Net;
-    
-    namespace KatanaSelfHost
-    {
-        class Startup
-        {
-            public void Configuration(IAppBuilder app)
-            {
-                HttpListener listener = 
-                    (HttpListener)app.Properties["System.Net.HttpListener"];
-                listener.AuthenticationSchemes = 
-                    AuthenticationSchemes.IntegratedWindowsAuthentication;
-    
-                app.Run(context =>
-                {
-                    context.Response.ContentType = "text/plain";
-                    return context.Response.WriteAsync("Hello World!");
-                });
-            }
-        }
-    }
+[!code[Main](enabling-windows-authentication-in-katana/samples/sample5.xml)]
 
 This class implements the same "Hello world" example from before, but it also sets Windows Authentication as the authentication scheme.
 
 Inside the `Main` function, start the OWIN pipeline:
 
-    using Microsoft.Owin.Hosting;
-    using System;
-    
-    namespace KatanaSelfHost
-    {
-        class Program
-        {
-            static void Main(string[] args)
-            {
-                using (WebApp.Start<Startup>("http://localhost:9000"))
-                {
-                    Console.WriteLine("Press Enter to quit.");
-                    Console.ReadKey();
-                }        
-            }
-        }
-    }
+[!code[Main](enabling-windows-authentication-in-katana/samples/sample6.xml)]
 
 You can send a request in Fiddler to confirm that the application is using Windows Authentication:
 
-[!code[Main](enabling-windows-authentication-in-katana/samples/sample2.xml?highlight=1,4-5)]
+[!code[Main](enabling-windows-authentication-in-katana/samples/sample7.xml?highlight=1,4-5)]
 
 ## Related Topics
 

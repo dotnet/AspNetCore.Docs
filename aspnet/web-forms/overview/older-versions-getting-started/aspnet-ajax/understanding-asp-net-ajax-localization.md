@@ -69,19 +69,7 @@ The following table summarizes the file naming conventions with examples:
 2. Add a Jscript file called VerifyDeletion.js to the LocalizingResources project, as well as .resx resources files called DeletionResources.resx and DeletionResources.es.resx. The former will contain culture-neutral resources; the latter will contain Spanish-language resources.
 3. Add the following code to VerifyDeletion.js:
 
-    function VerifyDeletion(fileName)
-    {
-     if (confirm(Message.VerifyDelete.replace(/FILENAME/, fileName)))
-     {
-     Delete(fileName);
-     return true;
-     }
-     return false;
-    }
-    function Delete(fileName)
-    {
-     alert (Message.Deleted.replace(/FILENAME/, fileName));
-    }
+[!code[Main](understanding-asp-net-ajax-localization/samples/sample1.xml)]
 
 For those unfamiliar with JavaScript Regex syntax, text within single forward slashes (in the previous example, /FILENAME/ is an example) denotes a RegExp object. The MSDN Library contains an extensive JavaScript reference, and resources on JavaScript native objects can be found online.
 
@@ -98,24 +86,17 @@ For those unfamiliar with JavaScript Regex syntax, text within single forward sl
     **Deleted**: FILENAME se ha quitado.
 2. Add the following lines of code to the AssemblyInfo file:
 
-    [assembly: System.Web.UI.WebResource("LocalizingResources.VerifyDeletion.js",
-     "text/javascript")]
-    [assembly: System.Web.UI.ScriptResource("LocalizingResources.VerifyDeletion.js",
-     "LocalizingResources.DeletionResources", "Message")]
+[!code[Main](understanding-asp-net-ajax-localization/samples/sample2.xml)]
 
 1. Add references to System.Web and System.Web.Extensions to the LocalizingResources project.
 2. Add a reference to the LocalizingResources project from the Web Site project.
 3. In default.aspx, under the Web Site project, update the ScriptManager control with the following additional markup:
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptLocalization="true">
-     <Scripts>
-     <asp:ScriptReference Assembly="LocalizingResources" Name="LocalizingResources.VerifyDeletion.js"/>
-     </Scripts>
-    </asp:ScriptManager>
+[!code[Main](understanding-asp-net-ajax-localization/samples/sample3.xml)]
 
 1. In default.aspx, anywhere on the page, include this markup:
 
-    <asp:Button ID="btnDelete" runat="Server" OnClientClick="VerifyDeletion('a.txt');" Text="Delete" />
+[!code[Main](understanding-asp-net-ajax-localization/samples/sample4.xml)]
 
 1. Press F5. If prompted, enable debugging. When the page is loaded, press the Delete button. Note that you are prompted in English (unless your computer is set to prefer Spanish-language resources by default) for confirmation.
 2. Close the browser window and return to default.aspx. In the @Page header directive, replace auto for Culture and UICulture with es-ES . Press F5 again to launch the web application in the browser again. This time, note that you are prompted to delete the file in Spanish:

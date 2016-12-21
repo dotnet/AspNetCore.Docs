@@ -134,12 +134,7 @@ Layouts and partials can also be overridden for particular browser types. For ex
 
 If you want to create more specific views, layouts, or partial views for other devices, you can register a new *DefaultDisplayMode* instance to specify which name to search for when a request satisfies particular conditions. For example, you could add the following code to the *Application\_Start* method in the Global.asax file to register the string "iPhone" as a display mode that applies when the Apple iPhone browser makes a request:
 
-    DisplayModeProvider.Instance.Modes.Insert(0, new
-    DefaultDisplayMode("iPhone")
-    {
-        ContextCondition = (context => context.GetOverriddenUserAgent().IndexOf
-            ("iPhone", StringComparison.OrdinalIgnoreCase) >= 0)
-     });
+[!code[Main](mvc4-release-notes/samples/sample1.xml)]
 
 After this code runs, when an Apple iPhone browser makes a request, your application will use the Views\Shared\\_Layout.iPhone.cshtml layout (if it exists). For more information on Display Mode, see [ASP.NET MVC 4 Mobile Features](../mvc/overview/older-versions/aspnet-mvc-4-mobile-features.md). Applications using DisplayModeProvider should install the [Fixed DisplayModes](http://nuget.org/packages/Microsoft.AspNet.Mvc.FixedDisplayModes) NuGet package. The [ASP.NET Fall 2012 Update](https://go.microsoft.com/fwlink/?LinkID=271322) includes the [Fixed DisplayModes](http://nuget.org/packages/Microsoft.AspNet.Mvc.FixedDisplayModes) NuGet package in the new project templates. See [ASP.NET MVC 4 Mobile Caching Bug Fixedd](https://blogs.msdn.com/b/rickandy/archive/2012/09/17/asp-net-mvc-4-mobile-caching-bug-fixed.aspx) for details on the fix.
 
@@ -196,23 +191,14 @@ To manually upgrade an existing ASP.NET MVC 3 application to version 4, do the f
 
 1. In all Web.config files in the project (there is one in the root of the project, one in the Views folder, and one in the Views folder for each area in your project), replace every instance of the following text (note: System.Web.WebPages, Version=1.0.0.0 is not found in projects created with Visual Studio 2012): 
 
-        System.Web.Mvc, Version=3.0.0.0
-        System.Web.WebPages, Version=1.0.0.0
-        System.Web.Helpers, Version=1.0.0.0
-        System.Web.WebPages.Razor, Version=1.0.0.0
+    [!code[Main](mvc4-release-notes/samples/sample2.xml)]
 
     with the following corresponding text:
 
-        System.Web.Mvc, Version=4.0.0.0
-        System.Web.WebPages, Version=2.0.0.0
-        System.Web.Helpers, Version=2.0.0.0
-        System.Web.WebPages.Razor, Version=2.0.0.0
+    [!code[Main](mvc4-release-notes/samples/sample3.xml)]
 2. In the root Web.config file, update the *webPages:Version* element to "2.0.0.0" and add a new *PreserveLoginUrl* key that has the value "true": 
 
-        <appSettings>
-          <add key="webpages:Version" value="2.0.0.0" />
-          <add key="PreserveLoginUrl" value="true" />
-        </appSettings>
+    [!code[Main](mvc4-release-notes/samples/sample4.xml)]
 3. In Solution Explorer, right-click on the References and select Manage NuGet Packages. In the left pane, select **Online\NuGet official package source**, then update the following:
 
     - ASP.NET MVC 4
@@ -224,29 +210,7 @@ To manually upgrade an existing ASP.NET MVC 3 application to version 4, do the f
 6. Save the changes, close the project (.csproj) file you were editing, right-click the project, and then select Reload Project.
 7. If the project references any third-party libraries that are compiled using previous versions of ASP.NET MVC, open the root Web.config file and add the following three *bindingRedirect* elements under the *configuration* section: 
 
-        <configuration>
-          <!--... elements deleted for clarity ...-->
-         
-          <runtime>
-            <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-              <dependentAssembly>
-                <assemblyIdentity name="System.Web.Helpers" 
-                     publicKeyToken="31bf3856ad364e35" />
-                <bindingRedirect oldVersion="1.0.0.0" newVersion="2.0.0.0"/>
-              </dependentAssembly>
-              <dependentAssembly>
-                <assemblyIdentity name="System.Web.Mvc" 
-                     publicKeyToken="31bf3856ad364e35" />
-                <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="4.0.0.0"/>
-              </dependentAssembly>
-              <dependentAssembly>
-                <assemblyIdentity name="System.Web.WebPages" 
-                     publicKeyToken="31bf3856ad364e35" />
-                <bindingRedirect oldVersion="1.0.0.0" newVersion="2.0.0.0"/>
-              </dependentAssembly>
-            </assemblyBinding>
-          </runtime>
-        </configuration>
+    [!code[Main](mvc4-release-notes/samples/sample5.xml)]
 
 <a id="_Toc303253817"></a>
 ## Changes from ASP.NET MVC 4 Release Candidate
@@ -297,9 +261,7 @@ The major changes from ASP.NET MVC 4 Release Candidate in this release are summa
     - *MvcVBRazorCodeParser.ParseInheritsStatement(System.Web.Razor.Parser.CodeBlockInfo)*
 - **When WebMatrix.WebData.dll is included in in the /bin directory of an ASP.NET MVC 4 apps, it takes over the URL for forms authentication.** Adding the WebMatrix.WebData.dll assembly to your application (for example, by selecting "ASP.NET Web Pages with Razor Syntax" when using the Add Deployable Dependencies dialog) will override the authentication login redirect to /account/logon rather than /account/login as expected by the default ASP.NET MVC Account Controller. To prevent this behavior and use the URL specified already in the authentication section of web.config, you can add an appSetting called PreserveLoginUrl and set it to true: 
 
-        <appSettings>
-            <add key="PreserveLoginUrl" value="true"/>
-        </appSettings>
+    [!code[Main](mvc4-release-notes/samples/sample6.xml)]
 - **The NuGet package manager fails to install when attempting to install ASP.NET MVC 4 for side by side installations of Visual Studio 2010 and Visual Web Developer 2010.** To run Visual Studio 2010 and Visual Web Developer 2010 side by side with ASP.NET MVC 4 you must install ASP.NET MVC 4 after both versions of Visual Studio have already been installed.
 - **Uninstalling ASP.NET MVC 4 fails if prerequisites have already been uninstalled.** To cleanly uninstall ASP.NET MVC 4you must uninstall ASP.NET MVC 4 prior to uninstalling Visual Studio.
 - **Installing ASP.NET MVC 4 breaks ASP.NET MVC 3 RTM applications.** ASP.NET MVC 3 applications that were created with the RTM release (not with the [ASP.NET MVC 3 Tools Update](https://www.microsoft.com/en-us/download/details.aspx?id=1491) release) require the following changes in order to work side-by-side with ASP.NET MVC 4. Building the project without making these updates results in compilation errors. 
@@ -308,23 +270,15 @@ The major changes from ASP.NET MVC 4 Release Candidate in this release are summa
 
     1. In the root Web.config file, add a new *&lt;appSettings&gt;* entry with the key *webPages:Version* and the value *1.0.0.0*. 
 
-            <appSettings>
-                <add key="webpages:Version" value="1.0.0.0"/>
-                <add key="ClientValidationEnabled" value="true"/>
-                <add key="UnobtrusiveJavaScriptEnabled" value="true"/>
-            </appSettings>
+        [!code[Main](mvc4-release-notes/samples/sample7.xml)]
     2. In Solution Explorer, right-click the project name and then select Unload Project. Then right-click the name again and select Edit *ProjectName*.csproj.
     3. Locate the following assembly references: 
 
-            <Reference Include="System.Web.WebPages"/> 
-            <Reference Include="System.Web.Helpers" />
+        [!code[Main](mvc4-release-notes/samples/sample8.xml)]
 
         Replace them with the following:
 
-            <Reference Include="System.Web.WebPages, Version=1.0.0.0,
-            Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL "/> 
-            <Reference Include="System.Web.Helpers, Version=1.0.0.0,
-            Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+        [!code[Main](mvc4-release-notes/samples/sample9.xml)]
     4. Save the changes, close the project (.csproj) file you were editing, and then right-click the project and select Reload.
 - **Changing an ASP.NET MVC 4 project to target 4.0 from 4.5 does not update the EntityFramework assembly reference:** If you change an ASP.NET MVC 4 project to target 4.0 after targetting 4.5 the reference to the EntityFramework assembly will still point to the 4.5 version. To fix this issue uninstall and reinstall the EntityFramework NuGet package.
 - **403 Forbidden when running an ASP.NET MVC 4 application on Azure after changing to target 4.0 from 4.5:** If you change an ASP.NET MVC 4 project to target 4.0 after targetting 4.5 and then deploy to Azure you may see a 403 Forbidden error at runtime. To workaround this issue add the following to your web.config: `<modules runAllManagedModulesForAllRequests="true" />`

@@ -56,64 +56,13 @@ If you want to store data in a text file, you can use the `File.WriteAllText` me
 2. At the root of your website, create a new file named *UserData.cshtml*.
 3. Replace the existing content with the following: 
 
-        @{
-            var result = "";
-            if (IsPost)
-            {
-                var firstName = Request["FirstName"];
-                var lastName = Request["LastName"];
-                var email = Request["Email"];
-        
-                var userData = firstName + "," + lastName +
-                    "," + email + Environment.NewLine;
-        
-                var dataFile = Server.MapPath("~/App_Data/data.txt");
-                File.WriteAllText(@dataFile, userData);
-                result = "Information saved.";
-            }
-        }
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Write Data to a File</title>
-        </head>
-        <body>
-            <form id="form1" method="post">
-            <div>
-                <table>
-                    <tr>
-                        <td>First Name:</td>
-                        <td><input id="FirstName" name="FirstName" type="text" /></td>
-        
-                    </tr>
-                    <tr>
-                        <td>Last Name:</td>
-                        <td><input id="LastName" name="LastName" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td><input id="Email" name="Email" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Submit"/></td>
-                    </tr>
-                </table>
-            </div>
-            <div>
-            @if(result != ""){
-                <p>Result: @result</p>
-            }
-            </div>
-            </form>
-        </body>
-        </html>
+    [!code[Main](working-with-files/samples/sample1.xml)]
 
     The HTML markup creates the form with the three text boxes. In the code, you use the `IsPost` property to determine whether the page has been submitted before you start processing.
 
     The first task is to get the user input and assign it to variables. The code then concatenates the values of the separate variables into one comma-delimited string, which is then stored in a different variable. Notice that the comma separator is a string contained in quotation marks (","), because you're literally embedding a comma into the big string that you're creating. At the end of the data that you concatenate together, you add `Environment.NewLine`. This adds a line break (a newline character). What you're creating with all this concatenation is a string that looks like this:
 
-        David,Jones,davidj@contoso.com
+    [!code[Main](working-with-files/samples/sample2.xml)]
 
     (With an invisible line break at the end.)
 
@@ -146,22 +95,7 @@ In the previous example, you used `WriteAllText` to create a text file that's go
 1. In the website, make a copy of the *UserData.cshtml* file and name the copy *UserDataMultiple.cshtml*.
 2. Replace the code block before the opening `<!DOCTYPE html>` tag with the following code block: 
 
-        @{
-            var result = "";
-            if (IsPost)
-            {
-                var firstName = Request["FirstName"];
-                var lastName = Request["LastName"];
-                var email = Request["Email"];
-        
-                var userData = firstName + "," + lastName +
-                    "," + email + Environment.NewLine;
-        
-                var dataFile = Server.MapPath("~/App_Data/data.txt");
-                File.AppendAllText (@dataFile, userData);
-                result = "Information saved.";
-            }
-        }
+    [!code[Main](working-with-files/samples/sample3.xml)]
 
     This code has one change in it from the previous example. Instead of using `WriteAllText`, it uses `the AppendAllText` method. The methods are similar, except that `AppendAllText` adds the data to the end of the file. As with `WriteAllText`, `AppendAllText` creates the file if it doesn't already exist.
 3. Run the page in a browser.
@@ -182,56 +116,11 @@ This procedure shows you how to read and display the data that you created in th
 1. At the root of your website, create a new file named *DisplayData.cshtml*.
 2. Replace the existing content with the following: 
 
-        @{
-            var result = "";
-            Array userData = null;
-            char[] delimiterChar = {','};
-        
-            var dataFile = Server.MapPath("~/App_Data/data.txt");
-        
-            if (File.Exists(dataFile)) {
-                userData = File.ReadAllLines(dataFile);
-                if (userData == null) {
-                    // Empty file.
-                    result = "The file is empty.";
-                }
-            }
-            else {
-                // File does not exist.
-                result = "The file does not exist.";
-            }
-        }
-        <!DOCTYPE html>
-        
-        <html>
-        <head>
-            <title>Reading Data from a File</title>
-        </head>
-        <body>
-            <div>
-                <h1>Reading Data from a File</h1>
-                @result
-                @if (result == "") {
-                    <ol>
-                    @foreach (string dataLine in userData) {
-                    <li>
-                        User
-                        <ul>
-                        @foreach (string dataItem in dataLine.Split(delimiterChar)) {
-                            <li>@dataItem</li >
-                        }
-                        </ul>
-                    </li>
-                    }
-                    </ol>
-                }
-            </div>
-        </body>
-        </html>
+    [!code[Main](working-with-files/samples/sample4.xml)]
 
     The code starts by reading the file that you created in the previous example into a variable named `userData`, using this method call:
 
-        File.ReadAllLines(dataFile)
+    [!code[Main](working-with-files/samples/sample5.xml)]
 
     The code to do this is inside an `if` statement. When you want to read a file, it's a good idea to use the `File.Exists` method to determine first whether the file is available. The code also checks whether the file is empty.
 
@@ -266,41 +155,7 @@ To delete files from your website, you can use the `File.Delete` method. This pr
 3. In the root of the website, create a new file named *FileDelete.cshtml*.
 4. Replace the existing content with the following: 
 
-        @{
-            bool deleteSuccess = false;
-            var photoName = "";
-            if (IsPost) {
-                photoName = Request["photoFileName"] + ".jpg";
-                var fullPath = Server.MapPath("~/images/" + photoName);
-        
-                if (File.Exists(fullPath))
-                {
-                        File.Delete(fullPath);
-                        deleteSuccess = true;
-                }
-            }
-        }
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>Delete a Photo</title>
-          </head>
-          <body>
-            <h1>Delete a Photo from the Site</h1>
-            <form name="deletePhoto" action="" method="post">
-              <p>File name of image to delete (without .jpg extension):
-              <input name="photoFileName" type="text" value="" />
-              </p>
-              <p><input type="submit" value="Submit" /></p>
-            </form>
-        
-            @if(deleteSuccess) {
-                <p>
-                @photoName deleted!
-                </p>
-                }
-          </body>
-        </html>
+    [!code[Main](working-with-files/samples/sample6.xml)]
 
     This page contains a form where users can enter the name of an image file. They don't enter the *.jpg* file-name extension; by restricting the file name like this, you help prevents users from deleting arbitrary files on your site.
 
@@ -322,35 +177,7 @@ The `FileUpload` helper lets users upload files to your website. The procedure b
 3. In the root, create a new file named *FileUpload.cshtml*.
 4. Replace the existing content in the page with the following: 
 
-        @using Microsoft.Web.Helpers;
-        @{
-            var fileName = "";
-            if (IsPost) {
-                var fileSavePath = "";
-                var uploadedFile = Request.Files[0];
-                fileName = Path.GetFileName(uploadedFile.FileName);
-                fileSavePath = Server.MapPath("~/App_Data/UploadedFiles/" +
-                  fileName);
-                uploadedFile.SaveAs(fileSavePath);
-            }
-        }
-        <!DOCTYPE html>
-        <html>
-            <head>
-            <title>FileUpload - Single-File Example</title>
-            </head>
-            <body>
-            <h1>FileUpload - Single-File Example</h1>
-            @FileUpload.GetHtml(
-                initialNumberOfFiles:1,
-                allowMoreFilesToBeAdded:false,
-                includeFormTag:true,
-                uploadText:"Upload")
-            @if (IsPost) {
-                <span>File uploaded!</span><br/>
-            }
-            </body>
-        </html>
+    [!code[Main](working-with-files/samples/sample7.xml)]
 
     The body portion of the page uses the `FileUpload` helper to create the upload box and buttons that you're probably familiar with:
 
@@ -366,7 +193,7 @@ The `FileUpload` helper lets users upload files to your website. The procedure b
 
     You don't want all that path information, though, because that's the path on the user's computer, not for your server. You just want the actual file name (*Sample.txt*). You can strip out just the file from a path by using the `Path.GetFileName` method, like this:
 
-        Path.GetFileName(uploadedFile.FileName)
+    [!code[Main](working-with-files/samples/sample8.xml)]
 
     The `Path` object is a utility that has a number of methods like this that you can use to strip paths, combine paths, and so on.
 
@@ -396,50 +223,7 @@ In the previous example, you let users upload one file. But you can use the `Fil
 2. Create a new page named *FileUploadMultiple.cshtml*.
 3. Replace the existing content in the page with the following:  
 
-        @using Microsoft.Web.Helpers;
-        @{
-          var message = "";
-          if (IsPost) {
-              var fileName = "";
-              var fileSavePath = "";
-              int numFiles = Request.Files.Count;
-              int uploadedCount = 0;
-              for(int i =0; i < numFiles; i++) {
-                  var uploadedFile = Request.Files[i];
-                  if (uploadedFile.ContentLength > 0) {
-                      fileName = Path.GetFileName(uploadedFile.FileName);
-                      fileSavePath = Server.MapPath("~/App_Data/UploadedFiles/" +
-                        fileName);
-                      uploadedFile.SaveAs(fileSavePath);
-                      uploadedCount++;
-                  }
-               }
-               message = "File upload complete. Total files uploaded: " +
-                 uploadedCount.ToString();
-           }
-        }
-        <!DOCTYPE html>
-        <html>
-            <head><title>FileUpload - Multiple File Example</title></head>
-        <body>
-            <form id="myForm" method="post"
-               enctype="multipart/form-data"
-               action="">
-            <div>
-            <h1>File Upload - Multiple-File Example</h1>
-            @if (!IsPost) {
-                @FileUpload.GetHtml(
-                    initialNumberOfFiles:2,
-                    allowMoreFilesToBeAdded:true,
-                    includeFormTag:true,
-                    addText:"Add another file",
-                    uploadText:"Upload")
-                }
-            <span>@message</span>
-            </div>
-            </form>
-        </body>
-        </html>
+    [!code[Main](working-with-files/samples/sample9.xml)]
 
     In this example, the `FileUpload` helper in the body of the page is configured to let users upload two files by default. Because `allowMoreFilesToBeAdded` is set to `true`, the helper renders a link that lets user add more upload boxes:
 
@@ -449,13 +233,7 @@ In the previous example, you let users upload one file. But you can use the `Fil
 
     With this number in hand, you can loop through `Request.Files`, fetch each file in turn, and save it. When you want to loop a known number of times through a collection, you can use a `for` loop, like this:
 
-        for(int i =0; i < numFiles; i++) {
-            var uploadedFile = Request.Files[i];
-            if (uploadedFile.ContentLength > 0) {
-                fileName = Path.GetFileName(uploadedFile.FileName);
-        
-            // etc.
-        }
+    [!code[Main](working-with-files/samples/sample10.xml)]
 
     The variable `i` is just a temporary counter that will go from zero to whatever upper limit you set. In this case, the upper limit is the number of files. But because the counter starts at zero, as is typical for counting scenarios in ASP.NET, the upper limit is actually one less than the file count. (If three files are uploaded, the count is zero to 2.)
 

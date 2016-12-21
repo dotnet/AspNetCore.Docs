@@ -95,22 +95,11 @@ Save and close the data model.
 
 Open *SchoolRepository.cs* and add the following `using` statement for the `System.Data` namespace:
 
-    using System.Data;
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample1.xml)]
 
 Add the following new `SaveChanges` method, which handles optimistic concurrency exceptions:
 
-    public void SaveChanges()
-            {
-                try
-                {
-                    context.SaveChanges();
-                }
-                catch (OptimisticConcurrencyException ocex)
-                {
-                    context.Refresh(RefreshMode.StoreWins, ocex.StateEntries[0].Entity);
-                    throw ocex;
-                }
-            }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample2.xml)]
 
 If a concurrency error occurs when this method is called, the property values of the entity in memory are replaced with the values currently in the database. The concurrency exception is rethrown so that the web page can handle it.
 
@@ -120,64 +109,25 @@ In the `DeleteDepartment` and `UpdateDepartment` methods, replace the existing c
 
 Open *Departments.aspx* and add an `OnDeleted="DepartmentsObjectDataSource_Deleted"` attribute to the `DepartmentsObjectDataSource` control. The opening tag for the control will now resemble the following example.
 
-    <asp:ObjectDataSource ID="DepartmentsObjectDataSource" runat="server" 
-            TypeName="ContosoUniversity.BLL.SchoolBL" DataObjectTypeName="ContosoUniversity.DAL.Department" 
-            SelectMethod="GetDepartmentsByName" DeleteMethod="DeleteDepartment" UpdateMethod="UpdateDepartment"
-            ConflictDetection="CompareAllValues" OldValuesParameterFormatString="orig{0}" 
-            OnUpdated="DepartmentsObjectDataSource_Updated" SortParameterName="sortExpression" 
-            OnDeleted="DepartmentsObjectDataSource_Deleted" >
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample3.xml)]
 
 In the `DepartmentsGridView` control, specify all of the table columns in the `DataKeyNames` attribute, as shown in the following example. Note that this will create very large view state fields, which is one reason why using a tracking field is generally the preferred way to track concurrency conflicts.
 
-    <asp:GridView ID="DepartmentsGridView" runat="server" AutoGenerateColumns="False"
-            DataSourceID="DepartmentsObjectDataSource" 
-            DataKeyNames="DepartmentID,Name,Budget,StartDate,Administrator" 
-            OnRowUpdating="DepartmentsGridView_RowUpdating"
-            OnRowDataBound="DepartmentsGridView_RowDataBound"
-            AllowSorting="True" >
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample4.xml)]
 
 Open *Departments.aspx.cs* and add the following `using` statement for the `System.Data` namespace:
 
-    using System.Data;
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample5.xml)]
 
 Add the following new method, which you will call from the data source control's `Updated` and `Deleted` event handlers for handling concurrency exceptions:
 
-    private void CheckForOptimisticConcurrencyException(ObjectDataSourceStatusEventArgs e, string function)
-            {
-                if (e.Exception.InnerException is OptimisticConcurrencyException)
-                {
-                    var concurrencyExceptionValidator = new CustomValidator();
-                    concurrencyExceptionValidator.IsValid = false;
-                    concurrencyExceptionValidator.ErrorMessage = 
-                        "The record you attempted to edit or delete was modified by another " +
-                        "user after you got the original value. The edit or delete operation was canceled " +
-                        "and the other user's values have been displayed so you can " +
-                        "determine whether you still want to edit or delete this record.";
-                    Page.Validators.Add(concurrencyExceptionValidator);
-                    e.ExceptionHandled = true;
-                }
-            }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample6.xml)]
 
 This code checks the exception type, and if it's a concurrency exception, the code dynamically creates a `CustomValidator` control that in turn displays a message in the `ValidationSummary` control.
 
 Call the new method from the `Updated` event handler that you added earlier. In addition, create a new `Deleted` event handler that calls the same method (but doesn't do anything else):
 
-    protected void DepartmentsObjectDataSource_Updated(object sender, ObjectDataSourceStatusEventArgs e)
-            {
-                if (e.Exception != null)
-                {
-                    CheckForOptimisticConcurrencyException(e, "update");
-                    // ...
-                }
-            }
-    
-            protected void DepartmentsObjectDataSource_Deleted(object sender, ObjectDataSourceStatusEventArgs e)
-            {
-                if (e.Exception != null)
-                {
-                    CheckForOptimisticConcurrencyException(e, "delete");
-                }
-            }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample7.xml)]
 
 ### Testing Optimistic Concurrency in the Departments Page
 
@@ -230,18 +180,7 @@ Set the **Insert**, **Update**, and **Delete** functions to use their correspond
 
 When the Entity Framework calls the `UpdateOfficeAssignment` stored procedure, it will pass the original value of the `Timestamp` column in the `OrigTimestamp` parameter. The stored procedure uses this parameter in its `Where` clause:
 
-    ALTER PROCEDURE [dbo].[UpdateOfficeAssignment]
-    	@InstructorID int,
-    	@Location nvarchar(50),
-    	@OrigTimestamp timestamp
-    	AS
-    	UPDATE OfficeAssignment SET Location=@Location 
-    	WHERE InstructorID=@InstructorID AND [Timestamp]=@OrigTimestamp;
-    	IF @@ROWCOUNT > 0
-    	BEGIN
-    		SELECT [Timestamp] FROM OfficeAssignment 
-    			WHERE InstructorID=@InstructorID;
-    	END
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample8.xml)]
 
 The stored procedure also selects the new value of the `Timestamp` column after the update so that the Entity Framework can keep the `OfficeAssignment` entity that's in memory in sync with the corresponding database row.
 
@@ -253,148 +192,27 @@ Save and close the data model.
 
 Open *ISchoolRepository.cs* and add the following CRUD methods for the `OfficeAssignment` entity set:
 
-    IEnumerable<OfficeAssignment> GetOfficeAssignments(string sortExpression);
-            void InsertOfficeAssignment(OfficeAssignment OfficeAssignment);
-            void DeleteOfficeAssignment(OfficeAssignment OfficeAssignment);
-            void UpdateOfficeAssignment(OfficeAssignment OfficeAssignment, OfficeAssignment origOfficeAssignment);
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample9.xml)]
 
 Add the following new methods to *SchoolRepository.cs*. In the `UpdateOfficeAssignment` method, you call the local `SaveChanges` method instead of `context.SaveChanges`.
 
-    public IEnumerable<OfficeAssignment> GetOfficeAssignments(string sortExpression)
-            {
-                return new ObjectQuery<OfficeAssignment>("SELECT VALUE o FROM OfficeAssignments AS o", context).Include("Person").OrderBy("it." + sortExpression).ToList();
-            }
-    
-            public void InsertOfficeAssignment(OfficeAssignment officeAssignment)
-            {
-                context.OfficeAssignments.AddObject(officeAssignment);
-                context.SaveChanges();
-            }
-    
-            public void DeleteOfficeAssignment(OfficeAssignment officeAssignment)
-            {
-                context.OfficeAssignments.Attach(officeAssignment);
-                context.OfficeAssignments.DeleteObject(officeAssignment);
-                context.SaveChanges();
-            }
-    
-            public void UpdateOfficeAssignment(OfficeAssignment officeAssignment, OfficeAssignment origOfficeAssignment)
-            {
-                context.OfficeAssignments.Attach(origOfficeAssignment);
-                context.ApplyCurrentValues("OfficeAssignments", officeAssignment);
-                SaveChanges();
-            }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample10.xml)]
 
 In the test project, open *MockSchoolRepository.cs* and add the following `OfficeAssignment` collection and CRUD methods to it. (The mock repository must implement the repository interface, or the solution won't compile.)
 
-    List<OfficeAssignment> officeAssignments = new List<OfficeAssignment>();
-            
-            public IEnumerable<OfficeAssignment> GetOfficeAssignments(string sortExpression)
-            {
-                return officeAssignments;
-            }
-    
-            public void InsertOfficeAssignment(OfficeAssignment officeAssignment)
-            {
-                officeAssignments.Add(officeAssignment);
-            }
-    
-            public void DeleteOfficeAssignment(OfficeAssignment officeAssignment)
-            {
-                officeAssignments.Remove(officeAssignment);
-            }
-    
-            public void UpdateOfficeAssignment(OfficeAssignment officeAssignment, OfficeAssignment origOfficeAssignment)
-            {
-                officeAssignments.Remove(origOfficeAssignment);
-                officeAssignments.Add(officeAssignment);
-            }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample11.xml)]
 
 ### Adding OfficeAssignment Methods to the BLL
 
 In the main project, open *SchoolBL.cs* and add the following CRUD methods for the `OfficeAssignment` entity set to it:
 
-    public IEnumerable<OfficeAssignment> GetOfficeAssignments(string sortExpression)
-            {
-                if (string.IsNullOrEmpty(sortExpression)) sortExpression = "Person.LastName";
-                return schoolRepository.GetOfficeAssignments(sortExpression);
-            }
-    
-            public void InsertOfficeAssignment(OfficeAssignment officeAssignment)
-            {
-                try
-                {
-                    schoolRepository.InsertOfficeAssignment(officeAssignment);
-                }
-                catch (Exception ex)
-                {
-                    //Include catch blocks for specific exceptions first,
-                    //and handle or log the error as appropriate in each.
-                    //Include a generic catch block like this one last.
-                    throw ex;
-                }
-            }
-    
-            public void DeleteOfficeAssignment(OfficeAssignment officeAssignment)
-            {
-                try
-                {
-                    schoolRepository.DeleteOfficeAssignment(officeAssignment);
-                }
-                catch (Exception ex)
-                {
-                    //Include catch blocks for specific exceptions first,
-                    //and handle or log the error as appropriate in each.
-                    //Include a generic catch block like this one last.
-                    throw ex;
-                }
-            }
-    
-            public void UpdateOfficeAssignment(OfficeAssignment officeAssignment, OfficeAssignment origOfficeAssignment)
-            {
-                try
-                {
-                    schoolRepository.UpdateOfficeAssignment(officeAssignment, origOfficeAssignment);
-                }
-                catch (Exception ex)
-                {
-                    //Include catch blocks for specific exceptions first,
-                    //and handle or log the error as appropriate in each.
-                    //Include a generic catch block like this one last.
-                    throw ex;
-                }
-            }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample12.xml)]
 
 ## Creating an OfficeAssignments Web Page
 
 Create a new web page that uses the *Site.Master* master page and name it *OfficeAssignments.aspx*. Add the following markup to the `Content` control named `Content2`:
 
-    <h2>Office Assignments</h2>
-        <asp:ObjectDataSource ID="OfficeAssignmentsObjectDataSource" runat="server" TypeName="ContosoUniversity.BLL.SchoolBL"
-            DataObjectTypeName="ContosoUniversity.DAL.OfficeAssignment" SelectMethod="GetOfficeAssignments"
-            DeleteMethod="DeleteOfficeAssignment" UpdateMethod="UpdateOfficeAssignment" ConflictDetection="CompareAllValues"
-            OldValuesParameterFormatString="orig{0}"
-            SortParameterName="sortExpression"  OnUpdated="OfficeAssignmentsObjectDataSource_Updated">
-        </asp:ObjectDataSource>
-        <asp:ValidationSummary ID="OfficeAssignmentsValidationSummary" runat="server" ShowSummary="true"
-            DisplayMode="BulletList" Style="color: Red; width: 40em;" />
-        <asp:GridView ID="OfficeAssignmentsGridView" runat="server" AutoGenerateColumns="False"
-            DataSourceID="OfficeAssignmentsObjectDataSource" DataKeyNames="InstructorID,Timestamp"
-            AllowSorting="True">
-            <Columns>
-                <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" ItemStyle-VerticalAlign="Top">
-                    <ItemStyle VerticalAlign="Top"></ItemStyle>
-                </asp:CommandField>
-                <asp:TemplateField HeaderText="Instructor" SortExpression="Person.LastName">
-                    <ItemTemplate>
-                        <asp:Label ID="InstructorLastNameLabel" runat="server" Text='<%# Eval("Person.LastName") %>'></asp:Label>,
-                        <asp:Label ID="InstructorFirstNameLabel" runat="server" Text='<%# Eval("Person.FirstMidName") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:DynamicField DataField="Location" HeaderText="Location" SortExpression="Location"/>
-            </Columns>
-            <SelectedRowStyle BackColor="LightGray"></SelectedRowStyle>
-        </asp:GridView>
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample13.xml)]
 
 Notice that in the `DataKeyNames` attribute, the markup specifies the `Timestamp` property as well as the record key (`InstructorID`). Specifying properties in the `DataKeyNames` attribute causes the control to save them in control state (which is similar to view state) so that the original values are available during postback processing.
 
@@ -402,29 +220,11 @@ If you didn't save the `Timestamp` value, the Entity Framework would not have it
 
 Open *OfficeAssignments.aspx.cs* and add the following `using` statement for the data access layer:
 
-    using ContosoUniversity.DAL;
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample14.xml)]
 
 Add the following `Page_Init` method, which enables Dynamic Data functionality. Also add the following handler for the `ObjectDataSource` control's `Updated` event in order to check for concurrency errors:
 
-    protected void Page_Init(object sender, EventArgs e)
-            {
-                OfficeAssignmentsGridView.EnableDynamicData(typeof(OfficeAssignment));
-            }
-    
-            protected void OfficeAssignmentsObjectDataSource_Updated(object sender, ObjectDataSourceStatusEventArgs e)
-            {
-                if (e.Exception != null)
-                {
-                    var concurrencyExceptionValidator = new CustomValidator();
-                    concurrencyExceptionValidator.IsValid = false;
-                    concurrencyExceptionValidator.ErrorMessage = "The record you attempted to " +
-                        "update has been modified by another user since you last visited this page. " +
-                        "Your update was canceled to allow you to review the other user's " +
-                        "changes and determine if you still want to update this record.";
-                    Page.Validators.Add(concurrencyExceptionValidator);
-                    e.ExceptionHandled = true;
-                }
-            }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample15.xml)]
 
 ### Testing Optimistic Concurrency in the OfficeAssignments Page
 
@@ -466,22 +266,10 @@ Open the *Courses.aspx* page and make the following changes:
 
 - In the `CoursesEntityDataSource` control, add `EnableUpdate="true"` and `EnableDelete="true"` attributes. The opening tag for that control now resembles the following example:
 
-        <asp:EntityDataSource ID="CoursesEntityDataSource" runat="server" 
-                ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="false" 
-                AutoGenerateWhereClause="True" EntitySetName="Courses"
-                EnableUpdate="true" EnableDelete="true">
+    [!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample16.xml)]
 - In the `CoursesGridView` control, change the `DataKeyNames` attribute value to `"CourseID,Title,Credits,DepartmentID"`. Then add a `CommandField` element to the `Columns` element that shows **Edit** and **Delete** buttons (`<asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />`). The `GridView` control now resembles the following example:
 
-        <asp:GridView ID="CoursesGridView" runat="server" AutoGenerateColumns="False" 
-                DataKeyNames="CourseID,Title,Credits,DepartmentID"
-                DataSourceID="CoursesEntityDataSource" >
-                <Columns>
-                    <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
-                    <asp:BoundField DataField="CourseID" HeaderText="CourseID" ReadOnly="True" SortExpression="CourseID" />
-                    <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                    <asp:BoundField DataField="Credits" HeaderText="Credits" SortExpression="Credits" />
-                </Columns>
-            </asp:GridView>
+    [!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample17.xml)]
 
 Run the page and create a conflict situation as you did before in the Departments page. Run the page in two browser windows, click **Edit** in the same line in each window, and make a different change in each one. Click **Update** in one window and then click **Update** in the other window. When you click **Update** the second time, you see the error page that results from an unhandled concurrency exception.
 
@@ -489,47 +277,17 @@ Run the page and create a conflict situation as you did before in the Department
 
 You handle this error in a manner very similar to how you handled it for the `ObjectDataSource` control. Open the *Courses.aspx* page, and in the `CoursesEntityDataSource` control, specify handlers for the `Deleted` and `Updated` events. The opening tag of the control now resembles the following example:
 
-    <asp:EntityDataSource ID="CoursesEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.SchoolEntities" EnableFlattening="false"
-            AutoGenerateWhereClause="true" EntitySetName="Courses" 
-            EnableUpdate="true" EnableDelete="true" 
-            OnDeleted="CoursesEntityDataSource_Deleted" 
-            OnUpdated="CoursesEntityDataSource_Updated">
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample18.xml)]
 
 Before the `CoursesGridView` control, add the following `ValidationSummary` control:
 
-    <asp:ValidationSummary ID="CoursesValidationSummary" runat="server" 
-            ShowSummary="true" DisplayMode="BulletList"  />
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample19.xml)]
 
 In *Courses.aspx.cs*, add a `using` statement for the `System.Data` namespace, add a method that checks for concurrency exceptions, and add handlers for the `EntityDataSource` control's `Updated` and `Deleted` handlers. The code will look like the following:
 
-    using System.Data;
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample20.xml)]
 
-    protected void CoursesEntityDataSource_Updated(object sender, EntityDataSourceChangedEventArgs e)
-            {
-                CheckForOptimisticConcurrencyException(e, "update");
-            }
-    
-            protected void CoursesEntityDataSource_Deleted(object sender, EntityDataSourceChangedEventArgs e)
-            {
-                CheckForOptimisticConcurrencyException(e, "delete");
-            }
-    
-            private void CheckForOptimisticConcurrencyException(EntityDataSourceChangedEventArgs e, string function)
-            {
-                if (e.Exception != null && e.Exception is OptimisticConcurrencyException)
-                {
-                    var concurrencyExceptionValidator = new CustomValidator();
-                    concurrencyExceptionValidator.IsValid = false;
-                    concurrencyExceptionValidator.ErrorMessage = 
-                        "The record you attempted to edit or delete was modified by another " +
-                        "user after you got the original value. The edit or delete operation was canceled " +
-                        "and the other user's values have been displayed so you can " +
-                        "determine whether you still want to edit or delete this record.";
-                    Page.Validators.Add(concurrencyExceptionValidator);
-                    e.ExceptionHandled = true;
-                }
-            }
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample21.xml)]
 
 The only difference between this code and what you did for the `ObjectDataSource` control is that in this case the concurrency exception is in the `Exception` property of the event arguments object rather than in that exception's `InnerException` property.
 

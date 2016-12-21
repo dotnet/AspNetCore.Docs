@@ -35,69 +35,27 @@ Fortunately, Web API uses [content negotiation](content-negotiation.md), so your
 
 In your Web API configuration, add the **BsonMediaTypeFormatter** to the formatters collection.
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            config.Formatters.Add(new BsonMediaTypeFormatter());
-    
-            // Other Web API configuration not shown...
-        }
-    }
+[!code[Main](bson-support-in-web-api-21/samples/sample1.xml)]
 
 Now if the client requests "application/bson", Web API will use the BSON formatter.
 
 To associate BSON with other media types, add them to the SupportedMediaTypes collection. The following code adds "application/vnd.contoso" to the supported media types:
 
-    var bson = new BsonMediaTypeFormatter();
-    bson.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/vnd.contoso"));
-    config.Formatters.Add(bson);
+[!code[Main](bson-support-in-web-api-21/samples/sample2.xml)]
 
 ## Example HTTP Session
 
 For this example, we'll use the following model class plus a simple Web API controller:
 
-    public class Book
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public decimal Price { get; set; }
-        public DateTime PublicationDate { get; set; }
-    }
-    
-    public class BooksController : ApiController
-    {
-        public IHttpActionResult GetBook(int id)
-        {
-            var book = new Book()
-            {
-                Id = id,
-                Author = "Charles Dickens",
-                Title = "Great Expectations",
-                Price = 9.95M,
-                PublicationDate = new DateTime(2014, 1, 20)
-            };
-    
-            return Ok(book);
-        }
-    }
+[!code[Main](bson-support-in-web-api-21/samples/sample3.xml)]
 
 A client might send the following HTTP request:
 
-    GET http://localhost:15192/api/books/1 HTTP/1.1
-    User-Agent: Fiddler
-    Host: localhost:15192
-    Accept: application/bson
+[!code[Main](bson-support-in-web-api-21/samples/sample4.xml)]
 
 Here is the response:
 
-    HTTP/1.1 200 OK
-    Content-Type: application/bson; charset=utf-8
-    Date: Fri, 17 Jan 2014 01:05:40 GMT
-    Content-Length: 111
-    
-    .....Id......Title.....Great Expectations..Author.....Charles Dickens..Price..........PublicationDate.........
+[!code[Main](bson-support-in-web-api-21/samples/sample5.xml)]
 
 Here I've replaced the binary data with &quot;.&quot; characters. The following screen shot from Fiddler shows the raw hex values.
 
@@ -109,74 +67,23 @@ Here I've replaced the binary data with &quot;.&quot; characters. The following 
 
 The following code sends a GET request that accepts BSON, and then deserializes the BSON payload in the response.
 
-    static async Task RunAsync()
-    {
-        using (HttpClient client = new HttpClient())
-        {
-            client.BaseAddress = new Uri("http://localhost");
-    
-            // Set the Accept header for BSON.
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
-    
-            // Send GET request.
-            result = await client.GetAsync("api/books/1");
-            result.EnsureSuccessStatusCode();
-    
-            // Use BSON formatter to deserialize the result.
-            MediaTypeFormatter[] formatters = new MediaTypeFormatter[] {
-                new BsonMediaTypeFormatter()
-            };
-    
-            var book = await result.Content.ReadAsAsync<Book>(formatters);
-        }
-    }
+[!code[Main](bson-support-in-web-api-21/samples/sample6.xml)]
 
 To request BSON from the server, set the Accept header to "application/bson":
 
-    client.DefaultRequestHeaders.Accept.Clear();
-    client.DefaultRequestHeaders.Accept.Add(new  
-        MediaTypeWithQualityHeaderValue("application/bson"));
+[!code[Main](bson-support-in-web-api-21/samples/sample7.xml)]
 
 To deserialize the response body, use the **BsonMediaTypeFormatter**. This formatter is not in the default formatters collection, so you have to specify it when you read the response body:
 
-    MediaTypeFormatter[] formatters = new MediaTypeFormatter[] {
-        new BsonMediaTypeFormatter()
-    };
-    
-    var book = await result.Content.ReadAsAsync<Book>(formatters);
+[!code[Main](bson-support-in-web-api-21/samples/sample8.xml)]
 
 The next example shows how to send a POST request that contains BSON.
 
-    static async Task RunAsync()
-    {
-        using (HttpClient client = new HttpClient())
-        {
-            client.BaseAddress = new Uri("http://localhost:15192");
-    
-            // Set the Accept header for BSON.
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
-    
-            var book = new Book()
-            {
-                Author = "Jane Austen",
-                Title = "Emma",
-                Price = 9.95M,
-                PublicationDate = new DateTime(1815, 1, 1)
-            };
-    
-            // POST using the BSON formatter.
-            MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
-            var result = await client.PostAsync("api/books", book, bsonFormatter);
-            result.EnsureSuccessStatusCode();
-        }
-    }
+[!code[Main](bson-support-in-web-api-21/samples/sample9.xml)]
 
 Much of this code is the same as the previous example. But in the **PostAsync** method, specify **BsonMediaTypeFormatter** as the formatter:
 
-    MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
-    var result = await client.PostAsync("api/books", book, bsonFormatter);
+[!code[Main](bson-support-in-web-api-21/samples/sample10.xml)]
 
 ## Serializing Top-Level Primitive Types
 
@@ -184,17 +91,11 @@ Every BSON document is a list of key/value pairs.The BSON specification does not
 
 To work around this limitation, the **BsonMediaTypeFormatter** treats primitive types as a special case. Before serializing, it converts the value into a key/value pair with the key "Value". For example, suppose your API controller returns an integer:
 
-    public class ValuesController : ApiController
-    {
-        public IHttpActionResult Get()
-        {
-            return Ok(42);
-        }
-    }
+[!code[Main](bson-support-in-web-api-21/samples/sample11.xml)]
 
 Before serializing, the BSON formatter converts this to the following key/value pair:
 
-    { "Value": 42 }
+[!code[Main](bson-support-in-web-api-21/samples/sample12.xml)]
 
 When you deserialize, the formatter converts the data back to the original value. However, clients using a different BSON parser will need to handle this case, if your web API returns raw values. In general, you should consider returning structured data, rather than raw values.
 

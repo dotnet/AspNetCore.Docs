@@ -40,26 +40,13 @@ You'll begin by creating the repository interface.
 
 In the *DAL* folder, create a new class file, name it *ISchoolRepository.cs*, and replace the existing code with the following code:
 
-    using System;
-    using System.Collections.Generic;
-    
-    namespace ContosoUniversity.DAL
-    {
-        public interface ISchoolRepository : IDisposable
-        {
-            IEnumerable<Department> GetDepartments();
-            void InsertDepartment(Department department);
-            void DeleteDepartment(Department department);
-            void UpdateDepartment(Department department, Department origDepartment);
-            IEnumerable<InstructorName> GetInstructorNames();
-        }
-    }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample1.xml)]
 
 The interface defines one method for each of the CRUD (create, read, update, delete) methods that you created in the repository class.
 
 In the `SchoolRepository` class in *SchoolRepository.cs*, indicate that this class implements the `ISchoolRepository` interface:
 
-    public class SchoolRepository : IDisposable, ISchoolRepository
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample2.xml)]
 
 ## Creating a Business-Logic Class
 
@@ -71,106 +58,7 @@ Create a new folder and name it *BLL*. (In a real-world application, the busines
 
 In the *BLL* folder, create a new class file, name it *SchoolBL.cs*, and replace the existing code with the following code:
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using ContosoUniversity.DAL;
-    
-    namespace ContosoUniversity.BLL
-    {
-        public class SchoolBL : IDisposable
-        {
-            private ISchoolRepository schoolRepository;
-    
-            public SchoolBL()
-            {
-                this.schoolRepository = new SchoolRepository();
-            }
-    
-            public SchoolBL(ISchoolRepository schoolRepository)
-            {
-                this.schoolRepository = schoolRepository;
-            }
-    
-            public IEnumerable<Department> GetDepartments()
-            {
-                return schoolRepository.GetDepartments();
-            }
-    
-            public void InsertDepartment(Department department)
-            {
-                try
-                {
-                    schoolRepository.InsertDepartment(department);
-                }
-                catch (Exception ex)
-                {
-                    //Include catch blocks for specific exceptions first,
-                    //and handle or log the error as appropriate in each.
-                    //Include a generic catch block like this one last.
-                    throw ex;
-                }
-            }
-    
-            public void DeleteDepartment(Department department)
-            {
-                try
-                {
-                    schoolRepository.DeleteDepartment(department);
-                }
-                catch (Exception ex)
-                {
-                    //Include catch blocks for specific exceptions first,
-                    //and handle or log the error as appropriate in each.
-                    //Include a generic catch block like this one last.
-                    throw ex;
-                }
-            }
-    
-            public void UpdateDepartment(Department department, Department origDepartment)
-            {
-                try
-                {
-                    schoolRepository.UpdateDepartment(department, origDepartment);
-                }
-                catch (Exception ex)
-                {
-                    //Include catch blocks for specific exceptions first,
-                    //and handle or log the error as appropriate in each.
-                    //Include a generic catch block like this one last.
-                    throw ex;
-                }
-    
-            }
-    
-            public IEnumerable<InstructorName> GetInstructorNames()
-            {
-                return schoolRepository.GetInstructorNames();
-            }
-    
-            private bool disposedValue = false;
-    
-            protected virtual void Dispose(bool disposing)
-            {
-                if (!this.disposedValue)
-                {
-                    if (disposing)
-                    {
-                        schoolRepository.Dispose();
-                    }
-                }
-                this.disposedValue = true;
-            }
-    
-            public void Dispose()
-            {
-                Dispose(true);
-                GC.SuppressFinalize(this);
-            }
-    
-        }
-    }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample3.xml)]
 
 This code creates the same CRUD methods you saw earlier in the repository class, but instead of accessing the Entity Framework methods directly, it calls the repository class methods.
 
@@ -203,52 +91,7 @@ You can now create the repository class that you'll use with unit tests. The dat
 
 In the test project, create a new class file, name it *MockSchoolRepository.cs*, and replace the existing code with the following code:
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using ContosoUniversity.DAL;
-    using ContosoUniversity.BLL;
-    
-    namespace ContosoUniversity.Tests
-    {
-        class MockSchoolRepository : ISchoolRepository, IDisposable
-        {
-            List<Department> departments = new List<Department>();
-            List<InstructorName> instructors = new List<InstructorName>();
-    
-            public IEnumerable<Department> GetDepartments()
-            {
-                return departments;
-            }
-    
-            public void InsertDepartment(Department department)
-            {
-                departments.Add(department);
-            }
-    
-            public void DeleteDepartment(Department department)
-            {
-                departments.Remove(department);
-            }
-    
-            public void UpdateDepartment(Department department, Department origDepartment)
-            {
-                departments.Remove(origDepartment);
-                departments.Add(department);
-            }
-    
-            public IEnumerable<InstructorName> GetInstructorNames()
-            {
-                return instructors;
-            }
-    
-            public void Dispose()
-            {
-                
-            }
-        }
-    }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample4.xml)]
 
 This repository class has the same CRUD methods as the one that accesses the Entity Framework directly, but they work with `List` collections in memory instead of with a database. This makes it easier for a test class to set up and validate unit tests for the business-logic class.
 
@@ -262,43 +105,11 @@ At Contoso University, any individual instructor can only be the administrator o
 
 Open the *UnitTest1.cs* file and add `using` statements for the business logic and data-access layers that you created in the ContosoUniversity project:
 
-    using ContosoUniversity.BLL;
-    using ContosoUniversity.DAL;
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample5.xml)]
 
 Replace the `TestMethod1` method with the following methods:
 
-    private SchoolBL CreateSchoolBL()
-            {
-                var schoolRepository = new MockSchoolRepository();
-                var schoolBL = new SchoolBL(schoolRepository);
-                schoolBL.InsertDepartment(new Department() { Name = "First Department", DepartmentID = 0, Administrator = 1, Person = new Instructor () { FirstMidName = "Admin", LastName = "One" } });
-                schoolBL.InsertDepartment(new Department() { Name = "Second Department", DepartmentID = 1, Administrator = 2, Person = new Instructor() { FirstMidName = "Admin", LastName = "Two" } });
-                schoolBL.InsertDepartment(new Department() { Name = "Third Department", DepartmentID = 2, Administrator = 3, Person = new Instructor() { FirstMidName = "Admin", LastName = "Three" } });
-                return schoolBL;
-            }
-    
-            [TestMethod]
-            [ExpectedException(typeof(DuplicateAdministratorException))]
-            public void AdministratorAssignmentRestrictionOnInsert()
-            {
-                var schoolBL = CreateSchoolBL();
-                schoolBL.InsertDepartment(new Department() { Name = "Fourth Department", DepartmentID = 3, Administrator = 2, Person = new Instructor() { FirstMidName = "Admin", LastName = "Two" } });
-            }
-    
-            [TestMethod]
-            [ExpectedException(typeof(DuplicateAdministratorException))]
-            public void AdministratorAssignmentRestrictionOnUpdate()
-            {
-                var schoolBL = CreateSchoolBL();
-                var origDepartment = (from d in schoolBL.GetDepartments()
-                                      where d.Name == "Second Department"
-                                      select d).First();
-                var department = (from d in schoolBL.GetDepartments()
-                                      where d.Name == "Second Department"
-                                      select d).First();
-                department.Administrator = 1;
-                schoolBL.UpdateDepartment(department, origDepartment);
-            }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample6.xml)]
 
 The `CreateSchoolBL` method creates an instance of the repository class that you created for the unit test project, which it then passes to a new instance of the business-logic class. The method then uses the business-logic class to insert three departments that you can use in test methods.
 
@@ -320,38 +131,13 @@ Next, you'll implement the business logic that makes it impossible to set as the
 
 Start by creating the exception class that you'll throw when a user tries to make an instructor the administrator of more than one department. In the main project, create a new class file in the *BLL* folder, name it *DuplicateAdministratorException.cs*, and replace the existing code with the following code:
 
-    using System;
-    
-    namespace ContosoUniversity.BLL
-    {
-        public class DuplicateAdministratorException : Exception
-        {
-            public DuplicateAdministratorException(string message)
-                : base(message)
-            {
-            }
-        }
-    }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample7.xml)]
 
 Now delete the temporary*DuplicateAdministratorException.cs* file that you created in the test project earlier in order to be able to compile.
 
 In the main project, open the *SchoolBL.cs* file and add the following method that contains the validation logic. (The code refers to a method that you'll create later.)
 
-    private void ValidateOneAdministratorAssignmentPerInstructor(Department department)
-            {
-                if (department.Administrator != null)
-                {
-                    var duplicateDepartment = schoolRepository.GetDepartmentsByAdministrator(department.Administrator.GetValueOrDefault()).FirstOrDefault();
-                    if (duplicateDepartment != null && duplicateDepartment.DepartmentID != department.DepartmentID)
-                    {
-                        throw new DuplicateAdministratorException(String.Format(
-                            "Instructor {0} {1} is already administrator of the {2} department.", 
-                            duplicateDepartment.Person.FirstMidName, 
-                            duplicateDepartment.Person.LastName, 
-                            duplicateDepartment.Name));
-                    }
-                }
-            }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample8.xml)]
 
 You'll call this method when you're inserting or updating `Department` entities in order to check whether another department already has the same administrator.
 
@@ -359,32 +145,19 @@ The code calls a method to search the database for a `Department` entity that ha
 
 Call the new method from the `Insert` and `Update` methods:
 
-    public void InsertDepartment(Department department)
-            {
-                ValidateOneAdministratorAssignmentPerInstructor(department);
-                try
-                ...
-    
-            public void UpdateDepartment(Department department, Department origDepartment)
-            {
-                ValidateOneAdministratorAssignmentPerInstructor(department);
-                try
-                ...
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample9.xml)]
 
 In *ISchoolRepository.cs*, add the following declaration for the new data-access method:
 
-    IEnumerable<Department> GetDepartmentsByAdministrator(Int32 administrator);
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample10.xml)]
 
 In *SchoolRepository.cs*, add the following `using` statement:
 
-    using System.Data.Objects;
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample11.xml)]
 
 In *SchoolRepository.cs*, add the following new data-access method:
 
-    public IEnumerable<Department> GetDepartmentsByAdministrator(Int32 administrator)
-            {
-                return new ObjectQuery<Department>("SELECT VALUE d FROM Departments as d", context, MergeOption.NoTracking).Include("Person").Where(d => d.Administrator == administrator).ToList();
-            }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample12.xml)]
 
 This code retrieves `Department` entities that have a specified administrator. Only one department should be found (if any). However, because no constraint is built into the database, the return type is a collection in case multiple departments are found.
 
@@ -394,12 +167,7 @@ By default, when the object context retrieves entities from the database, it kee
 
 In the test project, add the new data-access method to *MockSchoolRepository.cs*:
 
-    public IEnumerable<Department> GetDepartmentsByAdministrator(Int32 administrator)
-            {
-                return (from d in departments
-                        where d.Administrator == administrator
-                        select d);
-            }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample13.xml)]
 
 This code uses LINQ to perform the same data selection that the `ContosoUniversity` project repository uses LINQ to Entities for.
 
@@ -415,36 +183,15 @@ In the `ContosoUniversity` project, run the *Departments.aspx* page and try to c
 
 You don't want users to see this kind of error page, so you need to add error-handling code. Open *Departments.aspx* and specify a handler for the `OnUpdated` event of the `DepartmentsObjectDataSource`. The `ObjectDataSource` opening tag now resembles the following example.
 
-    <asp:ObjectDataSource ID="DepartmentsObjectDataSource" runat="server" 
-            TypeName="ContosoUniversity.BLL.SchoolBL"
-            DataObjectTypeName="ContosoUniversity.DAL.Department" 
-            SelectMethod="GetDepartments" 
-            DeleteMethod="DeleteDepartment" 
-            UpdateMethod="UpdateDepartment"
-            ConflictDetection="CompareAllValues"
-            OldValuesParameterFormatString="orig{0}" 
-            OnUpdated="DepartmentsObjectDataSource_Updated" >
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample14.xml)]
 
 In *Departments.aspx.cs*, add the following `using` statement:
 
-    using ContosoUniversity.BLL;
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample15.xml)]
 
 Add the following handler for the `Updated` event:
 
-    protected void DepartmentsObjectDataSource_Updated(object sender, ObjectDataSourceStatusEventArgs e)
-            {
-                if (e.Exception != null)
-                {
-                    if (e.Exception.InnerException is DuplicateAdministratorException)
-                    {
-                        var duplicateAdministratorValidator = new CustomValidator();
-                        duplicateAdministratorValidator.IsValid = false;
-                        duplicateAdministratorValidator.ErrorMessage = "Update failed: " + e.Exception.InnerException.Message;
-                        Page.Validators.Add(duplicateAdministratorValidator);
-                        e.ExceptionHandled = true;
-                    }
-                }
-            }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample16.xml)]
 
 If the `ObjectDataSource` control catches an exception when it tries to perform the update, it passes the exception in the event argument (`e`) to this handler. The code in the handler checks to see if the exception is the duplicate administrator exception. If it is, the code creates a validator control that contains an error message for the `ValidationSummary` control to display.
 
@@ -454,31 +201,15 @@ Run the page and attempt to make someone the administrator of two departments ag
 
 Make similar changes to the *DepartmentsAdd.aspx* page. In *DepartmentsAdd.aspx*, specify a handler for the `OnInserted` event of the `DepartmentsObjectDataSource`. The resulting markup will resemble the following example.
 
-    <asp:ObjectDataSource ID="DepartmentsObjectDataSource" runat="server" 
-            TypeName="ContosoUniversity.BLL.SchoolBL" DataObjectTypeName="ContosoUniversity.DAL.Department" 
-            InsertMethod="InsertDepartment"  
-            OnInserted="DepartmentsObjectDataSource_Inserted">
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample17.xml)]
 
 In *DepartmentsAdd.aspx.cs*, add the same `using` statement:
 
-    using ContosoUniversity.BLL;
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample18.xml)]
 
 Add the following event handler:
 
-    protected void DepartmentsObjectDataSource_Inserted(object sender, ObjectDataSourceStatusEventArgs e)
-            {
-                if (e.Exception != null)
-                {
-                    if (e.Exception.InnerException is DuplicateAdministratorException)
-                    {
-                        var duplicateAdministratorValidator = new CustomValidator();
-                        duplicateAdministratorValidator.IsValid = false;
-                        duplicateAdministratorValidator.ErrorMessage = "Insert failed: " + e.Exception.InnerException.Message;
-                        Page.Validators.Add(duplicateAdministratorValidator);
-                        e.ExceptionHandled = true;
-                    }
-                }
-            }
+[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample19.xml)]
 
 You can now test the *DepartmentsAdd.aspx.cs* page to verify that it also correctly handles attempts to make one person the administrator of more than one department.
 

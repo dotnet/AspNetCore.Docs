@@ -61,22 +61,7 @@ In this procedure, you'll create a layout page that uses the `GetGoogleHtml` hel
 2. Create an account with Google Analytics and record the account name.
 3. Create a layout page named *Analytics.cshtml* and add the following markup:
 
-        @using Microsoft.Web.Helpers;
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>Analytics Test</title>
-          </head>
-          <body>
-            <h1>Analytics Test Page</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-            <div id="footer">
-              &copy; 2012 MySite
-            </div>
-            @Analytics.GetGoogleHtml("myaccount")
-          </body>
-        </html>
+    [!code[Main](14-analyzing-traffic/samples/sample1.xml)]
 
     > [!NOTE] You must place the call to the `Analytics` helper in the body of your web page (before the `</body>` tag). Otherwise, the browser will not run the script.
 
@@ -88,30 +73,7 @@ In this procedure, you'll create a layout page that uses the `GetGoogleHtml` hel
 5. Run the page in the browser. (Make sure the page is selected in the **Files** workspace before you run it.)
 6. In the browser, view the page source. You'll be able to see the rendered analytics code:
 
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>Analytics Test</title>
-          </head>
-          <body>
-            <h1>Analytics Test Page</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <div id="footer">
-              &copy; 2012 MySite
-            </div>
-            <script type="text/javascript">
-              var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-              document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-            </script>
-            <script type="text/javascript">
-              try{
-              var pageTracker = _gat._getTracker("myaccount");
-              pageTracker._trackPageview();
-              } catch(err) {}
-            </script>
-          </body>
-        </html>
+    [!code[Main](14-analyzing-traffic/samples/sample2.xml)]
 7. Log onto the Google Analytics site and examine the statistics for your site. If you're running the page on a live site, you see an entry that logs the visit to your page.
 
 <a id="Additional_Resources"></a>

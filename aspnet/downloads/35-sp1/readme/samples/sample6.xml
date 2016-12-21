@@ -1,0 +1,10 @@
+    MetaModel model = new MetaModel();
+    // Uncomment this line to register your LINQ to SQL or ADO.NET Entity data model
+    // for ASP.NET Dynamic Data. Set ScaffoldAllTables = true only if you are sure
+    // that you want all tables in the data model to support a scaffold (i.e. templates)
+    // view. To control scaffolding for individual tables, create a partial class for
+    // the table and apply the [Scaffold(true)] attribute to the partial class.
+    // Note: Make sure that you change "YourDataContextType" to the name of the data context
+    // class in your application.model.
+    RegisterContext(typeof(NorthwindDataContext), new
+        ContextConfiguration() { ScaffoldAllTables = true });

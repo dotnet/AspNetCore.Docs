@@ -39,16 +39,13 @@ The reason for this approach was that, strictly speaking, foreign keys are a phy
 
 For an example of how foreign keys in the data model can simplify your code, consider how you would have had to code the *DepartmentsAdd.aspx* page without them. In the `Department` entity, the `Administrator` property is a foreign key that corresponds to `PersonID` in the `Person` entity. In order to establish the association between a new department and its administrator, all you had to do was set the value for the `Administrator` property in the `ItemInserting` event handler of the databound control:
 
-    protected void DepartmentsDetailsView_ItemInserting(object sender, DetailsViewInsertEventArgs e)
-            {
-                e.Values["Administrator"] = administratorsDropDownList.SelectedValue;
-            }
+[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample1.xml)]
 
 Without foreign keys in the data model, you'd handle the `Inserting` event of the data source control instead of the `ItemInserting` event of the databound control, in order to get a reference to the entity itself before the entity is added to the entity set. When you have that reference, you establish the association using code like that in the following examples:
 
-    departmentEntityToBeInserted.PersonReference.EntityKey = new System.Data.EntityKey("SchoolEntities.Departments", "PersonID", Convert.ToInt32(administratorsDropDownList.SelectedValue));
+[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample2.xml)]
 
-    departmentEntityToBeInserted.Person = context.People.Single(p => p.PersonID == Convert.ToInt32(administratorsDropDownList.SelectedValue));
+[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample3.xml)]
 
 As you can see in the Entity Framework team's [blog post on Foreign Key associations](https://blogs.msdn.com/b/efdesign/archive/2009/03/16/foreign-keys-in-the-entity-framework.aspx), there are other cases where the difference in code complexity is much greater. To meet the needs of those who prefer to live with implementation details in the conceptual data model for the sake of simpler code, the Entity Framework now gives you the option of including foreign keys in the data model.
 
@@ -62,27 +59,15 @@ Suppose Contoso University administrators want to be able to perform bulk change
 
 Create a new page that uses the *Site.Master* master page and name it *UpdateCredits.aspx*. Then add the following markup to the `Content` control named `Content2`:
 
-    <h2>Update Credits</h2>
-        Enter the number to multiply the current number of credits by: 
-        <asp:TextBox ID="CreditsMultiplierTextBox" runat="server"></asp:TextBox>
-        <br /><br />
-        <asp:Button ID="ExecuteButton" runat="server" Text="Execute" OnClick="ExecuteButton_Click" /><br /><br />
-        Rows affected:
-        <asp:Label ID="RowsAffectedLabel" runat="server" Text="0" ViewStateMode="Disabled"></asp:Label><br /><br />
+[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample4.xml)]
 
 This markup creates a `TextBox` control in which the user can enter the multiplier value, a `Button` control to click in order to execute the command, and a `Label` control for indicating the number of rows affected.
 
 Open *UpdateCredits.aspx.cs*, and add the following `using` statement and a handler for the button's `Click` event:
 
-    using ContosoUniversity.DAL;
+[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample5.xml)]
 
-    protected void ExecuteButton_Click(object sender, EventArgs e)
-            {
-                using (SchoolEntities context = new SchoolEntities())
-                {
-                    RowsAffectedLabel.Text = context.ExecuteStoreCommand("UPDATE Course SET Credits = Credits * {0}", CreditsMultiplierTextBox.Text).ToString();
-                }
-            }
+[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample6.xml)]
 
 This code executes the SQL `Update` command using the value in the text box and uses the label to display the number of rows affected. Before you run the page, run the *Courses.aspx* page to get a "before" picture of some data.
 
@@ -170,47 +155,13 @@ Using **Server Explorer**, add the following rows to the `Alumnus` and `Donation
 
 Create a new web page named *Alumni.aspx* that uses the *Site.Master* master page. Add the following markup to the `Content` control named `Content2`:
 
-    <h2>Alumni</h2>
-        <asp:EntityDataSource ID="AlumniEntityDataSource" runat="server" 
-            ContextTypeName="ContosoUniversity.DAL.AlumniAssociationModelContainer" EnableFlattening="False" 
-            EntitySetName="Alumni">
-        </asp:EntityDataSource>
-        <asp:GridView ID="AlumniGridView" runat="server" 
-            DataSourceID="AlumniEntityDataSource" AutoGenerateColumns="False"
-            OnRowDataBound="AlumniGridView_RowDataBound"
-            DataKeyNames="AlumnusId">
-            <Columns>
-                <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                <asp:TemplateField HeaderText="Donations">
-                    <ItemTemplate>
-                        <asp:GridView ID="DonationsGridView" runat="server" AutoGenerateColumns="False">
-                            <Columns>
-                                <asp:BoundField DataField="DateAndAmount" HeaderText="Date and Amount" />
-                            </Columns>
-                        </asp:GridView>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample7.xml)]
 
 This markup creates nested `GridView` controls, the outer one to display alumni names and the inner one to display donation dates and amounts.
 
 Open *Alumni.aspx.cs*. Add a `using` statement for the data access layer and a handler for the outer `GridView` control's `RowDataBound` event:
 
-    using ContosoUniversity.DAL; 
-    
-        // ...
-    
-        protected void AlumniGridView_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                var alumnus = e.Row.DataItem as Alumnus;
-                var donationsGridView = (GridView)e.Row.FindControl("DonationsGridView");
-                donationsGridView.DataSource = alumnus.Donations.ToList();
-                donationsGridView.DataBind();
-            }
-        }
+[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample8.xml)]
 
 This code databinds the inner `GridView` control using the `Donations` navigation property of the current row's `Alumnus` entity.
 

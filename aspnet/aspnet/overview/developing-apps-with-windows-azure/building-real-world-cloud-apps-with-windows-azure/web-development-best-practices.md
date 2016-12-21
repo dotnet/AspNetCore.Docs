@@ -97,17 +97,11 @@ In ASP.NET 4.5, support for asynchronous programming has been added not just to 
 
 Here is a simple action method that calls a repository method for a database query:
 
-    public ActionResult Index()
-    {
-        string currentUser = User.Identity.Name;
-        var result = fixItRepository.FindOpenTasksByOwner(currentUser);
-    
-        return View(result);
-    }
+[!code[Main](web-development-best-practices/samples/sample1.xml)]
 
 And here is the same method that handles the database call asynchronously:
 
-[!code[Main](web-development-best-practices/samples/sample1.xml?highlight=1,4)]
+[!code[Main](web-development-best-practices/samples/sample2.xml?highlight=1,4)]
 
 Under the covers the compiler generates the appropriate asynchronous code. When the application makes the call to `FindTaskByIdAsync`, ASP.NET makes the `FindTask` request and then unwinds the worker thread and makes it available to process another request. When the `FindTask` request is done, a thread is restarted to continue processing the code that comes after that call. During the interim between when the `FindTask` request is initiated and when the data is returned, you have a thread available to do useful work which otherwise would be tied up waiting for the response.
 
@@ -121,11 +115,11 @@ As part of async support in 4.5 we shipped async support for web service calls, 
 
 In Entity Framework 6 all methods that cause a query or command to be sent to the database have async versions. The example here shows the async version of the *Find* method.
 
-[!code[Main](web-development-best-practices/samples/sample2.xml?highlight=8)]
+[!code[Main](web-development-best-practices/samples/sample3.xml?highlight=8)]
 
 And this async support works not just for inserts, deletes, updates, and simple finds, it also works with LINQ queries:
 
-[!code[Main](web-development-best-practices/samples/sample3.xml?highlight=7,10)]
+[!code[Main](web-development-best-practices/samples/sample4.xml?highlight=7,10)]
 
 There's an `Async` version of the `ToList` method because in this code that's the method that causes a query to be sent to the database. The `Where` and `OrderByDescending` methods only configure the query, while the `ToListAsync` method executes the query and stores the response in the `result` variable.
 

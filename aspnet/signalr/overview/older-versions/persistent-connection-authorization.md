@@ -24,12 +24,6 @@ To enforce authorization rules when using a [PersistentConnection](https://msdn.
 
 The example below shows how to limit requests to authenticated users.
 
-    public class AuthenticatedConnection : PersistentConnection 
-    { 
-        protected override bool AuthorizeRequest(IRequest request) 
-        { 
-            return request.User.Identity.IsAuthenticated; 
-        } 
-    }
+[!code[Main](persistent-connection-authorization/samples/sample1.xml)]
 
 You can add any customized authorization logic in the AuthorizeRequest method; such as, checking whether a user belongs to a particular role.

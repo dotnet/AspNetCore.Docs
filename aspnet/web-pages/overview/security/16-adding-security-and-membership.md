@@ -70,11 +70,7 @@ The following procedure describes how to create the site and configure it.
 3. In the left pane, click the **Files** workspace selector.
 4. In the root folder of your website, open the *\_AppStart.cshtml* file, which is a special file that's used to contain global settings. It contains some statements that are commented out using the `//` characters:
 
-        //WebMail.SmtpServer = "mailserver.example.com";
-        //WebMail.EnableSsl = true;
-        //WebMail.UserName = "username@example.com";
-        //WebMail.Password = "your-password";
-        //WebMail.From = "your-name-here@example.com";
+    [!code[Main](16-adding-security-and-membership/samples/sample1.xml)]
 
     These statements configure the `WebMail` helper, which can be used to send email. The membership system can use email to send confirmation messages when users register or when they want to change their passwords. (For example, after users register, they get an email that includes a link that they can click in order to finish the registration process.)
 
@@ -100,9 +96,7 @@ The following procedure describes how to create the site and configure it.
 
     > [!NOTE] If you see an error that tells you that a property must be an instance of `ExtendedMembershipProvider`, the site might not be configured to use the ASP.NET Web Pages membership system (SimpleMembership). This can sometimes occur if a hosting provider's server is configured differently than your local server. To fix this, add the following element to the site's *Web.config* file:
     > 
-    >     <appSettings>
-    >         <add key="enableSimpleMembership" value="true" />
-    >     </appSettings>
+    > [!code[Main](16-adding-security-and-membership/samples/sample2.xml)]
     > 
     > Add this element as a child of the `<configuration>` element and as a peer of the `<system.web>` element.
 9. In the upper-right corner of the page, click the **Register** link. The *Register.cshtml* page is displayed.
@@ -146,24 +140,7 @@ In this procedure, you'll create a folder that will contain pages that are avail
 3. Inside the *Members* folder, create a new page and named it *MembersInformation.cshtml*.
 4. Replace the existing content with the following code and markup:
 
-        @{
-            if (!WebSecurity.IsAuthenticated) {
-                Response.Redirect("~/Account/Login?returnUrl="
-                    + Request.Url.LocalPath);
-            }
-            Layout = "~/_SiteLayout.cshtml";
-            Page.Title = "Members Information";
-        }
-        <!DOCTYPE html>
-        <html lang="en">
-          <head>
-            <meta charset="utf-8" />
-            <title>Members Information</title>
-          </head>
-          <body>
-            <p>You can only see this information if you've logged into the site.</p>
-          </body>
-        </html>
+    [!code[Main](16-adding-security-and-membership/samples/sample3.xml)]
 
     This code tests the `IsAuthenticated` property of the `WebSecurity` object, which returns `true` if the user has logged in. If the user is not logged in, the code calls `Response.Redirect` to send the user to the *Login.cshtml* page in the *Account* folder.
 
@@ -210,24 +187,10 @@ The ASP.NET membership system is set up to support roles. However, unlike member
     Now that you have roles defined, you can configure a page that's accessible to users who are in that role.
 10. In the website root folder, create a new page named *AdminError.cshtml* and replace the existing content with the following code. This will be the page that users are redirected to if they aren't allowed access to a page.
 
-        @{
-            Layout = "~/_SiteLayout.cshtml";
-            PageData["Title"] = "Admin-only Error";
-        }
-        <p>You must log in as an admin to access that page.</p>
+    [!code[Main](16-adding-security-and-membership/samples/sample4.xml)]
 11. In the website root folder, create a new page named *AdminOnly.cshtml* and replace the existing code with the following code:
 
-        @{
-            Layout = "~/_SiteLayout.cshtml";
-            PageData["Title"] = "Administrators only";
-        }
-        
-        @if ( Roles.IsUserInRole("admin")) {
-            <span> Welcome <b>@WebSecurity.CurrentUserName</b>! </span>
-        }
-        else {
-             Response.Redirect("~/AdminError");
-        }
+    [!code[Main](16-adding-security-and-membership/samples/sample5.xml)]
 
     The `Roles.IsUserInRole` method returns `true` if the current user is a member of the specified role (in this case, the "admin" role).
 12. Run *Default.cshtml* in a browser, but don't log in. (If you're already logged in, log out.)

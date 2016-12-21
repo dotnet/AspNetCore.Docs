@@ -54,51 +54,7 @@ After you drag the HTML Editor onto a page, you can set its properties in the pr
 
 **Listing 1 - SimpleEditor.aspx**
 
-    <%@ Page Language="VB" %>
-    
-    <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc2" %>
-    <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit.HTMLEditor" tagprefix="cc1" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
-    <script runat="server">
-    
-        Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-            ltlResult.Text = Editor1.Content
-        End Sub
-    </script>
-    
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head id="Head1" runat="server">
-        <title></title>
-    </head>
-    <body>
-        <form id="form1" runat="server">
-        <div>
-           
-            <asp:ScriptManager ID="ScriptManager1" runat="server" />
-            
-            <cc1:Editor 
-                ID="Editor1" 
-                Width="450px"  
-                Height="200px"
-                runat="server"/>
-            <br />
-            <asp:Button
-                id="btnSubmit"
-                Text="Submit"
-                Runat="server" onclick="btnSubmit_Click" />
-        
-            <hr />
-            <h1>You Entered:</h1>
-            
-            <asp:Literal
-                id="ltlResult"
-                Runat="server" />
-            
-        </div>
-        </form>
-    </body>
-    </html>
+[!code[Main](how-do-i-use-the-html-editor-control-vb/samples/sample1.xml)]
 
 The page in Listing 1 contains an HTML Editor control, a Button control, and a Literal control. When you click the button, the contents of the HTML Editor appear in the Literal control (see Figure 4).
 
@@ -124,24 +80,7 @@ You customize the toolbar buttons by deriving a new HTML Editor from the base Ed
 
 **Listing 2 - App\_Code\CustomEditor.vb**
 
-    Imports AjaxControlToolkit.HTMLEditor
-    
-    Namespace MyControls
-    
-        Public Class CustomEditor
-            Inherits Editor
-            Protected Overrides Sub FillTopToolbar()
-                TopToolbar.Buttons.Add(New AjaxControlToolkit.HTMLEditor.ToolbarButton.Bold())
-                TopToolbar.Buttons.Add(New AjaxControlToolkit.HTMLEditor.ToolbarButton.Italic())
-            End Sub
-    
-            Protected Overrides Sub FillBottomToolbar()
-                BottomToolbar.Buttons.Add(New AjaxControlToolkit.HTMLEditor.ToolbarButton.DesignMode())
-                BottomToolbar.Buttons.Add(New AjaxControlToolkit.HTMLEditor.ToolbarButton.PreviewMode())
-            End Sub
-        End Class
-    
-    End Namespace
+[!code[Main](how-do-i-use-the-html-editor-control-vb/samples/sample2.xml)]
 
 You must add the class in Listing 2 to your App\_Code folder so that the class will be compiled automatically. If the App\_Code folder does not exist in your website then you can simply add the folder.
 
@@ -149,28 +88,7 @@ After you create a custom editor, you can add it to an ASP.NET page in the same 
 
 **Listing 3 - ShowCustomEditor.aspx**
 
-    <%@ Page Language="VB" %>
-    <%@ Register namespace="MyControls" tagprefix="custom" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head id="Head1" runat="server">
-        <title>Show Custom Editor</title>
-    </head>
-    <body>
-        <form id="form1" runat="server">
-        <div>
-        
-        <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        
-        <custom:CustomEditor ID="CustomEditor1" 
-            Width="450px"  
-            Height="200px"
-            runat="server" />
-        
-        </div>
-        </form>
-    </body>
-    </html>
+[!code[Main](how-do-i-use-the-html-editor-control-vb/samples/sample3.xml)]
 
 ## Avoiding Cross-Site Scripting (XSS) Attacks
 

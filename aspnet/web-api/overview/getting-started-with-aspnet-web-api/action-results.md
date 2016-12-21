@@ -41,18 +41,11 @@ If the return type is `void`, Web API simply returns an empty HTTP response with
 
 Example controller:
 
-    public class ValuesController : ApiController
-    {
-        public void Post()
-        {
-        }
-    }
+[!code[Main](action-results/samples/sample1.xml)]
 
 HTTP response:
 
-    HTTP/1.1 204 No Content
-    Server: Microsoft-IIS/8.0
-    Date: Mon, 27 Jan 2014 02:13:26 GMT
+[!code[Main](action-results/samples/sample2.xml)]
 
 ## HttpResponseMessage
 
@@ -60,35 +53,15 @@ If the action returns an [HttpResponseMessage](https://msdn.microsoft.com/en-us/
 
 This option gives you a lot of control over the response message. For example, the following controller action sets the Cache-Control header.
 
-    public class ValuesController : ApiController
-    {
-        public HttpResponseMessage Get()
-        {
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, "value");
-            response.Content = new StringContent("hello", Encoding.Unicode);
-            response.Headers.CacheControl = new CacheControlHeaderValue()
-            {
-                MaxAge = TimeSpan.FromMinutes(20)
-            };
-            return response;
-        } 
-    }
+[!code[Main](action-results/samples/sample3.xml)]
 
 Response:
 
-[!code[Main](action-results/samples/sample1.xml?highlight=2)]
+[!code[Main](action-results/samples/sample4.xml?highlight=2)]
 
 If you pass a domain model to the **CreateResponse** method, Web API uses a [media formatter](../formats-and-model-binding/media-formatters.md) to write the serialized model into the response body.
 
-    public HttpResponseMessage Get()
-    {
-        // Get a list of products from a database.
-        IEnumerable<Product> products = GetProductsFromDB();
-    
-        // Write the list to the response body.
-        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, products);
-        return response;
-    }
+[!code[Main](action-results/samples/sample5.xml)]
 
 Web API uses the Accept header in the request to choose the formatter. For more information, see [Content Negotiation](../formats-and-model-binding/content-negotiation.md).
 
@@ -102,81 +75,33 @@ The **IHttpActionResult** interface was introducted in Web API 2. Essentially, i
 
 **IHttpActionResult** contains a single method, **ExecuteAsync**, which asynchronously creates an **HttpResponseMessage** instance.
 
-    public interface IHttpActionResult
-    {
-        Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken);
-    }
+[!code[Main](action-results/samples/sample6.xml)]
 
 If a controller action returns an **IHttpActionResult**, Web API calls the **ExecuteAsync** method to create an **HttpResponseMessage**. Then it converts the **HttpResponseMessage** into an HTTP response message.
 
 Here is a simple implementaton of **IHttpActionResult** that creates a plain text response:
 
-    public class TextResult : IHttpActionResult
-    {
-        string _value;
-        HttpRequestMessage _request;
-    
-        public TextResult(string value, HttpRequestMessage request)
-        {
-            _value = value;
-            _request = request;
-        }
-        public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
-        {
-            var response = new HttpResponseMessage()
-            {
-                Content = new StringContent(_value),
-                RequestMessage = _request
-            };
-            return Task.FromResult(response);
-        }
-    }
+[!code[Main](action-results/samples/sample7.xml)]
 
 Example controller action:
 
-    public class ValuesController : ApiController
-    {
-        public IHttpActionResult Get()
-        {
-            return new TextResult("hello", Request);
-        }
-    }
+[!code[Main](action-results/samples/sample8.xml)]
 
 Response:
 
-    HTTP/1.1 200 OK
-    Content-Length: 5
-    Content-Type: text/plain; charset=utf-8
-    Server: Microsoft-IIS/8.0
-    Date: Mon, 27 Jan 2014 08:53:35 GMT
-    
-    hello
+[!code[Main](action-results/samples/sample9.xml)]
 
 More often, you will use the **IHttpActionResult** implementations defined in the **[System.Web.Http.Results](https://msdn.microsoft.com/en-us/library/system.web.http.results.aspx)** namespace. The **ApiContoller** class defines helper methods that return these built-in action results.
 
 In the following example, if the request does not match an existing product ID, the controller calls [ApiController.NotFound](https://msdn.microsoft.com/en-us/library/system.web.http.apicontroller.notfound.aspx) to create a 404 (Not Found) response. Otherwise, the controller calls [ApiController.OK](https://msdn.microsoft.com/en-us/library/dn314591.aspx), which creates a 200 (OK) response that contains the product.
 
-    public IHttpActionResult Get (int id)
-    {
-        Product product = _repository.Get (id);
-        if (product == null)
-        {
-            return NotFound(); // Returns a NotFoundResult
-        }
-        return Ok(product);  // Returns an OkNegotiatedContentResult
-    }
+[!code[Main](action-results/samples/sample10.xml)]
 
 ## Other Return Types
 
 For all other return types, Web API uses a [media formatter](../formats-and-model-binding/media-formatters.md) to serialize the return value. Web API writes the serialized value into the response body. The response status code is 200 (OK).
 
-    public class ProductsController : ApiController
-    {
-        public IEnumerable<Product> Get()
-        {
-            return GetAllProductsFromDB();
-        }
-    }
+[!code[Main](action-results/samples/sample11.xml)]
 
 A disadvantage of this approach is that you cannot directly return an error code, such as 404. However, you can throw an **HttpResponseException** for error codes. For more information, see [Exception Handling in ASP.NET Web API](../error-handling/exception-handling.md).
 
@@ -184,17 +109,8 @@ Web API uses the Accept header in the request to choose the formatter. For more 
 
 Example request
 
-    GET http://localhost/api/products HTTP/1.1
-    User-Agent: Fiddler
-    Host: localhost:24127
-    Accept: application/json
+[!code[Main](action-results/samples/sample12.xml)]
 
 Example response:
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json; charset=utf-8
-    Server: Microsoft-IIS/8.0
-    Date: Mon, 27 Jan 2014 08:53:35 GMT
-    Content-Length: 56
-    
-    [{"Id":1,"Name":"Yo-yo","Category":"Toys","Price":6.95}]
+[!code[Main](action-results/samples/sample13.xml)]

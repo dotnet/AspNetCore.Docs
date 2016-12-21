@@ -58,13 +58,7 @@ Optimistic concurrency control works by ensuring that the record being updated o
 There are various approaches to implementing optimistic concurrency (see [Peter A. Bromberg](http://peterbromberg.net/)'s [Optmistic Concurrency Updating Logic](http://www.eggheadcafe.com/articles/20050719.asp) for a brief look at a number of options). The ADO.NET Typed DataSet provides one implementation that can be configured with just the tick of a checkbox. Enabling optimistic concurrency for a TableAdapter in the Typed DataSet augments the TableAdapter's `UPDATE` and `DELETE` statements to include a comparison of all of the original values in the `WHERE` clause. The following `UPDATE` statement, for example, updates the name and price of a product only if the current database values are equal to the values that were originally retrieved when updating the record in the GridView. The `@ProductName` and `@UnitPrice` parameters contain the new values entered by the user, whereas `@original_ProductName` and `@original_UnitPrice` contain the values that were originally loaded into the GridView when the Edit button was clicked:
 
 
-    UPDATE Products SET
-        ProductName = @ProductName,
-        UnitPrice = @UnitPrice
-    WHERE
-        ProductID = @original_ProductID AND
-        ProductName = @original_ProductName AND
-        UnitPrice = @original_UnitPrice
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample1.xml)]
 
 > [!NOTE] This `UPDATE` statement has been simplified for readability. In practice, the `UnitPrice` check in the `WHERE` clause would be more involved since `UnitPrice` can contain `NULL` s and checking if `NULL = NULL` always returns False (instead you must use `IS NULL`).
 
@@ -94,15 +88,7 @@ Next, we are prompted as to how to query the data: through an ad-hoc SQL stateme
 On the following screen, enter the SQL query to use to retrieve the product information. Let's use the exact same SQL query used for the `Products` TableAdapter from our original DAL, which returns all of the `Product` columns along with the product's supplier and category names:
 
 
-    SELECT   ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit,
-               UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued,
-               (SELECT CategoryName FROM Categories
-                  WHERE Categories.CategoryID = Products.CategoryID)
-                  as CategoryName,
-               (SELECT CompanyName FROM Suppliers
-                  WHERE Suppliers.SupplierID = Products.SupplierID)
-                  as SupplierName
-    FROM     Products
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample2.xml)]
 
 
 [![Use the Same SQL Query from the Products TableAdapter in the Original DAL](implementing-optimistic-concurrency-cs/_static/image14.png)](implementing-optimistic-concurrency-cs/_static/image13.png)
@@ -137,29 +123,12 @@ After completing the wizard, the DataSet Designer will include a strongly-typed 
 To see the differences between the `UPDATE` and `DELETE` queries between the `ProductsOptimisticConcurrency` TableAdapter (which uses optimistic concurrency) and the Products TableAdapter (which doesn't), click on the TableAdapter and go to the Properties window. In the `DeleteCommand` and `UpdateCommand` properties' `CommandText` subproperties you can see the actual SQL syntax that is sent to the database when the DAL's update or delete-related methods are invoked. For the `ProductsOptimisticConcurrency` TableAdapter the `DELETE` statement used is:
 
 
-    DELETE FROM [Products]
-        WHERE (([ProductID] = @Original_ProductID)
-        AND ([ProductName] = @Original_ProductName)
-        AND ((@IsNull_SupplierID = 1 AND [SupplierID] IS NULL)
-           OR ([SupplierID] = @Original_SupplierID))
-        AND ((@IsNull_CategoryID = 1 AND [CategoryID] IS NULL)
-           OR ([CategoryID] = @Original_CategoryID))
-        AND ((@IsNull_QuantityPerUnit = 1 AND [QuantityPerUnit] IS NULL)
-           OR ([QuantityPerUnit] = @Original_QuantityPerUnit))
-        AND ((@IsNull_UnitPrice = 1 AND [UnitPrice] IS NULL)
-           OR ([UnitPrice] = @Original_UnitPrice))
-        AND ((@IsNull_UnitsInStock = 1 AND [UnitsInStock] IS NULL)
-           OR ([UnitsInStock] = @Original_UnitsInStock))
-        AND ((@IsNull_UnitsOnOrder = 1 AND [UnitsOnOrder] IS NULL)
-           OR ([UnitsOnOrder] = @Original_UnitsOnOrder))
-        AND ((@IsNull_ReorderLevel = 1 AND [ReorderLevel] IS NULL)
-           OR ([ReorderLevel] = @Original_ReorderLevel))
-        AND ([Discontinued] = @Original_Discontinued))
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample3.xml)]
 
 Whereas the `DELETE` statement for the Product TableAdapter in our original DAL is the much simpler:
 
 
-    DELETE FROM [Products] WHERE (([ProductID] = @Original_ProductID))
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample4.xml)]
 
 As you can see, the `WHERE` clause in the `DELETE` statement for the TableAdapter that uses optimistic concurrency includes a comparison between each of the `Product` table's existing column values and the original values at the time the GridView (or DetailsView or FormView) was last populated. Since all fields other than `ProductID`, `ProductName`, and `Discontinued` can have `NULL` values, additional parameters and checks are included to correctly compare `NULL` values in the `WHERE` clause.
 
@@ -210,36 +179,7 @@ Add a class named `ProductsOptimisticConcurrencyBLL` to the `BLL` folder within 
 Next, add the following code to the `ProductsOptimisticConcurrencyBLL` class:
 
 
-    using System;
-    using System.Data;
-    using System.Configuration;
-    using System.Web;
-    using System.Web.Security;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-    using System.Web.UI.WebControls.WebParts;
-    using System.Web.UI.HtmlControls;
-    using NorthwindOptimisticConcurrencyTableAdapters;
-    [System.ComponentModel.DataObject]
-    public class ProductsOptimisticConcurrencyBLL
-    {
-        private ProductsOptimisticConcurrencyTableAdapter _productsAdapter = null;
-        protected ProductsOptimisticConcurrencyTableAdapter Adapter
-        {
-            get
-            {
-                if (_productsAdapter == null)
-                    _productsAdapter = new ProductsOptimisticConcurrencyTableAdapter();
-                return _productsAdapter;
-            }
-        }
-        [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Select, true)]
-        public NorthwindOptimisticConcurrency.ProductsOptimisticConcurrencyDataTable GetProducts()
-        {
-            return Adapter.GetProducts();
-        }
-    }
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample5.xml)]
 
 Note the using `NorthwindOptimisticConcurrencyTableAdapters` statement above the start of the class declaration. The `NorthwindOptimisticConcurrencyTableAdapters` namespace contains the `ProductsOptimisticConcurrencyTableAdapter` class, which provides the DAL's methods. Also before the class declaration you'll find the `System.ComponentModel.DataObject` attribute, which instructs Visual Studio to include this class in the ObjectDataSource wizard's drop-down list.
 
@@ -250,28 +190,7 @@ The `ProductsOptimisticConcurrencyBLL`'s `Adapter` property provides quick acces
 When using the DB direct pattern against a DAL that uses optimistic concurrency, the methods must be passed the new and original values. For deleting, there are no new values, so only the original values need be passed in. In our BLL, then, we must accept all of the original parameters as input parameters. Let's have the `DeleteProduct` method in the `ProductsOptimisticConcurrencyBLL` class use the DB direct method. This means that this method needs to take in all ten product data fields as input parameters, and pass these to the DAL, as shown in the following code:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute
-    (System.ComponentModel.DataObjectMethodType.Delete, true)]
-    public bool DeleteProduct
-        (int original_productID, string original_productName,
-        int? original_supplierID, int? original_categoryID,
-        string original_quantityPerUnit, decimal? original_unitPrice,
-        short? original_unitsInStock, short? original_unitsOnOrder,
-        short? original_reorderLevel, bool original_discontinued)
-    {
-        int rowsAffected = Adapter.Delete(original_productID,
-                                          original_productName,
-                                          original_supplierID,
-                                          original_categoryID,
-                                          original_quantityPerUnit,
-                                          original_unitPrice,
-                                          original_unitsInStock,
-                                          original_unitsOnOrder,
-                                          original_reorderLevel,
-                                          original_discontinued);
-        // Return true if precisely one row was deleted, otherwise false
-        return rowsAffected == 1;
-    }
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample6.xml)]
 
 If the original values - those values that were last loaded into the GridView (or DetailsView or FormView) - differ from the values in the database when the user clicks the Delete button the `WHERE` clause won't match up with any database record and no records will be affected. Hence, the TableAdapter's `Delete` method will return `0` and the BLL's `DeleteProduct` method will return `false`.
 
@@ -298,80 +217,7 @@ Step 1 reads in all of the current database values for the specified product rec
 The following code shows the `UpdateProduct` overload that accepts all product data fields as input parameters. While not shown here, the `ProductsOptimisticConcurrencyBLL` class included in the download for this tutorial also contains an `UpdateProduct` overload that accepts just the product's name and price as input parameters.
 
 
-    protected void AssignAllProductValues
-        (NorthwindOptimisticConcurrency.ProductsOptimisticConcurrencyRow product,
-        string productName, int? supplierID, int? categoryID, string quantityPerUnit,
-        decimal? unitPrice, short? unitsInStock, short? unitsOnOrder,
-        short? reorderLevel, bool discontinued)
-    {
-        product.ProductName = productName;
-        if (supplierID == null)
-            product.SetSupplierIDNull();
-        else
-            product.SupplierID = supplierID.Value;
-        if (categoryID == null)
-            product.SetCategoryIDNull();
-        else
-            product.CategoryID = categoryID.Value;
-        if (quantityPerUnit == null)
-            product.SetQuantityPerUnitNull();
-        else
-            product.QuantityPerUnit = quantityPerUnit;
-        if (unitPrice == null)
-            product.SetUnitPriceNull();
-        else
-            product.UnitPrice = unitPrice.Value;
-        if (unitsInStock == null)
-            product.SetUnitsInStockNull();
-        else
-            product.UnitsInStock = unitsInStock.Value;
-        if (unitsOnOrder == null)
-            product.SetUnitsOnOrderNull();
-        else
-            product.UnitsOnOrder = unitsOnOrder.Value;
-        if (reorderLevel == null)
-            product.SetReorderLevelNull();
-        else
-            product.ReorderLevel = reorderLevel.Value;
-        product.Discontinued = discontinued;
-    }
-    [System.ComponentModel.DataObjectMethodAttribute
-    (System.ComponentModel.DataObjectMethodType.Update, true)]
-    public bool UpdateProduct(
-        // new parameter values
-        string productName, int? supplierID, int? categoryID, string quantityPerUnit,
-        decimal? unitPrice, short? unitsInStock, short? unitsOnOrder,
-        short? reorderLevel, bool discontinued, int productID,
-        // original parameter values
-        string original_productName, int? original_supplierID, int? original_categoryID,
-        string original_quantityPerUnit, decimal? original_unitPrice,
-        short? original_unitsInStock, short? original_unitsOnOrder,
-        short? original_reorderLevel, bool original_discontinued,
-        int original_productID)
-    {
-        // STEP 1: Read in the current database product information
-        NorthwindOptimisticConcurrency.ProductsOptimisticConcurrencyDataTable products =
-            Adapter.GetProductByProductID(original_productID);
-        if (products.Count == 0)
-            // no matching record found, return false
-            return false;
-        NorthwindOptimisticConcurrency.ProductsOptimisticConcurrencyRow product = products[0];
-        // STEP 2: Assign the original values to the product instance
-        AssignAllProductValues(product, original_productName, original_supplierID,
-            original_categoryID, original_quantityPerUnit, original_unitPrice,
-            original_unitsInStock, original_unitsOnOrder, original_reorderLevel,
-            original_discontinued);
-        // STEP 3: Accept the changes
-        product.AcceptChanges();
-        // STEP 4: Assign the new values to the product instance
-        AssignAllProductValues(product, productName, supplierID, categoryID,
-            quantityPerUnit, unitPrice, unitsInStock, unitsOnOrder, reorderLevel,
-            discontinued);
-        // STEP 5: Update the product record
-        int rowsAffected = Adapter.Update(product);
-        // Return true if precisely one row was updated, otherwise false
-        return rowsAffected == 1;
-    }
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample7.xml)]
 
 ## Step 4: Passing the Original and New Values From the ASP.NET Page to the BLL Methods
 
@@ -392,45 +238,7 @@ Choose the `GetProducts`, `UpdateProduct`, and `DeleteProduct` methods from drop
 After completing the wizard, the ObjectDataSource's declarative markup should look like the following:
 
 
-    <asp:ObjectDataSource ID="ProductsOptimisticConcurrencyDataSource" runat="server"
-        DeleteMethod="DeleteProduct" OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProducts" TypeName="ProductsOptimisticConcurrencyBLL"
-        UpdateMethod="UpdateProduct">
-        <DeleteParameters>
-            <asp:Parameter Name="original_productID" Type="Int32" />
-            <asp:Parameter Name="original_productName" Type="String" />
-            <asp:Parameter Name="original_supplierID" Type="Int32" />
-            <asp:Parameter Name="original_categoryID" Type="Int32" />
-            <asp:Parameter Name="original_quantityPerUnit" Type="String" />
-            <asp:Parameter Name="original_unitPrice" Type="Decimal" />
-            <asp:Parameter Name="original_unitsInStock" Type="Int16" />
-            <asp:Parameter Name="original_unitsOnOrder" Type="Int16" />
-            <asp:Parameter Name="original_reorderLevel" Type="Int16" />
-            <asp:Parameter Name="original_discontinued" Type="Boolean" />
-        </DeleteParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="supplierID" Type="Int32" />
-            <asp:Parameter Name="categoryID" Type="Int32" />
-            <asp:Parameter Name="quantityPerUnit" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="unitsInStock" Type="Int16" />
-            <asp:Parameter Name="unitsOnOrder" Type="Int16" />
-            <asp:Parameter Name="reorderLevel" Type="Int16" />
-            <asp:Parameter Name="discontinued" Type="Boolean" />
-            <asp:Parameter Name="productID" Type="Int32" />
-            <asp:Parameter Name="original_productName" Type="String" />
-            <asp:Parameter Name="original_supplierID" Type="Int32" />
-            <asp:Parameter Name="original_categoryID" Type="Int32" />
-            <asp:Parameter Name="original_quantityPerUnit" Type="String" />
-            <asp:Parameter Name="original_unitPrice" Type="Decimal" />
-            <asp:Parameter Name="original_unitsInStock" Type="Int16" />
-            <asp:Parameter Name="original_unitsOnOrder" Type="Int16" />
-            <asp:Parameter Name="original_reorderLevel" Type="Int16" />
-            <asp:Parameter Name="original_discontinued" Type="Boolean" />
-            <asp:Parameter Name="original_productID" Type="Int32" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample8.xml)]
 
 As you can see, the `DeleteParameters` collection contains a `Parameter` instance for each of the ten input parameters in the `ProductsOptimisticConcurrencyBLL` class's `DeleteProduct` method. Likewise, the `UpdateParameters` collection contains a `Parameter` instance for each of the input parameters in `UpdateProduct`.
 
@@ -462,129 +270,7 @@ As we discussed in the *Adding Validation Controls to the Editing and Inserting 
 Since we've already examined how to accomplish these tasks in previous tutorials, I'll just list the final declarative syntax here and leave the implementation as practice.
 
 
-    <asp:GridView ID="ProductsGrid" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="ProductsOptimisticConcurrencyDataSource"
-        OnRowUpdated="ProductsGrid_RowUpdated">
-        <Columns>
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-            <asp:TemplateField HeaderText="Product" SortExpression="ProductName">
-                <EditItemTemplate>
-                    <asp:TextBox ID="EditProductName" runat="server"
-                        Text='<%# Bind("ProductName") %>'></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
-                        ControlToValidate="EditProductName"
-                        ErrorMessage="You must enter a product name."
-                        runat="server">*</asp:RequiredFieldValidator>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server"
-                        Text='<%# Bind("ProductName") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Category" SortExpression="CategoryName">
-                <EditItemTemplate>
-                    <asp:DropDownList ID="EditCategoryID" runat="server"
-                        DataSourceID="CategoriesDataSource" AppendDataBoundItems="true"
-                        DataTextField="CategoryName" DataValueField="CategoryID"
-                        SelectedValue='<%# Bind("CategoryID") %>'>
-                        <asp:ListItem Value=">(None)</asp:ListItem>
-                    </asp:DropDownList><asp:ObjectDataSource ID="CategoriesDataSource"
-                        runat="server" OldValuesParameterFormatString="original_{0}"
-                        SelectMethod="GetCategories" TypeName="CategoriesBLL">
-                    </asp:ObjectDataSource>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server"
-                        Text='<%# Bind("CategoryName") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Supplier" SortExpression="SupplierName">
-                <EditItemTemplate>
-                    <asp:DropDownList ID="EditSuppliersID" runat="server"
-                        DataSourceID="SuppliersDataSource" AppendDataBoundItems="true"
-                        DataTextField="CompanyName" DataValueField="SupplierID"
-                        SelectedValue='<%# Bind("SupplierID") %>'>
-                        <asp:ListItem Value=">(None)</asp:ListItem>
-                    </asp:DropDownList><asp:ObjectDataSource ID="SuppliersDataSource"
-                        runat="server" OldValuesParameterFormatString="original_{0}"
-                        SelectMethod="GetSuppliers" TypeName="SuppliersBLL">
-                    </asp:ObjectDataSource>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label3" runat="server"
-                        Text='<%# Bind("SupplierName") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:BoundField DataField="QuantityPerUnit" HeaderText="Qty/Unit"
-                SortExpression="QuantityPerUnit" />
-            <asp:TemplateField HeaderText="Price" SortExpression="UnitPrice">
-                <EditItemTemplate>
-                    <asp:TextBox ID="EditUnitPrice" runat="server"
-                        Text='<%# Bind("UnitPrice", "{0:N2}") %>' Columns="8" />
-                    <asp:CompareValidator ID="CompareValidator1" runat="server"
-                        ControlToValidate="EditUnitPrice"
-                        ErrorMessage="Unit price must be a valid currency value without the
-                        currency symbol and must have a value greater than or equal to zero."
-                        Operator="GreaterThanEqual" Type="Currency"
-                        ValueToCompare="0">*</asp:CompareValidator>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label4" runat="server"
-                        Text='<%# Bind("UnitPrice", "{0:C}") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Units In Stock" SortExpression="UnitsInStock">
-                <EditItemTemplate>
-                    <asp:TextBox ID="EditUnitsInStock" runat="server"
-                        Text='<%# Bind("UnitsInStock") %>' Columns="6"></asp:TextBox>
-                    <asp:CompareValidator ID="CompareValidator2" runat="server"
-                        ControlToValidate="EditUnitsInStock"
-                        ErrorMessage="Units in stock must be a valid number
-                            greater than or equal to zero."
-                        Operator="GreaterThanEqual" Type="Integer"
-                        ValueToCompare="0">*</asp:CompareValidator>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label5" runat="server"
-                        Text='<%# Bind("UnitsInStock", "{0:N0}") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Units On Order" SortExpression="UnitsOnOrder">
-                <EditItemTemplate>
-                    <asp:TextBox ID="EditUnitsOnOrder" runat="server"
-                        Text='<%# Bind("UnitsOnOrder") %>' Columns="6"></asp:TextBox>
-                    <asp:CompareValidator ID="CompareValidator3" runat="server"
-                        ControlToValidate="EditUnitsOnOrder"
-                        ErrorMessage="Units on order must be a valid numeric value
-                            greater than or equal to zero."
-                        Operator="GreaterThanEqual" Type="Integer"
-                        ValueToCompare="0">*</asp:CompareValidator>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label6" runat="server"
-                        Text='<%# Bind("UnitsOnOrder", "{0:N0}") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Reorder Level" SortExpression="ReorderLevel">
-                <EditItemTemplate>
-                    <asp:TextBox ID="EditReorderLevel" runat="server"
-                        Text='<%# Bind("ReorderLevel") %>' Columns="6"></asp:TextBox>
-                    <asp:CompareValidator ID="CompareValidator4" runat="server"
-                        ControlToValidate="EditReorderLevel"
-                        ErrorMessage="Reorder level must be a valid numeric value
-                            greater than or equal to zero."
-                        Operator="GreaterThanEqual" Type="Integer"
-                        ValueToCompare="0">*</asp:CompareValidator>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label7" runat="server"
-                        Text='<%# Bind("ReorderLevel", "{0:N0}") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued"
-                SortExpression="Discontinued" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample9.xml)]
 
 We're very close to having a fully-working example. However, there are a few subtleties that will creep up and cause us problems. Additionally, we still need some interface that alerts the user when a concurrency violation has occurred.
 
@@ -619,12 +305,7 @@ The `FormatException` is raised when the ObjectDataSource attempts to read in th
 - Display the `UnitPrice` formatted as a currency in the `ItemTemplate`, but use the `Eval` keyword to accomplish this. Recall that `Eval` performs one-way databinding. We still need to provide the `UnitPrice` value for the original values, so we'll still need a two-way databinding statement in the `ItemTemplate`, but this can be placed in a Label Web control whose `Visible` property is set to `false`. We could use the following markup in the ItemTemplate:
 
 
-    <ItemTemplate>
-        <asp:Label ID="DummyUnitPrice" runat="server"
-            Text='<%# Bind("UnitPrice") %>' Visible="false"></asp:Label>
-        <asp:Label ID="Label4" runat="server"
-            Text='<%# Eval("UnitPrice", "{0:C}") %>'></asp:Label>
-    </ItemTemplate>
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample10.xml)]
 
 - Remove the currency formatting from the `ItemTemplate`, using `<%# Bind("UnitPrice") %>`. In the GridView's `RowDataBound` event handler, programmatically access the Label Web control within which the `UnitPrice` value is displayed and set its `Text` property to the formatted version.
 - Leave the `UnitPrice` formatted as a currency. In the GridView's `RowDeleting` event handler, replace the existing original `UnitPrice` value ($19.95) with an actual decimal value using `Decimal.Parse`. We saw how to accomplish something similar in the `RowUpdating` event handler in the [*Handling BLL- and DAL-Level Exceptions in an ASP.NET Page*](handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs.md) tutorial.
@@ -642,28 +323,7 @@ After solving this problem, try clicking the Delete button for any product again
 Looking at the exception's message, it's clear that the ObjectDataSource wants to invoke a BLL `DeleteProduct` method that includes `original_CategoryName` and `original_SupplierName` input parameters. This is because the `ItemTemplate` s for the `CategoryID` and `SupplierID` TemplateFields currently contain two-way Bind statements with the `CategoryName` and `SupplierName` data fields. Instead, we need to include `Bind` statements with the `CategoryID` and `SupplierID` data fields. To accomplish this, replace the existing Bind statements with `Eval` statements, and then add hidden Label controls whose `Text` properties are bound to the `CategoryID` and `SupplierID` data fields using two-way databinding, as shown below:
 
 
-    <asp:TemplateField HeaderText="Category" SortExpression="CategoryName">
-        <EditItemTemplate>
-            ...
-        </EditItemTemplate>
-        <ItemTemplate>
-            <asp:Label ID="DummyCategoryID" runat="server"
-                Text='<%# Bind("CategoryID") %>' Visible="False"></asp:Label>
-            <asp:Label ID="Label2" runat="server"
-                Text='<%# Eval("CategoryName") %>'></asp:Label>
-        </ItemTemplate>
-    </asp:TemplateField>
-    <asp:TemplateField HeaderText="Supplier" SortExpression="SupplierName">
-        <EditItemTemplate>
-            ...
-        </EditItemTemplate>
-        <ItemTemplate>
-            <asp:Label ID="DummySupplierID" runat="server"
-                Text='<%# Bind("SupplierID") %>' Visible="False"></asp:Label>
-            <asp:Label ID="Label3" runat="server"
-                Text='<%# Eval("SupplierName") %>'></asp:Label>
-        </ItemTemplate>
-    </asp:TemplateField>
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample11.xml)]
 
 With these changes, we are now able to successfully delete and edit product information! In Step 5 we'll look at how to verify that concurrency violations are being detected. But for now, take a few minutes to try updating and deleting a few records to ensure that updating and deleting for a single user works as expected.
 
@@ -694,18 +354,7 @@ To remedy these two issues, we can create Label Web controls on the page that pr
 When a concurrency violation occurs, the behavior exhibited depends on whether the DAL's batch update or DB direct pattern was used. Our tutorial uses both patterns, with the batch update pattern being used for updating and the DB direct pattern used for deleting. To get started, let's add two Label Web controls to our page that explain that a concurrency violation occurred when attempting to delete or update data. Set the Label control's `Visible` and `EnableViewState` properties to `false`; this will cause them to be hidden on each page visit except for those particular page visits where their `Visible` property is programmatically set to `true`.
 
 
-    <asp:Label ID="DeleteConflictMessage" runat="server" Visible="False"
-        EnableViewState="False" CssClass="Warning"
-        Text="The record you attempted to delete has been modified by another user
-               since you last visited this page. Your delete was cancelled to allow
-               you to review the other user's changes and determine if you want to
-               continue deleting this record." />
-    <asp:Label ID="UpdateConflictMessage" runat="server" Visible="False"
-        EnableViewState="False" CssClass="Warning"
-        Text="The record you attempted to update has been modified by another user
-               since you started the update process. Your changes have been replaced
-               with the current values. Please review the existing values and make
-               any needed changes." />
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample12.xml)]
 
 In addition to setting their `Visible`, `EnabledViewState`, and `Text` properties, I've also set the `CssClass` property to `Warning`, which causes the Label's to be displayed in a large, red, italic, bold font. This CSS `Warning` class was defined and added to Styles.css back in the *Examining the Events Associated with Inserting, Updating, and Deleting* tutorial.
 
@@ -726,19 +375,7 @@ Let's first look at how to handle concurrency violations when using the batch up
 As we saw in the *Handling BLL- and DAL-Level Exceptions in an ASP.NET Page* tutorial, such exceptions can be detected and suppressed in the data Web control's post-level event handlers. Therefore, we need to create an event handler for the GridView's `RowUpdated` event that checks if a `DBConcurrencyException` exception has been thrown. This event handler is passed a reference to any exception that was raised during the updating process, as shown in the event handler code below:
 
 
-    protected void ProductsGrid_RowUpdated(object sender, GridViewUpdatedEventArgs e)
-    {
-        if (e.Exception != null && e.Exception.InnerException != null)
-        {
-            if (e.Exception.InnerException is System.Data.DBConcurrencyException)
-            {
-                // Display the warning message and note that the
-                // exception has been handled...
-                UpdateConflictMessage.Visible = true;
-                e.ExceptionHandled = true;
-            }
-        }
-    }
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample13.xml)]
 
 In the face of a `DBConcurrencyException` exception, this event handler displays the `UpdateConflictMessage` Label control and indicates that the exception has been handled. With this code in place, when a concurrency violation occurs when updating a record, the user's changes are lost, since they would have overwritten another user's modifications at the same time. In particular, the GridView is returned to its pre-editing state and bound to the current database data. This will update the GridView row with the other user's changes, which were previously not visible. Additionally, the `UpdateConflictMessage` Label control will explain to the user what just happened. This sequence of events is detailed in Figure 19.
 
@@ -758,19 +395,7 @@ With the DB direct pattern, there is no exception raised in the face of a concur
 The return value for a BLL method can be examined in the ObjectDataSource's post-level event handlers through the `ReturnValue` property of the `ObjectDataSourceStatusEventArgs` object passed into the event handler. Since we are interested in determining the return value from the `DeleteProduct` method, we need to create an event handler for the ObjectDataSource's `Deleted` event. The `ReturnValue` property is of type `object` and can be `null` if an exception was raised and the method was interrupted before it could return a value. Therefore, we should first ensure that the `ReturnValue` property is not `null` and is a Boolean value. Assuming this check passes, we show the `DeleteConflictMessage` Label control if the `ReturnValue` is `false`. This can be accomplished by using the following code:
 
 
-    protected void ProductsOptimisticConcurrencyDataSource_Deleted(
-        object sender, ObjectDataSourceStatusEventArgs e)
-    {
-        if (e.ReturnValue != null && e.ReturnValue is bool)
-        {
-            bool deleteReturnValue = (bool)e.ReturnValue;
-            if (deleteReturnValue == false)
-            {
-                // No row was deleted, display the warning message
-                DeleteConflictMessage.Visible = true;
-            }
-        }
-    }
+[!code[Main](implementing-optimistic-concurrency-cs/samples/sample14.xml)]
 
 In the face of a concurrency violation, the user's delete request is canceled. The GridView is refreshed, showing the changes that occurred for that record between the time the user loaded the page and when he clicked the Delete button. When such a violation transpires, the `DeleteConflictMessage` Label is shown, explaining what just happened (see Figure 20).
 

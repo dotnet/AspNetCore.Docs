@@ -1,5 +1,2 @@
-contosoChatHubProxy.client.addNewMessageToPage = function (name, message) {
-    // Add the message to the page. 
-    $('#discussion').append('<li><strong>' + htmlEncode(name)
-        + '</strong>: ' + htmlEncode(message) + '<li>');
-};
+[HubMethodName("PascalCaseNewContosoChatMessage")]
+public void NewContosoChatMessage(string userName, string message)

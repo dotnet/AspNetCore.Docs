@@ -1,1 +1,1 @@
-@Html.ActionLink("Last Name", "Index", new { sortOrder=ViewBag.NameSortParm, currentFilter=ViewBag.CurrentFilter })
+    public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)

@@ -77,13 +77,11 @@ In the Create, Delete, Details, and Edit views, change the caption for the `Inst
 
 In the Create and Edit views use the following code:
 
-    <label class="control-label col-md-2" for="InstructorID">Administrator</label>
+[!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml)]
 
 In the Delete and Details views use the following code:
 
-    <dt>
-        Administrator
-    </dt>
+[!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml)]
 
 Run the application, and click the **Departments** tab.
 
@@ -102,7 +100,7 @@ Some developers and DBAs prefer to use stored procedures for database access. In
 
 1. In *DAL\SchoolContext.cs*, add the highlighted code to the `OnModelCreating` method.
 
-    [!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml?highlight=9)]
+    [!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml?highlight=9)]
 
     This code instructs Entity Framework to use stored procedures for insert, update, and delete operations on the `Department` entity.
 2. In Package Manage Console, enter the following command:
@@ -111,7 +109,7 @@ Some developers and DBAs prefer to use stored procedures for database access. In
 
     Open *Migrations\&lt;timestamp&gt;\_DepartmentSP.cs* to see the code in the `Up` method that creates Insert, Update, and Delete stored procedures:
 
-    [!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml?highlight=3-4,26-27,42-43)]
+    [!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml?highlight=3-4,26-27,42-43)]
 - In Package Manage Console, enter the following command:
 
     `update-database`

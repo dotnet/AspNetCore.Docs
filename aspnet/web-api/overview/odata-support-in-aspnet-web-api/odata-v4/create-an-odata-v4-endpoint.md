@@ -52,7 +52,7 @@ In the **New Project** dialog, select the **Empty** template. Under &quot;Add fo
 
 From the **Tools** menu, select **NuGet Package Manager** &gt; **Package Manager Console**. In the Package Manager Console window, type:
 
-    Install-Package Microsoft.AspNet.Odata
+[!code[Main](create-an-odata-v4-endpoint/samples/sample1.xml)]
 
 This command installs the latest OData NuGet packages.
 
@@ -69,16 +69,7 @@ In Solution Explorer, right-click the Models folder. From the context menu, sele
 
 Name the class `Product`. In the Product.cs file, replace the boilerplate code with the following:
 
-    namespace ProductService.Models
-    {
-        public class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public decimal Price { get; set; }
-            public string Category { get; set; }
-        }
-    }
+[!code[Main](create-an-odata-v4-endpoint/samples/sample2.xml)]
 
 The `Id` property is the entity key. Clients can query entities by key. For example, to get the product with ID of 5, the URI is `/Products(5)`. The `Id` property will also be the primary key in the back-end database.
 
@@ -91,28 +82,17 @@ For this tutorial, we'll use Entity Framework (EF) Code First to create the back
 
 First, install the NuGet package for EF. From the **Tools** menu, select **NuGet Package Manager** &gt; **Package Manager Console**. In the Package Manager Console window, type:
 
-    Install-Package EntityFramework
+[!code[Main](create-an-odata-v4-endpoint/samples/sample3.xml)]
 
 Open the Web.config file, and add the following section inside the **configuration** element, after the **configSections** element.
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample1.xml?highlight=6)]
+[!code[Main](create-an-odata-v4-endpoint/samples/sample4.xml?highlight=6)]
 
 This setting adds a connection string for a LocalDB database. This database will be used when you run the app locally.
 
 Next, add a class named `ProductsContext` to the Models folder:
 
-    using System.Data.Entity;
-    namespace ProductService.Models
-    {
-        public class ProductsContext : DbContext
-        {
-            public ProductsContext() 
-                    : base("name=ProductsContext")
-            {
-            }
-            public DbSet<Product> Products { get; set; }
-        }
-    }
+[!code[Main](create-an-odata-v4-endpoint/samples/sample5.xml)]
 
 In the constructor, `"name=ProductsContext"` gives the name of the connection string.
 
@@ -120,25 +100,11 @@ In the constructor, `"name=ProductsContext"` gives the name of the connection st
 
 Open the file App\_Start/WebApiConfig.cs. Add the following **using** statements:
 
-    using ProductService.Models;
-    using System.Web.OData.Builder;
-    using System.Web.OData.Extensions;
+[!code[Main](create-an-odata-v4-endpoint/samples/sample6.xml)]
 
 Then add the following code to the **Register** method:
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            // New code:
-            ODataModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Product>("Products");
-            config.MapODataServiceRoute(
-                routeName: "ODataRoute",
-                routePrefix: null,
-                model: builder.GetEdmModel());
-        }
-    }
+[!code[Main](create-an-odata-v4-endpoint/samples/sample7.xml)]
 
 This code does two things:
 
@@ -162,30 +128,7 @@ In Solution Explorer, right-click the Controllers folder and select **Add** &gt;
 
 Replace the boilerplate code in ProductsController.cs with the following.
 
-    using ProductService.Models;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    using System.Linq;
-    using System.Net;
-    using System.Threading.Tasks;
-    using System.Web.Http;
-    using System.Web.OData;
-    namespace ProductService.Controllers
-    {
-        public class ProductsController : ODataController
-        {
-            ProductsContext db = new ProductsContext();
-            private bool ProductExists(int key)
-            {
-                return db.Products.Any(p => p.Id == key);
-            } 
-            protected override void Dispose(bool disposing)
-            {
-                db.Dispose();
-                base.Dispose(disposing);
-            }
-        }
-    }
+[!code[Main](create-an-odata-v4-endpoint/samples/sample8.xml)]
 
 The controller uses the `ProductsContext` class to access the database using EF. Notice that the controller overrides the **Dispose** method to dispose of the **ProductsContext**.
 
@@ -195,17 +138,7 @@ This is the starting point for the controller. Next, we'll add methods for all o
 
 Add the following methods to `ProductsController`.
 
-    [EnableQuery]
-    public IQueryable<Product> Get()
-    {
-        return db.Products;
-    }
-    [EnableQuery]
-    public SingleResult<Product> Get([FromODataUri] int key)
-    {
-        IQueryable<Product> result = db.Products.Where(p => p.Id == key);
-        return SingleResult.Create(result);
-    }
+[!code[Main](create-an-odata-v4-endpoint/samples/sample9.xml)]
 
 The parameterless version of the `Get` method returns the entire Products collection. The `Get` method with a *key* parameter looks up a product by its key (in this case, the `Id` property).
 
@@ -215,16 +148,7 @@ The **[EnableQuery]** attribute enables clients to modify the query, by using qu
 
 To enable clients to add a new product to the database, add the following method to `ProductsController`.
 
-    public async Task<IHttpActionResult> Post(Product product)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-        db.Products.Add(product);
-        await db.SaveChangesAsync();
-        return Created(product);
-    }
+[!code[Main](create-an-odata-v4-endpoint/samples/sample10.xml)]
 
 ## Updating an Entity
 
@@ -237,63 +161,7 @@ The disadvantage of PUT is that the client must send values for all of the prope
 
 In any case, here is the code for both PATCH and PUT methods:
 
-    public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Product> product)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-        var entity = await db.Products.FindAsync(key);
-        if (entity == null)
-        {
-            return NotFound();
-        }
-        product.Patch(entity);
-        try
-        {
-            await db.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!ProductExists(key))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-        return Updated(entity);
-    }
-    public async Task<IHttpActionResult> Put([FromODataUri] int key, Product update)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-        if (key != update.Id)
-        {
-            return BadRequest();
-        }
-        db.Entry(update).State = EntityState.Modified;
-        try
-        {
-            await db.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!ProductExists(key))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-        return Updated(update);
-    }
+[!code[Main](create-an-odata-v4-endpoint/samples/sample11.xml)]
 
 In the case of PATCH, the controller uses the **Delta&lt;T&gt;** type to track the changes.
 
@@ -301,14 +169,4 @@ In the case of PATCH, the controller uses the **Delta&lt;T&gt;** type to track t
 
 To enable clients to delete a product from the database, add the following method to `ProductsController`.
 
-    public async Task<IHttpActionResult> Delete([FromODataUri] int key)
-    {
-        var product = await db.Products.FindAsync(key);
-        if (product == null)
-        {
-            return NotFound();
-        }
-        db.Products.Remove(product);
-        await db.SaveChangesAsync();
-        return StatusCode(HttpStatusCode.NoContent);
-    }
+[!code[Main](create-an-odata-v4-endpoint/samples/sample12.xml)]

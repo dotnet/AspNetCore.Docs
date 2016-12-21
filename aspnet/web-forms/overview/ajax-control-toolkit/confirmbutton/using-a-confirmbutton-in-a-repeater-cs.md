@@ -32,30 +32,15 @@ For this sample, we assume that the instance of the SQL Server 2005 Express Edit
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](using-a-confirmbutton-in-a-repeater-cs/samples/sample1.xml)]
 
 Then, a data source is required. For the sake of simplicity, only the first five entries in AdventureWorks' Vendors table are retrieved. Note that when using the Visual Studio wizard to create the data source, the table name (`Vendors`) is currently not correctly prefixed with `Purchasing`. The following markup is the correct one:
 
-    <asp:SqlDataSource ID="sds1" runat="server" ConnectionString="
-     Data Source=(local)\SQLEXPRESS;Initial Catalog=AdventureWorks;Integrated Security=True"
-     ProviderName="System.Data.SqlClient" SelectCommand="SELECT TOP 5
-     [VendorID], [Name] FROM [Purchasing].[Vendor]" />
+[!code[Main](using-a-confirmbutton-in-a-repeater-cs/samples/sample2.xml)]
 
 This data source can then be used within a repeater. As usual, the `DataBinder.Eval()` method retrieves data from the data source. The `ConfirmButtonExtender` control must then be placed within the `<ItemTemplate>` section of the repeater so that it appears for every entry in the data source.
 
-    <div>
-     <ul>
-     <asp:Repeater ID="rep1" DataSourceID="sds1" runat="server">
-     <ItemTemplate>
-     <li>
-     <%#DataBinder.Eval(Container.DataItem, "Name")%>
-     <asp:LinkButton ID="btn1" Text="Remove Item" runat="server" />
-     <ajaxToolkit:ConfirmButtonExtender ID="cfe1" runat="server" TargetControlID="btn1" ConfirmText="Are you sure?!" />
-     </li>
-     </ItemTemplate>
-     </asp:Repeater>
-     </ul>
-    </div>
+[!code[Main](using-a-confirmbutton-in-a-repeater-cs/samples/sample3.xml)]
 
 
 [![The confirm button appears next to each entry from the data source](using-a-confirmbutton-in-a-repeater-cs/_static/image2.png)](using-a-confirmbutton-in-a-repeater-cs/_static/image1.png)

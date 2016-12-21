@@ -1,5 +1,6 @@
 protected void Button1_Click(object sender, EventArgs e)
 {
+
     System.Collections.ArrayList alist = 
         new System.Collections.ArrayList();
     int i;
@@ -9,5 +10,8 @@ protected void Button1_Click(object sender, EventArgs e)
         arrayValue = "i = " + i.ToString();
         alist.Add(arrayValue);
     }
-    i = DisplayArray(alist, i);
+    for(i=0; i<alist.Count; i++)
+    {
+        Response.Write("<br />" + alist[i]);
+    };
 }

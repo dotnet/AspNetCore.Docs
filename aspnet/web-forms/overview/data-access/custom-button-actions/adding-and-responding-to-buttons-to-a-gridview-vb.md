@@ -56,17 +56,7 @@ Like in the other folders, `Default.aspx` in the `CustomButtons` folder will lis
 Lastly, add the pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Paging and Sorting `<siteMapNode>`:
 
 
-    <siteMapNode
-        title="Adding Custom Buttons"
-        description="Samples of Reports that Include Buttons for Performing
-                      Server-Side Actions"
-        url="~/CustomButtons/Default.aspx">
-        <siteMapNode
-            title="Using ButtonFields and Buttons in Templates"
-            description="Examines how to add custom Buttons, LinkButtons,
-                          or ImageButtons as ButtonFields or within templates."
-            url="~/CustomButtons/CustomButtons.aspx" />
-    </siteMapNode>
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the editing, inserting, and deleting tutorials.
 
@@ -99,21 +89,7 @@ Configure this new ObjectDataSource such that it queries from the `SuppliersBLL`
 After configuring the ObjectDataSource, Visual Studio will generate an `InsertItemTemplate`, `EditItemTemplate`, and `ItemTemplate` for the FormView. Remove the `InsertItemTemplate` and `EditItemTemplate` and modify the `ItemTemplate` so that it displays just the supplier s company name and phone number. Finally, turn on paging support for the FormView by checking the Enable Paging checkbox from its smart tag (or by setting its `AllowPaging` property to `True`). After these changes your page s declarative markup should look similar to the following:
 
 
-    <asp:FormView ID="Suppliers" runat="server" DataKeyNames="SupplierID"
-        DataSourceID="SuppliersDataSource" EnableViewState="False" AllowPaging="True">
-        <ItemTemplate>
-            <h3>
-                <asp:Label ID="CompanyName" runat="server"
-                    Text='<%# Bind("CompanyName") %>' />
-            </h3>
-            <b>Phone:</b>
-            <asp:Label ID="PhoneLabel" runat="server" Text='<%# Bind("Phone") %>' />
-        </ItemTemplate>
-    </asp:FormView>
-    <asp:ObjectDataSource ID="SuppliersDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetSuppliers" TypeName="SuppliersBLL">
-    </asp:ObjectDataSource>
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample2.xml)]
 
 Figure 7 shows the CustomButtons.aspx page when viewed through a browser.
 
@@ -152,27 +128,7 @@ Since the `GetProductsBySupplierID(supplierID)` method accepts an input paramete
 After completing the ObjectDataSource wizard, the GridView will contain a BoundField or CheckBoxField for each of the product s data fields. Let s trim this down to show just the `ProductName` and `UnitPrice` BoundFields along with the `Discontinued` CheckBoxField; furthermore, let s format the `UnitPrice` BoundField such that its text is formatted as a currency. Your GridView and `SuppliersProductsDataSource` ObjectDataSource s declarative markup should look similar to the following markup:
 
 
-    <asp:GridView ID="SuppliersProducts" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="SuppliersProductsDataSource"
-        EnableViewState="False" runat="server">
-        <Columns>
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="Price"
-                SortExpression="UnitPrice" DataFormatString="{0:C}"
-                HtmlEncode="False" />
-            <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued"
-                SortExpression="Discontinued" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="SuppliersProductsDataSource" runat="server"
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetProductsBySupplierID" TypeName="ProductsBLL">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="Suppliers" Name="supplierID"
-                PropertyName="SelectedValue" Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample3.xml)]
 
 At this point our tutorial displays a master/details report, allowing the user to pick a supplier from the FormView at the top and to view the products provided by that supplier through the GridView at the bottom. Figure 11 shows a screen shot of this page when selecting the Tokyo Traders supplier from the FormView.
 
@@ -205,9 +161,7 @@ Next, the wizard prompts us as to what type of query to create. Since the `Disco
 The next wizard screen provides the TableAdapter s existing `UPDATE` statement, which updates each of the fields defined in the `Products` DataTable. Replace this query text with the following statement:
 
 
-    UPDATE [Products] SET
-       Discontinued = 1
-    WHERE SupplierID = @SupplierID
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample4.xml)]
 
 After entering this query and clicking Next, the last wizard screen asks for the new method s name use `DiscontinueAllProductsForSupplier`. Complete the wizard by clicking the Finish button. Upon returning to the DataSet Designer you should see a new method in the `ProductsTableAdapter` named `DiscontinueAllProductsForSupplier(@SupplierID)`.
 
@@ -220,9 +174,7 @@ After entering this query and clicking Next, the last wizard screen asks for the
 With the `DiscontinueAllProductsForSupplier(supplierID)` method created in the Data Access Layer, our next task is to create the `DiscontinueAllProductsForSupplier(supplierID)` method in the Business Logic Layer. To accomplish this, open the `ProductsBLL` class file and add the following:
 
 
-    Public Function DiscontinueAllProductsForSupplier(supplierID As Integer) As Integer
-        Return Adapter.DiscontinueAllProductsForSupplier(supplierID)
-    End Function
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample5.xml)]
 
 This method simply calls down to the `DiscontinueAllProductsForSupplier(supplierID)` method in the DAL, passing along the provided *`supplierID`* parameter value. If there were any business rules that only allowed a supplier s products to be discontinued under certain circumstances, those rules should be implemented here, in the BLL.
 
@@ -248,38 +200,12 @@ Finally, let s use a client-side confirm dialog box to ensure that the user real
 After making these changes, the FormView s declarative syntax should look like the following:
 
 
-    <asp:FormView ID="Suppliers" runat="server" DataKeyNames="SupplierID"
-        DataSourceID="SuppliersDataSource" EnableViewState="False"
-        AllowPaging="True">
-        <ItemTemplate>
-            <h3><asp:Label ID="CompanyName" runat="server"
-                Text='<%# Bind("CompanyName") %>'></asp:Label></h3>
-            <b>Phone:</b>
-            <asp:Label ID="PhoneLabel" runat="server" Text='<%# Bind("Phone") %>' />
-            <br />
-            <asp:Button ID="DiscontinueAllProductsForSupplier" runat="server"
-                CommandName="DiscontinueProducts" Text="Discontinue All Products"
-                OnClientClick="return confirm('This will mark _all_ of this supplier\'s
-                    products as discontinued. Are you certain you want to do this?');" />
-        </ItemTemplate>
-    </asp:FormView>
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample6.xml)]
 
 Next, create an event handler for the FormView s `ItemCommand` event. In this event handler we need to first determine whether the Discontinue All Products Button was clicked. If so, we want to create an instance of the `ProductsBLL` class and invoke its `DiscontinueAllProductsForSupplier(supplierID)` method, passing in the `SupplierID` of the selected FormView:
 
 
-    Protected Sub Suppliers_ItemCommand(sender As Object, e As FormViewCommandEventArgs) _
-        Handles Suppliers.ItemCommand
-        If e.CommandName.CompareTo("DiscontinueProducts") = 0 Then
-            ' The "Discontinue All Products" Button was clicked.
-            ' Invoke the ProductsBLL.DiscontinueAllProductsForSupplier(supplierID) method
-            ' First, get the SupplierID selected in the FormView
-            Dim supplierID As Integer = CType(Suppliers.SelectedValue, Integer)
-            ' Next, create an instance of the ProductsBLL class
-            Dim productInfo As New ProductsBLL()
-            ' Finally, invoke the DiscontinueAllProductsForSupplier(supplierID) method
-            productInfo.DiscontinueAllProductsForSupplier(supplierID)
-        End If
-    End Sub
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample7.xml)]
 
 Note that the `SupplierID` of the current selected supplier in the FormView can be accessed using the FormView s [`SelectedValue` property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.formview.selectedvalue.aspx). The `SelectedValue` property returns the first data key value for the record being displayed in the FormView. The FormView s [`DataKeyNames` property](https://msdn.microsoft.com/en-us/system.web.ui.webcontrols.formview.datakeynames.aspx), which indicates the data fields from which the data key values are pulled from, was automatically set to `SupplierID` by Visual Studio when binding the ObjectDataSource to the FormView back in Step 2.
 
@@ -312,23 +238,7 @@ Our past `UpdateProduct` overloads have taken in some combination of product fie
 The `UpdateProduct` overload for this tutorial is shown below:
 
 
-    Public Function UpdateProduct _
-        (unitPriceAdjustmentPercentage As Decimal, productID As Integer) As Boolean
-        Dim products As Northwind.ProductsDataTable = Adapter.GetProductByProductID(productID)
-        If products.Count = 0 Then
-            ' no matching record found, return false
-            Return False
-        End If
-        Dim product As Northwind.ProductsRow = products(0)
-        ' Adjust the UnitPrice by the specified percentage (if it's not NULL)
-        If Not product.IsUnitPriceNull() Then
-            product.UnitPrice *= unitPriceAdjustmentPercentage
-        End If
-        ' Update the product record
-        Dim rowsAffected As Integer = Adapter.Update(product)
-        ' Return true if precisely one row was updated, otherwise false
-        Return rowsAffected = 1
-    End Function
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample8.xml)]
 
 This overload retrieves information about the specified product through the DAL s `GetProductByProductID(productID)` method. It then checks to see whether the product s `UnitPrice` is assigned a database `NULL` value. If it is, the price is left unaltered. If, however, there is a non-`NULL` `UnitPrice` value, the method updates the product s `UnitPrice` by the specified percent (`unitPriceAdjustmentPercent`).
 
@@ -354,47 +264,11 @@ Move the two ButtonFields so that they appear as the first two GridView fields. 
 **Figure 19**: Configure the ButtonFields `Text`, `CommandName`, and `ButtonType` Properties
 
 
-    <asp:GridView ID="SuppliersProducts" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="SuppliersProductsDataSource"
-        EnableViewState="False">
-        <Columns>
-            <asp:ButtonField ButtonType="Button" CommandName="IncreasePrice"
-                Text="Price +10%" />
-            <asp:ButtonField ButtonType="Button" CommandName="DecreasePrice"
-                Text="Price -10%" />
-            <asp:BoundField DataField="ProductName" HeaderText="Product"
-                SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="Price"
-                SortExpression="UnitPrice" DataFormatString="{0:C}"
-                HtmlEncode="False" />
-            <asp:CheckBoxField DataField="Discontinued" HeaderText="Discontinued"
-                SortExpression="Discontinued" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample9.xml)]
 
 With these ButtonFields created, the final step is to create an event handler for the GridView s `RowCommand` event. This event handler, if fired because either the Price +10% or Price -10% buttons were clicked, needs to determine the `ProductID` for the row whose button was clicked and then invoke the `ProductsBLL` class s `UpdateProduct` method, passing in the appropriate `UnitPrice` percentage adjustment along with the `ProductID`. The following code performs these tasks:
 
-    Protected Sub SuppliersProducts_RowCommand _
-        (sender As Object, e As GridViewCommandEventArgs) _
-            Handles SuppliersProducts.RowCommand
-        If e.CommandName.CompareTo("IncreasePrice") = 0 OrElse _
-           e.CommandName.CompareTo("DecreasePrice") = 0 Then
-            ' The Increase Price or Decrease Price Button has been clicked
-            ' Determine the ID of the product whose price was adjusted
-            Dim productID As Integer = Convert.ToInt32( _
-                SuppliersProducts.DataKeys(Convert.ToInt32(e.CommandArgument)).Value)
-            ' Determine how much to adjust the price
-            Dim percentageAdjust As Decimal
-            If e.CommandName.CompareTo("IncreasePrice") = 0 Then
-                percentageAdjust = 1.1
-            Else
-                percentageAdjust = 0.9
-            End If
-            ' Adjust the price
-            Dim productInfo As New ProductsBLL()
-            productInfo.UpdateProduct(percentageAdjust, productID)
-        End If
-    End Sub
+[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample10.xml)]
 
 In order to determine the `ProductID` for the row whose Price +10% or Price -10% button was clicked, we need to consult the GridView s `DataKeys` collection. This collection holds the values of the fields specified in the `DataKeyNames` property for each GridView row. Since the GridView s `DataKeyNames` property was set to ProductID by Visual Studio when binding the ObjectDataSource to the GridView, `DataKeys(rowIndex).Value` provides the `ProductID` for the specified *rowIndex*.
 

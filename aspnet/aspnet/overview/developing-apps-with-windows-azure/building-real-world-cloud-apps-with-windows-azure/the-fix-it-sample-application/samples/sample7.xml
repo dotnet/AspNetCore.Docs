@@ -1,4 +1,5 @@
-@if (!Model.Any()) {
-    <br />
-    <div>You don't have anything currently assigned to you!!!</div>
-}
+    catch (Exception e)
+    {
+        log.Error(e, "Error in FixItTaskRepository.FindTasksByCreatorAsync(creater={0})", creator);
+        throw;
+    }

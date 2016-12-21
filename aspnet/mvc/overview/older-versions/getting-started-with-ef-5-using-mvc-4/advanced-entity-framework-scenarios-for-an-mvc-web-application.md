@@ -60,18 +60,11 @@ Suppose you want the `GenericRepository` class to provide additional filtering a
 
 Create the `GetWithRawSql` method by adding the following code to *GenericRepository.cs*:
 
-    public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
-    {
-        return dbSet.SqlQuery(query, parameters).ToList();
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample1.xml)]
 
 In *CourseController.cs*, call the new method from the `Details` method, as shown in the following example:
 
-    public ActionResult Details(int id)
-    {
-        var query = "SELECT * FROM Course WHERE CourseID = @p0";
-        return View(unitOfWork.CourseRepository.GetWithRawSql(query, id).Single());
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample2.xml)]
 
 In this case you could have used the `GetByID` method, but you're using the `GetWithRawSql` method to verify that the `GetWithRawSQL` method works.
 
@@ -83,23 +76,13 @@ Run the Details page to verify that the select query works (select the **Course*
 
 Earlier you created a student statistics grid for the About page that showed the number of students for each enrollment date. The code that does this in *HomeController.cs* uses LINQ:
 
-    var data = from student in db.Students
-               group student by student.EnrollmentDate into dateGroup
-               select new EnrollmentDateGroup()
-               {
-                   EnrollmentDate = dateGroup.Key,
-                   StudentCount = dateGroup.Count()
-               };
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample3.xml)]
 
 Suppose you want to write the code that retrieves this data directly in SQL rather than using LINQ. To do that you need to run a query that returns something other than entity objects, which means you need to use the `Database.SqlQuery` method.
 
 In *HomeController.cs*, replace the LINQ statement in the `About` method with the following code:
 
-    var query = "SELECT EnrollmentDate, COUNT(*) AS StudentCount "
-        + "FROM Person "
-        + "WHERE EnrollmentDate IS NOT NULL "
-        + "GROUP BY EnrollmentDate";
-    var data = db.Database.SqlQuery<EnrollmentDateGroup>(query);
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample4.xml)]
 
 Run the About page. It displays the same data it did before.
 
@@ -115,53 +98,17 @@ In the previous tutorial you used the generic repository to read and update `Cou
 
 In the *DAL* folder, create *CourseRepository.cs* and replace the existing code with the following code:
 
-    using System;
-    using ContosoUniversity.Models;
-    
-    namespace ContosoUniversity.DAL
-    {
-        public class CourseRepository : GenericRepository<Course>
-        {
-            public CourseRepository(SchoolContext context)
-                : base(context)
-            {
-            }
-    
-            public int UpdateCourseCredits(int multiplier)
-            {
-                return context.Database.ExecuteSqlCommand("UPDATE Course SET Credits = Credits * {0}", multiplier);
-            }
-    
-        }
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample5.xml)]
 
 In *UnitOfWork.cs*, change the `Course` repository type from `GenericRepository<Course>` to `CourseRepository:`
 
-    private CourseRepository courseRepository;
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample6.xml)]
 
-    public CourseRepository CourseRepository
-    {
-        get
-        {
-    
-            if (this.courseRepository == null)
-            {
-                this.courseRepository = new CourseRepository(context);
-            }
-            return courseRepository;
-        }
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.xml)]
 
 In *CourseContoller.cs*, add an `UpdateCourseCredits` method:
 
-    public ActionResult UpdateCourseCredits(int? multiplier)
-    {
-        if (multiplier != null)
-        {
-            ViewBag.RowsAffected = unitOfWork.CourseRepository.UpdateCourseCredits(multiplier.Value);
-        }
-        return View();
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample8.xml)]
 
 This method will be used for both `HttpGet` and `HttpPost`. When the `HttpGet` `UpdateCourseCredits` method runs, the `multiplier` variable will be null and the view will display an empty text box and a submit button, as shown in the preceding illustration.
 
@@ -175,35 +122,7 @@ Create a view in the *Views\Course* folder for the Update Course Credits page:
 
 In *Views\Course\UpdateCourseCredits.cshtml*, replace the template code with the following code:
 
-    @model ContosoUniversity.Models.Course
-    
-    @{
-        ViewBag.Title = "UpdateCourseCredits";
-    }
-    
-    <h2>Update Course Credits</h2>
-    
-    @if (ViewBag.RowsAffected == null)
-    {
-        using (Html.BeginForm())
-        {
-            <p>
-                Enter a number to multiply every course's credits by: @Html.TextBox("multiplier")
-            </p>
-            <p>
-                <input type="submit" value="Update" />
-            </p>
-        }
-    }
-    @if (ViewBag.RowsAffected != null)
-    {
-        <p>
-            Number of rows updated: @ViewBag.RowsAffected
-        </p>
-    }
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample9.xml)]
 
 Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:50205/Course/UpdateCourseCredits`). Enter a number in the text box:
 
@@ -232,29 +151,11 @@ In this section you'll implement business logic that illustrates the second of t
 
 In *DepartmentController.cs*, add a new method that you can call from the `Edit` and `Create` methods to make sure that no two departments have the same administrator:
 
-    private void ValidateOneAdministratorAssignmentPerInstructor(Department department)
-    {
-        if (department.PersonID != null)
-        {
-            var duplicateDepartment = db.Departments
-                .Include("Administrator")
-                .Where(d => d.PersonID == department.PersonID)
-                .FirstOrDefault();
-            if (duplicateDepartment != null && duplicateDepartment.DepartmentID != department.DepartmentID)
-            {
-                var errorMessage = String.Format(
-                    "Instructor {0} {1} is already administrator of the {2} department.",
-                    duplicateDepartment.Administrator.FirstMidName,
-                    duplicateDepartment.Administrator.LastName,
-                    duplicateDepartment.Name);
-                ModelState.AddModelError(string.Empty, errorMessage);
-            }
-        }
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample10.xml)]
 
 Add code in the `try` block of the `HttpPost` `Edit` method to call this new method if there are no validation errors. The `try` block now looks like the following example:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample1.xml?highlight=9-12)]
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample11.xml?highlight=9-12)]
 
 Run the Department Edit page and try to change a department's administrator to an instructor who is already the administrator of a different department. You get the expected error message:
 
@@ -273,7 +174,7 @@ One solution to this problem is to keep the context from tracking in-memory depa
 
 In *DepartmentController.cs*, in the `ValidateOneAdministratorAssignmentPerInstructor` method, specify no tracking, as shown in the following:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample2.xml?highlight=4)]
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample12.xml?highlight=4)]
 
 Repeat your attempt to edit the **Budget** amount of a department. This time the operation is successful, and the site returns as expected to the Departments Index page, showing the revised budget value.
 
@@ -283,16 +184,11 @@ Sometimes it's helpful to be able to see the actual SQL queries that are sent to
 
 In *Controllers/CourseController*, replace the `Index` method with the following code:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample3.xml?highlight=3)]
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample13.xml?highlight=3)]
 
 Now set a breakpoint in *GenericRepository.cs* on the `return query.ToList();` and the `return orderBy(query).ToList();` statements of the `Get` method. Run the project in debug mode and select the Course Index page. When the code reaches the breakpoint, examine the `query` variable. You see the query that's sent to SQL Server. It's a simple `Select` statement:
 
-    {SELECT 
-    [Extent1].[CourseID] AS [CourseID], 
-    [Extent1].[Title] AS [Title], 
-    [Extent1].[Credits] AS [Credits], 
-    [Extent1].[DepartmentID] AS [DepartmentID]
-    FROM [Course] AS [Extent1]}
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample14.xml)]
 
 ![](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image12.png)
 
@@ -302,18 +198,7 @@ Queries can be too long to display in the debugging windows in Visual Studio. To
 
 Now you'll add a drop-down list to the Course Index page so that users can filter for a particular department. You'll sort the courses by title, and you'll specify eager loading for the `Department` navigation property. In *CourseController.cs*, replace the `Index` method with the following code:
 
-    public ActionResult Index(int? SelectedDepartment)
-    {
-        var departments = unitOfWork.DepartmentRepository.Get(
-            orderBy: q => q.OrderBy(d => d.Name));
-        ViewBag.SelectedDepartment = new SelectList(departments, "DepartmentID", "Name", SelectedDepartment);
-    
-        int departmentID = SelectedDepartment.GetValueOrDefault(); 
-        return View(unitOfWork.CourseRepository.Get(
-            filter: d => !SelectedDepartment.HasValue || d.DepartmentID == departmentID,
-            orderBy: q => q.OrderBy(d => d.CourseID),
-            includeProperties: "Department"));
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample15.xml)]
 
 The method receives the selected value of the drop-down list in the `SelectedDepartment` parameter. If nothing is selected, this parameter will be null.
 
@@ -323,11 +208,7 @@ For the `Get` method of the `Course` repository, the code specifies a filter exp
 
 In *Views\Course\Index.cshtml*, immediately before the opening `table` tag, add the following code to create the drop-down list and a submit button:
 
-    @using (Html.BeginForm())
-    {
-        <p>Select Department: @Html.DropDownList("SelectedDepartment","All")   
-        <input type="submit" value="Filter" /></p>
-    }
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample16.xml)]
 
 With the breakpoints still set in the `GenericRepository` class, run the Course Index page. Continue through the first two times that the code hits a breakpoint, so that the page is displayed in the browser. Select a department from the drop-down list and click **Filter**:
 
@@ -335,20 +216,7 @@ With the breakpoints still set in the `GenericRepository` class, run the Course 
 
 This time the first breakpoint will be for the departments query for the drop-down list. Skip that and view the `query` variable the next time the code reaches the breakpoint in order to see what the `Course` query now looks like. You'll see something like the following:
 
-    {SELECT 
-    [Extent1].[CourseID] AS [CourseID], 
-    [Extent1].[Title] AS [Title], 
-    [Extent1].[Credits] AS [Credits], 
-    [Extent1].[DepartmentID] AS [DepartmentID], 
-    [Extent2].[DepartmentID] AS [DepartmentID1], 
-    [Extent2].[Name] AS [Name], 
-    [Extent2].[Budget] AS [Budget], 
-    [Extent2].[StartDate] AS [StartDate], 
-    [Extent2].[PersonID] AS [PersonID], 
-    [Extent2].[Timestamp] AS [Timestamp]
-    FROM  [Course] AS [Extent1]
-    INNER JOIN [Department] AS [Extent2] ON [Extent1].[DepartmentID] = [Extent2].[DepartmentID]
-    WHERE (@p__linq__0 IS NULL) OR ([Extent1].[DepartmentID] = @p__linq__1)}
+[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample17.xml)]
 
 You can see that the query is now a `JOIN` query that loads `Department` data along with the `Course` data, and that it includes a `WHERE` clause.
 

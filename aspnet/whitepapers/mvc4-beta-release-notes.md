@@ -77,23 +77,14 @@ To manually upgrade an existing ASP.NET MVC 3 application to version 4, do the f
 
 1. In all Web.config files in the project (there is one in the root of the project, one in the Views folder, and one in the Views folder for each area in your project), replace every instance of the following text:
 
-        System.Web.Mvc, Version=3.0.0.0
-        System.Web.WebPages, Version=1.0.0.0
-        System.Web.Helpers, Version=1.0.0.0
-        System.Web.WebPages.Razor, Version=1.0.0.0
+    [!code[Main](mvc4-beta-release-notes/samples/sample1.xml)]
 
     with the following corresponding text:
 
-        System.Web.Mvc, Version=4.0.0.0
-        System.Web.WebPages, Version=2.0.0.0
-        System.Web.Helpers, Version=2.0.0.0,
-         System.Web.WebPages.Razor, Version=2.0.0.0,
+    [!code[Main](mvc4-beta-release-notes/samples/sample2.xml)]
 2. In the root Web.config file, update the *webPages:Version* element to "2.0.0.0" and add a new *PreserveLoginUrl* key that has the value "true":
 
-        <appSettings>
-          <add key="webpages:Version" value="2.0.0.0" />
-          <add key="PreserveLoginUrl" value="true" />
-        </appSettings>
+    [!code[Main](mvc4-beta-release-notes/samples/sample3.xml)]
 3. In Solution Explorer, delete the reference to *System.Web.Mvc* (which points to the version 3 DLL). Then add a reference to *System.Web.Mvc* (v4.0.0.0). In particular, make the following changes to update the assembly references. Here are the details:
 
     1. In Solution Explorer, delete the references to the following assemblies: 
@@ -115,29 +106,7 @@ To manually upgrade an existing ASP.NET MVC 3 application to version 4, do the f
 6. Save the changes, close the project (.csproj) file you were editing, right-click the project, and then select Reload Project.
 7. If the project references any third-party libraries that are compiled using previous versions of ASP.NET MVC, open the root Web.config file and add the following three *bindingRedirect* elements under the *configuration* section: 
 
-        <configuration>
-          <!--... elements deleted for clarity ...-->
-         
-          <runtime>
-            <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-              <dependentAssembly>
-                <assemblyIdentity name="System.Web.Helpers" 
-                     publicKeyToken="31bf3856ad364e35" />
-                <bindingRedirect oldVersion="1.0.0.0" newVersion="2.0.0.0"/>
-              </dependentAssembly>
-              <dependentAssembly>
-                <assemblyIdentity name="System.Web.Mvc" 
-                     publicKeyToken="31bf3856ad364e35" />
-                <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="4.0.0.0"/>
-              </dependentAssembly>
-              <dependentAssembly>
-                <assemblyIdentity name="System.Web.WebPages" 
-                     publicKeyToken="31bf3856ad364e35" />
-                <bindingRedirect oldVersion="1.0.0.0" newVersion="2.0.0.0"/>
-              </dependentAssembly>
-            </assemblyBinding>
-          </runtime>
-        </configuration>
+    [!code[Main](mvc4-beta-release-notes/samples/sample4.xml)]
 
 <a id="_Toc303253807"></a>
 ## New Features in ASP.NET MVC 4 Beta
@@ -215,12 +184,7 @@ Layouts and partials can also be overridden for particular browser types. For ex
 
 If you want to create more specific views, layouts, or partial views for other devices, you can register a new *DefaultDisplayMode* instance to specify which name to search for when a request satisfies particular conditions. For example, you could add the following code to the *Application\_Start* method in the Global.asax file to register the string "iPhone" as a display mode that applies when the Apple iPhone browser makes a request:
 
-    DisplayModeProvider.Instance.Modes.Insert(0, new
-    DefaultDisplayMode("iPhone")
-    {
-        ContextCondition = (context => context.GetOverriddenUserAgent().IndexOf
-            ("iPhone", StringComparison.OrdinalIgnoreCase) >= 0)
-     });
+[!code[Main](mvc4-beta-release-notes/samples/sample5.xml)]
 
 After this code runs, when an Apple iPhone browser makes a request, your application will use the Views\Shared\\_Layout.iPhone.cshtml layout (if it exists).
 
@@ -229,7 +193,7 @@ After this code runs, when an Apple iPhone browser makes a request, your applica
 
 jQuery Mobile is an open source library for building touch-optimized web UI. If you want to use jQuery Mobile with an ASP.NET MVC 4 application, you can download and install a NuGet package that helps you get started. To install it from the Visual Studio Package Manager Console, type the following command:
 
-    Install-Package jQuery.Mobile.MVC
+[!code[Main](mvc4-beta-release-notes/samples/sample6.xml)]
 
 This installs jQuery Mobile and some helper files, including the following:
 
@@ -249,9 +213,7 @@ If visitors click the link, they're switched to the desktop version of the same 
 
 Because your desktop layout will not include a view switcher by default, visitors won't have a way to get to mobile mode. To enable this, add the following reference to *\_ViewSwitcher* to your desktop layout, just inside the *&lt;body&gt;* element:
 
-    <body>
-        @Html.Partial("_ViewSwitcher")
-        ...
+[!code[Main](mvc4-beta-release-notes/samples/sample7.xml)]
 
 The view switcher uses a new feature called Browser Overriding. This feature lets your application treat requests as if they were coming from a different browser (user agent) than the one they're actually from. The following table lists the methods that Browser Overriding provides.
 
@@ -277,34 +239,13 @@ You can now write asynchronous action methods as single methods that return an o
 
 For example, if you're using Visual C# 5 (or using the [Async CTP](https://msdn.microsoft.com/en-us/vstudio/async.aspx)), you can create an asynchronous action method that looks like the following:
 
-    public async Task<ActionResult> Index(string city) {
-        var newsService = new NewsService();
-        var sportsService = new SportsService();
-        
-        return View("Common",
-            new PortalViewModel {
-            NewsHeadlines = await newsService.GetHeadlinesAsync(),
-            SportsScores = await sportsService.GetScoresAsync()
-        });
-    }
+[!code[Main](mvc4-beta-release-notes/samples/sample8.xml)]
 
 In the previous action method, the calls to *newsService.GetHeadlinesAsync* and *sportsService.GetScoresAsync* are called asynchronously and do not block a thread from the thread pool.
 
 Asynchronous action methods that return *Task* instances can also support timeouts. To make your action method cancellable, add a parameter of type *CancellationToken* to the action method signature. The following example shows an asynchronous action method that has a timeout of 2500 milliseconds and that displays a *TimedOut* view to the client if a timeout occurs.
 
-    [AsyncTimeout(2500)]
-     [HandleError(ExceptionType = typeof(TaskCanceledException), View = "TimedOut")]
-    public async Task<ActionResult> Index(string city,
-        CancellationToken cancellationToken) {
-        var newsService = new NewsService();
-        var sportsService = new SportsService();
-       
-        return View("Common",
-            new PortalViewModel {
-            NewsHeadlines = await newsService.GetHeadlinesAsync(cancellationToken),
-            SportsScores = await sportsService.GetScoresAsync(cancellationToken)
-        });
-    }
+[!code[Main](mvc4-beta-release-notes/samples/sample9.xml)]
 
 <a id="_Toc303253814"></a>
 ### Azure SDK
@@ -323,36 +264,14 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
 
     To correct this issue, escape the backslash character in the App\_Start method of Global.asax.cs so that it reads as follows:
 
-        Database.DefaultConnectionFactory = 
-           new SqlConnectionFactory(
-             "Data Source=(localdb)\\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
+    [!code[Main](mvc4-beta-release-notes/samples/sample10.xml)]
 - **ASP.NET MVC 4 applications which target .NET 4.5 will throw a FileLoadException upon attempt to access the System.Net.Http.dll assembly when run under .NET 4.0.** ASP.NET MVC 4 applications created under .NET 4.5 contain a binding redirect that will result in a FileLoadException which that states "Could not load file or assembly 'System.Net.Http' or one of its dependencies." when the application is executed on a system with .NET 4.0 installed. To correct this issue, remove the following binding redirect from web.config:
 
-        <dependentAssembly>
-         <assemblyIdentity name="System.Net.Http" publicKeyToken="b03f5f7f11d50a3a" 
-            culture="neutral" />
-         <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
-        </dependentAssembly>
+    [!code[Main](mvc4-beta-release-notes/samples/sample11.xml)]
 
     The assembly binding element in the modified web.config should appear as follows:
 
-        <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-         <dependentAssembly>
-          <assemblyIdentity name="System.Web.Helpers" 
-            publicKeyToken="31bf3856ad364e35" />
-          <bindingRedirect oldVersion="1.0.0.0-2.0.0.0" newVersion="2.0.0.0" />
-         </dependentAssembly>
-         <dependentAssembly>
-          <assemblyIdentity name="System.Web.Mvc" 
-            publicKeyToken="31bf3856ad364e35" />
-          <bindingRedirect oldVersion="1.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
-         </dependentAssembly>
-         <dependentAssembly>
-          <assemblyIdentity name="System.Web.WebPages" 
-            publicKeyToken="31bf3856ad364e35" />
-          <bindingRedirect oldVersion="1.0.0.0-2.0.0.0" newVersion="2.0.0.0" />
-         </dependentAssembly>
-        </assemblyBinding>
+    [!code[Main](mvc4-beta-release-notes/samples/sample12.xml)]
 - **The "Add Controller" item template in Visual Basic projects generates an incorrect namespace when invoked****from inside an area.** When you add a controller to an area in an ASP.NET MVC project that uses Visual Basic, the item template inserts the wrong namespace into the controller. The result is a "file not found" error when you navigate to any action in the controller.  
   
  The generated namespace omits everything after the root namespace. For example, the namespace generated is     *RootNamespace* but should be     *RootNamespace.Areas.AreaName.Controllers* .
@@ -370,9 +289,7 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
     - *MvcVBRazorCodeParser.ParseInheritsStatement(System.Web.Razor.Parser.CodeBlockInfo)*
 - **When WebMatrix.WebData.dll is included in in the /bin directory of an ASP.NET MVC 4 apps, it takes over the URL for forms authentication.** Adding the WebMatrix.WebData.dll assembly to your application (for example, by selecting "ASP.NET Web Pages with Razor Syntax" when using the Add Deployable Dependencies dialog) will override the authentication login redirect to /account/logon rather than /account/login as expected by the default ASP.NET MVC Account Controller. To prevent this behavior and use the URL specified already in the authentication section of web.config, you can add an appSetting called PreserveLoginUrl and set it to true: 
 
-        <appSettings>
-            <add key="PreserveLoginUrl" value="true"/>
-        </appSettings>
+    [!code[Main](mvc4-beta-release-notes/samples/sample13.xml)]
 - **The NuGet package manager fails to install when attempting to install ASP.NET MVC 4 for side by side installations of Visual Studio 2010 and Visual Web Developer 2010.** To run Visual Studio 2010 and Visual Web Developer 2010 side by side with ASP.NET MVC 4 you must install ASP.NET MVC 4 after both versions of Visual Studio have already been installed.
 - **Uninstalling ASP.NET MVC 4 fails if prerequisites have already been uninstalled.** To cleanly uninstall ASP.NET MVC 4you must uninstall ASP.NET MVC 4 prior to uninstalling Visual Studio.
 - **Running a default Web API project shows instructions that incorrectly direct the user to add routes using the RegisterApis method, which doesn't exist.** Routes should be added in the RegisterRoutes method using the ASP.NET route table.
@@ -382,21 +299,13 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
 
     1. In the root Web.config file, add a new *&lt;appSettings&gt;* entry with the key *webPages:Version* and the value *1.0.0.0*.
 
-            <appSettings>
-                <add key="webpages:Version" value="1.0.0.0"/>
-                <add key="ClientValidationEnabled" value="true"/>
-                <add key="UnobtrusiveJavaScriptEnabled" value="true"/>
-            </appSettings>
+        [!code[Main](mvc4-beta-release-notes/samples/sample14.xml)]
     2. In Solution Explorer, right-click the project name and then select Unload Project. Then right-click the name again and select Edit *ProjectName*.csproj.
     3. Locate the following assembly references: 
 
-            <Reference Include="System.Web.WebPages"/> 
-            <Reference Include="System.Web.Helpers" />
+        [!code[Main](mvc4-beta-release-notes/samples/sample15.xml)]
 
         Replace them with the following:
 
-            <Reference Include="System.Web.WebPages, Version=1.0.0.0,
-            Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL "/> 
-            <Reference Include="System.Web.Helpers, Version=1.0.0.0,
-            Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+        [!code[Main](mvc4-beta-release-notes/samples/sample16.xml)]
     4. Save the changes, close the project (.csproj) file you were editing, and then right-click the project and select Reload.

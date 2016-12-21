@@ -34,32 +34,15 @@ In this section, you add a birth date column to the `Person` base class for the 
 
 In the *ContosoUniversity.DAL* project, open *Person.cs* and add the following property at the end of the `Person` class (there should be two closing curly braces following it):
 
-    [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-    [Display(Name = "Birth Date")]
-    public DateTime? BirthDate { get; set; }
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample1.xml)]
 
 Next, update the Seed method so that it provides a value for the new column. Open *Migrations\Configuration.cs* and replace the code block that begins `var instructors = new List<Instructor>` with the following code block which includes birth date information:
 
-    var instructors = new List<Instructor>
-    {
-        new Instructor { FirstMidName = "Kim",     LastName = "Abercrombie", HireDate = DateTime.Parse("1995-03-11"), BirthDate = DateTime.Parse("1918-08-12"), OfficeAssignment = new OfficeAssignment { Location = "Smith 17" } },
-        new Instructor { FirstMidName = "Fadi",    LastName = "Fakhouri",    HireDate = DateTime.Parse("2002-07-06"), BirthDate = DateTime.Parse("1960-03-15"), OfficeAssignment = new OfficeAssignment { Location = "Gowan 27" } },
-        new Instructor { FirstMidName = "Roger",   LastName = "Harui",       HireDate = DateTime.Parse("1998-07-01"), BirthDate = DateTime.Parse("1970-01-11"), OfficeAssignment = new OfficeAssignment { Location = "Thompson 304" } },
-        new Instructor { FirstMidName = "Candace", LastName = "Kapoor",      HireDate = DateTime.Parse("2001-01-15"), BirthDate = DateTime.Parse("1975-04-11") },
-        new Instructor { FirstMidName = "Roger",   LastName = "Zheng",       HireDate = DateTime.Parse("2004-02-12"), BirthDate = DateTime.Parse("1957-10-12") }
-    };
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample2.xml)]
 
 In the ContosoUniversity project, open *Instructors.aspx* and add a new template field to display the birth date. Add it between the ones for hire date and office assignment:
 
-    <asp:TemplateField HeaderText="Birth Date" SortExpression="BirthDate">
-        <ItemTemplate>
-            <asp:Label ID="InstructorBirthDateLabel" runat="server" Text='<%# Eval("BirthDate", "{0:d}") %>'></asp:Label>
-        </ItemTemplate>
-        <EditItemTemplate>
-            <asp:TextBox ID="InstructorBirthDateTextBox" runat="server" Text='<%# Bind("BirthDate", "{0:d}") %>'
-                Width="7em"></asp:TextBox>
-        </EditItemTemplate>
-    </asp:TemplateField>
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample3.xml)]
 
 (If code indentation gets out of sync, you can press CTRL-K and then CTRL-D to automatically reformat the file.)
 
@@ -67,7 +50,7 @@ Build the solution, and then open the **Package Manager Console** window. Make s
 
 In the **Package Manager Console** window, select **ContosoUniversity.DAL** as the **Default project**, and then enter the following command:
 
-    add-migration AddBirthDate
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample4.xml)]
 
 When this command finishes, Visual Studio opens the class file that defines the new `DbMIgration` class, and in the `Up` method you can see the code that creates the new column.
 
@@ -75,7 +58,7 @@ When this command finishes, Visual Studio opens the class file that defines the 
 
 Build the solution, and then enter the following command in the **Package Manager Console** window (make sure the ContosoUniversity.DAL project is still selected):
 
-    update-database
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample5.xml)]
 
 When the command finishes, run the application and select the Instructors page. When the page loads, you see that it has the new birth date field.
 

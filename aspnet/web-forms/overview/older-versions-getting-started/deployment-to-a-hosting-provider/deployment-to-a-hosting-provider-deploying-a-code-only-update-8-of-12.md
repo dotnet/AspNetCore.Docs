@@ -40,30 +40,7 @@ Now you'll add code that runs when the **Select** link is clicked and displays a
 
 In *Instructors.aspx*, add the following markup immediately after the **ErrorMessageLabel** `Label` control:
 
-    <h3>Courses Taught</h3>
-    <asp:ObjectDataSource ID="CoursesObjectDataSource" runat="server" TypeName="ContosoUniversity.BLL.SchoolBL"
-        DataObjectTypeName="ContosoUniversity.DAL.Course" SelectMethod="GetCoursesByInstructor">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="InstructorsGridView" Name="PersonID" PropertyName="SelectedDataKey.Value"
-                Type="Int32" />
-        </SelectParameters>
-    </asp:ObjectDataSource>
-    <asp:GridView ID="CoursesGridView" runat="server" DataSourceID="CoursesObjectDataSource"
-        AllowSorting="True" AutoGenerateColumns="False" SelectedRowStyle-BackColor="LightGray"
-        DataKeyNames="CourseID">
-        <EmptyDataTemplate>
-            <p>No courses found.</p>
-        </EmptyDataTemplate>
-        <Columns>
-            <asp:BoundField DataField="CourseID" HeaderText="ID" ReadOnly="True" SortExpression="CourseID" />
-            <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-            <asp:TemplateField HeaderText="Department" SortExpression="DepartmentID">
-                <ItemTemplate>
-                    <asp:Label ID="GridViewDepartmentLabel" runat="server" Text='<%# Eval("Department.Name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12/samples/sample1.xml)]
 
 Run the page and select an instructor. You see a list of courses taught by that instructor.
 
@@ -118,17 +95,7 @@ Name the folder *SolutionFiles*.
 
 In the new folder create an HTML page named *app\_offline.htm*. Replace the existing contents with the following markup:
 
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Contoso University - Under Construction</title>
-    </head>
-    <body>
-      <h1>Contoso University</h1>
-      <h2>Under Construction</h2>
-      <p>The Contoso University site is temporarily unavailable while we upgrade it. Please try again later.</p>
-    </body>
-    </html>
+[!code[Main](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12/samples/sample2.xml)]
 
 You can copy the *app\_offline.htm* file to the site by using an FTP connection or the **File Manager** utility in the hosting provider's control panel. For this tutorial, you'll use the **File Manager**.
 

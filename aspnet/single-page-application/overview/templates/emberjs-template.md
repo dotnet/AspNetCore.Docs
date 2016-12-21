@@ -77,29 +77,19 @@ The models are defined in the Scripts/app/models folder. There are two model fil
 
 **todo.model.js** defines the client-side (browser) models for the to-do lists. There are two model classes: todoItem and todoList. In Ember, models are subclasses of DS.Model. A model can have properties with attributes:
 
-    todoItemId: attr('number'), 
-    title: attr('string')
+[!code[Main](emberjs-template/samples/sample1.xml)]
 
 Models can define relationships to other models:
 
-    todoList: DS.belongsTo('App.TodoList'),
+[!code[Main](emberjs-template/samples/sample2.xml)]
 
 Models can have computed properties that bind to other properties:
 
-    hasError: function () {
-        var currentError = this.get("error");
-        return !(currentError === '' || currentError === null);
-    }.property('error'),
+[!code[Main](emberjs-template/samples/sample3.xml)]
 
 Models can have observer functions, which are invoked when an observed property changes:
 
-    saveCheckbox: function () {
-        if(this.get("isDirty")){
-            if (this.get("todoItemId")) {
-                App.store.commit();
-            }
-        }
-    }.observes('isDone'),
+[!code[Main](emberjs-template/samples/sample4.xml)]
 
 ## Views
 
@@ -107,70 +97,35 @@ The views are defined in the Scripts/app/views folder. A view translates events 
 
 For example, the following code is from views/TodoItemEditView.js. It defines the event handling for an input text field.
 
-    App.TodoItemEditView = Em.TextField.extend({
-        lastValue: '',
-        focusIn: function (evt) {
-            this.lastValue = this.get('parentView').templateData.view.content.get("title");
-        },
-        focusOut: function (evt) {
-            this.changeContent();
-        },
-    
-        insertNewline: function (evt) {
-            $(evt.target).blur();
-        },
-    
-        changeContent: function () {
-            var todoItem = this.get('parentView').templateData.view.content;
-            var newValue = todoItem.get("title");
-            if (this.lastValue != newValue) {
-                App.store.commit();
-                this.lastValue = newValue;
-            }
-        }
-    });
+[!code[Main](emberjs-template/samples/sample5.xml)]
 
 ## Controller
 
 The controllers are defined in the Scripts/app/controllers folder. To represent a single model, extend `Ember.ObjectController`:
 
-    App.TodoItemController = Ember.ObjectController.extend({
-    });
+[!code[Main](emberjs-template/samples/sample6.xml)]
 
 A controller can also represent a collection of models by extending `Ember.ArrayController`. For example, the TodoListController represents an array of `todoList` objects. The controller sorts by todoList ID, in descending order:
 
-    App.TodoListController = Ember.ArrayController.extend({
-        error: "",
-        sortProperties: ['todoListId'],
-        sortAscending: true,
-    
-        // ...
+[!code[Main](emberjs-template/samples/sample7.xml)]
 
 The controller defines a function named `addTodoList`, which creates a new todoList and adds it to the array. To see how this function gets called, open the template file named todoListTemplate.html, in the Templates folder. The following template code binds a button to the `addTodoList` function:
 
-    <input type="button" {{action "addTodoList"}} class="isActive" value="Add Todo list"></input>
+[!code[Main](emberjs-template/samples/sample8.xml)]
 
 The controller also contains an `error` property, which holds an error message. Here is the template code to display the error message (also in todoListTemplate.html):
 
-    <p class="error">{{error}}</p>
+[!code[Main](emberjs-template/samples/sample9.xml)]
 
 ## Routes
 
 Router.js defines the routes and the default template to display, sets up application state, and matches URLs to routes:
 
-    App.Router.map(function () {
-        this.route("index", { path: "/" });
-        this.route("about");
-        this.route("todoList", { path: "/todo" });
-    });
+[!code[Main](emberjs-template/samples/sample10.xml)]
 
 TodoListRoute.js loads data for the TodoListRoute by overriding the setupController function:
 
-    App.TodoListRoute = Ember.Route.extend({
-        setupController: function (controller, model) {
-            controller.set('content', App.TodoList.find());
-        }
-    });
+[!code[Main](emberjs-template/samples/sample11.xml)]
 
 Ember uses naming conventions to match URLs, route names, controllers, and templates. For more information, see [http://emberjs.com/guides/routing/defining-your-routes/](http://emberjs.com/guides/routing/defining-your-routes/) at the EmberJS documentation.
 
@@ -188,31 +143,14 @@ The application template acts like a master page. It contains a header, a footer
 
 The "/todoList" template contains two loop expressions. The outside loop is `{{#each controller}}`, and the inside loop is `{{#each todos}}`. The following code shows a built-in `Ember.Checkbox` view, a customized `App.TodoItemEditView`, and a link with a `deleteTodo` action.
 
-    {{view Ember.Checkbox checkedBinding="isDone"}}
-    
-    {{view App.TodoItemEditView valueBinding="title" class="required" disabledBinding="isDone"}}
-    
-    <a href="#" {{action "deleteTodo" on="click" target="view"}}>X</a>
+[!code[Main](emberjs-template/samples/sample12.xml)]
 
 The `HtmlHelperExtensions` class, defined in Controllers/HtmlHelperExensions.cs, defines a helper function to cache and insert template files when **debug** is set to **true** in the Web.config file. This function is called from the ASP.NET MVC view file defined in Views/Home/App.cshtml:
 
-    @if (HttpContext.Current.IsDebuggingEnabled)
-    {
-        @Html.RenderEmber()
-    }
-    else
-    {
-        @Scripts.Render("~/bundles/templates")
-    }
+[!code[Main](emberjs-template/samples/sample13.xml)]
 
 Called with no arguments, the function renders all of the template files in the Templates folder. You can also specify a subfolder or a specific template file.
 
 When **debug** is **false** in Web.config, the application includes the bundle item "~/bundles/templates". This bundle item is added in BundleConfig.cs, using the Handlebars compiler library:
 
-    if (!HttpContext.Current.IsDebuggingEnabled)
-    {
-        bundles.Add(new Bundle("~/bundles/templates", 
-            new EmberHandlebarsBundleTransform()).Include(
-                "~/scripts/app/templates/*.hbs"
-            ));
-    }
+[!code[Main](emberjs-template/samples/sample14.xml)]

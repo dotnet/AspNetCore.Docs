@@ -32,32 +32,7 @@ The Global.asax file in Listing 1 contains a new custom route, named Blog, which
 
 **Listing 1 - Global.asax (with custom route)**
 
-    using System.Web.Mvc;
-    using System.Web.Routing;
-    namespace MvcApplication1
-    {
-        public class MvcApplication : System.Web.HttpApplication
-        {
-            public static void RegisterRoutes(RouteCollection routes)
-            {
-                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-                routes.MapRoute(
-                    "Blog",                                           // Route name
-                    "Archive/{entryDate}",                            // URL with parameters
-                    new { controller = "Archive", action = "Entry" }  // Parameter defaults
-                );
-                routes.MapRoute(
-                    "Default",                                              // Route name
-                    "{controller}/{action}/{id}",                           // URL with parameters
-                    new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
-                );
-            }
-            protected void Application_Start()
-            {
-                RegisterRoutes(RouteTable.Routes);
-            }
-        }
-    }
+[!code[Main](creating-custom-routes-cs/samples/sample1.xml)]
 
 The order of the routes that you add to the route table is important. Our new custom Blog route is added before the existing Default route. If you reversed the order, then the Default route always will get called instead of the custom route.
 
@@ -75,18 +50,7 @@ You can use the Blog custom route with the controller in Listing 2.
 
 **Listing 2 - ArchiveController.cs**
 
-    using System;
-    using System.Web.Mvc;
-    namespace MvcApplication1.Controllers
-    {
-        public class ArchiveController : Controller
-        {
-            public string Entry(DateTime entryDate)
-            {
-                return "You requested the entry from " + entryDate.ToString();
-            }
-        }
-    }
+[!code[Main](creating-custom-routes-cs/samples/sample2.xml)]
 
 Notice that the Entry() method in Listing 2 accepts a parameter of type DateTime. The MVC framework is smart enough to convert the entry date from the URL into a DateTime value automatically. If the entry date parameter from the URL cannot be converted to a DateTime, an error is raised (see Figure 1).
 

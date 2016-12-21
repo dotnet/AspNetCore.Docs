@@ -1,25 +1,31 @@
-// POST: /Account/AddPhoneNumber
-[HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
-{
-    if (!ModelState.IsValid)
-    {
-        return View(model);
-    }
-
-    // Generate the token 
-    var code = await UserManager.GenerateChangePhoneNumberTokenAsync(
-                               User.Identity.GetUserId(), model.Number);
-    if (UserManager.SmsService != null)
-    {
-        var message = new IdentityMessage
+        public class SmsService : IIdentityMessageService
         {
-            Destination = model.Number,
-            Body = "Your security code is: " + code
-        };
-        // Send token
-        await UserManager.SmsService.SendAsync(message);
-    }
-    return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
-}
+            public Task SendAsync(IdentityMessage message)
+            {
+                // Twilio Begin
+                // var Twilio = new TwilioRestClient(
+                //   Keys.SMSAccountIdentification,
+                //   Keys.SMSAccountPassword);
+                // var result = Twilio.SendMessage(
+                //   Keys.SMSAccountFrom,
+                //   message.Destination, message.Body
+                // );
+                // Status is one of Queued, Sending, Sent, Failed or null if the number is not valid
+                // Trace.TraceInformation(result.Status);
+                // Twilio doesn't currently have an async API, so return success.
+                // return Task.FromResult(0);
+                // Twilio End
+        
+                // ASPSMS Begin 
+                // var soapSms = new WebApplication1.ASPSMSX2.ASPSMSX2SoapClient("ASPSMSX2Soap");
+                // soapSms.SendSimpleTextSMS(
+                //   Keys.SMSAccountIdentification,
+                //   Keys.SMSAccountPassword,
+                //   message.Destination,
+                //   Keys.SMSAccountFrom,
+                //   message.Body);
+                // soapSms.Close();
+                // return Task.FromResult(0);
+                // ASPSMS End
+            }
+        }

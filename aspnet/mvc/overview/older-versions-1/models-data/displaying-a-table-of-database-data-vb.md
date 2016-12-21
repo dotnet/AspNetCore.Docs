@@ -96,23 +96,7 @@ We need to modify the Index() action exposed by the Movie controller so that it 
 
 **Listing 1 – Controllers\MovieController.vb**
 
-    Public Class MovieController
-    
-        Inherits System.Web.Mvc.Controller 
-    
-        '
-    
-        ' GET: /Movie/ 
-    
-        Function Index() As ActionResult
-    
-            Dim entities As New MoviesDBEntities()
-    
-            Return View(entities.MovieSet.ToList())
-    
-        End Function 
-    
-    End Class
+[!code[Main](displaying-a-table-of-database-data-vb/samples/sample1.xml)]
 
 In Listing 1, the MoviesDBEntities class is used to represent the MoviesDB database. The expression *entities.MovieSet.ToList()* returns the set of all movies from the Movies database table.
 
@@ -142,99 +126,7 @@ After you click the **Add** button, the view in Listing 2 is generated automatic
 
 **Listing 2 – Views\Movie\Index.aspx**
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of IEnumerable (Of MvcApplication1.Movie))" %> 
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    
-          Index
-    
-    </asp:Content> 
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server"> 
-    
-        <h2>Index</h2> 
-    
-        <p>
-    
-            <%=Html.ActionLink("Create New", "Create")%>
-    
-        </p>
-    
-        <table>
-    
-            <tr>
-    
-                <th></th>
-    
-                <th>
-    
-                    Id
-    
-                </th>
-    
-                <th>
-    
-                    Title
-    
-                </th>
-    
-                <th>
-    
-                    Director
-    
-                </th>
-    
-                <th>
-    
-                    DateReleased
-    
-                </th>
-    
-            </tr> 
-    
-        <% For Each item In Model%>
-    
-            <tr>
-    
-                <td>
-    
-                    <%=Html.ActionLink("Edit", "Edit", New With {.id = item.Id})%> |
-    
-                    <%=Html.ActionLink("Details", "Details", New With {.id = item.Id})%>
-    
-                </td>
-    
-                <td>
-    
-                    <%= Html.Encode(item.Id) %>
-    
-                </td>
-    
-                <td>
-    
-                    <%= Html.Encode(item.Title) %>
-    
-                </td>
-    
-                <td>
-    
-                    <%= Html.Encode(item.Director) %>
-    
-                </td>
-    
-                <td>
-    
-                    <%= Html.Encode(String.Format("{0:g}", item.DateReleased)) %>
-    
-                </td>
-    
-            </tr>
-    
-        <% Next%> 
-    
-        </table> 
-    
-    </asp:Content>
+[!code[Main](displaying-a-table-of-database-data-vb/samples/sample2.xml)]
 
 You can run the application by selecting the menu option **Debug, Start Debugging** (or hitting the F5 key). Running the application launches Internet Explorer. If you navigate to the /Movie URL then you'll see the page in Figure 7.
 
@@ -264,35 +156,7 @@ After you complete these steps, modify the MovieTemplate partial to look like Li
 
 **Listing 3 – Views\Movie\MovieTemplate.ascx**
 
-    <%@ Control Language="VB" Inherits="System.Web.Mvc.ViewUserControl(Of MvcApplication1.Movie)" %>
-    
-    <tr>
-    
-        <td>
-    
-            <%= Html.Encode(Model.Id) %>
-    
-        </td>
-    
-        <td>
-    
-            <%= Html.Encode(Model.Title) %>
-    
-        </td>
-    
-        <td>
-    
-            <%= Html.Encode(Model.Director) %>
-    
-        </td>
-    
-        <td>
-    
-            <%= Html.Encode(String.Format("{0:g}", Model.DateReleased)) %>
-    
-        </td>
-    
-    </tr>
+[!code[Main](displaying-a-table-of-database-data-vb/samples/sample3.xml)]
 
 The partial in Listing 3 contains a template for a single row of records.
 
@@ -300,51 +164,7 @@ The modified Index view in Listing 4 uses the MovieTemplate partial.
 
 **Listing 4 – Views\Movie\Index.aspx**
 
-    <%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage(Of IEnumerable (Of MvcApplication1.Movie))" %> 
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server"> 
-    
-        <h2>Index</h2>
-    
-        <table>
-    
-            <tr>
-    
-                <th>
-    
-                    Id
-    
-                </th>
-    
-                <th>
-    
-                    Title
-    
-                </th>
-    
-                <th>
-    
-                    Director
-    
-                </th>
-    
-                <th>
-    
-                    DateReleased
-    
-                </th>
-    
-            </tr> 
-    
-        <% For Each item In Model%> 
-    
-            <% Html.RenderPartial("MovieTemplate", item)%>
-    
-        <% Next%> 
-    
-        </table> 
-    
-    </asp:Content>
+[!code[Main](displaying-a-table-of-database-data-vb/samples/sample4.xml)]
 
 The view in Listing 4 contains a For Each loop that iterates through all of the movies. For each movie, the MovieTemplate partial is used to format the movie. The MovieTemplate is rendered by calling the RenderPartial() helper method.
 

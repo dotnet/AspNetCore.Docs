@@ -39,7 +39,7 @@ This approach makes it easy to change the layout and UI of your app, because you
 
 In Visual Studio, from the **Tools** menu, select **Library Package Manager**. Then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-    Install-Package knockoutjs
+[!code[Main](part-6/samples/sample1.xml)]
 
 This command adds the Knockout files to the Scripts folder.
 
@@ -47,37 +47,7 @@ This command adds the Knockout files to the Scripts folder.
 
 Add a JavaScript file named app.js to the Scripts folder. (In Solution Explorer, right-click the Scripts folder, select **Add**, then select **JavaScript File**.) Paste in the following code:
 
-    var ViewModel = function () {
-        var self = this;
-        self.books = ko.observableArray();
-        self.error = ko.observable();
-    
-        var booksUri = '/api/books/';
-    
-        function ajaxHelper(uri, method, data) {
-            self.error(''); // Clear error message
-            return $.ajax({
-                type: method,
-                url: uri,
-                dataType: 'json',
-                contentType: 'application/json',
-                data: data ? JSON.stringify(data) : null
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                self.error(errorThrown);
-            });
-        }
-    
-        function getAllBooks() {
-            ajaxHelper(booksUri, 'GET').done(function (data) {
-                self.books(data);
-            });
-        }
-    
-        // Fetch the initial data.
-        getAllBooks();
-    };
-    
-    ko.applyBindings(new ViewModel());
+[!code[Main](part-6/samples/sample2.xml)]
 
 In Knockout, the `observable` class enables data-binding. When the contents of an observable change, the observable notifies all of the data-bound controls, so they can update themselves. (The `observableArray` class is the array version of *observable*.) To start with, our view model has two observables:
 
@@ -94,14 +64,6 @@ Bundling is a feature in ASP.NET 4.5 that makes it easy to combine or bundle mul
 
 Open the file App\_Start/BundleConfig.cs. Add the following code to the RegisterBundles method.
 
-    public static void RegisterBundles(BundleCollection bundles)
-    {
-        // ...
-    
-        // New code:
-        bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                  "~/Scripts/knockout-{version}.js",
-                  "~/Scripts/app.js"));
-    }
+[!code[Main](part-6/samples/sample3.xml)]
 
 >[!div class="step-by-step"] [Previous](part-5.md) [Next](part-7.md)

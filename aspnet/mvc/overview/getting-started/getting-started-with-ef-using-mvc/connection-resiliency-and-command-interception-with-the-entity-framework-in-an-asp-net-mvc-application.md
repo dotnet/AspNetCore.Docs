@@ -47,27 +47,15 @@ All you have to do to enable connection resiliency is create a class in your ass
 1. In the DAL folder, add a class file named *SchoolConfiguration.cs*.
 2. Replace the template code with the following code:
 
-        using System.Data.Entity;
-        using System.Data.Entity.SqlServer;
-        
-        namespace ContosoUniversity.DAL
-        {
-            public class SchoolConfiguration : DbConfiguration
-            {
-                public SchoolConfiguration()
-                {
-                    SetExecutionStrategy("System.Data.SqlClient", () => new SqlAzureExecutionStrategy());
-                }
-            }
-        }
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml)]
 
     The Entity Framework automatically runs the code it finds in a class that derives from `DbConfiguration`. You can use the `DbConfiguration` class to do configuration tasks in code that you would otherwise do in the *Web.config* file. For more information, see [EntityFramework Code-Based Configuration](https://msdn.microsoft.com/en-us/data/jj680699).
 3. In *StudentController.cs*, add a `using` statement for `System.Data.Entity.Infrastructure`.
 
-        using System.Data.Entity.Infrastructure;
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml)]
 4. Change all of the `catch` blocks that catch `DataException` exceptions so that they catch `RetryLimitExceededException` exceptions instead. For example:
 
-    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=1)]
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=1)]
 
     You were using `DataException` to try to identify errors that might be transient in order to give a friendly "try again" message. But now that you've turned on a retry policy, the only errors likely to be transient will already have been tried and failed several times and the actual exception returned will be wrapped in the `RetryLimitExceededException` exception.
 
@@ -86,117 +74,14 @@ A [best practice for logging](../../../../aspnet/overview/developing-apps-with-w
 1. Create a folder in the project and name it *Logging*.
 2. In the *Logging* folder, create a class file named *ILogger.cs*, and replace the template code with the following code:
 
-        using System;
-        
-        namespace ContosoUniversity.Logging
-        {
-            public interface ILogger
-            {
-                void Information(string message);
-                void Information(string fmt, params object[] vars);
-                void Information(Exception exception, string fmt, params object[] vars);
-        
-                void Warning(string message);
-                void Warning(string fmt, params object[] vars);
-                void Warning(Exception exception, string fmt, params object[] vars);
-        
-                void Error(string message);
-                void Error(string fmt, params object[] vars);
-                void Error(Exception exception, string fmt, params object[] vars);
-        
-                void TraceApi(string componentName, string method, TimeSpan timespan);
-                void TraceApi(string componentName, string method, TimeSpan timespan, string properties);
-                void TraceApi(string componentName, string method, TimeSpan timespan, string fmt, params object[] vars);
-        
-            }
-        }
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml)]
 
     The interface provides three tracing levels to indicate the relative importance of logs, and one designed to provide latency information for external service calls such as database queries. The logging methods have overloads that let you pass in an exception. This is so that exception information including stack trace and inner exceptions is reliably logged by the class that implements the interface, instead of relying on that being done in each logging method call throughout the application.
 
     The TraceApi methods enable you to track the latency of each call to an external service such as SQL Database.
 3. In the *Logging* folder, create a class file named *Logger.cs*, and replace the template code with the following code:
 
-        using System;
-        using System.Diagnostics;
-        using System.Text;
-        
-        namespace ContosoUniversity.Logging
-        {
-            public class Logger : ILogger
-            {
-        
-                public void Information(string message)
-                {
-                    Trace.TraceInformation(message);
-                }
-        
-                public void Information(string fmt, params object[] vars)
-                {
-                    Trace.TraceInformation(fmt, vars);
-                }
-        
-                public void Information(Exception exception, string fmt, params object[] vars)
-                {
-                    Trace.TraceInformation(FormatExceptionMessage(exception, fmt, vars));
-                }
-        
-                public void Warning(string message)
-                {
-                    Trace.TraceWarning(message);
-                }
-        
-                public void Warning(string fmt, params object[] vars)
-                {
-                    Trace.TraceWarning(fmt, vars);
-                }
-        
-                public void Warning(Exception exception, string fmt, params object[] vars)
-                {
-                    Trace.TraceWarning(FormatExceptionMessage(exception, fmt, vars));
-                }
-        
-                public void Error(string message)
-                {
-                    Trace.TraceError(message);
-                }
-        
-                public void Error(string fmt, params object[] vars)
-                {
-                    Trace.TraceError(fmt, vars);
-                }
-        
-                public void Error(Exception exception, string fmt, params object[] vars)
-                {
-                    Trace.TraceError(FormatExceptionMessage(exception, fmt, vars));
-                }
-        
-                public void TraceApi(string componentName, string method, TimeSpan timespan)
-                {
-                    TraceApi(componentName, method, timespan, ""); 
-                }
-        
-                public void TraceApi(string componentName, string method, TimeSpan timespan, string fmt, params object[] vars)
-                {
-                    TraceApi(componentName, method, timespan, string.Format(fmt, vars));
-                }
-                public void TraceApi(string componentName, string method, TimeSpan timespan, string properties)
-                {
-                    string message = String.Concat("Component:", componentName, ";Method:", method, ";Timespan:", timespan.ToString(), ";Properties:", properties);
-                    Trace.TraceInformation(message);
-                }
-        
-                private static string FormatExceptionMessage(Exception exception, string fmt, object[] vars)
-                {
-                    // Simple exception formatting: for a more comprehensive version see 
-                    // https://code.msdn.microsoft.com/windowsazure/Fix-It-app-for-Building-cdd80df4
-                    var sb = new StringBuilder();
-                    sb.Append(string.Format(fmt, vars));
-                    sb.Append(" Exception: ");
-                    sb.Append(exception.ToString());
-                    return  sb.ToString();
-                }
-            }
-        }
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml)]
 
     The implementation uses System.Diagnostics to do the tracing. This is a built-in feature of .NET which makes it easy to generate and use tracing information. There are many "listeners" you can use with System.Diagnostics tracing, to write logs to files, for example, or to write them to blob storage in Azure. See some of the options, and links to other resources for more information, in [Troubleshooting Azure Web Sites in Visual Studio](https://www.windowsazure.com/en-us/develop/net/tutorials/troubleshoot-web-sites-in-visual-studio/). For this tutorial you'll only look at logs in the Visual Studio **Output** window.
 
@@ -208,143 +93,12 @@ Next you'll create the classes that the Entity Framework will call into every ti
 
 1. To create the interceptor class that will log every SQL query that is sent to the database, create a class file named *SchoolInterceptorLogging.cs* in the *DAL* folder, and replace the template code with the following code:
 
-        using System;
-        using System.Data.Common;
-        using System.Data.Entity;
-        using System.Data.Entity.Infrastructure.Interception;
-        using System.Data.Entity.SqlServer;
-        using System.Data.SqlClient;
-        using System.Diagnostics;
-        using System.Reflection;
-        using System.Linq;
-        using ContosoUniversity.Logging;
-        
-        namespace ContosoUniversity.DAL
-        {
-            public class SchoolInterceptorLogging : DbCommandInterceptor
-            {
-                private ILogger _logger = new Logger();
-                private readonly Stopwatch _stopwatch = new Stopwatch();
-        
-                public override void ScalarExecuting(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
-                {
-                    base.ScalarExecuting(command, interceptionContext);
-                    _stopwatch.Restart();
-                }
-        
-                public override void ScalarExecuted(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
-                {
-                    _stopwatch.Stop();
-                    if (interceptionContext.Exception != null)
-                    {
-                        _logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
-                    }
-                    else
-                    {
-                        _logger.TraceApi("SQL Database", "SchoolInterceptor.ScalarExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
-                    }
-                    base.ScalarExecuted(command, interceptionContext);
-                }
-        
-                public override void NonQueryExecuting(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
-                {
-                    base.NonQueryExecuting(command, interceptionContext);
-                    _stopwatch.Restart();
-                }
-        
-                public override void NonQueryExecuted(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
-                {
-                    _stopwatch.Stop();
-                    if (interceptionContext.Exception != null)
-                    {
-                        _logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
-                    }
-                    else
-                    {
-                        _logger.TraceApi("SQL Database", "SchoolInterceptor.NonQueryExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
-                    }
-                    base.NonQueryExecuted(command, interceptionContext);
-                }
-        
-                public override void ReaderExecuting(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
-                {
-                    base.ReaderExecuting(command, interceptionContext);
-                    _stopwatch.Restart();
-                }
-                public override void ReaderExecuted(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
-                {
-                    _stopwatch.Stop();
-                    if (interceptionContext.Exception != null)
-                    {
-                        _logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
-                    }
-                    else
-                    {
-                        _logger.TraceApi("SQL Database", "SchoolInterceptor.ReaderExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
-                    }
-                    base.ReaderExecuted(command, interceptionContext);
-                }
-            }
-        }
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml)]
 
     For successful queries or commands, this code writes an Information log with latency information. For exceptions, it creates an Error log.
 2. To create the interceptor class that will generate dummy transient errors when you enter "Throw" in the **Search** box, create a class file named *SchoolInterceptorTransientErrors.cs* in the *DAL* folder, and replace the template code with the following code:
 
-        using System;
-        using System.Data.Common;
-        using System.Data.Entity;
-        using System.Data.Entity.Infrastructure.Interception;
-        using System.Data.Entity.SqlServer;
-        using System.Data.SqlClient;
-        using System.Diagnostics;
-        using System.Reflection;
-        using System.Linq;
-        using ContosoUniversity.Logging;
-        
-        namespace ContosoUniversity.DAL
-        {
-            public class SchoolInterceptorTransientErrors : DbCommandInterceptor
-            {
-                private int _counter = 0;
-                private ILogger _logger = new Logger();
-        
-                public override void ReaderExecuting(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
-                {
-                    bool throwTransientErrors = false;
-                    if (command.Parameters.Count > 0 && command.Parameters[0].Value.ToString() == "%Throw%")
-                    {
-                        throwTransientErrors = true;
-                        command.Parameters[0].Value = "%an%";
-                        command.Parameters[1].Value = "%an%";
-                    }
-        
-                    if (throwTransientErrors && _counter < 4)
-                    {
-                        _logger.Information("Returning transient error for command: {0}", command.CommandText);
-                        _counter++;
-                        interceptionContext.Exception = CreateDummySqlException();
-                    }
-                }
-        
-                private SqlException CreateDummySqlException()
-                {
-                    // The instance of SQL Server you attempted to connect to does not support encryption
-                    var sqlErrorNumber = 20;
-        
-                    var sqlErrorCtor = typeof(SqlError).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic).Where(c => c.GetParameters().Count() == 7).Single();
-                    var sqlError = sqlErrorCtor.Invoke(new object[] { sqlErrorNumber, (byte)0, (byte)0, "", "", "", 1 });
-        
-                    var errorCollection = Activator.CreateInstance(typeof(SqlErrorCollection), true);
-                    var addMethod = typeof(SqlErrorCollection).GetMethod("Add", BindingFlags.Instance | BindingFlags.NonPublic);
-                    addMethod.Invoke(errorCollection, new[] { sqlError });
-        
-                    var sqlExceptionCtor = typeof(SqlException).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic).Where(c => c.GetParameters().Count() == 4).Single();
-                    var sqlException = (SqlException)sqlExceptionCtor.Invoke(new object[] { "Dummy", errorCollection, null, Guid.NewGuid() });
-        
-                    return sqlException;
-                }
-            }
-        }
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml)]
 
     This code only overrides the `ReaderExecuting` method, which is called for queries that can return multiple rows of data. If you wanted to check connection resiliency for other types of queries, you could also override the `NonQueryExecuting` and `ScalarExecuting` methods, as the logging interceptor does.
 
@@ -361,17 +115,16 @@ Next you'll create the classes that the Entity Framework will call into every ti
     This is just a convenient way to test connection resiliency based on changing some input to the application UI. You can also write code that generates transient errors for all queries or updates, as explained later in the comments about the *DbInterception.Add* method.
 3. In *Global.asax*, add the following `using` statements:
 
-        using ContosoUniversity.DAL;
-        using System.Data.Entity.Infrastructure.Interception;
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml)]
 4. Add the highlighted lines to the `Application_Start` method:
 
-    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml?highlight=7-8)]
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.xml?highlight=7-8)]
 
     These lines of code are what causes your interceptor code to be run when Entity Framework sends queries to the database. Notice that because you created separate interceptor classes for transient error simulation and logging, you can independently enable and disable them.
 
     You can add interceptors using the `DbInterception.Add` method anywhere in your code; it doesn't have to be in the `Application_Start` method. Another option is to put this code in the DbConfiguration class that you created earlier to configure the execution policy.
 
-    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=6-7)]
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.xml?highlight=6-7)]
 
     Wherever you put this code, be careful not to execute `DbInterception.Add` for the same interceptor more than once, or you'll get additional interceptor instances. For example, if you add the logging interceptor twice, you'll see two logs for every SQL query.
 
@@ -399,23 +152,7 @@ Next you'll create the classes that the Entity Framework will call into every ti
 
     Since you entered a search string, the query that returns student data is parameterized:
 
-        SELECT TOP (3) 
-            [Project1].[ID] AS [ID], 
-            [Project1].[LastName] AS [LastName], 
-            [Project1].[FirstMidName] AS [FirstMidName], 
-            [Project1].[EnrollmentDate] AS [EnrollmentDate]
-            FROM ( SELECT [Project1].[ID] AS [ID], [Project1].[LastName] AS [LastName], [Project1].[FirstMidName] AS [FirstMidName], [Project1].[EnrollmentDate] AS [EnrollmentDate], row_number() OVER (ORDER BY [Project1].[LastName] ASC) AS [row_number]
-                FROM ( SELECT 
-                    [Extent1].[ID] AS [ID], 
-                    [Extent1].[LastName] AS [LastName], 
-                    [Extent1].[FirstMidName] AS [FirstMidName], 
-                    [Extent1].[EnrollmentDate] AS [EnrollmentDate]
-                    FROM [dbo].[Student] AS [Extent1]
-                    WHERE ([Extent1].[LastName] LIKE @p__linq__0 ESCAPE N'~') OR ([Extent1].[FirstMidName] LIKE @p__linq__1 ESCAPE N'~')
-                )  AS [Project1]
-            )  AS [Project1]
-            WHERE [Project1].[row_number] > 0
-            ORDER BY [Project1].[LastName] ASC:
+    [!code[Main](connection-resiliency-and-command-interception-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.xml)]
 
     You're not logging the value of the parameters, but you could do that. If you want to see the parameter values, you can write logging code to get parameter values from the `Parameters` property of the `DbCommand` object that you get in the interceptor methods.
 

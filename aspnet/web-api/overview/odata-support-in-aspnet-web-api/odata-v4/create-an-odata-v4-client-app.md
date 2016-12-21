@@ -57,7 +57,7 @@ At this point, you'll get an error, which you can ignore. Visual Studio automati
 
 Open the file ProductClient.odata.config. In the `Parameter` element, paste in the URI from the ProductService project (previous step). For example:
 
-    <Parameter Name="MetadataDocumentUri" Value="http://localhost:61635/" />
+[!code[Main](create-an-odata-v4-client-app/samples/sample1.xml)]
 
 [![](create-an-odata-v4-client-app/_static/image11.png)](create-an-odata-v4-client-app/_static/image10.png)
 
@@ -71,56 +71,12 @@ The template creates a code file named ProductClient.cs that defines the proxy. 
 
 Open the file Program.cs and replace the boilerplate code with the following.
 
-    using System;
-    
-    namespace ProductsApp
-    {
-        class Program
-        {
-            // Get an entire entity set.
-            static void ListAllProducts(Default.Container container)
-            {
-                foreach (var p in container.Products)
-                {
-                    Console.WriteLine("{0} {1} {2}", p.Name, p.Price, p.Category);
-                }
-            }
-    
-            static void AddProduct(Default.Container container, ProductService.Models.Product product)
-            {
-                container.AddToProducts(product);
-                var serviceResponse = container.SaveChanges();
-                foreach (var operationResponse in serviceResponse)
-                {
-                    Console.WriteLine("Response: {0}", operationResponse.StatusCode);
-                }
-            }
-    
-            static void Main(string[] args)
-            {
-                // TODO: Replace with your local URI.
-                string serviceUri = "http://localhost:port/";
-                var container = new Default.Container(new Uri(serviceUri));
-    
-                var product = new ProductService.Models.Product()
-                {
-                    Name = "Yo-yo",
-                    Category = "Toys",
-                    Price = 4.95M
-                };
-    
-                AddProduct(container, product);
-                ListAllProducts(container);
-            }
-        }
-    }
+[!code[Main](create-an-odata-v4-client-app/samples/sample2.xml)]
 
 Replace the value of *serviceUri* with the service URI from earlier.
 
-    // TODO: Replace with your local URI.
-    string serviceUri = "http://localhost:port/";
+[!code[Main](create-an-odata-v4-client-app/samples/sample3.xml)]
 
 When you run the app, it should output the following:
 
-    Response: 201
-    Yo-yo 4.95 Toys
+[!code[Main](create-an-odata-v4-client-app/samples/sample4.xml)]

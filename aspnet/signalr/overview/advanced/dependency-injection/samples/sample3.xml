@@ -1,13 +1,20 @@
-[HubName("stockTicker")]
-public class StockTickerHub : Hub
-{
-    private readonly IStockTicker _stockTicker;
-
-    public StockTickerHub(IStockTicker stockTicker)
+    // With dependency injection.
+    class SomeComponent
     {
-        if (stockTicker == null)
+        ILogger _logger;
+    
+        // Inject ILogger into the object.
+        public SomeComponent(ILogger logger)
         {
-            throw new ArgumentNullException("stockTicker");
+            if (logger == null)
+            {
+                throw new NullReferenceException("logger");
+            }
+            _logger = logger;
         }
-        _stockTicker = stockTicker;
+    
+        public void DoSomething()
+        {
+            _logger.LogMessage("DoSomething");
+        }
     }

@@ -1,9 +1,12 @@
-if (dataProtectionProvider != null)
- {
-    manager.UserTokenProvider =
-       new DataProtectorTokenProvider<ApplicationUser>
-          (dataProtectionProvider.Create("ASP.NET Identity"))
-          {                    
-             TokenLifespan = TimeSpan.FromHours(3)
-          };
- }
+    public ApplicationUserManager UserManager
+    {
+        get
+        {
+            return _userManager ?? 
+    	HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        }
+        private set
+        {
+            _userManager = value;
+        }
+    }

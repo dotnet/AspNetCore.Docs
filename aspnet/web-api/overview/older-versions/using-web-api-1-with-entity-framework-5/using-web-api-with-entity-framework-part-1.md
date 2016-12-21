@@ -85,61 +85,6 @@ This step is cosmetic, but it will make the pages render like the earlier screen
 
 In Solution Explorer, expand the Content folder and open the file named Site.css. Add the following CSS styles:
 
-    .content {
-        clear: both;
-        width: 90%;
-    }
-    
-    li {
-        list-style-type: none;
-    }
-            
-    #products li {
-        width: 300px;
-        background-color: #aaf;
-        font-size: 1.5em;
-        font-weight: bold;
-        color: #ff0;
-        margin: 0 0 5px 0;
-        padding: 0 5px 0 5px;
-    }
-            
-    .price  {
-        float: right;
-        color: #c00;
-        font-size: 0.75em;
-    }
-            
-    .details thead td {
-        background-color: #CCCCCC;
-        color: #333333;
-    }
-    
-    .details td {
-    padding: 6px;
-    }
-            
-    .details td.qty {
-    text-align: center;
-    }       
-            
-    #cart a {
-    color: Blue;
-    font-size: .75em;
-    } 
-            
-    #update-products li { 
-        padding: 5px; 
-        color: #666;
-        border-style: dashed;
-        border-width: 2px;
-        border-color: #666;
-    }
-    
-    #update-products li .item {
-    width: 120px;
-    display: inline-block;
-    text-align: right;
-    }
+[!code[Main](using-web-api-with-entity-framework-part-1/samples/sample1.xml)]
 
 >[!div class="step-by-step"] [Next](using-web-api-with-entity-framework-part-2.md)

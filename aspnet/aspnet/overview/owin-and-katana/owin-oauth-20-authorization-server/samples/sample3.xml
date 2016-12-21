@@ -1,42 +1,55 @@
-public class OAuthController : Controller
- {
-     public ActionResult Authorize()
-     {
-         if (Response.StatusCode != 200)
-         {
-             return View("AuthorizeError");
-         }
-
-         var authentication = HttpContext.GetOwinContext().Authentication;
-         var ticket = authentication.AuthenticateAsync("Application").Result;
-         var identity = ticket != null ? ticket.Identity : null;
-         if (identity == null)
-         {
-             authentication.Challenge("Application");
-             return new HttpUnauthorizedResult();
-         }
-
-         var scopes = (Request.QueryString.Get("scope") ?? "").Split(' ');
-
-         if (Request.HttpMethod == "POST")
-         {
-             if (!string.IsNullOrEmpty(Request.Form.Get("submit.Grant")))
-             {
-                 identity = new ClaimsIdentity(identity.Claims, "Bearer", identity.NameClaimType, identity.RoleClaimType);
-                 foreach (var scope in scopes)
-                 {
-                     identity.AddClaim(new Claim("urn:oauth:scope", scope));
-                 }
-                 authentication.SignIn(identity);
-             }
-             if (!string.IsNullOrEmpty(Request.Form.Get("submit.Login")))
-             {
-                 authentication.SignOut("Application");
-                 authentication.Challenge("Application");
-                 return new HttpUnauthorizedResult();
-             }
-         }
-
-         return View();
-     }
-}
+    public class AccountController : Controller
+    {
+        public ActionResult Login()
+        {
+            var authentication =  HttpContext.GetOwinContext().Authentication;
+            if (Request.HttpMethod == "POST")
+            {
+                var isPersistent = !string.IsNullOrEmpty(Request.Form.Get("isPersistent"));
+    
+                if (!string.IsNullOrEmpty(Request.Form.Get("submit.Signin")))
+                {
+                    authentication.SignIn(
+                        new AuthenticationProperties { IsPersistent = isPersistent },
+                        new ClaimsIdentity(new[] { new Claim(
+                           ClaimsIdentity.DefaultNameClaimType, Request.Form["username"]) }, 
+                           "Application"));
+                }
+            }
+    
+            return View();
+        }
+    
+        public ActionResult Logout()
+        {
+            return View();
+        }
+    
+        public ActionResult External()
+        {
+            var authentication = HttpContext.GetOwinContext().Authentication;
+            if (Request.HttpMethod == "POST")
+            {
+                foreach (var key in Request.Form.AllKeys)
+                {
+                    if (key.StartsWith("submit.External.") && !string.IsNullOrEmpty(Request.Form.Get(key)))
+                    {
+                        var authType = key.Substring("submit.External.".Length);
+                        authentication.Challenge(authType);
+                        return new HttpUnauthorizedResult();
+                    }
+                }
+            }
+            var identity = authentication.AuthenticateAsync("External").Result.Identity;
+            if (identity != null)
+            {
+                authentication.SignOut("External");
+                authentication.SignIn(
+                    new AuthenticationProperties { IsPersistent = true },
+                    new ClaimsIdentity(identity.Claims, "Application", identity.NameClaimType, identity.RoleClaimType));
+                return Redirect(Request.QueryString["ReturnUrl"]);
+            }
+    
+            return View();
+        }
+    }

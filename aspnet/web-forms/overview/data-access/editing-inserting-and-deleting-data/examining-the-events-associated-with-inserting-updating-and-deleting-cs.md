@@ -49,27 +49,7 @@ If we want to provide a data Web control that allows the end user to only update
 Specifically, let's create a page that displays just the `ProductName` and `UnitPrice` fields in an editable GridView. This GridView's editing interface will only allow the user to update the two displayed fields, `ProductName` and `UnitPrice`. Since this editing interface only provides a subset of a product's fields, we either need to create an ObjectDataSource that uses the existing BLL's `UpdateProduct` method and has the missing product field values set programmatically in its `Updating` event handler, or we need to create a new BLL method that expects only the subset of fields defined in the GridView. For this tutorial, let's use the latter option and create an overload of the `UpdateProduct` method, one that takes in just three input parameters: `productName`, `unitPrice`, and `productID`:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Update, false)]
-    public bool UpdateProduct(string productName, decimal? unitPrice, int productID)
-    {
-        Northwind.ProductsDataTable products = Adapter.GetProductByProductID(productID);
-        if (products.Count == 0)
-            // no matching record found, return false
-            return false;
-    
-        Northwind.ProductsRow product = products[0];
-    
-        product.ProductName = productName;
-        if (unitPrice == null) product.SetUnitPriceNull();
-          else product.UnitPrice = unitPrice.Value;
-    
-        // Update the product record
-        int rowsAffected = Adapter.Update(product);
-    
-        // Return true if precisely one row was updated, otherwise false
-        return rowsAffected == 1;
-    }
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample1.xml)]
 
 Like the original `UpdateProduct` method, this overload starts by checking to see if there is a product in the database with the specified `ProductID`. If not, it returns `false`, indicating that the request to update the product information failed. Otherwise it updates the existing product record's `ProductName` and `UnitPrice` fields accordingly and commits the update by calling the TableAdpater's `Update()` method, passing in the `ProductsRow` instance.
 
@@ -94,15 +74,7 @@ After completing this wizard check the Enable Editing checkbox from the GridView
 With the completion of the Create Data Source wizard and binding that to the GridView, Visual Studio has created the declarative syntax for both controls. Go to the Source view to inspect the ObjectDataSource's declarative markup, which is shown below:
 
 
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
-        OldValuesParameterFormatString="original_{0}" SelectMethod="GetProducts"
-        TypeName="ProductsBLL" UpdateMethod="UpdateProduct">
-        <UpdateParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="productID" Type="Int32" />
-        </UpdateParameters>
-    </asp:ObjectDataSource>
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample2.xml)]
 
 Since there are no mappings for the ObjectDataSource's `Insert()` and `Delete()` methods, there are no `InsertParameters` or `DeleteParameters` sections. Furthermore, since the `Update()` method is mapped to the `UpdateProduct` method overload that only accepts three input parameters, the `UpdateParameters` section has just three `Parameter` instances.
 
@@ -130,16 +102,7 @@ When the end user edits a product and clicks its Update button, the GridView enu
 To ensure that the ObjectDataSource invokes the `UpdateProduct` overload that takes in just the product's name, price, and ID, we need to restrict the GridView to having editable fields for just the `ProductName` and `UnitPrice`. This can be accomplished by removing the other BoundFields and CheckBoxFields, by setting those other fields' `ReadOnly` property to `true`, or by some combination of the two. For this tutorial let's simply remove all GridView fields except the `ProductName` and `UnitPrice` BoundFields, after which the GridView's declarative markup will look like:
 
 
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="ProductID" DataSourceID="ObjectDataSource1">
-        <Columns>
-            <asp:CommandField ShowEditButton="True" />
-            <asp:BoundField DataField="ProductName"
-              HeaderText="ProductName" SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="UnitPrice"
-              SortExpression="UnitPrice" />
-        </Columns>
-    </asp:GridView>
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample3.xml)]
 
 Even though the `UpdateProduct` overload expects three input parameters, we only have two BoundFields in our GridView. This is because the `productID` input parameter is a primary key value and passed in through the value of the `DataKeyNames` property for the edited row.
 
@@ -193,13 +156,7 @@ However, updating a product with the currency symbol in the textbox such as $19.
 The GridView's `RowUpdating` event accepts as its second parameter an object of type [GridViewUpdateEventArgs](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridviewupdateeventargs(VS.80).aspx), which includes a `NewValues` dictionary as one of its properties that holds the user-supplied values ready to be assigned to the ObjectDataSource's `UpdateParameters` collection. We can overwrite the existing `UnitPrice` value in the `NewValues` collection with a decimal value parsed using the currency format with the following lines of code in the `RowUpdating` event handler:
 
 
-    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
-    {
-      if (e.NewValues["UnitPrice"] != null)
-        e.NewValues["UnitPrice"] =
-            decimal.Parse(e.NewValues["UnitPrice"].ToString(),
-                System.Globalization.NumberStyles.Currency);
-    }
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample4.xml)]
 
 If the user has supplied a `UnitPrice` value (such as "$19.00"), this value is overwritten with the decimal value computed by [Decimal.Parse](https://msdn.microsoft.com/en-us/library/system.decimal.parse(VS.80).aspx), parsing the value as a currency. This will correctly parse the decimal in the event of any currency symbols, commas, decimal points, and so on, and uses the [NumberStyles enumeration](https://msdn.microsoft.com/en-US/library/system.globalization.numberstyles(VS.80).aspx) in the [System.Globalization](https://msdn.microsoft.com/en-US/library/abeh092z(VS.80).aspx) namespace.
 
@@ -220,13 +177,7 @@ The `GridViewUpdateEventArgs` object passed into the GridView's `RowUpdating` ev
 Start by adding a Label Web control to the page named `MustProvideUnitPriceMessage`. This Label control will be displayed if the user fails to specify a `UnitPrice` value when updating a product. Set the Label's `Text` property to "You must provide a price for the product." I've also created a new CSS class in `Styles.css` named `Warning` with the following definition:
 
 
-    .Warning
-    {
-        color: Red;
-        font-style: italic;
-        font-weight: bold;
-        font-size: x-large;
-    }
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample5.xml)]
 
 Finally, set the Label's `CssClass` property to `Warning`. At this point the Designer should show the warning message in a red, bold, italic, extra large font size above the GridView, as shown in Figure 12.
 
@@ -239,31 +190,12 @@ Finally, set the Label's `CssClass` property to `Warning`. At this point the Des
 By default, this Label should be hidden, so set its `Visible` property to `false` in the `Page_Load` event handler:
 
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        MustProvideUnitPriceMessage.Visible = false;
-    }
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample6.xml)]
 
 If the user attempts to update a product without specifying the `UnitPrice`, we want to cancel the update and display the warning label. Augment the GridView's `RowUpdating` event handler as follows:
 
 
-    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
-    {
-        if (e.NewValues["UnitPrice"] != null)
-        {
-            e.NewValues["UnitPrice"] =
-                decimal.Parse(e.NewValues["UnitPrice"].ToString(),
-                    System.Globalization.NumberStyles.Currency);
-        }
-        else
-        {
-            // Show the Label
-            MustProvideUnitPriceMessage.Visible = true;
-    
-            // Cancel the update
-            e.Cancel = true;
-        }
-    }
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample7.xml)]
 
 If a user attempts to save a product without specifying a price, the update is cancelled and a helpful message is displayed. While the database (and business logic) allows for `NULL` `UnitPrice` s, this particular ASP.NET page does not.
 
@@ -304,43 +236,14 @@ Leave the `Insert()` method pointing to the `AddProduct` method, but again set t
 After making these changes, the ObjectDataSource's declarative syntax will be expanded to include an `InsertParameters` collection, as shown below:
 
 
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
-        SelectMethod="GetProducts" TypeName="ProductsBLL"
-        UpdateMethod="UpdateProduct" OnUpdating="ObjectDataSource1_Updating"
-        InsertMethod="AddProduct" OldValuesParameterFormatString="original_{0}">
-        <UpdateParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="productID" Type="Int32" />
-        </UpdateParameters>
-        <InsertParameters>
-            <asp:Parameter Name="productName" Type="String" />
-            <asp:Parameter Name="supplierID" Type="Int32" />
-            <asp:Parameter Name="categoryID" Type="Int32" />
-            <asp:Parameter Name="quantityPerUnit" Type="String" />
-            <asp:Parameter Name="unitPrice" Type="Decimal" />
-            <asp:Parameter Name="unitsInStock" Type="Int16" />
-            <asp:Parameter Name="unitsOnOrder" Type="Int16" />
-            <asp:Parameter Name="reorderLevel" Type="Int16" />
-            <asp:Parameter Name="discontinued" Type="Boolean" />
-        </InsertParameters>
-    </asp:ObjectDataSource>
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample8.xml)]
 
 Rerunning the wizard added back the `OldValuesParameterFormatString` property. Take a moment to clear this property by setting it to the default value (`{0}`) or removing it altogether from the declarative syntax.
 
 With the ObjectDataSource providing inserting capabilities, the DetailsView's smart tag will now include the Enable Inserting checkbox; return to the Designer and check this option. Next, pare down the DetailsView so that it only has two BoundFields - `ProductName` and `UnitPrice` - and the CommandField. At this point the DetailsView's declarative syntax should look like:
 
 
-    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False"
-        DataKeyNames="ProductID" DataSourceID="ObjectDataSource1">
-        <Fields>
-            <asp:BoundField DataField="ProductName"
-              HeaderText="ProductName" SortExpression="ProductName" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="UnitPrice"
-              SortExpression="UnitPrice" />
-            <asp:CommandField ShowInsertButton="True" />
-        </Fields>
-    </asp:DetailsView>
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample9.xml)]
 
 Figure 16 shows this page when viewed through a browser at this point. As you can see, the DetailsView lists the name and price of the first product (Chai). What we want, however, is an inserting interface that provides a means for the user to quickly add a new product to the database.
 
@@ -393,21 +296,12 @@ For this tutorial let's imagine that for our application when adding a new produ
 Take a moment to create an event handler for the ObjectDataSource's `Inserting` event. Notice that the event handler's second input parameter is an object of type `ObjectDataSourceMethodEventArgs`, which has a property to access the parameters collection (`InputParameters`) and a property to cancel the operation (`Cancel`).
 
 
-    protected void ObjectDataSource1_Inserting
-        (object sender, ObjectDataSourceMethodEventArgs e)
-    {
-    
-    }
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample10.xml)]
 
 At this point, the `InputParameters` property contains the ObjectDataSource's `InsertParameters` collection with the values assigned from the DetailsView. To change the value of one of these parameters, simply use: `e.InputParameters["paramName"] = value`. Therefore, to set the `CategoryID` and `SupplierID` to values of 1, adjust the `Inserting` event handler to look like the following:
 
 
-    protected void ObjectDataSource1_Inserting
-        (object sender, ObjectDataSourceMethodEventArgs e)
-    {
-        e.InputParameters["CategoryID"] = 1;
-        e.InputParameters["SupplierID"] = 1;
-    }
+[!code[Main](examining-the-events-associated-with-inserting-updating-and-deleting-cs/samples/sample11.xml)]
 
 This time when adding a new product (such as Acme Soda), the `CategoryID` and `SupplierID` columns of the new product are set to 1 (see Figure 20).
 

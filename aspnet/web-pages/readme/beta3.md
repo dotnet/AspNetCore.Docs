@@ -129,8 +129,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > The following example shows how to use `Html.Raw`:
 > 
->     @* Inserts literal markup into the page as specified in the value string. *@
->     @Html.Raw("<div>Hello <em>world</em>!</div>")
+> [!code[Main](beta3/samples/sample1.xml)]
 
 
 <a id="Changes"></a>
@@ -148,31 +147,11 @@ This section of the document describes new features, changes, and known issues w
 > 
 > For example, the following `@helper` syntax works in the Beta 3 release:
 > 
->     @helper ThumbnailLink(string imagePath, int width, int height) {
->         @{
->             string newFileName = "";
->             WebImage thumbnail = new WebImage(imagePath);
->             if(thumbnail != null){
->                thumbnail.Resize(width, height, true, true);
->                newFileName = @"~\thumb_" + Path.GetFileName(thumbnail.FileName);
->                thumbnail.Save(newFileName);   
->             }
->         }
->         <a href="@Href(imagePath)"><img src="@Href(newFileName)" /></a>
->     }
+> [!code[Main](beta3/samples/sample2.xml)]
 > 
 > In the Beta 3 release, this helper must be changed to look like the following example:
 > 
->     @helper ThumbnailLink(string imagePath, int width, int height) {
->         string newFileName = "";
->         WebImage thumbnail = new WebImage(imagePath);
->         if(thumbnail != null){
->            thumbnail.Resize(width, height, true, true);
->            newFileName = @"~\thumb_" + Path.GetFileName(thumbnail.FileName);
->            thumbnail.Save(newFileName);   
->         }
->         <a href="@Href(imagePath)"><img src="@Href(newFileName)" /></a>
->     }
+> [!code[Main](beta3/samples/sample3.xml)]
 > 
 > Notice that the `@{ }` characters around the initial code in the helper is no longer used. This is because the contents of the helpers are treated as a code block by default. The helper renders markup, which starts with the opening `<a>` tag. If the helper must render plain text or tags that do not include a closing tag (for example, `<meta>` tags), the content to be rendered must be in `<text></text>` tags.
 
@@ -213,12 +192,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > To disable automatic request validation, call the `Request.Unvalidated` method, passing it the name of the field or other post object that you want to bypass request validation for. You can use this method to bypass validation for any items in the `Form`, `QueryString`, `Cookies`, and `ServerVariables` collections. The following examples show how to use the `Unvalidated` method:
 > 
->     Request["userInput"]; // Validated 
->     Request.Unvalidated("userInput"); // Validation bypassed
->     Request.Unvalidated().Form["userInput"]; // Validation bypassed
->     
->     Request.QueryString["userPreference"]; // Validated 
->     Request.Unvalidated().QueryString["userPreference"]; // Validation bypassed
+> [!code[Main](beta3/samples/sample4.xml)]
 
 
 <a id="Issues"></a>
@@ -282,12 +256,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > If you experience problems in working with an external service or working with the package feed, put the following elements into your application's root *Web.config* file:
 > 
->     <system.net>
->       <defaultProxy>
->         <proxy autoDetect="False" 
->            proxyaddress="[proxy URL]"/>
->       </defaultProxy>
->     </system.net>
+> [!code[Main](beta3/samples/sample5.xml)]
 > 
 > For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/en-us/library/sa91de1e.aspx) on the MSDN Web site.
 
@@ -312,14 +281,7 @@ This section of the document describes new features, changes, and known issues w
 >   
 > `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config (64-bit)`
 > 
->     <compilation>
->       <assemblies>
->         <add assembly="Microsoft.WebPages.Configuration, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
->     
->         <-- Additional assemblies here. -->
->     
->       </assemblies>
->     </compilation>
+> [!code[Main](beta3/samples/sample6.xml)]
 
 
 #### Issue: Applications previously deployed with ASP.NET assemblies in the Bin folder experience errors
@@ -344,9 +306,7 @@ This section of the document describes new features, changes, and known issues w
 > - If you do not have control over the server computer (for example, you are deploying to a hosting website), add the following to the website's *Web.config* file:
 > 
 > 
->     <system.webServer>
->       <modules runAllManagedModulesForAllRequests="true"/>
->     </system.webServer>
+> [!code[Main](beta3/samples/sample7.xml)]
 
 
 #### Issue: Using Web Application Project or ASP.NET MVC and ASP.NET Web pages in the same application
@@ -356,11 +316,11 @@ This section of the document describes new features, changes, and known issues w
 > **Workaround**  
 > If you get this error, change the base class from which the application derives. In the *Global.asax* file, change the following line:
 > 
->     public class MvcApplication :  WebPageHttpApplication { ... }
+> [!code[Main](beta3/samples/sample8.xml)]
 > 
 > To this:
 > 
->     public class MvcApplication :  HttpApplication { ... }
+> [!code[Main](beta3/samples/sample9.xml)]
 > 
 > This in effect reverses a change that was introduced for the Beta 1 release of ASP.NET Web Pages with Razor syntax.
 
@@ -380,15 +340,7 @@ This section of the document describes new features, changes, and known issues w
 > 3. Add the following element as a child of the **&lt;configuration&gt;** element (not inside the **&lt;system.web&gt;** element):
 > 
 > 
->     <system.data>
->       <DbProviderFactories>
->         <remove invariant="System.Data.SqlServerCe.4.0"></remove>
->         <add name="Microsoft SQL Server Compact Data Provider" 
->           invariant="System.Data.SqlServerCe.4.0" 
->           Description=".NET Framework Data Provider for Microsoft SQL Server Compact" 
->           type="System.Data.SqlServerCe.SqlCeProviderFactory, System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"/>
->       </DbProviderFactories>
->     </system.data>
+> [!code[Main](beta3/samples/sample10.xml)]
 
 
 #### Issue: Database and WebGrid helpers do not work in Medium Trust in Visual Basic
@@ -410,37 +362,31 @@ This section of the document describes new features, changes, and known issues w
 > 
 > ***C#***
 > 
->     SqlCeEngine engine = new SqlCeEngine("Data Source=Northwind.sdf;encryption mode=platform default;Password=<enterStrongPasswordHere>;");
->     engine.CreateDatabase();
+> [!code[Main](beta3/samples/sample11.xml)]
 > 
 > ***Visual Basic***
 > 
->     Dim engine As SqlCeEngine = New SqlCeEngine("Data Source=Northwind.sdf;encryption mode=platform default;Password=<enterStrongPasswordHere>;")
->     engine.CreateDatabase()
+> [!code[Main](beta3/samples/sample12.xml)]
 > 
 > To change the encryption mode of an existing SQL Server Compact 4.0 database, do the following:
 > 
 > ***C#***
 > 
->     SqlCeEngine engine = new SqlCeEngine("Data Source=Northwind.sdf;Password=<enterStrongPasswordHere>;");
->     engine.Compact("Data Source=Northwind.sdf;encryption mode=ppc2003 compatibility;Password=<enterStrongPasswordHere>;");
+> [!code[Main](beta3/samples/sample13.xml)]
 > 
 > ***Visual Basic***
 > 
->     Dim engine As SqlCeEngine = New SqlCeEngine("Data Source=Northwind.sdf;Password=<enterStrongPasswordHere>;")
->     engine.Compact("Data Source=Northwind.sdf;encryption mode=ppc2003 compatibility;Password=<enterStrongPasswordHere>;")
+> [!code[Main](beta3/samples/sample14.xml)]
 > 
 > To encrypt an unencrypted SQL Server Compact 4.0 database, do the following:
 > 
 > ***C#***
 > 
->     SqlCeEngine engine = new SqlCeEngine("Data Source=Northwind.sdf");
->     engine.Compact("Data Source=Northwind.sdf;encryption mode=platform default;Password=<enterStrongPasswordHere>;");
+> [!code[Main](beta3/samples/sample15.xml)]
 > 
 > ***Visual Basic***
 > 
->     Dim engine As SqlCeEngine = New SqlCeEngine("Data Source=Northwind.sdf;")
->     engine.Compact("Data Source=Northwind.sdf;encryption mode=platform default;Password=<enterStrongPasswordHere>;")
+> [!code[Main](beta3/samples/sample16.xml)]
 
 
 #### Issue: Microsoft Visual C++ 2008 runtime libraries are required
@@ -459,17 +405,7 @@ This section of the document describes new features, changes, and known issues w
 
 > SQL Server Compact can be installed on a machine that does not have .NET Framework installed because SQL Server Compact does require the .NET framework. If neither .NET Framework version 3.5 nor 4 is installed before you install SQL Server Compact, the SQL Server Compact Setup does not register its provider invariant name in the *machine.config* file. Any application that relies on the SQL Server Compact entry in the *machine.config* file will fail. The invariant name registration entry in *machine.config* looks like the following example:
 > 
->     <system.data>
->       <DbProviderFactories>
->         <remove invariant="System.Data.SqlServerCe.4.0"></remove>
->         <add 
->     name="Microsoft SQL Server Compact Data Provider" 
->     invariant="System.Data.SqlServerCe.4.0"
->             Description=".NET Framework Data Provider for Microsoft SQL Server Compact" 
->             type="System.Data.SqlServerCe.SqlCeProviderFactory, System.Data.SqlServerCe, 
->     Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"/>
->         </DbProviderFactories>
->     </system.data>
+> [!code[Main](beta3/samples/sample17.xml)]
 > 
 > **Workaround**  
 > Uninstall SQL Server Compact 4.0 CTP1. Download and install the full versions of the .NET Framework from the following location:
@@ -535,12 +471,10 @@ This section of the document describes new features, changes, and known issues w
 > 1. Copy the *Microsoft.Web.dll* and *Microsoft.Web.Administration.dll* assemblies from the WebMatrix installation location to the *bin* directory of the WCF application. By default, WebMatrix is installed in the *Microsoft WebMatrix* subfolder under the system's *Program Files* folder.
 > 2. On Microsoft Windows Vista or higher, create a symlink to the assemblies in the *bin* directory using the following commands. (This approach has the advantage that it does not create a copy of the assemblies.)
 > 
->         mklink Microsoft.Web.Administration.dll "c:\Program Files (x86)\Microsoft WebMatrix\Microsoft.Web.Administration.dll"
->         mklink Microsoft.Web.dll "c:\Program Files (x86)\Microsoft WebMatrix\Microsoft.Web.dll"
+>     [!code[Main](beta3/samples/sample18.xml)]
 > 3. Install the two assemblies in the GAC. From an elevated prompt, run the following commands:
 > 
->         gacutil /i  "c:\Program Files (x86)\Microsoft WebMatrix\Microsoft.Web.Administration.dll"
->         gacutil /i "c:\Program Files (x86)\Microsoft WebMatrix\Microsoft.Web.dll"
+>     [!code[Main](beta3/samples/sample19.xml)]
 
 
 #### Issue: WebMatrix Beta 3 is unable to perform certain tasks that require elevation
@@ -608,38 +542,11 @@ This section of the document describes new features, changes, and known issues w
 > 
 > ***C#***
 > 
->     SqlCeEngine engine = new SqlCeEngine(connString);
->     engine.CreateDatabase();
->     engine.Dispose();
->     SqlCeConnection conn = new SqlCeConnection(connString);
->     conn.Open();
->     SqlCeCommand cmd = conn.CreateCommand();
->     cmd.CommandText = "CREATE TABLE BlobTable(name nvarchar(128), blob ntext);";
->     cmd.ExecuteNonQuery();
->     cmd.CommandText = "INSERT INTO BlobTable(name, blob) VALUES (@name, @blob);";
->     SqlCeParameter paramName = cmd.Parameters.Add("name", SqlDbType.NVarChar, 128);
->     SqlCeParameter paramBlob = cmd.Parameters.Add("blob", SqlDbType.NText);
->     paramName.Value = "Name1";
->     paramBlob.Value = "Name1".PadLeft(4001);
->     cmd.ExecuteNonQuery();
+> [!code[Main](beta3/samples/sample20.xml)]
 > 
 > ***Visual Basic***
 > 
->     Dim engine As SqlCeEngine = New SqlCeEngine(connString)
->     engine.CreateDatabase()
->     engine.Dispose()
->     Dim conn As SqlCeConnection = New SqlCeConnection(connString)
->     conn.Open()
->     Dim cmd As SqlCeCommand = conn.CreateCommand()
->     cmd.CommandText = "CREATE TABLE BlobTable(name nvarchar(128), blob ntext);"
->     cmd.ExecuteNonQuery()
->     cmd.CommandText = "INSERT INTO BlobTable(name, blob) VALUES (@name, @blob);"
->     Dim paramName As SqlCeParameter
->     Dim paramBlob As SqlCeParameterparamName = cmd.Parameters.Add("name", SqlDbType.NVarChar, 128)
->     paramName.Value = "Name1"
->     paramBlob = cmd.Parameters.Add("blob", SqlDbType.NText)
->     paramBlob.Value = "Name1".PadLeft(4001)
->     cmd.ExecuteNonQuery()
+> [!code[Main](beta3/samples/sample21.xml)]
 
 
 <a id="More_Info"></a>

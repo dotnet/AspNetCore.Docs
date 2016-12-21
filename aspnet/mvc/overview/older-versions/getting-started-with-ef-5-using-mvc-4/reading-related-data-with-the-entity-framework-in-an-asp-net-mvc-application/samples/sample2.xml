@@ -1,10 +1,5 @@
-/* info and errors */
-.selectedrow 
-{ 
-    background-color: #a4d4e6; 
-}
-.message-info {
-    border: 1px solid;
-    clear: both;
-    padding: 10px 20px;
-}
+    public ViewResult Index()
+    {
+        var courses = db.Courses.Include(c => c.Department);
+        return View(courses.ToList());
+    }

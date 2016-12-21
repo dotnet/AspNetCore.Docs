@@ -92,7 +92,7 @@ Now that you've created a site, you can see how IntelliSense works in Visual Stu
 3. Select the `GetHtml` method from the list and then press Enter. IntelliSense automatically fills in the method. (As with any method in C#, you must add `()` characters after the method.)  
  The completed code for the     `GetHtml` method looks like the following example:  
 
-        @ServerInfo.GetHtml()
+    [!code[Main](program-asp-net-web-pages-in-visual-studio/samples/sample1.xml)]
 4. Press Ctrl+F5 to run the page. This is what the page looks like when displayed in a browser: 
 
     ![default page in browser](program-asp-net-web-pages-in-visual-studio/_static/image5.png)
@@ -102,7 +102,7 @@ Now that you've created a site, you can see how IntelliSense works in Visual Stu
 
 1. At the top of the *Default.cshtml* page, after the line that begins with `Page.Title`, add the following line of code: 
 
-        var myTime = DateTime.Now.TimeOfDay;
+    [!code[Main](program-asp-net-web-pages-in-visual-studio/samples/sample2.xml)]
 2. In the gray margin of the editor to the left of the code, click next to this new line in order to add a *breakpoint*. A breakpoint is a marker that tells the debugger to stop running the program at that point so you can see what's happening.
 
     ![set breakpoint](program-asp-net-web-pages-in-visual-studio/_static/image6.png)

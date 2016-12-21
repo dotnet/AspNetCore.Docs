@@ -82,9 +82,7 @@ If you plan to use Ajax in multiple pages in your application then it makes sens
 
 Add the following JavaScript includes inside the &lt;head&gt; tag of your view master page:
 
-    <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
-        <script src="../../Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
-        <script src="../../Scripts/jquery-1.2.6.min.js" type="text/javascript"></script>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample1.xml)]
 
 ## Refactoring the Index View to use Ajax
 
@@ -100,52 +98,7 @@ The first step is to separate the part of the view that we want to update asynch
 
 **Listing 1 - Views\Contact\ContactList.ascx**
 
-    <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ContactManager.Models.Group>" %>
-    <%@ Import Namespace="Helpers" %>
-    <table class="data-table" cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th class="actions edit">
-                    Edit
-                </th>
-                <th class="actions delete">
-                    Delete
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Phone
-                </th>
-                <th>
-                    Email
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <% foreach (var item in Model.Contacts)
-               { %>
-            <tr>
-                <td class="actions edit">
-                    <a href='<%= Url.Action("Edit", new {id=item.Id}) %>'><img src="../../Content/Edit.png" alt="Edit" /></a>
-                </td>
-                <td class="actions delete">
-                    <a href='<%= Url.Action("Delete", new {id=item.Id}) %>'><img src="../../Content/Delete.png" alt="Edit" /></a>
-                </td>
-                <th>
-                    <%= Html.Encode(item.FirstName) %>
-                    <%= Html.Encode(item.LastName) %>
-                </th>
-                <td>
-                    <%= Html.Encode(item.Phone) %>
-                </td>
-                <td>
-                    <%= Html.Encode(item.Email) %>
-                </td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample2.xml)]
 
 Notice that the partial in Listing 1 has a different model than the Index view. The *Inherits* attribute in the &lt;%@ Page %&gt; directive specifies that the partial inherits from the ViewUserControl&lt;Group&gt; class.
 
@@ -153,33 +106,13 @@ The updated Index view is contained in Listing 2.
 
 **Listing 2 - Views\Contact\Index.aspx**
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ContactManager.Models.ViewData.IndexModel>" %>
-    <%@ Import Namespace="Helpers" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Index</title>
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <ul id="leftColumn">
-    <% foreach (var item in Model.Groups) { %>
-        <li <%= Html.Selected(item.Id, Model.SelectedGroup.Id) %>>
-        <%= Ajax.ActionLink(item.Name, "Index", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "divContactList"})%>
-        </li>
-    <% } %>
-    </ul>
-    <div id="divContactList">
-        <% Html.RenderPartial("ContactList", Model.SelectedGroup); %>
-    </div>
-    
-    <div class="divContactList-bottom"> </div>
-    </asp:Content>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample3.xml)]
 
 There are two things that you should notice about the updated view in Listing 2. First, notice that all of the content moved into the partial is replaced with a call to Html.RenderPartial(). The Html.RenderPartial() method is called when the Index view is first requested in order to display the initial set of contacts.
 
 Second, notice that the Html.ActionLink() used to display contact groups has been replaced with an Ajax.ActionLink(). The Ajax.ActionLink() is called with the following parameters:
 
-    <%= Ajax.ActionLink(item.Name, "Index", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "divContactList"})%>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample4.xml)]
 
 The first parameter represents the text to display for the link, the second parameter represents the route values, and the third parameter represents the Ajax options. In this case, we use the UpdateTargetId Ajax option to point to the HTML &lt;div&gt; tag that we want to update after the Ajax request completes. We want to update the &lt;div&gt; tag with the new list of contacts.
 
@@ -187,27 +120,7 @@ The updated Index() method of the Contact controller is contained in Listing 3.
 
 **Listing 3 - Controllers\ContactController.cs (Index method)**
 
-    public ActionResult Index(int? id)
-    {
-        // Get selected group
-        var selectedGroup = _service.GetGroup(id);
-        if (selectedGroup == null)
-            return RedirectToAction("Index", "Group");
-    
-        // Normal Request
-        if (!Request.IsAjaxRequest())
-        {
-            var model = new IndexModel
-            {
-                Groups = _service.ListGroups(),
-                SelectedGroup = selectedGroup
-            };
-            return View("Index", model);
-        }
-    
-        // Ajax Request
-        return PartialView("ContactList", selectedGroup);
-    }
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample5.xml)]
 
 The updated Index() action conditionally returns one of two things. If the Index() action is invoked by an Ajax request then the controller returns a partial. Otherwise, the Index() action returns an entire view.
 
@@ -229,49 +142,7 @@ We'll use the jQuery library which is included with the Microsoft ASP.NET MVC fr
 
 **Listing 4 - Views\Contact\Index.aspx**
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ContactManager.Models.ViewData.IndexModel>" %>
-    <%@ Import Namespace="Helpers" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Index</title>
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <script type="text/javascript">
-    
-        function beginContactList(args) {
-            // Highlight selected group
-            $('#leftColumn li').removeClass('selected');
-            $(this).parent().addClass('selected');
-    
-            // Animate
-            $('#divContactList').fadeOut('normal');
-        }
-    
-        function successContactList() {
-            // Animate
-            $('#divContactList').fadeIn('normal');
-        }
-    
-        function failureContactList() {
-            alert("Could not retrieve contacts.");
-        }
-    
-    </script>
-    
-    <ul id="leftColumn">
-    <% foreach (var item in Model.Groups) { %>
-        <li <%= Html.Selected(item.Id, Model.SelectedGroup.Id) %>>
-        <%= Ajax.ActionLink(item.Name, "Index", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "divContactList", OnBegin = "beginContactList", OnSuccess = "successContactList", OnFailure = "failureContactList" })%>
-        </li>
-    <% } %>
-    </ul>
-    <div id="divContactList">
-        <% Html.RenderPartial("ContactList", Model.SelectedGroup); %>
-    </div>
-    
-    <div class="divContactList-bottom"> </div>
-    </asp:Content>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample6.xml)]
 
 Notice that the updated Index view contains three new JavaScript functions. The first two functions use jQuery to fade out and fade in the list of contacts when you click a new contact group. The third function displays an error message when an Ajax request results in an error (for example, network timeout).
 
@@ -279,7 +150,7 @@ The first function also takes care of highlighting the selected group. A class= 
 
 These scripts are tied to the group links with the help of the Ajax.ActionLink() AjaxOptions parameter. The updated Ajax.ActionLink() method call looks like this:
 
-    <%= Ajax.ActionLink(item.Name, "Index", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "divContactList", OnBegin = "beginContactList", OnSuccess = "successContactList", OnFailure = "failureContactList" })%>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample7.xml)]
 
 ## Adding Browser History Support
 
@@ -299,84 +170,7 @@ The updated Index view is contained in Listing 5.
 
 **Listing 5 - Views\Contact\Index.aspx**
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ContactManager.Models.ViewData.IndexModel>" %>
-    <%@ Import Namespace="Helpers" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Index</title>
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <script type="text/javascript">
-    
-        var _currentGroupId = -1;
-    
-        Sys.Application.add_init(pageInit);
-    
-        function pageInit() {
-            // Enable history
-            Sys.Application.set_enableHistory(true);
-    
-            // Add Handler for history
-            Sys.Application.add_navigate(navigate);
-        }
-    
-        function navigate(sender, e) {
-            // Get groupId from address bar
-            var groupId = e.get_state().groupId;
-    
-            // If groupId != currentGroupId then navigate
-            if (groupId != _currentGroupId) {
-                _currentGroupId = groupId;
-                $("#divContactList").load("/Contact/Index/" + groupId);
-                selectGroup(groupId);
-            }
-        }
-    
-        function selectGroup(groupId) {
-            $('#leftColumn li').removeClass('selected');
-            if (groupId)
-                $('a[groupid=' + groupId + ']').parent().addClass('selected');
-            else
-                $('#leftColumn li:first').addClass('selected');
-        }
-    
-        function beginContactList(args) {
-            // Highlight selected group
-            _currentGroupId = this.getAttribute("groupid");
-            selectGroup(_currentGroupId);
-    
-            // Add history point
-            Sys.Application.addHistoryPoint({ "groupId": _currentGroupId });
-    
-            // Animate
-            $('#divContactList').fadeOut('normal');
-        }
-    
-        function successContactList() {
-            // Animate
-            $('#divContactList').fadeIn('normal');
-        }
-    
-        function failureContactList() {
-            alert("Could not retrieve contacts.");
-        }
-    
-    </script>
-    
-    <ul id="leftColumn">
-    <% foreach (var item in Model.Groups) { %>
-        <li <%= Html.Selected(item.Id, Model.SelectedGroup.Id) %>>
-        <%= Ajax.ActionLink(item.Name, "Index", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "divContactList", OnBegin = "beginContactList", OnSuccess = "successContactList", OnFailure = "failureContactList" }, new { groupid = item.Id })%>
-        </li>
-    <% } %>
-    </ul>
-    <div id="divContactList">
-        <% Html.RenderPartial("ContactList", Model.SelectedGroup); %>
-    </div>
-    
-    <div class="divContactList-bottom"> </div>
-    </asp:Content>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample8.xml)]
 
 In Listing 5, Browser History is enabled in the pageInit() function. The pageInit() function is also used to set up the event handler for the navigate event. The navigate event is raised whenever the browser Forward or Back button causes the state of the page to change.
 
@@ -384,7 +178,7 @@ The beginContactList() method is called when you click a contact group. This met
 
 The group id is retrieved from an expando attribute on the contact group link. The link is rendered with the following call to Ajax.ActionLink().
 
-    <%= Ajax.ActionLink(item.Name, "Index", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "divContactList", OnBegin = "beginContactList", OnSuccess = "successContactList", OnFailure = "failureContactList" }, new {groupid=item.Id})%>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample9.xml)]
 
 The last parameter passed to the Ajax.ActionLink() adds an expando attribute named groupid to the link (lowercase for XHTML compatibility).
 
@@ -406,56 +200,11 @@ The Delete link is contained in the ContactList partial. An updated version of t
 
 **Listing 6 - Views\Contact\ContactList.ascx**
 
-    <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<ContactManager.Models.Group>" %>
-    <%@ Import Namespace="Helpers" %>
-    <table class="data-table" cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th class="actions edit">
-                    Edit
-                </th>
-                <th class="actions delete">
-                    Delete
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Phone
-                </th>
-                <th>
-                    Email
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <% foreach (var item in Model.Contacts)
-               { %>
-            <tr>
-                <td class="actions edit">
-                    <a href='<%= Url.Action("Edit", new {id=item.Id}) %>'><img src="../../Content/Edit.png" alt="Edit" /></a>
-                </td>
-                <td class="actions delete">
-                <%= Ajax.ImageActionLink("../../Content/Delete.png", "Delete", "Delete", new { id = item.Id }, new AjaxOptions { Confirm = "Delete contact?", HttpMethod = "Delete", UpdateTargetId = "divContactList" })%> 
-                </td>
-                <th>
-                    <%= Html.Encode(item.FirstName) %>
-                    <%= Html.Encode(item.LastName) %>
-                </th>
-                <td>
-                    <%= Html.Encode(item.Phone) %>
-                </td>
-                <td>
-                    <%= Html.Encode(item.Email) %>
-                </td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample10.xml)]
 
 The Delete link is rendered with the following call to the Ajax.ImageActionLink() method:
 
-    <%= Ajax.ImageActionLink("../../Content/Delete.png", "Delete", "Delete", new { id = item.Id }, new AjaxOptions { Confirm = "Delete contact?", HttpMethod = "Delete", UpdateTargetId = "divContactList" })%>
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample11.xml)]
 
 > [!NOTE] 
 > 
@@ -468,20 +217,7 @@ Listing 7 contains a new AjaxDelete() action that has been added to the Contact 
 
 **Listing 7 - Controllers\ContactController.cs (AjaxDelete)**
 
-    [AcceptVerbs(HttpVerbs.Delete)]
-    [ActionName("Delete")]
-    public ActionResult AjaxDelete(int id)
-    {
-        // Get contact and group
-        var contactToDelete = _service.GetContact(id);
-        var selectedGroup = _service.GetGroup(contactToDelete.Group.Id);
-    
-        // Delete from database
-        _service.DeleteContact(contactToDelete);
-    
-        // Return Contact List
-        return PartialView("ContactList", selectedGroup);
-    }
+[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample12.xml)]
 
 The AjaxDelete() action is decorated with an AcceptVerbs attribute. This attribute prevents the action from being invoked except by any HTTP operation other than an HTTP DELETE operation. In particular, you cannot invoke this action with an HTTP GET.
 

@@ -1,8 +1,3 @@
-var contosoChatHubProxy = $.connection.contosoChatHub;
-contosoChatHubProxy.client.addContosoChatMessageToPage = function (name, message) {
-    console.log(userName + ' ' + message);
-};
-$.connection.hub.start()
-    .done(function(){ console.log('Now connected, connection ID=' + $.connection.hub.id); })
-    .fail(function(){ console.log('Could not Connect!'); });
-});
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.0.min.js"></script>
+    <script src="signalr/hubs"></script>

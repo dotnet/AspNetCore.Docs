@@ -52,29 +52,17 @@ ASP.NET Web Pages 2 requires the .NET Framework 4. It also works with the .NET F
 - **Is\* methods (for example, IsDateTime) now return correct values for all cultures.** Some methods like *IsDateTime* previously returned *false* when they should have returned *true* because they were previously performing culture-specific checks. These methods have been fixed to now take culture into account. This is a breaking change; if your application relies on the old behavior, it will break.
 - **The behavior of the Href method has changed.** Previously, calling Href("~/SomeFile") would return a URL relative to the currently executing file. Now Href("~/SomeFile") always returns an absolute path from the root of the application. For most cases, this behavior won't make a difference in the return value. This change was made to fix certain Ajax scenarios. For example, consider the following example code: 
 
-        /Folder/File
-        @Href("~/Images/Logo.jpg")
+    [!code[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample1.xml)]
 
     This code previously would resolve to Images/Logo.jpg, which would be incorrect for an Ajax request to that page. It will now resolve to the root of the (/MySite/Images/Logo.jpg).
 - **The HttpContext.RedirectLocal method has changed** . This method now accepts only URLs that are relative to the current application. Fully qualified URLs are rejected.
 - **The ModelState.IsValid method now requires you to call Validate first** . If you are converting your application to use the new input validation methods and are calling the *ModelState.IsValid* method, you must now call *Validation.Validate* beforehand. For example, you must now follow this pattern: 
 
-        Validation.RequireField("MyField");
-        if (IsPost) {
-            Validation.Validate();
-            if (ModelState.IsValid) {
-                // do something
-            }
-        }
+    [!code[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample2.xml)]
 
  However, we recommend that if you use the new input validation methods, don't use     *ModelState.IsValid* . Instead, structure your code like this: 
 
-        Validation.RequireField("MyField");
-        if (IsPost) {
-            if (Validation.IsValid()) {
-                // do something
-            }
-        }
+    [!code[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample3.xml)]
 - **On Internet Explorer 7 and Internet Explorer 8, client-side validation does not work** . Client-side validation does not work due to incompatibilities with jQuery 1.6.2, which is included with the default project template. (Server-side validation works.).
 
 #### <a id="_Toc303701289"></a>  Disclaimer

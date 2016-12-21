@@ -55,16 +55,7 @@ The initial data in the AJAX table ([Click to view full-size image](drag-and-dro
 
 The next step requires to generate an `SqlDataSource` control to communicate with the new database and its table. The data source must support the `SELECT` and `UPDATE` SQL commands. When the order of the list elements is later changed, the `ReorderList` control automatically submits two values to the data source's `Update` command: the new position and the ID of the element. Therefore, the data source needs an `<UpdateParameters>` section for these two values:
 
-    <asp:SqlDataSource ID="sds" runat="server" ConnectionString="Data
-     Source=(local)\SQLEXPRESS;Initial Catalog=Tutorials;Integrated Security=True"
-     ProviderName="System.Data.SqlClient" OldValuesParameterFormatString="original_{0}"
-     SelectCommand="SELECT [id], [char], [description], [position] FROM [AJAX] ORDER BY [position]"
-     UpdateCommand="UPDATE [AJAX] SET position=@position WHERE [id]=@original_id">
-     <UpdateParameters>
-     <asp:Parameter Name="position" Type="Int32" />
-     <asp:Parameter Name="original_id" Type="Int32" />
-     </UpdateParameters>
-    </asp:SqlDataSource>
+[!code[Main](drag-and-drop-via-reorderlist-vb/samples/sample1.xml)]
 
 The `ReorderList` control needs to set the following attributes:
 
@@ -75,32 +66,15 @@ The `ReorderList` control needs to set the following attributes:
 
 In the `<DragHandleTemplate>` and `<ItemTemplate>` sections, the layout of the list can be fine-tuned. Also, databinding is possible using the `Eval()` method, as seen here:
 
-    <ajaxToolkit:ReorderList ID="rl1" runat="server" SortOrderField="position" 
-     AllowReorder="true" DataSourceID="sds" DataKeyField="id">
-     <DragHandleTemplate>
-     <div class="DragHandleClass">
-     </div>
-     </DragHandleTemplate>
-     <ItemTemplate>
-     <asp:Label ID="ItemLabel" runat="server" Text='<%#Eval("description") %>' />
-     </ItemTemplate>
-    </ajaxToolkit:ReorderList>
+[!code[Main](drag-and-drop-via-reorderlist-vb/samples/sample2.xml)]
 
 The following CSS style information (referenced in the `<DragHandleTemplate>` section of the `ReorderList` control) makes sure that the mouse pointer changes appropriately when it hovers over the drag handle:
 
-    <style type="text/css">
-     .DragHandleClass
-     {
-     width: 12px;
-     height: 12px;
-     background-color: red;
-     cursor:move;
-     }
-    </style>
+[!code[Main](drag-and-drop-via-reorderlist-vb/samples/sample3.xml)]
 
 Finally, a `ScriptManager` control initializes ASP.NET AJAX for the page:
 
-    <asp:ScriptManager ID="asm" runat="server" />
+[!code[Main](drag-and-drop-via-reorderlist-vb/samples/sample4.xml)]
 
 Run this example in the browser and rearrange the list items a bit. Then, reload the page and/or have a look at the database. The altered positions have been maintained and are also reflected by the values in the `position` column in the database and that all without any code, just by using markup.
 

@@ -23,26 +23,25 @@ This section gives a brief overview of how cookies are implemented at the HTTP l
 
 A cookie is a piece of data that a server sends in the HTTP response. The client (optionally) stores the cookie and returns it on subsequet requests. This allows the client and server to share state. To set a cookie, the server includes a Set-Cookie header in the response. The format of a cookie is a name-value pair, with optional attributes. For example:
 
-    Set-Cookie: session-id=1234567
+[!code[Main](http-cookies/samples/sample1.xml)]
 
 Here is an example with attributes:
 
-    Set-Cookie: session-id=1234567; max-age=86400; domain=example.com; path=/;
+[!code[Main](http-cookies/samples/sample2.xml)]
 
 To return a cookie to the server, the client inclues a Cookie header in later requests.
 
-    Cookie: session-id=1234567
+[!code[Main](http-cookies/samples/sample3.xml)]
 
 ![](http-cookies/_static/image1.png)
 
 An HTTP response can include multiple Set-Cookie headers.
 
-    Set-Cookie: session-token=abcdef;
-    Set-Cookie: session-id=1234567;
+[!code[Main](http-cookies/samples/sample4.xml)]
 
 The client returns multiple cookies using a single Cookie header.
 
-    Cookie: session-id=1234567; session-token=abcdef;
+[!code[Main](http-cookies/samples/sample5.xml)]
 
 The scope and duration of a cookie are controlled by following attributes in the Set-Cookie header:
 
@@ -61,30 +60,13 @@ To add a cookie to an HTTP response, create a **CookieHeaderValue** instance tha
 
 For example, the following code adds a cookie within a controller action:
 
-    public HttpResponseMessage Get()
-    {
-        var resp = new HttpResponseMessage();
-    
-        var cookie = new CookieHeaderValue("session-id", "12345");
-        cookie.Expires = DateTimeOffset.Now.AddDays(1);
-        cookie.Domain = Request.RequestUri.Host;
-        cookie.Path = "/";
-    
-        resp.Headers.AddCookies(new CookieHeaderValue[] { cookie });
-        return resp;
-    }
+[!code[Main](http-cookies/samples/sample6.xml)]
 
 Notice that **AddCookies** takes an array of **CookieHeaderValue** instances.
 
 To extract the cookies from a client request, call the **GetCookies** method:
 
-    string sessionId = "";
-    
-    CookieHeaderValue cookie = Request.Headers.GetCookies("session-id").FirstOrDefault();
-    if (cookie != null)
-    {
-        sessionId = cookie["session-id"].Value;
-    }
+[!code[Main](http-cookies/samples/sample7.xml)]
 
 A **CookieHeaderValue** contains a collection of **CookieState** instances. Each **CookieState** represents one cookie. Use the indexer method to get a **CookieState** by name, as shown.
 
@@ -97,35 +79,15 @@ Many browsers limit how many cookies they will store&#8212;both the total number
 
 Using the **CookieHeaderValue** class, you can pass a list of name-value pairs for the cookie data. These name-value pairs are encoded as URL-encoded form data in the Set-Cookie header:
 
-    var resp = new HttpResponseMessage();
-    
-    var nv = new NameValueCollection();
-    nv["sid"] = "12345";
-    nv["token"] = "abcdef";
-    nv["theme"] = "dark blue";
-    var cookie = new CookieHeaderValue("session", nv); 
-    
-    resp.Headers.AddCookies(new CookieHeaderValue[] { cookie });
+[!code[Main](http-cookies/samples/sample8.xml)]
 
 The previous code produces the following Set-Cookie header:
 
-    Set-Cookie: session=sid=12345&token=abcdef&theme=dark+blue;
+[!code[Main](http-cookies/samples/sample9.xml)]
 
 The **CookieState** class provides an indexer method to read the sub-values from a cookie in the request message:
 
-    string sessionId = "";
-    string sessionToken = "";
-    string theme = "";
-    
-    CookieHeaderValue cookie = Request.Headers.GetCookies("session").FirstOrDefault();
-    if (cookie != null)
-    {
-        CookieState cookieState = cookie["session"];
-    
-        sessionId = cookieState["sid"];
-        sessionToken = cookieState["token"];
-        theme = cookieState["theme"];
-    }
+[!code[Main](http-cookies/samples/sample10.xml)]
 
 ## Example: Set and Retrieve Cookies in a Message Handler
 
@@ -137,67 +99,8 @@ The following code shows a message handler for creating session IDs. The session
 
 This implementation does not validate that the session ID from the client was actually issued by the server. Don't use it as a form of authentication! The point of the example is to show HTTP cookie management.
 
-    using System;
-    using System.Linq;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Web.Http;
-    
-    public class SessionIdHandler : DelegatingHandler
-    {
-        static public string SessionIdToken = "session-id";
-    
-        async protected override Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            string sessionId;
-    
-            // Try to get the session ID from the request; otherwise create a new ID.
-            var cookie = request.Headers.GetCookies(SessionIdToken).FirstOrDefault();
-            if (cookie == null)
-            {
-                sessionId = Guid.NewGuid().ToString();
-            }
-            else 
-            {
-                sessionId = cookie[SessionIdToken].Value;
-                try
-                {
-                    Guid guid = Guid.Parse(sessionId);
-                }
-                catch (FormatException)
-                {
-                    // Bad session ID. Create a new one.
-                    sessionId = Guid.NewGuid().ToString();
-                }
-            }
-    
-            // Store the session ID in the request property bag.
-            request.Properties[SessionIdToken] = sessionId;
-    
-            // Continue processing the HTTP request.
-            HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
-    
-            // Set the session ID as a cookie in the response message.
-            response.Headers.AddCookies(new CookieHeaderValue[] {
-                new CookieHeaderValue(SessionIdToken, sessionId) 
-            });
-    
-            return response;
-        }
-    }
+[!code[Main](http-cookies/samples/sample11.xml)]
 
 A controller can get the session ID from the **HttpRequestMessage.Properties** property bag.
 
-    public HttpResponseMessage Get()
-    {
-        string sessionId = Request.Properties[SessionIdHandler.SessionIdToken] as string;
-    
-        return new HttpResponseMessage()
-        {
-            Content = new StringContent("Your session ID = " + sessionId)
-        };
-    }
+[!code[Main](http-cookies/samples/sample12.xml)]

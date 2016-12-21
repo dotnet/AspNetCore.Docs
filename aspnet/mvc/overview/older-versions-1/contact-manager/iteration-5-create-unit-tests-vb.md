@@ -152,92 +152,7 @@ The code for these tests is contained in Listing 1.
 
 **Listing 1 - Models\ContactManagerServiceTest.vb**
 
-    Imports Microsoft.VisualStudio.TestTools.UnitTesting
-    Imports Moq
-    Imports System.Web.Mvc
-    
-    <TestClass()> _
-    Public Class ContactManagerServiceTest
-    
-        Private _mockRepository As Mock(Of IContactManagerRepository)
-        Private _modelState As ModelStateDictionary
-        Private _service As IContactManagerService
-    
-        <TestInitialize()> _
-        Public Sub Initialize()
-            _mockRepository = New Mock(Of IContactManagerRepository)()
-            _modelState = New ModelStateDictionary()
-            _service = New ContactManagerService(new ModelStateWrapper(_modelState), _mockRepository.Object)
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub CreateContact()
-            ' Arrange
-            Dim contactToCreate = Contact.CreateContact(-1, "Stephen", "Walther", "555-5555", "steve@somewhere.com")
-    
-            ' Act
-            Dim result = _service.CreateContact(contactToCreate)
-    
-            ' Assert
-            Assert.IsTrue(result)
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub CreateContactRequiredFirstName()
-            ' Arrange
-            Dim contactToCreate = Contact.CreateContact(-1, String.Empty, "Walther", "555-5555", "steve@somewhere.com")
-    
-            ' Act
-            Dim result = _service.CreateContact(contactToCreate)
-    
-            ' Assert
-            Assert.IsFalse(result)
-            Dim [error] = _modelState("FirstName").Errors(0)
-            Assert.AreEqual("First name is required.", [error].ErrorMessage)
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub CreateContactRequiredLastName()
-            ' Arrange
-            Dim contactToCreate = Contact.CreateContact(-1, "Stephen", String.Empty, "555-5555", "steve@somewhere.com")
-    
-            ' Act
-            Dim result = _service.CreateContact(contactToCreate)
-    
-            ' Assert
-            Assert.IsFalse(result)
-            Dim [error] = _modelState("LastName").Errors(0)
-            Assert.AreEqual("Last name is required.", [error].ErrorMessage)
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub CreateContactInvalidPhone()
-            ' Arrange
-            Dim contactToCreate = Contact.CreateContact(-1, "Stephen", "Walther", "apple", "steve@somewhere.com")
-    
-            ' Act
-            Dim result = _service.CreateContact(contactToCreate)
-    
-            ' Assert
-            Assert.IsFalse(result)
-            Dim [error] = _modelState("Phone").Errors(0)
-            Assert.AreEqual("Invalid phone number.", [error].ErrorMessage)
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub CreateContactInvalidEmail()
-            ' Arrange
-            Dim contactToCreate = Contact.CreateContact(-1, "Stephen", "Walther", "555-5555", "apple")
-    
-            ' Act
-            Dim result = _service.CreateContact(contactToCreate)
-    
-            ' Assert
-            Assert.IsFalse(result)
-            Dim [error] = _modelState("Email").Errors(0)
-            Assert.AreEqual("Invalid email address.", [error].ErrorMessage)
-        End Sub
-    End Class
+[!code[Main](iteration-5-create-unit-tests-vb/samples/sample1.xml)]
 
 
 Because we use the Contact class in Listing 1, we need to add a reference to the Microsoft Entity Framework to our Test project. Add a reference to the System.Data.Entity assembly.
@@ -245,7 +160,7 @@ Because we use the Contact class in Listing 1, we need to add a reference to the
 
 Listing 1 contains a method named Initialize() that is decorated with the [TestInitialize] attribute. This method is called automatically before each of the unit tests is run (it is called 5 times right before each of the unit tests). The Initialize() method creates a mock repository with the following line of code:
 
-    _mockRepository = New Mock(Of IContactManagerRepository)()
+[!code[Main](iteration-5-create-unit-tests-vb/samples/sample2.xml)]
 
 This line of code uses the Moq framework to generate a mock repository from the IContactManagerRepository interface. The mock repository is used instead of the actual EntityContactManagerRepository to avoid accessing the database when each unit test is run. The mock repository implements the methods of the IContactManagerRepository interface, but the methods don t actually do anything.
 
@@ -278,17 +193,17 @@ For example, Listing 2 contains two unit tests for the Contact controller Create
 
 We don t want to test the ContactManager service layer when we are testing the controller layer. Therefore, we mock the service layer with the following code in the Initialize method:
 
-    _service = New Mock(Of IContactManagerService)()
+[!code[Main](iteration-5-create-unit-tests-vb/samples/sample3.xml)]
 
 In the CreateValidContact() unit test, we mock the behavior of calling the service layer CreateContact() method with the following line of code:
 
-    _service.Expect( Function(s) s.CreateContact(contactToCreate) ).Returns(True)
+[!code[Main](iteration-5-create-unit-tests-vb/samples/sample4.xml)]
 
 This line of code causes the mock ContactManager service to return the value true when its CreateContact() method is called. By mocking the service layer, we can test the behavior of our controller without needing to execute any code in the service layer.
 
 The second unit test verifies that the Create() action returns the Create view when an invalid contact is passed to the method. We cause the service layer CreateContact() method to return the value false with the following line of code:
 
-    _service.Expect( Function(s) s.CreateContact(contactToCreate) ).Returns(False)
+[!code[Main](iteration-5-create-unit-tests-vb/samples/sample5.xml)]
 
 If the Create() method behaves as we expect then it should return the Create view when the service layer returns the value false. That way, the controller can display the validation error messages in the Create view and the user has a chance to correct that invalid Contact properties.
 
@@ -306,49 +221,7 @@ If you are not explicit when returning a view then the ViewResult.ViewName prope
 
 **Listing 2 - Controllers\ContactControllerTest.vb**
 
-    Imports Microsoft.VisualStudio.TestTools.UnitTesting
-    Imports Moq
-    Imports System.Web.Mvc
-    
-    <TestClass()> _
-    Public Class ContactControllerTest
-    
-        Private _service As Mock(Of IContactManagerService)
-    
-        <TestInitialize()> _
-        Public Sub Initialize()
-            _service = New Mock(Of IContactManagerService)()
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub CreateValidContact()
-            ' Arrange
-            Dim contactToCreate = New Contact()
-            _service.Expect(Function(s) s.CreateContact(contactToCreate)).Returns(True)
-            Dim controller = New ContactController(_service.Object)
-    
-            ' Act
-            Dim result = CType(controller.Create(contactToCreate), RedirectToRouteResult)
-    
-            ' Assert
-            Assert.AreEqual("Index", result.RouteValues("action"))
-        End Sub
-    
-        <TestMethod()> _
-        Public Sub CreateInvalidContact()
-            ' Arrange
-            Dim contactToCreate = New Contact()
-            _service.Expect(Function(s) s.CreateContact(contactToCreate)).Returns(False)
-            Dim controller = New ContactController(_service.Object)
-    
-            ' Act
-            Dim result = CType(controller.Create(contactToCreate), ViewResult)
-    
-            ' Assert
-            Assert.AreEqual("Create", result.ViewName)
-        End Sub
-    
-    End Class
+[!code[Main](iteration-5-create-unit-tests-vb/samples/sample6.xml)]
 
 ## Summary
 

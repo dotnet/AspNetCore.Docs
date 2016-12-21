@@ -53,9 +53,7 @@ The `Global.asax` file created in a WAP by Visual Studio's Global Application Cl
 
 The event handlers created by Visual Studio's Global Application Class template are not exhaustive. You can add an event handler for any `HttpApplication` event by naming the event handler `Application_EventName`. For example, you could add the following code to the `Global.asax` file to create an event handler for the [`AuthorizeRequest` event](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authorizerequest.aspx):
 
-    Sub Application_AuthorizeRequest(ByVal sender As Object, ByVal e As EventArgs)
-        ...
-    End Sub
+[!code[Main](processing-unhandled-exceptions-cs/samples/sample1.xml)]
 
 Likewise, you can remove any event handlers created by the Global Application Class template that are not needed. For this tutorial we only require an event handler for the `Error` event; feel free to remove the other event handlers from the `Global.asax` file.
 
@@ -66,29 +64,13 @@ Likewise, you can remove any event handlers created by the Global Application Cl
 
 At this point we have a Global.asax file with an `Application_Error` event handler. When this event handler executes we need to notify a developer of the error and log its details. To accomplish these tasks we first need to determine the details of the exception that was raised. Use the Server object's [`GetLastError` method](https://msdn.microsoft.com/en-us/library/system.web.httpserverutility.getlasterror.aspx) to retrieve details of the unhandled exception that caused the `Error` event to fire.
 
-    protected void Application_Error(object sender, EventArgs e)
-    {
-        // Get the error details
-        HttpException lastErrorWrapper = Server.GetLastError() as HttpException;
-    }
+[!code[Main](processing-unhandled-exceptions-cs/samples/sample2.xml)]
 
 The `GetLastError` method returns an object of type `Exception`, which is the base type for all exceptions in the .NET Framework. However, in the code above I am casting the Exception object returned by `GetLastError` into an `HttpException` object. If the `Error` event is being fired because an exception was thrown during the processing of an ASP.NET resource then the exception that was thrown is wrapped within an `HttpException`. To get the actual exception that precipitated the Error event use the `InnerException` property. If the `Error` event was raised because of an HTTP-based exception, such as a request for a non-existent page, an `HttpException` is thrown, but it does not have an inner exception.
 
 The following code uses the `GetLastErrormessage` to retrieve information about the exception that triggered the `Error` event, storing the `HttpException` in a variable named `lastErrorWrapper`. It then stores the type, message, and stack trace of the originating exception in three string variables, checking to see if the `lastErrorWrapper` is the actual exception that triggered the `Error` event (in the case of HTTP-based exceptions) or if it's merely a wrapper for an exception that was thrown while processing the request.
 
-    protected void Application_Error(object sender, EventArgs e)
-    {
-        // Get the error details
-        HttpException lastErrorWrapper = Server.GetLastError() as HttpException;
-    
-        Exception lastError = lastErrorWrapper;
-        if (lastErrorWrapper.InnerException != null)
-            lastError = lastErrorWrapper.InnerException;
-    
-        string lastErrorTypeName = lastError.GetType().ToString();
-        string lastErrorMessage = lastError.Message;
-        string lastErrorStackTrace = lastError.StackTrace;
-    }
+[!code[Main](processing-unhandled-exceptions-cs/samples/sample3.xml)]
 
 At this point you have all the information you need to write code that will log the exception's details to a database table. You could create a database table with columns for each of the error details of interest - the type, the message, the stack trace, and so on - along with other useful pieces of information, such as the URL of the requested page and the name of the currently logged on user. In the `Application_Error` event handler you would then connect to the database and insert a record into the table. Likewise, you could add code to alert a developer of the error via e-mail.
 
@@ -105,74 +87,7 @@ The .NET Framework classes in the [`System.Net.Mail` namespace](https://msdn.mic
 
 Add the following code to the `Application_Error` event handler to send a developer an e-mail when an error occurs:
 
-    void Application_Error(object sender, EventArgs e)
-    {
-        // Get the error details
-        HttpException lastErrorWrapper = Server.GetLastError() as HttpException;
-    
-        Exception lastError = lastErrorWrapper;
-        if (lastErrorWrapper.InnerException != null)
-            lastError = lastErrorWrapper.InnerException;
-    
-        string lastErrorTypeName = lastError.GetType().ToString();
-        string lastErrorMessage = lastError.Message;
-        string lastErrorStackTrace = lastError.StackTrace;
-    
-        const string ToAddress = "support@example.com";
-        const string FromAddress = "support@example.com";
-        const string Subject = "An Error Has Occurred!";
-        
-        // Create the MailMessage object
-        MailMessage mm = new MailMessage(FromAddress, ToAddress);
-        mm.Subject = Subject;
-        mm.IsBodyHtml = true;
-        mm.Priority = MailPriority.High;
-        mm.Body = string.Format(@"
-    <html>
-    <body>
-      <h1>An Error Has Occurred!</h1>
-      <table cellpadding=""5"" cellspacing=""0"" border=""1"">
-      <tr>
-      <tdtext-align: right;font-weight: bold"">URL:</td>
-      <td>{0}</td>
-      </tr>
-      <tr>
-      <tdtext-align: right;font-weight: bold"">User:</td>
-      <td>{1}</td>
-      </tr>
-      <tr>
-      <tdtext-align: right;font-weight: bold"">Exception Type:</td>
-      <td>{2}</td>
-      </tr>
-      <tr>
-      <tdtext-align: right;font-weight: bold"">Message:</td>
-      <td>{3}</td>
-      </tr>
-      <tr>
-      <tdtext-align: right;font-weight: bold"">Stack Trace:</td>
-      <td>{4}</td>
-      </tr> 
-      </table>
-    </body>
-    </html>",
-            Request.RawUrl,
-            User.Identity.Name,
-            lastErrorTypeName,
-            lastErrorMessage,
-            lastErrorStackTrace.Replace(Environment.NewLine, "<br />"));
-    
-        // Attach the Yellow Screen of Death for this error   
-        string YSODmarkup = lastErrorWrapper.GetHtmlErrorMessage();
-        if (!string.IsNullOrEmpty(YSODmarkup))
-        {
-            Attachment YSOD = Attachment.CreateAttachmentFromString(YSODmarkup, "YSOD.htm");
-            mm.Attachments.Add(YSOD);
-        }
-    
-        // Send the email
-        SmtpClient smtp = new SmtpClient();
-        smtp.Send(mm);
-    }
+[!code[Main](processing-unhandled-exceptions-cs/samples/sample4.xml)]
 
 While the above code is quite lengthy, the bulk of it creates the HTML that appears in the e-mail sent to the developer. The code starts by referencing the `HttpException` returned by the `GetLastError` method (`lastErrorWrapper`). The actual exception that was raised by the request is retrieved via `lastErrorWrapper.InnerException` and is assigned to the variable `lastError`. The type, message, and stack trace information is retrieved from `lastError` and stored in three string variables.
 
@@ -214,16 +129,7 @@ The net effect is that the request where the unhandled exception occurred ends w
 
 However, it is possible to have the custom error page executed during the same request that caused the error. The [`Server.Transfer(url)`](https://msdn.microsoft.com/en-us/library/system.web.httpserverutility.transfer.aspx) method transfers execution to the specified URL and processes it within the same request. You could move the code in the `Application_Error` event handler to the custom error page's code-behind class, replacing it in `Global.asax` with the following code:
 
-    protected void Application_Error(object sender, EventArgs e)
-    {
-        // Transfer the user to the appropriate custom error page
-        HttpException lastErrorWrapper = Server.GetLastError() as HttpException;
-    
-        if (lastErrorWrapper.GetHttpCode() == 404)
-            Server.Transfer("~/ErrorPages/404.aspx");
-        else
-            Server.Transfer("~/ErrorPages/Oops.aspx");
-    }
+[!code[Main](processing-unhandled-exceptions-cs/samples/sample5.xml)]
 
 Now when an unhandled exception occurs the `Application_Error` event handler transfers control to the appropriate custom error page based on the HTTP status code. Because control was transferred, the custom error page has access to the unhandled exception information via `Server.GetLastError` and can notify a developer of the error and log its details. The `Server.Transfer` call stops the ASP.NET engine from redirecting the user to the custom error page. Instead, the custom error page's content is returned as the response to the page that generated the error.
 

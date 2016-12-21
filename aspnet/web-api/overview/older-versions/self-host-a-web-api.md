@@ -82,58 +82,11 @@ This tutorial uses the same model and controller classes as the [Getting Started
 
 Add a public class named `Product`.
 
-    namespace SelfHost
-    {
-        public class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Category { get; set; }
-            public decimal Price { get; set; }
-        }
-    }
+[!code[Main](self-host-a-web-api/samples/sample1.xml)]
 
 Add a public class named `ProductsController`. Derive this class from **System.Web.Http.ApiController**.
 
-    namespace SelfHost
-    {
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Net;
-        using System.Web.Http;
-        
-        public class ProductsController : ApiController
-        {
-            Product[] products = new Product[]  
-            {  
-                new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 },  
-                new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },  
-                new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }  
-            };
-    
-            public IEnumerable<Product> GetAllProducts()
-            {
-                return products;
-            }
-    
-            public Product GetProductById(int id)
-            {
-                var product = products.FirstOrDefault((p) => p.Id == id);
-                if (product == null)
-                {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
-                }
-                return product;
-            }
-    
-            public IEnumerable<Product> GetProductsByCategory(string category)
-            {
-                return products.Where(p => string.Equals(p.Category, category,
-                        StringComparison.OrdinalIgnoreCase));
-            }
-        }
-    }
+[!code[Main](self-host-a-web-api/samples/sample2.xml)]
 
 For more information about the code in this controller, see the [Getting Started](../getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md) tutorial. This controller defines three GET actions:
 
@@ -147,23 +100,11 @@ For more information about the code in this controller, see the [Getting Started
 
 Open the file Program.cs and add the following using statements:
 
-    using System.Web.Http;
-    using System.Web.Http.SelfHost;
+[!code[Main](self-host-a-web-api/samples/sample3.xml)]
 
 Add the following code to the **Program** class.
 
-    var config = new HttpSelfHostConfiguration("http://localhost:8080");
-    
-    config.Routes.MapHttpRoute(
-        "API Default", "api/{controller}/{id}", 
-        new { id = RouteParameter.Optional });
-    
-    using (HttpSelfHostServer server = new HttpSelfHostServer(config))
-    {
-        server.OpenAsync().Wait();
-        Console.WriteLine("Press Enter to quit.");
-        Console.ReadLine();
-    }
+[!code[Main](self-host-a-web-api/samples/sample4.xml)]
 
 ## (Optional) Add an HTTP URL Namespace Reservation
 
@@ -174,13 +115,13 @@ This application listens to `http://localhost:8080/`. By default, listening at a
 
 To use Netsh.exe, open a command prompt with administrator privileges and enter the following command:following command:
 
-    netsh http add urlacl url=http://+:8080/ user=machine\username
+[!code[Main](self-host-a-web-api/samples/sample5.xml)]
 
 where *machine\username* is your user account.
 
 When you are finished self-hosting, be sure to delete the reservation:
 
-    netsh http delete urlacl url=http://+:8080/
+[!code[Main](self-host-a-web-api/samples/sample6.xml)]
 
 ## Call the Web API from a Client Application (C#)
 
@@ -213,56 +154,15 @@ Add a reference in ClientApp to the SelfHost project:
 
 Open the Client/Program.cs file. Add the following **using** statement:
 
-    using System.Net.Http;
+[!code[Main](self-host-a-web-api/samples/sample7.xml)]
 
 Add a static **HttpClient** instance:
 
-    namespace Client
-    {
-        class Program
-        {
-            static HttpClient client = new HttpClient();
-        }
-    }
+[!code[Main](self-host-a-web-api/samples/sample8.xml)]
 
 Add the following methods to list all products, list a product by ID, and list products by category.
 
-    static void ListAllProducts()
-    {
-        HttpResponseMessage resp = client.GetAsync("api/products").Result;
-        resp.EnsureSuccessStatusCode();
-    
-        var products = resp.Content.ReadAsAsync<IEnumerable<SelfHost.Product>>().Result;
-        foreach (var p in products)
-        {
-            Console.WriteLine("{0} {1} {2} ({3})", p.Id, p.Name, p.Price, p.Category);
-        }
-    }
-    
-    static void ListProduct(int id)
-    {
-        var resp = client.GetAsync(string.Format("api/products/{0}", id)).Result;
-        resp.EnsureSuccessStatusCode();
-    
-        var product = resp.Content.ReadAsAsync<SelfHost.Product>().Result;
-        Console.WriteLine("ID {0}: {1}", id, product.Name);
-    }
-    
-    static void ListProducts(string category)
-    {
-        Console.WriteLine("Products in '{0}':", category);
-    
-        string query = string.Format("api/products?category={0}", category);
-    
-        var resp = client.GetAsync(query).Result;
-        resp.EnsureSuccessStatusCode();
-    
-        var products = resp.Content.ReadAsAsync<IEnumerable<SelfHost.Product>>().Result;
-        foreach (var product in products)
-        {
-            Console.WriteLine(product.Name);
-        }
-    }
+[!code[Main](self-host-a-web-api/samples/sample9.xml)]
 
 Each of these methods follows the same pattern:
 
@@ -276,26 +176,10 @@ For more information about using HttpClient, including how to make non-blocking 
 
 Before calling these methods, set the BaseAddress property on the HttpClient instance to "`http://localhost:8080`". For example:
 
-    static void Main(string[] args)
-    {
-        client.BaseAddress = new Uri("http://localhost:8080");
-    
-        ListAllProducts();
-        ListProduct(1);
-        ListProducts("toys");
-    
-        Console.WriteLine("Press Enter to quit.");
-        Console.ReadLine();
-    }
+[!code[Main](self-host-a-web-api/samples/sample10.xml)]
 
 This should output the following. (Remember to run the SelfHost application first.)
 
-    1 Tomato Soup 1.0 (Groceries)
-    2 Yo-yo 3.75 (Toys)
-    3 Hammer 16.99 (Hardware)
-    ID 1: Tomato Soup
-    Products in 'toys':
-    Yo-yo
-    Press Enter to quit.
+[!code[Main](self-host-a-web-api/samples/sample11.xml)]
 
 ![](self-host-a-web-api/_static/image7.png)

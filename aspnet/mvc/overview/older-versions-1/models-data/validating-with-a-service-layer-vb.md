@@ -28,70 +28,13 @@ For example, Listing 1 contains a simple repository named the ProductRepository.
 
 **Listing 1 - Models\ProductRepository.vb**
 
-    Public Class ProductRepository
-    Implements IProductRepository
-    
-        Private _entities As New ProductDBEntities()
-
-    Public Function ListProducts() As IEnumerable(Of Product) Implements IProductRepository.ListProducts
-    	Return _entities.ProductSet.ToList()
-    End Function
-
-    Public Function CreateProduct(ByVal productToCreate As Product) As Boolean Implements IProductRepository.CreateProduct
-    	Try
-    		_entities.AddToProductSet(productToCreate)
-    		_entities.SaveChanges()
-    		Return True
-    	Catch
-    		Return False
-    	End Try
-    End Function
-    
-    End Class
-    
-    Public Interface IProductRepository
-    Function CreateProduct(ByVal productToCreate As Product) As Boolean
-    Function ListProducts() As IEnumerable(Of Product)
-    End Interface
+[!code[Main](validating-with-a-service-layer-vb/samples/sample1.xml)]
 
 The controller in Listing 2 uses the repository layer in both its Index() and Create() actions. Notice that this controller does not contain any database logic. Creating a repository layer enables you to maintain a clean separation of concerns. Controllers are responsible for application flow control logic and the repository is responsible for data access logic.
 
 **Listing 2 - Controllers\ProductController.vb**
 
-    Public Class ProductController
-    Inherits Controller
-    
-        Private _repository As IProductRepository
-    
-    Public Sub New()
-    	Me.New(New ProductRepository())
-    End Sub
-
-    Public Sub New(ByVal repository As IProductRepository)
-    	_repository = repository
-    End Sub
-
-    Public Function Index() As ActionResult
-    	Return View(_repository.ListProducts())
-    End Function
-
-    '
-    ' GET: /Product/Create
-    
-    Public Function Create() As ActionResult
-    	Return View()
-    End Function
-    
-    '
-    ' POST: /Product/Create
-    
-    <AcceptVerbs(HttpVerbs.Post)> _
-    Public Function Create(<Bind(Exclude:="Id")> ByVal productToCreate As Product) As ActionResult
-    	_repository.CreateProduct(productToCreate)
-    	Return RedirectToAction("Index")
-    End Function
-    
-    End Class
+[!code[Main](validating-with-a-service-layer-vb/samples/sample2.xml)]
 
 ## Creating a Service Layer
 
@@ -103,66 +46,13 @@ For example, the product service layer in Listing 3 has a CreateProduct() method
 
 **Listing 3 - Models\ProductService.vb**
 
-    Public Class ProductService
-    Implements IProductService
-    
-    Private _modelState As ModelStateDictionary
-    Private _repository As IProductRepository
-    
-    Public Sub New(ByVal modelState As ModelStateDictionary, ByVal repository As IProductRepository)
-    	_modelState = modelState
-    	_repository = repository
-    End Sub
-    
-    Protected Function ValidateProduct(ByVal productToValidate As Product) As Boolean
-    	If productToValidate.Name.Trim().Length = 0 Then
-    		_modelState.AddModelError("Name", "Name is required.")
-    	End If
-    	If productToValidate.Description.Trim().Length = 0 Then
-    		_modelState.AddModelError("Description", "Description is required.")
-    	End If
-    	If productToValidate.UnitsInStock
+[!code[Main](validating-with-a-service-layer-vb/samples/sample3.xml)]
 
 The Product controller has been updated in Listing 4 to use the service layer instead of the repository layer. The controller layer talks to the service layer. The service layer talks to the repository layer. Each layer has a separate responsibility.
 
 **Listing 4 - Controllers\ProductController.vb**
 
-    Public Class ProductController
-    Inherits Controller
-    
-    Private _service As IProductService
-    
-    Public Sub New()
-    	_service = New ProductService(Me.ModelState, New ProductRepository())
-    End Sub
-    
-    Public Sub New(ByVal service As IProductService)
-    	_service = service
-    End Sub
-
-    Public Function Index() As ActionResult
-    	Return View(_service.ListProducts())
-    End Function
-
-    '
-    ' GET: /Product/Create
-    
-    Public Function Create() As ActionResult
-    	Return View()
-    End Function
-    
-    '
-    ' POST: /Product/Create
-    
-    <AcceptVerbs(HttpVerbs.Post)> _
-    Public Function Create(<Bind(Exclude := "Id")> ByVal productToCreate As Product) As ActionResult
-    	If Not _service.CreateProduct(productToCreate) Then
-    		Return View()
-    	End If
-    	Return RedirectToAction("Index")
-    End Function
-    
-    End Class
+[!code[Main](validating-with-a-service-layer-vb/samples/sample4.xml)]
 
 Notice that the product service is created in the product controller constructor. When the product service is created, the model state dictionary is passed to the service. The product service uses model state to pass validation error messages back to the controller.
 
@@ -176,104 +66,25 @@ In Listing 5, the service layer has been updated so that it no longer uses model
 
 **Listing 5 - Models\ProductService.vb (decoupled)**
 
-    Public Class ProductService
-    Implements IProductService
-    
-    Private _validatonDictionary As IValidationDictionary
-    Private _repository As IProductRepository
-    
-    Public Sub New(ByVal validationDictionary As IValidationDictionary, ByVal repository As IProductRepository)
-    	_validatonDictionary = validationDictionary
-    	_repository = repository
-    End Sub
-    
-    Protected Function ValidateProduct(ByVal productToValidate As Product) As Boolean
-    	If productToValidate.Name.Trim().Length = 0 Then
-    		_validatonDictionary.AddError("Name", "Name is required.")
-    	End If
-    	If productToValidate.Description.Trim().Length = 0 Then
-    		_validatonDictionary.AddError("Description", "Description is required.")
-    	End If
-    	If productToValidate.UnitsInStock
+[!code[Main](validating-with-a-service-layer-vb/samples/sample5.xml)]
 
 The IValidationDictionary interface is defined in Listing 6. This simple interface has a single method and a single property.
 
 **Listing 6 - Models\IValidationDictionary.cs**
 
-    Public Interface IValidationDictionary
-    Sub AddError(ByVal key As String, ByVal errorMessage As String)
-    ReadOnly Property IsValid() As Boolean
-    End Interface
+[!code[Main](validating-with-a-service-layer-vb/samples/sample6.xml)]
 
 The class in Listing 7, named the ModelStateWrapper class, implements the IValidationDictionary interface. You can instantiate the ModelStateWrapper class by passing a model state dictionary to the constructor.
 
 **Listing 7 - Models\ModelStateWrapper.vb**
 
-    Public Class ModelStateWrapper
-    Implements IValidationDictionary
-    
-    Private _modelState As ModelStateDictionary
-    
-    Public Sub New(ByVal modelState As ModelStateDictionary)
-    	_modelState = modelState
-    End Sub
-    
-    #Region "IValidationDictionary Members"
-    
-    Public Sub AddError(ByVal key As String, ByVal errorMessage As String) Implements IValidationDictionary.AddError
-    	_modelState.AddModelError(key, errorMessage)
-    End Sub
-    
-    Public ReadOnly Property IsValid() As Boolean Implements IValidationDictionary.IsValid
-    	Get
-    		Return _modelState.IsValid
-    	End Get
-    End Property
-    
-    #End Region
-    
-    End Class
+[!code[Main](validating-with-a-service-layer-vb/samples/sample7.xml)]
 
 Finally, the updated controller in Listing 8 uses the ModelStateWrapper when creating the service layer in its constructor.
 
 **Listing 8 - Controllers\ProductController.vb**
 
-    Public Class ProductController
-    Inherits Controller
-    
-    Private _service As IProductService
-    
-    Public Sub New()
-    	_service = New ProductService(New ModelStateWrapper(Me.ModelState), New ProductRepository())
-    End Sub
-    
-    Public Sub New(ByVal service As IProductService)
-    	_service = service
-    End Sub
-
-    Public Function Index() As ActionResult
-    	Return View(_service.ListProducts())
-    End Function
-
-    '
-    ' GET: /Product/Create
-    
-    Public Function Create() As ActionResult
-    	Return View()
-    End Function
-    
-    '
-    ' POST: /Product/Create
-    
-    <AcceptVerbs(HttpVerbs.Post)> _
-    Public Function Create(<Bind(Exclude := "Id")> ByVal productToCreate As Product) As ActionResult
-    	If Not _service.CreateProduct(productToCreate) Then
-    		Return View()
-    	End If
-    	Return RedirectToAction("Index")
-    End Function
-    
-    End Class
+[!code[Main](validating-with-a-service-layer-vb/samples/sample8.xml)]
 
 Using the IValidationDictionary interface and the ModelStateWrapper class enables us to completely isolate our service layer from our controller layer. The service layer is no longer dependent on model state. You can pass any class that implements the IValidationDictionary interface to the service layer. For example, a WPF application might implement the IValidationDictionary interface with a simple collection class.
 

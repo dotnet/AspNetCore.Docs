@@ -56,20 +56,7 @@ For example, the controller in Listing 1 exposes an action named CompanySecrets(
 
 **Listing 1 – Controllers\HomeController.vb**
 
-    <HandleError()> _
-    Public Class HomeController
-        Inherits System.Web.Mvc.Controller
-    
-        Function Index()
-            Return View()
-        End Function
-    
-        <Authorize()> _
-        Function CompanySecrets()
-            Return View()
-        End Function
-    
-    End Class
+[!code[Main](authenticating-users-with-forms-authentication-vb/samples/sample1.xml)]
 
 If you invoke the CompanySecrets() action by entering the URL /Home/CompanySecrets in the address bar of your browser, and you are not an authenticated user, then you will be redirected to the Login view automatically (see Figure 5).
 
@@ -95,30 +82,7 @@ You can use the [Authorize] attribute to restrict access to a controller action 
 
 **Listing 2 – Controllers\HomeController.vb**
 
-    <HandleError()> _
-    Public Class HomeController
-        Inherits System.Web.Mvc.Controller
-    
-        Function Index()
-            Return View()
-        End Function
-    
-        <Authorize()> _
-        Function CompanySecrets()
-            Return View()
-        End Function
-    
-        <Authorize(Users:="Stephen")> _
-        Function StephenSecrets()
-            Return View()
-        End Function
-    
-        <Authorize(Roles:="Administrators")> _
-        Function AdministratorSecrets()
-            Return View()
-        End Function
-    
-    End Class
+[!code[Main](authenticating-users-with-forms-authentication-vb/samples/sample2.xml)]
 
 Only a user with the user name Stephen can invoke the StephenSecrets() action. All other users get redirected to the Login view. The Users property accepts a comma separated list of user account names.
 
@@ -154,13 +118,7 @@ After you create the necessary database objects, you need to modify the database
 
 **Listing 3 – Web.config**
 
-    <connectionStrings>
-    
-    <!--<add name="ApplicationServices" connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true" providerName="System.Data.SqlClient"/>-->
-    
-    <add name="ApplicationServices" connectionString="data source=localhost;Integrated Security=SSPI;Initial Catalog=MyProductionDB" />
-    
-    </connectionStrings>
+[!code[Main](authenticating-users-with-forms-authentication-vb/samples/sample3.xml)]
 
 #### Configuring Database Permissions
 

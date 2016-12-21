@@ -1,7 +1,2 @@
-public class StockTickerHub : Hub
-{
-    public void NotifyAllClients()
-    {
-         Clients.All.Notify();
-    }
-}
+    [HubName("stockTicker")]
+    public class StockTickerHub : Hub

@@ -38,28 +38,7 @@ For simplicity, the client application in this tutorial is a Windows console app
 
 In Visual Studio, create a new Windows console application and paste in the following code.
 
-    using System;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Threading.Tasks;
-    
-    namespace HttpClientSample
-    {
-        class Program
-        {
-    
-            static void Main()
-            {
-                RunAsync().Wait();
-            }
-    
-            static async Task RunAsync()
-            {
-                Console.ReadLine();
-            }
-        }
-    }
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample1.xml)]
 
 This code provides the skeleton for the application. The `Main``RunAsync` method and blocks until it completes. The reason for this approach is that most **HttpClient** methods are async, because they perform network I/O. All of the async tasks will be done inside `RunAsync`. In a console application, it's OK to block the main thread inside of `Main`. In a GUI application, you should never block the UI thread.
 
@@ -70,23 +49,14 @@ Use NuGet Package Manager to install the Web API Client Libraries package.
 
 From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
 
-    Install-Package Microsoft.AspNet.WebApi.Client
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample2.xml)]
 
 <a id="AddModelClass"></a>
 ## Add a Model Class
 
 Add the following class to the application:
 
-    namespace HttpClientSample
-    {
-        public class Product
-        {
-            public string Id { get; set; }
-            public string Name { get; set; }
-            public decimal Price { get; set; }
-            public string Category { get; set; }
-        }
-    }
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample3.xml)]
 
 This class matches the data model used by the web API. We can use **HttpClient** to read a `Product` instance from an HTTP response, without having to write a lot of deserialization code.
 
@@ -95,27 +65,14 @@ This class matches the data model used by the web API. We can use **HttpClient**
 
 Add a static **HttpClient** property to the `Program` class. 
 
-    class Program
-    {
-        // New code:
-        static HttpClient client = new HttpClient();
-    
-    }
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample4.xml)]
 
 > **HttpClient** is intended to be instantiated once and re-used throughout the life of an application. Especially in server applications, creating a new **HttpClient** instance for every request will exhaust the number of sockets available under heavy loads. This will result in **SocketException** errors.
 
 
 To initialize the **HttpClient** instance, add the following code to the `RunAsync` method: 
 
-    static async Task RunAsync()
-    {
-        // New code:
-        client.BaseAddress = new Uri("http://localhost:55268/");
-        client.DefaultRequestHeaders.Accept.Clear();
-        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-    
-        Console.ReadLine();
-    }
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample5.xml)]
 
 This code sets the base URI for HTTP requests, and sets the Accept header to "application/json", which tells the server to send data in JSON format.
 
@@ -124,16 +81,7 @@ This code sets the base URI for HTTP requests, and sets the Accept header to "ap
 
 The following code sends a GET request for a product:
 
-    static async Task<Product> GetProductAsync(string path)
-    {
-        Product product = null;
-        HttpResponseMessage response = await client.GetAsync(path);
-        if (response.IsSuccessStatusCode)
-        {
-            product = await response.Content.ReadAsAsync<Product>();
-        }
-        return product;
-    }
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample6.xml)]
 
 The **GetAsync** method sends the HTTP GET request. The method is asynchronous, because it performs network I/O. When the method completes, it returns an **HttpResponseMessage** that contains the HTTP response. If the status code in the response is a success code, the response body contains the JSON representation of a product. Call **ReadAsAsync** to deserialize the JSON payload to a `Product` instance. The **ReadAsync** method is asynchronous because the response body can be arbitrarily large.
 
@@ -146,12 +94,7 @@ When **ReadAsAsync** is called with no parameters, it uses a default set of *med
 
 Instead of using the default formatters, you can provide a list of formatters to the **ReadAsync** method, which is useful if you have a custom media-type formatter:
 
-    var formatters = new List<MediaTypeFormatter>() {
-        new MyCustomFormatter(),
-        new JsonMediaTypeFormatter(),
-        new XmlMediaTypeFormatter()
-    };
-    resp.Content.ReadAsAsync<IEnumerable<Product>>(formatters);
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample7.xml)]
 
 For more information, see [Media Formatters in ASP.NET Web API 2](../formats-and-model-binding/media-formatters.md)
 
@@ -159,14 +102,7 @@ For more information, see [Media Formatters in ASP.NET Web API 2](../formats-and
 
 The following code sends a POST request that contains a `Product` instance in JSON format:
 
-    static async Task<Uri> CreateProductAsync(Product product)
-    {
-        HttpResponseMessage response = await client.PostAsJsonAsync("api/products", product);
-        response.EnsureSuccessStatusCode();
-    
-        // Return the URI of the created resource.
-        return response.Headers.Location;
-    }
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample8.xml)]
 
 The **PostAsJsonAsync** method serializes an object to JSON and then sends the JSON payload in a POST request. If the request succeeds, it should return a 201 (Created) response, with the URL of the created resources in the Location header.
 
@@ -175,15 +111,7 @@ The **PostAsJsonAsync** method serializes an object to JSON and then sends the J
 
 The following code sends a PUT request to update a product.
 
-    static async Task UpdateProductAsync(Product product)
-    {
-        HttpResponseMessage response = await client.PutAsJsonAsync($"api/products/{product.Id}", product);
-        response.EnsureSuccessStatusCode();
-    
-        // Deserialize the updated product from the response body.
-        product = await response.Content.ReadAsAsync<Product>();
-        return product;
-    }
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample9.xml)]
 
 The **PutAsJsonAsync** method works like **PostAsJsonAsync**, except that it sends a PUT request instead of POST.
 
@@ -192,11 +120,7 @@ The **PutAsJsonAsync** method works like **PostAsJsonAsync**, except that it sen
 
 The following code sends a DELETE request to delete a product.
 
-    static async Task DeleteProductAsync(string id)
-    {
-        HttpResponseMessage response = await client.DeleteAsync($"api/products/{id}");
-        return response.StatusCode;
-    }
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample10.xml)]
 
 Like GET, a DELETE request does not have a request body, so you don't need to specify JSON or XML format.
 
@@ -204,111 +128,4 @@ Like GET, a DELETE request does not have a request body, so you don't need to sp
 
 Here is the complete code for this tutorial. The code is very simple and doesn't include much error handling, but it shows the basic CRUD operations using **HttpClient**.
 
-    using System;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Threading.Tasks;
-    
-    namespace HttpClientSample
-    {
-        public class Product
-        {
-            public string Id { get; set; }
-            public string Name { get; set; }
-            public decimal Price { get; set; }
-            public string Category { get; set; }
-        }
-        
-        class Program
-        {
-            static HttpClient client = new HttpClient();
-    
-            static void ShowProduct(Product product)
-            {
-                Console.WriteLine($"Name: {product.Name}\tPrice: {product.Price}\tCategory: {product.Category}");
-            }
-    
-            static async Task<Uri> CreateProductAsync(Product product)
-            {
-                HttpResponseMessage response = await client.PostAsJsonAsync("api/products", product);
-                response.EnsureSuccessStatusCode();
-    
-                // return URI of the created resource.
-                return response.Headers.Location;
-            }
-    
-            static async Task<Product> GetProductAsync(string path)
-            {
-                Product product = null;
-                HttpResponseMessage response = await client.GetAsync(path);
-                if (response.IsSuccessStatusCode)
-                {
-                    product = await response.Content.ReadAsAsync<Product>();
-                }
-                return product;
-            }
-    
-            static async Task<Product> UpdateProductAsync(Product product)
-            {
-                HttpResponseMessage response = await client.PutAsJsonAsync($"api/products/{product.Id}", product);
-                response.EnsureSuccessStatusCode();
-    
-                // Deserialize the updated product from the response body.
-                product = await response.Content.ReadAsAsync<Product>();
-                return product;
-            }
-    
-            static async Task<HttpStatusCode> DeleteProductAsync(string id)
-            {
-                HttpResponseMessage response = await client.DeleteAsync($"api/products/{id}");
-                return response.StatusCode;
-            }
-    
-            static void Main()
-            {
-                RunAsync().Wait();
-            }
-    
-            static async Task RunAsync()
-            {
-                client.BaseAddress = new Uri("http://localhost:55268/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-    
-                try
-                {
-                    // Create a new product
-                    Product product = new Product { Name = "Gizmo", Price = 100, Category = "Widgets" };
-    
-                    var url = await CreateProductAsync(product);
-                    Console.WriteLine($"Created at {url}");
-    
-                    // Get the product
-                    product = await GetProductAsync(url.PathAndQuery);
-                    ShowProduct(product);
-    
-                    // Update the product
-                    Console.WriteLine("Updating price...");
-                    product.Price = 80;
-                    await UpdateProductAsync(product);
-    
-                    // Get the updated product
-                    product = await GetProductAsync(url.PathAndQuery);
-                    ShowProduct(product);
-    
-                    // Delete the product
-                    var statusCode = await DeleteProductAsync(product.Id);
-                    Console.WriteLine($"Deleted (HTTP Status = {(int)statusCode})");
-    
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-    
-                Console.ReadLine();
-            }
-    
-        }
-    }
+[!code[Main](calling-a-web-api-from-a-net-client/samples/sample11.xml)]

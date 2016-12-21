@@ -1,1 +1,2 @@
-var myHubProxy = $.connection.contosoChatHub
+var connection = $.hubConnection();
+connection.start({ transport: 'longPolling' });

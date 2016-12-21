@@ -29,32 +29,11 @@ What happens if a Web API controller throws an uncaught exception? By default, m
 
 The **HttpResponseException** type is a special case. This exception returns any HTTP status code that you specify in the exception constructor. For example, the following method returns 404, Not Found, if the *id* parameter is not valid.
 
-    public Product GetProduct(int id)
-    {
-        Product item = repository.Get(id);
-        if (item == null)
-        {
-            throw new HttpResponseException(HttpStatusCode.NotFound);
-        }
-        return item;
-    }
+[!code[Main](exception-handling/samples/sample1.xml)]
 
 For more control over the response, you can also construct the entire response message and include it with the **HttpResponseException:** 
 
-    public Product GetProduct(int id)
-    {
-        Product item = repository.Get(id);
-        if (item == null)
-        {
-            var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
-            {
-                Content = new StringContent(string.Format("No product with ID = {0}", id)),
-                ReasonPhrase = "Product ID Not Found"
-            }
-            throw new HttpResponseException(resp);
-        }
-        return item;
-    }
+[!code[Main](exception-handling/samples/sample2.xml)]
 
 <a id="exception_filters"></a>
 ## Exception Filters
@@ -68,24 +47,7 @@ Exception filters implement the **System.Web.Http.Filters.IExceptionFilter** int
 
 Here is a filter that converts **NotImplementedException** exceptions into HTTP status code 501, Not Implemented:
 
-    namespace ProductStore.Filters
-    {
-        using System;
-        using System.Net;
-        using System.Net.Http;
-        using System.Web.Http.Filters;
-    
-        public class NotImplExceptionFilterAttribute : ExceptionFilterAttribute 
-        {
-            public override void OnException(HttpActionExecutedContext context)
-            {
-                if (context.Exception is NotImplementedException)
-                {
-                    context.Response = new HttpResponseMessage(HttpStatusCode.NotImplemented);
-                }
-            }
-        }
-    }
+[!code[Main](exception-handling/samples/sample3.xml)]
 
 The **Response** property of the **HttpActionExecutedContext** object contains the HTTP response message that will be sent to the client.
 
@@ -100,63 +62,32 @@ There are several ways to register a Web API exception filter:
 
 To apply the filter to a specific action, add the filter as an attribute to the action:
 
-    public class ProductsController : ApiController
-    {
-        [NotImplExceptionFilter]
-        public Contact GetContact(int id)
-        {
-            throw new NotImplementedException("This method is not implemented");
-        }
-    }
+[!code[Main](exception-handling/samples/sample4.xml)]
 
 To apply the filter to all of the actions on a controller, add the filter as an attribute to the controller class:
 
-    [NotImplExceptionFilter]
-    public class ProductsController : ApiController
-    {
-        // ...
-    }
+[!code[Main](exception-handling/samples/sample5.xml)]
 
 To apply the filter globally to all Web API controllers, add an instance of the filter to the **GlobalConfiguration.Configuration.Filters** collection. Exeption filters in this collection apply to any Web API controller action.
 
-    GlobalConfiguration.Configuration.Filters.Add(
-        new ProductStore.NotImplExceptionFilterAttribute());
+[!code[Main](exception-handling/samples/sample6.xml)]
 
 If you use the "ASP.NET MVC 4 Web Application" project template to create your project, put your Web API configuration code inside the `WebApiConfig` class, which is located in the App\_Start folder:
 
-[!code[Main](exception-handling/samples/sample1.xml?highlight=5)]
+[!code[Main](exception-handling/samples/sample7.xml?highlight=5)]
 
 <a id="httperror"></a>
 ## HttpError
 
 The **HttpError** object provides a consistent way to return error information in the response body. The following example shows how to return HTTP status code 404 (Not Found) with an **HttpError** in the response body.
 
-    public HttpResponseMessage GetProduct(int id)
-    {
-        Product item = repository.Get(id);
-        if (item == null)
-        {
-            var message = string.Format("Product with id = {0} not found", id);
-            return Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
-        }
-        else
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, item);
-        }
-    }
+[!code[Main](exception-handling/samples/sample8.xml)]
 
 **CreateErrorResponse** is an extension method defined in the **System.Net.Http.HttpRequestMessageExtensions** class. Internally, **CreateErrorResponse** creates an **HttpError** instance and then creates an **HttpResponseMessage** that contains the **HttpError**.
 
 In this example, if the method is successful, it returns the product in the HTTP response. But if the requested product is not found, the HTTP response contains an **HttpError** in the request body. The response might look like the following:
 
-    HTTP/1.1 404 Not Found
-    Content-Type: application/json; charset=utf-8
-    Date: Thu, 09 Aug 2012 23:27:18 GMT
-    Content-Length: 51
-    
-    {
-      "Message": "Product with id = 12 not found"
-    }
+[!code[Main](exception-handling/samples/sample9.xml)]
 
 Notice that the **HttpError** was serialized to JSON in this example. One advantage of using **HttpError** is that it goes through the same [content-negotiation](../formats-and-model-binding/content-negotiation.md) and serialization process as any other strongly-typed model.
 
@@ -164,36 +95,11 @@ Notice that the **HttpError** was serialized to JSON in this example. One advant
 
 For model validation, you can pass the model state to **CreateErrorResponse**, to include the validation errors in the response:
 
-    public HttpResponseMessage PostProduct(Product item)
-    {
-        if (!ModelState.IsValid)
-        {
-            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-        }
-    
-        // Implementation not shown...
-    }
+[!code[Main](exception-handling/samples/sample10.xml)]
 
 This example might return the following response:
 
-    HTTP/1.1 400 Bad Request
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 320
-    
-    {
-      "Message": "The request is invalid.",
-      "ModelState": {
-        "item": [
-          "Required property 'Name' not found in JSON. Path '', line 1, position 14."
-        ],
-        "item.Name": [
-          "The Name field is required."
-        ],
-        "item.Price": [
-          "The field Price must be between 0 and 999."
-        ]
-      }
-    }
+[!code[Main](exception-handling/samples/sample11.xml)]
 
 For more information about model validation, see [Model Validation in ASP.NET Web API](../formats-and-model-binding/model-validation-in-aspnet-web-api.md).
 
@@ -201,17 +107,4 @@ For more information about model validation, see [Model Validation in ASP.NET We
 
 The previous examples return an **HttpResponseMessage** message from the controller action, but you can also use **HttpResponseException** to return an **HttpError**. This lets you return a strongly-typed model in the normal success case, while still returning **HttpError** if there is an error:
 
-    public Product GetProduct(int id)
-    {
-        Product item = repository.Get(id);
-        if (item == null)
-        {
-            var message = string.Format("Product with id = {0} not found", id);
-            throw new HttpResponseException(
-                Request.CreateErrorResponse(HttpStatusCode.NotFound, message));
-        }
-        else
-        {
-            return item;
-        }
-    }
+[!code[Main](exception-handling/samples/sample12.xml)]

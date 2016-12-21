@@ -40,16 +40,7 @@ For example, the Data controller in Listing 1 exposes an action named `Index()` 
 
 **Listing 1 – `Controllers\DataController.vb`**
 
-    Public Class DataController
-         Inherits System.Web.Mvc.Controller
-    
-         <OutputCache(Duration:=10)> _
-         Function Index()
-              Return DateTime.Now.ToString("T")
-    
-         End Function
-    
-    End Class
+[!code[Main](understanding-action-filters-vb/samples/sample1.xml)]
 
 If you repeatedly invoke the `Index()` action by entering the URL /Data/Index into the address bar of your browser and hitting the Refresh button multiple times, then you will see the same time for 10 seconds. The output of the `Index()` action is cached for 10 seconds (see Figure 1).
 
@@ -107,34 +98,7 @@ In order to illustrate how you can build a custom action filter, we'll create a 
 
 **Listing 2 – `ActionFilters\LogActionFilter.vb`**
 
-    Public Class LogActionFilter
-         Inherits ActionFilterAttribute
-    
-         Public Overrides Sub OnActionExecuting(ByVal filterContext As ActionExecutingContext)
-              Log("OnActionExecuting", filterContext.RouteData)
-    
-         End Sub
-    
-         Public Overrides Sub OnActionExecuted(ByVal filterContext As ActionExecutedContext)
-              Log("OnActionExecuted", filterContext.RouteData)
-         End Sub
-    
-         Public Overrides Sub OnResultExecuting(ByVal filterContext As ResultExecutingContext)
-              Log("OnResultExecuting", filterContext.RouteData)
-         End Sub
-    
-         Public Overrides Sub OnResultExecuted(ByVal filterContext As ResultExecutedContext)
-              Log("OnResultExecuted", filterContext.RouteData)
-         End Sub
-    
-         Private Sub Log(ByVal methodName As String, ByVal routeData As RouteData)
-              Dim controllerName = routeData.Values("controller")
-              Dim actionName = routeData.Values("action")
-              Dim message = String.Format("{0} controller:{1} action:{2}", methodName, controllerName, actionName)
-              Debug.WriteLine(message, "Action Filter Log")
-         End Sub
-    
-    End Class
+[!code[Main](understanding-action-filters-vb/samples/sample2.xml)]
 
 In Listing 2, the `OnActionExecuting()`, `OnActionExecuted()`, `OnResultExecuting()`, and `OnResultExecuted()` methods all call the `Log()` method. The name of the method and the current route data is passed to the `Log()` method. The `Log()` method writes a message to the Visual Studio Output window (see Figure 2).
 
@@ -148,19 +112,7 @@ The Home controller in Listing 3 illustrates how you can apply the Log action fi
 
 **Listing 3 – `Controllers\HomeController.vb`**
 
-    <LogActionFilter()> _
-    Public Class HomeController
-         Inherits System.Web.Mvc.Controller
-    
-         Function Index()
-              Return View()
-         End Function
-    
-         Function About()
-              Return View()
-         End Function
-    
-                End Class
+[!code[Main](understanding-action-filters-vb/samples/sample3.xml)]
 
 ### Summary
 

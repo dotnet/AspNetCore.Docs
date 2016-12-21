@@ -1,17 +1,9 @@
-public class DependenciesConfig
+public class FixItTaskRepository : IFixItTaskRepository
 {
-    public static void RegisterDependencies()
+    private MyFixItContext db = new MyFixItContext();
+    private ILogger log = null;
+
+    public FixItTaskRepository(ILogger logger)
     {
-        var builder = new ContainerBuilder();
-
-        builder.RegisterControllers(typeof(MvcApplication).Assembly);
-        builder.RegisterType<Logger>().As<ILogger>().SingleInstance();
-
-        builder.RegisterType<FixItTaskRepository>().As<IFixItTaskRepository>();
-        builder.RegisterType<PhotoService>().As<IPhotoService>().SingleInstance();
-        builder.RegisterType<FixItQueueManager>().As<IFixItQueueManager>();
-
-        var container = builder.Build();
-        DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        log = logger;
     }
-}

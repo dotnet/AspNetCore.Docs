@@ -57,17 +57,14 @@ Information can be programmatically cached in an ASP.NET application using a var
 When working with a class, typically the class must first be instantiated before its members can be accessed. For example, in order to invoke a method from one of the classes in our Business Logic Layer, we must first create an instance of the class:
 
 
-    ProductsBLL productsAPI = new ProductsBLL();
-    productsAPI.SomeMethod();
-    productsAPI.SomeProperty = "Hello, World!";
+[!code[Main](caching-data-at-application-startup-cs/samples/sample1.xml)]
 
 Before we can invoke *SomeMethod* or work with *SomeProperty*, we must first create an instance of the class using the `new` keyword. *SomeMethod* and *SomeProperty* are associated with a particular instance. The lifetime of these members is tied to the lifetime of their associated object. *Static members*, on the other hand, are variables, properties, and methods that are shared among *all* instances of the class and, consequently, have a lifetime as long as the class. Static members are denoted by the keyword `static`.
 
 In addition to static members, data can be cached using application state. Each ASP.NET application maintains a name/value collection that s shared across all users and pages of the application. This collection can be accessed using the [`HttpContext` class](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.aspx) s [`Application` property](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.application.aspx), and used from an ASP.NET page s code-behind class like so:
 
 
-    Application["key"] = value;
-    object value = Application["key"];
+[!code[Main](caching-data-at-application-startup-cs/samples/sample2.xml)]
 
 The data cache provides a much richer API for caching data, providing mechanisms for time- and dependency-based expiries, cache item priorities, and so forth. With static members and application state, such features must be manually added by the page developer. When caching data at application startup for the lifetime of the application, however, the data cache s advantages are moot. In this tutorial we'll look at code that uses all three techniques for caching static data.
 
@@ -87,71 +84,21 @@ To start, create a new class named `StaticCache.cs` in the `CL` folder.
 We need to add a method that loads the data at startup into the appropriate cache store, as well as methods that return data from this cache.
 
 
-    [System.ComponentModel.DataObject]
-    public class StaticCache
-    {
-        private static Northwind.SuppliersDataTable suppliers = null;
-        public static void LoadStaticCache()
-        {
-            // Get suppliers - cache using a static member variable
-            SuppliersBLL suppliersBLL = new SuppliersBLL();
-            suppliers = suppliersBLL.GetSuppliers();
-        }
-        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
-        public static Northwind.SuppliersDataTable GetSuppliers()
-        {
-            return suppliers;
-        }
-    }
+[!code[Main](caching-data-at-application-startup-cs/samples/sample3.xml)]
 
 The above code uses a static member variable, `suppliers`, to hold the results from the `SuppliersBLL` class s `GetSuppliers()` method, which is called from the `LoadStaticCache()` method. The `LoadStaticCache()` method is meant to be called during the application s start. Once this data has been loaded at application startup, any page that needs to work with supplier data can call the `StaticCache` class s `GetSuppliers()` method. Therefore, the call to the database to get the suppliers only happens once, at application start.
 
 Rather than using a static member variable as the cache store, we could have alternatively used application state or the data cache. The following code shows the class retooled to use application state:
 
 
-    [System.ComponentModel.DataObject]
-    public class StaticCache
-    {
-        public static void LoadStaticCache()
-        {
-            // Get suppliers - cache using application state
-            SuppliersBLL suppliersBLL = new SuppliersBLL();
-            HttpContext.Current.Application["key"] = suppliersBLL.GetSuppliers();
-        }
-        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
-        public static Northwind.SuppliersDataTable GetSuppliers()
-        {
-            return HttpContext.Current.Application["key"] as Northwind.SuppliersDataTable;
-        }
-    }
+[!code[Main](caching-data-at-application-startup-cs/samples/sample4.xml)]
 
 In `LoadStaticCache()`, the supplier information is stored to the application variable *key*. It s returned as the appropriate type (`Northwind.SuppliersDataTable`) from `GetSuppliers()`. While application state can be accessed in the code-behind classes of ASP.NET pages using `Application["key"]`, in the architecture we must use `HttpContext.Current.Application["key"]` in order to get the current `HttpContext`.
 
 Likewise, the data cache can be used as a cache store, as the following code shows:
 
 
-    [System.ComponentModel.DataObject]
-    public class StaticCache
-    {
-        public static void LoadStaticCache()
-        {
-            // Get suppliers - cache using the data cache
-            SuppliersBLL suppliersBLL = new SuppliersBLL();
-            HttpRuntime.Cache.Insert(
-              /* key */                "key", 
-              /* value */              suppliers, 
-              /* dependencies */       null, 
-              /* absoluteExpiration */ Cache.NoAbsoluteExpiration, 
-              /* slidingExpiration */  Cache.NoSlidingExpiration, 
-              /* priority */           CacheItemPriority.NotRemovable, 
-              /* onRemoveCallback */   null);
-        }
-        [DataObjectMethodAttribute(DataObjectMethodType.Select, true)]
-        public static Northwind.SuppliersDataTable GetSuppliers()
-        {
-            return HttpRuntime.Cache["key"] as Northwind.SuppliersDataTable;
-        }
-    }
+[!code[Main](caching-data-at-application-startup-cs/samples/sample5.xml)]
 
 To add an item to the data cache with no time-based expiry, use the `System.Web.Caching.Cache.NoAbsoluteExpiration` and `System.Web.Caching.Cache.NoSlidingExpiration` values as input parameters. This particular overload of the data cache s `Insert` method was selected so that we could specify the *priority* of the cache item. The priority is used to determine what items to scavenge from the cache when available memory runs low. Here we use the priority `NotRemovable`, which ensures that this cache item won t be scavenged.
 
@@ -185,13 +132,7 @@ The `Application_Start` event handler is called only once during an application 
 For these tutorials we only need to add code to the `Application_Start` method, so feel free to remove the others. In `Application_Start`, simply call the `StaticCache` class s `LoadStaticCache()` method, which will load and cache the supplier information:
 
 
-    <%@ Application Language="C#" %>
-    <script runat="server">
-        void Application_Start(object sender, EventArgs e) 
-        {
-            StaticCache.LoadStaticCache();
-        }
-    </script>
+[!code[Main](caching-data-at-application-startup-cs/samples/sample6.xml)]
 
 That s all there is to it! At application startup, the `LoadStaticCache()` method will grab the supplier information from the BLL, and store it in a static member variable (or whatever cache store you ended up using in the `StaticCache` class). To verify this behavior, set a breakpoint in the `Application_Start` method and run your application. Note that the breakpoint is hit upon the application starting. Subsequent requests, however, do not cause the `Application_Start` method to execute.
 
@@ -224,28 +165,7 @@ Start by opening the `AtApplicationStartup.aspx` page in the `Caching` folder. D
 After completing the wizard, Visual Studio will automatically add BoundFields for each of the data fields in `SuppliersDataTable`. Your GridView and ObjectDataSource s declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="Suppliers" runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="SupplierID" DataSourceID="SuppliersCachedDataSource" 
-        EnableViewState="False">
-        <Columns>
-            <asp:BoundField DataField="SupplierID" HeaderText="SupplierID" 
-                InsertVisible="False" ReadOnly="True" 
-                SortExpression="SupplierID" />
-            <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" 
-                SortExpression="CompanyName" />
-            <asp:BoundField DataField="Address" HeaderText="Address" 
-                SortExpression="Address" />
-            <asp:BoundField DataField="City" HeaderText="City" 
-                SortExpression="City" />
-            <asp:BoundField DataField="Country" HeaderText="Country" 
-                SortExpression="Country" />
-            <asp:BoundField DataField="Phone" HeaderText="Phone" 
-                SortExpression="Phone" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="SuppliersCachedDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetSuppliers" TypeName="StaticCache" />
+[!code[Main](caching-data-at-application-startup-cs/samples/sample7.xml)]
 
 Figure 7 shows the page when viewed through a browser. The output is the same had we pulled the data from the BLL s `SuppliersBLL` class, but using the `StaticCache` class returns the supplier data as cached at application startup. You can set breakpoints in the `StaticCache` class s `GetSuppliers()` method to verify this behavior.
 

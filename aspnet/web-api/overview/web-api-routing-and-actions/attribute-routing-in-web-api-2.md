@@ -51,8 +51,7 @@ This type of URI is difficult to create using convention-based routing. Although
 
 With attribute routing, it's trivial to define a route for this URI. You simply add an attribute to the controller action:
 
-    [Route("customers/{customerId}/orders")]
-    public IEnumerable<Order> GetOrdersByCustomer(int customerId) { ... }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample1.xml)]
 
 Here are some other patterns that attribute routing makes easy.
 
@@ -79,39 +78,11 @@ In this example, "1" is an order number, but "2013/06/16" specifies a date.
 
 To enable attribute routing, call **MapHttpAttributeRoutes** during configuration. This extension method is defined in the **System.Web.Http.HttpConfigurationExtensions** class.
 
-    using System.Web.Http;
-    
-    namespace WebApplication
-    {
-        public static class WebApiConfig
-        {
-            public static void Register(HttpConfiguration config)
-            {
-                // Web API routes
-                config.MapHttpAttributeRoutes();
-    
-                // Other Web API configuration not shown.
-            }
-        }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample2.xml)]
 
 Attribute routing can be combined with [convention-based](routing-in-aspnet-web-api.md) routing. To define convention-based routes, call the **MapHttpRoute** method.
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            // Attribute routing.
-            config.MapHttpAttributeRoutes();
-    
-            // Convention-based routing.
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-        }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample3.xml)]
 
 For more information about configuring Web API, see [Configuring ASP.NET Web API 2](../advanced/configuring-aspnet-web-api.md).
 
@@ -120,15 +91,11 @@ For more information about configuring Web API, see [Configuring ASP.NET Web API
 
 Prior to Web API 2, the Web API project templates generated code like this:
 
-    protected void Application_Start()
-    {
-        // WARNING - Not compatible with attribute routing.
-        WebApiConfig.Register(GlobalConfiguration.Configuration);
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample4.xml)]
 
 If attribute routing is enabled, this code will throw an exception. If you upgrade an existing Web API project to use attribute routing, make sure to update this configuration code to the following:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample1.xml?highlight=4)]
+[!code[Main](attribute-routing-in-web-api-2/samples/sample5.xml?highlight=4)]
 
 > [!NOTE] For more information, see [Configuring Web API with ASP.NET Hosting](../advanced/configuring-aspnet-web-api.md).
 
@@ -138,12 +105,7 @@ If attribute routing is enabled, this code will throw an exception. If you upgra
 
 Here is an example of a route defined using an attribute:
 
-    public class OrdersController : ApiController
-    {
-        [Route("customers/{customerId}/orders")]
-        [HttpGet]
-        public IEnumerable<Order> FindOrdersByCustomer(int customerId) { ... }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample6.xml)]
 
 The string &quot;customers/{customerId}/orders&quot; is the URI template for the route. Web API tries to match the request URI to the template. In this example, "customers" and "orders" are literal segments, and "{customerId}" is a variable parameter. The following URIs would match this template:
 
@@ -157,8 +119,7 @@ Notice that the &quot;{customerId}&quot; parameter in the route template matches
 
 A URI template can have several parameters:
 
-    [Route("customers/{customerId}/orders/{orderId}")]
-    public Order GetOrderByCustomer(int customerId, int orderId) { ... }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample7.xml)]
 
 Any controller methods that do not have a route attribute use convention-based routing. That way, you can combine both types of routing in the same project.
 
@@ -178,85 +139,37 @@ You can override this convention by decorating the mathod with any the following
 
 The following example maps the CreateBook method to HTTP POST requests.
 
-    [Route("api/books")]
-    [HttpPost]
-    public HttpResponseMessage CreateBook(Book book) { ... }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample8.xml)]
 
 For all other HTTP methods, including non-standard methods, use the **AcceptVerbs** attribute, which takes a list of HTTP methods.
 
-    // WebDAV method
-    [Route("api/books")]
-    [AcceptVerbs("MKCOL")]
-    public void MakeCollection() { }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample9.xml)]
 
 <a id="prefixes"></a>
 ## Route Prefixes
 
 Often, the routes in a controller all start with the same prefix. For example:
 
-    public class BooksController : ApiController
-    {
-        [Route("api/books")]
-        public IEnumerable<Book> GetBooks() { ... }
-    
-        [Route("api/books/{id:int}")]
-        public Book GetBook(int id) { ... }
-    
-        [Route("api/books")]
-        [HttpPost]
-        public HttpResponseMessage CreateBook(Book book) { ... }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample10.xml)]
 
 You can set a common prefix for an entire controller by using the **[RoutePrefix]** attribute:
 
-    [RoutePrefix("api/books")]
-    public class BooksController : ApiController
-    {
-        // GET api/books
-        [Route("")]
-        public IEnumerable<Book> Get() { ... }
-    
-        // GET api/books/5
-        [Route("{id:int}")]
-        public Book Get(int id) { ... }
-    
-        // POST api/books
-        [Route("")]
-        public HttpResponseMessage Post(Book book) { ... }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample11.xml)]
 
 Use a tilde (~) on the method attribute to override the route prefix:
 
-    [RoutePrefix("api/books")]
-    public class BooksController : ApiController
-    {
-        // GET /api/authors/1/books
-        [Route("~/api/authors/{authorId:int}/books")]
-        public IEnumerable<Book> GetByAuthor(int authorId) { ... }
-    
-        // ...
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample12.xml)]
 
 The route prefix can include parameters:
 
-    [RoutePrefix("customers/{customerId}")]
-    public class OrdersController : ApiController
-    {
-        // GET customers/1/orders
-        [Route("orders")]
-        public IEnumerable<Order> Get(int customerId) { ... }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample13.xml)]
 
 <a id="constraints"></a>
 ## Route Constraints
 
 Route constraints let you restrict how the parameters in the route template are matched. The general syntax is &quot;{parameter:constraint}&quot;. For example:
 
-    [Route("users/{id:int}"]
-    public User GetUserById(int id) { ... }
-    
-    [Route("users/{name}"]
-    public User GetUserByName(string name) { ... }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample14.xml)]
 
 Here, the first route will only be selected if the &quot;id&quot; segment of the URI is an integer. Otherwise, the second route will be chosen.
 
@@ -283,56 +196,21 @@ The following table lists the constraints that are supported.
 
 Notice that some of the constraints, such as &quot;min&quot;, take arguments in parentheses. You can apply multiple constraints to a parameter, separated by a colon.
 
-    [Route("users/{id:int:min(1)}")]
-    public User GetUserById(int id) { ... }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample15.xml)]
 
 ### Custom Route Constraints
 
 You can create custom route constraints by implementing the **IHttpRouteConstraint** interface. For example, the following constraint restricts a parameter to a non-zero integer value.
 
-    public class NonZeroConstraint : IHttpRouteConstraint
-    {
-        public bool Match(HttpRequestMessage request, IHttpRoute route, string parameterName, 
-            IDictionary<string, object> values, HttpRouteDirection routeDirection)
-        {
-            object value;
-            if (values.TryGetValue(parameterName, out value) && value != null)
-            {
-                long longValue;
-                if (value is long)
-                {
-                    longValue = (long)value;
-                    return longValue != 0;
-                }
-    
-                string valueString = Convert.ToString(value, CultureInfo.InvariantCulture);
-                if (Int64.TryParse(valueString, NumberStyles.Integer, 
-                    CultureInfo.InvariantCulture, out longValue))
-                {
-                    return longValue != 0;
-                }
-            }
-            return false;
-        }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample16.xml)]
 
 The following code shows how to register the constraint:
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            var constraintResolver = new DefaultInlineConstraintResolver();
-            constraintResolver.ConstraintMap.Add("nonzero", typeof(NonZeroConstraint));
-    
-            config.MapHttpAttributeRoutes(constraintResolver);
-        }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample17.xml)]
 
 Now you can apply the constraint in your routes:
 
-    [Route("{id:nonzero}")]
-    public HttpResponseMessage GetNonZero(int id) { ... }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample18.xml)]
 
 You can also replace the entire **DefaultInlineConstraintResolver** class by implementing the **IInlineConstraintResolver** interface. Doing so will replace all of the built-in constraints, unless your implementation of **IInlineConstraintResolver** specifically adds them.
 
@@ -341,21 +219,13 @@ You can also replace the entire **DefaultInlineConstraintResolver** class by imp
 
 You can make a URI parameter optional by adding a question mark to the route parameter. If a route parameter is optional, you must define a default value for the method parameter.
 
-    public class BooksController : ApiController
-    {
-        [Route("api/books/locale/{lcid:int?}")]
-        public IEnumerable<Book> GetBooksByLocale(int lcid = 1033) { ... }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample19.xml)]
 
 In this example, `/api/books/locale/1033` and `/api/books/locale` return the same resource.
 
 Alternatively, you can specify a default value inside the route template, as follows:
 
-    public class BooksController : ApiController
-    {
-        [Route("api/books/locale/{lcid:int=1033}")]
-        public IEnumerable<Book> GetBooksByLocale(int lcid) { ... }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample20.xml)]
 
 This is almost the same as the previous example, but there is a slight difference of behavior when the default value is applied.
 
@@ -371,27 +241,7 @@ In Web API, every route has a name. Route names are useful for generating links,
 
 To specify the route name, set the **Name** property on the attribute. The following example shows how to set the route name, and also how to use the route name when generating a link.
 
-    public class BooksController : ApiController
-    {
-        [Route("api/books/{id}", Name="GetBookById")]
-        public BookDto GetBook(int id) 
-        {
-            // Implementation not shown...
-        }
-    
-        [Route("api/books")]
-        public HttpResponseMessage Post(Book book)
-        {
-            // Validate and add book to database (not shown)
-    
-            var response = Request.CreateResponse(HttpStatusCode.Created);
-    
-            // Generate a link to the new book and set the Location header in the response.
-            string uri = Url.Link("GetBookById", new { id = book.BookId });
-            response.Headers.Location = new Uri(uri);
-            return response;
-        }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample21.xml)]
 
 <a id="order"></a>
 ## Route Order
@@ -412,24 +262,7 @@ Here is how the total ordering is determined:
 
 Here is an example. Suppose you define the following controller:
 
-    [RoutePrefix("orders")]
-    public class OrdersController : ApiController
-    {
-        [Route("{id:int}")] // constrained parameter
-        public HttpResponseMessage Get(int id) { ... }
-    
-        [Route("details")]  // literal
-        public HttpResponseMessage GetDetails() { ... }
-    
-        [Route("pending", RouteOrder = 1)]
-        public HttpResponseMessage GetPending() { ... }
-    
-        [Route("{customerName}")]  // unconstrained parameter
-        public HttpResponseMessage GetByCustomer(string customerName) { ... }
-    
-        [Route("{*date:datetime}")]  // wildcard
-        public HttpResponseMessage Get(DateTime date) { ... }
-    }
+[!code[Main](attribute-routing-in-web-api-2/samples/sample22.xml)]
 
 These routes are ordered as follows.
 

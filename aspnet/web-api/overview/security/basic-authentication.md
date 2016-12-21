@@ -40,9 +40,7 @@ IIS supports Basic authentication, but there is a caveat: The user is authentica
 
 To enable Basic authentication using IIS, set the authentication mode to "Windows" in the Web.config of your ASP.NET project:
 
-    <system.web>
-        <authentication mode="Windows" />
-    </system.web>
+[!code[Main](basic-authentication/samples/sample1.xml)]
 
 In this mode, IIS uses Windows credentials to authenticate. In addition, you must enable Basic authentication in IIS. In IIS Manager, go to Features View, select Authentication, and enable Basic authentication.
 
@@ -60,102 +58,11 @@ The following code how an HTTP module that performs Basic Authentication. You ca
 
 In Web API 2, you should consider writing an [authentication filter](authentication-filters.md) or [OWIN middleware](../../../aspnet/overview/owin-and-katana/index.md), instead of an HTTP module.
 
-    namespace WebHostBasicAuth.Modules
-    {
-        public class BasicAuthHttpModule : IHttpModule
-        {
-            private const string Realm = "My Realm";
-    
-            public void Init(HttpApplication context)
-            {
-                // Register event handlers
-                context.AuthenticateRequest += OnApplicationAuthenticateRequest;
-                context.EndRequest += OnApplicationEndRequest;
-            }
-    
-            private static void SetPrincipal(IPrincipal principal)
-            {
-                Thread.CurrentPrincipal = principal;
-                if (HttpContext.Current != null)
-                {
-                    HttpContext.Current.User = principal;
-                }
-            }
-    
-            // TODO: Here is where you would validate the username and password.
-            private static bool CheckPassword(string username, string password)
-            {
-                return username == "user" && password == "password";
-            }
-    
-            private static void AuthenticateUser(string credentials)
-            {
-                try
-                {
-                    var encoding = Encoding.GetEncoding("iso-8859-1");
-                    credentials = encoding.GetString(Convert.FromBase64String(credentials));
-    
-                    int separator = credentials.IndexOf(':');
-                    string name = credentials.Substring(0, separator);
-                    string password = credentials.Substring(separator + 1);
-    
-                    if (CheckPassword(name, password))
-                    {
-                        var identity = new GenericIdentity(name);
-                        SetPrincipal(new GenericPrincipal(identity, null));
-                    }
-                    else
-                    {
-                        // Invalid username or password.
-                        HttpContext.Current.Response.StatusCode = 401;
-                    }
-                }
-                catch (FormatException)
-                {
-                    // Credentials were not formatted correctly.
-                    HttpContext.Current.Response.StatusCode = 401;
-                }
-            }
-    
-            private static void OnApplicationAuthenticateRequest(object sender, EventArgs e)
-            {
-                var request = HttpContext.Current.Request;
-                var authHeader = request.Headers["Authorization"];
-                if (authHeader != null)
-                {
-                    var authHeaderVal = AuthenticationHeaderValue.Parse(authHeader);
-    
-                    // RFC 2617 sec 1.2, "scheme" name is case-insensitive
-                    if (authHeaderVal.Scheme.Equals("basic",
-                            StringComparison.OrdinalIgnoreCase) &&
-                        authHeaderVal.Parameter != null)
-                    {
-                        AuthenticateUser(authHeaderVal.Parameter);
-                    }
-                }
-            }
-    
-            // If the request was unauthorized, add the WWW-Authenticate header 
-            // to the response.
-            private static void OnApplicationEndRequest(object sender, EventArgs e)
-            {
-                var response = HttpContext.Current.Response;
-                if (response.StatusCode == 401)
-                {
-                    response.Headers.Add("WWW-Authenticate",
-                        string.Format("Basic realm=\"{0}\"", Realm));
-                }
-            }
-    
-            public void Dispose() 
-            {
-            }
-        }
-    }
+[!code[Main](basic-authentication/samples/sample2.xml)]
 
 To enable the HTTP module, add the following to your web.config file in the **system.webServer** section:
 
-[!code[Main](basic-authentication/samples/sample1.xml?highlight=4)]
+[!code[Main](basic-authentication/samples/sample3.xml?highlight=4)]
 
 Replace "YourAssemblyName" with the name of the assembly (not including the "dll" extension).
 

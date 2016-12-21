@@ -64,48 +64,7 @@ Let s start by adding validation logic to the Create view. Fortunately, because 
 
 **Listing 1 - \Views\Contact\Create.aspx**
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ContactManager.Models.Contact>" %>
-    
-    <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Create</title>
-    </asp:Content>
-    
-    <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <%= Html.ValidationSummary() %>
-    
-        <% using (Html.BeginForm()) {%>
-    
-            <fieldset class="fields">
-                <legend>Create New Contact</legend>
-                <p>
-                    <label for="FirstName">First Name:</label>
-                    <%= Html.TextBox("FirstName") %>
-                    <%= Html.ValidationMessage("FirstName", "*") %>
-                </p>
-                <p>
-                    <label for="LastName">Last Name:</label>
-                    <%= Html.TextBox("LastName") %>
-                    <%= Html.ValidationMessage("LastName", "*") %>
-                </p>
-                <p>
-                    <label for="Phone">Phone:</label>
-                    <%= Html.TextBox("Phone") %>
-                    <%= Html.ValidationMessage("Phone", "*") %>
-                </p>
-                <p>
-                    <label for="Email">Email:</label>
-                    <%= Html.TextBox("Email") %>
-                    <%= Html.ValidationMessage("Email", "*") %>
-                </p>
-                <p class="submit">
-                    <input type="submit" value="Create" />
-                </p>
-            </fieldset>
-    
-        <% } %>
-    
-    </asp:Content>
+[!code[Main](iteration-3-add-form-validation-cs/samples/sample1.xml)]
 
 Notice the call to the Html.ValidationSummary() helper method that appears immediately above the HTML form. If there are validation error messages, then this method displays validation messages in a bulleted list.
 
@@ -115,22 +74,7 @@ Finally, the Html.TextBox() helper automatically renders a Cascading Style Sheet
 
 When you create a new ASP.NET MVC application, a style sheet named Site.css is created in the Content folder automatically. This style sheet contains the following definitions for CSS classes related to the appearance of validation error messages:
 
-    .field-validation-error
-    {
-        color: #ff0000;
-    }
-    
-    .input-validation-error
-    {
-        border: 1px solid #ff0000;
-        background-color: #ffeeee;
-    }
-    
-    .validation-summary-errors
-    {
-        font-weight: bold;
-        color: #ff0000;
-    }
+[!code[Main](iteration-3-add-form-validation-cs/samples/sample2.xml)]
 
 The field-validation-error class is used to style the output rendered by the Html.ValidationMessage() helper. The input-validation-error class is used to style the textbox (input) rendered by the Html.TextBox() helper. The validation-summary-errors class is used to style the unordered list rendered by the Html.ValidationSummary() helper.
 
@@ -152,36 +96,7 @@ The modified Create() method in Listing 2 contains a new section that validates 
 
 **Listing 2 - Controllers\ContactController.<wbr />cs (Create with validation)**
 
-    //
-    // POST: /Contact/Create
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Create([Bind(Exclude = "Id")] Contact contactToCreate)
-    {
-        // Validation logic
-        if (contactToCreate.FirstName.Trim().Length == 0)
-            ModelState.AddModelError("FirstName", "First name is required.");
-        if (contactToCreate.LastName.Trim().Length == 0)
-            ModelState.AddModelError("LastName", "Last name is required.");
-        if (contactToCreate.Phone.Length > 0 && !Regex.IsMatch(contactToCreate.Phone, @"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"))
-            ModelState.AddModelError("Phone", "Invalid phone number.");
-        if (contactToCreate.Email.Length > 0 && !Regex.IsMatch(contactToCreate.Email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
-            ModelState.AddModelError("Email", "Invalid email address.");
-        if (!ModelState.IsValid)
-            return View();
-    
-        // Database logic
-        try
-        {
-            _entities.AddToContactSet(contactToCreate);
-            _entities.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        catch
-        {
-            return View();
-        }
-    }
+[!code[Main](iteration-3-add-form-validation-cs/samples/sample3.xml)]
 
 The validate section enforces four distinct validation rules:
 
@@ -207,121 +122,7 @@ The modified Contact controller class is contained in Listing 3. This class has 
 
 **Listing 3 - Controllers\ContactController.<wbr />cs**
 
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Web.Mvc;
-    using ContactManager.Models;
-    
-    namespace ContactManager.Controllers
-    {
-        public class ContactController : Controller
-        {
-            private ContactManagerDBEntities _entities = new ContactManagerDBEntities();
-    
-            protected void ValidateContact(Contact contactToValidate)
-            {
-                if (contactToValidate.FirstName.Trim().Length == 0)
-                    ModelState.AddModelError("FirstName", "First name is required.");
-                if (contactToValidate.LastName.Trim().Length == 0)
-                    ModelState.AddModelError("LastName", "Last name is required.");
-                if (contactToValidate.Phone.Length > 0 && !Regex.IsMatch(contactToValidate.Phone, @"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"))
-                    ModelState.AddModelError("Phone", "Invalid phone number.");
-                if (contactToValidate.Email.Length > 0 && !Regex.IsMatch(contactToValidate.Email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
-                    ModelState.AddModelError("Email", "Invalid email address.");
-            }
-    
-            public ActionResult Index()
-            {
-                return View(_entities.ContactSet.ToList());
-            }
-    
-            public ActionResult Create()
-            {
-                return View();
-            } 
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Create([Bind(Exclude = "Id")] Contact contactToCreate)
-            {
-                // Validation logic
-                ValidateContact(contactToCreate);
-                if (!ModelState.IsValid)
-                    return View();
-    
-                // Database logic
-                try
-                {
-                    _entities.AddToContactSet(contactToCreate);
-                    _entities.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-    
-            public ActionResult Edit(int id)
-            {
-                var contactToEdit = (from c in _entities.ContactSet
-                                       where c.Id == id
-                                       select c).FirstOrDefault();
-    
-                return View(contactToEdit);
-            }
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Edit(Contact contactToEdit)
-            {
-                ValidateContact(contactToEdit);
-                if (!ModelState.IsValid)
-                    return View();
-    
-                try
-                {
-                    var originalContact = (from c in _entities.ContactSet
-                                         where c.Id == contactToEdit.Id
-                                         select c).FirstOrDefault();
-                    _entities.ApplyPropertyChanges(originalContact.EntityKey.EntitySetName, contactToEdit);
-                    _entities.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-    
-            public ActionResult Delete(int id)
-            {
-                var contactToDelete = (from c in _entities.ContactSet
-                                     where c.Id == id
-                                     select c).FirstOrDefault();
-    
-                return View(contactToDelete);
-            }
-    
-            [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult Delete(Contact contactToDelete)
-            {
-                try
-                {
-                    var originalContact = (from c in _entities.ContactSet
-                                           where c.Id == contactToDelete.Id
-                                           select c).FirstOrDefault();
-    
-                    _entities.DeleteObject(originalContact);
-                    _entities.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-    
-        }
-    }
+[!code[Main](iteration-3-add-form-validation-cs/samples/sample4.xml)]
 
 ## Summary
 

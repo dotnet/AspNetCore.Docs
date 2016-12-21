@@ -54,7 +54,7 @@ The remainder of this section provides more guidance on how to complete each of 
 1. Open a Visual Studio 2010 command prompt. To do this, on the **Start** menu, point to **All Programs**, click **Microsoft Visual Studio 2010**, click **Visual Studio Tools**, and then click **Visual Studio Command Prompt (2010)**.
 2. At the command prompt, type this command, and then press Enter:
 
-        aspnet_regsql –C "Data Source=.\SQLEXPRESS;Integrated Security=true" –A mr –d CMAppServices
+    [!code[Main](setting-up-the-contact-manager-solution/samples/sample1.xml)]
 
     1. Use the **–C** switch to specify the connection string for your database server.
     2. Use the **–A** switch to specify the application services features you want to add to the database. In this case, **m** indicates that you want to add support for the membership provider and **r** indicates that you want to add support for the role manager.
@@ -78,26 +78,13 @@ The next step is to make sure that the connection strings in the Contact Manager
     ![](setting-up-the-contact-manager-solution/_static/image2.png)
 3. In the **connectionStrings** element, verify that the connection string named **ApplicationServices** points to your local ASP.NET application services database.
 
-        <connectionStrings>
-          <add name="ApplicationServices"
-               connectionString="Data Source=.\SQLEXPRESS;
-                                 Integrated Security=true;
-                                 Initial Catalog=CMAppServices"
-               providerName="System.Data.SqlClient" />
-        </connectionStrings>
+    [!code[Main](setting-up-the-contact-manager-solution/samples/sample2.xml)]
 4. In the **Solution Explorer** window, expand the **ContactManager.Service** project, and then double-click the **Web.config** node.
 
     ![](setting-up-the-contact-manager-solution/_static/image3.png)
 5. In the **connectionStrings** element, in the connection string named **ContactManagerContext**, verify that the **Data Source** property is set to your local instance of SQL Server Express. You don&#x27;t need to change anything else in the connection string.
 
-        <connectionStrings>
-          <add name="ContactManagerContext" 
-               connectionString="Data Source=.\SQLExpress;
-                                 Initial Catalog=ContactManager;
-                                 Integrated Security=true;
-                                 multipleactiveresultsets=true"
-               providerName="System.Data.SqlClient" />
-        </connectionStrings>
+    [!code[Main](setting-up-the-contact-manager-solution/samples/sample3.xml)]
 6. Save all open files.
 
 You should now be ready to run the Contact Manager solution on your local machine.

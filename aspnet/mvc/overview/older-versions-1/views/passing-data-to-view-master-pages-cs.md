@@ -48,45 +48,7 @@ Consider the controller in Listing 1. It exposes two actions named `Index()` and
 
 **Listing 1 – `Controllers\HomeController.cs`**
 
-    using System.Linq;
-    using System.Web.Mvc;
-    using MvcApplication1.Models;
-    
-    namespace MvcApplication1.Controllers
-    {
-         [HandleError]
-         public class HomeController : Controller
-         {
-              private MovieDataContext _dataContext = new MovieDataContext();
-    
-              /// <summary>
-    
-              /// Show list of all movies
-              /// </summary>
-              public ActionResult Index()
-              {
-                   ViewData["categories"] = from c in _dataContext.MovieCategories 
-                             select c;
-                   ViewData["movies"] = from m in _dataContext.Movies 
-                             select m;
-                   return View();
-              }
-    
-              /// <summary>
-              /// Show list of movies in a category
-              /// </summary>
-    
-              public ActionResult Details(int id)
-              {
-                   ViewData["categories"] = from c in _dataContext.MovieCategories 
-                             select c;
-                   ViewData["movies"] = from m in _dataContext.Movies 
-                             where m.CategoryId == id
-                             select m;
-                   return View();
-              }
-         }
-    }
+[!code[Main](passing-data-to-view-master-pages-cs/samples/sample1.xml)]
 
 Notice that both the Index() and the Details() actions add two items to view data. The Index() action adds two keys: categories and movies. The categories key represents the list of movie categories displayed by the view master page. The movies key represents the list of movies displayed by the Index view page.
 
@@ -102,55 +64,13 @@ The Index view is contained in Listing 2. It simply iterates through the list of
 
 **Listing 2 – `Views\Home\Index.aspx`**
 
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="MvcApplication1.Views.Home.Index" %>
-    
-    <%@ Import Namespace="MvcApplication1.Models" %>
-    <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-    <ul>
-    
-    <% foreach (var m in (IEnumerable<Movie>)ViewData["movies"])
-         { %>
-    
-         <li><%= m.Title %></li>
-    
-    <% } %>
-    </ul>
-    
-    </asp:Content>
+[!code[Main](passing-data-to-view-master-pages-cs/samples/sample2.xml)]
 
 The view master page is contained in Listing 3. The view master page iterates and renders all of the movie categories represented by the categories item from view data.
 
 **Listing 3 – `Views\Shared\Site.master`**
 
-    <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="MvcApplication1.Views.Shared.Site" %>
-    <%@ Import Namespace="MvcApplication1.Models" %>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    
-    <html xmlns="http://www.w3.org/1999/xhtml" >
-    <head id="Head1" runat="server">
-         <title></title>
-         <asp:ContentPlaceHolder ID="head" runat="server">
-    
-         </asp:ContentPlaceHolder>
-    </head>
-    <body>
-         <div>
-              <h1>My Movie Website</h1>
-    
-              <% foreach (var c in (IEnumerable<MovieCategory>)ViewData["categories"])
-                               {%>
-    
-                   <%= Html.ActionLink(c.Name, "Details", new {id=c.Id} ) %> 
-    
-              <% } %>
-    
-              <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    
-              </asp:ContentPlaceHolder>
-         </div>
-    </body>
-    </html>
+[!code[Main](passing-data-to-view-master-pages-cs/samples/sample3.xml)]
 
 All data is passed to the view and the view master page through view data. That is the correct way to pass data to the master page.
 
@@ -164,29 +84,7 @@ The ApplicationController class is contained in Listing 4.
 
 **Listing 4 – `Controllers\ApplicationController.cs`**
 
-    using System.Linq;
-    using System.Web.Mvc;
-    using MvcApplication1.Models;
-    
-    namespace MvcApplication1.Controllers
-    {
-         public abstract class ApplicationController : Controller
-         {
-              private MovieDataContext _dataContext = new MovieDataContext();
-    
-              public MovieDataContext DataContext
-              {
-                   get { return _dataContext; }
-              }
-    
-              public ApplicationController()
-              {
-                   ViewData["categories"] = from c in DataContext.MovieCategories 
-                             select c;
-              }
-    
-         }
-    }
+[!code[Main](passing-data-to-view-master-pages-cs/samples/sample4.xml)]
 
 There are three things that you should notice about the Application controller in Listing 4. First, notice that the class inherits from the base System.Web.Mvc.Controller class. The Application controller is a controller class.
 
@@ -198,38 +96,7 @@ The Movies controller in Listing 5 inherits from the Application controller.
 
 **Listing 5 – `Controllers\MoviesController.cs`**
 
-    using System.Linq;
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-         public class MoviesController : ApplicationController
-         {
-              /// <summary>
-    
-              /// Show list of all movies
-              /// </summary>
-              public ActionResult Index()
-              {
-                   ViewData["movies"] = from m in DataContext.Movies 
-                             select m;
-                   return View();
-              }
-    
-              /// <summary>
-              /// Show list of movies in a category
-              /// </summary>
-    
-              public ActionResult Details(int id)
-              {
-                   ViewData["movies"] = from m in DataContext.Movies
-                             where m.CategoryId == id
-                             select m;
-                   return View();
-              }
-    
-         }
-    }
+[!code[Main](passing-data-to-view-master-pages-cs/samples/sample5.xml)]
 
 The Movies controller, just like the Home controller discussed in the previous section, exposes two action methods named `Index()` and `Details()`. Notice that the list of movie categories displayed by the view master page is not added to view data in either the `Index()` or `Details()` method. Because the Movies controller inherits from the Application controller, the list of movie categories is added to view data automatically.
 

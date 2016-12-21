@@ -24,13 +24,7 @@ In this tutorial, we create a Localhost route constraint. The Localhost route co
 
 You implement a custom route constraint by implementing the IRouteConstraint interface. This is an extremely simple interface which describes a single method:
 
-    bool Match(
-        HttpContextBase httpContext,
-        Route route,
-        string parameterName,
-        RouteValueDictionary values,
-        RouteDirection routeDirection
-    )
+[!code[Main](creating-a-custom-route-constraint-cs/samples/sample1.xml)]
 
 The method returns a Boolean value. If you return false, the route associated with the constraint won't match the browser request.
 
@@ -38,25 +32,7 @@ The Localhost constraint is contained in Listing 1.
 
 **Listing 1 - LocalhostConstraint.cs**
 
-    using System.Web;
-    using System.Web.Routing;
-    namespace MvcApplication1.Constraints
-    {
-        public class LocalhostConstraint : IRouteConstraint
-        {
-            public bool Match
-                (
-                    HttpContextBase httpContext, 
-                    Route route, 
-                    string parameterName, 
-                    RouteValueDictionary values, 
-                    RouteDirection routeDirection
-                )
-            {
-                return httpContext.Request.IsLocal;
-            }
-        }
-    }
+[!code[Main](creating-a-custom-route-constraint-cs/samples/sample2.xml)]
 
 The constraint in Listing 1 takes advantage of the IsLocal property exposed by the HttpRequest class. This property returns true when the IP address of the request is either 127.0.0.1 or when the IP of the request is the same as the server's IP address.
 
@@ -64,38 +40,7 @@ You use a custom constraint within a route defined in the Global.asax file. The 
 
 **Listing 2 - Global.asax**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Routing;
-    using MvcApplication1.Constraints;
-    namespace MvcApplication1
-    {
-        public class MvcApplication : System.Web.HttpApplication
-        {
-            public static void RegisterRoutes(RouteCollection routes)
-            {
-                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-                routes.MapRoute(
-                    "Admin",
-                    "Admin/{action}",
-                    new {controller="Admin"},
-                    new {isLocal=new LocalhostConstraint()}
-                );
-                //routes.MapRoute(
-                //    "Default",                                              // Route name
-                //    "{controller}/{action}/{id}",                           // URL with parameters
-                //    new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
-                //);
-            }
-            protected void Application_Start()
-            {
-                RegisterRoutes(RouteTable.Routes);
-            }
-        }
-    }
+[!code[Main](creating-a-custom-route-constraint-cs/samples/sample3.xml)]
 
 The Localhost constraint is used in the definition of the Admin route. This route won't be matched by a remote browser request. Realize, however, that other routes defined in Global.asax might match the same request. It is important to understand that a constraint prevents a particular route from matching a request and not all routes defined in the Global.asax file.
 

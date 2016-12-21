@@ -73,31 +73,7 @@ The following example shows how to create a page that renders a map based on an 
 1. Create a file named *MapAddress.cshtml* in the root of the site. This page will generate a map based on an address that you pass to it.
 2. Copy the following code into the file, overwriting the existing content.
 
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <title>Map an Address</title>
-          <script src="~/Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
-        </head>
-        
-        <body>
-            <h1>Map an Address</h1>
-            <form method="post">
-                <fieldset>
-                  <div>
-                    <label for="address">Address:</label>
-                    <input style="width: 300px" type="text" name="address" value="@Request["address"]"/>
-                    <input type="submit" value="Map It!" />
-                   </div>
-                </fieldset>
-            </form>
-            @if(IsPost) {
-                @Maps.GetGoogleHtml(Request.Form["address"],
-                    width: "400",
-                    height: "400")
-            }
-        </body>
-        </html>
+    [!code[Main](displaying-maps-in-an-aspnet-web-pages-site/samples/sample1.xml)]
 
     Notice the following features of the page:
 
@@ -115,38 +91,7 @@ This example shows how to create a map based on coordinates. This example shows 
 
 1. Create a file named *MapCoordinates.cshtml* in the root of the site and replace the existing content with the following code and markup:
 
-        <!DOCTYPE html>
-        <html lang="en"><head>
-          <title>Map Coordinates</title>
-          <script src="~/Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
-        </head>
-        <body>
-          <h1>Map Coordinates</h1>
-          <form method="post">
-            <fieldset>
-            <div>
-              <label for="latitude">Latitude:   </label>
-                <input type="text" name="latitude" value="@Request["latitude"]"/>
-            </div>
-            <div>
-              <label for="longitude">Longitude:</label>
-              <input type="text" name="longitude" value="@Request["longitude"]"/>
-            </div>
-            <div>
-              <input type="submit" value="Map It!" />
-            </div>
-            </fieldset>
-          </form>
-          @if(IsPost) {
-              @Maps.GetBingHtml(key: "your-key-here",
-                  latitude: Request["latitude"],
-                  longitude: Request["longitude"],
-                  width: "300",
-                  height: "300"
-               )
-            }
-        </body>
-        </html>
+    [!code[Main](displaying-maps-in-an-aspnet-web-pages-site/samples/sample2.xml)]
 2. Replace `your-key-here` with the Bing Maps key that you generated earlier.
 3. Run the *MapCoordinates.cshtml* page, enter latitude and longitude coordinates, and then click the **Map It!** button. (If you don't know any coordinates, try the following. This is a location on the Microsoft Redmond campus.)
 

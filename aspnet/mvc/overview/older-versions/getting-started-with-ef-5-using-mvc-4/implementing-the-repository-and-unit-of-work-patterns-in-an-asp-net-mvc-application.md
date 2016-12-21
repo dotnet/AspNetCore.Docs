@@ -52,105 +52,17 @@ You won't create unit tests in this tutorial series. For an introduction to TDD 
 
 In the *DAL* folder, create a class file named *IStudentRepository.cs* and replace the existing code with the following code:
 
-    using System;
-    using System.Collections.Generic;
-    using ContosoUniversity.Models;
-    
-    namespace ContosoUniversity.DAL
-    {
-        public interface IStudentRepository : IDisposable
-        {
-            IEnumerable<Student> GetStudents();
-            Student GetStudentByID(int studentId);
-            void InsertStudent(Student student);
-            void DeleteStudent(int studentID);
-            void UpdateStudent(Student student);
-            void Save();
-        }
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample1.xml)]
 
 This code declares a typical set of CRUD methods, including two read methods — one that returns all `Student` entities, and one that finds a single `Student` entity by ID.
 
 In the *DAL* folder, create a class file named *StudentRepository.cs* file. Replace the existing code with the following code, which implements the `IStudentRepository` interface:
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Data;
-    using ContosoUniversity.Models;
-    
-    namespace ContosoUniversity.DAL
-    {
-        public class StudentRepository : IStudentRepository, IDisposable
-        {
-            private SchoolContext context;
-    
-            public StudentRepository(SchoolContext context)
-            {
-                this.context = context;
-            }
-    
-            public IEnumerable<Student> GetStudents()
-            {
-                return context.Students.ToList();
-            }
-    
-            public Student GetStudentByID(int id)
-            {
-                return context.Students.Find(id);
-            }
-    
-            public void InsertStudent(Student student)
-            {
-                context.Students.Add(student);
-            }
-    
-            public void DeleteStudent(int studentID)
-            {
-                Student student = context.Students.Find(studentID);
-                context.Students.Remove(student);
-            }
-    
-            public void UpdateStudent(Student student)
-            {
-                context.Entry(student).State = EntityState.Modified;
-            }
-    
-            public void Save()
-            {
-                context.SaveChanges();
-            }
-    
-            private bool disposed = false;
-    
-            protected virtual void Dispose(bool disposing)
-            {
-                if (!this.disposed)
-                {
-                    if (disposing)
-                    {
-                        context.Dispose();
-                    }
-                }
-                this.disposed = true;
-            }
-    
-            public void Dispose()
-            {
-                Dispose(true);
-                GC.SuppressFinalize(this);
-            }
-        }
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample2.xml)]
 
 The database context is defined in a class variable, and the constructor expects the calling object to pass in an instance of the context:
 
-    private SchoolContext context;
-    
-    public StudentRepository(SchoolContext context)
-    {
-        this.context = context;
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample3.xml)]
 
 You could instantiate a new context in the repository, but then if you used multiple repositories in one controller, each would end up with a separate context. Later you'll use multiple repositories in the `Course` controller, and you'll see how a unit of work class can ensure that all repositories use the same context.
 
@@ -160,45 +72,33 @@ The repository implements [IDisposable](https://msdn.microsoft.com/en-us/library
 
 In *StudentController.cs*, replace the code currently in the class with the following code. The changes are highlighted.
 
-[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=13-18,44,75,77,102-103,120,137-138,159,172-174,186)]
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=13-18,44,75,77,102-103,120,137-138,159,172-174,186)]
 
 The controller now declares a class variable for an object that implements the `IStudentRepository` interface instead of the context class:
 
-    private IStudentRepository studentRepository;
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample5.xml)]
 
 The default (parameterless) constructor creates a new context instance, and an optional constructor allows the caller to pass in a context instance.
 
-    public StudentController()
-    {
-        this.studentRepository = new StudentRepository(new SchoolContext());
-    }
-    
-    public StudentController(IStudentRepository studentRepository)
-    {
-        this.studentRepository = studentRepository;
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample6.xml)]
 
 (If you were using *dependency injection*, or DI, you wouldn't need the default constructor because the DI software would ensure that the correct repository object would always be provided.)
 
 In the CRUD methods, the repository is now called instead of the context:
 
-    var students = from s in studentRepository.GetStudents()
-                   select s;
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample7.xml)]
 
-    Student student = studentRepository.GetStudentByID(id);
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample8.xml)]
 
-    studentRepository.InsertStudent(student);
-    studentRepository.Save();
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample9.xml)]
 
-    studentRepository.UpdateStudent(student);
-    studentRepository.Save();
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample10.xml)]
 
-    studentRepository.DeleteStudent(id);
-    studentRepository.Save();
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample11.xml)]
 
 And the `Dispose` method now disposes the repository instead of the context:
 
-    studentRepository.Dispose();
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample12.xml)]
 
 Run the site and click the **Students** tab.
 
@@ -206,11 +106,11 @@ Run the site and click the **Students** tab.
 
 The page looks and works the same as it did before you changed the code to use the repository, and the other Student pages also work the same. However, there's an important difference in the way the `Index` method of the controller does filtering and ordering. The original version of this method contained the following code:
 
-[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample2.xml?highlight=1)]
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample13.xml?highlight=1)]
 
 The updated `Index` method contains the following code:
 
-[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=1)]
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample14.xml?highlight=1)]
 
 Only the highlighted code has changed.
 
@@ -224,14 +124,7 @@ In the original version of the code, `students` is typed as an `IQueryable` obje
 > 
 > ![](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/_static/image2.png)
 > 
->     SELECT 
->     '0X0X' AS [C1], 
->     [Extent1].[PersonID] AS [PersonID], 
->     [Extent1].[LastName] AS [LastName], 
->     [Extent1].[FirstName] AS [FirstName], 
->     [Extent1].[EnrollmentDate] AS [EnrollmentDate]
->     FROM [dbo].[Person] AS [Extent1]
->     WHERE [Extent1].[Discriminator] = N'Student'
+> [!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample15.xml)]
 > 
 > This query returns all of the student data because the repository executed the query without knowing about the search criteria. The process of sorting, applying search criteria, and selecting a subset of the data for paging (showing only 3 rows in this case) is done in memory later when the `ToPagedList` method is called on the `IEnumerable` collection.
 > 
@@ -241,23 +134,7 @@ In the original version of the code, `students` is typed as an `IQueryable` obje
 > 
 > When ToPagedList is called on an `IQueryable` object, the query sent to SQL Server specifies the search string, and as a result only rows that meet the search criteria are returned, and no filtering needs to be done in memory.
 > 
->     exec sp_executesql N'SELECT TOP (3) 
->     [Project1].[StudentID] AS [StudentID], 
->     [Project1].[LastName] AS [LastName], 
->     [Project1].[FirstName] AS [FirstName], 
->     [Project1].[EnrollmentDate] AS [EnrollmentDate]
->     FROM ( SELECT [Project1].[StudentID] AS [StudentID], [Project1].[LastName] AS [LastName], [Project1].[FirstName] AS [FirstName], [Project1].[EnrollmentDate] AS [EnrollmentDate], row_number() OVER (ORDER BY [Project1].[LastName] ASC) AS [row_number]
->     FROM ( SELECT 
->     	[Extent1].[StudentID] AS [StudentID], 
->     	[Extent1].[LastName] AS [LastName], 
->     	[Extent1].[FirstName] AS [FirstName], 
->     	[Extent1].[EnrollmentDate] AS [EnrollmentDate]
->     	FROM [dbo].[Student] AS [Extent1]
->     	WHERE (( CAST(CHARINDEX(UPPER(@p__linq__0), UPPER([Extent1].[LastName])) AS int)) > 0) OR (( CAST(CHARINDEX(UPPER(@p__linq__1), UPPER([Extent1].[FirstName])) AS int)) > 0)
->     )  AS [Project1]
->     )  AS [Project1]
->     WHERE [Project1].[row_number] > 0
->     ORDER BY [Project1].[LastName] ASC',N'@p__linq__0 nvarchar(4000),@p__linq__1 nvarchar(4000)',@p__linq__0=N'Alex',@p__linq__1=N'Alex'
+> [!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample16.xml)]
 > 
 > (The following tutorial explains how to examine queries sent to SQL Server.)
 
@@ -276,107 +153,19 @@ In this section of the tutorial, you'll create a `GenericRepository` class and a
 
 In the *DAL* folder, create *GenericRepository.cs* and replace the existing code with the following code:
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Data;
-    using System.Data.Entity;
-    using ContosoUniversity.Models;
-    using System.Linq.Expressions;
-    
-    namespace ContosoUniversity.DAL
-    {
-        public class GenericRepository<TEntity> where TEntity : class
-        {
-            internal SchoolContext context;
-            internal DbSet<TEntity> dbSet;
-    
-            public GenericRepository(SchoolContext context)
-            {
-                this.context = context;
-                this.dbSet = context.Set<TEntity>();
-            }
-    
-            public virtual IEnumerable<TEntity> Get(
-                Expression<Func<TEntity, bool>> filter = null,
-                Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-                string includeProperties = "")
-            {
-                IQueryable<TEntity> query = dbSet;
-    
-                if (filter != null)
-                {
-                    query = query.Where(filter);
-                }
-    
-                foreach (var includeProperty in includeProperties.Split
-                    (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query = query.Include(includeProperty);
-                }
-    
-                if (orderBy != null)
-                {
-                    return orderBy(query).ToList();
-                }
-                else
-                {
-                    return query.ToList();
-                }
-            }
-    
-            public virtual TEntity GetByID(object id)
-            {
-                return dbSet.Find(id);
-            }
-    
-            public virtual void Insert(TEntity entity)
-            {
-                dbSet.Add(entity);
-            }
-    
-            public virtual void Delete(object id)
-            {
-                TEntity entityToDelete = dbSet.Find(id);
-                Delete(entityToDelete);
-            }
-    
-            public virtual void Delete(TEntity entityToDelete)
-            {
-                if (context.Entry(entityToDelete).State == EntityState.Detached)
-                {
-                    dbSet.Attach(entityToDelete);
-                }
-                dbSet.Remove(entityToDelete);
-            }
-    
-            public virtual void Update(TEntity entityToUpdate)
-            {
-                dbSet.Attach(entityToUpdate);
-                context.Entry(entityToUpdate).State = EntityState.Modified;
-            }
-        }
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample17.xml)]
 
 Class variables are declared for the database context and for the entity set that the repository is instantiated for:
 
-    internal SchoolContext context;
-    internal DbSet dbSet;
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample18.xml)]
 
 The constructor accepts a database context instance and initializes the entity set variable:
 
-    public GenericRepository(SchoolContext context)
-    {
-        this.context = context;
-        this.dbSet = context.Set<TEntity>();
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample19.xml)]
 
 The `Get` method uses lambda expressions to allow the calling code to specify a filter condition and a column to order the results by, and a string parameter lets the caller provide a comma-delimited list of navigation properties for eager loading:
 
-    public virtual IEnumerable<TEntity> Get(
-        Expression<Func<TEntity, bool>> filter = null,
-        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-        string includeProperties = "")
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample20.xml)]
 
 The code `Expression<Func<TEntity, bool>> filter` means the caller will provide a lambda expression based on the `TEntity` type, and this expression will return a Boolean value. For example, if the repository is instantiated for the `Student` entity type, the code in the calling method might specify `student => student.LastName == "Smith`&quot; for the `filter` parameter.
 
@@ -384,31 +173,15 @@ The code `Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy` also me
 
 The code in the `Get` method creates an `IQueryable` object and then applies the filter expression if there is one:
 
-    IQueryable<TEntity> query = dbSet;
-    
-    if (filter != null)
-    {
-        query = query.Where(filter);
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample21.xml)]
 
 Next it applies the eager-loading expressions after parsing the comma-delimited list:
 
-    foreach (var includeProperty in includeProperties.Split
-        (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) 
-    { 
-        query = query.Include(includeProperty); 
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample22.xml)]
 
 Finally, it applies the `orderBy` expression if there is one and returns the results; otherwise it returns the results from the unordered query:
 
-    if (orderBy != null)
-    {
-        return orderBy(query).ToList();
-    }
-    else
-    {
-        return query.ToList();
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample23.xml)]
 
 When you call the `Get` method, you could do filtering and sorting on the `IEnumerable` collection returned by the method instead of providing parameters for these functions. But the sorting and filtering work would then be done in memory on the web server. By using these parameters, you ensure that the work is done by the database rather than the web server. An alternative is to create derived classes for specific entity types and add specialized `Get` methods, such as `GetStudentsInNameOrder` or `GetStudentsByName`. However, in a complex application, this can result in a large number of such derived classes and specialized methods, which could be more work to maintain.
 
@@ -416,21 +189,7 @@ The code in the `GetByID`, `Insert`, and `Update` methods is similar to what you
 
 Two overloads are provided for the `Delete` method:
 
-    public virtual void Delete(object id)
-    {
-        TEntity entityToDelete = dbSet.Find(id);
-        dbSet.Remove(entityToDelete);
-    }
-    
-    public virtual void Delete(TEntity entityToDelete)
-    {
-                if (context.Entry(entityToDelete).State == EntityState.Detached)
-                {
-                    dbSet.Attach(entityToDelete);
-                }
-                dbSet.Remove(entityToDelete);
-    
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample24.xml)]
 
 One of these lets you pass in just the ID of the entity to be deleted, and one takes an entity instance. As you saw in the [Handling Concurrency](../../getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md) tutorial, for concurrency handling you need a `Delete` method that takes an entity instance that includes the original value of a tracking property.
 
@@ -442,90 +201,15 @@ The unit of work class serves one purpose: to make sure that when you use multip
 
 In the *DAL* folder, create a class file named *UnitOfWork.cs* and replace the template code with the following code:
 
-    using System;
-    using ContosoUniversity.Models;
-    
-    namespace ContosoUniversity.DAL
-    {
-        public class UnitOfWork : IDisposable
-        {
-            private SchoolContext context = new SchoolContext();
-            private GenericRepository<Department> departmentRepository;
-            private GenericRepository<Course> courseRepository;
-    
-            public GenericRepository<Department> DepartmentRepository
-            {
-                get
-                {
-    
-                    if (this.departmentRepository == null)
-                    {
-                        this.departmentRepository = new GenericRepository<Department>(context);
-                    }
-                    return departmentRepository;
-                }
-            }
-    
-            public GenericRepository<Course> CourseRepository
-            {
-                get
-                {
-    
-                    if (this.courseRepository == null)
-                    {
-                        this.courseRepository = new GenericRepository<Course>(context);
-                    }
-                    return courseRepository;
-                }
-            }
-    
-            public void Save()
-            {
-                context.SaveChanges();
-            }
-    
-            private bool disposed = false;
-    
-            protected virtual void Dispose(bool disposing)
-            {
-                if (!this.disposed)
-                {
-                    if (disposing)
-                    {
-                        context.Dispose();
-                    }
-                }
-                this.disposed = true;
-            }
-    
-            public void Dispose()
-            {
-                Dispose(true);
-                GC.SuppressFinalize(this);
-            }
-        }
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample25.xml)]
 
 The code creates class variables for the database context and each repository. For the `context` variable, a new context is instantiated:
 
-    private SchoolContext context = new SchoolContext();
-    private GenericRepository<Department> departmentRepository;
-    private GenericRepository<Course> courseRepository;
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample26.xml)]
 
 Each repository property checks whether the repository already exists. If not, it instantiates the repository, passing in the context instance. As a result, all repositories share the same context instance.
 
-    public GenericRepository<Department> DepartmentRepository
-    {
-        get
-        {
-    
-            if (this.departmentRepository == null)
-            {
-                this.departmentRepository = new GenericRepository<Department>(context);
-            }
-            return departmentRepository;
-        }
-    }
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample27.xml)]
 
 The `Save` method calls `SaveChanges` on the database context.
 
@@ -535,35 +219,15 @@ Like any class that instantiates a database context in a class variable, the `Un
 
 Replace the code you currently have in *CourseController.cs* with the following code:
 
-[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=15,20,22,31,54-55,70,85-86,101-102,122-124,130)]
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample28.xml?highlight=15,20,22,31,54-55,70,85-86,101-102,122-124,130)]
 
 This code adds a class variable for the `UnitOfWork` class. (If you were using interfaces here, you wouldn't initialize the variable here; instead, you'd implement a pattern of two constructors just as you did for the `Student` repository.)
 
-    private UnitOfWork unitOfWork = new UnitOfWork();
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample29.xml)]
 
 In the rest of the class, all references to the database context are replaced by references to the appropriate repository, using `UnitOfWork` properties to access the repository. The `Dispose` method disposes the `UnitOfWork` instance.
 
-    var courses = unitOfWork.CourseRepository.Get(includeProperties: "Department");
-    // ...
-    Course course = unitOfWork.CourseRepository.GetByID(id);
-    // ...
-    unitOfWork.CourseRepository.Insert(course);
-    unitOfWork.Save();
-    // ...
-    Course course = unitOfWork.CourseRepository.GetByID(id);
-    // ...
-    unitOfWork.CourseRepository.Update(course);
-    unitOfWork.Save();
-    // ...
-    var departmentsQuery = unitOfWork.DepartmentRepository.Get(
-        orderBy: q => q.OrderBy(d => d.Name));
-    // ...
-    Course course = unitOfWork.CourseRepository.GetByID(id);
-    // ...
-    unitOfWork.CourseRepository.Delete(id);
-    unitOfWork.Save();
-    // ...
-    unitOfWork.Dispose();
+[!code[Main](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application/samples/sample30.xml)]
 
 Run the site and click the **Courses** tab.
 

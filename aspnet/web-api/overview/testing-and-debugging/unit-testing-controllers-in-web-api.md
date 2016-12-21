@@ -45,55 +45,11 @@ These are some of the general things to test, but the specifics depend on your c
 
 Here is an example of a controller whose actions return **HttpResponseMessage**.
 
-    public class ProductsController : ApiController
-    {
-        IProductRepository _repository;
-    
-        public ProductsController(IProductRepository repository)
-        {
-            _repository = repository;
-        }
-    
-        public HttpResponseMessage Get(int id)
-        {
-            Product product = _repository.GetById(id);
-            if (product == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-            return Request.CreateResponse(product);
-        }
-    
-        public HttpResponseMessage Post(Product product)
-        {
-            _repository.Add(product);
-    
-            var response = Request.CreateResponse(HttpStatusCode.Created, product);
-            string uri = Url.Link("DefaultApi", new { id = product.Id });
-            response.Headers.Location = new Uri(uri);
-    
-            return response;
-        }
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample1.xml)]
 
 Notice the controller uses dependency injection to inject an `IProductRepository`. That makes the controller more testable, because you can inject a mock repository. The following unit test verifies that the `Get` method writes a `Product` to the response body. Assume that `repository` is a mock `IProductRepository`.
 
-    [TestMethod]
-    public void GetReturnsProduct()
-    {
-        // Arrange
-        var controller = new ProductsController(repository);
-        controller.Request = new HttpRequestMessage();
-        controller.Configuration = new HttpConfiguration();
-    
-        // Act
-        var response = controller.Get(10);
-    
-        // Assert
-        Product product;
-        Assert.IsTrue(response.TryGetContentValue<Product>(out product));
-        Assert.AreEqual(10, product.Id);
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample2.xml)]
 
 It's important to set **Request** and **Configuration** on the controller. Otherwise, the test will fail with an **ArgumentNullException** or **InvalidOperationException**.
 
@@ -101,62 +57,13 @@ It's important to set **Request** and **Configuration** on the controller. Other
 
 The `Post` method calls **UrlHelper.Link** to create links in the response. This requires a little more setup in the unit test:
 
-    [TestMethod]
-    public void PostSetsLocationHeader()
-    {
-        // Arrange
-        ProductsController controller = new ProductsController(repository);
-    
-        controller.Request = new HttpRequestMessage { 
-            RequestUri = new Uri("http://localhost/api/products") 
-        };
-        controller.Configuration = new HttpConfiguration();
-        controller.Configuration.Routes.MapHttpRoute(
-            name: "DefaultApi", 
-            routeTemplate: "api/{controller}/{id}",
-            defaults: new { id = RouteParameter.Optional });
-    
-        controller.RequestContext.RouteData = new HttpRouteData(
-            route: new HttpRoute(),
-            values: new HttpRouteValueDictionary { { "controller", "products" } });
-    
-        // Act
-        Product product = new Product() { Id = 42, Name = "Product1" };
-        var response = controller.Post(product);
-    
-        // Assert
-        Assert.AreEqual("http://localhost/api/products/42", response.Headers.Location.AbsoluteUri);
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample3.xml)]
 
 The **UrlHelper** class needs the request URL and route data, so the test has to set values for these. Another option is mock or stub **UrlHelper**. With this approach, you replace the default value of [ApiController.Url](https://msdn.microsoft.com/en-us/library/system.web.http.apicontroller.url.aspx) with a mock or stub version that returns a fixed value.
 
 Let's rewrite the test using the [Moq](https://github.com/Moq) framework.
 
-    [TestMethod]
-    public void PostSetsLocationHeader_MockVersion()
-    {
-        // This version uses a mock UrlHelper.
-    
-        // Arrange
-        ProductsController controller = new ProductsController(repository);
-        controller.Request = new HttpRequestMessage();
-        controller.Configuration = new HttpConfiguration();
-    
-        string locationUrl = "http://location/";
-    
-        // Create the mock and set up the Link method, which is used to create the Location header.
-        // The mock version returns a fixed string.
-        var mockUrlHelper = new Mock<UrlHelper>();
-        mockUrlHelper.Setup(x => x.Link(It.IsAny<string>(), It.IsAny<object>())).Returns(locationUrl);
-        controller.Url = mockUrlHelper.Object;
-    
-        // Act
-        Product product = new Product() { Id = 42 };
-        var response = controller.Post(product);
-    
-        // Assert
-        Assert.AreEqual(locationUrl, response.Headers.Location.AbsoluteUri);
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample4.xml)]
 
 In this version, you don't need to set up any route data, because the mock **UrlHelper** returns a constant string.
 
@@ -169,43 +76,7 @@ In Web API 2, a controller action can return **IHttpActionResult**, which is ana
 
 Here is an example controller whose actions return **IHttpActionResult**.
 
-    public class Products2Controller : ApiController
-    {
-        IProductRepository _repository;
-    
-        public Products2Controller(IProductRepository repository)
-        {
-            _repository = repository;
-        }
-    
-        public IHttpActionResult Get(int id)
-        {
-            Product product = _repository.GetById(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return Ok(product);
-        }
-    
-        public IHttpActionResult Post(Product product)
-        {
-            _repository.Add(product);
-            return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
-        }
-    
-        public IHttpActionResult Delete(int id)
-        {
-            _repository.Delete(id);
-            return Ok();
-        }
-    
-        public IHttpActionResult Put(Product product)
-        {
-            // Do some work (not shown).
-            return Content(HttpStatusCode.Accepted, product);
-        }    
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample5.xml)]
 
 This example shows some common patterns using **IHttpActionResult**. Let's see how to unit test them.
 
@@ -213,25 +84,7 @@ This example shows some common patterns using **IHttpActionResult**. Let's see h
 
 The `Get` method calls `Ok(product)` if the product is found. In the unit test, make sure the return type is **OkNegotiatedContentResult** and the returned product has the right ID.
 
-    [TestMethod]
-    public void GetReturnsProductWithSameId()
-    {
-        // Arrange
-        var mockRepository = new Mock<IProductRepository>();
-        mockRepository.Setup(x => x.GetById(42))
-            .Returns(new Product { Id = 42 });
-    
-        var controller = new Products2Controller(mockRepository.Object);
-    
-        // Act
-        IHttpActionResult actionResult = controller.Get(42);
-        var contentResult = actionResult as OkNegotiatedContentResult<Product>;
-    
-        // Assert
-        Assert.IsNotNull(contentResult);
-        Assert.IsNotNull(contentResult.Content);
-        Assert.AreEqual(42, contentResult.Content.Id);
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample6.xml)]
 
 Notice that the unit test doesn't execute the action result. You can assume the action result creates the HTTP response correctly. (That's why the Web API framework has its own unit tests!)
 
@@ -239,80 +92,25 @@ Notice that the unit test doesn't execute the action result. You can assume the 
 
 The `Get` method calls `NotFound()` if the product is not found. For this case, the unit test just checks if the return type is **NotFoundResult**.
 
-    [TestMethod]
-    public void GetReturnsNotFound()
-    {
-        // Arrange
-        var mockRepository = new Mock<IProductRepository>();
-        var controller = new Products2Controller(mockRepository.Object);
-    
-        // Act
-        IHttpActionResult actionResult = controller.Get(10);
-    
-        // Assert
-        Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample7.xml)]
 
 ### Action returns 200 (OK) with no response body
 
 The `Delete` method calls `Ok()` to return an empty HTTP 200 response. Like the previous example, the unit test checks the return type, in this case **OkResult**.
 
-    [TestMethod]
-    public void DeleteReturnsOk()
-    {
-        // Arrange
-        var mockRepository = new Mock<IProductRepository>();
-        var controller = new Products2Controller(mockRepository.Object);
-    
-        // Act
-        IHttpActionResult actionResult = controller.Delete(10);
-    
-        // Assert
-        Assert.IsInstanceOfType(actionResult, typeof(OkResult));
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample8.xml)]
 
 ### Action returns 201 (Created) with a Location header
 
 The `Post` method calls `CreatedAtRoute` to return an HTTP 201 response with a URI in the Location header. In the unit test, verify that the action sets the correct routing values.
 
-    [TestMethod]
-    public void PostMethodSetsLocationHeader()
-    {
-        // Arrange
-        var mockRepository = new Mock<IProductRepository>();
-        var controller = new Products2Controller(mockRepository.Object);
-    
-        // Act
-        IHttpActionResult actionResult = controller.Post(new Product { Id = 10, Name = "Product1" });
-        var createdResult = actionResult as CreatedAtRouteNegotiatedContentResult<Product>;
-    
-        // Assert
-        Assert.IsNotNull(createdResult);
-        Assert.AreEqual("DefaultApi", createdResult.RouteName);
-        Assert.AreEqual(10, createdResult.RouteValues["id"]);
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample9.xml)]
 
 ### Action returns another 2xx with a response body
 
 The `Put` method calls `Content` to return an HTTP 202 (Accepted) response with a response body. This case is similar to returning 200 (OK), but the unit test should also check the status code.
 
-    [TestMethod]
-    public void PutReturnsContentResult()
-    {
-        // Arrange
-        var mockRepository = new Mock<IProductRepository>();
-        var controller = new Products2Controller(mockRepository.Object);
-    
-        // Act
-        IHttpActionResult actionResult = controller.Put(new Product { Id = 10, Name = "Product" });
-        var contentResult = actionResult as NegotiatedContentResult<Product>;
-    
-        // Assert
-        Assert.IsNotNull(contentResult);
-        Assert.AreEqual(HttpStatusCode.Accepted, contentResult.StatusCode);
-        Assert.IsNotNull(contentResult.Content);
-        Assert.AreEqual(10, contentResult.Content.Id);
-    }
+[!code[Main](unit-testing-controllers-in-web-api/samples/sample10.xml)]
 
 ## Additional Resources
 

@@ -58,15 +58,7 @@ Let's begin by implementing the "edit" scenario.
 
 We'll start by implementing the HTTP "GET" behavior of our edit action method. This method will be invoked when the */Dinners/Edit/[id]* URL is requested. Our implementation will look like:
 
-    //
-    // GET: /Dinners/Edit/2
-    
-    public ActionResult Edit(int id) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-        
-        return View(dinner);
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample1.xml)]
 
 The code above uses the DinnerRepository to retrieve a Dinner object. It then renders a View template using the Dinner object. Because we haven't explicitly passed a template name to the *View()* helper method, it will use the convention based default path to resolve the view template: /Views/Dinners/Edit.aspx.
 
@@ -84,67 +76,7 @@ When we click the "Add" button, Visual Studio will add a new "Edit.aspx" view te
 
 Let's make a few changes to the default "edit" scaffold generated, and update the edit view template to have the content below (which removes a few of the properties we don't want to expose):
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-        Edit: <%=Html.Encode(Model.Title)%>
-    </asp:Content>
-    
-    <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Edit Dinner</h2>
-    
-        <%=Html.ValidationSummary("Please correct the errors and try again.") %>  
-        
-        <% using (Html.BeginForm()) { %>
-    
-            <fieldset>
-                <p>
-                    <label for="Title">Dinner Title:</label>
-                    <%=Html.TextBox("Title") %>
-                    <%=Html.ValidationMessage("Title", "*") %>
-                </p>
-                <p>
-                    <label for="EventDate">EventDate:</label>
-                    <%=Html.TextBox("EventDate", String.Format("{0:g}", Model.EventDate))%>
-                    <%=Html.ValidationMessage("EventDate", "*") %>
-                </p>
-                <p>
-                    <label for="Description">Description:</label>
-                    <%=Html.TextArea("Description") %>
-                    <%=Html.ValidationMessage("Description", "*")%>
-                </p>
-                <p>
-                    <label for="Address">Address:</label>
-                    <%=Html.TextBox("Address") %>
-                    <%=Html.ValidationMessage("Address", "*") %>
-                </p>
-                <p>
-                    <label for="Country">Country:</label>
-                    <%=Html.TextBox("Country") %>               
-                    <%=Html.ValidationMessage("Country", "*") %>
-                </p>
-                <p>
-                    <label for="ContactPhone">ContactPhone #:</label>
-                    <%=Html.TextBox("ContactPhone") %>
-                    <%=Html.ValidationMessage("ContactPhone", "*") %>
-                </p>
-                <p>
-                    <label for="Latitude">Latitude:</label>
-                    <%=Html.TextBox("Latitude") %>
-                    <%=Html.ValidationMessage("Latitude", "*") %>
-                </p>
-                <p>
-                    <label for="Longitude">Longitude:</label>
-                    <%=Html.TextBox("Longitude") %>
-                    <%=Html.ValidationMessage("Longitude", "*") %>
-                </p>
-                <p>
-                    <input type="submit" value="Save"/>
-                </p>
-            </fieldset>
-            
-        <% } %>
-        
-    </asp:Content>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample2.xml)]
 
 When we run the application and request the *"/Dinners/Edit/1"* URL we will see the following page:
 
@@ -162,33 +94,11 @@ Our "Edit.aspx" view template is using several "Html Helper" methods: Html.Valid
 
 The Html.BeginForm() helper method is what output the HTML &lt;form&gt; element in our markup. In our Edit.aspx view template you'll notice that we are applying a C# "using" statement when using this method. The open curly brace indicates the beginning of the &lt;form&gt; content, and the closing curly brace is what indicates the end of the &lt;/form&gt; element:
 
-    <% using (Html.BeginForm()) { %>
-    
-       <fieldset>
-       
-          <!-- Fields Omitted for Brevity -->
-       
-          <p>
-             <input type="submit" value="Save"/>
-          </p>
-       </fieldset>
-       
-    <% } %>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample3.xml)]
 
 Alternatively, if you find the "using" statement approach unnatural for a scenario like this, you can use a Html.BeginForm() and Html.EndForm() combination (which does the same thing):
 
-    <% Html.BeginForm();  %>
-    
-       <fieldset>
-       
-          <!-- Fields Omitted for Brevity -->
-       
-          <p>
-              <input type="submit" value="Save"/>
-          </p>
-       </fieldset>
-       
-    <% Html.EndForm(); %>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample4.xml)]
 
 Calling Html.BeginForm() without any parameters will cause it to output a form element that does an HTTP-POST to the current request's URL. That is why our Edit view generates a *&lt;form action="/Dinners/Edit/1" method="post"&gt;* element. We could have alternatively passed explicit parameters to Html.BeginForm() if we wanted to post to a different URL.
 
@@ -196,21 +106,21 @@ Calling Html.BeginForm() without any parameters will cause it to output a form e
 
 Our Edit.aspx view uses the Html.TextBox() helper method to output &lt;input type="text"/&gt; elements:
 
-    <%= Html.TextBox("Title") %>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample5.xml)]
 
 The Html.TextBox() method above takes a single parameter – which is being used to specify both the id/name attributes of the &lt;input type="text"/&gt; element to output, as well as the model property to populate the textbox value from. For example, the Dinner object we passed to the Edit view had a "Title" property value of ".NET Futures", and so our Html.TextBox("Title") method call output: *&lt;input id="Title" name="Title" type="text" value=".NET Futures" /&gt;*.
 
 Alternatively, we can use the first Html.TextBox() parameter to specify the id/name of the element, and then explicitly pass in the value to use as a second parameter:
 
-    <%= Html.TextBox("Title", Model.Title)%>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample6.xml)]
 
 Often we'll want to perform custom formatting on the value that is output. The String.Format() static method built-into .NET is useful for these scenarios. Our Edit.aspx view template is using this to format the EventDate value (which is of type DateTime) so that it doesn't show seconds for the time:
 
-    <%= Html.TextBox("EventDate", String.Format("{0:g}", Model.EventDate)) %>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample7.xml)]
 
 A third parameter to Html.TextBox() can optionally be used to output additional HTML attributes. The code-snippet below demonstrates how to render an additional size="30" attribute and a class="mycssclass" attribute on the &lt;input type="text"/&gt; element. Note how we are escaping the name of the class attribute using a "@" character because "class" is a reserved keyword in C#:
 
-    <%= Html.TextBox("Title", Model.Title, new { size=30, @class="myclass" } )%>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample8.xml)]
 
 #### Implementing the HTTP-POST Edit Action Method
 
@@ -222,13 +132,7 @@ Pressing the "Save" button causes a form post to the */Dinners/Edit/1* URL, and 
 
 We'll begin by adding an overloaded "Edit" action method to our DinnersController that has an "AcceptVerbs" attribute on it that indicates it handles HTTP POST scenarios:
 
-    //
-    // POST: /Dinners/Edit/2
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Edit(int id, FormCollection formValues) {
-       ...
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample9.xml)]
 
 When the [AcceptVerbs] attribute is applied to overloaded action methods, ASP.NET MVC automatically handles dispatching requests to the appropriate action method depending on the incoming HTTP verb. HTTP POST requests to */Dinners/Edit/[id]* URLs will go to the above Edit method, while all other HTTP verb requests to */Dinners/Edit/[id]*URLs will go to the first Edit method we implemented (which did not have an [AcceptVerbs] attribute).
 
@@ -240,29 +144,7 @@ When the [AcceptVerbs] attribute is applied to overloaded action methods, ASP.NE
 
 There are a variety of ways we can access posted form parameters within our HTTP POST "Edit" method. One simple approach is to just use the Request property on the Controller base class to access the form collection and retrieve the posted values directly:
 
-    //
-    // POST: /Dinners/Edit/2
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Edit(int id, FormCollection formValues) {
-    
-        // Retrieve existing dinner
-        Dinner dinner = dinnerRepository.GetDinner(id);
-    
-        // Update dinner with form posted values
-        dinner.Title = Request.Form["Title"];
-        dinner.Description = Request.Form["Description"];
-        dinner.EventDate = DateTime.Parse(Request.Form["EventDate"]);
-        dinner.Address = Request.Form["Address"];
-        dinner.Country = Request.Form["Country"];
-        dinner.ContactPhone = Request.Form["ContactPhone"];
-    
-        // Persist changes back to database
-        dinnerRepository.Save();
-    
-        // Perform HTTP redirect to details page for the saved Dinner
-        return RedirectToAction("Details", new { id = dinner.DinnerID });
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample10.xml)]
 
 The above approach is a little verbose, though, especially once we add error handling logic.
 
@@ -270,20 +152,7 @@ A better approach for this scenario is to leverage the built-in *UpdateModel()* 
 
 We could use the UpdateModel() method to simplify our HTTP-POST Edit Action using this code:
 
-    //
-    // POST: /Dinners/Edit/2
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Edit(int id, FormCollection formValues) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-    
-        UpdateModel(dinner);
-    
-        dinnerRepository.Save();
-    
-        return RedirectToAction("Details", new { id = dinner.DinnerID });
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample11.xml)]
 
 We can now visit the */Dinners/Edit/1* URL, and change the title of our Dinner:
 
@@ -301,31 +170,7 @@ When a user makes a mistake editing a form, we need to make sure that the form i
 
 ASP.NET MVC includes some nice built-in features that make error handling and form redisplay easy. To see these features in action let's update our Edit action method with the following code:
 
-    //
-    // POST: /Dinners/Edit/2
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Edit(int id, FormCollection formValues) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-    
-        try {
-    
-            UpdateModel(dinner);
-    
-            dinnerRepository.Save();
-    
-            return RedirectToAction("Details", new { id=dinner.DinnerID });
-        }
-        catch {
-    
-            foreach (var issue in dinner.GetRuleViolations()) {
-                ModelState.AddModelError(issue.PropertyName, issue.ErrorMessage);
-            }
-    
-            return View(dinner);
-        }
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample12.xml)]
 
 The above code is similar to our previous implementation – except that we are now wrapping a try/catch error handling block around our work. If an exception occurs either when calling UpdateModel(), or when we try and save the DinnerRepository (which will raise an exception if the Dinner object we are trying to save is invalid because of a rule violation within our model), our catch error handling block will execute. Within it we loop over any rule violations that exist in the Dinner object and add them to a ModelState object (which we'll discuss shortly). We then redisplay the view.
 
@@ -345,28 +190,7 @@ The *UpdateModel()* helper method automatically populates the ModelState collect
 
 Developers can also write code to explicitly add error entries into the ModelState collection like we are doing below within our "catch" error handling block, which is populating the ModelState collection with entries based on the active Rule Violations in the Dinner object:
 
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Edit(int id, FormCollection formValues) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-    
-        try {
-        
-            UpdateModel(dinner);
-    
-            dinnerRepository.Save();
-    
-            return RedirectToAction("Details", new { id=dinner.DinnerID });
-        }
-        catch {
-        
-            foreach (var issue in dinner.GetRuleViolations()) {
-                ModelState.AddModelError(issue.PropertyName, issue.ErrorMessage);
-            }
-    
-            return View(dinner);
-        }
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample13.xml)]
 
 #### Html Helper Integration with ModelState
 
@@ -374,19 +198,15 @@ HTML helper methods - like Html.TextBox() - check the ModelState collection when
 
 For example, in our "Edit" view we are using the Html.TextBox() helper method to render the EventDate of our Dinner object:
 
-    <%= Html.TextBox("EventDate", String.Format("{0:g}", Model.EventDate)) %>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample14.xml)]
 
 When the view was rendered in the error scenario, the Html.TextBox() method checked the ModelState collection to see if there were any errors associated with the "EventDate" property of our Dinner object. When it determined that there was an error it rendered the submitted user input ("BOGUS") as the value, and added a css error class to the &lt;input type="textbox"/&gt; markup it generated:
 
-    <input class="input-validation-error"id="EventDate" name="EventDate" type="text" value="BOGUS"/>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample15.xml)]
 
 You can customize the appearance of the css error class to look however you want. The default CSS error class – "input-validation-error" – is defined in the *\content\site.css* stylesheet and looks like below:
 
-    .input-validation-error
-    {
-        border: 1px solid #ff0000;
-        background-color: #ffeeee;
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample16.xml)]
 
 This CSS rule is what caused our invalid input elements to be highlighted like below:
 
@@ -396,13 +216,13 @@ This CSS rule is what caused our invalid input elements to be highlighted like b
 
 The Html.ValidationMessage() helper method can be used to output the ModelState error message associated with a particular model property:
 
-    <%= Html.ValidationMessage("EventDate")%>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample17.xml)]
 
 The above code outputs: *&lt;span class="field-validation-error"&gt; The value ‘BOGUS' is invalid&lt;/span&gt;*
 
 The Html.ValidationMessage() helper method also supports a second parameter that allows developers to override the error text message that is displayed:
 
-    <%= Html.ValidationMessage("EventDate","*") %>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample18.xml)]
 
 The above code outputs: *&lt;span class="field-validation-error"&gt;\*&lt;/span&gt;*instead of the default error text when an error is present for the EventDate property.
 
@@ -414,7 +234,7 @@ The Html.ValidationSummary() helper method can be used to render a summary error
 
 The Html.ValidationSummary() helper method takes an optional string parameter – which defines a summary error message to display above the list of detailed errors:
 
-    <%= Html.ValidationSummary("Please correct the errors and try again.") %>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample19.xml)]
 
 You can optionally use CSS to override what the error list looks like.
 
@@ -422,25 +242,11 @@ You can optionally use CSS to override what the error list looks like.
 
 Our initial HTTP-POST Edit implementation used a foreach statement within its catch block to loop over the Dinner object's Rule Violations and add them to the controller's ModelState collection:
 
-    catch {
-            foreach (var issue in dinner.GetRuleViolations()) {
-                ModelState.AddModelError(issue.PropertyName, issue.ErrorMessage);
-            }
-    
-            return View(dinner);
-        }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample20.xml)]
 
 We can make this code a little cleaner by adding a "ControllerHelpers" class to the NerdDinner project, and implement an "AddRuleViolations" extension method within it that adds a helper method to the ASP.NET MVC ModelStateDictionary class. This extension method can encapsulate the logic necessary to populate the ModelStateDictionary with a list of RuleViolation errors:
 
-    public static class ControllerHelpers {
-    
-       public static void AddRuleViolations(this ModelStateDictionary modelState, IEnumerable<RuleViolation> errors) {
-       
-           foreach (RuleViolation issue in errors) {
-               modelState.AddModelError(issue.PropertyName, issue.ErrorMessage);
-           }
-       }
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample21.xml)]
 
 We can then update our HTTP-POST Edit action method to use this extension method to populate the ModelState collection with our Dinner Rule Violations.
 
@@ -448,39 +254,7 @@ We can then update our HTTP-POST Edit action method to use this extension method
 
 The code below implements all of the controller logic necessary for our Edit scenario:
 
-    //
-    // GET: /Dinners/Edit/2
-    
-    public ActionResult Edit(int id) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-        
-        return View(dinner);
-    }
-    
-    //
-    // POST: /Dinners/Edit/2
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Edit(int id, FormCollection formValues) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-    
-        try {
-        
-            UpdateModel(dinner);
-    
-            dinnerRepository.Save();
-    
-            return RedirectToAction("Details", new { id=dinner.DinnerID });
-        }
-        catch {
-        
-            ModelState.AddRuleViolations(dinner.GetRuleViolations());
-    
-            return View(dinner);
-        }
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample22.xml)]
 
 The nice thing about our Edit implementation is that neither our Controller class nor our View template has to know anything about the specific validation or business rules being enforced by our Dinner model. We can add additional rules to our model in the future and do not have to make any code changes to our controller or view in order for them to be supported. This provides us with the flexibility to easily evolve our application requirements in the future with a minimum of code changes.
 
@@ -492,17 +266,7 @@ We've finished implementing the "Edit" behavior of our DinnersController class. 
 
 We'll begin by implementing the HTTP "GET" behavior of our create action method. This method will be called when someone visits the */Dinners/Create* URL. Our implementation looks like:
 
-    //
-    // GET: /Dinners/Create
-    
-    public ActionResult Create() {
-    
-        Dinner dinner = new Dinner() {
-            EventDate = DateTime.Now.AddDays(7)
-        };
-    
-        return View(dinner);
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample23.xml)]
 
 The code above creates a new Dinner object, and assigns its EventDate property to be one week in the future. It then renders a View that is based on the new Dinner object. Because we haven't explicitly passed a name to the *View()* helper method, it will use the convention based default path to resolve the view template: /Views/Dinners/Create.aspx.
 
@@ -516,66 +280,7 @@ When we click the "Add" button, Visual Studio will save a new scaffold-based "Cr
 
 Let's make a few changes to the default "create" scaffold file that was generated for us, and modify it up to look like below:
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-         Host a Dinner
-    </asp:Content>
-    
-    <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Host a Dinner</h2>
-    
-        <%=Html.ValidationSummary("Please correct the errors and try again.") %>
-     
-        <% using (Html.BeginForm()) {%>
-      
-            <fieldset>
-                <p>
-                    <label for="Title">Title:</label>
-                    <%= Html.TextBox("Title") %>
-                    <%= Html.ValidationMessage("Title", "*") %>
-                </p>
-                <p>
-                    <label for="EventDate">EventDate:</label>
-                    <%=Html.TextBox("EventDate") %>
-                    <%=Html.ValidationMessage("EventDate", "*") %>
-                </p>
-                <p>
-                    <label for="Description">Description:</label>
-                    <%=Html.TextArea("Description") %>
-                    <%=Html.ValidationMessage("Description", "*") %>
-                </p>
-                <p>
-                    <label for="Address">Address:</label>
-                    <%=Html.TextBox("Address") %>
-                    <%=Html.ValidationMessage("Address", "*") %>
-                </p>
-                <p>
-                    <label for="Country">Country:</label>
-                    <%=Html.TextBox("Country") %>
-                    <%=Html.ValidationMessage("Country", "*") %>
-                </p>
-                <p>
-                    <label for="ContactPhone">ContactPhone:</label>
-                    <%=Html.TextBox("ContactPhone") %>
-                    <%=Html.ValidationMessage("ContactPhone", "*") %>
-                </p>            
-                <p>
-                    <label for="Latitude">Latitude:</label>
-                    <%=Html.TextBox("Latitude") %>
-                    <%=Html.ValidationMessage("Latitude", "*") %>
-                </p>
-                <p>
-                    <label for="Longitude">Longitude:</label>
-                    <%=Html.TextBox("Longitude") %>
-                    <%=Html.ValidationMessage("Longitude", "*") %>
-                </p>
-                <p>
-                    <input type="submit" value="Save"/>
-                </p>
-            </fieldset>
-        <% } 
-    %>
-    </asp:Content>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample24.xml)]
 
 And now when we run our application and access the *"/Dinners/Create"* URL within the browser it will render UI like below from our Create action implementation:
 
@@ -587,69 +292,17 @@ We have the HTTP-GET version of our Create action method implemented. When a use
 
 Let's now implement the HTTP POST behavior of our create action method. We'll begin by adding an overloaded "Create" action method to our DinnersController that has an "AcceptVerbs" attribute on it that indicates it handles HTTP POST scenarios:
 
-    //
-    // POST: /Dinners/Create
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Create() {
-        ...
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample25.xml)]
 
 There are a variety of ways we can access the posted form parameters within our HTTP-POST enabled "Create" method.
 
 One approach is to create a new Dinner object and then use the *UpdateModel()* helper method (like we did with the Edit action) to populate it with the posted form values. We can then add it to our DinnerRepository, persist it to the database, and redirect the user to our Details action to show the newly created Dinner using the code below:
 
-    //
-    // POST: /Dinners/Create
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Create() {
-    
-        Dinner dinner = new Dinner();
-    
-        try {
-        
-            UpdateModel(dinner);
-    
-            dinnerRepository.Add(dinner);
-            dinnerRepository.Save();
-    
-            return RedirectToAction("Details", new {id=dinner.DinnerID});
-        }
-        catch {
-        
-            ModelState.AddRuleViolations(dinner.GetRuleViolations());
-    
-            return View(dinner);
-        }
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample26.xml)]
 
 Alternatively, we can use an approach where we have our Create() action method take a Dinner object as a method parameter. ASP.NET MVC will then automatically instantiate a new Dinner object for us, populate its properties using the form inputs, and pass it to our action method:
 
-    //
-    //
-    // POST: /Dinners/Create
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Create(Dinner dinner) {
-    
-        if (ModelState.IsValid) {
-    
-            try {
-                dinner.HostedBy = "SomeUser";
-    
-                dinnerRepository.Add(dinner);
-                dinnerRepository.Save();
-    
-                return RedirectToAction("Details", new {id = dinner.DinnerID });
-            }
-            catch {        
-                ModelState.AddRuleViolations(dinner.GetRuleViolations());
-            }
-        }
-        
-        return View(dinner);
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample27.xml)]
 
 Our action method above verifies that the Dinner object has been successfully populated with the form post values by checking the ModelState.IsValid property. This will return false if there are input conversion issues (for example: a string of "BOGUS" for the EventDate property), and if there are any issues our action method redisplays the form.
 
@@ -673,18 +326,7 @@ Let's now add "Delete" support to our DinnersController.
 
 We'll begin by implementing the HTTP GET behavior of our delete action method. This method will get called when someone visits the */Dinners/Delete/[id]* URL . Below is the implementation:
 
-    //
-    // HTTP GET: /Dinners/Delete/1
-    
-    public ActionResult Delete(int id) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-    
-        if (dinner == null)
-             return View("NotFound");
-        else
-            return View(dinner);
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample28.xml)]
 
 The action method attempts to retrieve the Dinner to be deleted. If the Dinner exists it renders a View based on the Dinner object. If the object doesn't exist (or has already been deleted) it returns a View that renders the "NotFound" view template we created earlier for our "Details" action method.
 
@@ -694,27 +336,7 @@ We can create the "Delete" view template by right-clicking within the Delete act
 
 When we click the "Add" button, Visual Studio will add a new "Delete.aspx" view template file for us within our "\Views\Dinners" directory. We'll add some HTML and code to the template to implement a delete confirmation screen like below:
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-        Delete Confirmation:  <%=Html.Encode(Model.Title) %>
-    </asp:Content>
-    
-    <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>
-            Delete Confirmation
-        </h2>
-    
-        <div>
-            <p>Please confirm you want to cancel the dinner titled: 
-               <i> <%=Html.Encode(Model.Title) %>? </i> 
-            </p>
-        </div>
-        
-        <% using (Html.BeginForm()) {  %>
-            <input name="confirmButton" type="submit" value="Delete" />        
-        <% } %>
-         
-    </asp:Content>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample29.xml)]
 
 The code above displays the title of the Dinner to be deleted, and outputs a &lt;form&gt; element that does a POST to the /Dinners/Delete/[id] URL if the end-user clicks the "Delete" button within it.
 
@@ -732,44 +354,13 @@ We now have the HTTP-GET version of our Delete action method implemented which d
 
 Let's now implement the HTTP "POST" behavior of the delete action method using the code below:
 
-    // 
-    // HTTP POST: /Dinners/Delete/1
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Delete(int id, string confirmButton) {
-    
-        Dinner dinner = dinnerRepository.GetDinner(id);
-    
-        if (dinner == null)
-            return View("NotFound");
-    
-        dinnerRepository.Delete(dinner);
-        dinnerRepository.Save();
-    
-        return View("Deleted");
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample30.xml)]
 
 The HTTP-POST version of our Delete action method attempts to retrieve the dinner object to delete. If it can't find it (because it has already been deleted) it renders our "NotFound" template. If it finds the Dinner, it deletes it from the DinnerRepository. It then renders a "Deleted" template.
 
 To implement the "Deleted" template we'll right-click in the action method and choose the "Add View" context menu. We'll name our view "Deleted" and have it be an empty template (and not take a strongly-typed model object). We'll then add some HTML content to it:
 
-    <asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-        Dinner Deleted
-    </asp:Content>
-    
-    <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-    
-        <h2>Dinner Deleted</h2>
-    
-        <div>
-            <p>Your dinner was successfully deleted.</p>
-        </div>
-        
-        <div>
-            <p><a href="/dinners">Click for Upcoming Dinners</a></p>
-        </div>
-        
-    </asp:Content>
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample31.xml)]
 
 And now when we run our application and access the *"/Dinners/Delete/[id]"* URL for a valid Dinner object it will render our Dinner delete confirmation screen like below:
 
@@ -793,22 +384,11 @@ By default, the UpdateModel() method will attempt to update all properties on th
 
 You can lock down the binding policy on a per-usage basis by providing an explicit "include list" of properties that can be updated. This can be done by passing an extra string array parameter to the UpdateModel() method like below:
 
-    string[] allowedProperties = new[]{ "Title","Description", 
-                                        "ContactPhone", "Address",
-                                        "EventDate", "Latitude", 
-                                        "Longitude"};
-                                        
-    UpdateModel(dinner, allowedProperties);
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample32.xml)]
 
 Objects passed as action method parameters also support a [Bind] attribute that enables an "include list" of allowed properties to be specified like below:
 
-    //
-    // POST: /Dinners/Create
-    
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Create( [Bind(Include="Title,Address")] Dinner dinner ) {
-        ...
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample33.xml)]
 
 #### Locking down binding on a type basis
 
@@ -818,10 +398,7 @@ You can customize the per-type binding rules by adding a [Bind] attribute onto a
 
 We'll use this technique for the Dinner class in our NerdDinner application, and add a [Bind] attribute to it that restricts the list of bindable properties to the following:
 
-    [Bind(Include="Title,Description,EventDate,Address,Country,ContactPhone,Latitude,Longitude")]
-    public partial class Dinner {
-       ...
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample34.xml)]
 
 Notice we are not allowing the RSVPs collection to be manipulated via binding, nor are we allowing the DinnerID or HostedBy properties to be set via binding. For security reasons we'll instead only manipulate these particular properties using explicit code within our action methods.
 
@@ -835,128 +412,7 @@ This will keep our application architecture clean and make it easier to test. We
 
 Our DinnersController now enables Dinner listings/details, as well as create, edit and delete support. The complete code for the class can be found below:
 
-    public class DinnersController : Controller {
-    
-        DinnerRepository dinnerRepository = new DinnerRepository();
-    
-        //
-        // GET: /Dinners/
-    
-        public ActionResult Index() {
-    
-            var dinners = dinnerRepository.FindUpcomingDinners().ToList();
-            return View(dinners);
-        }
-    
-        //
-        // GET: /Dinners/Details/2
-    
-        public ActionResult Details(int id) {
-    
-            Dinner dinner = dinnerRepository.GetDinner(id);
-    
-            if (dinner == null)
-                return View("NotFound");
-            else
-                return View(dinner);
-        }
-    
-        //
-        // GET: /Dinners/Edit/2
-    
-        public ActionResult Edit(int id) {
-    
-            Dinner dinner = dinnerRepository.GetDinner(id);
-            return View(dinner);
-        }
-    
-        //
-        // POST: /Dinners/Edit/2
-    
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection formValues) {
-    
-            Dinner dinner = dinnerRepository.GetDinner(id);
-    
-            try {
-                UpdateModel(dinner);
-    
-                dinnerRepository.Save();
-    
-                return RedirectToAction("Details", new { id= dinner.DinnerID });
-            }
-            catch {
-                ModelState.AddRuleViolations(dinner.GetRuleViolations());
-    
-                return View(dinner);
-            }
-        }
-    
-        //
-        // GET: /Dinners/Create
-    
-        public ActionResult Create() {
-    
-            Dinner dinner = new Dinner() {
-                EventDate = DateTime.Now.AddDays(7)
-            };
-            return View(dinner);
-        }
-    
-        //
-        // POST: /Dinners/Create
-    
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(Dinner dinner) {
-    
-            if (ModelState.IsValid) {
-    
-                try {
-                    dinner.HostedBy = "SomeUser";
-    
-                    dinnerRepository.Add(dinner);
-                    dinnerRepository.Save();
-    
-                    return RedirectToAction("Details", new{id=dinner.DinnerID});
-                }
-                catch {
-                    ModelState.AddRuleViolations(dinner.GetRuleViolations());
-                }
-            }
-    
-            return View(dinner);
-        }
-    
-        //
-        // HTTP GET: /Dinners/Delete/1
-    
-        public ActionResult Delete(int id) {
-    
-            Dinner dinner = dinnerRepository.GetDinner(id);
-    
-            if (dinner == null)
-                return View("NotFound");
-            else
-                return View(dinner);
-        }
-    
-        // 
-        // HTTP POST: /Dinners/Delete/1
-    
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Delete(int id, string confirmButton) {
-    
-            Dinner dinner = dinnerRepository.GetDinner(id);
-    
-            if (dinner == null)
-                return View("NotFound");
-    
-            dinnerRepository.Delete(dinner);
-            dinnerRepository.Save();
-    
-            return View("Deleted");
-        }
-    }
+[!code[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample35.xml)]
 
 ### Next Step
 

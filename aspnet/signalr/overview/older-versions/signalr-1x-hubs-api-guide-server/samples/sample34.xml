@@ -1,1 +1,1 @@
-System.Web.HttpContextBase httpContext = Context.Request.GetHttpContext();
+        Clients.OthersInGroup(groupName).addContosoChatMessageToPage(name, message);

@@ -1,0 +1,4 @@
+        <section name="dynamicData"
+            type="System.Web.DynamicData.DynamicDataControlsSection"
+            requirePermission="false"
+            allowDefinition="MachineToApplication"/>

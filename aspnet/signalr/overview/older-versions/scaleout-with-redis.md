@@ -47,13 +47,7 @@ Before we get to the detailed tutorial, here is a quick overview of what you wil
 3. Create a SignalR application.
 4. Add the following code to Global.asax to configure the backplane: 
 
-        protected void Application_Start()
-        {
-            GlobalHost.DependencyResolver.UseRedis("server", port, "password", "AppName");
-        
-            RouteTable.Routes.MapHubs();
-            // ...
-        }
+    [!code[Main](scaleout-with-redis/samples/sample1.xml)]
 
 ## Ubuntu on Hyper-V
 
@@ -73,20 +67,17 @@ In the **Installation Options** step, select **Image file (.iso)**, click **Brow
 
 Follow the steps at [http://redis.io/download](http://redis.io/download) to download and build Redis.
 
-    wget http://redis.googlecode.com/files/redis-2.6.12.tar.gz
-    tar xzf redis-2.6.12.tar.gz
-    cd redis-2.6.12
-    make
+[!code[Main](scaleout-with-redis/samples/sample2.xml)]
 
 This builds the Redis binaries in the `src` directory.
 
 By default, Redis does not require a password. To set a password, edit the `redis.conf` file, which is located in the root directory of the source code. (Make a backup copy of the file before you edit it!) Add the following directive to `redis.conf`:
 
-    requirepass YourStrongPassword1234
+[!code[Main](scaleout-with-redis/samples/sample3.xml)]
 
 Now start the Redis server:
 
-    src/redis-server redis.conf
+[!code[Main](scaleout-with-redis/samples/sample4.xml)]
 
 ![](scaleout-with-redis/_static/image4.png)
 
@@ -101,16 +92,11 @@ Create a SignalR application by following either of these tutorials:
 
 Next, we'll modify the chat application to support scaleout with Redis. First, add the SignalR.Redis NuGet package to your project. In Visual Studio, from the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-    Install-Package Microsoft.AspNet.SignalR.Redis
+[!code[Main](scaleout-with-redis/samples/sample5.xml)]
 
 Next, open the Global.asax file. Add the following code to the **Application\_Start** method:
 
-    protected void Application_Start()
-    {
-        GlobalHost.DependencyResolver.UseRedis("server", port, "password", "AppName");
-    
-        RouteTable.Routes.MapHubs();
-    }
+[!code[Main](scaleout-with-redis/samples/sample6.xml)]
 
 - "server" is the name of the server that is running Redis.
 - *port* is the port number
@@ -119,8 +105,7 @@ Next, open the Global.asax file. Add the following code to the **Application\_St
 
 For example:
 
-    GlobalHost.DependencyResolver.UseRedis("redis-server.cloudapp.net", 6379,
-        "MyStrongPassword1234", "ChatApp");
+[!code[Main](scaleout-with-redis/samples/sample7.xml)]
 
 ## Deploy and Run the Application
 
@@ -152,7 +137,6 @@ If you deploy the application to two servers, you can open each instance in a se
 
 If you're curious to see the messages that are sent to Redis, you can use the **redis-cli** client, which installs with Redis.
 
-    redis-cli -a password
-    SUBSCRIBE ChatApp
+[!code[Main](scaleout-with-redis/samples/sample8.xml)]
 
 ![](scaleout-with-redis/_static/image9.png)

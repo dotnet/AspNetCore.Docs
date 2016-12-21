@@ -56,35 +56,7 @@ Note that this package will install the dependency packages: EntityFramework and
     > [!NOTE] This is just a simplified version of the*Register.aspx*file that is created when you create a new ASP.NET Web Forms project. The markup above adds form fields and a button to register a new user.
 4. Open the *Register.aspx.cs* file and replace the contents of the file with the following code:
 
-        using Microsoft.AspNet.Identity;
-        using Microsoft.AspNet.Identity.EntityFramework;
-        using System;
-        using System.Linq;
-        
-        namespace WebFormsIdentity
-        {
-           public partial class Register : System.Web.UI.Page
-           {
-              protected void CreateUser_Click(object sender, EventArgs e)
-              {
-                 // Default UserStore constructor uses the default connection string named: DefaultConnection
-                 var userStore = new UserStore<IdentityUser>();
-                 var manager = new UserManager<IdentityUser>(userStore);
-        
-                 var user = new IdentityUser() { UserName = UserName.Text };
-                 IdentityResult result = manager.Create(user, Password.Text);
-        
-                 if (result.Succeeded)
-                 {
-                    StatusMessage.Text = string.Format("User {0} was created successfully!", user.UserName);
-                 }
-                 else
-                 {
-                    StatusMessage.Text = result.Errors.FirstOrDefault();
-                 }
-              }
-           }
-        }
+    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample2.xml)]
 
     > [!NOTE] 
     > 
@@ -98,7 +70,7 @@ Note that this package will install the dependency packages: EntityFramework and
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image5.png)
 6. Open the *Web.config* file and add a connection string entry for the database we will use to store user information. The database will be created at runtime by EntityFramework for the Identity entities. The connection string is similar to one created for you when you create a new Web Forms project. The highlighted code shows the markup you should add:
 
-    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample2.xml?highlight=11-14)]
+    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample3.xml?highlight=11-14)]
 7. Right click file *Register.aspx* in your project and select **Set as Start Page**. Press Ctrl + F5 to build and run the web application. Enter a new user name and password and then click on **Register**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image6.png)  
@@ -136,7 +108,7 @@ At this point we have only added support for creating users. Now, we are going t
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image11.png)
 2. In the Startup.cs file, add the highlighted code shown below to configure OWIN cookie authentication.
 
-    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample3.xml?highlight=1,3,15-19)]
+    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample4.xml?highlight=1,3,15-19)]
 
     > [!NOTE] This class contains the `OwinStartup` attribute for specifying the OWIN startup class. Every OWIN application has a startup class where you specify components for the application pipeline. See [OWIN Startup Class Detection](../../../aspnet/overview/owin-and-katana/owin-startup-class-detection.md) for more info on this model.
 
@@ -144,40 +116,7 @@ At this point we have only added support for creating users. Now, we are going t
 
 1. Open the *Register.cs* file and add the following code which will log in the user when registration succeeds. The changes are highlighted below.
 
-        using Microsoft.AspNet.Identity;
-        using Microsoft.AspNet.Identity.EntityFramework;
-        using Microsoft.Owin.Security;
-        using System;
-        using System.Linq;
-        using System.Web;
-        
-        namespace WebFormsIdentity
-        {
-           public partial class Register : System.Web.UI.Page
-           {
-              protected void CreateUser_Click(object sender, EventArgs e)
-              {
-                 // Default UserStore constructor uses the default connection string named: DefaultConnection
-                 var userStore = new UserStore<IdentityUser>();
-                 var manager = new UserManager<IdentityUser>(userStore);
-                 var user = new IdentityUser() { UserName = UserName.Text };
-        
-                 IdentityResult result = manager.Create(user, Password.Text);
-        
-                 if (result.Succeeded)
-                 {
-                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-                    var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
-                    Response.Redirect("~/Login.aspx");
-                 }
-                 else
-                 {
-                    StatusMessage.Text = result.Errors.FirstOrDefault();
-                 }
-              }
-           }
-        }
+    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample5.xml)]
 
     > [!NOTE] 
     > 
@@ -188,113 +127,10 @@ At this point we have only added support for creating users. Now, we are going t
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image12.png)
 3. Replace the contents of the*Login.aspx* file with the following code:  
 
-        <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="WebFormsIdentity.Login" %>
-        
-        <!DOCTYPE html>
-        
-        <html xmlns="http://www.w3.org/1999/xhtml">
-        <head runat="server">
-           <title></title>
-        </head>
-        <body style="font-family: Arial, Helvetica, sans-serif; font-size: small">
-           <form id="form1" runat="server">
-              <div>
-                 <h4 style="font-size: medium">Log In</h4>
-                 <hr />
-                 <asp:PlaceHolder runat="server" ID="LoginStatus" Visible="false">
-                    <p>
-                       <asp:Literal runat="server" ID="StatusText" />
-                    </p>
-                 </asp:PlaceHolder>
-                 <asp:PlaceHolder runat="server" ID="LoginForm" Visible="false">
-                    <div style="margin-bottom: 10px">
-                       <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
-                       <div>
-                          <asp:TextBox runat="server" ID="UserName" />
-                       </div>
-                    </div>
-                    <div style="margin-bottom: 10px">
-                       <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
-                       <div>
-                          <asp:TextBox runat="server" ID="Password" TextMode="Password" />
-                       </div>
-                    </div>
-                    <div style="margin-bottom: 10px">
-                       <div>
-                          <asp:Button runat="server" OnClick="SignIn" Text="Log in" />
-                       </div>
-                    </div>
-                 </asp:PlaceHolder>
-                 <asp:PlaceHolder runat="server" ID="LogoutButton" Visible="false">
-                    <div>
-                       <div>
-                          <asp:Button runat="server" OnClick="SignOut" Text="Log out" />
-                       </div>
-                    </div>
-                 </asp:PlaceHolder>
-              </div>
-           </form>
-        </body>
-        </html>
+    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample6.xml)]
 4. Replace the contents of the *Login.aspx.cs* file with the following:  
 
-        using Microsoft.AspNet.Identity;
-        using Microsoft.AspNet.Identity.EntityFramework;
-        using Microsoft.Owin.Security;
-        using System;
-        using System.Web;
-        using System.Web.UI.WebControls;
-        
-        namespace WebFormsIdentity
-        {
-           public partial class Login : System.Web.UI.Page
-           {
-              protected void Page_Load(object sender, EventArgs e)
-              {
-                 if (!IsPostBack)
-                 {
-                    if (User.Identity.IsAuthenticated)
-                    {
-                       StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-                       LoginStatus.Visible = true;
-                       LogoutButton.Visible = true;
-                    }
-                    else
-                    {
-                       LoginForm.Visible = true;
-                    }
-                 }
-              }
-        
-              protected void SignIn(object sender, EventArgs e)
-              {
-                 var userStore = new UserStore<IdentityUser>();
-                 var userManager = new UserManager<IdentityUser>(userStore);
-                 var user = userManager.Find(UserName.Text, Password.Text);
-        
-                 if (user != null)
-                 {
-                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-                    var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-        
-                    authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-                    Response.Redirect("~/Login.aspx");
-                 }
-                 else
-                 {
-                    StatusText.Text = "Invalid username or password.";
-                    LoginStatus.Visible = true;
-                 }
-              }
-        
-              protected void SignOut(object sender, EventArgs e)
-              {
-                 var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-                 authenticationManager.SignOut();
-                 Response.Redirect("~/Login.aspx");
-              }
-           }
-        }
+    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample7.xml)]
 
     > [!NOTE] 
     > 

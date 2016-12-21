@@ -84,22 +84,7 @@ On the **Configure** tab for the web app, you can see that it has the storage ac
 
 The *Automation* folder now also contains a *&lt;websitename&gt;.pubxml* file. This file stores settings that MSBuild will use to deploy the application to the Azure environment that was just created. For example:
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-      <PropertyGroup>
-        <WebPublishMethod>MSDeploy</WebPublishMethod>
-        <SiteUrlToLaunchAfterPublish>http://fixitdemo.azurewebsites.net</SiteUrlToLaunchAfterPublish>
-        <ExcludeApp_Data>False</ExcludeApp_Data>
-        <MSDeployServiceURL>waws-prod-bay-003.publish.azurewebsites.windows.net:443</MSDeployServiceURL>
-        <DeployIisAppPath>fixitdemo</DeployIisAppPath>
-        <RemoteSitePhysicalPath />
-        <SkipExtraFilesOnServer>True</SkipExtraFilesOnServer>
-        <MSDeployPublishMethod>WMSVC</MSDeployPublishMethod>
-        <EnableMSDeployBackup>True</EnableMSDeployBackup>
-        <UserName>$fixitdemo</UserName>
-        <PublishDatabaseSettings></PublishDatabaseSettings>
-      </PropertyGroup>
-    </Project>
+[!code[Main](automate-everything/samples/sample1.xml)]
 
 As you can see, the script has created a complete test environment, and the whole process is done in about 90 seconds.
 
@@ -118,17 +103,7 @@ There are actually three scripts that do this work. You call one from the comman
 
 The main script, *New-AzureWebSiteEnv.ps1*, defines several parameters:
 
-    [CmdletBinding(PositionalBinding=$True)]
-    Param(
-        [Parameter(Mandatory = $true)]
-        [ValidatePattern("^[a-z0-9]*$")]
-        [String]$Name,                             
-        [String]$Location = "West US",             
-        [String]$SqlDatabaseUserName = "dbuser",   
-        [String]$SqlDatabasePassword,              
-        [String]$StartIPAddress,                   
-        [String]$EndIPAddress                      
-        )
+[!code[Main](automate-everything/samples/sample2.xml)]
 
 Two parameters are required:
 
@@ -141,17 +116,17 @@ Optional parameters enable you to specify the data center location (defaults to 
 
 The first thing the script does is create the web app by calling the `New-AzureWebsite` cmdlet, passing in to it the web app name and location parameter values:
 
-[!code[Main](automate-everything/samples/sample1.xml?highlight=2)]
+[!code[Main](automate-everything/samples/sample3.xml?highlight=2)]
 
 ### Create the storage account
 
 Then the main script runs the *New-AzureStorage.ps1* script, specifying "*&lt;websitename&gt;*storage" for the storage account name, and the same data center location as the web app.
 
-[!code[Main](automate-everything/samples/sample2.xml?highlight=3)]
+[!code[Main](automate-everything/samples/sample4.xml?highlight=3)]
 
 *New-AzureStorage.ps1* calls the `New-AzureStorageAccount` cmdlet to create the storage account, and it returns the account name and access key values. The application will need these values in order to access the blobs and queues in the storage account.
 
-[!code[Main](automate-everything/samples/sample3.xml?highlight=2)]
+[!code[Main](automate-everything/samples/sample5.xml?highlight=2)]
 
 You might not always want to create a new storage account; you could enhance the script by adding a parameter that optionally directs it to use an existing storage account.
 
@@ -159,42 +134,36 @@ You might not always want to create a new storage account; you could enhance the
 
 The main script then runs the database creation script, *New-AzureSql.ps1*, after setting up default database and firewall rule names:
 
-    $sqlAppDatabaseName = "appdb"
-    $sqlMemberDatabaseName = "memberdb"
-    $sqlDatabaseServerFirewallRuleName = $Name + "rule"
+[!code[Main](automate-everything/samples/sample6.xml)]
 
-[!code[Main](automate-everything/samples/sample4.xml?highlight=2)]
+[!code[Main](automate-everything/samples/sample7.xml?highlight=2)]
 
 The database creation script retrieves the dev machine's IP address and sets a firewall rule so the dev machine can connect to and manage the server. The database creation script then goes through several steps to set up the databases:
 
 - Creates the server by using the `New-AzureSqlDatabaseServer` cmdlet.
 
-    [!code[Main](automate-everything/samples/sample5.xml?highlight=1)]
+    [!code[Main](automate-everything/samples/sample8.xml?highlight=1)]
 - Creates firewall rules to enable the dev machine to manage the server and to enable the web app to connect to it. 
 
-    [!code[Main](automate-everything/samples/sample6.xml?highlight=3,5)]
+    [!code[Main](automate-everything/samples/sample9.xml?highlight=3,5)]
 - Creates a database context that includes the server name and credentials, by using the `New-AzureSqlDatabaseServerContext` cmdlet.
 
-    [!code[Main](automate-everything/samples/sample7.xml?highlight=4)]
+    [!code[Main](automate-everything/samples/sample10.xml?highlight=4)]
 
     `New-PSCredentialFromPlainText` is a function in the script that calls the `ConvertTo-SecureString` cmdlet to encrypt the password and returns a `PSCredential` object, the same type that the `Get-Credential` cmdlet returns.
 - Creates the application database and the membership database by using the `New-AzureSqlDatabase` cmdlet.
 
-    [!code[Main](automate-everything/samples/sample8.xml?highlight=2,5)]
+    [!code[Main](automate-everything/samples/sample11.xml?highlight=2,5)]
 - Calls a locally defined function tocreates a connection string for each database. The application will use these connection strings to access the databases. 
 
-    [!code[Main](automate-everything/samples/sample9.xml?highlight=1-2)]
+    [!code[Main](automate-everything/samples/sample12.xml?highlight=1-2)]
 
     Get-SQLAzureDatabaseConnectionString is a function defined in the script that creates the connection string from the parameter values supplied to it.
 
-    [!code[Main](automate-everything/samples/sample10.xml?highlight=1)]
+    [!code[Main](automate-everything/samples/sample13.xml?highlight=1)]
 - Returns a hash table with the database server name and the connection strings.
 
-        Return @{ `
-            Server = $databaseServer.ServerName; UserName = $UserName; Password = $Password; `
-            AppDatabase = @{Name = $AppDatabaseName; ConnectionString = $appDatabaseConnectionString}; `
-            MemberDatabase = @{Name = $MemberDatabaseName; ConnectionString = $memberDatabaseConnectionString} `
-        }
+    [!code[Main](automate-everything/samples/sample14.xml)]
 
 The Fix It app uses separate membership and application databases. It's also possible to put both membership and application data in a single database. For an example that uses a single database, see [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/).
 
@@ -204,27 +173,15 @@ Azure has a feature that enables you to store settings and connection strings th
 
 The environment creation script stores in Azure all of the `appSettings` and `connectionStrings` values that the application needs to access the storage account and databases when it runs in Azure.
 
-    # Configure app settings for storage account and New Relic
-    $appSettings = @{ `
-        "StorageAccountName" = $storageAccountName; `
-        "StorageAccountAccessKey" = $storage.AccessKey; `
-        "COR_ENABLE_PROFILING" = "1"; `
-        "COR_PROFILER" = "{71DA0A04-7777-4EC6-9643-7D28B46A8A41}"; `
-        "COR_PROFILER_PATH" = "C:\Home\site\wwwroot\newrelic\NewRelic.Profiler.dll"; `
-        "NEWRELIC_HOME" = "C:\Home\site\wwwroot\newrelic" `
-    }
+[!code[Main](automate-everything/samples/sample15.xml)]
 
-    # Configure connection strings for appdb and ASP.NET member db
-    $connectionStrings = ( `
-        @{Name = $sqlAppDatabaseName; Type = "SQLAzure"; ConnectionString = $sql.AppDatabase.ConnectionString}, `
-        @{Name = "DefaultConnection"; Type = "SQLAzure"; ConnectionString = $sql.MemberDatabase.ConnectionString}
-    )
+[!code[Main](automate-everything/samples/sample16.xml)]
 
-[!code[Main](automate-everything/samples/sample11.xml?highlight=2)]
+[!code[Main](automate-everything/samples/sample17.xml?highlight=2)]
 
 [New Relic](http://newrelic.com/) is a telemetry framework that we demonstrate in the [Monitoring and Telemetry](monitoring-and-telemetry.md) chapter. The environment creation script also restarts the web app to make sure that it picks up the New Relic settings.
 
-[!code[Main](automate-everything/samples/sample12.xml?highlight=2)]
+[!code[Main](automate-everything/samples/sample18.xml?highlight=2)]
 
 ### Preparing for deployment
 
@@ -238,27 +195,19 @@ The other function uses another template file (website-environment.template) to 
 
 Scripts are like programs: they can fail, and when they do you want to know as much as you can about the failure and what caused it. For this reason, the environment creation script changes the value of the `VerbosePreference` variable from `SilentlyContinue` to `Continue` so that all verbose messages are displayed. It also changes the value of the `ErrorActionPreference` variable from `Continue` to `Stop`, so that the script stops even when it encounters non-terminating errors:
 
-    # Set the output level to verbose and make the script stop on error
-    $VerbosePreference = "Continue"
-    $ErrorActionPreference = "Stop"
+[!code[Main](automate-everything/samples/sample19.xml)]
 
 Before it does any work, the script stores the start time so that it can calculate the elapsed time when it's done:
 
-    # Mark the start time of the script execution
-    $startTime = Get-Date
+[!code[Main](automate-everything/samples/sample20.xml)]
 
 After it completes its work, the script displays the elapsed time:
 
-    # Mark the finish time of the script execution
-    $finishTime = Get-Date
-    # Output the time consumed in seconds
-    Write-Output ("Total time used (seconds): {0}" -f ($finishTime - $startTime).TotalSeconds)
+[!code[Main](automate-everything/samples/sample21.xml)]
 
 And for every key operation the script writes verbose messages, for example:
 
-    Write-Verbose "[Start] creating $websiteName website in $Location location"
-    $website = New-AzureWebsite -Name $websiteName -Location $Location -Verbose
-    Write-Verbose "[Finish] creating $websiteName website in $Location location"
+[!code[Main](automate-everything/samples/sample22.xml)]
 
 ## Deployment script
 
@@ -266,26 +215,19 @@ What the *New-AzureWebsiteEnv.ps1* script does for environment creation, the *Pu
 
 The deployment script gets the name of the web app from the *website-environment.xml* file created by the environment creation script.
 
-    [Xml]$envXml = Get-Content "$scriptPath\website-environment.xml"
-    $websiteName = $envXml.environment.name
+[!code[Main](automate-everything/samples/sample23.xml)]
 
 It gets the deployment user password from the *.publishsettings* file:
 
-    [Xml]$xml = Get-Content $scriptPath\$websiteName.publishsettings 
-    $password = $xml.publishData.publishProfile.userPWD[0]
-    $publishXmlFile = Join-Path $scriptPath -ChildPath ($websiteName + ".pubxml")
+[!code[Main](automate-everything/samples/sample24.xml)]
 
 It executes the [MSBuild](http://msbuildbook.com/) command that builds and deploys the project:
 
-    & "$env:windir\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe" $ProjectFile `
-        /p:VisualStudioVersion=12.0 `
-        /p:DeployOnBuild=true `
-        /p:PublishProfile=$publishXmlFile `
-        /p:Password=$password
+[!code[Main](automate-everything/samples/sample25.xml)]
 
 And if you've specified the `Launch` parameter on the command line, it calls the `Show-AzureWebsite` cmdlet to open your default browser to the website URL.
 
-[!code[Main](automate-everything/samples/sample13.xml?highlight=3)]
+[!code[Main](automate-everything/samples/sample26.xml?highlight=3)]
 
 You can run the deployment script with a command like this one:
 

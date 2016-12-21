@@ -56,25 +56,7 @@ For example, the controller in Listing 1 exposes an action named CompanySecrets(
 
 **Listing 1 – Controllers\HomeController.cs**
 
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
-    {
-        [HandleError]
-        public class HomeController : Controller
-        {
-            public ActionResult Index()
-            {
-                return View();
-            }
-            
-            [Authorize]
-            public ActionResult CompanySecrets()
-            {
-                return View();
-            }
-        }
-    }
+[!code[Main](authenticating-users-with-forms-authentication-cs/samples/sample1.xml)]
 
 If you invoke the CompanySecrets() action by entering the URL /Home/CompanySecrets in the address bar of your browser, and you are not an authenticated user, then you will be redirected to the Login view automatically (see Figure 5).
 
@@ -100,43 +82,7 @@ You can use the [Authorize] attribute to restrict access to a controller action 
 
 **Listing 2 – Controllers\HomeController.cs**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Ajax;
-    
-    namespace MvcApplication1.Controllers
-    {
-        [HandleError]
-        public class HomeController : Controller
-        {
-            public ActionResult Index()
-            {
-                return View();
-            }
-    
-            [Authorize]
-            public ActionResult CompanySecrets()
-            {
-                return View();
-            }
-    
-            [Authorize(Users="Stephen")]
-            public ActionResult StephenSecrets()
-            {
-                return View();
-            }
-    
-            [Authorize(Roles = "Administrators")]
-            public ActionResult AdministratorSecrets()
-            {
-                return View();
-            }
-    
-        }
-    }
+[!code[Main](authenticating-users-with-forms-authentication-cs/samples/sample2.xml)]
 
 Only a user with the user name Stephen can invoke the StephenSecrets() action. All other users get redirected to the Login view. The Users property accepts a comma separated list of user account names.
 
@@ -173,10 +119,7 @@ After you create the necessary database objects, you need to modify the database
 
 **Listing 3 – Web.config**
 
-    <connectionStrings>
-        <!--<add name="ApplicationServices" connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true" providerName="System.Data.SqlClient"/>-->
-      <add name="ApplicationServices" connectionString="data source=localhost;Integrated Security=SSPI;Initial Catalog=MyProductionDB" />
-    </connectionStrings>
+[!code[Main](authenticating-users-with-forms-authentication-cs/samples/sample3.xml)]
 
 #### Configuring Database Permissions
 

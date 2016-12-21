@@ -60,50 +60,11 @@ When you create an MVC 4 web application with the Internet Application template,
 
 The AuthConfig file contains code to register clients for external authentication providers. By default, this code is commented out, so none of the external providers are enabled.
 
-    public static class AuthConfig
-    {
-        public static void RegisterAuth()
-        {
-            // To let users of this site log in using their accounts from other sites such as Microsoft, Facebook, and Twitter,
-            // you must update this site. For more information visit https://go.microsoft.com/fwlink/?LinkID=252166
-    
-            //OAuthWebSecurity.RegisterMicrosoftClient(
-            //    clientId: "",
-            //    clientSecret: "");
-    
-            //OAuthWebSecurity.RegisterTwitterClient(
-            //    consumerKey: "",
-            //    consumerSecret: "");
-    
-            //OAuthWebSecurity.RegisterFacebookClient(
-            //    appId: "",
-            //    appSecret: "");
-    
-            //OAuthWebSecurity.RegisterGoogleClient();
-        }
-    }
+[!code[Main](using-oauth-providers-with-mvc/samples/sample1.xml)]
 
 You must uncomment this code to use the external authentication client. You uncomment only the providers you want to include in your site. For this tutorial, you will only enable the Facebook credentials.
 
-    public static class AuthConfig
-    {
-        public static void RegisterAuth()
-        {
-            //OAuthWebSecurity.RegisterMicrosoftClient(
-            //    clientId: "",
-            //    clientSecret: "");
-    
-            //OAuthWebSecurity.RegisterTwitterClient(
-            //    consumerKey: "",
-            //    consumerSecret: "");
-    
-            OAuthWebSecurity.RegisterFacebookClient(
-                appId: "",
-                appSecret: "");
-    
-            //OAuthWebSecurity.RegisterGoogleClient();        
-        }
-    }
+[!code[Main](using-oauth-providers-with-mvc/samples/sample2.xml)]
 
 Notice in the above example that the method includes empty strings for the registration parameters. If you try to run the application now, the application throws an argument exception because empty strings are not allowed for the parameters. To provide valid values, you must register your web site with the external providers, as shown in the next section.
 
@@ -138,25 +99,7 @@ The Facebook site automatically creates the number of test accounts that you req
 
 Now that you have received the id and secret from Facebook, go back to the AuthConfig file and add them as the parameter values. The values shown below are not real values.
 
-    public static class AuthConfig
-    {
-        public static void RegisterAuth()
-        {
-            //OAuthWebSecurity.RegisterMicrosoftClient(
-            //    clientId: "",
-            //    clientSecret: "");
-    
-            //OAuthWebSecurity.RegisterTwitterClient(
-            //    consumerKey: "",
-            //    consumerSecret: "");
-    
-            OAuthWebSecurity.RegisterFacebookClient(
-                appId: "111111111111111",
-                appSecret: "a1a1aa111111111a111a111aaa111111");
-    
-            //OAuthWebSecurity.RegisterGoogleClient();
-        }
-    }
+[!code[Main](using-oauth-providers-with-mvc/samples/sample3.xml)]
 
 ## Log in with external credentials
 
@@ -207,23 +150,15 @@ You will use [Code First Migrations](https://msdn.microsoft.com/en-us/data/jj591
 
 Now, you will add the new properties. In the Models folder, open the AccountModels.cs file, and find the RegisterExternalLoginModel class. The RegisterExternalLoginModel class holds values that come back from the authentication provider. Add properties named FullName and Link, as highlighted below.
 
-[!code[Main](using-oauth-providers-with-mvc/samples/sample1.xml?highlight=9-13)]
+[!code[Main](using-oauth-providers-with-mvc/samples/sample4.xml?highlight=9-13)]
 
 Also in AccountModels.cs, add a new class called ExtraUserInformation. This class represents the new table which will be created in the database.
 
-    [Table("ExtraUserInformation")]
-    public class ExternalUserInformation
-    {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string FullName { get; set; }
-        public string Link { get; set; }
-        public bool? Verified { get; set; }
-    }
+[!code[Main](using-oauth-providers-with-mvc/samples/sample5.xml)]
 
 In the UsersContext class, add the highlighted code below to create a DbSet property for the new class.
 
-[!code[Main](using-oauth-providers-with-mvc/samples/sample2.xml?highlight=9)]
+[!code[Main](using-oauth-providers-with-mvc/samples/sample6.xml?highlight=9)]
 
 You are now ready to create the new table. Open the Package Manager Console again and this time:
 
@@ -240,8 +175,7 @@ To retrieve the additional user data, open the **AccountController.cs** file in 
 
 This file contains the logic for logging, registering, and managing accounts. In particular, notice the methods called **ExternalLoginCallback** and **ExternalLoginConfirmation**. Within these methods, you can add code to customize external login operations for your application. The first line of the **ExternalLoginCallback** method contains:
 
-    AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(
-        Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+[!code[Main](using-oauth-providers-with-mvc/samples/sample7.xml)]
 
 Additional user data is passed back in the **ExtraData** property of the **AuthenticationResult** object that is returned from the **VerifyAuthentication** method. The Facebook client contains the following values in the **ExtraData** property:
 
@@ -255,27 +189,17 @@ Other providers will have similar but slightly different data in the ExtraData p
 
 If the user is new to your site, you will retrieve some the additional data and pass that data to the confirmation view. The last block of code in the method is run only if the user is new to your site. Replace the following line:
 
-    return View("ExternalLoginConfirmation", new RegisterExternalLoginModel 
-    { 
-        UserName = result.UserName, 
-        ExternalLoginData = loginData 
-    });
+[!code[Main](using-oauth-providers-with-mvc/samples/sample8.xml)]
 
 With this line:
 
-    return View("ExternalLoginConfirmation", new RegisterExternalLoginModel
-    {
-        UserName = result.UserName,
-        ExternalLoginData = loginData,
-        FullName = result.ExtraData["name"],
-        Link = result.ExtraData["link"]
-    });
+[!code[Main](using-oauth-providers-with-mvc/samples/sample9.xml)]
 
 This change merely includes values for the FullName and Link properties.
 
 In the **ExternalLoginConfirmation** method, modify the code as highlighted below to save the additional user information.
 
-[!code[Main](using-oauth-providers-with-mvc/samples/sample3.xml?highlight=4,7-13)]
+[!code[Main](using-oauth-providers-with-mvc/samples/sample10.xml?highlight=4,7-13)]
 
 ## Adjusting the view
 
@@ -283,14 +207,7 @@ The additional user data that you retrieve from the provider will be displayed i
 
 In the **Views**/**Account** folder, open **ExternalLoginConfirmation.cshtml**. Below the existing field for user name, add fields for FullName, Link, and PictureLink.
 
-    <li>
-        @Html.LabelFor(m => m.FullName)
-        @Html.TextBoxFor(m => m.FullName)
-    </li>
-    <li>
-        @Html.LabelFor(m => m.Link)
-        @Html.TextBoxFor(m => m.Link)
-    </li>
+[!code[Main](using-oauth-providers-with-mvc/samples/sample11.xml)]
 
 You are now almost ready to run the application and register a new user with the additional information saved. You must have an account that is not already registered with the site. You can either use a different test account, or delete the rows in the **UserProfile** and **webpages\_OAuthMembership** tables for the account you wish to reuse. By deleting those rows, you will ensure that the account is registered again.
 
@@ -318,7 +235,7 @@ Depending on the external provider, the access token may be valid for only a lim
 
 In the **ExternalLoginCallback** method, the access token is also passed back in the **ExtraData** property of the **AuthenticationResult** object. Add the highlighted code to **ExternalLoginCallback** to save the access token in the **Session** object. This code is run every time the user logs in with a Facebook account.
 
-[!code[Main](using-oauth-providers-with-mvc/samples/sample4.xml?highlight=11-14)]
+[!code[Main](using-oauth-providers-with-mvc/samples/sample12.xml?highlight=11-14)]
 
 Although this example retrieves an access token from Facebook, you can retrieve the access token from any external provider through the same key named &quot;accesstoken&quot;.
 
@@ -326,7 +243,7 @@ Although this example retrieves an access token from Facebook, you can retrieve 
 
 The default **LogOff** method logs the user out of your application, but does not log the user out of the external provider. To log the user out of Facebook, and prevent the token from persisting after the user has logged off, you can add the following highlighted code to the **LogOff** method in the AccountController.
 
-[!code[Main](using-oauth-providers-with-mvc/samples/sample5.xml?highlight=6-14)]
+[!code[Main](using-oauth-providers-with-mvc/samples/sample13.xml?highlight=6-14)]
 
 The value you provide in the `next` parameter is the URL to use after the user has logged out of Facebook. When testing on your local computer, you would provide the correct port number for your local site. In production, you would provide a default page, such as contoso.com.
 
@@ -334,7 +251,7 @@ The value you provide in the `next` parameter is the URL to use after the user h
 
 Now that you have stored the access token and installed the Facebook C# SDK package, you can use them together to request additional user information from Facebook. In the **ExternalLoginConfirmation** method, create an instance of the **FacebookClient** class by passing the value of the access token. Request the value of the **verified** property for the current, authenticated user. The **verified** property indicates whether Facebook has validated the account through some other means, such as sending a message to a cell phone. Save this value in the database.
 
-[!code[Main](using-oauth-providers-with-mvc/samples/sample6.xml?highlight=7-18,25)]
+[!code[Main](using-oauth-providers-with-mvc/samples/sample14.xml?highlight=7-18,25)]
 
 You will again need to either delete the records in the database for the user, or use a different Facebook account.
 

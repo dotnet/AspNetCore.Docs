@@ -1,2 +1,7 @@
-[HubMethodName("PascalCaseNewContosoChatMessage")]
-public void NewContosoChatMessage(string userName, string message)
+public class StockTickerHub : Hub
+{
+    public IEnumerable<Stock> GetAllStocks()
+    {
+        return _stockTicker.GetAllStocks();
+    }
+}

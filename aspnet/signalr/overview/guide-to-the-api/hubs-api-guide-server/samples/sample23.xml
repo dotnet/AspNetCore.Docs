@@ -1,5 +1,7 @@
-public async Task JoinGroup(string groupName)
+public class ContosoChatHub : Hub
 {
-    await Groups.Add(Context.ConnectionId, groupName);
-    Clients.Group(groupname).addContosoChatMessageToPage(Context.ConnectionId + " added to group");
+    public void NewContosoChatMessage(string name, string message)
+    {
+        Clients.All.addNewMessageToPage(name, message);
+    }
 }

@@ -116,12 +116,7 @@ We can now add new managed stored procedures and UDFs to this project, but befor
 The `NORTHWNDConnectionString` value in `Web.config` currently references the `NORTHWND.MDF` file in the `App_Data` folder. Since we removed this database from `App_Data` and explicitly registered it in the SQL Server 2005 Express Edition database instance, we need to correspondingly update the `NORTHWNDConnectionString` value. Open the `Web.config` file in the website and change the `NORTHWNDConnectionString` value so that the connection string reads: `Data Source=localhost\SQLExpress;Initial Catalog=Northwind;Integrated Security=True` . After this change, your `<connectionStrings>` section in `Web.config` should look similar to the following:
 
 
-    <connectionStrings>
-        <add name="NORTHWNDConnectionString" connectionString=
-            "Data Source=localhost\SQLExpress;Initial Catalog=Northwind;
-                Integrated Security=True;Pooling=false"
-            providerName="System.Data.SqlClient" />
-    </connectionStrings>
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample1.xml)]
 
 > [!NOTE] As discussed in the [preceding tutorial](debugging-stored-procedures-cs.md), when debugging a SQL Server object from a client application, such as an ASP.NET website, we need to disable connection pooling. The connection string shown above disables connection pooling ( `Pooling=false` ). If you do not plan on debugging the managed stored procedures and UDFs from the ASP.NET website, enable connection pooling.
 
@@ -141,35 +136,14 @@ Let s start by adding a stored procedure that simply returns all of the products
 This will create a new C# class file with the following content:
 
 
-    using System;
-    using System.Data;
-    using System.Data.SqlClient;
-    using System.Data.SqlTypes;
-    using Microsoft.SqlServer.Server;
-    public partial class StoredProcedures
-    {
-        [Microsoft.SqlServer.Server.SqlProcedure]
-        public static void GetDiscontinuedProducts()
-        {
-            // Put your code here
-        }
-    };
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample2.xml)]
 
 Note that the stored procedure is implemented as a `static` method within a `partial` class file named `StoredProcedures`. Moreover, the `GetDiscontinuedProducts` method is decorated with the `SqlProcedure attribute`, which marks the method as a stored procedure.
 
 The following code creates a `SqlCommand` object and sets its `CommandText` to a `SELECT` query that returns all of the columns from the `Products` table for products whose `Discontinued` field equals 1. It then executes the command and sends the results back to the client application. Add this code to the `GetDiscontinuedProducts` method.
 
 
-    // Create the command
-    SqlCommand myCommand = new SqlCommand();
-    myCommand.CommandText = 
-          @"SELECT ProductID, ProductName, SupplierID, CategoryID, 
-                   QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-                   ReorderLevel, Discontinued
-            FROM Products 
-            WHERE Discontinued = 1";
-    // Execute the command and send back the results
-    SqlContext.Pipe.ExecuteAndSend(myCommand);
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample3.xml)]
 
 All managed database objects have access to a [`SqlContext` object](https://msdn.microsoft.com/en-us/library/ms131108.aspx) that represents the context of the caller. The `SqlContext` provides access to a [`SqlPipe` object](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlpipe.aspx) via its [`Pipe` property](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlcontext.pipe.aspx). This `SqlPipe` object is used to ferry information between the SQL Server database and the calling application. As its name implies, the [`ExecuteAndSend` method](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlpipe.executeandsend.aspx) executes a passed-in `SqlCommand` object and sends the results back to the client application.
 
@@ -185,7 +159,7 @@ This error message occurs when attempting to register the assembly with the Nort
 To update the database s compatibility level, open a New Query window in Management Studio and enter:
 
 
-    exec sp_dbcmptlevel 'Northwind', 90
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample4.xml)]
 
 Click the Execute icon in the Toolbar to run the above query.
 
@@ -227,7 +201,7 @@ To examine the Northwind database s configuration information, enter and execute
 Note that each configuration setting in Figure 12 has four values listed with it: the minimum and maximum values and the config and run values. To update the config value for the clr enabled setting, execute the following command:
 
 
-    exec sp_configure 'clr enabled', 1
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample5.xml)]
 
 If you re-run the `exec sp_configure` you will see that the above statement updated the clr enabled setting s config value to 1, but that the run value is still set to 0. For this configuration change to take affect we need to execute the [`RECONFIGURE` command](https://msdn.microsoft.com/en-us/library/ms176069.aspx), which will set the run value to the current config value. Simply enter `RECONFIGURE` in the query window and click the Execute icon in the Toolbar. If you run `exec sp_configure` now you should see a value of 1 for the clr enabled setting s config and run values.
 
@@ -250,21 +224,7 @@ To add a new stored procedure to the project, right-click on the `ManagedDatabas
 Update the `GetProductsWithPriceLessThan` method s definition so that it accepts a [`SqlMoney`](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlmoney.aspx) input parameter named `price` and write the code to execute and return the query results:
 
 
-    [Microsoft.SqlServer.Server.SqlProcedure]
-    public static void GetProductsWithPriceLessThan(SqlMoney price)
-    {
-        // Create the command
-        SqlCommand myCommand = new SqlCommand();
-        myCommand.CommandText =
-              @"SELECT ProductID, ProductName, SupplierID, CategoryID, 
-                       QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-                       ReorderLevel, Discontinued
-                FROM Products
-                WHERE UnitPrice < @MaxPrice";
-        myCommand.Parameters.AddWithValue("@MaxPrice", price);
-        // Execute the command and send back the results
-        SqlContext.Pipe.ExecuteAndSend(myCommand);
-    }
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample6.xml)]
 
 The `GetProductsWithPriceLessThan` method s definition and code closely resembles the definition and code of the `GetDiscontinuedProducts` method created in Step 3. The only differences are that the `GetProductsWithPriceLessThan` method accepts as input parameter (`price`), the `SqlCommand` s query includes a parameter (`@MaxPrice`), and a parameter is added to the `SqlCommand` s `Parameters` collection is and assigned the value of the `price` variable.
 
@@ -332,19 +292,7 @@ Figure 19 shows a screenshot of the DataSet Designer after adding the methods to
 Now that we have updated the Data Access Layer to include methods for calling the managed stored procedures added in Steps 4 and 5, we need to add corresponding methods to the Business Logic Layer. Add the following two methods to the `ProductsBLLWithSprocs` class:
 
 
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Select, false)]
-    public NorthwindWithSprocs.ProductsDataTable GetDiscontinuedProducts()
-    {
-        return Adapter.GetDiscontinuedProducts();
-    }
-    [System.ComponentModel.DataObjectMethodAttribute
-        (System.ComponentModel.DataObjectMethodType.Select, false)]
-    public NorthwindWithSprocs.ProductsDataTable 
-        GetProductsWithPriceLessThan(decimal priceLessThan)
-    {
-        return Adapter.GetProductsWithPriceLessThan(priceLessThan);
-    }
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample7.xml)]
 
 Both methods simply call the corresponding DAL method and return the `ProductsDataTable` instance. The `DataObjectMethodAttribute` markup above each method causes these methods to be included in the drop-down list in the SELECT tab of the ObjectDataSource s Configure Data Source wizard.
 
@@ -370,21 +318,7 @@ Since this grid will be used to just display product information, set the drop-d
 Upon completing the wizard, Visual Studio will automatically add a BoundField or CheckBoxField for each data field in the `ProductsDataTable`. Take a moment to remove all of these fields except for `ProductName` and `Discontinued`, at which point your GridView and ObjectDataSource s declarative markup should look similar to the following:
 
 
-    <asp:GridView ID="DiscontinuedProducts" runat="server" 
-        AutoGenerateColumns="False" DataKeyNames="ProductID" 
-        DataSourceID="DiscontinuedProductsDataSource">
-        <Columns>
-            <asp:BoundField DataField="ProductName" HeaderText="ProductName" 
-                SortExpression="ProductName" />
-            <asp:CheckBoxField DataField="Discontinued" 
-                HeaderText="Discontinued" 
-                SortExpression="Discontinued" />
-        </Columns>
-    </asp:GridView>
-    <asp:ObjectDataSource ID="DiscontinuedProductsDataSource" runat="server" 
-        OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetDiscontinuedProducts" TypeName="ProductsBLLWithSprocs">
-    </asp:ObjectDataSource>
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample8.xml)]
 
 Take a moment to view this page through a browser. When the page is visited, the ObjectDataSource calls the `ProductsBLLWithSprocs` class s `GetDiscontinuedProducts` method. As we saw in Step 7, this method calls down to the DAL s `ProductsDataTable` class s `GetDiscontinuedProducts` method, which invokes the `GetDiscontinuedProducts` stored procedure. This stored procedure is a managed stored procedure and executes the code we created in Step 3, returning the discontinued products.
 
@@ -405,30 +339,12 @@ User-Defined Functions, or UDFs, are database objects the closely mimic the sema
 The following UDF calculates the estimated value of the inventory for a particular product. It does so by taking in three input parameters - the `UnitPrice`, `UnitsInStock`, and `Discontinued` values for a particular product - and returns a value of type `money`. It computes the estimated value of the inventory by multiplying the `UnitPrice` by the `UnitsInStock`. For discontinued items, this value is halved.
 
 
-    CREATE FUNCTION udf_ComputeInventoryValue
-    (
-        @UnitPrice money,
-        @UnitsInStock smallint,
-        @Discontinued bit
-    )
-    RETURNS money
-    AS
-    BEGIN
-        DECLARE @Value decimal
-        SET @Value = ISNULL(@UnitPrice, 0) * ISNULL(@UnitsInStock, 0)
-        IF @Discontinued = 1
-            SET @Value = @Value * 0.5
-        
-        RETURN @Value
-    END
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample9.xml)]
 
 Once this UDF has been added to the database, it can be found through Management Studio by expanding the Programmability folder, then Functions, and then Scalar-value Functions. It can be used in a `SELECT` query like so:
 
 
-    SELECT ProductID, ProductName, dbo.udf_ComputeInventoryValue
-        (UnitPrice, UnitsInStock, Discontinued) as InventoryValue
-    FROM Products
-    ORDER BY InventoryValue DESC
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample10.xml)]
 
 I have added the `udf_ComputeInventoryValue` UDF to the Northwind database; Figure 23 shows the output of the above `SELECT` query when viewed through Management Studio. Also note that the UDF is listed under the Scalar-value Functions folder in the Object Explorer.
 
@@ -441,26 +357,12 @@ I have added the `udf_ComputeInventoryValue` UDF to the Northwind database; Figu
 UDFs can also return tabular data. For example, we can create a UDF that returns products that belong to a particular category:
 
 
-    CREATE FUNCTION dbo.udf_GetProductsByCategoryID
-    (    
-        @CategoryID int
-    )
-    RETURNS TABLE 
-    AS
-    RETURN 
-    (
-        SELECT ProductID, ProductName, SupplierID, CategoryID, 
-               QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-               ReorderLevel, Discontinued
-        FROM Products
-        WHERE CategoryID = @CategoryID
-    )
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample11.xml)]
 
 The `udf_GetProductsByCategoryID` UDF accepts a `@CategoryID` input parameter and returns the results of the specified `SELECT` query. Once created, this UDF can be referenced in the `FROM` (or `JOIN`) clause of a `SELECT` query. The following example would return the `ProductID`, `ProductName`, and `CategoryID` values for each of the beverages.
 
 
-    SELECT ProductID, ProductName, CategoryID
-    FROM dbo.udf_GetProductsByCategoryID(1)
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample12.xml)]
 
 I have added the `udf_GetProductsByCategoryID` UDF to the Northwind database; Figure 24 shows the output of the above `SELECT` query when viewed through Management Studio. UDFs that return tabular data can be found in the Object Explorer s Table-value Functions folder.
 
@@ -488,37 +390,12 @@ To add a managed UDF to the `ManagedDatabaseConstructs` project, right-click on 
 The User-Defined Function template creates a `partial` class named `UserDefinedFunctions` with a method whose name is the same as the class file s name (`udf_ComputeInventoryValue_Managed`, in this instance). This method is decorated using the [`SqlFunction` attribute](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlfunctionattribute.aspx), which flags the method as a managed UDF.
 
 
-    using System;
-    using System.Data;
-    using System.Data.SqlClient;
-    using System.Data.SqlTypes;
-    using Microsoft.SqlServer.Server;
-    public partial class UserDefinedFunctions
-    {
-        [Microsoft.SqlServer.Server.SqlFunction]
-        public static SqlString udf_ComputeInventoryValue_Managed()
-        {
-            // Put your code here
-            return new SqlString("Hello");
-        }
-    };
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample13.xml)]
 
 The `udf_ComputeInventoryValue` method currently returns a [`SqlString` object](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlstring.aspx) and does not accept any input parameters. We need to update the method definition so that it accepts three input parameters - `UnitPrice`, `UnitsInStock`, and `Discontinued` - and returns a `SqlMoney` object. The logic for calculating the inventory value is identical to that in the T-SQL `udf_ComputeInventoryValue` UDF.
 
 
-    [Microsoft.SqlServer.Server.SqlFunction]
-    public static SqlMoney udf_ComputeInventoryValue_Managed
-        (SqlMoney UnitPrice, SqlInt16 UnitsInStock, SqlBoolean Discontinued)
-    {
-        SqlMoney inventoryValue = 0;
-        if (!UnitPrice.IsNull && !UnitsInStock.IsNull)
-        {
-            inventoryValue = UnitPrice * UnitsInStock;
-            if (Discontinued == true)
-                inventoryValue = inventoryValue * new SqlMoney(0.5);
-        }
-        return inventoryValue;
-    }
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample14.xml)]
 
 Note that the UDF method s input parameters are of their corresponding SQL types: `SqlMoney` for the `UnitPrice` field, [`SqlInt16`](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlint16.aspx) for `UnitsInStock`, and [`SqlBoolean`](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlboolean.aspx) for `Discontinued`. These data types reflect the types defined in the `Products` table: the `UnitPrice` column is of type `money`, the `UnitsInStock` column of type `smallint`, and the `Discontinued` column of type `bit`.
 
@@ -539,14 +416,7 @@ Once you have deployed the project, return to SQL Server Management Studio and r
 To test this managed UDF, execute the following query from within Management Studio:
 
 
-    SELECT ProductID, ProductName, 
-           dbo.udf_ComputeInventoryValue_Managed(
-                     UnitPrice, 
-                     UnitsInStock, 
-                     Discontinued
-                  ) as InventoryValue
-    FROM Products
-    ORDER BY InventoryValue DESC
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample15.xml)]
 
 This command uses the managed `udf ComputeInventoryValue_Managed` UDF instead of the T-SQL `udf_ComputeInventoryValue` UDF, but the output is the same. Refer back to Figure 23 to see a screenshot of the UDF s output.
 
@@ -573,7 +443,7 @@ Let s first look at debugging the managed database objects from the SQL Server P
 When the `ManagedDatabaseConstructs` project is launched from the debugger it executes the SQL statements in the `Test.sql` file, which is located in the `Test Scripts` folder. For example, to test the `GetProductsWithPriceLessThan` managed stored procedure, replace the existing `Test.sql` file content with the following statement, which invokes the `GetProductsWithPriceLessThan` managed stored procedure passing in the `@CategoryID` value of 14.95:
 
 
-    exec GetProductsWithPriceLessThan 14.95
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample16.xml)]
 
 Once you ve entered the above script into `Test.sql`, start debugging by going to the Debug menu and choosing Start Debugging or by hitting F5 or the green play icon in the Toolbar. This will build the projects within the Solution, deploy the managed database objects to the Northwind database, and then execute the `Test.sql` script. At this point, the breakpoint will be hit and we can step through the `GetProductsWithPriceLessThan` method, examine the values of the input parameters, and so on.
 
@@ -599,41 +469,19 @@ SQL Server Projects make it easy to create, compile, and deploy managed database
 To illustrate these tasks, let s create a new managed stored procedure that returns those products whose `UnitPrice` is greater than a specified value. Create a new file on your computer named `GetProductsWithPriceGreaterThan.cs` and enter the following code into the file (you can use Visual Studio, Notepad, or any text editor to accomplish this):
 
 
-    using System;
-    using System.Data;
-    using System.Data.SqlClient;
-    using System.Data.SqlTypes;
-    using Microsoft.SqlServer.Server;
-    public partial class StoredProcedures
-    {
-        [Microsoft.SqlServer.Server.SqlProcedure]
-        public static void GetProductsWithPriceGreaterThan(SqlMoney price)
-        {
-            // Create the command
-            SqlCommand myCommand = new SqlCommand();
-            myCommand.CommandText =
-                @"SELECT ProductID, ProductName, SupplierID, CategoryID, 
-                         QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, 
-                         ReorderLevel, Discontinued
-                  FROM Products
-                  WHERE UnitPrice > @MinPrice";
-            myCommand.Parameters.AddWithValue("@MinPrice", price);
-            // Execute the command and send back the results
-            SqlContext.Pipe.ExecuteAndSend(myCommand);
-        }
-    };
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample17.xml)]
 
 This code is nearly identical to that of the `GetProductsWithPriceLessThan` method created in Step 5. The only differences are the method names, the `WHERE` clause, and the parameter name used in the query. Back in the `GetProductsWithPriceLessThan` method, the `WHERE` clause read: `WHERE UnitPrice < @MaxPrice` . Here, in `GetProductsWithPriceGreaterThan`, we use: `WHERE UnitPrice > @MinPrice` .
 
 We now need to compile this class into an assembly. From the command line, navigate to the directory where you saved the `GetProductsWithPriceGreaterThan.cs` file and use the C# compiler (`csc.exe`) to compile the class file into an assembly:
 
 
-    csc.exe /t:library /out:ManuallyCreatedDBObjects.dll GetProductsWithPriceGreaterThan.cs
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample18.xml)]
 
 If the folder containing `csc.exe` in not in the system s `PATH`, you will have to fully reference its path, `%WINDOWS%\Microsoft.NET\Framework\version\`, like so:
 
 
-    C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:library /out:ManuallyCreatedDBObjects.dll GetProductsWithPriceGreaterThan.cs
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample19.xml)]
 
 
 [![Compile GetProductsWithPriceGreaterThan.cs Into an Assembly](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image70.png)](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image69.png)
@@ -665,21 +513,14 @@ From Management Studio, expand the Programmability folder in the Northwind datab
 While we have added the assembly to the Northwind database, we have yet to associate a stored procedure with the `GetProductsWithPriceGreaterThan` method in the assembly. To accomplish this, open a new query window and execute the following script:
 
 
-    CREATE PROCEDURE [dbo].[GetProductsWithPriceGreaterThan] 
-    ( 
-        @price money 
-    ) 
-    WITH EXECUTE AS CALLER 
-    AS 
-    EXTERNAL NAME [ManuallyCreatedDBObjects].[StoredProcedures].[GetProductsWithPriceGreaterThan] 
-    GO
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample20.xml)]
 
 This creates a new stored procedure in the Northwind database named `GetProductsWithPriceGreaterThan` and associates it with the managed method `GetProductsWithPriceGreaterThan` (which is in the class `StoredProcedures`, which is in the assembly `ManuallyCreatedDBObjects`).
 
 After executing the above script, refresh the Stored Procedures folder in the Object Explorer. You should see a new stored procedure entry - `GetProductsWithPriceGreaterThan` - which has a lock icon next to it. To test this stored procedure, enter and execute the following script in the query window:
 
 
-    exec GetProductsWithPriceGreaterThan 24.95
+[!code[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample21.xml)]
 
 As Figure 32 shows, the above command displays information for those products with a `UnitPrice` greater than $24.95.
 

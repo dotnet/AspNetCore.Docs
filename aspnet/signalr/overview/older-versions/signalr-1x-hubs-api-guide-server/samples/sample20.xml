@@ -1,5 +1,10 @@
-public class ContosoChatMessage
+public async Task<IEnumerable<Stock>> GetAllStocks()
 {
-    public string UserName { get; set; }
-    public string Message { get; set; }
+    // Returns data from a web service.
+    var uri = Util.getServiceUri("Stocks");
+    using (HttpClient httpClient = new HttpClient())
+    {
+        var response = await httpClient.GetAsync(uri);
+        return (await response.Content.ReadAsAsync<IEnumerable<Stock>>());
+    }
 }

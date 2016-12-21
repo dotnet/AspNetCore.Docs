@@ -30,74 +30,25 @@ In this section, you will create the main application page. This page will be mo
 
 We'll start by defining some basic layout in HTML, with no data binding or script. Open the file Views/Home/Index.cshtml and replace all of the contents with the following:
 
-    <div class="content">
-        <!-- List of products -->
-        <div class="float-left">
-        <h1>Products</h1>
-        <ul id="products">
-        </ul>
-        </div>
-    
-        <!-- Cart -->
-        <div id="cart" class="float-right">
-        <h1>Your Cart</h1>
-            <table class="details ui-widget-content">
-        </table>
-        <input type="button" value="Create Order"/>
-        </div>
-    </div>
-    
-    <div id="orders-area" class="content" >
-        <!-- List of orders -->
-        <div class="float-left">
-        <h1>Your Orders</h1>
-        <ul id="orders">
-        </ul>
-        </div>
-    
-       <!-- Order Details -->
-        <div id="order-details" class="float-right">
-        <h2>Order #<span></span></h2>
-        <table class="details ui-widget-content">
-        </table>
-        <p>Total: <span></span></p>
-        </div>
-    </div>
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample1.xml)]
 
 Next, add a Scripts section and create an empty view-model:
 
-    @section Scripts {
-      <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
-      <script type="text/javascript">
-    
-        function AppViewModel() {
-            var self = this;
-            self.loggedIn = @(Request.IsAuthenticated ? "true" : "false");
-        }
-    
-        $(document).ready(function () {
-            ko.applyBindings(new AppViewModel());
-        });
-    
-      </script>
-    }
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample2.xml)]
 
 Based on the design sketched earlier, our view model needs observables for products, cart, orders, and details. Add the following variables to the `AppViewModel` object:
 
-    self.products = ko.observableArray();
-    self.cart = ko.observableArray();
-    self.orders = ko.observableArray();
-    self.details = ko.observable();
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample3.xml)]
 
 Users can add items from the products list into the cart, and remove items from the cart. To encapsulate these functions, we'll create another view-model class that represents a product. Add the following code to `AppViewModel`:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample1.xml?highlight=4)]
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample4.xml?highlight=4)]
 
 The `ProductViewModel` class contains two functions that are used to move the product to and from the cart: `addItemToCart` adds one unit of the product to the cart, and `removeAllFromCart` removes all quantities of the product.
 
 Users can select an existing order and get the order details. We'll encapsulate this functionality into another view-model:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample2.xml?highlight=4)]
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample5.xml?highlight=4)]
 
 The `OrderDetailsViewModel` is initialized with an order, and it fetches the order details by sending an AJAX request to the server.
 
@@ -110,23 +61,11 @@ Next, add these functions to `AppViewModel`:
 - `createOrder` creates a new order and empties the cart.
 
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample3.xml?highlight=4)]
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample6.xml?highlight=4)]
 
 Finally, initialize the view model by making AJAX requests for the products and orders:
 
-    function AppViewModel() {
-        // ...
-    
-        // NEW CODE
-        // Initialize the view-model.
-        $.getJSON("/api/products", function (products) {
-            $.each(products, function (index, product) {
-                self.products.push(new ProductViewModel(self, product));
-            })
-        });
-    
-        $.getJSON("api/orders", self.orders);
-    };
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample7.xml)]
 
 OK, that's a lot of code, but we built it up step-by-step, so hopefully the design is clear. Now we can add some Knockout.js bindings to the HTML.
 
@@ -134,17 +73,7 @@ OK, that's a lot of code, but we built it up step-by-step, so hopefully the desi
 
 Here are the bindings for the product list:
 
-    <ul id="products" data-bind="foreach: products">
-        <li>
-            <div>
-                <span data-bind="text: Name"></span> 
-                <span class="price" data-bind="text: '$' + Price"></span>
-            </div>
-            <div data-bind="if: $parent.loggedIn">
-                <button data-bind="click: addItemToCart">Add to Order</button>
-            </div>
-        </li>
-    </ul>
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample8.xml)]
 
 This iterates over the products array and displays the name and price. The "Add to Order" button is visible only when the user is logged in.
 
@@ -154,22 +83,7 @@ The "Add to Order" button calls `addItemToCart` on the `ProductViewModel` instan
 
 Here are the bindings for the cart:
 
-    <div id="cart" class="float-right" data-bind="visible: cart().length > 0">
-    <h1>Your Cart</h1>
-        <table class="details ui-widget-content">
-        <thead>
-            <tr><td>Item</td><td>Price</td><td>Quantity</td><td></td></tr>
-        </thead>    
-        <tbody data-bind="foreach: cart">
-            <tr>
-                <td><span data-bind="text: $data.Name"></span></td>
-                <td>$<span data-bind="text: $data.Price"></span></td>
-                <td class="qty"><span data-bind="text: $data.Quantity()"></span></td>
-                <td><a href="#" data-bind="click: removeAllFromCart">Remove</a></td>
-            </tr>
-        </tbody>
-    </table>
-    <input type="button" data-bind="click: createOrder" value="Create Order"/>
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample9.xml)]
 
 This iterates over the cart array and displays the name, price, and quantity. Note that the "Remove" link and the "Create Order" button are bound to view-model functions.
 
@@ -177,13 +91,7 @@ This iterates over the cart array and displays the name, price, and quantity. No
 
 Here are the bindings for the orders list:
 
-    <h1>Your Orders</h1>
-    <ul id="orders" data-bind="foreach: orders">
-    <li class="ui-widget-content">
-        <a href="#" data-bind="click: $root.getDetails">
-            Order # <span data-bind="text: $data.Id"></span></a>
-    </li>
-    </ul>
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample10.xml)]
 
 This iterates over the orders and shows the order ID. The click event on the link is bound to the `getDetails` function.
 
@@ -191,25 +99,7 @@ This iterates over the orders and shows the order ID. The click event on the lin
 
 Here are the bindings for the order details:
 
-    <div id="order-details" class="float-right" data-bind="if: details()">
-    <h2>Order #<span data-bind="text: details().Id"></span></h2>
-    <table class="details ui-widget-content">
-        <thead>
-            <tr><td>Item</td><td>Price</td><td>Quantity</td><td>Subtotal</td></tr>
-        </thead>    
-        <tbody data-bind="foreach: details().items">
-            <tr>
-                <td><span data-bind="text: $data.Product"></span></td>
-                <td><span data-bind="text: $data.Price"></span></td>
-                <td><span data-bind="text: $data.Quantity"></span></td>
-                <td>
-                    <span data-bind="text: ($data.Price * $data.Quantity).toFixed(2)"></span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <p>Total: <span data-bind="text: details().total"></span></p>
-    </div>
+[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample11.xml)]
 
 This iterates over the items in the order and displays the product, price, and quanity. The surrounding div is visible only if the details array contains one or more items.
 

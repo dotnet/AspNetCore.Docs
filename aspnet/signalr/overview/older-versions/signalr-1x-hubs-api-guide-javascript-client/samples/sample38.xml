@@ -1,7 +1,5 @@
-public class StockTickerHub : Hub
-{
-    public IEnumerable<Stock> GetAllStocks()
+    public class ChatMessage
     {
-        return _stockTicker.GetAllStocks();
+        public string UserName { get; set; }
+        public string Message { get; set; }
     }
-}

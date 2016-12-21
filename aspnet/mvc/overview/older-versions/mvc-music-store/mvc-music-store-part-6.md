@@ -41,42 +41,15 @@ We'll use the following Data Annotation attributes:
 
 Open the Album class and add the following *using* statements to the top.
 
-    using System.ComponentModel;
-     using System.ComponentModel.DataAnnotations;
-     using System.Web.Mvc;
+[!code[Main](mvc-music-store-part-6/samples/sample1.xml)]
 
 Next, update the properties to add display and validation attributes as shown below.
 
-    namespace MvcMusicStore.Models
-    {
-        [Bind(Exclude = "AlbumId")]
-        public class Album
-        {
-            [ScaffoldColumn(false)]
-            public int      AlbumId    { get; set; }
-            [DisplayName("Genre")]
-            public int      GenreId    { get; set; }
-            [DisplayName("Artist")]
-            public int      ArtistId   { get; set; }
-            [Required(ErrorMessage = "An Album Title is required")]
-            [StringLength(160)]
-            public string   Title      { get; set; }
-            [Required(ErrorMessage = "Price is required")]
-            [Range(0.01, 100.00,
-                ErrorMessage = "Price must be between 0.01 and 100.00")]
-            public decimal Price       { get; set; }
-            [DisplayName("Album Art URL")]
-            [StringLength(1024)]
-            public string AlbumArtUrl { get; set; }
-            public virtual Genre  Genre    { get; set; }
-            public virtual Artist Artist   { get; set; }
-        }
-    }
+[!code[Main](mvc-music-store-part-6/samples/sample2.xml)]
 
 While we're there, we've also changed the Genre and Artist to virtual properties. This allows Entity Framework to lazy-load them as necessary.
 
-    public virtual Genre    Genre       { get; set; }
-    public virtual Artist   Artist      { get; set; }
+[!code[Main](mvc-music-store-part-6/samples/sample3.xml)]
 
 After having added these attributes to our Album model, our Create and Edit screen immediately begin validating fields and using the Display Names we've chosen (e.g. Album Art Url instead of AlbumArtUrl). Run the application and browse to /StoreManager/Create.
 

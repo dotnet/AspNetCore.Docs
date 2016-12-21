@@ -1,1 +1,2 @@
-var connection = $.hubConnection("/signalr", { useDefaultPath: false });
+$.connection.hub.url = "/signalr"
+$.connection.hub.start().done(init);

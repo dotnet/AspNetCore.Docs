@@ -1,22 +1,29 @@
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Owin;
-
-[assembly: OwinStartup(typeof(WebFormsIdentity.Startup))]
-
-namespace WebFormsIdentity
-{
-   public class Startup
-   {
-      public void Configuration(IAppBuilder app)
-      {
-         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
-         app.UseCookieAuthentication(new CookieAuthenticationOptions
-         {
-            AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-            LoginPath = new PathString("/Login")
-         });
-      }
-   }
-}
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+   <connectionStrings>
+      <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\WebFormsIdentity.mdf;Initial Catalog=WebFormsIdentity;Integrated Security=True"
+            providerName="System.Data.SqlClient" />
+   </connectionStrings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5" />
+  </system.web>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="v11.0" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+</configuration>

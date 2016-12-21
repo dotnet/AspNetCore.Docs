@@ -85,67 +85,14 @@ At this point your screen should look similar to Figure 2.
 Next, we need to write code that loads and displays the contents of `Web.config` in the `WebConfigContents` TextBox when the page is first loaded. Add the following code to the page s code-behind class. This code adds a method named `DisplayWebConfig` and calls it from the `Page_Load` event handler when `Page.IsPostBack` is `false`:
 
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        // On the first page visit, call DisplayWebConfig method
-        if (!Page.IsPostBack)
-            DisplayWebConfig();
-    }
-    private void DisplayWebConfig()
-    {
-        // Reads in the contents of Web.config and displays them in the TextBox
-        StreamReader webConfigStream = 
-            File.OpenText(Path.Combine(Request.PhysicalApplicationPath, "Web.config"));
-        string configContents = webConfigStream.ReadToEnd();
-        webConfigStream.Close();
-        WebConfigContents.Text = configContents;
-    }
+[!code[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample1.xml)]
 
 The `DisplayWebConfig` method uses the [`File` class](https://msdn.microsoft.com/en-us/library/system.io.file.aspx) to open the application s `Web.config` file, the [`StreamReader` class](https://msdn.microsoft.com/en-us/library/system.io.streamreader.aspx) to read its contents into a string, and the [`Path` class](https://msdn.microsoft.com/en-us/library/system.io.path.aspx) to generate the physical path to the `Web.config` file. These three classes are all found in the [`System.IO` namespace](https://msdn.microsoft.com/en-us/library/system.io.aspx). Consequently, you will need to add a `using` `System.IO` statement to the top of the code-behind class or, alternatively, prefix these class names with `System.IO.` .
 
 Next, we need to add event handlers for the two Button controls `Click` events and add the necessary code to encrypt and decrypt the `<connectionStrings>` section using a machine-level key with the DPAPI provider. From the Designer, double-click each of the Buttons to add a `Click` event handler in the code-behind class and then add the following code:
 
 
-    protected void EncryptConnStrings_Click(object sender, EventArgs e)
-    {
-        // Get configuration information about Web.config
-        Configuration config = 
-            WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
-        // Let's work with the <connectionStrings> section
-        ConfigurationSection connectionStrings = config.GetSection("connectionStrings");
-        if (connectionStrings != null)
-            // Only encrypt the section if it is not already protected
-            if (!connectionStrings.SectionInformation.IsProtected)
-            {
-                // Encrypt the <connectionStrings> section using the 
-                // DataProtectionConfigurationProvider provider
-                connectionStrings.SectionInformation.ProtectSection(
-                    "DataProtectionConfigurationProvider");
-                config.Save();
-                
-                // Refresh the Web.config display
-                DisplayWebConfig();
-            }
-    }
-    protected void DecryptConnStrings_Click(object sender, EventArgs e)
-    {
-        // Get configuration information about Web.config
-        Configuration config = 
-            WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
-        // Let's work with the <connectionStrings> section
-        ConfigurationSection connectionStrings = 
-            config.GetSection("connectionStrings");
-        if (connectionStrings != null)
-            // Only decrypt the section if it is protected
-            if (connectionStrings.SectionInformation.IsProtected)
-            {
-                // Decrypt the <connectionStrings> section
-                connectionStrings.SectionInformation.UnprotectSection();
-                config.Save();
-                // Refresh the Web.config display
-                DisplayWebConfig();
-            }
-    }
+[!code[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample2.xml)]
 
 The code used in the two event handlers is nearly identical. They both start by getting information about the current application s `Web.config` file via the [`WebConfigurationManager` class](https://msdn.microsoft.com/en-us/library/system.web.configuration.webconfigurationmanager.aspx) s [`OpenWebConfiguration` method](https://msdn.microsoft.com/en-us/library/system.web.configuration.webconfigurationmanager.openwebconfiguration.aspx). This method returns the web configuration file for the specified virtual path. Next, the `Web.config` file s `<connectionStrings>` section is accessed via the [`Configuration` class](https://msdn.microsoft.com/en-us/library/system.configuration.configuration.aspx) s [`GetSection(sectionName)` method](https://msdn.microsoft.com/en-us/library/system.configuration.configuration.getsection.aspx), which returns a [`ConfigurationSection`](https://msdn.microsoft.com/en-us/library/system.configuration.configurationsection.aspx) object.
 
@@ -166,7 +113,7 @@ Once you have entered the above code, test it by visiting the `EncryptingConfigS
 Now click the Encrypt Connection Strings button. If request validation is enabled, the markup posted back from the `WebConfigContents` TextBox will produce an `HttpRequestValidationException`, which displays the message, A potentially dangerous `Request.Form` value was detected from the client. Request validation, which is enabled by default in ASP.NET 2.0, prohibits postbacks that include un-encoded HTML and is designed to help prevent script-injection attacks. This check can be disabled at the page- or application-level. To turn it off for this page, set the `ValidateRequest` setting to `false` in the `@Page` directive. The `@Page` directive is found at the top of the page s declarative markup.
 
 
-    <%@ Page ValidateRequest="False" ... %>
+[!code[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample3.xml)]
 
 For more information on request validation, its purpose, how to disable it at the page- and application-level, as well as how to HTML encode markup, see [Request Validation - Preventing Script Attacks](../../../../whitepapers/request-validation.md).
 
@@ -181,14 +128,7 @@ After disabling request validation for the page, try clicking the Encrypt Connec
 The encrypted `<connectionStrings>` section generated on my computer follows, although some of the content in the `<CipherData>` element has been removed for brevity:
 
 
-    <connectionStrings 
-        configProtectionProvider="DataProtectionConfigurationProvider">
-      <EncryptedData>
-        <CipherData>
-          <CipherValue>AQAAANCMnd8BFdERjHoAwE/...zChw==</CipherValue>
-        </CipherData>
-      </EncryptedData>
-    </connectionStrings>
+[!code[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample4.xml)]
 
 > [!NOTE] The `<connectionStrings>` element specifies the provider used to perform the encryption (`DataProtectionConfigurationProvider`). This information is used by the `UnprotectSection` method when the Decrypt Connection Strings button is clicked.
 
@@ -210,26 +150,22 @@ The .NET Framework includes a variety of command line tools in the `$WINDOWS$\Mi
 The following statement shows the general syntax used to encrypt a configuration section with the `aspnet_regiis.exe` command line tool:
 
 
-    aspnet_regiis.exe -pef section physical_directory -prov provider
+[!code[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample5.xml)]
 
 *section* is the configuration section to encrypt (like connectionStrings ), the *physical\_directory* is the full, physical path to the web application s root directory, and *provider* is the name of the protected configuration provider to use (such as DataProtectionConfigurationProvider ). Alternatively, if the web application is registered in IIS you can enter the virtual path instead of the physical path using the following syntax:
 
 
-    aspnet_regiis.exe -pe section -app virtual_directory -prov provider
+[!code[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample6.xml)]
 
 The following `aspnet_regiis.exe` example encrypts the `<connectionStrings>` section using the DPAPI provider with a machine-level key:
 
 
-    aspnet_regiis.exe -pef
-    "connectionStrings" "C:\Websites\ASPNET_Data_Tutorial_73_CS"
-    -prov "DataProtectionConfigurationProvider"
+[!code[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample7.xml)]
 
 Similarly, the `aspnet_regiis.exe` command line tool can be used to decrypt configuration sections. Instead of using the `-pef` switch, use `-pdf` (or instead of `-pe`, use `-pd`). Also, note that the provider name is not necessary when decrypting.
 
 
-    aspnet_regiis.exe -pdf section physical_directory
-      -- or --
-    aspnet_regiis.exe -pd section -app virtual_directory
+[!code[Main](protecting-connection-strings-and-other-configuration-information-cs/samples/sample8.xml)]
 
 > [!NOTE] Since we are using the DPAPI provider, which uses keys specific to the computer, you must run `aspnet_regiis.exe` from the same machine from which the web pages are being served. For example, if you run this command line program from your local development machine and then upload the encrypted Web.config file to the production server, the production server will not be able to decrypt the connection string information since it was encrypted using keys specific to your development machine. The RSA provider does not have this limitation as it is possible to export the RSA keys to another machine.
 

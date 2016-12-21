@@ -26,24 +26,7 @@ When we created the Movie Entity Model earlier, the IDE created a Movie class. I
 
 We'll create a partial movie class that points to a "buddy class" with some attributes that will give validation hints to the system. We'll mark the Title and Price as Required, and also insist that the Price be within a certain range. Right click the Models folder and select Add Class. Name your class Movie and Click the OK button. Here's what our partial Movie class looks like.
 
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace Movies.Models
-    {
-        [MetadataType(typeof(MovieMetadata))]
-        public partial class Movie
-        {
-            class MovieMetadata
-            {
-                [Required(ErrorMessage="Titles are required")]
-                public string Title { get; set; }
-    
-                [Required(ErrorMessage="The Price is required.")]
-                [Range(5,100,ErrorMessage ="Movies cost between $5 and $100.")]
-                public decimal Price { get; set; }
-            }
-        }
-    }
+[!code[Main](getting-started-with-mvc-part7/samples/sample1.xml)]
 
 Re-Run your application and try to enter a movie with a price over 100. You'll get an error after you've submitted the form. The error is caught on the server side and occurs after the Form is POSTed. Notice how ASP.NET MVC's built-in HTML helpers were smart enough to display the error message and maintain the values for us within the textbox elements:
 
@@ -66,12 +49,11 @@ Open up the Scripts folder in the Solution Explorer and drag the following three
 
 You want these script files to appear in this order.
 
-    <script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
-    <script src="/Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
+[!code[Main](getting-started-with-mvc-part7/samples/sample2.xml)]
 
 Also, add this single line above the Html.BeginForm:
 
-    <% Html.EnableClientValidation(); %>
+[!code[Main](getting-started-with-mvc-part7/samples/sample3.xml)]
 
 Here's the code shown within the IDE.
 

@@ -76,35 +76,7 @@ The easiest way to get ASP.NET Routing to work with older versions of IIS is to 
 
 **Listing 1 - Global.asax (unmodified)**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Routing;
-    
-    namespace MvcApplication1
-    {
-        public class GlobalApplication : System.Web.HttpApplication
-        {
-            public static void RegisterRoutes(RouteCollection routes)
-            {
-                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-    
-                routes.MapRoute(
-                    "Default",                                              // Route name
-                    "{controller}/{action}/{id}",                           // URL with parameters
-                    new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
-                );
-    
-            }
-    
-            protected void Application_Start()
-            {
-                RegisterRoutes(RouteTable.Routes);
-            }
-        }
-    }
+[!code[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample1.xml)]
 
 The Default route configured in Listing 1 enables you to route URLs that look like this:
 
@@ -132,42 +104,7 @@ The modified Global.asax file in Listing 2 works with older versions of IIS.
 
 **Listing 2 - Global.asax (modified with extensions)**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Routing;
-    
-    namespace MvcApplication1
-    {
-     
-        public class MvcApplication : System.Web.HttpApplication
-        {
-            public static void RegisterRoutes(RouteCollection routes)
-            {
-                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-    
-                routes.MapRoute(
-                    "Default",
-                    "{controller}.mvc/{action}/{id}",
-                    new { action = "Index", id = "" }
-                  );
-    
-                routes.MapRoute(
-                  "Root",
-                  "",
-                  new { controller = "Home", action = "Index", id = "" }
-                );
-    
-            }
-    
-            protected void Application_Start()
-            {
-                RegisterRoutes(RouteTable.Routes);
-            }
-        }
-    }
+[!code[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample2.xml)]
 
 **Important**: remember to build your ASP.NET MVC Application again after changing the Global.asax file.
 
@@ -201,42 +138,7 @@ For example, the modified Global.asax file in Listing 3 uses the .aspx extension
 
 **Listing 3 - Global.asax (modified with .aspx extensions)**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Routing;
-    
-    namespace MvcApplication1
-    {
-     
-        public class MvcApplication : System.Web.HttpApplication
-        {
-            public static void RegisterRoutes(RouteCollection routes)
-            {
-                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-    
-                routes.MapRoute(
-                    "Default",
-                    "{controller}.aspx/{action}/{id}",
-                    new { action = "Index", id = "" }
-                  );
-    
-                routes.MapRoute(
-                  "Root",
-                  "",
-                  new { controller = "Home", action = "Index", id = "" }
-                );
-    
-            }
-    
-            protected void Application_Start()
-            {
-                RegisterRoutes(RouteTable.Routes);
-            }
-        }
-    }
+[!code[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample3.xml)]
 
 The Global.asax file in Listing 3 is exactly the same as the previous Global.asax file except for the fact that it uses the .aspx extension instead of the .mvc extension. You don't have to perform any setup on your remote web server to use the .aspx extension.
 
@@ -283,42 +185,7 @@ After you enable wildcard script maps, you need to modify the route table in the
 
 **Listing 4 - Global.asax (modified with Root route)**
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Routing;
-    
-    namespace MvcApplication1
-    {
-     
-        public class MvcApplication : System.Web.HttpApplication
-        {
-            public static void RegisterRoutes(RouteCollection routes)
-            {
-                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-    
-                routes.MapRoute(
-                    "Default",
-                    "{controller}/{action}/{id}",
-                    new { action = "Index", id = "" }
-                  );
-    
-                routes.MapRoute(
-                  "Root",
-                  "",
-                  new { controller = "Home", action = "Index", id = "" }
-                );
-    
-            }
-    
-            protected void Application_Start()
-            {
-                RegisterRoutes(RouteTable.Routes);
-            }
-        }
-    }
+[!code[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample4.xml)]
 
 After you enable a wildcard script map for either IIS 7.0 or IIS 6.0, you can make requests that work with the default route table that look like this:
 

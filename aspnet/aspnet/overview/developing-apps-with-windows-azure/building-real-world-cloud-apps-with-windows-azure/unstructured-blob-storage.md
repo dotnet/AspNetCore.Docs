@@ -48,8 +48,7 @@ Azure won't replicate data across geo-political boundaries: if your primary loca
 
 Of course, you can also create a Storage account by executing commands from a script, as we saw earlier. Here's a Windows PowerShell command to create a Storage account:
 
-    # Create a new storage account
-    New-AzureStorageAccount -StorageAccountName $Name -Location $Location -Verbose
+[!code[Main](unstructured-blob-storage/samples/sample1.xml)]
 
 Once you have a Storage account, you can immediately start storing files in the Blob service.
 
@@ -65,62 +64,19 @@ When you click **Create the FixIt**, the application uploads the specified image
 
 In order to store a file in the Blob service you need a *container* to store it in. A Blob service container corresponds to a file system folder. The environment creation scripts that we reviewed in the [Automate Everything chapter](automate-everything.md) create the Storage account, but they don't create a container. So the purpose of the `CreateAndConfigure` method of the `PhotoService` class is to create a container if it doesn't already exist. This method is called from the `Application_Start` method in *Global.asax*.
 
-    public async void CreateAndConfigureAsync()
-    {
-        try
-        {
-            CloudStorageAccount storageAccount = StorageUtils.StorageAccount;
-    
-            // Create a blob client and retrieve reference to images container
-            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-            CloudBlobContainer container = blobClient.GetContainerReference("images");
-    
-            // Create the "images" container if it doesn't already exist.
-            if (await container.CreateIfNotExistsAsync())
-            {
-                // Enable public access on the newly created "images" container
-                await container.SetPermissionsAsync(
-                    new BlobContainerPermissions
-                    {
-                        PublicAccess =
-                            BlobContainerPublicAccessType.Blob
-                    });
-    
-                log.Information("Successfully created Blob Storage Images Container and made it public");
-            }
-        }
-        catch (Exception ex)
-        {
-            log.Error(ex, "Failure to Create or Configure images container in Blob Storage Service");
-        }
-    }
+[!code[Main](unstructured-blob-storage/samples/sample2.xml)]
 
 The storage account name and access key are stored in the `appSettings` collection of the *Web.config* file, and code in the `StorageUtils.StorageAccount` method uses those values to build a connection string and establish a connection:
 
-    string account = CloudConfigurationManager.GetSetting("StorageAccountName");
-    string key = CloudConfigurationManager.GetSetting("StorageAccountAccessKey");
-    string connectionString = String.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}", account, key);
-    return CloudStorageAccount.Parse(connectionString);
+[!code[Main](unstructured-blob-storage/samples/sample3.xml)]
 
 The `CreateAndConfigureAsync` method then creates an object that represents the Blob service, and an object that represents a container (folder) named "images" in the Blob service:
 
-    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-    CloudBlobContainer container = blobClient.GetContainerReference("images");
+[!code[Main](unstructured-blob-storage/samples/sample4.xml)]
 
 If a container named "images" doesn't exist yet -- which will be true the first time you run the app against a new storage account -- the code creates the container and sets permissions to make it public. (By default, new blob containers are private and are accessible only to users who have permission to access your storage account.)
 
-    if (await container.CreateIfNotExistsAsync())
-    {
-        // Enable public access on the newly created "images" container
-        await container.SetPermissionsAsync(
-            new BlobContainerPermissions
-            {
-                PublicAccess =
-                    BlobContainerPublicAccessType.Blob
-            });
-    
-        log.Information("Successfully created Blob Storage Images Container and made it public");
-    }
+[!code[Main](unstructured-blob-storage/samples/sample5.xml)]
 
 ### Store the uploaded photo in Blob storage
 
@@ -128,75 +84,29 @@ To upload and save the image file, the app uses an `IPhotoService` interface and
 
 The following MVC controller method is called when the user clicks **Create the FixIt**. In this code, `photoService` refers to an instance of the `PhotoService` class, and `fixittask` refers to an instance of the `FixItTask` entity class that stores data for a new task.
 
-[!code[Main](unstructured-blob-storage/samples/sample1.xml?highlight=8)]
+[!code[Main](unstructured-blob-storage/samples/sample6.xml?highlight=8)]
 
 The `UploadPhotoAsync` method in the `PhotoService` class stores the uploaded file in the Blob service and returns a URL that points to the new blob.
 
-    public async Task<string> UploadPhotoAsync(HttpPostedFileBase photoToUpload)
-    {            
-        if (photoToUpload == null || photoToUpload.ContentLength == 0)
-        {
-            return null;
-        }
-    
-        string fullPath = null;
-        Stopwatch timespan = Stopwatch.StartNew();
-    
-        try
-        {
-            CloudStorageAccount storageAccount = StorageUtils.StorageAccount;
-    
-            // Create the blob client and reference the container
-            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-            CloudBlobContainer container = blobClient.GetContainerReference("images");
-    
-            // Create a unique name for the images we are about to upload
-            string imageName = String.Format("task-photo-{0}{1}",
-                Guid.NewGuid().ToString(),
-                Path.GetExtension(photoToUpload.FileName));
-    
-            // Upload image to Blob Storage
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference(imageName);
-            blockBlob.Properties.ContentType = photoToUpload.ContentType;
-            await blockBlob.UploadFromStreamAsync(photoToUpload.InputStream);
-    
-            // Convert to be HTTP based URI (default storage path is HTTPS)
-            var uriBuilder = new UriBuilder(blockBlob.Uri);
-            uriBuilder.Scheme = "http";
-            fullPath = uriBuilder.ToString();
-    
-            timespan.Stop();
-            log.TraceApi("Blob Service", "PhotoService.UploadPhoto", timespan.Elapsed, "imagepath={0}", fullPath);
-        }
-        catch (Exception ex)
-        {
-            log.Error(ex, "Error upload photo blob to storage");
-        }
-    
-        return fullPath;
-    }
+[!code[Main](unstructured-blob-storage/samples/sample7.xml)]
 
 As in the `CreateAndConfigure` method, the code connects to the storage account and creates an object that represents the "images" blob container, except here it assumes the container already exists.
 
 Then it creates a unique identifier for the image about to be uploaded, by concatenating a new GUID value with the file extension:
 
-    string imageName = String.Format("task-photo-{0}{1}",
-        Guid.NewGuid().ToString(),
-        Path.GetExtension(photoToUpload.FileName));
+[!code[Main](unstructured-blob-storage/samples/sample8.xml)]
 
 The code then uses the blob container object and the new unique identifier to create a blob object, sets an attribute on that object indicating what kind of file it is, and then uses the blob object to store the file in blob storage.
 
-    CloudBlockBlob blockBlob = container.GetBlockBlobReference(imageName);
-    blockBlob.Properties.ContentType = photoToUpload.ContentType;
-    blockBlob.UploadFromStream(photoToUpload.InputStream);
+[!code[Main](unstructured-blob-storage/samples/sample9.xml)]
 
 Finally, it gets a URL that references the blob. This URL will be stored in the database and can be used in Fix It web pages to display the uploaded image.
 
-    fullPath = String.Format("http://{0}{1}", blockBlob.Uri.DnsSafeHost, blockBlob.Uri.AbsolutePath);
+[!code[Main](unstructured-blob-storage/samples/sample10.xml)]
 
 This URL is stored in the database as one of the columns of the FixItTask table.
 
-[!code[Main](unstructured-blob-storage/samples/sample2.xml?highlight=10)]
+[!code[Main](unstructured-blob-storage/samples/sample11.xml?highlight=10)]
 
 With only the URL in the database, and images in Blob storage, the Fix It app keeps the database small, scalable, and inexpensive, while the images are stored where storage is cheap and capable of handling terabytes or petabytes. One storage account can store hundreds of terabytes of Fix It photos, and you only pay for what you use. So you can start off small paying 9 cents for the first gigabyte, and add more images for pennies per additional gigabyte.
 
@@ -208,11 +118,11 @@ The Fix It application displays the uploaded image file when it displays details
 
 To display the image, all the MVC view has to do is include the `PhotoUrl` value in the HTML sent to the browser. The web server and the database are not using cycles to display the image, they are only serving up a few bytes to the image URL. In the following Razor code, `Model` refers to an instance of the `FixItTask` entity class.
 
-[!code[Main](unstructured-blob-storage/samples/sample3.xml?highlight=11)]
+[!code[Main](unstructured-blob-storage/samples/sample12.xml?highlight=11)]
 
 If you look at the HTML of the page that displays, you see the URL pointing directly to the image in blob storage, something like this:
 
-[!code[Main](unstructured-blob-storage/samples/sample4.xml?highlight=11)]
+[!code[Main](unstructured-blob-storage/samples/sample13.xml?highlight=11)]
 
 ## Summary
 

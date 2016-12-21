@@ -73,34 +73,7 @@ In this section, you'll add a unit test for the application created in the [Gett
 7. Create the test file. Right-click the **TestLibrary** project and click **Add...**, **Class**. Name the new class **Tests.cs**.
 8. Replace the contents of Tests.cs with the following code.
 
-        using System;
-        using Xunit;
-        using SignalRChat;
-        using Microsoft.AspNet.SignalR.Hubs;
-        using Moq;
-        using System.Dynamic;
-        
-        namespace TestLibrary
-        {
-            public class Tests
-            {
-                [Fact]
-                public void HubsAreMockableViaDynamic()
-                {
-                    bool sendCalled = false;
-                    var hub = new ChatHub();
-                    var mockClients = new Mock<IHubCallerConnectionContext<dynamic>>();
-                    hub.Clients = mockClients.Object;
-                    dynamic all = new ExpandoObject();
-                    all.broadcastMessage = new Action<string, string>((name, message) => {
-                        sendCalled = true;
-                    });
-                    mockClients.Setup(m => m.All).Returns((ExpandoObject)all);
-                    hub.Send("TestUser", "TestMessage");
-                    Assert.True(sendCalled);
-                }
-            }
-        }
+    [!code[Main](unit-testing-signalr-applications/samples/sample1.xml)]
 
     In the code above, a test client is created using the `Mock` object from the [Moq](https://github.com/Moq/moq4) library, of type [IHubCallerConnectionContext](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hubs.ihubcallerconnectioncontext(v=vs.118).aspx) (in SignalR 2.1, assign `dynamic` for the type parameter.) The `IHubCallerConnectionContext` interface is the proxy object with which you invoke methods on the client. The `broadcastMessage` function is then defined for the mock client so that it can be called by the `ChatHub` class. The test engine then calls the `Send` method of the `ChatHub` class, which in turn calls the mocked `broadcastMessage` function.
 9. Build the solution by pressing **F6**.
@@ -119,35 +92,7 @@ In this section, you'll add a test for the application created in the [Getting S
 1. Complete steps 1-7 in the [Unit testing with Dynamic](#dynamic) tutorial above.
 2. Replace the contents of Tests.cs with the following code.
 
-        using Xunit;
-        using SignalRChat;
-        using Microsoft.AspNet.SignalR.Hubs;
-        using Moq;
-        
-        namespace TestLibrary
-        {
-            public class Tests
-            {
-               
-               public interface IClientContract
-               {
-                   void broadcastMessage(string name, string message);
-               }
-               [Fact]
-               public void HubsAreMockableViaType()
-               {
-                   var hub = new ChatHub();
-                   var mockClients = new Mock<IHubCallerConnectionContext<dynamic>>();
-                   var all = new Mock<IClientContract>();
-                   hub.Clients = mockClients.Object;
-                   all.Setup(m => m.broadcastMessage(It.IsAny<string>(), 
-                   		It.IsAny<string>())).Verifiable();
-                   mockClients.Setup(m => m.All).Returns(all.Object);
-                   hub.Send("TestUser", "TestMessage");
-                   all.VerifyAll();
-               }
-            }
-        }
+    [!code[Main](unit-testing-signalr-applications/samples/sample2.xml)]
 
     In the code above, an interface is created defining the signature of the `broadcastMessage` method for which the test engine will create a mock client. A mock client is then created using the `Mock` object, of type [IHubCallerConnectionContext](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hubs.ihubcallerconnectioncontext(v=vs.118).aspx) (in SignalR 2.1, assign `dynamic` for the type parameter.) The `IHubCallerConnectionContext` interface is the proxy object with which you invoke methods on the client.
 

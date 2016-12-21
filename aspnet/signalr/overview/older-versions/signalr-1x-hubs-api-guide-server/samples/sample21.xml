@@ -1,4 +1,5 @@
-var contosoChatHubProxy = $.connection.contosoChatHub;
-contosoChatHubProxy.client.addMessageToPage = function (message) {
-    console.log(message.UserName + ' ' + message.Message);
-});
+    stockTickerHubProxy.server.getAllStocks().done(function (stocks) {
+        $.each(stocks, function () {
+            alert(this.Symbol + ' ' + this.Price);
+        });
+    });

@@ -24,7 +24,7 @@ By default, Web API uses the following rules to bind parameters:
 
 For example, here is a typical Web API controller method:
 
-    HttpResponseMessage Put(int id, Product item) { ... }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample1.xml)]
 
 The *id* parameter is a &quot;simple&quot; type, so Web API tries to get the value from the request URI. The *item* parameter is a complex type, so Web API uses a media-type formatter to read the value from the request body.
 
@@ -36,16 +36,7 @@ In the rest of this article, I'll show how you can customize the model binding p
 
 To force Web API to read a complex type from the URI, add the **[FromUri]** attribute to the parameter. The following example defines a `GeoPoint` type, along with a controller method that gets the `GeoPoint` from the URI.
 
-    public class GeoPoint
-    {
-        public double Latitude { get; set; } 
-        public double Longitude { get; set; }
-    }
-    
-    public ValuesController : ApiController
-    {
-        public HttpResponseMessage Get([FromUri] GeoPoint location) { ... }
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample2.xml)]
 
 The client can put the Latitude and Longitude values in the query string and Web API will use them to construct a `GeoPoint`. For example:
 
@@ -55,23 +46,17 @@ The client can put the Latitude and Longitude values in the query string and Web
 
 To force Web API to read a simple type from the request body, add the **[FromBody]** attribute to the parameter:
 
-    public HttpResponseMessage Post([FromBody] string name) { ... }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample3.xml)]
 
 In this example, Web API will use a media-type formatter to read the value of *name* from the request body. Here is an example client request.
 
-    POST http://localhost:5076/api/values HTTP/1.1
-    User-Agent: Fiddler
-    Host: localhost:5076
-    Content-Type: application/json
-    Content-Length: 7
-    "Alice"
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample4.xml)]
 
 When a parameter has [FromBody], Web API uses the Content-Type header to select a formatter. In this example, the content type is &quot;application/json&quot; and the request body is a raw JSON string (not a JSON object).
 
 At most one parameter is allowed to read from the message body. So this will not work:
 
-    // Caution: Will not work!    
-    public HttpResponseMessage Post([FromBody] int id, [FromBody] string name) { ... }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample5.xml)]
 
 The reason for this rule is that the request body might be stored in a non-buffered stream that can only be read once.
 
@@ -81,62 +66,11 @@ You can make Web API treat a class as a simple type (so that Web API will try to
 
 The following code shows a `GeoPoint` class that represents a geographical point, plus a **TypeConverter** that converts from strings to `GeoPoint` instances. The `GeoPoint` class is decorated with a **[TypeConverter]** attribute to specify the type converter. (This example was inspired by Mike Stall's blog post [How to bind to custom objects in action signatures in MVC/WebAPI](https://blogs.msdn.com/b/jmstall/archive/2012/04/20/how-to-bind-to-custom-objects-in-action-signatures-in-mvc-webapi.aspx).)
 
-    [TypeConverter(typeof(GeoPointConverter))]
-    public class GeoPoint
-    {
-        public double Latitude { get; set; } 
-        public double Longitude { get; set; }
-    
-        public static bool TryParse(string s, out GeoPoint result)
-        {
-            result = null;
-    
-            var parts = s.Split(',');
-            if (parts.Length != 2)
-            {
-                return false;
-            }
-    
-            double latitude, longitude;
-            if (double.TryParse(parts[0], out latitude) &&
-                double.TryParse(parts[1], out longitude))
-            {
-                result = new GeoPoint() { Longitude = longitude, Latitude = latitude };
-                return true;
-            }
-            return false;
-        }
-    }
-    
-    class GeoPointConverter : TypeConverter
-    {
-        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
-        {
-            if (sourceType == typeof(string))
-            {
-                return true;
-            }
-            return base.CanConvertFrom(context, sourceType);
-        }
-    
-        public override object ConvertFrom(ITypeDescriptorContext context, 
-            CultureInfo culture, object value)
-        {
-            if (value is string)
-            {
-                GeoPoint point;
-                if (GeoPoint.TryParse((string)value, out point))
-                {
-                    return point;
-                }
-            }
-            return base.ConvertFrom(context, culture, value);
-        }
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample6.xml)]
 
 Now Web API will treat `GeoPoint` as a simple type, meaning it will try to bind `GeoPoint` parameters from the URI. You don't need to include **[FromUri]** on the parameter.
 
-    public HttpResponseMessage Get(GeoPoint location) { ... }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample7.xml)]
 
 The client can invoke the method with a URI like this:
 
@@ -148,57 +82,11 @@ A more flexible option than a type converter is to create a custom model binder.
 
 To create a model binder, implement the **IModelBinder** interface. This interface defines a single method, **BindModel**:
 
-    bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext);
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample8.xml)]
 
 Here is a model binder for `GeoPoint` objects.
 
-    public class GeoPointModelBinder : IModelBinder
-    {
-        // List of known locations.
-        private static ConcurrentDictionary<string, GeoPoint> _locations
-            = new ConcurrentDictionary<string, GeoPoint>(StringComparer.OrdinalIgnoreCase);
-    
-        static GeoPointModelBinder()
-        {
-            _locations["redmond"] = new GeoPoint() { Latitude = 47.67856, Longitude = -122.131 };
-            _locations["paris"] = new GeoPoint() { Latitude = 48.856930, Longitude = 2.3412 };
-            _locations["tokyo"] = new GeoPoint() { Latitude = 35.683208, Longitude = 139.80894 };
-        }
-    
-        public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
-        {
-            if (bindingContext.ModelType != typeof(GeoPoint))
-            {
-                return false;
-            }
-    
-            ValueProviderResult val = bindingContext.ValueProvider.GetValue(
-                bindingContext.ModelName);
-            if (val == null)
-            {
-                return false;
-            }
-    
-            string key = val.RawValue as string;
-            if (key == null)
-            {
-                bindingContext.ModelState.AddModelError(
-                    bindingContext.ModelName, "Wrong value type");
-                return false;
-            }
-    
-            GeoPoint result;
-            if (_locations.TryGetValue(key, out result) || GeoPoint.TryParse(key, out result))
-            {
-                bindingContext.Model = result;
-                return true;
-            }
-    
-            bindingContext.ModelState.AddModelError(
-                bindingContext.ModelName, "Cannot convert value to Location");
-            return false;
-        }
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample9.xml)]
 
 A model binder gets raw input values from a *value provider*. This design separates two distinct functions:
 
@@ -220,100 +108,39 @@ Notice that the model binder is not limited to a simple type conversion. In this
 
 There are several ways to set a model binder. First, you can add a **[ModelBinder]** attribute to the parameter.
 
-    public HttpResponseMessage Get([ModelBinder(typeof(GeoPointModelBinder))] GeoPoint location)
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample10.xml)]
 
 You can also add a **[ModelBinder]** attribute to the type. Web API will use the specified model binder for all parameters of that type.
 
-    [ModelBinder(typeof(GeoPointModelBinder))]
-    public class GeoPoint
-    {
-        // ....
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample11.xml)]
 
 Finally, you can add a model-binder provider to the **HttpConfiguration**. A model-binder provider is simply a factory class that creates a model binder. You can create a provider by deriving from the [ModelBinderProvider](https://msdn.microsoft.com/en-us/library/system.web.http.modelbinding.modelbinderprovider.aspx) class. However, if your model binder handles a single type, it's easier to use the built-in **SimpleModelBinderProvider**, which is designed for this purpose. The following code shows how to do this.
 
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            var provider = new SimpleModelBinderProvider(
-                typeof(GeoPoint), new GeoPointModelBinder());
-            config.Services.Insert(typeof(ModelBinderProvider), 0, provider);
-    
-            // ...
-        }
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample12.xml)]
 
 With a model-binding provider, you still need to add the **[ModelBinder]** attribute to the parameter, to tell Web API that it should use a model binder and not a media-type formatter. But now you don't need to specify the type of model binder in the attribute:
 
-    public HttpResponseMessage Get([ModelBinder] GeoPoint location) { ... }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample13.xml)]
 
 ## Value Providers
 
 I mentioned that a model binder gets values from a value provider. To write a custom value provider, implement the **IValueProvider** interface. Here is an example that pulls values from the cookies in the request:
 
-    public class CookieValueProvider : IValueProvider
-    {
-        private Dictionary<string, string> _values;
-    
-        public CookieValueProvider(HttpActionContext actionContext)
-        {
-            if (actionContext == null)
-            {
-                throw new ArgumentNullException("actionContext");
-            }
-    
-            _values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            foreach (var cookie in actionContext.Request.Headers.GetCookies())
-            {
-                foreach (CookieState state in cookie.Cookies)
-                {
-                    _values[state.Name] = state.Value;
-                }
-            }
-        }
-    
-        public bool ContainsPrefix(string prefix)
-        {
-            return _values.Keys.Contains(prefix);
-        }
-    
-        public ValueProviderResult GetValue(string key)
-        {
-            string value;
-            if (_values.TryGetValue(key, out value))
-            {
-                return new ValueProviderResult(value, value, CultureInfo.InvariantCulture);
-            }
-            return null;
-        }
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample14.xml)]
 
 You also need to create a value provider factory by deriving from the **ValueProviderFactory** class.
 
-    public class CookieValueProviderFactory : ValueProviderFactory
-    {
-        public override IValueProvider GetValueProvider(HttpActionContext actionContext)
-        {
-            return new CookieValueProvider(actionContext);
-        }
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample15.xml)]
 
 Add the value provider factory to the **HttpConfiguration** as follows.
 
-    public static void Register(HttpConfiguration config)
-    {
-        config.Services.Add(typeof(ValueProviderFactory), new CookieValueProviderFactory());
-    
-        // ...
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample16.xml)]
 
 Web API composes all of the value providers, so when a model binder calls **ValueProvider.GetValue**, the model binder receives the value from the first value provider that is able to produce it.
 
 Alternatively, you can set the value provider factory at the parameter level by using the **ValueProvider** attribute, as follows:
 
-    public HttpResponseMessage Get(
-        [ValueProvider(typeof(CookieValueProviderFactory))] GeoPoint location)
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample17.xml)]
 
 This tells Web API to use model binding with the specified value provider factory, and not to use any of the other registered value providers.
 
@@ -321,67 +148,21 @@ This tells Web API to use model binding with the specified value provider factor
 
 Model binders are a specific instance of a more general mechanism. If you look at the **[ModelBinder]** attribute, you will see that it derives from the abstract **ParameterBindingAttribute** class. This class defines a single method, **GetBinding**, which returns an **HttpParameterBinding** object:
 
-    public abstract class ParameterBindingAttribute : Attribute
-    {
-        public abstract HttpParameterBinding GetBinding(HttpParameterDescriptor parameter);
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample18.xml)]
 
 An **HttpParameterBinding** is responsible for binding a parameter to a value. In the case of **[ModelBinder]**, the attribute returns an **HttpParameterBinding** implementation that uses an **IModelBinder** to perform the actual binding. You can also implement your own **HttpParameterBinding**.
 
 For example, suppose you want to get ETags from `if-match` and `if-none-match` headers in the request. We'll start by defining a class to represent ETags.
 
-    public class ETag
-    {
-        public string Tag { get; set; }
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample19.xml)]
 
 We'll also define an enumeration to indicate whether to get the ETag from the `if-match` header or the `if-none-match` header.
 
-    public enum ETagMatch
-    {
-        IfMatch,
-        IfNoneMatch
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample20.xml)]
 
 Here is an **HttpParameterBinding** that gets the ETag from the desired header and binds it to a parameter of type ETag:
 
-    public class ETagParameterBinding : HttpParameterBinding
-    {
-        ETagMatch _match;
-    
-        public ETagParameterBinding(HttpParameterDescriptor parameter, ETagMatch match) 
-            : base(parameter)
-        {
-            _match = match;
-        }
-    
-        public override Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider, 
-            HttpActionContext actionContext, CancellationToken cancellationToken)
-        {
-            EntityTagHeaderValue etagHeader = null;
-            switch (_match)
-            {
-                case ETagMatch.IfNoneMatch:
-                    etagHeader = actionContext.Request.Headers.IfNoneMatch.FirstOrDefault();
-                    break;
-    
-                case ETagMatch.IfMatch:
-                    etagHeader = actionContext.Request.Headers.IfMatch.FirstOrDefault();
-                    break;
-            }
-    
-            ETag etag = null;
-            if (etagHeader != null)
-            {
-                etag = new ETag { Tag = etagHeader.Tag };
-            }
-            actionContext.ActionArguments[Descriptor.ParameterName] = etag;
-    
-            var tsc = new TaskCompletionSource<object>();
-            tsc.SetResult(null);
-            return tsc.Task;
-        }
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample21.xml)]
 
 The **ExecuteBindingAsync** method does the binding. Within this method, add the bound parameter value to the **ActionArgument** dictionary in the **HttpActionContext**.
 
@@ -390,59 +171,15 @@ The **ExecuteBindingAsync** method does the binding. Within this method, add the
 
 To apply a custom **HttpParameterBinding**, you can define an attribute that derives from **ParameterBindingAttribute**. For `ETagParameterBinding`, we'll define two attributes, one for `if-match` headers and one for `if-none-match` headers. Both derive from an abstract base class.
 
-    public abstract class ETagMatchAttribute : ParameterBindingAttribute
-    {
-        private ETagMatch _match;
-    
-        public ETagMatchAttribute(ETagMatch match)
-        {
-            _match = match;
-        }
-    
-        public override HttpParameterBinding GetBinding(HttpParameterDescriptor parameter)
-        {
-            if (parameter.ParameterType == typeof(ETag))
-            {
-                return new ETagParameterBinding(parameter, _match);
-            }
-            return parameter.BindAsError("Wrong parameter type");
-        }
-    }
-    
-    public class IfMatchAttribute : ETagMatchAttribute
-    {
-        public IfMatchAttribute()
-            : base(ETagMatch.IfMatch)
-        {
-        }
-    }
-    
-    public class IfNoneMatchAttribute : ETagMatchAttribute
-    {
-        public IfNoneMatchAttribute()
-            : base(ETagMatch.IfNoneMatch)
-        {
-        }
-    }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample22.xml)]
 
 Here is a controller method that uses the `[IfNoneMatch]` attribute.
 
-    public HttpResponseMessage Get([IfNoneMatch] ETag etag) { ... }
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample23.xml)]
 
 Besides **ParameterBindingAttribute**, there is another hook for adding a custom **HttpParameterBinding**. On the **HttpConfiguration** object, the **ParameterBindingRules** property is a collection of anomymous functions of type (**HttpParameterDescriptor** -&gt; **HttpParameterBinding**). For example, you could add a rule that any ETag parameter on a GET method uses `ETagParameterBinding` with `if-none-match`:
 
-    config.ParameterBindingRules.Add(p =>
-    {
-        if (p.ParameterType == typeof(ETag) && 
-            p.ActionDescriptor.SupportedHttpMethods.Contains(HttpMethod.Get))
-        {
-            return new ETagParameterBinding(p, ETagMatch.IfNoneMatch);
-        }
-        else
-        {
-            return null;
-        }
-    });
+[!code[Main](parameter-binding-in-aspnet-web-api/samples/sample24.xml)]
 
 The function should return `null` for parameters where the binding is not applicable.
 

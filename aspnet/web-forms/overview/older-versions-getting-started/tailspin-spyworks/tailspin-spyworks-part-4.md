@@ -48,17 +48,7 @@ To accomplish this we'll tell the EntityDataSource to Auto Generate the WHERE cl
 
 You'll recall that when we created the Menu Items in our "Product Category Menu" we dynamically built the link by adding the CatagoryID to the QueryString for each link. We will tell the Entity Data Source to derive the WHERE parameter from that QueryString parameter.
 
-    <asp:EntityDataSource ID="EDS_ProductsByCategory" runat="server"  
-                          EnableFlattening="False" AutoGenerateWhereClause="True"
-                          ConnectionString="name=CommerceEntities"  
-                          DefaultContainerName="CommerceEntities" 
-                          EntitySetName="Products">
-    <WhereParameters>
-            <asp:QueryStringParameter Name="CategoryID" 
-                                            QueryStringField="Category Id" 
-                                            Type="Int32" />
-           </WhereParameters>
-    </asp:EntityDataSource>
+[!code[Main](tailspin-spyworks-part-4/samples/sample1.xml)]
 
 Next, we'll configure the ListView control to display a list of products. To create an optimal shopping experience we'll compact several concise features into each individual product displayed in our ListVew.
 
@@ -69,64 +59,7 @@ Next, we'll configure the ListView control to display a list of products. To cre
 
 Here is the markup for our ListView control instance.
 
-    <asp:ListView ID="ListView_Products" runat="server" 
-                  DataKeyNames="ProductID"  
-                  DataSourceID="EDS_ProductsByCategory" 
-                  GroupItemCount="2">
-       <EmptyDataTemplate>
-          <table runat="server">
-            <tr>
-              <td>No data was returned.</td>
-            </tr>
-         </table>
-      </EmptyDataTemplate>
-      <EmptyItemTemplate>
-         <td runat="server" />
-      </EmptyItemTemplate>
-      <GroupTemplate>
-        <tr ID="itemPlaceholderContainer" runat="server">
-          <td ID="itemPlaceholder" runat="server"></td>
-        </tr>
-      </GroupTemplate>
-      <ItemTemplate>
-        <td runat="server">
-          <table border="0" width="300">
-            <tr>
-              <td>&nbsp</td>
-              <td>
-                <a href='ProductDetails.aspx?productID=<%# Eval("ProductID") %>'>
-                   <image src='Catalog/Images/Thumbs/<%# Eval("ProductImage") %>' 
-                          width="100" height="75" border="0">
-                </a> &nbsp
-              </td>
-              <td>
-                <a href='ProductDetails.aspx?productID=<%# Eval("ProductID") %>'><span 
-                   class="ProductListHead"><%# Eval("ModelName") %></span><br>
-                </a>
-                <span class="ProductListItem">
-                  <b>Special Price: </b><%# Eval("UnitCost", "{0:c}")%>
-                </span><br />
-                <a href='AddToCart.aspx?productID=<%# Eval("ProductID") %>'>
-                   <span class="ProductListItem"><b>Add To Cart<b></font></span>
-                </a>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </ItemTemplate>
-      <LayoutTemplate>
-        <table runat="server">
-          <tr runat="server">
-            <td runat="server">
-              <table ID="groupPlaceholderContainer" runat="server">
-                <tr ID="groupPlaceholder" runat="server"></tr>
-              </table>
-            </td>
-          </tr>
-          <tr runat="server"><td runat="server"></td></tr>
-        </table>
-      </LayoutTemplate>
-    </asp:ListView>
+[!code[Main](tailspin-spyworks-part-4/samples/sample2.xml)]
 
 We are dynamically building several links for each displayed product.
 
@@ -148,46 +81,7 @@ Use File-&gt;New to create a page name ProductDetails.aspx using the site Master
 
 We will again use an EntityDataSource control to access the specific product record in the database and we will use an ASP.NET FormView control to display the product data as follows.
 
-    <asp:FormView ID="FormView_Product" runat="server" DataKeyNames="ProductID" 
-                                                               DataSourceID="EDS_Product">
-      <ItemTemplate>
-        <div class="ContentHead"><%# Eval("ModelName") %></div><br />
-          <table  border="0">
-            <tr>
-              <td>
-                <img src='Catalog/Images/<%# Eval("ProductImage") %>'  border="0" 
-                                                           alt='<%# Eval("ModelName") %>' />
-              </td>
-              <td><%# Eval("Description") %>
-                <br /><br /><br />                  
-              </td>
-            </tr>
-          </table>
-          <span class="UnitCost"><b>Your Price:</b> <%# Eval("UnitCost", "{0:c}")%> 
-          <br /> 
-          <span class="ModelNumber">
-            <b>Model Number:</b> <%# Eval("ModelNumber") %>
-          </span><br />
-          <a href='AddToCart.aspx?ProductID=
-            <%# Eval("ProductID") %>'> 
-            <img id="Img1" src="~/Styles/Images/add_to_cart.gif" runat="server" 
-                 alt="" />
-          </a>
-          <br /><br />      
-        </ItemTemplate>
-      </asp:FormView>
-      <asp:EntityDataSource ID="EDS_Product" runat="server" AutoGenerateWhereClause="True"  
-                            EnableFlattening="False" 
-                            ConnectionString="name=CommerceEntities" 
-                            DefaultContainerName="CommerceEntities" 
-                            EntitySetName="Products" 
-                            EntityTypeFilter="" 
-                            Select="" Where="">
-        <WhereParameters>
-          <asp:QueryStringParameter Name="ProductID" 
-                                    QueryStringField="productID"  Type="Int32" />
-        </WhereParameters>
-      </asp:EntityDataSource>
+[!code[Main](tailspin-spyworks-part-4/samples/sample3.xml)]
 
 Don't worry if the formatting looks a bit funny to you. The markup above leaves room in the display layout for a couple of features we'll implement later on.
 

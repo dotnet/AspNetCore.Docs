@@ -163,11 +163,11 @@ To manually upgrade an existing ASP.NET MVC 2 application to version 3, do the f
 4. If your ASP.NET MVC 2 project contains any areas, copy the /Views/Web.config file to the *Views* folder of each area.
 5. In both Web.config files in the ASP.NET MVC 2 project, globally search and replace the ASP.NET MVC version. Find the following: 
 
-        System.Web.Mvc, Version=2.0.0.0
+    [!code[Main](mvc3-release-notes/samples/sample1.xml)]
 
     Replace it with the following:
 
-        System.Web.Mvc, Version=3.0.0.0
+    [!code[Main](mvc3-release-notes/samples/sample2.xml)]
 6. In Solution Explorer, delete the reference to *System.Web.Mvc* (which points to the DLL from version 2), then add a reference to *System.Web.Mvc* (v3.0.0.0).
 7. Add a reference to System.Web.WebPages.dll and System.Web.Helpers.dll. These assemblies are located in the following folders: 
 
@@ -178,22 +178,10 @@ To manually upgrade an existing ASP.NET MVC 2 application to version 3, do the f
 10. Save the changes, right-click the project, and then select Reload Project.
 11. In the application's root Web.config file, add the following settings to the *assemblies* section. 
 
-        <add assembly="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, 
-             PublicKeyToken=31BF3856AD364E35" />
-        
-        <add assembly="System.Web.Helpers, Version=1.0.0.0, Culture=neutral,
-             PublicKeyToken=31BF3856AD364E35" />
+    [!code[Main](mvc3-release-notes/samples/sample3.xml)]
 12. If the project references any third-party libraries that are compiled using ASP.NET MVC 2, add the following highlighted *bindingRedirect* element to the Web.config file in the application root under the *configuration* section: 
 
-        <runtime>
-           <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-             <dependentAssembly>
-               <assemblyIdentity name="System.Web.Mvc"
-                   publicKeyToken="31bf3856ad364e35"/>
-               <bindingRedirect oldVersion="1.0.0.0-2.0.0.0" newVersion="3.0.0.0"/>
-             </dependentAssembly>
-           </assemblyBinding>
-        </runtime>
+    [!code[Main](mvc3-release-notes/samples/sample4.xml)]
 
 <a id="tu-changes"></a>
 ## Changes in ASP.NET MVC 3 Tools Update
@@ -227,22 +215,7 @@ This template enables you to quickly create a working data-entry user interface.
 - *Validation*. The generated code uses ASP.NET MVC model binding and metadata features so that form submissions are validated according to rules declared on your model class. This includes built-in validation rules, such as the *Required* and *StringLength* attributes, and custom validation rules.
 - *One-to-many relationships*. If you define one-to-many foreign-key relationships between your model classes, the generated code will produce drop-down lists for selecting related entities. For example, you might define the following model classes following Entity Framework Code First conventions: 
 
-        public class Product
-        {
-             public int ProductId { get; set; }
-             [Required]
-             public string Name { get; set; }
-        
-             // Product belongs to Category
-             public int CategoryId { get; set; }
-             public virtual Category Category { get; set; }
-        }
-        public class Category
-        {
-             public int CategoryId { get; set; }
-             [Required]
-             public string Name { get; set; }
-        }
+    [!code[Main](mvc3-release-notes/samples/sample5.xml)]
 
     When you then scaffold a controller for the *Product* class, its views will allow users to choose a *Category* object for each *Product* instance.
 
@@ -346,17 +319,15 @@ The RC2 release of ASP.NET MVC 3 introduced a *CachedDataAnnotationsMetadataProv
 
 In pre-release versions of ASP.NET MVC 3, when you paste a part of a Razor expression that contains whitespace into a Razor file, the resulting expression is reversed. For example, consider the following Razor code block:
 
-    @SomeMethod("first param",
-    100)
-    @AnotherMethod()
+[!code[Main](mvc3-release-notes/samples/sample6.xml)]
 
 If you select the text "first param" in the first method and paste it as an argument into the second method, the result is as follows:
 
-    @AnotherMethod(param""first)
+[!code[Main](mvc3-release-notes/samples/sample7.xml)]
 
 The correct behavior is that the paste operation should result in the following:
 
-    @AnotherMethod("first param")
+[!code[Main](mvc3-release-notes/samples/sample8.xml)]
 
 This issue has been fixed in the RTM release so that the expression is correctly preserved during the paste operation.
 
@@ -404,10 +375,7 @@ You can use the *AdditionalMetadataAttribute* class to populate the *ModelMetada
 
 For example, suppose a view model has properties that should be displayed only to an administrator. That model can be annotated with the new attribute using AdminOnly as the key and true as the value, as in the following example:
 
-    public class ProductViewModel {
-      [AdditionalMetadata("AdminOnly", true)]
-      public string RefundCode {get; set;}
-    }
+[!code[Main](mvc3-release-notes/samples/sample9.xml)]
 
 This metadata is made available to any display or editor template when a product view model is rendered. It is up to you as application developer to interpret the metadata information.
 
@@ -425,19 +393,11 @@ The default Edit and Create templates include references to the jQuery scripts n
 
 By default, the Razor view engine HTML-encodes all values. For example, the following code snippet encodes the HTML inside the greeting variable so that it is displayed in the page as &amp;lt;strong&amp;gt;Hello World!&amp;lt;/strong&amp;gt;.
 
-    @{
-      string greeting = "<strong>Hello World!</strong>";
-    }
-    
-    <p>@greeting</p>
+[!code[Main](mvc3-release-notes/samples/sample10.xml)]
 
 The new *Html.Raw* method provides a simple way of displaying unencoded HTML when the content is known to be safe. The following example displays the same string, but the string is rendered as markup:
 
-    @{
-      string greeting = "<strong>Hello World!</strong>";
-    }
-    
-    <p>@Html.Raw(greeting)</p>
+[!code[Main](mvc3-release-notes/samples/sample11.xml)]
 
 <a id="_Toc2_5"></a>
 ### Renamed "Controller.ViewModel" Property and the "View" Property To "ViewBag"
@@ -478,7 +438,7 @@ In earlier releases, the *@model* declaration at the top of a view added a blank
 
 A view engine can return a view using an explicit view path as in the following example:
 
-    return View("~/views/home/index.cshtml");
+[!code[Main](mvc3-release-notes/samples/sample12.xml)]
 
 The first view engine always attempts to render the view. By default, the Web Forms view engine is the first view engine; because the Web Forms engine cannot render a Razor view, an error occurs. View engines now have a *FileExtensions* property that is used to specify which file extensions they support. This property is checked when ASP.NET determines whether a view engine can render a file. This is a breaking change and more details are included in the [Breaking Changes](#_Breaking_Changes) section of this document.
 
@@ -556,23 +516,11 @@ The new *ControllerSessionStateAttribute* gives you more control over session-st
 
 The following example shows how to turn off session state for all requests to a controller.
 
-    [ControllerSessionState(SessionStateBehavior.Disabled)]
-    public class CoolController : Controller {
-      public ActionResult Index() {
-        object o = Session["Key"]; // Causes an exception.
-    
-      }
-    }
+[!code[Main](mvc3-release-notes/samples/sample13.xml)]
 
 The following example shows how to set read-only session state for all requests to a controller.
 
-    [ControllerSessionState(SessionStateBehavior.ReadOnly)]
-    public class CoolController : Controller {
-      public ActionResult Index() {
-        Session["Key"] = "value"; // Value is not available in
-    the next request
-      }
-    }
+[!code[Main](mvc3-release-notes/samples/sample14.xml)]
 
 <a id="_Toc276711789"></a>
 ### New Validation Attributes
@@ -581,13 +529,7 @@ The following example shows how to set read-only session state for all requests 
 
 The new *CompareAttribute* validation attribute lets you compare the values of two different properties of a model. In the following example, the *ComparePassword* property must match the *Password* field in order to be valid.
 
-    public class User {
-        [Required]
-    
-        public string Password { get; set; }
-        [Required, Compare("Password")]
-        public string ComparePassword { get; set; }
-    }
+[!code[Main](mvc3-release-notes/samples/sample15.xml)]
 
 #### RemoteAttribute
 
@@ -595,21 +537,11 @@ The new *RemoteAttribute* validation attribute takes advantage of the jQuery Val
 
 In the following example, the *UserName* property has the *RemoteAttribute* applied. When editing this property in an Edit view, client validation will call an action named *UserNameAvailable* on the *UsersController* class in order to validate this field.
 
-    public class User {
-        [Remote("UserNameAvailable", "Users")]
-        public string UserName { get; set; }
-    }
+[!code[Main](mvc3-release-notes/samples/sample16.xml)]
 
 The following example shows the corresponding controller.
 
-    public class UsersController {
-        public bool UserNameAvailable(string username) {
-            if(MyRepository.UserNameExists(username)) {
-                return "false";
-            }
-            return "true";
-        }
-    }
+[!code[Main](mvc3-release-notes/samples/sample17.xml)]
 
 By default, the property name that the attribute is applied to is sent to the action method as a query-string parameter.
 
@@ -618,26 +550,18 @@ By default, the property name that the attribute is applied to is sent to the ac
 
 New overloads have been added for the *LabelFor* and *LabelForModel* methods that let you specify the label text. The following example shows how to use these overloads.
 
-    @Html.LabelFor(m => m.PropertyName,
-    "Label Text");
-    @Html.LabelForModel("Label Text");
+[!code[Main](mvc3-release-notes/samples/sample18.xml)]
 
 <a id="_Toc276711791"></a>
 ### Child Action Output Caching
 
 The *OutputCacheAttribute* supports output caching of child actions that are called by using the *Html.RenderAction* or *Html.Action* helper methods. The following example shows a view that calls another action.
 
-    Hi there. The uncached time is:
-    @DateTime.Now
-    The cached time is: @Html.Action("GetDate")
+[!code[Main](mvc3-release-notes/samples/sample19.xml)]
 
 The *GetDate* action is annotated with the *OutputCacheAttribute*:
 
-    [OutputCache(Duration = 100,
-    VaryByParam = "none")]
-    public string GetDate() {
-        return DateTime.Now.ToString();
-    }
+[!code[Main](mvc3-release-notes/samples/sample20.xml)]
 
 When this code runs, the result of the call to Html.Action("GetDate") is cached for 100 seconds.
 
@@ -659,40 +583,19 @@ The *Exclude* property of *ValidateInputAttribute* no longer exists. Instead, to
 
 For example, suppose an action method is used to edit a blog post:
 
-    [HttpPost]
-    public ActionResult Edit(BlogPostViewModel post) {
-        // Save the post in the database
-    }
+[!code[Main](mvc3-release-notes/samples/sample21.xml)]
 
 The following example shows the view model for a blog post.
 
-    public class BlogPostViewModel {
-        public int Id {get; set;}
-    
-        public string Subject {get; set;}
-    
-        public string Description {get; set;}
-    }
+[!code[Main](mvc3-release-notes/samples/sample22.xml)]
 
 When a user submits some markup for the Description property, model binding will fail due to request validation. To disable request validation during model binding for the blog post Description, apply the *SkipRequpestValidationAttribute* to the property, as shown in this example:.
 
-    public class BlogPostViewModel {
-        public int Id {get; set;}
-    
-        public string Subject {get; set;}
-    
-        [SkipRequestValidation]
-    
-        public string Description {get; set;}
-    }
+[!code[Main](mvc3-release-notes/samples/sample23.xml)]
 
 Alternatively, to turn off request validation for every property of the model, apply *ValidateInputAttribute* with a value of *false* to the action method:
 
-    [HttpPost]
-    [ValidateInput(false)]
-    public ActionResult Edit(BlogPostViewModel post) {
-        // Save the post in the database
-    }
+[!code[Main](mvc3-release-notes/samples/sample24.xml)]
 
 <a id="_Toc276711794"></a>
 ## Breaking Changes
@@ -749,11 +652,11 @@ Internet Application. Contains sample functionality that demonstrates how to use
 
 The way to specify the model type for strongly typed Razor views has been simplified by using the new @model directive for CSHTML views and @ModelType directive for VBHTML views. In earlier versions of ASP.NET MVC, you would specify a strongly typed model for Razor views this way:
 
-    @inherits System.Web.Mvc.WebViewPage
+[!code[Main](mvc3-release-notes/samples/sample25.xml)]
 
 In this release, you can use the following syntax:
 
-    @model MyModelNamespace.MyModelType
+[!code[Main](mvc3-release-notes/samples/sample26.xml)]
 
 ### <a id="0.1__Toc274034219"></a>  Support for New ASP.NET Web Pages Helper Methods
 
@@ -779,13 +682,7 @@ Building on the ASP.NET MVC 3 Preview 1 release, the current release includes ad
 
 The new IControllerActivator interface provides more fine-grained control over how controllers are instantiated via dependency injection. The following example shows the interface:
 
-    namespace System.Web.Mvc {
-        using System.Web.Routing;
-    
-        public interface IControllerActivator {
-            IController Create(RequestContext requestContext, Type controllerType);
-        }
-    }
+[!code[Main](mvc3-release-notes/samples/sample27.xml)]
 
 Contrast this to the role of the controller factory. A controller factory is an implementation of the IControllerFactory interface, which is responsible both for locating a controller type and for instantiating an instance of that controller type.
 
@@ -797,18 +694,11 @@ The DefaultControllerFactory class has a new constructor that accepts an IContro
 
 Based on community feedback, the ASP.NET MVC 3 Beta release has replaced the use of the IServiceLocator interface with a slimmed-down IDependencyResolver interface specific to the needs of ASP.NET MVC. The following example shows the new interface:
 
-    namespace System.Web.Mvc {
-        using System.Collections.Generic;
-    
-        public interface IDependencyResolver {
-            object GetService(Type serviceType);
-            IEnumerable<object> GetServices(Type serviceType);
-        }
-    }
+[!code[Main](mvc3-release-notes/samples/sample28.xml)]
 
 As part of this change, the ServiceLocator class was also replaced with the DependencyResolver class. Registration of a dependency resolver is similar to earlier versions of ASP.NET MVC:
 
-    DependencyResolver.SetResolver(myResolver);
+[!code[Main](mvc3-release-notes/samples/sample29.xml)]
 
 Implementations of this interface should simply delegate to the underlying dependency injection container to provide the registered service for the requested type.
 
@@ -822,11 +712,7 @@ The new DependencyResolver class lets you register classes that implement either
 
 The new IViewPageActivator interface provides more fine-grained control over how view pages are instantiated via dependency injection. This applies to both WebFormView instances and RazorView instances. The following example shows the new interface:
 
-    namespace System.Web.Mvc {
-        public interface IViewPageActivator {
-            object Create(ControllerContext controllerContext, Type type);
-        }
-    }
+[!code[Main](mvc3-release-notes/samples/sample30.xml)]
 
 These classes now accept an IViewPageActivator constructor argument, which lets you use dependency injection to control how the ViewPage, ViewUserControl, and WebViewPage types are instantiated.
 
@@ -859,11 +745,11 @@ This feature is enabled by default in the Web.config file in the ASP.NET MVC 3 n
 
 By default, ASP.NET MVC 3 Beta uses jQuery validation in an unobtrusive manner in order to perform client-side validation. To enable unobtrusive client validation, make a call like the following from within a view:
 
-    Html.EnableClientValidation();
+[!code[Main](mvc3-release-notes/samples/sample31.xml)]
 
 This requires that ViewContext.UnobtrusiveJavaScriptEnabled property is set to true, which you can do by making the following call:
 
-    Html.EnableUnobtrusiveJavaScript();
+[!code[Main](mvc3-release-notes/samples/sample32.xml)]
 
 Also make sure the following JavaScript files are referenced.
 
@@ -879,24 +765,15 @@ This feature is enabled on by default in the Web.config file in the ASP.NET MVC 
 
 You can enable or disable client validation and unobtrusive JavaScript globally using static members of the HtmlHelper class, as in the following example:
 
-    HtmlHelper.ClientValidationEnabled = true;
-        HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+[!code[Main](mvc3-release-notes/samples/sample33.xml)]
 
 The default project templates enable unobtrusive JavaScript by default. You can also enable or disable these features in the root Web.config file of your application using the following settings:
 
-    <configuration>
-            <appSettings>
-                <add key="ClientValidationEnabled" value="true"/>
-                <add key="UnobtrusiveJavaScriptEnabled" value="true"/>
-            </appSettings>
-        </configuration>
+[!code[Main](mvc3-release-notes/samples/sample34.xml)]
 
 Because you can enable these features by default, new overloads were introduced to the HtmlHelper class that let you override the default settings, as shown in the following examples:
 
-    public void EnableClientValidation();
-        public void EnableClientValidation(bool enabled);
-        public void EnableUnobtrusiveJavaScript();
-        public void EnableUnobtrusiveJavaScript(bool enabled);
+[!code[Main](mvc3-release-notes/samples/sample35.xml)]
 
 For backward compatibility, both of these features are disabled by default.
 
@@ -904,9 +781,7 @@ For backward compatibility, both of these features are disabled by default.
 
 You can now put a file named \_viewstart.cshtml (or \_viewstart.vbhtml) in the Views directory and add code to it that will be shared among multiple views in that directory and its subdirectories. For example, you might put the following code into the \_viewstart.cshtml page in the ~/Views folder:
 
-    @{
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+[!code[Main](mvc3-release-notes/samples/sample36.xml)]
 
 This sets the layout page for every view within the Views folder and all its subfolders recursively. When a view is being rendered, the code in the \_viewstart.cshtml file runs before the view code runs. The \_viewstart.cshtml code applies to every view in that folder.
 
@@ -924,36 +799,29 @@ For an introduction to using Visual Basic syntax in VBHTML pages, see the tutori
 
 ASP.NET MVC has always included the ValidateInputAttribute class, which invokes the core ASP.NET request validation infrastructure to make sure that the incoming request does not contain potentially malicious input. By default, input validation is enabled. It is possible to disable request validation by using the ValidateInputAttribute attribute, as in the following example:
 
-    [ValidateInput(false)]
-        public ActionResult SomeAction() {
-            return View();
-        }
+[!code[Main](mvc3-release-notes/samples/sample37.xml)]
 
 However, many web applications have individual form fields that need to allow HTML, while the remaining fields should not. The ValidateInputAttribute class now lets you specify a list of fields that should not be included in request validation.
 
 For example, if you are developing a blog engine, you might want to allow markup in the Body and Summary fields. These fields might be represented by two input element, each with a name attribute corresponding to the property name ("Body" and "Summary"). To disable request validation for these fields only, specify the names (comma-separated) in the Exclude property of the ValidateInput class, as in the following example:
 
-    [ValidateInput(true, Exclude="Body, Summary")]
-        public ActionResult About() {
-            return View();
-        }
+[!code[Main](mvc3-release-notes/samples/sample38.xml)]
 
 ### <a id="0.1__Toc274034227"></a>  Helpers Convert Underscores to Hyphens for HTML Attribute Names Specified Using Anonymous Objects
 
 Helper methods let you specify attribute name/value pairs using an anonymous object, as in the following example:
 
-    Html.TextBox("Name", "Value", new {title = "Title"})
+[!code[Main](mvc3-release-notes/samples/sample39.xml)]
 
 This approach doesn't let you use hyphens in the attribute name, because a hyphen cannot be used for a property name in ASP.NET. However, hyphens are important for custom HTML5 attributes; for example, HTML5 uses the "data-" prefix.
 
 At the same time, underscores cannot be used for attribute names in HTML, but are valid within property names. Therefore, if you specify attributes using an anonymous object, and if the attribute names include an underscore,, helper methods will convert the underscores to hyphens. For example, the following helper syntax uses an underscore:
 
-    Html.TextBox("Name", "Value", new {data_required = "true"})
+[!code[Main](mvc3-release-notes/samples/sample40.xml)]
 
 The previous example renders the following markup when the helper runs:
 
-    <input data-required="true" id="Name" name="Name"
-           type="textbox" value="Value" />
+[!code[Main](mvc3-release-notes/samples/sample41.xml)]
 
 ## <a id="0.1__Toc274034228"></a>  Bug Fixes
 
@@ -981,13 +849,11 @@ When using the @model syntax to specify a strongly typed CSHTML view (or @ModelT
 
 When you upgrade an ASP.NET MVC 2 project to ASP.NET MVC 3, make sure to add the following to the appSettings section of the Web.config file:
 
-    <appSettings>
-      <add key="enableSimpleMembership" value="false" />
-    </appSettings>
+[!code[Main](mvc3-release-notes/samples/sample42.xml)]
 
 There's a known issue that causes Forms Authentication to always redirect unauthenticated users to ~/Account/Login, ignoring the forms authentication setting used in Web.config. The workaround is to add the following app setting.
 
-    <add key="autoFormsAuthentication" value="false" />
+[!code[Main](mvc3-release-notes/samples/sample43.xml)]
 
 ## <a id="0.1__Toc274034231"></a>  Disclaimer
 
