@@ -10,7 +10,7 @@ ms.topic: article
 ms.assetid: e6130638-c410-4161-9921-b658ce988bd1
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: hosting/servicing
+uid: hosting/url-rewriting
 ---
 # 🔧 URL rewriting middleware
 
