@@ -153,4 +153,6 @@ In this tutorial of the series you have add markup and code to display a product
 
 [Retrieving and displaying data with model binding and web forms](../../presenting-and-managing-data/model-binding/retrieving-data.md)
 
->[!div class="step-by-step"] [Previous](ui\_and\_navigation.md) [Next](shopping-cart.md)
+>[!div class="step-by-step"]
+[Previous](ui_and_navigation.md)
+[Next](shopping-cart.md)

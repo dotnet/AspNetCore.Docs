@@ -140,4 +140,6 @@ These topics on MSDN provide broader guidance and background information on Visu
 - [How to: Prepare a Database for Deployment From a Command Prompt by Using VSDBCMD.EXE](https://msdn.microsoft.com/en-us/library/dd193258.aspx)
 - [An Overview of Database Build and Deployment](https://msdn.microsoft.com/en-us/library/aa833165.aspx)
 
->[!div class="step-by-step"] [Previous](deploying-web-packages.md) [Next](creating-and-running-a-deployment-command-file.md)
+>[!div class="step-by-step"]
+[Previous](deploying-web-packages.md)
+[Next](creating-and-running-a-deployment-command-file.md)

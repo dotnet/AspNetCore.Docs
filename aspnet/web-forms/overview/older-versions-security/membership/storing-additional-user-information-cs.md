@@ -516,4 +516,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"] [Previous](user-based-authorization-cs.md) [Next](creating-the-membership-schema-in-sql-server-vb.md)
+>[!div class="step-by-step"]
+[Previous](user-based-authorization-cs.md)
+[Next](creating-the-membership-schema-in-sql-server-vb.md)

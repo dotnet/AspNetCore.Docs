@@ -218,4 +218,6 @@ Your database server should now be ready to accept remote database deployments a
 
 For guidance on deploying database projects, see [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md). For guidance on creating database role memberships by running a post-deployment script, see [Deploying Database Role Memberships to Test Environments](../advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.md). For guidance on how to meet the unique deployment challenges that membership databases pose, see [Deploying Membership Databases to Enterprise Environments](../advanced-enterprise-web-deployment/deploying-membership-databases-to-enterprise-environments.md).
 
->[!div class="step-by-step"] [Previous](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md) [Next](creating-a-server-farm-with-the-web-farm-framework.md)
+>[!div class="step-by-step"]
+[Previous](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)
+[Next](creating-a-server-farm-with-the-web-farm-framework.md)

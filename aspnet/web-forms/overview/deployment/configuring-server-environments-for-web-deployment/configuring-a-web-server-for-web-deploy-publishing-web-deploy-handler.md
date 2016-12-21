@@ -287,4 +287,6 @@ Your web server should now be ready to accept remote deployments to the Web Depl
 
 For guidance on how to configure custom Microsoft Build Engine (MSBuild) project files to deploy web packages to the Web Deploy Handler, see [Configuring Deployment Properties for a Target Environment](configuring-deployment-properties-for-a-target-environment.md).
 
->[!div class="step-by-step"] [Previous](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md) [Next](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)
+>[!div class="step-by-step"]
+[Previous](configuring-a-web-server-for-web-deploy-publishing-remote-agent.md)
+[Next](configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md)

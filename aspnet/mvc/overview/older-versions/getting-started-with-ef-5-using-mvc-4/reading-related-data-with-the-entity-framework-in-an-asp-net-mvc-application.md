@@ -274,4 +274,6 @@ You've now used all three ways (lazy, eager, and explicit) to load related data 
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"] [Previous](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) [Next](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+>[!div class="step-by-step"]
+[Previous](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
+[Next](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)

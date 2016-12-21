@@ -146,4 +146,6 @@ This makes the code cleaner to read and maintain.
 
 Let's now look at how we can use AJAX even further and add interactive mapping support to our application.
 
->[!div class="step-by-step"] [Previous](secure-applications-using-authentication-and-authorization.md) [Next](use-ajax-to-implement-mapping-scenarios.md)
+>[!div class="step-by-step"]
+[Previous](secure-applications-using-authentication-and-authorization.md)
+[Next](use-ajax-to-implement-mapping-scenarios.md)

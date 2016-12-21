@@ -231,4 +231,6 @@ When you run the page (by hitting F5), the Button control is initially disabled.
 
 The goal of this tutorial was to explain how you can extend the AJAX Control Toolkit with custom extender controls. In this tutorial, we created a simple DisabledButton control extender. We implemented this extender by creating a DisabledButtonExtender class, a DisabledButtonBehavior JavaScript behavior, and a DisabledButtonDesigner class. You follow a similar set of steps whenever you create a custom control extender.
 
->[!div class="step-by-step"] [Previous](using-ajax-control-toolkit-controls-and-control-extenders-cs.md) [Next](get-started-with-the-ajax-control-toolkit-vb.md)
+>[!div class="step-by-step"]
+[Previous](using-ajax-control-toolkit-controls-and-control-extenders-cs.md)
+[Next](get-started-with-the-ajax-control-toolkit-vb.md)

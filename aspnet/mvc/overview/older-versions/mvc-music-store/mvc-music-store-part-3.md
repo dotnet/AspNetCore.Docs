@@ -258,4 +258,6 @@ The HTML for the genre list looks like this:
 
 *Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
->[!div class="step-by-step"] [Previous](mvc-music-store-part-2.md) [Next](mvc-music-store-part-4.md)
+>[!div class="step-by-step"]
+[Previous](mvc-music-store-part-2.md)
+[Next](mvc-music-store-part-4.md)

@@ -47,4 +47,6 @@ You can do this by manually adding the using statement, or you can right click o
 
 ![](adding-a-model/_static/image2.png)Note: Several unused `using` statements have been removed. You can do this by right clicking in the file, click **Organize Usings**, and then click **Remove Unused Usings.**![](adding-a-model/_static/image3.png)We've finally added a model (the M in MVC). In the next section you'll work with the database connection string.
 
->[!div class="step-by-step"] [Previous](adding-a-view.md) [Next](creating-a-connection-string.md)
+>[!div class="step-by-step"]
+[Previous](adding-a-view.md)
+[Next](creating-a-connection-string.md)

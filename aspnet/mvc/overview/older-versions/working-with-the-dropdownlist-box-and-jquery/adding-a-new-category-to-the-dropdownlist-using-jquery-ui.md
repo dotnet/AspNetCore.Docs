@@ -134,4 +134,5 @@ Rick.Anderson[at]Microsoft.com
 - Mike Pope
 - Tom Dykstra
 
->[!div class="step-by-step"] [Previous](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper.md)
+>[!div class="step-by-step"]
+[Previous](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper.md)

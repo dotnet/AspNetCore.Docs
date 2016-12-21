@@ -319,4 +319,6 @@ Happy Programming!
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial were E.R. Gilmore, Dennis Patterson, and Dan Jagers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com.](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"] [Previous](displaying-summary-information-in-the-gridview-s-footer-cs.md) [Next](using-templatefields-in-the-gridview-control-vb.md)
+>[!div class="step-by-step"]
+[Previous](displaying-summary-information-in-the-gridview-s-footer-cs.md)
+[Next](using-templatefields-in-the-gridview-control-vb.md)

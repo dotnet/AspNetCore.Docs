@@ -209,4 +209,6 @@ At this point, your web server is ready for offline web package deployment. Befo
 - Does the application pool identity have read access to the source folder for your website?
 - Have you stopped the Web Deployment Agent Service?
 
->[!div class="step-by-step"] [Previous](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler.md) [Next](configuring-a-database-server-for-web-deploy-publishing.md)
+>[!div class="step-by-step"]
+[Previous](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler.md)
+[Next](configuring-a-database-server-for-web-deploy-publishing.md)

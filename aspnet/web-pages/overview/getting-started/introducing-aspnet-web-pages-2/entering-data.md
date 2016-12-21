@@ -253,4 +253,6 @@ In the next tutorial, you'll learn how to let users edit data that's already in 
 - [SQL INSERT INTO Statement](http://www.w3schools.com/sql/sql_insert.asp) on the W3Schools site
 - [Validating User Input in ASP.NET Web Pages Sites](https://go.microsoft.com/fwlink/?LinkId=253002). More information about working with the `Validation` helper.
 
->[!div class="step-by-step"] [Previous](form-basics.md) [Next](updating-data.md)
+>[!div class="step-by-step"]
+[Previous](form-basics.md)
+[Next](updating-data.md)

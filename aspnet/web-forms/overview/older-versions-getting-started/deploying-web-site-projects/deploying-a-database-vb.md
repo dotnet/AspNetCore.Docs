@@ -188,4 +188,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Download the Microsoft SQL Server Management Studio Express Edition](https://www.microsoft.com/downloads/details.aspx?FamilyId=C243A5AE-4BD1-4E3D-94B8-5A0F62BF7796&amp;displaylang=en)
 - [The SQL Server Hosting Toolkit Home](http://www.codeplex.com/sqlhost/Thread/View.aspx?ThreadId=11014) (The project home for the Database Publishing Wizard and the Database Publishing Services.)
 
->[!div class="step-by-step"] [Previous](core-differences-between-iis-and-the-asp-net-development-server-vb.md) [Next](configuring-the-production-web-application-to-use-the-production-database-vb.md)
+>[!div class="step-by-step"]
+[Previous](core-differences-between-iis-and-the-asp-net-development-server-vb.md)
+[Next](configuring-the-production-web-application-to-use-the-production-database-vb.md)

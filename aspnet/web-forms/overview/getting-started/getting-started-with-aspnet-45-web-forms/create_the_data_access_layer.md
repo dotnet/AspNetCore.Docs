@@ -181,4 +181,6 @@ In the next tutorial, you'll update the UI, add navigation, and retrieve data fr
 [Code First Data Annotations](https://msdn.microsoft.com/en-us/data/gg193958)  
 [Productivity Improvements for the Entity Framework](https://blogs.msdn.com/b/efdesign/archive/2010/06/21/productivity-improvements-for-the-entity-framework.aspx?wa=wsignin1.0)
 
->[!div class="step-by-step"] [Previous](create-the-project.md) [Next](ui\_and\_navigation.md)
+>[!div class="step-by-step"]
+[Previous](create-the-project.md)
+[Next](ui_and_navigation.md)

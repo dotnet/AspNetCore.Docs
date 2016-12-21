@@ -160,4 +160,6 @@ Table-per-hierarchy inheritance has now been implemented for the `Person`, `Stud
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"] [Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md) [Next](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application.md)
+>[!div class="step-by-step"]
+[Previous](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+[Next](implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application.md)

@@ -115,4 +115,6 @@ As a temporary fix, if you can't get validation working in your locale, you can 
 
 <a id="gettingstarted"></a><a id="jQueryAjaxJSON"></a> In the next tutorial, we'll implement search functionality.
 
->[!div class="step-by-step"] [Previous](accessing-your-models-data-from-a-controller.md) [Next](adding-search.md)
+>[!div class="step-by-step"]
+[Previous](accessing-your-models-data-from-a-controller.md)
+[Next](adding-search.md)

@@ -294,4 +294,6 @@ We now have a nice Dinner browsing experience built.
 
 Let's now enable CRUD (Create, Read, Update, Delete) data form editing support.
 
->[!div class="step-by-step"] [Previous](build-a-model-with-business-rule-validations.md) [Next](provide-crud-create-read-update-delete-data-form-entry-support.md)
+>[!div class="step-by-step"]
+[Previous](build-a-model-with-business-rule-validations.md)
+[Next](provide-crud-create-read-update-delete-data-form-entry-support.md)

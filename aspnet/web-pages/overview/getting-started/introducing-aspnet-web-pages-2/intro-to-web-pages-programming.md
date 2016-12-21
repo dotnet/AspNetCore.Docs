@@ -351,4 +351,6 @@ The next tutorial introduces you to working with a database. In that tutorial, y
 - [Introduction to ASP.NET Web Programming Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkID=202890)
 - [Twitter helper](../../ui-layouts-and-themes/twitter-helper.md)
 
->[!div class="step-by-step"] [Previous](getting-started.md) [Next](displaying-data.md)
+>[!div class="step-by-step"]
+[Previous](getting-started.md)
+[Next](displaying-data.md)

@@ -303,4 +303,6 @@ In the next tutorial, you'll see how to delete a movie record.
 - [Introduction to ASP.NET Web Programming by Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkID=202890)
 - [SQL UPDATE Statement](http://www.w3schools.com/sql/sql_update.asp) on the W3Schools site
 
->[!div class="step-by-step"] [Previous](entering-data.md) [Next](deleting-data.md)
+>[!div class="step-by-step"]
+[Previous](entering-data.md)
+[Next](deleting-data.md)

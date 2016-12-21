@@ -95,4 +95,6 @@ The next topics in this tutorial, [Configuring Parameters for Web Package Deploy
 
 For a more in-depth introduction to project files and the WPP, see [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build](http://amzn.com/0735645248) by Sayed Ibrahim Hashimi and William Bartholomew, ISBN: 978-0-7356-4524-0.
 
->[!div class="step-by-step"] [Previous](understanding-the-build-process.md) [Next](configuring-parameters-for-web-package-deployment.md)
+>[!div class="step-by-step"]
+[Previous](understanding-the-build-process.md)
+[Next](configuring-parameters-for-web-package-deployment.md)

@@ -347,4 +347,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewer for this tutorial was Alicja Maziarz. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"] [Previous](storing-additional-user-information-cs.md) [Next](creating-user-accounts-vb.md)
+>[!div class="step-by-step"]
+[Previous](storing-additional-user-information-cs.md)
+[Next](creating-user-accounts-vb.md)

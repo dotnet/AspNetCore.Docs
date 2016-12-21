@@ -259,4 +259,6 @@ Note: This shows the simple case of creating and using a helper in one view. To 
 
 *Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
->[!div class="step-by-step"] [Previous](mvc-music-store-part-4.md) [Next](mvc-music-store-part-6.md)
+>[!div class="step-by-step"]
+[Previous](mvc-music-store-part-4.md)
+[Next](mvc-music-store-part-6.md)

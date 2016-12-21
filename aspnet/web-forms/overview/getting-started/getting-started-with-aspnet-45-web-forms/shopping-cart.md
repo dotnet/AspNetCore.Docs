@@ -316,4 +316,6 @@ The shopping cart supports adding, deleting, and updating items that the user ha
 
 [ASP.NET Session State Overview](https://msdn.microsoft.com/en-us/library/ms178581.aspx)
 
->[!div class="step-by-step"] [Previous](display\_data\_items\_and\_details.md) [Next](checkout-and-payment-with-paypal.md)
+>[!div class="step-by-step"]
+[Previous](display_data_items_and_details.md)
+[Next](checkout-and-payment-with-paypal.md)

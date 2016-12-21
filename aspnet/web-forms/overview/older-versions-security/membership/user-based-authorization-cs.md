@@ -399,4 +399,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"] [Previous](validating-user-credentials-against-the-membership-user-store-cs.md) [Next](storing-additional-user-information-cs.md)
+>[!div class="step-by-step"]
+[Previous](validating-user-credentials-against-the-membership-user-store-cs.md)
+[Next](storing-additional-user-information-cs.md)

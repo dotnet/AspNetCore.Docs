@@ -285,4 +285,6 @@ In this tutorial of the series you have added some basic UI, graphics, pages, an
 [ASP.NET Web Server Controls Overview](https://msdn.microsoft.com/en-us/library/zsyt68f1.aspx)   
 [CSS Tutorial](http://www.w3schools.com/css/default.asp)
 
->[!div class="step-by-step"] [Previous](create\_the\_data\_access\_layer.md) [Next](display\_data\_items\_and\_details.md)
+>[!div class="step-by-step"]
+[Previous](create_the_data_access_layer.md)
+[Next](display_data_items_and_details.md)

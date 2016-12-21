@@ -120,4 +120,6 @@ Select an instructor. The **Assign a Course** drop-down list displays the course
 
 You have now seen some more ways to work with related data. In the following tutorial, you'll learn how to use inheritance in the data model to improve the maintainability of your application.
 
->[!div class="step-by-step"] [Previous](the-entity-framework-and-aspnet-getting-started-part-4.md) [Next](the-entity-framework-and-aspnet-getting-started-part-6.md)
+>[!div class="step-by-step"]
+[Previous](the-entity-framework-and-aspnet-getting-started-part-4.md)
+[Next](the-entity-framework-and-aspnet-getting-started-part-6.md)

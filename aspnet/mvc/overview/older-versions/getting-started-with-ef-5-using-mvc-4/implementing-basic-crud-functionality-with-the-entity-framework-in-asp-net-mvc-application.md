@@ -203,4 +203,6 @@ In the next tutorial you'll expand the functionality of the Index page by adding
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"] [Previous](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md) [Next](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+>[!div class="step-by-step"]
+[Previous](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)
+[Next](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)

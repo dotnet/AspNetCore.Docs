@@ -157,4 +157,6 @@ The following code shows combining attributes on one line:
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 
->[!div class="step-by-step"] [Previous](adding-a-new-field.md) [Next](examining-the-details-and-delete-methods.md)
+>[!div class="step-by-step"]
+[Previous](adding-a-new-field.md)
+[Next](examining-the-details-and-delete-methods.md)

@@ -66,4 +66,6 @@ Open the file App\_Start/BundleConfig.cs. Add the following code to the Register
 
 [!code[Main](part-6/samples/sample3.xml)]
 
->[!div class="step-by-step"] [Previous](part-5.md) [Next](part-7.md)
+>[!div class="step-by-step"]
+[Previous](part-5.md)
+[Next](part-7.md)

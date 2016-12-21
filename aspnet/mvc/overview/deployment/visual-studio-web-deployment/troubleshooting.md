@@ -370,4 +370,5 @@ The requested content appears to be script and will not be served by the static 
 
 ASP.NET 4.5 might not be installed on your computer. See the steps in the Deploying to IIS as a Test Environment tutorial in this series that explain how to install ASP.NET 4.5.
 
->[!div class="step-by-step"] [Previous](deploying-extra-files.md)
+>[!div class="step-by-step"]
+[Previous](deploying-extra-files.md)

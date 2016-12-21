@@ -121,4 +121,6 @@ This topic described how to exclude specific files and folders when you build a 
 
 For more information on using custom Microsoft Build Engine (MSBuild) project files to control the deployment process, see [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md) and [Understanding the Build Process](../web-deployment-in-the-enterprise/understanding-the-build-process.md). For more information on the packaging and deployment process, see [Building and Packaging Web Application Projects](../web-deployment-in-the-enterprise/building-and-packaging-web-application-projects.md), [Configuring Parameters for Web Package Deployment](../web-deployment-in-the-enterprise/configuring-parameters-for-web-package-deployment.md), and [Deploying Web Packages](../web-deployment-in-the-enterprise/deploying-web-packages.md).
 
->[!div class="step-by-step"] [Previous](deploying-membership-databases-to-enterprise-environments.md) [Next](taking-web-applications-offline-with-web-deploy.md)
+>[!div class="step-by-step"]
+[Previous](deploying-membership-databases-to-enterprise-environments.md)
+[Next](taking-web-applications-offline-with-web-deploy.md)

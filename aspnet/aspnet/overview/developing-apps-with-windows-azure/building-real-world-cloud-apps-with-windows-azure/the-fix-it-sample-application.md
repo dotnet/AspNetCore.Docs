@@ -390,4 +390,5 @@ In MyFixItCloudService\ServiceConfiguration.Cloud.cscfg, replace the same two pl
 
 Now you are ready to deploy the cloud service. In Solution Explore, right-click the MyFixItCloudService project and select **Publish**. For more information, see "[Deploy the Application to Azure](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/2-download-and-run/#deployAz)", which is in part 2 of [this tutorial](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/1-overview/).
 
->[!div class="step-by-step"] [Previous](more-patterns-and-guidance.md)
+>[!div class="step-by-step"]
+[Previous](more-patterns-and-guidance.md)

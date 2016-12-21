@@ -274,4 +274,6 @@ In this tutorial, you added a custom role and a user belonging to the custom rol
 [Deploy a Secure ASP.NET Web Forms App with Membership, OAuth, and SQL Database to an Azure Web Site](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-deploy-aspnet-webforms-app-membership-oauth-sql-database/)  
 [Microsoft Azure - Free Trial](https://azure.microsoft.com/pricing/free-trial/)
 
->[!div class="step-by-step"] [Previous](checkout-and-payment-with-paypal.md) [Next](url-routing.md)
+>[!div class="step-by-step"]
+[Previous](checkout-and-payment-with-paypal.md)
+[Next](url-routing.md)

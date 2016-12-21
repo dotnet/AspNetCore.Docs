@@ -157,4 +157,6 @@ Since this is a generic error page, the content is very simple. We'll include a 
 
 *Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
->[!div class="step-by-step"] [Previous](mvc-music-store-part-8.md) [Next](mvc-music-store-part-10.md)
+>[!div class="step-by-step"]
+[Previous](mvc-music-store-part-8.md)
+[Next](mvc-music-store-part-10.md)

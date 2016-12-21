@@ -241,4 +241,6 @@ You have now implemented both the repository and unit of work patterns. You have
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"] [Previous](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md) [Next](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)
+>[!div class="step-by-step"]
+[Previous](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+[Next](advanced-entity-framework-scenarios-for-an-mvc-web-application.md)

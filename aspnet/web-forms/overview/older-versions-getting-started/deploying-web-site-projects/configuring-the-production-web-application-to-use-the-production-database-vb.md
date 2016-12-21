@@ -142,4 +142,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [Move Settings Out of the Web.config File](http://www.asp101.com/tips/index.asp?id=154)
 - [Technical Documentation for the &lt;connectionStrings&gt; Element](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx)
 
->[!div class="step-by-step"] [Previous](deploying-a-database-vb.md) [Next](configuring-a-website-that-uses-application-services-vb.md)
+>[!div class="step-by-step"]
+[Previous](deploying-a-database-vb.md)
+[Next](configuring-a-website-that-uses-application-services-vb.md)

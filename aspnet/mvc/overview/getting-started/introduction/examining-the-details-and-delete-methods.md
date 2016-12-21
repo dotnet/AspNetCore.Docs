@@ -62,4 +62,5 @@ Feedback is welcome.
 — [Rick Anderson](https://blogs.msdn.com/rickAndy) twitter: [@RickAndMSFT](https://twitter.com/RickAndMSFT)  
 — [Scott Hanselman](http://www.hanselman.com/blog/) twitter: [@shanselman](https://twitter.com/shanselman)
 
->[!div class="step-by-step"] [Previous](adding-validation.md)
+>[!div class="step-by-step"]
+[Previous](adding-validation.md)

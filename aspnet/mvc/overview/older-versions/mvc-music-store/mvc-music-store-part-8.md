@@ -155,4 +155,6 @@ We've built out a working shopping cart which allows unregistered users to add i
 
 *Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
->[!div class="step-by-step"] [Previous](mvc-music-store-part-7.md) [Next](mvc-music-store-part-9.md)
+>[!div class="step-by-step"]
+[Previous](mvc-music-store-part-7.md)
+[Next](mvc-music-store-part-9.md)

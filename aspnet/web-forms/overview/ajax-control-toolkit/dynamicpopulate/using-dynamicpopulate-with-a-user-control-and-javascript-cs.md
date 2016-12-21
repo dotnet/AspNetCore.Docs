@@ -67,4 +67,6 @@ And that's it! The page behaves as expected: A user clicks on on of the radio bu
 
 The radio buttons reside in a user control ([Click to view full-size image](using-dynamicpopulate-with-a-user-control-and-javascript-cs/_static/image3.png))
 
->[!div class="step-by-step"] [Previous](dynamically-populating-a-control-using-javascript-code-cs.md) [Next](dynamically-populating-a-control-vb.md)
+>[!div class="step-by-step"]
+[Previous](dynamically-populating-a-control-using-javascript-code-cs.md)
+[Next](dynamically-populating-a-control-vb.md)

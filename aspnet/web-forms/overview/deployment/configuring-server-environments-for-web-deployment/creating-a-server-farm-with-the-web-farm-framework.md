@@ -219,4 +219,6 @@ Your WFF server farm should now be up and running. You can configure the primary
 
 For more guidance on all aspects of configuring and using the WFF, see the [Microsoft Web Farm Framework 2.0 for IIS 7](https://go.microsoft.com/?linkid=9805129) website.
 
->[!div class="step-by-step"] [Previous](configuring-a-database-server-for-web-deploy-publishing.md) [Next](configuring-deployment-properties-for-a-target-environment.md)
+>[!div class="step-by-step"]
+[Previous](configuring-a-database-server-for-web-deploy-publishing.md)
+[Next](configuring-deployment-properties-for-a-target-environment.md)

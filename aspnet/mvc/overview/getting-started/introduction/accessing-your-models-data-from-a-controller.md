@@ -147,4 +147,6 @@ When you're finished, close the connection by right clicking *MovieDBContext* an
 
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll examine the rest of the scaffolded code and add a `SearchIndex` method and a `SearchIndex` view that lets you search for movies in this database. For more information on using Entity Framework with MVC, see [Creating an Entity Framework Data Model for an ASP.NET MVC Application](../getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md).
 
->[!div class="step-by-step"] [Previous](creating-a-connection-string.md) [Next](examining-the-edit-methods-and-edit-view.md)
+>[!div class="step-by-step"]
+[Previous](creating-a-connection-string.md)
+[Next](examining-the-edit-methods-and-edit-view.md)

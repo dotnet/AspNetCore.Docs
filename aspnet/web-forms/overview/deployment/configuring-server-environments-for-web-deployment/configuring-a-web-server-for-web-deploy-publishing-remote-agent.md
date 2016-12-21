@@ -217,4 +217,6 @@ At this point, your web server is ready to accept and install web packages from 
 
 For guidance on how to configure custom Microsoft Build Engine (MSBuild) project files to deploy web packages to the Remote Agent Service, see [Configuring Deployment Properties for a Target Environment](configuring-deployment-properties-for-a-target-environment.md).
 
->[!div class="step-by-step"] [Previous](scenario-configuring-a-production-environment-for-web-deployment.md) [Next](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler.md)
+>[!div class="step-by-step"]
+[Previous](scenario-configuring-a-production-environment-for-web-deployment.md)
+[Next](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler.md)

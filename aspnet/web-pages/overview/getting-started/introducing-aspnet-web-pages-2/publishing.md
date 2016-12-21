@@ -210,4 +210,5 @@ Go to the live site (you can click the link in the success message if it's still
 
 - [ASP.NET WebMatrix ASP.NET Web Pages forum](https://forums.asp.net/1224.aspx/1?WebMatrix+and+ASP+NET+Web+Pages), a great place to post questions and get answers.
 
->[!div class="step-by-step"] [Previous](layouts.md)
+>[!div class="step-by-step"]
+[Previous](layouts.md)

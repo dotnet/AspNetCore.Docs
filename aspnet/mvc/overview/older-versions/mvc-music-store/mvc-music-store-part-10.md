@@ -133,4 +133,5 @@ We've seen that that ASP.NET MVC makes it easy to create a sophisticated website
 
 *Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
->[!div class="step-by-step"] [Previous](mvc-music-store-part-9.md)
+>[!div class="step-by-step"]
+[Previous](mvc-music-store-part-9.md)

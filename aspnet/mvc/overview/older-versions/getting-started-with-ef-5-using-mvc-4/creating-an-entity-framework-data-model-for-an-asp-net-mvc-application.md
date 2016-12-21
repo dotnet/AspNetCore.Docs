@@ -343,4 +343,5 @@ You've now created a simple application that uses the Entity Framework and SQL S
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"] [Next](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
+>[!div class="step-by-step"]
+[Next](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)

@@ -78,4 +78,5 @@ You need an Azure account to deploy this solution to Azure. If you do not alread
 - [Open an Azure account for free](https://azure.microsoft.com/en-us/pricing/free-trial/?WT.mc_id=A443DD604) - You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services.
 - [Activate MSDN subscriber benefits](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604) - Your MSDN subscription gives you credits every month that you can use for paid Azure services.
 
->[!div class="step-by-step"] [Next](adding-a-controller.md)
+>[!div class="step-by-step"]
+[Next](adding-a-controller.md)

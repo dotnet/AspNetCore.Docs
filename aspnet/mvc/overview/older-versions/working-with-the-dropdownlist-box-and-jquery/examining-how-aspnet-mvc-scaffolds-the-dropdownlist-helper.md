@@ -199,4 +199,6 @@ Some developers prefer the ViewModel approach. Others consider the the more verb
 
 In this section we have learned three approaches to using the **DropDownList** with category data. In the next section, we'll show how to add a new category.
 
->[!div class="step-by-step"] [Previous](using-the-dropdownlist-helper-with-aspnet-mvc.md) [Next](adding-a-new-category-to-the-dropdownlist-using-jquery-ui.md)
+>[!div class="step-by-step"]
+[Previous](using-the-dropdownlist-helper-with-aspnet-mvc.md)
+[Next](adding-a-new-category-to-the-dropdownlist-using-jquery-ui.md)

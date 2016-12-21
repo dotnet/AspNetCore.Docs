@@ -385,4 +385,6 @@ In this tutorial you've seen how to create a data model and implement basic CRUD
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"] [Previous](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md) [Next](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)
+>[!div class="step-by-step"]
+[Previous](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md)
+[Next](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md)

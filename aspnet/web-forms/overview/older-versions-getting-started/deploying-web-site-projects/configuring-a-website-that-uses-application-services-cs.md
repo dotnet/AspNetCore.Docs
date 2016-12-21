@@ -186,4 +186,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 - [<u>Website Security Tutorials</u>](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md)
 - [<u>Web Site Administration Tool Overview</u>](https://msdn.microsoft.com/en-us/library/yy40ytx0.aspx)
 
->[!div class="step-by-step"] [Previous](configuring-the-production-web-application-to-use-the-production-database-cs.md) [Next](strategies-for-database-development-and-deployment-cs.md)
+>[!div class="step-by-step"]
+[Previous](configuring-the-production-web-application-to-use-the-production-database-cs.md)
+[Next](strategies-for-database-development-and-deployment-cs.md)

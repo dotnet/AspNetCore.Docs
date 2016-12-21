@@ -377,4 +377,6 @@ Scott Mitchell, author of multiple ASP/ASP.NET books and founder of 4GuysFromRol
 
 This tutorial series was reviewed by many helpful reviewers. Lead reviewers for this tutorial include Suchi Banerjee and Teresa Murphy. Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com)
 
->[!div class="step-by-step"] [Previous](assigning-roles-to-users-cs.md) [Next](creating-and-managing-roles-vb.md)
+>[!div class="step-by-step"]
+[Previous](assigning-roles-to-users-cs.md)
+[Next](creating-and-managing-roles-vb.md)

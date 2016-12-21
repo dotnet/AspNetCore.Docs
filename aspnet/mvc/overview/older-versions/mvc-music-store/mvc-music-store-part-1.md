@@ -134,4 +134,5 @@ These folders are included even in an Empty ASP.NET MVC application because the 
 
 *Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 
->[!div class="step-by-step"] [Next](mvc-music-store-part-2.md)
+>[!div class="step-by-step"]
+[Next](mvc-music-store-part-2.md)

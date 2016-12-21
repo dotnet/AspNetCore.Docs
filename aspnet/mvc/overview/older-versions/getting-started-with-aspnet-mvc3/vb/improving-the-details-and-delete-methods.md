@@ -76,4 +76,5 @@ Enjoy!
 
 — Scott Hanselman ([http://hanselman.com](http://hanselman.com) and [@shanselman](http://twitter.com/shanselman) on Twitter) and Rick Anderson [blogs.msdn.com/rickAndy](https://blogs.msdn.com/rickAndy)
 
->[!div class="step-by-step"] [Previous](adding-validation-to-the-model.md)
+>[!div class="step-by-step"]
+[Previous](adding-validation-to-the-model.md)

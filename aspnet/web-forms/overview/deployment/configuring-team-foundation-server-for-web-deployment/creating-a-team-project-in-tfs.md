@@ -189,4 +189,6 @@ The next topic, [Adding Content to Source Control](adding-content-to-source-cont
 
 For broader guidance on creating team projects in TFS, see [Create a Team Project](https://msdn.microsoft.com/en-us/library/ms181477(v=VS.100).aspx). For more information on enabling users to create new team projects within a team project collection, see [Set Administrator Permissions for Team Project Collections](https://msdn.microsoft.com/en-us/library/dd547204.aspx). For more information on adding users to team projects, see [Add Users to Team Projects](https://msdn.microsoft.com/en-us/library/bb558971.aspx).
 
->[!div class="step-by-step"] [Previous](configuring-team-foundation-server-for-web-deployment.md) [Next](adding-content-to-source-control.md)
+>[!div class="step-by-step"]
+[Previous](configuring-team-foundation-server-for-web-deployment.md)
+[Next](adding-content-to-source-control.md)

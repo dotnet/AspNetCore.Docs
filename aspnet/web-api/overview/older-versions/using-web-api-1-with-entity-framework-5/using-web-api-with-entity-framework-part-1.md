@@ -87,4 +87,5 @@ In Solution Explorer, expand the Content folder and open the file named Site.css
 
 [!code[Main](using-web-api-with-entity-framework-part-1/samples/sample1.xml)]
 
->[!div class="step-by-step"] [Next](using-web-api-with-entity-framework-part-2.md)
+>[!div class="step-by-step"]
+[Next](using-web-api-with-entity-framework-part-2.md)

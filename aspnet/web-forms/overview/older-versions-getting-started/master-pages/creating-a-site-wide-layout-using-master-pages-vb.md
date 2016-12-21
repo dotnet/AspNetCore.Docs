@@ -270,4 +270,6 @@ For more information on the topics discussed in this tutorial, refer to the foll
 
 Interested in reviewing my upcoming MSDN articles? If so, drop me a line at [mitchell@4GuysFromRolla.com](mailto:mitchell@4GuysFromRolla.com).
 
->[!div class="step-by-step"] [Previous](nested-master-pages-cs.md) [Next](multiple-contentplaceholders-and-default-content-vb.md)
+>[!div class="step-by-step"]
+[Previous](nested-master-pages-cs.md)
+[Next](multiple-contentplaceholders-and-default-content-vb.md)

@@ -250,4 +250,6 @@ The next topic, [Understanding the Build Process](understanding-the-build-proces
 
 For a more in-depth introduction to project files and the WPP, see [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build](http://amzn.com/0735645248) by Sayed Ibrahim Hashimi and William Bartholomew, ISBN: 978-0-7356-4524-0.
 
->[!div class="step-by-step"] [Previous](setting-up-the-contact-manager-solution.md) [Next](understanding-the-build-process.md)
+>[!div class="step-by-step"]
+[Previous](setting-up-the-contact-manager-solution.md)
+[Next](understanding-the-build-process.md)

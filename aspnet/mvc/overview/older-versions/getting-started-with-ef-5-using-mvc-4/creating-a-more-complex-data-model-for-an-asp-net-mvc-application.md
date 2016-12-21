@@ -389,4 +389,6 @@ You now have a more complex data model and corresponding database. In the follow
 
 Links to other Entity Framework resources can be found in the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
->[!div class="step-by-step"] [Previous](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md) [Next](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+>[!div class="step-by-step"]
+[Previous](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application.md)
+[Next](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md)

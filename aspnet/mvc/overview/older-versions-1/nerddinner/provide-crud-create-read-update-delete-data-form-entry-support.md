@@ -420,4 +420,6 @@ We now have basic CRUD (Create, Read, Update and Delete) support implement withi
 
 Let's now look at how we can use ViewData and ViewModel classes to enable even richer UI on our forms.
 
->[!div class="step-by-step"] [Previous](use-controllers-and-views-to-implement-a-listingdetails-ui.md) [Next](use-viewdata-and-implement-viewmodel-classes.md)
+>[!div class="step-by-step"]
+[Previous](use-controllers-and-views-to-implement-a-listingdetails-ui.md)
+[Next](use-viewdata-and-implement-viewmodel-classes.md)

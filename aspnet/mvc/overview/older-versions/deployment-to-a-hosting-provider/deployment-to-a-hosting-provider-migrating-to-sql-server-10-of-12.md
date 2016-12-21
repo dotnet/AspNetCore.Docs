@@ -442,4 +442,6 @@ Follow the same procedure to uninstall the **SqlServerCompact** package. (The pa
 
 You have now successfully migrated to SQL Server Express and full SQL Server. In the next tutorial you'll make another database change, and you'll see how to deploy database changes when your test and production databases use SQL Server Express and full SQL Server.
 
->[!div class="step-by-step"] [Previous](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12.md) [Next](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12.md)
+>[!div class="step-by-step"]
+[Previous](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12.md)
+[Next](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12.md)

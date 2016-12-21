@@ -294,4 +294,6 @@ HDInsight (Hadoop on Azure):
 - [Hadoop and HDInsight: Big Data in Azure](https://msdn.microsoft.com/en-us/magazine/dn385705.aspx). MSDN Magazine article by Bruno Terkaly and Ricardo Villalobos, introducing Hadoop on Azure.
 - [Microsoft Patterns and Practices - Azure Guidance](https://msdn.microsoft.com/en-us/library/dn568099.aspx). See MapReduce pattern.
 
->[!div class="step-by-step"] [Previous](single-sign-on.md) [Next](data-partitioning-strategies.md)
+>[!div class="step-by-step"]
+[Previous](single-sign-on.md)
+[Next](data-partitioning-strategies.md)

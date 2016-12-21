@@ -110,4 +110,5 @@ To use these project files as part of a single-step, repeatable deployment proce
 - For information on how to incorporate your MSBuild commands into a command file for single-step, repeatable deployments, see [Creating and Running a Deployment Command File](../web-deployment-in-the-enterprise/creating-and-running-a-deployment-command-file.md).
 - For information on how to execute your custom project files from Team Build, see [Creating a Build Definition that Supports Deployment](../configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment.md).
 
->[!div class="step-by-step"] [Previous](creating-a-server-farm-with-the-web-farm-framework.md)
+>[!div class="step-by-step"]
+[Previous](creating-a-server-farm-with-the-web-farm-framework.md)

@@ -511,4 +511,6 @@ In this tutorial you added order and order detail schemas to track the purchase 
 
 This tutorial contains sample code. Such sample code is provided "as is" without warranty of any kind. Accordingly, Microsoft does not guarantee the accuracy, integrity, or quality of the sample code. You agree to use the sample code at your own risk. Under no circumstances will Microsoft be liable to you in any way for any sample code, content, including but not limited to, any errors or omissions in any sample code, content, or any loss or damage of any kind incurred as a result of the use of any sample code. You are hereby notified and do hereby agree to indemnify, save and hold Microsoft harmless from and against any and all loss, claims of loss, injury or damage of any kind including, without limitation, those occasioned by or arising from material that you post, transmit, use or rely on including, but not limited to, the views expressed therein.
 
->[!div class="step-by-step"] [Previous](shopping-cart.md) [Next](membership-and-administration.md)
+>[!div class="step-by-step"]
+[Previous](shopping-cart.md)
+[Next](membership-and-administration.md)
