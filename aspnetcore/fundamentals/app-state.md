@@ -132,7 +132,7 @@ You can reference Session from `HttpContext` once it is installed and configured
 >[!WARNING]
 > If you attempt to create a new `Session` (i.e. no session cookie has been created yet) after you have already begun writing to the `Response` stream, you will get an `InvalidOperationException` as well, stating that "The session cannot be established after the response has started". This exception may not be displayed in the browser; you may need to view the web server log  to discover it, as shown below:
 
-![image](app-state/_static/session-after-response-error.png)
+![Command window: The web server log is open showing the Invalid Operation Exception.](app-state/_static/session-after-response-error.png)
 
 ### Implementation Details
 
@@ -193,7 +193,7 @@ The associated sample application demonstrates how to work with Session, includi
 
 When you first navigate to the web server, it displays a screen indicating that no session has yet been established:
 
-![image](app-state/_static/no-session-established.png)
+![Web application open in Microsoft Edge stating: Your session has not been established.](app-state/_static/no-session-established.png)
 
 This default behavior is produced by the following middleware in Startup.cs, which runs when requests are made that do not already have an established session (note the highlighted sections):
 
@@ -213,11 +213,11 @@ When the entry for the object exists in `Session`, it is retrieved as a `byte[]`
 
 In the browser, clicking the Establish session hyperlink makes a request to the path "/session", and returns this result:
 
-![image](app-state/_static/session-established.png)
+![Web application stating: Counting: You have made 1 requests to this application.](app-state/_static/session-established.png)
 
 Refreshing the page results in the count incrementing; returning to the root of the site (after making a few more requests) results in this display, summarizing all of the requests that were made during the current session:
 
-![image](app-state/_static/session-established-with-request-counts.png)
+![Web application after making several requests stating that session path was requested four times, the index path was requested four times, and the site has been visited eight times.](app-state/_static/session-established-with-request-counts.png)
 
 Establishing the session is done in the middleware that handles requests to "/session":
 
