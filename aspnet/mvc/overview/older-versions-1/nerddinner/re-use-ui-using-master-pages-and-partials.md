@@ -1,7 +1,7 @@
 ---
 title: "Re-use UI Using Master Pages and Partials | Microsoft Docs"
 author: microsoft
-description: "Step 7 looks at ways we can apply the "DRY Principle" within our view templates to eliminate code duplication, using partial view templates and master pages."
+description: "Step 7 looks at ways we can apply the 'DRY Principle' within our view templates to eliminate code duplication, using partial view templates and master pages."
 ms.author: riande
 manager: wpickett
 ms.date: 07/27/2010

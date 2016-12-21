@@ -1,7 +1,7 @@
 ---
 title: "Performing Batch Updates (VB) | Microsoft Docs"
 author: rick-anderson
-description: "Learn how to create a fully-editable DataList where all of its items are in edit mode and whose values can be saved by clicking an "Update All" button on the..."
+description: "Learn how to create a fully-editable DataList where all of its items are in edit mode and whose values can be saved by clicking an 'Update All' button on the..."
 ms.author: riande
 manager: wpickett
 ms.date: 10/30/2006

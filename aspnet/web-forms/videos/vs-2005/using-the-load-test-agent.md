@@ -1,7 +1,7 @@
 ---
 title: "Using the Load Test Agent | Microsoft Docs"
 author: rick-anderson
-description: "In this video we examine how to incorporate the Load Test Agent in to the testing that we do with Visual Studio Team System. A Load Test Agent is part of a "..."
+description: "In this video we examine how to incorporate the Load Test Agent in to the testing that we do with Visual Studio Team System. A Load Test Agent is part of a '..."
 ms.author: riande
 manager: wpickett
 ms.date: 04/08/2007

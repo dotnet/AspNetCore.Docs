@@ -1,7 +1,7 @@
 ---
 title: "How-Do-I | Microsoft Docs"
 author: rick-anderson
-description: "Videos in this section cover ASP.NET MVC, including how to build "The Storefront" - an entire e-commerce application from start to finish."
+description: "Videos in this section cover ASP.NET MVC, including how to build 'The Storefront' - an entire e-commerce application from start to finish."
 ms.author: riande
 manager: wpickett
 ms.date: 09/15/2011

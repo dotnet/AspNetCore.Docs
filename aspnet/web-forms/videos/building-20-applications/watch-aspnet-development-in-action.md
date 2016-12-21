@@ -1,7 +1,7 @@
 ---
 title: "Watch ASP.NET Development in Action | Microsoft Docs"
 author: JoeStagner
-description: "Watch how easy it is to build a "to do" task list application from scratch using ASP.NET 2.0, ASP.NET AJAX, SQL Server Express, and Visual Web Developer. Mic..."
+description: "Watch how easy it is to build a 'to do' task list application from scratch using ASP.NET 2.0, ASP.NET AJAX, SQL Server Express, and Visual Web Developer. Mic..."
 ms.author: riande
 manager: wpickett
 ms.date: 02/24/2009

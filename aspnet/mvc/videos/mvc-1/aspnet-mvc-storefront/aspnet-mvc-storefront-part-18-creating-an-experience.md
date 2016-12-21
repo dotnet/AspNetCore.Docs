@@ -1,7 +1,7 @@
 ---
 title: "ASP.NET MVC Storefront Part 18: Creating An Experience | Microsoft Docs"
 author: robconery
-description: "In this episode I work on pulling all of the technical pieces together to form a coherent "experience" for the shopper."
+description: "In this episode I work on pulling all of the technical pieces together to form a coherent 'experience' for the shopper."
 ms.author: riande
 manager: wpickett
 ms.date: 10/16/2008

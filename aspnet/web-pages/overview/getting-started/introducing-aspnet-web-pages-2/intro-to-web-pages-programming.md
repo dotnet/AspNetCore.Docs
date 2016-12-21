@@ -1,7 +1,7 @@
 ---
 title: "Introducing ASP.NET Web Pages - Programming Basics | Microsoft Docs"
 author: tfitzmac
-description: "This tutorial gives you an overview of how to program in ASP.NET Web Pages with Razor syntax. What you'll learn: The basic "Razor" syntax that you use for pr..."
+description: "This tutorial gives you an overview of how to program in ASP.NET Web Pages with Razor syntax. What you'll learn: The basic 'Razor' syntax that you use for pr..."
 ms.author: riande
 manager: wpickett
 ms.date: 06/17/2015
