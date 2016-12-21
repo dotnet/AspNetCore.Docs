@@ -16,7 +16,7 @@ uid: mvc/controllers/application-model
 
 By [Steve Smith](http://ardalis.com)
 
-ASP.NET Core MVC defines an *application model* representing the components of an MVC app. You can read and manipulate this model to modify how MVC elements behave.
+ASP.NET Core MVC defines an *application model* representing the components of an MVC app. You can read and manipulate this model to modify how MVC elements behave. By default, MVC follows certain conventions to determine which classes are considered to be controllers, which methods on those classes are actions, and how parameters and routing behave. You can customize this behavior to suit your app's needs by creating your own conventions and applying them globally or as attributes.
 
 ## Models and Providers
 
