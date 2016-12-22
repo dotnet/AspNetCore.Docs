@@ -101,7 +101,7 @@ Run your application and click **Log in**. You will see an option to sign in wit
 
 When you click on Facebook, you will be redirected to Facebook for authentication.
 
-![Facebook authentication page](index/_static/FBLogin2.PNG)
+![Facebook authentication page](index/_static/FBLogin2a.png)
 
 Once you enter your Facebook credentials, then you will be redirected back to the web site where you can set your email.
 
