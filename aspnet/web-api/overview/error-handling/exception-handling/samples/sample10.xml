@@ -1,9 +1,9 @@
-    public HttpResponseMessage PostProduct(Product item)
+public HttpResponseMessage PostProduct(Product item)
+{
+    if (!ModelState.IsValid)
     {
-        if (!ModelState.IsValid)
-        {
-            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-        }
-    
-        // Implementation not shown...
+        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
     }
+
+    // Implementation not shown...
+}

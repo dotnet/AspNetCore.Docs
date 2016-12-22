@@ -1,7 +1,7 @@
-    else
+else
+{
+    if (instructorCourses.Contains(course.CourseID))
     {
-        if (instructorCourses.Contains(course.CourseID))
-        {
-            instructorToUpdate.Courses.Remove(course);
-        }
+        instructorToUpdate.Courses.Remove(course);
     }
+}

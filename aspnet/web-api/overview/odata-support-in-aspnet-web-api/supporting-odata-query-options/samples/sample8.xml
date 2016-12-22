@@ -1,2 +1,2 @@
-    [Queryable(AllowedQueryOptions=
-        AllowedQueryOptions.Skip | AllowedQueryOptions.Top)]
+[Queryable(AllowedQueryOptions=
+    AllowedQueryOptions.Skip | AllowedQueryOptions.Top)]

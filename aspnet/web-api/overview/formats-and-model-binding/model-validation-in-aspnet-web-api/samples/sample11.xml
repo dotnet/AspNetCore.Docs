@@ -1,8 +1,8 @@
-    public class ProductsController : ApiController
+public class ProductsController : ApiController
+{
+    [ValidateModel]
+    public HttpResponseMessage Post(Product product)
     {
-        [ValidateModel]
-        public HttpResponseMessage Post(Product product)
-        {
-            // ...
-        }
+        // ...
     }
+}

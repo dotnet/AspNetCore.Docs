@@ -1,8 +1,8 @@
-    public void PutProduct(int id, Product product)
+public void PutProduct(int id, Product product)
+{
+    product.Id = id;
+    if (!repository.Update(product))
     {
-        product.Id = id;
-        if (!repository.Update(product))
-        {
-            throw new HttpResponseException(HttpStatusCode.NotFound);
-        }
+        throw new HttpResponseException(HttpStatusCode.NotFound);
     }
+}

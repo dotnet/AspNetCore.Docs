@@ -1,6 +1,6 @@
-    .FooterStyle
-    {
-        background-color: #a33;
-        color: White;
-        text-align: right;
-    }
+.FooterStyle
+{
+    background-color: #a33;
+    color: White;
+    text-align: right;
+}

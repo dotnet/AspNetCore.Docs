@@ -1,1 +1,1 @@
-        context.Groups.Remove(connectionID, groupName);
+context.Groups.Remove(connectionID, groupName);

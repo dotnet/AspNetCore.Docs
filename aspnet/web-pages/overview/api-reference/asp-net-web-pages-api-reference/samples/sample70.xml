@@ -1,2 +1,2 @@
-    @FileUpload.GetHtml(initialNumberOfFiles:1, allowMoreFilesToBeAdded:false,
-      includeFormTag:true, uploadText:"Upload")
+@FileUpload.GetHtml(initialNumberOfFiles:1, allowMoreFilesToBeAdded:false,
+  includeFormTag:true, uploadText:"Upload")

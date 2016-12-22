@@ -1,9 +1,9 @@
-        protected void Wizard1_ActiveStepChanged(object sender, EventArgs e)
-        {
-        if (ScriptManager1.IsInAsyncPostBack && !ScriptManager1.IsNavigating)
-            {
-                ScriptManager1.AddHistoryPoint("index",
-                    Wizard1.ActiveStepIndex.ToString(), "Wizard step " +
-                    Wizard1.ActiveStepIndex.ToString());
-            }
-        }
+protected void Wizard1_ActiveStepChanged(object sender, EventArgs e)
+{
+if (ScriptManager1.IsInAsyncPostBack && !ScriptManager1.IsNavigating)
+    {
+        ScriptManager1.AddHistoryPoint("index",
+            Wizard1.ActiveStepIndex.ToString(), "Wizard step " +
+            Wizard1.ActiveStepIndex.ToString());
+    }
+}

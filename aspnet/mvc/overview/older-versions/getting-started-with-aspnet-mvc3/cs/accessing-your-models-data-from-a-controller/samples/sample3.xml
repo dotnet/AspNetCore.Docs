@@ -1,4 +1,4 @@
-    public ViewResult Index()
-    {
-        return View(db.Movies.ToList());
-    }
+public ViewResult Index()
+{
+    return View(db.Movies.ToList());
+}

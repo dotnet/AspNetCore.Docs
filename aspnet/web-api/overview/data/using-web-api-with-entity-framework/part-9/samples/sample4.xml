@@ -1,1 +1,1 @@
-    <form class="form-horizontal" data-bind="submit: addBook">
+<form class="form-horizontal" data-bind="submit: addBook">

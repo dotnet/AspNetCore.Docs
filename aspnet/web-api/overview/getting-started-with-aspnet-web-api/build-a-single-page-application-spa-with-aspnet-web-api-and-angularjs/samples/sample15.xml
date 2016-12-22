@@ -1,5 +1,5 @@
-        [Authorize]
-        public class TriviaController : ApiController
-        {
-            ...
-        }
+[Authorize]
+public class TriviaController : ApiController
+{
+    ...
+}

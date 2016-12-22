@@ -1,10 +1,10 @@
-    @{ var theName =
-    "Smith"; }
-    
-    @{
-        var
-        personName
-        =
-        "Smith"
-        ;
-    }
+@{ var theName =
+"Smith"; }
+
+@{
+    var
+    personName
+    =
+    "Smith"
+    ;
+}

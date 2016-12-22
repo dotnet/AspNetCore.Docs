@@ -1,1 +1,1 @@
-    IEnumerable<Department> GetDepartmentsByName(string sortExpression, string nameSearchString);
+IEnumerable<Department> GetDepartmentsByName(string sortExpression, string nameSearchString);

@@ -1,1 +1,1 @@
-    http://example.com/Employees?$expand=Manager($levels=2)
+http://example.com/Employees?$expand=Manager($levels=2)

@@ -1,1 +1,1 @@
-    var welcome = "Hello " + WebSecurity.CurrentUserName;
+var welcome = "Hello " + WebSecurity.CurrentUserName;

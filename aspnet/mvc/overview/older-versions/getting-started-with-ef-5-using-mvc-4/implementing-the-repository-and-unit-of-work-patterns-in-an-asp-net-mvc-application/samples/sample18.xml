@@ -1,2 +1,2 @@
-    internal SchoolContext context;
-    internal DbSet dbSet;
+internal SchoolContext context;
+internal DbSet dbSet;

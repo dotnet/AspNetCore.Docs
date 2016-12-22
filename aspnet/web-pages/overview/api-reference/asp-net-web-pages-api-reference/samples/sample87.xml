@@ -1,1 +1,1 @@
-    @Video.MediaPlayer("test.wmv", "100", "100")
+@Video.MediaPlayer("test.wmv", "100", "100")

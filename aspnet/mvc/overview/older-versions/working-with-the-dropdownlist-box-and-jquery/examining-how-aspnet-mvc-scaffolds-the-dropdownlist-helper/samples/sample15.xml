@@ -1,1 +1,1 @@
-    @Html.DropDownList("GenreId", ViewBag.GenreId as SelectList)
+@Html.DropDownList("GenreId", ViewBag.GenreId as SelectList)

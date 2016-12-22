@@ -1,11 +1,11 @@
-    using System.ComponentModel.DataAnnotations;
-    
-    namespace ProductService.Models
+using System.ComponentModel.DataAnnotations;
+
+namespace ProductService.Models
+{
+    public class Supplier
     {
-        public class Supplier
-        {
-            [Key]
-            public string Key { get; set; }
-            public string Name { get; set; }
-        }
+        [Key]
+        public string Key { get; set; }
+        public string Name { get; set; }
     }
+}

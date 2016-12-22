@@ -1,1 +1,1 @@
-    public partial class Admin_AdminNested : BaseMasterPage
+public partial class Admin_AdminNested : BaseMasterPage

@@ -1,1 +1,1 @@
-    defaults: new { category = "all" }
+defaults: new { category = "all" }

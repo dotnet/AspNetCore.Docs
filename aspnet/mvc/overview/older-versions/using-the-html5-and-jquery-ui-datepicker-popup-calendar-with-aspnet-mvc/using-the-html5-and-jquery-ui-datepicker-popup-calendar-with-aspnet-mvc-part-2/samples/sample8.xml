@@ -1,2 +1,2 @@
-    [UIHint("LoudDateTime")]
-    public DateTime ReleaseDate { get; set; }
+[UIHint("LoudDateTime")]
+public DateTime ReleaseDate { get; set; }

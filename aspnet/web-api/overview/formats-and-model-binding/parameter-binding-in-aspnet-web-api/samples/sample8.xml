@@ -1,1 +1,1 @@
-    bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext);
+bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext);

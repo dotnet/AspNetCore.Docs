@@ -1,12 +1,12 @@
-    config.ParameterBindingRules.Add(p =>
+config.ParameterBindingRules.Add(p =>
+{
+    if (p.ParameterType == typeof(ETag) && 
+        p.ActionDescriptor.SupportedHttpMethods.Contains(HttpMethod.Get))
     {
-        if (p.ParameterType == typeof(ETag) && 
-            p.ActionDescriptor.SupportedHttpMethods.Contains(HttpMethod.Get))
-        {
-            return new ETagParameterBinding(p, ETagMatch.IfNoneMatch);
-        }
-        else
-        {
-            return null;
-        }
-    });
+        return new ETagParameterBinding(p, ETagMatch.IfNoneMatch);
+    }
+    else
+    {
+        return null;
+    }
+});

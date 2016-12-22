@@ -1,2 +1,2 @@
-    Label unitsInStock =
-        (Label)LowStockedProductsInRed.FindControl("UnitsInStockLabel");
+Label unitsInStock =
+    (Label)LowStockedProductsInRed.FindControl("UnitsInStockLabel");

@@ -1,2 +1,2 @@
-    [HubName("stockTicker")]
-    public class StockTickerHub : Hub
+[HubName("stockTicker")]
+public class StockTickerHub : Hub

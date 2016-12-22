@@ -1,4 +1,4 @@
-    <authorization>
-     <allow users="Tito, Scott" />
-     <deny users="*" />
-    </authorization>
+<authorization>
+ <allow users="Tito, Scott" />
+ <deny users="*" />
+</authorization>

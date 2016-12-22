@@ -1,5 +1,5 @@
-    <configuration>
-      <!-- ... -->
-      <system.web>
-    <compilation profileGuidedOptimizations="None"  />
-      <!-- ... -->
+<configuration>
+  <!-- ... -->
+  <system.web>
+<compilation profileGuidedOptimizations="None"  />
+  <!-- ... -->

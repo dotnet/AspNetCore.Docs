@@ -1,6 +1,6 @@
-    public interface IDataErrorInfo
-        {
-            string this[string columnName] { get; }
-    
-            string Error { get; }
-        }
+public interface IDataErrorInfo
+    {
+        string this[string columnName] { get; }
+
+        string Error { get; }
+    }

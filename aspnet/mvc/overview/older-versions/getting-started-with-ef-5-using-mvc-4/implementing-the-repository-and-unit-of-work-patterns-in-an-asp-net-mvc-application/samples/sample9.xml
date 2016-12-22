@@ -1,2 +1,2 @@
-    studentRepository.InsertStudent(student);
-    studentRepository.Save();
+studentRepository.InsertStudent(student);
+studentRepository.Save();

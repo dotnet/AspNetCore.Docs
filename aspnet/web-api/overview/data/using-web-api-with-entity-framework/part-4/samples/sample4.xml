@@ -1,4 +1,4 @@
-    public IQueryable<Book> GetBooks()
-    {
-        return db.Books;
-    }
+public IQueryable<Book> GetBooks()
+{
+    return db.Books;
+}

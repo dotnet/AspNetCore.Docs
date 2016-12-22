@@ -1,1 +1,1 @@
-    void Page_Load() { Master.SomeProperty = "Master Page Property"; }
+void Page_Load() { Master.SomeProperty = "Master Page Property"; }

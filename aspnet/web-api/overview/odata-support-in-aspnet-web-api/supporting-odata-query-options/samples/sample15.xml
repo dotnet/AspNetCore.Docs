@@ -1,12 +1,12 @@
-    public class MyQueryableAttribute : QueryableAttribute
+public class MyQueryableAttribute : QueryableAttribute
+{
+    public override void ValidateQuery(HttpRequestMessage request, 
+        ODataQueryOptions queryOptions)
     {
-        public override void ValidateQuery(HttpRequestMessage request, 
-            ODataQueryOptions queryOptions)
+        if (queryOptions.OrderBy != null)
         {
-            if (queryOptions.OrderBy != null)
-            {
-                queryOptions.OrderBy.Validator = new MyOrderByValidator();
-            }
-            base.ValidateQuery(request, queryOptions);
+            queryOptions.OrderBy.Validator = new MyOrderByValidator();
         }
+        base.ValidateQuery(request, queryOptions);
     }
+}

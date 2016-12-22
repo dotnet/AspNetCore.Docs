@@ -1,4 +1,4 @@
-    else
-    {
-         @:Not Mobile/Get
-    }
+else
+{
+     @:Not Mobile/Get
+}

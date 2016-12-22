@@ -1,1 +1,1 @@
-        Clients.All.addContosoChatMessageToPage(name, message);
+Clients.All.addContosoChatMessageToPage(name, message);

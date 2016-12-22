@@ -1,11 +1,11 @@
-    public class ProductsController : ApiController
+public class ProductsController : ApiController
+{
+    private IProductRepository _repository;
+
+    public ProductsController(IProductRepository repository)  
     {
-        private IProductRepository _repository;
-    
-        public ProductsController(IProductRepository repository)  
-        {
-            _repository = repository;
-        }
-    
-        // Other controller methods not shown.
+        _repository = repository;
     }
+
+    // Other controller methods not shown.
+}

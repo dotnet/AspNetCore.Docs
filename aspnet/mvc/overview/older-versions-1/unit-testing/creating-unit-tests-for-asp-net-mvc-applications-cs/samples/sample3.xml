@@ -1,4 +1,4 @@
-    public ActionResult Details(int Id)
-    {
-         return View("Details");
-    }
+public ActionResult Details(int Id)
+{
+     return View("Details");
+}

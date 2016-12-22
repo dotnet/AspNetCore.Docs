@@ -1,1 +1,1 @@
-    Func<IDictionary<string, object>, Task>
+Func<IDictionary<string, object>, Task>

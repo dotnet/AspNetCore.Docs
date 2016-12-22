@@ -1,4 +1,4 @@
-    @{
-       Bing.SiteUrl = "www.asp.net";  @* Limits search to the www.asp.net site. *@
-    }
-    @Bing.SearchBox()
+@{
+   Bing.SiteUrl = "www.asp.net";  @* Limits search to the www.asp.net site. *@
+}
+@Bing.SearchBox()

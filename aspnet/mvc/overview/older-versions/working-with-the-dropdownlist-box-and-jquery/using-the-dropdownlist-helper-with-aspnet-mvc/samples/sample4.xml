@@ -1,1 +1,1 @@
-    @Html.DropDownList("MovieType")
+@Html.DropDownList("MovieType")

@@ -1,1 +1,1 @@
-    @model IEnumerable<MvcMusicStore.Models.Genre>
+@model IEnumerable<MvcMusicStore.Models.Genre>

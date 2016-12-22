@@ -1,1 +1,1 @@
-    Install-Package Microsoft.AspNet.WebApi.OwinSelfHost
+Install-Package Microsoft.AspNet.WebApi.OwinSelfHost

@@ -1,1 +1,1 @@
-    var encodedInput = Server.HtmlEncode(userInput);
+var encodedInput = Server.HtmlEncode(userInput);

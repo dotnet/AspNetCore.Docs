@@ -1,2 +1,2 @@
-        // Enable server-driven paging.
-        [Queryable(PageSize=10)]
+// Enable server-driven paging.
+[Queryable(PageSize=10)]

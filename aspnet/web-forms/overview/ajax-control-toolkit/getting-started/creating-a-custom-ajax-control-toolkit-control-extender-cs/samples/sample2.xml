@@ -1,44 +1,44 @@
-    using System.ComponentModel;
-    using System.Web.UI;
-    using System.Web.UI.WebControls;
-    using AjaxControlToolkit;
-    
-    [assembly: System.Web.UI.WebResource("CustomExtenders.DisabledButtonBehavior.js", "text/javascript")]
-    
-    namespace CustomExtenders
+using System.ComponentModel;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using AjaxControlToolkit;
+
+[assembly: System.Web.UI.WebResource("CustomExtenders.DisabledButtonBehavior.js", "text/javascript")]
+
+namespace CustomExtenders
+{
+    [ClientScriptResource("CustomExtenders.DisabledButtonBehavior", "CustomExtenders.DisabledButtonBehavior.js")]
+    [TargetControlType(typeof(TextBox))]
+    public class DisabledButtonExtender : ExtenderControlBase
     {
-        [ClientScriptResource("CustomExtenders.DisabledButtonBehavior", "CustomExtenders.DisabledButtonBehavior.js")]
-        [TargetControlType(typeof(TextBox))]
-        public class DisabledButtonExtender : ExtenderControlBase
+        [ExtenderControlProperty]
+        [DefaultValue("")]
+        [IDReferenceProperty(typeof(Button))]
+        public string TargetButtonID
         {
-            [ExtenderControlProperty]
-            [DefaultValue("")]
-            [IDReferenceProperty(typeof(Button))]
-            public string TargetButtonID
+            get
             {
-                get
-                {
-                    return GetPropertyValue("TargetButtonID", "");
-                }
-                set
-                {
-                    SetPropertyValue("TargetButtonID", value);
-                }
+                return GetPropertyValue("TargetButtonID", "");
             }
-    
-            [ExtenderControlProperty]
-            [DefaultValue("")]
-            public string DisabledText
+            set
             {
-                get
-                {
-                    return GetPropertyValue("DisabledText", "");
-                }
-                set
-                {
-                    SetPropertyValue("DisabledText", value);
-                }
+                SetPropertyValue("TargetButtonID", value);
             }
-    
         }
+
+        [ExtenderControlProperty]
+        [DefaultValue("")]
+        public string DisabledText
+        {
+            get
+            {
+                return GetPropertyValue("DisabledText", "");
+            }
+            set
+            {
+                SetPropertyValue("DisabledText", value);
+            }
+        }
+
     }
+}

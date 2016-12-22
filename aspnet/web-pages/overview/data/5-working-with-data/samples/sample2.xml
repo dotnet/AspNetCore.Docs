@@ -1,1 +1,1 @@
-        SELECT * FROM Product ORDER BY Name
+SELECT * FROM Product ORDER BY Name

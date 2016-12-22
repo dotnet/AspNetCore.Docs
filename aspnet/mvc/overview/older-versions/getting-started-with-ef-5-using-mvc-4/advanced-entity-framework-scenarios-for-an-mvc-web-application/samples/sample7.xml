@@ -1,12 +1,12 @@
-    public CourseRepository CourseRepository
+public CourseRepository CourseRepository
+{
+    get
     {
-        get
+
+        if (this.courseRepository == null)
         {
-    
-            if (this.courseRepository == null)
-            {
-                this.courseRepository = new CourseRepository(context);
-            }
-            return courseRepository;
+            this.courseRepository = new CourseRepository(context);
         }
+        return courseRepository;
     }
+}

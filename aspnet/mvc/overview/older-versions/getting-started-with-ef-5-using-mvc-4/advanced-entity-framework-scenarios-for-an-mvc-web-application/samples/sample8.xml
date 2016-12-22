@@ -1,8 +1,8 @@
-    public ActionResult UpdateCourseCredits(int? multiplier)
+public ActionResult UpdateCourseCredits(int? multiplier)
+{
+    if (multiplier != null)
     {
-        if (multiplier != null)
-        {
-            ViewBag.RowsAffected = unitOfWork.CourseRepository.UpdateCourseCredits(multiplier.Value);
-        }
-        return View();
+        ViewBag.RowsAffected = unitOfWork.CourseRepository.UpdateCourseCredits(multiplier.Value);
     }
+    return View();
+}

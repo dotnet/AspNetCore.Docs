@@ -1,15 +1,15 @@
-    using System;
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
+using System;
+using System.Web.Mvc;
+
+namespace MvcApplication1.Controllers
+{
+    public class WorkController : Controller
     {
-        public class WorkController : Controller
+ 
+        public DateTime Index()
         {
-     
-            public DateTime Index()
-            {
-                return DateTime.Now;
-            }
-    
+            return DateTime.Now;
         }
+
     }
+}

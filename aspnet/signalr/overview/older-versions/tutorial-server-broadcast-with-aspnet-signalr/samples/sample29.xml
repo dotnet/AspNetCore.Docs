@@ -1,1 +1,1 @@
-    private volatile MarketState _marketState;
+private volatile MarketState _marketState;

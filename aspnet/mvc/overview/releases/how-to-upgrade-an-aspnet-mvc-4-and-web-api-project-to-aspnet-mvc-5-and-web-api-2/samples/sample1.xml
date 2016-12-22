@@ -1,1 +1,1 @@
-        WebApiConfig.Register(GlobalConfiguration.Configuration);
+WebApiConfig.Register(GlobalConfiguration.Configuration);

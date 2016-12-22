@@ -1,1 +1,1 @@
-    <%= Html.DropDownList("Country", ViewData["Countries"] as SelectList) %>
+<%= Html.DropDownList("Country", ViewData["Countries"] as SelectList) %>

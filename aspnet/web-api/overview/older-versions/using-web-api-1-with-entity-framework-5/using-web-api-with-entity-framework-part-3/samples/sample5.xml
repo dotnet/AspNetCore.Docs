@@ -1,2 +1,2 @@
-    System.Data.Entity.Database.SetInitializer(
-        new ProductStore.Models.OrdersContextInitializer());
+System.Data.Entity.Database.SetInitializer(
+    new ProductStore.Models.OrdersContextInitializer());

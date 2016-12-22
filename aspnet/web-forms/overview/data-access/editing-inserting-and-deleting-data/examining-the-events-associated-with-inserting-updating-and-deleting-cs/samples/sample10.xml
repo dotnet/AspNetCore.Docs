@@ -1,5 +1,5 @@
-    protected void ObjectDataSource1_Inserting
-        (object sender, ObjectDataSourceMethodEventArgs e)
-    {
-    
-    }
+protected void ObjectDataSource1_Inserting
+    (object sender, ObjectDataSourceMethodEventArgs e)
+{
+
+}

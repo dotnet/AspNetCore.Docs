@@ -1,1 +1,1 @@
-    WebSecurity.RequireAuthenticatedUser();
+WebSecurity.RequireAuthenticatedUser();

@@ -1,2 +1,2 @@
-    SELECT COUNT(*)
-    FROM Products
+SELECT COUNT(*)
+FROM Products

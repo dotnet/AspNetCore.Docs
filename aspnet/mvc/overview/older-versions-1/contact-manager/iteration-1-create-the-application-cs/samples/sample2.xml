@@ -1,13 +1,13 @@
-    public class HomeController : Controller
+public class HomeController : Controller
+{
+
+    private ContactManagerDBEntities _entities = new ContactManagerDBEntities();
+
+    //
+    // GET: /Home/
+
+    public ActionResult Index()
     {
-    
-        private ContactManagerDBEntities _entities = new ContactManagerDBEntities();
-    
-        //
-        // GET: /Home/
-    
-        public ActionResult Index()
-        {
-            return View(_entities.ContactSet.ToList());
-        }
-    …
+        return View(_entities.ContactSet.ToList());
+    }
+…

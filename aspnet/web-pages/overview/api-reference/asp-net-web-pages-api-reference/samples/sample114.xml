@@ -1,1 +1,1 @@
-    Validation.RequireFields("firstName", "lastName", "dateOfBirth");
+Validation.RequireFields("firstName", "lastName", "dateOfBirth");

@@ -1,4 +1,4 @@
-    <system.web>
-        <pages theme="CoolTheme" />
-        ...
-    </system.web>
+<system.web>
+    <pages theme="CoolTheme" />
+    ...
+</system.web>

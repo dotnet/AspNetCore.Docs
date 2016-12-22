@@ -1,1 +1,1 @@
-    DELETE FROM [Products] WHERE (([ProductID] = @Original_ProductID))
+DELETE FROM [Products] WHERE (([ProductID] = @Original_ProductID))

@@ -1,4 +1,4 @@
-    <PropertyGroup>
-       <OutputRoot Condition=" '$(OutputRoot)'=='' ">..\Publish\Out\</OutputRoot>
-       ...
-    </PropertyGroup>
+<PropertyGroup>
+   <OutputRoot Condition=" '$(OutputRoot)'=='' ">..\Publish\Out\</OutputRoot>
+   ...
+</PropertyGroup>

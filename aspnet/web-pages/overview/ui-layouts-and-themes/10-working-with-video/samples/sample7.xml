@@ -1,2 +1,2 @@
-    <!-- Set the MediaPlayer control UI -->
-    @Video.MediaPlayer(path: "Media/sample.wmv", uiMode: "mini")
+<!-- Set the MediaPlayer control UI -->
+@Video.MediaPlayer(path: "Media/sample.wmv", uiMode: "mini")

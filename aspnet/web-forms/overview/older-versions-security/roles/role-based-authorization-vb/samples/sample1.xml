@@ -1,10 +1,10 @@
-    <roleManager enabled="true" 
-              defaultProvider="SecurityTutorialsSqlRoleProvider"
-              cacheRolesInCookie="true"
-              createPersistentCookie="false"
-              cookieProtection="All">
-    
-         <providers>
-         ...
-         </providers>
-    </roleManager>
+<roleManager enabled="true" 
+          defaultProvider="SecurityTutorialsSqlRoleProvider"
+          cacheRolesInCookie="true"
+          createPersistentCookie="false"
+          cookieProtection="All">
+
+     <providers>
+     ...
+     </providers>
+</roleManager>

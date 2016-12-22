@@ -1,1 +1,1 @@
-    <script >    $(".chzn-select").chosen(); </script>  @*Hookup Chosen Plugin*@
+<script >    $(".chzn-select").chosen(); </script>  @*Hookup Chosen Plugin*@

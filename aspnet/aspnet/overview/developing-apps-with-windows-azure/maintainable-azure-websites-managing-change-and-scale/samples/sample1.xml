@@ -1,1 +1,1 @@
-        Enable-Migrations -ContextTypeName GeekQuiz.Models.TriviaContext
+Enable-Migrations -ContextTypeName GeekQuiz.Models.TriviaContext

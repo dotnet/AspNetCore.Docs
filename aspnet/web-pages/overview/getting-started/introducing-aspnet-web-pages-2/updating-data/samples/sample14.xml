@@ -1,1 +1,1 @@
-    var row = db.QuerySingle(dbCommand, movieId);
+var row = db.QuerySingle(dbCommand, movieId);

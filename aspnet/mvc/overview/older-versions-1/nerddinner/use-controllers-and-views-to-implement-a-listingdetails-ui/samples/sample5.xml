@@ -1,9 +1,9 @@
-    //
-        // GET: /Dinners/
+//
+    // GET: /Dinners/
+
+    public ActionResult Index() {
     
-        public ActionResult Index() {
+        var dinners = dinnerRepository.FindUpcomingDinners().ToList();
         
-            var dinners = dinnerRepository.FindUpcomingDinners().ToList();
-            
-            return View("Index", dinners);
-        }
+        return View("Index", dinners);
+    }

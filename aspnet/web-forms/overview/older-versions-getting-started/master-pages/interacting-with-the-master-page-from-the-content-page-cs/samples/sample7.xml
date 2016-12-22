@@ -1,4 +1,4 @@
-    public void RefreshRecentProductsGrid() 
-    { 
-     RecentProducts.DataBind();
-    }
+public void RefreshRecentProductsGrid() 
+{ 
+ RecentProducts.DataBind();
+}

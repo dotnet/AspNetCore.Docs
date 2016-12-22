@@ -1,9 +1,9 @@
-    public HttpResponseMessage Get()
+public HttpResponseMessage Get()
+{
+    string sessionId = Request.Properties[SessionIdHandler.SessionIdToken] as string;
+
+    return new HttpResponseMessage()
     {
-        string sessionId = Request.Properties[SessionIdHandler.SessionIdToken] as string;
-    
-        return new HttpResponseMessage()
-        {
-            Content = new StringContent("Your session ID = " + sessionId)
-        };
-    }
+        Content = new StringContent("Your session ID = " + sessionId)
+    };
+}

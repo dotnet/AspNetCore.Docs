@@ -1,7 +1,7 @@
-    namespace Client
+namespace Client
+{
+    class Program
     {
-        class Program
-        {
-            static HttpClient client = new HttpClient();
-        }
+        static HttpClient client = new HttpClient();
     }
+}

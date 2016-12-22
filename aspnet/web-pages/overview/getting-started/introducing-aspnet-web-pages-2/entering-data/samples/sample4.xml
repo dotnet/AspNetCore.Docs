@@ -1,1 +1,1 @@
-    Response.Redirect("~/Movies");
+Response.Redirect("~/Movies");

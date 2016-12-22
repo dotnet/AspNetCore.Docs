@@ -1,2 +1,2 @@
-        // Set the maximum node count.
-        [Queryable(MaxNodeCount=20)]
+// Set the maximum node count.
+[Queryable(MaxNodeCount=20)]

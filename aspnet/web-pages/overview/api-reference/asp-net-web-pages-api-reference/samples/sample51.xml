@@ -1,1 +1,1 @@
-    WebSecurity.RequireUser("joe@contoso.com");
+WebSecurity.RequireUser("joe@contoso.com");

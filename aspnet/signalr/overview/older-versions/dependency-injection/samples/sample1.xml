@@ -1,4 +1,4 @@
-    interface ILogger 
-    {
-        void LogMessage(string message);
-    }
+interface ILogger 
+{
+    void LogMessage(string message);
+}

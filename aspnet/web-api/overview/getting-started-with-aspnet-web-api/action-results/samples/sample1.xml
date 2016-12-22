@@ -1,6 +1,6 @@
-    public class ValuesController : ApiController
+public class ValuesController : ApiController
+{
+    public void Post()
     {
-        public void Post()
-        {
-        }
     }
+}

@@ -1,1 +1,1 @@
-    msbuild.exe Publish.proj /p:ServerName=FABRIKAM\TESTWEB1
+msbuild.exe Publish.proj /p:ServerName=FABRIKAM\TESTWEB1

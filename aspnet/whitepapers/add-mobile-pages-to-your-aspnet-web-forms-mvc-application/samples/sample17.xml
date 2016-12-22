@@ -1,4 +1,4 @@
-    protected override void OnActionExecuting(ActionExecutingContext filterContext)
-    {
-        filterContext.HttpContext.Response.Cache.SetNoTransforms();
-    }
+protected override void OnActionExecuting(ActionExecutingContext filterContext)
+{
+    filterContext.HttpContext.Response.Cache.SetNoTransforms();
+}

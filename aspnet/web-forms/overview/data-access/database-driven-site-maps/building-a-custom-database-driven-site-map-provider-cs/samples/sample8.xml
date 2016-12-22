@@ -1,1 +1,1 @@
-    SiteMapNode root = SiteMap.RootNode;
+SiteMapNode root = SiteMap.RootNode;

@@ -1,1 +1,1 @@
-    @ReCaptcha.GetHtml()
+@ReCaptcha.GetHtml()

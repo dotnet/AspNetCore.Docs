@@ -1,4 +1,4 @@
-    [Bind(Include="Title,Description,EventDate,Address,Country,ContactPhone,Latitude,Longitude")]
-    public partial class Dinner {
-       ...
-    }
+[Bind(Include="Title,Description,EventDate,Address,Country,ContactPhone,Latitude,Longitude")]
+public partial class Dinner {
+   ...
+}

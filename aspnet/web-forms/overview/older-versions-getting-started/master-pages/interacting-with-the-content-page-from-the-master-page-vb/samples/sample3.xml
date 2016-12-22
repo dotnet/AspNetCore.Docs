@@ -1,1 +1,1 @@
-    UPDATE Products SET UnitPrice = UnitPrice * 2
+UPDATE Products SET UnitPrice = UnitPrice * 2

@@ -1,12 +1,12 @@
-    using System;
-    using System.Web.Mvc;
-    namespace MvcApplication1.Controllers
+using System;
+using System.Web.Mvc;
+namespace MvcApplication1.Controllers
+{
+    public class ArchiveController : Controller
     {
-        public class ArchiveController : Controller
+        public string Entry(DateTime entryDate)
         {
-            public string Entry(DateTime entryDate)
-            {
-                return "You requested the entry from " + entryDate.ToString();
-            }
+            return "You requested the entry from " + entryDate.ToString();
         }
     }
+}

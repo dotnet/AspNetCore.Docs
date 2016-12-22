@@ -1,8 +1,8 @@
-    public class HomeController : Controller
+public class HomeController : Controller
+{
+    [RedirectMobileDevicesToMobileArea] // Applies just to this action
+    public ActionResult Index()
     {
-        [RedirectMobileDevicesToMobileArea] // Applies just to this action
-        public ActionResult Index()
-        {
-            // ...
-        }
+        // ...
     }
+}

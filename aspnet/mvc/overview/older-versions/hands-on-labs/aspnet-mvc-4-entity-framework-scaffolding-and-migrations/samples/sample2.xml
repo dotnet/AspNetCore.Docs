@@ -1,1 +1,1 @@
-        Enable-Migrations -ContextTypeName [ContextClassName]
+Enable-Migrations -ContextTypeName [ContextClassName]

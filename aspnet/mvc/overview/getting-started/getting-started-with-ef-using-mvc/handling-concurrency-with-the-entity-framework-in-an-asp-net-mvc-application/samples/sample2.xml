@@ -1,2 +1,2 @@
-    modelBuilder.Entity<Department>()
-        .Property(p => p.RowVersion).IsConcurrencyToken();
+modelBuilder.Entity<Department>()
+    .Property(p => p.RowVersion).IsConcurrencyToken();

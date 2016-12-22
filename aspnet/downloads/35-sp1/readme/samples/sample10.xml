@@ -1,14 +1,14 @@
-    public class ProductMetadata {
-        public object ProductID { get; set; }
-        public object ProductName { get; set; }
-        public object Supplier { get; set; }
-        public object Category { get; set; }
-        public object QuantityPerUnit { get; set; }
-        public object UnitPrice { get; set; }
-        public object UnitsInStock { get; set; }
-        [Range(0, 100)]
-        [Description("Enter the units in stock in this field.")]
-        public object UnitsOnOrder { get; set; }
-        public object ReorderLevel { get; set; }
-        public object Discontinued { get; set; }
-    }
+public class ProductMetadata {
+    public object ProductID { get; set; }
+    public object ProductName { get; set; }
+    public object Supplier { get; set; }
+    public object Category { get; set; }
+    public object QuantityPerUnit { get; set; }
+    public object UnitPrice { get; set; }
+    public object UnitsInStock { get; set; }
+    [Range(0, 100)]
+    [Description("Enter the units in stock in this field.")]
+    public object UnitsOnOrder { get; set; }
+    public object ReorderLevel { get; set; }
+    public object Discontinued { get; set; }
+}

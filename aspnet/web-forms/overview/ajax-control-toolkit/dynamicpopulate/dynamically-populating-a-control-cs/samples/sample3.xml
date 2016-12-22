@@ -1,1 +1,1 @@
-    <label id="myDate" runat="server" />
+<label id="myDate" runat="server" />

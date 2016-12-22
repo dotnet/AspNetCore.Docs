@@ -1,1 +1,1 @@
-    <asp:HiddenField runat="server" ID="SomeControl" Value="sampleValue"  ; />
+<asp:HiddenField runat="server" ID="SomeControl" Value="sampleValue"  ; />

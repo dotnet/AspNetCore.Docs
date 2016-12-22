@@ -1,1 +1,1 @@
-    image.Save("test.png");
+image.Save("test.png");

@@ -1,5 +1,5 @@
-        @section header {
-          <div id="header">
-            Creating a Consistent Look
-          </div>
-        }
+@section header {
+  <div id="header">
+    Creating a Consistent Look
+  </div>
+}

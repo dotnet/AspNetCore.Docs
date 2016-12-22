@@ -1,4 +1,4 @@
-    [Authorize]
-    public class OrdersController : ApiController
-    {
-        // ...
+[Authorize]
+public class OrdersController : ApiController
+{
+    // ...

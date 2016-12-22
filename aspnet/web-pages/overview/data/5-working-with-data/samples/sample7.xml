@@ -1,1 +1,1 @@
-        db.Execute(insertQuery, Name, Description, Price);
+db.Execute(insertQuery, Name, Description, Price);

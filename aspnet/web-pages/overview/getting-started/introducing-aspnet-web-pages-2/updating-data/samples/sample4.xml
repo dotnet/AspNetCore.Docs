@@ -1,1 +1,1 @@
-    <a href="~/EditMovie?id=@item.ID)">Edit</a>
+<a href="~/EditMovie?id=@item.ID)">Edit</a>

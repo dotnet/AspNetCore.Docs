@@ -1,1 +1,1 @@
-    @{ var myString = "This is a string literal"; }
+@{ var myString = "This is a string literal"; }

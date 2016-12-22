@@ -1,22 +1,22 @@
-    using System;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Threading.Tasks;
-    
-    namespace HttpClientSample
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+
+namespace HttpClientSample
+{
+    class Program
     {
-        class Program
+
+        static void Main()
         {
-    
-            static void Main()
-            {
-                RunAsync().Wait();
-            }
-    
-            static async Task RunAsync()
-            {
-                Console.ReadLine();
-            }
+            RunAsync().Wait();
+        }
+
+        static async Task RunAsync()
+        {
+            Console.ReadLine();
         }
     }
+}

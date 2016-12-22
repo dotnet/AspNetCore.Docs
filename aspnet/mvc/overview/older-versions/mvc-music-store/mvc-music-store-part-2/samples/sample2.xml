@@ -1,4 +1,4 @@
-    public string Index()
-    {
-        return "Hello from Home";
-    }
+public string Index()
+{
+    return "Hello from Home";
+}

@@ -1,4 +1,4 @@
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = true;
-        }
+public Configuration()
+{
+    AutomaticMigrationsEnabled = true;
+}

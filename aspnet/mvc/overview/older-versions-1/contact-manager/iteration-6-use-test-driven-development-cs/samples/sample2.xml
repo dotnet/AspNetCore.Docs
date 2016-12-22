@@ -1,16 +1,16 @@
-    using System.Collections.Generic;
-    using System.Web.Mvc;
-    using ContactManager.Models;
-    
-    namespace ContactManager.Controllers
+using System.Collections.Generic;
+using System.Web.Mvc;
+using ContactManager.Models;
+
+namespace ContactManager.Controllers
+{
+    public class GroupController : Controller
     {
-        public class GroupController : Controller
+        public ActionResult Index()
         {
-            public ActionResult Index()
-            {
-                var groups = new List();
-                return View(groups);
-            }
-    
+            var groups = new List();
+            return View(groups);
         }
+
     }
+}

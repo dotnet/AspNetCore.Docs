@@ -1,2 +1,2 @@
-    <%# DisplayDaysOnJob((Northwind.EmployeesRow)
-         ((System.Data.DataRowView) Container.DataItem).Row) %>
+<%# DisplayDaysOnJob((Northwind.EmployeesRow)
+     ((System.Data.DataRowView) Container.DataItem).Row) %>

@@ -1,1 +1,1 @@
-    @Analytics.GetGoogleHtml("MyWebPropertyId")
+@Analytics.GetGoogleHtml("MyWebPropertyId")

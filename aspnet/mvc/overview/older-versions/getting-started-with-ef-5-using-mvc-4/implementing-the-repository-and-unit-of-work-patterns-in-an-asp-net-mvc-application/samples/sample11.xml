@@ -1,2 +1,2 @@
-    studentRepository.DeleteStudent(id);
-    studentRepository.Save();
+studentRepository.DeleteStudent(id);
+studentRepository.Save();

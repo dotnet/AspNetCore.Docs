@@ -1,5 +1,5 @@
-    [Authorize(Roles="Administrator")]
-    public ActionResult Admin()
-    {
-        return View();
-    }
+[Authorize(Roles="Administrator")]
+public ActionResult Admin()
+{
+    return View();
+}

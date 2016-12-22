@@ -1,1 +1,1 @@
-        <add name="ValidationSettings:UnobtrusiveValidationMode" value="WebForms" />
+<add name="ValidationSettings:UnobtrusiveValidationMode" value="WebForms" />

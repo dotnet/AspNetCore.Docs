@@ -1,2 +1,2 @@
-    SELECT SupplierID, CompanyName, ContactName, ContactTitle
-    FROM Suppliers
+SELECT SupplierID, CompanyName, ContactName, ContactTitle
+FROM Suppliers

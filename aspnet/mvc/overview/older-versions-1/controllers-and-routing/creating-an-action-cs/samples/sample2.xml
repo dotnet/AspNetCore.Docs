@@ -1,14 +1,14 @@
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
+using System.Web.Mvc;
+
+namespace MvcApplication1.Controllers
+{
+    public class WorkController : Controller
     {
-        public class WorkController : Controller
+        [NonAction]
+        public string CompanySecrets()
         {
-            [NonAction]
-            public string CompanySecrets()
-            {
-                return "This information is secret.";
-            }
-    
+            return "This information is secret.";
         }
+
     }
+}

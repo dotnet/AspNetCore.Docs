@@ -1,1 +1,1 @@
-    function AuthenticationLoginCompletedCallback(validCredentials, userContext, methodName);
+function AuthenticationLoginCompletedCallback(validCredentials, userContext, methodName);

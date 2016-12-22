@@ -1,1 +1,1 @@
-    connection.Start(new LongPollingTransport());
+connection.Start(new LongPollingTransport());

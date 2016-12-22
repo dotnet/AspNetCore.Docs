@@ -1,7 +1,7 @@
-    <location path="Checkout.aspx">
-        <system.web>
-          <authorization>
-            <deny users="?" />
-          </authorization>
-        </system.web>
-      </location>
+<location path="Checkout.aspx">
+    <system.web>
+      <authorization>
+        <deny users="?" />
+      </authorization>
+    </system.web>
+  </location>

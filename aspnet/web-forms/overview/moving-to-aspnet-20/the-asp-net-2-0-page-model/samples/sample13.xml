@@ -1,1 +1,1 @@
-    document.getElementById('ddlCompany').value
+document.getElementById('ddlCompany').value

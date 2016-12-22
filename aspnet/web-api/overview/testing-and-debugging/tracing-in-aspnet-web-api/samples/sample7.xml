@@ -1,1 +1,1 @@
-    config.Services.Replace(typeof(ITraceManager), new MyTraceManager());
+config.Services.Replace(typeof(ITraceManager), new MyTraceManager());

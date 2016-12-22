@@ -1,4 +1,4 @@
-    .SelectedRowStyle
-    {
-        background-color: Yellow;
-    }
+.SelectedRowStyle
+{
+    background-color: Yellow;
+}

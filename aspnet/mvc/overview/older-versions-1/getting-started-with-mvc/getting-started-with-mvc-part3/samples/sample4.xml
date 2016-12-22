@@ -1,1 +1,1 @@
-    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+<asp:ContentPlaceHolder ID="MainContent" runat="server" />

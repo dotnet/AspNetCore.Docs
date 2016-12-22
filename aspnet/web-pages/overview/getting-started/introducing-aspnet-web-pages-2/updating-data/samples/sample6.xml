@@ -1,1 +1,1 @@
-    grid.Column(format:@<strong>@item.Title</strong>)
+grid.Column(format:@<strong>@item.Title</strong>)

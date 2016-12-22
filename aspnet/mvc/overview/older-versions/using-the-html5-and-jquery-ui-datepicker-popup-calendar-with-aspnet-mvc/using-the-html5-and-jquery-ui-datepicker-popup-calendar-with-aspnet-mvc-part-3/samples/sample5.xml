@@ -1,1 +1,1 @@
-    @Html.DisplayFor( x => x.HomeAddress )
+@Html.DisplayFor( x => x.HomeAddress )

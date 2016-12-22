@@ -1,5 +1,5 @@
-    [Queryable]
-    public IQueryable<Category> GetCategories()
-    {
-        return db.Categories;
-    }
+[Queryable]
+public IQueryable<Category> GetCategories()
+{
+    return db.Categories;
+}

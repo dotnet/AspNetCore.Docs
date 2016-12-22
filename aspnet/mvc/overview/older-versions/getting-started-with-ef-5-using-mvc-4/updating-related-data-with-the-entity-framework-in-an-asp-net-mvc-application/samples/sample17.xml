@@ -1,7 +1,7 @@
-    if (selectedCoursesHS.Contains(course.CourseID.ToString()))
+if (selectedCoursesHS.Contains(course.CourseID.ToString()))
+{
+    if (!instructorCourses.Contains(course.CourseID))
     {
-        if (!instructorCourses.Contains(course.CourseID))
-        {
-            instructorToUpdate.Courses.Add(course);
-        }
+        instructorToUpdate.Courses.Add(course);
     }
+}

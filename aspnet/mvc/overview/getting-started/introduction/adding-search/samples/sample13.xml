@@ -1,4 +1,4 @@
-    if (!string.IsNullOrEmpty(movieGenre))
-       {
-          movies = movies.Where(x => x.Genre == movieGenre);
-       }
+if (!string.IsNullOrEmpty(movieGenre))
+   {
+      movies = movies.Where(x => x.Genre == movieGenre);
+   }

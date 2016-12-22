@@ -1,22 +1,22 @@
-    using Owin;
-    using System.Net;
-    
-    namespace KatanaSelfHost
+using Owin;
+using System.Net;
+
+namespace KatanaSelfHost
+{
+    class Startup
     {
-        class Startup
+        public void Configuration(IAppBuilder app)
         {
-            public void Configuration(IAppBuilder app)
+            HttpListener listener = 
+                (HttpListener)app.Properties["System.Net.HttpListener"];
+            listener.AuthenticationSchemes = 
+                AuthenticationSchemes.IntegratedWindowsAuthentication;
+
+            app.Run(context =>
             {
-                HttpListener listener = 
-                    (HttpListener)app.Properties["System.Net.HttpListener"];
-                listener.AuthenticationSchemes = 
-                    AuthenticationSchemes.IntegratedWindowsAuthentication;
-    
-                app.Run(context =>
-                {
-                    context.Response.ContentType = "text/plain";
-                    return context.Response.WriteAsync("Hello World!");
-                });
-            }
+                context.Response.ContentType = "text/plain";
+                return context.Response.WriteAsync("Hello World!");
+            });
         }
     }
+}

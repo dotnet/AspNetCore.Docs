@@ -1,2 +1,2 @@
-    ReCaptcha.PublicKey = "your-public-recaptcha-key";
-    ReCaptcha.PrivateKey = "your-private-recaptcha-key";
+ReCaptcha.PublicKey = "your-public-recaptcha-key";
+ReCaptcha.PrivateKey = "your-private-recaptcha-key";

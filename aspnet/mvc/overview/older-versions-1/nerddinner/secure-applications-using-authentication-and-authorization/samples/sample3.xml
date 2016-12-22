@@ -1,4 +1,4 @@
-    [Authorize(Roles="admin")]
-    public ActionResult Create() {
-       ...
-    }
+[Authorize(Roles="admin")]
+public ActionResult Create() {
+   ...
+}

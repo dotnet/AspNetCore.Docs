@@ -1,14 +1,14 @@
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
+using System.Web.Mvc;
+
+namespace MvcApplication1.Controllers
+{
+    public class StatusController : Controller
     {
-        public class StatusController : Controller
+
+        public ActionResult Index()
         {
-    
-            public ActionResult Index()
-            {
-                return Content("Hello World!");
-            }
-    
+            return Content("Hello World!");
         }
+
     }
+}

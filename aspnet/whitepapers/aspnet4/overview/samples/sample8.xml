@@ -1,1 +1,1 @@
-    RedirectPermanent("/newpath/foroldcontent.aspx");
+RedirectPermanent("/newpath/foroldcontent.aspx");

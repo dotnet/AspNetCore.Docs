@@ -1,5 +1,5 @@
-    .ExpensivePriceEmphasis
-    {
-        font-weight: bold;
-        font-style: italic;
-    }
+.ExpensivePriceEmphasis
+{
+    font-weight: bold;
+    font-style: italic;
+}

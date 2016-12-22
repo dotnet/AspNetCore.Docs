@@ -1,1 +1,1 @@
-    <asp:Label ID="LastUpdate" runat="server" />
+<asp:Label ID="LastUpdate" runat="server" />

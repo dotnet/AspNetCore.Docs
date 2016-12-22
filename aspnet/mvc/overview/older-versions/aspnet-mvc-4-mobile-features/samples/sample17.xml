@@ -1,4 +1,4 @@
-    @{
-        Layout = "~/Views/Shared/_Layout.cshtml";
-        DisplayModeProvider.Instance.RequireConsistentDisplayMode = true;
-    }
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DisplayModeProvider.Instance.RequireConsistentDisplayMode = true;
+}

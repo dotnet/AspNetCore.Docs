@@ -1,4 +1,4 @@
-    public override bool CanReadType(Type type)
-    {
-        return false;
-    }
+public override bool CanReadType(Type type)
+{
+    return false;
+}

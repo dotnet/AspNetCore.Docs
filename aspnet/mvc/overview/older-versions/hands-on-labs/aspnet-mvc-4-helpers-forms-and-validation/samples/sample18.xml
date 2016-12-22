@@ -1,11 +1,11 @@
-    using System.ComponentModel.DataAnnotations;
-    namespace SuperheroSample.Models
+using System.ComponentModel.DataAnnotations;
+namespace SuperheroSample.Models
+{
+    public class Superhero
     {
-        public class Superhero
-        {
-            [Required]
-            public string Name { get; set; }
-    
-            public bool WearsCape { get; set; }
-        }
+        [Required]
+        public string Name { get; set; }
+
+        public bool WearsCape { get; set; }
     }
+}

@@ -1,8 +1,8 @@
-        <PropertyGroup>
-           ... 
-           <Configuration Condition=" '$(Configuration)'=='' ">Release
-           </Configuration>
-           <OutputRoot Condition=" '$(OutputRoot)'=='' ">..\Publish\Out\
-           </OutputRoot>
-           ...
-        </PropertyGroup>
+<PropertyGroup>
+   ... 
+   <Configuration Condition=" '$(Configuration)'=='' ">Release
+   </Configuration>
+   <OutputRoot Condition=" '$(OutputRoot)'=='' ">..\Publish\Out\
+   </OutputRoot>
+   ...
+</PropertyGroup>

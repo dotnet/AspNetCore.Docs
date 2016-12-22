@@ -1,1 +1,1 @@
-    <asp:CommandField SelectText="View" ShowSelectButton="True"/>
+<asp:CommandField SelectText="View" ShowSelectButton="True"/>

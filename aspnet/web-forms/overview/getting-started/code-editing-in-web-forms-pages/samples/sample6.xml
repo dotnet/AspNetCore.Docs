@@ -1,2 +1,2 @@
-        System.Collections.ArrayList alist = 
-            new System.Collections.ArrayList;
+System.Collections.ArrayList alist = 
+    new System.Collections.ArrayList;

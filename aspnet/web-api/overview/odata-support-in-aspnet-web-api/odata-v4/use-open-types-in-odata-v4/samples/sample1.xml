@@ -1,2 +1,2 @@
-    Install-Package Microsoft.AspNet.OData
-    Install-Package Microsoft.AspNet.WebApi.OData
+Install-Package Microsoft.AspNet.OData
+Install-Package Microsoft.AspNet.WebApi.OData

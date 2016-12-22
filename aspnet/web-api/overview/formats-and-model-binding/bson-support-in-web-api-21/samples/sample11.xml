@@ -1,7 +1,7 @@
-    public class ValuesController : ApiController
+public class ValuesController : ApiController
+{
+    public IHttpActionResult Get()
     {
-        public IHttpActionResult Get()
-        {
-            return Ok(42);
-        }
+        return Ok(42);
     }
+}

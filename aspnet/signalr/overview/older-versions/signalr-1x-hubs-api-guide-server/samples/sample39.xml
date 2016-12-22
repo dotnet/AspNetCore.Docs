@@ -1,1 +1,1 @@
-    contosoChatHubProxy.server.joinGroup(groupName);
+contosoChatHubProxy.server.joinGroup(groupName);

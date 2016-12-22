@@ -1,4 +1,4 @@
-    <h1>Movies</h1>
-    <div>
-        @grid.GetHtml()
-    </div>
+<h1>Movies</h1>
+<div>
+    @grid.GetHtml()
+</div>

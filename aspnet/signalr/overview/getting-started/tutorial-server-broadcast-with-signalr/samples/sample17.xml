@@ -1,4 +1,4 @@
-        public IEnumerable<Stock> GetAllStocks()
-        {
-            return _stockTicker.GetAllStocks();
-        }
+public IEnumerable<Stock> GetAllStocks()
+{
+    return _stockTicker.GetAllStocks();
+}

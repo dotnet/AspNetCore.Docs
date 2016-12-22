@@ -1,4 +1,4 @@
-    public IEnumerable<Department> GetDepartments()
-            {
-                return GetDepartments("");
-            }
+public IEnumerable<Department> GetDepartments()
+        {
+            return GetDepartments("");
+        }

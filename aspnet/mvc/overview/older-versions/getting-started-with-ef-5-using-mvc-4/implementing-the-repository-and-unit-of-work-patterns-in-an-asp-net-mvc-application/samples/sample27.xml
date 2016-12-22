@@ -1,12 +1,12 @@
-    public GenericRepository<Department> DepartmentRepository
+public GenericRepository<Department> DepartmentRepository
+{
+    get
     {
-        get
+
+        if (this.departmentRepository == null)
         {
-    
-            if (this.departmentRepository == null)
-            {
-                this.departmentRepository = new GenericRepository<Department>(context);
-            }
-            return departmentRepository;
+            this.departmentRepository = new GenericRepository<Department>(context);
         }
+        return departmentRepository;
     }
+}

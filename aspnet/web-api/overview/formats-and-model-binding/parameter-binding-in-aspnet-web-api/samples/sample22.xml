@@ -1,34 +1,34 @@
-    public abstract class ETagMatchAttribute : ParameterBindingAttribute
+public abstract class ETagMatchAttribute : ParameterBindingAttribute
+{
+    private ETagMatch _match;
+
+    public ETagMatchAttribute(ETagMatch match)
     {
-        private ETagMatch _match;
-    
-        public ETagMatchAttribute(ETagMatch match)
-        {
-            _match = match;
-        }
-    
-        public override HttpParameterBinding GetBinding(HttpParameterDescriptor parameter)
-        {
-            if (parameter.ParameterType == typeof(ETag))
-            {
-                return new ETagParameterBinding(parameter, _match);
-            }
-            return parameter.BindAsError("Wrong parameter type");
-        }
+        _match = match;
     }
-    
-    public class IfMatchAttribute : ETagMatchAttribute
+
+    public override HttpParameterBinding GetBinding(HttpParameterDescriptor parameter)
     {
-        public IfMatchAttribute()
-            : base(ETagMatch.IfMatch)
+        if (parameter.ParameterType == typeof(ETag))
         {
+            return new ETagParameterBinding(parameter, _match);
         }
+        return parameter.BindAsError("Wrong parameter type");
     }
-    
-    public class IfNoneMatchAttribute : ETagMatchAttribute
+}
+
+public class IfMatchAttribute : ETagMatchAttribute
+{
+    public IfMatchAttribute()
+        : base(ETagMatch.IfMatch)
     {
-        public IfNoneMatchAttribute()
-            : base(ETagMatch.IfNoneMatch)
-        {
-        }
     }
+}
+
+public class IfNoneMatchAttribute : ETagMatchAttribute
+{
+    public IfNoneMatchAttribute()
+        : base(ETagMatch.IfNoneMatch)
+    {
+    }
+}

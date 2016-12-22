@@ -1,2 +1,2 @@
-    GlobalConfiguration.Configuration.Filters.Add(
-        new ProductStore.NotImplExceptionFilterAttribute());
+GlobalConfiguration.Configuration.Filters.Add(
+    new ProductStore.NotImplExceptionFilterAttribute());

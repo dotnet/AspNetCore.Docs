@@ -1,1 +1,1 @@
-    public int MethodName(int current, string tag) {}
+public int MethodName(int current, string tag) {}

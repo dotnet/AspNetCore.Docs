@@ -1,8 +1,8 @@
-    public class ProductsController : ApiController
+public class ProductsController : ApiController
+{
+    [NotImplExceptionFilter]
+    public Contact GetContact(int id)
     {
-        [NotImplExceptionFilter]
-        public Contact GetContact(int id)
-        {
-            throw new NotImplementedException("This method is not implemented");
-        }
+        throw new NotImplementedException("This method is not implemented");
     }
+}

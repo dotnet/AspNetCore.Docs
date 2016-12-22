@@ -1,1 +1,1 @@
-    <asp:Label ID="Label1" runat="server" Text="<%$RouteValue:SearchTerm%>" />
+<asp:Label ID="Label1" runat="server" Text="<%$RouteValue:SearchTerm%>" />

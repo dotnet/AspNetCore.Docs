@@ -1,4 +1,4 @@
-    public string FullName
-    {
-        get { return LastName + ", " + FirstMidName; }
-    }
+public string FullName
+{
+    get { return LastName + ", " + FirstMidName; }
+}

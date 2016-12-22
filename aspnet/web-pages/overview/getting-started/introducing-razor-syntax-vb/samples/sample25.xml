@@ -1,2 +1,2 @@
-    Dim myStringFloat = "41.432895"
-    Dim myFloatNum = myStringFloat.AsFloat()
+Dim myStringFloat = "41.432895"
+Dim myFloatNum = myStringFloat.AsFloat()

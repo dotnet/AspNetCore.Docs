@@ -1,1 +1,1 @@
-        Response.Write(PreviousPage.txtUserName.Text);
+Response.Write(PreviousPage.txtUserName.Text);

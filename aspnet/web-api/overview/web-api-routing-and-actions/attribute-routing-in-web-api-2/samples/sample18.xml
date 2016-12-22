@@ -1,2 +1,2 @@
-    [Route("{id:nonzero}")]
-    public HttpResponseMessage GetNonZero(int id) { ... }
+[Route("{id:nonzero}")]
+public HttpResponseMessage GetNonZero(int id) { ... }

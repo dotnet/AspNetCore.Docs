@@ -1,1 +1,1 @@
-    SELECT ProductName, UnitPrice FROM Products
+SELECT ProductName, UnitPrice FROM Products

@@ -1,1 +1,1 @@
-    [OutputCache(Duration = 60, VaryByParam = "*", VaryByCustom = "isMobileDevice")]
+[OutputCache(Duration = 60, VaryByParam = "*", VaryByCustom = "isMobileDevice")]

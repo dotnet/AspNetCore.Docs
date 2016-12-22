@@ -1,1 +1,1 @@
-    BundleMobileConfig.RegisterBundles(BundleTable.Bundles);
+BundleMobileConfig.RegisterBundles(BundleTable.Bundles);

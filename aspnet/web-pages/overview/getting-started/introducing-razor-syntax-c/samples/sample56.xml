@@ -1,3 +1,3 @@
-    @{
-        var path = Request.FilePath;
-    }
+@{
+    var path = Request.FilePath;
+}

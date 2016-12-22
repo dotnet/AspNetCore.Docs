@@ -1,7 +1,7 @@
-    public HttpResponseMessage Get()
+public HttpResponseMessage Get()
+{
+    if (User.IsInRole("Administrators"))
     {
-        if (User.IsInRole("Administrators"))
-        {
-            // ...
-        }
+        // ...
     }
+}

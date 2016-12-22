@@ -1,1 +1,1 @@
-    var resolver = new NinjectSignalRDependencyResolver(kernel);
+var resolver = new NinjectSignalRDependencyResolver(kernel);

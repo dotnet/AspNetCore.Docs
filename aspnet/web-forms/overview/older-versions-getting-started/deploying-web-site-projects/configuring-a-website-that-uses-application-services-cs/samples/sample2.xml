@@ -1,9 +1,9 @@
-    <configuration>
-        <system.web>
-            ...
-    
-            <authentication mode="Forms" />
-    
-            ...
-        </system.web>
-    </configuration>
+<configuration>
+    <system.web>
+        ...
+
+        <authentication mode="Forms" />
+
+        ...
+    </system.web>
+</configuration>

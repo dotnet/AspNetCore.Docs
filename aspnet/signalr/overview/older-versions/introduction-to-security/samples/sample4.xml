@@ -1,8 +1,8 @@
-    $(function () {
-        setInterval(function() {
-            $.ajax({
-                url: "Ping.aspx",
-                cache: false
-            });
-        }, 1800000);
-    });
+$(function () {
+    setInterval(function() {
+        $.ajax({
+            url: "Ping.aspx",
+            cache: false
+        });
+    }, 1800000);
+});

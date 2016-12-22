@@ -1,3 +1,3 @@
-    Dim productsAPI As New ProductsBLL()
-    productsAPI.SomeMethod()
-    productsAPI.SomeProperty = "Hello, World!"
+Dim productsAPI As New ProductsBLL()
+productsAPI.SomeMethod()
+productsAPI.SomeProperty = "Hello, World!"

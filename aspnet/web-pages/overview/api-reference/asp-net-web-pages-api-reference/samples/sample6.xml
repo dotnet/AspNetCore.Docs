@@ -1,1 +1,1 @@
-    int i = stringValue.AsInt();
+int i = stringValue.AsInt();

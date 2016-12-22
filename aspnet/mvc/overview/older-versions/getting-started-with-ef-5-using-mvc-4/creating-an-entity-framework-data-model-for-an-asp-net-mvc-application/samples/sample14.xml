@@ -1,2 +1,2 @@
-        add-migration InitialCreate
-        update-database
+add-migration InitialCreate
+update-database

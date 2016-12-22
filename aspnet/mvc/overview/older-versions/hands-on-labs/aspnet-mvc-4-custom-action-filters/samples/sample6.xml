@@ -1,11 +1,11 @@
-    [CustomActionFilter]
-    public ActionResult Index()
-    {
-      ...
-    }
-    
-    [CustomActionFilter]
-    public ActionResult Browse(string genre)
-    {
-      ...
-    }
+[CustomActionFilter]
+public ActionResult Index()
+{
+  ...
+}
+
+[CustomActionFilter]
+public ActionResult Browse(string genre)
+{
+  ...
+}

@@ -1,4 +1,4 @@
-    <div>
-        @Html.ActionLink("List of students", "Index", "Students")<br />
-        @Html.ActionLink("List of enrollments", "Index", "Enrollments")
-    </div>
+<div>
+    @Html.ActionLink("List of students", "Index", "Students")<br />
+    @Html.ActionLink("List of enrollments", "Index", "Enrollments")
+</div>

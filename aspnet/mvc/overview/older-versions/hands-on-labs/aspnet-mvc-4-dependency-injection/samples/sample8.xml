@@ -1,4 +1,4 @@
-        @inherits MvcMusicStore.Pages.MyBasePage
-        @{
-             ViewBag.Title = "Browse Albums";
-        }
+@inherits MvcMusicStore.Pages.MyBasePage
+@{
+     ViewBag.Title = "Browse Albums";
+}

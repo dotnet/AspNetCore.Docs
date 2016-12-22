@@ -1,1 +1,1 @@
-    @Facebook.LikeButton("www.asp.net")
+@Facebook.LikeButton("www.asp.net")

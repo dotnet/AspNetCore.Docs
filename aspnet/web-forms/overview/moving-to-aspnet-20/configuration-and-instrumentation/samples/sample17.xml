@@ -1,1 +1,1 @@
-    lblDebugStatus.Text = "Debug set to: " + _debugStatus.ToString();
+lblDebugStatus.Text = "Debug set to: " + _debugStatus.ToString();

@@ -1,1 +1,1 @@
-    exec sp_dbcmptlevel 'Northwind', 90
+exec sp_dbcmptlevel 'Northwind', 90

@@ -1,16 +1,16 @@
-    @model IEnumerable<MvcMovie.Models.Movie>
+@model IEnumerable<MvcMovie.Models.Movie>
+
+@{
+    ViewBag.Title = "SearchIndex";
+}
+
+<h2>SearchIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
     
-    @{
-        ViewBag.Title = "SearchIndex";
-    }
-    
-    <h2>SearchIndex</h2>
-    
-    <p>
-        @Html.ActionLink("Create New", "Create")
-        
-         @using (Html.BeginForm()){   
-             <p> Title: @Html.TextBox("SearchString") <br />  
-             <input type="submit" value="Filter" /></p>
-            }
-    </p>
+     @using (Html.BeginForm()){   
+         <p> Title: @Html.TextBox("SearchString") <br />  
+         <input type="submit" value="Filter" /></p>
+        }
+</p>

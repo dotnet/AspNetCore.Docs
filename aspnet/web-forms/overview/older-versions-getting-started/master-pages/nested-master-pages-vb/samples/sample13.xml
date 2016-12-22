@@ -1,2 +1,2 @@
-    Partial Class Admin_Default 
-     Inherits AdminBasePage
+Partial Class Admin_Default 
+ Inherits AdminBasePage

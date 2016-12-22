@@ -1,1 +1,1 @@
-    GET http://localhost/odata/Products()?$expand=Supplier
+GET http://localhost/odata/Products()?$expand=Supplier

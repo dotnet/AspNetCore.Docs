@@ -1,7 +1,7 @@
-        "use strict";
-        
-        if (true) {
-            function StrictModeError()
-            {
-            }
-        }
+"use strict";
+
+if (true) {
+    function StrictModeError()
+    {
+    }
+}

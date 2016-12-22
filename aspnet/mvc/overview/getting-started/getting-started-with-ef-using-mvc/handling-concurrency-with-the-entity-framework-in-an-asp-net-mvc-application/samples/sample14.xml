@@ -1,1 +1,1 @@
-    public async Task<ActionResult> DeleteConfirmed(int id)
+public async Task<ActionResult> DeleteConfirmed(int id)

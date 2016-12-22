@@ -1,7 +1,7 @@
-    /DynamicData
-      /Content
-      /CustomPages
-        /Products
-          ListDetails.aspx
-      /FieldTemplates
-      /PagesTemplates
+/DynamicData
+  /Content
+  /CustomPages
+    /Products
+      ListDetails.aspx
+  /FieldTemplates
+  /PagesTemplates

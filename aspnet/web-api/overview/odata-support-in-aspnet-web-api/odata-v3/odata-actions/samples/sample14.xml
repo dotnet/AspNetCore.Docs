@@ -1,1 +1,1 @@
-    rateAllProducts.CollectionParameter<int>("Ratings");
+rateAllProducts.CollectionParameter<int>("Ratings");

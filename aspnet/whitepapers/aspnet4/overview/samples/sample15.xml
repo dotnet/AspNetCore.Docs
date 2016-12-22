@@ -1,1 +1,1 @@
-    <httpRuntime encoderType="Samples.MyCustomEncoder, Samples" />
+<httpRuntime encoderType="Samples.MyCustomEncoder, Samples" />

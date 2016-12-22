@@ -1,1 +1,1 @@
-    <%= Html.TextBox("Title", Model.Title)%>
+<%= Html.TextBox("Title", Model.Title)%>

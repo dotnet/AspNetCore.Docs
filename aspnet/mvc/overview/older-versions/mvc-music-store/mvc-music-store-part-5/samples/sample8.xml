@@ -1,2 +1,2 @@
-    @Html.DropDownList("GenreId",
-    String.Empty)
+@Html.DropDownList("GenreId",
+String.Empty)

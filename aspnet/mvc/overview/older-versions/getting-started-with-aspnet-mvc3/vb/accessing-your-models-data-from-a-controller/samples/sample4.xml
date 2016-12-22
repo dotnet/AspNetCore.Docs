@@ -1,1 +1,1 @@
-    @ModelType IEnumerable(Of MvcMovie.Movie)
+@ModelType IEnumerable(Of MvcMovie.Movie)

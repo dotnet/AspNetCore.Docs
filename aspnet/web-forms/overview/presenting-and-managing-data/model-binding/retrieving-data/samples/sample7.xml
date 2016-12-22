@@ -1,2 +1,2 @@
-    using ContosoUniversityModelBinding.Models;
-    using System.Data.Entity;
+using ContosoUniversityModelBinding.Models;
+using System.Data.Entity;

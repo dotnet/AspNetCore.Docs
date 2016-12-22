@@ -1,1 +1,1 @@
-        var myTime = DateTime.Now.TimeOfDay;
+var myTime = DateTime.Now.TimeOfDay;

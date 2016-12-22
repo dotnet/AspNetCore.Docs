@@ -1,3 +1,3 @@
-    <appSettings>
-        <add key="enableSimpleMembership" value="true" />
-    </appSettings>
+<appSettings>
+    <add key="enableSimpleMembership" value="true" />
+</appSettings>

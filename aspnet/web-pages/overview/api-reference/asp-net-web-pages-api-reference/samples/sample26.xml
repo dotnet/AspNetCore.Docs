@@ -1,1 +1,1 @@
-    Response.WriteBinary(image, "image/jpeg");
+Response.WriteBinary(image, "image/jpeg");

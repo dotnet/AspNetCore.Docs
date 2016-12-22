@@ -1,2 +1,2 @@
-    image.FlipHorizontal();
-    image.FlipVertical();
+image.FlipHorizontal();
+image.FlipVertical();

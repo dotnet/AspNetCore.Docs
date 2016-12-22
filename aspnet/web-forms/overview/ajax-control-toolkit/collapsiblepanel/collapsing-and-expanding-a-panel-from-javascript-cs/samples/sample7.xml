@@ -1,4 +1,4 @@
-    function doClose() 
-    {
-     $find("cpe")._doClose();
-    }
+function doClose() 
+{
+ $find("cpe")._doClose();
+}

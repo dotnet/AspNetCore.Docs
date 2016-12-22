@@ -1,1 +1,1 @@
-        $.connection.hub.start().done(init);
+$.connection.hub.start().done(init);

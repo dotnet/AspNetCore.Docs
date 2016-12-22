@@ -1,5 +1,5 @@
-    <configuration>
-       <system.web>
-          <pages validateRequest="false" />
-       </system.web>
-    </configuration>
+<configuration>
+   <system.web>
+      <pages validateRequest="false" />
+   </system.web>
+</configuration>

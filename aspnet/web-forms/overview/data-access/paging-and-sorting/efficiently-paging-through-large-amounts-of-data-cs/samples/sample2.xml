@@ -1,4 +1,4 @@
-    public int TotalNumberOfProducts()
-    {
-        return Adapter.TotalNumberOfProducts().GetValueOrDefault();
-    }
+public int TotalNumberOfProducts()
+{
+    return Adapter.TotalNumberOfProducts().GetValueOrDefault();
+}

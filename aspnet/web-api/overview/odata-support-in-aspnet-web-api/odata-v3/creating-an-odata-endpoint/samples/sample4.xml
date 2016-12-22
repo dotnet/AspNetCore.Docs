@@ -1,1 +1,1 @@
-    config.Routes.MapODataRoute("ODataRoute", "odata", model);
+config.Routes.MapODataRoute("ODataRoute", "odata", model);

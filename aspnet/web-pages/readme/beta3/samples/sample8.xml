@@ -1,1 +1,1 @@
-    public class MvcApplication :  WebPageHttpApplication { ... }
+public class MvcApplication :  WebPageHttpApplication { ... }

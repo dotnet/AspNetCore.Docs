@@ -1,1 +1,1 @@
-    <%= DateTime.Now.ToLongTimeString() %>
+<%= DateTime.Now.ToLongTimeString() %>

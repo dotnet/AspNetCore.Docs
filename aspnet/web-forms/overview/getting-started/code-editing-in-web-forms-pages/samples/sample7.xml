@@ -1,2 +1,2 @@
-        private int DisplayArray(System.Collections.ArrayList alist, 
-            int i)
+private int DisplayArray(System.Collections.ArrayList alist, 
+    int i)

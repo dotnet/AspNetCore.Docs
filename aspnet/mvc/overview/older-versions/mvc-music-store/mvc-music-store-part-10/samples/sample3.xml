@@ -1,2 +1,2 @@
-    @Html.RenderAction("CartSummary",
-    "ShoppingCart")
+@Html.RenderAction("CartSummary",
+"ShoppingCart")

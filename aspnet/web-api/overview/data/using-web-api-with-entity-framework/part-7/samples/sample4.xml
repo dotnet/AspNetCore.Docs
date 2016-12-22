@@ -1,1 +1,1 @@
-    <span data-bind="text: Author"></span>
+<span data-bind="text: Author"></span>

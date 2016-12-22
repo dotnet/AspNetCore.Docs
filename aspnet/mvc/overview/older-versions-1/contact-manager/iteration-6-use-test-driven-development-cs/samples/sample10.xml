@@ -1,29 +1,29 @@
-    public bool ValidateGroup(Group groupToValidate)
+public bool ValidateGroup(Group groupToValidate)
+{
+    if (groupToValidate.Name.Trim().Length == 0)
+       _validationDictionary.AddError("Name", "Name is required.");
+    return _validationDictionary.IsValid;
+}
+
+public bool CreateGroup(Group groupToCreate)
+{
+    // Validation logic
+    if (!ValidateGroup(groupToCreate))
+        return false;
+
+    // Database logic
+    try
     {
-        if (groupToValidate.Name.Trim().Length == 0)
-           _validationDictionary.AddError("Name", "Name is required.");
-        return _validationDictionary.IsValid;
+        _repository.CreateGroup(groupToCreate);
     }
-    
-    public bool CreateGroup(Group groupToCreate)
+    catch
     {
-        // Validation logic
-        if (!ValidateGroup(groupToCreate))
-            return false;
-    
-        // Database logic
-        try
-        {
-            _repository.CreateGroup(groupToCreate);
-        }
-        catch
-        {
-            return false;
-        }
-        return true;
+        return false;
     }
-    
-    public IEnumerable<Group> ListGroups()
-    {
-        return _repository.ListGroups();
-    }
+    return true;
+}
+
+public IEnumerable<Group> ListGroups()
+{
+    return _repository.ListGroups();
+}

@@ -1,1 +1,1 @@
-        context.Clients.Client(connectionID).addContosoChatMessageToPage(name, message);
+context.Clients.Client(connectionID).addContosoChatMessageToPage(name, message);

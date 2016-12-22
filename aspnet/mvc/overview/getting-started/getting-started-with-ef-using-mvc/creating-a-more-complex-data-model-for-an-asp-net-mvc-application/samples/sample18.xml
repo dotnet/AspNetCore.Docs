@@ -1,2 +1,2 @@
-    [Column(TypeName="money")]
-    public decimal Budget { get; set; }
+[Column(TypeName="money")]
+public decimal Budget { get; set; }

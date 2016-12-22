@@ -1,1 +1,1 @@
-    ko.applyBindings(window.todoApp.todoListViewModel);
+ko.applyBindings(window.todoApp.todoListViewModel);

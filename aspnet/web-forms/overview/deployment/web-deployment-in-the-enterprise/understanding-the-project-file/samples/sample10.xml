@@ -1,1 +1,1 @@
-    msbuild.exe Publish.proj /t:LogMessage
+msbuild.exe Publish.proj /t:LogMessage

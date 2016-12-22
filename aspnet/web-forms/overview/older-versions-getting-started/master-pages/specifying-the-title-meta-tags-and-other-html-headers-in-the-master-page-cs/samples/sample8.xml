@@ -1,1 +1,1 @@
-    public partial class ClassName : BasePage
+public partial class ClassName : BasePage

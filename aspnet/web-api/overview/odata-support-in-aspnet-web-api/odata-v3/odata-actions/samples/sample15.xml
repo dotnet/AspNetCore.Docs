@@ -1,12 +1,12 @@
-    [HttpPost]
-    public void RateAllProducts(ODataActionParameters parameters)
+[HttpPost]
+public void RateAllProducts(ODataActionParameters parameters)
+{
+    if (!ModelState.IsValid)
     {
-        if (!ModelState.IsValid)
-        {
-            throw new HttpResponseException(HttpStatusCode.BadRequest);
-        }
-    
-        var ratings = parameters["Ratings"] as ICollection<int>; 
-    
-        // ...
+        throw new HttpResponseException(HttpStatusCode.BadRequest);
     }
+
+    var ratings = parameters["Ratings"] as ICollection<int>; 
+
+    // ...
+}

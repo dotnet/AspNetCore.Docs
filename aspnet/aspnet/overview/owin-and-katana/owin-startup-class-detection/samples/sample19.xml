@@ -1,2 +1,2 @@
-        [assembly: OwinStartup("ProductionConfiguration", 
-                   typeof(StartupDemo.ProductionStartup))]
+[assembly: OwinStartup("ProductionConfiguration", 
+           typeof(StartupDemo.ProductionStartup))]

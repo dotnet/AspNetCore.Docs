@@ -1,4 +1,4 @@
-    var confirmationToken = Request.QueryString["ConfirmationToken"];
-    if(WebSecurity.ConfirmAccount(confirmationToken)) {
-          //...
-    }
+var confirmationToken = Request.QueryString["ConfirmationToken"];
+if(WebSecurity.ConfirmAccount(confirmationToken)) {
+      //...
+}

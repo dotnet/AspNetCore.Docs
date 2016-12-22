@@ -1,1 +1,1 @@
-    EXEC GetProductsByCategory categoryID
+EXEC GetProductsByCategory categoryID

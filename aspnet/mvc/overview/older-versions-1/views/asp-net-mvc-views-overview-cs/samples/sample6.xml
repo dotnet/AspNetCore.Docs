@@ -1,14 +1,14 @@
-    using System.Web.Mvc;
-    
-    namespace MvcApplication1.Controllers
+using System.Web.Mvc;
+
+namespace MvcApplication1.Controllers
+{
+    public class ProductController : Controller
     {
-        public class ProductController : Controller
+        public ActionResult Index()
         {
-            public ActionResult Index()
-            {
-                ViewData["message"] = "Hello World!";
-                return View();
-            }
-    
+            ViewData["message"] = "Hello World!";
+            return View();
         }
+
     }
+}

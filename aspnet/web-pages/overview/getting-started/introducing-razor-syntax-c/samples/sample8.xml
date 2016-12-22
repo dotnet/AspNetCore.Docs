@@ -1,4 +1,4 @@
-    @{
-        var lastName = "Smith";
-        var LastName = "Jones";
-    }
+@{
+    var lastName = "Smith";
+    var LastName = "Jones";
+}

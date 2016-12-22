@@ -1,4 +1,4 @@
-    function doOpen() 
-    {
-     $find("cpe")._doOpen();
-    }
+function doOpen() 
+{
+ $find("cpe")._doOpen();
+}

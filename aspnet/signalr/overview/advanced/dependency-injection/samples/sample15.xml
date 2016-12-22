@@ -1,1 +1,1 @@
-    var kernel = new StandardKernel();
+var kernel = new StandardKernel();

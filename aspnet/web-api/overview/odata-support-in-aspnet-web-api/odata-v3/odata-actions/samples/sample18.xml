@@ -1,1 +1,1 @@
-    var checkoutAction = builder.Entity<Movie>().TransientAction("CheckOut");
+var checkoutAction = builder.Entity<Movie>().TransientAction("CheckOut");

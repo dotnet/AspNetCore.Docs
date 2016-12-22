@@ -1,8 +1,8 @@
-    public static void Register(HttpConfiguration config)
-    {
-        // ...
-    
-        config.EnableQuerySupport();
-    
-        // ...
-    }
+public static void Register(HttpConfiguration config)
+{
+    // ...
+
+    config.EnableQuerySupport();
+
+    // ...
+}

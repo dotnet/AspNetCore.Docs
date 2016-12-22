@@ -1,2 +1,2 @@
-        <add assembly="System.Web.DynamicData, Version=3.6.0.0,
-            Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+<add assembly="System.Web.DynamicData, Version=3.6.0.0,
+    Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>

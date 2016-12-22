@@ -1,1 +1,1 @@
-    WebSecurity.Logout();
+WebSecurity.Logout();

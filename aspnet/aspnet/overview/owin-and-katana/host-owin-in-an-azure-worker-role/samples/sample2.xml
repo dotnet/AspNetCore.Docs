@@ -1,12 +1,12 @@
-    using Owin;
-    
-    namespace WorkerRole1
+using Owin;
+
+namespace WorkerRole1
+{
+    public class Startup
     {
-        public class Startup
+        public void Configuration(IAppBuilder app)
         {
-            public void Configuration(IAppBuilder app)
-            {
-                app.UseWelcomePage("/");
-            }
+            app.UseWelcomePage("/");
         }
     }
+}

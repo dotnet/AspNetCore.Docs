@@ -1,1 +1,1 @@
-        [assembly: OwinStartup(typeof(StartupDemo.TestStartup))]
+[assembly: OwinStartup(typeof(StartupDemo.TestStartup))]

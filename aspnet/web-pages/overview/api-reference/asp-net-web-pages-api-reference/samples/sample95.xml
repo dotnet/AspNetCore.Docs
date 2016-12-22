@@ -1,1 +1,1 @@
-    var image = new WebImage("test.png");
+var image = new WebImage("test.png");

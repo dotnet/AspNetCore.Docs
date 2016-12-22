@@ -1,1 +1,1 @@
-    <ajaxToolkit:AnimationExtender ID="ae" runat="server" TargetControlID="Panel1">
+<ajaxToolkit:AnimationExtender ID="ae" runat="server" TargetControlID="Panel1">

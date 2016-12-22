@@ -1,1 +1,1 @@
-    var myJsonString = Json.Encode(dataObject);
+var myJsonString = Json.Encode(dataObject);

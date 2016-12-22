@@ -1,1 +1,1 @@
-        public virtual ICollection<Instructor> Instructors { get; set; }
+public virtual ICollection<Instructor> Instructors { get; set; }

@@ -1,1 +1,1 @@
-    WebSecurity.RequireRoles("Admin", "Power Users");
+WebSecurity.RequireRoles("Admin", "Power Users");

@@ -1,1 +1,1 @@
-    Validation.RequireField("dateOfBirth", "Date of birth is required");
+Validation.RequireField("dateOfBirth", "Date of birth is required");

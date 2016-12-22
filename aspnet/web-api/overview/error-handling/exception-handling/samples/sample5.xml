@@ -1,5 +1,5 @@
-    [NotImplExceptionFilter]
-    public class ProductsController : ApiController
-    {
-        // ...
-    }
+[NotImplExceptionFilter]
+public class ProductsController : ApiController
+{
+    // ...
+}

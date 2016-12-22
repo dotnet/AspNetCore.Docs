@@ -1,5 +1,5 @@
-    <authorization>
-    
-         <allow roles="Administrators, Supervisors" />
-         <deny users="*" />
-    </authorization>
+<authorization>
+
+     <allow roles="Administrators, Supervisors" />
+     <deny users="*" />
+</authorization>

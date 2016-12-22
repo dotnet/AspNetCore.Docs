@@ -1,4 +1,4 @@
-    @if (Model.Count() == 0) {
-        <br />
-        <div>You don't have anything currently assigned to you!!!</div>
-    }
+@if (Model.Count() == 0) {
+    <br />
+    <div>You don't have anything currently assigned to you!!!</div>
+}

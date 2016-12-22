@@ -1,4 +1,4 @@
-    Task AuthenticateAsync(
-        HttpAuthenticationContext context,
-        CancellationToken cancellationToken
-    )
+Task AuthenticateAsync(
+    HttpAuthenticationContext context,
+    CancellationToken cancellationToken
+)

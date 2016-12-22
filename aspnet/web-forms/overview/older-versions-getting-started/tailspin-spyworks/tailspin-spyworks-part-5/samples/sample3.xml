@@ -1,6 +1,6 @@
-    namespace TailspinSpyworks.Classes
+namespace TailspinSpyworks.Classes
+{
+    public partial class MyShoppingCart
     {
-        public partial class MyShoppingCart
-        {
-        }
     }
+}

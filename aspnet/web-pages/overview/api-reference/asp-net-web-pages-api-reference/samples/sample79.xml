@@ -1,1 +1,1 @@
-    @ObjectInfo.Print(person)
+@ObjectInfo.Print(person)

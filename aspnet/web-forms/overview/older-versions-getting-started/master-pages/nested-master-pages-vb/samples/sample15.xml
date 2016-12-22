@@ -1,2 +1,2 @@
-    Partial Class Admin_AdminNested 
-     Inherits BaseMasterPage
+Partial Class Admin_AdminNested 
+ Inherits BaseMasterPage

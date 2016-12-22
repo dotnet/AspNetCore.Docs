@@ -1,4 +1,4 @@
-        public class ApplicationDbContext : IdentityDbContext<User>
-        {
-                
-        }
+public class ApplicationDbContext : IdentityDbContext<User>
+{
+        
+}

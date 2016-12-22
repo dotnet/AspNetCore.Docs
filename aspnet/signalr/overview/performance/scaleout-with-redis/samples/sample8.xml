@@ -1,2 +1,2 @@
-    redis-cli -a password
-    SUBSCRIBE ChatApp
+redis-cli -a password
+SUBSCRIBE ChatApp

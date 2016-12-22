@@ -1,7 +1,7 @@
-    public class ProductsController : ApiController
+public class ProductsController : ApiController
+{
+    public IEnumerable<Product> Get()
     {
-        public IEnumerable<Product> Get()
-        {
-            return GetAllProductsFromDB();
-        }
+        return GetAllProductsFromDB();
     }
+}

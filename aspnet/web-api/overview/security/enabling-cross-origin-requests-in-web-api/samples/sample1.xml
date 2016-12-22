@@ -1,32 +1,32 @@
-    using System.Net.Http;
-    using System.Web.Http;
-    
-    namespace WebService.Controllers
+using System.Net.Http;
+using System.Web.Http;
+
+namespace WebService.Controllers
+{
+    public class TestController : ApiController
     {
-        public class TestController : ApiController
+        public HttpResponseMessage Get()
         {
-            public HttpResponseMessage Get()
+            return new HttpResponseMessage()
             {
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent("GET: Test message")
-                };
-            }
-    
-            public HttpResponseMessage Post()
+                Content = new StringContent("GET: Test message")
+            };
+        }
+
+        public HttpResponseMessage Post()
+        {
+            return new HttpResponseMessage()
             {
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent("POST: Test message")
-                };
-            }
-    
-            public HttpResponseMessage Put()
+                Content = new StringContent("POST: Test message")
+            };
+        }
+
+        public HttpResponseMessage Put()
+        {
+            return new HttpResponseMessage()
             {
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent("PUT: Test message")
-                };
-            }
+                Content = new StringContent("PUT: Test message")
+            };
         }
     }
+}

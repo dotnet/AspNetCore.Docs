@@ -1,6 +1,6 @@
-        [MyNewCustomActionFilter]
-        [CustomActionFilter]
-        public class StoreController : Controller
-        {
-        ...
-        }
+[MyNewCustomActionFilter]
+[CustomActionFilter]
+public class StoreController : Controller
+{
+...
+}

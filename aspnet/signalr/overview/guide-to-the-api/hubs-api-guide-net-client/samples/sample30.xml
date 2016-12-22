@@ -1,1 +1,1 @@
-    hubConnection.ConnectionSlow += () => Console.WriteLine("Connection problems.");
+hubConnection.ConnectionSlow += () => Console.WriteLine("Connection problems.");

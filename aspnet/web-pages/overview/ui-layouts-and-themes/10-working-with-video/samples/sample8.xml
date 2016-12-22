@@ -1,2 +1,2 @@
-    <!-- Play the MediaPlayer video without audio -->
-    @Video.MediaPlayer(path: "Media/sample.wmv", mute: true)
+<!-- Play the MediaPlayer video without audio -->
+@Video.MediaPlayer(path: "Media/sample.wmv", mute: true)

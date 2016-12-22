@@ -1,4 +1,4 @@
-    Partial Class IDIssues
-     Inherits BasePage
-    
-    End Class
+Partial Class IDIssues
+ Inherits BasePage
+
+End Class

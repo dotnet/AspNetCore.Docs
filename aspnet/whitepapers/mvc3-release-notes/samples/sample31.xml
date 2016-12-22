@@ -1,1 +1,1 @@
-    Html.EnableClientValidation();
+Html.EnableClientValidation();

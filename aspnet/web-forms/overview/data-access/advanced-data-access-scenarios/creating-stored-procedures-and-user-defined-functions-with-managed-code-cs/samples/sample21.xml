@@ -1,1 +1,1 @@
-    exec GetProductsWithPriceGreaterThan 24.95
+exec GetProductsWithPriceGreaterThan 24.95

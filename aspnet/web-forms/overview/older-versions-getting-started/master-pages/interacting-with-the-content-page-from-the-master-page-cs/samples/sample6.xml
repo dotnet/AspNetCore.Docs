@@ -1,1 +1,1 @@
-    public event eventDelegate eventName;
+public event eventDelegate eventName;

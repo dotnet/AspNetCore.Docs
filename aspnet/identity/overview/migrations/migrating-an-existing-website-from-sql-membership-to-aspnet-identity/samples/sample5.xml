@@ -1,4 +1,4 @@
-        public class UserManager : UserManager<User>
-        {
-                
-        }
+public class UserManager : UserManager<User>
+{
+        
+}

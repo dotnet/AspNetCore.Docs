@@ -1,1 +1,1 @@
-        Clients.OthersInGroup(groupName).addChatMessage(name, message);
+Clients.OthersInGroup(groupName).addChatMessage(name, message);

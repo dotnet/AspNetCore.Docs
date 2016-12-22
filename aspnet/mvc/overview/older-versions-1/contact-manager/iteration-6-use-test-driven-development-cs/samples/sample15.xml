@@ -1,4 +1,4 @@
-    public IEnumerable<Group> ListGroups()
-    {
-        throw new NotImplementedException();
-    }
+public IEnumerable<Group> ListGroups()
+{
+    throw new NotImplementedException();
+}

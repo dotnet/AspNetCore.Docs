@@ -1,12 +1,12 @@
-    using System;
-    
-    namespace ContosoUniversity.BLL
+using System;
+
+namespace ContosoUniversity.BLL
+{
+    public class DuplicateAdministratorException : Exception
     {
-        public class DuplicateAdministratorException : Exception
+        public DuplicateAdministratorException(string message)
+            : base(message)
         {
-            public DuplicateAdministratorException(string message)
-                : base(message)
-            {
-            }
         }
     }
+}

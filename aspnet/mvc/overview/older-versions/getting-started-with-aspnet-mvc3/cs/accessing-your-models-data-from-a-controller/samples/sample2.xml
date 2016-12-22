@@ -1,1 +1,1 @@
-    private MovieDBContext db = new MovieDBContext();
+private MovieDBContext db = new MovieDBContext();

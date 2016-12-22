@@ -1,1 +1,1 @@
-    <httpRuntime requestPathInvalidChars="&lt;,&gt;,*,%,&amp;,:,\,?"  />
+<httpRuntime requestPathInvalidChars="&lt;,&gt;,*,%,&amp;,:,\,?"  />

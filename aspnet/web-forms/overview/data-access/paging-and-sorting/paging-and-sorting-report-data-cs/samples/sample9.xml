@@ -1,2 +1,2 @@
-    <asp:BoundField DataField="ProductName" HeaderText="Product"
-        SortExpression="ProductName" />
+<asp:BoundField DataField="ProductName" HeaderText="Product"
+    SortExpression="ProductName" />

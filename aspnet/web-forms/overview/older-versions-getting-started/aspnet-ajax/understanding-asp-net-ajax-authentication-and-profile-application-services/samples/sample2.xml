@@ -1,1 +1,1 @@
-    function AuthenticationFailureCallback(error, userContext, methodName);
+function AuthenticationFailureCallback(error, userContext, methodName);

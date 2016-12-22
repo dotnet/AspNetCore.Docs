@@ -1,4 +1,4 @@
-        public Contact[] Get()
-        {
-            return contactRepository.GetAllContacts();
-        }
+public Contact[] Get()
+{
+    return contactRepository.GetAllContacts();
+}

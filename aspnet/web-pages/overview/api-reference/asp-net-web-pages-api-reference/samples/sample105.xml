@@ -1,1 +1,1 @@
-    WebMail.SmtpServer = "smtp.mailserver.com";
+WebMail.SmtpServer = "smtp.mailserver.com";

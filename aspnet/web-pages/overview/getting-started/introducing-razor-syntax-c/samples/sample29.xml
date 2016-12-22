@@ -1,2 +1,2 @@
-    var myStringBool = "True";
-    var myVar = myStringBool.AsBool();
+var myStringBool = "True";
+var myVar = myStringBool.AsBool();

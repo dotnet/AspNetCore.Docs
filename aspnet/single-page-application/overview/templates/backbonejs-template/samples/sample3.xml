@@ -1,5 +1,5 @@
-    <li>
-      <a href="#" data-command="myAccount">
-        <i class="icon-user"></i> My Account
-      </a>
-    </li>
+<li>
+  <a href="#" data-command="myAccount">
+    <i class="icon-user"></i> My Account
+  </a>
+</li>

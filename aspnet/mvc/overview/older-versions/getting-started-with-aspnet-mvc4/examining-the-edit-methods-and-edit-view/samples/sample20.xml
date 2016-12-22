@@ -1,1 +1,1 @@
-    @using (Html.BeginForm("SearchIndex","Movies",FormMethod.Get))
+@using (Html.BeginForm("SearchIndex","Movies",FormMethod.Get))

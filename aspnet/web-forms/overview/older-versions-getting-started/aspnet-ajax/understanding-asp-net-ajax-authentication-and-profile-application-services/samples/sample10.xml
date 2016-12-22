@@ -1,1 +1,1 @@
-    function ProfileSaveComplete(numPropsSaved, userContext, methodName);
+function ProfileSaveComplete(numPropsSaved, userContext, methodName);

@@ -1,1 +1,1 @@
-    @ServerInfo.GetHtml()
+@ServerInfo.GetHtml()

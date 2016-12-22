@@ -1,2 +1,2 @@
-            SELECT     CategoryID, CategoryName, Description
-            FROM         Categories
+SELECT     CategoryID, CategoryName, Description
+FROM         Categories

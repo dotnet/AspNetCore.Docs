@@ -1,1 +1,1 @@
-    treeView1.RootNodeStyle.ForeColor = System.Drawing.Color.Red;
+treeView1.RootNodeStyle.ForeColor = System.Drawing.Color.Red;

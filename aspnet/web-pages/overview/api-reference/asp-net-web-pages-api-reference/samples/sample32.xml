@@ -1,1 +1,1 @@
-    var urlDecoded = Server.UrlDecode("url%20data");
+var urlDecoded = Server.UrlDecode("url%20data");

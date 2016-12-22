@@ -1,1 +1,1 @@
-    rowValues = GetValues(MyList.Rows[i]);
+rowValues = GetValues(MyList.Rows[i]);

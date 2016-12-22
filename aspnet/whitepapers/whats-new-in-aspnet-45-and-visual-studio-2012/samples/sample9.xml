@@ -1,1 +1,1 @@
-    HttpContext.Current.AcceptWebSocketRequest(// WebSocket delegate goes here)
+HttpContext.Current.AcceptWebSocketRequest(// WebSocket delegate goes here)

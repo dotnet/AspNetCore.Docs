@@ -1,1 +1,1 @@
-        private volatile bool _updatingStockPrices = false;
+private volatile bool _updatingStockPrices = false;

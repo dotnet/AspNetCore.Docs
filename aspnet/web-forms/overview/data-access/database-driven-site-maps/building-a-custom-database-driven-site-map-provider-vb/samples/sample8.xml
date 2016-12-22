@@ -1,1 +1,1 @@
-    Dim root As SiteMapNode = SiteMap.RootNode
+Dim root As SiteMapNode = SiteMap.RootNode

@@ -1,4 +1,4 @@
-    <add name="PurchaseInvoice"
-         type="PurchaseInvoice"
-         serializeAs="Binary"
-    />
+<add name="PurchaseInvoice"
+     type="PurchaseInvoice"
+     serializeAs="Binary"
+/>

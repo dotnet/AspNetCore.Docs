@@ -1,2 +1,2 @@
-    Add-Migration Initial
-    Update-Database
+Add-Migration Initial
+Update-Database

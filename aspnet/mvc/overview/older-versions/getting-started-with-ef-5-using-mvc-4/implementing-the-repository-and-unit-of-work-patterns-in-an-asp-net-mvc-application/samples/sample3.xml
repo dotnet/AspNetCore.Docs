@@ -1,6 +1,6 @@
-    private SchoolContext context;
-    
-    public StudentRepository(SchoolContext context)
-    {
-        this.context = context;
-    }
+private SchoolContext context;
+
+public StudentRepository(SchoolContext context)
+{
+    this.context = context;
+}

@@ -1,7 +1,7 @@
-    public class AuthenticatedConnection : PersistentConnection 
+public class AuthenticatedConnection : PersistentConnection 
+{ 
+    protected override bool AuthorizeRequest(IRequest request) 
     { 
-        protected override bool AuthorizeRequest(IRequest request) 
-        { 
-            return request.User.Identity.IsAuthenticated; 
-        } 
-    }
+        return request.User.Identity.IsAuthenticated; 
+    } 
+}

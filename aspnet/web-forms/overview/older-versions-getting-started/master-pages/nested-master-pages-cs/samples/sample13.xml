@@ -1,1 +1,1 @@
-    public partial class Admin_Default : AdminBasePage
+public partial class Admin_Default : AdminBasePage

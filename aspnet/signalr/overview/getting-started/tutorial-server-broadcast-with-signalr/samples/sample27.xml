@@ -1,19 +1,19 @@
-    private void BroadcastMarketStateChange(MarketState marketState)
+private void BroadcastMarketStateChange(MarketState marketState)
+{
+    switch (marketState)
     {
-        switch (marketState)
-        {
-            case MarketState.Open:
-                Clients.All.marketOpened();
-                break;
-            case MarketState.Closed:
-                Clients.All.marketClosed();
-                break;
-            default:
-                break;
-        }
+        case MarketState.Open:
+            Clients.All.marketOpened();
+            break;
+        case MarketState.Closed:
+            Clients.All.marketClosed();
+            break;
+        default:
+            break;
     }
-    
-    private void BroadcastMarketReset()
-    {
-        Clients.All.marketReset();
-    }
+}
+
+private void BroadcastMarketReset()
+{
+    Clients.All.marketReset();
+}

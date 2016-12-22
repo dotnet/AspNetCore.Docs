@@ -1,21 +1,21 @@
-    public ActionResult Create()
+public ActionResult Create()
+{
+    return View();
+}
+
+[HttpPost]
+public ActionResult Create(Movie newMovie)
+{
+
+    if (ModelState.IsValid)
     {
-        return View();
+        db.AddToMovies(newMovie);
+        db.SaveChanges();
+
+        return RedirectToAction("Index");
     }
-    
-    [HttpPost]
-    public ActionResult Create(Movie newMovie)
+    else
     {
-    
-        if (ModelState.IsValid)
-        {
-            db.AddToMovies(newMovie);
-            db.SaveChanges();
-    
-            return RedirectToAction("Index");
-        }
-        else
-        {
-            return View(newMovie);
-        }
+        return View(newMovie);
     }
+}

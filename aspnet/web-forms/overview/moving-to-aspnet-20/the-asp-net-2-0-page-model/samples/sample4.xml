@@ -1,1 +1,1 @@
-    <%@Page Language="C#" SomeText="Hello!" Inherits="PageBase" %>
+<%@Page Language="C#" SomeText="Hello!" Inherits="PageBase" %>

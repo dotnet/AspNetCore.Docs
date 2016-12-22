@@ -1,11 +1,11 @@
-        <PropertyGroup>
-            <CopyAllFilesToSingleFolderForPackageDependsOn>
-              CustomCollectFiles;
-              $(CopyAllFilesToSingleFolderForPackageDependsOn);
-            </CopyAllFilesToSingleFolderForPackageDependsOn>
-        
-            <CopyAllFilesToSingleFolderForMsdeployDependsOn>
-              CustomCollectFiles;
-              $(CopyAllFilesToSingleFolderForMsdeployDependsOn);
-            </CopyAllFilesToSingleFolderForMsdeployDependsOn>
-        </PropertyGroup>
+<PropertyGroup>
+    <CopyAllFilesToSingleFolderForPackageDependsOn>
+      CustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForPackageDependsOn>
+
+    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
+      CustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForMsdeployDependsOn);
+    </CopyAllFilesToSingleFolderForMsdeployDependsOn>
+</PropertyGroup>

@@ -1,1 +1,1 @@
-    <%@ OutputCache VaryByParam="*" Duration="60" VaryByCustom="isMobileDevice" %>
+<%@ OutputCache VaryByParam="*" Duration="60" VaryByCustom="isMobileDevice" %>

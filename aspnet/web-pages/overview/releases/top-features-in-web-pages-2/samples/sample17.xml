@@ -1,4 +1,4 @@
-        OAuthWebSecurity.RegisterOAuthClient(
-        BuiltInOAuthClient.Twitter,
-        consumerKey: "",
-        consumerSecret: "");
+OAuthWebSecurity.RegisterOAuthClient(
+BuiltInOAuthClient.Twitter,
+consumerKey: "",
+consumerSecret: "");

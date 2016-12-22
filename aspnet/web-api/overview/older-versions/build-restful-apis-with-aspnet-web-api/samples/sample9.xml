@@ -1,1 +1,1 @@
-        private const string CacheKey = "ContactStore";
+private const string CacheKey = "ContactStore";

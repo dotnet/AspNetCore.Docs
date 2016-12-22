@@ -1,1 +1,1 @@
-    add-migration AddBirthDate
+add-migration AddBirthDate

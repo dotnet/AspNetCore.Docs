@@ -1,4 +1,4 @@
-    @{
-        var myImagesFolder = "~/images";
-        var myStyleSheet = "~/styles/StyleSheet.css";
-    }
+@{
+    var myImagesFolder = "~/images";
+    var myStyleSheet = "~/styles/StyleSheet.css";
+}

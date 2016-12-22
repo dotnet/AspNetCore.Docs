@@ -1,4 +1,4 @@
-    public class BasePage : System.Web.UI.Page
-    {
-    
-    }
+public class BasePage : System.Web.UI.Page
+{
+
+}

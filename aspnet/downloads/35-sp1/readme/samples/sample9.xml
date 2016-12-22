@@ -1,2 +1,2 @@
-    [MetadataType(typeof(ProductMetadata))]
-    public partial class Product {}
+[MetadataType(typeof(ProductMetadata))]
+public partial class Product {}

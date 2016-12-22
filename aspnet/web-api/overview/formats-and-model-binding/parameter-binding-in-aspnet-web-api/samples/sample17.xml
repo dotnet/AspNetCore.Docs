@@ -1,2 +1,2 @@
-    public HttpResponseMessage Get(
-        [ValueProvider(typeof(CookieValueProviderFactory))] GeoPoint location)
+public HttpResponseMessage Get(
+    [ValueProvider(typeof(CookieValueProviderFactory))] GeoPoint location)

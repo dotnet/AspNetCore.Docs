@@ -1,15 +1,15 @@
-    <?xml version="1.0"?>
-    
-    <configuration>
-    
-        <system.web>
-    
-             <authorization>
-    
-                <deny  users="?" />
-    
-             </authorization>
-    
-         </system.web>
-    
-    </configuration>
+<?xml version="1.0"?>
+
+<configuration>
+
+    <system.web>
+
+         <authorization>
+
+            <deny  users="?" />
+
+         </authorization>
+
+     </system.web>
+
+</configuration>

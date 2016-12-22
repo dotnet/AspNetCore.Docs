@@ -1,4 +1,4 @@
-    public int DiscontinueAllProductsForSupplier(int supplierID)
-    {
-        return Adapter.DiscontinueAllProductsForSupplier(supplierID);
-    }
+public int DiscontinueAllProductsForSupplier(int supplierID)
+{
+    return Adapter.DiscontinueAllProductsForSupplier(supplierID);
+}

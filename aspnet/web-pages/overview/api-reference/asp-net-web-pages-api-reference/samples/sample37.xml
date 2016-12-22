@@ -1,2 +1,2 @@
-    var success = WebSecurity.ChangePassword("my-username",
-        "current-password", "new-password");
+var success = WebSecurity.ChangePassword("my-username",
+    "current-password", "new-password");

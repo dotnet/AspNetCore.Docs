@@ -1,2 +1,2 @@
-    [ApiExplorerSettings(IgnoreApi=true)]
-    public HttpResponseMessage Get(int id) {  }
+[ApiExplorerSettings(IgnoreApi=true)]
+public HttpResponseMessage Get(int id) {  }

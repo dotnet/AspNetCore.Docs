@@ -1,1 +1,1 @@
-    var income = Request["AnnualIncome"];
+var income = Request["AnnualIncome"];

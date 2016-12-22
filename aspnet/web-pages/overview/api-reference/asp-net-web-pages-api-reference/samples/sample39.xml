@@ -1,1 +1,1 @@
-    WebSecurity.CreateAccount("my-username", "secretpassword");
+WebSecurity.CreateAccount("my-username", "secretpassword");

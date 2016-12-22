@@ -1,2 +1,2 @@
-    Application["key"] = value;
-    object value = Application["key"];
+Application["key"] = value;
+object value = Application["key"];

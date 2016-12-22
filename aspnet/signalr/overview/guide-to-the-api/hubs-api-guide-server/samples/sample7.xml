@@ -1,7 +1,7 @@
-    public class ContosoChatHub : Hub
+public class ContosoChatHub : Hub
+{
+    public void NewContosoChatMessage(string name, string message)
     {
-        public void NewContosoChatMessage(string name, string message)
-        {
-            Clients.All.addNewMessageToPage(name, message);
-        }
+        Clients.All.addNewMessageToPage(name, message);
     }
+}

@@ -1,1 +1,1 @@
-    _service = new ContactManagerService(new ModelStateWrapper(this.ModelState));
+_service = new ContactManagerService(new ModelStateWrapper(this.ModelState));

@@ -1,1 +1,1 @@
-    var htmlEncoded = Server.HtmlEncode("<html>");
+var htmlEncoded = Server.HtmlEncode("<html>");

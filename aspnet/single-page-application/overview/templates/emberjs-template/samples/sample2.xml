@@ -1,1 +1,1 @@
-    todoList: DS.belongsTo('App.TodoList'),
+todoList: DS.belongsTo('App.TodoList'),

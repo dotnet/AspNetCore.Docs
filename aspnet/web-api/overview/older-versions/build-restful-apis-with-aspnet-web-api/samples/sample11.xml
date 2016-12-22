@@ -1,18 +1,18 @@
-        public Contact[] GetAllContacts()
+public Contact[] GetAllContacts()
+{
+    var ctx = HttpContext.Current;
+
+    if (ctx != null)
+    {
+        return (Contact[])ctx.Cache[CacheKey];
+    }
+
+    return new Contact[]
         {
-            var ctx = HttpContext.Current;
-        
-            if (ctx != null)
+            new Contact
             {
-                return (Contact[])ctx.Cache[CacheKey];
+                Id = 0,
+                Name = "Placeholder"
             }
-        
-            return new Contact[]
-                {
-                    new Contact
-                    {
-                        Id = 0,
-                        Name = "Placeholder"
-                    }
-                };
-        }
+        };
+}

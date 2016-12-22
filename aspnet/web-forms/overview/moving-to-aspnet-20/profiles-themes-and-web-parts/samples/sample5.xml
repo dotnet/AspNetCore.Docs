@@ -1,1 +1,1 @@
-    Profile.Buyers.NumberOfPurchases += 1;
+Profile.Buyers.NumberOfPurchases += 1;

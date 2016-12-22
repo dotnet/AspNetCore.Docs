@@ -1,1 +1,1 @@
-    if(WebSecurity.IsCurrentUser("joe@contoso.com")) { ... }
+if(WebSecurity.IsCurrentUser("joe@contoso.com")) { ... }

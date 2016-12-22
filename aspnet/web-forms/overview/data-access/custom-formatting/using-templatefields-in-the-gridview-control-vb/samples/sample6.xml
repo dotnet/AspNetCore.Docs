@@ -1,2 +1,2 @@
-    <%# DisplayDaysOnJob(CType(CType(Container.DataItem, DataRowView).Row,
-        Northwind.EmployeesRow)) %>
+<%# DisplayDaysOnJob(CType(CType(Container.DataItem, DataRowView).Row,
+    Northwind.EmployeesRow)) %>

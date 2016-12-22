@@ -1,4 +1,4 @@
-    [Authorize(Roles="Administrator")]
-    public class AdminController : ApiController
-    {
-        // ...
+[Authorize(Roles="Administrator")]
+public class AdminController : ApiController
+{
+    // ...

@@ -1,8 +1,8 @@
-    public class ProductsController : ApiController
+public class ProductsController : ApiController
+{
+    public IEnumerable<Product> GetAllProducts()
     {
-        public IEnumerable<Product> GetAllProducts()
-        {
-            return repository.GetAll();
-        }
-        // ....
+        return repository.GetAll();
     }
+    // ....
+}

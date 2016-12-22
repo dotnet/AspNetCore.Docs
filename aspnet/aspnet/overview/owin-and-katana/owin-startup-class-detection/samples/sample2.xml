@@ -1,3 +1,3 @@
-        <appSettings>  
-          <add key="owin:appStartup" value="StartupDemo.ProductionStartup" />
-        </appSettings>
+<appSettings>  
+  <add key="owin:appStartup" value="StartupDemo.ProductionStartup" />
+</appSettings>

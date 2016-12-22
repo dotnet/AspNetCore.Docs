@@ -1,5 +1,5 @@
-    [ModelBinder(typeof(GeoPointModelBinder))]
-    public class GeoPoint
-    {
-        // ....
-    }
+[ModelBinder(typeof(GeoPointModelBinder))]
+public class GeoPoint
+{
+    // ....
+}

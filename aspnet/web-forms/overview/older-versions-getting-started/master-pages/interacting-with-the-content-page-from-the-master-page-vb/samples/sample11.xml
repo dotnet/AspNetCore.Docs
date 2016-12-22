@@ -1,1 +1,1 @@
-    AddHandler publisher.eventName, AddressOf methodName
+AddHandler publisher.eventName, AddressOf methodName

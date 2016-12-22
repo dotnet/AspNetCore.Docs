@@ -1,1 +1,1 @@
-        SELECT * FROM Product WHERE Id=@0
+SELECT * FROM Product WHERE Id=@0

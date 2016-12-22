@@ -1,1 +1,1 @@
-    publisher.eventName += new eventDelegate(methodName);
+publisher.eventName += new eventDelegate(methodName);

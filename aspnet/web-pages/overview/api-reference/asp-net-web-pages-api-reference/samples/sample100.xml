@@ -1,1 +1,1 @@
-    image.Resize(100, 100);
+image.Resize(100, 100);

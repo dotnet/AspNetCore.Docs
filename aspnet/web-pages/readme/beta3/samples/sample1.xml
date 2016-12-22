@@ -1,2 +1,2 @@
-    @* Inserts literal markup into the page as specified in the value string. *@
-    @Html.Raw("<div>Hello <em>world</em>!</div>")
+@* Inserts literal markup into the page as specified in the value string. *@
+@Html.Raw("<div>Hello <em>world</em>!</div>")

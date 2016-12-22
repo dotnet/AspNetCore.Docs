@@ -1,4 +1,4 @@
-    <system.web>
-        <globalization culture ="en-US" />
-        <!--elements removed for clarity-->
-      </system.web>
+<system.web>
+    <globalization culture ="en-US" />
+    <!--elements removed for clarity-->
+  </system.web>

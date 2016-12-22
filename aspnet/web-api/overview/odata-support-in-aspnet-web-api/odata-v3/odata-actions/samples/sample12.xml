@@ -1,5 +1,5 @@
-    [HttpPost]
-    public int RateAllProducts(ODataActionParameters parameters)
-    {
-        // ....
-    }
+[HttpPost]
+public int RateAllProducts(ODataActionParameters parameters)
+{
+    // ....
+}

@@ -1,1 +1,1 @@
-    @model IEnumerable<MvcMovie.Models.Movie>
+@model IEnumerable<MvcMovie.Models.Movie>

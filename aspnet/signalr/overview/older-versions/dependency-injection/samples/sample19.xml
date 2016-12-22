@@ -1,1 +1,1 @@
-    RouteTable.Routes.MapHubs(config);
+RouteTable.Routes.MapHubs(config);

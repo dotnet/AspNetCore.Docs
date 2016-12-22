@@ -1,2 +1,2 @@
-    <asp:SiteMapPath runat="server" ID="SiteMapPath1"
-      CurrentNodeStyle-ForeColor="Orange"/>
+<asp:SiteMapPath runat="server" ID="SiteMapPath1"
+  CurrentNodeStyle-ForeColor="Orange"/>

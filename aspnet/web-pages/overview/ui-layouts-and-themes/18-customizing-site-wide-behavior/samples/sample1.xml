@@ -1,3 +1,3 @@
-        @{
-          AppState["customAppName"] = "Application Name";
-        }
+@{
+  AppState["customAppName"] = "Application Name";
+}

@@ -1,1 +1,1 @@
-    @Analytics.GetYahooHtml("myaccount")
+@Analytics.GetYahooHtml("myaccount")

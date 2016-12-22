@@ -1,2 +1,2 @@
-    @Html.ActionLink("Go
-    to the Store Index", "Index")
+@Html.ActionLink("Go
+to the Store Index", "Index")
