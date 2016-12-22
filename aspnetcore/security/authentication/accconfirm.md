@@ -30,19 +30,19 @@ This tutorial shows you how to build an ASP.NET Core app with email confirmation
 
 * In Visual Studio, create a New Project (from the Start Page, or via **File > New > Project**)
 
-![image](accconfirm/_static/new-project.png)
+![New Project dialog](accconfirm/_static/new-project.png)
 
 * Tap **Web Application** and verify **Authentication** is set to **Individual User Accounts**
 
-![image](accconfirm/_static/select-project.png)
+![New Web Application dialog](accconfirm/_static/select-project.png)
 
 Run the app and then click on the **Register** link and register a user. At this  point, the only validation on the email is with the [[EmailAddress]](http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
 
 In **SQL Server Object Explorer** (SSOX), navigate to **(localdb)MSSQLLocalDB(SQL Server 12)**. Right click on **dbo.AspNetUsers** > **View Data**:
 
-![image](accconfirm/_static/ssox.png)
+![Contextual menu on AspNetUsers table in SQL Server Object Explorer](accconfirm/_static/ssox.png)
 
-![image](accconfirm/_static/au.png)
+![AspNetUsers table data](accconfirm/_static/au.png)
 
 Note the `EmailConfirmed` field is `False`.
 
@@ -62,7 +62,7 @@ In this section we'll set up our Visual Studio project to use SSL and our projec
 
    * Copy the SSL URL and paste it into the **App URL**
 
-![image](accconfirm/_static/ssl.png)
+![Debug tab of web application properties](accconfirm/_static/ssl.png)
 
 * Add the following code to `ConfigureServices` in `Startup`:
 
@@ -173,7 +173,7 @@ In this section, run the web app and show the account confirmation and password 
 
 * Run the application and register a new user
 
-![image](accconfirm/_static/loginaccconfirm1.png)
+![Web application Account Register view](accconfirm/_static/loginaccconfirm1.png)
 
 * Check your email for the account confirmation link. If you don't get the email notification:
 
@@ -214,14 +214,14 @@ To complete this section, you must first enable an external authentication provi
 
 You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT@gmail.com" is first created as a local login, but you can create the account as a social login first, then add a local login.
 
-![image](accconfirm/_static/rick.png)
+![Web application: RickAndMSFT@gmail.com user authenticated](accconfirm/_static/rick.png)
 
 Click on the **Manage** link. Note the 0 external (social logins) associated with this account.
 
-![image](accconfirm/_static/manage.png)
+![Manage view](accconfirm/_static/manage.png)
 
 Click the link to another login service and accept the app requests. In the image below, Facebook is the external authentication provider:
 
-![image](accconfirm/_static/fb.png)
+![Manage your external logins view listing Facebook](accconfirm/_static/fb.png)
 
 The two accounts have been combined. You will be able to log on with either account. You might want your users to add local accounts in case their social log in authentication service is down, or more likely they have lost access to their social account.

@@ -25,9 +25,9 @@ This article shows how to get started migrating an ASP.NET MVC project to [ASP.N
 
 To demonstrate the upgrade, we'll start by creating a ASP.NET MVC app. Create it with the name *WebApp1* so the namespace will match the ASP.NET Core project we create in the next step.
 
-![image](mvc/_static/new-project.png)
+![Visual Studio New Project dialog](mvc/_static/new-project.png)
 
-![image](mvc/_static/new-project-select-mvc-template.png)
+![New Web Application dialog: MVC project template selected in ASP.NET templates panel](mvc/_static/new-project-select-mvc-template.png)
 
 *Optional:* Change the name of the Solution from *WebApp1* to *Mvc5*. Visual Studio will display the new solution name (*Mvc5*), which will make it easier to tell this project from the next project.
 
@@ -35,9 +35,9 @@ To demonstrate the upgrade, we'll start by creating a ASP.NET MVC app. Create it
 
 Create a new *empty* ASP.NET Core web app with the same name as the previous project (*WebApp1*) so the namespaces in the two projects match. Having the same namespace makes it easier to copy code between the two projects. You'll have to create this project in a different directory than the previous project to use the same name.
 
-![image](mvc/_static/new_core.png)
+![New Project dialog](mvc/_static/new_core.png)
 
-![image](mvc/_static/new-project-select-empty-aspnet5-template.png)
+![New ASP.NET Web Application dialog: Empty project template selected in ASP.NET Core Templates panel](mvc/_static/new-project-select-empty-aspnet5-template.png)
 
 * *Optional:* Create a new ASP.NET Core app using the *Web Application* project template. Name the project *WebApp1*, and select an authentication option of **Individual User Accounts**. Rename this app to *FullAspNetCore*. Creating this project will save you time in the conversion. You can look at the template-generated code to see the end result or to copy code to the conversion project. It's also helpful when you get stuck on a conversion step to compare with the template-generated project.
 
@@ -71,7 +71,7 @@ In this section, you'll add a minimal controller and view to serve as placeholde
 
 * Add an **MVC controller class** with the name *HomeController.cs* to the *Controllers* folder.
 
-![image](mvc/_static/add_mvc_ctl.png)
+![Add New Item dialog](mvc/_static/add_mvc_ctl.png)
 
 * Add a *Views* folder.
 
@@ -79,11 +79,11 @@ In this section, you'll add a minimal controller and view to serve as placeholde
 
 * Add an *Index.cshtml* MVC view page to the *Views/Home* folder.
 
-![image](mvc/_static/view.png)
+![Add New Item dialog](mvc/_static/view.png)
 
 The project structure is shown below:
 
-![image](mvc/_static/project-structure-controller-view.png)
+![Solution Explorer showing files and folders of WebApp1](mvc/_static/project-structure-controller-view.png)
 
 Replace the contents of the *Views/Home/Index.cshtml* file with the following:
 
@@ -95,7 +95,7 @@ Replace the contents of the *Views/Home/Index.cshtml* file with the following:
 
 Run the app.
 
-![image](mvc/_static/hello-world.png)
+![Web application open in Microsoft Edge](mvc/_static/hello-world.png)
 
 See [Controllers](../mvc/controllers/index.md) and [Views](../mvc/views/index.md) for more information.
 
@@ -127,7 +127,7 @@ Now that we have a minimal working ASP.NET Core project, we can start migrating 
 
   * `http://localhost:4492/home/contact`
 
-![image](mvc/_static/contact-page.png)
+![Contact page](mvc/_static/contact-page.png)
 
 Note the lack of styling and menu items. We'll fix that in the next section.
 
@@ -147,12 +147,12 @@ In the new project, we'll add support for Bootstrap (and other client-side libra
 
 Upon saving the file, Bower will automatically download the dependencies to the *wwwroot/lib* folder. You can use the **Search Solution Explorer** box to find the path of the assets:
 
-![image](mvc/_static/search.png)
+![jquery assets shown in the Solution Explorer search results](mvc/_static/search.png)
 
 > [!NOTE]
 > *bower.json* is not visible in **Solution Explorer**. You can display the hidden *.json* files by selecting the project in **Solution Explorer** and then tapping the **Show All Files** icon. You won't see **Show All Files** unless the project is selected.
 
-![image](mvc/_static/show_all_files.png)
+![Solution Explorer display of files and folders with Show All Files option enabled](mvc/_static/show_all_files.png)
 
 See [Manage Client-Side Packages with Bower](../client-side/bower.md) for more information.
 

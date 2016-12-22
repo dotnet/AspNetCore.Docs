@@ -39,15 +39,15 @@ This tutorial assumes you have already installed the following:
 
 3. Select the **ASP.NET Web Application** project template. It appears under **Installed** > **Templates** > **Visual C#** > **Web**. Name the project `SampleWebAppDemo`. Select the **Add to source control** option and click **OK**.
 
-   ![image](azure-continuous-deployment/_static/01-new-project.png)
+   ![New Project dialog](azure-continuous-deployment/_static/01-new-project.png)
 
 4. In the **New ASP.NET Project** dialog, select the ASP.NET Core **Empty** template, then click **OK**.
 
-   ![image](azure-continuous-deployment/_static/02-web-site-template.png)
+   ![New ASP.NET Project dialog](azure-continuous-deployment/_static/02-web-site-template.png)
 
 5. From the **Choose Source Control** dialog box, select **Git** as the source control system for the new project.
 
-   ![image](azure-continuous-deployment/_static/03-source-control.png)
+   ![Choose Source Control dialog](azure-continuous-deployment/_static/03-source-control.png)
 
 ### Running the web app locally
 
@@ -55,7 +55,7 @@ This tutorial assumes you have already installed the following:
 
    It may take time to initialize Visual Studio and the new app. Once it is complete, the browser will show the running app.
 
-   ![image](azure-continuous-deployment/_static/04-browser-runapp.png)
+   ![Browser window showing running application that displays 'Hello World!'](azure-continuous-deployment/_static/04-browser-runapp.png)
 
 2. After reviewing the running Web app, close the browser and click the "Stop Debugging" icon in the toolbar of Visual Studio to stop the app.
 
@@ -67,11 +67,11 @@ The following steps will guide you through creating a web app in the Azure Porta
 2. TAP **NEW** at the top left of the Portal
 3. TAP **Web + Mobile** > **Web App**
 
-    ![image](azure-continuous-deployment/_static/05-azure-newwebapp.png)
+    ![Microsoft Azure Portal: New button: Web + Mobile under Marketplace: Web App button under Featured Apps](azure-continuous-deployment/_static/05-azure-newwebapp.png)
 
 4.  In the **Web App** blade, enter a unique value for the **App Service Name**.
 
-    ![image](azure-continuous-deployment/_static/06-azure-newappblade.png)
+    ![Web App blade](azure-continuous-deployment/_static/06-azure-newappblade.png)
 
     >[!NOTE]
     >The **App Service Name** name needs to be unique. The portal will enforce this rule when you attempt to enter the name. After you enter a different value, you'll need to substitute that value for each occurrence of **SampleWebAppDemo** that you see in this tutorial.
@@ -82,7 +82,7 @@ The following steps will guide you through creating a web app in the Azure Porta
 
 5.  Click **Create**. Azure will provision and start your web app.
 
-    ![image](azure-continuous-deployment/_static/07-azure-webappblade.png)
+    ![Azure Portal: Sample Web App Demo 01 Essentials blade](azure-continuous-deployment/_static/07-azure-webappblade.png)
 
 ## Enable Git publishing for the new web app
 
@@ -100,7 +100,7 @@ Git is a distributed version control system that you can use to deploy your Azur
 
 6. In the **Settings** blade, select **Deployment source** > **Choose Source** > **Local Git Repository**.
 
-   ![image](azure-continuous-deployment/_static/08-azure-localrepository.png)
+   ![Settings blade: Deployment source blade: Choose source blade](azure-continuous-deployment/_static/08-azure-localrepository.png)
 
 7. Click **OK**.
 
@@ -116,7 +116,7 @@ Git is a distributed version control system that you can use to deploy your Azur
 
 10. Copy the **GIT URL** value for later use in the tutorial.
 
-   ![image](azure-continuous-deployment/_static/09-azure-giturl.png)
+   ![Azure Portal: application Properties blade](azure-continuous-deployment/_static/09-azure-giturl.png)
 
 ## Publish your web app to Azure App Service
 
@@ -132,7 +132,7 @@ In this section, you will create a local Git repository using Visual Studio and 
    
 1.  In **Solution Explorer** right-click **Solution 'SampleWebAppDemo'** and select **Commit**. The **Team Explorer** will be displayed.
 
-    ![image](azure-continuous-deployment/_static/10-team-explorer.png)
+    ![Team Explorer Connect tab](azure-continuous-deployment/_static/10-team-explorer.png)
 
 2.  In **Team Explorer**, select the **Home** (home icon) > **Settings** > **Repository Settings**.
 
@@ -142,7 +142,7 @@ In this section, you will create a local Git repository using Visual Studio and 
 
 5.  Set the value for **Fetch** to the **Git URL** that you copied from Azure earlier in this tutorial. Note that this is the URL that ends with **.git**.
 
-    ![image](azure-continuous-deployment/_static/11-add-remote.png)
+    ![Edit Remote dialog](azure-continuous-deployment/_static/11-add-remote.png)
 
     >[!NOTE]
     >As an alternative, you can specify the remote repository from the **Command Window** by opening the **Command Window**, changing to your project directory, and entering the command. For example:`git remote add Azure-SampleApp https://me@sampleapp.scm.azurewebsites.net:443/SampleApp.git`
@@ -153,7 +153,7 @@ In this section, you will create a local Git repository using Visual Studio and 
 
 8.  Enter a commit message, such as **Initial Push #1** and click **Commit**. This action will create a *commit* locally. Next, you need to *sync* with Azure.
 
-    ![image](azure-continuous-deployment/_static/12-initial-commit.png)
+    ![Team Explorer Connect tab](azure-continuous-deployment/_static/12-initial-commit.png)
 
     >[!NOTE]
     >As an alternative, you can commit your changes from the **Command Window** by opening the **Command Window**, changing to your project directory, and entering the git commands. For example:
@@ -192,7 +192,7 @@ You can verify that you successfully transferred the web app from your local env
 
 1. In the [Azure Portal](https://portal.azure.com), select your web app. Then, select **Settings** > **Continuous deployment**.
 
-   ![image](azure-continuous-deployment/_static/13-verify-deployment.png)
+   ![Azure Portal: Settings blade: Deployments blade showing successful deployment](azure-continuous-deployment/_static/13-verify-deployment.png)
 
 ## Run the app in Azure
 

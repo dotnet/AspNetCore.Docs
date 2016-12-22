@@ -131,9 +131,9 @@ To demonstrate the object lifetimes within and between separate individual reque
 
 Now two separate requests are made to this controller action:
 
-![image](dependency-injection/_static/lifetimes_request1.png)
+![The Operations view of the Dependency Injection Sample web application running in Microsoft Edge showing Operation ID values (GUID's) for Transient, Scoped, Singleton, and Instance Controller and Operation Service Operations on the first request.](dependency-injection/_static/lifetimes_request1.png)
 
-![image](dependency-injection/_static/lifetimes_request2.png)
+![The operations view showing the Operation ID values for a second request.](dependency-injection/_static/lifetimes_request2.png)
 
 Observe which of the `OperationId` values vary within a request, and between requests.
 
@@ -147,7 +147,7 @@ Observe which of the `OperationId` values vary within a request, and between req
 
 The services available within an ASP.NET request from `HttpContext` are exposed through the `RequestServices` collection.
 
-![image](dependency-injection/_static/request-services.png)
+![HttpContext Request Services Intellisense contextual dialog stating that Request Services gets or sets the IServiceProvider that provides access to the request's service container.](dependency-injection/_static/request-services.png)
 
 Request Services represent the services you configure and request as part of your application. When your objects specify dependencies, these are satisfied by the types found in `RequestServices`, not `ApplicationServices`.
 

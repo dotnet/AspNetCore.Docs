@@ -24,11 +24,11 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 * Navigate to [https://apps.twitter.com/](https://apps.twitter.com/) and sign in. If you don't already have a Twitter account, use the **[Sign up now](https://twitter.com/signup)** link to create one. After signing in, the **Application Management** page is shown:
 
-![image](index/_static/TwitterAppManage.png)
+![Twitter Application Management open in Microsoft Edge](index/_static/TwitterAppManage.png)
 
 * Tap **Create New App** and fill out the application **Name**:
 
-![image](index/_static/TwitterCreate.png)
+![Create an application page](index/_static/TwitterCreate.png)
 
 * Enter your current site URL with *signin-twitter* appended into the **Callback URL** field. For example, `https://localhost:44320/signin-twitter`.
   
@@ -40,7 +40,7 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 * Tap **Create your Twitter application**. New application details are displayed:
 
-![image](index/_static/TwitterAppDetails.png)
+![Details tab on Application page](index/_static/TwitterAppDetails.png)
 
 ## Storing Twitter ConsumerKey and ConsumerSecret
 
@@ -48,7 +48,7 @@ Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your 
 
 * Switch to the **Keys and Access Tokens** tab. Note the `Consumer Key` and `Consumer Secret`:
 
-![image](index/_static/TwitterKeys.png)
+![Keys and Access Tokens tab](index/_static/TwitterKeys.png)
 
 * Execute the following commands in your project working directory to store the Twitter secrets:
 
@@ -84,17 +84,17 @@ app.UseTwitterAuthentication(new TwitterOptions()
 
 Run your application and click **Log in**. An option to sign in with Twitter appears:
 
-![image](index/_static/DoneTwitter.png)
+![Web application: User not authenticated](index/_static/DoneTwitter.png)
 
 Clicking on **Twitter** redirects to Twitter for authentication:
 
-![image](index/_static/TwitterLogin.png)
+![Twitter authentication page](index/_static/TwitterLogin.png)
 
 After entering your Twitter credentials, you are redirected back to the web site where you can set your email.
 
 You are now logged in using your Twitter credentials:
 
-![image](index/_static/Done.png)
+![Web application: User authenticated](index/_static/Done.png)
 
 ## Next steps
 

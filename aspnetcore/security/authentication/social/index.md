@@ -23,7 +23,7 @@ This tutorial demonstrates how to build an ASP.NET Core app that enables users t
 
 [Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are covered in the following sections. Many third-party packages facilitate the use of other providers not covered here.
 
-![image](index/_static/social.png)
+![Social media icons for Facebook, Twitter, Google plus, and Windows](index/_static/social.png)
 
 Enabling users to sign in with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://dev.twitter.com/resources/case-studies).
 
@@ -37,11 +37,11 @@ Enabling users to sign in with their existing credentials is convenient for the 
 
 * In Visual Studio, create a new project (from the Start Page, or via **File > New > Project**):
 
-![image](index/_static/new-project.png)
+![New Project dialog](index/_static/new-project.png)
 
 * Tap **Web Application** and verify **Authentication** is set to **Individual User Accounts**:
 
-![image](index/_static/select-project.png)
+![New Web Application dialog](index/_static/select-project.png)
 
 ## Enable SSL
 
@@ -55,7 +55,7 @@ Some external authentication providers reject requests coming from origins that 
 
 * Copy the SSL URL and paste it into the **App URL**:
 
-![image](index/_static/ssl.png)
+![Debug tab of application properties](index/_static/ssl.png)
 
 * Modify the `services.AddMvc();` code in `Startup.cs` under `ConfigureServices` to reject all requests that are not coming over *https*:
 
@@ -107,11 +107,11 @@ To create a password and sign in using your email that you set during the sign i
 
 * Tap the **Hello <email alias>** link at the top right corner to navigate to the **Manage** view.
 
-![image](index/_static/pass1.png)
+![Web application Manage view](index/_static/pass1a.png)
 
 * Tap **Create**
 
-![image](index/_static/pass2.png)
+![Set your password page](index/_static/pass2a.png)
 
 * Set a valid password and you can use this to sign in with your email.
 

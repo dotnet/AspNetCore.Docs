@@ -40,7 +40,7 @@ The `Index` method above returns a View object. It uses a view template to gener
 
   * Tap **Add**
 
-![image](adding-view/_static/add_view.png)
+![Add New Item dialog](adding-view/_static/add_view.png)
 
 Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with the following:
 
@@ -48,11 +48,11 @@ Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with
 
 Navigate to `http://localhost:xxxx/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much work; it simply ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because you didn't explicitly specify the name of the view template file to use, MVC defaulted to using the *Index.cshtml* view file in the */Views/HelloWorld* folder. The image below shows the string "Hello from our View Template!" hard-coded in the view.
 
-![image](adding-view/_static/hell_template.png)
+![Browser window](adding-view/_static/hell_template.png)
 
 If your browser window is small (for example on a mobile device), you might need to toggle (tap) the [Bootstrap navigation button](http://getbootstrap.com/components/#navbar) in the upper right to see the to the **Home**, **About**, and **Contact** links.
 
-![image](adding-view/_static/1.png)
+![Browser window highlighting the Bootstrap navigation button](adding-view/_static/1.png)
 
 ## Changing views and layout pages
 
@@ -116,7 +116,7 @@ Save your change and navigate to `http://localhost:xxxx/HelloWorld`. Notice that
 
 Also notice how the content in the *Index.cshtml* view template was merged with the *Views/Shared/_Layout.cshtml* view template and a single HTML response was sent to the browser. Layout templates make it really easy to make changes that apply across all of the pages in your application. To learn more see [Layout](../../mvc/views/layout.md).
 
-![image](adding-view/_static/hell3.png)
+![Movie List view](adding-view/_static/hell3.png)
 
 Our little bit of "data" (in this case the "Hello from our View Template!" message) is hard-coded, though. The MVC application has a "V" (view) and you've got a "C" (controller), but no "M" (model) yet. Shortly, we'll walk through how to create a database and retrieve model data from it.
 
@@ -156,7 +156,7 @@ http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4
 
 Data is taken from the URL and passed to the controller using the [MVC model binder](../../mvc/models/model-binding.md) . The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
-![image](adding-view/_static/rick.png)
+![About view showing a Welcome label and the phrase Hello Rick shown four times](adding-view/_static/rick.png)
 
 In the sample above, we used the `ViewData` dictionary to pass data from the controller to a view. Later in the tutorial, we will use a view model to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the `ViewData` dictionary approach.
 

@@ -26,11 +26,11 @@ In the current version of the ASP.NET Core MVC tools for Visual Studio, scaffold
 
 From the Visual Studio **Start** page, tap **New Project**.
 
-![image](start-mvc/_static/new_project.png)
+![Visual Studio Start Page](start-mvc/_static/new_project.png)
 
 Alternatively, you can use the menus to create a new project. Tap **File > New > Project**.
 
-![image](start-mvc/_static/alt_new_project.png)
+![File menu: New Project](start-mvc/_static/alt_new_project.png)
 
 Complete the **New Project** dialog:
 
@@ -44,7 +44,7 @@ Complete the **New Project** dialog:
 
 * Tap **OK**
 
-![image](start-mvc/_static/new_project2.png)
+![New Project dialog](start-mvc/_static/new_project2.png)
 
 > [!WARNING]
 > You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffolding engine to work.
@@ -55,9 +55,9 @@ In the **New ASP.NET Core Web Application - MvcMovie** dialog:
 
 * tap the **Change Authentication** button and change the authentication to **Individual User Accounts** and tap **OK**
 
-![image](start-mvc/_static/p4.png)
+![New ASP.NET Web Application dialog with Web Application project template selected from ASP.NET Core Templates panel](start-mvc/_static/p4.png)
 
-![image](adding-model/_static/indiv.png)
+![Change Authentication dialog with Individual User Accounts selected](adding-model/_static/indiv.png)
 
 Follow the instructions in [Change the title and menu link in the layout file](adding-view.md#change-title-link-reference-label) so you can tap the **MvcMovie** link to invoke the Movie controller. We'll scaffold the movies controller in this tutorial.
 
@@ -73,21 +73,21 @@ In addition to the properties you'd expect to model a movie, the `ID` field is r
 
 In **Solution Explorer**, right-click the *Controllers* folder **> Add > Controller**.
 
-![image](adding-model/_static/add_controller.png)
+![Contextual menu](adding-model/_static/add_controller.png)
 
 In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Framework > Add**.
 
-![image](adding-model/_static/add_scaffold2.png)
+![Add Scaffold dialog](adding-model/_static/add_scaffold2.png)
 
-Complete the **Add Controller** dialog
+Complete the **Add Controller** dialog:
 
 * **Model class:** *Movie (MvcMovie.Models)*
 * **Data context class:** *ApplicationDbContext (MvcMovie.Data)*
-* **Views:**: Keep the default of each option checked
+* **Views:** Keep the default of each option checked
 * **Controller name:** Keep the default *MoviesController*
 * Tap **Add**
 
-![image](adding-model/_static/add_controller2.png)
+![Add Controller dialog](adding-model/_static/add_controller2.png)
 
 The Visual Studio scaffolding engine creates the following:
 
@@ -98,9 +98,9 @@ Visual Studio automatically created the [CRUD](https://en.wikipedia.org/wiki/Cre
 
 If you run the app and click on the **Mvc Movie** link, you'll get the following errors:
 
-![image](adding-model/_static/m1.png)
+![Movies view Internal Server Error: A database operation failed while processing the request. Applying existing migrations for Application DB Context may resolve this issue.](adding-model/_static/m1.png)
 
-![image](adding-model/_static/pending.png)
+![Movies view Internal Server Error: A database operation failed while processing the request. There are pending model changes for Application DB Context.](adding-model/_static/pending.png)
 
 We'll follow those instructions to get the database ready for our Movie app.
 
@@ -132,7 +132,7 @@ Notes:
   * Run the app and tap the **Mvc Movie** link
   * Tap the **Create New** link and create a movie
 
-  ![image](adding-model/_static/movies.png)
+  ![Create view with fields for genre, price, release date, and title](adding-model/_static/movies.png)
 
 * You may not be able to enter decimal points or commas in the `Price` field. To support [jQuery validation](http://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See [Additional resources](#additional-resources) for more information. For now, just enter whole numbers like 10.
 
@@ -144,7 +144,7 @@ Notes:
 
 Tapping **Create** causes the form to be posted to the server, where the movie information is saved in a database. You are then redirected to the */Movies* URL, where you can see the newly created movie in the listing.
 
-![image](adding-model/_static/h.png)
+![Movies view showing newly created movie listing](adding-model/_static/h.png)
 
 Create a couple more movie entries. Try the **Edit**, **Details**, and **Delete** links, which are all functional.
 
@@ -235,7 +235,7 @@ The `@model` directive allows you to access the list of movies that the controll
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code and full [IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx) support in the code editor:
 
-![image](adding-model/_static/ints.png)
+![Intellisense contextual menu on a Model item listing the available properties for ID, Price, Release Date, and Title](adding-model/_static/ints.png)
 
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
 
