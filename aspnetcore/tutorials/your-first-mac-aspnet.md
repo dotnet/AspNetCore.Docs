@@ -60,19 +60,19 @@ Your project is now created, you can use the following commands to get going
 
 * Tap **File > Open** and navigate to your ASP.NET Core app
 
-![image](your-first-mac-aspnet/_static/file-open.png)
+![File menu](your-first-mac-aspnet/_static/file-open.png)
 
 When the application is opened, Visual Studio Code will prompt to restore the needed project dependencies as well as add build and debug dependencies.
 
-![VSCVisual Studio Code prompt to restore the needed project dependencies and add build and debug dependencies](your-first-mac-aspnet/_static/dependencies-restore.png)
+![Info messages: 1. There are unresolved dependencies from project.json. Please execute the restore command to continue. 2. Required assets to build and debug are missing from your project. Add them?](your-first-mac-aspnet/_static/dependencies-restore.png)
 
 Tap "Yes" to add the build and debug assets.
 
-![image](your-first-mac-aspnet/_static/debug-items-added.png)
+![In the VS Code Explorer sidebar, launch.json and tasks.json files are added to the .vscode folder.](your-first-mac-aspnet/_static/debug-items-added.png)
 
 Tap "Restore" to restore the project dependencies. Alternately, you can enter `⌘⇧P` in Visual Studio Code and then type `dot` as shown:
 
-![image](your-first-mac-aspnet/_static/dot-restore.png)
+![Command bar showing autocompletion option on typing 'dot' for 'dotnet: Restore Packages'](your-first-mac-aspnet/_static/dot-restore.png)
 
 You can run commands directly from within Visual Studio Code, including `dotnet restore` and any tools referenced in the *project.json* file, as well as custom tasks defined in *.vscode/tasks.json*. Visual Studio Code also includes an integrated console `⌃` where you can execute these commands without leaving the editor.
 
@@ -92,7 +92,7 @@ The Search viewlet allows you to quickly search within the folder structure, sea
 
 *Code* will integrate with Git if it is installed on your system. You can easily initialize a new repository, make commits, and push changes from the Git viewlet.
 
-![image](your-first-mac-aspnet/_static/vscode-git.png)
+![GIT sidebar indicating 'This workspace isn't yet under git source control' with an 'Initialize git repository' button](your-first-mac-aspnet/_static/vscode-git.png)
 
 The Debug viewlet supports interactive debugging of applications.
 
@@ -114,15 +114,15 @@ If you chose to have the debug and build assets added to the project:
 
 * Tap the "Play (F5)" icon to launch the app
 
-![image](your-first-mac-aspnet/_static/launch-debugger.png)
+![DEBUG sidebar showing the triangle play button](your-first-mac-aspnet/_static/launch-debugger.png)
 
 Your default browser will automatically launch and navigate to `http://localhost:5000`
 
-![image](your-first-mac-aspnet/_static/myfirstapp.png)
+![Browser window](your-first-mac-aspnet/_static/myfirstapp.png)
 
 * To stop the application, close the browser and hit the "Stop" icon on the debug bar
 
-![image](your-first-mac-aspnet/_static/debugger.png)
+![VS Code Debug bar](your-first-mac-aspnet/_static/debugger.png)
 
 ### Using the dotnet commands
 
@@ -140,11 +140,11 @@ Once you've developed your application, you can easily use the Git integration b
 
 Initialize Git in the folder you're working in. Tap on the Git viewlet and click the `Initialize Git repository` button.
 
-![image](your-first-mac-aspnet/_static/vscode-git-commit.png)
+![GIT sidebar](your-first-mac-aspnet/_static/vscode-git-commit.png)
 
 Add a commit message and tap enter or tap the checkmark icon to commit the staged files.
 
-![image](your-first-mac-aspnet/_static/init-commit.png)
+![GIT sidebar showing file changes](your-first-mac-aspnet/_static/init-commit.png)
 
 Git is tracking changes, so if you make an update to a file, the Git viewlet will display the files that have changed since your last commit.
 
@@ -156,13 +156,13 @@ You can deploy to Azure Web Apps directly using Git.
 
 Create a Web App in the Azure Portal to host your new application.
 
-![image](your-first-mac-aspnet/_static/create-web-app.png)
+![Microsoft Azure Portal: New button: Web + Mobile selection in the Marketplace list reveals a Web App button under Featured Apps](your-first-mac-aspnet/_static/create-web-app.png)
 
 Configure the Web App in Azure to support [continuous deployment using Git](https://azure.microsoft.com/en-us/documentation/articles/app-service-deploy-local-git/).
 
 Record the Git URL for the Web App from the Azure portal.
 
-![image](your-first-mac-aspnet/_static/azure-portal.png)
+![Azure Portal for web application: Overview panel](your-first-mac-aspnet/_static/azure-portal.png)
 
 In a Terminal window, add a remote named `azure` with the Git URL you noted previously.
 
@@ -170,15 +170,15 @@ In a Terminal window, add a remote named `azure` with the Git URL you noted prev
 
 Push to master.  `git push azure master` to deploy.
 
-   ![image](your-first-mac-aspnet/_static/git-push-azure-master.png)
+   ![Command window showing a successful deployment](your-first-mac-aspnet/_static/git-push-azure-master.png)
 
 Browse to the newly deployed web app.
 
-![image](your-first-mac-aspnet/_static/azure.png)
+![Browser window](your-first-mac-aspnet/_static/azure.png)
 
 Looking at the Deployment Details in the Azure Portal, you can see the logs and steps each time there is a commit to the branch.
 
-![image](your-first-mac-aspnet/_static/deployment.png)
+![Azure Portal for web application: Deployment Details](your-first-mac-aspnet/_static/deployment.png)
 
 ## Additional Resources
 

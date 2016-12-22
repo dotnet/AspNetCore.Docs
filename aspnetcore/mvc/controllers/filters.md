@@ -24,11 +24,11 @@ By [Steve Smith](http://ardalis.com)
 
 Each filter type is executed at a different stage in the pipeline, and thus has its own set of intended scenarios. Choose what type of filter to create based on the task you need it to perform, and where in the request pipeline it executes. Filters run within the MVC Action Invocation Pipeline, sometimes referred to as the *Filter Pipeline*, which runs after MVC selects the action to execute.
 
-![image](filters/_static/filter-pipeline-1.png)
+![The request is processed through Other Middleware, Routing Middleware, Action Selection, and the MVC Action Invocation Pipeline. The request processing continues back through Action Selection, Routing Middleware, and various Other Middleware before becoming a response sent to the client.](filters/_static/filter-pipeline-1.png)
 
 Different filter types run at different points within the pipeline. Some filters, like authorization filters, only run before the next stage in the pipeline, and take no action afterward. Other filters, like action filters, can execute both before and after other parts of the pipeline execute, as shown below.
 
-![image](filters/_static/filter-pipeline-2.png)
+![The request is processed through Authorization Filters, Resource Filters, Model Binding, Action Filters, Action Execution and Action Result Conversion, Exception Filters, Result Filters, and Result Execution. On the way out, the request is only processed by Result Filters and Resource Filters before becoming a response sent to the client.](filters/_static/filter-pipeline-2.png)
 
 ### Selecting a Filter
 
@@ -79,7 +79,7 @@ Attributes allow filters to accept arguments, as shown in the example above. You
 
 The result of the `Index` action is shown below - the response headers are displayed on the bottom right.
 
-![image](filters/_static/add-header.png)
+![Developer Tools of Microsoft Edge showing response headers, including Author Steve Smith @ardalis](filters/_static/add-header.png)
 
 Several of the filter interfaces have corresponding attributes that can be used as base classes for custom implementations.
 

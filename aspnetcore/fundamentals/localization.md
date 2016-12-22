@@ -111,19 +111,19 @@ A resource file is a useful mechanism for separating localizable strings from co
 
 1. In **Solution Explorer**, right click on the folder which will contain the resource file > **Add** > **New Item**.
 
-    ![image](localization/_static/newi.png)
+    ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](localization/_static/newi.png)
 
 2. In the **Search installed templates** box, enter "resource" and name the file.
 
-    ![image](localization/_static/res.png)
+    ![Add New Item dialog](localization/_static/res.png)
 
 3. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
 
-    ![image](localization/_static/hola.png)
+    ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](localization/_static/hola.png)
 
     Visual Studio shows the *Welcome.es.resx* file.
 
-    ![image](localization/_static/se.png)
+    ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
 
 ### Generating resource files with Visual Studio
 
@@ -193,7 +193,7 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 2. Tap **Languages**.
 
-    ![image](localization/_static/lang.png)
+    ![Internet Options](localization/_static/lang.png)
 
 3. Tap **Set Language Preferences**.
 
