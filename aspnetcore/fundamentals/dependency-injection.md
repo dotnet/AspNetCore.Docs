@@ -133,7 +133,7 @@ Now two separate requests are made to this controller action:
 
 ![The Operations view of the Dependency Injection Sample web application running in Microsoft Edge showing Operation ID values (GUID's) for Transient, Scoped, Singleton, and Instance Controller and Operation Service Operations on the first request.](dependency-injection/_static/lifetimes_request1.png)
 
-![The operations view showing the Operation ID values for a seconnd request.](dependency-injection/_static/lifetimes_request2.png)
+![The operations view showing the Operation ID values for a second request.](dependency-injection/_static/lifetimes_request2.png)
 
 Observe which of the `OperationId` values vary within a request, and between requests.
 
