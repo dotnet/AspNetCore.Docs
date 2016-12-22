@@ -44,7 +44,7 @@ Run the app and navigate to the Movies controller.
 
 Tap the **Create New** link to add a new movie. Fill out the form with some invalid values. As soon as jQuery client side validation detects the error, it displays an error message.
 
-![image](validation/_static/val.png)
+![Movie view form with multiple jQuery client side validation errors](validation/_static/val.png)
 
 > [!NOTE]
 > You may not be able to enter decimal points or commas in the `Price` field. To support [jQuery validation](http://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See [Additional resources](#additional-resources) for more information. For now, just enter whole numbers like 10.
@@ -65,19 +65,19 @@ The first (HTTP GET) `Create` action method displays the initial Create form. Th
 
 You can set a break point in the `[HttpPost] Create` method and verify the method is never called, client side validation will not submit the form data when validation errors are detected. If you disable JavaScript in your browser, then submit the form with errors, the break point will be hit. You still get full validation without JavaScript. The following image shows how to disable JavaScript in Internet Explorer.
 
-![image](validation/_static/p8_IE9_disableJavaScript.png)
+![Internet Explorer: On the Security tab of Internet Options, click the Custom Level button. In the Scripting section of the Security Settings - Local Intranet Zone dialog, disable Active scripting.](validation/_static/p8_IE9_disableJavaScript.png)
 
 The following image shows how to disable JavaScript in the FireFox browser.
 
-![image](validation/_static/ff.png)
+![Firefox: On the Content tab of Options, uncheck the Enable Javascript checkbox.](validation/_static/ff.png)
 
 The following image shows how to disable JavaScript in the Chrome browser.
 
-![image](validation/_static/chrome.png)
+![Google Chrome: In the Javascript section of Content settings, select Do not allow any site to run JavaScript.](validation/_static/chrome.png)
 
 After you disable JavaScript, post invalid data and step through the debugger.
 
-![image](validation/_static/ms.png)
+![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](validation/_static/ms.png)
 
 Below is portion of the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
