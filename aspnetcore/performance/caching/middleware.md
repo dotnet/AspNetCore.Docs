@@ -1,6 +1,6 @@
 ---
 title: Response Caching Middleware | Microsoft Docs
-author: rick-anderson
+author: guardrex
 description: Configuration and use of Response Caching Middleware in ASP.NET Core applications.
 keywords: ASP.NET Core, response caching, caching, ResponseCache, ResponseCaching, Cache-Control, VaryByQueryKeys, middleware
 ms.author: riande
