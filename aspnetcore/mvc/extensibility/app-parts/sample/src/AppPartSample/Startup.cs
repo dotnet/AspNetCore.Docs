@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Linq;
+using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NuGet.Packaging;
 
 namespace AppPartSample
 {
@@ -23,7 +26,16 @@ namespace AppPartSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()   
+            // make sure Plugin.dll is in the web project's bin/debug/netcoreapp1.0 folder
+            var pluginAssembly = Assembly.Load(new AssemblyName("Plugin"));
+            services.AddMvc()
+                .AddApplicationPart(pluginAssembly)
+                .ConfigureApplicationPartManager(p =>
+                {
+                    var parts = p.ApplicationParts.ToList();
+                    p.ApplicationParts.Clear();
+                    p.ApplicationParts.AddRange(parts.Where(part => part.Name != "DependentLibrary"));
+                })
                 .ConfigureApplicationPartManager(p => p.FeatureProviders.Add(new GenericControllerFeatureProvider()));
         }
 

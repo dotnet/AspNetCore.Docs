@@ -43,16 +43,59 @@ The main use case for application parts is to allow you to configure your app to
 
 Note that you can also use application parts to *avoid* looking for controllers in a particular assembly or location. By modifying the `ApplicationParts` collection of the `ApplicationPartManager`, you can control which parts of available to the app. The order of the entries in the `ApplicationParts` collection is not important. It is important, though, to ensure you have configured your application parts before you try to use them for features. In `ConfigureServices`, be sure to configure the application part manager completely before using anything that requires services these parts may have added.
 
-
-## Application Feature Providers
-
-asdf
+If you have an assembly in your MVC project's dependency tree that has controllers in it you do not want to be used by the app, remove it from the `ApplicationPartManager`:
 
 <!-- literal_block {"ids": [], "linenos": true, "xml:space": "preserve", "language": "csharp"} -->
 
 ```csharp
-/// some code
+services.AddMvc()
+    .ConfigureApplicationPartManager(p =>
+    {
+        var parts = p.ApplicationParts.ToList();
+        p.ApplicationParts.Clear();
+        p.ApplicationParts.AddRange(parts.Where(part => part.Name != "DependentLibrary"));
+    });
 ```
+
+In addition to your project's assembly and its dependent assemblies, the `ApplicationPartManager` will include parts for `Microsoft.AspNetCore.Mvc.TagHelpers` and `Microsoft.AspNetCore.Mvc.Razor` by default.
+
+## Application Feature Providers
+
+Application Feature Providers examine application parts and provide features for those parts. There are built-in feature providers for the following MVC features:
+
+- [Controllers](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.controllers.controllerfeatureprovider)
+- [Metadata Reference](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.razor.compilation.metadatareferencefeatureprovider)
+- [Tag Helpers](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.razor.taghelpers.taghelperfeatureprovider)
+- [View Components](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.viewcomponents.viewcomponentfeatureprovider)
+
+> [!NOTE]
+> Views do not use feature providers, but will do so in a future release.
+
+Feature providers inherit from `IApplicationFeatureProvider<T>`, where `T` is the type of the feature. You can implement your own feature providers for any of MVC's feature types listed above. The order of feature providers in the `ApplicationPartManager.FeatureProviders` collection can be important, since later providers can react to actions taken by previous providers.
+
+### Sample: Generic Controller Feature
+
+Normally, ASP.NET Core MVC ignores generic controllers (for example, `SomeController<T>`). This sample uses a controller feature provider that runs after the default provider and adds generic controller instances for certain known types (defined in `EntityTypes.Types`):
+
+[!code-csharp[Main](./app-parts/sample/src/AppPartSample/GenericControllerFeatureProvider.cs?highlight=30&range=18-36)]
+
+The entity types:
+
+[!code-csharp[Main](./app-parts/sample/src/AppPartSample/Model/EntityTypes.cs?range=6-16)]
+
+The feature provider is added in `Startup`:
+
+<!-- literal_block {"ids": [], "linenos": true, "xml:space": "preserve", "language": "csharp"} -->
+
+```csharp
+services.AddMvc()
+        .ConfigureApplicationPartManager(p => p.FeatureProviders.Add(new GenericControllerFeatureProvider()));
+```
+
+By default, the generic controller names used for routing would be of the form *GenericController`1[Widget]* instead of *Widget*. The following attribute is used to modify the name to correspond to the generic type used by the controller:
+
+[!code-csharp[Main](./app-parts/sample/src/AppPartSample/GenericControllerNameConvention.cs)]
+
 
 ## Configuring in Startup
 

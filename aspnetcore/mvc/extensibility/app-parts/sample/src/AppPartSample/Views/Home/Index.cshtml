@@ -4,11 +4,21 @@
 @using System.Reflection
 @model IEnumerable<TypeInfo>
 
-<h1>HomeController</h1>
+<h1>Home Controller</h1>
 
+<b>Generic Controllers:</b>
 <ul>
     @foreach (var item in Model)
     {
         <li><a href="@item.Name">@item.Name</a></li>
     }
+</ul>
+
+<b>Plugin Controller:</b>
+<ul>
+    <li><a href="/hello">HelloController</a></li>
+</ul>
+<b>Dependent Library Controller:</b>
+<ul>
+    <li><a href="/nogood">NoGoodController</a> - should 404</li>
 </ul>
