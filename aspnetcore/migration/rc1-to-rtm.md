@@ -14,7 +14,7 @@ uid: migration/rc1-to-rtm
 ---
 # Migrating from ASP.NET 5 RC1 to ASP.NET Core 1.0
 
-By [Cesar Blum Silveira](https://github.com/cesarbs), [Rachel Appel](http://github.com/rachelappel), [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Cesar Blum Silveira](https://github.com/cesarbs), [Rachel Appel](http://github.com/rachelappel), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET 5 RC1 apps were based on the .NET Execution Environment (DNX) and made use of DNX specific features. ASP.NET Core 1.0 is based on .NET Core, so you must first migrate your application to the new .NET Core project model. See [migrating from DNX to .NET Core CLI](https://docs.microsoft.com/en-us/dotnet/articles/core/migrating-from-dnx) for more information.
 
@@ -432,7 +432,7 @@ Delete any *{app name} - Web Deploy-publish.ps1* scripts created with Visual Stu
 
 ### applicationhost.config changes
 
-An *applicationhost.config* file created with ASP.NET 5 RC1 will point ASP.NET Core to an invalid [content root](../index.md#content-root-lbl) location. With such a *applicationhost.config* file, ASP.NET Core will be configured with [content root](../index.md#content-root-lbl)/[web root](../index.md#web-root-lbl) as the [content root](../index.md#content-root-lbl) folder and therefore look for *web.config* in `Content root/wwwroot`. The *web.config* file must be in the [content root](../index.md#content-root-lbl) folder. When configured like this, the app will terminate with an HTTP 500 error.
+An *applicationhost.config* file created with ASP.NET 5 RC1 will point ASP.NET Core to an invalid *content root* location. With such a *applicationhost.config* file, ASP.NET Core will be configured with *content root/web root* as the *content root* folder and therefore look for *web.config* in `Content root/wwwroot`. The *web.config* file must be in the *content root* folder. When configured like this, the app will terminate with an HTTP 500 error.
 
 ## Updating Launch Settings in Visual Studio
 

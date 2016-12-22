@@ -1,5 +1,5 @@
 ---
-title: Creating a complex data model | Microsoft Docs
+title: Creating a complex data model - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,10 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/complex-data-model
 ---
-# Creating a complex data model
+
+# Creating a complex data model - EF Core with ASP.NET Core MVC tutorial (5 of 10)
+
+By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -225,9 +228,9 @@ You could put a `[Required]` attribute on the Instructor navigation property to 
 
 ![Course entity](complex-data-model/_static/course-entity.png)
 
-In *Models/Course.cs*, replace the code you added earlier with the following code:
+In *Models/Course.cs*, replace the code you added earlier with the following code. The changes are highlighted.
 
-[!code-csharp[Main](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,3,10,16,23)]
+[!code-csharp[Main](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,21,23)]
 
 The course entity has a foreign key property `DepartmentID` which points to the related Department entity and it has a `Department` navigation property.
 

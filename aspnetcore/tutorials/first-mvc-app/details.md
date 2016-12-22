@@ -14,6 +14,8 @@ uid: tutorials/first-mvc-app/details
 ---
 # Examining the Details and Delete methods
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 Open the Movie controller and examine the `Details` method:
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_details)]

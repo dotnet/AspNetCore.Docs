@@ -14,7 +14,7 @@ uid: fundamentals/servers/weblistener
 ---
 # WebListener server for ASP.NET Core
 
-By [Tom Dykstra](http://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher)
+By [Tom Dykstra](http://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
 
 WebListener is a [web server for ASP.NET Core](overview.md) that runs only on Windows. It's built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/en-us/library/windows/desktop/aa364510.aspx). WebListener is an alternative to [Kestrel](kestrel.md) that can be used for direct connection to the Internet without relying on IIS as a reverse proxy server. In fact, **WebListener can't be used with IIS or IIS Express, as it isn't compatible with the [ASP.NET Core Module](aspnet-core-module.md).**
 
@@ -78,7 +78,7 @@ There are also [Http.Sys registry settings](https://support.microsoft.com/en-us/
 
 * Configure URLs and ports to listen on 
 
-  By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseURLs` extension method, the `urls` command line argument or the ASP.NET Core configuration system. For more information, see [Hosting](../../fundamentals/hosting.md).
+  By default ASP.NET Core binds to `http://localhost:5000`. To configure URL prefixes and ports, you can use the `UseURLs` extension method, the `urls` command-line argument or the ASP.NET Core configuration system. For more information, see [Hosting](../../fundamentals/hosting.md).
 
   Web Listener uses the [Http.Sys prefix string formats](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx). There are no prefix string format requirements that are specific to WebListener.
 

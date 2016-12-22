@@ -12,14 +12,14 @@ namespace AspNetCoreModuleDemo
     public class Program
     {
         // The default listening address is http://localhost:5000 if none is specified.
-        // You can use the --urls command line flag to change the listening address when
+        // You can use the --urls command-line flag to change the listening address when
         // running without IIS. Example:
         // > dotnet run --urls http://localhost:8080
 
         // Use the following code to configure URLs in code:
         // builder.UseUrls("http://localhost:8080");
         // Put it after UseConfiguration(config) to take precedence over 
-        // command line configuration. IIS config will take precedence over
+        // command-line configuration. IIS config will take precedence over
         // UseUrls.
         #region snippet_Main
         public static int Main(string[] args)

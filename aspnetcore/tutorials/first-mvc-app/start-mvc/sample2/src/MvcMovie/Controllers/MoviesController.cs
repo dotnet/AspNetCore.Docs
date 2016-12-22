@@ -253,7 +253,7 @@ namespace MvcMovie.Controllers
 
 #if Search1
         // First Search
-        // #region snippet_1stSearch
+        #region snippet_1stSearch
         public async Task<IActionResult> Index(string searchString)
         {
             var movies = from m in _context.Movie
@@ -266,13 +266,13 @@ namespace MvcMovie.Controllers
 
             return View(await movies.ToListAsync());
         }
-        // #endregion
+        #endregion
         // End first Search
 #endif
 
 #if SearchID
         // Search ID 
-        // #region snippet_SearchID
+        #region snippet_SearchID
         public async Task<IActionResult> Index(string id)
         {
             var movies = from m in _context.Movie
@@ -285,25 +285,25 @@ namespace MvcMovie.Controllers
 
             return View(await movies.ToListAsync());
         }
-        // #endregion
+        #endregion
         // End search ID
 #endif
 
 #if SearchPost
         // Search Post
-         // #region snippet_SearchPost
+        #region snippet_SearchPost
         [HttpPost]
         public string Index(string searchString, bool notUsed)
         {
             return "From [HttpPost]Index: filter on " + searchString;
         }
-        // #endregion
+        #endregion
         // End SP
 #endif
 
 #if SearchGenre
         // Search by genre.
-        // #region snippet_SearchGenre
+        #region snippet_SearchGenre
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
             // Use LINQ to get list of genres.
@@ -330,7 +330,7 @@ namespace MvcMovie.Controllers
 
             return View(movieGenreVM);
         }
-        // #endregion
+        #endregion
         // End of genre search.
 #endif
 

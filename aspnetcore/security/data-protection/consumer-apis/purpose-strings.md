@@ -20,7 +20,7 @@ Components which consume IDataProtectionProvider must pass a unique *purposes* p
 
 When a consumer specifies a purpose, the purpose string is used along with the root cryptographic keys to derive cryptographic subkeys unique to that consumer. This isolates the consumer from all other cryptographic consumers in the application: no other component can read its payloads, and it cannot read any other component's payloads. This isolation also renders infeasible entire categories of attack against the component.
 
-![image](purpose-strings/_static/purposes.png)
+![Purpose Diagram Example](purpose-strings/_static/purposes.png)
 
 In the diagram above IDataProtector instances A and B **cannot** read each other's payloads, only their own.
 

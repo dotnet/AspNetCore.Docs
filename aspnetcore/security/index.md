@@ -15,7 +15,7 @@ ms.prod: aspnet-core
 
 *   [Authentication](authentication/index.md)
     *   [Introduction to Identity](authentication/identity.md)
-    *   [Enabling authentication using Facebook, Google and other external providers](authentication/sociallogins.md)
+    *   [Enabling authentication using Facebook, Google and other external providers](authentication/social/index.md)
     *   [Account Confirmation and Password Recovery](authentication/accconfirm.md)
     *   [Two-factor authentication with SMS](authentication/2fa.md)
     *   [🔧 Supporting Third Party Clients using OAuth 2.0](authentication/oauth2.md)

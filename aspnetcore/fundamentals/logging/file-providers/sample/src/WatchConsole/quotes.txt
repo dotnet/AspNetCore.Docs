@@ -1,1 +1,0 @@
-"As developers we fail in two ways: we build the thing wrong, or we build the wrong thing." - @ardalis

@@ -14,7 +14,7 @@ uid: security/authentication/identity
 ---
 # Introduction to Identity
 
-By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.com/RickAndMSFT), Tom Dykstra, Jon Galloway and [Erik Reitan](https://github.com/Erikre)
+By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), Jon Galloway, and [Erik Reitan](https://github.com/Erikre)
 
 ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login providers such as Facebook, Google, Microsoft Account, Twitter and more.
 
@@ -88,6 +88,10 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     Identity has some default behaviors that you can override in your application's startup class.
  
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?highlight=5&range=57-78)]
+	
+	For more information about how to configure Identity, see [Configure Identity](identity-configuration.md).
+	
+	You also can configure the data type of the primary key, see [Configure Identity primary keys data type](identity-primary-key-configuration.md).
  
 6.  View the database.
 
@@ -139,4 +143,4 @@ with xref links
 
 * [Two-factor authentication with SMS](2fa.md#security-authentication-2fa)
 
-* [Enabling authentication using Facebook, Google and other external providers](sociallogins.md#security-authentication-social-logins)
+* [Enabling authentication using Facebook, Google and other external providers](social/index.md)

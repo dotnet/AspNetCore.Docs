@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using ViewComponentSample.Models;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ViewComponentSample.Controllers
 {
@@ -17,13 +17,15 @@ namespace ViewComponentSample.Controllers
 
         public IActionResult Index()
         {
-            return View(_ToDoContext.ToDo.ToList());
+            var model = _ToDoContext.ToDo.ToList();
+            return View(model);
         }
-
+        #region snippet_IndexVC
         public IActionResult IndexVC()
         {
             return ViewComponent("PriorityList", new { maxPriority = 3, isDone = false });
         }
+        #endregion
 
         public async Task<IActionResult> IndexFinal()
         {

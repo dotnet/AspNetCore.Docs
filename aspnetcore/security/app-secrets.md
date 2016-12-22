@@ -16,7 +16,7 @@ uid: security/app-secrets
 
 <a name=security-app-secrets></a>
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Daniel Roth](https://github.com/danroth27)
 
 This document shows how you can use the Secret Manager tool to keep secrets out of your code. The most important point is you should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development and test mode. You can instead use the [configuration](../fundamentals/configuration.md) system to read these values from environment variables or from values stored using the Secret Manager tool. The Secret Manager tool helps prevent sensitive data from being checked into source control. The [configuration](../fundamentals/configuration.md) system can read secrets stored with the Secret Manager tool described in this article.
 

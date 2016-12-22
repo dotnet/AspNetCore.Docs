@@ -43,7 +43,7 @@ You can see an example of setting up the request pipeline in the default web sit
 3. Authentication
 4. MVC
 
-[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,23&start=58&end=86)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,23&start=58&end=84)]
 
 In the code above (in non-development environments), `UseExceptionHandler` is the first middleware added to the pipeline, therefore will catch any exceptions that occur in later calls.
 
@@ -64,7 +64,7 @@ The simplest possible ASP.NET application sets up a single request delegate that
 
 The first `App.Run` delegate terminates the pipeline. In the following example, only the first delegate ("Hello, World!") will run.
 
-[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=5&start=21&end=31)]
+[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=5&start=21&end=32)]
 
 You chain multiple request delegates together; the `next` parameter represents the next delegate in the pipeline. You can terminate (short-circuit) the pipeline by *not* calling the *next* parameter. You can typically perform actions both before and after the next delegate, as this example demonstrates:
 
@@ -123,13 +123,16 @@ app.Map("/level1", level1App => {
 
 ASP.NET ships with the following middleware components:
 
-| Middleware | Description   |
-| ----- | -------  |
-| Authentication | Provides authentication support. |
-|  CORS |  Configures Cross-Origin Resource Sharing. |
-| Routing | Defines and constrains request routes. |
-| Session | Provides support for managing user sessions. |
-| Static Files | Provides support for serving static files, and directory browsing. |
+| Middleware | Description |
+| ----- | ------- |
+| [Authentication](xref:security/authentication/identity) | Provides authentication support. |
+| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. |
+| Response Caching | Provides support for caching responses. |
+| Response Compression | Provides support for compressing responses. |
+| [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |
+| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |
+| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |
+| URL Rewriting | Provides support for rewriting URLs and redirecting requests. |
 
 <a name=middleware-writing-middleware></a>
 
@@ -144,7 +147,7 @@ RequestLoggerMiddleware.cs
 [!code-csharp[Main](../fundamentals/middleware/sample/src/MiddlewareSample/RequestLoggerMiddleware.cs?highlight=12,18)]
 
 
-The middleware follows the [`Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/) and exposes all of its dependencies in its constructor. Middleware can take advantage of the `UseMiddleware<T>` extension to inject services directly into their constructors, as shown in the example below. Dependency injected services are automatically filled, and the extension takes a `params` array of arguments to be used for non-injected parameters.
+The middleware follows the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/) and exposes all of its dependencies in its constructor. Middleware can take advantage of the `UseMiddleware<T>` extension to inject services directly into their constructors, as shown in the example below. Dependency injected services are automatically filled, and the extension takes a `params` array of arguments to be used for non-injected parameters.
 
 RequestLoggerExtensions.cs
 

@@ -102,6 +102,12 @@ ms.assetid: df662e78-04e0-489e-8e30-f90ed47e6512
                                     <p>Browse the ASP.NET API, organized by framework and namespace.</p>
                                 </a>
                             </li>
+                            <li class="column column-third">
+                                <a href="https://docs.microsoft.com/en-us/aspnet/webhooks/">
+                                    <h3>WebHooks</h3>
+                                    <p>Learn how to use WebHooks, a lightweight HTTP pattern providing a simple pub/sub model for wiring together Web APIs and SaaS services.</p>
+                                </a>
+                            </li>
                         </ul>
                     </section>
                 </li>

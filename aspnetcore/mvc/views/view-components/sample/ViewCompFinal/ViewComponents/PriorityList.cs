@@ -1,8 +1,9 @@
-﻿#define no
-#if no
-
-using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
+﻿// Used at the very end with Avoiding magic strings
+//#define no_suffix
+#if no_suffix
+#region snippet1
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,6 +33,5 @@ namespace ViewComponentSample.ViewComponents
         }
     }
 }
-
-
+#endregion
 #endif

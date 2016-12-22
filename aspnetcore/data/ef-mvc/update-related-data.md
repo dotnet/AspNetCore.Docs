@@ -1,5 +1,5 @@
 ---
-title: Updating related data | Microsoft Docs
+title: Updating related data - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,8 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/update-related-data
 ---
-# Updating related data
+
+# Updating related data - EF Core with ASP.NET Core MVC tutorial (7 of 10)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -240,7 +241,7 @@ Change some course assignments and click Save. The changes you make are reflecte
 
 In *InstructorsController.cs*, delete the `DeleteConfirmed` method and insert the following code in its place.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=6,9,10,11,12&name=snippet_DeleteConfirmed)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=5-7,9,10,11,12&name=snippet_DeleteConfirmed)]
 
 This code makes the following changes:
 
@@ -252,7 +253,7 @@ This code makes the following changes:
 
 In *InstructorController.cs*, delete the HttpGet and HttpPost `Create` methods, and then add the following code in their place:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=5,14,15,16,17,18,19,20,21,22)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14,15,16,17,18,19,20,21,22)]
 
 This code is similar to what you saw for the `Edit` methods except that initially no courses are selected. The HttpGet `Create` method calls the `PopulateAssignedCourseData` method not because there might be courses selected but in order to provide an empty collection for the `foreach` loop in the view (otherwise the view code would throw a null reference exception).
 

@@ -1,8 +1,8 @@
 ---
 title: Your First ASP.NET Core Application on a Mac Using Visual Studio Code | Microsoft Docs
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: This article will walk you through creating your first web application on a Mac using the Yeoman generator for ASP.NET Core and Visual Studio Code
+keywords: ASP.NET Core, macOS, Yeoman, generator-aspnet, Visual Studio Code
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -14,7 +14,7 @@ uid: tutorials/your-first-mac-aspnet
 ---
 # Your First ASP.NET Core Application on a Mac Using Visual Studio Code
 
-By [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Shayne Boyer](https://twitter.com/spboyer)
+By [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shayne Boyer](https://twitter.com/spboyer)
 
 This article will show you how to write your first ASP.NET Core application on a Mac.
 

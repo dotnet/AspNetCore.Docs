@@ -14,7 +14,7 @@ uid: tutorials/publish-to-azure-webapp-using-vs
 ---
 # Deploy an ASP.NET Core web app to Azure using Visual Studio
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https://github.com/cesarbs)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Cesar Blum Silveira](https://github.com/cesarbs)
 
 ## Set up the development environment
 
@@ -75,7 +75,7 @@ You can fix the problem in two different ways:
 
 * Tap **Apply Migrations** and, once the page updates, refresh the page; or
 
-* Run the following from the command line in the project's directory:
+* Run the following from a command prompt in the project's directory:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 

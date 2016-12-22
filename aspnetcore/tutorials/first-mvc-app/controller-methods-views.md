@@ -14,6 +14,8 @@ uid: tutorials/first-mvc-app/controller-methods-views
 ---
 # Controller methods and views
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 We have a good start to the movie app, but the presentation is not ideal. We don't want to see the time (12:00:00 AM in the image below) and **ReleaseDate** should be two words.
 
 ![image](working-with-sql/_static/m55.png)
@@ -24,17 +26,22 @@ Open the *Models/Movie.cs* file and add the highlighted lines shown below:
 
 * Right click on a red squiggly line **> Quick Actions**.
 
-    ![image](controller-methods-views/_static/qa.png)
+  ![image](controller-methods-views/_static/qa.png)
+
+  > [!Note]
+  > In Visual Studio 2017 RC 2, the menu command is **> Quick Actions and Refactorings**.
 
 * Tap `using System.ComponentModel.DataAnnotations;`
 
-    ![image](controller-methods-views/_static/da.png)
+  ![image](controller-methods-views/_static/da.png)
 
-Visual studio adds `using System.ComponentModel.DataAnnotations;`.
+  Visual studio adds `using System.ComponentModel.DataAnnotations;`.
 
 Let's remove the `using` statements that are not needed. They show up by default in a light grey font. Right click anywhere in the *Movie.cs* file **> Organize Usings > Remove Unnecessary Usings**.
 
 ![image](controller-methods-views/_static/rm.png)
+
+**Visual Studio 2017 RC 2 note:** This step isn't necessary. Unneeded `using` statements were automatically removed.
 
 The updated code:
 
@@ -68,7 +75,7 @@ Open the `Movies` controller and examine the two `Edit` action methods:
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?range=78-92)]
 
-This method will be updated after we add rating (add it to the bind)
+This method will be updated after we add a rating (add it to the bind).
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?range=101-131)]
 
@@ -114,7 +121,7 @@ The `[ValidateAntiForgeryToken]` attribute validates the hidden [XSRF](../../sec
 
 The [model binding](../../mvc/models/model-binding.md) system takes the posted form values and creates a `Movie` object that's passed as the `movie` parameter. The `ModelState.IsValid` method verifies that the data submitted in the form can be used to modify (edit or update) a `Movie` object. If the data is valid it's saved. The updated (edited) movie data is saved to the database by calling the `SaveChangesAsync` method of database context. After saving the data, the code redirects the user to the `Index` action method of the `MoviesController` class, which displays the movie collection, including the changes just made.
 
-Before the form is posted to the server, client side validation checks any validation rules on the fields. If there are any validation errors, an error message is displayed and the form is not posted. If JavaScript is disabled, you won't have client side validation but the server will detect the posted values that are not valid, and the form values will be redisplayed with error messages. Later in the tutorial we examine [Model Validation](../../mvc/models/validation.md) validation in more detail. The [Validation Tag Helper](../../mvc/views/working-with-forms.md) in the *Views/Book/Edit.cshtml* view template takes care of displaying appropriate error messages.
+Before the form is posted to the server, client side validation checks any validation rules on the fields. If there are any validation errors, an error message is displayed and the form is not posted. If JavaScript is disabled, you won't have client side validation but the server will detect the posted values that are not valid, and the form values will be redisplayed with error messages. Later in the tutorial we examine [Model Validation](../../mvc/models/validation.md) validation in more detail. The [Validation Tag Helper](../../mvc/views/working-with-forms.md) in the *Views/Movies/Edit.cshtml* view template takes care of displaying appropriate error messages.
 
 ![image](controller-methods-views/_static/val.png)
 

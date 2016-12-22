@@ -1,5 +1,5 @@
 ---
-title: Getting Started | Microsoft Docs
+title: Getting Started with ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: getting-started
 ---
-# Getting Started
+# Getting Started with ASP.NET Core
 
 1.  Install [.NET Core](https://microsoft.com/net/core)
 
@@ -40,6 +40,8 @@ uid: getting-started
 
 ## Next steps
 
-* [Building your first ASP.NET Core MVC app with Visual Studio](tutorials/first-mvc-app/index.md)
-* [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](tutorials/your-first-mac-aspnet.md)
-* [Building Your First Web API with ASP.NET Core MVC and Visual Studio](tutorials/first-web-api.md)
+For more getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
+
+For an introduction to ASP.NET Core concepts and architecture, see [ASP.NET Core Introduction](index.md) and [ASP.NET Core Fundamentals](fundamentals/index.md).
+
+An ASP.NET Core app can use the .NET Core or .NET Framework runtime. For more information, see [Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).

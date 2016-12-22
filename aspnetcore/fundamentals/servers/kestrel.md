@@ -48,7 +48,7 @@ Even if a reverse proxy server isn't required, using one can simplify load balan
 
 Install the [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) NuGet package.
 
-Call the [`UseKestrel`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilderKestrelExtensions/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel.md) extension method on `WebHostBuilder` in your `Main` method, specifying any [Kestrel options](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Server/Kestrel/KestrelServerOptions/) that you need, as shown in the following example:
+Call the [`UseKestrel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderKestrelExtensions_UseKestrel_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) extension method on `WebHostBuilder` in your `Main` method, specifying any [Kestrel options](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.server.kestrel.kestrelserveroptions) that you need, as shown in the following example:
 
 [!code-csharp[](kestrel/sample/Program.cs?name=snippet_Main&highlight=13-19)]
 
@@ -107,7 +107,7 @@ URL prefixes for Kestrel can be in any of the following formats.
 
 If you specify port number 0, Kestrel dynamically binds to an available port. Binding to port 0 is allowed for any host name or IP except for `localhost` name.
 
-When you specify port 0, you can use  [`IServerAddressesFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/Features/IServerAddressesFeature/index.html#Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature.md) to determine which port Kestrel actually bound to at runtime. The following example gets the bound port and displays it on the console.
+When you specify port 0, you can use  [`IServerAddressesFeature`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.server.features.iserveraddressesfeature) to determine which port Kestrel actually bound to at runtime. The following example gets the bound port and displays it on the console.
 
 [!code-csharp[](kestrel/sample/Startup.cs?name=snippet_Configure)]
 

@@ -99,9 +99,9 @@ Add `uglify` to minify your bundled JavaScript files and `cssmin` to minify your
 
 [!code-js[Main](bundling-and-minification/samples/WebApplication1/src/WebApplication1/gulpfile.js?highlight=4,11&range=31-43)]
 
-To run bundling and minification tasks from the command-line using gulp (`gulp min`), or you can also execute any of your gulp tasks from within Visual Studio using the **Task Runner Explorer**. To use the **Task Runner Explorer** select *gulpfile.js* in the Solution Explorer and then select **Tools > Task Runner Explorer**:
+You can run bundling and minification tasks from a command prompt using gulp (`gulp min`), or you can also execute any of your gulp tasks from within Visual Studio using the **Task Runner Explorer**. To use the **Task Runner Explorer** select *gulpfile.js* in the Solution Explorer and then select **Tools > Task Runner Explorer**:
 
-![image](bundling-and-minification/_static/task-runner-explorer.png)
+![Task Runner Explorer](bundling-and-minification/_static/task-runner-explorer.png)
 
 > [!NOTE]
 > The gulp tasks for bundling and minification do not general run when your project is built and must be run manually.

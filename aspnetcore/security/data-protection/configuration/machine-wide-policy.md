@@ -19,7 +19,7 @@ uid: security/data-protection/configuration/machine-wide-policy
 When running on Windows, the data protection system has limited support for setting default machine-wide policy for all applications which consume data protection. The general idea is that an administrator might wish to change some default setting (such as algorithms used or key lifetime) without needing to manually update every application on the machine.
 
 >[!WARNING]
-> The system administrator can set default policy, but he cannot enforce it. The application developer can always override any value with one of his own choosing. The default policy only affects applications where the developer has not specified an explicit value for some particular setting.
+> The system administrator can set default policy, but they cannot enforce it. The application developer can always override any value with one of their own choosing. The default policy only affects applications where the developer has not specified an explicit value for some particular setting.
 
 ## Setting default policy
 

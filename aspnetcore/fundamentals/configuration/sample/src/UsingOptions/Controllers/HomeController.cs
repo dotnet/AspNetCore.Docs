@@ -1,21 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#define First
+#if First
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using UsingOptions.Models;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace UsingOptions.Controllers
 {
+    #region snippet1
     public class HomeController : Controller
     {
-        private readonly IOptions<MyOptions> _optionsAccessor;
+        private readonly MyOptions _optionsAccessor;
 
         public HomeController(IOptions<MyOptions> optionsAccessor)
         {
-            _optionsAccessor = optionsAccessor;
+            _optionsAccessor = optionsAccessor.Value;
         }
 
-        // GET: /<controller>/
-        public IActionResult Index() => View(_optionsAccessor.Value);
+        public IActionResult Index()
+        {
+            var option1 = _optionsAccessor.Option1;
+            var option2 = _optionsAccessor.Option2;
+            return Content($"option1 = {option1}, option2 = {option2}");
+        }
     }
+    #endregion
 }
+#endif
