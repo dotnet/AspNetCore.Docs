@@ -1,4 +1,4 @@
-﻿---
+---
 title: Building Your First Web API with ASP.NET Core MVC and Visual Studio | Microsoft Docs
 author: rick-anderson
 description: 
