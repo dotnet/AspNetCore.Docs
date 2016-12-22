@@ -195,7 +195,7 @@ services.ConfigureSwaggerGen(options =>
 
 The following image shows the Swagger UI displaying the version information added.
 
-![Swaggar UI with version information: description, author, and see more link](web-api-help-pages-using-swagger/_static/custom-info.png)
+![Swagger UI with version information: description, author, and see more link](web-api-help-pages-using-swagger/_static/custom-info.png)
 
 ### XML Comments
 
@@ -216,7 +216,7 @@ Adding the triple slash comments to the method enhances the Swagger UI by adding
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/src/TodoApi/Controllers/TodoController.cs?name=Delete_Method&highlight=2)]
 
-![Swaggar UI showing XML comment 'Deletes a specific To do Item' for the DELETE method](web-api-help-pages-using-swagger/_static/triple-slash-comments.png)
+![Swagger UI showing XML comment 'Deletes a specific To do Item' for the DELETE method](web-api-help-pages-using-swagger/_static/triple-slash-comments.png)
 
 Note that the UI is driven by the generated JSON file, and these comments are also in that file as well.
 
@@ -255,7 +255,7 @@ Here is a more robust example, adding `<remarks />` where the content can be jus
 
 Notice the enhancement of the UI with these additional comments.
 
-![Swaggar UI with additional comments shown](web-api-help-pages-using-swagger/_static/xml-comments-extended.png)
+![Swagger UI with additional comments shown](web-api-help-pages-using-swagger/_static/xml-comments-extended.png)
 
 ### DataAnnotations
 
@@ -274,7 +274,7 @@ Take the `Create()` method for example, currently it returns only "201 Created" 
 
 [!code-csharp[Main](../tutorials/web-api-help-pages-using-swagger/sample/src/TodoApi/Controllers/TodoController.cs?name=Create_Method&highlight=17,18,20,21)]
 
-![Swaggar UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages](web-api-help-pages-using-swagger/_static/data-annotations-response-types.png)
+![Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages](web-api-help-pages-using-swagger/_static/data-annotations-response-types.png)
 
 ### Customizing the UI
 
@@ -307,7 +307,7 @@ Enable static files middleware.
 
 Acquire the core *index.html* file used for the Swagger UI page from the `Github repository <https://github.com/domaindrivendev/Ahoy/tree/master/test/WebSites/CustomizedUi/wwwroot/swagger/ui>`_ and put that in the `wwwroot/swagger/ui` folder and also create a new `custom.css` file in the same folder.
 
-![Solution Explorer showing Swaggar UI custom css and html files within the wwwroot folder of the application](web-api-help-pages-using-swagger/_static/custom-files-folder-view.png)
+![Solution Explorer showing Swagger UI custom css and html files within the wwwroot folder of the application](web-api-help-pages-using-swagger/_static/custom-files-folder-view.png)
 
 Reference *custom.css* in the *index.html* file.
 
@@ -334,6 +334,6 @@ The following CSS provides a simple sample of a custom header title to the page.
 </body>
 ```
 
-![Swaggar UI with custom header title](web-api-help-pages-using-swagger/_static/custom-header.png)
+![Swagger UI with custom header title](web-api-help-pages-using-swagger/_static/custom-header.png)
 
 There is much more you can do with the page, see the full capabilities for the UI resources at the [Swagger UI Github repository](https://github.com/swagger-api/swagger-ui).
