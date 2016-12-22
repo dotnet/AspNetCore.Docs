@@ -86,7 +86,7 @@ The `commands` section of  the *project.json* file is no longer supported. Use `
 
 .NET Core CLI has introduced the concept of tools. *project.json* now supports a `tools` section where packages containing tools can be specified. Some important functionality for ASP.NET Core 1.0 applications has been moved to tools.
 
-See [.NET Core CLI extensibility model](https://dotnet.github.io/docs/core-concepts/core-sdk/cli/extensibility.html) for more information on .NET Core CLI tools.
+See [.NET Core CLI extensibility model](https://docs.microsoft.com/dotnet/articles/core/tools/extensibility) for more information on .NET Core CLI tools.
 
 ### Publishing to IIS
 
@@ -119,8 +119,6 @@ The `ef` tool is now provided in the `Microsoft.EntityFrameworkCore.Tools` packa
   }
 }
 ```
-
-For more information, see [.NET Core CLI](https://docs.efproject.net/en/latest/cli/dotnet.html).
 
 ### Razor tools
 

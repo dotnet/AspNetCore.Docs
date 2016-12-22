@@ -513,7 +513,7 @@ The generated HTML:
 
 ### Multiple select
 
-The Select Tag Helper  will automatically generate the [multiple = "multiple"](https://www.w3.org/TR/html-markup/select.html#select.attrs.multiple)  attribute if the property specified in the `asp-for` attribute is an `IEnumerable`. For example, given the following model:
+The Select Tag Helper  will automatically generate the [multiple = "multiple"](http://w3c.github.io/html-reference/select.html)  attribute if the property specified in the `asp-for` attribute is an `IEnumerable`. For example, given the following model:
 
 [!code-csharp[Main](../../mvc/views/working-with-forms/sample/final/ViewModels/CountryViewModelIEnumerable.cs?highlight=6)]
 
