@@ -82,7 +82,7 @@ That is, an anchor tag that makes this an email link. You might want to do this 
 4.  Run the app and use your favorite browser to view the HTML source so you can verify that the email tags are replaced with anchor markup (For example, `<a>Support</a>`). *Support* and *Marketing* are rendered as a links, but they don't have an `href` attribute to make them functional. We'll fix that in the next section.
 
 > [!NOTE]
-> Like [HTML tags and attributes](http://www.w3.org/TR/html-markup/documents.html#case-insensitivity), tags, class names and attributes in Razor, and C# are not case-sensitive.
+> Like HTML tags and attributes, tags, class names and attributes in Razor, and C# are not case-sensitive.
 
 ## A working email Tag Helper
 

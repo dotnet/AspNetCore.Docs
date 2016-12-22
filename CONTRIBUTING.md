@@ -112,7 +112,7 @@ Our goal is to write documentation that is easily understandable by the widest p
 
 ## Redirects
 
-If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article won't get 404s.  To seet up a redirect, create a file that has the redirect target URL as shown below, and put it in the original file's location. 
+If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article won't get 404s.  To set up a redirect, create a file that has the redirect target URL as shown below, and put it in the original file's location. 
 
 ```
 ---

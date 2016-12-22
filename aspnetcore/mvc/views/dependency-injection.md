@@ -43,7 +43,7 @@ The sample repository uses an in-memory collection. The implementation shown abo
 
 The sample displays data from the model bound to the view and the service injected into the view:
 
-![image](dependency-injection/_static/screenshot.png)
+![To Do view listing total items, completed items, average priority, and a list of tasks with their priority levels and boolean values indicating completion.](dependency-injection/_static/screenshot.png)
 
 ## Populating Lookup Data
 
@@ -55,7 +55,7 @@ An alternative approach injects services directly into the view to obtain the op
 
 The HTML form used to update these preferences includes dropdown lists for three of the properties:
 
-![image](dependency-injection/_static/updateprofile.png)
+![Update Profile view with a form allowing the entry of name, gender, state, and favorite Color.](dependency-injection/_static/updateprofile.png)
 
 These lists are populated by a service that has been injected into the view:
 
@@ -72,7 +72,7 @@ The `ProfileOptionsService` is a UI-level service designed to provide just the d
 
 In addition to injecting new services, this technique can also be used to override previously injected services on a page. The figure below shows all of the fields available on the page used in the first example:
 
-![image](dependency-injection/_static/razor-fields.png)
+![Intellisense contextual menu on a typed @ symbol listing Html, Component, StatsService, and Url fields](dependency-injection/_static/razor-fields.png)
 
 As you can see, the default fields include `Html`, `Component`, and `Url` (as well as the `StatsService` that we injected). If for instance you wanted to replace the default HTML Helpers with your own, you could easily do so using `@inject`:
 

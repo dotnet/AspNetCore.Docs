@@ -24,7 +24,7 @@ By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](http://ardalis.
 
 Filters run within the *MVC action invocation pipeline*, sometimes referred to as the *filter pipeline*.  The filter pipeline runs after MVC selects the action to execute.
 
-![image](filters/_static/filter-pipeline-1.png)
+![The request is processed through Other Middleware, Routing Middleware, Action Selection, and the MVC Action Invocation Pipeline. The request processing continues back through Action Selection, Routing Middleware, and various Other Middleware before becoming a response sent to the client.](filters/_static/filter-pipeline-1.png)
 
 ### Filter Types
 
@@ -42,7 +42,7 @@ Each filter type is executed at a different stage in the filter pipeline.
 
 The following diagram shows how these filter types interact in the filter pipeline.
 
-![image](filters/_static/filter-pipeline-2.png)
+![The request is processed through Authorization Filters, Resource Filters, Model Binding, Action Filters, Action Execution and Action Result Conversion, Exception Filters, Result Filters, and Result Execution. On the way out, the request is only processed by Result Filters and Resource Filters before becoming a response sent to the client.](filters/_static/filter-pipeline-2.png)
 
 ### Implementation
 
@@ -75,7 +75,7 @@ Attributes allow filters to accept arguments, as shown in the example above. You
 
 The result of the `Index` action is shown below - the response headers are displayed on the bottom right.
 
-![image](filters/_static/add-header.png)
+![Developer Tools of Microsoft Edge showing response headers, including Author Steve Smith @ardalis](filters/_static/add-header.png)
 
 Several of the filter interfaces have corresponding attributes that can be used as base classes for custom implementations.
 
