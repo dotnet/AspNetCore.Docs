@@ -107,11 +107,11 @@ To create a password and sign in using your email that you set during the sign i
 
 * Tap the **Hello <email alias>** link at the top right corner to navigate to the **Manage** view.
 
-![Web application Manage view](index/_static/pass1.PNG)
+![Web application Manage view](index/_static/pass1a.png)
 
 * Tap **Create**
 
-![Set your password page](index/_static/pass2.PNG)
+![Set your password page](index/_static/pass2a.png)
 
 * Set a valid password and you can use this to sign in with your email.
 
