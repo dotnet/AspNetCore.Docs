@@ -42,7 +42,7 @@ Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
 Update the */Views/Movies/Create.cshtml* with a `Rating` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](../../mvc/views/tag-helpers/intro.md).
 
-![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contexutal menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](new-field/_static/cr.png)
+![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](new-field/_static/cr.png)
 
 The app won't work until we update the DB to include the new field. If you run it now, you'll get the following `SqlException`:
 
