@@ -28,7 +28,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
     In Visual Studio, select **File** -> **New** -> **Project**. Then, select the **ASP.NET Web Application** from the **New Project** dialog box. Continue by selecting an ASP.NET Core **Web Application** with **Individual User Accounts** as the authentication method.
  
-    ![image](identity/_static/01-mvc.png)
+    ![New Project dialog](identity/_static/01-mvc.png)
  
     The created project contains the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` package, which will persist the identity data and schema to SQL Server using [Entity Framework Core](https://docs.efproject.net).
  
@@ -51,7 +51,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
     Launch the application from Visual Studio (**Debug** -> **Start Debugging**) and then click on the **Register** link in the browser to create a user. The following image shows the Register page which collects the user name and password.
  
-    ![image](identity/_static/02-reg.png)
+    ![Register page with user input fields for Email (Username), Password, and Confirm Password](identity/_static/02-reg.png)
  
     When the user clicks the **Register** link, the `UserManager` and `SignInManager` services are injected into the Controller:
  
@@ -107,13 +107,13 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     
     Next, right-click the **dbo.AspNetUsers** table and select **View Data** to see the properties of the user you created.
     
-    ![image](identity/_static/04-db.png)
+    ![Contextual menu on AspNetUsers database table](identity/_static/04-db.png)
 
 ## Identity Components
 
 The primary reference assembly for the identity system is `Microsoft.AspNetCore.Identity`. This package contains the core set of interfaces for ASP.NET Core Identity.
 
-![image](identity/_static/05-dependencies.png)
+![Project references of ASP.NET Core Identity](identity/_static/05-dependencies.png)
 
 These dependencies are needed to use the identity system in ASP.NET Core applications:
 
