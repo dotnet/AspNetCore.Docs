@@ -8,3 +8,4 @@
 # [Bundling and Minification](bundling-and-minification.md)
 # [🔧 Working with a Content Delivery Network (CDN)](cdn.md)
 # [Building Projects with Yeoman](yeoman.md)
+# [Using Browser Link](using-browserlink.md)

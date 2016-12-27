@@ -24,3 +24,4 @@ ms.prod: aspnet-core
 - [🔧 Working with a Content Delivery Network (CDN)](cdn.md)
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/asp-net-core.html)
 - [Building Projects with Yeoman](yeoman.md)
+- [Using Browser Link](using-browserlink.md)
