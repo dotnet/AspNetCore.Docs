@@ -25,8 +25,7 @@ namespace FiltersSample.Filters
 
         public void OnResultExecuted(ResultExecutedContext context)
         {
-            // Can't add to headers because response has already begun.
-            _logger.LogInformation("OnResultExecuted");
+            // Can't add to headers here because response has already begun.
         }
     }
     #endregion

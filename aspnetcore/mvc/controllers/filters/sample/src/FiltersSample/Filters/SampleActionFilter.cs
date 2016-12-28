@@ -1,7 +1,6 @@
 ﻿using FiltersSample.Helper;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-#region snippet_ActionFilter
 namespace FiltersSample.Filters
 {
     #region snippet_ActionFilter
