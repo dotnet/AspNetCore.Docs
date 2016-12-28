@@ -18,6 +18,6 @@ ASP.NET Core Identity allows you to easily configure the data type you want for 
 
     [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Data/ApplicationDbContext.cs?highlight=3&range=9-26)]
 	
-3.  Use you models and the data type you want for primary keys when you declare the identity service in your application's startup class
+3.  Use your models and the data type you want for primary keys when you declare the identity service in your application's startup class
 
     [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=9-11&range=39-79)]
