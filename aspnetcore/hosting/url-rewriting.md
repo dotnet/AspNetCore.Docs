@@ -31,7 +31,7 @@ You can define rules for changing the URL in several ways, including regular exp
 > [!NOTE]
 > URL rewriting can reduce the performance of an application. Where feasible, you should design systems that don't require URL rewriting.
 
-## The difference between URL redirect and URL rewrite
+## URL redirect and URL rewrite
 The difference in wording between *URL redirect* and *URL rewrite* may seem subtle at first but has important implications for providing resources to clients. URL Rewriting Middleware is capable of meeting the need for both.
 
 A *URL redirect* is a client-side operation, where the client is instructed to access a resource at another address. This requires a round-trip to the server, and the redirect URL returned to the client will appear in the browser's address bar when the client makes a new request for the resource. If **http://www.mysite.com/resource** is *redirected* to **http://www.mysite.com/different-resource**, the client will request **http://www.mysite.com/resource**, and the server will respond that the client should obtain the resource at **http://www.mysite.com/different-resource** with a status code indicating that the redirect is either temporary or permanent. The client will execute a new request for the resource at the redirect URL.
