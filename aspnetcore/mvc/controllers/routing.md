@@ -64,7 +64,7 @@ The route template:
 
 * `{id?}` defines `id` as optional
 
-Default and optional route parameters do not need to be present in the URL path for a match. See the  [Routing](../../fundamentals/routing.md) for a detailed description of route template syntax.
+Default and optional route parameters do not need to be present in the URL path for a match. See [Route Template Reference](../../fundamentals/routing.md#route-template-reference) for a detailed description of route template syntax.
 
 `"{controller=Home}/{action=Index}/{id?}"` can match the URL path `/` and will produce the route values `{ controller = Home, action = Index }`. The values for `controller` and `action` make use of the default values, `id` does not produce a value since there is no corresponding segment in the URL path. MVC would use these route values to select the `HomeController` and `Index` action:
 
@@ -123,7 +123,7 @@ routes.DefaultHandler = new MvcRouteHandler(...);
 app.UseRouter(routes.Build());
 ```
 
-`UseMvc` does not directly define any routes, it adds a placeholder to the route collection for the `attribute` route. The overload `UseMvc(Action<IRouteBuilder>)` lets you add your own routes and also supports attribute routing.  `UseMvc` and all of its variations adds a placeholder for the attribute route - attribute routing is always available regardless of how you configure `UseMvc`. `UseMvcWithDefaultRoute` defines a default route and supports attribute routing. The <!-- Some exception as occured. Possible loss of data --> section includes more details on attribute routing.
+`UseMvc` does not directly define any routes, it adds a placeholder to the route collection for the `attribute` route. The overload `UseMvc(Action<IRouteBuilder>)` lets you add your own routes and also supports attribute routing.  `UseMvc` and all of its variations adds a placeholder for the attribute route - attribute routing is always available regardless of how you configure `UseMvc`. `UseMvcWithDefaultRoute` defines a default route and supports attribute routing. The [Attribute Routing](#attribute-routing-ref-label) section includes more details on attribute routing.
 
 <a name=routing-conventional-ref-label></a>
 
@@ -288,9 +288,9 @@ public class MyDemoController : Controller
 ```
 
 > [!NOTE]
-> The route templates  above doesn't define route parameters for `action`, `area`, and `controller`. In fact, these route parameters are not allowed in attribute routes. Since the route template is already assocated with an action, it wouldn't make sense to parse the action name from the URL.
+> The route templates above don't define route parameters for `action`, `area`, and `controller`. In fact, these route parameters are not allowed in attribute routes. Since the route template is already assocated with an action, it wouldn't make sense to parse the action name from the URL.
 
-Attribute routing can also make use of the `HTTP[Verb]` attributes such as `HttpPostAttribute`. All of these attributes can accept a route template. This example shows two actions that match the same route template:
+Attribute routing can also make use of the `Http[Verb]` attributes such as `HttpPostAttribute`. All of these attributes can accept a route template. This example shows two actions that match the same route template:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
@@ -308,7 +308,7 @@ public IActionResult CreateProduct(...)
 }
 ```
 
-For a URL path like `/products` the `ProductsApi.ListProducts` action will be executed when the HTTP verb is `GET` and `ProductsApi.CreateProduct` will be executed when the HTTP verb is `POST`. Attribute routing first matches the URL against the set of route templates defined by route attributes. Once a route template matches,   `IActionConstraint` constraints are applied to determine which actions can be executed.
+For a URL path like `/products` the `ProductsApi.ListProducts` action will be executed when the HTTP verb is `GET` and `ProductsApi.CreateProduct` will be executed when the HTTP verb is `POST`. Attribute routing first matches the URL against the set of route templates defined by route attributes. Once a route template matches, `IActionConstraint` constraints are applied to determine which actions can be executed.
 
 > [!TIP]
 > When building a REST API, it's rare that you will want to use `[Route(...)]` on an action method. It's better to use the more specific `Http*Verb*Attributes` to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
@@ -428,6 +428,8 @@ public class ProductsController : MyBaseController
 
 Token replacement also applies to route names defined by attribute routes. `[Route("[controller]/[action]", Name="[controller]_[action]")]` will generate a unique route name for each action.
 
+To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
+
 <a name=routing-multiple-routes-ref-label></a>
 
 ### Multiple Routes
@@ -477,6 +479,25 @@ public class ProductsController : Controller
 
 > [!TIP]
 > While using multiple routes on actions can seem powerful, it's better to keep your application's URL space simple and well-defined. Use multiple routes on actions only where needed, for example to support existing clients.
+
+
+<a name=routing-attr-options></a>
+
+### Specifying attribute route optional parameters, default values, and constraints
+
+Attribute routes support the same inline syntax as conventional routes to specify optional parameters, default values, and constraints.
+
+<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
+
+```csharp
+[HttpPost("product/{id:int}")]
+public IActionResult ShowProduct(int id)
+{
+   // ...
+}
+```
+
+See [Route Template Reference](../../fundamentals/routing.md#route-template-reference) for a detailed description of route template syntax.
 
 <a name=routing-cust-rt-attr-irt-ref-label></a>
 
