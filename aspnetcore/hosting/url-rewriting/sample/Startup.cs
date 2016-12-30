@@ -100,7 +100,6 @@ namespace URLRewritingSample
             if (path.EndsWith(".xml", StringComparison.OrdinalIgnoreCase))
             {
                 var response = context.HttpContext.Response;
-
                 response.StatusCode = StatusCodes.Status301MovedPermanently;
                 context.Result = RuleResult.EndResponse;
                 response.Headers[HeaderNames.Location] = "/xmlfiles" + path + request.QueryString;
