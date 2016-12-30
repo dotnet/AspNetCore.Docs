@@ -5,7 +5,7 @@ description: An introduction to URL rewriting and redirecting with instructions 
 keywords: ASP.NET Core, URL rewriting, URL rewrite, URL redirecting, URL redirect, middleware, apache_mod
 ms.author: riande
 manager: wpickett
-ms.date: 12/21/2016
+ms.date: 12/30/2016
 ms.topic: article
 ms.assetid: e6130638-c410-4161-9921-b658ce988bd1
 ms.technology: aspnet
@@ -18,13 +18,14 @@ By [Luke Latham](https://github.com/GuardRex) and [Mikael Mengistu](https://gith
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/url-rewriting/sample)
 
-URL rewriting is the act of changing request URLs into different URLs based on one or more predefined rules. URL rewriting creates an abstraction between resource locations and their addresses so that the locations and addresses are not tightly linked. There are several scenarios where URL rewriting is valuable:
+URL rewriting is the act of modifying request URLs based on one or more predefined rules. URL rewriting creates an abstraction between resource locations and their addresses so that the locations and addresses are not tightly linked. There are several scenarios where URL rewriting is valuable:
 * Moving or replacing server resources temporarily or permanently while maintaining stable locators for those resources
 * Splitting request processing across different applications or across areas of one application
 * Removing, adding, or reorganizing URL segments on incoming requests
 * Optimizing public URLs for Search Engine Optimization (SEO)
 * Permitting the use of friendly public URLs to help people predict the content they will find by following a link
 * Redirecting insecure requests to secure endpoints
+* Preventing image hotlinking
 
 You can define rules for changing the URL in several ways, including regular expression (regex) matching rules, rules based on the Apache mod_rewrite module, rules based on the IIS Rewrite Module, and with your own method and class rule logic. This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core applications.
 
@@ -32,18 +33,17 @@ You can define rules for changing the URL in several ways, including regular exp
 > URL rewriting can reduce the performance of an application. Where feasible, you should design systems that don't require URL rewriting.
 
 ## URL redirect and URL rewrite
-The difference in wording between *URL redirect* and *URL rewrite* may seem subtle at first but has important implications for providing resources to clients. URL Rewriting Middleware is capable of meeting the need for both.
+The difference in wording between *URL redirect* and *URL rewrite* may seem subtle at first but has important implications for providing resources to clients. ASP.NET Core's URL Rewriting Middleware is capable of meeting the need for both.
 
 A *URL redirect* is a client-side operation, where the client is instructed to access a resource at another address. This requires a round-trip to the server, and the redirect URL returned to the client will appear in the browser's address bar when the client makes a new request for the resource. If **http://www.mysite.com/resource** is *redirected* to **http://www.mysite.com/different-resource**, the client will request **http://www.mysite.com/resource**, and the server will respond that the client should obtain the resource at **http://www.mysite.com/different-resource** with a status code indicating that the redirect is either temporary or permanent. The client will execute a new request for the resource at the redirect URL.
 
 ![file.txt has been moved from folder1 into folder2 on the server. A client requests file.txt in folder1. The server sends back a 302 (Found) response with the new, temporary location of file.txt in folder2. The client makes a second request for the resource at the redirect URL. The server fetches and returns the file with a 200 (OK) status code.](url-rewriting/_static/url_redirect.png)
 
-A *URL rewrite* is a server-side operation to provide a resource from a different resource address. Rewriting a URL doesn't require a round-trip to the server, and the rewritten URL is not returned to the client and won't appear in a browser's address bar. When **http://www.mysite.com/resource** is *rewritten* to **http://www.mysite.com/different-resource**, the client will request **http://www.mysite.com/resource**, and the server will *internally* fetch the resource at **http://www.mysite.com/different-resource**. Although the client might be able to retrieve the resource at the rewritten URL, the client won't be informed that the resource exists at the rewritten URL when it makes its request and receives the response.
+When redirecting requests to a different URL, you will indicate whether the redirect is permanent or temporary. The 301 (Moved Permanently) status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. The client will cache the response when a 301 status code is received. The 302 (Found) status code is used where the redirection is temporary or generally subject to change, such that the client should not store and reuse the redirect URL in the future. For more information, see [RFC 2616: Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+
+A *URL rewrite* is a server-side operation to provide a resource from a different resource address. Rewriting a URL doesn't require a round-trip to the server. The rewritten URL is not returned to the client and won't appear in a browser's address bar. When **http://www.mysite.com/resource** is *rewritten* to **http://www.mysite.com/different-resource**, the client will request **http://www.mysite.com/resource**, and the server will *internally* fetch the resource at **http://www.mysite.com/different-resource**. Although the client might be able to retrieve the resource at the rewritten URL, the client won't be informed that the resource exists at the rewritten URL when it makes its request and receives the response.
 
 ![file.txt has been moved from folder1 into folder2 on the server. A client requests file.txt in folder1. The request URL is rewritten to fetch file.txt from folder2. The file is returned to the client with a 200 (OK) status code.](url-rewriting/_static/url_rewrite.png)
-
-## Response Status Codes: 301 (Moved Permanently) and 302 (Found)
-When redirecting requests to a different URL, you will indicate whether the redirect is permanent or temporary. The 301 (Moved Permanently) status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. The 302 (Found) status code is used where the redirection is temporary or generally subject to change, such that the client should not store and reuse the redirect URL in the future. For more information, see [RFC 2616: Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 ## URL Rewriting Middleware
 You can explore the features of the URL Rewriting Middleware with the [URL Rewriting sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/hosting/url-rewriting/sample). The application applies rewrite and redirect rules and shows the resultant rewritten or redirected URL.
@@ -136,7 +136,7 @@ Following the `^rewrite-rule/` portion of the expression, there are two capture 
 There is no roundtrip to the server to obtain the resource. If the resource exists, it's fetched and returned to the client with a 200 (OK) status code. Because the client isn't redirected, the URL in the browser address bar doesn't change. As far as the client is concerned, the URL rewrite operation never occurred.
 
 > [!NOTE]
-> `skipRemainingRules: true` should be used whenever possible, because matching rules is an expensive process and slows down application response time. For the fastest application response, order your rewrite rules from most frequently matched to least frequently matched and skip the processing of the remaining rules when a match occurs.
+> `skipRemainingRules: true` should be used whenever possible, because matching rules is an expensive process and slows down application response time. For the fastest application response, order your rewrite rules from most frequently matched to least frequently matched and skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
 
 #### Apache mod_rewrite
 You can apply Apache mod_rewrite rules with `AddApacheModRewrite()`. The first parameter takes an `IFileProvider`, which is provided in the sample application via [Dependency Injection](xref:fundamentals/dependency-injection) by injecting the `IHostingEnvironment` and using it to provide the `ContentRootFileProvider`. The second parameter is the path to your rules file, which is **ApacheModRewrite.txt** in the sample application. You must make sure that the rules file is deployed with the application. For more information and examples of mod_rewrite rules, see [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
@@ -213,8 +213,6 @@ The middleware does not support the following IIS URL Rewrite Module features:
 * Rewrite Maps
 * CustomResponse action
 * Custom Server Variables
-* AbortRequest action
-* None action
 * trackAllCaptures
 * Wildcards
 * LogRewrittenUrl
