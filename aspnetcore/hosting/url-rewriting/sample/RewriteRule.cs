@@ -19,7 +19,7 @@ namespace RewriteRules
         {
             if (string.IsNullOrEmpty(extension))
             {
-                throw new ArgumentNullException(nameof(extension));
+                throw new ArgumentException(nameof(extension));
             }
 
             if (!Regex.IsMatch(extension, @"^\.(png|jpg|gif)$"))
@@ -53,7 +53,6 @@ namespace RewriteRules
                 var response = context.HttpContext.Response;
                 response.StatusCode = StatusCodes.Status301MovedPermanently;
                 context.Result = RuleResult.EndResponse;
-
                 response.Headers[HeaderNames.Location] = _target + path + request.QueryString;
             }
         }
