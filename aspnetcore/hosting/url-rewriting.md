@@ -300,3 +300,4 @@ Replace a URL segment | `^(.*)/segment2/(.*)`<br>**/segment1/segment2/segment3**
 * [IIS URL Rewrite Module Forum](https://forums.iis.net/1152.aspx)
 * [Keep a simple URL structure](https://support.google.com/webmasters/answer/76329?hl=en)
 * [10 URL Rewriting Tips and Tricks](http://ruslany.net/2009/04/10-url-rewriting-tips-and-tricks/)
+* [To slash or not to slash](https://webmasters.googleblog.com/2010/04/to-slash-or-not-to-slash.html)
