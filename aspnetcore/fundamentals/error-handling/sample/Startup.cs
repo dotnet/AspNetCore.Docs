@@ -1,6 +1,9 @@
 ﻿#define StatusCodePages // or StatusCodePagesWithRedirect
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Net;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace ErrorHandlingSample
 {
@@ -31,11 +35,10 @@ namespace ErrorHandlingSample
             {
                 app.UseExceptionHandler("/error");
             }
+            #endregion
 
-            #endregion snippet_DevExceptionPage
-
-        //if StatusCodePages
-        #region snippet_StatusCodePages
+            #if StatusCodePages
+            #region snippet_StatusCodePages
             app.UseStatusCodePages(async context =>
             {
                 context.HttpContext.Response.ContentType = "text/plain";
@@ -43,17 +46,15 @@ namespace ErrorHandlingSample
                     "Status code page, status code: " +
                     context.HttpContext.Response.StatusCode);
             });
-            #endregion snippet_StatusCodePages
-        //endif
-
-
-        //if StatusCodePagesWithRedirect
-        #region snippet_StatusCodePagesWithRedirect
+            #endregion
+            #endif
+            #if StatusCodePagesWithRedirect
+            #region snippet_StatusCodePagesWithRedirect
             app.UseStatusCodePagesWithRedirects("/error/{0}");
-            #endregion snippet_StatusCodePagesWithRedirect
-        //endif
+            #endregion
+            #endif
 
-        app.MapWhen(context => context.Request.Path == "/missingpage", builder => { });
+            app.MapWhen(context => context.Request.Path == "/missingpage", builder => { });
 
             // "/error/400"
             app.Map("/error", error =>
@@ -81,8 +82,7 @@ namespace ErrorHandlingSample
                     await context.Response.WriteAsync(builder.ToString());
                 });
             });
-
-        #region snippet_AppRun
+            #region snippet_AppRun
             app.Run(async (context) =>
             {
                 if (context.Request.Query.ContainsKey("throw"))
@@ -100,7 +100,7 @@ namespace ErrorHandlingSample
                 context.Response.ContentType = "text/html";
                 await context.Response.WriteAsync(builder.ToString());
             });
-            #endregion snippet_AppRun
+            #endregion
         }
     }
 }
