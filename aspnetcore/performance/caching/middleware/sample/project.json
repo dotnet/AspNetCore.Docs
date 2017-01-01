@@ -1,12 +1,12 @@
 {
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
   "dependencies": {
     "Microsoft.AspNetCore.ResponseCaching": "1.1.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
     "Microsoft.Extensions.Caching.Memory": "1.1.0"
-  },
-  "buildOptions": {
-    "emitEntryPoint": true
   },
   "frameworks": {
     "net451": {},
@@ -24,10 +24,10 @@
       "web.config"
     ]
   },
-  "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
-  },
   "scripts": {
     "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
+  },
+  "tools": {
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
   }
 }
