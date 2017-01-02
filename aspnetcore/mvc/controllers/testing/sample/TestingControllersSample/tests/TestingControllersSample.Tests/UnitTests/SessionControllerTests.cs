@@ -23,7 +23,7 @@ namespace TestingControllersSample.Tests.UnitTests
             // Act
             var result = await controller.Index(id: null);
 
-            // Arrange
+            // Assert
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Home", redirectToActionResult.ControllerName);
             Assert.Equal("Index", redirectToActionResult.ActionName);
