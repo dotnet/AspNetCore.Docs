@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 
 namespace ResponseCachingSample
@@ -41,8 +42,12 @@ namespace ResponseCachingSample
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
-                .UseKestrel()
+                .ConfigureLogging(factory =>
+                {
+                    factory.AddConsole(LogLevel.Debug);
+                })
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseKestrel()
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
