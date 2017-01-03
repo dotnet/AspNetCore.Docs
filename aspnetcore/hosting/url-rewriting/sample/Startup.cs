@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using RewriteRules;
 
@@ -58,6 +59,10 @@ namespace URLRewritingSample
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
+                .ConfigureLogging(factory =>
+                {
+                    factory.AddConsole(LogLevel.Debug);
+                })
                 .UseKestrel(options =>
                 {
                     options.UseHttps("testCert.pfx", "testPassword");
