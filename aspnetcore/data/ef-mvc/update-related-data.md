@@ -270,12 +270,12 @@ instructor.Courses = new List<CourseAssignment>();
 As an alternative to doing this in controller code, you could do it in the Instructor model by changing the property getter to automatically create the collection if it doesn't exist, as shown in the following example:
 
 ```csharp
-private ICollection<Course> _courses;
-public ICollection<Course> Courses
+private ICollection<CourseAssignment> _courses;
+public ICollection<CourseAssignment> Courses
 {
     get
     {
-        return _courses ?? (_courses = new List<Course>());
+        return _courses ?? (_courses = new List<CourseAssignment>());
     }
     set
     {
