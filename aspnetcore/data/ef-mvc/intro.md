@@ -32,7 +32,8 @@ EF Core 1.0 is the latest version of EF but does not yet have all the features o
 
 If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the completed project that you can download. For some common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](https://docs.asp.net/en/latest/data/ef-mvc/advanced.html#common-errors). If you don't find what you need there, you can post questions to the [ASP.NET Entity Framework forum](http://forums.asp.net/1227.aspx), the [Entity Framework forum](http://social.msdn.microsoft.com/forums/en-US/adodotnetentityframework/threads/), or StackOverflow.com for [ASP.NET Core](http://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](http://stackoverflow.com/questions/tagged/entity-framework-core).
 
-[!TIP] This is a long series of 10 tutorials, each of which builds on what is done in earlier tutorials.  Consider saving a copy of the project after each successful tutorial completion.  Then if you run into problems and need to start over, you can restart at the previous tutorial instead of having to go back to the beginning of the whole series.
+> [!TIP] 
+> This is a long series of 10 tutorials, each of which builds on what is done in earlier tutorials.  Consider saving a copy of the project after each successful tutorial completion.  Then if you run into problems and need to start over, you can restart at the previous tutorial instead of having to go back to the beginning of the whole series.
 
 ## The Contoso University Web Application
 
