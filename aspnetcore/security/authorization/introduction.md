@@ -22,7 +22,7 @@ Authorization is orthogonal and independent from authentication, which is the pr
 
 ## Authorization Types
 
-In ASP.NET Core authorization now provides simple declarative [role](roles.md#security-authorization-role-based) and a [richer policy based](policies.md#security-authorization-policies-based) model where authorization is expressed in requirements and handlers evaluate a users claims against requirements. Imperative checks can be based on simple policies or polices which evaluate both the user identity and properties of the resource that the user is attempting to access.
+In ASP.NET Core authorization now provides simple declarative [role](roles.md#security-authorization-role-based) and a [richer policy based](policies.md#security-authorization-policies-based) model where authorization is expressed in requirements and handlers evaluate a users claims against requirements. Imperative checks can be based on simple policies or policies which evaluate both the user identity and properties of the resource that the user is attempting to access.
 
 ## Namespaces
 
