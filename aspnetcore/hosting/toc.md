@@ -3,4 +3,3 @@
 # [Application Pools](apppool.md)
 # [Servicing](servicing.md)
 # [Data Protection](dataprotection.md)
-# [URL Rewriting](url-rewriting.md)
