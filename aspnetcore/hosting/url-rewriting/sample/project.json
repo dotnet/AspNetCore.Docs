@@ -1,18 +1,19 @@
 {
   "buildOptions": {
-    "emitEntryPoint": true,
     "copyToOutput": {
       "include": [ 
         "ApacheModRewrite.txt", 
         "IISUrlRewrite.xml", 
         "testCert.pfx"
       ]
-    }
+    },
+    "emitEntryPoint": true
   },
   "dependencies": {
     "Microsoft.AspNetCore.Rewrite": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
-    "Microsoft.AspNetCore.Server.Kestrel.Https": "1.1.0"
+    "Microsoft.AspNetCore.Server.Kestrel.Https": "1.1.0",
+    "Microsoft.Extensions.Logging.Console": "1.1.0"
   },
   "frameworks": {
     "net451": {},
