@@ -63,13 +63,13 @@ namespace URLRewritingSample
                 {
                     factory.AddConsole(LogLevel.Debug);
                 })
+                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseKestrel(options =>
                 {
                     options.UseHttps("testCert.pfx", "testPassword");
                 })
-                .UseUrls("http://localhost:5000", "https://localhost", "https://localhost:5001")
                 .UseStartup<Startup>()
-                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls("http://localhost:5000", "https://localhost", "https://localhost:5001")
                 .Build();
 
             host.Run();
