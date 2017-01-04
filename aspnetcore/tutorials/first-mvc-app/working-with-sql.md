@@ -32,21 +32,21 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine that 
 
 * From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-  ![image](working-with-sql/_static/ssox.png)
+  ![View menu](working-with-sql/_static/ssox.png)
 
 * Right click on the `Movie` table **> View Designer**
 
-  ![image](working-with-sql/_static/design.png)
+  ![Contextual menu open on Movie table](working-with-sql/_static/design.png)
 
-  ![image](working-with-sql/_static/dv.png)
+  ![Movie table open in Designer](working-with-sql/_static/dv.png)
 
 Note the key icon next to `ID`. By default, EF will make a property named `ID` the primary key.
 
 * Right click on the `Movie` table **> View Data**
 
-  ![image](working-with-sql/_static/ssox2.png)
+  ![Contextual menu open on Movie table](working-with-sql/_static/ssox2.png)
 
-  ![image](working-with-sql/_static/vd22.png)
+  ![Movie table open showing table data](working-with-sql/_static/vd22.png)
 
 ## Seed the database
 
@@ -74,9 +74,9 @@ Test the app
 
   * Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**
 
-    ![image](working-with-sql/_static/iisExIcon.png)
+    ![IIS Express system tray icon](working-with-sql/_static/iisExIcon.png)
 
-    ![image](working-with-sql/_static/stopIIS.png)
+    ![Contextual menu](working-with-sql/_static/stopIIS.png)
 
     > [!Note]
     > In Visual Studio 2017 RC you don't need to stop IIS Express.
@@ -86,7 +86,7 @@ Test the app
    
 The app shows the seeded data.
 
-![image](working-with-sql/_static/m55.png)
+![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55.png)
 
 >[!div class="step-by-step"]
 [Previous](adding-model.md)

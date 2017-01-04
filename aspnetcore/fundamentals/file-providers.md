@@ -58,7 +58,7 @@ In the *Index.cshtml* view, iterate through the `IDirectoryContents` provided:
 
 The result:
 
-![image](file-providers/_static/physical-directory-listing.png)
+![File provider sample application listing physical files and folders](file-providers/_static/physical-directory-listing.png)
 
 ### EmbeddedFileProvider
 
@@ -83,7 +83,7 @@ The snippet above demonstrates how to create an `EmbeddedFileProvider` with acce
 
 Updating the sample app to use an `EmbeddedFileProvider` results in the following output:
 
-![image](file-providers/_static/embedded-directory-listing.png)
+![File provider sample application listing embedded files](file-providers/_static/embedded-directory-listing.png)
 
 > [!NOTE]
 > Embedded resources do not expose directories. Rather, the path to the resource (via its namespace) is embedded in its filename using `.` separators.
@@ -99,7 +99,7 @@ The `CompositeFileProvider` combines `IFileProvider` instances, exposing a singl
 
 Updating the sample app to use a `CompositeFileProvider` that includes both the physical and embedded providers configured previously, results in the following output:
 
-![image](file-providers/_static/composite-directory-listing.png)
+![File provider sample application listing both physical files and folders and embedded files](file-providers/_static/composite-directory-listing.png)
 
 ## Watching for changes
 
@@ -111,7 +111,7 @@ In this article's sample, a console application is configured to display a messa
 
 The result, after saving the file several times:
 
-![image](file-providers/_static/watch-console.png)
+![Command window after executing dotnet run shows the application monitoring the quotes.txt file for changes and that the file has changed five times.](file-providers/_static/watch-console.png)
 
 > [!NOTE]
 > Some file systems, such as Docker containers and network shares, may not reliably send change notifications. Set the `DOTNET_USE_POLLINGFILEWATCHER` environment variable to `1` or `true` to poll the file system for changes every 4 seconds.
