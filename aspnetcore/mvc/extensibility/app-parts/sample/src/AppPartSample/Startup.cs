@@ -32,9 +32,12 @@ namespace AppPartSample
                 .AddApplicationPart(pluginAssembly)
                 .ConfigureApplicationPartManager(p =>
                 {
-                    var parts = p.ApplicationParts.ToList();
-                    p.ApplicationParts.Clear();
-                    p.ApplicationParts.AddRange(parts.Where(part => part.Name != "DependentLibrary"));
+                    var dependentLibrary = p.ApplicationParts
+                        .FirstOrDefault(part => part.Name == "DependentLibrary");
+                    if (dependentLibrary != null)
+                    {
+                       p.ApplicationParts.Remove(dependentLibrary);
+                    }
                 })
                 .ConfigureApplicationPartManager(p => p.FeatureProviders.Add(new GenericControllerFeatureProvider()));
         }
@@ -54,6 +57,7 @@ namespace AppPartSample
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseStatusCodePages();
 
             app.UseStaticFiles();
 
