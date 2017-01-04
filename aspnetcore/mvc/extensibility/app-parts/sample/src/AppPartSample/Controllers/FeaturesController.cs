@@ -28,7 +28,8 @@ namespace AppPartSample.Controllers
 
             var metaDataReferenceFeature = new MetadataReferenceFeature();
             _partManager.PopulateFeature(metaDataReferenceFeature);
-            viewModel.MetadataReferences = metaDataReferenceFeature.MetadataReferences.ToList();
+            viewModel.MetadataReferences = metaDataReferenceFeature.MetadataReferences
+                                            .ToList();
 
             var tagHelperFeature = new TagHelperFeature();
             _partManager.PopulateFeature(tagHelperFeature);

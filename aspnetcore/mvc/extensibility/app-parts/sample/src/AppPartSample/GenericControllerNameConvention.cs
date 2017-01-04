@@ -12,7 +12,8 @@ namespace AppPartSample
     {
         public void Apply(ControllerModel controller)
         {
-            if (controller.ControllerType.GetGenericTypeDefinition() != typeof(GenericController<>))
+            if (controller.ControllerType.GetGenericTypeDefinition() != 
+                typeof(GenericController<>))
             {
                 // Not a GenericController, ignore.
                 return;
