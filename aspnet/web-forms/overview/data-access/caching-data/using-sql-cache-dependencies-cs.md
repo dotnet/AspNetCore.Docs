@@ -74,8 +74,7 @@ The `aspnet_regsql.exe` command line program requires the database and server na
 Start by closing Visual Studio. Next, open SQL Server Management Studio and choose to connect to the `localhost\SQLExpress` server using Windows Authentication.
 
 
-![Attach to the localhost\SQLExpress
-Server](using-sql-cache-dependencies-cs/_static/image1.gif)
+![Attach to the localhost\SQLExpress Server](using-sql-cache-dependencies-cs/_static/image1.gif)
 
 **Figure 1**: Attach to the `localhost\SQLExpress` Server
 

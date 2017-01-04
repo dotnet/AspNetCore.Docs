@@ -71,8 +71,7 @@ Before we start our discussion on creating a DAL using stored procedures, let s 
 - `ManagedFunctionsAndSprocs.aspx`
 
 
-![Add the ASP.NET Pages for the Advanced Data Access Layer
-        Scenarios Tutorials](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image1.png)
+![Add the ASP.NET Pages for the Advanced Data Access Layer Scenarios Tutorials](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image1.png)
 
 **Figure 1**: Add the ASP.NET Pages for the Advanced Data Access Layer Scenarios Tutorials
 
@@ -93,8 +92,7 @@ Lastly, add these pages as entries to the `Web.sitemap` file. Specifically, add 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the advanced DAL scenarios tutorials.
 
 
-![The Site Map Now Includes Entries for the Advanced DAL Scenarios
-        Tutorials](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image5.png)
+![The Site Map Now Includes Entries for the Advanced DAL Scenarios Tutorials](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image5.png)
 
 **Figure 3**: The Site Map Now Includes Entries for the Advanced DAL Scenarios Tutorials
 
@@ -142,8 +140,7 @@ Take a moment to click the Advanced Options button. From here we can specify whe
 When having the stored procedures automatically created by the TableAdapter wizard, it appears that the Refresh the data table option is ignored. Regardless of whether this checkbox is checked, the resulting insert and update stored procedures retrieve the just-inserted or just-updated record, as we will see in Step 3.
 
 
-![Leave the  Generate Insert, Update and Delete statements  Option
-        Checked](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image15.png)
+![Leave the Generate Insert, Update and Delete statements Option Checked](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image15.png)
 
 **Figure 7**: Leave the Generate Insert, Update and Delete statements Option Checked
 
@@ -188,8 +185,7 @@ Click Next to see a summary of the steps the wizard will perform. Complete the w
 The TableAdapter wizard used in Step 2 automatically created the stored procedures for selecting, inserting, updating, and deleting data. These stored procedures can be viewed or modified through Visual Studio by going to the Server Explorer and drilling down into the database s Stored Procedures folder. As Figure 12 shows, the Northwind database contains four new stored procedures: `Products_Delete`, `Products_Insert`, `Products_Select`, and `Products_Update`.
 
 
-![The Four Stored Procedures Created in Step 2 Can Be Found in the
-        Database s Stored Procedures Folder](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image26.png)
+![The Four Stored Procedures Created in Step 2 Can Be Found in the Database s Stored Procedures Folder](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image26.png)
 
 **Figure 12**: The Four Stored Procedures Created in Step 2 Can Be Found in the Database s Stored Procedures Folder
 
@@ -234,8 +230,7 @@ Since the `@Original_ProductID` parameter is superfluous, let s remove it from t
 To save these changes to the database, click the Save icon in the toolbar or hit Ctrl+S. At this point, the `Products_Update` stored procedure does not expect an `@Original_ProductID` input parameter, but the TableAdapter is configured to pass such a parameter. You can see the parameters the TableAdapter will send to the `Products_Update` stored procedure by selecting the TableAdapter in the DataSet Designer, going to the Properties window, and clicking the ellipses in the `UpdateCommand` s `Parameters` collection. This brings up the Parameters Collection Editor dialog box shown in Figure 14.
 
 
-![The Parameters Collection Editor Lists the Parameters Used
-        Passed to the Products_Update Stored Procedure](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image30.png)
+![The Parameters Collection Editor Lists the Parameters Used Passed to the Products_Update Stored Procedure](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image30.png)
 
 **Figure 14**: The Parameters Collection Editor Lists the Parameters Used Passed to the `Products_Update` Stored Procedure
 

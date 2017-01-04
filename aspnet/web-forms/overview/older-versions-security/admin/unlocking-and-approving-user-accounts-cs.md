@@ -44,7 +44,7 @@ Open the `ManageUsers.aspx` page and add a HyperLinkField to the `UserAccounts` 
 After adding the HyperLinkField to the GridView, take a moment to view the `ManageUsers.aspx` page through a browser. As Figure 1 shows, each GridView row now includes a "Manage" link. The "Manage" link for Bruce points to `UserInformation.aspx?user=Bruce`, whereas the "Manage" link for Dave points to `UserInformation.aspx?user=Dave`.
 
 
-[![The HyperLinkField Adds a ](unlocking-and-approving-user-accounts-cs/_static/image2.png)](unlocking-and-approving-user-accounts-cs/_static/image1.png)
+[![The HyperLinkField Adds a](unlocking-and-approving-user-accounts-cs/_static/image2.png)](unlocking-and-approving-user-accounts-cs/_static/image1.png)
 
 **Figure 1**: The HyperLinkField Adds a "Manage" Link for Each User Account  ([Click to view full-size image](unlocking-and-approving-user-accounts-cs/_static/image3.png))
 

@@ -117,8 +117,7 @@ Upon clicking a Delete button, a postback occurs, the GridView assigns the `Prod
 Figure 5 depicts this interaction graphically. Refer back to the [Examining the Events Associated with Inserting, Updating, and Deleting](../editing-inserting-and-deleting-data/examining-the-events-associated-with-inserting-updating-and-deleting-cs.md) tutorial for a more detailed discussion on the chain of events associated with inserting, updating, and deleting from a data Web control.
 
 
-![Clicking the Delete Button in the GridView Invokes the
-SqlDataSource s Delete() Method](inserting-updating-and-deleting-data-with-the-sqldatasource-cs/_static/image5.gif)
+![Clicking the Delete Button in the GridView Invokes the SqlDataSource s Delete() Method](inserting-updating-and-deleting-data-with-the-sqldatasource-cs/_static/image5.gif)
 
 **Figure 5**: Clicking the Delete Button in the GridView Invokes the SqlDataSource s `Delete()` Method
 
@@ -146,8 +145,7 @@ From the Configure Data Source wizard, opt to use the `NORTHWINDConnectionString
 To automatically generate `INSERT`, `UPDATE`, and `DELETE` statements based on the selected table and columns, click the Advanced button and check the Generate `INSERT`, `UPDATE`, and `DELETE` statements checkbox.
 
 
-![Check the  Generate INSERT, UPDATE, and DELETE
-statements  Checkbox](inserting-updating-and-deleting-data-with-the-sqldatasource-cs/_static/image8.gif)
+![Check the Generate INSERT, UPDATE, and DELETE statements Checkbox](inserting-updating-and-deleting-data-with-the-sqldatasource-cs/_static/image8.gif)
 
 **Figure 8**: Check the Generate `INSERT`, `UPDATE`, and `DELETE` statements Checkbox
 

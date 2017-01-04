@@ -149,7 +149,7 @@ Let's create a role named Administrators . Visit the `ManageRoles.aspx` page thr
 What happens? A postback occurs, but there's no visual cue that the role has actually been added to the system. We will update this page in Step 5 to include visual feedback. For now, however, you can verify that the role was created by going to the `SecurityTutorials.mdf` database and displaying the data from the `aspnet_Roles` table. As Figure 4 shows, the `aspnet_Roles` table contains a record for the just-added Administrators roles.
 
 
-[![The aspnet_Roles Table has a Row for the Administrators ](creating-and-managing-roles-cs/_static/image11.png)](creating-and-managing-roles-cs/_static/image10.png)
+[![The aspnet_Roles Table has a Row for the Administrators](creating-and-managing-roles-cs/_static/image11.png)](creating-and-managing-roles-cs/_static/image10.png)
 
 **Figure 4**: The `aspnet_Roles` Table has a Row for the Administrators  ([Click to view full-size image](creating-and-managing-roles-cs/_static/image12.png))
 

@@ -84,7 +84,7 @@ Open the `Default.aspx` page in the `SiteMapProvider` folder and drag a GridView
 **Figure 4**: Configure the ObjectDataSource to Return Categories Using the `GetCategories` Method ([Click to view full-size image](building-a-custom-database-driven-site-map-provider-vb/_static/image4.png))
 
 
-[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ](building-a-custom-database-driven-site-map-provider-vb/_static/image5.gif)](building-a-custom-database-driven-site-map-provider-vb/_static/image5.png)
+[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None)](building-a-custom-database-driven-site-map-provider-vb/_static/image5.gif)](building-a-custom-database-driven-site-map-provider-vb/_static/image5.png)
 
 **Figure 5**: Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ([Click to view full-size image](building-a-custom-database-driven-site-map-provider-vb/_static/image6.png))
 
@@ -125,7 +125,7 @@ Open the `ProductsByCategory.aspx` page and add a GridView, naming it `ProductsB
 The final step in the Configure Data Source wizard prompts for a parameter source for *categoryID*. Since this information is passed through the querystring field `CategoryID`, select QueryString from the drop-down list and enter CategoryID in the QueryStringField textbox as shown in Figure 9. Click Finish to complete the wizard.
 
 
-[![ Use the CategoryID Querystring Field for the categoryID Parameter](building-a-custom-database-driven-site-map-provider-vb/_static/image9.gif)](building-a-custom-database-driven-site-map-provider-vb/_static/image11.png)
+[![Use the CategoryID Querystring Field for the categoryID Parameter](building-a-custom-database-driven-site-map-provider-vb/_static/image9.gif)](building-a-custom-database-driven-site-map-provider-vb/_static/image11.png)
 
 **Figure 9**: Use the `CategoryID` Querystring Field for the *categoryID* Parameter ([Click to view full-size image](building-a-custom-database-driven-site-map-provider-vb/_static/image12.png))
 
@@ -135,7 +135,7 @@ After completing the wizard, Visual Studio will add corresponding BoundFields an
 Next, add a HyperLinkField and move it to the left-most position. Set its `Text` property to View Details , its `DataNavigateUrlFields` property to `ProductID`, and its `DataNavigateUrlFormatString` property to `~/SiteMapProvider/ProductDetails.aspx?ProductID={0}`.
 
 
-![Add a  View Details  HyperLinkField that Points to ProductDetails.aspx](building-a-custom-database-driven-site-map-provider-vb/_static/image10.gif)
+![Add a View Details HyperLinkField that Points to ProductDetails.aspx](building-a-custom-database-driven-site-map-provider-vb/_static/image10.gif)
 
 **Figure 10**: Add a View Details HyperLinkField that Points to `ProductDetails.aspx`
 

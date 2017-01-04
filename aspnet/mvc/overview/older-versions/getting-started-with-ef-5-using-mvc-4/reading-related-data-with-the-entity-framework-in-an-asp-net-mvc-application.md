@@ -150,7 +150,7 @@ The method accepts optional route data (`id`) and a query string parameter (`cou
 > 
 > routes.MapRoute(  
 >  name: "Default",  
->  url: <mark>"{controller}/{action}/{id}"</mark>,  
+>  url: "{controller}/{action}/{id}",  
 >  defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }  
 > );
 > 

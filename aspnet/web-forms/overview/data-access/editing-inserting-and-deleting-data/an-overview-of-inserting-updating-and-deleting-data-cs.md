@@ -275,7 +275,7 @@ Checking the Enable Editing checkbox will add a CommandField (if needed) and set
 That's all there is to adding rudimentary editing support. As Figure16 shows, the editing interface is rather crude each BoundField whose `ReadOnly` property is set to `false` (the default) is rendered as a TextBox. This includes fields like `CategoryID` and `SupplierID`, which are keys to other tables.
 
 
-[![Clicking Chai s Edit Button Displays the Row in Edit Mode ](an-overview-of-inserting-updating-and-deleting-data-cs/_static/image39.png)](an-overview-of-inserting-updating-and-deleting-data-cs/_static/image38.png)
+[![Clicking Chai s Edit Button Displays the Row in Edit Mode](an-overview-of-inserting-updating-and-deleting-data-cs/_static/image39.png)](an-overview-of-inserting-updating-and-deleting-data-cs/_static/image38.png)
 
 **Figure 16**: Clicking Chai s Edit Button Displays the Row in Edit Mode ([Click to view full-size image](an-overview-of-inserting-updating-and-deleting-data-cs/_static/image40.png))
 

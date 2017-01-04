@@ -22,7 +22,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 - [Getting Started with ASP.NET MVC](#gettingstarted)
 - [New Featured Content](#newfeatured)
-- [Microsoft Azure](#azure) ( <mark>Featuring lots of great videos from //build/ 2014</mark>)
+- [Microsoft Azure](#azure) ( Featuring lots of great videos from //build/ 2014)
 - [Security](#security)
 - [Membership, Authentication](#Membership)
 - [OWIN and Katana](#OWIN)

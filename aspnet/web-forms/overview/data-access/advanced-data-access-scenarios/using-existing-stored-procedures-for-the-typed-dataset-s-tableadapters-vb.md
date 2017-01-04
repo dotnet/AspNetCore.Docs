@@ -123,7 +123,7 @@ Open the `ExistingSprocs.aspx` page in the `AdvancedDAL` folder and drag a DropD
 **Figure 7**: Retrieve Data from the `CategoriesBLL` Class s `GetCategories` Method ([Click to view full-size image](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image21.png))
 
 
-[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image23.png)](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image22.png)
+[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None)](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image23.png)](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image22.png)
 
 **Figure 8**: Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ([Click to view full-size image](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image24.png))
 
@@ -234,8 +234,7 @@ While we ve added the `Categories_Delete` stored procedure to the database, the 
 Open the Northwind DataSet, select the `CategoriesTableAdapter`, and go to the Properties window. The Properties window lists the `InsertCommand`, `UpdateCommand`, `DeleteCommand`, and `SelectCommand` used by the TableAdapter, as well as its name and connection information. Expand the `DeleteCommand` property to see its details. As Figure 15 shows, the `DeleteCommand` s `ComamndType` property is set to Text, which instructs it to send the text in the `CommandText` property as an ad-hoc SQL query.
 
 
-![Select the CategoriesTableAdapter in
-        the Designer to View Its Properties in the Properties Window](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image43.png)
+![Select the CategoriesTableAdapter in the Designer to View Its Properties in the Properties Window](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-vb/_static/image43.png)
 
 **Figure 15**: Select the `CategoriesTableAdapter` in the Designer to View Its Properties in the Properties Window
 

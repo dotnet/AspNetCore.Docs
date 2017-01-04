@@ -1,1 +1,2 @@
-public virtual ICollection<Course> Courses { get; set; }
+public int? InstructorID { get; set; }
+public virtual Instructor Administrator { get; set; }

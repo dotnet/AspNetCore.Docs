@@ -50,7 +50,7 @@ Configure the ObjectDataSource to use the `ProductsBLL` class s `GetProducts()` 
 **Figure 3**: Map the `AddProduct` Method to the ObjectDataSource s `Insert()` Method ([Click to view full-size image](inserting-a-new-record-from-the-gridview-s-footer-vb/_static/image6.png))
 
 
-[![Set the UPDATE and DELETE Tabs Drop-Down Lists to (None) ](inserting-a-new-record-from-the-gridview-s-footer-vb/_static/image4.gif)](inserting-a-new-record-from-the-gridview-s-footer-vb/_static/image7.png)
+[![Set the UPDATE and DELETE Tabs Drop-Down Lists to (None)](inserting-a-new-record-from-the-gridview-s-footer-vb/_static/image4.gif)](inserting-a-new-record-from-the-gridview-s-footer-vb/_static/image7.png)
 
 **Figure 4**: Set the UPDATE and DELETE Tabs Drop-Down Lists to (None) ([Click to view full-size image](inserting-a-new-record-from-the-gridview-s-footer-vb/_static/image8.png))
 

@@ -75,8 +75,7 @@ Lastly, add these pages as entries to the `Web.sitemap` file. Specifically, add 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the caching tutorials.
 
 
-![The Site Map Now Includes Entries for the Caching
-  Tutorials](caching-data-with-the-objectdatasource-cs/_static/image5.png)
+![The Site Map Now Includes Entries for the Caching Tutorials](caching-data-with-the-objectdatasource-cs/_static/image5.png)
 
 **Figure 3**: The Site Map Now Includes Entries for the Caching Tutorials
 
@@ -191,8 +190,7 @@ After 30 seconds, the data will be evicted from the cache. The data will also be
 Figure 12 illustrates the ObjectDataSource s caching workflow. When the Selecting event fired text appears on your screen, it is because the data was not in the cache and had to be retrieved from the underlying object. When this text is missing, however, it s because the data was available from the cache. When the data is returned from the cache there s no call to the underlying object and, therefore, no database query executed.
 
 
-![The ObjectDataSource Stores and Retrieves its
-  Data from the Data Cache](caching-data-with-the-objectdatasource-cs/_static/image30.png)
+![The ObjectDataSource Stores and Retrieves its Data from the Data Cache](caching-data-with-the-objectdatasource-cs/_static/image30.png)
 
 **Figure 12**: The ObjectDataSource Stores and Retrieves its Data from the Data Cache
 

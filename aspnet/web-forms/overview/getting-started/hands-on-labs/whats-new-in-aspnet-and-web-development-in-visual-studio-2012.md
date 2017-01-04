@@ -102,7 +102,7 @@ In this task, you will discover the new features of the CSS Editor. This new edi
 
     [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample1.xml)]
 
-    ![Hierarchical alignment in CSS ](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image10.png "Hierarchical alignment in CSS")
+    ![Hierarchical alignment in CSS](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image10.png "Hierarchical alignment in CSS")
 
     *Hierarchical alignment in CSS*
 7. Inside **.main div** class, locate the cursor at the end of **border: 0px;** and press **Enter** to display the IntelliSense list. Start typing **top** and notice how the list is filtered as you type. The list will display the elements that contain **top** at any part of the word (In prior versions of Visual Studio, the list is filtered by the items that *begin* with the term).
@@ -644,7 +644,7 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 4. In the **Package Manager Console,** type **Install-Package CoffeeSharp** and press **ENTER**.
 5. Click the **Show All Files** button in the **Solution Explorer** window
 
-    ![Showing all files ](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image55.png "Showing all files")
+    ![Showing all files](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image55.png "Showing all files")
 
     *Showing all files*
 6. Right click the **CoffeeMinify.cs** file in the **Solution Explorer** and select **Include in Project**

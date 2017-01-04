@@ -38,8 +38,7 @@ The caching examples using reactive loading that we examined in the previous two
 While databases have many dynamic, frequently-changing values, most also have a fair amount of static data. For example, virtually all data models have one or more columns that contain a particular value from a fixed set of choices. A `Patients` database table might have a `PrimaryLanguage` column, whose set of values could be English, Spanish, French, Russian, Japanese, and so on. Oftentimes, these types of columns are implemented using *lookup tables*. Rather than storing the string English or French in the `Patients` table, a second table is created that has, commonly, two columns - a unique identifier and a string description - with a record for each possible value. The `PrimaryLanguage` column in the `Patients` table stores the corresponding unique identifier in the lookup table. In Figure 1, patient John Doe s primary language is English, while Ed Johnson s is Russian.
 
 
-![The Languages Table is a Lookup
-  Table Used by the Patients Table](caching-data-at-application-startup-vb/_static/image1.png)
+![The Languages Table is a Lookup Table Used by the Patients Table](caching-data-at-application-startup-vb/_static/image1.png)
 
 **Figure 1**: The `Languages` Table is a Lookup Table Used by the `Patients` Table
 
@@ -75,8 +74,7 @@ The Northwind database tables we ve implemented to date do not include any tradi
 To start, create a new class named `StaticCache.cs` in the `CL` folder.
 
 
-![Create the StaticCache.vb Class in
-  the CL Folder](caching-data-at-application-startup-vb/_static/image2.png)
+![Create the StaticCache.vb Class in the CL Folder](caching-data-at-application-startup-vb/_static/image2.png)
 
 **Figure 2**: Create the `StaticCache.vb` Class in the `CL` Folder
 

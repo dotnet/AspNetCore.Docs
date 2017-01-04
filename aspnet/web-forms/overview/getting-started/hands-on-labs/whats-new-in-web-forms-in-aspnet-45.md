@@ -383,7 +383,7 @@ In this section, you will enable unobtrusive validation in ASP.NET to compare th
     *Showing the page HTML code*
 4. Scroll through the page source code and notice that ASP.NET has injected JavaScript code and data validators in the page to perform the validations and show the error list.
 
-    ![Validation JavaScript code in CustomerDetails page ](whats-new-in-web-forms-in-aspnet-45/_static/image10.png "Validation JavaScript code in CustomerDetails page")
+    ![Validation JavaScript code in CustomerDetails page](whats-new-in-web-forms-in-aspnet-45/_static/image10.png "Validation JavaScript code in CustomerDetails page")
 
     *Validation JavaScript code in CustomerDetails page*
 5. Close the browser and go back to Visual Studio.

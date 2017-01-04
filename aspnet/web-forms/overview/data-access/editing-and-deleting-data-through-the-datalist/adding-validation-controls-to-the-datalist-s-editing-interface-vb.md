@@ -80,7 +80,7 @@ For our tutorial we'll need to use a RequiredFieldValidator to ensure that a val
 Let s start by adding the necessary validation controls to the DataList s `EditItemTemplate`. This task can be performed through the Designer by clicking on the Edit Templates link from the DataList s smart tag, or through the declarative syntax. Let s step through the process using the Edit Templates option from the Design view. After choosing to edit the DataList s `EditItemTemplate`, add a RequiredFieldValidator by dragging it from the Toolbox into the template editing interface, placing it after the `ProductName` TextBox.
 
 
-[![ Add a RequiredFieldValidator to the EditItemTemplate After the ProductName TextBox](adding-validation-controls-to-the-datalist-s-editing-interface-vb/_static/image8.png)](adding-validation-controls-to-the-datalist-s-editing-interface-vb/_static/image7.png)
+[![Add a RequiredFieldValidator to the EditItemTemplate After the ProductName TextBox](adding-validation-controls-to-the-datalist-s-editing-interface-vb/_static/image8.png)](adding-validation-controls-to-the-datalist-s-editing-interface-vb/_static/image7.png)
 
 **Figure 3**: Add a RequiredFieldValidator to the `EditItemTemplate After` the `ProductName` TextBox ([Click to view full-size image](adding-validation-controls-to-the-datalist-s-editing-interface-vb/_static/image9.png))
 

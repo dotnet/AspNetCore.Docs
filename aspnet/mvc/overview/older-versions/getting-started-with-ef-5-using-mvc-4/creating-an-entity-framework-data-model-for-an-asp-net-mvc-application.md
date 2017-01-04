@@ -232,7 +232,7 @@ In earlier versions of Code First, before Migrations was released, it was common
 
 For this tutorial, you'll be using Migrations for deployment, but your `Seed` method will insert test data anyway in order to make it easier to see how application functionality works without having to manually insert a lot of data.
 
-1. Replace the contents of the *Configuration.cs*file with the following code, which will load test data into the new database. <mark><br></mark>
+1. Replace the contents of the *Configuration.cs*file with the following code, which will load test data into the new database.   
 
     [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.xml)]
 

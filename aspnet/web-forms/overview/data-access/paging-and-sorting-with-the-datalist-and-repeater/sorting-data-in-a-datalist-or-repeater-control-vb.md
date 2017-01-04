@@ -52,7 +52,7 @@ Before we worry about implementing any of the sorting-related functionality, let
 **Figure 1**: Create an ObjectDataSource and Configure it to Use the `GetProductsAsPagedDataSource()` Method ([Click to view full-size image](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image3.png))
 
 
-[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE tabs to (None) ](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image5.png)](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image4.png)
+[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE tabs to (None)](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image5.png)](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image4.png)
 
 **Figure 2**: Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE tabs to (None) ([Click to view full-size image](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image6.png))
 
@@ -240,7 +240,7 @@ Open the `SortingWithCustomPaging.aspx` page in the `PagingSortingDataListRepeat
 Set the drop-down lists in the UPDATE, INSERT, and DELETE tabs to (None) and then click the Next button. The Configure Data Source wizard now prompts for the sources of the `GetProductsPaged` method s *startRowIndex* and *maximumRows* input parameters. In actuality, these input parameters are ignored. Instead, the *startRowIndex* and *maximumRows* values will be passed in through the `Arguments` property in the ObjectDataSource s `Selecting` event handler, just like how we specified the *sortExpression* in this tutorial s first demo. Therefore, leave the parameter source drop-down lists in the wizard set at None .
 
 
-[![Leave the Parameter Sources Set to None ](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image36.png)](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image35.png)
+[![Leave the Parameter Sources Set to None](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image36.png)](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image35.png)
 
 **Figure 13**: Leave the Parameter Sources Set to None ([Click to view full-size image](sorting-data-in-a-datalist-or-repeater-control-vb/_static/image37.png))
 

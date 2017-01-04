@@ -133,8 +133,7 @@ Next, click the Delete link in the Test Category row, causing the page to postba
 While the delete workflow successfully removed the Test Category record from the `Categories` table, it did not remove its brochure file from the web server s file system. Refresh the Solution Explorer and you will see that `Test.pdf` is still sitting in the `~/Brochures` folder.
 
 
-![The Test.pdf File Was Not Deleted
-from the Web Server s File System](updating-and-deleting-existing-binary-data-vb/_static/image1.gif)
+![The Test.pdf File Was Not Deleted from the Web Server s File System](updating-and-deleting-existing-binary-data-vb/_static/image1.gif)
 
 **Figure 8**: The `Test.pdf` File Was Not Deleted from the Web Server s File System
 
@@ -213,8 +212,7 @@ From the GridView s smart tag, click on the Edit Templates link and select the `
 Set the first `ListItem` s `Selected` property to `True`.
 
 
-![Add Three ListItems to the
-RadioButtonList](updating-and-deleting-existing-binary-data-vb/_static/image2.gif)
+![Add Three ListItems to the RadioButtonList](updating-and-deleting-existing-binary-data-vb/_static/image2.gif)
 
 **Figure 12**: Add Three `ListItem` s to the RadioButtonList
 

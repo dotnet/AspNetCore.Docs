@@ -132,7 +132,7 @@ When first visiting the `FilterByDropDownList.aspx` page the categories DropDown
 To add a new list item to the DropDownList, go to the Properties window and click on the ellipses in the `Items` property. Add a new list item with the `Text` "-- Choose a Category --" and the `Value` `0`.
 
 
-![Add a ](master-detail-filtering-with-a-dropdownlist-datalist-vb/_static/image27.png)
+![Add a](master-detail-filtering-with-a-dropdownlist-datalist-vb/_static/image27.png)
 
 **Figure 11**: Add a "-- Choose a Category --" List Item
 
@@ -152,7 +152,7 @@ Additionally, we need to set the DropDownList control's `AppendDataBoundItems` t
 The reason we chose the value `0` for the "-- Choose a Category --" list item is because there are no categories in the system with a value of `0`, hence no product records will be returned when the "-- Choose a Category --" list item is selected. To confirm this, take a moment to visit the page through a browser. As Figure 13 shows, when initially viewing the page the "-- Choose a Category --" list item is selected and no products are displayed.
 
 
-[![When the ](master-detail-filtering-with-a-dropdownlist-datalist-vb/_static/image30.png)](master-detail-filtering-with-a-dropdownlist-datalist-vb/_static/image29.png)
+[![When the](master-detail-filtering-with-a-dropdownlist-datalist-vb/_static/image30.png)](master-detail-filtering-with-a-dropdownlist-datalist-vb/_static/image29.png)
 
 **Figure 13**: When the "-- Choose a Category --" List Item is Selected, No Products are Displayed ([Click to view full-size image](master-detail-filtering-with-a-dropdownlist-datalist-vb/_static/image31.png))
 

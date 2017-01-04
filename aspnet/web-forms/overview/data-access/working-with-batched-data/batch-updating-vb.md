@@ -65,7 +65,7 @@ Before we worry about creating a GridView where are rows are editable, let s sta
 Like the GridView, the ObjectDataSource s modification features are designed to work on a per-row basis. In order to update a set of records, we'll need to write a bit of code in the ASP.NET page s code-behind class that batches the data and passes it to the BLL. Therefore, set the drop-down lists in the ObjectDataSource s UPDATE, INSERT, and DELETE tabs to (None) . Click Finish to complete the wizard.
 
 
-[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ](batch-updating-vb/_static/image4.gif)](batch-updating-vb/_static/image7.png)
+[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None)](batch-updating-vb/_static/image4.gif)](batch-updating-vb/_static/image7.png)
 
 **Figure 4**: Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ([Click to view full-size image](batch-updating-vb/_static/image8.png))
 
@@ -85,8 +85,7 @@ At this point the GridView has three BoundFields (`ProductName`, `CategoryName`,
 From the GridView s smart tag, click the Edit Columns link to open the Fields dialog box. Next, select each field and click the Convert this field into a TemplateField link.
 
 
-![Convert the Existing BoundFields and
-        CheckBoxField Into TemplateFields](batch-updating-vb/_static/image5.gif)
+![Convert the Existing BoundFields and CheckBoxField Into TemplateFields](batch-updating-vb/_static/image5.gif)
 
 **Figure 5**: Convert the Existing BoundFields and CheckBoxField Into TemplateFields
 
@@ -142,7 +141,7 @@ Drag a DropDownList from the Toolbox onto the `CategoryName` TemplateField s `It
 Since this ObjectDataSource is used merely to retrieve data, set the drop-down lists in the UPDATE and DELETE tabs to (None) . Click Finish to complete the wizard.
 
 
-[![Set the Drop-Down Lists in the UPDATE and DELETE Tabs to (None) ](batch-updating-vb/_static/image10.gif)](batch-updating-vb/_static/image17.png)
+[![Set the Drop-Down Lists in the UPDATE and DELETE Tabs to (None)](batch-updating-vb/_static/image10.gif)](batch-updating-vb/_static/image17.png)
 
 **Figure 10**: Set the Drop-Down Lists in the UPDATE and DELETE Tabs to (None) ([Click to view full-size image](batch-updating-vb/_static/image18.png))
 
@@ -163,8 +162,7 @@ With the `CategoriesDataSource` created and configured, return to the `CategoryN
 At this point the `Categories` DropDownList lists all of the categories, but it does not yet automatically select the appropriate category for the product bound to the GridView row. To accomplish this we need to set the `Categories` DropDownList s `SelectedValue` to the product s `CategoryID` value. Click on the Edit DataBindings link from the DropDownList s smart tag and associate the `SelectedValue` property with the `CategoryID` data field as shown in Figure 12.
 
 
-![Bind the Product s CategoryID Value to the DropDownList s
-        SelectedValue Property](batch-updating-vb/_static/image12.gif)
+![Bind the Product s CategoryID Value to the DropDownList s SelectedValue Property](batch-updating-vb/_static/image12.gif)
 
 **Figure 12**: Bind the Product s `CategoryID` Value to the DropDownList s `SelectedValue` Property
 
@@ -192,8 +190,7 @@ We ve made a number of changes to the GridView s templates without pausing to vi
 There are a few minor formatting issues that we should take care of at this point. First, note that the `UnitPrice` value contains four decimal points. To fix this, return to the `UnitPrice` TemplateField s `ItemTemplate` and, from the TextBox s smart tag, click on the Edit DataBindings link. Next, specify that the `Text` property should be formatted as a number.
 
 
-![Format the Text
-        Property as a Number](batch-updating-vb/_static/image14.gif)
+![Format the Text Property as a Number](batch-updating-vb/_static/image14.gif)
 
 **Figure 14**: Format the `Text` Property as a Number
 

@@ -72,7 +72,7 @@ In the new dialog that pops up, select Generate from Database. Since we've just 
 
 Now we can see our new Movie table in the Entity Framework Designer and access it from code.
 
-[![Movies - Microsoft Visual Web Developer 2010 Express ](getting-started-with-mvc-part4/_static/image23.png)](getting-started-with-mvc-part4/_static/image22.png)
+[![Movies - Microsoft Visual Web Developer 2010 Express](getting-started-with-mvc-part4/_static/image23.png)](getting-started-with-mvc-part4/_static/image22.png)
 
 On the design surface you can see a "Movie" class. This class maps to the "Movie" table in our database, and each property within it maps to a column with the table. Each instance of a "Movie" class will correspond to a row within the "Movie" table.
 

@@ -182,7 +182,7 @@ To realize the benefits of an asynchronous web application, you might need to ma
 
 - Windows 7, Windows Vista, Window 8, and all Windows client operating systems have a maximum of 10 concurrent requests. You'll need a Windows Server operating system to see the benefits of asynchronous methods under high load.
 - Register .NET 4.5 with IIS from an elevated command prompt using the following command:  
- %windir%\Microsoft.NET\Framework<mark>64</mark> \v4.0.30319\aspnet\_regiis -i  
+ %windir%\Microsoft.NET\Framework64 \v4.0.30319\aspnet\_regiis -i  
  See    [ASP.NET IIS Registration Tool (Aspnet\_regiis.exe)](https://msdn.microsoft.com/en-us/library/k6h9cz8h.aspx)
 - You might need to increase the [HTTP.sys](https://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture) queue limit from the default value of 1,000 to 5,000. If the setting is too low, you may see [HTTP.sys](https://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture) reject requests with a HTTP 503 status. To change the HTTP.sys queue limit:
 

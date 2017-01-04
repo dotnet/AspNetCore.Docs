@@ -106,8 +106,7 @@ In certain scenarios we want to ensure atomicity across a series of modification
 The Typed DataSet `Northwind.xsd` is located in the `App_Code` folder s `DAL` subfolder. Create a subfolder in the `DAL` folder named `TransactionSupport` and add a new class file named `ProductsTableAdapter.TransactionSupport.cs` (see Figure 4). This file will hold the partial implementation of the `ProductsTableAdapter` that includes methods for performing data modifications using a transaction.
 
 
-![Add a Folder Named TransactionSupport and a Class File Named
-        ProductsTableAdapter.TransactionSupport.cs](wrapping-database-modifications-within-a-transaction-cs/_static/image4.gif)
+![Add a Folder Named TransactionSupport and a Class File Named ProductsTableAdapter.TransactionSupport.cs](wrapping-database-modifications-within-a-transaction-cs/_static/image4.gif)
 
 **Figure 4**: Add a Folder Named `TransactionSupport` and a Class File Named `ProductsTableAdapter.TransactionSupport.cs`
 
@@ -167,7 +166,7 @@ Start by opening the `Transactions.aspx` page in the `BatchData` folder and drag
 **Figure 5**: Figure 5: Configure the ObjectDataSource to Use the `ProductsBLL` Class s `GetProducts` Method ([Click to view full-size image](wrapping-database-modifications-within-a-transaction-cs/_static/image4.png))
 
 
-[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ](wrapping-database-modifications-within-a-transaction-cs/_static/image6.gif)](wrapping-database-modifications-within-a-transaction-cs/_static/image5.png)
+[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None)](wrapping-database-modifications-within-a-transaction-cs/_static/image6.gif)](wrapping-database-modifications-within-a-transaction-cs/_static/image5.png)
 
 **Figure 6**: Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ([Click to view full-size image](wrapping-database-modifications-within-a-transaction-cs/_static/image6.png))
 

@@ -57,8 +57,7 @@ Let s take a moment to inspect the code for the TableAdapter s `Connection` prop
 Navigate to the Class View window by going to the View menu and choosing Class View (or by typing Ctrl+Shift+C). From the top half of the Class View window, drill down to the `NorthwindTableAdapters` namespace and select the `ProductsTableAdapter` class. This will display the `ProductsTableAdapter` s members in the bottom half of the Class View, as shown in Figure 2. Double-click the `Connection` property to see its code.
 
 
-![Double-Click the Connection Property in the Class View to View
-        Its Auto-Generated Code](configuring-the-data-access-layer-s-connection-and-command-level-settings-vb/_static/image4.png)
+![Double-Click the Connection Property in the Class View to View Its Auto-Generated Code](configuring-the-data-access-layer-s-connection-and-command-level-settings-vb/_static/image4.png)
 
 **Figure 2**: Double-Click the Connection Property in the Class View to View Its Auto-Generated Code
 

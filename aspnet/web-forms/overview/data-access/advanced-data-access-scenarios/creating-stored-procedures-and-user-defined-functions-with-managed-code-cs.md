@@ -65,7 +65,7 @@ We need to attach the Northwind database in the `DataFiles` folder (or wherever 
 Click the OK button to attach the database. The Attach Databases dialog box will close and the Object Explorer should now list the just-attached database. Chances are the Northwind database has a name like `9FE54661B32FDD967F51D71D0D5145CC_LINE ARTICLES\DATATUTORIALS\VOLUME 3\CSHARP\73\ASPNET_DATA_TUTORIAL_75_CS\APP_DATA\NORTHWND.MDF`. Rename the database to Northwind by right-clicking on the database and choosing Rename.
 
 
-![Rename the Database to  Northwind ](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image5.png)
+![Rename the Database to Northwind](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image5.png)
 
 **Figure 3**: Rename the Database to Northwind
 
@@ -182,8 +182,7 @@ Return to SQL Server Management Studio, right-click on the Northwind database in
 Also expand the Stored Procedures folder. There you will see a stored procedure named `GetDiscontinuedProducts`. This stored procedure was created by the deployment process and points to the `GetDiscontinuedProducts` method in the `ManagedDatabaseConstructs` assembly. When the `GetDiscontinuedProducts` stored procedure is executed, it, in turn, executes the `GetDiscontinuedProducts` method. Since this is a managed stored procedure it cannot be edited through Management Studio (hence the lock icon next to the stored procedure name).
 
 
-![The GetDiscontinuedProducts Stored
-        Procedure is Listed in the Stored Procedures Folder](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image19.png)
+![The GetDiscontinuedProducts Stored Procedure is Listed in the Stored Procedures Folder](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image19.png)
 
 **Figure 11**: The `GetDiscontinuedProducts` Stored Procedure is Listed in the Stored Procedures Folder
 
@@ -504,8 +503,7 @@ From Management Studio, expand the Programmability folder in the Northwind datab
 **Figure 30**: Add the `ManuallyCreatedDBObjects.dll` Assembly to the Database ([Click to view full-size image](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image74.png))
 
 
-![The ManuallyCreatedDBObjects.dll is
-        Listed in the Object Explorer](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image75.png)
+![The ManuallyCreatedDBObjects.dll is Listed in the Object Explorer](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image75.png)
 
 **Figure 31**: The `ManuallyCreatedDBObjects.dll` is Listed in the Object Explorer
 

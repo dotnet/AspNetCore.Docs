@@ -264,7 +264,7 @@ In order to show the DetailsView in its inserting mode we need to set the `Defau
 When the user enters a product name and price (such as "Acme Water" and 1.99, as in Figure 17) and clicks Insert, a postback ensues and the inserting workflow commences, culminating in a new product record being added to the database. The DetailsView maintains its inserting interface and the GridView is automatically rebound to its data source in order to include the new product, as shown in Figure 18.
 
 
-![The Product ](examining-the-events-associated-with-inserting-updating-and-deleting-cs/_static/image52.png)
+![The Product](examining-the-events-associated-with-inserting-updating-and-deleting-cs/_static/image52.png)
 
 **Figure 18**: The Product "Acme Water" Has Been Added to the Database
 

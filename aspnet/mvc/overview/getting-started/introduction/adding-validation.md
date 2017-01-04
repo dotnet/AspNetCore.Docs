@@ -130,9 +130,9 @@ The [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.da
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
 
-<mark>
-<pre class="prettyprint">[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-public DateTime EnrollmentDate { get; set; }</pre></mark>
+
+[!code[Main](adding-validation/samples/sample7.xml)]
+
 
 The `ApplyFormatInEditMode` setting specifies that the specified formatting should also be applied when the value is displayed in a text box for editing. (You might not want that for some fields — for example, for currency values, you might not want the currency symbol in the text box for editing.)
 
@@ -146,14 +146,14 @@ If you use the `DataType` attribute with a date field, you have to specify the `
 
 > [!NOTE] jQuery validation does not work with the [Range](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.rangeattribute.aspx) attribute and [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx). For example, the following code will always display a client side validation error, even when the date is in the specified range:
 > 
-> [!code[Main](adding-validation/samples/sample7.xml)]
+> [!code[Main](adding-validation/samples/sample8.xml)]
 > 
 >  You will need to disable jQuery date validation to use the [Range](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.rangeattribute.aspx) attribute with [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx). It's generally not a good practice to compile hard dates in your models, so using the [Range](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.rangeattribute.aspx) attribute and [DateTime](https://msdn.microsoft.com/en-us/library/system.datetime.aspx) is discouraged.
 
 
 The following code shows combining attributes on one line:
 
-[!code[Main](adding-validation/samples/sample8.xml?highlight=6,10)]
+[!code[Main](adding-validation/samples/sample9.xml?highlight=6,10)]
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 

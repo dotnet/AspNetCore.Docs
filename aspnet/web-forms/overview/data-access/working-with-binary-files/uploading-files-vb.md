@@ -61,8 +61,7 @@ Lastly, add these pages as entries to the `Web.sitemap` file. Specifically, add 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the Working with Binary Data tutorials.
 
 
-![The Site Map Now Includes Entries for the Working with Binary
-Data Tutorials](uploading-files-vb/_static/image3.gif)
+![The Site Map Now Includes Entries for the Working with Binary Data Tutorials](uploading-files-vb/_static/image3.gif)
 
 **Figure 3**: The Site Map Now Includes Entries for the Working with Binary Data Tutorials
 
@@ -159,7 +158,7 @@ Next, create a new TableAdapter method that returns a particular category s `Pic
 **Figure 8**: Select the Use SQL statements Option ([Click to view full-size image](uploading-files-vb/_static/image12.png))
 
 
-[![Since the Query Will Return a Record from the Categories Table, Choose SELECT which returns rows ](uploading-files-vb/_static/image9.gif)](uploading-files-vb/_static/image13.png)
+[![Since the Query Will Return a Record from the Categories Table, Choose SELECT which returns rows](uploading-files-vb/_static/image9.gif)](uploading-files-vb/_static/image13.png)
 
 **Figure 9**: Since the Query Will Return a Record from the Categories Table, Choose SELECT which returns rows ([Click to view full-size image](uploading-files-vb/_static/image14.png))
 
@@ -239,8 +238,7 @@ After completing the `Click` event handler, take a moment to test out the page i
 **Figure 14**: The File `EvolutionValley.jpg` Has Been Uploaded to the Web Server ([Click to view full-size image](uploading-files-vb/_static/image22.png))
 
 
-![EvolutionValley.jpg Was Saved to the
-~/Brochures Folder](uploading-files-vb/_static/image15.gif)
+![EvolutionValley.jpg Was Saved to the ~/Brochures Folder](uploading-files-vb/_static/image15.gif)
 
 **Figure 15**: `EvolutionValley.jpg` Was Saved to the `~/Brochures` Folder
 

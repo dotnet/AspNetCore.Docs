@@ -113,7 +113,7 @@ With the `GetProductsAsPagedDataSource` method added to the `ProductsBLL` class,
 Set the drop-down lists in the UPDATE, INSERT, and DELETE tabs to (None) .
 
 
-[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE tabs to (None) ](paging-report-data-in-a-datalist-or-repeater-control-vb/_static/image11.png)](paging-report-data-in-a-datalist-or-repeater-control-vb/_static/image10.png)
+[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE tabs to (None)](paging-report-data-in-a-datalist-or-repeater-control-vb/_static/image11.png)](paging-report-data-in-a-datalist-or-repeater-control-vb/_static/image10.png)
 
 **Figure 6**: Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE tabs to (None) ([Click to view full-size image](paging-report-data-in-a-datalist-or-repeater-control-vb/_static/image12.png))
 

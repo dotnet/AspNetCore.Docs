@@ -58,7 +58,7 @@ Next, drag a Button and GridView control into the Panel. Set the Button s `ID` p
 **Figure 3**: Display the Data Returned from the `ProductsBLL` Class s `GetProducts` Method ([Click to view full-size image](batch-inserting-vb/_static/image9.png))
 
 
-[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ](batch-inserting-vb/_static/image11.png)](batch-inserting-vb/_static/image10.png)
+[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None)](batch-inserting-vb/_static/image11.png)](batch-inserting-vb/_static/image10.png)
 
 **Figure 4**: Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ([Click to view full-size image](batch-inserting-vb/_static/image12.png))
 

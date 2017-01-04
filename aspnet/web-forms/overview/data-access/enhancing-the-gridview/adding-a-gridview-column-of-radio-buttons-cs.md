@@ -61,8 +61,7 @@ Lastly, add these four pages as entries to the `Web.sitemap` file. Specifically,
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the editing, inserting, and deleting tutorials.
 
 
-![The Site Map Now Includes Entries for the Enhancing the GridView
-Tutorials](adding-a-gridview-column-of-radio-buttons-cs/_static/image3.gif)
+![The Site Map Now Includes Entries for the Enhancing the GridView Tutorials](adding-a-gridview-column-of-radio-buttons-cs/_static/image3.gif)
 
 **Figure 3**: The Site Map Now Includes Entries for the Enhancing the GridView Tutorials
 

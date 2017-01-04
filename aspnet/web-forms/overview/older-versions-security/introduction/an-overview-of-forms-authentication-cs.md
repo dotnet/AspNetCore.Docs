@@ -194,7 +194,7 @@ At this point your screen should look similar to the screen shot in Figure 9, an
 [!code[Main](an-overview-of-forms-authentication-cs/samples/sample4.xml)]
 
 
-[![ The Login Page Contains Two TextBoxes, a CheckBox, a Button, and a Label](an-overview-of-forms-authentication-cs/_static/image22.png)](an-overview-of-forms-authentication-cs/_static/image21.png)
+[![The Login Page Contains Two TextBoxes, a CheckBox, a Button, and a Label](an-overview-of-forms-authentication-cs/_static/image22.png)](an-overview-of-forms-authentication-cs/_static/image21.png)
 
 **Figure 9**: The Login Page Contains Two TextBoxes, a CheckBox, a Button, and a Label ([Click to view full-size image](an-overview-of-forms-authentication-cs/_static/image23.png))
 
@@ -240,7 +240,7 @@ When creating the forms authentication ticket we use the UserName TextBox's Text
 To test the login page, visit it in a browser. Start by entering invalid credentials, such as a username of "Nope" and a password of "wrong". Upon clicking the Login button a postback will occur and the InvalidCredentialsMessage Label will be displayed.
 
 
-[![ The InvalidCredentialsMessage Label is Displayed When Entering Invalid Credentials](an-overview-of-forms-authentication-cs/_static/image25.png)](an-overview-of-forms-authentication-cs/_static/image24.png)
+[![The InvalidCredentialsMessage Label is Displayed When Entering Invalid Credentials](an-overview-of-forms-authentication-cs/_static/image25.png)](an-overview-of-forms-authentication-cs/_static/image24.png)
 
 **Figure 10**: The InvalidCredentialsMessage Label is Displayed When Entering Invalid Credentials ([Click to view full-size image](an-overview-of-forms-authentication-cs/_static/image26.png))
 
@@ -280,7 +280,7 @@ With this code in place, visit Default.aspx through a browser. Assuming that you
 **Figure 11**: When Visiting Anonymously, a Log In Link is Displayed
 
 
-![Authenticated Users are Shown the ](an-overview-of-forms-authentication-cs/_static/image28.png)
+![Authenticated Users are Shown the](an-overview-of-forms-authentication-cs/_static/image28.png)
 
 **Figure 12**: Authenticated Users are Shown the "Welcome back!" Message
 
@@ -359,7 +359,7 @@ After making these additions to the LoginView's templates, the markup should loo
 With this addition to the Site.master master page, each page in our website will display a different message depending on whether the user is authenticated. Figure 15 shows the Default.aspx page when visited through a browser by user Jisun. The "Welcome back, Jisun" message is repeated twice: once in the master page's navigation section on the left (via the LoginView control we just added) and once in the Default.aspx's content area (via Panel controls and programmatic logic).
 
 
-![The LoginView Control Displays ](an-overview-of-forms-authentication-cs/_static/image31.png)
+![The LoginView Control Displays](an-overview-of-forms-authentication-cs/_static/image31.png)
 
 **Figure 15**: The LoginView Control Displays "Welcome back, Jisun."
 
@@ -411,12 +411,12 @@ Since the LoginStatus is outside of the LoginView control, it will appear for bo
 Figure 18 shows Default.aspx when Jisun visits. Note that the left column displays the message, "Welcome back, Jisun" along with a link to log out. Clicking the log out LinkButton causes a postback, signs Jisun out of the system, and then redirects her to Logout.aspx. As Figure 19 shows, by the time Jisun reaches Logout.aspx she has already been signed out and is therefore anonymous. Consequently, the left column shows the text "Welcome, stranger" and a link to the login page.
 
 
-[![Default.aspx Shows ](an-overview-of-forms-authentication-cs/_static/image39.png)](an-overview-of-forms-authentication-cs/_static/image38.png)
+[![Default.aspx Shows](an-overview-of-forms-authentication-cs/_static/image39.png)](an-overview-of-forms-authentication-cs/_static/image38.png)
 
 **Figure 18**: Default.aspx Shows "Welcome Back, Jisun" Along with a "Logout" LinkButton ([Click to view full-size image](an-overview-of-forms-authentication-cs/_static/image40.png))
 
 
-[![Logout.aspx Shows ](an-overview-of-forms-authentication-cs/_static/image42.png)](an-overview-of-forms-authentication-cs/_static/image41.png)
+[![Logout.aspx Shows](an-overview-of-forms-authentication-cs/_static/image42.png)](an-overview-of-forms-authentication-cs/_static/image41.png)
 
 **Figure 19**: Logout.aspx Shows "Welcome, stranger" Along with a "Login" LinkButton ([Click to view full-size image](an-overview-of-forms-authentication-cs/_static/image43.png))
 

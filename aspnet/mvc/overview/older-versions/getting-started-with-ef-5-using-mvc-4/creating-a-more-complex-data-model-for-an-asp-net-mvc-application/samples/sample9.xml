@@ -1,2 +1,4 @@
-public virtual ICollection<Course> Courses { get; set; }
-public virtual OfficeAssignment OfficeAssignment { get; set; }
+public string FullName
+{
+    get { return LastName + ", " + FirstMidName; }
+}

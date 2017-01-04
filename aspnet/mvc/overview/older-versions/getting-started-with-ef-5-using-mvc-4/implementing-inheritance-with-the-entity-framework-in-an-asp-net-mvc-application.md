@@ -78,7 +78,7 @@ In *SchoolContext.cs*, add a `DbSet` property for the `Person` entity type:
 
 [!code[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml)]
 
-This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is re-created, it will have a `Person` table in place of the `Student` and `Instructor` tables.<mark></mark>
+This is all that the Entity Framework needs in order to configure table-per-hierarchy inheritance. As you'll see, when the database is re-created, it will have a `Person` table in place of the `Student` and `Instructor` tables.
 
 ## Changing InstructorID and StudentID to PersonID
 

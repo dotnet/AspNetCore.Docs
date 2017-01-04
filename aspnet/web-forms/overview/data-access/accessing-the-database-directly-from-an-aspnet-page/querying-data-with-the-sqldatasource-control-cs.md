@@ -97,8 +97,7 @@ After updating `Web.sitemap`, take a moment to view the tutorials website throug
 Start by opening the `Querying.aspx` page in the `SqlDataSource` folder and switch to Design view. Drag a SqlDataSource control from the Toolbox onto the Designer and set its `ID` to `ProductsDataSource`. As with the ObjectDataSource, the SqlDataSource does not produce any rendered output and therefore appears as a gray box on the design surface. To configure the SqlDataSource, click on the Configure Data Source link from the SqlDataSource s smart tag.
 
 
-![Click on the Configure Data Source Link from the SqlDataSource s
-Smart Tag](querying-data-with-the-sqldatasource-control-cs/_static/image8.gif)
+![Click on the Configure Data Source Link from the SqlDataSource s Smart Tag](querying-data-with-the-sqldatasource-control-cs/_static/image8.gif)
 
 **Figure 6**: Click on the Configure Data Source Link from the SqlDataSource s Smart Tag
 
@@ -108,8 +107,7 @@ This brings up the SqlDataSource control s Configure Data Source wizard. While t
 The first wizard step prompts us for the database. The drop-down list includes those databases found in the web application s `App_Data` folder and those that have been added to the Data Connections node in the Server Explorer. Since we ve already added a connection string for the `NORTHWIND.MDF` database in the `App_Data` folder to our project s `Web.config` file, the drop-down list includes a reference to that connection string, `NORTHWINDConnectionString`. Choose this item from the drop-down list and click Next.
 
 
-![Choose the NORTHWINDConnectionString
-from the Drop-Down List](querying-data-with-the-sqldatasource-control-cs/_static/image9.gif)
+![Choose the NORTHWINDConnectionString from the Drop-Down List](querying-data-with-the-sqldatasource-control-cs/_static/image9.gif)
 
 **Figure 7**: Choose the `NORTHWINDConnectionString` from the Drop-Down List
 
@@ -130,8 +128,7 @@ Figure 8 shows the Configure the Select Statement screen when the Specify column
 Once you have configured the wizard to return the `ProductID`, `ProductName`, and `UnitPrice` columns from the `Products` table, click the Next button. This final screen provides an opportunity to examine the results of the query configured from the previous step. Clicking the Test Query button executes the configured `SELECT` statement and displays the results in a grid.
 
 
-![Click the Test Query Button to Review Your SELECT
-Query](querying-data-with-the-sqldatasource-control-cs/_static/image11.gif)
+![Click the Test Query Button to Review Your SELECT Query](querying-data-with-the-sqldatasource-control-cs/_static/image11.gif)
 
 **Figure 9**: Click the Test Query Button to Review Your `SELECT` Query
 

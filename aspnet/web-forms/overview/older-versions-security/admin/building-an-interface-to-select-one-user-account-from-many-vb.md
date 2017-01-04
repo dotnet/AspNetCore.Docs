@@ -64,7 +64,7 @@ Finally, update the site map (`Web.sitemap`) to include an entry to the `ManageU
 With the site map updated, visit the site through a browser. As Figure 2 shows, the navigation on the left now includes items for the Administration tutorials.
 
 
-[![The Site Map Includes a Node Titled User Administration ](building-an-interface-to-select-one-user-account-from-many-vb/_static/image5.png)](building-an-interface-to-select-one-user-account-from-many-vb/_static/image4.png)
+[![The Site Map Includes a Node Titled User Administration](building-an-interface-to-select-one-user-account-from-many-vb/_static/image5.png)](building-an-interface-to-select-one-user-account-from-many-vb/_static/image4.png)
 
 **Figure 2**: The Site Map Includes a Node Titled User Administration ([Click to view full-size image](building-an-interface-to-select-one-user-account-from-many-vb/_static/image6.png))
 

@@ -56,7 +56,7 @@ An example of a setting that depends on build configuration rather than destinat
 
 [!code[Main](web-config-transformations/samples/sample1.xml?highlight=18)]
 
-The <mark><code>xdt:Transform="RemoveAttributes(debug)"</code></mark> attribute specifies that you want the `debug` attribute to be removed from the `system.web/compilation` element in the deployed *Web.config* file. This will be done every time you deploy a Release build.
+The `xdt:Transform="RemoveAttributes(debug)"` attribute specifies that you want the `debug` attribute to be removed from the `system.web/compilation` element in the deployed *Web.config* file. This will be done every time you deploy a Release build.
 
 ## Limit error log access to administrators
 

@@ -126,7 +126,7 @@ A content page can have multiple sections, which is useful if you want to use la
 
 The following diagram shows how ASP.NET handles content that's divided into multiple sections. Each named section is contained in a section block in the content page. (They're named `Header` and `List` in the example.) The framework inserts content section into the layout page at the point where the `RenderSection` method is called. The unnamed (default) section is inserted at the point where the `RenderBody` method is called, as you saw earlier.
 
-![Conceptual diagram showing how the RenderSection method inserts references sections into the current page. ](3-creating-a-consistent-look/_static/image5.jpg)
+![Conceptual diagram showing how the RenderSection method inserts references sections into the current page.](3-creating-a-consistent-look/_static/image5.jpg)
 
 This procedure shows how to create a content page that has multiple content sections and how to render it using a layout page that supports multiple content sections.
 

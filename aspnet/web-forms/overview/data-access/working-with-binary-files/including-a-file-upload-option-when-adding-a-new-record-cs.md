@@ -129,8 +129,7 @@ Note that the DetailsView has five BoundFields `CategoryID`, `CategoryName`, `De
 Remove the `NumberOfProducts` BoundField from the DetailsView altogether and then update the `HeaderText` properties of the `CategoryName` and `BrochurePath` BoundFields to Category and Brochure , respectively. Next, convert the `BrochurePath` BoundField into a TemplateField and add a new TemplateField for the picture, giving this new TemplateField a `HeaderText` value of Picture . Move the `Picture` TemplateField so that it is between the `BrochurePath` TemplateField and CommandField.
 
 
-![Bind the DetailsView to the CategoriesDataSource
-and Enable Inserting](including-a-file-upload-option-when-adding-a-new-record-cs/_static/image7.gif)
+![Bind the DetailsView to the CategoriesDataSource and Enable Inserting](including-a-file-upload-option-when-adding-a-new-record-cs/_static/image7.gif)
 
 **Figure 7**: Bind the DetailsView to the `CategoriesDataSource` and Enable Inserting
 

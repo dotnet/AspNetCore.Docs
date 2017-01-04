@@ -103,7 +103,7 @@ This stored procedure returns a set of records as its results so, in the next sc
 Finally, create DAL methods that use both the Fill a DataTable and Return a DataTable patterns, naming the methods `FillPagedAndSorted` and `GetProductsPagedAndSorted`, respectively.
 
 
-![Choose the Methods  Names](sorting-custom-paged-data-vb/_static/image8.png)
+![Choose the Methods Names](sorting-custom-paged-data-vb/_static/image8.png)
 
 **Figure 6**: Choose the Methods Names
 
@@ -154,7 +154,7 @@ While the current implementation can correctly sort the results by product name,
 This exception occurs because the `SortExpression` of the GridView s `SupplierName` BoundField is set to `SupplierName`. However, the supplier s name in the `Suppliers` table is actually called `CompanyName` we have been aliased this column name as `SupplierName`. However, the `OVER` clause used by the `ROW_NUMBER()` function cannot use the alias and must use the actual column name. Therefore, change the `SupplierName` BoundField s `SortExpression` from SupplierName to CompanyName (see Figure 9). As Figure 10 shows, after this change the results can be sorted by the supplier.
 
 
-![Change the SupplierName BoundField s SortExpression to  CompanyName ](sorting-custom-paged-data-vb/_static/image13.png)
+![Change the SupplierName BoundField s SortExpression to CompanyName](sorting-custom-paged-data-vb/_static/image13.png)
 
 **Figure 9**: Change the SupplierName BoundField s SortExpression to CompanyName
 

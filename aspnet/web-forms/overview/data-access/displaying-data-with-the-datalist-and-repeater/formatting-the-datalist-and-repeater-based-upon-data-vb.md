@@ -135,7 +135,7 @@ In the *Using TemplateFields in the GridView Control* tutorial we saw how to use
 To demonstrate formatting functions, let s have the product information include the text [DISCONTINUED] next to the product s name if it s discontinued. Also, let s have the price highlighted yellow if it s less than $20.00 (as we did in the `ItemDataBound` event handler example); if the price is $20.00 or higher, let s not display the actual price, but instead the text, Please call for a price quote . Figure 4 shows a screen shot of the products listing with these formatting rules applied.
 
 
-[![For Expensive Products, the Price is Replaced with the Text, Please call for a price quote ](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image11.png)](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image10.png)
+[![For Expensive Products, the Price is Replaced with the Text, Please call for a price quote](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image11.png)](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image10.png)
 
 **Figure 4**: For Expensive Products, the Price is Replaced with the Text, Please call for a price quote ([Click to view full-size image](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image12.png))
 
@@ -176,7 +176,7 @@ To display the price, we can simply set the `UnitPriceLabel` Label s `Text` prop
 With the calls to the formatting functions in place, take a moment to view our progress in a browser. Your screen should look similar to Figure 5, with the discontinued products including the text [DISCONTINUED] and those products costing more than $20.00 having their price replaced with the text Please call for a price quote .
 
 
-[![For Expensive Products, the Price is Replaced with the Text, Please call for a price quote ](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image14.png)](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image13.png)
+[![For Expensive Products, the Price is Replaced with the Text, Please call for a price quote](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image14.png)](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image13.png)
 
 **Figure 5**: For Expensive Products, the Price is Replaced with the Text, Please call for a price quote ([Click to view full-size image](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image15.png))
 

@@ -69,8 +69,7 @@ Before we start exploring how to augment the DAL to support database transaction
 - `BatchInsert.aspx`
 
 
-![Add the ASP.NET Pages for the
-        SqlDataSource-Related Tutorials](wrapping-database-modifications-within-a-transaction-vb/_static/image1.gif)
+![Add the ASP.NET Pages for the SqlDataSource-Related Tutorials](wrapping-database-modifications-within-a-transaction-vb/_static/image1.gif)
 
 **Figure 1**: Add the ASP.NET Pages for the SqlDataSource-Related Tutorials
 
@@ -91,8 +90,7 @@ Lastly, add these four pages as entries to the `Web.sitemap` file. Specifically,
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the working with batched data tutorials.
 
 
-![The Site Map Now Includes Entries for the Working
-    with Batched Data Tutorials](wrapping-database-modifications-within-a-transaction-vb/_static/image3.gif)
+![The Site Map Now Includes Entries for the Working with Batched Data Tutorials](wrapping-database-modifications-within-a-transaction-vb/_static/image3.gif)
 
 **Figure 3**: The Site Map Now Includes Entries for the Working with Batched Data Tutorials
 
@@ -108,8 +106,7 @@ In certain scenarios we want to ensure atomicity across a series of modification
 The Typed DataSet `Northwind.xsd` is located in the `App_Code` folder s `DAL` subfolder. Create a subfolder in the `DAL` folder named `TransactionSupport` and add a new class file named `ProductsTableAdapter.TransactionSupport.vb` (see Figure 4). This file will hold the partial implementation of the `ProductsTableAdapter` that includes methods for performing data modifications using a transaction.
 
 
-![Add a Folder Named TransactionSupport and a Class File Named
-        ProductsTableAdapter.TransactionSupport.vb](wrapping-database-modifications-within-a-transaction-vb/_static/image4.gif)
+![Add a Folder Named TransactionSupport and a Class File Named ProductsTableAdapter.TransactionSupport.vb](wrapping-database-modifications-within-a-transaction-vb/_static/image4.gif)
 
 **Figure 4**: Add a Folder Named `TransactionSupport` and a Class File Named `ProductsTableAdapter.TransactionSupport.vb`
 
@@ -169,7 +166,7 @@ Start by opening the `Transactions.aspx` page in the `BatchData` folder and drag
 **Figure 5**: Configure the ObjectDataSource to Use the `ProductsBLL` Class s `GetProducts` Method ([Click to view full-size image](wrapping-database-modifications-within-a-transaction-vb/_static/image4.png))
 
 
-[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ](wrapping-database-modifications-within-a-transaction-vb/_static/image6.gif)](wrapping-database-modifications-within-a-transaction-vb/_static/image5.png)
+[![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None)](wrapping-database-modifications-within-a-transaction-vb/_static/image6.gif)](wrapping-database-modifications-within-a-transaction-vb/_static/image5.png)
 
 **Figure 6**: Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ([Click to view full-size image](wrapping-database-modifications-within-a-transaction-vb/_static/image6.png))
 

@@ -259,7 +259,7 @@ Let s add two new ButtonFields to the GridView, one with a button text Price +10
 Move the two ButtonFields so that they appear as the first two GridView fields. Next, set the `Text` properties of these two ButtonFields to Price +10% and Price -10% and the `CommandName` properties to IncreasePrice and DecreasePrice , respectively. By default, a ButtonField renders its column of buttons as LinkButtons. This can be changed, however, through the ButtonField s [`ButtonType` property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.buttonfieldbase.buttontype.aspx). Let s have these two ButtonFields rendered as regular push buttons; therefore, set the `ButtonType` property to `Button`. Figure 19 shows the Fields dialog box after these changes have been made; following that is the GridView s declarative markup.
 
 
-![Configure the ButtonFields  Text, CommandName, and ButtonType Properties](adding-and-responding-to-buttons-to-a-gridview-vb/_static/image49.png)
+![Configure the ButtonFields Text, CommandName, and ButtonType Properties](adding-and-responding-to-buttons-to-a-gridview-vb/_static/image49.png)
 
 **Figure 19**: Configure the ButtonFields `Text`, `CommandName`, and `ButtonType` Properties
 

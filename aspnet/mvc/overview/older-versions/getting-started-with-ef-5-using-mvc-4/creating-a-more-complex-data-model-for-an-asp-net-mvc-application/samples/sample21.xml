@@ -1,1 +1,1 @@
-modelBuilder.Entity().HasRequired(d => d.Administrator).WithMany().WillCascadeOnDelete(false);
+public virtual ICollection<Course> Courses { get; set; }

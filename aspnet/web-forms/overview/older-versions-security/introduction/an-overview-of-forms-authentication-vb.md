@@ -362,7 +362,7 @@ After making these additions to the LoginView's templates, the markup should loo
 With this addition to the Site.master master page, each page in our website will display a different message depending on whether the user is authenticated. Figure 15 shows the Default.aspx page when visited through a browser by user Jisun. The Welcome back, Jisun message is repeated twice: once in the master page's navigation section on the left (via the LoginView control we just added) and once in the Default.aspx's content area (via Panel controls and programmatic logic).
 
 
-[![The LoginView Control Displays Welcome back, Jisun. ](an-overview-of-forms-authentication-vb/_static/image44.png)](an-overview-of-forms-authentication-vb/_static/image43.png)
+[![The LoginView Control Displays Welcome back, Jisun.](an-overview-of-forms-authentication-vb/_static/image44.png)](an-overview-of-forms-authentication-vb/_static/image43.png)
 
 **Figure 15**: The LoginView Control Displays Welcome back, Jisun. ([Click to view full-size image](an-overview-of-forms-authentication-vb/_static/image45.png))
 

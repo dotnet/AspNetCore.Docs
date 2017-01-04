@@ -167,7 +167,7 @@ When specifying the `HeaderTemplate` or `FooterTemplate`, the DataList adds an a
 For our example, let s have the title Product Information displayed at the top of the DataList s results in an `<h3>` heading. To accomplish this, add a `HeaderTemplate` with the appropriate markup. From the Designer, this can be accomplished by clicking on the Edit Templates link in the DataList s smart tag, choosing the Header Template from the drop-down list, and typing in the text after picking the Heading 3 option from the style drop-down list (see Figure 11).
 
 
-[![Add a HeaderTemplate with the Text Product Information ](displaying-data-with-the-datalist-and-repeater-controls-cs/_static/image28.png)](displaying-data-with-the-datalist-and-repeater-controls-cs/_static/image27.png)
+[![Add a HeaderTemplate with the Text Product Information](displaying-data-with-the-datalist-and-repeater-controls-cs/_static/image28.png)](displaying-data-with-the-datalist-and-repeater-controls-cs/_static/image27.png)
 
 **Figure 11**: Add a `HeaderTemplate` with the Text Product Information ([Click to view full-size image](displaying-data-with-the-datalist-and-repeater-controls-cs/_static/image29.png))
 

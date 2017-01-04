@@ -61,7 +61,7 @@ Here's the code shown within the IDE.
 
 Run your application and visit /Movies/Create again, and click Create without entering any data. The error messages appear immediately without the page flash that we associate with sending data all the way back to the server. This is because ASP.NET MVC is now validating the input on both the client (using JavaScript) and on the server.
 
-[![Create - Windows Internet Explorer ](getting-started-with-mvc-part7/_static/image6.png)](getting-started-with-mvc-part7/_static/image5.png)
+[![Create - Windows Internet Explorer](getting-started-with-mvc-part7/_static/image6.png)](getting-started-with-mvc-part7/_static/image5.png)
 
 This is looking good! Let's now add one additional column to the database.
 

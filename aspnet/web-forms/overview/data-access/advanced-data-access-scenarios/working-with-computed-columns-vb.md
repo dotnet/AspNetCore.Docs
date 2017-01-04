@@ -73,7 +73,7 @@ Before we start work on the Data Access Layer, let s take a minute to view the `
 As Figure 2 shows, the results include `FullContactName`, which lists the `CompanyName`, `ContactName`, and `ContactTitle` columns using the format `ContactName` (`ContactTitle`, `CompanyName`) .
 
 
-[![The FullContactName Uses the Format ContactName (ContactTitle, CompanyName) ](working-with-computed-columns-vb/_static/image5.png)](working-with-computed-columns-vb/_static/image4.png)
+[![The FullContactName Uses the Format ContactName (ContactTitle, CompanyName)](working-with-computed-columns-vb/_static/image5.png)](working-with-computed-columns-vb/_static/image4.png)
 
 **Figure 2**: The `FullContactName` Uses the Format `ContactName` (`ContactTitle`, `CompanyName`) ([Click to view full-size image](working-with-computed-columns-vb/_static/image6.png))
 

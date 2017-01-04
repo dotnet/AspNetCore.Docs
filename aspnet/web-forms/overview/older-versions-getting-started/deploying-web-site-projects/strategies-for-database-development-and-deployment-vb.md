@@ -93,7 +93,7 @@ There are a variety of third-party database comparison tools offered by many dif
 When SQL Compare starts the Comparison Projects dialog box opens, showing the saved SQL Compare projects. Create a new project. This launches the Project Configuration wizard, which prompts for information about the databases to compare (see Figure 1). Enter the information for the development and production environment databases.
 
 
-[![ Compare the Development and Production Databases](strategies-for-database-development-and-deployment-vb/_static/image2.jpg)](strategies-for-database-development-and-deployment-vb/_static/image1.jpg)
+[![Compare the Development and Production Databases](strategies-for-database-development-and-deployment-vb/_static/image2.jpg)](strategies-for-database-development-and-deployment-vb/_static/image1.jpg)
 
 **Figure 1**: Compare the Development and Production Databases ([Click to view full-size image](strategies-for-database-development-and-deployment-vb/_static/image3.jpg))
 
@@ -108,7 +108,7 @@ After selecting the databases to compare (and reviewing the comparison options),
 > [!NOTE] The data model changes made in this tutorial were done to illustrate using a database comparison tool. You will not find these changes in the database in future tutorials.
 
 
-[![ SQL Compare Lists the Differences Between the Development and Production Databases](strategies-for-database-development-and-deployment-vb/_static/image5.jpg)](strategies-for-database-development-and-deployment-vb/_static/image4.jpg)
+[![SQL Compare Lists the Differences Between the Development and Production Databases](strategies-for-database-development-and-deployment-vb/_static/image5.jpg)](strategies-for-database-development-and-deployment-vb/_static/image4.jpg)
 
 **Figure 2**: SQL Compare Lists the Differences Between the Development and Production Databases ([Click to view full-size image](strategies-for-database-development-and-deployment-vb/_static/image6.jpg))
 
@@ -120,7 +120,7 @@ Selecting a database object displays the SQL Differences window, which shows how
 After reviewing the differences and selecting which objects you want to synchronize, the next step is to generate the SQL commands needed to update the production database s schema to match the development database. This is accomplished through the Synchronization Wizard. The Synchronization Wizard confirms what objects to synchronize and summarizes the action plan (see Figure 3). You can synchronize the databases immediately or generate a script with the SQL commands that can be run at your leisure.
 
 
-[![ Use the Synchronization Wizard to Synchronize Your Databases Schemas](strategies-for-database-development-and-deployment-vb/_static/image8.jpg)](strategies-for-database-development-and-deployment-vb/_static/image7.jpg)
+[![Use the Synchronization Wizard to Synchronize Your Databases Schemas](strategies-for-database-development-and-deployment-vb/_static/image8.jpg)](strategies-for-database-development-and-deployment-vb/_static/image7.jpg)
 
 **Figure 3**: Use the Synchronization Wizard to Synchronize Your Databases Schemas ([Click to view full-size image](strategies-for-database-development-and-deployment-vb/_static/image9.jpg))
 

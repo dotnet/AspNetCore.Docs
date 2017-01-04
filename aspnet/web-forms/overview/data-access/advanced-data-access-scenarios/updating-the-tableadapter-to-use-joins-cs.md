@@ -75,8 +75,7 @@ By default, the TableAdapter will automatically create `INSERT`, `UPDATE`, and `
 Click Finish to complete the wizard. At this point your DataSet s Designer will include a single TableAdapter with a DataTable with columns for each of the fields returned in the `SELECT` query s column list. This includes the `CategoryName` and `SupplierName`, as Figure 3 shows.
 
 
-![The DataTable Includes a Column for Each Field Returned in the
-        Column List](updating-the-tableadapter-to-use-joins-cs/_static/image5.png)
+![The DataTable Includes a Column for Each Field Returned in the Column List](updating-the-tableadapter-to-use-joins-cs/_static/image5.png)
 
 **Figure 3**: The DataTable Includes a Column for Each Field Returned in the Column List
 
@@ -84,7 +83,7 @@ Click Finish to complete the wizard. At this point your DataSet s Designer will 
 While the DataTable has the appropriate columns, the TableAdapter lacks values for its `InsertCommand`, `UpdateCommand`, and `DeleteCommand` properties. To confirm this, click on the TableAdapter in the Designer and then go to the Properties window. There you will see that the `InsertCommand`, `UpdateCommand`, and `DeleteCommand` properties are set to (None) .
 
 
-[![The InsertCommand, UpdateCommand, and DeleteCommand Properties are Set to (None) ](updating-the-tableadapter-to-use-joins-cs/_static/image7.png)](updating-the-tableadapter-to-use-joins-cs/_static/image6.png)
+[![The InsertCommand, UpdateCommand, and DeleteCommand Properties are Set to (None)](updating-the-tableadapter-to-use-joins-cs/_static/image7.png)](updating-the-tableadapter-to-use-joins-cs/_static/image6.png)
 
 **Figure 4**: The `InsertCommand`, `UpdateCommand`, and `DeleteCommand` Properties are Set to (None) ([Click to view full-size image](updating-the-tableadapter-to-use-joins-cs/_static/image8.png))
 

@@ -51,7 +51,7 @@ The key value is passed to the method as the `id` parameter and comes from *rout
 > 
 > routes.MapRoute(  
 >  name: "Default",  
->  url: <mark>"{controller}/{action}/{id}"</mark>,  
+>  url: "{controller}/{action}/{id}",  
 >  defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }  
 > );
 > 

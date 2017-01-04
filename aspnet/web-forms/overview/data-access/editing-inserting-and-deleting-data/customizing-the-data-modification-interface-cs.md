@@ -226,7 +226,7 @@ Start by converting the `Discontinued` CheckBoxField into a TemplateField, which
 Replace the CheckBox in both the `ItemTemplate` and `EditItemTemplate` with a RadioButtonList control, setting both RadioButtonLists' `ID` properties to `DiscontinuedChoice`. Next, indicate that the RadioButtonLists should each contain two radio buttons, one labeled "Active" with a value of "False" and one labeled "Discontinued" with a value of "True". To accomplish this you can either enter the `<asp:ListItem>` elements in directly through the declarative syntax or use the `ListItem` Collection Editor from the Designer. Figure 13 shows the `ListItem` Collection Editor after the two radio button options have been specified.
 
 
-[![Add ](customizing-the-data-modification-interface-cs/_static/image38.png)](customizing-the-data-modification-interface-cs/_static/image37.png)
+[![Add](customizing-the-data-modification-interface-cs/_static/image38.png)](customizing-the-data-modification-interface-cs/_static/image37.png)
 
 **Figure 13**: Add "Active" and "Discontinued" Options to the RadioButtonList ([Click to view full-size image](customizing-the-data-modification-interface-cs/_static/image39.png))
 

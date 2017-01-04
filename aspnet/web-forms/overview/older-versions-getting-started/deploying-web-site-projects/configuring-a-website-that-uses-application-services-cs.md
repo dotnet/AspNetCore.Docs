@@ -98,7 +98,7 @@ Let s look at how to add the database objects to the production database using t
 The tool starts by displaying a splash screen explaining its purpose. Click Next to advance to the "Select a Setup Option" screen, which is shown in Figure 1. From here you can choose to add the application services database objects or remove them from a database. Because we want to add these objects to the production database, select the "Configure SQL Server for application services" option and click Next.
 
 
-[![ Choose to Configure SQL Server for Application Services](configuring-a-website-that-uses-application-services-cs/_static/image2.jpg)](configuring-a-website-that-uses-application-services-cs/_static/image1.jpg)
+[![Choose to Configure SQL Server for Application Services](configuring-a-website-that-uses-application-services-cs/_static/image2.jpg)](configuring-a-website-that-uses-application-services-cs/_static/image1.jpg)
 
 **Figure 1**: Choose to Configure SQL Server for Application Services ([Click to view full-size image](configuring-a-website-that-uses-application-services-cs/_static/image3.jpg))
 
@@ -116,7 +116,7 @@ In "Select the Server and Database" screen prompts for information to connect to
 The subsequent screen summarizes the actions that are about to take place, namely that the application services database objects are going to be added to the specified database. Click Next to complete this action. After a few moments, the final screen is displayed, noting that the database objects have been added (see Figure 3).
 
 
-[![ Success! The Application Services Database Objects Were Added to the Production Database](configuring-a-website-that-uses-application-services-cs/_static/image8.jpg)](configuring-a-website-that-uses-application-services-cs/_static/image7.jpg)
+[![Success! The Application Services Database Objects Were Added to the Production Database](configuring-a-website-that-uses-application-services-cs/_static/image8.jpg)](configuring-a-website-that-uses-application-services-cs/_static/image7.jpg)
 
 **Figure 3**: Success! The Application Services Database Objects Were Added to the Production Database ([Click to view full-size image](configuring-a-website-that-uses-application-services-cs/_static/image9.jpg))
 
@@ -161,7 +161,7 @@ Recall that an earlier tutorial updated the Book Reviews web application to incl
 > [!NOTE] For more information on using the Membership and Roles APIs along with the Login-related ASP.NET Web controls, be sure to read my [<u>Website Security Tutorials</u>](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md). For more on customizing the CreateUserWizard control refer to the [<u>Creating User Accounts</u>](../../older-versions-security/membership/creating-user-accounts-cs.md) and [<u>Storing Additional User Information</u>](../../older-versions-security/membership/storing-additional-user-information-cs.md) tutorials, or check out [<u>Erich Peterson</u>](http://www.erichpeterson.com/) s article, [<u>Customizing the CreateUserWizard Control</u>](http://aspnet.4guysfromrolla.com/articles/070506-1.aspx).
 
 
-[![ Administrators Can Create New User Accounts](configuring-a-website-that-uses-application-services-cs/_static/image14.jpg)](configuring-a-website-that-uses-application-services-cs/_static/image13.jpg)
+[![Administrators Can Create New User Accounts](configuring-a-website-that-uses-application-services-cs/_static/image14.jpg)](configuring-a-website-that-uses-application-services-cs/_static/image13.jpg)
 
 **Figure 5**: Administrators Can Create New User Accounts ([Click to view full-size image](configuring-a-website-that-uses-application-services-cs/_static/image15.jpg))
 

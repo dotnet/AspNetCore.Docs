@@ -119,7 +119,7 @@ In this exercise, you will learn how to use ASP.NET MVC 4 scaffolding with code 
     *Adding the Person controller with scaffolding*
 9. Click **Add** to create the new controller for Person with scaffolding. You have now generated the controller actions as well as the views.
 
-    ![After creating the Person controller with scaffolding ](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image5.png "After creating the Person controller with scaffolding")
+    ![After creating the Person controller with scaffolding](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image5.png "After creating the Person controller with scaffolding")
 
     *After creating the Person controller with scaffolding*
 10. Open **PersonController** class. Notice that the full CRUD action methods have been generated automatically.
@@ -311,9 +311,7 @@ You can install **Microsoft Visual Studio Express 2012 for Web** or another &quo
 
 With code snippets, you have all the code you need at your fingertips. The lab document will tell you exactly when you can use them, as shown in the following figure.
 
-![Using Visual Studio code 
-
-snippets to insert code into your project](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image27.png "Using Visual Studio code snippets to insert code into your project")
+![Using Visual Studio code snippets to insert code into your project](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image27.png "Using Visual Studio code snippets to insert code into your project")
 
 *Using Visual Studio code snippets to insert code into your project*
 
@@ -342,14 +340,10 @@ snippets to insert code into your project](aspnet-mvc-4-entity-framework-scaffol
 1. Select **Insert Snippet** followed by **My Code Snippets**.
 2. Pick the relevant snippet from the list, by clicking on it.
 
-![Right-click where 
-
-you want to insert the code snippet and select Insert Snippet](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image31.png "Right-click where you want to insert the code snippet and select Insert Snippet")
+![Right-click where you want to insert the code snippet and select Insert Snippet](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image31.png "Right-click where you want to insert the code snippet and select Insert Snippet")
 
 *Right-click where you want to insert the code snippet and select Insert Snippet*
 
-![Pick the relevant snippet from the 
-
-list, by clicking on it](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image32.png "Pick the relevant snippet from the list, by clicking on it")
+![Pick the relevant snippet from the list, by clicking on it](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image32.png "Pick the relevant snippet from the list, by clicking on it")
 
 *Pick the relevant snippet from the list, by clicking on it*

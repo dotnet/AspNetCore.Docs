@@ -192,7 +192,7 @@ Let's augment the `RolesUserList` GridView so that it includes a column of "Remo
 Start by adding a Delete button field to the GridView. Make this field appear as the left most filed and change its `DeleteText` property from "Delete" (the default) to "Remove".
 
 
-[![Add the ](assigning-roles-to-users-cs/_static/image20.png)](assigning-roles-to-users-cs/_static/image19.png)
+[![Add the](assigning-roles-to-users-cs/_static/image20.png)](assigning-roles-to-users-cs/_static/image19.png)
 
 **Figure 7**: Add the "Remove" Button to the GridView  ([Click to view full-size image](assigning-roles-to-users-cs/_static/image21.png))
 
@@ -281,7 +281,7 @@ Open the `CreateUserWizardWithRoles.aspx` page and add a CreateUserWizard contro
 Next, select the "Add/Remove `WizardSteps`…" option from the CreateUserWizard's Smart Tag and add a new `WizardStep`, setting its `ID` to `SpecifyRolesStep`. Move the `SpecifyRolesStep WizardStep` so that it comes after the "Sign Up for Your New Account" step, but before the "Complete" step. Set the `WizardStep`'s `Title` property to "Specify Roles", its `StepType` property to `Step`, and its `AllowReturn` property to False.
 
 
-[![Add the ](assigning-roles-to-users-cs/_static/image32.png)](assigning-roles-to-users-cs/_static/image31.png)
+[![Add the](assigning-roles-to-users-cs/_static/image32.png)](assigning-roles-to-users-cs/_static/image31.png)
 
 **Figure 11**: Add the "Specify Roles" `WizardStep` to the CreateUserWizard  ([Click to view full-size image](assigning-roles-to-users-cs/_static/image33.png))
 

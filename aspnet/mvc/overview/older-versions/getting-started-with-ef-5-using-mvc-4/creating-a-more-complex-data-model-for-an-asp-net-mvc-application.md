@@ -48,9 +48,9 @@ The [DataType](https://msdn.microsoft.com/en-us/library/system.componentmodel.da
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
 
-<mark>
-<pre class="prettyprint">[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-public DateTime EnrollmentDate { get; set; }</pre></mark>
+
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample2.xml)]
+
 
 The `ApplyFormatInEditMode` setting specifies that the specified formatting should also be applied when the value is displayed in a text box for editing. (You might not want that for some fields — for example, for currency values, you might not want the currency symbol in the text box for editing.)
 
@@ -70,7 +70,7 @@ Run the Student Index page again and notice that times are no longer displayed f
 
 You can also specify data validation rules and messages using attributes. Suppose you want to ensure that users don't enter more than 50 characters for a name. To add this limitation, add [StringLength](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.stringlengthattribute.aspx) attributes to the `LastName` and `FirstMidName` properties, as shown in the following example:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample2.xml?highlight=10,12)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample3.xml?highlight=10,12)]
 
 The [StringLength](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.stringlengthattribute.aspx) attribute won't prevent a user from entering white space for a name. You can use the [RegularExpression](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.regularexpressionattribute.aspx) attribute to apply restrictions to the input. For example the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
@@ -102,7 +102,7 @@ The `Column` attribute specifies that when the database is created, the column o
 
 Add a using statement for [System.ComponentModel.DataAnnotations.Schema](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.aspx) and the column name attribute to the `FirstMidName` property, as shown in the following highlighted code:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample3.xml?highlight=4,14)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample4.xml?highlight=4,14)]
 
 The addition of the [Column attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.columnattribute.aspx)changes the model backing the SchoolContext, so it won't match the database. Enter the following commands in the PMC to create another migration:
 
@@ -127,7 +127,7 @@ You can also make database mapping changes using the [Fluent API](https://msdn.m
 
 Create *Models\Instructor.cs*, replacing the template code with the following code:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample4.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample5.xml)]
 
 Notice that several properties are the same in the `Student` and `Instructor` entities. In the [Implementing Inheritance](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application.md) tutorial later in this series, you'll refactor using inheritance to eliminate this redundancy.
 
@@ -135,21 +135,21 @@ Notice that several properties are the same in the `Student` and `Instructor` en
 
 The attributes on the `LastName` property specify that it's a required field, that the caption for the text box should be "Last Name" (instead of the property name, which would be "LastName" with no space), and that the value can't be longer than 50 characters.
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample5.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample6.xml)]
 
 The [StringLength attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.stringlengthattribute.aspx) sets the maximum length in the database and provides client side and server side validation for ASP.NET MVC. You can also specify the minimum string length in this attribute, but the minimum value has no impact on the database schema. The [Required attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx) is not needed for value types such as DateTime, int, double, and float. Value types cannot be assigned a null value, so they are inherently required. You could remove the [Required attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx) and replace it with a minimum length parameter for the `StringLength` attribute:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample6.xml?highlight=2)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample7.xml?highlight=2)]
 
 You can put multiple attributes on one line, so you could also write the instructor class as follows:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample7.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample8.xml)]
 
 ### The FullName Calculated Property
 
 `FullName` is a calculated property that returns a value that's created by concatenating two other properties. Therefore it has only a `get` accessor, and no `FullName` column will be generated in the database.
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample8.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample9.xml)]
 
 ### The Courses and OfficeAssignment Navigation Properties
 
@@ -157,7 +157,7 @@ The `Courses` and `OfficeAssignment` properties are navigation properties. As wa
 
 An instructor can teach any number of courses, so `Courses` is defined as a collection of `Course` entities. Our business rules state an instructor can only have at most one office, so `OfficeAssignment` is defined as a single `OfficeAssignment` entity (which may be `null` if no office is assigned).
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample9.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample10.xml)]
 
 ## Create the OfficeAssignment Entity
 
@@ -165,7 +165,7 @@ An instructor can teach any number of courses, so `Courses` is defined as a coll
 
 Create *Models\OfficeAssignment.cs* with the following code:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample10.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample11.xml)]
 
 Build the project, which saves your changes and verifies you haven't made any copy and paste errors the compiler can catch.
 
@@ -173,7 +173,7 @@ Build the project, which saves your changes and verifies you haven't made any co
 
 There's a one-to-zero-or-one relationship between the `Instructor` and the `OfficeAssignment` entities. An office assignment only exists in relation to the instructor it's assigned to, and therefore its primary key is also its foreign key to the `Instructor` entity. But the Entity Framework can't automatically recognize `InstructorID` as the primary key of this entity because its name doesn't follow the `ID` or *classname*`ID` naming convention. Therefore, the `Key` attribute is used to identify it as the key:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample11.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample12.xml)]
 
 You can also use the `Key` attribute if the entity does have its own primary key but you want to name the property something different than `classnameID` or `ID`. By default EF treats the key as non-database-generated because the column is for an identifying relationship.
 
@@ -197,7 +197,7 @@ You could put a `[Required]` attribute on the Instructor navigation property to 
 
 In *Models\Course.cs*, replace the code you added earlier with the following code:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample12.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample13.xml)]
 
 The course entity has a foreign key property `DepartmentID` which points to the related `Department` entity and it has a `Department` navigation property. The Entity Framework doesn't require you to add a foreign key property to your data model when you have a navigation property for a related entity. EF automatically creates foreign keys in the database wherever they are needed. But having the foreign key in the data model can make updates simpler and more efficient. For example, when you fetch a course entity to edit, the `Department` entity is null if you don't load it, so when you update the course entity, you would have to first fetch the `Department` entity. When the foreign key property `DepartmentID` is included in the data model, you don't need to fetch the `Department` entity before you update.
 
@@ -205,7 +205,7 @@ The course entity has a foreign key property `DepartmentID` which points to the 
 
 The [DatabaseGenerated attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.databasegeneratedattribute.aspx) with the [None](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.databasegeneratedoption(v=vs.110).aspx) parameter on the `CourseID` property specifies that primary key values are provided by the user rather than generated by the database.
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample13.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample14.xml)]
 
 By default, the Entity Framework assumes that primary key values are generated by the database. That's what you want in most scenarios. However, for `Course` entities, you'll use a user-specified course number such as a 1000 series for one department, a 2000 series for another department, and so on.
 
@@ -215,13 +215,13 @@ The foreign key properties and navigation properties in the `Course` entity refl
 
 - A course is assigned to one department, so there's a `DepartmentID` foreign key and a `Department` navigation property for the reasons mentioned above. 
 
-    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample14.xml)]
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample15.xml)]
 - A course can have any number of students enrolled in it, so the `Enrollments` navigation property is a collection: 
 
-    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample15.xml)]
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample16.xml)]
 - A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection: 
 
-    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample16.xml)]
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample17.xml)]
 
 ## Creating the Department Entity
 
@@ -229,13 +229,13 @@ The foreign key properties and navigation properties in the `Course` entity refl
 
 Create *Models\Department.cs*with the following code:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample17.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample18.xml)]
 
 ### The Column Attribute
 
 Earlier you used the [Column attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.columnattribute.aspx) to change column name mapping. In the code for the `Department` entity, the `Column` attribute is being used to change SQL data type mapping so that the column will be defined using the SQL Server [money](https://msdn.microsoft.com/en-us/library/ms179882.aspx) type in the database:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample18.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample19.xml)]
 
 Column mapping is generally not required, because the Entity Framework usually chooses the appropriate SQL Server data type based on the CLR type that you define for the property. The CLR `decimal` type maps to a SQL Server `decimal` type. But in this case you know that the column will be holding currency amounts, and the [money](https://msdn.microsoft.com/en-us/library/ms179882.aspx) data type is more appropriate for that.
 
@@ -245,14 +245,14 @@ The foreign key and navigation properties reflect the following relationships:
 
 - A department may or may not have an administrator, and an administrator is always an instructor. Therefore the `InstructorID` property is included as the foreign key to the `Instructor` entity, and a question mark is added after the `int` type designation to mark the property as nullable.The navigation property is named `Administrator` but holds an `Instructor` entity: 
 
-    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample19.xml)]
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample20.xml)]
 - A department may have many courses, so there's a `Courses` navigation property: 
 
-    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample20.xml)]
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample21.xml)]
 
  > [!NOTE] By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when your initializer code runs. For example, if you didn't define the `Department.InstructorID` property as nullable, you'd get the following exception message when the initializer runs: "The referential relationship will result in a cyclical reference that's not allowed." If your business rules required `InstructorID` property as non-nullable, you would have to use the following fluent API to disable cascade delete on the relationship: 
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample21.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample22.xml)]
 
 
 ## Modifying the Student Entity
@@ -261,13 +261,13 @@ The foreign key and navigation properties reflect the following relationships:
 
 In *Models\Student.cs*, replace the code you added earlier with the following code. The changes are highlighted.
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample22.xml?highlight=12,15,24-27)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample23.xml?highlight=12,15,24-27)]
 
 ## The Enrollment Entity
 
  In *Models\Enrollment.cs*, replace the code you added earlier with the following code
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample23.xml?highlight=16)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample24.xml?highlight=16)]
 
 ### Foreign Key and Navigation Properties
 
@@ -275,10 +275,10 @@ The foreign key properties and navigation properties reflect the following relat
 
 - An enrollment record is for a single course, so there's a `CourseID` foreign key property and a `Course` navigation property: 
 
-    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample24.xml)]
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample25.xml)]
 - An enrollment record is for a single student, so there's a `StudentID` foreign key property and a `Student` navigation property: 
 
-    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample25.xml)]
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample26.xml)]
 
 ### Many-to-Many Relationships
 
@@ -318,17 +318,17 @@ Some developers prefer to use the fluent API exclusively so that they can keep t
 
 To add the new entities to the data model and perform database mapping that you didn't do by using attributes, replace the code in *DAL\SchoolContext.cs* with the following code:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample26.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample27.xml)]
 
 The new statement in the [OnModelCreating](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext.onmodelcreating(v=vs.103).aspx) method configures the many-to-many join table:
 
 - For the many-to-many relationship between the `Instructor` and `Course` entities, the code specifies the table and column names for the join table. Code First can configure the many-to-many relationship for you without this code, but if you don't call it, you will get default names such as `InstructorInstructorID` for the `InstructorID` column.
 
-    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample27.xml)]
+    [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample28.xml)]
 
 The following code provides an example of how you could have used fluent API instead of attributes to specify the relationship between the `Instructor` and `OfficeAssignment` entities:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample28.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample29.xml)]
 
 For information about what "fluent API" statements are doing behind the scenes, see the [Fluent API](https://blogs.msdn.com/b/aspnetue/archive/2011/05/04/entity-framework-code-first-tutorial-supplement-what-is-going-on-in-a-fluent-api-call.aspx) blog post.
 
@@ -336,11 +336,11 @@ For information about what "fluent API" statements are doing behind the scenes, 
 
 Replace the code in the *Migrations\Configuration.cs* file with the following code in order to provide seed data for the new entities you've created.
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample29.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample30.xml)]
 
 As you saw in the first tutorial, most of this code simply updates or creates new entity objects and loads sample data into properties as required for testing. However, notice how the `Course` entity, which has a many-to-many relationship with the `Instructor` entity, is handled:
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample30.xml)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample31.xml)]
 
 When you create a `Course` object, you initialize the `Instructors` navigation property as an empty collection using the code `Instructors = new List<Instructor>()`. This makes it possible to add `Instructor` entities that are related to this `Course` by using the `Instructors.Add` method. If you didn't create an empty list, you wouldn't be able to add these relationships, because the `Instructors` property would be null and wouldn't have an `Add` method. You could also add the list initialization to the constructor.
 
@@ -356,7 +356,7 @@ If you try to update the database at this point, you'll get the following error:
 
 Edit the &lt;*timestamp&gt;\_Chap4.cs* file, and make the following code changes (you'll add a SQL statement and modify an `AddColumn` statement):
 
-[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample31.xml?highlight=14-18)]
+[!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample32.xml?highlight=14-18)]
 
 (Make sure that you comment out or delete the existing `AddColumn` line when you add the new one, or you'll get an error when you enter the `update-database` command.)
 
@@ -368,7 +368,7 @@ After you have finished editing the &lt;*timestamp&gt;\_Chap4.cs* file, enter th
 
 > [!NOTE] It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can either change the connection string in the W*eb.config* file or delete the database. The simplest approach is to rename the database in *Web.config* file. For example, change the database name to CU\_test as shown in the following:
 > 
-> [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample32.xml?highlight=1-2)]
+> [!code[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample33.xml?highlight=1-2)]
 > 
 >  With a new database, there is no data to migrate, and the `update-database` command is much more likely to complete without errors. For instructions on how to delete the database, see [How to Drop a Database from Visual Studio 2012](http://romiller.com/2013/05/17/how-to-drop-a-database-from-visual-studio-2012/).
 

@@ -100,8 +100,7 @@ In this lab, you will create a new master page and define three ContentPlaceHold
 1. Place a ContentPlaceHolder control in the other two cells. Once the other ContentPlaceHolder controls have been inserted, the size of the table cells should be as you would expect. The page should now look like the page shown in **figure 5**.
 
 
-![The Master with all ContentPlaceHolder controls. Notice that the 
-        cell height for the header cell is now what it should be](master-pages/_static/image2.gif)
+![The Master with all ContentPlaceHolder controls. Notice that the cell height for the header cell is now what it should be](master-pages/_static/image2.gif)
 
 **Figure 5**: The Master with all ContentPlaceHolder controls. Notice that the cell height for the header cell is now what it should be
 

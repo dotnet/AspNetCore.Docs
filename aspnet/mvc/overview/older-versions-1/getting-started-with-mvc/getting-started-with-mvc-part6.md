@@ -44,7 +44,7 @@ Since our database automatically gives a Movie an ID, let's remove those fields 
 
 Let's now create a new movie and add it to the database. We'll do this by running the application again and visit the "/Movies" URL and click the "Create" link to add a new Movie.
 
-[![Create - Windows Internet Explorer ](getting-started-with-mvc-part6/_static/image4.png)](getting-started-with-mvc-part6/_static/image3.png)
+[![Create - Windows Internet Explorer](getting-started-with-mvc-part6/_static/image4.png)](getting-started-with-mvc-part6/_static/image3.png)
 
 When we click the Create button, we'll be posting back (via HTTP POST) the data on this form to the /Movies/Create method that we just created. Just like when the system automatically took the "numTimes" and "name " parameter out of the URL and mapped them to parameters on a method earlier, the system will automatically take the Form Fields from a POST and map them to an object. In this case, values from fields in HTML like "ReleaseDate" and "Title" will automatically be put into the correct properties of a new instance of a Movie.
 
@@ -54,7 +54,7 @@ Let's look at the second Create method from our MoviesController again. Notice h
 
 This Movie object was then passed to the [HttpPost] version of our Create action method, and we saved it in the database and then redirected the user back to the Index() action method which will show the saved result in the movie list:
 
-[![Movie List - Windows Internet Explorer ](getting-started-with-mvc-part6/_static/image6.png)](getting-started-with-mvc-part6/_static/image5.png)
+[![Movie List - Windows Internet Explorer](getting-started-with-mvc-part6/_static/image6.png)](getting-started-with-mvc-part6/_static/image5.png)
 
 We aren't checking if our movies are correct, though, and the database won't allow us to save a movie with no Title. It'd be nice if we could tell the user that before the database threw an error. We'll do this next by adding validation support to our application.
 

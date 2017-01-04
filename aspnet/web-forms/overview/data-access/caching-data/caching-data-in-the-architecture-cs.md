@@ -29,8 +29,7 @@ In this tutorial we will augment our architecture to include a *Caching Layer* (
 As Figure 1 shows, the CL resides between the Presentation and Business Logic Layers.
 
 
-![The Caching Layer (CL) is Another Layer in Our
-  Architecture](caching-data-in-the-architecture-cs/_static/image1.png)
+![The Caching Layer (CL) is Another Layer in Our Architecture](caching-data-in-the-architecture-cs/_static/image1.png)
 
 **Figure 1**: The Caching Layer (CL) is Another Layer in Our Architecture
 
@@ -42,8 +41,7 @@ In this tutorial we will create a very simple CL with a single class `ProductsCL
 To more cleanly separate the CL classes from the DAL and BLL classes, let s create a new subfolder in the `App_Code` folder. Right-click on the `App_Code` folder in the Solution Explorer, choose New Folder, and name the new folder `CL`. After creating this folder, add to it a new class named `ProductsCL.cs`.
 
 
-![Add a New Folder Named CL and a
-  Class Named ProductsCL.cs](caching-data-in-the-architecture-cs/_static/image2.png)
+![Add a New Folder Named CL and a Class Named ProductsCL.cs](caching-data-in-the-architecture-cs/_static/image2.png)
 
 **Figure 2**: Add a New Folder Named `CL` and a Class Named `ProductsCL.cs`
 
@@ -62,8 +60,7 @@ The [`Cache` class](https://msdn.microsoft.com/en-us/library/system.web.caching.
 The Caching Layer s methods need to first check if the requested data is in the cache and, if so, return it from there. If the requested data is not in the cache, the appropriate BLL method needs to be invoked. Its return value should be cached and then returned, as the following sequence diagram illustrates.
 
 
-![The Caching Layer s Methods Return Data
-  from the Cache if it s Available](caching-data-in-the-architecture-cs/_static/image3.png)
+![The Caching Layer s Methods Return Data from the Cache if it s Available](caching-data-in-the-architecture-cs/_static/image3.png)
 
 **Figure 3**: The Caching Layer s Methods Return Data from the Cache if it s Available
 
