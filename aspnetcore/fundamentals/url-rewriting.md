@@ -30,7 +30,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 You can define rules for changing the URL in several ways, including regular expression (regex) matching rules, rules based on the Apache mod_rewrite module, rules based on the IIS Rewrite Module, and with your own method and class rule logic. This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core applications.
 
 > [!NOTE]
-> URL rewriting can reduce the performance of an application. Where feasible, you should design systems that don't require URL rewriting.
+> URL rewriting can reduce the performance of an application. Where feasible, you should limit the number and complexity of rules.
 
 ## URL redirect and URL rewrite
 The difference in wording between *URL redirect* and *URL rewrite* may seem subtle at first but has important implications for providing resources to clients. ASP.NET Core's URL Rewriting Middleware is capable of meeting the need for both.
@@ -51,7 +51,7 @@ You can explore the features of the URL Rewriting Middleware with the [URL Rewri
 The examples below rely upon regular expressions (regex) to match and capture the path and segments of the request URL. For more information on using regex, visit the resources in the [Additional Resources](#additional-resources) section and study the examples in the [Regex Examples](#regex-examples) section of this document. 
 
 ### When to use URL Rewriting Middleware
-Use URL Rewriting Middleware when you are unable to use the [URL Rewrite module](https://www.iis.net/downloads/microsoft/url-rewrite) in IIS on Windows Server or the [Apache mod_rewrite module](https://httpd.apache.org/docs/2.4/rewrite/) on Apache Server. The main reasons to use the server-based URL rewriting technologies are that the middleware doesn't support the full features of these modules and the performance of the middleware probably won't match that of the modules.
+Use URL Rewriting Middleware when you are unable to use the [URL Rewrite module](https://www.iis.net/downloads/microsoft/url-rewrite) in IIS on Windows Server or the [Apache mod_rewrite module](https://httpd.apache.org/docs/2.4/rewrite/) on Apache Server. The main reasons to use the server-based URL rewriting technologies are that the middleware doesn't support the full features of these modules and the performance of the middleware probably won't match that of the modules. However, there are some features of the modules that don't work with ASP.NET Core projects, such as the `IsFile` and `IsDirectory` constraints. In these scenarios, you can use the middleware instead.
 
 ### Package
 To include the middleware in your project, add a reference to the  [`Microsoft.AspNetCore.Rewrite`](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite/) package. The middleware is available for projects that target `.NETFramework 4.5.1` or `.NETStandard 1.3` or higher.
@@ -77,7 +77,7 @@ The part of the expression contained by parentheses is called a *capture group*.
 In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in your regex. There is only one captured group in the redirect rule regex in the sample application, so there is only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes **http://localhost:5000/redirected/1234/5678**.
 
 #### URL Redirect to a secure endpoint (permanent)
-Use `AddRedirectToHttpsPermanent()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://** on port 465). The middleware will set the status code to 301 (Moved Permanently).
+Use `AddRedirectToHttpsPermanent()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://** on port 433). The middleware will set the status code to 301 (Moved Permanently).
 ```csharp
 var options = new RewriteOptions()
     .AddRedirectToHttpsPermanent();
@@ -91,7 +91,7 @@ Original Request: **http://localhost:5000/secure**
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
 #### URL Redirect to a secure endpoint
-Use `AddRedirectToHttps()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://**) with the flexibility to choose the status code and port. If the status code is not supplied, the middleware will default to 302 (Found). If the port is not supplied, the middleware will default to `null`, which means the protocol will change to **https://** and the client will access the resource on port 465. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
+Use `AddRedirectToHttps()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://**) with the flexibility to choose the status code and port. If the status code is not supplied, the middleware will default to 302 (Found). If the port is not supplied, the middleware will default to `null`, which means the protocol will change to **https://** and the client will access the resource on port 433. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
 ```csharp
 var options = new RewriteOptions()
     .AddRedirectToHttps(301, 5001);
@@ -184,7 +184,7 @@ The middleware supports the following Apache mod_rewrite server variables:
 * TIME_YEAR
 
 #### IIS URL Rewrite Module rules
-To use rules that would normally apply to the IIS URL Rewrite Module, use `AddIISUrlRewrite()`. The first parameter takes an `IFileProvider`, while the second parameter is the path to your XML rules file, which is **IISUrlRewrite.xml** in the sample application. You must make sure that the rules file is deployed with the application. For more information and examples of IIS URL Rewrite Module rules, see [Using Url Rewrite Module 2.0](https://www.iis.net/learn/extensions/url-rewrite-module/using-url-rewrite-module-20) and [URL Rewrite Module Configuration Reference](https://www.iis.net/learn/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
+To use rules that would normally apply to the IIS URL Rewrite Module, use `AddIISUrlRewrite()`. The first parameter takes an `IFileProvider`, while the second parameter is the path to your XML rules file, which is **IISUrlRewrite.xml** in the sample application. You must make sure that the rules file is deployed with the application. Don't point this at your **web.config** file, as these rules should be stored outside of your **web.config** to avoid conflicts with the IIS Rewrite module. For more information and examples of IIS URL Rewrite Module rules, see [Using Url Rewrite Module 2.0](https://www.iis.net/learn/extensions/url-rewrite-module/using-url-rewrite-module-20) and [URL Rewrite Module Configuration Reference](https://www.iis.net/learn/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=5)]
 
