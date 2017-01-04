@@ -142,6 +142,10 @@ Notes:
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Models/MovieDateFormat.cs?name=snippet_1&highlight=2,10)]
 
+* You may wish to change the `ReleaseDate` label text from the default property name text. To accomplish this, add the highlighted code below.
+
+[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Models/MovieDisplayName.cs?name=snippet_1&highlight=2,10)] 
+
 Tapping **Create** causes the form to be posted to the server, where the movie information is saved in a database. You are then redirected to the */Movies* URL, where you can see the newly created movie in the listing.
 
 ![Movies view showing newly created movie listing](adding-model/_static/h.png)
