@@ -36,11 +36,11 @@ The in-memory cache can store any object; the distributed cache interface is lim
 
 In-memory caching is a *service* that is referenced from your app using [Dependency Injection](../../fundamentals/dependency-injection.md). Call `AddMemoryCache` in `ConfigureServices`:
 
-[!code-csharp[Main](memory/sample/WebCache/Startup.cs?highlight=8,9)] 
+[!code-csharp[Main](memory/sample/WebCache/Startup.cs?highlight=8)] 
 
 Request the `IMemoryCache` instance in the constructor:
 
-[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_ctor)]
+[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_ctor&highlight=3,5-)] 
 
 `IMemoryCache` requires NuGet package "Microsoft.Extensions.Caching.Memory".
 
@@ -50,7 +50,7 @@ The following code uses [TryGetValue](https://docs.microsoft.com/en-us/aspnet/co
 
 The current time and the cached time is displayed:
 
-[!code-html[Main](memory/sample/WebCache/Views/Home/Index.cshtml)]
+[!code-html[Main](memory/sample/WebCache/Views/Home/Cache.cshtml)]
 
 The cached `DateTime` value will remain in the cache while there are requests within the timeout period (and no eviction due to memory pressure). The image below shows the current time and an older time retrieved from cache:
 
@@ -84,6 +84,12 @@ The following sample shows how to expire a cache entry if a dependent entry expi
 [!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_ed&highlight=11,25)]
 
 Using a `CancellationTokenSource` allows multiple cache entries to be evicted as a group. With the `using` pattern in the code above, cache entries created inside the `using` block will inherit triggers and expiration settings.
+
+## Explicit cancellation with CancellationTokenSource
+
+The following sample shows how to remove a cache entry using a `CancellationTokenSource`:
+
+[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_cancel&highlight=4,5,12,26-32)]
 
 ### Addition notes
 
