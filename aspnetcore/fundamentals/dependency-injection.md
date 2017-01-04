@@ -38,6 +38,37 @@ ASP.NET Core includes a simple built-in container (represented by the `IServiceP
 > [!NOTE]
 > This article covers Dependency Injection as it applies to all ASP.NET applications. Dependency Injection within MVC controllers is covered in [Dependency Injection and Controllers](../mvc/controllers/dependency-injection.md).
 
+### Constructor Injection Behavior
+
+Constructor injection requires that the constructor in question be *public*. Otherwise, your app will throw an `InvalidOperationException`:
+
+> A suitable constructor for type 'YourType' could not be located. Ensure the type is concrete and services are registered for all parameters of a public constructor.
+
+
+Constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection. If more than one exists, your app will throw an `InvalidOperationException`:
+
+> Multiple constructors accepting all given argument types have been found in type 'YourType'. There should only be one applicable constructor.
+
+Constructors can accept arguments that are not provided by dependency injection, but these must support default values. For example:
+
+```c#
+// throws InvalidOperationException: Unable to resolve service for type 'System.String'...
+public CharactersController(ICharacterRepository characterRepository, 
+							string title)
+{
+    _characterRepository = characterRepository;
+	_title = title;
+}
+
+// runs without error
+public CharactersController(ICharacterRepository characterRepository, 
+							string title = "Characters")
+{
+    _characterRepository = characterRepository;
+	_title = title;
+}
+```
+
 ## Using Framework-Provided Services
 
 The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has just a handful of services defined. Below is an example of how to add additional services to the container using a number of extension methods like `AddDbContext`, `AddIdentity`, and `AddMvc`.
@@ -177,7 +208,7 @@ First, add the appropriate container package(s) to the dependencies property in 
      "Autofac": "4.0.0",
      "Autofac.Extensions.DependencyInjection": "4.0.0"
    },
-   ```
+```
 
 Next, configure the container in `ConfigureServices` and return an `IServiceProvider`:
 
