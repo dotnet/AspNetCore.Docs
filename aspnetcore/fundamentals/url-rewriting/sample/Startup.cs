@@ -41,7 +41,7 @@ namespace URLRewritingSample
 
             // Because we're redirecting back to the same app, stop processing 
             // if this request has already been redirected
-            if (path.StartsWith("/xmlfiles/"))
+            if (request.Path.StartsWithSegments(new PathString("/xmlfiles/")))
             {
                 return;
             }
