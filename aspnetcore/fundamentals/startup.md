@@ -28,6 +28,8 @@ The `Startup` class constructor can accept dependencies that are provided throug
 
 The `Startup` class must include a `Configure` method and can optionally include a `ConfigureServices` method, both of which are called when the application starts. The class can also include [environment-specific versions of these methods](environments.md#startup-conventions).
 
+Learn about [handling exceptions during application startup](error-handling.md#startup-exception-handling).
+
 ## The Configure method
 
 The `Configure` method is used to specify how the ASP.NET application will respond to HTTP requests. The request pipeline is configured by adding [middleware](middleware.md) components to an `IApplicationBuilder` instance that is provided by dependency injection.
