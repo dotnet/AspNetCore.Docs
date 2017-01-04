@@ -39,7 +39,7 @@ This tutorial assumes you already have the following:
 
     Create a variable for **DeployPackage** and set it to the path you would like the zipped web package to be at. We have used `$(Build.StagingDirectory)/WebApplication.zip` to have it alongside our published output.
 
-    ![image](vsts-continuous-deployment/_static/setup-build-variables.png)
+    ![Variables tab](vsts-continuous-deployment/_static/setup-build-variables.png)
 
     > [!NOTE]
     > If you are using hosted build agents to build your ASP.NET Core application, the host will try to cache packages. As the hosted servers won't retain the cache, you can skip this step and reduce restore times by adding another variable here:  
@@ -57,7 +57,7 @@ This tutorial assumes you already have the following:
 
         * Arguments: `restore`
 
-    ![image](vsts-continuous-deployment/_static/dotnet-restore.png)
+    ![Build tab](vsts-continuous-deployment/_static/dotnet-restore.png)
 
 3.  Use another Command Line build step to publish the project.
 
@@ -71,7 +71,7 @@ This tutorial assumes you already have the following:
 
     * Replace src/WebApplication to the path of your app to be deployed as appropriate
 
-    ![image](vsts-continuous-deployment/_static/dotnet-publish.png)
+    ![Build tab](vsts-continuous-deployment/_static/dotnet-publish.png)
 
 4.  Compress the published output so it can be deployed to Azure App Service. We will use the [Trackyon Advantage](https://marketplace.visualstudio.com/items?itemName=Trackyon.trackyonadvantage) task we installed to zip the contents of our published output for deployment.
 
@@ -83,7 +83,7 @@ This tutorial assumes you already have the following:
 
         * Path to final Zip file: `$(DeployPackage)`
 
-    ![image](vsts-continuous-deployment/_static/compress-publish-output.png)
+    ![Build tab](vsts-continuous-deployment/_static/compress-publish-output.png)
 
 5.  Use the Azure Web App Deployment build step to publish the compressed publish output to your Azure Web App. The Web Deploy Package will be the output of the contents compressed in step 4. In this case, we re-use the variable for it's path we setup earlier.
 
@@ -99,7 +99,7 @@ This tutorial assumes you already have the following:
 
         * Web Deploy Package: `$(DeployPackage)`
 
-![image](vsts-continuous-deployment/_static/web-app-deployment.png)
+![Build tab](vsts-continuous-deployment/_static/web-app-deployment.png)
 
 ## Use VSTS Release
 

@@ -35,7 +35,7 @@ Returning JSON-formatted data:
 
 Sample response from this action:
 
-![image](formatting/_static/json-response.png)
+![Network tab of Developer Tools in Microsoft Edge showing the Content type of the response is application/json](formatting/_static/json-response.png)
 
 Note that the content type of the response is `application/json`, shown both in the list of network requests and in the Response Headers section. Also note the list of options presented by the browser (in this case, Microsoft Edge) in the Accept header in the Request Headers section. The current technique is ignoring this header; obeying it is discussed below.
 
@@ -45,7 +45,7 @@ To return plain text formatted data, use `ContentResult` and the `Content` helpe
 
 A response from this action:
 
-![image](formatting/_static/text-response.png)
+![Network tab of Developer Tools in Microsoft Edge showing the Content type of the response is text/plain](formatting/_static/text-response.png)
 
 Note in this case the `Content-Type` returned is `text/plain`. You can also achieve this same behavior using just a string response type:
 
@@ -64,7 +64,7 @@ The following action method uses the `Ok` and `NotFound` helper methods:
 
 A JSON-formatted response will be returned unless another format was requested and the server can return the requested format. You can use a tool like [Fiddler](http://www.telerik.com/fiddler) to create a request that includes an Accept header and specify another format. In that case, if the server has a *formatter* that can produce a response in the requested format, the result will be returned in the client-preferred format.
 
-![image](formatting/_static/fiddler-composer.png)
+![Fiddler console showing a manually-created GET request with an Accept header value of application/xml](formatting/_static/fiddler-composer.png)
 
 In the above screenshot, the Fiddler Composer has been used to generate a request, specifying `Accept: application/xml`. By default, ASP.NET Core MVC only supports JSON, so even when another format is specified, the result returned is still JSON-formatted. You'll see how to add additional formatters in the next section.
 
@@ -129,13 +129,13 @@ services.AddMvc(options =>
 
 Once you've added support for XML formatting, your controller methods should return the appropriate format based on the request's `Accept` header, as this Fiddler example demonstrates:
 
-![image](formatting/_static/xml-response.png)
+![Fiddler console: The Raw tab for the request shows the Accept header value is application/xml. The Raw tab for the response shows the Content-Type header value of application/xml.](formatting/_static/xml-response.png)
 
 You can see in the Inspectors tab that the Raw GET request was made with an `Accept: application/xml` header set. The response pane shows the `Content-Type: application/xml` header, and the `Author` object has been serialized to XML.
 
 Use the Composer tab to modify the request to specify `application/json` in the `Accept` header. Execute the request, and the response will be formatted as JSON:
 
-![image](formatting/_static/json-response-fiddler.png)
+![Fiddler console: The Raw tab for the request shows the Accept header value is application/json. The Raw tab for the response shows the Content-Type header value of application/json.](formatting/_static/json-response-fiddler.png)
 
 In this screenshot, you can see the request sets a header of `Accept: application/json` and the response specifies the same as its `Content-Type`. The `Author` object is shown in the body of the response, in JSON format.
 

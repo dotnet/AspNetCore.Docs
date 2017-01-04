@@ -38,6 +38,37 @@ ASP.NET Core includes a simple built-in container (represented by the `IServiceP
 > [!NOTE]
 > This article covers Dependency Injection as it applies to all ASP.NET applications. Dependency Injection within MVC controllers is covered in [Dependency Injection and Controllers](../mvc/controllers/dependency-injection.md).
 
+### Constructor Injection Behavior
+
+Constructor injection requires that the constructor in question be *public*. Otherwise, your app will throw an `InvalidOperationException`:
+
+> A suitable constructor for type 'YourType' could not be located. Ensure the type is concrete and services are registered for all parameters of a public constructor.
+
+
+Constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection. If more than one exists, your app will throw an `InvalidOperationException`:
+
+> Multiple constructors accepting all given argument types have been found in type 'YourType'. There should only be one applicable constructor.
+
+Constructors can accept arguments that are not provided by dependency injection, but these must support default values. For example:
+
+```c#
+// throws InvalidOperationException: Unable to resolve service for type 'System.String'...
+public CharactersController(ICharacterRepository characterRepository, 
+							string title)
+{
+    _characterRepository = characterRepository;
+	_title = title;
+}
+
+// runs without error
+public CharactersController(ICharacterRepository characterRepository, 
+							string title = "Characters")
+{
+    _characterRepository = characterRepository;
+	_title = title;
+}
+```
+
 ## Using Framework-Provided Services
 
 The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has just a handful of services defined. Below is an example of how to add additional services to the container using a number of extension methods like `AddDbContext`, `AddIdentity`, and `AddMvc`.
@@ -131,9 +162,9 @@ To demonstrate the object lifetimes within and between separate individual reque
 
 Now two separate requests are made to this controller action:
 
-![image](dependency-injection/_static/lifetimes_request1.png)
+![The Operations view of the Dependency Injection Sample web application running in Microsoft Edge showing Operation ID values (GUID's) for Transient, Scoped, Singleton, and Instance Controller and Operation Service Operations on the first request.](dependency-injection/_static/lifetimes_request1.png)
 
-![image](dependency-injection/_static/lifetimes_request2.png)
+![The operations view showing the Operation ID values for a second request.](dependency-injection/_static/lifetimes_request2.png)
 
 Observe which of the `OperationId` values vary within a request, and between requests.
 
@@ -147,7 +178,7 @@ Observe which of the `OperationId` values vary within a request, and between req
 
 The services available within an ASP.NET request from `HttpContext` are exposed through the `RequestServices` collection.
 
-![image](dependency-injection/_static/request-services.png)
+![HttpContext Request Services Intellisense contextual dialog stating that Request Services gets or sets the IServiceProvider that provides access to the request's service container.](dependency-injection/_static/request-services.png)
 
 Request Services represent the services you configure and request as part of your application. When your objects specify dependencies, these are satisfied by the types found in `RequestServices`, not `ApplicationServices`.
 
@@ -177,7 +208,7 @@ First, add the appropriate container package(s) to the dependencies property in 
      "Autofac": "4.0.0",
      "Autofac.Extensions.DependencyInjection": "4.0.0"
    },
-   ```
+```
 
 Next, configure the container in `ConfigureServices` and return an `IServiceProvider`:
 

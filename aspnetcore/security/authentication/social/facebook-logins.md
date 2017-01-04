@@ -26,19 +26,19 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * Tap **My Apps** in the upper right corner:
 
-![image](index/_static/FBMyApps.png)
+![Facebook for developers portal open in Microsoft Edge](index/_static/FBMyApps.png)
 
 * Tap **+ Add a New App** and fill out the form to create a new app ID:
 
-![image](index/_static/FBNewAppId.png)
+![Create a New App ID form](index/_static/FBNewAppId.png)
 
 * The **Product Setup** page is displayed, letting you select the features for your new app. Tap **Get Started** on **Facebook Login**:
 
-![image](index/_static/FBProductSetup.png)
+![Product Setup page](index/_static/FBProductSetup.png)
 
 * You are presented with the **Client OAuth Settings** page, with some defaults already set:
 
-![image](index/_static/FBOAuthSetup.png)
+![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
 
 * Enter your base URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field. For example, `https://localhost:44320/signin-facebook`.
   
@@ -97,17 +97,17 @@ app.UseFacebookAuthentication(new FacebookOptions()
 
 Run your application and click **Log in**. You will see an option to sign in with Facebook.
 
-![image](index/_static/DoneFacebook.png)
+![Web application: User not authenticated](index/_static/DoneFacebook.png)
 
 When you click on Facebook, you will be redirected to Facebook for authentication.
 
-![image](index/_static/FBLogin2.png)
+![Facebook authentication page](index/_static/FBLogin2a.png)
 
 Once you enter your Facebook credentials, then you will be redirected back to the web site where you can set your email.
 
 You are now logged in using your Facebook credentials:
 
-![image](index/_static/Done.png)
+![Web application: User authenticated](index/_static/Done.png)
 
 ## Next steps
 

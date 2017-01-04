@@ -13,7 +13,9 @@ ms.prod: aspnet-core
 uid: data/ef-mvc/update-related-data
 ---
 
-# Updating related data - EF Core with ASP.NET Core MVC tutorial
+# Updating related data - EF Core with ASP.NET Core MVC tutorial (7 of 10)
+
+By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -241,7 +243,7 @@ Change some course assignments and click Save. The changes you make are reflecte
 
 In *InstructorsController.cs*, delete the `DeleteConfirmed` method and insert the following code in its place.
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=6,9,10,11,12&name=snippet_DeleteConfirmed)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?highlight=5-7,9,10,11,12&name=snippet_DeleteConfirmed)]
 
 This code makes the following changes:
 
@@ -253,7 +255,7 @@ This code makes the following changes:
 
 In *InstructorController.cs*, delete the HttpGet and HttpPost `Create` methods, and then add the following code in their place:
 
-[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=5,14,15,16,17,18,19,20,21,22)]
+[!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14,15,16,17,18,19,20,21,22)]
 
 This code is similar to what you saw for the `Edit` methods except that initially no courses are selected. The HttpGet `Create` method calls the `PopulateAssignedCourseData` method not because there might be courses selected but in order to provide an empty collection for the `foreach` loop in the view (otherwise the view code would throw a null reference exception).
 
@@ -268,12 +270,12 @@ instructor.Courses = new List<CourseAssignment>();
 As an alternative to doing this in controller code, you could do it in the Instructor model by changing the property getter to automatically create the collection if it doesn't exist, as shown in the following example:
 
 ```csharp
-private ICollection<Course> _courses;
-public ICollection<Course> Courses
+private ICollection<CourseAssignment> _courses;
+public ICollection<CourseAssignment> Courses
 {
     get
     {
-        return _courses ?? (_courses = new List<Course>());
+        return _courses ?? (_courses = new List<CourseAssignment>());
     }
     set
     {
@@ -284,11 +286,13 @@ public ICollection<Course> Courses
 
 If you modify the `Courses` property in this way, you can remove the explicit property initialization code in the controller.
 
-In *Views/Instructor/Create.cshtml*, add an office location text box and check boxes for courses after the hire date field and before the Submit button. As in the case of the Edit page, this will work better if you do it in a text editor such as Notepad.
+In *Views/Instructor/Create.cshtml*, add an office location text box and check boxes for courses before the Submit button. As in the case of the Edit page, this will work better if you do it in a text editor such as Notepad.
 
 [!code-html[Main](intro/samples/cu/Views/Instructors/Create.cshtml?range=36-70)]
 
-Test by running the **Create** page and adding an instructor.
+Also in *Create.cshtml*, you might notice that the scaffolder has placed the hire date field between the first and last name fields. You can rearrange those fields to a more logical order if you prefer.  the same issue applies to the order of fields on the Edit, Details, and Delete pages.
+
+Test by running the **Create** page and adding an instructor. 
 
 ## Handling Transactions
 

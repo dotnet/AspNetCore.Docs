@@ -16,7 +16,7 @@ uid: index
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://twitter.com/dicshaunary)
 
-ASP.NET Core is a significant redesign of ASP.NET. This topic introduces the new concepts in ASP.NET Core and explains how they help you develop modern web apps.
+ASP.NET Core is a significant redesign of ASP.NET. This topic introduces the new concepts in ASP.NET Core and explains how they help you develop modern web apps.  
 
 ## What is ASP.NET Core?
 
@@ -74,10 +74,9 @@ ASP.NET Core is designed to integrate seamlessly with a variety of client-side f
 
 ## Next steps
 
-* [Building your first ASP.NET Core MVC app with Visual Studio](tutorials/first-mvc-app/index.md)
+For getting-started tutorials, see [ASP.NET Core Tutorials](tutorials/index.md)
 
-* [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](tutorials/your-first-mac-aspnet.md)
+For in-depth introduction to ASP.NET Core concepts and architecture, see [ASP.NET Core Fundamentals](fundamentals/index.md).
 
-* [Building Your First Web API with ASP.NET Core MVC and Visual Studio](tutorials/first-web-api.md)
+An ASP.NET Core app can use the .NET Core or .NET Framework runtime. For more information, see [Choosing between .NET Core and .NET Framework](https://docs.microsoft.com/dotnet/articles/standard/choosing-core-framework-server).
 
-* [Fundamentals](fundamentals/index.md)

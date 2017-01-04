@@ -27,7 +27,7 @@ This tutorial will show you how to set up two-factor authentication (2FA) using 
 
 Create a new ASP.NET Core web app with individual user accounts.
 
-![image](accconfirm/_static/new-project.png)
+![Visual Studio New Project dialog](accconfirm/_static/new-project.png)
 
 After you create the project, follow the instructions in [Account Confirmation and Password Recovery](accconfirm.md) to set up and require SSL.
 
@@ -100,29 +100,29 @@ Add `AuthMessageSMSSenderOptions` to the service container at the end of the `Co
 
 * Run the app and register a new user
 
-![image](2fa/_static/login2fa1.png)
+![Web application Register view open in Microsoft Edge](2fa/_static/login2fa1.png)
 
 * Tap on your user name, which activates the `Index` action method in Manage controller. Then tap the phone number **Add** link.
 
-![image](2fa/_static/login2fa2.png)
+![Manage view](2fa/_static/login2fa2.png)
 
 * Add a phone number that will receive the verification code, and tap **Send verification code**.
 
-![image](2fa/_static/login2fa3.png)
+![Add Phone Number page](2fa/_static/login2fa3.png)
 
 * You will get a text message with the verification code. Enter it and tap **Submit**
 
-![image](2fa/_static/login2fa4.png)
+![Verify Phone Number page](2fa/_static/login2fa4.png)
 
 If you don't get a text message, see [Debugging Twilio](#debugging-twilio).
 
 * The Manage view shows your phone number was added successfully.
 
-![image](2fa/_static/login2fa5.png)
+![Manage view](2fa/_static/login2fa5.png)
 
 * Tap **Enable** to enable two-factor authentication.
 
-![image](2fa/_static/login2fa6.png)
+![Manage view](2fa/_static/login2fa6.png)
 
 ### Test two-factor authentication
 
@@ -132,13 +132,13 @@ If you don't get a text message, see [Debugging Twilio](#debugging-twilio).
 
 * The user account has enabled two-factor authentication, so you have to provide the second factor of authentication . In this tutorial you have enabled phone verification. The built in templates also allow you to set up email as the second factor. You can set up additional second factors for authentication such as QR codes. Tap **Submit**.
 
-![image](2fa/_static/login2fa7.png)
+![Send Verification Code view](2fa/_static/login2fa7.png)
 
 * Enter the code you get in the SMS message.
 
 * Clicking on the **Remember this browser** check box will exempt you from needing to use 2FA to log on when using the same device and browser. Enabling 2FA and clicking on **Remember this browser** will provide you with strong 2FA protection from malicious users trying to access your account, as long as they don't have access to your device. You can do this on any private device you regularly use. By setting  **Remember this browser**, you get the added security of 2FA from devices you don't regularly use, and you get the convenience on not having to go through 2FA on your own devices.
 
-![image](2fa/_static/login2fa8.png)
+![Verify view](2fa/_static/login2fa8.png)
 
 ## Account lockout for protecting against brute force attacks
 

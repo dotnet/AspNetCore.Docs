@@ -13,7 +13,9 @@ ms.prod: aspnet-core
 uid: data/ef-mvc/inheritance
 ---
 
-# Inheritance - EF Core with ASP.NET Core MVC tutorial
+# Inheritance - EF Core with ASP.NET Core MVC tutorial (9 of 10)
+
+By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -48,6 +50,9 @@ Yet another option is to map all non-abstract types to individual tables. All pr
 TPC and TPH inheritance patterns generally deliver better performance than TPT inheritance patterns, because TPT patterns can result in complex join queries.
 
 This tutorial demonstrates how to implement TPH inheritance. TPH is the only inheritance pattern that the Entity Framework Core supports.  What you'll do is create a `Person` class, change the `Instructor` and `Student` classes to derive from `Person`, add the new class to the `DbContext`, and create a migration.
+
+> [!TIP] 
+> Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, you can restart at the previous tutorial instead of having to go back to the beginning of the whole series.
 
 ## Create the Person class
 

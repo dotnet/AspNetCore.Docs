@@ -115,6 +115,7 @@ You can reference Session from `HttpContext` once it is installed and configured
 
 Note: If you attempt to access `Session` before `UseSession` has been called, you will get an `InvalidOperationException` exception stating that "Session has not been configured for this application or request."
 
+
 Warning: If you attempt to create a new `Session` (i.e. no session cookie has been created yet) after you have already begun writing to the `Response` stream, you will get an `InvalidOperationException` as well, stating that "The session cannot be established after the response has started". This exception may not be displayed in the browser; you may need to view the web server log  to discover it, as shown below:
 
   ### Implementation Details
@@ -162,7 +163,8 @@ Once session is installed and configured, you refer to it via HttpContext, which
 
 Because `Session` is built on top of `IDistributedCache`, you must always serialize the object instances being stored. Thus, the interface works with `byte[]` not simply `object`. However, there are extension methods that make working with simple types such as `String` and `Int32` easier, as well as making it easier to get a byte[] value from session.
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
+![Web application open in Microsoft Edge stating: Your session has not been established.](app-state/_static/no-session-established.png)
+
 
 ````c#
 
@@ -194,9 +196,12 @@ For example, some simple [Middleware](middleware.md) could add something to the 
    });
    ````
 
-and later in the pipeline, another piece of middleware could access it:
+
+![Web application stating: Counting: You have made 1 requests to this application.](app-state/_static/session-established.png)
+![Web application after making several requests stating that session path was requested four times, the index path was requested four times, and the site has been visited eight times.](app-state/_static/session-established-with-request-counts.png)
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
+
 
 ````c#
 

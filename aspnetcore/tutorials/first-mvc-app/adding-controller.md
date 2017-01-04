@@ -25,13 +25,11 @@ The Model-View-Controller (MVC) architectural pattern separates an app into thre
 
 The MVC pattern helps you create apps that separate the different aspects of the app (input logic, business logic, and UI logic), while providing a loose coupling between these elements. The pattern specifies where each kind of logic should be located in the app. The UI logic belongs in the view. Input logic belongs in the controller. Business logic belongs in the model. This separation helps you manage complexity when you build an app, because it enables you to work on one aspect of the implementation at a time without impacting the code of another. For example, you can work on the view code without depending on the business logic code.
 
-We'll be covering all these concepts in this tutorial series and show you how to use them to build a simple movie app. The following image shows the *Models*, *Views* and *Controllers* folders in the MVC project.
-
-![image](adding-controller/_static/mvc1.png)
+We'll be covering all these concepts in this tutorial series and show you how to use them to build a simple movie app. The MVC project currently contains folders for the *Controllers* and *Views*. A *Models* folder will be added in a later step.
 
 * In **Solution Explorer**, right-click **Controllers > Add > New Item... > MVC Controller Class**
 
-![image](adding-controller/_static/add_controller.png)
+![Contextual menu](adding-controller/_static/add_controller.png)
 
 * In the **Add New Item** dialog, enter **HelloWorldController**.
 
@@ -45,7 +43,7 @@ The first comment states this is an [HTTP GET](http://www.w3schools.com/tags/ref
 
 Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, `http://localhost:1234/HelloWorld` is used, but you'll have to replace *1234* with the port number of your app.) The `Index` method returns a string. You told the system to return some HTML, and it did!
 
-![image](adding-controller/_static/hell1.png)
+![Browser window showing an application response of This is my default action](adding-controller/_static/hell1.png)
 
 MVC invokes controller classes (and the action methods within them) depending on the incoming URL. The default [URL routing logic](../../mvc/controllers/routing.md) used by MVC uses a format like this to determine what code to invoke:
 
@@ -61,7 +59,7 @@ The first URL segment determines the controller class to run. So `localhost:xxxx
 
 Browse to `http://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs and returns the string "This is the Welcome action method...". For this URL, the controller is `HelloWorld` and `Welcome` is the action method. We haven't used the `[Parameters]` part of the URL yet.
 
-![image](adding-controller/_static/welcome.png)
+![Browser window showing an application response of This is the Welcome action method](adding-controller/_static/welcome.png)
 
 Let's modify the example slightly so that you can pass some parameter information  from the URL to the controller (for example, `/HelloWorld/Welcome?name=Scott&numtimes=4`).  Change the `Welcome` method  to include two parameters as shown below. Note that the code uses the C# optional-parameter feature to indicate that the `numTimes` parameter defaults to 1 if no value is passed for that parameter.
 
@@ -79,7 +77,7 @@ Run your app and browse to:
 
 (Replace xxxx with your port number.) You can try different values for `name` and `numtimes` in  the URL. The MVC [model binding](../../mvc/models/model-binding.md) system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See [Model Binding](../../mvc/models/model-binding.md) for more information.
 
-![image](adding-controller/_static/rick4.png)
+![Browser window showing an application response of Hello Rick, NumTimes is: 4](adding-controller/_static/rick4.png)
 
 In the sample above, the URL segment (`Parameters`) is not used, the `name` and `numTimes` parameters are passed as [query strings](http://en.wikipedia.org/wiki/Query_string). The `?` (question mark) in the above URL is a separator, and the query strings follow. The `&` character separates query strings.
 
@@ -89,7 +87,7 @@ Replace the `Welcome` method with the following code:
 
 Run the app and enter the following URL:  `http://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
 
-![image](adding-controller/_static/rick_routedata.png)
+![Browser window showing an application response of Hello Rick, ID: 3](adding-controller/_static/rick_routedata.png)
 
 This time the third URL segment  matched the route parameter `id`. The `Welcome`  method contains a parameter  `id` that matched the URL template in the `MapRoute` method. The trailing `?`  (in `id?`) indicates the `id` parameter is optional.
 

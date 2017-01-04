@@ -24,38 +24,38 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * Navigate to [https://console.developers.google.com/projectselector/apis/library](https://console.developers.google.com/projectselector/apis/library) and sign in. If you don't already have a Google account, use the **[Create account](https://accounts.google.com/SignUpWithoutGmail?service=cloudconsole&continue=https%3A%2F%2Fconsole.developers.google.com%2Fprojectselector%2Fapis%2Flibrary&ltmpl=api)** link to create one:
 
-![image](index/_static/GoogleConsoleLogin.png)
+![Google API Console](index/_static/GoogleConsoleLogin.png)
 
 * You are redirected to API Manager Library page:
 
-![image](index/_static/GoogleConsoleSwitchboard.png)
+![API Manager Library page](index/_static/GoogleConsoleSwitchboard.png)
 
 * Tap **Create a project** and enter your application name:
 
-![image](index/_static/GoogleConsoleNewProj.png)
+![New Project dialog](index/_static/GoogleConsoleNewProj.png)
 
 * After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. <a name="enable-googleplus">Find **Google+ API** in the list</a> and click on its link to add the API feature:
 
-![image](index/_static/GoogleConsoleChooseApi.png)
+![API Manager Library page](index/_static/GoogleConsoleChooseApi.png)
 
 * The page for the newly added API is displayed. Tap **Enable** to add Google+ sign in feature to your app:
 
-![image](index/_static/GoogleConsoleEnableApi.png)
+![API Manager Google+API page](index/_static/GoogleConsoleEnableApi.png)
 
 * After enabling the API, tap **Go to Credentials** to configure the secrets:
 
-![image](index/_static/GoogleConsoleGoCredentials.png)
+![API Manager Google+API page](index/_static/GoogleConsoleGoCredentials.png)
 
 * Choose:
    * **Google+ API**
    * **Web server (e.g. node.js, Tomcat)**, and
    * **User data**:
 
-![image](index/_static/GoogleConsoleChooseCred.png)
+![API Manager Credentials page: Find out what kind of credentials you need panel](index/_static/GoogleConsoleChooseCred.png)
 
 * Tap **What credentials do I need?** which takes you to the second step of app configuration:
 
-![image](index/_static/GoogleConsoleCreateClient.png)
+![API Manager Credentials page: Create an OAuth 2.0 client ID](index/_static/GoogleConsoleCreateClient.png)
 
 * Because we are creating a Google+ project with just one feature (sign in), we can enter the same **Name** for the OAuth 2.0 client ID as the one we used for the project.
 
@@ -69,13 +69,13 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 * Tap **Create client ID**, which takes you to the third step:
 
-![image](index/_static/GoogleConsoleAddCred.png)
+![API Manager Credentials page: Set up the OAuth 2.0 consent screen](index/_static/GoogleConsoleAddCred.png)
 
 * Enter your public facing **Email address** and the **Product name** shown for your app when Google+ prompts the user to sign in.
 
 * Tap **Continue** to proceed to the last step:
 
-![image](index/_static/GoogleConsoleFinish.png)
+![API Manager Credentials page: Download credentials](index/_static/GoogleConsoleFinish.png)
 
 * Tap **Download** to save a JSON file with application secrets, and **Done** to complete creation of the new app.
 
@@ -122,17 +122,17 @@ app.UseGoogleAuthentication(new GoogleOptions()
 
 Run your application and click **Log in**. An option to sign in with Google appears:
 
-![image](index/_static/DoneGoogle.png)
+![Web application running in Microsoft Edge: User not authenticated](index/_static/DoneGoogle.png)
 
 When you click on Google, you are redirected to Google for authentication:
 
-![image](index/_static/GoogleLogin.png)
+![Google authentication dialog](index/_static/GoogleLogin.png)
 
 After entering your Google credentials, then you are redirected back to the web site where you can set your email.
 
 You are now logged in using your Google credentials:
 
-![image](index/_static/Done.png)
+![Web application running in Microsoft Edge: User authenticated](index/_static/Done.png)
 
 > [!NOTE]
 > If instead you receive a `403 (Forbidden)` error page from your own app when running in development mode (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier on this page](#enable-googleplus). If the sign in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.

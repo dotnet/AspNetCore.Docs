@@ -13,7 +13,9 @@ ms.prod: aspnet-core
 uid: data/ef-mvc/concurrency
 ---
 
-# Handling concurrency conflicts - EF Core with ASP.NET Core MVC tutorial
+# Handling concurrency conflicts - EF Core with ASP.NET Core MVC tutorial (8 of 10)
+
+By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
@@ -89,7 +91,7 @@ In *Models/Department.cs*, add a tracking property named RowVersion:
 
 The `Timestamp` attribute specifies that this column will be included in the Where clause of Update and Delete commands sent to the database. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` replaced it. The .NET type for `rowversion` is a byte array.
 
-If you prefer to use the fluent API, you can use the `IsConcurrencyToken` method to specify the tracking property, as shown in the following example:
+If you prefer to use the fluent API, you can use the `IsConcurrencyToken` method (in *Data/SchoolContext.cs*) to specify the tracking property, as shown in the following example:
 
 ```csharp
 modelBuilder.Entity<Department>()

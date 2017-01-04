@@ -24,7 +24,7 @@ Mobile apps can easily communicate with ASP.NET Core backend services.
 
 This tutorial demonstrates how to create backend services using ASP.NET Core MVC to support native mobile apps. It uses the [Xamarin Forms ToDoRest app](https://developer.xamarin.com/guides/xamarin-forms/web-services/consuming/rest/) as its native client, which includes separate native clients for Android, iOS, Windows Universal, and Window Phone devices. You can follow the linked tutorial to create the native app (and install the necessary free Xamarin tools), as well as download the Xamarin sample solution. The Xamarin sample includes an ASP.NET Web API 2 services project, which this article's ASP.NET Core app replaces (with no changes required by the client).
 
-![image](native-mobile-backend/_static/todo-android.png)
+![To Do Rest application running on an Android smartphone](native-mobile-backend/_static/todo-android.png)
 
 ### Features
 
@@ -34,11 +34,11 @@ The main view of the items, as shown above, lists each item's name and indicates
 
 Tapping the `+` icon opens an add item dialog:
 
-![image](native-mobile-backend/_static/todo-android-new-item.png)
+![Add item dialog](native-mobile-backend/_static/todo-android-new-item.png)
 
 Tapping an item on the main list screen opens up an edit dialog where the item's Name, Notes, and Done settings can be modified, or the item can be deleted:
 
-![image](native-mobile-backend/_static/todo-android-edit-item.png)
+![Edit item dialog](native-mobile-backend/_static/todo-android-edit-item.png)
 
 This sample is configured by default to use backend services hosted at developer.xamarin.com, which allow read-only operations. To test it out yourself against the ASP.NET Core app created in the next section running on your computer, you'll need to update the app's `RestUrl` constant. Navigate to the `ToDoREST` project and open the *Constants.cs* file. Replace the `RestUrl` with a URL that includes your machine's IP address (not localhost or 127.0.0.1, since this address is used from the device emulator, not from your machine). Include the port number as well (5000). In order to test that your services work with a device, ensure you don't have an active firewall blocking access to this port.
 
@@ -56,7 +56,7 @@ public static string RestUrl = "http://192.168.1.207:5000/api/todoitems/{0}";
 
 Create a new ASP.NET Core Web Application in Visual Studio. Choose the Web API template and No Authentication. Name the project *ToDoApi*.
 
-![image](native-mobile-backend/_static/web-api-template.png)
+![New ASP.NET Web Application dialog with Web API project template selected](native-mobile-backend/_static/web-api-template.png)
 
 The application should respond to all requests made to port 5000. Update *Program.cs* to include `.UseUrls("http://*:5000")` to achieve this:
 
@@ -106,7 +106,7 @@ The `List` method returns a 200 OK response code and all of the ToDo items, seri
 
 You can test your new API method using a variety of tools, such as [Postman](https://www.getpostman.com/docs/), shown here:
 
-![image](native-mobile-backend/_static/postman-get.png)
+![Postman console showing a GET request for todoitems and the body of the response showing the JSON for three items returned](native-mobile-backend/_static/postman-get.png)
 
 ### Creating Items
 
@@ -122,7 +122,7 @@ The sample uses an enum containing error codes that are passed to the mobile cli
 
 Test adding new items using Postman by choosing the POST verb providing the new object in JSON format in the Body of the request. You should also add a request header specifying a `Content-Type` of `application/json`.
 
-![image](native-mobile-backend/_static/postman-post.png)
+![Postman console showing a POST and response](native-mobile-backend/_static/postman-post.png)
 
 The method returns the newly created item in the response.
 
@@ -134,7 +134,7 @@ Modifying records is done using HTTP PUT requests. Other than this change, the `
 
 To test with Postman, change the verb to PUT and add the ID of the record being updated to the URL. Specify the updated object data in the Body of the request.
 
-![image](native-mobile-backend/_static/postman-put.png)
+![Postman console showing a PUT and response](native-mobile-backend/_static/postman-put.png)
 
 This method returns a `NoContent` (204) response when successful, for consistency with the pre-existing API.
 
@@ -146,7 +146,7 @@ Deleting records is accomplished by making DELETE requests to the service, and p
 
 Note that when testing the delete functionality, nothing is required in the Body of the request.
 
-![image](native-mobile-backend/_static/postman-delete.png)
+![Postman console showing a DELETE and response](native-mobile-backend/_static/postman-delete.png)
 
 ## Common Web API Conventions
 

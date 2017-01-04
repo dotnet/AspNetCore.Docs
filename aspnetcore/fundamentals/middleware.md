@@ -32,7 +32,7 @@ Request delegates are configured using `Run`, `Map`, and `Use` extension methods
 
 The ASP.NET request pipeline consists of a sequence of request delegates, called one after the next, as this diagram shows (the thread of execution follows the black arrows):
 
-![image](middleware/_static/request-delegate-pipeline.png)
+![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the application. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, it's handed back through the prior two middlewares for additional processing after the next() statements each in turn before leaving the application as a response to the client.](middleware/_static/request-delegate-pipeline.png)
 
 Each delegate has the opportunity to perform operations before and after the next delegate. Any delegate can choose to stop passing the request on to the next delegate, and instead handle the request itself. This is referred to as short-circuiting the request pipeline, and is desirable because it allows unnecessary work to be avoided. For example, an authorization middleware might only call the next delegate if the request is authenticated; otherwise it could short-circuit the pipeline and return a "Not Authorized" response. Exception handling delegates need to be called early on in the pipeline, so they are able to catch exceptions that occur in deeper calls within the pipeline.
 
@@ -78,7 +78,7 @@ You chain multiple request delegates together; the `next` parameter represents t
 
 In the above example, the call to `await next.Invoke()` will call into the next delegate `await context.Response.WriteAsync("Hello from " + _environment);`. The client will receive the expected response ("Hello from LogInline"), and the server's console output includes both the before and after messages:
 
-![image](middleware/_static/console-loginline.png)
+![Command window console output](middleware/_static/console-loginline.png)
 
 <a name=middleware-run-map-use></a>
 
@@ -161,7 +161,7 @@ Although `RequestLoggerMiddleware` requires an `ILoggerFactory` parameter in its
 
 Testing the middleware (by setting the `Hosting:Environment` environment variable to `LogMiddleware`) should result in output like the following (when using WebListener):
 
-![image](middleware/_static/console-logmiddleware.png)
+![Command window console output showing Request Logger Middleware logging requests as they are processed](middleware/_static/console-logmiddleware.png)
 
 > [!NOTE]
 > The `UseStaticFiles` extension method (which creates the `StaticFileMiddleware`) also uses `UseMiddleware<T>`. In this case, the `StaticFileOptions` parameter is passed in, but other constructor parameters are supplied by `UseMiddleware<T>` and dependency injection.
