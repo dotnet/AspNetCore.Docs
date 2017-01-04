@@ -265,9 +265,9 @@ The following sample exception filter uses a custom developer error view to disp
 
 Exception filters do not have two events (for before and after) - they only implement `OnException` (or `OnExceptionAsync`). 
 
-Exception filters handle unhandled exceptions that occur in the pipeline, including those that occur during controller creation and [model binding](../models/model-binding.md). Because of their location in the pipeline, they won't catch exceptions that occur in Result filters, MVC Result execution, or Resource filter code that runs after pipeline completion.
+Exception filters handle unhandled exceptions that occur in controller creation, [model binding](../models/model-binding.md), action filters, or action methods. They won't catch exceptions that occur in Resource filters, Result filters, or MVC Result execution.
 
-An Exception filter can't turn an exception into a "success". Only an Action filter can do that.
+To handle an exception, set the `ExceptionContext.ExceptionHandled` property to true or write a response. This stops propagation of the exception. Note that an Exception filter can't turn an exception into a "success". Only an Action filter can do that.
 
 Exception filters are good for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. Prefer middleware for the general case, and use filters only where you need to do error handling *differently* based on which MVC action was chosen. For example, your app might have action methods for both API endpoints and for views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
 
