@@ -43,7 +43,7 @@ namespace RewriteRules
 
             // Because we're redirecting back to the same app, stop processing 
             // if this request has already been redirected
-            if (path.StartsWith("/png-images/") || path.StartsWith("/jpg-images/") || path.StartsWith("/gif-images/"))
+            if (request.Path.StartsWithSegments(new PathString("/png-images/")) || request.Path.StartsWithSegments(new PathString("/jpg-images/")) || request.Path.StartsWithSegments(new PathString("/gif-images/")))
             {
                 return;
             }
