@@ -1,113 +1,123 @@
-# Contributing #
+# Contributing to the ASP.NET Core documentation
 
-Information on contributing to this repo is in the [Contributing Guide](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md) in the Home repo.
+The document covers the process for contributing to the articles and code samples that are hosted on the [ASP.NET Core documentation site](https://docs.asp.net). Contributions may be as simple as typo corrections or as complex as new articles.
 
-The documentation is built using [Sphinx](http://sphinx-doc.org) and [reStructuredText](http://sphinx-doc.org/rest.html), and then hosted by [ReadTheDocs](http://aspnet.readthedocs.org).
+## How to make a simple correction or suggestion
 
-## Video: Getting Started ##
-[Watch a video](http://ardalis.com/contributing-to-asp-net-5-documentation) showing how to get started building the documentation locally.
+Articles are stored in the repository as Markdown files. Simple changes to the content of a Markdown file can be made in the browser by tapping the **Edit** link in the upper right corner of the browser window. (In narrow browser windows you might need to expand the **options** bar to see the **Edit** link.) Follow the directions to create a pull request (PR). The ASP.NET documentation team will review the PR and accept it or suggest changes.
 
-## Building the Docs ##
+## How to make a more complex submission
 
-Once you have cloned the Docs to your local machine, the following instructions will walk you through installing the tools necessary to build and test.
+You'll need a basic understanding of [Git and GitHub.com](https://guides.github.com/activities/hello-world/).
 
-1. [Download python](https://www.python.org/downloads/) version 2.7.10 or higher (Version 3.5 is recommended). If you install 3.5, check the include python in path option.
+* Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as change an existing article or create a new one. Wait for approval from the ASP.NET documentation team before you invest much time. 
+* Fork the [aspnet/Docs](https://github.com/aspnet/Docs/) repo and create a branch for your changes.
+* Submit a pull request (PR) to master with your changes.
+* If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla2.dotnetfoundation.org/)
+* Respond to PR feedback.
 
-2. Skip this step if you installed python 3.5 and checked the "include in python path" option. If you are installing on Windows, ensure both the Python install directory and the Python scripts directory have been added to your `PATH` environment variable. For example, if you install Python into the c:\python34 directory, you would add `c:\python34;c:\python34\scripts` to your `PATH` environment variable.
+For an example where this process led to publication of a new article, see [issue 67](https://github.com/dotnet/docs/issues/67) and [pull request 798](https://github.com/dotnet/docs/pull/798) in the .NET Core repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
 
-3. Clone the docs: 
+## Markdown syntax
 
-    ```git clone https://github.com/aspnet/Docs.git```
- 
-4. Navigate to the Docs repo and install the build dependencies:
+Articles are written in [DocFx-flavored Markdown](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), which is a superset of [GitHub-flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/). For examples of DFM syntax for UI features commonly used in the ASP.NET documentation, see [Metadata and Markdown Template](https://github.com/dotnet/docs/blob/master/styleguide/template.md) in the .NET Core repo style guide. 
 
-	```cd docs```
+## Folder structure conventions
 
-	```pip install -r requirements.txt```
+For each Markdown file there may be a folder for images and a folder for sample code. For example, if the article is [fundamentals/configuration.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration.md), the images are in [fundamentals/configuration/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/_static) and the sample application project files are in [fundamentals/configuration/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/sample).  An image in the *fundamentals/configuration.md* file is rendered by the following Markdown.
+
+```
+![description of image for alt attribute](configuration/_static/imagename.png)
+```
+
+All images should have [alt text](https://en.wikipedia.org/wiki/Alt_attribute).
+
+## Code snippets
+
+Articles frequently contain code snippets to illustrate points. DFM lets you copy code into the Markdown file or refer to a separate code file. We prefer to use separate code files whenever possible, to minimize the chance of errors in the code. The code files should be stored in the repo using the folder structure described above for sample projects. 
+
+Here are some examples of [DFM code snippet syntax](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) that would be used in a *configuration.md* file.
+
+To render an entire code file as a snippet:
+
+```
+[!code-csharp[Main](configuration/sample/Program.cs)]
+```
+
+To render a portion of a file as a snippet by using line numbers:
+
+```
+[!code-csharp[Main](configuration/sample/Program.cs?range=1-10,20,30,40-50]
+[!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
+[!code-javascript[Main](configuration/sample/Project.json?range=1-10,20,30,40-50]
+```
+
+For C# snippets, you can reference a [C# region](https://msdn.microsoft.com/en-us/library/9a1ybwek.aspx). Whenever possible, use regions rather than line numbers, because line numbers in a code file tend to change and get out of sync with line number references in Markdown. C# regions can be nested, and if you reference the outer region, the inner `#region` and `#endregion` directives are not rendered in a snippet. 
+
+To render a C# region named "snippet_Example":
+
+```
+[!code-csharp[Main](configuration/sample/Program.cs?name=snippet_Example)]
+```
+
+To highlight selected lines in a rendered snippet (usually renders as yellow background color):
+
+```
+[!code-csharp[Main](configuration/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
+[!code-csharp[Main](configuration/sample/Program.cs?range=10-20&highlight=1-3]
+[!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=10-20&highlight=1-3]
+[!code-javascript[Main](configuration/sample/Project.json?range=10-20&highlight=1-3]
+```
+
+## Test your changes with DocFX
+
+Test your changes with the [DocFX command-line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool), which creates a locally hosted version of the site. DocFX doesn't render style and site extensions created for docs.microsoft.com.
+
+DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS. 
+
+### Windows instructions
+
+* Download and unzip *docfx.zip* from [DocFX releases](https://github.com/dotnet/docfx/releases).
+* Add DocFX to your PATH.
+* In a command-line window, navigate to the *aspnet* folder (which contains the *docfx.json* file) and run the following command:
+
+   ```
+   docfx -t default --serve
+   ```
 	
-	
-  **Note**: You might need to run this command from Power Shell.
-	
-5. Navigate to the  *aspnet* directory and run ``make`` (make.bat on Windows, Makefile on Mac/Linux)
+* In a browser, navigate to `http://localhost:8080`.
 
-	```cd aspnet```
+### Mono instructions
 
-	```make html ```
+* Install Mono via Homebrew - `brew install mono`.
+* Download the [latest version of DocFX](https://github.com/dotnet/docfx/releases).
+* Extract to `\bin\docfx`.
+* Create an alias for **docfx**:
 
-6. Once make completes, the generated docs will be in the .../docs/<project>/_build/html directory. Open the `index.html` file in your browser to see the built docs for that project. ``make livehtml`` is recommended, see the next section.
-
-## Use autobuild to easily view site changes locally ##
-
-You can also install [sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild) which will run a local web server and automatically refresh whenever changes to the source files are detected. To do so:
+  ```
+  function docfx {
+    mono $HOME/bin/docfx/docfx.exe
+  }
     
+  function docfx-serve {
+    mono $HOME/bin/docfx/docfx.exe serve _site
+  }
+  ```
 
-1. Run ``make livehtml`` (make.bat on Windows, Makefile on Mac/Linux) from the *aspnet* directory
- 
-    ```make livehtml```
+* Run **docfx** in the `Docs\aspnetcore` directory to build the site, and **docfx-serve** to view the site at `http://localhost:8080`.
 
-2. Browse to `http://127.0.0.1:8000` to see the locally built documentation. 
+## Voice and tone
 
-3. Hit `^C` to stop the local server.
+Our goal is to write documentation that is easily understandable by the widest possible audience. To that end we have established guidelines for writing style that we ask our contributors to follow. For more information, see [Voice and tone guidelines](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) in the .NET Core repo.
 
-## Adding Content ##
+## Redirects
 
-Before adding content, submit an issue with a suggestion for your proposed article. Provide detail on what the article would discuss, and how it would relate to existing documentation.
+If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article won't get 404s.  To set up a redirect, create a file that has the redirect target URL as shown below, and put it in the original file's location. 
 
-Also, please review the following style guides:
+```
+---
+redirect_url: /aspnet/core/location-of-target-for-redirect
+---
+```
 
-- [Sphinx Style Guide](http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html)
-- [ASP.NET Docs Style Guide](http://docs.asp.net/en/latest/contribute/style-guide.html)
-
-Articles should be organized into logical groups or sections. Each section should be given a named folder (e.g. /yourfirst). That section contains the rst files for all articles in the section. For images and other static resources, create a subfolder that matches the name of the article. Within this subfolder, create a ``sample`` folder for code samples and a  ``_static`` folder for images and other static content.
-
-### Example Structure ###
-
-	docs
-		/client-side
-			/angular
-				/_static
-					controllers.png
-					events.png
-					...
-				/sample
-					(sample code)
-			/bootstrap
-				/_static
-					about-page.png
-					...
-			angular.rst
-			bootstrap.rst
-
-**Note:** Sphinx will automatically fix duplicate image names, such as the about-page.png files shown above. There is no need to try to ensure uniqueness of static files beyond an individual article.
-
-Author information should be placed in the _authors folder following the example of steve-smith.rst. Place photos in the photos folder - size them to be no more than 125px wide or tall.
-
-## Process for Contributing ##
-
-**Step 1:** Open an Issue describing the article you wish to write and how it relates to existing content. Get approval to write your article.
-
-**Step 2:** Fork the `/aspnet/docs` repo.
-
-**Step 3:** Create a `branch` for your article.
-
-**Step 4:** Write your article, placing the article in its own folder and any needed images in a _static folder located in the same folder as the article. Be sure to follow the [ASP.NET Docs Style Guide](http://docs.asp.net/en/latest/contribute/style-guide.html). If you have code samples, place them in a folder within the `/samples/` folder.
-
-**Step 5:** Submit a Pull Request from your branch to `aspnet/docs/master`.
-
-**Step 6:** Discuss the Pull Request with the ASP.NET team; make any requested updates to your branch. When they are ready to accept the PR, they will add a :shipit: (`:shipit:`) comment.
-
-**Step 7:** The last step before your Pull Request is accepted is to [squash all commits](http://stackoverflow.com/questions/14534397/squash-all-my-commits-into-one-for-github-pull-request) into a single commit message. Do this in your branch, using the `rebase` git command. For example, if you want to squash the last 4 commits into a single commit, you would use:
-
-	git rebase -i HEAD~4
-
-The `-i` option stands for "interactive" and should open a text editor showing the last N commits, preceded with "pick ".  Change all but the first instance of "pick " to "squash " and save the file and exit the editor. A more detailed answer is [available here](http://stackoverflow.com/a/6934882).
-
-## Common Pitfalls ##
-
-Below are some common pitfalls you should try to avoid:
-
-- Don't forget to submit an issue before starting work on an article
-- Don't forget to create a separate branch before working on your article
-- Don't update or `merge` your branch after you submit your pull request
-- Don't forget to squash your commits once your pull request is ready to be accepted
-- If updating code samples in `/samples/`, be sure any line number references in your article remain correct
+For an example, see the [redirect file](https://github.com/aspnet/Docs/blob/master/aspnetcore/security/authentication/sociallogins.md) that redirects `/security/authentication/sociallogins` to `/security/authentication/social/index`.

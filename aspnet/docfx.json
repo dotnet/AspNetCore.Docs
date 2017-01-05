@@ -1,0 +1,39 @@
+{
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/obj/**",
+          "aspnet/**",
+          "**/includes/**",
+          "**/aspnet-core-conceptual/**",
+          "_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "**/*.png",
+          "**/*.jpg"
+        ],
+        "exclude": [
+          "**/obj/**",
+          "aspnet/core/**",
+          "**/includes/**",
+          "_site/**"
+        ]
+      }
+    ],
+    "overwrite": [],
+    "externalReference": [],
+    "globalMetadata": { "breadcrumb_path": "/aspnet/breadcrumb/toc.json" },
+    "fileMetadata": {},
+    "template": [],
+    "dest": "_site"
+  }
+}
