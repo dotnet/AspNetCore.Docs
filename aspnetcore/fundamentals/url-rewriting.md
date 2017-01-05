@@ -37,13 +37,13 @@ The difference in wording between *URL redirect* and *URL rewrite* may seem subt
 
 A *URL redirect* is a client-side operation, where the client is instructed to access a resource at another address. This requires a round-trip to the server, and the redirect URL returned to the client will appear in the browser's address bar when the client makes a new request for the resource. If **http://www.mysite.com/resource** is *redirected* to **http://www.mysite.com/different-resource**, the client will request **http://www.mysite.com/resource**, and the server will respond that the client should obtain the resource at **http://www.mysite.com/different-resource** with a status code indicating that the redirect is either temporary or permanent. The client will execute a new request for the resource at the redirect URL.
 
-![file.txt has been moved from folder1 into folder2 on the server. A client requests file.txt in folder1. The server sends back a 302 (Found) response with the new, temporary location of file.txt in folder2. The client makes a second request for the resource at the redirect URL. The server fetches and returns the file with a 200 (OK) status code.](url-rewriting/_static/url_redirect.png)
+![A WebAPI service endpoint has been temporarily changed from version 1 (v1) to version 2 (v2) on the server. A client makes a request to the service at the version 1 path /v1/api. The server sends back a 302 (Found) response with the new, temporary path for the service at version 2 /v2/api. The client makes a second request to the service at the redirect URL. The server responds with a 200 (OK) status code.](url-rewriting/_static/url_redirect.png)
 
 When redirecting requests to a different URL, you will indicate whether the redirect is permanent or temporary. The 301 (Moved Permanently) status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. The client will cache the response when a 301 status code is received. The 302 (Found) status code is used where the redirection is temporary or generally subject to change, such that the client should not store and reuse the redirect URL in the future. For more information, see [RFC 2616: Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 A *URL rewrite* is a server-side operation to provide a resource from a different resource address. Rewriting a URL doesn't require a round-trip to the server. The rewritten URL is not returned to the client and won't appear in a browser's address bar. When **http://www.mysite.com/resource** is *rewritten* to **http://www.mysite.com/different-resource**, the client will request **http://www.mysite.com/resource**, and the server will *internally* fetch the resource at **http://www.mysite.com/different-resource**. Although the client might be able to retrieve the resource at the rewritten URL, the client won't be informed that the resource exists at the rewritten URL when it makes its request and receives the response.
 
-![file.txt has been moved from folder1 into folder2 on the server. A client requests file.txt in folder1. The request URL is rewritten to fetch file.txt from folder2. The file is returned to the client with a 200 (OK) status code.](url-rewriting/_static/url_rewrite.png)
+![A WebAPI service endpoint has been changed from version 1 (v1) to version 2 (v2) on the server. A client makes a request to the service at the version 1 path /v1/api. The request URL is rewritten to access the service at the version 2 path /v2/api. The service responds to the client with a 200 (OK) status code.](url-rewriting/_static/url_rewrite.png)
 
 ## URL Rewriting Middleware
 You can explore the features of the URL Rewriting Middleware with the [URL Rewriting sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/sample). The application applies rewrite and redirect rules and shows the resultant rewritten or redirected URL.
@@ -76,33 +76,25 @@ The part of the expression contained by parentheses is called a *capture group*.
 
 In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in your regex. There is only one captured group in the redirect rule regex in the sample application, so there is only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes **http://localhost:5000/redirected/1234/5678**.
 
-#### URL Redirect to a secure endpoint (permanent)
-Use `AddRedirectToHttpsPermanent()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://** on port 433). The middleware will set the status code to 301 (Moved Permanently).
-```csharp
-var options = new RewriteOptions()
-    .AddRedirectToHttpsPermanent();
-
-app.UseRewriter(options);
-```
-The sample application is capable of demonstrating how to use `AddRedirectToHttpsPermanent()`. Add the extension method to the `RewriteOptions()`. Make an insecure request to the application at any URL. In order to see the response in a browser, you will probably need to dismiss a browser security warning that the self-signed certificate is untrusted.
-
-Original Request: **http://localhost:5000/secure**
-
-![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
-
 #### URL Redirect to a secure endpoint
-Use `AddRedirectToHttps()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://**) with the flexibility to choose the status code and port. If the status code is not supplied, the middleware will default to 302 (Found). If the port is not supplied, the middleware will default to `null`, which means the protocol will change to **https://** and the client will access the resource on port 433. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
+Use `AddRedirectToHttps()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://**) with the flexibility to choose the status code and port. If the status code is not supplied, the middleware will default to 302 (Found). If the port is not supplied, the middleware will default to `null`, which means the protocol will change to **https://** and the client will access the resource on port 443. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
 ```csharp
 var options = new RewriteOptions()
     .AddRedirectToHttps(301, 5001);
 
 app.UseRewriter(options);
 ```
-The sample application is capable of demonstrating how to use `AddRedirectToHttps()`. Add the extension method to the `RewriteOptions()` with a 301 response status code on port 5001. Make an insecure request to the application at any URL. In order to see the response in a browser, you will probably need to dismiss a browser security warning that the self-signed certificate is untrusted.
+Use `AddRedirectToHttpsPermanent()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://** on port 443). The middleware will set the status code to 301 (Moved Permanently).
 
-Original Request: **http://localhost:5000/secure**
+The sample application is capable of demonstrating how to use `AddRedirectToHttps()` or `AddRedirectToHttpsPermanent()`. Add the extension method to the `RewriteOptions()`. Make an insecure request to the application at any URL. In order to see the response in a browser, you will probably need to dismiss a browser security warning that the self-signed certificate is untrusted.
+
+Original Request using `AddRedirectToHttps()`: **http://localhost:5000/secure**
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https.png)
+
+Original Request using `AddRedirectToHttpsPermanent()`: **http://localhost:5000/secure**
+
+![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
 #### URL Rewrite
 Use `AddRewrite()` to create a rules for rewriting URLs. The first parameter will contain your regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, will indicate to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
@@ -196,7 +188,7 @@ Original Request: **http://localhost:5000/iis-rules-rewrite/1234**
 
 ![Browser window with Developer Tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
-If you have an active IIS Rewrite Module functioning on the server that you wish to disable for an application using the middleware, you can disable the IIS module with a change to your **web.config** file.
+If you have an active IIS Rewrite Module with server-level rules configured that would impact your application in undesirable ways, you can disable the IIS Rewrite Module for an application with a change to your **web.config** file.
 ```xml
 <configuration> 
  <system.webServer> 
