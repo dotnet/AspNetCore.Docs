@@ -10,7 +10,7 @@ Because of their simplicity, WebHooks are already exposed by a large number of s
 
 Microsoft ASP.NET WebHooks makes it easier to both send and receive WebHooks as part of your ASP.NET application:
 
-* On the receiving side, it provides a common model for receiving and processing WebHooks from any number of WebHook providers. It comes out of the box with support for [Dropbox](http://dropbox.com/), [GitHub](http://www.github.com/), [Bitbucket](https://bitbucket.org/), [MailChimp](http://www.mailchimp.com/), [PayPal](http://www.paypal.com/), [Pusher](http://www.pusher.com), [Salesforce](http://www.salesforce.com), [Slack](http://www.slack.com), [Stripe](http://www.stripe.com), [Trello](http://www.trello.com/), and [WordPress](http://www.wordpress.com) but it is easy to add support for more.
+* On the receiving side, it provides a common model for receiving and processing WebHooks from any number of WebHook providers. It comes out of the box with support for [Dropbox](http://dropbox.com/), [GitHub](http://www.github.com/), [Bitbucket](https://bitbucket.org/), [MailChimp](http://www.mailchimp.com/), [PayPal](http://www.paypal.com/), [Pusher](http://www.pusher.com), [Salesforce](http://www.salesforce.com), [Slack](http://www.slack.com), [Stripe](http://www.stripe.com), [Trello](http://www.trello.com/),[WordPress](http://www.wordpress.com) and [Zendesk](https://www.zendesk.com/) but it is easy to add support for more.
 
 * On the sending side it provides support for managing and storing subscriptions as well as for sending event notifications to the right set of subscribers. This allows you to define your own set of events that subscribers can subscribe to and notify them when things happens.
 
@@ -52,7 +52,7 @@ Typically the HTTP POST request contains a JSON object or HTML form data determi
 }
 ````
 
-To ensure that the WebHook is indeed from the intended sender, the POST request is secured in some way and then verified by the receiver. For example, [GitHub WebHooks](https://developer.github.com/webhooks/) includes an *X-Hub-Signature* HTTP header with a hash of the request body which is checked by the receiver implementation so you don�t have to worry about it.
+To ensure that the WebHook is indeed from the intended sender, the POST request is secured in some way and then verified by the receiver. For example, [GitHub WebHooks](https://developer.github.com/webhooks/) includes an *X-Hub-Signature* HTTP header with a hash of the request body which is checked by the receiver implementation so you don't have to worry about it.
 
 The WebHook flow generally goes something like this:
 
