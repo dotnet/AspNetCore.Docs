@@ -165,7 +165,7 @@ await HttpContext.Authentication.SignInAsync(
        });
    ```
 
-This code snippet will create an identity and corresponding cookie which will be survive through browser closures.Any sliding expiration settings previously configured via [cookie options](xref:security/authentication/cookie#security-authentication-cookie-options) will still be honored, if the cookie expires whilst the browser is closed the browser will clear it once it is restarted.
+This code snippet will create an identity and corresponding cookie which will be survive through browser closures. Any sliding expiration settings previously configured via [cookie options](xref:security/authentication/cookie#security-authentication-cookie-options) will still be honored, if the cookie expires whilst the browser is closed the browser will clear it once it is restarted.
 
 <a name=security-authentication-absolute-expiry></a>
 

@@ -38,4 +38,7 @@ Global
 		{A15DE1F5-7271-4F68-A76F-B614A6555F76} = {114DA64A-15B8-4375-B14C-E1D0E3C4B8E9}
 		{15760117-9024-4D26-B725-ADBCB53D7E99} = {0434239A-DE4B-4E5D-80BC-A25AB266E82B}
 	EndGlobalSection
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = f224ea55-ff97-4312-84b6-a1351b3a51af
+	EndGlobalSection
 EndGlobal
