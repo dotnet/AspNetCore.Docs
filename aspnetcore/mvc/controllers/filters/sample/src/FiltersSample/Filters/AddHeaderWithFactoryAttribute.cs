@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
 {
+    #region snippet_IFilterFactory
     public class AddHeaderWithFactoryAttribute : Attribute, IFilterFactory
     {
         // Implement IFilterFactory
@@ -32,4 +33,5 @@ namespace FiltersSample.Filters
             }
         }
     }
+    #endregion
 }
