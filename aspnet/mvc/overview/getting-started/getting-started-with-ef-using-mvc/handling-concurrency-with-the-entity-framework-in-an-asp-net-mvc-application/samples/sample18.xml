@@ -1,6 +1,1 @@
-<dt>
-  Administrator
-</dt>
-<dd>
-  @Html.DisplayFor(model => model.Administrator.FullName)
-</dd>
+<p class="error">@ViewBag.ConcurrencyErrorMessage</p>

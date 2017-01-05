@@ -64,7 +64,7 @@ You can resolve conflicts by handling [OptimisticConcurrencyException](https://m
 
 - In the database table, include a tracking column that can be used to determine when a row has been changed. You can then configure the Entity Framework to include that column in the `Where` clause of SQL `Update` or `Delete` commands.
 
-    The data type of the tracking column is typically [rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx)`.` The [rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) value is a sequential number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the original value of the tracking column (the original row version) . If the row being updated has been changed by another user, the value in the `rowversion` column is different than the original value, so the `Update` or `Delete` statement can't find the row to update because of the `Where` clause. When the Entity Framework finds that no rows have been updated by the `Update` or `Delete` command (that is, when the number of affected rows is zero), it interprets that as a concurrency conflict.
+    The data type of the tracking column is typically [rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx). The [rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) value is a sequential number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the original value of the tracking column (the original row version) . If the row being updated has been changed by another user, the value in the `rowversion` column is different than the original value, so the `Update` or `Delete` statement can't find the row to update because of the `Where` clause. When the Entity Framework finds that no rows have been updated by the `Update` or `Delete` command (that is, when the number of affected rows is zero), it interprets that as a concurrency conflict.
 - Configure the Entity Framework to include the original values of every column in the table in the `Where` clause of `Update` and `Delete` commands.
 
     As in the first option, if anything in the row has changed since the row was first read, the `Where` clause won't return a row to update, which the Entity Framework interprets as a concurrency conflict. For database tables that have many columns, this approach can result in very large `Where` clauses, and can require that you maintain large amounts of state. As noted earlier, maintaining large amounts of state can affect application performance because it either requires server resources or must be included in the web page itself. Therefore this approach generally not recommended, and it isn't the method used in this tutorial.
@@ -79,13 +79,13 @@ In *Models\Department.cs*, add a tracking property named `RowVersion`:
 
 [!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=18-19)]
 
-The [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) attribute specifies that this column will be included in the `Where` clause of `Update` and `Delete` commands sent to the database. The attribute is called [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) because previous versions of SQL Server used a SQL [timestamp](https://msdn.microsoft.com/en-us/library/ms182776(v=SQL.90).aspx) data type before the SQL [rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) replaced it. The .Net type for[rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) is a byte array. If you prefer to use the fluent API, you can use the [IsConcurrencyToken](https://msdn.microsoft.com/en-us/library/gg679501(v=VS.103).aspx) method to specify the tracking property, as shown in the following example:
+The [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) attribute specifies that this column will be included in the `Where` clause of `Update` and `Delete` commands sent to the database. The attribute is called [Timestamp](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.timestampattribute.aspx) because previous versions of SQL Server used a SQL [timestamp](https://msdn.microsoft.com/en-us/library/ms182776(v=SQL.90).aspx) data type before the SQL [rowversion](https://msdn.microsoft.com/en-us/library/ms182776(v=sql.110).aspx) replaced it. The .Net type for `rowversion` is a byte array. If you prefer to use the fluent API, you can use the [IsConcurrencyToken](https://msdn.microsoft.com/en-us/library/gg679501(v=VS.103).aspx) method to specify the tracking property, as shown in the following example:
 
 [!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml)]
 
 By adding a property you changed the database model, so you need to do another migration. In the Package Manager Console (PMC), enter the following commands:
 
-`Add-Migration RowVersion Update-Database`
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml)]
 
 ## Create a Department Controller
 
@@ -95,39 +95,39 @@ Create a `Department` controller and views the same way you did the other contro
 
 In *Controllers\DepartmentController.cs*, add a `using` statement:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml)]
 
 Change "LastName" to "FullName" everywhere in this file (four occurrences) so that the department administrator drop-down lists will contain the full name of the instructor rather than just the last name.
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=1)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml?highlight=1)]
 
 Replace the existing code for the `HttpPost` `Edit` method with the following code:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml)]
 
 The view will store the original `RowVersion` value in a hidden field. When the model binder creates the `department` instance, that object will have the original `RowVersion` property value and the new values for the other properties, as entered by the user on the Edit page. Then when the Entity Framework creates a SQL `UPDATE` command, that command will include a `WHERE` clause that looks for a row that has the original `RowVersion` value.
 
 If no rows are affected by the `UPDATE` command (no rows have the original `RowVersion` value), the Entity Framework throws a `DbUpdateConcurrencyException` exception, and the code in the `catch` block gets the affected `Department` entity from the exception object. This entity has both the values read from the database and the new values entered by the user:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml)]
 
 Next, the code adds a custom error message for each column that has database values different from what the user entered on the Edit page:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml)]
 
 A longer error message explains what happened and what to do about it:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.xml)]
 
 Finally, the code sets the `RowVersion` value of the `Department` object to the new value retrieved from the database. This new `RowVersion` value will be stored in the hidden field when the Edit page is redisplayed, and the next time the user clicks **Save**, only concurrency errors that happen since the redisplay of the Edit page will be caught.
 
 In *Views\Department\Edit.cshtml*, add a hidden field to save the `RowVersion` property value, immediately following the hidden field for the `DepartmentID` property:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.xml?highlight=17)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.xml?highlight=17)]
 
 In *Views\Department\Index.cshtml*, replace the existing code with the following code to move row links to the left and change the page title and column headings to display `FullName` instead of `LastName` in the **Administrator** column:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.xml)]
 
 ## Testing Optimistic Concurrency Handling
 
@@ -165,41 +165,41 @@ For the Delete page, the Entity Framework detects concurrency conflicts caused b
 
 In *DepartmentController.cs*, replace the `HttpGet` `Delete` method with the following code:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.xml)]
 
 The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is `true`, an error message is sent to the view using a `ViewBag` property.
 
 Replace the code in the `HttpPost` `Delete` method (named `DeleteConfirmed`) with the following code:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample13.xml)]
 
 In the scaffolded code that you just replaced, this method accepted only a record ID:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample13.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample14.xml)]
 
 You've changed this parameter to a `Department` entity instance created by the model binder. This gives you access to the `RowVersion` property value in addition to the record key.
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample14.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample15.xml)]
 
-You have also changed the action method name from `DeleteConfirmed` to `Delete`. The scaffolded code named the `HttpPost` `Delete` method `DeleteConfirmed` to give the `HttpPost` method a unique signature. ( The CLR requires overloaded methods to have different method parameters.) Now that the signatures are unique, you can stick with the MVC convention and use the same name for the `HttpPost` and `HttpGet` delete methods.
+You have also changed the action method name from `DeleteConfirmed` to `Delete`. The scaffolded code named the `HttpPost` `Delete` method `DeleteConfirmed` to give the `HttpPost` method a unique signature. (The CLR requires overloaded methods to have different method parameters.) Now that the signatures are unique, you can stick with the MVC convention and use the same name for the `HttpPost` and `HttpGet` delete methods.
 
 If a concurrency error is caught, the code redisplays the Delete confirmation page and provides a flag that indicates it should display a concurrency error message.
 
 In *Views\Department\Delete.cshtml*, replace the scaffolded code with the following code that makes some formatting changes and adds an error message field. The changes are highlighted.
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample15.xml?highlight=9,37,40,45-46)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.xml?highlight=9,37,40,45-46)]
 
 This code adds an error message between the `h2` and `h3` headings:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.xml)]
 
 It replaces `LastName` with `FullName` in the `Administrator` field:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.xml)]
 
 Finally, it adds hidden fields for the `DepartmentID` and `RowVersion` properties after the `Html.BeginForm` statement:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.xml)]
+[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.xml)]
 
 Run the Departments Index page. Right click the **Delete** hyperlink for the English department and select **Open in new window,** then in the first window click the **Edit** hyperlink for the English department.
 

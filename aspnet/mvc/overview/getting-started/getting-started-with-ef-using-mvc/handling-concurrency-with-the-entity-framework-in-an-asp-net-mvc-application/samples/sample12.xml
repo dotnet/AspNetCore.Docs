@@ -1,28 +1,18 @@
-public async Task<ActionResult> Delete(int? id, bool? concurrencyError)
-{
-    if (id == null)
-    {
-        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-    }
-    Department department = await db.Departments.FindAsync(id);
-    if (department == null)
-    {
-        if (concurrencyError.GetValueOrDefault())
-        {
-            return RedirectToAction("Index");
-        }
-        return HttpNotFound();
-    }
+@model ContosoUniversity.Models.Department
 
-    if (concurrencyError.GetValueOrDefault())
-    {
-        ViewBag.ConcurrencyErrorMessage = "The record you attempted to delete "
-            + "was modified by another user after you got the original values. "
-            + "The delete operation was canceled and the current values in the "
-            + "database have been displayed. If you still want to delete this "
-            + "record, click the Delete button again. Otherwise "
-            + "click the Back to List hyperlink.";
-    }
-
-    return View(department);
+@{
+    ViewBag.Title = "Edit";
 }
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Department</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.DepartmentID)
+        @Html.HiddenFor(model => model.RowVersion)

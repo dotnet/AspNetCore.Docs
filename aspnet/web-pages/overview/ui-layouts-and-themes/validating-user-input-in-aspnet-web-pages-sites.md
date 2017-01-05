@@ -75,7 +75,16 @@ In ASP.NET Web Pages 2, you can use the `Validator` helper to test user input. T
 
     To check for required fields, use `Validation.RequireField(field, [error message])` (for an individual field) or `Validation.RequireFields(field1, field2, ...))` (for a list of fields). For other types of validation, use `Validation.Add(field, ValidationType)`. For `ValidationType`, you can use these options:
 
-    `Validator.DateTime ([error message])Validator.Decimal([error message])Validator.EqualsTo(otherField [, error message]) Validator.Float([error message])Validator.Integer([error message])Validator.Range(min, max [, error message]) Validator.RegEx(pattern [, error message]) Validator.Required([error message])Validator.StringLength(length) Validator.Url([error message])`
+    `Validator.DateTime ([error message])`  
+`Validator.Decimal([error message])`  
+`Validator.EqualsTo(otherField [, error message])`  
+`Validator.Float([error message])`  
+`Validator.Integer([error message])`  
+`Validator.Range(min, max [, error message])`  
+`Validator.RegEx(pattern [, error message])`  
+`Validator.Required([error message])`  
+`Validator.StringLength(length)`  
+`Validator.Url([error message])`
 3. When the page is submitted, check whether validation has passed by checking `Validation.IsValid`:
 
     [!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample1.xml)]
@@ -179,6 +188,5 @@ To display this error, you can add the error to the list of validation errors by
 
 <a id="AdditionalResources"></a>
 ## Additional Resources
-
 
 [Working with HTML Forms in ASP.NET Web Pages Sites](https://go.microsoft.com/fwlink/?LinkID=202892)

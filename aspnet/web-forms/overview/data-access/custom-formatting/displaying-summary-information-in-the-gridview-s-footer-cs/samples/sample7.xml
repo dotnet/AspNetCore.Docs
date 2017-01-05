@@ -3,15 +3,10 @@ protected void ProductsInCategory_RowDataBound
 {
     if (e.Row.RowType == DataControlRowType.DataRow)
     {
-      ... <i>Increment the running totals</i> ...
+      ... Increment the running totals ...
     }
     else if (e.Row.RowType == DataControlRowType.Footer)
     {
-      // Determine the average UnitPrice
-      decimal avgUnitPrice = _totalUnitPrice / (decimal) _totalNonNullUnitPriceCount;
-      // Display the summary data in the appropriate cells
-      e.Row.Cells[1].Text = "Avg.: " + avgUnitPrice.ToString("c");
-      e.Row.Cells[2].Text = "Total: " + _totalUnitsInStock.ToString();
-      e.Row.Cells[3].Text = "Total: " + _totalUnitsOnOrder.ToString();
+      ... Display the summary data in the footer ...
     }
 }

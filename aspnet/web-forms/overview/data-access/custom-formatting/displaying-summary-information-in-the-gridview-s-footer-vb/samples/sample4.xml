@@ -1,4 +1,5 @@
-Protected Sub ProductsInCategory_RowDataBound _
-    (sender As Object, e As GridViewRowEventArgs) _
-        Handles ProductsInCategory.RowDataBound
-End Sub
+SELECT CategoryID, AVG(UnitPrice), SUM(UnitsInStock),
+SUM(UnitsOnOrder)
+FROM Products
+WHERE CategoryID = categoryID
+GROUP BY CategoryID

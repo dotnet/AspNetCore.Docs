@@ -1,7 +1,10 @@
-@{
-    Response.CacheControl = "no-cache";
-    if (!WebSecurity.IsAuthenticated) {
-        var returnUrl = "~/Account/Login?ReturnUrl=" + Request.Url.LocalPath;
-        Response.Redirect(returnUrl);
-    }
-}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Error Page</title>
+    </head>
+    <body>
+<h1>Error report</h1>
+<p>An error occurred while running the following file: @Request["source"]</p>
+    </body>
+</html>

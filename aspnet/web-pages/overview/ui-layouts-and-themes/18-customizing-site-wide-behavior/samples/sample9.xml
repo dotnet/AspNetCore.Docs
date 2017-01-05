@@ -1,21 +1,7 @@
 @{
-  var backgroundColor = PageData["MyBackground"];
+    // Sets the layout page for all pages in the folder.
+    Layout = "~/Shared/_Layout1.cshtml";
+
+    // Sets a variable available to all pages in the folder.
+    PageData["MyBackground"] = "Yellow";
 }
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Page Title</title>
-  <link type="text/css" href="/Styles/Site.css" rel="stylesheet" />
-</head>
-<body>
-  <div id="header">
-    Using the _PageStart.cshtml file
-  </div>
-  <div id="main" style="background-color:@backgroundColor">
-    @RenderBody()
-  </div>
-<div id="footer">
-  &copy; 2012 Contoso. All rights reserved
-</div>
-</body>
-</html>

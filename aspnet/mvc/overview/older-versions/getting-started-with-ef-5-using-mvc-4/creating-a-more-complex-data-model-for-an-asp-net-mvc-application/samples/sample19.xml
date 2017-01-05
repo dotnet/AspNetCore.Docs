@@ -1,2 +1,1 @@
-[Column(TypeName="money")]
-public decimal Budget { get; set; }
+public virtual ICollection<Instructor> Instructors { get; set; }

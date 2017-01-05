@@ -1,7 +1,5 @@
-@{
-    // Sets the layout page for all pages in the folder.
-    Layout = "~/Shared/_Layout1.cshtml";
+Red
 
-    // Sets a variable available to all pages in the folder.
-    PageData["MyBackground"] = "Yellow";
-}
+Yellow
+
+Green

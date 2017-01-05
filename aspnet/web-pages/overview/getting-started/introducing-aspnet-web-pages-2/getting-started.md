@@ -208,15 +208,15 @@ WebMatrix creates the page and opens it in the editor.
 
 As you can see, the page contains mostly ordinary HTML markup, except for a block at the top that looks like this:
 
-`@{ }`
+[!code[Main](getting-started/samples/sample1.xml)]
 
 That's for adding code, as you'll see shortly.
 
-Notice that the different parts of the page &mdash; the element names, attributes, and text, plus the block at the top — are all in different colors. This is called *syntax highlighting*, and it makes it easier to keep everything clear. It's one of the features that makes it easy to work with web pages in WebMatrix.   
-  
- Add content for the `<head>` and `<body>` elements like in the following example. (If you want, you can just copy the following block and replace the entire existing page with this code.)
+Notice that the different parts of the page &mdash; the element names, attributes, and text, plus the block at the top — are all in different colors. This is called *syntax highlighting*, and it makes it easier to keep everything clear. It's one of the features that makes it easy to work with web pages in WebMatrix.
 
-[!code[Main](getting-started/samples/sample1.xml)]
+Add content for the `<head>` and `<body>` elements like in the following example. (If you want, you can just copy the following block and replace the entire existing page with this code.)
+
+[!code[Main](getting-started/samples/sample2.xml)]
 
 In the Quick Access Toolbar or in the **File** menu, click **Save**.
 
@@ -244,13 +244,13 @@ Close the browser and go back to the page in WebMatrix.
 
 Add a line to the code block so that it looks like the following code:
 
-[!code[Main](getting-started/samples/sample2.xml)]
+[!code[Main](getting-started/samples/sample3.xml)]
 
 This is a little bit of Razor code. It's probably clear that it gets the current date and time and puts that value into a *variable* named `currentDateTime`. You'll read more about Razor syntax in the next tutorial.
 
 In the body of the page, after the `<p>Hello World!</p>` element, add the following:
 
-[!code[Main](getting-started/samples/sample3.xml)]
+[!code[Main](getting-started/samples/sample4.xml)]
 
 This code gets the value that you put into the `currentDateTime` variable at the top and inserts it into the markup of the page. The `@` character marks the ASP.NET Web Pages code in the page.
 
@@ -262,7 +262,7 @@ Wait a few moments and then refresh the page in the browser. The date and time d
 
 In the browser, look at the page source. It looks like the following markup:
 
-[!code[Main](getting-started/samples/sample4.xml)]
+[!code[Main](getting-started/samples/sample5.xml)]
 
 Notice that the `@{ }` block at the top isn't there. Also notice that the date and time display shows an actual string of characters (`1/18/2012 2:49:50 PM` or whatever), not `@currentDateTime` like you had in the *.cshtml* page. What happened here is that when you ran the page, ASP.NET processed all the code (very little in this case) that was marked with `@`. The code produces output, and that output was inserted into the page.
 

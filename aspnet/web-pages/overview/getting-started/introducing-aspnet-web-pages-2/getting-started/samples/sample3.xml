@@ -1,1 +1,3 @@
-<p>Right now it's @currentDateTime</p>
+@{
+   var currentDateTime = DateTime.Now;
+}

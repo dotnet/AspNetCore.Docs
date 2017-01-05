@@ -1,3 +1,10 @@
-<add name="SchoolContext" connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=CU_Test;
-      Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\CU_Test.mdf" 
-      providerName="System.Data.SqlClient" />
+var courses = new List<Course>
+ {
+     new Course {CourseID = 1050, Title = "Chemistry",      Credits = 3,
+       Department = departments.Single( s => s.Name == "Engineering"),
+       Instructors = new List<Instructor>() 
+     },
+     ...
+   };
+ courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseID, s));
+ context.SaveChanges();

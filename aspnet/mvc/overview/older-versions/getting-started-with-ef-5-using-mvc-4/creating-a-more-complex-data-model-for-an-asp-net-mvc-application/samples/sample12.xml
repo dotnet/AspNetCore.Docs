@@ -1,3 +1,2 @@
-[Key]
-[ForeignKey("Instructor")]
-public int InstructorID { get; set; }
+public virtual ICollection<Course> Courses { get; set; }
+public virtual OfficeAssignment OfficeAssignment { get; set; }

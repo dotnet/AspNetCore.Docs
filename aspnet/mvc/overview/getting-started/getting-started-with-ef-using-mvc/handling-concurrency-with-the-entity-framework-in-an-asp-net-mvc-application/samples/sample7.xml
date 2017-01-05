@@ -1,2 +1,1 @@
-var clientValues = (Department)entry.Entity;
-var databaseEntry = entry.GetDatabaseValues();
+var entry = ex.Entries.Single();

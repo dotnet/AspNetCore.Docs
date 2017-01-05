@@ -1,2 +1,3 @@
-[DisplayFormat(DataFormatString = "{0:d}")]
-       public DateTime ReleaseDate { get; set; }
+[DataType(DataType.EmailAddress)]
+[DataType(DataType.PhoneNumber)]
+[DataType(DataType.Url)]

@@ -1,1 +1,2 @@
-public virtual ICollection<Instructor> Instructors { get; set; }
+public int DepartmentID { get; set; }
+public virtual Department Department { get; set; }

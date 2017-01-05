@@ -117,8 +117,25 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
 <a id="enable2"></a>
 ## Enable two-factor authentication
 
- In the template generated app, you need to use the UI to enable two-factor authentication (2FA). To enable 2FA, click on your user ID (email alias) in the navigation bar. ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image7.png)  
-Click on enable 2FA.![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image8.png) Log out, then log back in. If you've enabled email (see my [previous tutorial](../../../identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity.md)), you can select the SMS or email for 2FA. ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image9.png) The Verify Code page is displayed where you can enter the code (from SMS or email). ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image10.png) Clicking on the **Remember this browser** check box will exempt you from needing to use 2FA to log in when using the browser and device where you checked the box. As long as malicious users can't gain access to your device, enabling 2FA and clicking on the **Remember this browser** will provide you with convenient one step password access, while still retaining strong 2FA protection for all access from non-trusted devices. You can do this on any private device you regularly use.  This tutorial provides a quick introduction to enabling 2FA on a new ASP.NET MVC app. My tutorial [Two-factor authentication using SMS and email with ASP.NET Identity](../../../identity/overview/features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity.md) goes into detail on the code behind the sample.
+In the template generated app, you need to use the UI to enable two-factor authentication (2FA). To enable 2FA, click on your user ID (email alias) in the navigation bar.
+
+![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image7.png)
+
+Click on enable 2FA.
+
+![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image8.png)
+
+Logout, then log back in. If you've enabled email (see my [previous tutorial](../../../identity/overview/features-api/account-confirmation-and-password-recovery-with-aspnet-identity.md)), you can select the SMS or email for 2FA.
+
+![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image9.png)
+
+The Verify Code page is displayed where you can enter the code (from SMS or email).
+
+![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image10.png)
+
+Clicking on the **Remember this browser** check box will exempt you from needing to use 2FA to log in when using the browser and device where you checked the box. As long as malicious users can't gain access to your device, enabling 2FA and clicking on the **Remember this browser** will provide you with convenient one step password access, while still retaining strong 2FA protection for all access from non-trusted devices. You can do this on any private device you regularly use.
+
+This tutorial provides a quick introduction to enabling 2FA on a new ASP.NET MVC app. My tutorial [Two-factor authentication using SMS and email with ASP.NET Identity](../../../identity/overview/features-api/two-factor-authentication-using-sms-and-email-with-aspnet-identity.md) goes into detail on the code behind the sample.
 
 <a id="addRes"></a>
 ## Additional Resources

@@ -17,33 +17,34 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 > Cross-site request forgery (also known as XSRF or CSRF) is an attack against web-hosted applications whereby a malicious web site can influence the interaction between a client browser and a web site trusted by that browser. These attacks are made possible because web browsers will send authentication tokens automatically with every request to a web site. The canonical example is an authentication cookie, such as ASP.NET's Forms Authentication ticket. However, web sites which use any persistent authentication mechanism (such as Windows Authentication, Basic, and so forth) can be targeted by these attacks.
 > 
-> An XSRF attack is distinct from a phishing attack. Phishing attacks require interaction from the victim. In a phishing attack, a malicious web site will mimic the target web site, and the victim is fooled into providing sensitive information to the attacker. In an XSRF attack, there is often no interaction necessary from the victim. Rather, the attacker is relying on the browser automatically sending all relevant cookies to the destination web site.  
+> An XSRF attack is distinct from a phishing attack. Phishing attacks require interaction from the victim. In a phishing attack, a malicious web site will mimic the target web site, and the victim is fooled into providing sensitive information to the attacker. In an XSRF attack, there is often no interaction necessary from the victim. Rather, the attacker is relying on the browser automatically sending all relevant cookies to the destination web site.
+> 
 > For more information, see the [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page)(OWASP) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)).
 
 
-### Anatomy of an attack
+## Anatomy of an attack
 
 To walk through an XSRF attack, consider a user who wants to perform some online banking transactions. This user first visits WoodgroveBank.com and logs in, at which point the response header will contain her authentication cookie:
 
-`HTTP/1.1 200 OK Date: Mon, 18 Jun 2012 21:22:33 GMT X-AspNet-Version: 4.0.30319 Set-Cookie: .ASPXAUTH={authentication-token}; path=/; secure; HttpOnly; { Cache-Control, Content-Type, Location, Server and other keys/values not listed. }`
+[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample1.xml)]
 
 Because the authentication cookie is a session cookie, it will be automatically cleared by the browser when the browser process exits. However, until that time, the browser will automatically include the cookie with each request to WoodgroveBank.com. The user now wants to transfer $1000 to another account, so she fills out a form on the banking site, and the browser makes this request to the server:
 
-`POST /DoTransfer HTTP/1.1 Host: WoodgroveBank.com Content-Type: application/x-www-form-urlencoded Cookie: .ASPXAUTH={authentication-token} toAcct=12345&amount=1,000.00`
+[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample2.xml)]
 
 Because this operation has a side effect (it initiates a monetary transaction), the banking site has chosen to require an HTTP POST in order to initiate this operation. The server reads the authentication token from the request, looks up the current user's account number, verifies that sufficient funds exist, and then initiates the transaction into the destination account.
 
 Her online banking complete, the user navigates away from the banking site and visits other locations on the web. One of those sites – fabrikam.com – includes the following markup on a page embedded within an &lt;iframe&gt;:
 
-[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample1.xml)]
+[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample3.xml)]
 
 Which then causes the browser to make this request:
 
-`POST /DoTransfer HTTP/1.1 Host: WoodgroveBank.com Content-Type: application/x-www-form-urlencoded Cookie: .ASPXAUTH={authentication-token} toAcct=67890&amount=250.00`
+[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample4.xml)]
 
 The attacker is exploiting the fact that the user might still have a valid authentication token for the target web site, and she is using a small snippet of Javascript to cause the browser to make an HTTP POST to the target site automatically. If the authentication token is still valid, the banking site will initiate a transfer of $250 into the account of the attacker's choosing.
 
-#### Ineffective mitigations
+### Ineffective mitigations
 
 It is interesting to note that in the above scenario, the fact that WoodgroveBank.com was being accessed via SSL and had an SSL-only authentication cookie was insufficient to thwart the attack. The attacker is able to specify the [URI scheme](http://en.wikipedia.org/wiki/URI_scheme) (https) in her &lt;form&gt; element, and the browser will continue to send unexpired cookies to the target site as long as those cookies are consistent with the URI scheme of the intended target.
 
@@ -51,7 +52,7 @@ One could argue that the user should simply not visit untrusted sites, as visiti
 
 You can verify that incoming requests have a [Referer header](http://www.w3.org/Protocols/HTTP/HTRQ_Headers.html#z14) referencing your domain. This will stop requests unwittingly submitted from a third-party domain. However, some people disable their browser's Referer header for privacy reasons, and attackers can sometimes spoof that header if the victim has certain insecure software installed. Verifying the [Referer header](http://www.w3.org/Protocols/HTTP/HTRQ_Headers.html#z14) is not considered a secure approach to preventing XSRF attacks.
 
-### Web Stack Runtime XSRF mitigations
+## Web Stack Runtime XSRF mitigations
 
 The ASP.NET Web Stack Runtime uses a variant of the [synchronizer token pattern](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#General_Recommendation:_Synchronizer_Token_Pattern) to defend against XSRF attacks. The general form of the synchronizer token pattern is that two anti-XSRF tokens are submitted to the server with each HTTP POST (In addition to the authentication token): one token as a cookie, and the other as a form value. The token values generated by the ASP.NET runtime are not deterministic or predictable by an attacker. When the tokens are submitted, the server will allow the request to proceed only if both tokens pass a comparison check.
 
@@ -73,15 +74,15 @@ The payloads of the anti-XSRF tokens are encrypted and signed, so you can't view
 - [Cryptographic Improvements in ASP.NET 4.5, pt. 2](https://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx)
 - [Cryptographic Improvements in ASP.NET 4.5, pt. 3](https://blogs.msdn.com/b/webdev/archive/2012/10/24/cryptographic-improvements-in-asp-net-4-5-pt-3.aspx)
 
-### Generating the tokens
+## Generating the tokens
 
 To generate the anti-XSRF tokens, call the @Html.[AntiForgeryToken](https://msdn.microsoft.com/en-us/library/dd470175.aspx)() method from an MVC view or @AntiForgery.GetHtml() from a Razor page. The runtime will then perform the following steps:
 
 1. If the current HTTP request already contains an anti-XSRF session token (the anti-XSRF cookie \_\_RequestVerificationToken), the security token is extracted from it. If the HTTP request does not contain an anti-XSRF session token or if extraction of the security token fails, a new random anti-XSRF token will be generated.
 2. An anti-XSRF field token is generated using the security token from step (1) above and the identity of the current logged-in user. (For more information on determining user identity, see the **[Scenarios with special support](#_Scenarios_with_special)** section below.) Additionally, if an [IAntiForgeryAdditionalDataProvider](https://msdn.microsoft.com/en-us/library/jj158328(v=vs.111).aspx) is configured, the runtime will call its [GetAdditionalData](https://msdn.microsoft.com/en-us/library/system.web.helpers.iantiforgeryadditionaldataprovider.getadditionaldata(v=vs.111).aspx) method and include the returned string in the field token. (See the **[Configuration and extensibility](#_Configuration_and_extensibility)** section for more information.)
-3. If a new anti-XSRF token was generated in step (1), a new session token will be created to contain it and will be added to the outbound HTTP cookies collection. The field token from step (2) will be wrapped in an `<input type="hidden" />` element, and this HTML markup will be the return value of `Html.AntiForgeryToken()` or `AntiForgery.GetHtml().`
+3. If a new anti-XSRF token was generated in step (1), a new session token will be created to contain it and will be added to the outbound HTTP cookies collection. The field token from step (2) will be wrapped in an `<input type="hidden" />` element, and this HTML markup will be the return value of `Html.AntiForgeryToken()` or `AntiForgery.GetHtml()`.
 
-### Validating the tokens
+## Validating the tokens
 
 To validate the incoming anti-XSRF tokens, the developer includes a [ValidateAntiForgeryToken](https://msdn.microsoft.com/en-us/library/system.web.mvc.validateantiforgerytokenattribute(VS.108).aspx) attribute on her MVC action or controller, or she calls `@AntiForgery.Validate()` from her Razor page. The runtime will perform the following steps:
 
@@ -91,7 +92,7 @@ To validate the incoming anti-XSRF tokens, the developer includes a [ValidateAnt
 
 If validation succeeds, the request is allowed to proceed. If validation fails, the framework will throw an *HttpAntiForgeryException*.
 
-### Failure conditions
+## Failure conditions
 
 Starting with The ASP.NET Web Stack Runtime v2, any *HttpAntiForgeryException* that is thrown during validation will contain detailed information about what went wrong. The currently defined failure conditions are:
 
@@ -106,9 +107,9 @@ The anti-XSRF facilities may also perform additional checking during token gener
 
 <a id="_Scenarios_with_special"></a>
 
-### Scenarios with special support
+## Scenarios with special support
 
-#### Anonymous authentication
+### Anonymous authentication
 
 The anti-XSRF system contains special support for anonymous users, where "anonymous" is defined as a user where the *IIdentity.IsAuthenticated* property returns *false*. Scenarios include providing XSRF protection to the login page (before the user is authenticated) and custom authentication schemes where the application uses a mechanism other than *IIdentity* to identify users.
 
@@ -116,7 +117,7 @@ To support these scenarios, recall that the session and field tokens are joined 
 
 <a id="_WIF_ACS"></a>
 
-#### WIF / ACS / claims-based authentication
+### WIF / ACS / claims-based authentication
 
 Normally, the *IIdentity* classes built in to the .NET Framework have the property that *IIdentity.Name* is sufficient to uniquely identify a particular user within a particular application. For example, *FormsIdentity.Name* returns the username stored in the membership database (which is unique for all applications depending on that database), *WindowsIdentity.Name* returns the domain-qualified identity of the user, and so on. These systems provide not only authentication; they also *identify* users to an application.
 
@@ -134,24 +135,24 @@ When generating or validating a token, the ASP.NET Web Stack Runtime will at run
 - `Microsoft.IdentityModel.Claims.IClaimsIdentity, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35` (For the WIF SDK.)
 - `System.Security.Claims.ClaimsIdentity` (For .NET 4.5).
 
- If these types exist, and if the current user's *IIIIdentity* implements or subclasses one of these types, the anti-XSRF facility will use the (identity provider, name identifier) tuple in place of the username when generating and validating the tokens. If no such tuple is present, the request will fail with an error describing to the developer how to configure the anti-XSRF system to understand the particular claims-based authentication mechanism in use. See the **[Configuration and extensibility](#_Configuration_and_extensibility)** section for more information.<
+If these types exist, and if the current user's *IIIIdentity* implements or subclasses one of these types, the anti-XSRF facility will use the (identity provider, name identifier) tuple in place of the username when generating and validating the tokens. If no such tuple is present, the request will fail with an error describing to the developer how to configure the anti-XSRF system to understand the particular claims-based authentication mechanism in use. See the **[Configuration and extensibility](#_Configuration_and_extensibility)** section for more information.
 
-
-#### OAuth / OpenID authentication
+### OAuth / OpenID authentication
 
 Finally, the anti-XSRF facility has special support for applications which use OAuth or OpenID authentication. This support is heuristic-based: if the current *IIdentity.Name* begins with http:// or https://, then username comparisons will be done using an Ordinal comparer rather than the default OrdinalIgnoreCase comparer.
 
 <a id="_Configuration_and_extensibility"></a>
 
-### Configuration and extensibility
+## Configuration and extensibility
 
 Occasionally, developers may want tighter control over the anti-XSRF generation and validation behaviors. For example, perhaps the MVC and Web Pages helpers' default behavior of automatically adding HTTP cookies to the response is undesirable, and the developer may wish to persist the tokens elsewhere. There exist two APIs to assist with this:
 
-`AntiForgery.GetTokens(string oldCookieToken, out string newCookieToken, out string formToken);AntiForgery.Validate(string cookieToken, string formToken);`
+`AntiForgery.GetTokens(string oldCookieToken, out string newCookieToken, out string formToken);`  
+`AntiForgery.Validate(string cookieToken, string formToken);`
 
 The *GetTokens* method takes as input an existing XSRF request verification session token (which may be null) and produces as output a new XSRF request verification session token and field token. The tokens are simply opaque strings with no decoration; the *formToken* value will for instance not be wrapped in an &lt;input&gt; tag. The *newCookieToken* value may be null; if this occurs, then the *oldCookieToken* value is still valid and no new response cookie need be set. The caller of *GetTokens* is responsible for persisting any necessary response cookies or generating any necessary markup; the *GetTokens* method itself will not alter the response as a side effect. The *Validate* method takes the incoming session and field tokens and runs the aforementioned validation logic over them.
 
-#### AntiForgeryConfig
+### AntiForgeryConfig
 
 The developer may configure the anti-XSRF system from Application\_Start. Configuration is programmatic. The properties of the static *AntiForgeryConfig* type are described below. Most users using claims will want to set the UniqueClaimTypeIdentifier property.
 
@@ -165,13 +166,13 @@ The developer may configure the anti-XSRF system from Application\_Start. Config
 
 <a id="_IAntiForgeryAdditionalDataProvider"></a>
 
-#### IAntiForgeryAdditionalDataProvider
+### IAntiForgeryAdditionalDataProvider
 
 The *[IAntiForgeryAdditionalDataProvider](https://msdn.microsoft.com/en-us/library/system.web.helpers.iantiforgeryadditionaldataprovider(v=vs.111).aspx)* type allows developers to extend the behavior of the anti-XSRF system by round-tripping additional data in each token. The *GetAdditionalData* method is called each time a field token is generated, and the return value is embedded within the generated token. An implementer could return a timestamp, a nonce, or any other value she wishes from this method.
 
 Similarly, the *ValidateAdditionalData* method is called each time a field token is validated, and the "additional data" string that was embedded within the token is passed to the method. The validation routine could implement a timeout (by checking the current time against the time that was stored when the token was created), a nonce checking routine, or any other desired logic.
 
-### Design decisions and security considerations
+## Design decisions and security considerations
 
 The security token that links the session and field tokens is technically only necessary when trying to protect anonymous / unauthenticated users against XSRF attacks. When the user is authenticated, the authentication token itself (presumably submitted in the form of a cookie) could be used as one half of a synchronizer token pair. However, there are valid scenarios for protecting login pages hit by unauthenticated users, and the anti-XSRF logic was made simpler by always generating and validating the security token, even for authenticated users. It also does provide some additional protection in the event that a field token is ever compromised by an attacker, as setting or guessing the session token would be another hurdle for the attacker to overcome.
 
@@ -181,7 +182,6 @@ The anti-XSRF routines currently do not defend against [clickjacking](https://ww
 
 Web developers should continue to ensure that their site is not vulnerable to XSS attacks. XSS attacks are very powerful, and a successful exploit would also break the ASP.NET Web Stack Runtime defenses against XSRF attacks.
 
-### Acknowledgment
+## Acknowledgment
 
-<o:p><a href="https://twitter.com/LeviBroderick">@LeviBroderick</a>, who 
-wrote much of the ASP.NET security code the bulk of this information.</o:p>
+[@LeviBroderick](https://twitter.com/LeviBroderick), who wrote much of the ASP.NET security code the bulk of this information.

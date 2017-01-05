@@ -1,1 +1,5 @@
-Request.QueryString["ID"].IsInt()
+if(!IsPost){
+    if(!Request.QueryString["ID"].IsEmpty()){
+        // Etc.
+    }
+}

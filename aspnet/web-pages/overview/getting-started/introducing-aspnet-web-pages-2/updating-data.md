@@ -115,11 +115,11 @@ The column consists *only* of the markup that renders the link, plus some inform
 > 
 > As an alternative to passing values in order, you can use *named parameters*. (Passing parameters in order is known as using *positional parameters*.) For named parameters, you explicitly include the name of the parameter when passing its value. You've used named parameters already a number of times in these tutorials. For example:
 > 
-> `var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:3)`
+> [!code[Main](updating-data/samples/sample8.xml)]
 > 
 > and
 > 
-> `@grid.GetHtml( tableStyle: "grid", headerStyle: "head", alternatingRowStyle: "alt", columns: grid.Columns( grid.Column("Title"), grid.Column("Genre"), grid.Column("Year") ) )`
+> [!code[Main](updating-data/samples/sample9.xml)]
 > 
 > Named parameters are handy for a couple of situations, especially when a method takes many parameters. One is when you want to pass only one or two parameters, but the values you want to pass are not among the first positions in the parameter list. Another situation is when you want to make your code more readable by passing the parameters in the order that makes the most sense to you.
 > 
@@ -132,7 +132,7 @@ Now you can create the *EditMovie* page. When users click the **Edit** link, the
 
 Create a page named *EditMovie.cshtml* and replace what's in the file with the following markup:
 
-[!code[Main](updating-data/samples/sample8.xml)]
+[!code[Main](updating-data/samples/sample10.xml)]
 
 This markup and code is similar to what you have in the *AddMovie* page. There's a small difference in the text for the submit button. As with the *AddMovie* page, there's an `Html.ValidationSummary` call that will display validation errors if there are any. This time we're leaving out calls to `Validation.Message`, since errors will be displayed in the validation summary. As noted in the previous tutorial, you can use the validation summary and the individual error messages in various combinations.
 
@@ -154,7 +154,7 @@ The second function is that when the user clicks the **Submit Changes** button, 
 
 To perform the first function, add this code to the top of the page:
 
-[!code[Main](updating-data/samples/sample9.xml)]
+[!code[Main](updating-data/samples/sample11.xml)]
 
 Most of this code is inside a block that starts `if(!IsPost)`. The `!` operator means "not," so the expression means *if this request is not a post submission*, which is an indirect way of saying *if this request is the first time that this page has been run*. As noted earlier, this code should run *only* the first time the page runs. If you didn't enclose the code in `if(!IsPost)`, it would run every time the page is invoked, whether the first time or in response to a button click.
 
@@ -186,7 +186,7 @@ You can change the movie information, but nothing happens when you click **Submi
 
 In the *EditMovie.cshtml* file, to implement the second function (saving changes), add the following code just inside the closing brace of the `@` block. (If you're not sure exactly where to put the code, you can look at the [complete code listing for the Edit Movie page](#Complete_Page_Listing_for_EditMovie) that appears at the end of this tutorial.)
 
-[!code[Main](updating-data/samples/sample10.xml)]
+[!code[Main](updating-data/samples/sample12.xml)]
 
 Again, this markup and code is similar to the code in *AddMovie*. The code is in an `if(IsPost)` block, because this code runs only when the user clicks the **Submit Changes** button &mdash; that is, when (and only when) the form has been posted. In this case, you're not using a test like `if(IsPost && Validation.IsValid())`— that is, you're not combining both tests by using AND. In this page, you first determine whether there's a form submission (`if(IsPost)`), and only then register the fields for validation. Then you can test the validation results (`if(Validation.IsValid()`). The flow is slightly different than in the *AddMovie.cshtml* page, but the effect is the same.
 
@@ -224,7 +224,7 @@ After the code uses `db.Execute` to run the `Update` statement, it redirects bac
 
 The first time that the page runs, you get the movie ID from the query string so that you can go get that movie from the database. You made sure that there actually was a value to go look for, which you did by using this code:
 
-[!code[Main](updating-data/samples/sample11.xml)]
+[!code[Main](updating-data/samples/sample13.xml)]
 
 You used this code to make sure that if a user gets to the *EditMovies* page without first selecting a movie in the *Movies* page, the page would display a user-friendly error message. (Otherwise, users would see an error that would probably just confuse them.)
 
@@ -237,27 +237,27 @@ If you're curious to see the errors that result from these URLs, run the *Movies
 
 So what should you do? The first fix is to make sure that not only is an ID passed to the page, but that the ID is an integer. Change the code for the `!IsPost` test to look like this example:
 
-[!code[Main](updating-data/samples/sample12.xml)]
+[!code[Main](updating-data/samples/sample14.xml)]
 
 You've added a second condition to the `IsEmpty` test, linked with `&&` (logical AND):
 
-[!code[Main](updating-data/samples/sample13.xml)]
+[!code[Main](updating-data/samples/sample15.xml)]
 
 You might remember from the [Introduction to ASP.NET Web Pages Programming](../introducing-razor-syntax-c.md) tutorial that methods like `AsBool` an `AsInt` convert a character string to some other data type. The `IsInt` method (and others, like `IsBool` and `IsDateTime`) are similar. However, they test only whether you *can* convert the string, without actually performing the conversion. So here you're essentially saying *If the query string value can be converted to an integer ...*.
 
 The other potential problem is looking for a movie that doesn't exist. The code to get a movie looks like this code:
 
-[!code[Main](updating-data/samples/sample14.xml)]
+[!code[Main](updating-data/samples/sample16.xml)]
 
 If you pass a `movieId` value to the `QuerySingle` method that doesn't correspond to an actual movie, nothing is returned and the statements that follow (for example, `title=row.Title`) result in errors.
 
 Again there's an easy fix. If the `db.QuerySingle` method returns no results, the `row` variable will be null. So you can check whether the `row` variable is null before you try to get values from it. The following code adds an `if` block around the statements that get the values out of the `row` object:
 
-[!code[Main](updating-data/samples/sample15.xml)]
+[!code[Main](updating-data/samples/sample17.xml)]
 
 With these two additional validation tests, the page becomes more bullet-proof. The complete code for the `!IsPost` branch now looks like this example:
 
-[!code[Main](updating-data/samples/sample16.xml)]
+[!code[Main](updating-data/samples/sample18.xml)]
 
 We'll note once more that this task is a good use for an `else` block. If the tests don't pass, the `else` blocks set error messages.
 
@@ -272,7 +272,7 @@ However:
 
 Either way, you want to make it easy for them to return to the main listing. It's an easy fix &mdash; add the following markup just after the closing `</form>` tag in the markup:
 
-[!code[Main](updating-data/samples/sample17.xml)]
+[!code[Main](updating-data/samples/sample19.xml)]
 
 This markup uses the same syntax for an `<a>` element that you've seen elsewhere. The URL includes `~` to mean "root of the website."
 
@@ -292,11 +292,11 @@ In the next tutorial, you'll see how to delete a movie record.
 
 ## Complete Listing for Movie Page (Updated with Edit Links)
 
-[!code[Main](updating-data/samples/sample18.xml)]
+[!code[Main](updating-data/samples/sample20.xml)]
 
 ## Complete Page Listing for Edit Movie Page
 
-[!code[Main](updating-data/samples/sample19.xml)]
+[!code[Main](updating-data/samples/sample21.xml)]
 
 ## Additional Resources
 

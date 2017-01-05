@@ -1,7 +1,5 @@
-[Authorize]
-public ActionResult Contact()
-{
-   ViewBag.Message = "Your contact page.";
-
-   return View();
+@{
+   ViewBag.Title = "Info";
 }
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>

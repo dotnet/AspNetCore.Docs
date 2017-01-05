@@ -1,2 +1,6 @@
-@Html.HiddenFor(model => model.DepartmentID)
-@Html.HiddenFor(model => model.RowVersion)
+<dt>
+  Administrator
+</dt>
+<dd>
+  @Html.DisplayFor(model => model.Administrator.FullName)
+</dd>

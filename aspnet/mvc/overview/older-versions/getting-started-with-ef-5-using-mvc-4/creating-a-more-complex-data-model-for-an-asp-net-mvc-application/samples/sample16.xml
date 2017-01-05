@@ -1,1 +1,3 @@
-public virtual ICollection<Enrollment> Enrollments { get; set; }
+[DatabaseGenerated(DatabaseGeneratedOption.None)]
+[Display(Name = "Number")]
+public int CourseID { get; set; }

@@ -193,7 +193,7 @@ The placeholder is the `@` character followed by zero. As you might guess, a que
 
 To set up the query and actually pass it the value, you use the code like the following:
 
-`selectCommand = "SELECT * FROM Movies WHERE Genre = @0"; selectedData = db.Query(selectCommand, Request.QueryString["searchGenre"]);`
+[!code[Main](form-basics/samples/sample4.xml)]
 
 This code is similar to what you've already done to display data in the grid. The only differences are:
 
@@ -203,7 +203,7 @@ This code is similar to what you've already done to display data in the grid. Th
 
 If you put all these elements together, you get the following code:
 
-`if(!Request.QueryString["searchGenre"].IsEmpty() ) { searchTerm = Request.QueryString["searchGenre"]; selectCommand = "SELECT * FROM Movies WHERE Genre = @0"; selectedData = db.Query(selectCommand, searchTerm); }`
+[!code[Main](form-basics/samples/sample5.xml)]
 
 > [!NOTE] 
 > 
@@ -216,19 +216,19 @@ If you put all these elements together, you get the following code:
 
 Now you can update the code in the *Movies.cshtml* file. To begin, replace the code in the code block at the top of the page with this code:
 
-[!code[Main](form-basics/samples/sample4.xml)]
+[!code[Main](form-basics/samples/sample6.xml)]
 
 The difference here is that you've put the query into the `selectCommand` variable, which you'll pass to `db.Query` later. Putting the SQL statement into a variable lets you change the statement, which is what you'll do to perform the search.
 
 You've also removed these two lines, which you'll put back in later:
 
-`var selectedData = db.Query("SELECT * FROM Movies"); var grid = new WebGrid(source: selectedData, rowsPerPage: 3);`
+[!code[Main](form-basics/samples/sample7.xml)]
 
 You don't want to run the query yet (that is, call `db.Query`) and you don't want to initialize the `WebGrid` helper yet either. You'll do those things after you've figured out which SQL statement has to run.
 
 After this rewritten block, you can add the new logic for handling the search. The completed code will look like the following. Update the code in your page so it matches this example:
 
-[!code[Main](form-basics/samples/sample5.xml)]
+[!code[Main](form-basics/samples/sample8.xml)]
 
 The page now works like this. Every time the page runs, the code opens the database and the `selectCommand` variable is set to the SQL statement that gets all the records from the `Movies` table. The code also initializes the `searchTerm` variable.
 
@@ -266,7 +266,7 @@ There's actually an easy way to get around this issue. The genre that you entere
 
 Update the markup for the text box so that the `value` attribute gets its value from `searchTerm`, like this example:
 
-[!code[Main](form-basics/samples/sample6.xml?highlight=1)]
+[!code[Main](form-basics/samples/sample9.xml?highlight=1)]
 
 In this page, you could have also set the `value` attribute to the `searchTerm` variable, since that variable also contains the genre you entered. But using the `Request` object to set the `value` attribute as shown here is the standard way to accomplish this task. (Assuming you even want to do this &mdash; in some situations, you might want to render the page *without* values in the fields. It all depends on what's going on with your app.)
 
@@ -289,11 +289,11 @@ The search term `LIKE '%adventure%'` therefore means "with 'adventure' anywhere 
 
 Inside the `<form>` element, add the following markup right under the closing `</div>` tag for the genre search (just before the closing `</form>` element):
 
-[!code[Main](form-basics/samples/sample7.xml)]
+[!code[Main](form-basics/samples/sample10.xml)]
 
 The code to handle this search is similar to the code for the genre search, except that you have to assemble the `LIKE` search. Inside the code block at the top of the page, add this `if` block just after the `if` block for the genre search:
 
-[!code[Main](form-basics/samples/sample8.xml)]
+[!code[Main](form-basics/samples/sample11.xml)]
 
 This code uses the same logic you saw earlier, except that the search uses a `LIKE` operator and the code puts "`%`" before and after the search term.
 
@@ -305,7 +305,7 @@ Notice how it was easy to add another search to the page. All you had to do was:
 
 Here's the complete code block, which contains the new logic for a title search:
 
-[!code[Main](form-basics/samples/sample9.xml)]
+[!code[Main](form-basics/samples/sample12.xml)]
 
 Here's a summary of what this code does:
 
@@ -343,7 +343,7 @@ In the next tutorial, you'll create a page that uses a form to let users add mov
 
 ## Complete Listing for Movie Page (Updated with Search)
 
-[!code[Main](form-basics/samples/sample10.xml)]
+[!code[Main](form-basics/samples/sample13.xml)]
 
 ## Additional Resources
 

@@ -1,11 +1,1 @@
-@{
-    try
-    {
-        RunPage();
-    }
-    catch (Exception ex)
-    {
-        Response.Redirect("~/Error.cshtml?source=" +
-            HttpUtility.UrlEncode(Request.AppRelativeCurrentExecutionFilePath));
-    }
-}
+<p>This is content page 2.</p>

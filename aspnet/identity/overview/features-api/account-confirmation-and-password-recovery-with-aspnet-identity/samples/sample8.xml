@@ -1,22 +1,22 @@
-public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+void sendMail(Message message)
 {
-    if (ModelState.IsValid)
-    {
-        var user = await UserManager.FindByNameAsync(model.Email);
-        if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
-        {
-            // Don't reveal that the user does not exist or is not confirmed
-            return View("ForgotPasswordConfirmation");
-        }
+#region formatter
+   string text = string.Format("Please click on this link to {0}: {1}", message.Subject, message.Body);
+   string html = "Please confirm your account by clicking this link: <a href=\"" + message.Body + "\">link</a><br/>";
 
-        var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-        var callbackUrl = Url.Action("ResetPassword", "Account", 
-	new { UserId = user.Id, code = code }, protocol: Request.Url.Scheme);
-        await UserManager.SendEmailAsync(user.Id, "Reset Password", 
-	"Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");        
-        return View("ForgotPasswordConfirmation");
-    }
+   html += HttpUtility.HtmlEncode(@"Or click on the copy the following link on the browser:" + message.Body);
+#endregion
 
-    // If we got this far, something failed, redisplay form
-    return View(model);
+   MailMessage msg = new MailMessage();
+   msg.From = new MailAddress("joe@contoso.com");
+   msg.To.Add(new MailAddress(message.Destination));
+   msg.Subject = message.Subject;
+   msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
+   msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
+
+   SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+   System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("joe@contoso.com", "XXXXXX");
+   smtpClient.Credentials = credentials;
+   smtpClient.EnableSsl = true;
+   smtpClient.Send(msg);
 }

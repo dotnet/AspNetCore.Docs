@@ -1,2 +1,5 @@
-[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-public DateTime EnrollmentDate { get; set; }
+[DataType(DataType.Date)] 
+        public DateTime ReleaseDate { get; set; }
+       
+        [DataType(DataType.Currency)] 
+        public decimal Price { get; set; }

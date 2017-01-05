@@ -23,6 +23,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 > - How to create public and member-only pages.
 > - How to define roles, which are groups that have different security permissions on your site, and how to assign users to a role.
 > - How to use CAPTCHA to prevent automated programs (bots) from creating member accounts.
+>   
 > 
 > These are the ASP.NET features introduced in the article:
 > 
@@ -209,11 +210,11 @@ The login page will not stop automated programs (sometimes referred to as *web r
 3. In the *Account* folder, open the file named *Register.cshtml*.
 4. In the code at the top of the page, find the following lines and uncomment them by removing the `//` comment characters:
 
-    `if (!ReCaptcha.Validate("PRIVATE_KEY")) { ModelState.AddError("recaptcha", "Captcha response was not correct");}`
+    [!code[Main](16-adding-security-and-membership/samples/sample6.xml)]
 5. Replace `PRIVATE_KEY` with your own ReCaptcha private key.
 6. In the markup of the page, remove the `@*` and `*@` commenting characters from around the following lines in the page markup:
 
-    `@ReCaptcha.GetHtml("PUBLIC_KEY", theme: "white") @Html.ValidationMessage("recaptcha")`
+    [!code[Main](16-adding-security-and-membership/samples/sample7.xml)]
 7. Replace `PUBLIC_KEY` with your key.
 8. If you haven't removed it already, remove the `<div>` element that contains text that starts with "To enable CAPTCHA verification ...". (Remove the entire `<div>` element and its contents.)
 
@@ -253,7 +254,6 @@ The basic process is described in the blog post [THE most basic way to implement
 To manage roles, you can use the [Roles](https://msdn.microsoft.com/en-us/library/gg538398(v=vs.99).aspx) and [Membership](https://msdn.microsoft.com/en-us/library/gg569035(v=vs.99).aspx) classes, as described in the blog entry.
 
 ## Additional Resources
-
 
 - [Customizing Site-Wide Behavior](https://go.microsoft.com/fwlink/?LinkId=202906)
 - [Securing Web Communications: Certificates, SSL, and https://](https://go.microsoft.com/fwlink/?LinkId=208660)

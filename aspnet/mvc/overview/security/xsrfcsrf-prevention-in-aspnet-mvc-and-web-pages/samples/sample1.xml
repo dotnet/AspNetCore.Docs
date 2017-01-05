@@ -1,7 +1,5 @@
-<form id="theForm" action="https://WoodgroveBank.com/DoTransfer" method="post">
-    <input type="hidden" name="toAcct" value="67890" />
-    <input type="hidden" name="amount" value="250.00" />
-</form>
-<script type="text/javascript">
-    document.getElementById('theForm').submit();
-</script>
+HTTP/1.1 200 OK
+Date: Mon, 18 Jun 2012 21:22:33 GMT
+X-AspNet-Version: 4.0.30319
+Set-Cookie: .ASPXAUTH={authentication-token}; path=/; secure; HttpOnly;
+{ Cache-Control, Content-Type, Location, Server and other keys/values not listed. }

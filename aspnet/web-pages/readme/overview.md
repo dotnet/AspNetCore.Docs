@@ -147,11 +147,7 @@ This section of the document describes new features, changes, and known issues w
 
 > To initialize the membership provider for an ASP.NET Razor website, you call the `WebSecurity.InitializeDatabaseConnection` method. (In WebMatrix, the Starter Site template includes a call to this method in the *\_AppStart.cshtml* file.) If the `autoCreateTables` parameter of this method is set to true (by default, it is set to true in the Starter Site template), and if an unrecognized table name is passed to the method (the second parameter), the method does not throw an error. Instead, it automatically creates the table.
 > 
-> 
-> 
 > This can be a problem if you intend to use a custom user table for membership but pass the wrong table name to the `WebSecurity.InitializeDatabaseConnection` method. Because the method does not by default raise an error if the table you specify does not exist, and because it instead creates a new table, the application can appear to be working. However, application code that relies on your custom user table (and on fields in it) can eventually fail with unexpected errors.
-> 
-> 
 > 
 > **Workaround**  
 > Make sure that the name passed in the `InitializeDatabaseConnection` method matches the user profile table in the membership database, or make sure that the `autoCreateTables` parameter is set to false.
@@ -167,8 +163,6 @@ This section of the document describes new features, changes, and known issues w
 #### Issue: "Failed to generate a user instance of SQL Server" error
 
 > If a WebMatrix Web application uses SQL Server Express and is running IIS 7.5 on Windows 7 or Windows Server 2008 R2, you might see an error that indicates that SQL Server cannot retrieve the user's local application path at run time.
-> 
-> 
 > 
 > **Workaround** Make sure that the Windows account that the application runs under (typically NETWORK SERVICE) has read/write permissions for root folders of the application and for subfolders such as *App\_Data*. More detailed information is available in the KnowledgeBase article [Problems with SQL Server Express user instancing and ASP.net Web Application Projects](https://support.microsoft.com/kb/2002980).
 
@@ -204,8 +198,6 @@ This section of the document describes new features, changes, and known issues w
 
 > Installing ASP.NET Web Pages does not also install tools for Visual Studio such as IntelliSense and project templates for ASP.NET Web Pages applications.
 > 
-> 
-> 
 > **Workaround** To use IntelliSense and project templates for ASP.NET Web Pages applications in Visual Studio, install ASP.NET MVC 3 RC either through the Web Platform Installer or the [stand-alone installer](https://go.microsoft.com/fwlink/?LinkID=191797).
 
 
@@ -213,11 +205,7 @@ This section of the document describes new features, changes, and known issues w
 
 > If the server running the site is behind a proxy server, you might need to configure proxy information in the *web.config* file in order to be able to read information that comes from outside your site. For example, if you use the `ReCaptcha` helper, the helper communicates with the reCAPTCHA service, but might be blocked by your proxy server. Similarly, feeds that are used in ASP.NET Web Pages, such as the feed used by the package manager, might require proxy configuration.
 > 
-> 
-> 
 > If you experience problems in working with an external service or working with the package feed, put the following elements into your application's root *web.config* file:
-> 
-> 
 > 
 > [!code[Main](overview/samples/sample2.xml)]
 > 
@@ -228,14 +216,10 @@ This section of the document describes new features, changes, and known issues w
 
 > If you uninstall the .NET Framework version 4 and then reinstall it, ASP.NET Web Pages with Razor syntax is disabled. Pages with the *.cshtml* extension do not run correctly. ASP.NET Web Pages registers an assembly in the machine root *web.config* file, and removing the .NET Framework removes that file. Reinstalling the .NET Framework installs a new version of the configuration file, but does not add the reference for the ASP.NET Web Pages assembly.
 > 
-> 
-> 
 > **Workaround** After reinstalling the .NET Framework, reinstall ASP.NET Web Pages with Razor syntax. This adds the following element to the *web.config* file in the machine root, which is typically in the following location:  
 >   
 > `C:\Windows\Microsoft.NET\Framework\v4.0.30319\Config (32-bit)`  
 > `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config (64-bit)`
-> 
-> 
 > 
 > [!code[Main](overview/samples/sample3.xml)]
 
@@ -248,11 +232,7 @@ This section of the document describes new features, changes, and known issues w
 >   
 > The issue arises because URL rewriting is not enabled by default for IIS 7 or IIS 7.5. The likeliest scenario is that you do not see the problem when testing locally using IIS Express, but you experience it when you deploy your website to a hosting website.
 > 
-> 
-> 
 > **Workaround**
-> 
-> 
 > 
 > - If you have control over the server computer, on the server computer install the update that is described in [A update is available that enables certain IIS 7.0 or IIS 7.5 handlers to handle requests whose URLs do not end with a period](https://support.microsoft.com/kb/980368).
 > - If you do not have control over the server computer (for example, you are deploying to a hosting website), add the following to the website's *web.config* file: 
@@ -264,11 +244,7 @@ This section of the document describes new features, changes, and known issues w
 
 > Applications that include SQL Server Compact databases can run on a computer where SQL Server Compact is not installed. Microsoft WebMatrix 1.0 automatically copies these binaries for you and performs the appropriate *web.config* file transforms.
 > 
-> 
-> 
 > **Workaround** If you need to copy these files and make the *web.config* file changes manually, do the following:
-> 
-> 
 > 
 > 1. Copy the database engine assemblies to the *Bin* folder (and subfolders) of the application on the target computer:  
 > 
@@ -285,8 +261,6 @@ This section of the document describes new features, changes, and known issues w
 #### Issue: "Database" and "WebGrid" helpers do not work in Medium Trust in Visual Basic
 
 > If you are using Visual Basic (creating *.vbhtml* files), the `Database` and `WebGrid` helpers will not work if the application is set to use Medium Trust.
-> 
-> 
 > 
 > **Workaround**  
 > If you use Visual Studio 2010, you can resolve this problem by installing the Service Pack 1 release. Until the final version of the SP1 release is available, you can download the Beta version of SP1 from the [Microsoft Visual Studio 2010 Service Pack 1 Beta](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=11ea69cb-cf12-4842-a3d7-b32a1e5642e2&amp;displaylang=en) page on the Microsoft Download Center.   
@@ -563,7 +537,7 @@ For information about issues that involve installing SQL Server Compact as part 
 
 > If you try to download an application from a server and you have administrator credentials in the database connection string in the **Publish Settings** dialog, you might see the following error in the publish log:
 > 
-> `1:28:29 PM: An error occurred during execution of the database script. The approximate location of the error was between lines '3260' and '3262' of the script. The verbose log may have more information about the error. The command started with:1:28:29 PM: CREATE LOGIN [MACHINE\Administrator] FROM WINDOW1:28:29 PM: https://go.microsoft.com/fwlink/?LinkId=178587.`
+> [!code[Main](overview/samples/sample9.xml)]
 > 
 > **Workaround**  
 > If practical, republish the site (or have it published) using non-administrator credentials for the database.

@@ -51,7 +51,7 @@ To enable the application to display detailed error messages when it runs on the
 
 When you deploy a site that uses SQL Server Compact and you run a page in the deployed site that accesses the database, you see the following error message:
 
-`Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample3.xml)]
 
 ### Possible Cause and Solution
 
@@ -63,7 +63,7 @@ The NETWORK SERVICE account on the server needs to be able to read SQL Service C
 
 When you click the Visual Studio publish button to deploy an application to IIS on your local machine, publishing fails and the **Output** window shows an error message similar to this:
 
-`An error occurred when reading the IIS Configuration File 'MACHINE/REDIRECTION'. The identity performing this operation was ... Error: Cannot read configuration file due to insufficient permissions.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample4.xml)]
 
 ### Possible Cause and Solution
 
@@ -75,7 +75,7 @@ To use one-click publish to IIS on your local machine, you must be running Visua
 
 When you click the Visual Studio publish button to deploy an application, publishing fails and the **Output** window shows an error message similar to this:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample3.xml)]
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample5.xml)]
 
 ### Possible Cause and Solution
 
@@ -89,13 +89,13 @@ If the problem persists, contact your system administrator to determine what can
 
 When you deploy an application that requires the .NET Framework 4, you see the following error message:
 
-`The default .NET 4.0 application pool does not exist or the application could not be added. Please verify that ASP.NET 4.0 is installed on this machine.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample6.xml)]
 
 ### Possible Cause and Solution
 
 ASP.NET 4 is not installed in IIS. If the server you are deploying to is your development computer and has Visual Studio 2010 installed on it, ASP.NET 4 is installed on the computer but might not be installed in IIS. On the server that you are deploying to, open an elevated command prompt and install ASP.NET 4 in IIS by running the following commands:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample4.xml)]
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample7.xml)]
 
 You might also need to manually set the .NET Framework version of the default application pool. For more information, see the [Deploying to IIS as a Test Environment](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md) tutorial.
 
@@ -105,17 +105,17 @@ You might also need to manually set the .NET Framework version of the default ap
 
 After you deploy an application using one-click publish, when you run a page that accesses the database you get the following error message:
 
-`Format of the initialization string does not conform to specification starting at index 0.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample8.xml)]
 
 ### Possible Cause and Solution
 
 Open the *Web.config* file in the deployed site and check to see whether the connection string values begin with `$(ReplacableToken_` , as in the following example:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample5.xml)]
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample9.xml)]
 
 If the connection strings look like this example, edit the project file and add the following property to the `PropertyGroup` element that is for all build configurations:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample6.xml)]
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample10.xml)]
 
 Then redeploy the application.
 
@@ -125,7 +125,7 @@ Then redeploy the application.
 
 When you run the deployed site, you see the following error message without specific information indicating the cause of the error:
 
-`HTTP Error 500 - Internal Server Error.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample11.xml)]
 
 ### Possible Cause and Solution
 
@@ -137,13 +137,13 @@ There are many causes of 500 errors, but one possible cause if you are following
 
 When you run the deployed site, you see the following error message:
 
-`HTTP Error 500.21 - Internal Server Error. Handler "PageHandlerFactory-Integrated" has a bad module "ManagedPipelineHandler" in its module list.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample12.xml)]
 
 ### Possible Cause and Solution
 
 The site you have deployed targets ASP.NET 4, but ASP.NET 4 is not registered in IIS on the server. On the server open an elevated command prompt and register ASP.NET 4 by running the following commands:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample7.xml)]
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample13.xml)]
 
 You might also need to manually set the .NET Framework version of the default application pool. For more information, see the [Deploying to IIS as a Test Environment](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md) tutorial.
 
@@ -153,7 +153,7 @@ You might also need to manually set the .NET Framework version of the default ap
 
 You updated the *Web.config* file connection string to point to a SQL Server Express database as an *.mdf* file in your *App\_Data* folder, and the first time you run the application you see the following error message:
 
-`System.Data.SqlClient.SqlException: Cannot open database "DatabaseName" requested by the login. The login failed.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample14.xml)]
 
 ### Possible Cause and Solution
 
@@ -165,7 +165,7 @@ The name of the *.mdf* file cannot match the name of any SQL Server Express data
 
 You updated the *Web.config* file connection string to point to a new SQL Server Express database, and the first time you run the application you see the following error message:
 
-`Model compatibility cannot be checked because the database does not contain model metadata. Ensure that IncludeMetadataConvention has been added to the DbModelBuilder conventions.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample15.xml)]
 
 ### Possible Cause and Solution
 
@@ -177,7 +177,7 @@ If the database name you put in the Web.config file was ever used before on your
 
 You are using database deployment configured on the **Package/Publish SQL** tab, SQL scripts that run during deployment include Create User or Create Role commands, and script execution fails when those commands are executed. You might see more detailed messages, such as the following:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample8.xml)]
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample16.xml)]
 
 If this error occurs when you have configured database deployment in the **Publish Web** wizard rather than the **Package/Publish SQL** tab, create a thread in the [Configuration and Deployment](https://forums.asp.net/26.aspx/1?Configuration+and+Deployment) forum, and the solution will be added to this troubleshooting page.
 
@@ -185,7 +185,7 @@ If this error occurs when you have configured database deployment in the **Publi
 
 The user account you are using to perform deployment does not have permission to create users or roles. For example, the hosting company might assign the `db_datareader`, `db_datawriter`, and `db_ddladmin` roles to the user account that it sets up for you. These are sufficient for creating most database objects, but not for creating users or roles. One way to avoid the error is by excluding users and roles from database deployment. You can do this by editing the `PreSource` element for the database's automatically generated script so that it includes the following attributes:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample9.xml)]
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample17.xml)]
 
 For information about how to edit the `PreSource` element in the project file, see [How to: Edit Deployment Settings in the Project File](https://msdn.microsoft.com/en-us/library/ff398069(v=vs.100).aspx). If the users or roles in your development database need to be in the destination database, contact your hosting provider for assistance.
 
@@ -207,7 +207,7 @@ If you have configured transaction settings so that all are the same but still g
 
 When you are installing a package using the *deploy.cmd* file with the `t` (test) option, you see the following error message:
 
-`Error: The stream data of 'sitemanifest/dbFullSql[@path='C:\TEMP\AdventureWorksGrant.sql']/sqlScript' is not yet available.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample18.xml)]
 
 ### Possible Cause and Solution
 
@@ -219,13 +219,13 @@ The error message means that the command cannot produce a test report. However, 
 
 When you attempt to deploy, you see the following error message:
 
-`The application pool that you are trying to use has the 'managedRuntimeVersion' property set to 'v2.0'. This application requires 'v4.0'.`
+ Error: The stream data of 'sitemanifest/dbFullSql[@path='C:\TEMP\AdventureWorksGrant.sql']/sqlScript' is not yet available. The application pool that you are trying to use has the 'managedRuntimeVersion' property set to 'v2.0'. This application requires 'v4.0'. 
 
 ### Possible Cause and Solution
 
 ASP.NET 4 is not installed in IIS. If the server you are deploying to is your development computer and has Visual Studio 2010 installed on it, ASP.NET 4 is installed on the computer but might not be installed in IIS. On the server that you are deploying to, open an elevated command prompt and install ASP.NET 4 in IIS by running the following commands:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample10.xml)]
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample19.xml)]
 
 ## Unable to cast Microsoft.Web.Deployment.DeploymentProviderOptions
 
@@ -233,7 +233,7 @@ ASP.NET 4 is not installed in IIS. If the server you are deploying to is your de
 
 When you are deploying a package, you see the following error message:
 
-`Unable to cast object of type 'Microsoft.Web.Deployment.DeploymentProviderOptions' to 'Microsoft.Web.Deployment.DeploymentProviderOptions'.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample20.xml)]
 
 ### Possible Cause and Solution
 
@@ -245,7 +245,7 @@ You are trying to deploy from IIS Manager using the Web Deploy 1.1 UI to a serve
 
 When you run the deployed site, you see the following error message:
 
-`Unable to load the native components of SQL Server Compact corresponding to the ADO.NET provider of version 8482. Install the correct version of SQL Server Compact. Refer to KB article 974247 for more details.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample21.xml)]
 
 ### Possible Cause and Solution
 
@@ -257,7 +257,7 @@ The deployed site does not have *amd64* and *x86* subfolders with the native ass
 
 You deploy an application that uses Entity Framework Code First Migrations and a DBMS such as SQL Server Compact which stores its database in a file in the App\_Data folder. You have Code First Migrations configured to create the database after your first deployment. When you run the application you get an error message like the following example:
 
-`The path is not valid. Check the directory for the database. [Path = c:\inetpub\wwwroot\App_Data\DatabaseName.sdf ]`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample22.xml)]
 
 ### Possible Cause and Solution
 
@@ -269,11 +269,11 @@ Code First is attempting to create the database but the App\_Data folder does no
 
 You have been successfully using one-click publish to deploy your application and then you start getting this error:
 
-`Web deployment task failed. (Could not complete the request to remote agent URL 'https://serverurl.com/msdeploy.axd?site=sitename'.) Could not complete the request to remote agent URL 'https://url/msdeploy.axd?site=sitename'.The request was aborted: The request was canceled.COM object that has been separated from its underlying RCW cannot be used.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample23.xml)]
 
 ### Possible Cause and Solution
 
-Closing and restarting Visual Studio is usually all that is required to resolve this error. 
+Closing and restarting Visual Studio is usually all that is required to resolve this error.
 
 ## Deployment Fails Because User Credentials Used for Publishing Don't Have setACL Authority
 
@@ -301,15 +301,17 @@ By default, Visual Studio sets read permissions on the root folder of the site a
 
 You successfully published a web project that targets ASP.NET 4.5, but when you run the application (with the `customErrors` mode set to "off" in the Web.config file) you get the following error:
 
-`The 'targetFramework' attribute in the <compilation> element of the Web.config file is used only to target version 4.0 and later of the .NET Framework (for example, '<compilation targetFramework="4.0">'). The 'targetFramework' attribute currently references a version that is later than the installed version of the .NET Framework. Specify a valid target version of the .NET Framework, or install the required version of the .NET Framework.`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample24.xml)]
 
 The Source Error box of the error page highlights the following line from Web.config as the cause of the error:
 
-`<compilation targetFramework="4.5" />`
+[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample25.xml)]
 
 ### Possible Cause and Solution
 
-The server does not support ASP.NET 4.5. Contact the hosting provider to determine when and if support for ASP.NET 4.5 can be added. If upgrading the server is not an option, you have to deploy a web project that targets ASP.NET 4 or earlier instead.If you deploy an ASP.NET 4 or earlier web project to the same destination, select the **Remove additional files at destination** check box on the **Settings** tab of the **Publish Web** wizard. If you don't select **Remove additional files at destination**, you will continue to get the Configuration Error page.The project **Properties** windows includes a Target framework drop-down list, but you can't resolve this problem by just changing that from **.NET Framework 4.5** to **.NET Framework 4**. If you change the target framework to an earlier framework version, the project will still have references to the later framework version's assemblies and will not run. You have to manually change those references or create a new project that targets .NET Framework 4 or earlier. For more information, see [.NET Framework Targeting for Web Sites](https://msdn.microsoft.com/en-us/library/bb398791(v=vs.100).aspx).  
+The server does not support ASP.NET 4.5. Contact the hosting provider to determine when and if support for ASP.NET 4.5 can be added. If upgrading the server is not an option, you have to deploy a web project that targets ASP.NET 4 or earlier instead.If you deploy an ASP.NET 4 or earlier web project to the same destination, select the **Remove additional files at destination** check box on the **Settings** tab of the **Publish Web** wizard. If you don't select **Remove additional files at destination**, you will continue to get the Configuration Error page.
+
+The project **Properties** windows includes a Target framework drop-down list, but you can't resolve this problem by just changing that from **.NET Framework 4.5** to **.NET Framework 4**. If you change the target framework to an earlier framework version, the project will still have references to the later framework version's assemblies and will not run. You have to manually change those references or create a new project that targets .NET Framework 4 or earlier. For more information, see [.NET Framework Targeting for Web Sites](https://msdn.microsoft.com/en-us/library/bb398791(v=vs.100).aspx).
 
 >[!div class="step-by-step"]
 [Previous](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12.md)

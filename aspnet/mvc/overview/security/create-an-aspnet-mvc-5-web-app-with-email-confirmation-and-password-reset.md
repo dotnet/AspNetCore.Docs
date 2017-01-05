@@ -38,7 +38,6 @@ Start by installing and running [Visual Studio Express 2013 for Web](https://go.
 
 
 1. Create a new ASP.NET Web project and select the MVC template. Web Forms also supports ASP.NET Identity, so you could follow similar steps in a web forms app.  
-  
     ![](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/_static/image1.png)
 2. Leave the default authentication as **Individual User Accounts**. If you'd like to host the app in Azure, leave the check box checked. Later in the tutorial we will deploy to Azure. You can [open an Azure account for free](https://azure.microsoft.com/en-us/pricing/free-trial/?WT.mc_id=A261C142F).
 3. Set the [project to use SSL](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md).
@@ -49,9 +48,7 @@ Start by installing and running [Visual Studio Express 2013 for Web](https://go.
 
     ![](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/_static/image2.png)
 6. Right click on the **AspNetUsers** table and select **Show Table Data**.  
-  
     ![](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/_static/image3.png)  
-  
  At this point the email has not been confirmed.
 7. Click on the row and select delete. You'll add this email again in the next step, and send a confirmation email.
 
@@ -66,30 +63,31 @@ You generally want to prevent new users from posting any data to your web site b
 
 Although this tutorial only shows how to add email notification through [SendGrid](http://sendgrid.com/), you can send email using SMTP and other mechanisms (see [additional resources](#addRes)).
 
-1. In the Package Manager Console, enter the following the following command:  
-    `Install-Package SendGrid`
+1. In the Package Manager Console, enter the following the following command: 
+
+    [!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample1.xml)]
 2. Go to the [Azure SendGrid sign up page](https://go.microsoft.com/fwlink/?linkid=271033&clcid=0x409) and register for free SendGrid account. Add code similar to the following to configure SendGrid:
 
-    [!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample1.xml?highlight=3,5)]
+    [!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample2.xml?highlight=3,5)]
 
 You'll need to add the following includes:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample2.xml)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample3.xml)]
 
 To keep this sample simple, we'll store the app settings in the *web.config* file:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample3.xml)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample4.xml)]
 
 > [!NOTE] **Security Note:** Never store sensitive data in your source code. The account and credentials are stored in the appSetting. On Azure, you can securely store these values on the **[Configure](https://blogs.msdn.com/b/webdev/archive/2014/06/04/queuebackgroundworkitem-to-reliably-schedule-and-run-long-background-process-in-asp-net.aspx)** tab in the Azure portal. See [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure](../../../identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md).
 
 
 ### Enable email confirmation in the Account controller
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample4.xml?highlight=16-21)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample5.xml?highlight=16-21)]
 
 Verify the *Views\Account\ConfirmEmail.cshtml* file has correct razor syntax. ( The @ character in the first line might be missing. )
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample5.xml?highlight=1)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample6.xml?highlight=1)]
 
 Run the app and click the Register link. Once you submit the registration form, you are logged in.
 
@@ -102,26 +100,25 @@ Check your email account and click on the link to confirm your email.
 
 Currently once a user completes the registration form, they are logged in. You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users to have a confirmed email before they are logged in (authenticated). Update the `HttpPost Register` method with the following highlighted changes:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample6.xml?highlight=14-15,23-30)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample7.xml?highlight=14-15,23-30)]
 
-By commenting out the `SignInAsync` method, the user will not be signed in by the registration. The `TempData["ViewBagLink"] = callbackUrl;`   
-line can be used to [debug the app](#dbg) and test registration without sending email. `ViewBag.Message` is used to display the confirm instructions. The [download sample](https://code.msdn.microsoft.com/MVC-5-with-2FA-email-8f26d952) contains code to test email confirmation without setting up email, and can also be used to debug the application.
+By commenting out the `SignInAsync` method, the user will not be signed in by the registration. The `TempData["ViewBagLink"] = callbackUrl;` line can be used to [debug the app](#dbg) and test registration without sending email. `ViewBag.Message` is used to display the confirm instructions. The [download sample](https://code.msdn.microsoft.com/MVC-5-with-2FA-email-8f26d952) contains code to test email confirmation without setting up email, and can also be used to debug the application.
 
 Create a `Views\Shared\Info.cshtml` file and add the following razor markup:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample7.xml)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample8.xml)]
 
 Add the [Authorize attribute](https://msdn.microsoft.com/en-us/library/system.web.mvc.authorizeattribute(v=vs.118).aspx) to the `Contact` action method of the Home controller. You can use click on the **Contact** link to verify anonymous users don't have access and authenticated users do have access.
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample8.xml?highlight=1)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample9.xml?highlight=1)]
 
 You must also update the `HttpPost Login` action method:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample9.xml?highlight=13-22)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample10.xml?highlight=13-22)]
 
 Update the *Views\Shared\Error.cshtml* view to display the error message:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample10.xml?highlight=8-17)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample11.xml?highlight=8-17)]
 
 Delete any accounts in the **AspNetUsers** table that contain the email alias you wish to test with. Run the app and verify you can't log in until you have confirmed your email address. Once you confirm your email address, click the **Contact** link.
 
@@ -130,11 +127,11 @@ Delete any accounts in the **AspNetUsers** table that contain the email alias yo
 
 Remove the comment characters from the `HttpPost ForgotPassword` action method in the account controller:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample11.xml?highlight=17-20)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample12.xml?highlight=17-20)]
 
-Remove the comment characters from the `ForgotPassword`[ActionLink](https://msdn.microsoft.com/en-us/library/system.web.mvc.html.linkextensions.actionlink(v=vs.118).aspx) in the *Views\Account\Login.cshtml*razor view file:
+Remove the comment characters from the `ForgotPassword` [ActionLink](https://msdn.microsoft.com/en-us/library/system.web.mvc.html.linkextensions.actionlink(v=vs.118).aspx) in the *Views\Account\Login.cshtml*razor view file:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample12.xml?highlight=47-50)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample13.xml?highlight=47-50)]
 
 The Log in page will now show a link to reset the password.
 
@@ -145,15 +142,15 @@ Once a user creates a new local account, they are emailed a confirmation link th
 
 Add the following helper method to the bottom of the *Controllers\AccountController.cs* file:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample13.xml)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample14.xml)]
 
 Update the Register method to use the new helper:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample14.xml?highlight=17)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample15.xml?highlight=17)]
 
 Update the Login method to resend the password when if the user account has not been confirmed:
 
-[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample15.xml?highlight=20)]
+[!code[Main](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/samples/sample16.xml?highlight=20)]
 
 <a id="combine"></a>
 ## Combine social and local login accounts

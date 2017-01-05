@@ -1,8 +1,9 @@
-public class ProductsController : ApiController
-{
-    [ValidateModel]
-    public HttpResponseMessage Post(Product product)
+public static class WebApiConfig
     {
-        // ...
-    }
+        public static void Register(HttpConfiguration config)
+        {
+            config.Filters.Add(new ValidateModelAttribute());
+
+            // ...
+        }
 }

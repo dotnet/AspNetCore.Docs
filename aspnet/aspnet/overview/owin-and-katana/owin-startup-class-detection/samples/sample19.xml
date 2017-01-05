@@ -1,2 +1,1 @@
-[assembly: OwinStartup("ProductionConfiguration", 
-           typeof(StartupDemo.ProductionStartup))]
+..\packages\Owinhost<Version>\tools\Owinhost.exe

@@ -59,19 +59,22 @@ Here are some other patterns that attribute routing makes easy.
 
 In this example, "/api/v1/products" would be routed to a different controller than "/api/v2/products".
 
-`/api/v1/products/api/v2/products`
+`/api/v1/products`  
+`/api/v2/products`
 
 **Overloaded URI segments**
 
 In this example, "1" is an order number, but "pending" maps to a collection.
 
-`/orders/1/orders/pending`
+`/orders/1`  
+`/orders/pending`
 
 **Mulitple parameter types**
 
 In this example, "1" is an order number, but "2013/06/16" specifies a date.
 
-`/orders/1/orders/2013/06/16`
+`/orders/1`  
+`/orders/2013/06/16`
 
 <a id="enable"></a>
 ## Enabling Attribute Routing

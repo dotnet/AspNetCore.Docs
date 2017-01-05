@@ -1,0 +1,18 @@
+@{
+    var db = Database.Open("WebPagesMovies") ;
+    var selectCommand = "SELECT * FROM Movies";
+    var searchTerm = "";
+
+    if(!Request.QueryString["searchGenre"].IsEmpty() ) {
+        selectCommand = "SELECT * FROM Movies WHERE Genre = @0";
+        searchTerm = Request.QueryString["searchGenre"];
+    }
+
+   if(!Request.QueryString["searchTitle"].IsEmpty() ) {
+        selectCommand = "SELECT * FROM Movies WHERE Title LIKE @0";
+        searchTerm = "%" + Request["searchTitle"] + "%";
+    }
+
+    var selectedData = db.Query(selectCommand, searchTerm);
+    var grid = new WebGrid(source: selectedData, defaultSort: "Genre", rowsPerPage:8);
+}

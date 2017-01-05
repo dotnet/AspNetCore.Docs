@@ -1,13 +1,7 @@
 @{
-    Layout = "~/_SiteLayout.cshtml";
-    Page.Title = "Authenticated Content";
+    Response.CacheControl = "no-cache";
+    if (!WebSecurity.IsAuthenticated) {
+        var returnUrl = "~/Account/Login?ReturnUrl=" + Request.Url.LocalPath;
+        Response.Redirect(returnUrl);
+    }
 }
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    Thank you for authenticating!
-  </body>
-</html>

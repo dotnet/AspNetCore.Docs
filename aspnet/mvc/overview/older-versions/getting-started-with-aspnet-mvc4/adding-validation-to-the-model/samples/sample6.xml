@@ -1,23 +1,25 @@
-//
-// GET: /Movies/Create
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/globalize.js"></script>
+    <script src="~/Scripts/globalize.culture.fr-FR.js"></script>
+    <script>
+        $.validator.methods.number = function (value, element) {
+            return this.optional(element) ||
+                !isNaN(Globalize.parseFloat(value));
+        }
+        $(document).ready(function () {
+            Globalize.culture('fr-FR');
+        });
+    </script>
+    <script>
+        jQuery.extend(jQuery.validator.methods, {    
+            range: function (value, element, param) {        
+                //Use the Globalization plugin to parse the value        
+                var val = $.global.parseFloat(value);
+                return this.optional(element) || (
+                    val >= param[0] && val <= param[1]);
+            }
+        });
 
-public ActionResult Create()
-{
-    return View();
-}
-
-//
-// POST: /Movies/Create
-
-[HttpPost]
-public ActionResult Create(Movie movie)
-{
-    if (ModelState.IsValid)
-    {
-        db.Movies.Add(movie);
-        db.SaveChanges();
-        return RedirectToAction("Index");
-    }
-
-    return View(movie);
+    </script>
 }

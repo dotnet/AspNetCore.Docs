@@ -72,12 +72,12 @@ You can also create an action filter to check the model state before the control
 
 If model validation fails, this filter returns an HTTP response that contains the validation errors. In that case, the controller action is not invoked.
 
-`HTTP/1.1 400 Bad Request Content-Type: application/json; charset=utf-8 Date: Tue, 16 Jul 2013 21:02:29 GMT Content-Length: 331 { "Message": "The request is invalid.", "ModelState": { "product": [ "Required property 'Name' not found in JSON. Path '', line 1, position 17." ], "product.Name": [ "The Name field is required." ], "product.Weight": [ "The field Weight must be between 0 and 999." ] } }`
+[!code[Main](model-validation-in-aspnet-web-api/samples/sample10.xml)]
 
 To apply this filter to all Web API controllers, add an instance of the filter to the **HttpConfiguration.Filters** collection during configuration:
 
-[!code[Main](model-validation-in-aspnet-web-api/samples/sample10.xml)]
+[!code[Main](model-validation-in-aspnet-web-api/samples/sample11.xml)]
 
 Another option is to set the filter as an attribute on individual controllers or controller actions:
 
-[!code[Main](model-validation-in-aspnet-web-api/samples/sample11.xml)]
+[!code[Main](model-validation-in-aspnet-web-api/samples/sample12.xml)]

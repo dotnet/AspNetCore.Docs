@@ -1,3 +1,5 @@
-[DataType(DataType.EmailAddress)]
-[DataType(DataType.PhoneNumber)]
-[DataType(DataType.Url)]
+[DataType(DataType.Date)] 
+public DateTime ReleaseDate { get; set; }
+
+[DataType(DataType.Currency)] 
+public decimal Price { get; set; }

@@ -1,17 +1,40 @@
-@model System.Web.Mvc.HandleErrorInfo
+//
+// POST: /Account/Login
+[HttpPost]
+[AllowAnonymous]
+[ValidateAntiForgeryToken]
+public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+{
+    if (!ModelState.IsValid)
+    {
+        return View(model);
+    }
 
-@{
-    ViewBag.Title = "Error";
-}
+    // Require the user to have a confirmed email before they can log on.
+    var user = await UserManager.FindByNameAsync(model.Email);
+    if (user != null)
+    {
+       if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+       {
+          ViewBag.errorMessage = "You must have a confirmed email to log on.";
+          return View("Error");
+       }
+    }
 
-<h1 class="text-danger">Error.</h1>
-@{
-   if (String.IsNullOrEmpty(ViewBag.errorMessage))
-   {
-      <h2 class="text-danger">An error occurred while processing your request.</h2>
-   }
-   else
-   {
-      <h2 class="text-danger">@ViewBag.errorMessage</h2>
-   }
+    // This doesn't count login failures towards account lockout
+    // To enable password failures to trigger account lockout, change to shouldLockout: true
+    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+    switch (result)
+    {
+        case SignInStatus.Success:
+            return RedirectToLocal(returnUrl);
+        case SignInStatus.LockedOut:
+            return View("Lockout");
+        case SignInStatus.RequiresVerification:
+            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+        case SignInStatus.Failure:
+        default:
+            ModelState.AddModelError("", "Invalid login attempt.");
+            return View(model);
+    }
 }

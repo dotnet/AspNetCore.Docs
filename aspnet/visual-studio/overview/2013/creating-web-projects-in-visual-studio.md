@@ -348,8 +348,8 @@ Alternatively, you can create an Intranet site that uses AD authentication by ch
 
 The **Configure Authentication** dialog gives you several options for Azure Active Directory (Azure AD, which includes Office 365) or Windows Server Active Directory (AD) account authentication:
 
-- [Cloud - Single Organization](#orgauthsingle) (Azure AD, or AD using [directory integration with Azure AD](https://technet.microsoft.com/library/jj151781.aspx))
-- [Cloud - Multi Organization](#orgauthmulti) (Azure AD, or AD using [directory integration with Azure AD](https://technet.microsoft.com/library/jj151781.aspx))
+- [Cloud - Single Organization](#orgauthsingle) (Azure AD, or AD using directory integration with Azure AD)
+- [Cloud - Multi Organization](#orgauthmulti) (Azure AD, or AD using directory integration with Azure AD)
 - [On-Premises](#orgauthonprem) (AD)
 
 If you want to try one of the Azure AD options but don't have an account yet, [click here to sign up for a Azure AD account](https://go.microsoft.com/fwlink/?LinkId=309942).

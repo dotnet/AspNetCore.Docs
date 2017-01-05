@@ -1,36 +1,30 @@
-public class EmailService : IIdentityMessageService
+[HttpPost]
+[AllowAnonymous]
+[ValidateAntiForgeryToken]
+public async Task<ActionResult> Register(RegisterViewModel model)
 {
-   public Task SendAsync(IdentityMessage message)
-   {
-      return configSendGridasync(message);
-   }
+    if (ModelState.IsValid)
+    {
+        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        var result = await UserManager.CreateAsync(user, model.Password);
+        if (result.Succeeded)
+        {
+            var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = Url.Action(
+               "ConfirmEmail", "Account", 
+               new { userId = user.Id, code = code }, 
+               protocol: Request.Url.Scheme);
 
-   private Task configSendGridasync(IdentityMessage message)
-   {
-      var myMessage = new SendGridMessage();
-      myMessage.AddTo(message.Destination);
-      myMessage.From = new System.Net.Mail.MailAddress(
-                          "Joe@contoso.com", "Joe S.");
-      myMessage.Subject = message.Subject;
-      myMessage.Text = message.Body;
-      myMessage.Html = message.Body;
+            await UserManager.SendEmailAsync(user.Id, 
+               "Confirm your account", 
+               "Please confirm your account by clicking this link: <a href=\"" 
+                                               + callbackUrl + "\">link</a>");
+            // ViewBag.Link = callbackUrl;   // Used only for initial demo.
+            return View("DisplayEmail");
+        }
+        AddErrors(result);
+    }
 
-      var credentials = new NetworkCredential(
-                 ConfigurationManager.AppSettings["mailAccount"],
-                 ConfigurationManager.AppSettings["mailPassword"]
-                 );
-
-      // Create a Web transport for sending email.
-      var transportWeb = new Web(credentials);
-
-      // Send the email.
-      if (transportWeb != null)
-      {
-         return transportWeb.DeliverAsync(myMessage);
-      }
-      else
-      {
-         return Task.FromResult(0);
-      }
-   }
+    // If we got this far, something failed, redisplay form
+    return View(model);
 }

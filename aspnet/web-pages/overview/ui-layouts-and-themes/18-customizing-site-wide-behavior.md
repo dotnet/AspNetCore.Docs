@@ -125,7 +125,7 @@ For example, you might have the following combination of *\_PageStart.cshtml* fi
 
 When you run */myfolder/default.cshtml*, you'll see the following:
 
-`Red Yellow Green`
+[!code[Main](18-customizing-site-wide-behavior/samples/sample8.xml)]
 
 ## Running Initialization Code for All Pages in a Folder
 
@@ -134,17 +134,17 @@ A good use for *\_PageStart.cshtml* files is to initialize the same layout page 
 1. In the root folder, create a new folder named *InitPages*.
 2. In the *InitPages* folder of your website, create a file named *\_PageStart.cshtml* and replace the default markup and code with the following: 
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample8.xml)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample9.xml)]
 3. In the root of the website, create a folder named *Shared*.
 4. In the *Shared* folder, create a file named *\_Layout1.cshtml* and replace the default markup and code with the following: 
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample9.xml)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample10.xml)]
 5. In the *InitPages* folder, create a file named *Content1.cshtml* and replace the existing content with the following: 
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample10.xml)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample11.xml)]
 6. In the *InitPages* folder, create another file named *Content2.cshtml* and replace the default markup with the following: 
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample11.xml)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample12.xml)]
 7. Run *Content1.cshtml* in a browser. 
 
     ![[image]](18-customizing-site-wide-behavior/_static/image4.jpg)
@@ -161,17 +161,17 @@ Another good use for the *\_PageStart.cshtml* file is to create a way to handle 
 1. In the root folder, create a folder named *InitCatch*.
 2. In the *InitCatch* folder of your website, create a file named *\_PageStart.cshtml* and replace the existing markup and code with the following: 
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample12.xml)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample13.xml)]
 
     In this code, you try running the requested page explicitly by calling the `RunPage` method inside a `try` block. If any programming errors occur in the requested page, the code inside the `catch` block runs. In this case, the code redirects to a page (*Error.cshtml*) and passes the name of the file that experienced the error as part of the URL. (You'll create the page shortly.)
 3. In the *InitCatch* folder of your website, create a file named *Exception.cshtml* and replace the existing markup and code with the following: 
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample13.xml)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample14.xml)]
 
     For purposes of this example, what you're doing in this page is deliberately creating an error by trying to open a database file that doesn't exist.
 4. In the root folder, create a file named *Error.cshtml* and replace the existing markup and code with the following: 
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample14.xml)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample15.xml)]
 
     In this page, the expression `@Request["source"]` gets the value out of the URL and displays it.
 5. In the toolbar, click **Save**.
@@ -193,17 +193,16 @@ You can also use the *\_PageStart.cshtml* file to restrict access to all the fil
 3. In the root folder, create a folder named *AuthenticatedContent*.
 4. In the *AuthenticatedContent* folder, create a file named *\_PageStart.cshtml* and replace the existing markup and code with the following: 
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample15.xml)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample16.xml)]
 
     The code starts by preventing all files in the folder from being cached. (This is required for scenarios like public computers, where you don't want one user's cached pages to be available to the next user.) Next, the code determines whether the user has signed in to the site before they can view any of the pages in the folder. If the user is not signed in, the code redirects to the login page. The login page can return the user to the page that was originally requested if you include a query string value named `ReturnUrl`.
 5. Create a new page in the *AuthenticatedContent* folder named *Page.cshtml*.
 6. Replace the default markup with the following:  
 
-    [!code[Main](18-customizing-site-wide-behavior/samples/sample16.xml)]
+    [!code[Main](18-customizing-site-wide-behavior/samples/sample17.xml)]
 7. Run *Page.cshtml* in a browser. The code redirects you to a login page. You must register before logging in. After you've registered and logged in, you can navigate to the page and view its contents.
 
 <a id="Additional_Resources"></a>
 ## Additional Resources
-
 
 [Introduction to ASP.NET Web Pages Programming Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkID=251587)

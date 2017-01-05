@@ -1,5 +1,6 @@
-MovieDBContext db = new MovieDBContext();
-Movie movie = new Movie();
-movie.Title = "Gone with the Wind";
-db.Movies.Add(movie);
-db.SaveChanges();        // <= Will throw server side validation exception
+public override void Up()
+{
+    AlterColumn("dbo.Movies", "Title", c => c.String(maxLength: 60));
+    AlterColumn("dbo.Movies", "Genre", c => c.String(nullable: false, maxLength: 30));
+    AlterColumn("dbo.Movies", "Rating", c => c.String(maxLength: 5));
+}

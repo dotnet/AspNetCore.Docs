@@ -1,1 +1,2 @@
-modelBuilder.Entity().HasRequired(d => d.Administrator).WithMany().WillCascadeOnDelete(false);
+public int? InstructorID { get; set; }
+public virtual Instructor Administrator { get; set; }

@@ -172,7 +172,7 @@ The following section is easier to follow if you have some experience with jQuer
 
 - [How jQuery Works](http://docs.jquery.com/Tutorials:How_jQuery_Works) by [John Resig](http://ejohn.org/)
 - [Getting Started with jQuery](http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery) by [Jörn Zaefferer](http://bassistance.de/)
-- [Live Examples of jQuery](http://docs.jquery.com/Tutorials:Live_Examples_of_jQuery) by [Cody Lindley](http://codylindley.com/)
+- [Live Examples of jQuery](http://codylindley.com/blogstuff/js/jquery/#) by [Cody Lindley](http://codylindley.com/)
 
 The Chosen plugin is included in the starter and completed sample projects that accompany this tutorial. For this tutorial you will only need to use jQuery to hook it up to the UI. To use the Harvest Chosen jQuery plugin in an ASP.NET MVC project, you must:
 

@@ -17,9 +17,19 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 Basic authentication is defined in [RFC 2617, HTTP Authentication: Basic and Digest Access Authentication](http://www.ietf.org/rfc/rfc2617.txt).
 
-| Advantages | Disadvantages |
-| --- | --- |
-| - Internet standard. - Supported by all major browsers. - Relatively simple protocol. | - User credentials are sent in the request. - Credentials are sent as plaintext. - Credentials are sent with every request. - No way to log out, except by ending the browser session. - Vulnerable to cross-site request forgery (CSRF); requires anti-CSRF measures. |
+Disadvantages
+
+- User credentials are sent in the request.
+- Credentials are sent as plaintext.
+- Credentials are sent with every request.
+- No way to log out, except by ending the browser session.
+- Vulnerable to cross-site request forgery (CSRF); requires anti-CSRF measures.
+
+Advantages
+
+- Internet standard.
+- Supported by all major browsers.
+- Relatively simple protocol.
 
 Basic authentication works as follows:
 
