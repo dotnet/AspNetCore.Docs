@@ -201,10 +201,10 @@ If you have an active IIS Rewrite Module with server-level rules configured that
 
 ##### Unsupported features
 The middleware does not support the following IIS URL Rewrite Module features:
-* Global rules
-* Rewrite Maps
-* CustomResponse action
-* Custom Server Variables
+* Global rules ([Basic Middleware #169](https://github.com/aspnet/BasicMiddleware/pull/169))
+* Rewrite Maps ([Basic Middleware #168](https://github.com/aspnet/BasicMiddleware/pull/168))
+* CustomResponse action ([Basic Middleware #135](https://github.com/aspnet/BasicMiddleware/issues/135))
+* Custom Server Variables ([Basic Middleware #183](https://github.com/aspnet/BasicMiddleware/issues/183))
 * trackAllCaptures
 * Wildcards
 * LogRewrittenUrl
