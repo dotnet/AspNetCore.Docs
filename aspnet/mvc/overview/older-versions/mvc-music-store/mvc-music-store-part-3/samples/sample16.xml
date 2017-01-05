@@ -1,5 +1,10 @@
-@model MvcMusicStore.Models.Genre
-@{
-    ViewBag.Title = "Browse";
-}
-<h2>Browsing Genre: @Model.Name</h2>
+public ActionResult Index()
+{
+    var genres = new List<Genre>
+    {
+        new Genre { Name = "Disco"},
+        new Genre { Name = "Jazz"},
+        new Genre { Name = "Rock"}
+    };
+    return View(genres);
+ }

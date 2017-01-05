@@ -167,7 +167,7 @@ In the *Models* folder, create*Course.cs*, replacing the existing code with the 
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
-We'll say more about the `[DatabaseGenerated(DatabaseGeneratedOption.None)]` attribute in the next tutorial. Basically, this attribute lets you enter the primary key for the course rather than having the database generate it.
+We'll say more about the [[DatabaseGenerated](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.databasegeneratedattribute(v=vs.110).aspx)([DatabaseGeneratedOption](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.databasegeneratedoption(v=vs.95).aspx).None)] attribute in the next tutorial. Basically, this attribute lets you enter the primary key for the course rather than having the database generate it.
 
 ## Create the Database Context
 
@@ -232,7 +232,7 @@ In earlier versions of Code First, before Migrations was released, it was common
 
 For this tutorial, you'll be using Migrations for deployment, but your `Seed` method will insert test data anyway in order to make it easier to see how application functionality works without having to manually insert a lot of data.
 
-1. Replace the contents of the *Configuration.cs*file with the following code, which will load test data into the new database.   
+1. Replace the contents of the *Configuration.cs* file with the following code, which will load test data into the new database. 
 
     [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.xml)]
 

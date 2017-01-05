@@ -46,7 +46,12 @@ The Movie Database application uses a database table named Movies that contains 
 
 You can add this table to an ASP.NET MVC project by following these steps:
 
-1. Right-click the App\_Data folder in the Solution Explorer window and select the menu option **Add, New Item.**- From the **Add New Item** dialog box, select **SQL Server Database**, give the database the name MoviesDB.mdf, and click the **Add** button. - Double-click the MoviesDB.mdf file to open the Server Explorer/Database Explorer window. - Expand the MoviesDB.mdf database connection, right-click the Tables folder, and select the menu option **Add New Table**. - In the Table Designer, add the Id, Title, and Director columns. - Click the **Save** button (it has the icon of the floppy) to save the new table with the name Movies.
+1. Right-click the App\_Data folder in the Solution Explorer window and select the menu option **Add, New Item.**
+2. From the **Add New Item** dialog box, select **SQL Server Database**, give the database the name MoviesDB.mdf, and click the **Add** button.
+3. Double-click the MoviesDB.mdf file to open the Server Explorer/Database Explorer window.
+4. Expand the MoviesDB.mdf database connection, right-click the Tables folder, and select the menu option **Add New Table**.
+5. In the Table Designer, add the Id, Title, and Director columns.
+6. Click the **Save** button (it has the icon of the floppy) to save the new table with the name Movies.
 
 After you create the Movies database table, you should add some sample data to the table. Right-click the Movies table and select the menu option **Show Table Data**. You can enter fake movie data into the grid that appears.
 

@@ -168,15 +168,13 @@ Update the &lt;h2&gt; tag so it displays the Album's Title property by modifying
 
 Notice that IntelliSense is triggered when you enter the period after the @Model keyword, showing the properties and methods that the Album class supports.
 
-[!code[Main](mvc-music-store-part-3/samples/sample14.xml)]
-
 Let's now re-run our project and visit the /Store/Details/5 URL. We'll see details of an Album like below.
 
 ![](mvc-music-store-part-3/_static/image14.png)
 
 Now we'll make a similar update for the Store Browse action method. Update the method so it returns an ActionResult, and modify the method logic so it creates a new Genre object and returns it to the View.
 
-[!code[Main](mvc-music-store-part-3/samples/sample15.xml)]
+[!code[Main](mvc-music-store-part-3/samples/sample14.xml)]
 
 Right-click in the Browse method and select "Add View…" from the context menu, then add a View that is strongly-typed add a strongly typed to the Genre class.
 
@@ -184,7 +182,7 @@ Right-click in the Browse method and select "Add View…" from the context menu,
 
 Update the &lt;h2&gt; element in the view code (in /Views/Store/Browse.cshtml) to display the Genre information.
 
-[!code[Main](mvc-music-store-part-3/samples/sample16.xml)]
+[!code[Main](mvc-music-store-part-3/samples/sample15.xml)]
 
 Now let's re-run our project and browse to the /Store/Browse?Genre=Disco URL. We'll see the Browse page displayed like below.
 
@@ -192,7 +190,7 @@ Now let's re-run our project and browse to the /Store/Browse?Genre=Disco URL. We
 
 Finally, let's make a slightly more complex update to the **Store Index** action method and view to display a list of all the Genres in our store. We'll do that by using a List of Genres as our model object, rather than just a single Genre.
 
-[!code[Main](mvc-music-store-part-3/samples/sample17.xml)]
+[!code[Main](mvc-music-store-part-3/samples/sample16.xml)]
 
 Right-click in the Store Index action method and select Add View as before, select Genre as the Model class, and press the Add button.
 
@@ -200,13 +198,13 @@ Right-click in the Store Index action method and select Add View as before, sele
 
 First we'll change the @model declaration to indicate that the view will be expecting several Genre objects rather than just one. Change the first line of /Store/Index.cshtml to read as follows:
 
-[!code[Main](mvc-music-store-part-3/samples/sample18.xml)]
+[!code[Main](mvc-music-store-part-3/samples/sample17.xml)]
 
 This tells the Razor view engine that it will be working with a model object that can hold several Genre objects. We're using an IEnumerable&lt;Genre&gt; rather than a List&lt;Genre&gt; since it's more generic, allowing us to change our model type later to any object type that supports the IEnumerable interface.
 
 Next, we'll loop through the Genre objects in the model as shown in the completed view code below.
 
-[!code[Main](mvc-music-store-part-3/samples/sample19.xml)]
+[!code[Main](mvc-music-store-part-3/samples/sample18.xml)]
 
 Notice that we have full IntelliSense support as we enter this code, so that when we type "@Model." we see all methods and properties supported by an IEnumerable of type Genre.
 
@@ -226,7 +224,7 @@ When we run the application and browse to /Store, we see that both the count and
 
 Our /Store URL that lists Genres currently lists the Genre names simply as plain text. Let's change this so that instead of plain text we instead have the Genre names link to the appropriate /Store/Browse URL, so that clicking on a music genre like "Disco" will navigate to the /Store/Browse?genre=Disco URL. We could update our \Views\Store\Index.cshtml View template to output these links using code like below **(don't type this in - we're going to improve on it)**:
 
-[!code[Main](mvc-music-store-part-3/samples/sample20.xml)]
+[!code[Main](mvc-music-store-part-3/samples/sample19.xml)]
 
 That works, but it could lead to trouble later since it relies on a hardcoded string. For instance, if we wanted to rename the Controller, we'd need to search through our code looking for links that need to be updated.
 
@@ -234,7 +232,7 @@ An alternative approach we can use is to take advantage of an HTML Helper method
 
 Html.ActionLink() has several different overloads to allow specifying as much information as you need for your links. In the simplest case, you'll supply just the link text and the Action method to go to when the hyperlink is clicked on the client. For example, we can link to "/Store/" Index() method on the Store Details page with the link text "Go to the Store Index" using the following call:
 
-[!code[Main](mvc-music-store-part-3/samples/sample21.xml)]
+[!code[Main](mvc-music-store-part-3/samples/sample20.xml)]
 
 *Note: In this case, we didn't need to specify the controller name because we're just linking to another action within the same controller that's rendering the current view.*
 
@@ -246,7 +244,7 @@ Our links to the Browse page will need to pass a parameter, though, so we'll use
 
 Putting that all together, here's how we'll write those links to the Store Index view:
 
-[!code[Main](mvc-music-store-part-3/samples/sample22.xml)]
+[!code[Main](mvc-music-store-part-3/samples/sample21.xml)]
 
 Now when we run our project again and access the /Store/ URL we will see a list of genres. Each genre is a hyperlink – when clicked it will take us to our /Store/Browse?genre=*[genre]* URL.
 
@@ -254,7 +252,7 @@ Now when we run our project again and access the /Store/ URL we will see a list 
 
 The HTML for the genre list looks like this:
 
-[!code[Main](mvc-music-store-part-3/samples/sample23.xml)]
+[!code[Main](mvc-music-store-part-3/samples/sample22.xml)]
 
 *Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 

@@ -1,5 +1,5 @@
-public ActionResult Browse(string genre)
- {
-    var genreModel = new Genre { Name = genre };
-    return View(genreModel);
- }
+@model MvcMusicStore.Models.Genre
+@{
+    ViewBag.Title = "Browse";
+}
+<h2>Browsing Genre: @Model.Name</h2>

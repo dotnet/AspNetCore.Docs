@@ -63,9 +63,9 @@ Next, we'll break some validation rules. Enter a price of 0 and leave the Title 
 
 Server-side validation is very important from an application perspective, because users can circumvent client-side validation. However, webpage forms which only implement server-side validation exhibit three significant problems.
 
-- 1. The user has to wait for the form to be posted, validated on the server, and for the response to be sent to their browser.
-- 2. The user doesn't get immediate feedback when they correct a field so that it now passes the validation rules.
-- 3. We are wasting server resources to perform validation logic instead of leveraging the user's browser.
+1. The user has to wait for the form to be posted, validated on the server, and for the response to be sent to their browser.
+2. The user doesn't get immediate feedback when they correct a field so that it now passes the validation rules.
+3. We are wasting server resources to perform validation logic instead of leveraging the user's browser.
 
 Fortunately, the ASP.NET MVC 3 scaffold templates have client-side validation built in, requiring no additional work whatsoever.
 
