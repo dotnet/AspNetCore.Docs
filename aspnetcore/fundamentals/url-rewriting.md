@@ -88,7 +88,7 @@ Use `AddRedirectToHttpsPermanent()` to redirect insecure requests to the same ho
 
 The sample application is capable of demonstrating how to use `AddRedirectToHttps()` or `AddRedirectToHttpsPermanent()`. Add the extension method to the `RewriteOptions()`. Make an insecure request to the application at any URL. In order to see the response in a browser, you will probably need to dismiss a browser security warning that the self-signed certificate is untrusted.
 
-Original Request using `AddRedirectToHttps()`: **http://localhost:5000/secure**
+Original Request using `AddRedirectToHttps(301, 5001)`: **http://localhost:5000/secure**
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https.png)
 
