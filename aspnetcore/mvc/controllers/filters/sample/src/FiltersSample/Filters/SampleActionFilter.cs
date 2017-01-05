@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
 {
+    #region snippet_ActionFilter
     public class SampleActionFilter : IActionFilter
     {
         public void OnActionExecuting(ActionExecutingContext context)
@@ -15,4 +16,5 @@ namespace FiltersSample.Filters
             // do something after the action executes
         }
     }
+    #endregion
 }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace FiltersSample.Filters
 {
+    #region snippet_TypeFilterAttribute
     public class SampleActionFilterAttribute : TypeFilterAttribute
     {
         public SampleActionFilterAttribute():base(typeof(SampleActionFilterImpl))
@@ -32,4 +33,5 @@ namespace FiltersSample.Filters
             }
         }
     }
+    #endregion
 }
