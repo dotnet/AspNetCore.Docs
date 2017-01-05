@@ -81,15 +81,9 @@ The following sample:
 
 The following sample shows how to expire a cache entry if a dependent entry expires. A `CancellationChangeToken` is added to the cached item. When `Cancel` is called on the `CancellationTokenSource`, both cache entries are evicted. 
 
-[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_ed&highlight=11,25)]
+[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_ed)]
 
 Using a `CancellationTokenSource` allows multiple cache entries to be evicted as a group. With the `using` pattern in the code above, cache entries created inside the `using` block will inherit triggers and expiration settings.
-
-## Explicit cancellation with CancellationTokenSource
-
-The following sample shows how to remove a cache entry using a `CancellationTokenSource`:
-
-[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_cancel&highlight=4,5,12,26-32)]
 
 ### Addition notes
 
