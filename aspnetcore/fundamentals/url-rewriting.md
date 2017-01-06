@@ -205,7 +205,7 @@ The middleware does not support the following IIS URL Rewrite Module features:
 * Rewrite Maps ([Basic Middleware #168](https://github.com/aspnet/BasicMiddleware/pull/168))
 * CustomResponse action ([Basic Middleware #135](https://github.com/aspnet/BasicMiddleware/issues/135))
 * Custom Server Variables ([Basic Middleware #183](https://github.com/aspnet/BasicMiddleware/issues/183))
-* trackAllCaptures
+* trackAllCaptures ([Basic Middleware #178](https://github.com/aspnet/BasicMiddleware/pull/178))
 * Wildcards
 * LogRewrittenUrl
 
