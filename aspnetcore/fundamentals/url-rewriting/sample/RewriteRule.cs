@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Net.Http.Headers;
-using System.Text.RegularExpressions;
 
 namespace RewriteRules
 {
@@ -13,9 +13,9 @@ namespace RewriteRules
     public class RedirectImageRequests : IRule
     {
         private readonly string _extension;
-        private readonly string _target;
+        private readonly string _newPath;
 
-        public RedirectImageRequests(string extension, Uri target)
+        public RedirectImageRequests(string extension, string newPath)
         {
             if (string.IsNullOrEmpty(extension))
             {
@@ -27,33 +27,31 @@ namespace RewriteRules
                 throw new ArgumentException("The extension is not valid. The extension must be .png, .jpg, or .gif.", nameof(extension));
             }
 
-            if (!target.IsAbsoluteUri)
+            if (!Regex.IsMatch(newPath, @"(/[A-Za-z0-9]+)+?"))
             {
-                throw new ArgumentException("The target Url must be absolute.", nameof(target));
+                throw new ArgumentException("The path is not valid. Provide an alphanumeric path that starts with a forward slash.", nameof(newPath));
             }
 
             _extension = extension;
-            _target = target.OriginalString;
+            _newPath = newPath;
         }
 
         public void ApplyRule(RewriteContext context)
         {
             var request = context.HttpContext.Request;
-            var path = request.Path.Value;
 
-            // Because we're redirecting back to the same app, stop processing 
-            // if this request has already been redirected
-            if (request.Path.StartsWithSegments(new PathString("/png-images")) || request.Path.StartsWithSegments(new PathString("/jpg-images")) || request.Path.StartsWithSegments(new PathString("/gif-images")))
+            // Because we're redirecting back to the same app, stop processing if the request has already been redirected
+            if (request.Path.StartsWithSegments(new PathString(_newPath)))
             {
                 return;
             }
 
-            if (path.EndsWith(_extension, StringComparison.OrdinalIgnoreCase))
+            if (request.Path.Value.EndsWith(_extension, StringComparison.OrdinalIgnoreCase))
             {
                 var response = context.HttpContext.Response;
                 response.StatusCode = StatusCodes.Status301MovedPermanently;
                 context.Result = RuleResult.EndResponse;
-                response.Headers[HeaderNames.Location] = _target + path + request.QueryString;
+                response.Headers[HeaderNames.Location] = _newPath + request.Path + request.QueryString;
             }
         }
     }

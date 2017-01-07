@@ -1,12 +1,10 @@
-ASP.NET Core URL Rewriting Sample
-=================================
+# ASP.NET Core URL Rewriting Sample
 
 This sample illustrates usage of ASP.NET Core URL Rewriting Middleware. The application demonstrates URL redirect and URL rewriting options.
 
 When running the sample, a response will be served that shows the rewritten or redirected URL when one of the rules is applied to a request URL.
 
-Examples in this sample
------------------------
+## Examples in this sample
 
 * `AddRedirect("redirect-rule/(.*)", "$1")`
   - Success status code: 302 (Found)
@@ -23,20 +21,18 @@ Examples in this sample
 * `Add(RedirectXMLRequests)`
   - Success status code: 301 (Moved Permanently)
   - Example (redirect): **/file.xml** to **/xmlfiles/file.xml**
-* `Add(new RedirectPNGRequests(".png", new Uri("http://localhost:5000/png-image")))`<br>`Add(new RedirectPNGRequests(".jpg", new Uri("http://localhost:5000/jpg-image")))`
+* `Add(new RedirectPNGRequests(".png", "/png-images")))`<br>`Add(new RedirectPNGRequests(".jpg", "/jpg-images")))`
   - Success status code: 301 (Moved Permanently)
   - Example (redirect): **/image.png** to **/png-images/image.png**
   - Example (redirect): **/image.jpg** to **/jpg-images/image.jpg**
 
-Using a `PhysicalFileProvider`
-------------------------------
+## Using a `PhysicalFileProvider`
 You can also obtain an `IFileProvider` by creating a `PhysicalFileProvider` to pass into the `AddApacheModRewrite()` and `AddIISUrlRewrite()` methods:
 ```csharp
 using Microsoft.Extensions.FileProviders;
 PhysicalFileProvider fileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
 ```
-Secure redirection extensions
------------------------------
+## Secure redirection extensions
 This sample includes `WebHostBuilder` configuration for the app to use URLs (**https://localhost:5001**, **https://localhost**) and a test certificate (**testCert.pfx**) to assist you in exploring these redirect methods. Add any of them to the `RewriteOptions()` in **Startup.cs** to study their behavior.
 
 Method | Status Code | Port
