@@ -13,7 +13,7 @@ namespace RewriteRules
     public class RedirectImageRequests : IRule
     {
         private readonly string _extension;
-        private readonly string _newPath;
+        private readonly PathString _newPath;
 
         public RedirectImageRequests(string extension, string newPath)
         {
@@ -33,7 +33,7 @@ namespace RewriteRules
             }
 
             _extension = extension;
-            _newPath = newPath;
+            _newPath = new PathString(newPath);
         }
 
         public void ApplyRule(RewriteContext context)
