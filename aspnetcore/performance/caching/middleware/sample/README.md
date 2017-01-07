@@ -1,5 +1,4 @@
-ASP.NET Core Response Caching Sample
-====================================
+# ASP.NET Core Response Caching Sample
 
 This sample illustrates the usage of ASP.NET Core Response Caching Middleware. The application sends a `Hello World!` message and the current time along with a `Cache-Control` header to configure caching behavior. The application also sends a `Vary` header to configure the cache to serve the response only if the `Accept-Encoding` header of subsequent requests matches that from the original request.
 
