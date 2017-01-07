@@ -12,11 +12,11 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/actions
 ---
-# Controllers, Actions, and Action Results
+# Handling requests with controllers in ASP.NET MVC Core
 
 By [Steve Smith](http://ardalis.com)
 
-Actions and action results are a fundamental part of how developers build apps using ASP.NET MVC.
+Controllers, actions, and action results are a fundamental part of how developers build apps using ASP.NET MVC Core.
 
 ## What is a Controller
 

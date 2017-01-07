@@ -14,7 +14,7 @@ ms.prod: aspnet-core
 # Working with Data
 
 *   [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](ef-mvc/index.md)
-    *   [Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio](ef-mvc/intro.md)
+    *   [Getting started](ef-mvc/intro.md)
     *   [Create, Read, Update, and Delete operations](ef-mvc/crud.md)
     *   [Sorting, filtering, paging, and grouping](ef-mvc/sort-filter-page.md)
     *   [Migrations](ef-mvc/migrations.md)
