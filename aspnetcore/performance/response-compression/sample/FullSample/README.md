@@ -1,4 +1,4 @@
-# Response Compression (FullSample)
+# Response compression sample application
 
 This sample illustrates the use of ASP.NET Core Response Compression Middleware to compress application responses. The sample demonstrates GZip and custom compression providers for text and image responses and shows how to add a MIME type for compression.
 
