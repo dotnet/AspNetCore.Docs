@@ -18,7 +18,6 @@ By [Luke Latham](https://github.com/GuardRex)
 
 [View or download sample code (Full Sample)](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample)
 
-## Introduction
 Response compression definition and purpose
 
 What to compress
@@ -31,11 +30,12 @@ Compression level: tradeoff between speed and compression
 
 Describe (*not in great detail*) the role of headers relevant to RC: `Accept-Encoding`, `Content-Type`, `Content-Encoding`, `Vary: Accept-Encoding`
 
-## Response Compression Middleware
-Link `FullSample` (explicitly sets GZip and Custom providers & adds a MimeType)
+## Response compression sample application
+You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers.
 
-### When to use Response Compression Middleware
-Not behind IIS/NGINX/Apache
+## When to use Response Compression Middleware
+Use Response Compression Middleware when you are unable to use the [Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression) in IIS on Windows Server, the [Apache mod_deflate module]() on Apache Server, [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/), or your application is hosted on [WebListener server](xref:fundamentals/servers/weblistener). The main reasons to use the server-based response compression technologies in IIS, Apache, or Nginx is that the performance of the middleware probably won't match that of the modules. 
+
 How to disable IIS compression with `web.config`
 ```xml
 <configuration>
@@ -55,30 +55,30 @@ or
 </configuration>
 ```
 
-### Compression occurs based on
+## Compression occurs based on
 `Accept-Encoding` header (`gzip`, `*`, or custom coding; not `identity`; q!=0)
 MimeType (`Content-Type`) set & matches RC options configuration (or defaults)
 No `Content-Range` header on request
 Not HTTPS (unless configured in RC options)
 Not if provider isn't flushable (e.g., .NET Framework 4.5.1 GZipStream) Team member should confirm and elaborate.
 
-### Package
+## Package
 `Microsoft.AspNetCore.ResponseCompression`
 
-### Service configuration
-#### `Providers` (`CompressionProviderCollection`)
+## Service configuration
+### `Providers` (`CompressionProviderCollection`)
 * GzipCompressionProvider` (default)<br>`GzipCompressionProviderOptions`: `Level`: `CompressionLevel.Fastest` (default), `CompressionLevel.Optimal`, `CompressionLevel.NoCompression`
 * CustomCompressionProvider`
-#### `MimeTypes` (`IEnumerable<string>`)
+### `MimeTypes` (`IEnumerable<string>`)
 `ResponseCompressionDefaults.MimeTypes`: `text/plain`, `text/css`, `application/javascript`, `text/html`, `application/xml`, `text/xml`, `application/json`, `text/json`
-#### Wildcards not supported
-#### `EnableForHttps` (`bool`) `false` (default) or `true`<br>Advise against enabling for HTTPS if app is public-facing. [CRIME](https://en.wikipedia.org/wiki/CRIME) + review by [@]blowdart :dart:
-### Configuration
+### Wildcards not supported
+### `EnableForHttps` (`bool`) `false` (default) or `true`<br>Advise against enabling for HTTPS if app is public-facing. [CRIME](https://en.wikipedia.org/wiki/CRIME) + review by [@]blowdart :dart:
+## Configuration
 `UseResponseCompression()`
 
 Location of RC middleware relative to terminal middlewares is important
 
-### Add `Vary: Accept-Encoding` header manually (https://github.com/aspnet/BasicMiddleware/issues/187)
+## Add `Vary: Accept-Encoding` header manually (https://github.com/aspnet/BasicMiddleware/issues/187)
   
 ## Additional Resources
   * [Application Startup](xref:fundamentals/startup)
