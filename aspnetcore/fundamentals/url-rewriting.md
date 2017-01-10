@@ -45,10 +45,8 @@ A *URL rewrite* is a server-side operation to provide a resource from a differen
 
 ![A WebAPI service endpoint has been changed from version 1 (v1) to version 2 (v2) on the server. A client makes a request to the service at the version 1 path /v1/api. The request URL is rewritten to access the service at the version 2 path /v2/api. The service responds to the client with a 200 (OK) status code.](url-rewriting/_static/url_rewrite.png)
 
-## URL Rewriting Middleware
-You can explore the features of the URL Rewriting Middleware with the [URL Rewriting sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/sample). The application applies rewrite and redirect rules and shows the resultant rewritten or redirected URL.
-
-The examples below rely upon regular expressions (regex) to match and capture the path and segments of the request URL. For more information on using regex, visit the resources in the [Additional Resources](#additional-resources) section and study the examples in the [Regex Examples](#regex-examples) section of this document. 
+## URL rewriting sample application
+You can explore the features of the URL Rewriting Middleware with the [URL rewriting sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/url-rewriting/sample). The application applies rewrite and redirect rules and shows the resultant rewritten or redirected URL.
 
 ## When to use URL Rewriting Middleware
 Use URL Rewriting Middleware when you are unable to use the [URL Rewrite module](https://www.iis.net/downloads/microsoft/url-rewrite) in IIS on Windows Server, the [Apache mod_rewrite module](https://httpd.apache.org/docs/2.4/rewrite/) on Apache Server, [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/), or your application is hosted on [WebListener server](xref:fundamentals/servers/weblistener). The main reasons to use the server-based URL rewriting technologies in IIS, Apache, or Nginx are that the middleware doesn't support the full features of these modules and the performance of the middleware probably won't match that of the modules. However, there are some features of the server modules that don't work with ASP.NET Core projects, such as the `IsFile` and `IsDirectory` constraints of the IIS Rewrite module. In these scenarios, you can use the middleware instead.
