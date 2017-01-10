@@ -253,7 +253,7 @@ Original Request: **http://localhost:5000/file.xml**
 
 ![Browser window with Developer Tools tracking the requests and responses for file.xml](url-rewriting/_static/add_redirect_xml_requests.png)
 
-#### `IRule`-based rule
+#### IRule-based rule
 Use `Add(IRule)` to implement your own rule logic in a class that derives from `IRule`. Using an `IRule` provides greater flexibility over using the method-based rule approach. Your derived class may include a constructor, where you can pass in parameters for the `ApplyRule` method.
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=7-8)]
