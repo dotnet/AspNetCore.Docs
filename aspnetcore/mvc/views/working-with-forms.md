@@ -5,7 +5,7 @@ description: Describes the built-in Tag Helpers used with Forms.
 keywords: ASP.NET Core, Tag Helper, TagHelper, HTML Form, Forms
 ms.author: riande
 manager: wpickett
-ms.date: 1/14/2017
+ms.date: 01/14/2017
 ms.topic: article
 ms.assetid: 25595059-4fac-4785-8152-f88590e3169b
 ms.technology: aspnet
