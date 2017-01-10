@@ -273,6 +273,12 @@ Exception filters are good for trapping exceptions that occur within MVC actions
 
 The framework provides an abstract `ExceptionFilterAttribute` that you can subclass. 
 
+You can use an action filter to automatically validate model state and return any errors if the state is invalid:
+
+[!code-csharp[Main](./filters/sample/src/FiltersSample/Filters/ValidateModelAttribute.cs)]
+
+The `OnActionExecuted` method runs after the action method and can see and manipulate the results of the action through the `ActionExecutedContext.Result` property. `ActionExecutedContext.Canceled` will be set to true if the action execution was short-circuited by another filter. `ActionExecutedContext.Exception` will be set to a non-null value if the action or a subsequent action filter threw an exception. Setting `ActionExecutedContext.Exception` to null effectively 'handles' an exception, and `ActionExectedContext.Result` will then be executed as if it were returned from the action method normally.
+
 ## Result filters
 
 *Result filters* implement either the `IResultFilter` or `IAsyncResultFilter` interface, and their execution surrounds the execution of action results. 
