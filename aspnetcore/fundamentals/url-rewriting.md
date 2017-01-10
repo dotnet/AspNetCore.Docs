@@ -51,7 +51,7 @@ You can explore the features of the URL Rewriting Middleware with the [URL Rewri
 The examples below rely upon regular expressions (regex) to match and capture the path and segments of the request URL. For more information on using regex, visit the resources in the [Additional Resources](#additional-resources) section and study the examples in the [Regex Examples](#regex-examples) section of this document. 
 
 ### When to use URL Rewriting Middleware
-Use URL Rewriting Middleware when you are unable to use the [URL Rewrite module](https://www.iis.net/downloads/microsoft/url-rewrite) in IIS on Windows Server or the [Apache mod_rewrite module](https://httpd.apache.org/docs/2.4/rewrite/) on Apache Server. The main reasons to use the server-based URL rewriting technologies are that the middleware doesn't support the full features of these modules and the performance of the middleware probably won't match that of the modules. However, there are some features of the modules that don't work with ASP.NET Core projects, such as the `IsFile` and `IsDirectory` constraints. In these scenarios, you can use the middleware instead.
+Use URL Rewriting Middleware when you are unable to use the [URL Rewrite module](https://www.iis.net/downloads/microsoft/url-rewrite) in IIS on Windows Server, the [Apache mod_rewrite module](https://httpd.apache.org/docs/2.4/rewrite/) on Apache Server, [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/), or your application is hosted on [WebListener server](xref:fundamentals/servers/weblistener). The main reasons to use the server-based URL rewriting technologies in IIS, Apache, or Nginx are that the middleware doesn't support the full features of these modules and the performance of the middleware probably won't match that of the modules. However, there are some features of the server modules that don't work with ASP.NET Core projects, such as the `IsFile` and `IsDirectory` constraints of the IIS Rewrite module. In these scenarios, you can use the middleware instead.
 
 ### Package
 To include the middleware in your project, add a reference to the  [`Microsoft.AspNetCore.Rewrite`](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite/) package. The middleware is available for projects that target `.NETFramework 4.5.1` or `.NETStandard 1.3` or higher.
@@ -109,19 +109,19 @@ The first thing you will notice in the regex is the carat (`^`) at the beginning
 
 In the earlier example with the redirect rule, `redirect-rule/(.*)`, there is no carat at the start of the regex; therefore, any characters may precede **redirect-rule/** in the path for a successful match.
 
-URL | Match
+Path | Match
 --- | :---:
-**http://localhost:5000/redirect-rule/1234/5678** | Yes
-**http://localhost:5000/my-cool-redirect-rule/1234/5678** | Yes
-**http://localhost:5000/foobarredirect-rule/1234/5678** | Yes
+**/redirect-rule/1234/5678** | Yes
+**/my-cool-redirect-rule/1234/5678** | Yes
+**/anotherredirect-rule/1234/5678** | Yes
 
 The rewrite rule, `^rewrite-rule/(\d+)/(\d+)`, will only match paths if they start with **rewrite-rule/**. Notice the difference in matching between the rewrite rule below and the redirect rule above.
 
-URL | Match
+Path | Match
 --- | :---:
-**http://localhost:5000/rewrite-rule/1234/5678** | Yes
-**http://localhost:5000/my-cool-rewrite-rule/1234/5678** | No
-**http://localhost:5000/foobarrewrite-rule/1234/5678** | No
+**/rewrite-rule/1234/5678** | Yes
+**/my-cool-rewrite-rule/1234/5678** | No
+**/anotherrewrite-rule/1234/5678** | No
 
 Following the `^rewrite-rule/` portion of the expression, there are two capture groups, `(\d+)/(\d+)`. The `\d` signifies *match a digit (number)*. The plus sign (`+`) means *match one or more of the preceding character*. Therefore, the URL must contain a number followed by a forward-slash followed by another number. These capture groups are injected into the resultant rewritten URL as `$1` and `$2`. The rewrite rule replacement string places the captured groups into the querystring. The requested URL of **http://localhost:5000/rewrite-rule/1234/5678** is rewritten to obtain the resource at **http://localhost:5000/rewritten?var1=1234&var2=5678**. If a querystring is present on the original request, it's preserved when the URL is rewritten.
 
@@ -188,7 +188,7 @@ Original Request: **http://localhost:5000/iis-rules-rewrite/1234**
 
 ![Browser window with Developer Tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
-If you have an active IIS Rewrite Module with server-level rules configured that would impact your application in undesirable ways, you can disable the IIS Rewrite Module for an application with a change to your **web.config** file.
+If you have an active IIS Rewrite Module with server-level rules configured that would impact your application in undesirable ways, you can disable the IIS Rewrite Module for an application with a change to your **web.config** file. 
 ```xml
 <configuration> 
  <system.webServer> 
@@ -240,7 +240,7 @@ Use `Add(Action\<RewriteContext\> applyRule)` to implement your own rule logic i
 `context.Result` | Action
 --- | ---
 `RuleResult.ContinueRules` (default) | Continue applying rules
-`RuleResult.End Response` | Stop applying rules and send the response
+`RuleResult.EndResponse` | Stop applying rules and send the response
 `RuleResult.SkipRemainingRules` | Stop applying rules and send the context to the next middleware
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=6)]
@@ -258,7 +258,7 @@ Use `Add(IRule)` to implement your own rule logic in a class that derives from `
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=7-8)]
 
-The values of the parameters in the sample application for the `extension` and the `target` URL are checked to meet several conditions. The `extension` must contain a value, and the value must be **.png**, **.jpg**, or **.gif**. If the `target` URL isn't an absolute URL, an `ArgumentException` is thrown. Placing these values into fields, they're used in the rule logic. If you make a request for **/image.png**, it's redirected to **/png-images/image.png**. If you make a request for **/image.jpg**, it's redirected to **/jpg-images/image.jpg**. The status code is set to 301 (Moved Permanently), and the `context.Result` is set to stop processing rules and send the response.
+The values of the parameters in the sample application for the `extension` and the `newPath` are checked to meet several conditions. The `extension` must contain a value, and the value must be **.png**, **.jpg**, or **.gif**. If the `newPath` isn't valid, an `ArgumentException` is thrown. If you make a request for **/image.png**, it's redirected to **/png-images/image.png**. If you make a request for **/image.jpg**, it's redirected to **/jpg-images/image.jpg**. The status code is set to 301 (Moved Permanently), and the `context.Result` is set to stop processing rules and send the response.
 
 [!code-csharp[Main](url-rewriting/sample/RewriteRule.cs?name=snippet1)]
 
