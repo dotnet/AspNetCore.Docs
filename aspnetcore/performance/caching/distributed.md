@@ -129,13 +129,10 @@ Like all cache implementations, your app should get and set cache values using a
 
 ## Recommendations
 
-When deciding which implementation of `IDistributedCache` is right for your app, choose between Redis and SQL Server based on your existing infrastructure and environment, your performance requirements, and your team's experience. If your team is more comfortable working with Redis, it's an excellent choice. If your team prefers SQL Server, you can be confident in that implementation as well. Note that A traditional caching solution stores data in-memory which allows for fast retrieval of data. You should store commonly used data in a cache and store the entire data in a backend persistent store such as SQL Server or Azure Storage. Redis Cache is a caching solution which gives you high throughput and low latency as compared to SQL Cache. Also, you should avoid using the in-memory implementation (`MemoryCache`) in multi-server environments.
+When deciding which implementation of `IDistributedCache` is right for your app, choose between Redis and SQL Server based on your existing infrastructure and environment, your performance requirements, and your team's experience. If your team is more comfortable working with Redis, it's an excellent choice. If your team prefers SQL Server, you can be confident in that implementation as well. Note that A traditional caching solution stores data in-memory which allows for fast retrieval of data. You should store commonly used data in a cache and store the entire data in a backend persistent store such as SQL Server or Azure Storage. Redis Cache is a caching solution which gives you high throughput and low latency as compared to SQL Cache.
 
-Azure Resources:
+Additional resources:
 
+* [In memory caching](memory.md)
 * [Redis Cache on Azure](https://azure.microsoft.com/en-us/documentation/services/redis-cache/)
-
 * [SQL Database on Azure](https://azure.microsoft.com/en-us/documentation/services/sql-database/)
-
->[!TIP]
-> The in-memory implementation of `IDistributedCache` should only be used for testing purposes or for applications that are hosted on just one server instance.

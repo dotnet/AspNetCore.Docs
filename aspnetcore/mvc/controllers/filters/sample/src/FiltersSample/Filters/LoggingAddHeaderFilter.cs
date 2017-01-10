@@ -6,6 +6,7 @@ namespace FiltersSample.Filters
     /// <summary>
     /// https://github.com/aspnet/Mvc/blob/master/test/WebSites/FiltersWebSite/Filters/AddHeaderAttribute.cs
     /// </summary>
+    #region snippet_ResultFilter
     public class AddHeaderFilterWithDi : IResultFilter
     {
         private ILogger _logger;
@@ -24,11 +25,8 @@ namespace FiltersSample.Filters
 
         public void OnResultExecuted(ResultExecutedContext context)
         {
-            var headerName = "OnResultExecuted";
-            context.HttpContext.Response.Headers.Add(
-                headerName, new string[] { "ResultExecutedSuccessfully" });
-            _logger.LogInformation($"Header added: {headerName}");
-
+            // Can't add to headers here because response has already begun.
         }
     }
+    #endregion
 }
