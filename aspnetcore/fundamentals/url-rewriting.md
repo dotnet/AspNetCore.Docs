@@ -245,7 +245,7 @@ Use `Add(Action\<RewriteContext\> applyRule)` to implement your own rule logic i
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=6)]
 
-The sample application demonstrates a method that redirects requests for paths that end with **.xml**. If you make a request for **/file.xml**, it's redirected to **/xmlfiles/file.xml**. The status code is set to 301 (Moved Permanently). For a redirect, you should explicitly set the status code of the response; otherwise, a 200 (OK) status code will be returned and the redirect might not occur on the client.
+The sample application demonstrates a method that redirects requests for paths that end with **.xml**. If you make a request for **/file.xml**, it's redirected to **/xmlfiles/file.xml**. The status code is set to 301 (Moved Permanently). For a redirect, you must explicitly set the status code of the response; otherwise, a 200 (OK) status code will be returned and the redirect won't occur on the client.
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet2)]
 
