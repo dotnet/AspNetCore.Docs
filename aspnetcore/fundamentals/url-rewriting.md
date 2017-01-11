@@ -35,13 +35,13 @@ You can define rules for changing the URL in several ways, including regular exp
 ## URL redirect and URL rewrite
 The difference in wording between *URL redirect* and *URL rewrite* may seem subtle at first but has important implications for providing resources to clients. ASP.NET Core's URL Rewriting Middleware is capable of meeting the need for both.
 
-A *URL redirect* is a client-side operation, where the client is instructed to access a resource at another address. This requires a round-trip to the server, and the redirect URL returned to the client will appear in the browser's address bar when the client makes a new request for the resource. If **http://www.mysite.com/resource** is *redirected* to **http://www.mysite.com/different-resource**, the client will request **http://www.mysite.com/resource**, and the server will respond that the client should obtain the resource at **http://www.mysite.com/different-resource** with a status code indicating that the redirect is either temporary or permanent. The client will execute a new request for the resource at the redirect URL.
+A *URL redirect* is a client-side operation, where the client is instructed to access a resource at another address. This requires a round-trip to the server, and the redirect URL returned to the client will appear in the browser's address bar when the client makes a new request for the resource. If **/resource** is *redirected* to **/different-resource**, the client will request **/resource**, and the server will respond that the client should obtain the resource at **/different-resource** with a status code indicating that the redirect is either temporary or permanent. The client will execute a new request for the resource at the redirect URL.
 
 ![A WebAPI service endpoint has been temporarily changed from version 1 (v1) to version 2 (v2) on the server. A client makes a request to the service at the version 1 path /v1/api. The server sends back a 302 (Found) response with the new, temporary path for the service at version 2 /v2/api. The client makes a second request to the service at the redirect URL. The server responds with a 200 (OK) status code.](url-rewriting/_static/url_redirect.png)
 
 When redirecting requests to a different URL, you will indicate whether the redirect is permanent or temporary. The 301 (Moved Permanently) status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. The client will cache the response when a 301 status code is received. The 302 (Found) status code is used where the redirection is temporary or generally subject to change, such that the client should not store and reuse the redirect URL in the future. For more information, see [RFC 2616: Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
-A *URL rewrite* is a server-side operation to provide a resource from a different resource address. Rewriting a URL doesn't require a round-trip to the server. The rewritten URL is not returned to the client and won't appear in a browser's address bar. When **http://www.mysite.com/resource** is *rewritten* to **http://www.mysite.com/different-resource**, the client will request **http://www.mysite.com/resource**, and the server will *internally* fetch the resource at **http://www.mysite.com/different-resource**. Although the client might be able to retrieve the resource at the rewritten URL, the client won't be informed that the resource exists at the rewritten URL when it makes its request and receives the response.
+A *URL rewrite* is a server-side operation to provide a resource from a different resource address. Rewriting a URL doesn't require a round-trip to the server. The rewritten URL is not returned to the client and won't appear in a browser's address bar. When **/resource** is *rewritten* to **/different-resource**, the client will request **/resource**, and the server will *internally* fetch the resource at **/different-resource**. Although the client might be able to retrieve the resource at the rewritten URL, the client won't be informed that the resource exists at the rewritten URL when it makes its request and receives the response.
 
 ![A WebAPI service endpoint has been changed from version 1 (v1) to version 2 (v2) on the server. A client makes a request to the service at the version 1 path /v1/api. The request URL is rewritten to access the service at the version 2 path /v2/api. The service responds to the client with a 200 (OK) status code.](url-rewriting/_static/url_rewrite.png)
 
@@ -64,15 +64,15 @@ Use `AddRedirect()` to redirect requests. The first parameter will contain your 
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=2)]
 
-In a browser with developer tools enabled, make a request to the sample application with the URL **http://localhost:5000/redirect-rule/1234/5678**. The regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with **redirected/1234/5678**. The redirect URL is sent back to the client with a 302 (Found) status code. The browser makes a new request at the redirect URL, which will appear in the browser's address bar. Since no rules in the sample application match on the redirect URL, the second request receives a 200 (OK) response from the application and the body of the response shows the redirect URL. A complete roundtrip is made to the server when a URL is *redirected*.
+In a browser with developer tools enabled, make a request to the sample application with the path **/redirect-rule/1234/5678**. The regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with **/redirected/1234/5678**. The redirect URL is sent back to the client with a 302 (Found) status code. The browser makes a new request at the redirect URL, which will appear in the browser's address bar. Since no rules in the sample application match on the redirect URL, the second request receives a 200 (OK) response from the application and the body of the response shows the redirect URL. A complete roundtrip is made to the server when a URL is *redirected*.
 
-Original Request: **http://localhost:5000/redirect-rule/1234/5678**
+Original Request: **/redirect-rule/1234/5678**
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect.png)
 
 The part of the expression contained by parentheses is called a *capture group*. The dot (`.`) of the expression means *match any character*, and the asterisk (`*`) signifies to *match the preceding character zero or more times*. Therefore, the last two path segments of the URL, `1234/5678`, are captured by capture group `(.*)`. Any value you provide in the request URL after **redirect-rule/** will be captured by this single capture group.
 
-In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in your regex. There is only one captured group in the redirect rule regex in the sample application, so there is only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes **http://localhost:5000/redirected/1234/5678**.
+In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in your regex. There is only one captured group in the redirect rule regex in the sample application, so there is only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes **/redirected/1234/5678**.
 
 ### URL Redirect to a secure endpoint
 Use `AddRedirectToHttps()` to redirect insecure requests to the same host and path with secure HTTPS protocol (**https://**) with the flexibility to choose the status code and port. If the status code is not supplied, the middleware will default to 302 (Found). If the port is not supplied, the middleware will default to `null`, which means the protocol will change to **https://** and the client will access the resource on port 443. The example shows how to set the status code to 301 (Moved Permanently) and change the port to 5001.
@@ -86,11 +86,11 @@ Use `AddRedirectToHttpsPermanent()` to redirect insecure requests to the same ho
 
 The sample application is capable of demonstrating how to use `AddRedirectToHttps()` or `AddRedirectToHttpsPermanent()`. Add the extension method to the `RewriteOptions()`. Make an insecure request to the application at any URL. In order to see the response in a browser, you will probably need to dismiss a browser security warning that the self-signed certificate is untrusted.
 
-Original Request using `AddRedirectToHttps(301, 5001)`: **http://localhost:5000/secure**
+Original Request using `AddRedirectToHttps(301, 5001)`: **/secure**
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https.png)
 
-Original Request using `AddRedirectToHttpsPermanent()`: **http://localhost:5000/secure**
+Original Request using `AddRedirectToHttpsPermanent()`: **/secure**
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
@@ -99,7 +99,7 @@ Use `AddRewrite()` to create a rules for rewriting URLs. The first parameter wil
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=3)]
 
-Original Request: **http://localhost:5000/rewrite-rule/1234/5678**
+Original Request: **/rewrite-rule/1234/5678**
 
 ![Browser window with Developer Tools tracking the request and response](url-rewriting/_static/add_rewrite.png)
 
@@ -121,7 +121,7 @@ Path | Match
 **/my-cool-rewrite-rule/1234/5678** | No
 **/anotherrewrite-rule/1234/5678** | No
 
-Following the `^rewrite-rule/` portion of the expression, there are two capture groups, `(\d+)/(\d+)`. The `\d` signifies *match a digit (number)*. The plus sign (`+`) means *match one or more of the preceding character*. Therefore, the URL must contain a number followed by a forward-slash followed by another number. These capture groups are injected into the resultant rewritten URL as `$1` and `$2`. The rewrite rule replacement string places the captured groups into the querystring. The requested URL of **http://localhost:5000/rewrite-rule/1234/5678** is rewritten to obtain the resource at **http://localhost:5000/rewritten?var1=1234&var2=5678**. If a querystring is present on the original request, it's preserved when the URL is rewritten.
+Following the `^rewrite-rule/` portion of the expression, there are two capture groups, `(\d+)/(\d+)`. The `\d` signifies *match a digit (number)*. The plus sign (`+`) means *match one or more of the preceding character*. Therefore, the URL must contain a number followed by a forward-slash followed by another number. These capture groups are injected into the resultant rewritten URL as `$1` and `$2`. The rewrite rule replacement string places the captured groups into the querystring. The requested path of **/rewrite-rule/1234/5678** is rewritten to obtain the resource at **/rewritten?var1=1234&var2=5678**. If a querystring is present on the original request, it's preserved when the URL is rewritten.
 
 There is no roundtrip to the server to obtain the resource. If the resource exists, it's fetched and returned to the client with a 200 (OK) status code. Because the client isn't redirected, the URL in the browser address bar doesn't change. As far as the client is concerned, the URL rewrite operation never occurred.
 
@@ -137,7 +137,7 @@ The sample application will redirect requests from **/apache-mod-rules-redirect/
 
 [!code[Main](url-rewriting/sample/ApacheModRewrite.txt)]
 
-Original Request: **http://localhost:5000/apache-mod-rules-redirect/1234**
+Original Request: **/apache-mod-rules-redirect/1234**
 
 ![Browser window with Developer Tools tracking the requests and responses](url-rewriting/_static/add_apache_mod_redirect.png)
 
@@ -182,7 +182,7 @@ The sample application will rewrite requests from **/iis-rules-rewrite/(.\*)** t
 
 [!code-xml[Main](url-rewriting/sample/IISUrlRewrite.xml)]
 
-Original Request: **http://localhost:5000/iis-rules-rewrite/1234**
+Original Request: **/iis-rules-rewrite/1234**
 
 ![Browser window with Developer Tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
@@ -247,7 +247,7 @@ The sample application demonstrates a method that redirects requests for paths t
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet2)]
 
-Original Request: **http://localhost:5000/file.xml**
+Original Request: **/file.xml**
 
 ![Browser window with Developer Tools tracking the requests and responses for file.xml](url-rewriting/_static/add_redirect_xml_requests.png)
 
@@ -260,11 +260,11 @@ The values of the parameters in the sample application for the `extension` and t
 
 [!code-csharp[Main](url-rewriting/sample/RewriteRule.cs?name=snippet1)]
 
-Original Request: **http://localhost:5000/image.png**
+Original Request: **/image.png**
 
 ![Browser window with Developer Tools tracking the requests and responses for image.png](url-rewriting/_static/add_redirect_png_requests.png)
 
-Original Request: **http://localhost:5000/image.jpg**
+Original Request: **/image.jpg**
 
 ![Browser window with Developer Tools tracking the requests and responses for image.jpg](url-rewriting/_static/add_redirect_jpg_requests.png)
 
