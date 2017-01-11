@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # [Introduction](index.md)
 
 # [Getting Started](getting-started.md)
@@ -110,9 +111,23 @@
 
 # [Mobile](mobile/toc.md)
 
-# [Publishing and Deployment](publishing/toc.md)
-
-# [Guidance for Hosting Providers](hosting/toc.md)
+# [Hosting and Deployment](publishing/index.md)
+## [Set up a Windows hosting environment and deploy to it](publishing/windows/index.md)
+### [Publishing to IIS](publishing/iis.md)
+#### [ASP.NET Core Module Configuration Reference](hosting/aspnet-core-module.md)
+### [Hosting in a Windows service](publishing/windows/windows-service.md)
+### [Directory structure](hosting/directory-structure.md)
+## [Set up a Linux hosting environment and deploy to it](publishing/linux/index.md)
+### [Publish to a Linux Production Environment using nginx](publishing/linuxproduction.md)
+### [Using Apache Web Server on CentOS as a reverse proxy](publishing/apache-proxy.md)
+## [Set up a Docker hosting environment and deploy to it](publishing/docker/index.md)
+### [Building Docker Images for .NET Core Applications](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/building-net-docker-images)
+### [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker)
+### [Publish to a Docker Image](https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker)
+## [Deploy an ASP.NET Core web app to Azure using Visual Studio](tutorials/publish-to-azure-webapp-using-vs.md)
+## [Continuous deployment to an Azure Web App using VSTS](publishing/vsts-continuous-deployment.md)
+## [Continuous deployment to an Azure Web App using Visual Studio](publishing/azure-continuous-deployment.md)
+## [How Web Publishing In Visual Studio Works](publishing/web-publishing-vs.md)
 
 # [Security](security/toc.md)
 
