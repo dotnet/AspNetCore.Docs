@@ -18,9 +18,7 @@ namespace ResponseCompressionSample
         {
             services.AddResponseCompression();
         }
-        #endregion
 
-        #region snippet2
         public void Configure(IApplicationBuilder app)
         {
             app.UseResponseCompression();
