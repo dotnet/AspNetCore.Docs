@@ -64,7 +64,7 @@ To include the middleware in your project, add a reference to the `Microsoft.Asp
 ### Using defaults
 if you plan to implement the middleware with default GZip compression and for default MIME types (listed below), you can simply add the middleware to your service collection and processing pipeline. No other changes are requried. 
 
-[!code-csharp[Main](response-compression/sample/DefaultsSample/Startup.cs?name=snippet1&highlight=19,24)]
+[!code-csharp[Main](response-compression/sample/DefaultsSample/Startup.cs?name=snippet1&highlight=3,8)]
 
 Submit a request to the sample application without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` and `Vary` headers are not present on the response.
 
@@ -77,7 +77,7 @@ Submit a request to the sample application with the `Accept-Encoding: gzip` head
 ### Providers
 Use the `GzipCompressionProvider` to compress responses with GZip. This is the default compression provider if none are specified. 
 
-[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=27)]
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=5)]
 
 You can set the compression level with the `GzipCompressionProviderOptions`. The default is for the fastest compression.
 
@@ -87,11 +87,11 @@ You can set the compression level with the `GzipCompressionProviderOptions`. The
 `CompressionLevel.NoCompression` | No compression should be performed.
 `CompressionLevel.Optimal` | Responses should be optimally compressed, even if the compression takes more time to complete.
 
-[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=31-34)]
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=9-12)]
 
 You can create a custom compression implementation with `ICompressionProvider`. The `encodingName` will reflect the `Accept-Encoding` header value that triggers the `CreateStream()` method. In the sample, the client would submit a request with the `Accept-Encoding: custom` header. The middleware will use the custom compression implementation and return the response with a `Content-Type: custom` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
 
-[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=28)]
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=6)]
 
 [!code-csharp[Main](response-compression/sample/FullSample/CustomCompressionProvider.cs?name=snippet1)]
 
@@ -111,7 +111,7 @@ The middleware specifies a default set of MIME types for compression:
 * `text/json`
 You can replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` are not supported.
 
-[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=29)]
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=7)]
 
 ### Compression with secure protocol
 Compressed responses over secure protocols can be controlled via the `EnableForHttps` option; however, it's unsafe, not recommended, and disabled by default. For more information, see [CRIME: Information Leakage Attack against SSL/TLS](https://blog.qualys.com/ssllabs/2012/09/14/crime-information-leakage-attack-against-ssltls).
