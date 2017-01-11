@@ -26,17 +26,19 @@ When requesting and returning compressing content, the client must inform the se
 
 Content Coding | Supported by Response Caching Middleware | Description
 | --- | :---: | ---
-`br` |  No | 
-`compress` | No | 
-`deflate` |  No | 
-`exi` | No | 
-`gzip` | Yes (default) | 
-`identity` | Yes | 
-`pack200-gzip` | No | 
-`*` | Yes | 
-custom | Yes | 
+`br` |  No | Brotli Compressed Data Format
+`compress` | No | UNIX "compress" data format
+`deflate` |  No | "deflate" compressed data inside the "zlib" data format 
+`exi` | No | W3C Efficient XML Interchange
+`gzip` | Yes (default) | GZip file format
+`identity` | Yes | No encoding identifier
+`pack200-gzip` | No | Network Transfer Format for Java Archives
+`*` | Yes | Any available content-coding not explicitly listed
+custom | Yes | Developer provides the compression implementation. The client must be able to decompress the payload.
 
-The middleware is capable of reacting to `qvalue` weighting factors when sent by the client. 
+For more information, see the [IANA Official Content Coding List](http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
+
+The middleware is capable of reacting to `qvalue` weighting factors when sent by the client. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
 
 Compression level: tradeoff between speed and compression
 Compression operations usually involve a tradeoff between the speed and the effectiveness of compression.
@@ -139,5 +141,8 @@ Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getf
   * [IIS HTTP Compression `<httpCompression>`](https://www.iis.net/configreference/system.webserver/httpcompression)
   * [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
   * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding)
+  * [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4)
   * [IANA Official Content Coding List](http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry)
+  * [RFC 7231 Section 3.1.2.1: Content Coding](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
+  * [RFC 7230 Section 4.2.3: Gzip Coding](https://tools.ietf.org/html/rfc7230#section-4.2.3)
   * [GZIP file format specification version 4.3](http://www.ietf.org/rfc/rfc1952.txt)
