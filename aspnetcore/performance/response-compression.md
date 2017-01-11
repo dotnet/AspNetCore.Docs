@@ -36,40 +36,30 @@ You can explore the features of the Response Compression Middleware with the [re
 ## When to use Response Compression Middleware
 Use Response Compression Middleware when you are unable to use the [Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression) in IIS on Windows Server, the [Apache mod_deflate module]() on Apache Server, [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/), or your application is hosted on [WebListener server](xref:fundamentals/servers/weblistener). The main reasons to use the server-based response compression technologies in IIS, Apache, or Nginx is that the performance of the middleware probably won't match that of the modules. 
 
-How to disable IIS compression with `web.config`
-```xml
-<configuration>
-  <system.webServer>
-    <urlCompression doDynamicCompression="false"/>
-  </system.webServer>
-</configuration>
-```
-or 
-```xml
-<configuration>
-  <system.webServer> 
-    <modules> 
-      <remove name="DynamicCompressionModule" /> 
-    </modules> 
-  </system.webServer> 
-</configuration>
-```
-
-## Compression occurs based on
-`Accept-Encoding` header (`gzip`, `*`, or custom coding; not `identity`; q!=0)
-MimeType (`Content-Type`) set & matches RC options configuration (or defaults)
-No `Content-Range` header on request
-Not HTTPS (unless configured in RC options)
-Not if provider isn't flushable (e.g., .NET Framework 4.5.1 GZipStream) Team member should confirm and elaborate.
+## Response compression conditions
+The Response Compression Middleware will compress responses that meet the following conditions:
+* The `Accept-Encoding` header is present with a value of `gzip`, `*`, or custom coding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality (qvalue) setting of 0 (zero).
+* The MIME type (`Content-Type`) must be set and must match the Response Caching Middleware options configuration.
+* The request must not include the `Content-Range` header.
+* The request must use insecure protocol, unless secure protocol is configured in the Response Compression Middleware options.
+* The provider must be flushable. For example, `GZipStream` on .NET Framework 4.5.1, which isn't flushable, is not in use.
 
 ## Package
-`Microsoft.AspNetCore.ResponseCompression`
+To include the middleware in your project, add a reference to the `Microsoft.AspNetCore.ResponseCompression` package. The middleware is available for projects that target .NETFramework 4.5.1 or .NETStandard 1.3 or higher.
 
 ## Service configuration
-### `Providers` (`CompressionProviderCollection`)
-* GzipCompressionProvider` (default)<br>`GzipCompressionProviderOptions`: `Level`: `CompressionLevel.Fastest` (default), `CompressionLevel.Optimal`, `CompressionLevel.NoCompression`
-* CustomCompressionProvider`
-### `MimeTypes` (`IEnumerable<string>`)
+### Providers
+Use the `GzipCompressionProvider` to compress responses with GZip. This is the default compression provider if none are specified. You can set the compression level with the `GzipCompressionProviderOptions`
+
+`Level` | 
+--- | ---
+`CompressionLevel.Fastest` (default) | Compression should complete as quickly as possible, even if the resulting output is not optimally compressed.
+`CompressionLevel.NoCompression` | No compression should be performed.
+`CompressionLevel.Optimal` | Responses should be optimally compressed, even if the operation takes a longer time to complete.
+
+Use an instance of the `ICompressionProvider` for your custom compression providers.
+
+### MimeTypes
 `ResponseCompressionDefaults.MimeTypes`: `text/plain`, `text/css`, `application/javascript`, `text/html`, `application/xml`, `text/xml`, `application/json`, `text/json`
 ### Wildcards not supported
 ### `EnableForHttps` (`bool`) `false` (default) or `true`<br>Advise against enabling for HTTPS if app is public-facing. [CRIME](https://en.wikipedia.org/wiki/CRIME) + review by [@]blowdart :dart:
@@ -79,12 +69,32 @@ Not if provider isn't flushable (e.g., .NET Framework 4.5.1 GZipStream) Team mem
 Location of RC middleware relative to terminal middlewares is important
 
 ## Add `Vary: Accept-Encoding` header manually (https://github.com/aspnet/BasicMiddleware/issues/187)
+
+## Disabling or removing IIS Dynamic Compression
+If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your **web.config** file. Either leave the module in place and deactivate it for dymanic compression or remove the module from the application. To merely deactivate the module for dynamic compression, add a `<urlCompression>` element to your **web.config** file.
+```xml
+<configuration>
+  <system.webServer>
+    <urlCompression doDynamicCompression="false"/>
+  </system.webServer>
+</configuration>
+```
+If you opt to remove the module via **web.config**, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules**. Click on the **DynamicCompressionModule** in the list. In the **Action** panel on the right, click **Unlock**. At this point, you will be able to add the following to your **web.config** file to remove the module for the application. Doing this won't affect the module's use in other applications on the server.
+```xml
+<configuration>
+  <system.webServer> 
+    <modules> 
+      <remove name="DynamicCompressionModule" /> 
+    </modules> 
+  </system.webServer> 
+</configuration>
+```
   
 ## Additional Resources
   * [Application Startup](xref:fundamentals/startup)
   * [Middleware](xref:fundamentals/middleware)
   * [Apache Module mod_deflate](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
-  * [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
   * [IIS HTTP Compression `<httpCompression>`](https://www.iis.net/configreference/system.webserver/httpcompression)
+  * [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
   * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding)
   * [IANA Official Content Coding List](http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry)
