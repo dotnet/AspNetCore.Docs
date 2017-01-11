@@ -22,7 +22,7 @@ Everyone enjoys interacting with responsive web applications. To make your appli
 
 Usually, any response not natively compressed can benefit from response compression. Files and responses not usually natively compressed include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files, which are already compressed.
 
-When requesting and returning compressing content, the client must inform the server of its capability to decompress content, and the server must include information on how the response is encoded. The standard content coding designations are shown below showing which ones are supported by Response Caching Middleware.
+When requesting and returning compressed content, the client must inform the server of its capability to decompress content, and the server must include information on how the response is encoded. The standard content coding designations are shown below showing which ones are supported by Response Caching Middleware.
 
 Content Coding | Supported | Description
 | :---: | :---: | ---
@@ -33,21 +33,21 @@ Content Coding | Supported | Description
 `gzip` | Yes (default) | GZip file format
 `identity` | Yes | "No encoding" identifier: The response must not be encoded.
 `pack200-gzip` | No | Network Transfer Format for Java Archives
-`*` | Yes | Any available content-coding not explicitly listed
+`*` | Yes | Any available content coding not explicitly requested
 custom | Yes | Developer provides the compression implementation. The client must be able to decompress the payload.
 
 For more information, see the [IANA Official Content Coding List](http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
-The middleware is capable of reacting to `qvalue` weighting factors when sent by the client. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
+The middleware is capable of reacting to quality weighting (`qvalue`) factors when sent by the client. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
 
-Compression algorithms usually have a tradeoff between the speed that they can compress a response and the effectiveness of their compression. Testing might be required to determine whether the fastest or optimal compression is the best choice. The middleware defaults to the fastest compression level, which might not produce the most efficient compression.
+Compression algorithms usually have a tradeoff between the speed that they can compress a response and the effectiveness of their compression. The middleware defaults to the fastest compression level, which might not produce the most efficient compression. If the most efficient compression is desired, the middleware can be configured for optimal compression.
 
-The main headers involved in requesting and sending compressed content are described below.
+The headers involved in requesting, sending, caching, and receiving compressed content are described below.
 
 Header | Role
 --- | ---
 `Accept-Encoding` | Sent by the client to the server to indicate which types of content encoding are acceptable.
-`Content-Type` | Specifies the MIME type of the content. Since only configured MIME types are configured on the server for encoding, this information is used by the server to determine if a response can be compressed. The middleware includes a set of default MIME types that it will encode, but you can replace or add MIME types for compression.
+`Content-Type` | Specifies the MIME type of the content. Since only configured MIME types are configured on the server for encoding, this information is used by the server to determine if a response can be compressed. The middleware includes a set of default MIME types that it will encode, but you can replace or add MIME types for compressioni see.
 `Content-Encoding` | Sent by the server to the client to indicate the encoding of the content in the payload.
 `Vary: Accept-Encoding` | Sent by the server to clients and proxys to indicate that they should cache responses based on the `Accept-Encoding` header of the request. The result of returning content with this header is that both compressed and uncompressed responses will be cached.
 
