@@ -20,7 +20,7 @@ Browser Link is a feature in Visual Studio that creates a communication channel 
 
 ## Browser Link setup
 
-The ASP.NET Core **Web Application** project templates in Visual Studio 2015 and later for include everything needed for Browser Link.
+The ASP.NET Core **Web Application** project templates in Visual Studio 2015 and later include everything needed for Browser Link.
 
 To add Browser Link to a project that you created by using the ASP.NET Core **Empty** or **Web API** template, follow these steps:
 
@@ -53,7 +53,7 @@ app.UseBrowserLink();
 
 Usually that code is inside an `if` block that enables Browser Link only in the Development environment, as shown here:
 
-![UseBrowserLink code](using-browserlink/_static/use-browserlink-code.png)
+[!code-csharp[Main](./using-browserlink/sample/BrowserlinkSample/src/BrowserlinkSample/Startup.cs?highlight=40,43&range=40-44)]
 
 For more information, see [Working with Multiple Environments](../fundamentals/environments.md).
 
