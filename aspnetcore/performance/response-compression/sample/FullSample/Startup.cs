@@ -22,15 +22,15 @@ namespace ResponseCompressionSample
         #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<GzipCompressionProviderOptions>(options => 
-            {
-                options.Level = CompressionLevel.Fastest;
-            });
             services.AddResponseCompression(options =>
             {
                 options.Providers.Add<GzipCompressionProvider>();
                 options.Providers.Add<CustomCompressionProvider>();
                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
+            });
+            services.Configure<GzipCompressionProviderOptions>(options => 
+            {
+                options.Level = CompressionLevel.Fastest;
             });
         }
         #endregion
