@@ -36,7 +36,6 @@ ms.prod: aspnet-core
     *   [Resource Based Authorization](authorization/resourcebased.md)
     *   [View Based Authorization](authorization/views.md)
     *   [Limiting identity by scheme](authorization/limitingidentitybyscheme.md)
-    *   [🔧 Authorization Filters](authorization/authorization-filters.md)
 *   [Data Protection](data-protection/index.md)
     *   [Introduction to Data Protection](data-protection/introduction.md)
     *   [Getting Started with the Data Protection APIs](data-protection/using-data-protection.md)
