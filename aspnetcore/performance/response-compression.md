@@ -89,7 +89,10 @@ Compressed responses over secure protocols can be controlled via the `EnableForH
 ## Pipeline ordering
 The position of this middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before this middleware will prevent the Response Compression Middleware from compressing the response. For example, if you place Static File Middleware before this middleware, your static files will not be compressed by the middleware. If you place Static File Middleware after this middleware, your static files will be compressed.
 
-## Add `Vary: Accept-Encoding` header manually (https://github.com/aspnet/BasicMiddleware/issues/187)
+## Adding the Vary: Accept-Encoding header
+When compressing responses based on the `Accept-Encoding` header, there are potentially two versions of the response: a compressed version and an uncompressed version. In order to instruct client and proxy caches that both versions exist and should be stored, you should always supply a `Vary` header with an `Accept-Encoding` value. This will result in storage of both versions of the response on client and proxy caches. The sample application accomplishes this with a method; however, the middleware will be upgraded soon to provide this feature ([Basic Middleware #187](https://github.com/aspnet/BasicMiddleware/issues/187)).
+
+Code here: FullSample:Startup snippet1 
 
 ## Disabling or removing IIS Dynamic Compression
 If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your **web.config** file. Either leave the module in place and deactivate it for dymanic compression or remove the module from the application. To merely deactivate the module for dynamic compression, add a `<urlCompression>` element to your **web.config** file.
@@ -112,9 +115,7 @@ If you opt to remove the module via **web.config**, you must unlock it first. Cl
 ```
 
 ## Troubleshooting
-Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), all of which allow you to explicitly set the `Accept-Encoding` request header and study the response headers, response size, and response body.
-
-The conditions by which a response will be compressed are listed below. The Response Compression Middleware will compress responses that meet the following conditions:
+Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), all of which allow you to explicitly set the `Accept-Encoding` request header and study the response headers, size, and body. The Response Compression Middleware will compress responses that meet the following conditions:
 * The `Accept-Encoding` header is present with a value of `gzip`, `*`, or custom coding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality (qvalue) setting of 0 (zero).
 * The MIME type (`Content-Type`) must be set and must match the Response Caching Middleware options configuration.
 * The request must not include the `Content-Range` header.
