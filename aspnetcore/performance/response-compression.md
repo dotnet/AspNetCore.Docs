@@ -66,11 +66,11 @@ if you plan to implement the middleware with default GZip compression and for de
 
 [!code-csharp[Main](response-compression/sample/DefaultsSample/Startup.cs?name=snippet1&highlight=19,24)]
 
-Submit a request to the application without the `Accept-Encoding` header and observe that the response is uncompressed. The `Vary` and `Content-Encoding` headers are not present on the response.
+Submit a request to the sample application without the `Accept-Encoding` header and observe that the response is uncompressed. The `Vary` and `Content-Encoding` headers are not present on the response.
 
 ![Fiddler window showing result of a request without the Accept-Encoding header. The response is not compressed.](response-compression/_static/request-uncompressed.png)
 
-Submit a request to the application with the `Accept-Encoding: gzip` header and observe that the response is compressed. The `Vary` and `Content-Encoding` headers are present on the response.
+Submit a request to the sample application with the `Accept-Encoding: gzip` header and observe that the response is compressed. The `Vary` and `Content-Encoding` headers are present on the response.
 
 ![Fiddler window showing result of a request with the Accept-Encoding header and a value of gzip. The Vary and Content-Encoding headers are added to the response. The response is compressed.](response-compression/_static/request-compressed.png)
 
@@ -95,7 +95,7 @@ You can create a custom compression implementation with `ICompressionProvider`. 
 
 [!code-csharp[Main](response-compression/sample/FullSample/CustomCompressionProvider.cs?name=snippet1)]
 
-Submit a request to the application with the `Accept-Encoding: custom` header and observe that the response headers. The `Vary` and `Content-Encoding` headers are present on the response. Note that the response body is not compressed by the sample, as there is no actual compression implementation in the `CustomCompressionProvider` class.
+Submit a request to the sample application with the `Accept-Encoding: custom` header and observe that the response headers. The `Vary` and `Content-Encoding` headers are present on the response. Note that the response body is not compressed by the sample, as there is no actual compression implementation in the `CustomCompressionProvider` class.
 
 ![Fiddler window showing result of a request with the Accept-Encoding header and a value of custom. The Vary and Content-Encoding headers are added to the response.](response-compression/_static/request-custom-encoding.png)
 
