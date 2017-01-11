@@ -16,15 +16,27 @@ uid: performance/response-compression
 
 By [Luke Latham](https://github.com/GuardRex)
 
-[View or download sample code (Full Sample)](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample)
 
-Response compression definition and purpose
+Everyone enjoys interacting with responsive web applications. To make your applications as fast as possible, you should reduce response payload sizes as much as possible. One way to reduce payload size is to compress your applications' responses. When you cannot use response compression technology built into a server hosting an ASP.NET Core application, you can use Response Compression Middleware.
 
-What to compress
-Compress non-natively compressed files (e.g., HTML)
-Don't compress natively compressed files (e.g., PNG)
+Usually, any response not natively compressed can benefit from response compression. Files and responses not usually natively compressed include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files, which are already compressed.
 
-Content Coding (`br`, `compress`, `deflate`, `exi`, `gzip`, `identity`, `pack200-gzip`, `*`, custom coding) & qvalue weights [Note: These will likely be in a table. I plan to denote the ones that the middleware supports OOB: `gzip`, `identity`, `*`, and custom coding.]
+When requesting and returning compressing content, the client must inform the server of its capability to decompress content, and the server must include information on how the response is encoded. The standard content coding designations are shown below.
+
+Content Coding | Supported by Response Caching Middleware | Description
+| --- | :---: | ---
+`br` |  No | 
+`compress` | No | 
+`deflate` |  No | 
+`exi` | No | 
+`gzip` | Yes (default) | 
+`identity` | Yes | 
+`pack200-gzip` | No | 
+`*` | Yes | 
+custom | Yes | 
+
+The middleware is capable of reacting to `qvalue` weighting factors when sent by the client. 
 
 Compression level: tradeoff between speed and compression
 Compression operations usually involve a tradeoff between the speed and the effectiveness of compression.
@@ -49,11 +61,9 @@ if you plan to implement the middleware with default GZip compression and for de
 ### Providers
 Use the `GzipCompressionProvider` to compress responses with GZip. This is the default compression provider if none are specified. 
 
-[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=31)]
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=27)]
 
 You can set the compression level with the `GzipCompressionProviderOptions`.
-
-[!code-csharp[Main](response-compression/sample/FullSample/CustomCompressionProvider.cs?name=snippet1)]
 
 `Level` | Description
 --- | ---
@@ -61,11 +71,13 @@ You can set the compression level with the `GzipCompressionProviderOptions`.
 `CompressionLevel.NoCompression` | No compression should be performed.
 `CompressionLevel.Optimal` | Responses should be optimally compressed, even if the operation takes a longer time to complete.
 
-[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=25-28)]
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=31-34)]
 
 You can create a custom compression implementation with `ICompressionProvider`. The `encodingName` will reflect the `Accept-Encoding` header value that triggers the `CreateStream()` method.
 
-[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet1)]
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=28)]
+
+[!code-csharp[Main](response-compression/sample/FullSample/CustomCompressionProvider.cs?name=snippet1)]
 
 ### MimeTypes
 The middleware includes a default set of MIME types for compression:
@@ -79,15 +91,15 @@ The middleware includes a default set of MIME types for compression:
 * `text/json`
 You can replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` are not supported.
 
-[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=33)]
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=29)]
 
 ### Compression with secure protocol
 Compressed responses over secure protocols can be controlled via the `EnableForHttps` option; however, it's unsafe, not recommended, and disabled by default. For more information, see [CRIME: Information Leakage Attack against SSL/TLS](https://blog.qualys.com/ssllabs/2012/09/14/crime-information-leakage-attack-against-ssltls)
 
-## Pipeline ordering
+## Middleware ordering
 The position of this middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before this middleware will prevent the Response Compression Middleware from compressing the response. For example, if you place Static File Middleware before this middleware, your static files will not be compressed by the middleware. If you place Static File Middleware after this middleware, your static files will be compressed.
 
-## Adding the Vary: Accept-Encoding header
+## Adding the Vary header
 When compressing responses based on the `Accept-Encoding` header, there are potentially two versions of the response: a compressed version and an uncompressed version. In order to instruct client and proxy caches that both versions exist and should be stored, you should always supply a `Vary` header with an `Accept-Encoding` value. This will result in storage of both versions of the response on client and proxy caches. The sample application accomplishes this with a method; however, the middleware will be upgraded soon to provide this feature ([Basic Middleware #187](https://github.com/aspnet/BasicMiddleware/issues/187)).
 
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet1)]
@@ -128,3 +140,4 @@ Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getf
   * [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
   * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding)
   * [IANA Official Content Coding List](http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry)
+  * [GZIP file format specification version 4.3](http://www.ietf.org/rfc/rfc1952.txt)
