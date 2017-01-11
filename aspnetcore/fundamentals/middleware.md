@@ -132,7 +132,7 @@ ASP.NET ships with the following middleware components:
 | [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |
-| [URL Rewriting](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. |
+| [URL Rewriting Middleware](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. |
 
 <a name=middleware-writing-middleware></a>
 
