@@ -99,6 +99,20 @@ Browser Link also works with browsers that you launch from outside Visual Studio
 
 ### The Browser Link Dashboard
 
+Open the Browser Link Dashboard from the Browser Link drop down menu to manage the connection with open browsers:
+
+![open-browserslink-dashboard](using-browserlink/_static/open-browserlink-dashboard.png)
+
+If no browser is connected, you can start a non debugging session clicking the _View in Browser_ link:
+
+![browserlink-dashboard-no-connections](using-browserlink/_static/browserlink-dashboard-no-connections.png)
+
+Otherwise, the connected browsers are shown, with the path to the page that each browser is showing:
+
+![browserlink-dashboard-two-connections](using-browserlink/_static/browserlink-dashboard-two-connections.png)
+
+If you like, you can click on a listed browser name to refresh that single browser.
+
 ### Enable or disable Browser Link
 
 When you re-enable Browser Link after disabling it, you have to refresh the browsers to reconnect them.
