@@ -106,7 +106,7 @@ You can replace or append MIME types with the Response Compression Middleware op
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=29)]
 
 ### Compression with secure protocol
-Compressed responses over secure protocols can be controlled via the `EnableForHttps` option; however, it's unsafe, not recommended, and disabled by default. For more information, see [CRIME: Information Leakage Attack against SSL/TLS](https://blog.qualys.com/ssllabs/2012/09/14/crime-information-leakage-attack-against-ssltls)
+Compressed responses over secure protocols can be controlled via the `EnableForHttps` option; however, it's unsafe, not recommended, and disabled by default. For more information, see [CRIME: Information Leakage Attack against SSL/TLS](https://blog.qualys.com/ssllabs/2012/09/14/crime-information-leakage-attack-against-ssltls).
 
 ## Middleware ordering
 The position of this middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before this middleware will prevent the Response Compression Middleware from compressing the response. For example, if you place Static File Middleware before this middleware, your static files will not be compressed by the middleware. If you place Static File Middleware after this middleware, your static files will be compressed.
@@ -117,7 +117,9 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet1)]
 
 ## Disabling or removing IIS Dynamic Compression
-If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your **web.config** file. Either leave the module in place and deactivate it for dymanic compression or remove the module from the application. To merely deactivate the module for dynamic compression, add a `<urlCompression>` element to your **web.config** file.
+If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your **web.config** file. Either leave the module in place and deactivate it for dymanic compression or remove the module from the application.
+
+To merely deactivate the module for dynamic compression, add a `<urlCompression>` element to your **web.config** file. There is no particular reason to include the `doStaticCompression="false"` attribute and value, since the IIS Static Compression Module doesn't work with ASP.NET Core applications in a reverse-proxy setup.
 ```xml
 <configuration>
   <system.webServer>
@@ -138,10 +140,10 @@ If you opt to remove the module via **web.config**, you must unlock it first. Cl
 
 ## Troubleshooting
 Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), all of which allow you to explicitly set the `Accept-Encoding` request header and study the response headers, size, and body. The Response Compression Middleware will compress responses that meet the following conditions:
-* The `Accept-Encoding` header is present with a value of `gzip`, `*`, or custom coding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality (qvalue) setting of 0 (zero).
-* The MIME type (`Content-Type`) must be set and must match the Response Caching Middleware options configuration.
+* The `Accept-Encoding` header is present with a value of `gzip`, `*`, or custom coding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality (`q`) setting of 0 (zero).
+* The MIME type (`Content-Type`) must be set and must match the Response Caching Middleware options MIME types configuration.
 * The request must not include the `Content-Range` header.
-* The request must use insecure protocol, unless secure protocol is configured in the Response Compression Middleware options.
+* The request must use *insecure protocol*, unless secure protocol is configured in the Response Compression Middleware options. *Note the danger [described above](#compression-with-secure-protocol) when enabling secure content compression.*
 * The provider must not use `GZipStream` on .NET Framework 4.5.1, which isn't flushable.
 
 ## Additional Resources
