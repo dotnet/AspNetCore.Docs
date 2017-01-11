@@ -18,38 +18,38 @@ By [Luke Latham](https://github.com/GuardRex)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample)
 
-Everyone enjoys interacting with responsive web applications. To make your applications as fast as possible, you should reduce response payload sizes as much as possible. One way to reduce payload sizes is to compress your applications' responses. When you cannot use response compression technology built into a server hosting an ASP.NET Core application, you can use Response Compression Middleware.
+The time it takes to send content over a network, especially the Internet, usually exceeds the processing time taken on the client and the server to satisfy user requests. When you can reduce application response payload sizes and send less data to clients, you can  increase the responsiveness of your applications. One way to reduce payload sizes is to compress your applications' responses. The most popular servers offer response compression features; but when you cannot use server-based compression technology, you can use ASP.NET Core Response Compression Middleware to compress your applications' responses.
 
-Usually, any response not natively compressed can benefit from response compression. Files and responses not usually natively compressed include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files, which are already compressed.
+Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed usually include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files, which are already compressed. If you try to compress a natively compressed response, any small additional reduction in size will likely be overwhelmed by the time it took to process the compression.
 
-When requesting and returning compressed content, the client must inform the server of its capability to decompress content, and the server must include information on how the response is encoded. The standard content coding designations are shown below showing which ones are supported by Response Caching Middleware.
+When requesting and returning compressed content, the client must inform the server of its capability to decompress content by sending an `Accept-Encoding` header with the request, and the server must include information in the `Content-Encoding` header on how the compressed response is encoded. The standard content coding designations are shown below indicating which ones are supported by Response Caching Middleware.
 
 Content Coding | Supported | Description
 | :---: | :---: | ---
 `br` |  No | Brotli Compressed Data Format
 `compress` | No | UNIX "compress" data format
+custom | Yes | Developer provides the compression implementation. The client must be able to decompress the payload.
 `deflate` |  No | "deflate" compressed data inside the "zlib" data format 
 `exi` | No | W3C Efficient XML Interchange
 `gzip` | Yes (default) | GZip file format
 `identity` | Yes | "No encoding" identifier: The response must not be encoded.
 `pack200-gzip` | No | Network Transfer Format for Java Archives
 `*` | Yes | Any available content coding not explicitly requested
-custom | Yes | Developer provides the compression implementation. The client must be able to decompress the payload.
 
 For more information, see the [IANA Official Content Coding List](http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
 The middleware is capable of reacting to quality weighting (`qvalue`) factors when sent by the client. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
 
-Compression algorithms usually have a tradeoff between the speed that they can compress a response and the effectiveness of their compression. The middleware defaults to the fastest compression level, which might not produce the most efficient compression. If the most efficient compression is desired, the middleware can be configured for optimal compression.
+Compression algorithms usually have a tradeoff between the speed that they can compress a response and the effectiveness of the compression. The middleware defaults to the fastest compression level, which might not produce the most efficient compression. If the most efficient compression is desired, the middleware can be configured for optimal compression.
 
 The headers involved in requesting, sending, caching, and receiving compressed content are described below.
 
 Header | Role
 --- | ---
 `Accept-Encoding` | Sent by the client to the server to indicate which types of content encoding are acceptable.
-`Content-Type` | Specifies the MIME type of the content. Since only configured MIME types are configured on the server for encoding, this information is used by the server to determine if a response can be compressed. The middleware includes a set of default MIME types that it will encode, but you can replace or add MIME types for compressioni see.
-`Content-Encoding` | Sent by the server to the client to indicate the encoding of the content in the payload.
-`Vary: Accept-Encoding` | Sent by the server to clients and proxys to indicate that they should cache responses based on the `Accept-Encoding` header of the request. The result of returning content with this header is that both compressed and uncompressed responses will be cached.
+`Content-Type` | Specifies the MIME type of the content. MIME types are specified on the server for encodable content, so this information is used by the server to determine if a response can be compressed. The middleware includes a set of default MIME types that it will encode, but you can replace or add MIME types for compression.
+`Content-Encoding` | Sent from the server to the client to indicate the encoding of the content in the payload.
+`Vary` | Sent by the server with a value of `Accept-Encoding` to clients and proxys to indicate that they should cache responses individually based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses will be cached.
 
 ## Response compression sample application
 You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers.
