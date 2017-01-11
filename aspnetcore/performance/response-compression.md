@@ -22,16 +22,16 @@ Everyone enjoys interacting with responsive web applications. To make your appli
 
 Usually, any response not natively compressed can benefit from response compression. Files and responses not usually natively compressed include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files, which are already compressed.
 
-When requesting and returning compressing content, the client must inform the server of its capability to decompress content, and the server must include information on how the response is encoded. The standard content coding designations are shown below.
+When requesting and returning compressing content, the client must inform the server of its capability to decompress content, and the server must include information on how the response is encoded. The standard content coding designations are shown below showing which ones are supported by Response Caching Middleware.
 
-Content Coding | Supported by Response Caching Middleware | Description
-| --- | :---: | ---
+Content Coding | Supported | Description
+| :---: | :---: | ---
 `br` |  No | Brotli Compressed Data Format
 `compress` | No | UNIX "compress" data format
 `deflate` |  No | "deflate" compressed data inside the "zlib" data format 
 `exi` | No | W3C Efficient XML Interchange
 `gzip` | Yes (default) | GZip file format
-`identity` | Yes | No encoding identifier
+`identity` | Yes | "No encoding" identifier: The response must not be encoded.
 `pack200-gzip` | No | Network Transfer Format for Java Archives
 `*` | Yes | Any available content-coding not explicitly listed
 custom | Yes | Developer provides the compression implementation. The client must be able to decompress the payload.
@@ -40,10 +40,16 @@ For more information, see the [IANA Official Content Coding List](http://www.ian
 
 The middleware is capable of reacting to `qvalue` weighting factors when sent by the client. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
 
-Compression level: tradeoff between speed and compression
-Compression operations usually involve a tradeoff between the speed and the effectiveness of compression.
+Compression algorithms usually have a tradeoff between the speed that they can compress a response and the effectiveness of their compression. Testing might be required to determine whether the fastest or optimal compression is the best choice. The middleware defaults to the fastest compression level, which might not produce the most efficient compression.
 
-Describe (*not in great detail*) the role of headers relevant to RC: `Accept-Encoding`, `Content-Type`, `Content-Encoding`, `Vary: Accept-Encoding`
+The main headers involved in requesting and sending compressed content are described below.
+
+Header | Role
+--- | ---
+`Accept-Encoding` | Sent by the client to the server to indicate which types of content encoding are acceptable.
+`Content-Type` | Specifies the MIME type of the content. Since only configured MIME types are configured on the server for encoding, this information is used by the server to determine if a response can be compressed. The middleware includes a set of default MIME types that it will encode, but you can replace or add MIME types for compression.
+`Content-Encoding` | Sent by the server to the client to indicate the encoding of the content in the payload.
+`Vary: Accept-Encoding` | Sent by the server to clients and proxys to indicate that they should cache responses based on the `Accept-Encoding` header of the request. The result of returning content with this header is that both compressed and uncompressed responses will be cached.
 
 ## Response compression sample application
 You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers.
