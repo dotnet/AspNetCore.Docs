@@ -95,7 +95,7 @@ You can create a custom compression implementation with `ICompressionProvider`. 
 
 [!code-csharp[Main](response-compression/sample/FullSample/CustomCompressionProvider.cs?name=snippet1)]
 
-Submit a request to the sample application with the `Accept-Encoding: custom` header and observe that the response headers. The `Vary` and `Content-Encoding` headers are present on the response. Note that the response body is not compressed by the sample, as there is no actual compression implementation in the `CustomCompressionProvider` class.
+Submit a request to the sample application with the `Accept-Encoding: custom` header and observe that the response headers. The `Vary` and `Content-Encoding` headers are present on the response. The response body (not shown) isn't compressed by the sample, as there is no actual compression implementation in the `CustomCompressionProvider` class.
 
 ![Fiddler window showing result of a request with the Accept-Encoding header and a value of custom. The Vary and Content-Encoding headers are added to the response.](response-compression/_static/request-custom-compression.png)
 
@@ -149,7 +149,7 @@ If you opt to remove the module via **web.config**, you must unlock it first. Cl
 ## Troubleshooting
 Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), all of which allow you to explicitly set the `Accept-Encoding` request header and study the response headers, size, and body. The Response Compression Middleware will compress responses that meet the following conditions:
 * The `Accept-Encoding` header is present with a value of `gzip`, `*`, or custom coding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality value (qvalue, `q`) setting of 0 (zero).
-* The MIME type (`Content-Type`) must be set and must match the Response Caching Middleware options MIME types configuration.
+* The MIME type (`Content-Type`) must be set and must match the Response Compression Middleware options MIME types configuration.
 * The request must not include the `Content-Range` header.
 * The request must use *insecure protocol*, unless secure protocol is configured in the Response Compression Middleware options. *Note the danger [described above](#compression-with-secure-protocol) when enabling secure content compression.*
 * The provider must not use `GZipStream` on .NET Framework 4.5.1, which isn't flushable.
