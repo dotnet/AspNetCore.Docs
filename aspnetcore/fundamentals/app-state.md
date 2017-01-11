@@ -51,8 +51,10 @@ public void ConfigureServices(IServiceCollection services)
     services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
 }```
 
-The cookie-based TempData provider does not use Session; data is stored in a cookie on the client. The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). The cookie is also chunked, so the single cookie size limit does not apply. See [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs) for more information.
+The cookie-based TempData provider does not use Session; data is stored in a cookie on the client. The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). The cookie is encrypted and chunked, so the single cookie size limit does not apply. See [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs) for more information.
 
+<!-- The cookie data is not compressed; compression can compromise the encryption. see CRIME
+-->
 
 ### Query strings
 
