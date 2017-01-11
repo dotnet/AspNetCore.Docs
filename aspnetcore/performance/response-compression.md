@@ -44,18 +44,16 @@ To include the middleware in your project, add a reference to the `Microsoft.Asp
 ### Using defaults
 if you plan to implement the middleware with default GZip compression and for default MIME types (see below), you can add the middleware to your service collection and processing pipeline.
 
-Code here: DefaultsSample:Startup snippet1
-
-Code here: DefaultsSample:Startup snippet2 with line 26 highlighted
-
-The location of 
+[!code-csharp[Main](response-compression/sample/DefaultsSample/Startup.cs?name=snippet1&highlight=19,24)]
 
 ### Providers
 Use the `GzipCompressionProvider` to compress responses with GZip. This is the default compression provider if none are specified. 
 
-Code here: FullSample:Startup snippet2 line 31
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=31)]
 
 You can set the compression level with the `GzipCompressionProviderOptions`.
+
+[!code-csharp[Main](response-compression/sample/FullSample/CustomCompressionProvider.cs?name=snippet1)]
 
 `Level` | Description
 --- | ---
@@ -63,11 +61,11 @@ You can set the compression level with the `GzipCompressionProviderOptions`.
 `CompressionLevel.NoCompression` | No compression should be performed.
 `CompressionLevel.Optimal` | Responses should be optimally compressed, even if the operation takes a longer time to complete.
 
-Code here: FullSample:Startup snippet2 lines 25-28 highlighted
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=25-28)]
 
 You can create a custom compression implementation with `ICompressionProvider`. The `encodingName` will reflect the `Accept-Encoding` header value that triggers the `CreateStream()` method.
 
-Code here: FullSample:CustomCompressionProvider snippet1
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet1)]
 
 ### MimeTypes
 The middleware includes a default set of MIME types for compression:
@@ -81,7 +79,7 @@ The middleware includes a default set of MIME types for compression:
 * `text/json`
 You can replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` are not supported.
 
-Code here: FullSample:Startup snippet2 line 33
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=33)]
 
 ### Compression with secure protocol
 Compressed responses over secure protocols can be controlled via the `EnableForHttps` option; however, it's unsafe, not recommended, and disabled by default. For more information, see [CRIME: Information Leakage Attack against SSL/TLS](https://blog.qualys.com/ssllabs/2012/09/14/crime-information-leakage-attack-against-ssltls)
@@ -92,7 +90,7 @@ The position of this middleware relative to other middleware in the pipeline is 
 ## Adding the Vary: Accept-Encoding header
 When compressing responses based on the `Accept-Encoding` header, there are potentially two versions of the response: a compressed version and an uncompressed version. In order to instruct client and proxy caches that both versions exist and should be stored, you should always supply a `Vary` header with an `Accept-Encoding` value. This will result in storage of both versions of the response on client and proxy caches. The sample application accomplishes this with a method; however, the middleware will be upgraded soon to provide this feature ([Basic Middleware #187](https://github.com/aspnet/BasicMiddleware/issues/187)).
 
-Code here: FullSample:Startup snippet1 
+[!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet1)]
 
 ## Disabling or removing IIS Dynamic Compression
 If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your **web.config** file. Either leave the module in place and deactivate it for dymanic compression or remove the module from the application. To merely deactivate the module for dynamic compression, add a `<urlCompression>` element to your **web.config** file.
