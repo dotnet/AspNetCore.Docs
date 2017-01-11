@@ -15,7 +15,6 @@ public class StartupCopy
         services.AddSession(options =>
         {
             options.CookieName = ".AdventureWorks.Session";
-            options.CookieHttpOnly = true;
             options.IdleTimeout = TimeSpan.FromSeconds(10);
         });
     }

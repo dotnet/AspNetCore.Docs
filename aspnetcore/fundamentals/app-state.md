@@ -5,51 +5,32 @@ description: Approaches to preserving application and user (session) state betwe
 keywords: ASP.NET Core, Application state, session state, querystring, post
 ms.author: riande
 manager: wpickett
-ms.date: 1/14/2017
+ms.date: 01/14/2017
 ms.topic: article
 ms.assetid: 18cda488-0769-4cb9-82f6-4c6685f2045d
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/app-state
 ---
-<!-- Review questions
-
-When does session clear the backing store? When the session expires? After you close the browser and the session cookie is deleted - what happens to your session data?
-
-`IdleTimeout` is  independent of the cookie's expiration.
-Is there a way to set the session ID cookie timeout? What happens to the session cookie after the session is expired?
--->
 
 # Session and application state
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](http://ardalis.com)
 
-HTTP is a stateless protocol; the Web server treats each HTTP request as an independent request. The server retains no knowledge of variable values that were used in previous requests. This article discusses various approaches to preserving application and user (session) state between requests. Although preserving state is often derided, judicious use of state can reduce app complexity and increase performance.
+HTTP is a stateless protocol; the Web server treats each HTTP request as an independent request. The server retains no knowledge of variable values that were used in previous requests. This article discusses various approaches to preserving application and user (session) state between requests. 
 
 Application state, unlike session state, applies to all users and sessions.
 
--------------- Notes to remove --------------------
-
-The following sections provide an overview of the most common approaches to saving state in an ASP.NET Core app.
-
-[https://msdn.microsoft.com/en-us/library/z1hkazw7.aspx](https://msdn.microsoft.com/en-us/library/z1hkazw7.aspx)
-
-
-[http://www.binaryintellect.net/articles/b06fd1d7-5f8c-46d3-9f61-9c11a2254cbb.aspx](http://www.binaryintellect.net/articles/b06fd1d7-5f8c-46d3-9f61-9c11a2254cbb.aspx) show storing employee as byte[] and json serialization.
-
-
----------------- end of Notes to remove ----------------------------
-
 ## Session state
 
-Session state is a feature in ASP.NET Core you can enable that allows you to save and store user data while the user browses your web app. Session data is stored in dictionary on the server and persists data across requests from a browser. A session ID is stored on the client in a cookie. The session ID cookie is sent to server with each request, and the server uses the session ID to fetch the session data. The session ID cookie is per browser, you cannot share session across browsers.
+Session state is a feature in ASP.NET Core you can enable that allows you to save and store user data while the user browses your web app. Session data is stored in dictionary on the server and persists data across requests from a browser. A session ID is stored on the client in a cookie. The session ID cookie is sent to server with each request, and the server uses the session ID to fetch the session data. The session ID cookie is per browser, you cannot share session across browsers. Session cookies have no specified timeout, they are deleted when the browser session ends. If a cookie is received for an expired session, then a new session is created using the same Session cookie.
 
-Session is retained by the server for a limited time after the last request. The default session timeout is 20 minutes, but you can configure session time out. The session data is backed by a cache. Session is ideal for storing user state that is specific to a particular session but which doesn’t need to be persisted permanently.
+Session is retained by the server for a limited time after the last request. The default session timeout is 20 minutes, but you can configure session time out. The session data is backed by a cache. Session is ideal for storing user state that is specific to a particular session but which doesn’t need to be persisted permanently. Data is deleted from the backing store either when you call `Session.Clear` or when the session expires in the data store. The server does not know when the browser is closed or the Session cookie is deleted.
 
 > [!WARNING]
 > Sensitive data should never be stored in session. You can’t guarantee the client will close the browser and clear their session cookie (and some browsers keep them alive across windows). Consequently, you can’t assume that a session is restricted to a single user, the next user may continue with the same session.
 
-The in-memory session provider stores session data on the server, which can impact scale out. If you run your web app on a server farm, you’ll need to enable sticky sessions to tie each session to a specific server.  Windows Azure Web Sites defaults to sticky sessions (Application Request Routing or ARR). Sticky session can impact scalability and complicate updating your web app.
+The in-memory session provider stores session data on the server, which can impact scale out. If you run your web app on a server farm, you’ll need to enable sticky sessions to tie each session to a specific server.  Windows Azure Web Sites defaults to sticky sessions (Application Request Routing or ARR). Sticky session can impact scalability and complicate updating your web app. The Redis and SQL Server distributed caches don't require sticky sessions and are the preferred approach to multi-server caching. See [Working with a Distributed Cache](xref:performance/caching/distributed) for more information.
 
 See [Installing and Configuring Session](#installing-and-configuring-session), below for more details.
 
@@ -69,6 +50,8 @@ public void ConfigureServices(IServiceCollection services)
     // using Microsoft.AspNetCore.Mvc.ViewFeatures;
     services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
 }```
+
+The cookie-based TempData provider does not use Session; data is stored in a cookie on the client. The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). The cookie is also chunked, so the single cookie size limit does not apply. See [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs) for more information.
 
 
 ### Query strings
@@ -113,7 +96,7 @@ You can reference Session from `HttpContext` once it is installed and configured
 
 Note: Accessing `Session` before `UseSession` has been called throws`InvalidOperationException: Session has not been configured for this application or request.`
 
-Attempting to create a new `Session` (that is, no session cookie has been created) after you have already begun writing to the `Response` stream throws `InvalidOperationException: The session cannot be established after the response has started`. The exception can be found in the web server log, it may not be displayed in the browser.
+Attempting to create a new `Session` (that is, no session cookie has been created) after you have already begun writing to the `Response` stream throws `InvalidOperationException: The session cannot be established after the response has started`. The exception can be found in the web server log, it will **not** be displayed in the browser.
 
 ### Loading Session asynchronously 
 
@@ -123,7 +106,7 @@ If applications wish to enforce this pattern, they could wrap the [DistributedSe
 
 ### Implementation Details
 
-Session uses a cookie to track and identify requests from different browsers. By default this cookie is named ".AspNet.Session" and uses a path of "/". The cookie default does not specify a domain. The cookie default is not made available to client-side script on the page (because `CookieHttpOnly` defaults to `true`).
+Session uses a cookie to track and identify requests from the same browser. By default this cookie is named ".AspNet.Session" and uses a path of "/". The cookie default does not specify a domain. The cookie default is not made available to client-side script on the page (because `CookieHttpOnly` defaults to `true`).
 
 Session defaults can be overridden by using `SessionOptions`:
 
@@ -184,7 +167,8 @@ Note: Since keys into `Items` are simple strings, if you are developing middlewa
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
-   Commonly caused by not configuring at least one `IDistributedCache` implementation.
+   Commonly caused by not configuring at least one `IDistributedCache` implementation. See [Working with a Distributed Cache](xref:performance/caching/distributed) and [
+In memory caching](xref:performance/caching/memory) for more information
 
 ### Additional Resources
 

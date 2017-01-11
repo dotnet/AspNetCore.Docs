@@ -7,9 +7,9 @@ namespace WebAppSession.Controllers
     #region snippet1
     public class HomeController : Controller
     {
-        const string SessionKeyName = "_SessionKeyName";
-        const string SessionKeyYearsMember = "_SessionKeyYearsMember";
-        const string SessionKeyDate = "_SessionKeyDate";
+        const string SessionKeyName = "_Name";
+        const string SessionKeyYearsMember = "_YearsMember";
+        const string SessionKeyDate = "_Date";
 
         public IActionResult Index()
         {
@@ -30,12 +30,14 @@ namespace WebAppSession.Controllers
         #region snippet2
         public IActionResult SetDate()
         {
+            // Requires you add the Set extension method mentioned in the article.
             HttpContext.Session.Set<DateTime>(SessionKeyDate, DateTime.Now);
             return RedirectToAction("GetDate");
         }
 
         public IActionResult GetDate()
         {
+            // Requires you add the Get extension method mentioned in the article.
             var date = HttpContext.Session.Get<DateTime>(SessionKeyDate);
             var sessionTime = date.TimeOfDay.ToString();
             var currentTime = DateTime.Now.TimeOfDay.ToString();
