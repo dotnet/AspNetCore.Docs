@@ -53,7 +53,7 @@ app.UseBrowserLink();
 
 Usually that code is inside an `if` block that enables Browser Link only in the Development environment, as shown here:
 
-[!code-csharp[Main](./using-browserlink/sample/BrowserlinkSample/src/BrowserlinkSample/Startup.cs?highlight=40,43&range=40-44)]
+[!code-csharp[Main](./using-browserlink/sample/BrowserlinkSample/src/BrowserlinkSample/Startup.cs?highlight=1,4&range=40-44)]
 
 For more information, see [Working with Multiple Environments](../fundamentals/environments.md).
 
