@@ -97,7 +97,7 @@ You can create a custom compression implementation with `ICompressionProvider`. 
 
 Submit a request to the sample application with the `Accept-Encoding: custom` header and observe that the response headers. The `Vary` and `Content-Encoding` headers are present on the response. Note that the response body is not compressed by the sample, as there is no actual compression implementation in the `CustomCompressionProvider` class.
 
-![Fiddler window showing result of a request with the Accept-Encoding header and a value of custom. The Vary and Content-Encoding headers are added to the response.](response-compression/_static/request-custom-encoding.png)
+![Fiddler window showing result of a request with the Accept-Encoding header and a value of custom. The Vary and Content-Encoding headers are added to the response.](response-compression/_static/request-custom-compression.png)
 
 ### MimeTypes
 The middleware specifies a default set of MIME types for compression:
