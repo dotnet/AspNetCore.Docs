@@ -6,7 +6,7 @@
 ## [Middleware](fundamentals/middleware.md)
 ## [Working with Static Files](fundamentals/static-files.md)
 ## [Routing](fundamentals/routing.md)
-## [URL Rewriting](fundamentals/url-rewriting.md)
+## [URL Rewriting Middleware](fundamentals/url-rewriting.md)
 ## [Error Handling](fundamentals/error-handling.md)
 ## [Globalization and localization](fundamentals/localization.md)
 ## [Configuration](fundamentals/configuration.md)
