@@ -18,7 +18,7 @@ By [Luke Latham](https://github.com/GuardRex)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample)
 
-Everyone enjoys interacting with responsive web applications. To make your applications as fast as possible, you should reduce response payload sizes as much as possible. One way to reduce payload size is to compress your applications' responses. When you cannot use response compression technology built into a server hosting an ASP.NET Core application, you can use Response Compression Middleware.
+Everyone enjoys interacting with responsive web applications. To make your applications as fast as possible, you should reduce response payload sizes as much as possible. One way to reduce payload sizes is to compress your applications' responses. When you cannot use response compression technology built into a server hosting an ASP.NET Core application, you can use Response Compression Middleware.
 
 Usually, any response not natively compressed can benefit from response compression. Files and responses not usually natively compressed include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files, which are already compressed.
 
