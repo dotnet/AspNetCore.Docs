@@ -1,8 +1,8 @@
 ---
-title: Default Settings | Microsoft Docs
+title: Key management and lifetime | Microsoft Docs
 author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+description: Describes key management and lifetime.
+keywords: ASP.NET Core, key management, DPAPI, DataProtection
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/configuration/default-settings
 ---
-# Default Settings
+# Key management and lifetime
 
 <a name=data-protection-default-settings></a>
 
