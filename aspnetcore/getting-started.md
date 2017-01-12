@@ -36,7 +36,7 @@ uid: getting-started
     dotnet run
     ```
 
-5.  Browse to `http://localhost:5000`
+5.  Browse to [`http://localhost:5000`](http://localhost:5000)
 
 ## Next steps
 
