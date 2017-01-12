@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/configuration/default-settings
 ---
-# Default Settings
+# Key management and lifetime
 
 <a name=data-protection-default-settings></a>
 
