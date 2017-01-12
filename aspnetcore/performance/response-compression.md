@@ -100,7 +100,7 @@ You can create custom compression implementations with `ICompressionProvider`. T
 
 [!code-csharp[Main](response-compression/sample/FullSample/CustomCompressionProvider.cs?name=snippet1)]
 
-Submit a request to the sample application with the `Accept-Encoding: custom` header and observe the response headers. The `Vary` and `Content-Encoding` headers are present on the response. The response body (not shown) isn't compressed by the sample, as there is no actual compression implementation in the `CustomCompressionProvider` class of the sample. However, the sample shows where you would implement such a compression algorithm.
+Submit a request to the sample application with the `Accept-Encoding: custom` header and observe the response headers. The `Vary` and `Content-Encoding` headers are present on the response. The response body (not shown) isn't compressed by the sample, as there is no compression implementation in the `CustomCompressionProvider` class of the sample. However, the sample shows where you would implement such a compression algorithm.
 
 ![Fiddler window showing result of a request with the Accept-Encoding header and a value of custom. The Vary and Content-Encoding headers are added to the response.](response-compression/_static/request-custom-compression.png)
 
