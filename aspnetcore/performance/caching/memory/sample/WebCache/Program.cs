@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace CachingSample
+namespace WebCache
 {
     public class Program
     {
