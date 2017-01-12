@@ -28,8 +28,7 @@ protected void NewCategory_ItemInserting(object sender, DetailsViewInsertEventAr
     }
     // Set the value of the picture parameter
     e.Values["picture"] = PictureUpload.FileBytes;
-    
-    
+
     // Reference the FileUpload controls
     FileUpload BrochureUpload = 
         (FileUpload)NewCategory.FindControl("BrochureUpload");

@@ -8,8 +8,7 @@
     <div>
     
     The current time is: <%= DateTime.Now.ToString("T") %>
-    
-    
+
     </div>
 </body>
 </html>

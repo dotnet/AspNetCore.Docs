@@ -1,4 +1,5 @@
-<asp:ListView ID="ListView_ProductsMenu" runat="server" DataKeyNames="CategoryID" 	DataSourceID="EDS_Category_Menu">
+<asp:ListView ID="ListView_ProductsMenu" runat="server" DataKeyNames="CategoryID" 
+	DataSourceID="EDS_Category_Menu">
    <EmptyDataTemplate>No Menu Items.</EmptyDataTemplate>
    <ItemSeparatorTemplate></ItemSeparatorTemplate>
    <ItemTemplate>

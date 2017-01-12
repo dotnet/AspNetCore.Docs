@@ -59,7 +59,7 @@ The topic contains the following sections:
 
 - [Data Storage Options (Building Real-World Cloud Apps with Windows Azure)](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-storage-options.md). Chapter of an e-book about developing for the cloud. Introduces NoSQL databases as an alternative that many developers familiar with relational databases tend to overlook. Presents guidelines on what to think about when choosing relational or NoSQL, or choosing a particular platform.
 - [ASP.NET Data Access Options](https://msdn.microsoft.com/en-us/library/ms178359.aspx) (MSDN). An introduction to data access options for relational databases for ASP.NET and guidance on how to choose platforms and access methods that are appropriate for your scenario.
-- [Relational database](http://en.wikipedia.org/wiki/Relational_database). Wikipedia). If you haven't worked with relational databases, see this page for an introduction to relational database terminology and concepts. For an introduction to SQL Server in particular see[Working with SQL Server databases](#sqlserver) later in this topic.
+- [Relational database](http://en.wikipedia.org/wiki/Relational_database). Wikipedia). If you haven't worked with relational databases, see this page for an introduction to relational database terminology and concepts. For an introduction to SQL Server in particular see [Working with SQL Server databases](#sqlserver) later in this topic.
 
 <a id="ef"></a>
 
@@ -78,7 +78,7 @@ The following tutorials offer downloadable sample applications:
 - [Introduction to ASP.NET MVC 5](../mvc/overview/getting-started/introduction/getting-started.md). Covers a narrower range of Entity Framework Code First scenarios but does a more comprehensive job of introducing MVC features.
 - [Model Binding and Web Forms](https://go.microsoft.com/fwlink/?LinkId=286117). Uses Code First in a Web Forms application.
 - [Getting Started with ASP.NET 4.5 Web Forms](../web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/introduction-and-overview.md). An introduction to Web Forms with some coverage of Code First. Uses Model Binding.
-- [MVC Music Store](../mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-1.md). Uses Code First in an e-commerce MVC 3 application that also implements membership and authorization. The MVC version and ASP.NET membership (authentication and authorization) system used here are outdated; for more up-to-date information on ASP.NET membership, see[https://asp.net/identity](https://asp.net/identity).
+- [MVC Music Store](../mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-1.md). Uses Code First in an e-commerce MVC 3 application that also implements membership and authorization. The MVC version and ASP.NET membership (authentication and authorization) system used here are outdated; for more up-to-date information on ASP.NET membership, see [https://asp.net/identity](https://asp.net/identity).
 
 Other resources:
 

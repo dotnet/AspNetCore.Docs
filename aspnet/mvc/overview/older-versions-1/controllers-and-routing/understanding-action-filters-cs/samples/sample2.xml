@@ -28,7 +28,6 @@ namespace MvcApplication1.ActionFilters
                Log("OnResultExecuted", filterContext.RouteData);       
           }
 
-
           private void Log(string methodName, RouteData routeData)
           {
                var controllerName = routeData.Values["controller"];
