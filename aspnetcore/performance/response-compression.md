@@ -52,7 +52,7 @@ Header | Role
 `Accept-Encoding` | Sent by the client to the server to indicate which types of content encoding are acceptable.
 `Content-Type` | Specifies the MIME type of the content. MIME types are specified on the server for encodable content, so this information is used by the server to determine if a response can be compressed. The middleware includes a set of default MIME types that it will encode, but you can replace or add MIME types.
 `Content-Encoding` | Sent from the server to the client to indicate the encoding of the content in the payload.
-`Vary` | When sent by the server with a value of `Accept-Encoding` to clients and proxies, it indicate that they should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses will be cached.
+`Vary` | When sent by the server with a value of `Accept-Encoding` to clients and proxies, it indicates that they should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses will be cached.
 
 ## Response compression sample application
 You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
