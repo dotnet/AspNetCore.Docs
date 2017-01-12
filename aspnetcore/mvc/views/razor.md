@@ -575,10 +575,10 @@ Razor views are compiled at runtime when the view is invoked. If you prefer to c
 2. Add a reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Tools" under the "tools" section.
 3. Add a postpublish script to invoke the view compiler:
 
-```
-  "scripts": {
-     "postpublish": [ "dotnet razor-precompile --configuration %publish:Configuration% --framework %publish:TargetFramework% --output-path %publish:OutputPath% %publish:ProjectPath%" ]
-  }
+   ```
+     "scripts": {
+        "postpublish": [ "dotnet razor-precompile --configuration %publish:Configuration% --framework %publish:TargetFramework% --output-path %publish:OutputPath% %publish:ProjectPath%" ]
+     }
 ```
 
 <a name=razor-customcompilationservice-label></a>
