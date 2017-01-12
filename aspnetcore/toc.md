@@ -83,7 +83,7 @@
 ### [ASP.NET Web API Help Pages using Swagger](tutorials/web-api-help-pages-using-swagger.md)
 ### [Creating backend services for native mobile applications](mobile/native-mobile-backend.md)
 ### [Formatting response data](mvc/models/formatting.md)
-### [🔧 Custom formatters](mvc/advanced/custom-formatters.md)
+#### [🔧 Custom formatters](mvc/advanced/custom-formatters.md)
 ### [🔧 Support resource updates with JSON patch](mvc/web-api/json-patch.md)
 ## [Filters](mvc/controllers/filters.md)
 ## [Areas](mvc/controllers/areas.md)
