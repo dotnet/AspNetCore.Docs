@@ -1,6 +1,6 @@
 # Response compression sample application (DefaultsSample)
 
-This sample illustrates the use of ASP.NET Core Response Compression Middleware to compress application responses with default settings. The default settings for compression use the `GzipCompressionProvider` with fastest compression and the MIME types:
+This sample illustrates the use of ASP.NET Core Response Compression Middleware to compress application responses with default settings. The default settings for compression use the `GzipCompressionProvider` with fastest compression and the default MIME types:
 * text/plain
 * text/css
 * application/javascript
