@@ -11,7 +11,7 @@ This sample illustrates the use of ASP.NET Core Response Compression Middleware 
 * text/json
 
 ## Examples in this sample
-`GzipCompressionProvider`: `text/plain`: **/** - Lorem Ipsum text file response at 2,044 bytes that will compress to 927 bytes
+`GzipCompressionProvider`: `text/plain`: **/** - Lorem Ipsum text response at 2,044 bytes that will compress to 927 bytes
 
 When the request includes the `Accept-Encoding` header, the sample adds a `Vary: Accept-Encoding` header to the response. The `Vary` header instructs caches to maintain multiple copies of the response based on alternative values of `Accept-Encoding`, so both a compressed (gzip) and uncompressed version will be stored in caches for systems that can either accept the compressed or the uncompressed response.
 
