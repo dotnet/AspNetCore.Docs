@@ -2,7 +2,7 @@
 title: Sharing cookies between applications | Microsoft Docs
 author: rick-anderson
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core, ASP.NET, cookies, Interop, cookie sharing
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -84,7 +84,7 @@ To share authentication cookies between your ASP.NET 4.x applications and your A
     });
     ```
     
-3.  Modify the call to UseCookieAuthentication as follows, changing the CookieName to match the name used by the ASP.NET Core cookie authentication middleware, and providing an instance of a DataProtectionProvider that has been initialized to a key storage location.
+3.  Modify the call to UseCookieAuthentication as follows, changing the CookieName to match the name used by the ASP.NET Core cookie authentication middleware, providing an instance of a DataProtectionProvider that has been initialized to a key storage location, and set CookieManager to interop ChunkingCookieManager so the chunking format is compatible.
 
     ```csharp
     app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -97,7 +97,8 @@ To share authentication cookies between your ASP.NET 4.x applications and your A
                new DataProtectorShim(
                    DataProtectionProvider.Create(new DirectoryInfo(@"c:\shared-auth-ticket-keys\"))
                    .CreateProtector("Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware",
-                   "Cookies", "v2")))
+                   "Cookies", "v2"))),
+           CookieManager = new ChunkingCookieManager()
        });
        ```
     The DirectoryInfo has to point to the same storage location that you pointed your ASP.NET Core application to and should be configured using the same settings.
