@@ -18,10 +18,10 @@ By [Luke Latham](https://github.com/GuardRex)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample)
 
-This document introduces response compression and explains how to configure and use ASP.NET Core Response Compression Middleware. A [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample) is used to demonstrate the middleware and response compression concepts.
+This document introduces response compression and explains how to use ASP.NET Core Response Compression Middleware. A [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample) demonstrates the middleware and response compression concepts.
 
 ## Response Compression
-The time it takes to send content over a network, especially the Internet, is often the largest share of the total time it takes to satisfy a client's request. The transmission time frequently exceeds the processing time taken on the client and the server. If you can reduce response payload sizes and send less data to clients, you can usually increase the responsiveness of your application, sometimes dramatically. One way to reduce payload sizes is to compress an application's responses. The most popular servers offer response compression features; but when you cannot use a server-based compression technology, you can use ASP.NET Core Response Compression Middleware to compress responses.
+The time it takes to send content over a network, especially the Internet, is often the largest share of the total time it takes to satisfy a client's request. The transmission time frequently exceeds the processing time taken on the client and the server. If you can reduce response payload sizes and thus send less data to clients, you can usually increase the responsiveness of your application, sometimes dramatically. One way to reduce payload sizes is to compress an application's responses. Servers, such as Windows Server, Apache, and Nginx, offer response compression features; but when you cannot use a server-based compression technology, you can use ASP.NET Core Response Compression Middleware to compress responses.
 
 Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files, which are already compressed. If you attempt to further compress a natively compressed response, any small additional reduction in size and transmission time will likely be overshadowed by the time it took to process the compression.
 
@@ -58,7 +58,7 @@ Header | Role
 You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
 
 ## When to use Response Compression Middleware
-Use Response Compression Middleware when you are unable to use the [Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression) in IIS on Windows Server, the [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html) on Apache Server, [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/), or your application is hosted on [WebListener server](xref:fundamentals/servers/weblistener). The main reason to use the server-based response compression technologies in IIS, Apache, or Nginx is that the performance of the middleware probably won't match that of the server modules. 
+Use Response Compression Middleware when you're unable to use the [Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression) in IIS on Windows Server, the [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html), [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/), or your application is hosted on [WebListener server](xref:fundamentals/servers/weblistener). The main reason to use the server-based response compression technologies in IIS, Apache, or Nginx is that the performance of the middleware probably won't match that of the server modules. 
 
 ## Package
 To include the middleware in your project, add a reference to the `Microsoft.AspNetCore.ResponseCompression` package. The middleware is available for projects that target .NETFramework 4.5.1 or .NETStandard 1.3 or higher.
@@ -117,6 +117,8 @@ The middleware specifies a default set of MIME types for compression:
 
 You can replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` are not supported.
 
+The sample application adds a MIME type for `image/svg+xml` and will compress and serve the ASP.NET Core banner image (**banner.svg**). The new MIME type is added to the default MIME types with the [`.Concat()` (concatenate) method](https://msdn.microsoft.com/en-us/library/bb302894(v=vs.110).aspx).
+
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=7)]
 
 ### Compression with secure protocol
@@ -133,7 +135,7 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 ## Disabling or removing IIS Dynamic Compression
 If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your **web.config** file. Either leave the module in place and deactivate it for dynamic compression or remove the module from the application.
 
-To merely deactivate the module for dynamic compression, add a `<urlCompression>` element to your **web.config** file. There is no need to include an attribute and value for `doStaticCompression="false"`, since the IIS Static Compression Module doesn't work with ASP.NET Core applications in a reverse-proxy setup.
+To merely deactivate dynamic compression module, add a `<urlCompression>` element to your **web.config** file. There is no need to include an attribute and value for `doStaticCompression="false"`, since the IIS Static Compression Module doesn't work with ASP.NET Core applications in a reverse-proxy setup.
 ```xml
 <configuration>
   <system.webServer>
