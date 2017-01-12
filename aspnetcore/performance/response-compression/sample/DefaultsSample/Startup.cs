@@ -29,7 +29,7 @@ namespace ResponseCompressionSample
                 var accept = context.Request.Headers[HeaderNames.AcceptEncoding];
                 if (!StringValues.IsNullOrEmpty(accept))
                 {
-                    context.Response.Headers[HeaderNames.Vary] = HeaderNames.AcceptEncoding;
+                    context.Response.Headers.Append(HeaderNames.Vary, HeaderNames.AcceptEncoding);
                 }
                 context.Response.ContentType = "text/plain";
                 await context.Response.WriteAsync(LoremIpsum.Text);
