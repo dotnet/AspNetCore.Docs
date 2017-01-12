@@ -16,7 +16,7 @@ uid: performance/response-compression
 
 By [Luke Latham](https://github.com/GuardRex)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample)
+[View or download sample code](xref:performance/response-compression/sample/FullSample)
 
 This document introduces response compression and explains how to configure and use ASP.NET Core Response Compression Middleware. A [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample) is used to demonstrate the middleware and response compression concepts.
 
@@ -55,7 +55,7 @@ Header | Role
 `Vary` | When sent by the server with a value of `Accept-Encoding` to clients and proxys, it indicate that they should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses will be cached.
 
 ## Response compression sample application
-You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers. It also shows you how to add a MIME type for compression.
+You can explore the features of the Response Compression Middleware with the [response compression sample application](xref:performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers. It also shows you how to add a MIME type for compression.
 
 ## When to use Response Compression Middleware
 Use Response Compression Middleware when you are unable to use the [Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression) in IIS on Windows Server, the [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html) on Apache Server, [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/), or your application is hosted on [WebListener server](xref:fundamentals/servers/weblistener). The main reason to use the server-based response compression technologies in IIS, Apache, or Nginx is that the performance of the middleware probably won't match that of the server modules. 
@@ -167,6 +167,6 @@ Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getf
 * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding)
 * [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4)
 * [IANA Official Content Coding List](http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry)
-* [RFC 7231 Section 3.1.2.1: Content Coding](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
+* [RFC 7231 Section 3.1.2.1: Content Codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
 * [RFC 7230 Section 4.2.3: Gzip Coding](https://tools.ietf.org/html/rfc7230#section-4.2.3)
 * [GZIP file format specification version 4.3](http://www.ietf.org/rfc/rfc1952.txt)
