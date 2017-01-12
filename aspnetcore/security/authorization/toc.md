@@ -7,4 +7,3 @@
 # [Resource Based Authorization](resourcebased.md)
 # [View Based Authorization](views.md)
 # [Limiting identity by scheme](limitingidentitybyscheme.md)
-# [🔧 Authorization Filters](authorization-filters.md)
