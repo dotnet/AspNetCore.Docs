@@ -2,7 +2,7 @@
 title: Response Compression Middleware | Microsoft Docs
 author: guardrex
 description: An introduction to response compression with instructions on how to use Response Compression Middleware in ASP.NET Core applications.
-keywords: ASP.NET Core, performance, response compression, gzip, middleware
+keywords: ASP.NET Core, performance, response compression, gzip, accept-encoding, middleware
 ms.author: riande
 manager: wpickett
 ms.date: 1/8/2017
@@ -21,13 +21,13 @@ By [Luke Latham](https://github.com/GuardRex)
 This document introduces response compression and explains how to configure and use ASP.NET Core Response Compression Middleware. A [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample) is used to demonstrate the middleware and response compression concepts.
 
 ## Response Compression
-The time it takes to send content over a network, especially the Internet, is often the largest share of the total time it takes to satisfy a client's request. The transmission time frequently exceeds the processing time taken on the client and the server. If you can reduce response payload sizes and send less data to clients, you can usually increase the responsiveness of your application, sometimes dramatically. One way to reduce payload sizes is to compress an application's responses. The most popular servers offer response compression features; but when you cannot use a server-based compression technology, you can use ASP.NET Core Response Compression Middleware to compress application responses.
+The time it takes to send content over a network, especially the Internet, is often the largest share of the total time it takes to satisfy a client's request. The transmission time frequently exceeds the processing time taken on the client and the server. If you can reduce response payload sizes and send less data to clients, you can usually increase the responsiveness of your application, sometimes dramatically. One way to reduce payload sizes is to compress an application's responses. The most popular servers offer response compression features; but when you cannot use a server-based compression technology, you can use ASP.NET Core Response Compression Middleware to compress responses.
 
-Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files, which are already compressed. If you attempt to further compress a natively compressed response, any small additional reduction in size and transmission time savings will likely be overwhelmed by the time it took to process the compression.
+Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include: CSS, JavaScript, HTML, XML, and JSON. You shouldn't compress natively compressed assets, such as PNG files, which are already compressed. If you attempt to further compress a natively compressed response, any small additional reduction in size and transmission time will likely be overshadowed by the time it took to process the compression.
 
-When requesting and returning compressed content, the client must inform the server of its capability to decompress content by sending the `Accept-Encoding` header with the request, and the server must include information in the `Content-Encoding` header on how the compressed response is encoded. Content coding designations are shown below indicating which ones are supported by the middleware.
+When a client can process compressed content, the client must inform the server of its capabilities by sending the `Accept-Encoding` header with the request. When a server sends compressed content, it must include information in the `Content-Encoding` header on how the compressed response is encoded. Content encoding designations are shown below indicating which ones are supported by the middleware.
 
-Content Coding | Supported | Description
+Content Encoding | Supported | Description
 | :---: | :---: | ---
 `br` |  No | Brotli Compressed Data Format
 `compress` | No | UNIX "compress" data format
@@ -37,13 +37,13 @@ custom | Yes | Developer provides the compression implementation. The client mus
 `gzip` | Yes (default) | GZip file format
 `identity` | Yes | "No encoding" identifier: The response must not be encoded.
 `pack200-gzip` | No | Network Transfer Format for Java Archives
-`*` | Yes | Any available content coding not explicitly requested
+`*` | Yes | Any available content encoding not explicitly requested
 
 For more information, see the [IANA Official Content Coding List](http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
 The middleware is capable of reacting to quality value (qvalue, `q`) weighting when sent by the client. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
 
-Most compression algorithms are subject to a tradeoff between the speed that they can compress a response and the effectiveness of the compression. *Effectiveness* in this context means the smallest possible size. The middleware defaults to the fastest compression level, which might not produce the most efficient compression. If the most efficient compression is desired, the middleware can be configured for optimal compression.
+Most compression algorithms are subject to a tradeoff between compression speed and the effectiveness of the compression. *Effectiveness* in this context means the smallest possible size, which is also referred to as the most *optimal* compression. The middleware defaults to the fastest compression level, which might not produce the most efficient compression. If the most efficient compression is desired, the middleware can be configured for optimal compression.
 
 The headers involved in requesting, sending, caching, and receiving compressed content are described below.
 
@@ -52,10 +52,10 @@ Header | Role
 `Accept-Encoding` | Sent by the client to the server to indicate which types of content encoding are acceptable.
 `Content-Type` | Specifies the MIME type of the content. MIME types are specified on the server for encodable content, so this information is used by the server to determine if a response can be compressed. The middleware includes a set of default MIME types that it will encode, but you can replace or add MIME types.
 `Content-Encoding` | Sent from the server to the client to indicate the encoding of the content in the payload.
-`Vary` | When sent by the server with a value of `Accept-Encoding` to clients and proxys, it indicate that they should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses will be cached.
+`Vary` | When sent by the server with a value of `Accept-Encoding` to clients and proxies, it indicate that they should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses will be cached.
 
 ## Response compression sample application
-You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers. It also shows you how to add a MIME type for compression.
+You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
 
 ## When to use Response Compression Middleware
 Use Response Compression Middleware when you are unable to use the [Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression) in IIS on Windows Server, the [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html) on Apache Server, [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/), or your application is hosted on [WebListener server](xref:fundamentals/servers/weblistener). The main reason to use the server-based response compression technologies in IIS, Apache, or Nginx is that the performance of the middleware probably won't match that of the server modules. 
@@ -94,7 +94,7 @@ Compression Level | Description
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=9-12)]
 
 #### Custom Providers
-You can create a custom compression implementation with `ICompressionProvider`. The `encodingName` will reflect the `Accept-Encoding` header value that triggers `CreateStream()` method execution. In the sample, the client would submit a request with the `Accept-Encoding: custom` header. The middleware will use the custom compression implementation and return the response with a `Content-Type: custom` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
+You can create custom compression implementations with `ICompressionProvider`. The `encodingName` will reflect the `Accept-Encoding` header value that triggers `CreateStream()` method execution. Using the sample application, the client would submit a request with the `Accept-Encoding: custom` header. The middleware will use the custom compression implementation and return the response with a `Content-Encoding: custom` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
 
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=6)]
 
@@ -104,7 +104,7 @@ Submit a request to the sample application with the `Accept-Encoding: custom` he
 
 ![Fiddler window showing result of a request with the Accept-Encoding header and a value of custom. The Vary and Content-Encoding headers are added to the response.](response-compression/_static/request-custom-compression.png)
 
-### MimeTypes
+### MIME types
 The middleware specifies a default set of MIME types for compression:
 * `text/plain`
 * `text/css`
@@ -120,18 +120,18 @@ You can replace or append MIME types with the Response Compression Middleware op
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=7)]
 
 ### Compression with secure protocol
-Compressed responses over secure protocols can be controlled via the `EnableForHttps` option; however, enabling compression over a secure protocol is unsafe, not recommended, and disabled by default. For more information, see [CRIME: Information Leakage Attack against SSL/TLS](https://blog.qualys.com/ssllabs/2012/09/14/crime-information-leakage-attack-against-ssltls).
+Compressed responses over secure connections can be controlled with the `EnableForHttps` option; however, enabling compression over a secure connection is unsafe, not recommended, and disabled by default. For more information, see [CRIME: Information Leakage Attack against SSL/TLS](https://blog.qualys.com/ssllabs/2012/09/14/crime-information-leakage-attack-against-ssltls).
 
 ## Middleware ordering
-The position of this middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before this middleware will prevent the Response Compression Middleware from compressing the response. For example, if you place Static File Middleware before the Response Compression Middleware, your static files cannot be compressed. If you place Static File Middleware after this middleware, your static files can be compressed.
+The position of Response Compression Middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before Response Compression Middleware will prevent it from compressing the response. For example, if you place Static File Middleware before the Response Compression Middleware, your static files cannot be compressed. If you place Static File Middleware after Response Compression Middleware, your static files can be compressed.
 
 ## Adding the Vary header
-When compressing responses based on the `Accept-Encoding` header, there are potentially multiple compressed versions of the response and an uncompressed version. In order to instruct client and proxy caches that multiple versions exist and should be stored, you should always supply a `Vary` header with an `Accept-Encoding` value. This will result in storage of multiple versions of the response. The sample application adds a `Vary` header using a method; however, the middleware will be upgraded soon to provide this feature ([Basic Middleware #187](https://github.com/aspnet/BasicMiddleware/issues/187)).
+When compressing responses based on the `Accept-Encoding` header, there are potentially multiple compressed versions of the response and an uncompressed version. In order to instruct client and proxy caches that multiple versions exist and should be stored, you should always supply a `Vary` header with an `Accept-Encoding` value. The sample application adds a `Vary` header using a method; however, the middleware will be upgraded soon to provide this feature ([Basic Middleware #187](https://github.com/aspnet/BasicMiddleware/issues/187)).
 
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet1)]
 
 ## Disabling or removing IIS Dynamic Compression
-If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your **web.config** file. Either leave the module in place and deactivate it for dymanic compression or remove the module from the application.
+If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your **web.config** file. Either leave the module in place and deactivate it for dynamic compression or remove the module from the application.
 
 To merely deactivate the module for dynamic compression, add a `<urlCompression>` element to your **web.config** file. There is no need to include an attribute and value for `doStaticCompression="false"`, since the IIS Static Compression Module doesn't work with ASP.NET Core applications in a reverse-proxy setup.
 ```xml
@@ -141,7 +141,7 @@ To merely deactivate the module for dynamic compression, add a `<urlCompression>
   </system.webServer>
 </configuration>
 ```
-If you opt to remove the module via **web.config**, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the IIS area. Click on the **DynamicCompressionModule** in the list. In the **Action** panel on the right, click **Unlock**. At this point, you will be able to add the following to your **web.config** file to remove the module for the application. Doing this won't affect your use of the module in other applications on the server.
+If you opt to remove the module via **web.config**, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the IIS area. Click on the **DynamicCompressionModule** in the list. In the **Action** panel on the right, click **Unlock**. At this point, you will be able to add the section shown below to your **web.config** file to remove the module from the application. Doing this won't affect your use of the module in other applications on the server.
 ```xml
 <configuration>
   <system.webServer> 
@@ -154,7 +154,7 @@ If you opt to remove the module via **web.config**, you must unlock it first. Cl
 
 ## Troubleshooting
 Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), all of which allow you to explicitly set the `Accept-Encoding` request header and study the response headers, size, and body. The Response Compression Middleware will compress responses that meet the following conditions:
-* The `Accept-Encoding` header is present with a value of `gzip`, `*`, or custom coding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality value (qvalue, `q`) setting of 0 (zero).
+* The `Accept-Encoding` header is present with a value of `gzip`, `*`, or custom encoding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality value (qvalue, `q`) setting of 0 (zero).
 * The MIME type (`Content-Type`) must be set and must match the Response Compression Middleware options MIME types configuration.
 * The request must not include the `Content-Range` header.
 * The request must use *insecure protocol*, unless secure protocol is configured in the Response Compression Middleware options. *Note the danger [described above](#compression-with-secure-protocol) when enabling secure content compression.*
