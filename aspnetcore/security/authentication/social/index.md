@@ -61,6 +61,7 @@ Visual Studio 2017 RC1:
 
 Edit the *properties/launchsettings.json* file. Add an sslPort between 44300 and 44399:
 
+```
 {
   "iisSettings": {
     "windowsAuthentication": false,
@@ -70,7 +71,7 @@ Edit the *properties/launchsettings.json* file. Add an sslPort between 44300 and
       "sslPort": 0
     }
   },
-
+```
 
 * Modify the `services.AddMvc();` code in `Startup.cs` under `ConfigureServices` to reject all requests that are not coming over *https*:
 
