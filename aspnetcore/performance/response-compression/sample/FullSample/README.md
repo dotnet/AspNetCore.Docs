@@ -5,7 +5,7 @@ This sample illustrates the use of ASP.NET Core Response Compression Middleware 
 ## Examples in this sample
 * `GzipCompressionProvider`
   * `text/plain`
-    * **/** - Lorem Ipsum text file response at 2,044 bytes that will compress to 927 bytes
+    * **/** - Lorem Ipsum text response at 2,044 bytes that will compress to 927 bytes
     * **/testfile1kb.txt** - Text file response at 1,033 bytes that will compress to 47 bytes
     * **/trickle** - Response issued as single characters at 1 second intervals 
   * `image/svg+xml`
