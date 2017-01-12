@@ -1,12 +1,13 @@
 {
   "dependencies": {
-    "Microsoft.AspNetCore.Diagnostics": "1.2.0-preview1-22808",
-    "Microsoft.AspNetCore.Mvc": "1.1.0",
-    "Microsoft.AspNetCore.Routing": "1.1.0",
+    "Microsoft.AspNetCore.Mvc": "1.1",
+    "Microsoft.AspNetCore.Routing": "1.1",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.1",
+    "Microsoft.Extensions.Caching.Memory": "1.1.0",
+    "Microsoft.AspNetCore.Session": "1.1.0",
     "Microsoft.NETCore.App": {
-      "version": "1.1.0",
+      "version": "1.1",
       "type": "platform"
     }
   },
@@ -16,7 +17,7 @@
   },
 
   "frameworks": {
-    "netcoreapp1.1": {
+    "netcoreapp1.0": {
     }
   },
 
