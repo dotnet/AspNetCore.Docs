@@ -65,7 +65,7 @@ To include the middleware in your project, add a reference to the `Microsoft.Asp
 
 ## Configuration
 ### Using defaults
-If you plan to implement the middleware with default GZip compression and for default MIME types (listed below), you can add the middleware to your service collection and processing pipeline. No additional configuration is required. 
+If you plan to implement the middleware with default GZip compression and for default MIME types (listed below in the [MIME types section](#mime-types)), you can add the middleware to your service collection and processing pipeline. No additional configuration is required. 
 
 [!code-csharp[Main](response-compression/sample/DefaultsSample/Startup.cs?name=snippet1&highlight=3,8)]
 
