@@ -5,7 +5,7 @@ description: An introduction to response compression with instructions on how to
 keywords: ASP.NET Core, performance, response compression, gzip, accept-encoding, middleware
 ms.author: riande
 manager: wpickett
-ms.date: 1/8/2017
+ms.date: 1/12/2017
 ms.topic: article
 ms.assetid: de621887-c5c9-4ac8-9efd-f5cc0457a134
 ms.technology: aspnet
