@@ -78,6 +78,7 @@ Submit a request to the sample application with the `Accept-Encoding: gzip` head
 ![Fiddler window showing result of a request with the Accept-Encoding header and a value of gzip. The Vary and Content-Encoding headers are added to the response. The response is compressed.](response-compression/_static/request-compressed.png)
 
 ### Providers
+#### GzipCompressionProvider
 Use the `GzipCompressionProvider` to compress responses with GZip. This is the default compression provider if none are specified. 
 
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=5)]
@@ -92,6 +93,7 @@ Compression Level | Description
 
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=9-12)]
 
+#### Custom Providers
 You can create a custom compression implementation with `ICompressionProvider`. The `encodingName` will reflect the `Accept-Encoding` header value that triggers `CreateStream()` method execution. In the sample, the client would submit a request with the `Accept-Encoding: custom` header. The middleware will use the custom compression implementation and return the response with a `Content-Type: custom` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
 
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=6)]
