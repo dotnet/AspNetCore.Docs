@@ -569,7 +569,7 @@ C# Razor keywords need to be double escaped with `@(@C# Razor Keyword)`, for exa
 
 ## View compilation
 
-Razor views are compiled at runtime when the view is invoked. If you prefer to compile your Razor views and deploy them with your app follow these steps:
+Razor views are compiled at runtime when the view is invoked. If you prefer to compile your Razor views and deploy them with your app make these changes to *project.json*:
 
 1. Add a reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Design" under the "dependencies" section.
 2. Add a reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Tools" under the "tools" section.
