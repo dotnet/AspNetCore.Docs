@@ -9,7 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
-msc.legacyurl: /downloads/35-sp1
+msc.legacyurl: 
 ---
 ASP.NET in .NET 3.5 Service Pack 1
 ====================

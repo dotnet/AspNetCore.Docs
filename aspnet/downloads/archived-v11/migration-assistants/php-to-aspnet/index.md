@@ -9,7 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
-msc.legacyurl: /downloads/archived-v11/migration-assistants/php-to-aspnet
+msc.legacyurl: 
 ---
 PHP to ASP.NET 1.x Migration Assistant
 ====================

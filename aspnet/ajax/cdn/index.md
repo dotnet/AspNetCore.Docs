@@ -9,7 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
-msc.legacyurl: /ajax/cdn
+msc.legacyurl: 
 ---
 Microsoft Ajax Content Delivery Network
 ====================

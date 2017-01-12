@@ -9,7 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
-msc.legacyurl: /downloads/starter-kits
+msc.legacyurl: 
 ---
 Starter Kits
 ====================

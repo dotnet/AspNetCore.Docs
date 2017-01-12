@@ -9,7 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
-msc.legacyurl: /downloads/archived-v11
+msc.legacyurl: 
 ---
 Archived Downloads v1.1
 ====================

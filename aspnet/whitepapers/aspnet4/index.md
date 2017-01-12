@@ -9,7 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
-msc.legacyurl: /whitepapers/aspnet4
+msc.legacyurl: 
 ---
 ASP.NET 4 and Visual Studio 2010 Web Development Overview
 ====================

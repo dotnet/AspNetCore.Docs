@@ -9,7 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
-msc.legacyurl: /web-pages/readme
+msc.legacyurl: 
 ---
 WebMatrix Readme
 ====================

@@ -9,7 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
-msc.legacyurl: /downloads/archived-v11/starter-kits
+msc.legacyurl: 
 ---
 ASP.NET 1.1 Starter Kits
 ====================

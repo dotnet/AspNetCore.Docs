@@ -9,7 +9,7 @@ ms.topic: article
 ms.assetid: 
 ms.technology: 
 ms.prod: .net-framework
-msc.legacyurl: /downloads/archived-v11/migration-assistants/asp-to-aspnet
+msc.legacyurl: 
 ---
 ASP to ASP.NET 1.x Migration Assistant
 ====================
