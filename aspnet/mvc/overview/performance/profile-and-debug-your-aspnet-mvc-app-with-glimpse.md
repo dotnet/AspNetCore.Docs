@@ -110,7 +110,7 @@ Remove the comments from the *GlimpseSecurityPolicy.cs*file and change the [IsIn
 
 [!code[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample4.xml?highlight=6)]
 
-> **Security Note:** The rich data provided by Glimpse could expose the security of your app. Microsoft has not performed a security audit of Glimpse for use on productions apps.
+> [!WARNING] Security - The rich data provided by Glimpse could expose the security of your app. Microsoft has not performed a security audit of Glimpse for use on productions apps.
 
 
 For information on adding roles, see my [Deploy a Secure ASP.NET MVC 5 web app with Membership, OAuth, and SQL Database to Azure](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/) tutorial.

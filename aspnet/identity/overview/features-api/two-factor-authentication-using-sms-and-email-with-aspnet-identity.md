@@ -102,7 +102,7 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
 
     [!code[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample1.xml)]
 
-    > [!NOTE] **Security Note:** Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See Jon Atten's [ASP.NET MVC: Keep Private Settings Out of Source Control](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx).
+    > [!WARNING] Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See Jon Atten's [ASP.NET MVC: Keep Private Settings Out of Source Control](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx).
 6. **Implementation of data transfer to SMS provider**  
   
  Configure the     `SmsService`  class in the     *App\_Start\IdentityConfig.cs* file.  

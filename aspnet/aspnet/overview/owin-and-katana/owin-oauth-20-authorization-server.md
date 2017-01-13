@@ -82,7 +82,7 @@ The `UseOAuthAuthorizationServer` extension method is to setup the authorization
     > [!NOTE] If not true, the authorization server will return a default error page with the error details.
 - `AllowInsecureHttp`: True to allow authorize and token requests to arrive on HTTP URI addresses, and to allow incoming `redirect_uri` authorize request parameters to have HTTP URI addresses. 
 
-    > **Security Note:** This is for development only.
+    > [!WARNING] Security - This is for development only.
 - `Provider`: The object provided by the application to process events raised by the Authorization Server middleware. The application may implement the interface fully, or it may create an instance of `OAuthAuthorizationServerProvider` and assign delegates necessary for the OAuth flows this server supports.
 - `AuthorizationCodeProvider`: Produces a single-use authorization code to return to the client application. For the OAuth server to be secure the application **MUST** provide an instance for `AuthorizationCodeProvider` where the token produced by the `OnCreate/OnCreateAsync` event is considered valid for only one call to `OnReceive/OnReceiveAsync`.
 - `RefreshTokenProvider`: Produces a refresh token which may be used to produce a new access token when needed. If not provided the authorization server will not return refresh tokens from the `/Token` endpoint.
@@ -262,7 +262,7 @@ Here is the sample code of the `HomeController` of the client.
 
 [!code[Main](owin-oauth-20-authorization-server/samples/sample17.xml?highlight=4-6)]
 
-> [!NOTE] **Security Note:** Never disable SSL in a production app. Your login credentials are now being sent in clear-text across the wire. The code above is just for local sample debugging and exploration.
+> [!WARNING] Security - Never disable SSL in a production app. Your login credentials are now being sent in clear-text across the wire. The code above is just for local sample debugging and exploration.
 
 
 ### Implicit Grant Client

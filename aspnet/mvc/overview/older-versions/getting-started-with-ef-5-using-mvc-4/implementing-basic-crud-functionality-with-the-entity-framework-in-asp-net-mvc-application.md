@@ -75,7 +75,7 @@ The scaffolded code for the Students `Index` page left out the `Enrollments` pro
 
     > [!NOTE] 
     > 
-    > **Security Note:** The `Bind` attribute is added to protect against *over-posting*. For example, suppose the `Student` entity includes a `Secret` property that you don't want this web page to update.
+    > [!WARNING] Security - The `Bind` attribute is added to protect against *over-posting*. For example, suppose the `Student` entity includes a `Secret` property that you don't want this web page to update.
     > 
     > [!code[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample5.xml?highlight=7)]
     > 

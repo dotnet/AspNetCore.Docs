@@ -287,7 +287,7 @@ These instructions assume you have already downloaded and run the Fix It solutio
     [!code[Main](the-fix-it-sample-application/samples/sample23.xml)]
 8. To allow Windows PowerShell to run these scripts, use the [Unblock-File](https://go.microsoft.com/fwlink/p/?linkid=294021) cmdlet. (The scripts are blocked because they were downloaded from the Internet.)
 
-    **Security Note:** Before running `Unblock-File` on any script or executable file, open the file in Notepad, examine the commands, and verify that they do not contain any malicious code.
+    > [!WARNING] Security - Before running `Unblock-File` on any script or executable file, open the file in Notepad, examine the commands, and verify that they do not contain any malicious code.
 
     For example, the following command runs the `Unblock-File` cmdlet on all scripts in the current directory.
 

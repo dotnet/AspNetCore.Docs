@@ -46,7 +46,7 @@ The markup in the external file (*AppSettingsSecrets.config* in this sample), is
 
 The ASP.NET runtime merges the contents of the external file with the markup in &lt;appSettings&gt; element. The runtime ignores the file attribute if the specified file cannot be found.
 
-> **Security Warning:** Do not add your *secrets .config*file to your project or check it into source control. By default, Visual Studio sets the `Build Action` to `Content`, which means the file is deployed. For more information see [Why don't all of the files in my project folder get deployed?](https://msdn.microsoft.com/en-us/library/ee942158(v=vs.110).aspx#can_i_exclude_specific_files_or_folders_from_deployment) Although you can use any extension for the *secrets .config*file, it's best to keep it *.config*, as config files are not served by IIS. Notice also that the *AppSettingsSecrets.config* file is two directory levels up from the *web.config*file, so it's completely out of the solution directory. By moving the file out of the solution directory, &quot;git add \*&quot; won't add it to your repository.
+> [!WARNING] Security - Do not add your *secrets .config*file to your project or check it into source control. By default, Visual Studio sets the `Build Action` to `Content`, which means the file is deployed. For more information see [Why don't all of the files in my project folder get deployed?](https://msdn.microsoft.com/en-us/library/ee942158(v=vs.110).aspx#can_i_exclude_specific_files_or_folders_from_deployment) Although you can use any extension for the *secrets .config*file, it's best to keep it *.config*, as config files are not served by IIS. Notice also that the *AppSettingsSecrets.config* file is two directory levels up from the *web.config*file, so it's completely out of the solution directory. By moving the file out of the solution directory, &quot;git add \*&quot; won't add it to your repository.
 
 
 <a id="con"></a>
@@ -61,7 +61,7 @@ You can use the `configSource` attribute to replace the entire `<connectionStrin
 > [!NOTE] If you use the `configSource` attribute as shown above to move your connection strings to an external file, and have Visual Studio create a new web site, it won't be able to detect you are using a database, and you won't get the option of configuring the database when you publish to Azure from Visual Studio. If you are using the `configSource` attribute, you can use PowerShell to create and deploy your web site and database, or you can create the web site and the database in the portal before you publish. The [New-AzureWebsitewithDB.ps1](https://gallery.technet.microsoft.com/scriptcenter/Ultimate-Create-Web-SQL-DB-9e0fdfd3) script will create a new web site and database.
 
 
-> **Security Warning:** Unlike the *AppSettingsSecrets.config* file, the external connection strings file must be in the same directory as the root *web.config* file, so you'll have to take precautions to ensure you don't check it into your source repository.
+> [!WARNING] Security - Unlike the *AppSettingsSecrets.config* file, the external connection strings file must be in the same directory as the root *web.config* file, so you'll have to take precautions to ensure you don't check it into your source repository.
 
 
 > **Security Warning on secrets file:** A best practice is to not use production secrets in test and development. Using production passwords in test or development leaks those secrets.
@@ -93,7 +93,7 @@ In the script above, ‘Name' is the name of the secret key, such as ‘&quot;FB
 
 [!code[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample7.xml)]
 
-> **Security Warning:** Don't include passwords or other secrets in the PowerShell script, doing so defeats the purpose of using a PowerShell script to deploy sensitive data. The [Get-Credential](https://technet.microsoft.com/en-us/library/hh849815.aspx) cmdlet provides a secure mechanism to obtain a password. Using a UI prompt can prevent leaking a password.
+> [!WARNING] Security - Don't include passwords or other secrets in the PowerShell script, doing so defeats the purpose of using a PowerShell script to deploy sensitive data. The [Get-Credential](https://technet.microsoft.com/en-us/library/hh849815.aspx) cmdlet provides a secure mechanism to obtain a password. Using a UI prompt can prevent leaking a password.
 
 
 ### Deploying DB connection strings

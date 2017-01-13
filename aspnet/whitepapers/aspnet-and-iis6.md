@@ -163,7 +163,7 @@ The c:\inetpub\wwwroot\ directory is a special directory in that the special IIS
 
 IIS 6.0 now has write permission on this folder. To grant write permissions on other folders, follow these steps - note, you may need to add the IIS\_WPG group if it does not already exist.
 
-**Caution:** Granting write permission to IIS\_WPG will allow any ASP.NET application to write to this directory.
+> [!CAUTION] Granting write permission to IIS\_WPG will allow any ASP.NET application to write to this directory.
 
 ## Supporting integrated authentication with SQL Server
 

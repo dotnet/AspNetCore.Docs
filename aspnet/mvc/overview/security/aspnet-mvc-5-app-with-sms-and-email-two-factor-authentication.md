@@ -86,7 +86,7 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
 
     [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample1.xml?highlight=8-10)]
 
-    > [!NOTE] **Security Note:** Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure](../../../identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md).
+    > [!WARNING] Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure](../../../identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md).
 6. **Implementation of data transfer to SMS provider**  
   
  Configure the     `SmsService`  class in the     *App\_Start\IdentityConfig.cs* file.  
