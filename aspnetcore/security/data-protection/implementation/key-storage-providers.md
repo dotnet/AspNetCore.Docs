@@ -49,7 +49,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-See also the [Azure sample](https://github.com/aspnet/DataProtection/blob/rel/1.1.0/samples/AzureBlob/Program.cs).
+See also the [Azure test code](https://github.com/aspnet/DataProtection/blob/rel/1.1.0/samples/AzureBlob/Program.cs).
 
 To configure on Redis, call one of the [PersistKeysToRedis](https://github.com/aspnet/DataProtection/blob/rel/1.1.0/src/Microsoft.AspNetCore.DataProtection.Redis/RedisDataProtectionBuilderExtensions.cs) overloads as shown below.
 
@@ -65,11 +65,11 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-See also the [Redis test](https://github.com/aspnet/DataProtection/blob/rel/1.1.0/samples/Redis/Program.cs).
+See also the [Redis test code](https://github.com/aspnet/DataProtection/blob/rel/1.1.0/samples/Redis/Program.cs).
 
 ## Registry
 
-Sometimes the app might not have write access to the file system. Consider a scenario where an app is running as a virtual service account (such as w3wp.exe's app pool identity). In these cases, the administrator may have provisioned a registry key that is appropriate ACLed for the service account identity. Call the [PersistKeysToRegistry](https://github.com/aspnet/DataProtection/blob/rel/1.1.0/src/Microsoft.AspNetCore.DataProtection/DataProtectionBuilderExtensions.cs)configuration routine as shown below. Provide a `RegistryKey` pointing to the location where cryptographic keys/values should be stored.
+Sometimes the app might not have write access to the file system. Consider a scenario where an app is running as a virtual service account (such as w3wp.exe's app pool identity). In these cases, the administrator may have provisioned a registry key that is appropriate ACLed for the service account identity. Call the [PersistKeysToRegistry](https://github.com/aspnet/DataProtection/blob/rel/1.1.0/src/Microsoft.AspNetCore.DataProtection/DataProtectionBuilderExtensions.cs) configuration routine as shown below. Provide a `RegistryKey` pointing to the location where cryptographic keys/values should be stored.
 
 ```csharp
    sc.AddDataProtection()
