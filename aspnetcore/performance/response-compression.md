@@ -122,10 +122,32 @@ The sample application adds a MIME type for `image/svg+xml` and will compress an
 [!code-csharp[Main](response-compression/sample/FullSample/Startup.cs?name=snippet2&highlight=7)]
 
 ### Compression with secure protocol
-Compressed responses over secure connections can be controlled with the `EnableForHttps` option; however, enabling compression over a secure connection is unsafe, not recommended, and disabled by default. For more information, see [CRIME: Information Leakage Attack against SSL/TLS](https://blog.qualys.com/ssllabs/2012/09/14/crime-information-leakage-attack-against-ssltls).
+Compressed responses over secure connections can be controlled with the `EnableForHttps` option, which is disabled by default. Using compression with dynamically generated pages can lead to security problems such as the [CRIME](https://en.wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://en.wikipedia.org/wiki/BREACH_(security_exploit)) attacks.
 
 ## Middleware ordering
-The position of Response Compression Middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before Response Compression Middleware will prevent it from compressing the response. For example, if you place Static File Middleware before the Response Compression Middleware, your static files cannot be compressed. If you place Static File Middleware after Response Compression Middleware, your static files can be compressed.
+The position of Response Compression Middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before Response Compression Middleware will prevent it from compressing the response.
+
+For example, if you place Static File Middleware before the Response Compression Middleware, your static files cannot be compressed. The Static File Middleware will fully handle requests for static files, returning them to clients before the Response Compression Middleware can execute.
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles();
+    app.UseResponseCompression();
+    app.UseMvcWithDefaultRoute();
+}
+```
+
+If you intend to use Response Compression Middleware to compress your static files, position the Response Compression Middleware earlier in the request processing pipeline. The following example demonstrates the middleware arrangement that would result in compression of your static files.
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    app.UseResponseCompression();
+    app.UseStaticFiles();
+    app.UseMvcWithDefaultRoute();
+}
+```
 
 ## Adding the Vary header
 When compressing responses based on the `Accept-Encoding` header, there are potentially multiple compressed versions of the response and an uncompressed version. In order to instruct client and proxy caches that multiple versions exist and should be stored, you should always supply a `Vary` header with an `Accept-Encoding` value. The sample application adds a `Vary` header using a method; however, the middleware will be upgraded soon to provide this feature ([Basic Middleware #187](https://github.com/aspnet/BasicMiddleware/issues/187)).
