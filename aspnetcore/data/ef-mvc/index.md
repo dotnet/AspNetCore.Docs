@@ -14,6 +14,8 @@ uid: data/ef-mvc/index
 ---
 # Getting started with ASP.NET Core and Entity Framework Core using Visual Studio
 
+This series of tutorials teaches you how to create ASP.NET Core MVC web applications that use Entity Framework Core for data access. The tutorials require Visual Studio 2015.
+
 1. [Getting started](intro.md)
 2. [Create, Read, Update, and Delete operations](crud.md)
 3. [Sorting, filtering, paging, and grouping](sort-filter-page.md)
