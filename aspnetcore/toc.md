@@ -15,7 +15,7 @@
 ## [Dependency Injection](fundamentals/dependency-injection.md)
 ## [Working with Multiple Environments](fundamentals/environments.md)
 ## [Hosting](fundamentals/hosting.md)
-## [Managing Application State](fundamentals/app-state.md)
+## [Session and application state](fundamentals/app-state.md)
 ## [Servers](fundamentals/servers/index.md)
 ### [Kestrel](fundamentals/servers/kestrel.md)
 ### [ASP.NET Core Module](fundamentals/servers/aspnet-core-module.md)

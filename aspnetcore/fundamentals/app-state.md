@@ -42,19 +42,19 @@ ASP.NET Core MVC exposes the [TempData](https://docs.microsoft.com/en-us/aspnet/
 
 To enable the  Cookie-based TempData provider, register the `CookieTempDataProvider` service in `ConfigureServices`:
 
-```c#
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddMvc();
     // Add CookieTempDataProvider after AddMvc and include ViewFeatures.
     // using Microsoft.AspNetCore.Mvc.ViewFeatures;
     services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
-}```
+}
+```
 
 The cookie-based TempData provider does not use Session; data is stored in a cookie on the client. The cookie data is encoded with the [Base64UrlTextEncoder](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.authentication.base64urltextencoder). The cookie is encrypted and chunked, so the single cookie size limit does not apply. See [CookieTempDataProvider](https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.ViewFeatures/ViewFeatures/CookieTempDataProvider.cs) for more information.
 
-<!-- The cookie data is not compressed; compression can compromise the encryption. see CRIME
--->
+The cookie data is not compressed. Using compression with encryption can lead to security problems such as the [CRIME](https://en.wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://en.wikipedia.org/wiki/BREACH_(security_exploit)) attacks.
 
 ### Query strings
 
@@ -92,7 +92,7 @@ The `Microsoft.AspNetCore.Session` package provides middleware for managing sess
 
 The following code shows how to set up the in-memory session provider:
 
-[!code-csharp[Main](app-state/sample/src/WebAppSession/Startup.cs?highlight=11-22,27)]
+[!code-csharp[Main](app-state/sample/src/WebAppSession/Startup.cs?highlight=11-19,24)]
 
 You can reference Session from `HttpContext` once it is installed and configured.
 
@@ -112,7 +112,7 @@ Session uses a cookie to track and identify requests from the same browser. By d
 
 Session defaults can be overridden by using `SessionOptions`:
 
-[!code-csharp[Main](app-state/sample/src/WebAppSession/StartupCopy.cs?name=snippet1&highlight=7-16)]
+[!code-csharp[Main](app-state/sample/src/WebAppSession/StartupCopy.cs?name=snippet1&highlight=8-12)]
 
 The `IdleTimeout` is used by the server to determine how long a session can be idle before its contents are abandoned. `IdleTimeout` is independent of the cookie expiration. Each request that passes through the Session middleware (read from or written to) will reset the timeout.
 
@@ -141,25 +141,23 @@ The `HttpContext` abstraction provides support for a simple dictionary collectio
 
 In the sample below, [Middleware](middleware.md) adds `isVerified` to the `Items` collection:
 
-```c#
-
-   app.Use(async (context, next) =>
-   {
-       // perform some verification
-       context.Items["isVerified"] = true;
-       await next.Invoke();
-   });
-   ```
+```csharp
+app.Use(async (context, next) =>
+{
+    // perform some verification
+    context.Items["isVerified"] = true;
+    await next.Invoke();
+});
+```
 
 Later in the pipeline, another middleware could access it:
 
-```c#
-
-   app.Run(async (context) =>
-   {
-       await context.Response.WriteAsync("Verified request? " + context.Items["isVerified"]);
-   });
-   ```
+```csharp
+app.Run(async (context) =>
+{
+    await context.Response.WriteAsync("Verified request? " + context.Items["isVerified"]);
+});
+```
 
 Note: Since keys into `Items` are simple strings, if you are developing middleware that needs to work across many applications, you may wish to prefix your keys with a unique identifier to avoid key collisions (for example, "MyComponent.isVerified" instead of "isVerified").
 
