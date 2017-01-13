@@ -92,7 +92,7 @@ The `Microsoft.AspNetCore.Session` package provides middleware for managing sess
 
 The following code shows how to set up the in-memory session provider:
 
-[!code-csharp[Main](app-state/sample/src/WebAppSession/Startup.cs?highlight=7-20,24)]
+[!code-csharp[Main](app-state/sample/src/WebAppSession/Startup.cs?highlight=11-19,24)]
 
 You can reference Session from `HttpContext` once it is installed and configured.
 
