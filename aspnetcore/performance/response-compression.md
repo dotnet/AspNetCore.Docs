@@ -50,11 +50,11 @@ The headers involved in requesting, sending, caching, and receiving compressed c
 Header | Role
 --- | ---
 `Accept-Encoding` | Sent by the client to the server to indicate which types of content encoding are acceptable.
-`Content-Type` | Specifies the MIME type of the content. MIME types are specified on the server for encodable content, so this information is used by the server to determine if a response can be compressed. The middleware includes a set of [default MIME types](#mime-types) that it will encode, but you can replace or add MIME types.
 `Content-Encoding` | Sent from the server to the client to indicate the encoding of the content in the payload.
-`Vary` | When sent by the server with a value of `Accept-Encoding` to clients and proxies, it indicates that they should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses will be cached separately.
-`Content-MD5` | When compression occurs, the `Content-MD5` header is removed, since the body content has changed and the hash is no longer valid.
 `Content-Length` | When compression occurs, the the `Content-Length` header is removed, since the body content changes when the response is compressed.
+`Content-MD5` | When compression occurs, the `Content-MD5` header is removed, since the body content has changed and the hash is no longer valid.
+`Content-Type` | Specifies the MIME type of the content. MIME types are specified on the server for encodable content, so this information is used by the server to determine if a response can be compressed. The middleware includes a set of [default MIME types](#mime-types) that it will encode, but you can replace or add MIME types.
+`Vary` | When sent by the server with a value of `Accept-Encoding` to clients and proxies, it indicates that they should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses will be cached separately.
 
 ## When to use Response Compression Middleware
 Use Response Compression Middleware when you're unable to use the [Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression) in IIS on Windows Server, the [Apache mod_deflate module](http://httpd.apache.org/docs/current/mod/mod_deflate.html), [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/), or your application is hosted on [WebListener server](xref:fundamentals/servers/weblistener). The main reason to use the server-based response compression technologies in IIS, Apache, or Nginx is that the performance of the middleware probably won't match that of the server modules. 
