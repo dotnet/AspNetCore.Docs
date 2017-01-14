@@ -147,7 +147,7 @@ RequestLoggerMiddleware.cs
 [!code-csharp[Main](../fundamentals/middleware/sample/src/MiddlewareSample/RequestLoggerMiddleware.cs?highlight=12,18)]
 
 
-The middleware follows the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/) and exposes its dependencies in its constructor. Middleware is constructed once per *application lifetime* - if you need to share services with middleware within a request, see *Per-request dependencies* below. Middleware can take advantage of the `UseMiddleware<T>` extension to inject services directly into their constructors, as shown in the example below. Dependency injected services are automatically filled, and the extension takes a `params` array of arguments to be used for non-injected parameters.
+Middleware should follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*. See *Per-request dependencies* below if you need to share services with middleware within a request. Use the `UseMiddleware<T>` extension to inject services directly into their constructors (shown in the example below).
 
 RequestLoggerExtensions.cs
 
@@ -168,7 +168,7 @@ Testing the middleware (by setting the `Hosting:Environment` environment variabl
 
 ### Per-request dependencies
 
-Because middleware are constructed at app startup, not per-request, *transient* and *scoped* lifetime services used by middleware constructors will not be shared with other dependency-injected types during each request. If you need to share a *scoped* service between your middleware and other types, you should inject add these services to the `Invoke` method's signature. The `Invoke` method can accept additional parameters that will be populated by dependency injection. For example:
+Because middleware are constructed at app startup, not per-request, *scoped* lifetime services used by middleware constructors will not be shared with other dependency-injected types during each request. If you need to share a *scoped* service between your middleware and other types, you should add these services to the `Invoke` method's signature. The `Invoke` method can accept additional parameters that will be populated by dependency injection. For example:
 
 ```c#
 public class MyMiddleware
