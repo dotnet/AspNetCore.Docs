@@ -41,3 +41,5 @@ ms.prod: aspnet-core
     *   [Testing Controller Logic](controllers/testing.md)
     *   [Areas](controllers/areas.md)
     *   [🔧 Working with the Application Model](controllers/application-model.md)
+*   [Extensibility](extensibility/index.md)
+    *   [Application Parts](extensibility/app-parts.md)
