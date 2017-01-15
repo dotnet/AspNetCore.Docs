@@ -40,15 +40,38 @@ namespace KeyVaultConfigProviderSample
                     <head>
                         <meta charset=""utf-8"" />
                         <title>Key Vault Configuration Provider Sample</title>
+                        <style>table{{border-collapse:collapse}}th,td{{padding:8px}}tr:nth-child(even){{background-color:#f2f2f2}}th{{background-color:#4CAF50;color:white}}</style>
                     </head>
-                    <body>
+                    <body style=""font-family:sans-serif"">
                         <h1>Key Vault Configuration Provider Sample</h1>
-                        <h2>Secrets &amp; Values</h2>
-                        <ul>
-                            <li>MySecret: {Configuration["MySecret"]}</li>
-                            <li>Section:MySecret using ':' (colon) notation: {Configuration["Section:MySecret"]}</li>
-                            <li>Section:MySecret using GetSection(): {Configuration.GetSection("Section")["MySecret"]}</li>
-                        </ul>
+                        <div style=""overflow-x:auto"">
+                            <table>
+                                <tr>
+                                    <th>Secret</th>
+                                    <th>Key Vault Name</th>
+                                    <th>Obtained from Key Vault</th>
+                                    <th>Value</th> 
+                                </tr>
+                                <tr>
+                                    <td>MySecret</td>
+                                    <td><b>MySecret</b></td>
+                                    <td><code>Configuration[""MySecret""]</code></td>
+                                    <td>{Configuration["MySecret"]}</td> 
+                                </tr>
+                                <tr>
+                                    <td>Section:MySecret</td>
+                                    <td><b>Section--MySecret</b></td>
+                                    <td><code>Configuration[""Section:MySecret""]</code></td>
+                                    <td>{Configuration["Section:MySecret"]}</td> 
+                                </tr>
+                                <tr>
+                                    <td>Section:MySecret</td>
+                                    <td><b>Section--MySecret</b></td>
+                                    <td><code>Configuration.GetSection(""Section"")[""MySecret""]</code></td>
+                                    <td>{Configuration.GetSection("Section")["MySecret"]}</td> 
+                                </tr>
+                            </table>
+                        </div>
                     </body>
                     </html>";
 
