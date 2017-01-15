@@ -33,15 +33,51 @@ To include the configuration provider in your project, add a reference to the `M
 ## Application configuration
 You can experience the use of the Azure Key Vault Configuration Provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you have established a key vault and created a pair of secrets in the vault, the sample will securely load the secret values into its configuration and display them in a webpage.
 
-The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()` extension. The extension uses three configuration values loaded from the `appsettings.json` file in the sample application: `Vault`, `ClientId`, and `ClientSecret`.
+The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()` extension. The extension uses three configuration values loaded from the *appsettings.json* file in the sample application: `Vault`, `ClientId`, and `ClientSecret`.
 
 [!code-json[Main](key-vault-configuration/sample/appsettings.json)]
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1)]
 
-Use of `EnvironmentSecretManager`
+`AddAzureKeyVault()` contains an overload that accepts an implementation of `IKeyVaultSecretManager`. For example, the interface could be implemented to read configuration values by environment, where you would prefix the environment names to the configuration names. The following example would distinguish `Development-ConnectionString` from `Production-ConnectionString` by merely loading the value using `ConnectionString` from configuration.
 
-Use of `KeyVaultClient`
+```csharp
+public class EnvironmentSecretManager : IKeyVaultSecretManager
+{
+    private readonly string _environmentPrefix;
+
+    public EnvironmentSecretManager(string environment)
+    {
+        _environmentPrefix = environment + "-";
+    }
+
+    public bool Load(SecretItem secret)
+    {
+        return secret.Identifier.Name.StartsWith(_environmentPrefix);
+    }
+
+    public string GetKey(SecretBundle secret)
+    {
+        return secret.SecretIdentifier.Name.Substring(_environmentPrefix.Length);
+    }
+}
+```
+
+```csharp
+builder.AddAzureKeyVault(
+    $"https://{config["Vault"]}.vault.azure.net/",
+    config["ClientId"],
+    config["ClientSecret"],
+    new EnvironmentSecretManager(config["ASPNETCORE_ENVIRONMENT"]));
+    
+Configuration = builder.Build();
+
+// Configuration["ConnectionString"] will be loaded from Development-ConnectionString
+// in the vault if the environment is Development and Production-ConnectionString in
+// the vault if the environment is Production.
+```
+
+You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`, which provides maximum flexibility for how the provider acts.
 
 ## Creating and loading secrets
 * Create a Key Vault
