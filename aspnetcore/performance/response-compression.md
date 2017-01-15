@@ -16,7 +16,7 @@ uid: performance/response-compression
 
 By [Luke Latham](https://github.com/GuardRex)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample)
 
 This document introduces response compression and explains how to use ASP.NET Core Response Compression Middleware. A response compression sample application demonstrates the middleware and response compression concepts.
 
@@ -63,7 +63,7 @@ Use Response Compression Middleware when you're unable to use the [Dynamic Compr
 To include the middleware in your project, add a reference to the `Microsoft.AspNetCore.ResponseCompression` package. The middleware is available for projects that target .NETFramework 4.5.1 or .NETStandard 1.3 or higher.
 
 ## Configuration
-You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample/FullSample). The sample illustrates the compression of application responses using GZip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
+You can explore the features of the Response Compression Middleware with the [response compression sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample). The sample illustrates the compression of application responses using GZip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
 
 ### Using defaults
 If you plan to implement the middleware with default GZip compression and for default MIME types, you can add the middleware to your service collection and processing pipeline. No additional configuration is required. 
