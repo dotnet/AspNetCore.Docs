@@ -1,11 +1,11 @@
 ---
 title: Azure Key Vault Configuration Provider | Microsoft Docs
 author: guardrex
-description: How to configure an application using name-value pairs read at runtime from Azure Key Vault.
+description: How to use the Azure Key Vault Configuration Provider to configure an application using name-value pairs loaded at runtime.
 keywords: ASP.NET Core, configuration, Azure Key Vault
 ms.author: riande
 manager: wpickett
-ms.date: 1/14/2017
+ms.date: 1/15/2017
 ms.topic: article
 ms.assetid: 0292bdae-b3ed-4637-bd67-19b9bb8b65cb
 ms.prod: aspnet-core
@@ -17,19 +17,31 @@ By [Luke Latham](https://github.com/GuardRex) and [Andrew Stanton-Nurse](https:/
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample)
 
-This document provides details on ...
-* Key Vault is a way to securely store secrets in Azure
-* AzureKeyVault configuration provider adds support for reading configuration values out of Azure Key Vault
+This document provides details on how to use the Azure Key Vault Configuration Provider to configure an application using values loaded from Key Vault Secrets at runtime. [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) is a cloud-based service that helps you safeguard cryptographic keys and secrets used by applications and services.
+
+## When to use the Azure Key Vault Configuration Provider
+Use the Azure Key Vault Configuration Provider when your application is accessible to Azure services and requires encrypted values for configuration. Common scenarios for using encrypted storage of configuration data with Key Vault include:
+* Strict control over sensitive configuration data
+* When monitoring and logging of configuration data use is required
+* To limited the exposure to security threats that compromise application services
+* To reduce latency, provide automatic scaling, and provide redundancy for the storage and access of configuration data
+* Requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's)
 
 ## Package
-`Microsoft.Extensions.Configuration.AzureKeyVault`
+To include the configuration provider in your project, add a reference to the `Microsoft.Extensions.Configuration.AzureKeyVault` package. The provider is available for projects that target .NETFramework 4.5.1 or .NETStandard 1.5 or higher.
 
 ## Application configuration
-Note sample here.
-* `AddAzureKeyVault()`
-* Basic configuration (simple implementation using `appsettings.json` file)
-* Use of `EnvironmentSecretManager` (described but not in sample)
-* Use of `KeyVaultClient` (described but not in sample)
+You can experience the use of the Azure Key Vault Configuration Provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you have established a key vault and created a pair of secrets in the vault, the sample will securely load the secret values into its configuration and display them in a webpage.
+
+The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()` extension. The extension uses three configuration values loaded from the `appsettings.json` file in the sample application: `Vault`, `ClientId`, and `ClientSecret`.
+
+[!code-json[Main](key-vault-configuration/sample/appsettings.json)]
+
+[!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1)]
+
+Use of `EnvironmentSecretManager`
+
+Use of `KeyVaultClient`
 
 ## Creating and loading secrets
 * Create a Key Vault
@@ -68,3 +80,4 @@ Disabled secrets throw `KeyVaultClientException: Operation get is not allowed on
 * [Configuration](xref:fundamentals/configuration)
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/en-us/services/key-vault/)
 * [Microsoft Azure: Key Vault Documentation](https://docs.microsoft.com/en-us/azure/key-vault/)
+* [How to generate and transfer HSM-protected keys for Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-hsm-protected-keys)
