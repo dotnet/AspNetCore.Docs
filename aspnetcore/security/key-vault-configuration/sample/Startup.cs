@@ -11,6 +11,7 @@ namespace KeyVaultConfigProviderSample
 {
     public class Startup
     {
+        #region snippet1
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -27,6 +28,7 @@ namespace KeyVaultConfigProviderSample
 
             Configuration = builder.Build();
         }
+        #endregion
 
         public IConfigurationRoot Configuration { get; set; }
 
