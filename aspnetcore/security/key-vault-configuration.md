@@ -79,7 +79,7 @@ Configuration = builder.Build();
 
 You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`, which provides maximum flexibility for how the provider acts.
 
-## Creating key vault secrets and loading/reading configuration
+## Creating key vault secrets and loading configuration values
 1. Create a key vault by following the guidance at [Get started with Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/). Using the guidance, you will perform the following:
   * Create a key vault. The access policy used to connect to the key vault must have `List` and `Get` permissions to secrets.
   * Add "Manual" secrets to the key vault using Azure PowerShell, API, or the Azure Portal.
@@ -109,9 +109,12 @@ KeyVaultClientException: Operation get is not allowed on a disabled secret durin
 ```
 
 ## Troubleshooting
-* Checking values from Azure (AD & Key Vault)
-* Confirm `Get` and `List` permissions for the access policy
-* Using PS to make sure the app has access to key vault if `Access Denied` is the error
+When the application fails to load configuration from Azure, the logged error message will indicate the problem. The following general conditions can prevent configuration from loading:
+* The application has not been configured correctly in Azure Active Directory.
+* The application has not been authorized to access the key vault.
+* The access policy doesn't include `Get` and `List` permissions.
+* The configuration data (name-value pair) is mis-named or missing from the key vault.
+* The configuration data (name) is mis-named in the application.
 
 ## Additional Resources
 * [Configuration](xref:fundamentals/configuration)
