@@ -114,7 +114,7 @@ The middleware specifies a default set of MIME types for compression:
 * `application/json`
 * `text/json`
 
-You can replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` are not supported. The sample application adds a MIME type for `image/svg+xml` and will compress and serve the ASP.NET Core banner image (**banner.svg**).
+You can replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` are not supported. The sample application adds a MIME type for `image/svg+xml` and will compress and serve the ASP.NET Core banner image (*banner.svg*).
 
 [!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet2&highlight=7)]
 
@@ -127,9 +127,9 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 [!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet1)]
 
 ## Disabling or removing IIS Dynamic Compression
-If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your **web.config** file. Either leave the module in place and deactivate it for dynamic compression or remove the module from the application.
+If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your *web.config* file. Either leave the module in place and deactivate it for dynamic compression or remove the module from the application.
 
-To merely deactivate dynamic compression module, add a `<urlCompression>` element to your **web.config** file. There is no need to include an attribute and value for `doStaticCompression="false"`, since the IIS Static Compression Module doesn't work with ASP.NET Core applications in a reverse-proxy setup.
+To merely deactivate dynamic compression module, add a `<urlCompression>` element to your *web.config* file. There is no need to include an attribute and value for `doStaticCompression="false"`, since the IIS Static Compression Module doesn't work with ASP.NET Core applications in a reverse-proxy setup.
 ```xml
 <configuration>
   <system.webServer>
@@ -137,7 +137,7 @@ To merely deactivate dynamic compression module, add a `<urlCompression>` elemen
   </system.webServer>
 </configuration>
 ```
-If you opt to remove the module via **web.config**, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the IIS area. Click on the **DynamicCompressionModule** in the list. In the **Action** panel on the right, click **Unlock**. At this point, you will be able to add the section shown below to your **web.config** file to remove the module from the application. Doing this won't affect your use of the module in other applications on the server.
+If you opt to remove the module via *web.config*, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the IIS area. Click on the **DynamicCompressionModule** in the list. In the **Action** panel on the right, click **Unlock**. At this point, you will be able to add the section shown below to your *web.config* file to remove the module from the application. Doing this won't affect your use of the module in other applications on the server.
 ```xml
 <configuration>
   <system.webServer> 
