@@ -79,7 +79,7 @@ Configuration = builder.Build();
 
 You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`, which provides maximum flexibility for how the provider acts.
 
-## Creating and loading secrets
+## Creating key vault secrets and loading/reading configuration
 1. Create a key vault by following the guidance at [Get started with Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/). Using the guidance, you will perform the following:
   * Create a key vault. The access policy used to connect to the key vault must have `List` and `Get` permissions to secrets.
   * Add "Manual" secrets to the key vault using Azure PowerShell, API, or the Azure Portal.
@@ -100,10 +100,13 @@ You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVau
 ![Browser window showing secret values loaded via the Azure Key Vault Configuration Provider](key-vault-configuration/_static/sample-output.png)
 
 ## Reloading secrets
-Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired/disabled/updated secrets are not replaced until `IConfigurationRoot.Reload()` is called.
+Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets are not replaced until `Reload()` is called.
 
 ## Disabled secrets
-Disabled secrets throw `KeyVaultClientException: Operation get is not allowed on a disabled secret during reload`.
+Disabled secrets throw an exception at runtime. Therefore, it's important that you update an application to remove or replace a configuration name before you disable a key vault secret.
+```
+KeyVaultClientException: Operation get is not allowed on a disabled secret during reload
+```
 
 ## Troubleshooting
 * Checking values from Azure (AD & Key Vault)
