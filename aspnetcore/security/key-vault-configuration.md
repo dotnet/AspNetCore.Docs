@@ -39,7 +39,7 @@ The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1)]
 
-`AddAzureKeyVault()` contains an overload that accepts an implementation of `IKeyVaultSecretManager`. For example, the interface could be implemented to read configuration values by environment, where you would prefix the environment names to the configuration names. The following example would distinguish `Development-ConnectionString` from `Production-ConnectionString` by merely loading the value using `ConnectionString` from configuration.
+`AddAzureKeyVault()` contains an overload that accepts an implementation of `IKeyVaultSecretManager`. For example, the interface could be implemented to read configuration values by environment, where you would prefix the environment names to the configuration names you store in Key Vault (`Development-ConnectionString` and `Production-ConnectionString`).
 
 ```csharp
 public class EnvironmentSecretManager : IKeyVaultSecretManager
@@ -80,24 +80,22 @@ Configuration = builder.Build();
 You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`, which provides maximum flexibility for how the provider acts.
 
 ## Creating and loading secrets
-* Create a Key Vault
-  * https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/
-  * The Configuration Provider requires that the access policy used to connect to the Key Vault has `List` and `Get` permissions to secrets
-  * App in Azure AD must have access to the key vault
-  * Add "Manual" secrets to the key vault using Azure PowerShell, API, or Portal
-    * Hierarchical values (sections) use `--` as a separator.
-    * Test secrets
-      * `MySecret`: `Secret_Value_1`
-      * `Section--MySecret`: `Secret_Value_2`
-    * "Certificate" secrets are not supported
-* Getting a configuration setting out of `IConfiguration` with the same name.
-  * `MySecret` and an `IConfiguration` or `IConfigurationRoot` instance `config`: `config["MySecret"]`
-  * Hierarchical Values (sections)
+1. Create a key vault by following the guidance at [Get started with Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/). Using the guidance, you will perform the following:
+  * Create a key vault. The access policy used to connect to the key vault must have `List` and `Get` permissions to secrets.
+  * Add "Manual" secrets to the key vault using Azure PowerShell, API, or the Azure Portal.
+    * Hierarchical values (configuration sections) use `--` (double-dash) as a separator.
+    * For the sample applicaiton, create two secrets with the following values:
+      * `MySecret`: `secret_value_1`
+      * `Section--MySecret`: `secret_value_2`
+    * "Certificate" secrets are not supported.
+  * Register the sample application in Azure Active Directory.
+  * Authorize the application to access to the key vault.
+  * Update the *appsettings.json* file with the values of `Vault`, `ClientId`, and `ClientSecret`.
+2. Run the sample application. You obtain a configuration value out of `IConfiguration` with the same name as the secret name.
+  * Non-hierarchial Values: The value for `MySecret` is obtained with `config["MySecret"]`.
+  * Hierarchical Values (sections): Use `:` (colon) notation or the `.GetSection()` method.
     * `config["Section:MySecret"]`
     * `config.GetSection("Section")["MySecret"]`
-?name=snippet1&highlight=2
-
-[!code-csharp[Main](key-vault-configuration/sample/Startup.cs)]
 
 ![Browser window showing secret values loaded via the Azure Key Vault Configuration Provider](key-vault-configuration/_static/sample-output.png)
 
