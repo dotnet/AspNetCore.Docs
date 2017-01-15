@@ -129,7 +129,7 @@ There is no roundtrip to the server to obtain the resource. If the resource exis
 > `skipRemainingRules: true` should be used whenever possible, because matching rules is an expensive process and slows down application response time. For the fastest application response, order your rewrite rules from most frequently matched to least frequently matched and skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
 
 ### Apache mod_rewrite
-You can apply Apache mod_rewrite rules with `AddApacheModRewrite()`. The first parameter takes an `IFileProvider`, which is provided in the sample application via [Dependency Injection](dependency-injection.md) by injecting the `IHostingEnvironment` and using it to provide the `ContentRootFileProvider`. The second parameter is the path to your rules file, which is **ApacheModRewrite.txt** in the sample application. You must make sure that the rules file is deployed with the application. For more information and examples of mod_rewrite rules, see [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
+You can apply Apache mod_rewrite rules with `AddApacheModRewrite()`. The first parameter takes an `IFileProvider`, which is provided in the sample application via [Dependency Injection](dependency-injection.md) by injecting the `IHostingEnvironment` and using it to provide the `ContentRootFileProvider`. The second parameter is the path to your rules file, which is *ApacheModRewrite.txt* in the sample application. You must make sure that the rules file is deployed with the application. For more information and examples of mod_rewrite rules, see [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=4)]
 
@@ -174,7 +174,7 @@ The middleware supports the following Apache mod_rewrite server variables:
 * TIME_YEAR
 
 ### IIS URL Rewrite Module rules
-To use rules that would normally apply to the IIS URL Rewrite Module, use `AddIISUrlRewrite()`. The first parameter takes an `IFileProvider`, while the second parameter is the path to your XML rules file, which is **IISUrlRewrite.xml** in the sample application. You must make sure that the rules file is deployed with the application. Don't point this at your **web.config** file, as these rules should be stored outside of your **web.config** to avoid conflicts with the IIS Rewrite module. For more information and examples of IIS URL Rewrite Module rules, see [Using Url Rewrite Module 2.0](https://www.iis.net/learn/extensions/url-rewrite-module/using-url-rewrite-module-20) and [URL Rewrite Module Configuration Reference](https://www.iis.net/learn/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
+To use rules that would normally apply to the IIS URL Rewrite Module, use `AddIISUrlRewrite()`. The first parameter takes an `IFileProvider`, while the second parameter is the path to your XML rules file, which is *IISUrlRewrite.xml* in the sample application. You must make sure that the rules file is deployed with the application. Don't point this at your *web.config* file, as these rules should be stored outside of your *web.config* to avoid conflicts with the IIS Rewrite module. For more information and examples of IIS URL Rewrite Module rules, see [Using Url Rewrite Module 2.0](https://www.iis.net/learn/extensions/url-rewrite-module/using-url-rewrite-module-20) and [URL Rewrite Module Configuration Reference](https://www.iis.net/learn/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
 
 [!code-csharp[Main](url-rewriting/sample/Startup.cs?name=snippet1&highlight=5)]
 
@@ -186,7 +186,7 @@ Original Request: **/iis-rules-rewrite/1234**
 
 ![Browser window with Developer Tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
-If you have an active IIS Rewrite Module with server-level rules configured that would impact your application in undesirable ways, you can disable the IIS Rewrite Module for an application with a change to your **web.config** file. 
+If you have an active IIS Rewrite Module with server-level rules configured that would impact your application in undesirable ways, you can disable the IIS Rewrite Module for an application with a change to your *web.config* file. 
 ```xml
 <configuration> 
  <system.webServer> 
