@@ -1,5 +1,5 @@
 ---
-title: Dependency Injection and Controllers | Microsoft Docs
+title: Dependency injection into controllers | Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/dependency-injection
 ---
-# Dependency Injection and Controllers
+# Dependency injection into controllers
 
 <a name=dependency-injection-controllers></a>
 
