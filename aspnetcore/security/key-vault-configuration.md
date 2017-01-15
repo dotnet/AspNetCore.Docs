@@ -31,7 +31,7 @@ Use the Azure Key Vault Configuration Provider when your application is accessib
 To include the configuration provider in your project, add a reference to the `Microsoft.Extensions.Configuration.AzureKeyVault` package. The provider is available for projects that target .NETFramework 4.5.1 or .NETStandard 1.5 or higher.
 
 ## Application configuration
-You can experience the use of the Azure Key Vault Configuration Provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you have established a key vault and created a pair of secrets in the vault, the sample will securely load the secret values into its configuration and display them in a webpage.
+You can experience the Azure Key Vault Configuration Provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you have established a key vault and created a pair of secrets in the vault, the sample will securely load the secret values into its configuration and display them in a webpage.
 
 The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()` extension. The extension uses three configuration values loaded from the *appsettings.json* file in the sample application: `Vault`, `ClientId`, and `ClientSecret`.
 
@@ -39,7 +39,7 @@ The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1)]
 
-`AddAzureKeyVault()` contains an overload that accepts an implementation of `IKeyVaultSecretManager`. For example, the interface could be implemented to read configuration values by environment, where you would prefix the environment names to the configuration names you store in Key Vault (`Development-ConnectionString` and `Production-ConnectionString`).
+`AddAzureKeyVault()` contains an overload that accepts an implementation of `IKeyVaultSecretManager`. For example, the interface can be implemented to load configuration values by environment, where you would prefix environment names to configuration secrets you store in the key vault, `Development-ConnectionString` and `Production-ConnectionString` for example.
 
 ```csharp
 public class EnvironmentSecretManager : IKeyVaultSecretManager
@@ -77,7 +77,7 @@ Configuration = builder.Build();
 // the vault if the environment is Production.
 ```
 
-You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`, which provides maximum flexibility for how the provider acts.
+You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`, which provides maximum flexibility for how the provider behaves. For more information, see [KeyVaultClient Class](https://msdn.microsoft.com/en-us/library/microsoft.azure.keyvault.keyvaultclient.aspx). 
 
 ## Creating key vault secrets and loading configuration values
 1. Create a key vault by following the guidance at [Get started with Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/). Using the guidance, you will perform the following:
@@ -121,3 +121,4 @@ When the application fails to load configuration from Azure, the logged error me
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/en-us/services/key-vault/)
 * [Microsoft Azure: Key Vault Documentation](https://docs.microsoft.com/en-us/azure/key-vault/)
 * [How to generate and transfer HSM-protected keys for Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-hsm-protected-keys)
+* [KeyVaultClient Class](https://msdn.microsoft.com/en-us/library/microsoft.azure.keyvault.keyvaultclient.aspx)
