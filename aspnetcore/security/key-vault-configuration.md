@@ -5,7 +5,7 @@ description: How to use the Azure Key Vault Configuration Provider to configure 
 keywords: ASP.NET Core, configuration, Azure Key Vault
 ms.author: riande
 manager: wpickett
-ms.date: 1/15/2017
+ms.date: 1/16/2017
 ms.topic: article
 ms.assetid: 0292bdae-b3ed-4637-bd67-19b9bb8b65cb
 ms.prod: aspnet-core
@@ -17,27 +17,26 @@ By [Luke Latham](https://github.com/GuardRex) and [Andrew Stanton-Nurse](https:/
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample)
 
-This document provides details on how to use the Azure Key Vault Configuration Provider to configure an application using values loaded from Key Vault Secrets at runtime. [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) is a cloud-based service that helps you safeguard cryptographic keys and secrets used by applications and services.
+This document provides details on how to use the Azure Key Vault Configuration Provider to configure an application using values loaded from key vault secrets at runtime. [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) is a cloud-based service that helps you safeguard cryptographic keys and secrets used by applications and services.
 
 ## When to use the Azure Key Vault Configuration Provider
-Use the Azure Key Vault Configuration Provider when your application is accessible to Azure services and requires encrypted values for configuration. Common scenarios for using encrypted storage of configuration data with Key Vault include:
-* Strict control over sensitive configuration data
-* When monitoring and logging of configuration data use is required
-* To limited the exposure to security threats that compromise application services
-* To reduce latency, provide automatic scaling, and provide redundancy for the storage and access of configuration data
+Use the Azure Key Vault Configuration Provider when your application is accessible to Azure services and requires encrypted storage of configuration data. Common scenarios include:
+* Controlling access to sensitive configuration data
+* Monitoring and logging is required
+* Reducing latency, providing automatic scaling, and providing redundancy for the storage and access of configuration data
 * Requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's)
 
 ## Package
 To include the configuration provider in your project, add a reference to the `Microsoft.Extensions.Configuration.AzureKeyVault` package. The provider is available for projects that target .NETFramework 4.5.1 or .NETStandard 1.5 or higher.
 
 ## Application configuration
-You can experience the Azure Key Vault Configuration Provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you have established a key vault and created a pair of secrets in the vault, the sample will securely load the secret values into its configuration and display them in a webpage.
+You can explore the Azure Key Vault Configuration Provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you have established a key vault and created a pair of secrets in the vault, the sample will securely load the secret values into its configuration and display them in a webpage.
 
 The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()` extension. The extension uses three configuration values loaded from the *appsettings.json* file in the sample application: `Vault`, `ClientId`, and `ClientSecret`.
 
 [!code-json[Main](key-vault-configuration/sample/appsettings.json)]
 
-[!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1)]
+[!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1&highlight=5,10-13)]
 
 `AddAzureKeyVault()` contains an overload that accepts an implementation of `IKeyVaultSecretManager`. For example, the interface can be implemented to load configuration values by environment, where you would prefix environment names to configuration secrets you store in the key vault, `Development-ConnectionString` and `Production-ConnectionString` for example.
 
@@ -84,15 +83,15 @@ You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVau
   * Create a key vault. The access policy used to connect to the key vault must have `List` and `Get` permissions to secrets.
   * Add "Manual" secrets to the key vault using Azure PowerShell, API, or the Azure Portal.
     * Hierarchical values (configuration sections) use `--` (double-dash) as a separator.
-    * For the sample applicaiton, create two secrets with the following values:
+    * For the sample application, create two secrets with the following name-value pairs:
       * `MySecret`: `secret_value_1`
       * `Section--MySecret`: `secret_value_2`
     * "Certificate" secrets are not supported.
   * Register the sample application in Azure Active Directory.
   * Authorize the application to access to the key vault.
   * Update the *appsettings.json* file with the values of `Vault`, `ClientId`, and `ClientSecret`.
-2. Run the sample application. You obtain a configuration value out of `IConfiguration` with the same name as the secret name.
-  * Non-hierarchial Values: The value for `MySecret` is obtained with `config["MySecret"]`.
+2. Run the sample application. The sample application obtains configuration values from `IConfigurationRoot` with the same name as the secret name.
+  * Non-hierarchical Values: The value for `MySecret` is obtained with `config["MySecret"]`.
   * Hierarchical Values (sections): Use `:` (colon) notation or the `.GetSection()` method.
     * `config["Section:MySecret"]`
     * `config.GetSection("Section")["MySecret"]`
@@ -103,18 +102,19 @@ You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVau
 Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets are not replaced until `Reload()` is called.
 
 ## Disabled secrets
-Disabled secrets throw an exception at runtime. Therefore, it's important that you update an application to remove or replace a configuration name before you disable a key vault secret.
+Disabled secrets throw an exception at runtime. Therefore, it's important that you update an application to remove or replace a configuration name before you disable its associated key vault secret. If a secret is disabled and the provider attempts to load it, you will receive a `KeyVaultClientException`:
 ```
 KeyVaultClientException: Operation get is not allowed on a disabled secret during reload
 ```
 
 ## Troubleshooting
-When the application fails to load configuration from Azure, the logged error message will indicate the problem. The following general conditions can prevent configuration from loading:
+When the application fails to load configuration using the provider, the logged error message will indicate the problem. The following general conditions can prevent configuration from loading:
 * The application has not been configured correctly in Azure Active Directory.
+* The key vault doen't exist in Azure Key Vault.
 * The application has not been authorized to access the key vault.
 * The access policy doesn't include `Get` and `List` permissions.
-* The configuration data (name-value pair) is mis-named or missing from the key vault.
-* The configuration data (name) is mis-named in the application.
+* In the key vault, the configuration data (name-value pair) is incorrectly named, missing, or disabled.
+* The configuration data key (name) is incorrect in the application.
 
 ## Additional Resources
 * [Configuration](xref:fundamentals/configuration)
