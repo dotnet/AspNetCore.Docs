@@ -59,7 +59,7 @@ public async Task<IActionResult> Edit(Guid documentId)
            return new HttpNotFoundResult();
        }
 
-       if (await authorizationService.AuthorizeAsync(User, document, "EditPolicy"))
+       if (await _authorizationService.AuthorizeAsync(User, document, "EditPolicy"))
        {
            return View(document);
        }
@@ -135,7 +135,7 @@ You can see the handler works on `OperationAuthorizationRequirement`. The code i
 To call an operational resource handler you need to specify the operation when calling `AuthorizeAsync` in your action. For example
 
 ```csharp
-if (await authorizationService.AuthorizeAsync(User, document, Operations.Read))
+if (await _authorizationService.AuthorizeAsync(User, document, Operations.Read))
    {
        return View(document);
    }
