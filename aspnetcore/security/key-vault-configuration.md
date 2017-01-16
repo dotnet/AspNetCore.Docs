@@ -19,10 +19,10 @@ By [Luke Latham](https://github.com/GuardRex) and [Andrew Stanton-Nurse](https:/
 
 This document explains how to use the Azure Key Vault Configuration Provider to load application configuration values from Azure Key Vault. [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) is a cloud-based service that helps you safeguard cryptographic keys and secrets used by applications and services.
 
-## When to use the Azure Key Vault Configuration Provider
-Use the Azure Key Vault Configuration Provider when your application has access to Azure services and requires encrypted storage of configuration data. Common scenarios include:
+## When to use the provider
+Use the provider when your application has access to Azure services and requires encrypted storage of its configuration data. Common scenarios include:
 * Controlling access to sensitive configuration data
-* Monitoring and logging of configuration data is required
+* Monitoring and logging of configuration data use is required
 * Reducing latency, providing automatic scaling, and providing redundancy for configuration data
 * Requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's) when storing configuration data
 
@@ -34,7 +34,11 @@ You can explore the Azure Key Vault Configuration Provider with the [sample appl
 
 The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()` extension. In the sample application, the extension uses three configuration values loaded from the *appsettings.json* file: `Vault`, `ClientId`, and `ClientSecret`.
 
-[!code-json[Main](key-vault-configuration/sample/appsettings.json)]
+App Setting | Description | Example
+--- | --- | ---
+`Vault` | Azure Key Vault vault name | contosovault
+`ClientId` | Azure Active Directory App Id | 627e911e-43cc-61d4-992e-12db9c81b413
+`ClientSecret` | Azure Active Directory Key | g58K3dtg59o1Pa+e59v2Tx829w6VxTB2yv9sv/101di=
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1&highlight=5,10-13)]
 
