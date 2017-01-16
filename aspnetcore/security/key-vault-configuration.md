@@ -93,8 +93,8 @@ You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVau
     * "Certificate" secrets are not supported.
   * Register the sample application in Azure Active Directory.
   * Authorize the application to access to the key vault.
-  * Update the *appsettings.json* file with the values of `Vault`, `ClientId`, and `ClientSecret`.
-2. Run the sample application. The app obtains configuration values from `IConfigurationRoot` with the same name as the secret name.
+2. Update the application's *appsettings.json* file with the values of `Vault`, `ClientId`, and `ClientSecret`.
+3. Run the sample application. The app obtains configuration values from `IConfigurationRoot` with the same name as the secret name.
   * Non-hierarchical Values: The value for `MySecret` is obtained with `config["MySecret"]`.
   * Hierarchical Values (sections): Use `:` (colon) notation or the `.GetSection()` method.
     * `config["Section:MySecret"]`
@@ -118,7 +118,8 @@ When the application fails to load configuration using the provider, the logged 
 * The application has not been authorized to access the key vault.
 * The access policy doesn't include `Get` and `List` permissions.
 * In the key vault, the configuration data (name-value pair) is incorrectly named, missing, or disabled.
-* The configuration key (name) is incorrect in the application.
+* The app has the wrong key vault name (`Vault`), Azure AD App Id (`ClientId`), or Azure AD Key (`ClientSecret`).
+* The configuration key (name) is incorrect in the application for the value you're trying to load.
 
 ## Additional Resources
 * [Configuration](xref:fundamentals/configuration)
