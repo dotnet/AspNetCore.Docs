@@ -1,4 +1,4 @@
-﻿---
+---
 title: Building Beautiful, Responsive Sites with Bootstrap | Microsoft Docs
 author: ardalis
 description: 
@@ -26,7 +26,7 @@ There are several ways to get started with Bootstrap. If you're starting a new w
 
 ![Bootstrap in starter template solution view](bootstrap/_static/bootstrap-in-starter-template.png)
 
-Adding Bootstrap to an ASP.NET Core project is simply a matter of adding it to `bower.json` as a dependency:
+Adding Bootstrap to an ASP.NET Core project is simply a matter of adding it to *bower.json* as a dependency:
 
 [!code-json[Main](../common/samples/WebApplication1/bower.json?highlight=5)]
 
@@ -53,9 +53,9 @@ Install-Package bootstrap
 ```
 
 > [!NOTE]
-> The recommended way to install client-side dependencies like Bootstrap in ASP.NET Core is via Bower (using `bower.json`, as shown above). The use of npm/NuGet are shown to demonstrate how easily Bootstrap can be added to other kinds of web applications, including earlier versions of ASP.NET.
+> The recommended way to install client-side dependencies like Bootstrap in ASP.NET Core is via Bower (using *bower.json*, as shown above). The use of npm/NuGet are shown to demonstrate how easily Bootstrap can be added to other kinds of web applications, including earlier versions of ASP.NET.
 
-If you're referencing your own local versions of Bootstrap, you'll need to reference them in any pages that will use it. In production you should reference bootstrap using a CDN. In the default ASP.NET site template, the `_Layout.cshtml` file does so like this:
+If you're referencing your own local versions of Bootstrap, you'll need to reference them in any pages that will use it. In production you should reference bootstrap using a CDN. In the default ASP.NET site template, the *_Layout.cshtml* file does so like this:
 
 [!code-html[Main](../common/samples/WebApplication1/Views/Shared/_Layout.cshtml?highlight=9,13,51,59)]
 
@@ -64,7 +64,7 @@ If you're referencing your own local versions of Bootstrap, you'll need to refer
 
 ## Basic Templates and Features
 
-The most basic Bootstrap template looks very much like the _Layout.cshtml file shown above, and simply includes a basic menu for navigation and a place to render the rest of the page.
+The most basic Bootstrap template looks very much like the *_Layout.cshtml* file shown above, and simply includes a basic menu for navigation and a place to render the rest of the page.
 
 ### Basic Navigation
 
@@ -149,7 +149,7 @@ Badges refer to small, usually numeric callouts next to a navigation item. They 
 
 ### Alerts
 
-You may need to display some kind of notification, alert, or error message to your application's users. That's where the standard alert classes come in.  There are four different severity levels, with associated color schemes:
+You may need to display some kind of notification, alert, or error message to your application's users. That's where the standard alert classes are useful.  There are four different severity levels with associated color schemes:
 
 ![themed alerts](bootstrap/_static/theme-alerts.png)
 
@@ -175,7 +175,7 @@ You can extend the standard Bootstrap theme by overriding some or all of its CSS
 
 ![Example theme inspinia](bootstrap/_static/theme-inspinia.png)
 
-If you want to change your Bootstrap theme, put the *bootstrap.css* file for the theme you want in the *wwwroot/css* folder and change the references in *_Layout.cshtml* to point it.  Change the links for all environments:
+If you want to change your Bootstrap theme, put the *bootstrap.css* file for the theme you want in the **wwwroot/css** folder and change the references in *_Layout.cshtml* to point it.  Change the links for all environments:
 
 ```html
 <environment names="Development">
@@ -211,7 +211,7 @@ Breadcrumbs are a common UI component used to show a user their recent history o
 
 ## JavaScript Support
 
-Bootstrap's JavaScript library includes API support for the included components, allowing you to control their behavior programmatically within your application. In addition, bootstrap.js includes over a dozen custom jQuery plugins, providing additional features like transitions, modal dialogs, scroll detection (updating styles based on where the user has scrolled in the document), collapse behavior, carousels, and affixing menus to the window so they do not scroll off the screen. There's not sufficient room to cover all of the JavaScript add-ons built into Bootstrap – to learn more please visit [http://getbootstrap.com/javascript/](http://getbootstrap.com/javascript/).
+Bootstrap's JavaScript library includes API support for the included components, allowing you to control their behavior programmatically within your application. In addition, *bootstrap.js* includes over a dozen custom jQuery plugins, providing additional features like transitions, modal dialogs, scroll detection (updating styles based on where the user has scrolled in the document), collapse behavior, carousels, and affixing menus to the window so they do not scroll off the screen. There's not sufficient room to cover all of the JavaScript add-ons built into Bootstrap – to learn more please visit [http://getbootstrap.com/javascript/](http://getbootstrap.com/javascript/).
 
 ## Summary
 
