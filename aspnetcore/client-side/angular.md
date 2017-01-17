@@ -31,7 +31,7 @@ AngularJS is not a DOM manipulation library like jQuery, but it uses a subset of
 
 This article focuses on Angular 1.X with some notes on where Angular is heading with 2.0.
 
-## Getting Started
+## Getting started
 
 To start using AngularJS in your ASP.NET application, you must either install it as part of your project, or reference it from a content delivery network (CDN).
 
@@ -57,7 +57,7 @@ It's recommended that production applications utilize CDNs for common libraries 
 
 Once you have a reference to the *angular.js* script file, you're ready to begin using Angular in your web pages.
 
-## Key Components
+## Key components
 
 AngularJS includes a number of major components, such as *directives*, *templates*, *repeaters*, *modules*, *controllers*, *components*, *component router* and more. Let's examine how these components work together to add behavior to your web pages.
 
@@ -99,7 +99,7 @@ Other primitive directives in AngularJS include:
 
 For a full list of all primitive directives supported in AngularJS, please refer to the [directive documentation section on the AngularJS documentation website](https://docs.angularjs.org/api/ng/directive).
 
-### Data Binding
+### Data binding
 
 AngularJS provides [data binding](https://docs.angularjs.org/guide/databinding) support out-of-the-box using either the `ng-bind` directive or a data binding expression syntax such as `{{expression}}`. AngularJS supports two-way data binding where data from a model is kept in synchronization with a view template at all times. Any changes to the view are automatically reflected in the model. Likewise, any changes in the model are reflected in the view.
 
@@ -310,7 +310,7 @@ You can [view the application's structure on GitHub](https://github.com/aspnet/D
 > [!NOTE]
 > To create AngularJS module, controller, factory, directive and view files easily, be sure to check out Sayed Hashimi's [SideWaffle template pack for Visual Studio](http://sidewaffle.com/). Sayed Hashimi is a Senior Program Manager on the Visual Studio Web Team at Microsoft and SideWaffle templates are considered the gold standard. At the time of this writing, SideWaffle is available for Visual Studio 2012, 2013, and 2015.
 
-### Routing and Multiple Views
+### Routing and multiple views
 
 AngularJS has a built-in route provider to handle SPA (Single Page Application) based navigation. To work with routing in AngularJS, you must add the `angular-route` library using Bower. You can see in the [bower.json](#angular-bower-json) file referenced at the start of this article that we are already referencing it in our project.
 
@@ -391,7 +391,7 @@ The running example demonstrates that the controller's `sayName` function is cal
 
 For more detail on AngularJS built-in event handler directives, be sure to head to the [documentation website](https://docs.angularjs.org/api/ng/directive/ngClick) of AngularJS.
 
-## Related Resources
+## Related resources
 
 * [Angular Docs](https://docs.angularjs.org)
 
