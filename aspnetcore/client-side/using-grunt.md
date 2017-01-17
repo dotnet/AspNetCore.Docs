@@ -240,7 +240,7 @@ Grunt is configured using a manifest named *Gruntfile.js* that defines, loads an
     > [!NOTE]
     > For more information on the options for each package, visit [https://www.npmjs.com/](https://www.npmjs.com/) and lookup the package name in the search box on the main page. For example, you can look up the grunt-contrib-clean package to get a documentation link that explains all of its parameters.
 
-### All Together Now
+### All together now
 
 Use the Grunt `registerTask()` method to run a series of tasks in a particular sequence. For example, to run the example steps above in the order clean -> concat -> jshint -> uglify, add the code below to the module. The code should be added to the same level as the loadNpmTasks() calls, outside initConfig.
 
@@ -273,7 +273,7 @@ Right-click the watch task in Task Runner Explorer and select Run from the conte
 
 ![running tasks output](using-grunt/_static/watch-running.png)
 
-## Binding to Visual Studio Events
+## Binding to Visual Studio events
 
 Unless you want to manually start your tasks every time you work in Visual Studio, you can bind tasks to **Before Build**, **After Build**, **Clean**, and **Project Open** events.
 
@@ -287,6 +287,6 @@ Unload and reload the project. When the project loads again, the watch task will
 
 Grunt is a powerful task runner that can be used to automate most client-build tasks. Grunt leverages NPM to deliver its packages, and features tooling integration with Visual Studio. Visual Studio's Task Runner Explorer detects changes to configuration files and provides a convenient interface to run tasks, view running tasks, and bind tasks to Visual Studio events.
 
-## See Also
+## Additional resources
 
    * [Using Gulp](using-gulp.md)
