@@ -66,7 +66,7 @@ The Less CSS pre-processor runs using Node.js. You can quickly install it using 
 npm install -g less
 ```
 
-If you're using Visual Studio, you can get started with Less by adding one or more Less files to your project, and then configuring Gulp (or Grunt) to process them at compile-time. Add a Styles folder to your project, and then add a new Less file called main.less to this folder.
+If you're using Visual Studio, you can get started with Less by adding one or more Less files to your project, and then configuring Gulp (or Grunt) to process them at compile-time. Add a Styles folder to your project, and then add a new Less file called *main.less* to this folder.
 
 ![Add less file](less-sass-fa/_static/add-less-file.png)
 
@@ -76,7 +76,7 @@ Once added, your folder structure should look something like this:
 
 Now we can add some basic styling to the file, which will be compiled into CSS and deployed to the wwwroot folder by Gulp.
 
-Modify main.less to include the following content, which creates a simple color palette from a single base color.
+Modify *main.less* to include the following content, which creates a simple color palette from a single base color.
 
 ```less
 @base: #663333;
@@ -100,7 +100,7 @@ body {
 
 ### Getting Started
 
-If you don't already have one in your project, add a new Gulp configuration file. Make sure package.json includes gulp in its `devDependencies`, and add "gulp-less":
+If you don't already have one in your project, add a new Gulp configuration file. Make sure *package.json* includes gulp in its `devDependencies`, and add "gulp-less":
 
 ```json
 "devDependencies": {
@@ -110,9 +110,9 @@ If you don't already have one in your project, add a new Gulp configuration file
 }
 ```
 
-Save your changes to the package.json file, and you should see that the all of the files referenced can be found in the Dependencies folder under NPM. If not, right-click on the NPM folder and select "Restore Packages."
+Save your changes to the *package.json* file, and you should see that the all of the files referenced can be found in the Dependencies folder under NPM. If not, right-click on the NPM folder and select "Restore Packages."
 
-Now open gulpfile.js. Add a variable at the top to represent less:
+Now open *gulpfile.js*. Add a variable at the top to represent less:
 
 ```javascript
 var gulp = require("gulp"),
@@ -141,7 +141,7 @@ Open the Task Runner Explorer (view>Other Windows > Task Runner Explorer). Among
 
 ![less task runner](less-sass-fa/_static/less-task-runner.png)
 
-Now refresh your Solution Explorer and inspect the contents of the wwwroot/css folder. You should find a new file, main.css, there:
+Now refresh your Solution Explorer and inspect the contents of the wwwroot/css folder. You should find a new file, *main.css*, there:
 
 ![main css created](less-sass-fa/_static/main-css-created.png)
 
@@ -168,7 +168,7 @@ body {
 }
 ```
 
-Add a simple HTML page to the wwwroot folder and reference main.css to see the color palette in action.
+Add a simple HTML page to the wwwroot folder and reference *main.css* to see the color palette in action.
 
 ```html
 <!DOCTYPE html>
@@ -327,7 +327,7 @@ To install Sass, typically you would first install Ruby (pre-installed on Mac), 
 gem install sass
 ```
 
-However, assuming you're running Visual Studio, you can get started with Sass in much the same way as you would with Less. Open package.json and add the "gulp-sass" package to `devDependencies`:
+However, assuming you're running Visual Studio, you can get started with Sass in much the same way as you would with Less. Open *package.json* and add the "gulp-sass" package to `devDependencies`:
 
 ```json
 "devDependencies": {
@@ -338,7 +338,7 @@ However, assuming you're running Visual Studio, you can get started with Sass in
 }
 ```
 
-Next, modify gulpfile.js to add a sass variable and a task to compile your Sass files and place the results in the wwwroot folder:
+Next, modify *gulpfile.js* to add a sass variable and a task to compile your Sass files and place the results in the wwwroot folder:
 
 ```javascript
 var gulp = require("gulp"),
@@ -356,11 +356,11 @@ gulp.task("sass", function () {
 });
 ```
 
-Now you can add the Sass file main2.scss to the Styles folder in the root of the project:
+Now you can add the Sass file *main2.scss* to the Styles folder in the root of the project:
 
 ![add scss file](less-sass-fa/_static/add-scss-file.png)
 
-Open main2.scss and add the following:
+Open *main2.scss* and add the following:
 
 ```sass
 $base: #CC0000;
@@ -369,7 +369,7 @@ body {
 }
 ```
 
-Save all of your files. Now in Task Runner Explorer, you should see a sass task. Run it, refresh solution explorer, and look in the /wwwroot/css folder. There should be a main2.css file, with these contents:
+Save all of your files. Now in Task Runner Explorer, you should see a sass task. Run it, refresh solution explorer, and look in the /wwwroot/css folder. There should be a *main2.css* file, with these contents:
 
 ```css
 body {
@@ -396,7 +396,7 @@ Sass supports mixins as well, using the `@mixin` keyword to define them and @inc
 .box { @include border-radius(10px); }
 ```
 
-In addition to mixins, Sass also supports the concept of inheritance, allowing one class to extend another. It's conceptually similar to a mixin, but results in less CSS code. It's accomplished using the `@extend` keyword. First, let's see how we might use mixins, and the resulting CSS code. Add the following to your main2.scss file:
+In addition to mixins, Sass also supports the concept of inheritance, allowing one class to extend another. It's conceptually similar to a mixin, but results in less CSS code. It's accomplished using the `@extend` keyword. First, let's see how we might use mixins, and the resulting CSS code. Add the following to your *main2.scss* file:
 
 ```sass
 @mixin alert {
@@ -418,7 +418,7 @@ In addition to mixins, Sass also supports the concept of inheritance, allowing o
 }
 ```
 
-Examine the output in main2.css after running the sass task in Task Runner Explorer:
+Examine the output in *main2.css* after running the sass task in Task Runner Explorer:
 
 ```css
 .success {
@@ -500,7 +500,7 @@ The easiest way to get started with Font Awesome is to add a reference to it, us
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 ```
 
-Of course, you can also quickly add it to your Visual Studio project by adding it to the "dependencies" in bower.json:
+Of course, you can also quickly add it to your Visual Studio project by adding it to the "dependencies" in *bower.json*:
 
 ```json
 {
@@ -518,7 +518,7 @@ Of course, you can also quickly add it to your Visual Studio project by adding i
 }
 ```
 
-Then, to get the stylesheet added to the wwwroot folder, modify gulpfile.js as follows:
+Then, to get the stylesheet added to the wwwroot folder, modify *gulpfile.js* as follows:
 
 ```javascript
 gulp.task("copy", ["clean"], function () {
