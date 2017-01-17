@@ -1,4 +1,4 @@
-﻿---
+---
 title: Knockout.js MVVM Framework | Microsoft Docs
 author: ardalis
 description: 
@@ -20,7 +20,7 @@ Knockout is a popular JavaScript library that simplifies the creation of complex
 
 ## Getting Started with Knockout in ASP.NET Core
 
-Knockout is deployed as a single JavaScript file, so installing and using it is very straightforward using [bower](bower.md). Assuming you already have [bower](bower.md) and [gulp](using-gulp.md) configured, open bower.json in your ASP.NET Core project and add the knockout dependency as shown here:
+Knockout is deployed as a single JavaScript file, so installing and using it is very straightforward using [bower](bower.md). Assuming you already have [bower](bower.md) and [gulp](using-gulp.md) configured, open *bower.json* in your ASP.NET Core project and add the knockout dependency as shown here:
 
 ```json
 {
@@ -322,7 +322,7 @@ Knockout also supports other templating engines, such as the jQuery.tmpl library
 
 ## Components
 
-Components allow you to organize and reuse UI code, usually along with the ViewModel data on which the UI code depends. To create a component, you simply need to specify its template and its viewModel, and give it a name. This is done by calling `ko.components.register()`. In addition to defining the templates and viewmodel inline, they can be loaded from external files using a library like require.js, resulting in very clean and efficient code.
+Components allow you to organize and reuse UI code, usually along with the ViewModel data on which the UI code depends. To create a component, you simply need to specify its template and its viewModel, and give it a name. This is done by calling `ko.components.register()`. In addition to defining the templates and viewmodel inline, they can be loaded from external files using a library like *require.js*, resulting in very clean and efficient code.
 
 ## Communicating with APIs
 
