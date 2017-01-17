@@ -109,7 +109,7 @@ The following table provides an explanation of the tasks specified in the code a
 |min:css|A task that minifies and concatenates all .css files within the css folder. The .min.css files are excluded.|
 |min|A task that calls the `min:js` task, followed by the `min:css` task.|
 
-## Running Default Tasks
+## Running default tasks
 
 If you haven’t already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.
 
@@ -202,7 +202,7 @@ It's worth noting that the bindings you set up with **Task Runner Explorer** are
 > [!NOTE]
 > *project.json* stages are not triggered when building in Visual Studio by default.  If you want to ensure that they are set this option in the Visual Studio project properties: Build tab -> Produce outputs on build.  This will add a *ProduceOutputsOnBuild* element to your *.xproj* file which will cause Visual studio to trigger the *project.json* stages when building.
 
-## Defining and Running a New Task
+## Defining and running a new task
 
 To define a new Gulp task, modify *gulpfile.js*.
 
@@ -226,7 +226,7 @@ To define a new Gulp task, modify *gulpfile.js*.
 
     You’ll see that the output text is displayed. If you are interested in examples based on a common scenario, see Gulp Recipes.
 
-## Defining and Running Tasks in a Series
+## Defining and running tasks in a series
 
 When you run multiple tasks, the tasks run concurrently by default. However, if you need to run tasks in a specific order, you must specify when each task is complete, as well as which tasks depend on the completion of another task.
 
@@ -262,7 +262,7 @@ IntelliSense provides code completion, parameter descriptions, and other feature
 
 For more information about IntelliSense, see [JavaScript IntelliSense](https://msdn.microsoft.com/en-us/library/bb385682.aspx).
 
-## Development, Staging, and Production Environments
+## Development, staging, and production environments
 
 When Gulp is used to optimize client-side files for staging and production, the processed files are saved to a local staging and production location. The *_Layout.cshtml* file uses the **environment** tag helper to provide two different versions of CSS files. One version of CSS files is for development and the other version is optimized for both staging and production. In Visual Studio 2015, when you change the **Hosting:Environment** environment variable to `Production`, Visual Studio will build the Web app and link to the minimized CSS files. The following markup shows the **environment** tag helpers containing link tags to the `Development` CSS files and the minified `Staging, Production` CSS files.
 
@@ -279,7 +279,7 @@ When Gulp is used to optimize client-side files for staging and production, the 
 </environment>
 ```
 
-## Switching Between Environments
+## Switching between environments
 
 To switch between compiling for different environments, modify the **Hosting:Environment** environment variable's value.
 
@@ -311,7 +311,7 @@ To switch between compiling for different environments, modify the **Hosting:Env
 
 For more information related to environments in ASP.NET Core, see [Working with Multiple Environments](../fundamentals/environments.md).
 
-## Task and Module Details
+## Task and module details
 
 A Gulp task is registered with a function name.  You can specify dependencies if other tasks must run before the current task. Additional functions allow you to run and watch the Gulp tasks, as well as set the source (*src*) and destination (*dest*) of the files being modified. The following are the primary Gulp API functions:
 
@@ -324,7 +324,7 @@ A Gulp task is registered with a function name.  You can specify dependencies if
 
 For additional Gulp API reference information, see [Gulp Docs API](https://github.com/gulpjs/gulp/blob/master/docs/API.md).
 
-## Gulp Recipes
+## Gulp recipes
 
 The Gulp community provides Gulp [recipes](https://github.com/gulpjs/gulp/blob/master/docs/recipes/README.md). These recipes consist of Gulp tasks to address common scenarios.
 
@@ -332,7 +332,7 @@ The Gulp community provides Gulp [recipes](https://github.com/gulpjs/gulp/blob/m
 
 Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio automatically installs Gulp along with a set of Gulp plugins. Gulp is maintained on [GitHub](https://github.com/gulpjs/gulp). For additional information about Gulp, see the [Gulp Documentation](https://github.com/gulpjs/gulp/blob/master/docs/README.md) on GitHub.
 
-## See Also
+## Additional resources
 
 * [Bundling and Minification](bundling-and-minification.md)
 
