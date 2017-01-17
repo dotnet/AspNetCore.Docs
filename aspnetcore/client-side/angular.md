@@ -391,7 +391,7 @@ The running example demonstrates that the controller's `sayName` function is cal
 
 For more detail on AngularJS built-in event handler directives, be sure to head to the [documentation website](https://docs.angularjs.org/api/ng/directive/ngClick) of AngularJS.
 
-## Related resources
+## Additional resources
 
 * [Angular Docs](https://docs.angularjs.org)
 
