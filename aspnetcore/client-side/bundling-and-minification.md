@@ -1,4 +1,4 @@
-﻿---
+---
 title: Bundling and Minification | Microsoft Docs
 author: rick-anderson
 description: 
@@ -17,7 +17,7 @@ uid: client-side/bundling-and-minification
 >[!WARNING]
 > This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Erik Reitan](https://github.com/Erikre) and [Daniel Roth](https://github.com/danroth27)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Erik Reitan](https://github.com/Erikre), and [Daniel Roth](https://github.com/danroth27)
 
 Bundling and minification are two techniques you can use in ASP.NET to improve page load performance for your web application. Bundling combines multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller payloads. Used together, bundling and minification improves load time performance by reducing the number of requests to the server and reducing the size of the requested assets (such as CSS and JavaScript files).
 
@@ -76,7 +76,7 @@ After minification, the function is reduced to the following:
 
 ```javascript
 AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""))};
-   ```
+```
 
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
