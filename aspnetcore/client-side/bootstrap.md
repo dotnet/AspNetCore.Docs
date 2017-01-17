@@ -38,13 +38,13 @@ You can also install bootstrap using one of several package managers, such as bo
 
 ```console
 bower install bootstrap
-   ```
+```
 
 ### npm
 
 ```console
 npm install bootstrap
-   ```
+```
 
 ### NuGet
 
@@ -72,11 +72,11 @@ The default template uses a set of `<div>` elements to render a top navbar and t
 
 ```html
 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-     <span class="icon-bar"></span>
-     <span class="icon-bar"></span>
-     <span class="icon-bar"></span>
-   </button>
-   ```
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</button>
+```
 
 It also includes the application name, which appears in the top left.  The main navigation menu is rendered by the `<ul>` element within the second div, and includes links to Home, About, and Contact. Additional links for Register and Login are added by the _LoginPartial line on line 29. Below the navigation, the main body of each page is rendered in another `<div>`, marked with the "container" and "body-content" classes. In the simple default _Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple `<footer>` is added to the end of the `<div>` element.  You can see how the built-in About page appears using this template:
 
@@ -102,11 +102,11 @@ One of the most popular features of Bootstrap is its grid layout system. Modern 
 
 ```html
 <div class="container">
-     <div class="row">
-
-     </div>
-   </div>
-   ```
+    <div class="row">
+        ...
+    </div>
+</div>
+```
 
 Next, add additional `<div>` elements for each column, and specify the number of columns that `<div>` should occupy (out of 12) as part of a CSS class starting with "col-md-". For instance, if you want to simply have two columns of equal size, you would use a class of "col-md-6" for each one. In this case "md" is short for "medium" and refers to standard-sized desktop computer display sizes. There are four different options you can choose from, and each will be used for higher widths unless overridden (so if you want the layout to be fixed regardless of screen width, you can just specify xs classes).
 
