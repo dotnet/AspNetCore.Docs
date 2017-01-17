@@ -1,5 +1,5 @@
 ---
-title: Manage Client-Side Packages with Bower | Microsoft Docs
+title: Manage client-side packages with Bower | Microsoft Docs
 author: rick-anderson
 description: Manging client side packages with Bower
 keywords: ASP.NET Core, bower
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/bower
 ---
-# Manage Client-Side Packages with Bower
+# Manage client-side packages with Bower
 
 <a name=bower-index></a>
 
@@ -23,7 +23,7 @@ Bower is a "package manager for the web." Bower lets you install and restore cli
 > [!NOTE]
 > Visual Studio developers are already familiar with NuGet, so why not use NuGet instead of Bower? Mainly because Bower already has a rich ecosystem with over 34,000 packages in play; and, it integrates well with the Gulp and Grunt task runners.
 
-## Getting Started with Bower
+## Getting started
 
 ASP.NET Core project templates pre-construct the client build process for you. The ubiquitous jQuery and Bootstrap packages are installed, and the plumbing for Bower is already in place. The screenshot below depicts the initial project in Solution Explorer. It's important to enable the "Show All Files" option, as the *bower.json* file is hidden by default.
 
@@ -45,7 +45,7 @@ Let’s add support for [Font Awesome](http://fontawesome.io) to add some scalab
 
 * Across the bottom status bar of the IDE, an *Installing "font-awesome" complete* message appears to indicate a successful installation.
 
-### Manual Installation in bower.json
+### Manual installation in bower.json
 
 * At the end of the `dependencies` section in *bower.json*, add a comma and type "font-awesome". Notice as you type that you get IntelliSense with a list of available packages. Select "font-awesome" from the list.
 
@@ -123,7 +123,7 @@ Run the application to see the changes.
 
 ![app with icons after changes](bower/_static/app-with-icons.png)
 
-## Exploring the Client Build Process
+## Exploring the client build process
 
 Most ASP.NET Core project templates are already configured to use Bower. This next walkthrough starts with an empty ASP.NET Core project and adds each piece manually, so you can get a feel for how Bower is used in a project. See what happens to the project structure and the runtime output as each configuration change is made to the project.
 
@@ -133,7 +133,7 @@ The general steps to use the client-side build process with Bower are:
 
 *  Reference packages from your web pages.
 
-### Define Packages
+### Define packages
 
 The first step is to define the packages your application needs and to download them. This example uses Bower to load jQuery and Bootstrap in the desired location.
 
@@ -171,7 +171,7 @@ The first step is to define the packages your application needs and to download 
 
     ![bower dependencies](bower/_static/bower-dependencies.png)
 
-### Reference Packages
+### Reference packages
 
 Now that Bower has copied the client support packages needed by the application, you can test that an HTML page can use the deployed jQuery and Bootstrap functionality.
 
@@ -201,7 +201,7 @@ Make sure *bootstrap.js* follows *jquery.js*, so that jQuery is loaded first.
 </html>
 ```
 
-### Use the Installed Packages
+### Use the installed packages
 
 Add jQuery and Bootstrap components to the page to verify that the web application is configured correctly.
 
