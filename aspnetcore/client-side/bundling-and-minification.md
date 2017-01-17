@@ -1,5 +1,5 @@
 ---
-title: Bundling and Minification | Microsoft Docs
+title: Bundling and minification | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/bundling-and-minification
 ---
-# Bundling and Minification
+# Bundling and minification
 
 >[!WARNING]
 > This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
@@ -105,7 +105,7 @@ You can run bundling and minification tasks from a command prompt using gulp (`g
 > [!NOTE]
 > The gulp tasks for bundling and minification do not general run when your project is built and must be run manually.
 
-## Impact of Bundling and Minification
+## Impact of bundling and minification
 
 The following table shows several important differences between listing all the assets individually and using bundling and minification on a simple web page:
 
@@ -117,7 +117,7 @@ Load Time (MS) | 885 | 2360 | 167%
 
 The bytes sent had a significant reduction with bundling as browsers are fairly verbose with the HTTP headers that they apply on requests. The load time shows a big improvement, however this example was run locally. You will get greater gains in performance when using bundling and minification with assets transferred over a network.
 
-## Controlling Bundling and Minification
+## Controlling bundling and minification
 
 In general, you want to use the bundled and minified files of your app only in a production environment. During development, you want to use your original files so your app is easier to debug.
 
@@ -131,7 +131,7 @@ This environment tag will render the bundled and minified CSS files only when ru
 
 [!code-html[Main](../client-side/bundling-and-minification/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml?highlight=5&range=12-17)]
 
-## See Also
+## Additional resources
 
 * [Using Gulp](using-gulp.md)
 
