@@ -43,7 +43,7 @@ There are several ways to add AngularJS to your application. If you’re startin
 
 [!code-json[Main](../client-side/angular/sample/AngularSample/src/AngularSample/bower.json?highlight=9)]
 
-Upon saving the *bower.json* file, Angular will be installed in your project's **wwwroot/lib** folder. Additionally, it will be listed within the `Dependencies/Bower` folder. See the screenshot below.
+Upon saving the *bower.json* file, Angular will be installed in your project's *wwwroot/lib* folder. Additionally, it will be listed within the `Dependencies/Bower` folder. See the screenshot below.
 
 ![Solution Explorer with Angular Project](angular/_static/angular-solution-explorer.png)
 
