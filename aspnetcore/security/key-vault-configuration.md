@@ -30,7 +30,7 @@ Use the provider when your application has access to Azure services and requires
 To use the provider, add a reference to the `Microsoft.Extensions.Configuration.AzureKeyVault` package. The provider is available for projects that target .NETFramework 4.5.1 or .NETStandard 1.5 or higher.
 
 ## Application configuration
-You can explore the provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you've established a key vault and created a pair of secrets in the vault [following the guidance below](#creating-key-vault-secrets-and-loading-configuration-values), the sample application will securely load the secret values into its configuration and display them in a webpage.
+You can explore the provider with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample). Once you've established a key vault and created a pair of secrets in the vault by [following the guidance below](#creating-key-vault-secrets-and-loading-configuration-values), the sample application will securely load the secret values into its configuration and display them in a webpage.
 
 The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()` extension. In the sample application, the extension uses three configuration values loaded from the *appsettings.json* file.
 
@@ -42,7 +42,7 @@ App Setting | Description | Example
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1&highlight=5,10-13)]
 
-`AddAzureKeyVault()` contains an overload that accepts an implementation of `IKeyVaultSecretManager`. For example, the interface can be implemented to load configuration values by environment, where you would prefix environment names to configuration secrets you store in the key vault. Key vault secrets `Development-ConnectionString` and `Production-ConnectionString` can be loaded from configuration as `ConnectionString`, and the application will take its configuration from the secret that matches the application's environment. An example of this implementation is shown below.
+`AddAzureKeyVault()` contains an overload that accepts an implementation of `IKeyVaultSecretManager`. For example, the interface can be implemented to load configuration values by environment, where you would prefix environment names to configuration secrets you've stored in the key vault. Key vault secrets `Development-ConnectionString` and `Production-ConnectionString` can be loaded from configuration as `ConnectionString`, and the application will take its configuration for the connection string from the secret that matches the application's environment. An example of this implementation is shown below.
 
 ```csharp
 public class EnvironmentSecretManager : IKeyVaultSecretManager
@@ -87,12 +87,12 @@ You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVau
   * Create a key vault. The access policy used to connect to the key vault must have `List` and `Get` permissions to secrets.
   * Add "Manual" secrets to the key vault using Azure PowerShell, API, or the Azure Portal.
     * Hierarchical values (configuration sections) use `--` (double-dash) as a separator.
+    * "Certificate" secrets are not supported.
     * For the sample application, create two secrets with the following name-value pairs:
       * `MySecret`: `secret_value_1`
       * `Section--MySecret`: `secret_value_2`
-    * "Certificate" secrets are not supported.
-  * Register the sample application in Azure Active Directory.
-  * Authorize the application to access to the key vault.
+  * Register the sample application with Azure Active Directory.
+  * Authorize the application to access the key vault.
 2. Update the application's *appsettings.json* file with the values of `Vault`, `ClientId`, and `ClientSecret`.
 3. Run the sample application, which obtains its configuration values from `IConfigurationRoot` with the same name as the secret name.
   * Non-hierarchical Values: The value for `MySecret` is obtained with `config["MySecret"]`.
