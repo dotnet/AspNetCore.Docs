@@ -80,12 +80,11 @@ AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""
 
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
-|Original|Renamed|
-|--- |--- |
-|imageTagAndImageID|t|
-|imageContext|a|
-|imageElement|r|
-
+Original | Renamed
+--- | :---:
+imageTagAndImageID | t
+imageContext | a
+imageElement | r
 
 To minify your JavaScript files you can use the [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin. For CSS you can use the [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin. Install these packages using npm as before:
 
@@ -110,11 +109,11 @@ You can run bundling and minification tasks from a command prompt using gulp (`g
 
 The following table shows several important differences between listing all the assets individually and using bundling and minification on a simple web page:
 
-|Action|With B/M|Without B/M|Change|
-|--- |--- |--- |--- |
-|File Requests|7|18|157%|
-|KB Transferred|156|264.68|70%|
-|Load Time (MS)|885|2360|167%|
+Action | With B/M | Without B/M | Change
+--- | :---: | :---: | :---:
+File Requests |7 | 18 | 157%
+KB Transferred | 156 | 264.68 | 70%
+Load Time (MS) | 885 | 2360 | 167%
 
 The bytes sent had a significant reduction with bundling as browsers are fairly verbose with the HTTP headers that they apply on requests. The load time shows a big improvement, however this example was run locally. You will get greater gains in performance when using bundling and minification with assets transferred over a network.
 
