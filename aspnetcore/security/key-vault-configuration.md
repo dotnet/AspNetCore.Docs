@@ -42,7 +42,7 @@ App Setting | Description | Example
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1&highlight=5,10-13)]
 
-`AddAzureKeyVault()` contains an overload that accepts an implementation of `IKeyVaultSecretManager`. For example, the interface can be implemented to load configuration values by environment, where you would prefix environment names to configuration secrets you've stored in the key vault. Key vault secrets `Development-ConnectionString` and `Production-ConnectionString` can be loaded from configuration as `ConnectionString`, and the application will take its configuration for the connection string from the secret that matches the application's environment. An example of this implementation is shown below.
+`AddAzureKeyVault()` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, the interface can be implemented to load configuration values by environment, where you would prefix environment names to configuration secrets you've stored in the key vault. Key vault secrets `Development-ConnectionString` and `Production-ConnectionString` can be loaded from configuration as `ConnectionString`, and the application will take its configuration for the connection string from the secret that matches the application's environment. An example of this implementation is shown below.
 
 ```csharp
 public class EnvironmentSecretManager : IKeyVaultSecretManager
@@ -84,9 +84,9 @@ You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVau
 
 ## Creating key vault secrets and loading configuration values
 1. Create a key vault and setup Azure Active Directory (Azure AD) for the application following the guidance in [Get started with Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/).
-  * Create a key vault. The access policy used to connect to the key vault must have `List` and `Get` permissions to secrets.
-  * Add "Manual" secrets to the key vault using Azure PowerShell, API, or the Azure Portal.
-    * Hierarchical values (configuration sections) use `--` (double-dash) as a separator.
+  * The access policy used to connect to the key vault must have `List` and `Get` permissions to secrets.
+  * Add "Manual" secrets to the key vault using the Azure PowerShell Module, the Azure Management API, or the Azure Portal.
+    * Hierarchical values (configuration sections) use `--` (two dashes) as a separator.
     * "Certificate" secrets are not supported.
     * For the sample application, create two secrets with the following name-value pairs:
       * `MySecret`: `secret_value_1`
@@ -117,7 +117,7 @@ KeyVaultClientException: Operation get is not allowed on a disabled secret durin
 ```
 
 ## Troubleshooting
-When the application fails to load configuration using the provider, the logged error message will indicate the problem. The following general conditions can prevent configuration from loading:
+When the application fails to load configuration using the provider, an error message will be written to the [ASP.NET Logging infrastructure](xref:fundamentals/logging). The following general conditions can prevent configuration from loading:
 * The application has not been configured correctly in Azure Active Directory.
 * The key vault doesn't exist in Azure Key Vault.
 * The application has not been authorized to access the key vault.
