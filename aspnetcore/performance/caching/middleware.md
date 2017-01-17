@@ -31,8 +31,6 @@ Configure the application to use the middleware when processing requests. The sa
 
 [!code-csharp[Main](middleware/sample/Startup.cs?name=snippet2)]
 
-The position of this middleware relative to other middleware in the pipeline is important. Any terminal middleware placed before this middleware will prevent the Response Caching Middleware from caching or serving the response. For example, if you place [Static File Middleware](xref:fundamentals/static-files) before this middleware, your static files will not be cached by the middleware. If you place Static File Middleware after this middleware, your static files will be cached.
-
 The Response Caching Middleware only caches 200 (OK) server responses. Any other responses, including [error pages](xref:fundamentals/error-handling), will be ignored by the middleware.
 
 ## Options

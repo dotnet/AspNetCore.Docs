@@ -1,5 +1,5 @@
 ﻿---
-title: View Components | Microsoft Docs
+title: View components | Microsoft Docs
 author: rick-anderson
 description: View Components are intended anywhere you have reusable rendering logic.
 keywords: ASP.NET Core,view components, partial view
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/view-components
 ---
-# View Components
+# View components
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

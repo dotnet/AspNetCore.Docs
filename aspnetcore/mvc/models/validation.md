@@ -16,8 +16,6 @@ uid:  mvc/models/validation
 
 By [Rachel Appel](http://github.com/rachelappel)
 
-In this article:
-
 ## Introduction to model validation
 
 Before an app stores data in a database, the app must validate the data. Data must be checked for potential security threats, verified that it is appropriately formatted by type and size, and it must conform to your rules. Validation is necessary although it can be redundant and tedious to implement. In MVC, validation happens on both the client and server.
