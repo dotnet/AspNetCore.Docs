@@ -22,8 +22,6 @@ Knockout is a popular JavaScript library that simplifies the creation of complex
 
 Knockout is deployed as a single JavaScript file, so installing and using it is very straightforward using [bower](bower.md). Assuming you already have [bower](bower.md) and [gulp](using-gulp.md) configured, open bower.json in your ASP.NET Core project and add the knockout dependency as shown here:
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "json", "highlight_args": {"hl_lines": [5]}} -->
-
 ```json
 {
   "name": "KnockoutDemo",
@@ -60,17 +58,15 @@ You may already be familiar with using JavaScript to manipulate elements on a we
 
 As a simple example, consider the page list below. It includes a `<span>` element with a `data-bind` attribute indicating that the text content should be bound to authorName. Next, in a JavaScript block a variable viewModel is defined with a single property, `authorName`, set to some value. Finally, a call to `ko.applyBindings` is made, passing in this viewModel variable.
 
-<!-- literal_block {"ids": [], "linenos": true, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [3, 8, 11, 12, 13, 14]}} -->
-
 ```html
 <html>
-  <head>
+<head>
     <script type="text/javascript" src="lib/knockout/knockout.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <h1>Some Article</h1>
     <p>
-      By <span data-bind="text: authorName"></span>
+        By <span data-bind="text: authorName"></span>
     </p>
     <script type="text/javascript">
       var viewModel = {
@@ -78,7 +74,7 @@ As a simple example, consider the page list below. It includes a `<span>` elemen
       };
       ko.applyBindings(viewModel);
     </script>
-  </body>
+</body>
 </html>
 ```
 
@@ -90,7 +86,7 @@ We now have simple one-way binding working. Notice that nowhere in the code did 
 
 ```html
 <p>
-  Author Name: <input type="text" data-bind="value: authorName" />
+    Author Name: <input type="text" data-bind="value: authorName" />
 </p>
 ```
 
@@ -107,8 +103,6 @@ The issue is that nothing notified the `<span>` that it needed to be updated. Si
 
 Our viewModel, after updating it to use ko.observable:
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [2]}} -->
-
 ```javascript
 var viewModel = {
   authorName: ko.observable('Steve Smith')
@@ -120,19 +114,15 @@ Knockout supports a number of different kinds of bindings. So far we've seen how
 
 First, add the HTML to display the hyperlink, which we'll show in parentheses after the author's name:
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [4]}} -->
-
 ```html
 <h1>Some Article</h1>
 <p>
-  By <span data-bind="text: authorName"></span>
-  (<a data-bind="attr: { href: twitterUrl}, text: twitterAlias" ></a>)
+    By <span data-bind="text: authorName"></span>
+    (<a data-bind="attr: { href: twitterUrl}, text: twitterAlias" ></a>)
 </p>
 ```
 
 Next, update the viewModel to include the twitterUrl and twitterAlias properties:
-
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [3, 4, 5, 6]}} -->
 
 ```javascript
 var viewModel = {
@@ -148,8 +138,6 @@ ko.applyBindings(viewModel);
 Notice that at this point we haven't yet updated the twitterUrl to go to the correct URL for this twitter alias – it's just pointing at twitter.com. Also notice that we're using a new Knockout function, `computed`, for twitterUrl. This is an observable function that will notify any UI elements if it changes. However, for it to have access to other properties in the viewModel, we need to change how we are creating the viewModel, so that each property is its own statement.
 
 The revised viewModel declaration is shown below. It is now declared as a function. Notice that each property is its own statement now, ending with a semicolon. Also notice that to access the twitterAlias property value, we need to execute it, so its reference includes ().
-
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [6]}} -->
 
 ```javascript
 function viewModel() {
@@ -171,17 +159,13 @@ Knockout also supports binding to certain UI element events, such as the click e
 
 First, we add the button, binding to the button's click event, and referencing the function name we're going to add to the viewModel:
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [4]}} -->
-
 ```html
 <p>
-  <button data-bind="click: capitalizeTwitterAlias">Capitalize</button>
+    <button data-bind="click: capitalizeTwitterAlias">Capitalize</button>
 </p>
 ```
 
 Then, add the function to the viewModel, and wire it up to modify the viewModel's state. Notice that to set a new value to the twitterAlias property, we call it as a method and pass in the new value.
-
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [6]}} -->
 
 ```javascript
 function viewModel() {
@@ -208,23 +192,21 @@ Running the code and clicking the button modifies the displayed link as expected
 
 Knockout includes bindings that can perform conditional and looping operations. Looping operations are especially useful for binding lists of data to UI lists, menus, and grids or tables. The foreach binding will iterate over an array. When used with an observable array, it will automatically update the UI elements when items are added or removed from the array, without re-creating every element in the UI tree. The following example uses a new viewModel which includes an observable array of game results. It is bound to a simple table with two columns using a `foreach` binding on the `<tbody>` element. Each `<tr>` element within `<tbody>` will be bound to an element of the gameResults collection.
 
-<!-- literal_block {"ids": [], "linenos": true, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [9, 11, 12, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]}} -->
-
 ```html
 <h1>Record</h1>
 <table>
-  <thead>
-    <tr>
-      <th>Opponent</th>
-      <th>Result</th>
-    </tr>
-  </thead>
-  <tbody data-bind="foreach: gameResults">
-    <tr>
-      <td data-bind="text:opponent"></td>
-      <td data-bind="text:result"></td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th>Opponent</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: gameResults">
+        <tr>
+            <td data-bind="text:opponent"></td>
+            <td data-bind="text:result"></td>
+        </tr>
+    </tbody>
 </table>
 <script type="text/javascript">
   function GameResult(opponent, result) {
@@ -265,7 +247,7 @@ Bind this method to a button using the `click` binding:
 
 ```html
 <button data-bind="click: addResult">Add New Result</button>
-   ```
+```
 
 Open the page in the browser and click the button a couple of times, resulting in a new table row with each click:
 
@@ -275,11 +257,10 @@ There are a few ways to support adding new records in the UI, typically either i
 
 ```html
 <tbody data-bind="foreach: gameResults">
-  <tr>
-    <td><input data-bind="value:opponent" /></td>
-    <td><select data-bind="options: $root.resultChoices,
-      value:result, optionsText: $data"></select></td>
-  </tr>
+    <tr>
+      <td><input data-bind="value:opponent" /></td>
+      <td><select data-bind="options: $root.resultChoices, value:result, optionsText: $data"></select></td>
+    </tr>
 </tbody>
 ```
 
@@ -316,7 +297,6 @@ Adding rows or modifying the selected element in any row's Result column will up
 
 In addition to binding to values, you can also use almost any legal JavaScript expression within a binding. For example, if a UI element should only appear under certain conditions, such as when a value exceeds a certain threshold, you can specify this logically within the binding expression:
 
-
 ```html
 <div data-bind="visible: customerValue > 100"></div>
 ```
@@ -327,16 +307,13 @@ This `<div>` will only be visible when the customerValue is over 100.
 
 Knockout has support for templates, so that you can easily separate your UI from your behavior, or incrementally load UI elements into a large application on demand. We can update our previous example to make each row its own template by simply pulling the HTML out into a template and specifying the template by name in the data-bind call on `<tbody>`.
 
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "none", "highlight_args": {"hl_lines": [1, 3]}} -->
-
-```none
+```html
 <tbody data-bind="template: { name: 'rowTemplate', foreach: gameResults }">
 </tbody>
 <script type="text/html" id="rowTemplate">
   <tr>
-    <td><input data-bind="value:opponent" /></td>
-    <td><select data-bind="options: $root.resultChoices,
-      value:result, optionsText: $data"></select></td>
+      <td><input data-bind="value:opponent" /></td>
+      <td><select data-bind="options: $root.resultChoices, value:result, optionsText: $data"></select></td>
   </tr>
 </script>
 ```
