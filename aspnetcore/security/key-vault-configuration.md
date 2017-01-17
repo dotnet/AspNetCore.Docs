@@ -105,8 +105,13 @@ You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVau
 ## Reloading secrets
 Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets are not effective until `Reload()` is executed.
 
+```csharp
+Configuration.Reload();
+```
+
 ## Disabled secrets
-Disabled secrets throw an exception at runtime. Therefore, it's important that you update an application to remove or replace a configuration key (name) before you disable its associated key vault secret. If a secret is disabled and the provider attempts to load it, you will receive a `KeyVaultClientException`:
+Disabled secrets throw an exception at runtime. Therefore, it's important that you update an application to remove or replace a configuration key (name) before you disable its associated key vault secret. If a secret is disabled and the provider attempts to load it, you will receive a `KeyVaultClientException`.
+
 ```
 KeyVaultClientException: Operation get is not allowed on a disabled secret during reload
 ```
