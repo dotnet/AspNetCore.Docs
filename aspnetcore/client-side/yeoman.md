@@ -1,4 +1,4 @@
-﻿---
+---
 title: Building Projects with Yeoman | Microsoft Docs
 author: ardalis
 description: 
@@ -26,7 +26,7 @@ Follow the instructions on [http://yeoman.io/learning/](http://yeoman.io/learnin
 
 ```console
 npm install -g yo bower
-   ```
+```
 
 Note: If you get the error `npm ERR! Please try running this command again as root/Administrator.` on Mac OS, run the following command using [sudo](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html): `sudo npm install -g yo bower`
 
@@ -34,7 +34,7 @@ From a command prompt, install the ASP.NET generator:
 
 ```console
 npm install -g generator-aspnet
-   ```
+```
 
 > [!NOTE]
 > If you get a permission error, run the command under `sudo` as described above.
@@ -47,14 +47,14 @@ Create a directory for your projects
 
 ```console
 mkdir src
-   cd src
-   ```
+cd src
+```
 
 Run the ASP.NET generator for `yo`
 
 ```console
 yo aspnet
-   ```
+```
 
 The generator displays a menu. Arrow down to the **Empty Web Application** project and tap **Enter**:
 
@@ -112,19 +112,19 @@ At a command prompt, change the current directory to the folder containing the p
 
 ```console
 cd src\MyWebApp
-   ```
+```
 
 Restore the project's NuGet package dependencies:
 
 ```console
 dotnet restore
-   ```
+```
 
 Run the application:
 
 ```console
 dotnet run
-   ```
+```
 
 The cross-platform [Kestrel](../fundamentals/servers/kestrel.md) web server will begin listening on port 5000.
 
@@ -138,26 +138,26 @@ You can add new generated files using Yeoman even after the project is created. 
 
 ```console
 yo aspnet:Class Person
-   ```
+```
 
 The result is a file named Person.cs with a class named `Person`:
 
 ```csharp
 using System;
-   using System.Collections.Generic;
-   using System.Linq;
-   using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-   namespace MyNamespace
-   {
-       public class Person
-       {
-           public Person()
-           {
-           }
-       }
-   }
-   ```
+namespace MyNamespace
+{
+    public class Person
+    {
+        public Person()
+        {
+        }
+    }
+}
+```
 
 ## Related Resources
 
