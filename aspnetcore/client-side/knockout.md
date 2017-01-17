@@ -18,7 +18,7 @@ By [Steve Smith](http://ardalis.com)
 
 Knockout is a popular JavaScript library that simplifies the creation of complex data-based user interfaces. It can be used alone or with other libraries, such as jQuery. Its primary purpose is to bind UI elements to an underlying data model defined as a JavaScript object, such that when changes are made to the UI, the model is updated, and vice versa. Knockout facilitates the use of a Model-View-ViewModel (MVVM) pattern in a web application's client-side behavior. The two main concepts one must learn when working with Knockout's MVVM implementation are Observables and Bindings.
 
-## Getting Started with Knockout in ASP.NET Core
+## Getting started
 
 Knockout is deployed as a single JavaScript file, so installing and using it is very straightforward using [bower](bower.md). Assuming you already have [bower](bower.md) and [gulp](using-gulp.md) configured, open *bower.json* in your ASP.NET Core project and add the knockout dependency as shown here:
 
@@ -52,7 +52,7 @@ To include Knockout on a page that will use it, simply add a `<script>` element 
 <script type="text/javascript" src="knockout-3.3.0.js"></script>
 ```
 
-## Observables, ViewModels, and Simple Binding
+## Observables, ViewModels, and simple binding
 
 You may already be familiar with using JavaScript to manipulate elements on a web page, either via direct access to the DOM or using a library like jQuery. Typically this kind of behavior is achieved by writing code to directly set element values in response to certain user actions. With Knockout, a declarative approach is taken instead, through which elements on the page are bound to properties on an object. Instead of writing code to manipulate DOM elements, user actions simply interact with the ViewModel object, and Knockout takes care of ensuring the page elements are synchronized.
 
@@ -188,7 +188,7 @@ Running the code and clicking the button modifies the displayed link as expected
 
 ![hyperlink capitalize](knockout/_static/hyperlink-caps-screenshot.png)
 
-## Control Flow
+## Control flow
 
 Knockout includes bindings that can perform conditional and looping operations. Looping operations are especially useful for binding lists of data to UI lists, menus, and grids or tables. The foreach binding will iterate over an array. When used with an observable array, it will automatically update the UI elements when items are added or removed from the array, without re-creating every element in the UI tree. The following example uses a new viewModel which includes an observable array of game results. It is bound to a simple table with two columns using a `foreach` binding on the `<tbody>` element. Each `<tr>` element within `<tbody>` will be bound to an element of the gameResults collection.
 
