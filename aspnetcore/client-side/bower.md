@@ -77,27 +77,23 @@ In Solution Explorer, expand the *wwwroot* node. The *lib* directory should now 
 
 Let's add the Font Awesome Icons to the Home Page.  Open `Views\Shared\_Layout.cshtml` and add the css resource to the environment tag helper for **Development**.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [4]}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
-
 ```html
 <environment names="Development">
-  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="~/css/site.css" />
-  <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
 </environment>
 ```
 
 In the environment tag helper for **Staging,Production**, use the CDN location of the css resource and the local file as the fallback. If the CDN fails, then the local file will be used.
 
-   <!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [5, 6]}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
-
 ```html
 <environment names="Staging,Production">
-  <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
         asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
         asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-  <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
         asp-fallback-href="~/lib/font-awesome/css/font-awesome.min.css" />
 </environment>
 ```
@@ -107,8 +103,6 @@ Open `Views\Home\Index.cshtml` and add the icons to the **How to**, **Overview**
 ![css intellisense in cshtml](bower/_static/css-intellisense.png)
 
 Add the question icon to the **How to** header.
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [2]}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
 ```html
 <div class="col-md-3">
@@ -160,8 +154,6 @@ The first step is to define the packages your application needs and to download 
 
 5.  Open bower.json, and add jquery and bootstrap to the `dependencies` section. As an alternative to the manual file editing, the "Manage Bower Packages" UI may be used. The resulting bower.json file should look like the example here. The versions will change over time, so use the latest stable build version from the drop-down list.
 
-    <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "json"} -->
-
     ```json
     {
       "name": "ASP.NET",
@@ -193,20 +185,18 @@ Now that Bower has copied the client support packages needed by the application,
 
 Make sure bootstrap.js follows jquery.js, so that jQuery is loaded first.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
-
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>Bower Example</title>
-  <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Bower Example</title>
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-
-  <script src="lib/jquery/dist/jquery.js"></script>
-  <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    ...
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>
 ```
@@ -217,18 +207,15 @@ Add jQuery and Bootstrap components to the page to verify that the web applicati
 
 1.  Inside the `body` tag, above the `script` references, add a `div` element with the Bootstrap **jumbotron** class and an anchor tag.
 
-    <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
-    
     ```html
     <div class="jumbotron">
-      <h1>Using the jumbotron style</h1>
-      <p><a class="btn btn-primary btn-lg" role="button">
-         Stateful button</a></p>
+        <h1>Using the jumbotron style</h1>
+        <p>
+            <a class="btn btn-primary btn-lg" role="button">Stateful button</a>
+        </p>
     </div>
     ```
 2.  Add the following code after the jQuery and Bootstrap `script` references.
-
-    <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
     ```html
     <script>
@@ -245,8 +232,6 @@ Add jQuery and Bootstrap components to the page to verify that the web applicati
 
 3.  Within the `Configure` method of the Startup.cs file, add a call to the `UseStaticFiles` extension method. This middleware adds files, found within the web root, to the request pipeline. This line of code will look as follows:
 
-    <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
- 
     ```csharp
     app.UseStaticFiles();
     ```
