@@ -1,4 +1,4 @@
-﻿---
+---
 title: Using Gulp | Microsoft Docs
 author: rick-anderson
 description: 
