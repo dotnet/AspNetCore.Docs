@@ -36,7 +36,7 @@ The provider is added to the `ConfigurationBuilder` with the `AddAzureKeyVault()
 
 App Setting | Description | Example
 --- | --- | ---
-`Vault` | Azure Key Vault vault name | contosovault
+`Vault` | Azure Key Vault name | contosovault
 `ClientId` | Azure Active Directory App Id | 627e911e-43cc-61d4-992e-12db9c81b413
 `ClientSecret` | Azure Active Directory App Key | g58K3dtg59o1Pa+e59v2Tx829w6VxTB2yv9sv/101di=
 
@@ -76,8 +76,8 @@ builder.AddAzureKeyVault(
 Configuration = builder.Build();
 
 // Configuration["ConnectionString"] will be loaded from Development-ConnectionString
-// in the vault if the environment is Development and Production-ConnectionString in
-// the vault if the environment is Production.
+// if the environment is Development and Production-ConnectionString if the environment 
+// is Production.
 ```
 
 You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`. For more information, see [KeyVaultClient Class](https://msdn.microsoft.com/en-us/library/microsoft.azure.keyvault.keyvaultclient.aspx). 
@@ -119,7 +119,7 @@ KeyVaultClientException: Operation get is not allowed on a disabled secret durin
 ## Troubleshooting
 When the application fails to load configuration using the provider, the logged error message will indicate the problem. The following general conditions can prevent configuration from loading:
 * The application has not been configured correctly in Azure Active Directory.
-* The key vault doen't exist in Azure Key Vault.
+* The key vault doesn't exist in Azure Key Vault.
 * The application has not been authorized to access the key vault.
 * The access policy doesn't include `Get` and `List` permissions.
 * In the key vault, the configuration data (name-value pair) is incorrectly named, missing, disabled, or expired.
