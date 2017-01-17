@@ -127,7 +127,7 @@ When the application fails to load configuration using the provider, the logged 
 * The Azure AD Key (`ClientSecret`) is expired.
 * The configuration key (name) is incorrect in the application for the value you're trying to load.
 
-## Additional Resources
+## Additional resources
 * [Configuration](xref:fundamentals/configuration)
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/en-us/services/key-vault/)
 * [Microsoft Azure: Key Vault Documentation](https://docs.microsoft.com/en-us/azure/key-vault/)
