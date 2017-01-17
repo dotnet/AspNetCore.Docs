@@ -70,8 +70,6 @@ The above code specifies which Node modules are required. The `require` function
 
 Once the requisite modules are imported, the tasks can be specified. Here there are six tasks registered, represented by the following code:
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [1, 5, 9, 11, 18, 25]}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
-
 ```javascript
 gulp.task("clean:js", function (cb) {
   rimraf(paths.concatJsDest, cb);
@@ -117,8 +115,6 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
 1.  Add a new JavaScript file to your Project and name it *gulpfile.js*, copy the following code.
 
-    <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
-    
     ```javascript
     /// <binding Clean='clean' />
     "use strict";
@@ -169,9 +165,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
 2.  Open the *package.json* file (add if not there) and add the following.
 
-    <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
-    
-    ```javascript
+    ```json
     {
       "devDependencies": {
         "gulp": "3.8.11",
@@ -214,8 +208,6 @@ To define a new Gulp task, modify *gulpfile.js*.
 
 1.  Add the following JavaScript to the end of *gulpfile.js*:
 
-    <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
-    
     ```javascript
     gulp.task("first", function () {
       console.log('first task! <-----');
@@ -240,8 +232,6 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
 
 1.  To define a series of tasks to run in order, replace the `first` task that you added above in *gulpfile.js* with the following:
 
-    <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
-    
     ```javascript
     gulp.task("series:first", function () {
       console.log('first task! <-----');
@@ -276,18 +266,16 @@ For more information about IntelliSense, see [JavaScript IntelliSense](https://m
 
 When Gulp is used to optimize client-side files for staging and production, the processed files are saved to a local staging and production location. The *_Layout.cshtml* file uses the **environment** tag helper to provide two different versions of CSS files. One version of CSS files is for development and the other version is optimized for both staging and production. In Visual Studio 2015, when you change the **Hosting:Environment** environment variable to `Production`, Visual Studio will build the Web app and link to the minimized CSS files. The following markup shows the **environment** tag helpers containing link tags to the `Development` CSS files and the minified `Staging, Production` CSS files.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
-
 ```html
 <environment names="Development">
-  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </environment>
 <environment names="Staging,Production">
-  <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
-      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-  <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+        asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+        asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 </environment>
 ```
 
