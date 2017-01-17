@@ -1,5 +1,5 @@
 ---
-title: Styling Applications with Less, Sass, and Font Awesome | Microsoft Docs
+title: Styling applications with Less, Sass, and Font Awesome | Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core,
@@ -12,13 +12,13 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/less-sass-fa
 ---
-# Styling Applications with Less, Sass, and Font Awesome
+# Styling applications with Less, Sass, and Font Awesome
 
 By [Steve Smith](http://ardalis.com)
 
 Users of web applications have increasingly high expectations when it comes to style and overall experience. Modern web applications frequently leverage rich tools and frameworks for defining and managing their look and feel in a consistent manner. Frameworks like [Bootstrap](http://getbootstrap.com/) can go a long way toward defining a common set of styles and layout options for the web sites. However, most non-trivial sites also benefit from being able to effectively define and maintain styles and cascading style sheet (CSS) files, as well as having easy access to non-image icons that help make the site's interface more intuitive. That's where languages and tools that support [Less](http://lesscss.org/) and [Sass](http://sass-lang.com/), and libraries like [Font Awesome](http://fortawesome.github.io/Font-Awesome/), come in.
 
-## CSS Preprocessor Languages
+## CSS preprocessor languages
 
 Languages that are compiled into other languages, in order to improve the experience of working with the underlying language, are referred to as pre-processors. There are two popular pre-processors for CSS: Less and Sass.  These pre-processors add features to CSS, such as support for variables and nested rules, which improve the maintainability of large, complex stylesheets. CSS as a language is very basic, lacking support even for something as simple as variables, and this tends to make CSS files repetitive and bloated. Adding real programming language features via preprocessors can help reduce duplication and provide better organization of styling rules. Visual Studio provides built-in support for both Less and Sass, as well as extensions that can further improve the development experience when working with these languages.
 
@@ -98,7 +98,7 @@ body {
 
 `@base` and the other @-prefixed items are variables. Each of them represents a color. Except for `@base`, they are set using color functions: lighten, darken, and spin. Lighten and darken do pretty much what you would expect; spin adjusts the hue of a color by a number of degrees (around the color wheel). The less processor is smart enough to ignore variables that aren't used, so to demonstrate how these variables work, we need to use them somewhere. The classes `.baseColor`, etc. will demonstrate the calculated values of each of the variables in the CSS file that is produced.
 
-### Getting Started
+### Getting started
 
 If you don't already have one in your project, add a new Gulp configuration file. Make sure *package.json* includes gulp in its `devDependencies`, and add "gulp-less":
 
@@ -121,7 +121,7 @@ var gulp = require("gulp"),
   less = require("gulp-less");
 ```
 
-add another variable to allow you to access project properties:
+Add another variable to allow you to access project properties:
 
 ```javascript
 var project = require('./project.json');
