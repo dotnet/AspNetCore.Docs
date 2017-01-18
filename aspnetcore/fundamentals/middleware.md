@@ -127,12 +127,36 @@ ASP.NET ships with the following middleware components:
 | ----- | ------- |
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. |
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. |
-| Response Caching | Provides support for caching responses. |
+| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. |
 | Response Compression | Provides support for compressing responses. |
 | [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |
 | [URL Rewriting Middleware](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. |
+
+## Middleware ordering
+
+Terminal middleware, which processes a request and returns a response, placed before another middleware will prevent the downstream middleware from executing. For example, if you place the Static File Middleware before the Response Compression Middleware, your static files cannot be compressed. The Static File Middleware will fully handle requests for static files, returning them to clients before the Response Compression Middleware can execute. The following example demonstrates this middleware arrangement.
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles();
+    app.UseResponseCompression();
+    app.UseMvcWithDefaultRoute();
+}
+```
+
+If you intend to use the Response Compression Middleware to compress your static files, position the Response Compression Middleware earlier in the request processing pipeline. The following example demonstrates the middleware arrangement that would result in compression of your static files.
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    app.UseResponseCompression();
+    app.UseStaticFiles();
+    app.UseMvcWithDefaultRoute();
+}
+```
 
 <a name=middleware-writing-middleware></a>
 
