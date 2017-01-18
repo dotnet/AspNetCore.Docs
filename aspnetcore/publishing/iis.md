@@ -5,7 +5,7 @@ description:  Windows Server Internet Information Services (IIS) configuration a
 keywords: ASP.NET Core, internet information services, iis, windows server, hosting bundle, asp.net core module, web deploy
 ms.author: riande
 manager: wpickett
-ms.date: 1/9/2017
+ms.date: 01/9/2017
 ms.topic: article
 ms.assetid: a4449ad3-5bad-410c-afa7-dc32d832b552
 ms.technology: aspnet
@@ -72,17 +72,14 @@ If you intend to deploy your applications with Web Deploy in Visual Studio, inst
 
 Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *.UseIISIntegration()* extension method to *WebHostBuilder()*.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
-
 ```csharp
-
-   var host = new WebHostBuilder()
-     .UseKestrel()
-     .UseContentRoot(Directory.GetCurrentDirectory())
-     .UseIISIntegration()
-     .UseStartup<Startup>()
-     .Build();
-   ```
+var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseContentRoot(Directory.GetCurrentDirectory())
+    .UseIISIntegration()
+    .UseStartup<Startup>()
+    .Build();
+```
 
 Note that code calling *.UseIISIntegration()* does not affect code portability.
 
@@ -90,14 +87,11 @@ Note that code calling *.UseIISIntegration()* does not affect code portability.
 
 To configure *IISIntegration* service options, include a service configuration for *IISOptions* in *ConfigureServices*.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
-
 ```csharp
-
-   services.Configure<IISOptions>(options => {
-     ...
-   });
-   ```
+services.Configure<IISOptions>(options => {
+  ...
+});
+```
 
 | Option | Setting|
 | --- | --- | 
@@ -111,17 +105,14 @@ The *publish-iis* tool can be added to any .NET Core application and will config
 
 To include the *publish-iis* tool in your application, add entries to the *tools* and *scripts* sections of *project.json*.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
-
-```none
-
-   "tools": {
-     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
-   },
-   "scripts": {
-     "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
-   }
-   ```
+```json
+"tools": {
+  "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
+},
+"scripts": {
+  "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
+}
+```
 
 ## Configure the website in IIS
 
@@ -161,7 +152,7 @@ Create a publish profile in Visual Studio and click the **Publish** button to de
 ![Publish dialog page](iis/_static/pub-dialog.png)
 
 ### Alternatives to Web Deploy
-If you don't wish to use Web Deploy or are not using Visual Studio, you may use any of several methods to move the application to the server, such as Xcopy, Robocopy, or PowerShell. Visual Studio users may use the [default Visual Studio web publish script](https://github.com/aspnet/vsweb-publish/blob/master/samples/default-publish.ps1).
+If you don't wish to use Web Deploy or are not using Visual Studio, you may use any of several methods to move the application to the server, such as Xcopy, Robocopy, or PowerShell. Visual Studio users may use the [Publish Samples](https://github.com/aspnet/vsweb-publish/blob/master/samples/samples.md).
 
 ## Browse the website
 ![The Microsoft Edge browser has loaded the IIS startup page.](iis/_static/browsewebsite.png)
