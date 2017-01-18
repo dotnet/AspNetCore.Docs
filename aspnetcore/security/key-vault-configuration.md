@@ -20,11 +20,7 @@ By [Luke Latham](https://github.com/GuardRex) and [Andrew Stanton-Nurse](https:/
 This document explains how to use the [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) configuration provider to load application configuration values from Azure Key Vault. Azure Key Vault is a cloud-based service that helps you safeguard cryptographic keys and secrets used by applications and services.
 
 ## When to use the provider
-Use the provider when your application has access to Azure services and requires encrypted storage of its configuration data. Common scenarios include:
-* Controlling access to sensitive configuration data
-* Monitoring and logging of configuration data use
-* Reducing latency, providing automatic scaling, and providing redundancy of configuration data
-* Meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's) when storing configuration data
+Use the provider when your application has access to Azure services and requires encrypted storage of its configuration data. Common scenarios include controlling access to sensitive configuration data and meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's) when storing configuration data.
 
 ## Package
 To use the provider, add a reference to the `Microsoft.Extensions.Configuration.AzureKeyVault` package. The provider is available for projects that target .NET Framework 4.5.1 or .NET Standard 1.5 or higher.
