@@ -20,7 +20,7 @@ The `Startup` class configures the request pipeline that handles all requests ma
 
 ## The Startup class
 
-All ASP.NET applications require at least one `Startup` class. When an application starts, ASP.NET searches the primary assembly for a class named `Startup` (in any namespace). You can specify a different assembly to search using the *Hosting:Application* configuration key. The class doesn't have to be `public`. If there are multiple `Startup` classes, ASP.NET looks for one in the project's root namespace, otherwise it chooses one in the alphabetically first namespace.
+All ASP.NET applications require at least one `Startup` class. When an application starts, ASP.NET searches the primary assembly for a class named `Startup` (in any namespace). You can specify a different assembly to search using the *Hosting:Application* configuration key. The class doesn't have to be `public`. 
 
 You can define separate `Startup` classes for different environments, and the appropriate one will be selected at runtime. Learn more in [Working with multiple environments](environments.md#startup-conventions).
 
