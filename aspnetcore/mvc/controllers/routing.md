@@ -325,7 +325,7 @@ public class ProductsApiController : Controller
 }
 ```
 
-The `ProductsApi.GetProducts(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](../../fundamentals/routing.md) for a full description of route templates and related options.
+The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](../../fundamentals/routing.md) for a full description of route templates and related options.
 
 This route attribute also defines a *route name* of `Products_List`. Route names can be used to generate a URL based on a specific route. Route names have no impact on the URL matching behavior of routing and are only used for URL generation. Route names must be unique application-wide.
 
