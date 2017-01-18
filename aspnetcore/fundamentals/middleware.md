@@ -55,9 +55,6 @@ The `static file module` provides no authorization checks. Any files served by i
 
 A request that is handled by the static file module will short circuit the pipeline. (see [Working with Static Files](static-files.md).) If the request is not handled by the static file module, it's passed on to the `Identity module`, which performs authentication. If the request is not authenticated, the pipeline is short circuited. If the request does not fail authentication, the last stage of this pipeline is called, which is the MVC framework.
 
-> [!NOTE]
-> The order in which you add middleware components is generally the order in which they take effect on the request, and then in reverse for the response. This can be critical to your app’s security, performance and functionality. In the code above, the `static file middleware` is called early in the pipeline so it can handle requests and short circuit without going through unnecessary components. The authentication middleware is added to the pipeline before anything that handles requests that need to be authenticated. Exception handling must be registered before other middleware components in order to catch exceptions thrown by those components.
-
 The simplest possible ASP.NET application sets up a single request delegate that handles all requests. In this case, there isn't really a request "pipeline", so much as a single anonymous function that is called in response to every HTTP request.
 
 [!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?start=23&end=26)]
@@ -136,7 +133,9 @@ ASP.NET ships with the following middleware components:
 
 ## Middleware ordering
 
-Terminal middleware, which processes a request and returns a response, placed before another middleware will prevent the downstream middleware from executing. For example, if you place the Static File Middleware before the Response Compression Middleware, your static files cannot be compressed. The Static File Middleware will fully handle requests for static files, returning them to clients before the Response Compression Middleware can execute. The following example demonstrates this middleware arrangement.
+The order in which you add middleware components is generally the order in which they take effect on the request, and then in reverse for the response. This can be critical to your app’s security, performance, and functionality. In the code above where the Static File Middleware was used with authentication middleware, the Static File Middleware is called early in the pipeline so it can handle requests and short circuit without going through unnecessary components. The authentication middleware is added to the pipeline before anything that handles requests for secure resources. Exception handling must be registered before other middleware components in order to catch exceptions thrown by those components.
+
+The following example demonstrates a middleware arrangement where requests for static files are fully handled by the Static File Middleware before Response Compression Middleware could ever see the request. Static files cannot be compressed with this ordering of the middleware, but the MVC output downstream of the Response Compression Middleware can be compressed.
 
 ```csharp
 public void Configure(IApplicationBuilder app)
