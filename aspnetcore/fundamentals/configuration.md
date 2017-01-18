@@ -353,4 +353,4 @@ results in an exception. An exception will be thrown if you specify a command-li
 * [Working with Multiple Environments](environments.md)
 * [Safe storage of app secrets during development](../security/app-secrets.md)
 * [Dependency Injection](dependency-injection.md)
-* [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration)
+* [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
