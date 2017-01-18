@@ -76,7 +76,7 @@ Configuration = builder.Build();
 // is Production.
 ```
 
-You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`. For more information, see [KeyVaultClient Class](https://msdn.microsoft.com/en-us/library/microsoft.azure.keyvault.keyvaultclient.aspx). 
+You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`, which allows for additional customization of the client that interacts with Azure Key Vault. For more information, see [KeyVaultClient Class](https://msdn.microsoft.com/en-us/library/microsoft.azure.keyvault.keyvaultclient.aspx). 
 
 ## Creating key vault secrets and loading configuration values
 1. Create a key vault and set up Azure Active Directory (Azure AD) for the application following the guidance in [Get started with Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/).
