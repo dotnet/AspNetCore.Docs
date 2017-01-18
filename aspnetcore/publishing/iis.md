@@ -5,7 +5,7 @@ description:  Windows Server Internet Information Services (IIS) configuration a
 keywords: ASP.NET Core, internet information services, iis, windows server, hosting bundle, asp.net core module, web deploy
 ms.author: riande
 manager: wpickett
-ms.date: 01/9/2017
+ms.date: 01/18/2017
 ms.topic: article
 ms.assetid: a4449ad3-5bad-410c-afa7-dc32d832b552
 ms.technology: aspnet
@@ -147,9 +147,12 @@ To include the *publish-iis* tool in your application, add entries to the *tools
 Deploy the application to the folder you created on the target IIS server. Web Deploy is the recommended mechanism for deployment. Alternatives to Web Deploy are listed below.
 
 ### Web Deploy with Visual Studio
-Create a publish profile in Visual Studio and click the **Publish** button to deploy your application. If your hosting provider has support for creating or supplying a publish profile, download their publish profile and import it using the Visual Studio Publish Web dialog.
+Create a [Publish Profile in Visual Studio](https://msdn.microsoft.com/en-us/library/dd465337(v=vs.110).aspx#Anchor_0) and click the **Publish** button to deploy your application. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish Web** dialog.
 
 ![Publish dialog page](iis/_static/pub-dialog.png)
+
+### Web Deploy outside of Visual Studio
+You can also use Web Deploy outside of Visual Studio from the command line. For more information, see [Web Deployment Tool](https://technet.microsoft.com/en-us/library/dd568996(WS.10).aspx).
 
 ### Alternatives to Web Deploy
 If you don't wish to use Web Deploy or are not using Visual Studio, you may use any of several methods to move the application to the server, such as Xcopy, Robocopy, or PowerShell. Visual Studio users may use the [Publish Samples](https://github.com/aspnet/vsweb-publish/blob/master/samples/samples.md).
