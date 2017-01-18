@@ -43,7 +43,7 @@ For more information, see the [IANA Official Content Coding List](http://www.ian
 
 The middleware is capable of reacting to quality value (qvalue, `q`) weighting when sent by the client. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
 
-Most compression algorithms are subject to a tradeoff between compression speed and the effectiveness of the compression. *Effectiveness* in this context means the smallest possible size, which is also referred to as the most *optimal* compression. The middleware defaults to the fastest compression level, which might not produce the most efficient compression. If the most efficient compression is desired, the middleware can be configured for optimal compression.
+Most compression algorithms are subject to a tradeoff between compression speed and the effectiveness of the compression. *Effectiveness* in this context refers to the size of the output after compression. The smallest size is achieved by the most *optimal* compression. The middleware defaults to the fastest compression level, which might not produce the most efficient compression. If the most efficient compression is desired, the middleware can be configured for optimal compression.
 
 The headers involved in requesting, sending, caching, and receiving compressed content are described below.
 
@@ -80,22 +80,24 @@ Submit a request to the sample application with the `Accept-Encoding: gzip` head
 
 ### Providers
 #### GzipCompressionProvider
-Use the `GzipCompressionProvider` to compress responses with GZip. This is the default compression provider if none are specified. You can set the compression level with the `GzipCompressionProviderOptions`. The default is for the fastest compression.
+Use the `GzipCompressionProvider` to compress responses with GZip. This is the default compression provider if none are specified. You can set the compression level with the `GzipCompressionProviderOptions`. The default is `CompressionLevel.Fastest`.
 
 Compression Level | Description
 --- | ---
-`CompressionLevel.Fastest` (default) | Compression should complete as quickly as possible, even if the resulting output is not optimally compressed.
+`CompressionLevel.Fastest` | Compression should complete as quickly as possible, even if the resulting output is not optimally compressed.
 `CompressionLevel.NoCompression` | No compression should be performed.
 `CompressionLevel.Optimal` | Responses should be optimally compressed, even if the compression takes more time to complete.
 
-[!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet2&highlight=5,9-12)]
+[!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet2&highlight=3)]
+
+[!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet3)]
 
 #### Custom Providers
 You can create custom compression implementations with `ICompressionProvider`. The `EncodingName` represents the content encoding that this `ICompressionProvider` produces. The middleware will use this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
 
 Using the sample application, the client would submit a request with the `Accept-Encoding: custom` header. The middleware will use the custom compression implementation and return the response with a `Content-Encoding: custom` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
 
-[!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet2&highlight=6)]
+[!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet2&highlight=4)]
 
 [!code-csharp[Main](response-compression/sample/CustomCompressionProvider.cs?name=snippet1)]
 
@@ -116,7 +118,7 @@ The middleware specifies a default set of MIME types for compression:
 
 You can replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` are not supported. The sample application adds a MIME type for `image/svg+xml` and will compress and serve the ASP.NET Core banner image (*banner.svg*).
 
-[!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet2&highlight=7)]
+[!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet2&highlight=5)]
 
 ### Compression with secure protocol
 Compressed responses over secure connections can be controlled with the `EnableForHttps` option, which is disabled by default. Using compression with dynamically generated pages can lead to security problems such as the [CRIME](https://en.wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://en.wikipedia.org/wiki/BREACH_(security_exploit)) attacks.
@@ -151,20 +153,15 @@ If you opt to remove the module via *web.config*, you must unlock it first. Clic
 ## Troubleshooting
 Use a tool like [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/), all of which allow you to set the `Accept-Encoding` request header and study the response headers, size, and body. The Response Compression Middleware will compress responses that meet the following conditions:
 * The `Accept-Encoding` header is present with a value of `gzip`, `*`, or custom encoding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality value (qvalue, `q`) setting of 0 (zero).
-* The MIME type (`Content-Type`) must be set and must match a MIME type configured on the ResponseCompressionOptions.
+* The MIME type (`Content-Type`) must be set and must match a MIME type configured on the `ResponseCompressionOptions`.
 * The request must not include the `Content-Range` header.
 * The request must use *insecure protocol*, unless secure protocol is configured in the Response Compression Middleware options. *Note the danger [described above](#compression-with-secure-protocol) when enabling secure content compression.*
 * The provider must not use `GZipStream` on .NET Framework 4.5.1, which isn't flushable.
 
-## Additional Resources
+## Additional resources
 * [Application Startup](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware)
-* [Apache Module mod_deflate](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
-* [IIS HTTP Compression `<httpCompression>`](https://www.iis.net/configreference/system.webserver/httpcompression)
-* [NGINX Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding)
-* [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4)
-* [IANA Official Content Coding List](http://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry)
 * [RFC 7231 Section 3.1.2.1: Content Codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)
 * [RFC 7230 Section 4.2.3: Gzip Coding](https://tools.ietf.org/html/rfc7230#section-4.2.3)
 * [GZIP file format specification version 4.3](http://www.ietf.org/rfc/rfc1952.txt)
