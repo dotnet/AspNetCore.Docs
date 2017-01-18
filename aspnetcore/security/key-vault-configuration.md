@@ -5,7 +5,7 @@ description: How to use the Azure Key Vault Configuration Provider to configure 
 keywords: ASP.NET Core, configuration, Azure Key Vault
 ms.author: riande
 manager: wpickett
-ms.date: 1/16/2017
+ms.date: 01/16/2017
 ms.topic: article
 ms.assetid: 0292bdae-b3ed-4637-bd67-19b9bb8b65cb
 ms.prod: aspnet-core
