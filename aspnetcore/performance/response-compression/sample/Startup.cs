@@ -18,23 +18,24 @@ namespace ResponseCompressionSample
 {
     public class Startup
     {
-        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
+            #region snippet2
             services.AddResponseCompression(options =>
             {
                 options.Providers.Add<GzipCompressionProvider>();
                 options.Providers.Add<CustomCompressionProvider>();
                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
             });
+            #endregion
+            #region snippet3
             services.Configure<GzipCompressionProviderOptions>(options => 
             {
                 options.Level = CompressionLevel.Fastest;
             });
+            #endregion
         }
-        #endregion
-
-        #region snippet3
+        
         public void Configure(IApplicationBuilder app)
         {
             app.UseResponseCompression();
@@ -84,7 +85,6 @@ namespace ResponseCompressionSample
                 await context.Response.WriteAsync(LoremIpsum.Text);
             });
         }
-        #endregion
 
         #region snippet1
         private void ManageVaryHeader(ref HttpContext context)
