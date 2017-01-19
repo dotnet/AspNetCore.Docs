@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net451;netcoreapp1.1</TargetFramework>
+    <TargetFrameworks>net451;netcoreapp1.1</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <!-- TODO remove rid when https://github.com/dotnet/sdk/issues/396 is resolved -->
     <RuntimeIdentifier Condition="'$(TargetFramework)'!='netcoreapp1.1'">win7-x64</RuntimeIdentifier>
@@ -21,5 +21,10 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
     <PackageReference Include="Microsoft.NETCore.App" Version="1.1.0" />
   </ItemGroup>
+  
+  <!-- TODO remove this target when https://github.com/aspnet/AspNetCoreModule/issues/43 is resolved -->
+  <Target Name="CreateLogsFolder" AfterTargets="AfterPublish">
+    <MakeDir Directories="$(PublishDir)logs" Condition="!Exists('$(PublishDir)logs')" />
+  </Target>
 
 </Project>
