@@ -10,6 +10,7 @@ Public MustInherit Class ApplicationController
           End Get
      End Property
 
+
      Sub New()
           ViewData("categories") = From c In DataContext.MovieCategories _
                     Select c

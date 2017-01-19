@@ -52,11 +52,11 @@ First, define a view-model class:
 
 To populate the `products` array, make an AJAX request to the web API. Recall that we stored the base URI for the API in the view bag (see [Part 4](using-web-api-with-entity-framework-part-4.md) of the tutorial).
 
-[!code-cshtml[Main](using-web-api-with-entity-framework-part-5/samples/sample4.cshtml?highlight=5)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample4.js?highlight=5)]
 
 Next, add functions to the view-model to create, update, and delete products. These functions submit AJAX calls to the web API and use the results to update the view-model.
 
-[!code-cshtml[Main](using-web-api-with-entity-framework-part-5/samples/sample5.cshtml?highlight=7)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample5.js?highlight=7)]
 
 Now the most important part: When the DOM is fulled loaded, call the **ko.applyBindings** function and pass in a new instance of the `ProductsViewModel`:
 
@@ -86,7 +86,7 @@ This binding calls the `create` function on the view-model to create a new produ
 
 Here is the complete code for the Admin view:
 
-[!code-cshtml[Main](using-web-api-with-entity-framework-part-5/samples/sample10.cshtml)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample10.js)]
 
 Run the application, log in with the Administrator account, and click the "Admin" link. You should see the list of products, and be able to create, update, or delete products.
 
