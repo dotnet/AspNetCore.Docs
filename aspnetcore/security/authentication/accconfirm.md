@@ -72,6 +72,7 @@ services.Configure<MvcOptions>(options =>
     options.Filters.Add(new RequireHttpsAttribute ());
 });
 ```
+ `[services.Configure<MvcOptions>]` requires `[using Microsoft.AspNetCore.Mvc;]`.
 
 Add the `[RequireHttps]` attribute to each controller. The `[RequireHttps]` attribute will redirect all HTTP GET requests to HTTPS GET and will reject all HTTP POSTs. A security best practice is to use HTTPS for all requests.
 
