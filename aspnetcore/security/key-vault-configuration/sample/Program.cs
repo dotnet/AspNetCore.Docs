@@ -17,6 +17,7 @@ namespace KeyVaultConfigProviderSample
                     factory.AddConsole(LogLevel.Debug);
                 })
                 .UseKestrel()
+                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
 
