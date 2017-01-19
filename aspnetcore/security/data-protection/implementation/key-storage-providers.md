@@ -56,8 +56,8 @@ To configure on Redis, call one of the [PersistKeysToRedis](https://github.com/a
 ```
 public void ConfigureServices(IServiceCollection services)
 {
-    // Connect
-    var redis = ConnectionMultiplexer.Connect("<URI to ??>");
+    // Connect to Redis database.
+    var redis = ConnectionMultiplexer.Connect("<URI>");
     services.AddDataProtection()
         .PersistKeysToRedis(redis, "DataProtection-Keys");
 
@@ -65,7 +65,11 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-See also the [Redis test code](https://github.com/aspnet/DataProtection/blob/rel/1.1.0/samples/Redis/Program.cs).
+See the following for more information:
+
+- [StackExchange.Redis ConnectionMultiplexer](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Basics.md)
+- [Azure Redis Cache](https://docs.microsoft.com/en-us/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache#connect-to-the-cache)
+- [Redis test code](https://github.com/aspnet/DataProtection/blob/rel/1.1.0/samples/Redis/Program.cs).
 
 ## Registry
 
