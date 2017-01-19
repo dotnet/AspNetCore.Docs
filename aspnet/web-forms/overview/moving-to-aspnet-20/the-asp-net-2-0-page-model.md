@@ -34,11 +34,11 @@ ASP.NET 2.0 greatly improves upon this model. In ASP.NET 2.0, code-behind is imp
 
 A typical @ Page directive might look like this:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample1.xml)]
+[!code-aspx[Main](the-asp-net-2-0-page-model/samples/sample1.aspx)]
 
 A typical class definition in an ASP.NET 2.0 code-behind file might look like this:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample2.xml)]
+[!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample2.cs)]
 
 > [!NOTE] C# and Visual Basic are the only managed languages that currently support partial classes. Therefore, developers using J# will not be able to use the code-behind model in ASP.NET 2.0.
 
@@ -90,7 +90,7 @@ This attribute specifies whether or not JavaScript is injected into the page in 
 
 When this attribute is **true**, ASP.NET will add a &lt;script&gt; block on postback that looks like this:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample3.xml)]
+[!code-html[Main](the-asp-net-2-0-page-model/samples/sample3.html)]
 
 Note that the src for this script block is WebResource.axd. This resource is not a physical path. When this script is requested, ASP.NET dynamically builds the script.
 
@@ -118,7 +118,7 @@ Sets the value for the ViewStateEncryptionMode enumeration. The available values
 
 Another new capability of the @ Page directive in ASP.NET 2.0 is the ability to set the initial value of public properties of a base class. Suppose, for example, that you have a public property called **SomeText** in your base class and you d like it to be initialized to **Hello** when a page is loaded. You can accomplish this by simply setting the value in the @ Page directive like so:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample4.xml)]
+[!code-aspx[Main](the-asp-net-2-0-page-model/samples/sample4.aspx)]
 
 The **SomeText** attribute of the @ Page directive sets the initial value of the SomeText property in the base class to *Hello!*. The video below is a walkthrough of setting the initial value of a public property in a base class using the @ Page directive.
 
@@ -353,7 +353,7 @@ The Render method has not changed since ASP.NET 1.x. This is where the HtmlTextW
 
 In ASP.NET 1.x, postbacks were required to post to the same page. Cross-page postbacks were not allowed. ASP.NET 2.0 adds the ability to post back to a different page via the IButtonControl interface. Any control that implements the new IButtonControl interface (Button, LinkButton, and ImageButton in addition to third-party custom controls) can take advantage of this new functionality via the use of the PostBackUrl attribute. The following code shows a Button control that posts back to a second page.
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample5.xml)]
+[!code-aspx[Main](the-asp-net-2-0-page-model/samples/sample5.aspx)]
 
 When the page is posted back, the Page that initiates the postback is accessible via the PreviousPage property on the second page. This functionality is implemented via the new WebForm\_DoPostBackWithOptions client-side function that ASP.NET 2.0 renders to the page when a control posts back to a different page. This JavaScript function is provided by the new WebResource.axd handler which emits script to the client.
 
@@ -390,14 +390,14 @@ In this lab, you will create an application that uses the new cross-page postbac
 5. Add a @ PreviousPageType directive as shown below:
 6. Add the following code to the Page\_Load of page2.aspx's code-behind: 
 
-    [!code[Main](the-asp-net-2-0-page-model/samples/sample6.xml)]
+    [!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample6.cs)]
 7. Build the project by clicking on Build on the Build menu.
 8. Add the following code to the code-behind for Default.aspx: 
 
-    [!code[Main](the-asp-net-2-0-page-model/samples/sample7.xml)]
+    [!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample7.cs)]
 9. Change the Page\_Load in page2.aspx to the following: 
 
-    [!code[Main](the-asp-net-2-0-page-model/samples/sample8.xml)]
+    [!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample8.cs)]
 10. Build the project.
 11. Run the project.
 12. Enter your name in the TextBox and click the button.
@@ -409,7 +409,7 @@ Many contention problems in ASP.NET are caused by latency of external calls (suc
 
 The first step in making a page execute asynchronously is to set the **Async** attribute of the page directive like so:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample9.xml)]
+[!code-aspx[Main](the-asp-net-2-0-page-model/samples/sample9.aspx)]
 
 This attribute tells ASP.NET to implement the IHttpAsyncHandler for the page.
 
@@ -437,11 +437,11 @@ There are several steps that are necessary in order to configure a script callba
 
 In order for ASP.NET to recognize your page as participating in a script callback, you must implement the ICallbackEventHandler interface. You can do this in your code-behind file like so:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample10.xml)]
+[!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample10.cs)]
 
 You can also do this using the @ Implements directive like so:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample11.xml)]
+[!code-aspx[Main](the-asp-net-2-0-page-model/samples/sample11.aspx)]
 
 You would typically use the @ Implements directive when using inline ASP.NET code.
 
@@ -454,7 +454,7 @@ As mentioned previously, the XMLHttp call is encapsulated in the WebResource.axd
 
 The arguments for the WebForm\_DoCallback client-side function are provided via the server-side function GetCallbackEventReference which would normally be called in Page\_Load. A typical call to GetCallbackEventReference might look like this:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample12.xml)]
+[!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample12.cs)]
 
 > [!NOTE] In this case, cm is an instance of ClientScriptManager. The ClientScriptManager class will be covered later in this module.
 
@@ -465,7 +465,7 @@ There are several overloaded versions of GetCallbackEventReference. In this case
 
 A reference to the control where GetCallbackEventReference is being called. In this case, it's the page itself.
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample13.xml)]
+[!code-javascript[Main](the-asp-net-2-0-page-model/samples/sample13.js)]
 
 A string argument that will be passed from the client-side code to the server-side event. In this case, Im passing the value of a dropdown called ddlCompany.
 
@@ -483,7 +483,7 @@ A Boolean specifying whether or not to conduct the callback asynchronously.
 
 The call to WebForm\_DoCallback on the client will pass these arguments. Therefore, when this page is rendered on the client, that code will look like so:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample14.xml)]
+[!code-javascript[Main](the-asp-net-2-0-page-model/samples/sample14.js)]
 
 Notice that the signature of the function on the client is a bit different. The client-side function passes 5 strings and a Boolean. The additional string (which is null in the above example) contains the client-side function that will handle any errors from the server-side callback.
 
@@ -493,7 +493,7 @@ Notice that the return value of GetCallbackEventReference above was assigned to 
 
 To hook the client-side event, simply add a handler to the client-side markup as follows:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample15.xml)]
+[!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample15.cs)]
 
 Recall that *cbRef* is the return value from the call to GetCallbackEventReference. It contains the call to WebForm\_DoCallback that was shown above.
 
@@ -501,7 +501,7 @@ Recall that *cbRef* is the return value from the call to GetCallbackEventReferen
 
 Recall that the call to GetCallbackEventReference specified that a client-side script called **ShowCompanyName** would be executed when the server-side callback succeeds. That script needs to be added to the page using a ClientScriptManager instance. (The ClientScriptManager class will be dicussed later in this module.) You do that like so:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample16.xml)]
+[!code-javascript[Main](the-asp-net-2-0-page-model/samples/sample16.js)]
 
 ## Step 5 : Call the Methods of the ICallbackEventHandler Interface
 
@@ -561,11 +561,11 @@ The RegisterClientScriptInclude tag creates a script block that links to an exte
 
 For example, the following code generates a script block that links to jsfunctions.js in the root of the scripts folder of the application:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample17.xml)]
+[!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample17.cs)]
 
 This code produces the following code in the rendered page:
 
-[!code[Main](the-asp-net-2-0-page-model/samples/sample18.xml)]
+[!code-html[Main](the-asp-net-2-0-page-model/samples/sample18.html)]
 
 > [!NOTE] The script block is rendered at the bottom of the page.
 

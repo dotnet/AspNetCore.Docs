@@ -78,12 +78,12 @@ You can add SignalR functionality to a project by installing a NuGet package. Th
 1. Click **Tools | Library Package Manager | Package Manager Console**.
 2. Enter the following command in the package manager.
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample1.xml)]
+    [!code-powershell[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample1.ps1)]
 
     The SignalR package installs a number of other NuGet packages as dependencies. When the installation is finished you have all of the server and client components required to use SignalR in an ASP.NET application.
 3. Enter the following command into the package manager console to install the JQuery and JQuery.UI packages.
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample2.xml)]
+    [!code-powershell[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample2.ps1)]
 
 <a id="baseapp"></a>
 
@@ -94,7 +94,7 @@ In this section, we'll create a browser application that sends the location of t
 1. In **Solution Explorer**, right-click on the project and select **Add**, **Class...**. Name the class **MoveShapeHub** and click **Add**.
 2. Replace the code in the new **MoveShapeHub** class with the following code.
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample3.xml)]
+    [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample3.cs)]
 
     The `MoveShapeHub` class above is an implementation of a SignalR hub. As in the [Getting Started with SignalR](index.md) tutorial, the hub has a method that the clients will call directly. In this case, the client will send an object containing the new X and Y coordinates of the shape to the server, which then gets broadcasted to all other connected clients. SignalR will automatically serialize this object using JSON.
 
@@ -104,21 +104,21 @@ In this section, we'll create a browser application that sends the location of t
     ![Add Global Application Class](tutorial-high-frequency-realtime-with-signalr/_static/image3.png)
 4. Add the following `using` statement after the provided **using** statements in the Global.asax.cs class.
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample4.xml)]
+    [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample4.cs)]
 5. Add the following line of code in the `Application_Start` method of the Global class to register the default route for SignalR.
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample5.xml)]
+    [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample5.cs)]
 
     Your global.asax file should look like the following:
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample6.xml)]
+    [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample6.cs)]
 6. Next, we'll add the client. In **Solution Explorer**, right-click the project, then click **Add | New Item**. In the **Add New Item** dialog, select **Html Page**. Give the page an appropriate name (like **Default.html**) and click **Add**.
 7. In **Solution Explorer**, right-click the page you just created and click **Set as Start Page**.
 8. Replace the default code in the HTML page with the following code snippet.
 
     > [!NOTE] Verify that the script references below match the packages added to your project in the Scripts folder. In Visual Studio 2010, the version of JQuery and SignalR added to the project may not match the version numbers below.
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample7.xml)]
+    [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample7.html)]
 
     The above HTML and JavaScript code creates a red Div called Shape, enables the shape's dragging behavior using the jQuery library, and uses the shape's `drag` event to send the shape's position to the server.
 9. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move.
@@ -133,7 +133,7 @@ Since sending the location of the shape on every mouse move event will create an
 
 1. Update the client code in the HTML page to match the following code snippet.
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample8.xml)]
+    [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample8.html)]
 
     The above update adds the `updateServerModel` function, which gets called on a fixed frequency. This function sends the position data to the server whenever the `moved` flag indicates that there is new position data to send.
 2. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move. Since the number of messages that get sent to the server will be throttled, the animation will not appear as smooth as in the previous section.
@@ -148,7 +148,7 @@ In the current application, messages sent from the server to the client go out a
 
 1. Replace the contents of `MoveShapeHub.cs` with the following code snippet.
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample9.xml)]
+    [!code-csharp[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample9.cs)]
 
     The above code expands the client to add the `Broadcaster` class, which throttles the outgoing messages using the `Timer` class from the .NET framework.
 
@@ -169,7 +169,7 @@ The application is almost complete, but we could make one more improvement, in t
 
 1. Update the client's `updateShape` method to look like the highlighted code below:
 
-    [!code[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample10.xml?highlight=35-42)]
+    [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample10.html?highlight=35-42)]
 
     The above code moves the shape from the old location to the new one given by the server over the course of the animation interval (in this case, 100 milliseconds). Any previous animation running on the shape is cleared before the new animation starts.
 2. Start the application by pressing F5. Copy the page's URL, and paste it into a second browser window. Drag the shape in one of the browser windows; the shape in the other browser window should move. The movement of the shape in the other window should appear less jerky as its movement is interpolated over time rather than being set once per incoming message.

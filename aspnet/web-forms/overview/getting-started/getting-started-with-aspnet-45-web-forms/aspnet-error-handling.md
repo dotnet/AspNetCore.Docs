@@ -62,13 +62,13 @@ You can handle default errors at the application level either by modifying your 
 
 You can handle default errors and HTTP errors by adding a `customErrors` section to the *Web.config* file. The `customErrors` section allows you to specify a default page that users will be redirected to when an error occurs. It also allows you to specify individual pages for specific status code errors.
 
-[!code[Main](aspnet-error-handling/samples/sample1.xml?highlight=3-5)]
+[!code-xml[Main](aspnet-error-handling/samples/sample1.xml?highlight=3-5)]
 
 Unfortunately, when you use the configuration to redirect the user to a different page, you do not have the details of the error that occurred.
 
 However, you can trap errors that occur anywhere in your application by adding code to the `Application_Error` handler in the *Global.asax* file.
 
-[!code[Main](aspnet-error-handling/samples/sample2.xml)]
+[!code-csharp[Main](aspnet-error-handling/samples/sample2.cs)]
 
 ### Page Level Error Event Handling
 
@@ -78,7 +78,7 @@ You would typically use a page-level error handler to log unhandled errors or to
 
 This code example shows a handler for the Error event in an ASP.NET Web page. This handler catches all exceptions that are not already handled within `try`/`catch` blocks in the page.
 
-[!code[Main](aspnet-error-handling/samples/sample3.xml)]
+[!code-csharp[Main](aspnet-error-handling/samples/sample3.cs)]
 
 After you handle an error, you must clear it by calling the `ClearError` method of the Server object (`HttpServerUtility` class), otherwise you will see an error that has previously occurred.
 
@@ -88,7 +88,7 @@ The try-catch statement consists of a try block followed by one or more catch cl
 
 The following code example shows a common way of using `try`/`catch`/`finally` to handle errors.
 
-[!code[Main](aspnet-error-handling/samples/sample4.xml)]
+[!code-csharp[Main](aspnet-error-handling/samples/sample4.cs)]
 
 In the above code, the try block contains the code that needs to be guarded against a possible exception. The block is executed until either an exception is thrown or the block is completed successfully. If either a `FileNotFoundException` exception or an `IOException` exception occurs, the execution is transferred to a different page. Then, the code contained in the finally block is executed, whether an error occurred or not.
 
@@ -102,7 +102,7 @@ Before adding error handling to the Wingtip Toys sample application, you will ad
 3. Choose **Add**. The new class file is displayed.
 4. Replace the existing code with the following:  
 
-    [!code[Main](aspnet-error-handling/samples/sample5.xml)]
+    [!code-csharp[Main](aspnet-error-handling/samples/sample5.cs)]
 
 When an exception occurs, the exception can be written to an exception log file by calling the `LogException` method. This method takes two parameters, the exception object and a string containing details about the source of the exception. The exception log is written to the *ErrorLog.txt* file in the *App\_Data* folder.
 
@@ -117,10 +117,10 @@ In the Wingtip Toys sample application, one page will be used to display errors.
 4. Select the *Site.Master* file as the master page, and then choose **OK**.
 5. Replace the existing markup with the following:   
 
-    [!code[Main](aspnet-error-handling/samples/sample6.xml)]
+    [!code-aspx[Main](aspnet-error-handling/samples/sample6.aspx)]
 6. Replace the existing code of the code-behind (*ErrorPage.aspx.cs*) so that it appears as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample7.xml)]
+    [!code-csharp[Main](aspnet-error-handling/samples/sample7.cs)]
 
 When the error page is displayed, the `Page_Load` event handler is executed. In the `Page_Load` handler, the location of where the error was first handled is determined. Then, the last error that occurred is determined by call the `GetLastError` method of the Server object. If the exception no longer exists, a generic exception is created. Then, if the HTTP request was made locally, all error details are shown. In this case, only the local machine running the web application will see these error details. After the error information has been displayed, the error is added to the log file and the error is cleared from the server.
 
@@ -135,7 +135,7 @@ Update the configuration by adding a `customErrors` section to the *Web.config* 
 1. In **Solution Explorer**, find and open the *Web.config* file at the root of the Wingtip Toys sample application.
 2. Add the `customErrors` section to the *Web.config* file within the `<system.web>` node as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample8.xml?highlight=3-5)]
+    [!code-xml[Main](aspnet-error-handling/samples/sample8.xml?highlight=3-5)]
 3. Save the *Web.config* file.
 
 The `customErrors` section specifies the mode, which is set to "On". It also specifies the `defaultRedirect`, which tells the application which page to navigate to when an error occurs. In addition, you have added a specific error element that specifies how to handle a 404 error when a page is not found. Later in this tutorial, you will add additional error handling that will capture the details of an error at the application level.
@@ -162,7 +162,7 @@ To verify how your application will function when an error occurs, you can delib
  The     *Default.aspx.cs* code-behind page will be displayed.
 2. In the `Page_Load` handler, add code so that the handler appears as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample9.xml?highlight=3-4)]
+    [!code-csharp[Main](aspnet-error-handling/samples/sample9.cs?highlight=3-4)]
 
 It is possible to create various different types of exceptions. In the above code, you are creating an `InvalidOperationException` when the *Default.aspx* page is loaded.
 
@@ -189,7 +189,7 @@ Rather than trap the exception using the `customErrors` section in the *Web.conf
 1. In **Solution Explorer**, find and open the *Global.asax.cs* file.
 2. Add an **Application\_Error** handler so that it appears as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample10.xml)]
+    [!code-csharp[Main](aspnet-error-handling/samples/sample10.cs)]
 
 When an error occurs in the application, the `Application_Error` handler is called. In this handler, the last exception is retrieved and reviewed. If the exception was unhandled and the exception contains inner-exception details (that is, `InnerException` is not null), the application transfers execution to the error page where the exception details are displayed.
 
@@ -210,7 +210,7 @@ You can add page-level error handling to a page either by using adding an `Error
 1. In **Solution Explorer**, find and open the *Default.aspx.cs* file.
 2. Add a `Page_Error` handler so that the code-behind appears as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample11.xml?highlight=18-30)]
+    [!code-csharp[Main](aspnet-error-handling/samples/sample11.cs?highlight=18-30)]
 
 When an error occurs on the page, the `Page_Error` event handler is called. In this handler, the last exception is retrieved and reviewed. If an `InvalidOperationException` occurs, the `Page_Error` event handler transfers execution to the error page where the exception details are displayed.
 
@@ -232,7 +232,7 @@ To allow the Wingtip Toys sample application to function without throwing the ex
 1. Open the code-behind of the *Default.aspx* page.
 2. In the `Page_Load` handler, remove the code that throws the exception so that the handler appears as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample12.xml)]
+    [!code-csharp[Main](aspnet-error-handling/samples/sample12.cs)]
 
 ### Adding Code-Level Error Logging
 
@@ -241,7 +241,7 @@ As mentioned earlier in this tutorial, you can add try/catch statements to attem
 1. In **Solution Explorer**, in the *Logic* folder, find and open the *PayPalFunctions.cs* file.
 2. Update the `HttpCall` method so that the code appears as follows:   
 
-    [!code[Main](aspnet-error-handling/samples/sample13.xml?highlight=20,22-23)]
+    [!code-csharp[Main](aspnet-error-handling/samples/sample13.cs?highlight=20,22-23)]
 
 The above code calls the `LogException` method that is contained in the `ExceptionUtility` class. You added the *ExceptionUtility.cs* class file to the *Logic* folder earlier in this tutorial. The `LogException` method takes two parameters. The first parameter is the exception object. The second parameter is a string used to recognize the source of the error.
 

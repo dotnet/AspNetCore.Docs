@@ -109,13 +109,13 @@ In this section you will configure the Entity Framework to use the MySQL provide
 1. Open the Web.config file for your project in Visual Studio 2013.
 2. Locate the following configuration settings, which define the default database provider and factory for the Entity Framework:
 
-    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample1.xml)]
+    [!code-xml[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample1.xml)]
 3. Replace those configuration settings with the following, which will configure the Entity Framework to use the MySQL provider: 
 
-    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample2.xml)]
+    [!code-xml[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample2.xml)]
 4. Locate the &lt;connectionStrings&gt; section and replace it with the following code, which will define the connection string for your MySQL database that is hosted on Azure (note that providerName value has also been changed from the original):
 
-    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample3.xml?highlight=3-4)]
+    [!code-xml[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample3.xml?highlight=3-4)]
 
 ### Adding custom MigrationHistory context
 
@@ -123,10 +123,10 @@ Entity Framework Code First uses a **MigrationHistory** table to keep track of m
 
 1. The schema information for this table is captured in a **HistoryContext**, which can be modified as any other **DbContext**. To do so, add a new class file named **MySqlHistoryContext.cs** to the project, and replace its contents with the following code:
 
-    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample4.xml)]
+    [!code-csharp[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample4.cs)]
 2. Next you will need to configure Entity Framework to use the modified **HistoryContext**, rather than default one. This can be done by leveraging code-based configuration features. To do so, add new class file named **MySqlConfiguration.cs** to your project and replace its contents with:
 
-    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample5.xml)]
+    [!code-csharp[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample5.cs)]
 
 ### Creating a custom EntityFramework initializer for ApplicationDbContext
 
@@ -139,10 +139,10 @@ To create a custom Entity Framework initializer for MySQL, use the following ste
 
 1. Add a new class file named **MySqlInitializer.cs** to the project, and replace it's contents with the following code: 
 
-    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample6.xml?highlight=23)]
+    [!code-csharp[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample6.cs?highlight=23)]
 2. Open the **IdentityModels.cs** file for your project, which is located in the **Models** directory, and replace it's contents with the following: 
 
-    [!code[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample7.xml)]
+    [!code-csharp[Main](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider/samples/sample7.cs)]
 
 ## Running the application and verifying the database
 

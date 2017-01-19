@@ -80,7 +80,7 @@ The next screen in the wizard prompts you to select what method the ObjectDataSo
 The ObjectDataSource's Configure Data Source wizard offers a quick way to specify the object it uses and to associate what methods of the object are invoked. You can, however, configure the ObjectDataSource through its properties, either through the Properties window or directly in the declarative markup. Simply set the `TypeName` property to the type of the underlying object to be used, and the `SelectMethod` to the method to invoke when retrieving data.
 
 
-[!code[Main](displaying-data-with-the-objectdatasource-vb/samples/sample1.xml)]
+[!code-aspx[Main](displaying-data-with-the-objectdatasource-vb/samples/sample1.aspx)]
 
 Even if you prefer the Configure Data Source wizard there may be times when you need to manually configure the ObjectDataSource, as the wizard only lists developer-created classes. If you want to bind the ObjectDataSource to a class in the .NET Framework such as the [Membership class](https://msdn.microsoft.com/en-us/library/system.web.security.membership.aspx), to access user account information, or the [Directory class](https://msdn.microsoft.com/en-us/library/system.io.directory.aspx) to work with file system information you'll need to manually set the ObjectDataSource's properties.
 
@@ -109,7 +109,7 @@ You can then customize, rearrange, or remove the GridView's BoundFields by click
 Take a moment to modify the GridView's BoundFields, removing the `ProductID`, `SupplierID`, `CategoryID`, `QuantityPerUnit`, `UnitsInStock`, `UnitsOnOrder`, and `ReorderLevel` BoundFields. Simply select the BoundField from the list in the bottom left and click the delete button (the red X) to remove them. Next, Rearrange the BoundFields so that the `CategoryName` and `SupplierName` BoundFields precede the `UnitPrice` BoundField by selecting these BoundFields and clicking the up arrow. Set the `HeaderText` properties of the remaining BoundFields to `Products`, `Category`, `Supplier`, and `Price`, respectively. Next, have the `Price` BoundField formatted as a currency by setting the BoundField's `HtmlEncode` property to False and its `DataFormatString` property to `{0:c}`. Finally, horizontally align the `Price` to the right and the `Discontinued` checkbox in the center via the `ItemStyle`/`HorizontalAlign` property.
 
 
-[!code[Main](displaying-data-with-the-objectdatasource-vb/samples/sample2.xml)]
+[!code-aspx[Main](displaying-data-with-the-objectdatasource-vb/samples/sample2.aspx)]
 
 
 [![The GridView's BoundFields Have Been Customized](displaying-data-with-the-objectdatasource-vb/_static/image21.png)](displaying-data-with-the-objectdatasource-vb/_static/image20.png)
@@ -152,17 +152,17 @@ This will create a new Theme in the `App_Themes` folder named GridView with the 
 Rename the GridView Theme to DataWebControls (right-click on the GridView folder in the `App_Theme` folder and choose Rename). Next, enter the following markup into the `GridView.skin` file:
 
 
-[!code[Main](displaying-data-with-the-objectdatasource-vb/samples/sample3.xml)]
+[!code-aspx[Main](displaying-data-with-the-objectdatasource-vb/samples/sample3.aspx)]
 
 This defines the default properties for the `CssClass`-related properties for any GridView in any page that uses the DataWebControls Theme. Let's add another Skin for the DetailsView, a data Web control that we'll be using shortly. Add a new Skin to the DataWebControls Theme named `DetailsView.skin` and add the following markup:
 
 
-[!code[Main](displaying-data-with-the-objectdatasource-vb/samples/sample4.xml)]
+[!code-aspx[Main](displaying-data-with-the-objectdatasource-vb/samples/sample4.aspx)]
 
 With our Theme defined, the last step is to apply the Theme to our ASP.NET page. A Theme can be applied on a page-by-page basis or for all pages in a website. Let's use this theme for all pages in the website. To accomplish this, add the following markup to `Web.config`'s `<system.web>` section:
 
 
-[!code[Main](displaying-data-with-the-objectdatasource-vb/samples/sample5.xml)]
+[!code-xml[Main](displaying-data-with-the-objectdatasource-vb/samples/sample5.xml)]
 
 That's all there is to it! The `styleSheetTheme` setting indicates that the properties specified in the Theme should *not* override the properties specified at the control level. To specify that Theme settings should trump control settings, use the `theme` attribute in place of `styleSheetTheme`; unfortunately, Theme settings do not appear in the Visual Studio Design view. Refer to [ASP.NET Themes and Skins Overview](https://msdn.microsoft.com/en-us/library/ykzx33wh.aspx) and [Server-Side Styles Using Themes](https://quickstarts.asp.net/quickstartv20/aspnet/doc/themes/stylesheettheme.aspx) for more information on Themes and Skins; see [How To: Apply ASP.NET Themes](https://msdn.microsoft.com/en-us/library/0yy5hxdk%28VS.80%29.aspx) for more on configuring a page to use a theme.
 
@@ -224,7 +224,7 @@ Add a FormView control to the `SimpleDisplay.aspx` page's design surface. Initia
 You can bind the FormView directly to a data source control through the FormView's smart tag, which will create a default `ItemTemplate` automatically (along with an `EditItemTemplate` and `InsertItemTemplate`, if the ObjectDatatSource control's `InsertMethod` and `UpdateMethod` properties are set). However, for this example let's bind the data to the FormView and specify its `ItemTemplate` manually. Start by setting the FormView's `DataSourceID` property to the `ID` of the ObjectDataSource control, `ObjectDataSource1`. Next, create the `ItemTemplate` so that it displays the product's name and price in an `<h4>` element and the category and shipper names beneath that in a smaller font size.
 
 
-[!code[Main](displaying-data-with-the-objectdatasource-vb/samples/sample6.xml)]
+[!code-aspx[Main](displaying-data-with-the-objectdatasource-vb/samples/sample6.aspx)]
 
 
 [![The First Product (Chai) is Displayed in a Custom Format](displaying-data-with-the-objectdatasource-vb/_static/image49.png)](displaying-data-with-the-objectdatasource-vb/_static/image48.png)

@@ -28,27 +28,27 @@ The DropShadow control in the AJAX Control Toolkit extends a panel with a drop s
 
 The code starts with a panel containing some lines of text:
 
-[!code[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample1.xml)]
+[!code-aspx[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample1.aspx)]
 
 The associated CSS class gives the panel a nice background color:
 
-[!code[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample2.xml)]
+[!code-css[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample2.css)]
 
 The `DropShadowExtender` is added to extend the panel with a drop shadow effect, opacity set to 50%:
 
-[!code[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample3.xml)]
+[!code-aspx[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample3.aspx)]
 
 Then, the ASP.NET AJAX `ScriptManager` control enables the Control Toolkit to work:
 
-[!code[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample4.xml)]
+[!code-aspx[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample4.aspx)]
 
 Another panel contains two JavaScript links for setting the opacity of the drop shadow: the minus link decreases the shadow's opacity, the plus link increases it.
 
-[!code[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample5.xml)]
+[!code-aspx[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample5.aspx)]
 
 The JavaScript function `changeOpacity()` must then first find the `DropShadowExtender` control on the page. ASP.NET AJAX defines the `$find()` method for exactly that task. Then, the `get_Opacity()` method retrieves the current opacity, the `set_Opacity()` method sets it. The JavaScript code then puts the current opacity value in the `<label>` element:
 
-[!code[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample6.xml)]
+[!code-html[Main](manipulating-dropshadow-properties-from-client-code-cs/samples/sample6.html)]
 
 
 [![The opacity is changed on the client side](manipulating-dropshadow-properties-from-client-code-cs/_static/image2.png)](manipulating-dropshadow-properties-from-client-code-cs/_static/image1.png)

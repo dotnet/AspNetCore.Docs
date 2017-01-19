@@ -70,7 +70,7 @@ Like in the other folders, `Default.aspx` in the `Caching` folder will list the 
 Lastly, add these pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Working with Binary Data `<siteMapNode>`:
 
 
-[!code[Main](caching-data-with-the-objectdatasource-vb/samples/sample1.xml)]
+[!code-xml[Main](caching-data-with-the-objectdatasource-vb/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the caching tutorials.
 
@@ -117,7 +117,7 @@ Make the GridView editable by checking the Enable Editing checkbox in the GridVi
 After making these GridView modifications, the GridView and ObjectDataSource s declarative markup should look similar to the following:
 
 
-[!code[Main](caching-data-with-the-objectdatasource-vb/samples/sample2.xml)]
+[!code-aspx[Main](caching-data-with-the-objectdatasource-vb/samples/sample2.aspx)]
 
 As Figure 7 shows, the editable GridView lists the name, category, and price of each of the products in the database. Take a moment to test out the page s functionality sort the results, page through them, and edit a record.
 
@@ -144,7 +144,7 @@ To fully appreciate the frequency with which the data is retrieved from the data
 During the data access workflow, the ObjectDataSource s `Selecting` event fires before the underlying object is created and its configured method invoked. Create an event handler for this event and add the following code:
 
 
-[!code[Main](caching-data-with-the-objectdatasource-vb/samples/sample3.xml)]
+[!code-vb[Main](caching-data-with-the-objectdatasource-vb/samples/sample3.vb)]
 
 Each time the ObjectDataSource makes a request to the architecture for data, the Label will display the text Selecting event fired .
 

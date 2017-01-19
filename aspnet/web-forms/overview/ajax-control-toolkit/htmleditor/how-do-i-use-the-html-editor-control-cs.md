@@ -54,7 +54,7 @@ After you drag the HTML Editor onto a page, you can set its properties in the pr
 
 **Listing 1 - SimpleEditor.aspx**
 
-[!code[Main](how-do-i-use-the-html-editor-control-cs/samples/sample1.xml)]
+[!code-aspx[Main](how-do-i-use-the-html-editor-control-cs/samples/sample1.aspx)]
 
 The page in Listing 1 contains an HTML Editor control, a Button control, and a Literal control. When you click the button, the contents of the HTML Editor appear in the Literal control (see Figure 4).
 
@@ -80,7 +80,7 @@ You customize the toolbar buttons by deriving a new HTML Editor from the base Ed
 
 **Listing 2 - App\_Code\CustomEditor.cs**
 
-[!code[Main](how-do-i-use-the-html-editor-control-cs/samples/sample2.xml)]
+[!code-csharp[Main](how-do-i-use-the-html-editor-control-cs/samples/sample2.cs)]
 
 You must add the class in Listing 2 to your App\_Code folder so that the class will be compiled automatically. If the App\_Code folder does not exist in your website then you can simply add the folder.
 
@@ -88,7 +88,7 @@ After you create a custom editor, you can add it to an ASP.NET page in the same 
 
 **Listing 3 - ShowCustomEditor.aspx**
 
-[!code[Main](how-do-i-use-the-html-editor-control-cs/samples/sample3.xml)]
+[!code-aspx[Main](how-do-i-use-the-html-editor-control-cs/samples/sample3.aspx)]
 
 ## Avoiding Cross-Site Scripting (XSS) Attacks
 

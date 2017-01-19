@@ -39,10 +39,10 @@ The following example shows how to enable mobile rendering by adding a content p
 
 1. In an ASP.NET Web Pages site, create a file named *Page1.cshtml* and replace the current content with following markup.
 
-    [!code[Main](rendering-aspnet-web-pages-sites-for-mobile-devices/samples/sample1.xml)]
+    [!code-html[Main](rendering-aspnet-web-pages-sites-for-mobile-devices/samples/sample1.html)]
 2. Create a file named *Page1.Mobile.cshtml* and replace the existing content with the following markup. Notice that the mobile version of the page omits the navigation section for better rendering on a smaller screen.
 
-    [!code[Main](rendering-aspnet-web-pages-sites-for-mobile-devices/samples/sample2.xml)]
+    [!code-html[Main](rendering-aspnet-web-pages-sites-for-mobile-devices/samples/sample2.html)]
 3. Run a desktop browser and browse to *Page1.cshtml*. ![mobilesites-1](rendering-aspnet-web-pages-sites-for-mobile-devices/_static/image1.png)
 4. Run a mobile browser (or a mobile device emulator) and browse to *Page1.cshtml*. (Notice that you do not include *.mobile.* as part of the URL.) Even though the request is to *Page1.cshtml*, ASP.NET renders *Page1.Mobile.cshtml*.
 

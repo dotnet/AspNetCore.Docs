@@ -56,7 +56,7 @@ Select the **Select Movie Category (Simple)** link. A Movie Type Select list is 
 
 Right click in the browser and select view source. The HTML for the page is displayed. The code below shows the HTML for the select element.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample1.xml)]
+[!code-html[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample1.html)]
 
 You can see that each item in the select list has a value (0 for Action, 1 for Drama, 2 for Comedy and 3 for Science Fiction) and a display name (Action, Drama, Comedy and Science Fiction). The code above is standard HTML for a select list.
 
@@ -66,7 +66,7 @@ Change the select list to Drama and hit the **Submit** button. The URL in the br
 
 Open the *Controllers\HomeController.cs*file and examine the `SelectCategory` method.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample2.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample2.cs)]
 
 The [DropDownList](https://msdn.microsoft.com/en-us/library/dd492738.aspx) helper used to create an HTML select list requires a **IEnumerable&lt;SelectListItem &gt;**, either explicitly or implicitly. That is, you can pass the **IEnumerable&lt;SelectListItem &gt;** explicitly to the [DropDownList](https://msdn.microsoft.com/en-us/library/dd492738.aspx) helper or you can add the **IEnumerable&lt;SelectListItem &gt;** to the [ViewBag](https://blogs.msdn.com/b/rickandy/archive/2011/01/28/dynamic-v-strongly-typed-views.aspx) using the same name for the **SelectListItem** as the model property. Passing in the **SelectListItem** implicitly and explicitly is covered in the next part of the tutorial. The code above shows the simplest possible way to create an **IEnumerable&lt;SelectListItem &gt;** and populate it with text and values. Note the `Comedy`[SelectListItem](https://msdn.microsoft.com/en-us/library/system.web.mvc.selectlistitem.aspx) has the [Selected](https://msdn.microsoft.com/en-us/library/system.web.mvc.selectlistitem.selected.aspx) property set to **true;** this will cause the rendered select list to show **Comedy** as the selected item in the list.
 
@@ -74,7 +74,7 @@ The **IEnumerable&lt;SelectListItem &gt;** created above is added to the [ViewBa
 
 Open the *Views\Home\SelectCategory.cshtml*file and examine the markup.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample3.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample3.cs)]
 
 On the third line, we set the layout to Views/Shared/\_Simple\_Layout.cshtml, which is a simplified version of the standard layout file. We do this to keep the display and rendered HTML simple.
 
@@ -82,7 +82,7 @@ In this sample we are not changing the state of the application, so we will subm
 
 The following line
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample4.xml)]
+[!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample4.cshtml)]
 
 passes a string argument to the **DropDownList** helper. This string, "MovieType" in our example, does two things:
 
@@ -93,7 +93,7 @@ passes a string argument to the **DropDownList** helper. This string, "MovieType
 
 The following code shows the `CategoryChosen` method the form was submitted to.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample5.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample5.cs)]
 
 Navigate back to the test page and select the **HTML SelectList** link. The HTML page renders a select element similar to the simple ASP.NET MVC test page. Right click the browser window and select **view source**. The HTML markup for the select list is essentially identical. Test the HTML page, it works like the ASP.NET MVC action method and view we previously tested.
 
@@ -103,7 +103,7 @@ If the categories in your application are fixed and will not change, you can tak
 
 Open the *Controllers\HomeController.cs* file and examine the following code:
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample6.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample6.cs)]
 
 The [enum](https://msdn.microsoft.com/en-us/library/sbbt4032(VS.80).aspx) `eMovieCategories` captures the four movie types. The `SetViewBagMovieType` method creates the **IEnumerable&lt;SelectListItem &gt;** from the `eMovieCategories`**enum**, and sets the `Selected` property from the `selectedMovie` parameter. The `SelectCategoryEnum` action method uses the same view as the `SelectCategory` action method.
 
@@ -113,7 +113,7 @@ Navigate to the Test page and click on the `Select Movie Category (Enum)` link. 
 
 HTML Forms are typically used to post data to the server. The following code shows the `HTTP GET` and `HTTP POST` versions of the `SelectCategoryEnumPost` method.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample7.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample7.cs)]
 
 By passing a `eMovieCategories` enum to the `POST` method, we can extract both the enum value and the enum string. Run the sample and navigate to the Test page. Click on the `Select Movie Category(Enum Post)` link. Select a movie type and then hit the submit button. The display shows both the value and the name of the movie type.
 
@@ -129,11 +129,11 @@ The [ListBox](https://msdn.microsoft.com/en-us/library/system.web.mvc.html.selec
 
 Examine the following code from the *Controllers\HomeController.cs* file.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample8.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample8.cs)]
 
 The `GetCountries` method creates a list of countries, then passes it to the `MultiSelectList` constructor. The `MultiSelectList` constructor overload used in the `GetCountries` method above takes four parameters:
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample9.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample9.cs)]
 
 1. *items*: An [IEnumerable](https://msdn.microsoft.com/en-us/library/system.collections.ienumerable.aspx) containing the items in the list. In the example above, the list of Countries.
 2. *dataValueField*: The name of the property in the **IEnumerable** list that contains the value. In the example above, the `ID` property.
@@ -142,11 +142,11 @@ The `GetCountries` method creates a list of countries, then passes it to the `Mu
 
 In the example above, the `MultiSelectCountry` method passes a `null` value for the selected countries, so no countries are selected when the UI is displayed. The following code shows the Razor markup used to render the `MultiSelectCountry` view.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample10.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample10.cs)]
 
 The HTML helper [ListBox](https://msdn.microsoft.com/en-us/library/dd470200.aspx) method used above take two parameters, the name of the property to model bind and the [MultiSelectList](https://msdn.microsoft.com/en-us/library/system.web.mvc.multiselectlist.aspx) containing the select options and values. The `ViewBag.YouSelected` code above is used to display the values of the countries you selected when you submit the form. Examine the HTTP POST overload of the `MultiSelectCountry` method.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample11.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample11.cs)]
 
 The `ViewBag.YouSelected` dynamic property contains the selected countries, obtained for the `Countries` entry in the form collection. In this version the GetCountries method is passed a list of the selected countries, so when the `MultiSelectCountry` view is displayed, the selected countries are selected in the UI.
 
@@ -184,27 +184,27 @@ The Chosen plugin is included in the starter and completed sample projects that 
 
 Open the *Views\Home\MultiSelectCountry.cshtml*file and add an `htmlAttributes` parameter to the `Html.ListBox` . The parameter you will add contains a class name for the select list(`@class = "chzn-select"`). The completed code is shown below:
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample12.xml)]
+[!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample12.cshtml)]
 
 In the code above, we are adding the HTML attribute and attribute value `class = "chzn-select"`. The @ character preceding class has nothing to do with the Razor view engine. `class` is a [C# keyword](https://msdn.microsoft.com/en-us/library/x53a06bb.aspx). C# keywords cannot be used as identifiers unless they include @ as a prefix. In the example above, `@class` is a valid identifier but **class** is not because **class** is a keyword.
 
 Add references to the *Chosen/chosen.jquery.js* and *Chosen/chosen.css*files. The *Chosen/chosen.jquery.js* and implements the functionally of the Chosen plugin. The *Chosen/chosen.css* file provides the styling. Add these references to the bottom of the *Views\Home\MultiSelectCountry.cshtml*file. The following code shows how to reference the Chosen plugin.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample13.xml)]
+[!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample13.cshtml)]
 
 Activate the Chosen plugin using the class name used in the **Html.ListBox** code. In the example above, the class name is `chzn-select`. Add the following line to the bottom of the *Views\Home\MultiSelectCountry.cshtml* view file. This line activates the Chosen plugin.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample14.xml)]
+[!code-html[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample14.html)]
 
 The following line is the syntax to call the jQuery ready function, which selects the DOM element with class name `chzn-select`.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample15.xml)]
+[!code-powershell[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample15.ps1)]
 
 The wrapped set returned from the above call then applies the chosen method (`.chosen();`) , which hooks up the Chosen plugin.
 
 The following code shows the completed *Views\Home\MultiSelectCountry.cshtml* view file.
 
-[!code[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample16.xml)]
+[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample16.cs)]
 
 Run the application and navigate to the `MultiSelectCountry` view. Try adding and deleting countries. The sample download provided also contains a `MultiCountryVM` method and view that implements the MultiSelectCountry functionality using a view model instead of a **ViewBag**.
 

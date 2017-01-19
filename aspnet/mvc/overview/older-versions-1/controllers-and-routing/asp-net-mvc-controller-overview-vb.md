@@ -32,7 +32,7 @@ Listing 1 contains a simple controller named ProductController.
 
 **Listing1 - Controllers\ProductController.vb**
 
-[!code[Main](asp-net-mvc-controller-overview-vb/samples/sample1.xml)]
+[!code-vb[Main](asp-net-mvc-controller-overview-vb/samples/sample1.vb)]
 
 As you can see from Listing 1, a controller is just a class (a Visual Basic .NET or C# class). A controller is a class that derives from the base System.Web.Mvc.Controller class. Because a controller inherits from this base class, a controller inherits several useful methods for free (We discuss these methods in a moment).
 
@@ -70,7 +70,7 @@ In most cases, a controller action returns a ViewResult. For example, the Index 
 
 **Listing 2 - Controllers\BookController.vb**
 
-[!code[Main](asp-net-mvc-controller-overview-vb/samples/sample2.xml)]
+[!code-vb[Main](asp-net-mvc-controller-overview-vb/samples/sample2.vb)]
 
 When an action returns a ViewResult, HTML is returned to the browser. The Index() method in Listing 2 returns a view named Index to the browser.
 
@@ -89,7 +89,7 @@ So, if you want to return a View to the browser, you call the View() method. If 
 
 **Listing 3 - CustomerController.vb**
 
-[!code[Main](asp-net-mvc-controller-overview-vb/samples/sample3.xml)]
+[!code-vb[Main](asp-net-mvc-controller-overview-vb/samples/sample3.vb)]
 
 The ContentResult action result is special. You can use the ContentResult action result to return an action result as plain text. For example, the Index() method in Listing 4 returns a message as plain text and not as HTML.
 
@@ -101,7 +101,7 @@ The ContentResult action result is special. You can use the ContentResult action
 > System.Web.Mvc.Controller
 
 
-[!code[Main](asp-net-mvc-controller-overview-vb/samples/sample4.xml)]
+[!code-vb[Main](asp-net-mvc-controller-overview-vb/samples/sample4.vb)]
 
 When the StatusController.Index() action is invoked, a view is not returned. Instead, the raw text "Hello World!" is returned to the browser.
 
@@ -109,7 +109,7 @@ If a controller action returns a result that is not an action result - for examp
 
 **Listing 5 - WorkController.vb**
 
-[!code[Main](asp-net-mvc-controller-overview-vb/samples/sample5.xml)]
+[!code-vb[Main](asp-net-mvc-controller-overview-vb/samples/sample5.vb)]
 
 The Index() action in Listing 5 returns a DateTime object. The ASP.NET MVC framework converts the DateTime object to a string and wraps the DateTime value in a ContentResult automatically. The browser receives the date and time as plain text.
 

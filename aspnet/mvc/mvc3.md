@@ -197,11 +197,11 @@ ASP.NET MVC 3 supports the new [RemoteAttribute](https://msdn.microsoft.com/en-u
 
 In the following example, the `Remote` attribute specifies that client validation will call an action named `UserNameAvailable` on the `UsersController` class in order to validate the `UserName` field.
 
-[!code[Main](mvc3/samples/sample1.xml)]
+[!code-csharp[Main](mvc3/samples/sample1.cs)]
 
 The following example shows the corresponding controller.
 
-[!code[Main](mvc3/samples/sample2.xml)]
+[!code-csharp[Main](mvc3/samples/sample2.cs)]
 
 For more information about how to use the `Remote` attribute, see [How to: Implement Remote Validation in ASP.NET MVC](https://msdn.microsoft.com/en-us/library/gg508808(VS.98).aspx) in the MSDN library.
 
@@ -221,7 +221,7 @@ ASP.NET MVC 3 supports `DataAnnotations` metadata attributes such as `DisplayAtt
 
 The `ValidationAttribute` class was improved in the .NET Framework 4 to support a new `IsValid` overload that provides more information about the current validation context, such as what object is being validated. This enables richer scenarios where you can validate the current value based on another property of the model. For example, the new `CompareAttribute` attribute lets you compare the values of two properties of a model. In the following example, the `ComparePassword` property must match the `Password` field in order to be valid.
 
-[!code[Main](mvc3/samples/sample3.xml)]
+[!code-csharp[Main](mvc3/samples/sample3.cs)]
 
 ### Validation Interfaces
 
@@ -299,7 +299,7 @@ In ASP.NET MVC 3 you can indicate whether you want a controller class to use ses
 
 You can use the [AdditionalMetadata](https://msdn.microsoft.com/en-us/library/system.web.mvc.additionalmetadataattribute(v=VS.98).aspx) attribute to populate the `ModelMetadata.AdditionalValues` dictionary for a model property. For example, if a view model has a property that should be displayed only to an administrator, you can annotate that property as shown in the following example:
 
-[!code[Main](mvc3/samples/sample4.xml)]
+[!code-csharp[Main](mvc3/samples/sample4.cs)]
 
 This metadata is made available to any display or editor template when a product view model is rendered. It is up to you to interpret the metadata information.
 

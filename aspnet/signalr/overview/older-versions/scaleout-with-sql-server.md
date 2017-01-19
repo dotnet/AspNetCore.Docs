@@ -35,7 +35,7 @@ Before we get to the detailed tutorial, here is a quick overview of what you wil
 3. Create a SignalR application.
 4. Add the following code to Global.asax to configure the backplane: 
 
-    [!code[Main](scaleout-with-sql-server/samples/sample1.xml)]
+    [!code-csharp[Main](scaleout-with-sql-server/samples/sample1.cs)]
 
 ## Configure the Database
 
@@ -51,13 +51,13 @@ It is recommended to enable Service Broker for the backplane database. Service B
 
 To check whether Service Broker is enabled, query the **is\_broker\_enabled** column in the **sys.databases** catalog view.
 
-[!code[Main](scaleout-with-sql-server/samples/sample2.xml)]
+[!code-sql[Main](scaleout-with-sql-server/samples/sample2.sql)]
 
 ![](scaleout-with-sql-server/_static/image3.png)
 
 To enable Service Broker, use the following SQL query:
 
-[!code[Main](scaleout-with-sql-server/samples/sample3.xml)]
+[!code-sql[Main](scaleout-with-sql-server/samples/sample3.sql)]
 
 > [!NOTE] If this query appears to deadlock, make sure there are no applications connected to the DB.
 
@@ -73,11 +73,11 @@ Create a SignalR application by following either of these tutorials:
 
 Next, we'll modify the chat application to support scaleout with SQL Server. First, add the SignalR.SqlServer NuGet package to your project. In Visual Studio, from the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-[!code[Main](scaleout-with-sql-server/samples/sample4.xml)]
+[!code-powershell[Main](scaleout-with-sql-server/samples/sample4.ps1)]
 
 Next, open the Global.asax file. Add the following code to the **Application\_Start** method:
 
-[!code[Main](scaleout-with-sql-server/samples/sample5.xml)]
+[!code-csharp[Main](scaleout-with-sql-server/samples/sample5.cs)]
 
 ## Deploy and Run the Application
 

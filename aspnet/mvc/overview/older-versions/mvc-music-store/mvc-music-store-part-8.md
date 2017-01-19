@@ -28,21 +28,21 @@ We'll allow users to place albums in their cart without registering, but they'll
 
 Our Shopping Cart and Checkout processes will make use of some new classes. Right-click the Models folder and add a Cart class (Cart.cs) with the following code.
 
-[!code[Main](mvc-music-store-part-8/samples/sample1.xml)]
+[!code-csharp[Main](mvc-music-store-part-8/samples/sample1.cs)]
 
 This class is pretty similar to others we've used so far, with the exception of the [Key] attribute for the RecordId property. Our Cart items will have a string identifier named CartID to allow anonymous shopping, but the table includes an integer primary key named RecordId. By convention, Entity Framework Code-First expects that the primary key for a table named Cart will be either CartId or ID, but we can easily override that via annotations or code if we want. This is an example of how we can use the simple conventions in Entity Framework Code-First when they suit us, but we're not constrained by them when they don't.
 
 Next, add an Order class (Order.cs) with the following code.
 
-[!code[Main](mvc-music-store-part-8/samples/sample2.xml)]
+[!code-csharp[Main](mvc-music-store-part-8/samples/sample2.cs)]
 
 This class tracks summary and delivery information for an order. **It won't compile yet**, because it has an OrderDetails navigation property which depends on a class we haven't created yet. Let's fix that now by adding a class named OrderDetail.cs, adding the following code.
 
-[!code[Main](mvc-music-store-part-8/samples/sample3.xml)]
+[!code-csharp[Main](mvc-music-store-part-8/samples/sample3.cs)]
 
 We'll make one last update to our MusicStoreEntities class to include DbSets which expose those new Model classes, also including a DbSet&lt;Artist&gt;. The updated MusicStoreEntities class appears as below.
 
-[!code[Main](mvc-music-store-part-8/samples/sample4.xml)]
+[!code-csharp[Main](mvc-music-store-part-8/samples/sample4.cs)]
 
 ## Managing the Shopping Cart business logic
 
@@ -72,7 +72,7 @@ The ShoppingCart class exposes the following methods:
 
 Here's the complete **ShoppingCart class**:
 
-[!code[Main](mvc-music-store-part-8/samples/sample5.xml)]
+[!code-csharp[Main](mvc-music-store-part-8/samples/sample5.cs)]
 
 ## ViewModels
 
@@ -92,11 +92,11 @@ Name the folder ViewModels.
 
 Next, add the ShoppingCartViewModel class in the ViewModels folder. It has two properties: a list of Cart items, and a decimal value to hold the total price for all items in the cart.
 
-[!code[Main](mvc-music-store-part-8/samples/sample6.xml)]
+[!code-csharp[Main](mvc-music-store-part-8/samples/sample6.cs)]
 
 Now add the ShoppingCartRemoveViewModel to the ViewModels folder, with the following four properties.
 
-[!code[Main](mvc-music-store-part-8/samples/sample7.xml)]
+[!code-csharp[Main](mvc-music-store-part-8/samples/sample7.cs)]
 
 ## The Shopping Cart Controller
 
@@ -108,7 +108,7 @@ Add a new Shopping Cart controller to the project using the Empty controller tem
 
 Here's the complete ShoppingCart Controller. The Index and Add Controller actions should look very familiar. The Remove and CartSummary controller actions handle two special cases, which we'll discuss in the following section.
 
-[!code[Main](mvc-music-store-part-8/samples/sample8.xml)]
+[!code-csharp[Main](mvc-music-store-part-8/samples/sample8.cs)]
 
 ## Ajax Updates with jQuery
 
@@ -125,11 +125,11 @@ However, instead of using an Html.ActionLink to remove items from the cart, we'l
 
 Since the remove scenario is being handled by an Ajax callback within the Index view, we don't need an additional view for RemoveFromCart action. Here is the complete code for the /ShoppingCart/Index view:
 
-[!code[Main](mvc-music-store-part-8/samples/sample9.xml)]
+[!code-cshtml[Main](mvc-music-store-part-8/samples/sample9.cshtml)]
 
 In order to test this out, we need to be able to add items to our shopping cart. We'll update our **Store Details** view to include an "Add to cart" button. While we're at it, we can include some of the Album additional information which we've added since we last updated this view: Genre, Artist, Price, and Album Art. The updated Store Details view code appears as shown below.
 
-[!code[Main](mvc-music-store-part-8/samples/sample10.xml)]
+[!code-csharp[Main](mvc-music-store-part-8/samples/sample10.cs)]
 
 Now we can click through the store and test adding and removing Albums to and from our shopping cart. Run the application and browse to the Store Index.
 

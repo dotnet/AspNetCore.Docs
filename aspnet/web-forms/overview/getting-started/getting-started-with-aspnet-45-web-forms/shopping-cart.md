@@ -62,7 +62,7 @@ Earlier in this tutorial series, you defined the schema for the category and pro
  The new class file is displayed in the editor.
 5. Replace the default code with the following code:   
 
-    [!code[Main](shopping-cart/samples/sample1.xml)]
+    [!code-csharp[Main](shopping-cart/samples/sample1.cs)]
 
 The `CartItem` class contains the schema that will define each product a user adds to the shopping cart. This class is similar to the other schema classes you created earlier in this tutorial series. By convention, Entity Framework Code First expects that the primary key for the `CartItem` table will be either `CartItemId` or `ID`. However, the code overrides the default behavior by using the data annotation `[Key]` attribute. The `Key` attribute of the ItemId property specifies that the `ItemID` property is the primary key.
 
@@ -75,7 +75,7 @@ In addition to adding the `CartItem` class, you will need to update the database
 1. In **Solution Explorer**, find and open the *ProductContext.cs* file in the *Models* folder.
 2. Add the highlighted code to the *ProductContext.cs* file as follows:  
 
-    [!code[Main](shopping-cart/samples/sample2.xml?highlight=14)]
+    [!code-csharp[Main](shopping-cart/samples/sample2.cs?highlight=14)]
 
 As mentioned previously in this tutorial series, the code in the *ProductContext.cs* file adds the `System.Data.Entity` namespace so that you have access to all the core functionality of the Entity Framework. This functionality includes the capability to query, insert, update, and delete data by working with strongly typed objects. The `ProductContext` class adds access to the newly added `CartItem` model class.
 
@@ -109,7 +109,7 @@ The `ShoppingCart` class will be added to a separate folder in the application s
 3. Add a new class file named *ShoppingCartActions.cs*.
 4. Replace the default code with the following code:   
 
-    [!code[Main](shopping-cart/samples/sample3.xml)]
+    [!code-csharp[Main](shopping-cart/samples/sample3.cs)]
 
 The `AddToCart` method enables individual products to be included in the shopping cart based on the product `ID`. The product is added to the cart, or if the cart already contains an item for that product, the quantity is incremented.
 
@@ -136,7 +136,7 @@ As mentioned earlier, you will create a processing page named *AddToCart.aspx*th
 3. In **Solution Explorer**, right-click the *AddToCart.aspx* page and then click **View Code**. The *AddToCart.aspx.cs* code-behind file is opened in the editor.
 4. Replace the existing code in the *AddToCart.aspx.cs* code-behind with the following:   
 
-    [!code[Main](shopping-cart/samples/sample4.xml)]
+    [!code-csharp[Main](shopping-cart/samples/sample4.cs)]
 
 When the *AddToCart.aspx* page is loaded, the product `ID` is retrieved from the query string. Next, an instance of the shopping cart class is created and used to call the `AddToCart` method that you added earlier in this tutorial. The `AddToCart` method, contained in the *ShoppingCartActions.cs* file, includes the logic to add the selected product to the shopping cart or increment the product quantity of the selected product. If the product hasn't been added to the shopping cart, the product is added to the `CartItem` table of the database. If the product has already been added to the shopping cart and the user adds an additional item of the same product, the product quantity is incremented in the `CartItem` table. Finally, the page redirects back to the *ShoppingCart.aspx* page that you'll add in the next step, where the user sees an updated list of items in the cart.
 
@@ -152,7 +152,7 @@ The *ShoppingCart.aspx* page will display the products that the user has added t
 3. Select **Site.Master** to attach the master page to the newly created *.aspx* page.
 4. In the *ShoppingCart.aspx* page, replace the existing markup with the following markup:   
 
-    [!code[Main](shopping-cart/samples/sample5.xml)]
+    [!code-aspx[Main](shopping-cart/samples/sample5.aspx)]
 
 The *ShoppingCart.aspx* page includes a **GridView** control named `CartList`. This control uses model binding to bind the shopping cart data from the database to the **GridView** control. When you set the `ItemType` property of the **GridView** control, the data-binding expression `Item` is available in the markup of the control and the control becomes strongly typed. As mentioned earlier in this tutorial series, you can select details of the `Item` object using IntelliSense. To configure a data control to use model binding to select data, you set the `SelectMethod` property of the control. In the markup above, you set the `SelectMethod` to use the GetShoppingCartItems method which returns a list of `CartItem` objects. The **GridView** data control calls the method at the appropriate time in the page life cycle and automatically binds the returned data. The `GetShoppingCartItems` method must still be added.
 
@@ -163,7 +163,7 @@ Next, you add code to the *ShoppingCart.aspx.cs* code-behind to retrieve and pop
 1. In **Solution Explorer**, right-click the *ShoppingCart.aspx* page and then click **View Code**. The *ShoppingCart.aspx.cs* code-behind file is opened in the editor.
 2. Replace the existing code with the following:  
 
-    [!code[Main](shopping-cart/samples/sample6.xml)]
+    [!code-csharp[Main](shopping-cart/samples/sample6.cs)]
 
 As mentioned above, the `GridView` data control calls the `GetShoppingCartItems` method at the appropriate time in the page life cycle and automatically binds the returned data. The `GetShoppingCartItems` method creates an instance of the `ShoppingCartActions` object. Then, the code uses that instance to return the items in the cart by calling the `GetCartItems` method.
 
@@ -176,7 +176,7 @@ Now, you'll add an **Add to Cart** link to both the *ProductList.aspx* page and 
 1. In **Solution Explorer**, find and open the page named *ProductList.aspx*.
 2. Add the markup highlighted in yellow to the *ProductList.aspx* page so that the entire page appears as follows:  
 
-    [!code[Main](shopping-cart/samples/sample7.xml?highlight=50-54)]
+    [!code-aspx[Main](shopping-cart/samples/sample7.aspx?highlight=50-54)]
 
 ### Testing the Shopping Cart
 
@@ -204,7 +204,7 @@ In addition to adding products to the shopping cart, you will add a `GetTotal` m
 1. In **Solution Explorer**, open the *ShoppingCartActions.cs* file in the *Logic* folder.
 2. Add the following `GetTotal` method highlighted in yellow to the `ShoppingCart` class, so that the class appears as follows:   
 
-    [!code[Main](shopping-cart/samples/sample8.xml?highlight=85-97)]
+    [!code-csharp[Main](shopping-cart/samples/sample8.cs?highlight=85-97)]
 
 First, the `GetTotal` method gets the ID of the shopping cart for the user. Then the method gets the cart total by multiplying the product price by the product quantity for each product listed in the cart.
 
@@ -220,7 +220,7 @@ Next you'll modify the code for the *ShoppingCart.aspx* page to call the `GetTot
 1. In **Solution Explorer**, right-click the *ShoppingCart.aspx* page and select **View Code**.
 2. In the *ShoppingCart.aspx.cs* file, update the `Page_Load` handler by adding the following code highlighted in yellow:   
 
-    [!code[Main](shopping-cart/samples/sample9.xml?highlight=16-31)]
+    [!code-csharp[Main](shopping-cart/samples/sample9.cs?highlight=16-31)]
 
 When the *ShoppingCart.aspx* page loads, it loads the shopping cart object and then retrieves the shopping cart total by calling the `GetTotal` method of the `ShoppingCart` class. If the shopping cart is empty, a message to that effect is displayed.
 
@@ -248,7 +248,7 @@ To allow the users to modify the shopping cart, you'll add an **Update** button 
 1. In **Solution Explorer**, open the *ShoppingCart.aspx* page in the root of the web application project.
 2. To add the **Update** button and the **Checkout** button to the *ShoppingCart.aspx* page, add the markup highlighted in yellow to the existing markup, as shown in the following code:   
 
-    [!code[Main](shopping-cart/samples/sample10.xml?highlight=36-45)]
+    [!code-aspx[Main](shopping-cart/samples/sample10.aspx?highlight=36-45)]
 
 When the user clicks the **Update** button, the `UpdateBtn_Click` event handler will be called. This event handler will call the code that you'll add in the next step.
 
@@ -257,7 +257,7 @@ Next, you can update the code contained in the *ShoppingCart.aspx.cs* file to lo
 1. In **Solution Explorer**, open the *ShoppingCart.aspx.cs* file in the root of the web application project.
 2. Add the following code sections highlighted in yellow to the *ShoppingCart.aspx.cs* file:   
 
-    [!code[Main](shopping-cart/samples/sample11.xml?highlight=9-11,33,44-89)]
+    [!code-csharp[Main](shopping-cart/samples/sample11.cs?highlight=9-11,33,44-89)]
 
 When the user clicks the **Update** button on the *ShoppingCart.aspx* page, the UpdateCartItems method is called. The UpdateCartItems method gets the updated values for each item in the shopping cart. Then, the UpdateCartItems method calls the `UpdateShoppingCartDatabase` method (added and explained in the next step) to either add or remove items from the shopping cart. Once the database has been updated to reflect the updates to the shopping cart, the **GridView** control is updated on the shopping cart page by calling the `DataBind` method for the **GridView**. Also, the total order amount on the shopping cart page is updated to reflect the updated list of items.
 
@@ -268,7 +268,7 @@ On the *ShoppingCart.aspx* page, you can see controls have been added for updati
 1. In **Solution Explorer**, open the *ShoppingCartActions.cs* file in the *Logic* folder.
 2. Add the following code highlighted in yellow to the *ShoppingCartActions.cs* class file:   
 
-    [!code[Main](shopping-cart/samples/sample12.xml?highlight=99-213)]
+    [!code-csharp[Main](shopping-cart/samples/sample12.cs?highlight=99-213)]
 
 The `UpdateShoppingCartDatabase` method, called from the `UpdateCartItems` method on the *ShoppingCart.aspx.cs* page, contains the logic to either update or remove items from the shopping cart. The `UpdateShoppingCartDatabase` method iterates through all the rows within the shopping cart list. If a shopping cart item has been marked to be removed, or the quantity is less than one, the `RemoveItem` method is called. Otherwise, the shopping cart item is checked for updates when the `UpdateItem` method is called. After the shopping cart item has been removed or updated, the database changes are saved.
 
@@ -283,10 +283,10 @@ To allow the user to view the total number of items in the shopping cart, you wi
 1. In **Solution Explorer**, open the *Site.Master*page.
 2. Modify the markup by adding the shopping cart counter link as shown in yellow to the navigation section so it appears as follows:  
 
-    [!code[Main](shopping-cart/samples/sample13.xml?highlight=6)]
+    [!code-html[Main](shopping-cart/samples/sample13.html?highlight=6)]
 3. Next, update the code-behind of the *Site.Master.cs* file by adding the code highlighted in yellow as follows:  
 
-    [!code[Main](shopping-cart/samples/sample14.xml?highlight=11,77-84)]
+    [!code-csharp[Main](shopping-cart/samples/sample14.cs?highlight=11,77-84)]
 
 Before the page is rendered as HTML, the `Page_PreRender` event is raised. In the `Page_PreRender` handler, the total count of the shopping cart is determined by calling the `GetCount` method. The returned value is added to the `cartCount` span included in the markup of the *Site.Master* page. The `<span>` tags enables the inner elements to be properly rendered. When any page of the site is displayed, the shopping cart total will be displayed. The user can also click the shopping cart total to display the shopping cart.
 

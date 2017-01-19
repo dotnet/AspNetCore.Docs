@@ -34,15 +34,15 @@ You can replace some parts of the process with your own custom behaviors. In thi
 
 A route template looks similar to a URI path, but it can have placeholder values, indicated with curly braces:
 
-[!code[Main](routing-and-action-selection/samples/sample1.xml)]
+[!code-unknown[Main](routing-and-action-selection/samples/sample-42723-1.unknown)]
 
 When you create a route, you can provide default values for some or all of the placeholders:
 
-[!code[Main](routing-and-action-selection/samples/sample2.xml)]
+[!code-unknown[Main](routing-and-action-selection/samples/sample-42723-2.unknown)]
 
 You can also provide constraints, which restrict how a URI segment can match a placeholder:
 
-[!code[Main](routing-and-action-selection/samples/sample3.xml)]
+[!code-unknown[Main](routing-and-action-selection/samples/sample-42723-3.unknown)]
 
 The framework tries to match the segments in the URI path to the template. Literals in the template must match exactly. A placeholder matches any value, unless you specify constraints. The framework does not match other parts of the URI, such as the host name or the query parameters. The framework selects the first route in the route table that matches the URI.
 
@@ -55,7 +55,7 @@ There are two special placeholders: "{controller}" and "{action}".
 
 If you provide defaults, the route will match a URI that is missing those segments. For example:
 
-[!code[Main](routing-and-action-selection/samples/sample4.xml)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample4.cs)]
 
 The URI "`http://localhost/api/products`" matches this route. The "{category}" segment is assigned the default value "all".
 
@@ -67,7 +67,7 @@ During this route-matching phase, the special "{controller}" and "{action}" plac
 
 A default can have the special value **RouteParameter.Optional**. If a placeholder gets assigned this value, the value is not added to the route dictionary. For example:
 
-[!code[Main](routing-and-action-selection/samples/sample5.xml)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample5.cs)]
 
 For the URI path "api/products", the route dictionary will contain:
 
@@ -82,7 +82,7 @@ For "api/products/toys/123", however, the route dictionary will contain:
 
 The defaults can also include a value that does not appear anywhere in the route template. If the route matches, that value is stored in the dictionary. For example:
 
-[!code[Main](routing-and-action-selection/samples/sample6.xml)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample6.cs)]
 
 If the URI path is "api/root/8", the dictionary will contain two values:
 
@@ -147,7 +147,7 @@ Step #3 is probably the most confusing. The basic idea is that a parameter can g
 
 For example, consider the following action:
 
-[!code[Main](routing-and-action-selection/samples/sample7.xml)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample7.cs)]
 
 The *id* parameter binds to the URI. Therefore, this action can only match a URI that contains a value for "id", either in the route dictionary or in the query string.
 
@@ -168,15 +168,15 @@ Summary:
 
 Routes:
 
-[!code[Main](routing-and-action-selection/samples/sample8.xml)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample8.cs)]
 
 Controller:
 
-[!code[Main](routing-and-action-selection/samples/sample9.xml)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample9.cs)]
 
 HTTP request:
 
-[!code[Main](routing-and-action-selection/samples/sample10.xml)]
+[!code-console[Main](routing-and-action-selection/samples/sample10.cmd)]
 
 ### Route Matching
 
@@ -229,4 +229,4 @@ Web API provides extension points for some parts of the routing process.
 
 To provide your own implementation for any of these interfaces, use the **Services** collection on the **HttpConfiguration** object:
 
-[!code[Main](routing-and-action-selection/samples/sample11.xml)]
+[!code-csharp[Main](routing-and-action-selection/samples/sample11.cs)]

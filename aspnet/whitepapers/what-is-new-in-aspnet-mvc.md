@@ -71,11 +71,11 @@ The following figure shows an example layout for a project with two areas, Admin
 
 When you create an area, Visual Studio adds a class that derives from AreaRegistration to each area. This class is required in order to register the area and its routes, as shown in the following example:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample1.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample1.cs)]
 
 The default project template for ASP.NET MVC 2 includes a call to the RegisterAllAreas method in the code for the Global.asax file. This method registers each area in the project by looking for all types that derive from the AreaRegistration class, instantiating an instance of the type, and then calling the RegisterArea method on the instance. The following example shows how this is done.
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample2.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample2.cs)]
 
 If you do not specify the namespace in the RegisterArea method by calling the context.Namespaces.Add method, the namespace of the registration class is used by default.
 
@@ -87,11 +87,11 @@ ASP.NET MVC 2 now allows controllers to process requests asynchronously. This ca
 
 The System.ComponentModel.DefaultValueAttribute class allows a default value to be supplied for the argument parameter to an action method. For example, assume that the following default route is defined:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample3.xml)]
+[!code-json[Main](what-is-new-in-aspnet-mvc/samples/sample3.json)]
 
 Also assume that the following controller and action method is defined:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample4.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample4.cs)]
 
 Any of the following request URLs will invoke the View action method that is defined in the preceding example.
 
@@ -103,29 +103,29 @@ Without the DefaultValueAttribute attribute, the first URL from the preceding li
 
 If your code is written in Visual Basic 2010 or Visual C# 2010, you can use optional parameters instead of the DefaultValueAttribute attribute, as shown in the following example:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample5.xml)]
+[!code-vb[Main](what-is-new-in-aspnet-mvc/samples/sample5.vb)]
 
 ### <a id="_TOC3_5"></a>  Support for Binding Binary Data with Model Binders
 
 There are two new overloads of the Html.Hidden helper that encode binary values as base-64-encoded strings:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample6.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample6.cs)]
 
 A typical use is to embed a timestamp for an object in the view. For example, your application might include the following Product object:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample7.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample7.cs)]
 
 An edit form can render the TimeStamp property in the form as shown in the following example:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample8.xml)]
+[!code-aspx[Main](what-is-new-in-aspnet-mvc/samples/sample8.aspx)]
 
 This markup renders a hidden input element with the timestamp value as a base-64-encoded string that resembles the following example:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample9.xml)]
+[!code-html[Main](what-is-new-in-aspnet-mvc/samples/sample9.html)]
 
 This form might be posted to an action method that has an argument of type Product, as shown in the following example:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample10.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample10.cs)]
 
 In the action method, the TimeStamp property is populated correctly because the posted base-64-encoded string is converted to a byte array.
 
@@ -165,11 +165,11 @@ When you build a Web site by using the REST architectural style, HTTP verbs are 
 
 ASP.NET MVC 2 includes new attributes that you can apply to action methods and that feature compact syntax. These attributes enable ASP.NET MVC to select an action method based on the HTTP verb. In the following example, a POST request will call the first action method and a PUT request will call the second action method.
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample11.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample11.cs)]
 
 In earlier versions of ASP.NET MVC, these action methods required more verbose syntax, as shown in the following example:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample12.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample12.cs)]
 
 Because browsers support only the GET and POST HTTP verbs, it is not possible to post to an action that requires a different verb. Thus it is not possible to natively support all RESTful requests.
 
@@ -196,7 +196,7 @@ You might use HiddenInputAttribute attribute in the following scenarios:
 
 The following example shows how to use the HiddenInputAttribute class.
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample13.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample13.cs)]
 
 When the attribute is set to true (or no parameter is specified), the following occurs:
 
@@ -224,7 +224,7 @@ This section describes changes to existing ASP.NET MVC types and members.
 - Added a protected virtual HandleUnauthorizedRequest method in the AuthorizeAttribute class. This enables filters that derive from AuthorizeAttribute to control the behavior when authorization fails.
 - Added an Add(string key, object value) method in the ValueProviderDictionary class. This enables you to use the dictionary initializer syntax for ValueProviderDictionary, as in the following example:
 
-[!code[Main](what-is-new-in-aspnet-mvc/samples/sample14.xml)]
+[!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample14.cs)]
 
 - Added a get\_object method in the Sys.Mvc.AjaxContext class. This is a JavaScript method that is similar to the get\_data method, but if the content type of the response is application/json, get\_object returns the JSON object.
 - Added an ActionDescriptor property in the AuthorizationContext class.

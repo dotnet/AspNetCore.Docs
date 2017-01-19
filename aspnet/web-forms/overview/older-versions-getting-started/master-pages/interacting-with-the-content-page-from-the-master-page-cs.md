@@ -57,7 +57,7 @@ Recall that in the [*Specifying the Title, Meta Tags, and Other HTML Headers in 
 Finally, update the `Web.sitemap` file to include an entry for this lesson. Add the following markup beneath the `<siteMapNode>` for the Content to Master Page Interaction lesson:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample1.xml)]
+[!code-xml[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample1.xml)]
 
 The addition of this `<siteMapNode>` element is reflected in the Lessons list (see Figure 5).
 
@@ -88,7 +88,7 @@ Next, specify the data source control's `SELECT` statement by choosing the Produ
 That's all there is to it! After completing the wizard Visual Studio adds two BoundFields to the GridView to mirror the two fields returned by the SqlDataSource control. The GridView and SqlDataSource controls' markup follows. Figure 5 shows the results when viewed through a browser.
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample2.xml)]
+[!code-aspx[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample2.aspx)]
 
 
 [![Each Product and its Price is Listed in the GridView](interacting-with-the-content-page-from-the-master-page-cs/_static/image14.png)](interacting-with-the-content-page-from-the-master-page-cs/_static/image13.png)
@@ -114,7 +114,7 @@ Next, add a SqlDataSource control to the master page, naming it `DoublePricesDat
 To set the `UpdateCommand` property, locate the UpdateQuery option in the Properties window. This property, when selected, displays a button with ellipses; click this button to display the Command and Parameter Editor dialog box shown in Figure 7. Type the following `UPDATE` statement into the dialog box's textbox:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample3.xml)]
+[!code-sql[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample3.sql)]
 
 This statement, when executed, will double the `UnitPrice` value for each record in the `Products` table.
 
@@ -127,12 +127,12 @@ This statement, when executed, will double the `UnitPrice` value for each record
 After setting these properties, your Button and SqlDataSource controls' declarative markup should look similar to the following:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample4.xml)]
+[!code-aspx[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample4.aspx)]
 
 All that remains is to call its `Update` method when the `DoublePrice` Button is clicked. Create a `Click` event handler for the `DoublePrice` Button and add the following code:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample5.xml)]
+[!code-csharp[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample5.cs)]
 
 To test this functionality, visit the `~/Admin/Products.aspx` page we created in Step 1 and click the "Double Product Prices" button. Clicking the button causes a postback and executes the `DoublePrice` Button's `Click` event handler, doubling the prices of all products. The page is then re-rendered and the markup is returned and re-displayed in the browser. The GridView in the content page, however, lists the same prices as before the "Double Product Prices" button was clicked. This is because the data initially loaded in the GridView had its state stored in view state, so it's not reloaded on postbacks unless instructed otherwise. If you visit a different page and then return to the `~/Admin/Products.aspx` page you'll see the updated prices.
 
@@ -155,24 +155,24 @@ The second parameter passed to an event handler can include additional informati
 To define an event use the following syntax:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample6.xml)]
+[!code-csharp[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample6.cs)]
 
 Because we only need to alert the content page when the user has clicked the `DoublePrice` Button and do not need to pass along any other additional information, we can use the event delegate `EventHandler`, which defines an event handler that accepts as its second parameter an object of type `System.EventArgs`. To create the event in the master page, add the following line of code to the master page's code-behind class:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample7.xml)]
+[!code-csharp[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample7.cs)]
 
 The above code adds a public event to the master page named `PricesDoubled`. We now need to raise this event after the prices have been doubled. To raise an event use the following syntax:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample8.xml)]
+[!code-csharp[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample8.cs)]
 
 Where *sender* and *eventArgs* are the values you want to pass to the subscriber's event handler.
 
 Update the `DoublePrice` `Click` event handler with the following code:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample9.xml)]
+[!code-csharp[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample9.cs)]
 
 As before, the `Click` event handler starts by calling the `DoublePricesDataSource` SqlDataSource control's `Update` method to double the prices of all products. Following that there are two additions to the event handler. First, the `RecentProducts` GridView's data is refreshed. This GridView was added to the master page in the preceding tutorial and displays the five most recently-added products. We need to refresh this grid so that it shows the just-doubled prices for these five products. Following that, the `PricesDoubled` event is raised. A reference to the master page itself (`this`) is sent to the event handler as the event source and an empty `EventArgs` object is sent as the event arguments.
 
@@ -183,12 +183,12 @@ At this point the master page raises its `PricesDoubled` event whenever the `Dou
 Start by creating an event handler named `Master_PricesDoubled`. Because of how we defined the `PricesDoubled` event in the master page the event handler's two input parameters must be of types `Object` and `EventArgs`, respectively. In the event handler call the `ProductsGrid` GridView's `DataBind` method to rebind the data to the grid.
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample10.xml)]
+[!code-csharp[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample10.cs)]
 
 The code for the event handler is complete but we've yet to wire the master page's `PricesDoubled` event to this event handler. The subscriber wires an event to an event handler via the following syntax:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample11.xml)]
+[!code-csharp[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample11.cs)]
 
 *publisher* is a reference to the object that offers the event *eventName*, and *methodName* is the name of the event handler defined in the subscriber that has a signature corresponding to the *eventDelegate*. In other words, if the event delegate is `EventHandler`, then *methodName* must be the name of a method in the subscriber that does not return a value and accepts two input parameters of types `Object` and `EventArgs`, respectively.
 
@@ -197,7 +197,7 @@ This event wiring code must be executed on the first page visit and subsequent p
 Open `~/Admin/Products.aspx` and create a `Page_PreInit` event handler:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample12.xml)]
+[!code-csharp[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample12.cs)]
 
 In order to complete this wiring code we need a programmatic reference to the master page from the content page. As noted in the previous tutorial, there are two ways to do this:
 
@@ -207,12 +207,12 @@ In order to complete this wiring code we need a programmatic reference to the ma
 Let's use the latter approach. Add the following `@MasterType` directive to the top of the page's declarative markup:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample13.xml)]
+[!code-aspx[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample13.aspx)]
 
 Then add the following event wiring code in the `Page_PreInit` event handler:
 
 
-[!code[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample14.xml)]
+[!code-csharp[Main](interacting-with-the-content-page-from-the-master-page-cs/samples/sample14.cs)]
 
 With this code in place, the GridView in the content page is refreshed whenever the `DoublePrice` Button is clicked.
 

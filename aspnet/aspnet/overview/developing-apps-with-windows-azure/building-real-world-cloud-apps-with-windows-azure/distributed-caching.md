@@ -62,11 +62,11 @@ You can configure absolute expiration (amount of time since the cache item was c
 
 In the following sample code, we check the cache first when retrieving a Fix It task. If the task is found in cache, we return it; if not found, we get it from the database and store it in the cache. The changes you'd make to add caching to the `FindTaskByIdAsync` method are highlighted.
 
-[!code[Main](distributed-caching/samples/sample1.xml?highlight=5,9-11,13-15,19)]
+[!code-csharp[Main](distributed-caching/samples/sample1.cs?highlight=5,9-11,13-15,19)]
 
 When you update or delete a Fix It task, you have to invalidate (remove) the cached task. Otherwise, future attempts to read that task will continue to get the old data from the cache.
 
-[!code[Main](distributed-caching/samples/sample2.xml?highlight=7)]
+[!code-csharp[Main](distributed-caching/samples/sample2.cs?highlight=7)]
 
 These are samples to illustrate simple caching code; caching has not been implemented in the downloadable Fix It project.
 

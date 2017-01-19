@@ -41,7 +41,7 @@ The deployment method at the heart of these tutorials is based on the split proj
 Lots of these WPP targets include conditional logic that logs additional information when the **EnablePackageProcessLoggingAndAssert** property is set to **true**. For example, if you review the **Package** target, you can see that it creates an additional log directory and writes a list of files to a text file if **EnablePackageProcessLoggingAndAssert** is equal to **true**.
 
 
-[!code[Main](troubleshooting-the-packaging-process/samples/sample1.xml)]
+[!code-xml[Main](troubleshooting-the-packaging-process/samples/sample1.xml)]
 
 
 > [!NOTE] The WPP targets are defined in the *Microsoft.Web.Publishing.targets* file in the %PROGRAMFILES(x86)%\MSBuild\Microsoft\VisualStudio\v10.0\Web folder. You can open this file and review the targets in Visual Studio 2010 or any XML editor. Take care not to modify the contents of the file.
@@ -54,13 +54,13 @@ You can supply a value for the **EnablePackageProcessLoggingAndAssert** property
 If you build your project from the command line, you can supply a value for the **EnablePackageProcessLoggingAndAssert** property as a command-line argument:
 
 
-[!code[Main](troubleshooting-the-packaging-process/samples/sample2.xml)]
+[!code-console[Main](troubleshooting-the-packaging-process/samples/sample2.cmd)]
 
 
 If you&#x27;re using a custom project file to build your projects, you can include the **EnablePackageProcessLoggingAndAssert** value in the **Properties** attribute of the **MSBuild** task:
 
 
-[!code[Main](troubleshooting-the-packaging-process/samples/sample3.xml)]
+[!code-xml[Main](troubleshooting-the-packaging-process/samples/sample3.xml)]
 
 
 If you&#x27;re using a Team Foundation Server (TFS) build definition to build your projects, you can supply a value for the **EnablePackageProcessLoggingAndAssert** property in the **MSBuild Arguments** row:![](troubleshooting-the-packaging-process/_static/image1.png)
@@ -71,7 +71,7 @@ If you&#x27;re using a Team Foundation Server (TFS) build definition to build yo
 Alternatively, if you want to include the package in every build, you can modify the project file for your web application project to set the **EnablePackageProcessLoggingAndAssert** property to **true**. You should add the property to the first **PropertyGroup** element within your .csproj or .vbproj file.
 
 
-[!code[Main](troubleshooting-the-packaging-process/samples/sample4.xml)]
+[!code-xml[Main](troubleshooting-the-packaging-process/samples/sample4.xml)]
 
 
 ## Reviewing the Log Files

@@ -28,27 +28,27 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-[!code[Main](modifying-animations-from-the-server-side-vb/samples/sample1.xml)]
+[!code-aspx[Main](modifying-animations-from-the-server-side-vb/samples/sample1.aspx)]
 
 The animation will be applied to a panel of text which looks like this:
 
-[!code[Main](modifying-animations-from-the-server-side-vb/samples/sample2.xml)]
+[!code-aspx[Main](modifying-animations-from-the-server-side-vb/samples/sample2.aspx)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-[!code[Main](modifying-animations-from-the-server-side-vb/samples/sample3.xml)]
+[!code-css[Main](modifying-animations-from-the-server-side-vb/samples/sample3.css)]
 
 The rest of the code runs on the server-side and does not use markup; instead, it uses code to create the `AnimationExtender` control:
 
-[!code[Main](modifying-animations-from-the-server-side-vb/samples/sample4.xml)]
+[!code-aspx[Main](modifying-animations-from-the-server-side-vb/samples/sample4.aspx)]
 
 However, the Control Toolkit currently does not provide an API access to create the individual animations. It is however possible to set the `AnimationExtender`'s Animations property to a string containing the XML markup used when assigning the animations declaratively. In order to create the XML which must not contain the `<Animations>` element you could use the .NET Framework's XML support or, as in the following code, just provide the string:
 
-[!code[Main](modifying-animations-from-the-server-side-vb/samples/sample5.xml)]
+[!code-vb[Main](modifying-animations-from-the-server-side-vb/samples/sample5.vb)]
 
 Finally, add the `AnimationExtender` control to the current page, within the `<form runat="server">` element, making sure that the animation is included and runs:
 
-[!code[Main](modifying-animations-from-the-server-side-vb/samples/sample6.xml)]
+[!code-vb[Main](modifying-animations-from-the-server-side-vb/samples/sample6.vb)]
 
 
 [![The animation is created using server-side C#/VB code](modifying-animations-from-the-server-side-vb/_static/image2.png)](modifying-animations-from-the-server-side-vb/_static/image1.png)

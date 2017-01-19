@@ -77,14 +77,14 @@ To manually upgrade an existing ASP.NET MVC 3 application to version 4, do the f
 
 1. In all Web.config files in the project (there is one in the root of the project, one in the Views folder, and one in the Views folder for each area in your project), replace every instance of the following text:
 
-    [!code[Main](mvc4-beta-release-notes/samples/sample1.xml)]
+    [!code-console[Main](mvc4-beta-release-notes/samples/sample1.cmd)]
 
     with the following corresponding text:
 
-    [!code[Main](mvc4-beta-release-notes/samples/sample2.xml)]
+    [!code-console[Main](mvc4-beta-release-notes/samples/sample2.cmd)]
 2. In the root Web.config file, update the *webPages:Version* element to "2.0.0.0" and add a new *PreserveLoginUrl* key that has the value "true":
 
-    [!code[Main](mvc4-beta-release-notes/samples/sample3.xml)]
+    [!code-xml[Main](mvc4-beta-release-notes/samples/sample3.xml)]
 3. In Solution Explorer, delete the reference to *System.Web.Mvc* (which points to the version 3 DLL). Then add a reference to *System.Web.Mvc* (v4.0.0.0). In particular, make the following changes to update the assembly references. Here are the details:
 
     1. In Solution Explorer, delete the references to the following assemblies: 
@@ -106,7 +106,7 @@ To manually upgrade an existing ASP.NET MVC 3 application to version 4, do the f
 6. Save the changes, close the project (.csproj) file you were editing, right-click the project, and then select Reload Project.
 7. If the project references any third-party libraries that are compiled using previous versions of ASP.NET MVC, open the root Web.config file and add the following three *bindingRedirect* elements under the *configuration* section: 
 
-    [!code[Main](mvc4-beta-release-notes/samples/sample4.xml)]
+    [!code-xml[Main](mvc4-beta-release-notes/samples/sample4.xml)]
 
 <a id="_Toc303253807"></a>
 ## New Features in ASP.NET MVC 4 Beta
@@ -184,7 +184,7 @@ Layouts and partials can also be overridden for particular browser types. For ex
 
 If you want to create more specific views, layouts, or partial views for other devices, you can register a new *DefaultDisplayMode* instance to specify which name to search for when a request satisfies particular conditions. For example, you could add the following code to the *Application\_Start* method in the Global.asax file to register the string "iPhone" as a display mode that applies when the Apple iPhone browser makes a request:
 
-[!code[Main](mvc4-beta-release-notes/samples/sample5.xml)]
+[!code-csharp[Main](mvc4-beta-release-notes/samples/sample5.cs)]
 
 After this code runs, when an Apple iPhone browser makes a request, your application will use the Views\Shared\\_Layout.iPhone.cshtml layout (if it exists).
 
@@ -193,7 +193,7 @@ After this code runs, when an Apple iPhone browser makes a request, your applica
 
 jQuery Mobile is an open source library for building touch-optimized web UI. If you want to use jQuery Mobile with an ASP.NET MVC 4 application, you can download and install a NuGet package that helps you get started. To install it from the Visual Studio Package Manager Console, type the following command:
 
-[!code[Main](mvc4-beta-release-notes/samples/sample6.xml)]
+[!code-powershell[Main](mvc4-beta-release-notes/samples/sample6.ps1)]
 
 This installs jQuery Mobile and some helper files, including the following:
 
@@ -213,7 +213,7 @@ If visitors click the link, they're switched to the desktop version of the same 
 
 Because your desktop layout will not include a view switcher by default, visitors won't have a way to get to mobile mode. To enable this, add the following reference to *\_ViewSwitcher* to your desktop layout, just inside the *&lt;body&gt;* element:
 
-[!code[Main](mvc4-beta-release-notes/samples/sample7.xml)]
+[!code-cshtml[Main](mvc4-beta-release-notes/samples/sample7.cshtml)]
 
 The view switcher uses a new feature called Browser Overriding. This feature lets your application treat requests as if they were coming from a different browser (user agent) than the one they're actually from. The following table lists the methods that Browser Overriding provides.
 
@@ -239,13 +239,13 @@ You can now write asynchronous action methods as single methods that return an o
 
 For example, if you're using Visual C# 5 (or using the [Async CTP](https://msdn.microsoft.com/en-us/vstudio/async.aspx)), you can create an asynchronous action method that looks like the following:
 
-[!code[Main](mvc4-beta-release-notes/samples/sample8.xml)]
+[!code-csharp[Main](mvc4-beta-release-notes/samples/sample8.cs)]
 
 In the previous action method, the calls to *newsService.GetHeadlinesAsync* and *sportsService.GetScoresAsync* are called asynchronously and do not block a thread from the thread pool.
 
 Asynchronous action methods that return *Task* instances can also support timeouts. To make your action method cancellable, add a parameter of type *CancellationToken* to the action method signature. The following example shows an asynchronous action method that has a timeout of 2500 milliseconds and that displays a *TimedOut* view to the client if a timeout occurs.
 
-[!code[Main](mvc4-beta-release-notes/samples/sample9.xml)]
+[!code-csharp[Main](mvc4-beta-release-notes/samples/sample9.cs)]
 
 <a id="_Toc303253814"></a>
 ### Azure SDK
@@ -264,14 +264,14 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
 
     To correct this issue, escape the backslash character in the App\_Start method of Global.asax.cs so that it reads as follows:
 
-    [!code[Main](mvc4-beta-release-notes/samples/sample10.xml)]
+    [!code-csharp[Main](mvc4-beta-release-notes/samples/sample10.cs)]
 - **ASP.NET MVC 4 applications which target .NET 4.5 will throw a FileLoadException upon attempt to access the System.Net.Http.dll assembly when run under .NET 4.0.** ASP.NET MVC 4 applications created under .NET 4.5 contain a binding redirect that will result in a FileLoadException which that states "Could not load file or assembly 'System.Net.Http' or one of its dependencies." when the application is executed on a system with .NET 4.0 installed. To correct this issue, remove the following binding redirect from web.config:
 
-    [!code[Main](mvc4-beta-release-notes/samples/sample11.xml)]
+    [!code-xml[Main](mvc4-beta-release-notes/samples/sample11.xml)]
 
     The assembly binding element in the modified web.config should appear as follows:
 
-    [!code[Main](mvc4-beta-release-notes/samples/sample12.xml)]
+    [!code-xml[Main](mvc4-beta-release-notes/samples/sample12.xml)]
 - **The "Add Controller" item template in Visual Basic projects generates an incorrect namespace when invoked****from inside an area.** When you add a controller to an area in an ASP.NET MVC project that uses Visual Basic, the item template inserts the wrong namespace into the controller. The result is a "file not found" error when you navigate to any action in the controller.  
   
  The generated namespace omits everything after the root namespace. For example, the namespace generated is     *RootNamespace* but should be     *RootNamespace.Areas.AreaName.Controllers* .
@@ -289,7 +289,7 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
     - *MvcVBRazorCodeParser.ParseInheritsStatement(System.Web.Razor.Parser.CodeBlockInfo)*
 - **When WebMatrix.WebData.dll is included in in the /bin directory of an ASP.NET MVC 4 apps, it takes over the URL for forms authentication.** Adding the WebMatrix.WebData.dll assembly to your application (for example, by selecting "ASP.NET Web Pages with Razor Syntax" when using the Add Deployable Dependencies dialog) will override the authentication login redirect to /account/logon rather than /account/login as expected by the default ASP.NET MVC Account Controller. To prevent this behavior and use the URL specified already in the authentication section of web.config, you can add an appSetting called PreserveLoginUrl and set it to true: 
 
-    [!code[Main](mvc4-beta-release-notes/samples/sample13.xml)]
+    [!code-xml[Main](mvc4-beta-release-notes/samples/sample13.xml)]
 - **The NuGet package manager fails to install when attempting to install ASP.NET MVC 4 for side by side installations of Visual Studio 2010 and Visual Web Developer 2010.** To run Visual Studio 2010 and Visual Web Developer 2010 side by side with ASP.NET MVC 4 you must install ASP.NET MVC 4 after both versions of Visual Studio have already been installed.
 - **Uninstalling ASP.NET MVC 4 fails if prerequisites have already been uninstalled.** To cleanly uninstall ASP.NET MVC 4you must uninstall ASP.NET MVC 4 prior to uninstalling Visual Studio.
 - **Running a default Web API project shows instructions that incorrectly direct the user to add routes using the RegisterApis method, which doesn't exist.** Routes should be added in the RegisterRoutes method using the ASP.NET route table.
@@ -299,13 +299,13 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
 
     1. In the root Web.config file, add a new *&lt;appSettings&gt;* entry with the key *webPages:Version* and the value *1.0.0.0*.
 
-        [!code[Main](mvc4-beta-release-notes/samples/sample14.xml)]
+        [!code-xml[Main](mvc4-beta-release-notes/samples/sample14.xml)]
     2. In Solution Explorer, right-click the project name and then select Unload Project. Then right-click the name again and select Edit *ProjectName*.csproj.
     3. Locate the following assembly references: 
 
-        [!code[Main](mvc4-beta-release-notes/samples/sample15.xml)]
+        [!code-xml[Main](mvc4-beta-release-notes/samples/sample15.xml)]
 
         Replace them with the following:
 
-        [!code[Main](mvc4-beta-release-notes/samples/sample16.xml)]
+        [!code-xml[Main](mvc4-beta-release-notes/samples/sample16.xml)]
     4. Save the changes, close the project (.csproj) file you were editing, and then right-click the project and select Reload.

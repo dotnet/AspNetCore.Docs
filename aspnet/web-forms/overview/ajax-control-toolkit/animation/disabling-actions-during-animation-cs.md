@@ -28,25 +28,25 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-[!code[Main](disabling-actions-during-animation-cs/samples/sample1.xml)]
+[!code-aspx[Main](disabling-actions-during-animation-cs/samples/sample1.aspx)]
 
 The animation will be applied to an HTML button like this:
 
-[!code[Main](disabling-actions-during-animation-cs/samples/sample2.xml)]
+[!code-aspx[Main](disabling-actions-during-animation-cs/samples/sample2.aspx)]
 
 Note that an HTML Control is used instead of a Web Control since we do not want the button to create a postback; it shall just launch the client-side animation for us.
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server"`:
 
-[!code[Main](disabling-actions-during-animation-cs/samples/sample3.xml)]
+[!code-aspx[Main](disabling-actions-during-animation-cs/samples/sample3.aspx)]
 
 Within the `<Animations>` node, `<OnClick>` is the right element to handle the mouse click. However, the button could be clicked during the animation, as well. The `<EnableAction>` element can take care of that. Setting `Enabled="false"` disables the button as part of the animation. Since we are using several individual animations (disabling the button and the actual animations), the `<Parallel>` element is required to glue the single animations together into one. Here is the complete markup for `AnimationExtender`:
 
-[!code[Main](disabling-actions-during-animation-cs/samples/sample4.xml)]
+[!code-aspx[Main](disabling-actions-during-animation-cs/samples/sample4.aspx)]
 
 It would also be possible to re-enable to button after the animation, using the following XML element at the end of the list:
 
-[!code[Main](disabling-actions-during-animation-cs/samples/sample5.xml)]
+[!code-xml[Main](disabling-actions-during-animation-cs/samples/sample5.xml)]
 
 However in the given scenario this would be useless since the button fades out and is not visible at the end of the animation.
 

@@ -103,7 +103,7 @@ If you run your application in an Azure Web Site, one way to avoid storing crede
 
 For example, the Fix It application stores in its Web.config file two connection strings that will have passwords in production and a key that gives access to your Azure storage account.
 
-[!code[Main](source-control/samples/sample1.xml?highlight=2-3,11)]
+[!code-xml[Main](source-control/samples/sample1.xml?highlight=2-3,11)]
 
 If you put actual production values for these settings in your *Web.config* file, or if you put them in the *Web.Release.config* file to configure a Web.config transform to insert them during deployment, they'll be stored in the source repository. If you enter the database connection strings into the production publish profile, the password will be in your *.pubxml* file. (You could exclude the *.pubxml* file from source control, but then you lose the benefit of sharing all the other deployment settings.)
 
@@ -115,9 +115,9 @@ When you deploy a project to this web site and the application runs, whatever va
 
 You can set these values in Azure by using either the management portal or scripts. The environment creation automation script you saw in the [Automate Everything](automate-everything.md) chapter creates an Azure SQL Database, gets the storage and SQL Database connection strings, and stores these secrets in the settings for your web site.
 
-[!code[Main](source-control/samples/sample2.xml)]
+[!code-powershell[Main](source-control/samples/sample2.ps1)]
 
-[!code[Main](source-control/samples/sample3.xml)]
+[!code-powershell[Main](source-control/samples/sample3.ps1)]
 
 Notice that the scripts are parameterized so that actual values don't get persisted to the source repository.
 

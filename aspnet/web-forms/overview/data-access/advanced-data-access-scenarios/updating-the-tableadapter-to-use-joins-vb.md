@@ -35,14 +35,14 @@ In this tutorial we will briefly compare and contrast correlated subqueries and 
 Recall that the `ProductsTableAdapter` created in the first tutorial in the `Northwind` DataSet uses correlated subqueries to bring back each product s corresponding category and supplier name. The `ProductsTableAdapter` s main query is shown below.
 
 
-[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample1.xml)]
+[!code-sql[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample1.sql)]
 
 The two correlated subqueries - `(SELECT CategoryName FROM Categories WHERE Categories.CategoryID = Products.CategoryID)` and `(SELECT CompanyName FROM Suppliers WHERE Suppliers.SupplierID = Products.SupplierID)` - are `SELECT` queries that return a single value per product as an additional column in the outer `SELECT` statement s column list.
 
 Alternatively, a `JOIN` can be used to return each product s supplier and category name. The following query returns the same output as the above one, but uses `JOIN` s in place of subqueries:
 
 
-[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample2.xml)]
+[!code-sql[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample2.sql)]
 
 A `JOIN` merges the records from one table with records from another table based on some criteria. In the above query, for example, the `LEFT JOIN Categories ON Categories.CategoryID = Products.CategoryID` instructs SQL Server to merge each product record with the category record whose `CategoryID` value matches the product s `CategoryID` value. The merged result allows us to work with the corresponding category fields for each product (such as `CategoryName`).
 
@@ -56,7 +56,7 @@ When building a Data Access Layer using Typed DataSets, the tools work better wh
 To explore this shortcoming, create a temporary Typed DataSet in the `~/App_Code/DAL` folder. During the TableAdapter Configuration wizard, choose to use ad-hoc SQL statements and enter the following `SELECT` query (see Figure 1):
 
 
-[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample3.xml)]
+[!code-sql[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample3.sql)]
 
 
 [![Enter a Main Query that Contains JOINs](updating-the-tableadapter-to-use-joins-vb/_static/image2.png)](updating-the-tableadapter-to-use-joins-vb/_static/image1.png)
@@ -111,7 +111,7 @@ Start by opening the `NorthwindWithSprocs` DataSet in the `~/App_Code/DAL` folde
 Use the following `SELECT` statement for the TableAdapter s main query:
 
 
-[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample4.xml)]
+[!code-sql[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample4.sql)]
 
 Since this query does not include any `JOIN` s, the TableAdapter wizard will automatically create stored procedures with corresponding `INSERT`, `UPDATE`, and `DELETE` statements, as well as a stored procedure for executing the main query.
 
@@ -146,7 +146,7 @@ With the insert, update, and delete stored procedures automatically created and 
 Start by going to the Server Explorer, drilling down into the Northwind database s Stored Procedures folder, and opening the `Employees_Select` stored procedure. If you do not see this stored procedure, right-click on the Stored Procedures folder and choose Refresh. Update the stored procedure so that it uses a `LEFT JOIN` to return the manager s first and last name:
 
 
-[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample5.xml)]
+[!code-sql[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample5.sql)]
 
 After updating the `SELECT` statement, save the changes by going to the File menu and choosing Save `Employees_Select` . Alternatively, you can click the Save icon in the toolbar or hit Ctrl+S. After saving your changes, right-click on the `Employees_Select` stored procedure in the Server Explorer and choose Execute. This will run the stored procedure and show its results in the Output window (see Figure 9).
 
@@ -188,7 +188,7 @@ To illustrate that the updated `Employees_Select` stored procedure is in effect 
 Create a new class file in the `~/App_Code/BLL` folder named `EmployeesBLLWithSprocs.vb`. This class mimics the semantics of the existing `EmployeesBLL` class, only this new one provides fewer methods and uses the `NorthwindWithSprocs` DataSet (instead of the `Northwind` DataSet). Add the following code to the `EmployeesBLLWithSprocs` class.
 
 
-[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample6.xml)]
+[!code-vb[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample6.vb)]
 
 The `EmployeesBLLWithSprocs` class s `Adapter` property returns an instance of the `NorthwindWithSprocs` DataSet s `EmployeesTableAdapter`. This is used by the class s `GetEmployees` and `DeleteEmployee` methods. The `GetEmployees` method calls the `EmployeesTableAdapter` s corresponding `GetEmployees` method, which invokes the `Employees_Select` stored procedure and populates its results in an `EmployeeDataTable`. The `DeleteEmployee` method similarly calls the `EmployeesTableAdapter` s `Delete` method, which invokes the `Employees_Delete` stored procedure.
 
@@ -214,7 +214,7 @@ Visual Studio will add a BoundField to the GridView for each of the `EmployeesDa
 To allow users to delete employees from this page we need to do two things. First, instruct the GridView to provide deleting capabilities by checking the Enable Deleting option from its smart tag. Second, change the ObjectDataSource s `OldValuesParameterFormatString` property from the value set by the ObjectDataSource wizard (`original_{0}`) to its default value (`{0}`). After making these changes, your GridView and ObjectDataSource s declarative markup should look similar to the following:
 
 
-[!code[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample7.xml)]
+[!code-aspx[Main](updating-the-tableadapter-to-use-joins-vb/samples/sample7.aspx)]
 
 Test out the page by visiting it through a browser. As Figure 14 shows, the page will list each employee and his or her manager s name (assuming they have one).
 

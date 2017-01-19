@@ -43,7 +43,7 @@ Before we get to the detailed tutorial, here is a quick overview of what you wil
 3. Create a SignalR application.
 4. Add the following code to Global.asax to configure the backplane: 
 
-    [!code[Main](scaleout-with-windows-azure-service-bus/samples/sample1.xml)]
+    [!code-csharp[Main](scaleout-with-windows-azure-service-bus/samples/sample1.cs)]
 
 For each application, pick a different value for "YourAppName". Do not use the same value across multiple applications.
 
@@ -85,7 +85,7 @@ To create the chat application, follow the steps in the tutorial [Getting Starte
 
 Use NuGet to install the required libraries. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the **Package Manager Console** window, enter the following commands:
 
-[!code[Main](scaleout-with-windows-azure-service-bus/samples/sample2.xml)]
+[!code-powershell[Main](scaleout-with-windows-azure-service-bus/samples/sample2.ps1)]
 
 Use the `-ProjectName` option to install the packages to the ASP.NET MVC project, rather than the Windows Azure project.
 
@@ -93,7 +93,7 @@ Use the `-ProjectName` option to install the packages to the ASP.NET MVC project
 
 In your application's Global.asax file, add the following code:
 
-[!code[Main](scaleout-with-windows-azure-service-bus/samples/sample3.xml)]
+[!code-csharp[Main](scaleout-with-windows-azure-service-bus/samples/sample3.cs)]
 
 Now you need to get your service bus connection string. In the Azure portal, select the service bus namespace that you created and click the Access Key icon.
 
@@ -103,7 +103,7 @@ Copy the connection string to the clipboard, then paste it into the *connectionS
 
 ![](scaleout-with-windows-azure-service-bus/_static/image7.png)
 
-[!code[Main](scaleout-with-windows-azure-service-bus/samples/sample4.xml)]
+[!code-csharp[Main](scaleout-with-windows-azure-service-bus/samples/sample4.cs)]
 
 ## Deploy to Azure
 

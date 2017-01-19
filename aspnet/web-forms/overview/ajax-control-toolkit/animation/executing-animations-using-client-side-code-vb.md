@@ -28,35 +28,35 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-[!code[Main](executing-animations-using-client-side-code-vb/samples/sample1.xml)]
+[!code-aspx[Main](executing-animations-using-client-side-code-vb/samples/sample1.aspx)]
 
 The animation will be applied to a panel of text which looks like this:
 
-[!code[Main](executing-animations-using-client-side-code-vb/samples/sample2.xml)]
+[!code-aspx[Main](executing-animations-using-client-side-code-vb/samples/sample2.aspx)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-[!code[Main](executing-animations-using-client-side-code-vb/samples/sample3.xml)]
+[!code-css[Main](executing-animations-using-client-side-code-vb/samples/sample3.css)]
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server"`:
 
-[!code[Main](executing-animations-using-client-side-code-vb/samples/sample4.xml)]
+[!code-aspx[Main](executing-animations-using-client-side-code-vb/samples/sample4.aspx)]
 
 Within the `<Animations>` node, use `<OnClick>` to run the animations once the user clicks on the panel. Add two animations to be executed parallelly:
 
-[!code[Main](executing-animations-using-client-side-code-vb/samples/sample5.xml)]
+[!code-xml[Main](executing-animations-using-client-side-code-vb/samples/sample5.xml)]
 
 For the sake of demonstration, this animation (and any other animation created using the Control Toolkit) is executed using JavaScript code, once the page runs. First of all we need access to the `AnimationExtender` control. The ASP.NET AJAX library provides the `$find()` function for this task:
 
-[!code[Main](executing-animations-using-client-side-code-vb/samples/sample6.xml)]
+[!code-csharp[Main](executing-animations-using-client-side-code-vb/samples/sample6.cs)]
 
 The `AnimationExtender` control exposes a rich API, including methods with names identical to the event handlers used in the XML markup: `OnClick()`, `OnLoad()`, and so on. For instance, a call of the `OnClick()` method executes the animation within the `<OnClick>` element of the `AnimationExtender` control:
 
-[!code[Main](executing-animations-using-client-side-code-vb/samples/sample7.xml)]
+[!code-javascript[Main](executing-animations-using-client-side-code-vb/samples/sample7.js)]
 
 Here is the complete client-side JavaScript code that emulates the click on the panel once the page has been fully loaded note that the `pageLoad()` function name is used which is called by ASP.NET AJAX once the page and all included JavaScript libraries have been loaded.
 
-[!code[Main](executing-animations-using-client-side-code-vb/samples/sample8.xml)]
+[!code-html[Main](executing-animations-using-client-side-code-vb/samples/sample8.html)]
 
 
 [![The animation runs immediately, without a mouse click](executing-animations-using-client-side-code-vb/_static/image2.png)](executing-animations-using-client-side-code-vb/_static/image1.png)

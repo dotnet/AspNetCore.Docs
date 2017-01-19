@@ -118,7 +118,7 @@ Our first unit test is contained in Listing 1. This test verifies that the Index
 
 **Listing 1 - Controllers\<wbr />GroupControllerTest.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample1.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample1.cs)]
 
 When you first type the code in Listing 1 in Visual Studio, you'll get a lot of red squiggly lines. We have not created the GroupController or Group classes.
 
@@ -128,11 +128,11 @@ The Group controller class in Listing 2 contains the bare minimum of code requir
 
 **Listing 2 - Controllers\GroupController.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample2.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample2.cs)]
 
 **Listing 3 - Models\Group.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample3.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample3.cs)]
 
 After we add the GroupController and Group classes to our project, our first unit test completes successfully (see Figure 2). We have done the minimum work required to pass the test. It is time to celebrate.
 
@@ -150,7 +150,7 @@ The test in Listing 4 verifies that calling the Create() method with a new Group
 
 **Listing 4 - Controllers\<wbr />GroupControllerTest.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample4.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample4.cs)]
 
 The test in Listing 4 calls the Group controller Create() method with a new contact Group. Next, the test verifies that calling the Group controller Index() method returns the new Group in view data.
 
@@ -158,7 +158,7 @@ The modified Group controller in Listing 5 contains the bare minimum of changes 
 
 **Listing 5 - Controllers\GroupController.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample5.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample5.cs)]
 
 ## The Group controller in Listing 5 has a new Create() action. This action adds a Group to a collection of Groups. Notice that the Index() action has been modified to return the contents of the collection of Groups.
 
@@ -172,17 +172,17 @@ Listing 6 contains a new test that expresses this intention. This test verifies 
 
 **Listing 6 - Controllers\<wbr />GroupControllerTest.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample6.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample6.cs)]
 
 In order to satisfy this test, we need to add a Name property to our Group class (see Listing 7). Furthermore, we need to add a tiny bit of validation logic to our Group controller s Create() action (see Listing 8).
 
 **Listing 7 - Models\Group.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample7.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample7.cs)]
 
 **Listing 8 - Controllers\GroupController.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample8.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample8.cs)]
 
 Notice that the Group controller Create() action now contains both validation and database logic. Currently, the database used by the Group controller consists of nothing more than an in-memory collection.
 
@@ -202,26 +202,26 @@ Listing 11 contains a new FakeContactManagerRepository class that implements the
 
 **Listing 9 - Controllers\GroupController.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample9.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample9.cs)]
 
 **Listing 10 - Controllers\<wbr />ContactManagerService.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample10.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample10.cs)]
 
 **Listing 11 - Controllers\<wbr />FakeContactManagerRepository.<wbr />cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample11.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample11.cs)]
 
 Modifying the IContactManagerRepository interface requires use to implement the CreateGroup() and ListGroups() methods in the EntityContactManagerRepository class. The laziest and fastest way to do this is to add stub methods that look like this:   
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample12.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample12.cs)]
 
 
 Finally, these changes to the design of our application require us to make some modifications to our unit tests. We now need to use the FakeContactManagerRepository when performing the unit tests. The updated GroupControllerTest class is contained in Listing 12.
 
 **Listing 12 - Controllers\<wbr />GroupControllerTest.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample13.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample13.cs)]
 
 After we make all of these changes, once again, all of our unit tests pass. We have completed the entire cycle of Red/Green/Refactor. We have implemented the first two user stories. We now have supporting unit tests for the requirements expressed in the user stories. Implementing the remainder of the user stories involves repeating the same cycle of Red/Green/Refactor.
 
@@ -303,17 +303,17 @@ Next, we need to implement our repository class. Over the course of this iterati
 
 **Listing 14 - Models\<wbr />IContactManagerRepository.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample14.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample14.cs)]
 
 We haven t actually implemented any of the methods related to working with contact groups. Currently, the EntityContactManagerRepository class has stub methods for each of the contact group methods listed in the IContactManagerRepository interface. For example, the ListGroups() method currently looks like this:
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample15.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample15.cs)]
 
 The stub methods enabled us to compile our application and pass the unit tests. However, now it is time to actually implement these methods. The final version of the EntityContactManagerRepository class is contained in Listing 13.
 
 **Listing 13 - Models\<wbr />EntityContactManagerRepository<wbr />.cs**
 
-[!code[Main](iteration-6-use-test-driven-development-cs/samples/sample16.xml)]
+[!code-csharp[Main](iteration-6-use-test-driven-development-cs/samples/sample16.cs)]
 
 ### Creating the Views
 

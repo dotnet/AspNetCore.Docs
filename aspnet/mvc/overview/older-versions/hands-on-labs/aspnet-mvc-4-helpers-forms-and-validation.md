@@ -131,14 +131,14 @@ In this task, you will customize the StoreManager Index action method to return 
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample1.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample1.cs)]
 2. Add a field to the **StoreManagerController** to hold an instance of **MusicStoreEntities.**
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex1 MusicStoreEntities*)
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample2.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample2.cs)]
 3. Implement the StoreManagerController Index action to return a View with the list of albums.
 
     The Controller action logic will be very similar to the StoreController's Index action written earlier. Use LINQ to retrieve all albums, including Genre and Artist information for display.
@@ -147,7 +147,7 @@ In this task, you will customize the StoreManager Index action method to return 
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample3.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample3.cs)]
 
 <a id="Ex1Task3"></a>
 
@@ -182,17 +182,17 @@ In this task, you will adjust the simple View template created with ASP.NET MVC 
 
     HTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample4.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample4.cs)]
 2. Replace the **&lt;table&gt;** code with the following code to display only the **Genre**, **Artist**, **Album Title**, and **Price** fields. This deletes the **AlbumId** and **Album Art URL** columns. Also, it changes GenreId and ArtistId columns to display their linked class properties of **Artist.Name** and **Genre.Name**, and removes the **Details** link.
 
     HTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample5.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample5.cs)]
 3. Change the following descriptions.
 
     HTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample6.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample6.cs)]
 
 <a id="Ex1Task5"></a>
 
@@ -243,7 +243,7 @@ In this task, you will add a new method **Truncate** to the **HTML** object expo
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample7.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample7.cs)]
 
 <a id="Ex2Task2"></a>
 
@@ -257,7 +257,7 @@ In this task, you will use the **Truncate** method to truncate the text in the V
 
     HTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample8.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample8.cs)]
 
 <a id="Ex2Task3"></a>
 
@@ -305,7 +305,7 @@ In this task, you will implement the HTTP-GET version of the Edit action method 
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample9.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample9.cs)]
 
     > [!NOTE] You are using **System.Web.Mvc** **SelectList** for Artists and Genres instead of the **System.Collections.Generic** List.
     > 
@@ -350,7 +350,7 @@ In this task, you will add drop-downs to the View template created in the last t
 
     HTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample10.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample10.cs)]
 
     > [!NOTE] An **Html.DropDownList** helper has been added to render drop-downs for choosing Artists and Genres. The parameters passed to **Html.DropDownList** are:
     > 
@@ -385,7 +385,7 @@ Now that the Edit View displays as expected, you need to implement the HTTP-POST
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample11.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample11.cs)]
 
     > [!NOTE] This method will be executed when the user clicks the **Save** button of the View and performs an HTTP-POST of the form values back to the server to persist them in the database. The decorator **[HttpPost]** indicates that the method should be used for those HTTP-POST scenarios. The method takes an **Album** object. ASP.NET MVC will automatically create the Album object from the posted &lt;form&gt; values.
     > 
@@ -444,7 +444,7 @@ In this task, you will implement the HTTP-GET version of the Create action metho
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample12.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample12.cs)]
 
 <a id="Ex4Task2"></a>
 
@@ -463,7 +463,7 @@ In this task, you will add the Create View template that will display a new (emp
 
     HTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample13.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample13.cs)]
 
 <a id="Ex4Task3"></a>
 
@@ -493,7 +493,7 @@ In this task, you will implement the HTTP-POST version of the Create action meth
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample14.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample14.cs)]
 
     > [!NOTE] The Create action is pretty similar to the previous Edit action method but instead of setting the object as modified, it is being added to the context.
 
@@ -547,7 +547,7 @@ In this task, you will implement the HTTP-GET version of the Delete action metho
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample15.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample15.cs)]
 4. Right-click inside the **Delete** action method and select **Add View**. This will bring up the Add View dialog.
 5. In the Add View dialog, verify that the View name is **Delete**. Select the **Create a strongly-typed view** option and select **Album (MvcMusicStore.Models)** from the **Model class** drop-down. Select **Delete** from the **Scaffold template** drop-down. Leave the other fields with their default value and then click **Add**.
 
@@ -558,7 +558,7 @@ In this task, you will implement the HTTP-GET version of the Delete action metho
 
     HTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample16.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample16.cs)]
 
 <a id="Ex05Task2"></a>
 
@@ -588,7 +588,7 @@ In this task, you will implement the HTTP-POST version of the Delete action meth
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample17.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample17.cs)]
 
 <a id="Ex5Task4"></a>
 
@@ -625,7 +625,7 @@ For a simple Model class, adding a Data Annotation is just handled by adding a *
 
 C#
 
-[!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample18.xml)]
+[!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample18.cs)]
 
 This is a little more complex in cases like this application where the Entity Data Model is generated. If you added Data Annotations directly to the model classes, they would be overwritten if you update the model from the database. Instead, you can make use of metadata partial classes which will exist to hold the annotations and are associated with the model classes using the **[MetadataType]** attribute.
 
@@ -645,7 +645,7 @@ This is a little more complex in cases like this application where the Entity Da
 
     C#
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample19.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample19.cs)]
 
     > [!NOTE] This **Album** partial class has a **MetadataType** attribute which points to the **AlbumMetaData** class for the Data Annotations. These are some of the Data Annotation attributes you are using to annotate the Album model:
     > 
@@ -710,7 +710,7 @@ In this task, you will run the application before including jQuery in order to c
 
     HTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample20.xml)]
+    [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample20.html)]
 
 <a id="Ex7Task2"></a>
 
@@ -723,7 +723,7 @@ In this task, you will enable jQuery **unobtrusive client validation** from **We
 
     XML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample21.xml)]
+    [!code-xml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample21.xml)]
 
     > [!NOTE] You can also enable client validation by code at Global.asax.cs to get the same results:
     > 
@@ -735,7 +735,7 @@ In this task, you will enable jQuery **unobtrusive client validation** from **We
 
     CSHTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample22.xml)]
+    [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample22.cshtml)]
 
     > [!NOTE] All these jQuery libraries are included in MVC 4 new projects. You can find more libraries in the **/Scripts** folder of you project.
     > 
@@ -758,7 +758,7 @@ In this task, you will test that the **StoreManager** create view template perfo
 
     HTML
 
-    [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample23.xml)]
+    [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample23.html)]
 
     > [!NOTE] For each client validation rule, Unobtrusive jQuery adds an attribute with data-val-*rulename*=&quot;*message*&quot;. Below is a list of tags that Unobtrusive jQuery inserts into the html input field to perform client validation:
     > 
@@ -774,13 +774,13 @@ In this task, you will test that the **StoreManager** create view template perfo
     > 
     > C#
     > 
-    > [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample24.xml)]
+    > [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample24.cs)]
     > 
     > After using Unobtrusive jQuery, the generated code is:
     > 
     > HTML
     > 
-    > [!code[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample25.xml)]
+    > [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample25.html)]
 
 * * *
 

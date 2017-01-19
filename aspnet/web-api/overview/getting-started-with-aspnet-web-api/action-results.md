@@ -41,11 +41,11 @@ If the return type is `void`, Web API simply returns an empty HTTP response with
 
 Example controller:
 
-[!code[Main](action-results/samples/sample1.xml)]
+[!code-csharp[Main](action-results/samples/sample1.cs)]
 
 HTTP response:
 
-[!code[Main](action-results/samples/sample2.xml)]
+[!code-console[Main](action-results/samples/sample2.cmd)]
 
 ## HttpResponseMessage
 
@@ -53,15 +53,15 @@ If the action returns an [HttpResponseMessage](https://msdn.microsoft.com/en-us/
 
 This option gives you a lot of control over the response message. For example, the following controller action sets the Cache-Control header.
 
-[!code[Main](action-results/samples/sample3.xml)]
+[!code-csharp[Main](action-results/samples/sample3.cs)]
 
 Response:
 
-[!code[Main](action-results/samples/sample4.xml?highlight=2)]
+[!code-console[Main](action-results/samples/sample4.cmd?highlight=2)]
 
 If you pass a domain model to the **CreateResponse** method, Web API uses a [media formatter](../formats-and-model-binding/media-formatters.md) to write the serialized model into the response body.
 
-[!code[Main](action-results/samples/sample5.xml)]
+[!code-csharp[Main](action-results/samples/sample5.cs)]
 
 Web API uses the Accept header in the request to choose the formatter. For more information, see [Content Negotiation](../formats-and-model-binding/content-negotiation.md).
 
@@ -75,33 +75,33 @@ The **IHttpActionResult** interface was introducted in Web API 2. Essentially, i
 
 **IHttpActionResult** contains a single method, **ExecuteAsync**, which asynchronously creates an **HttpResponseMessage** instance.
 
-[!code[Main](action-results/samples/sample6.xml)]
+[!code-csharp[Main](action-results/samples/sample6.cs)]
 
 If a controller action returns an **IHttpActionResult**, Web API calls the **ExecuteAsync** method to create an **HttpResponseMessage**. Then it converts the **HttpResponseMessage** into an HTTP response message.
 
 Here is a simple implementaton of **IHttpActionResult** that creates a plain text response:
 
-[!code[Main](action-results/samples/sample7.xml)]
+[!code-csharp[Main](action-results/samples/sample7.cs)]
 
 Example controller action:
 
-[!code[Main](action-results/samples/sample8.xml)]
+[!code-csharp[Main](action-results/samples/sample8.cs)]
 
 Response:
 
-[!code[Main](action-results/samples/sample9.xml)]
+[!code-console[Main](action-results/samples/sample9.cmd)]
 
 More often, you will use the **IHttpActionResult** implementations defined in the **[System.Web.Http.Results](https://msdn.microsoft.com/en-us/library/system.web.http.results.aspx)** namespace. The **ApiContoller** class defines helper methods that return these built-in action results.
 
 In the following example, if the request does not match an existing product ID, the controller calls [ApiController.NotFound](https://msdn.microsoft.com/en-us/library/system.web.http.apicontroller.notfound.aspx) to create a 404 (Not Found) response. Otherwise, the controller calls [ApiController.OK](https://msdn.microsoft.com/en-us/library/dn314591.aspx), which creates a 200 (OK) response that contains the product.
 
-[!code[Main](action-results/samples/sample10.xml)]
+[!code-csharp[Main](action-results/samples/sample10.cs)]
 
 ## Other Return Types
 
 For all other return types, Web API uses a [media formatter](../formats-and-model-binding/media-formatters.md) to serialize the return value. Web API writes the serialized value into the response body. The response status code is 200 (OK).
 
-[!code[Main](action-results/samples/sample11.xml)]
+[!code-csharp[Main](action-results/samples/sample11.cs)]
 
 A disadvantage of this approach is that you cannot directly return an error code, such as 404. However, you can throw an **HttpResponseException** for error codes. For more information, see [Exception Handling in ASP.NET Web API](../error-handling/exception-handling.md).
 
@@ -109,8 +109,8 @@ Web API uses the Accept header in the request to choose the formatter. For more 
 
 Example request
 
-[!code[Main](action-results/samples/sample12.xml)]
+[!code-console[Main](action-results/samples/sample12.cmd)]
 
 Example response:
 
-[!code[Main](action-results/samples/sample13.xml)]
+[!code-console[Main](action-results/samples/sample13.cmd)]

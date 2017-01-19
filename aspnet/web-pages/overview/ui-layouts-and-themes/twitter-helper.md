@@ -44,7 +44,7 @@ To add the Twitter Helper, first, add a folder named **App\_Code** to your proje
 
 Replace the default code in Twitter.cshtml with the following code.
 
-[!code[Main](twitter-helper/samples/sample1.xml)]
+[!code-csharp[Main](twitter-helper/samples/sample1.cs)]
 
 ## Call Twitter methods from your web pages
 
@@ -52,7 +52,7 @@ The following example shows how to use the Twitter Helper methods from a page in
 
 Not all of the parameters shown below are required. The optional parameters are used to customize how the button or widget is displayed. For example, the Follow Button only requires the user name to follow, but the example shows how to include the number of followers, and how specify the size of the button and the language.
 
-[!code[Main](twitter-helper/samples/sample2.xml)]
+[!code-html[Main](twitter-helper/samples/sample2.html)]
 
 ## See the results
 

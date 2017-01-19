@@ -46,7 +46,7 @@ You can find more details about most of these programming techniques later in th
 
 The `@` character starts inline expressions, single statement blocks, and multi-statement blocks:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample1.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample1.html)]
 
 This is what these statements look like when the page runs in a browser:
 
@@ -67,7 +67,7 @@ This is what these statements look like when the page runs in a browser:
 
 A *code block* includes one or more code statements and is enclosed in braces.
 
-[!code[Main](introducing-razor-syntax-c/samples/sample2.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample2.html)]
 
 The result displayed in a browser:
 
@@ -77,13 +77,13 @@ The result displayed in a browser:
 
 Inside a code block, each complete code statement must end with a semicolon. Inline expressions don't end with a semicolon.
 
-[!code[Main](introducing-razor-syntax-c/samples/sample3.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample3.html)]
 
 ### 4. You use variables to store values
 
 You can store values in a *variable*, including strings, numbers, and dates, etc. You create a new variable using the `var` keyword. You can insert variable values directly in a page using `@`.
 
-[!code[Main](introducing-razor-syntax-c/samples/sample4.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample4.html)]
 
 The result displayed in a browser:
 
@@ -94,15 +94,15 @@ The result displayed in a browser:
 
 A *string* is a sequence of characters that are treated as text. To specify a string, you enclose it in double quotation marks:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample5.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample5.cshtml)]
 
 If the string that you want to display contains a backslash character (\) or double quotation marks ( `"` ), use a *verbatim string literal* that's prefixed with the `@` operator. (In C#, the \ character has special meaning unless you use a verbatim string literal.)
 
-[!code[Main](introducing-razor-syntax-c/samples/sample6.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample6.html)]
 
 To embed double quotation marks, use a verbatim string literal and repeat the quotation marks:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample7.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample7.html)]
 
 Here's the result of using both of these examples in a page:
 
@@ -115,7 +115,7 @@ Here's the result of using both of these examples in a page:
 
 In C#, keywords (like `var`, `true`, and `if`) and variable names are case sensitive. The following lines of code create two different variables, `lastName` and `LastName.`
 
-[!code[Main](introducing-razor-syntax-c/samples/sample8.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample8.cshtml)]
 
 If you declare a variable as `var lastName = "Smith";` and if you try to reference that variable in your page as `@LastName`, an error results because `LastName` won't be recognized.
 
@@ -128,7 +128,7 @@ An *object* represents a thing that you can program with &#8212; a page, a text 
 
 You'll often work with the `Request` object, which gives you information like the values of text boxes (form fields) on the page, what type of browser made the request, the URL of the page, the user identity, etc. The following example shows how to access properties of the `Request` object and how to call the `MapPath` method of the `Request` object, which gives you the absolute path of the page on the server:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample9.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample9.html)]
 
 The result displayed in a browser:
 
@@ -138,7 +138,7 @@ The result displayed in a browser:
 
 A key feature of dynamic web pages is that you can determine what to do based on conditions. The most common way to do this is with the `if` statement (and optional `else` statement).
 
-[!code[Main](introducing-razor-syntax-c/samples/sample10.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample10.cshtml)]
 
 The statement `if(IsPost)` is a shorthand way of writing `if(IsPost == true)`. Along with `if` statements, there are a variety of ways to test conditions, repeat blocks of code, and so on, which are described later in this article.
 
@@ -163,7 +163,7 @@ This procedure shows you how to create a page that illustrates basic programming
 1. In your editor, create a new file and name it *AddNumbers.cshtml*.
 2. Copy the following code and markup into the page, replacing anything already in the page.  
 
-    [!code[Main](introducing-razor-syntax-c/samples/sample11.xml)]
+    [!code-cshtml[Main](introducing-razor-syntax-c/samples/sample11.cshtml)]
 
     Here are some things for you to note:
 
@@ -225,16 +225,16 @@ In server code blocks, you often want to output text or markup (or both) to the 
 
 - Enclose the text in an HTML element like `<p></p>` or `<em></em>`:   
 
-    [!code[Main](introducing-razor-syntax-c/samples/sample12.xml)]
+    [!code-cshtml[Main](introducing-razor-syntax-c/samples/sample12.cshtml)]
 
     The HTML element can include text, additional HTML elements, and server-code expressions. When ASP.NET sees the opening HTML tag (for example, `<p>`), it renders everything including the element and its content as is to the browser, resolving server-code expressions as it goes.
 - Use the `@:` operator or the `<text>` element. The `@:` outputs a single line of content containing plain text or unmatched HTML tags; the `<text>` element encloses multiple lines to output. These options are useful when you don't want to render an HTML element as part of the output.  
 
-    [!code[Main](introducing-razor-syntax-c/samples/sample13.xml)]
+    [!code-cshtml[Main](introducing-razor-syntax-c/samples/sample13.cshtml)]
 
     If you want to output multiple lines of text or unmatched HTML tags, you can precede each line with `@:`, or you can enclose the line in a `<text>` element. Like the `@:` operator,`<text>` tags are used by ASP.NET to identify text content and are never rendered in the page output.
 
-    [!code[Main](introducing-razor-syntax-c/samples/sample14.xml)]
+    [!code-cshtml[Main](introducing-razor-syntax-c/samples/sample14.cshtml)]
 
     The first example repeats the previous example but uses a single pair of `<text>` tags to enclose the text to render. In the second example, the `<text>` and `</text>` tags enclose three lines, all of which have some uncontained text and unmatched HTML tags (`<br />`), along with server code and matched HTML tags. Again, you could also precede each line individually with the `@:` operator; either way works.
 
@@ -244,19 +244,19 @@ In server code blocks, you often want to output text or markup (or both) to the 
 
 Extra spaces in a statement (and outside of a string literal) don't affect the statement:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample15.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample15.cshtml)]
 
 A line break in a statement has no effect on the statement, and you can wrap statements for readability. The following statements are the same:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample16.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample16.cshtml)]
 
 However, you can't wrap a line in the middle of a string literal. The following example doesn't work:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample17.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample17.cshtml)]
 
 To combine a long string that wraps to multiple lines like the above code, there are two options. You can use the concatenation operator (`+`), which you'll see later in this article. You can also use the `@` character to create a verbatim string literal, as you saw earlier in this article. You can break verbatim string literals across lines:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample18.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample18.cshtml)]
 
 ### Code (and Markup) Comments
 
@@ -266,29 +266,29 @@ There's different commenting syntax for Razor code and for HTML markup. As with 
 
 For ASP.NET Razor comments, you start the comment with `@*` and end it with `*@`. The comment can be on one line or multiple lines:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample19.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample19.cshtml)]
 
 Here is a comment within a code block:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample20.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample20.cshtml)]
 
 Here is the same block of code, with the line of code commented out so that it won't run:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample21.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample21.cshtml)]
 
 Inside a code block, as an alternative to using Razor comment syntax, you can use the commenting syntax of the programming language you're using, such as C#:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample22.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample22.cshtml)]
 
 In C#, single-line comments are preceded by the `//` characters, and multi-line comments begin with `/*` and end with `*/`. (As with Razor comments, C# comments are not rendered to the browser.)
 
 For markup, as you probably know, you can create an HTML comment:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample23.xml)]
+[!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-23.unknown)]
 
 HTML comments start with `<!--` characters and end with `-->`. You can use HTML comments to surround not only text, but also any HTML markup that you may want to keep in the page but don't want to render. This HTML comment will hide the entire content of the tags and the text they contain:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample24.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample24.html)]
 
 Unlike Razor comments, HTML comments *are* rendered to the page and the user can see them by viewing the page source.
 
@@ -306,11 +306,11 @@ However, you generally don't have to specify a type for a variable. Most of the 
 
 You declare a variable using the `var` keyword (if you don't want to specify a type) or by using the name of the type:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample25.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample25.cshtml)]
 
 The following example shows some typical uses of variables in a web page:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample26.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample26.cshtml)]
 
 If you combine the previous examples in a page, you see this displayed in a browser:
 
@@ -322,7 +322,7 @@ Although ASP.NET can usually determine a data type automatically, sometimes it c
 
 The most common case is that you have to convert a string to another type, such as to an integer or date. The following example shows a typical case where you must convert a string to a number.
 
-[!code[Main](introducing-razor-syntax-c/samples/sample27.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample27.cshtml)]
 
 As a rule, user input comes to you as strings. Even if you've prompted users to enter a number, and even if they've entered a digit, when user input is submitted and you read it in code, the data is in string format. Therefore, you must convert the string to a number. In the example, if you try to perform arithmetic on the values without converting them, the following error results, because ASP.NET cannot add two strings:
 
@@ -334,12 +334,12 @@ The following table lists some common conversion and test methods for variables.
 
 | **Method** | **Description** | **Example** |
 | --- | --- | --- |
-| `AsInt(), IsInt()` | Converts a string that represents a whole number (like "593") to an integer. | [!code[Main](introducing-razor-syntax-c/samples/sample28.xml)] |
-| `AsBool(), IsBool()` | Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type. | [!code[Main](introducing-razor-syntax-c/samples/sample29.xml)] |
-| `AsFloat(), IsFloat()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number. | [!code[Main](introducing-razor-syntax-c/samples/sample30.xml)] |
-| `AsDecimal(), IsDecimal()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.) | [!code[Main](introducing-razor-syntax-c/samples/sample31.xml)] |
-| `AsDateTime(), IsDateTime()` | Converts a string that represents a date and time value to the ASP.NET `DateTime` type. | [!code[Main](introducing-razor-syntax-c/samples/sample32.xml)] |
-| `ToString()` | Converts any other data type to a string. | [!code[Main](introducing-razor-syntax-c/samples/sample33.xml)] |
+| `AsInt(), IsInt()` | Converts a string that represents a whole number (like "593") to an integer. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample28.cs)] |
+| `AsBool(), IsBool()` | Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample29.cs)] |
+| `AsFloat(), IsFloat()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample30.cs)] |
+| `AsDecimal(), IsDecimal()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.) | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample31.cs)] |
+| `AsDateTime(), IsDateTime()` | Converts a string that represents a date and time value to the ASP.NET `DateTime` type. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample32.cs)] |
+| `ToString()` | Converts any other data type to a string. | [!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-33.unknown)] |
 
 ## Operators
 
@@ -347,18 +347,18 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
 
 | **Operator** | **Description** | **Examples** |
 | --- | --- | --- |
-| `+` `-` `*` `/` | Math operators used in numerical expressions. | [!code[Main](introducing-razor-syntax-c/samples/sample34.xml)] |
-| `=` | Assignment. Assigns the value on the right side of a statement to the object on the left side. | [!code[Main](introducing-razor-syntax-c/samples/sample35.xml)] |
-| `==` | Equality. Returns `true` if the values are equal. (Notice the distinction between the `=` operator and the `==` operator.) | [!code[Main](introducing-razor-syntax-c/samples/sample36.xml)] |
-| `!=` | Inequality. Returns `true` if the values are not equal. | [!code[Main](introducing-razor-syntax-c/samples/sample37.xml)] |
-| `< > <= >=` | Less-than, greater-than, less-than-or-equal, and greater-than-or-equal. | [!code[Main](introducing-razor-syntax-c/samples/sample38.xml)] |
-| `+` | Concatenation, which is used to join strings. ASP.NET knows the difference between this operator and the addition operator based on the data type of the expression. | [!code[Main](introducing-razor-syntax-c/samples/sample39.xml)] |
-| `+=` `-=` | The increment and decrement operators, which add and subtract 1 (respectively) from a variable. | [!code[Main](introducing-razor-syntax-c/samples/sample40.xml)] |
-| `.` | Dot. Used to distinguish objects and their properties and methods. | [!code[Main](introducing-razor-syntax-c/samples/sample41.xml)] |
-| `()` | Parentheses. Used to group expressions and to pass parameters to methods. | [!code[Main](introducing-razor-syntax-c/samples/sample42.xml)] |
-| `[]` | Brackets. Used for accessing values in arrays or collections. | [!code[Main](introducing-razor-syntax-c/samples/sample43.xml)] |
-| `!` | Not. Reverses a `true` value to `false` and vice versa. Typically used as a shorthand way to test for `false` (that is, for not `true`). | [!code[Main](introducing-razor-syntax-c/samples/sample44.xml)] |
-| `&&` `||` | Logical AND and OR, which are used to link conditions together. | [!code[Main](introducing-razor-syntax-c/samples/sample45.xml)] |
+| `+` `-` `*` `/` | Math operators used in numerical expressions. | [!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-34.unknown)] |
+| `=` | Assignment. Assigns the value on the right side of a statement to the object on the left side. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample35.cs)] |
+| `==` | Equality. Returns `true` if the values are equal. (Notice the distinction between the `=` operator and the `==` operator.) | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample36.cs)] |
+| `!=` | Inequality. Returns `true` if the values are not equal. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample37.cs)] |
+| `< > <= >=` | Less-than, greater-than, less-than-or-equal, and greater-than-or-equal. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample38.cs)] |
+| `+` | Concatenation, which is used to join strings. ASP.NET knows the difference between this operator and the addition operator based on the data type of the expression. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample39.cs)] |
+| `+=` `-=` | The increment and decrement operators, which add and subtract 1 (respectively) from a variable. | [!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-40.unknown)] |
+| `.` | Dot. Used to distinguish objects and their properties and methods. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample41.cs)] |
+| `()` | Parentheses. Used to group expressions and to pass parameters to methods. | [!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-42.unknown)] |
+| `[]` | Brackets. Used for accessing values in arrays or collections. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample43.cs)] |
+| `!` | Not. Reverses a `true` value to `false` and vice versa. Typically used as a shorthand way to test for `false` (that is, for not `true`). | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample44.cs)] |
+| `&&` `||` | Logical AND and OR, which are used to link conditions together. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample45.cs)] |
 
 <a id="ID_WorkingWithFileAndFolderPaths"></a>
 ## Working with File and Folder Paths in Code
@@ -391,13 +391,13 @@ The `Server.MapPath` method converts a virtual path (like */default.cshtml*) to 
 
 You typically don't know the absolute physical path of your site on a hosting site's server, so this method can convert the path you do know — the virtual path — to the corresponding path on the server for you. You pass the virtual path to a file or folder to the method, and it returns the physical path:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample46.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample46.cshtml)]
 
 ### Referencing the virtual root: the ~ operator and Href method
 
 In a *.cshtml* or *.vbhtml* file, you can reference the virtual root path using the `~` operator. This is very handy because you can move pages around in a site, and any links they contain to other pages won't be broken. It's also handy in case you ever move your website to a different location. Here are some examples:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample47.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample47.cshtml)]
 
 If the website is `http://myserver/myapp`, here's how ASP.NET will treat these paths when the page runs:
 
@@ -408,7 +408,7 @@ If the website is `http://myserver/myapp`, here's how ASP.NET will treat these p
 
 You can use the `~` operator both in server code (as above) and in markup, like this:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample48.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample48.html)]
 
 In markup, you use the `~` operator to create paths to resources like image files, other web pages, and CSS files. When the page runs, ASP.NET looks through the page (both code and markup) and resolves all the `~` references to the appropriate path.
 
@@ -420,21 +420,21 @@ ASP.NET server code lets you perform tasks based on conditions and write code th
 
 To test a simple condition you use the `if` statement, which returns true or false based on a test you specify:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample49.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample49.cshtml)]
 
 The `if` keyword starts a block. The actual test (condition) is in parentheses and returns true or false. The statements that run if the test is true are enclosed in braces. An `if` statement can include an `else` block that specifies statements to run if the condition is false:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample50.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample50.cshtml)]
 
 You can add multiple conditions using an `else if` block:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample51.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample51.cshtml)]
 
 In this example, if the first condition in the if block is not true, the `else if` condition is checked. If that condition is met, the statements in the `else if` block are executed. If none of the conditions are met, the statements in the `else` block are executed. You can add any number of else if blocks, and then close with an `else` block as the &quot;everything else&quot; condition.
 
 To test a large number of conditions, use a `switch` block:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample52.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample52.cshtml)]
 
 The value to test is in parentheses (in the example, the `weekday` variable). Each individual test uses a `case` statement that ends with a colon (:). If the value of a `case` statement matches the test value, the code in that case block is executed. You close each case statement with a `break` statement. (If you forget to include break in each `case` block, the code from the next `case` statement will run also.) A `switch` block often has a `default` statement as the last case for an &quot;everything else&quot; option that runs if none of the other cases are true.
 
@@ -446,7 +446,7 @@ The result of the last two conditional blocks displayed in a browser:
 
 You often need to run the same statements repeatedly. You do this by looping. For example, you often run the same statements for each item in a collection of data. If you know exactly how many times you want to loop, you can use a `for` loop. This kind of loop is especially useful for counting up or counting down:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample53.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample53.html)]
 
 The loop begins with the `for` keyword, followed by three statements in parentheses, each terminated with a semicolon.
 
@@ -462,7 +462,7 @@ If you're working with a collection or array, you often use a `foreach` loop. A 
 
 For example, the following code returns the items in the `Request.ServerVariables` collection, which is an object that contains information about your web server. It uses a `foreac` h loop to display the name of each item by creating a new `<li>` element in an HTML bulleted list.
 
-[!code[Main](introducing-razor-syntax-c/samples/sample54.xml)]
+[!code-html[Main](introducing-razor-syntax-c/samples/sample54.html)]
 
 The `foreach` keyword is followed by parentheses where you declare a variable that represents a single item in the collection (in the example, `var item`), followed by the `in` keyword, followed by the collection you want to loop through. In the body of the `foreach` loop, you can access the current item using the variable that you declared earlier.
 
@@ -470,7 +470,7 @@ The `foreach` keyword is followed by parentheses where you declare a variable th
 
 To create a more general-purpose loop, use the `while` statement:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample55.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample55.cshtml)]
 
 A `while` loop begins with the `while` keyword, followed by parentheses where you specify how long the loop continues (here, for as long as `countNum` is less than 50), then the block to repeat. Loops typically increment (add to) or decrement (subtract from) a variable or object used for counting. In the example, the `+=` operator adds 1 to `countNum` each time the loop runs. (To decrement a variable in a loop that counts down, you would use the decrement operator `-=`).
 
@@ -482,18 +482,18 @@ Nearly everything in an ASP.NET website is an object, including the web page its
 
 The most basic object in ASP.NET is the page. You can access properties of the page object directly without any qualifying object. The following code gets the page's file path, using the `Request` object of the page:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample56.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample56.cshtml)]
 
 To make it clear that you're referencing properties and methods on the current page object, you can optionally use the keyword `this` to represent the page object in your code. Here is the previous code example, with `this` added to represent the page:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample57.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample57.cshtml)]
 
 You can use properties of the `Page` object to get a lot of information, such as:
 
 - `Request`. As you've already seen, this is a collection of information about the current request, including what type of browser made the request, the URL of the page, the user identity, etc.
 - `Response`. This is a collection of information about the response (page) that will be sent to the browser when the server code has finished running. For example, you can use this property to write information into the response. 
 
-    [!code[Main](introducing-razor-syntax-c/samples/sample58.xml)]
+    [!code-cshtml[Main](introducing-razor-syntax-c/samples/sample58.cshtml)]
 
 <a id="ID_CollectionsAndObjects"></a>
 ### Collection Objects (Arrays and Dictionaries)
@@ -502,11 +502,11 @@ A *collection* is a group of objects of the same type, such as a collection of `
 
 You'll often work with data in collections. Two common collection types are the *array* and the *dictionary*. An array is useful when you want to store a collection of similar items but don't want to create a separate variable to hold each item:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample59.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample59.cshtml)]
 
 With arrays, you declare a specific data type, such as `string`, `int`, or `DateTime`. To indicate that the variable can contain an array, you add brackets to the declaration (such as `string[]` or `int[]`). You can access items in an array using their position (index) or by using the `foreach` statement. Array indexes are zero-based &#8212; that is, the first item is at position 0, the second item is at position 1, and so on.
 
-[!code[Main](introducing-razor-syntax-c/samples/sample60.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample60.cshtml)]
 
 You can determine the number of items in an array by getting its `Length` property. To get the position of a specific item in the array (to search the array), use the `Array.IndexOf` method. You can also do things like reverse the contents of an array (the `Array.Reverse` method) or sort the contents (the `Array.Sort` method).
 
@@ -516,23 +516,23 @@ The output of the string array code displayed in a browser:
 
 A dictionary is a collection of key/value pairs, where you provide the key (or name) to set or retrieve the corresponding value:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample61.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample61.cshtml)]
 
 To create a dictionary, you use the `new` keyword to indicate that you're creating a new dictionary object. You can assign a dictionary to a variable using the `var` keyword. You indicate the data types of the items in the dictionary using angle brackets ( `< >` ). At the end of the declaration, you must add a pair of parentheses, because this is actually a method that creates a new dictionary.
 
 To add items to the dictionary, you can call the `Add` method of the dictionary variable (`myScores` in this case), and then specify a key and a value. Alternatively, you can use square brackets to indicate the key and do a simple assignment, as in the following example:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample62.xml)]
+[!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-62.unknown)]
 
 To get a value from the dictionary, you specify the key in brackets:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample63.xml)]
+[!code-csharp[Main](introducing-razor-syntax-c/samples/sample63.cs)]
 
 ## Calling Methods with Parameters
 
 As you read earlier in this article, the objects that you program with can have methods. For example, a `Database` object might have a `Database.Connect` method. Many methods also have one or more parameters. A *parameter* is a value that you pass to a method to enable the method to complete its task. For example, look at a declaration for the `Request.MapPath` method, which takes three parameters:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample64.xml)]
+[!code-csharp[Main](introducing-razor-syntax-c/samples/sample64.cs)]
 
 (The line has been wrapped to make it more readable. Remember that you can put line breaks almost any place except inside strings that are enclosed in quotation marks.)
 
@@ -542,13 +542,13 @@ The Razor syntax gives you two options for passing parameters to a method: *posi
 
 The following example assumes you have a folder named *scripts* on your website. The code calls the `Request.MapPath` method and passes values for the three parameters in the correct order. It then displays the resulting mapped path.
 
-[!code[Main](introducing-razor-syntax-c/samples/sample65.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample65.cshtml)]
 
 When a method has many parameters, you can keep your code more readable by using named parameters. To call a method using named parameters, you specify the parameter name followed by a colon (:), and then the value. The advantage of named parameters is that you can pass them in any order you want. (A disadvantage is that the method call is not as compact.)
 
 The following example calls the same method as above, but uses named parameters to supply the values:
 
-[!code[Main](introducing-razor-syntax-c/samples/sample66.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample66.cshtml)]
 
 As you can see, the parameters are passed in a different order. However, if you run the previous example and this example, they'll return the same value.
 
@@ -575,7 +575,7 @@ The following example shows a page that creates a text file on the first request
 
 If your code didn't handle the exception, you would see an error page like the previous screen shot. However, the `try/catch` section helps prevent the user from seeing these types of errors.
 
-[!code[Main](introducing-razor-syntax-c/samples/sample67.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-c/samples/sample67.cshtml)]
 
 ## Additional Resources
 

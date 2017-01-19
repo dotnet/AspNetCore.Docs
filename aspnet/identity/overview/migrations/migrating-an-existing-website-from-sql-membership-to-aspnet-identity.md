@@ -113,11 +113,11 @@ This database generation script can be used as a start where we'll be making add
 
 The SQL membership user information had other properties in addition to the ones in the Identity user model class namely email, password attempts, last login date, last lock-out date etc. This is useful information and we would like it to be carried over to the Identity system. This can be done by adding additional properties to the user model and mapping them back to the table columns in the database. We can do this by adding a class that subclasses the `IdentityUser` model. We can add the properties to this custom class and edit the SQL script to add the corresponding columns when creating the table. The code for this class is described further in the article. The SQL script for creating the `AspnetUsers` table after adding the new properties would be
 
-[!code[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample1.xml)]
+[!code-sql[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample1.sql)]
 
 Next we need to copy the existing information from the SQL membership database to the newly added tables for Identity. This can be done through SQL by copying data directly from one table to another. To add data into the rows of table, we use the `INSERT INTO [Table]` construct. To copy from another table we can use the `INSERT INTO` statement along with the `SELECT` statement. To get all the user information we need to query the *aspnet\_Users* and *aspnet\_Membership*tables and copy the data to the *AspNetUsers* table. We use the `INSERT INTO` and `SELECT` along with `JOIN` and `LEFT OUTER JOIN` statements. For more information about querying and copying data between tables, refer to [this](https://technet.microsoft.com/en-us/library/ms190750%28v=sql.105%29.aspx) link. Additionally the AspnetUserLogins and AspnetUserClaims tables are empty to begin with since there is no information in SQL membership that maps to this by default. The only information copied is for users and roles. For the project created in the previous steps, the SQL query to copy information to the users table would be
 
-[!code[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample2.xml)]
+[!code-sql[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample2.sql)]
 
 In the above SQL statement, information about each user from the *aspnet\_Users* and *aspnet\_Membership* tables is copied into the columns of the *AspnetUsers* table. The only modification done here is when we copy the password. Since the encryption algorithm for passwords in SQL membership used 'PasswordSalt' and 'PasswordFormat', we copy that too along with the hashed password so that it can be used to decrypt the password by Identity. This is explained further in the article when hooking up a custom password hasher. 
 
@@ -158,22 +158,22 @@ In our sample, the AspNetRoles, AspNetUserClaims, AspNetLogins and AspNetUserRol
 
     The User class should extend the IdentityUser class found in the *Microsoft.AspNet.Identity.EntityFramework* dll. Declare the properties in class that map back to the AspNetUser columns. The properties ID, Username, PasswordHash and SecurityStamp are defined in the IdentityUser and so are omitted. Below is the code for the User class that has all the properties
 
-    [!code[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample3.xml)]
+    [!code-csharp[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample3.cs)]
 2. An Entity Framework DbContext class is required in order to persist data in models back to tables and retrieve data from tables to populate the models. *Microsoft.AspNet.Identity.EntityFramework* dll defines the IdentityDbContext class which interacts with the Identity tables to retrieve and store information. The IdentityDbContext&lt;tuser&gt; takes a 'TUser' class which can be any class that extends the IdentityUser class.
 
     Create a new class ApplicationDBContext that extends IdentityDbContext under the 'Models' folder, passing in the 'User' class created in step 1
 
-    [!code[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample4.xml)]
+    [!code-csharp[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample4.cs)]
 3. User management in the new Identity system is done using the UserManager&lt;tuser&gt; class defined in the *Microsoft.AspNet.Identity.EntityFramework* dll. We need to create a custom class that extends UserManager, passing in the 'User' class created in step 1.
 
     In the Models folder create a new class UserManager that extends UserManager&lt;user&gt;
 
-    [!code[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample5.xml)]
+    [!code-csharp[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample5.cs)]
 4. The passwords of the users of the application are encrypted and stored in the database. The crypto algorithm used in SQL membership is different from the one in the new Identity system. To reuse old passwords we need to selectively decrypt passwords when old users log in using the SQL memberships algorithm while using the crypto algorithm in Identity for the new users.
 
     The UserManager class has a property 'PasswordHasher' which stores an instance of a class that implements the 'IPasswordHasher' interface. This is used to encrypt/decrypt passwords during user authentication transactions. In the UserManager class defined in step 3, create a new class SQLPasswordHasher and copy the below code.
 
-    [!code[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample6.xml)]
+    [!code-csharp[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample6.cs)]
 
     Resolve the compilation errors by importing the System.Text and System.Security.Cryptography namespaces.
 
@@ -182,7 +182,7 @@ In our sample, the AspNetRoles, AspNetUserClaims, AspNetLogins and AspNetUserRol
     The SQL membership system used PasswordHash, PasswordSalt and PasswordFormat to hash the password entered by users when they register or change their password. During the migration all the three fields are stored in the PasswordHash column in the AspNetUser table separated by the '|' character. When a user logs in and the password has these fields, we use the SQL membership crypto to check the password; otherwise we use the Identity system's default crypto to verify the password. This way old users would not have to change their passwords once the app is migrated.
 5. Declare the constructor for the UserManager class and pass this as the SQLPasswordHasher to the property in the constructor.
 
-    [!code[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample7.xml)]
+    [!code-csharp[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample7.cs)]
 
 ### Create new account management pages
 
@@ -199,11 +199,11 @@ We need to make some changes for the sample to work with the project we have her
 
     Define a method in Register.aspx.cs page to query the aspnet\_Applications table and get the application Id according to application name
 
-    [!code[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample8.xml)]
+    [!code-csharp[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample8.cs)]
 
     Now get set this on the user object
 
-    [!code[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample9.xml)]
+    [!code-csharp[Main](migrating-an-existing-website-from-sql-membership-to-aspnet-identity/samples/sample9.cs)]
 
 Use the old username and password to login an existing user. Use the Register page to create a new user. Also verify that the users are in roles as expected.
 

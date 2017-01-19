@@ -45,7 +45,7 @@ The ASP.NET runtime tracks the current `changeId` for a table when caching data 
 With the polling approach the database must be setup to contain the infrastructure described above: a predefined table (`AspNet_SqlCacheTablesForChangeNotification`), a handful of stored procedures, and triggers on each of the tables that may be used in SQL cache dependencies in the web application. These tables, stored procedures, and triggers can be created through the command line program `aspnet_regsql.exe`, which is found in the `$WINDOWS$\Microsoft.NET\Framework\version` folder. To create the `AspNet_SqlCacheTablesForChangeNotification` table and associated stored procedures, run the following from the command line:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample1.xml)]
+[!code-console[Main](using-sql-cache-dependencies-vb/samples/sample1.cmd)]
 
 > [!NOTE] To execute these commands the specified database login must be in the [`db_securityadmin`](https://msdn.microsoft.com/en-us/library/ms188685.aspx) and [`db_ddladmin`](https://msdn.microsoft.com/en-us/library/ms190667.aspx) roles. To examine the T-SQL sent to the database by the `aspnet_regsql.exe` command line program, refer to [this blog entry](http://scottonwriting.net/sowblog/posts/10709.aspx).
 
@@ -53,17 +53,17 @@ With the polling approach the database must be setup to contain the infrastructu
 For example, to add the infrastructure for polling to a Microsoft SQL Server database named `pubs` on a database server named `ScottsServer` using Windows Authentication, navigate to the appropriate directory and, from the command line, enter:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample2.xml)]
+[!code-console[Main](using-sql-cache-dependencies-vb/samples/sample2.cmd)]
 
 After the database-level infrastructure has been added, we need to add the triggers to those tables that will be used in SQL cache dependencies. Use the `aspnet_regsql.exe` command line program again, but specify the table name using the `-t` switch and instead of using the `-ed` switch use `-et`, like so:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample3.xml)]
+[!code-html[Main](using-sql-cache-dependencies-vb/samples/sample3.html)]
 
 To add the triggers to the `authors` and `titles` tables on the `pubs` database on `ScottsServer`, use:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample4.xml)]
+[!code-console[Main](using-sql-cache-dependencies-vb/samples/sample4.cmd)]
 
 For this tutorial add the triggers to the `Products`, `Categories`, and `Suppliers` tables. We'll look at the particular command line syntax in Step 3.
 
@@ -100,7 +100,7 @@ This will add the database to the Databases folder. The database name might be t
 Now that we have attached the `NORTHWND.MDF` database from the `App_Data` folder, we re ready to add the polling infrastructure. Assuming that you ve renamed the database to DataTutorials , run the following four commands:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample5.xml)]
+[!code-console[Main](using-sql-cache-dependencies-vb/samples/sample5.cmd)]
 
 After running these four commands, right-click on the database name in Management Studio, go to the Tasks submenu, and choose Detach. Then close Management Studio and reopen Visual Studio.
 
@@ -117,7 +117,7 @@ Once Visual Studio has reopened, drill into the database through the Server Expl
 After creating the needed tables, triggers, and stored procedures in the database, the final step is to configure the polling service, which is done through `Web.config` by specifying the databases to use and the polling frequency in milliseconds. The following markup polls the Northwind database once every second.
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample6.xml)]
+[!code-xml[Main](using-sql-cache-dependencies-vb/samples/sample6.xml)]
 
 The `name` value in the `<add>` element ( NorthwindDB ) associates a human-readable name with a particular database. When working with SQL cache dependencies, we'll need to refer to the database name defined here as well as the table that the cached data is based on. We'll see how to use the `SqlCacheDependency` class to programmatically associate SQL cache dependencies with cached data in Step 6.
 
@@ -160,12 +160,12 @@ After completing the Configure Data Source wizard, Visual Studio will create Bou
 Finally, add a Label Web control above the GridView and set its `ID` property to `ODSEvents` and its `EnableViewState` property to `False`. After making these changes, your page s declarative markup should look similar to the following. Note that I ve made a number of aesthetic customizations to the GridView fields that are not necessary to demonstrate the SQL cache dependency functionality.
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample7.xml)]
+[!code-aspx[Main](using-sql-cache-dependencies-vb/samples/sample7.aspx)]
 
 Next, create an event handler for the ObjectDataSource s `Selecting` event and in it add the following code:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample8.xml)]
+[!code-vb[Main](using-sql-cache-dependencies-vb/samples/sample8.vb)]
 
 Recall that the ObjectDataSource s `Selecting` event fires only when retrieving data from its underlying object. If the ObjectDataSource accesses the data from its own cache, this event is not fired.
 
@@ -180,7 +180,7 @@ Now, visit this page through a browser. Since we ve yet to implement any caching
 As we saw in the [Caching Data with the ObjectDataSource](caching-data-with-the-objectdatasource-vb.md) tutorial, setting the `EnableCaching` property to `True` causes the ObjectDataSource to cache its data for the duration specified by its `CacheDuration` property. The ObjectDataSource also has a [`SqlCacheDependency` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.objectdatasource.sqlcachedependency.aspx), which adds one or more SQL cache dependencies to the cached data using the pattern:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample9.xml)]
+[!code-unknown[Main](using-sql-cache-dependencies-vb/samples/sample-24979-9.unknown)]
 
 Where *databaseName* is the name of the database as specified in the `name` attribute of the `<add>` element in `Web.config`, and *tableName* is the name of the database table. For example, to create an ObjectDataSource that caches data indefinitely based on a SQL cache dependency against the Northwind s `Products` table, set the ObjectDataSource s `EnableCaching` property to `True` and its `SqlCacheDependency` property to NorthwindDB:Products .
 
@@ -212,24 +212,24 @@ The [Caching Data in the Architecture](caching-data-in-the-architecture-vb.md) t
 With the polling system, a `SqlCacheDependency` object must be associated with a particular database and table pair. The following code, for example, creates a `SqlCacheDependency` object based on the Northwind database s `Products` table:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample10.xml)]
+[!code-vb[Main](using-sql-cache-dependencies-vb/samples/sample10.vb)]
 
 The two input parameters to the `SqlCacheDependency` s constructor are the database and table names, respectively. Like with the ObjectDataSource s `SqlCacheDependency` property, the database name used is the same as the value specified in the `name` attribute of the `<add>` element in `Web.config`. The table name is the actual name of the database table.
 
 To associate a `SqlCacheDependency` with an item added to the data cache, use one of the `Insert` method overloads that accepts a dependency. The following code adds *value* to the data cache for an indefinite duration, but associates it with a `SqlCacheDependency` on the `Products` table. In short, *value* will remain in the cache until it is evicted due to memory constraints or because the polling system has detected that the `Products` table has changed since it was cached.
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample11.xml)]
+[!code-vb[Main](using-sql-cache-dependencies-vb/samples/sample11.vb)]
 
 The Caching Layer s `ProductsCL` class currently caches data from the `Products` table using a time-based expiry of 60 seconds. Let s update this class so that it uses SQL cache dependencies instead. The `ProductsCL` class s `AddCacheItem` method, which is responsible for adding the data to the cache, currently contains the following code:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample12.xml)]
+[!code-vb[Main](using-sql-cache-dependencies-vb/samples/sample12.vb)]
 
 Update this code to use a `SqlCacheDependency` object instead of the `MasterCacheKeyArray` cache dependency:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample13.xml)]
+[!code-vb[Main](using-sql-cache-dependencies-vb/samples/sample13.vb)]
 
 To test this functionality, add a GridView to the page beneath the existing `ProductsDeclarative` GridView. Set this new GridView s `ID` to `ProductsProgrammatic` and, through its smart tag, bind it to a new ObjectDataSource named `ProductsDataSourceProgrammatic`. Configure the ObjectDataSource to use the `ProductsCL` class, setting the drop-down lists in the SELECT and UPDATE tabs to `GetProducts` and `UpdateProduct`, respectively.
 
@@ -254,7 +254,7 @@ After completing the Configure Data Source wizard, Visual Studio will create Bou
 After completing these tasks, the resulting GridView and ObjectDataSource declarative markup should look like the following:
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample14.xml)]
+[!code-aspx[Main](using-sql-cache-dependencies-vb/samples/sample14.aspx)]
 
 To test the SQL cache dependency in the Caching Layer set a breakpoint in the `ProductCL` class s `AddCacheItem` method and then start debugging. When you first visit `SqlCacheDependencies.aspx`, the breakpoint should be hit as the data is requested for the first time and placed into the cache. Next, move to another page in the GridView or sort one of the columns. This causes the GridView to requery its data, but the data should be found in the cache since the `Products` database table has not been modified. If the data is repeatedly not found in the cache, make sure there is sufficient memory available on your computer and try again.
 
@@ -276,7 +276,7 @@ The [`AggregateCacheDependency` class](https://msdn.microsoft.com/en-us/library/
 The following shows the updated code for the `ProductsCL` class s `AddCacheItem` method. The method creates the `MasterCacheKeyArray` cache dependency along with `SqlCacheDependency` objects for the `Products`, `Categories`, and `Suppliers` tables. These are all combined into one `AggregateCacheDependency` object named `aggregateDependencies`, which is then passed into the `Insert` method.
 
 
-[!code[Main](using-sql-cache-dependencies-vb/samples/sample15.xml)]
+[!code-vb[Main](using-sql-cache-dependencies-vb/samples/sample15.vb)]
 
 Test this new code out. Now changes to the `Products`, `Categories`, or `Suppliers` tables cause the cached data to be evicted. Moreover, the `ProductsCL` class s `UpdateProduct` method, which is called when editing a product through the GridView, evicts the `MasterCacheKeyArray` cache dependency, which causes the cached `ProductsDataTable` to be evicted and the data to be re-retrieved on the next request.
 

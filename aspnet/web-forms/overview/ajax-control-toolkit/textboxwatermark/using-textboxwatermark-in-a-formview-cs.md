@@ -32,15 +32,15 @@ For this sample, we assume that the instance of the SQL Server 2005 Express Edit
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-[!code[Main](using-textboxwatermark-in-a-formview-cs/samples/sample1.xml)]
+[!code-aspx[Main](using-textboxwatermark-in-a-formview-cs/samples/sample1.aspx)]
 
 Then, add a data source to the page which supports the `DELETE`, `INSERT` and `UPDATE` SQL statements. If you are using the Visual Studio assistant to create the data source, mind that a bug in the current version does not prefix the table name (`Vendor`) with `Purchasing`. The following markup shows the correct syntax:
 
-[!code[Main](using-textboxwatermark-in-a-formview-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-textboxwatermark-in-a-formview-cs/samples/sample2.aspx)]
 
 Remember the name (`ID`) of the data source, since it will be used in the `DataSourceID` property of the `FormView` control. The `<InsertItemTemplate>` section of the `FormView` contains a textbox which is extended by the `TextBoxWatermarkExtender` control. Make sure that the extender resides within the template and not outside of it.
 
-[!code[Main](using-textboxwatermark-in-a-formview-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-textboxwatermark-in-a-formview-cs/samples/sample3.aspx)]
 
 Now when the user changes into the insert mode of the `FormView` control, the text field for the new vendor is prefilled thanks to the `TextBoxWatermarkExtender` control. A click inside the textbox lets the filler text disappear.
 

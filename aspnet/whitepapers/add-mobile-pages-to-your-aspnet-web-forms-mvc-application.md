@@ -140,7 +140,7 @@ Depending on your requirements, you may be able to use the same Web Forms for al
 
 This is easy to do. For example, you can add a PreInit handler such as the following to a Web Form:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample1.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample1.cs)]
 
 Now, create a master page called Mobile.Master in the top-level folder of your application, and it will be used when a mobile device is detected. Your mobile master page can reference a mobile-specific CSS stylesheet if necessary. Desktop visitors will still see your default master page, not the mobile one.
 
@@ -164,7 +164,7 @@ It's often convenient to redirect mobile visitors to the mobile pages only on th
 
 To do this, you can place your redirection logic in a **Session\_Start** method. For example, add the following method to your Global.asax.cs file:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample2.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample2.cs)]
 
 #### Configuring Forms Authentication to respect your mobile pages
 
@@ -172,10 +172,10 @@ Note that Forms Authentication makes certain assumptions about where it can redi
 
 - When a user needs to be authenticated, Forms Authentication will redirect them to your desktop login page, regardless of whether they're a desktop or mobile user (because it only has a concept of *one* login URL). Assuming you want to style your mobile login page differently, you need to enhance your desktop login page so that it redirects mobile users to a separate mobile login page. For example, add the following code to your **desktop** login page code-behind: 
 
-    [!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample3.xml)]
+    [!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample3.cs)]
 - After a user successfully logs in, Forms Authentication will by default redirect them to your desktop home page (because it only has a concept of *one* default page). You need to enhance your mobile login page so that it redirects to the mobile home page after a successful log-in. For example, add the following code to your **mobile** login page code-behind: 
 
-    [!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample4.xml)]
+    [!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample4.cs)]
   
  This code assumes your page has a Login server control called LoginUser, as in the default project template.
 
@@ -185,11 +185,11 @@ If you're using output caching, beware that by default it's possible for a deskt
 
 To avoid the problem, you can instruct ASP.NET to vary the cache entry according to whether the visitor is using a mobile device. Add a VaryByCustom parameter to your page's OutputCache declaration as follows:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample5.xml)]
+[!code-aspx[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample5.aspx)]
 
 Next, define *isMobileDevice* as a custom cache parameter by adding the following method override to your Global.asax.cs file:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample6.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample6.cs)]
 
 This will ensure that mobile visitors to the page don't receive output previously put into the cache by a desktop visitor.
 
@@ -211,7 +211,7 @@ Since the Model-View-Controller pattern decouples application logic (in controll
 
 If you want to take the **first** option and vary only the Razor layout per device type, it's very easy. Just modify your \_ViewStart.cshtml file as follows:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample7.xml)]
+[!code-cshtml[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample7.cshtml)]
 
 Now you can create a mobile-specific layout called \_LayoutMobile.cshtml with a page structure and CSS rules optimized for mobile devices.
 
@@ -227,13 +227,13 @@ You can add an area called "Mobile" to an existing ASP.NET MVC application in th
 
 If you want the URL /Mobile to reach the Index action on HomeController inside your Mobile area, you will need to make two small changes to your routing configuration. First, update your MobileAreaRegistration class so that HomeController is the default controller in your Mobile area, as shown in the following code:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample8.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample8.cs)]
 
 This means the mobile homepage will now be located at /Mobile, rather than /Mobile/Home, because "Home" is now the implicitly default controller name for mobile pages.
 
 Next, note that by adding a second HomeController to your application (i.e., the mobile one, in addition to the existing desktop one), you'll have broken your regular desktop homepage. It will fail with the error "*Multiple types were found that match the controller named 'Home'*". To resolve this, update your top-level routing configuration (in Global.asax.cs) to specify that your desktop HomeController should take priority when there's ambiguity:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample9.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample9.cs)]
 
 Now the error will go away, and the URL http://*yoursite*/ will reach the desktop homepage, and http://*yoursite*/mobile/ will reach the mobile homepage.
 
@@ -249,11 +249,11 @@ The downloadable sample included with this white paper includes an implementatio
 
 As it's a filter, you can choose either to apply it to specific controllers and actions, e.g.,
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample10.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample10.cs)]
 
 … or you can apply it to all controllers and actions as an MVC 3 *global filter* in your Global.asax.cs file:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample11.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample11.cs)]
 
 The downloadable sample also demonstrates how you can create subclasses of this attribute that redirect to specific locations within your mobile area. This means, for example, you can:
 
@@ -267,7 +267,7 @@ If you're using Forms Authentication, you should note that when a user needs to 
 
 To avoid this problem, add logic to your desktop "log on" action so that it redirects mobile users again to a mobile "log on" action. If you're using the default ASP.NET MVC application template, update AccountController's LogOn action as follows:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample12.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample12.cs)]
 
 … and then implement a suitable mobile-specific "log on" action on a controller called AccountController in your Mobile area.
 
@@ -275,11 +275,11 @@ To avoid this problem, add logic to your desktop "log on" action so that it redi
 
 If you're using the [OutputCache] filter, you must force the cache entry to vary by device type. For example, write:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample13.xml)]
+[!code-unknown[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample-36243-13.unknown)]
 
 Then, add the following method to your Global.asax.cs file:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample14.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample14.cs)]
 
 This will ensure that mobile visitors to the page don't receive output previously put into the cache by a desktop visitor.
 
@@ -299,7 +299,7 @@ You already learned how the open source 51Degrees.mobi Foundation can improve th
 
 The following element added to the fiftyOne section of the web.config file will redirect the first request from a detected mobile device to the page ~/Mobile/Default.aspx. Any requests to pages under the Mobile folder will *not* be redirected, regardless of device type. If the mobile device has been inactive for a period of 20 minutes or more the device will be forgotten and subsequent requests will be treated as new ones for the purposes of redirection.
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample15.xml)]
+[!code-xml[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample15.xml)]
 
 For more details, see [51degrees.mobi Foundation documentation](http://51degrees.codeplex.com/documentation).
 
@@ -317,11 +317,11 @@ Since most web pages were designed for large desktop-sized screens and fast fixe
 
 But if you've taken the effort to produce a mobile-optimized version of your site, you probably don't want the network operator to interfere with it any further. You can add the following line to the Page\_Load event in any ASP.NET Web Form:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample16.xml)]
+[!code-unknown[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample-36243-16.unknown)]
 
 Or, for an ASP.NET MVC controller, you could add the following method override so that it applies to all actions on that controller:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample17.xml)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample17.cs)]
 
 The resulting HTTP message informs W3C compliant transcoders and proxies not to alter content. Of course, there is no guarantee that mobile network operators will respect this message.
 
@@ -333,13 +333,13 @@ Certain modern mobile browsers, in an effort display web pages meant for desktop
 
 A way to tell the mobile browser how wide the viewport should be is through the nonstandard *viewport* meta tag. For example, if you add the following to your page's HEAD section,
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample18.xml)]
+[!code-html[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample18.html)]
 
 … then supporting smartphone browsers will lay out the page on a 480-pixel wide virtual canvas. This means that if your HTML elements define their widths in percentage terms, the percentages will be interpreted with respect to this 480-pixel width, not the default viewport width. As a result, the user is less likely to have to zoom and pan horizontally – considerably improving the mobile browsing experience.
 
 If you want the viewport width to match the device's physical pixels, you can specify the following:
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample19.xml)]
+[!code-html[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample19.html)]
 
 For this to work correctly, you must not explicitly force elements to exceed that width (e.g., using a *width* attribute or CSS property), otherwise the browser will be forced to use a larger viewport regardless. See also: [more details about the nonstandard viewport tag](https://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html).
 
@@ -347,7 +347,7 @@ Most modern smartphones support *dual orientation*: they can be held in either p
 
 Older Windows Mobile and Blackberry devices may also accept the following meta tags in the page header to inform them content has been optimized for mobile and therefore should not be transformed.
 
-[!code[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample20.xml)]
+[!code-html[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample20.html)]
 
 ## Additional Resources
 

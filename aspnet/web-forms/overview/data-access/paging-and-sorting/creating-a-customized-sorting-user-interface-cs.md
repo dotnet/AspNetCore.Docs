@@ -41,7 +41,7 @@ Before we explore how to augment the GridView to provide the enhanced sorting in
 Next, configure the GridView such that it only contains the `ProductName`, `CategoryName`, `SupplierName`, and `UnitPrice` BoundFields and the Discontinued CheckBoxField. Finally, configure the GridView to support sorting by checking the Enable Sorting checkbox in the GridView s smart tag (or by setting its `AllowSorting` property to `true`). After making these additions to the `CustomSortingUI.aspx` page, the declarative markup should look similar to the following:
 
 
-[!code[Main](creating-a-customized-sorting-user-interface-cs/samples/sample1.xml)]
+[!code-aspx[Main](creating-a-customized-sorting-user-interface-cs/samples/sample1.aspx)]
 
 Take a moment to view our progress thus far in a browser. Figure 2 shows the sortable GridView when its data is sorted by category in alphabetical order.
 
@@ -111,7 +111,7 @@ For this tutorial, we'll use this latter approach to customize the sorting user 
 Since we only want to add the separator rows to the GridView s control hierarchy after its control hierarchy has been created and created for the last time on that page visit, we want to perform this addition at the end of the page lifecycle, but before the actual GridView control hierarchy has been rendered into HTML. The latest possible point at which we can accomplish this is the `Page` class s `Render` event, which we can override in our code-behind class using the following method signature:
 
 
-[!code[Main](creating-a-customized-sorting-user-interface-cs/samples/sample2.xml)]
+[!code-csharp[Main](creating-a-customized-sorting-user-interface-cs/samples/sample2.cs)]
 
 When the `Page` class s original `Render` method is invoked `base.Render(writer)` each of the controls in the page will be rendered, generating the markup based on their control hierarchy. Therefore it is imperative that we both call `base.Render(writer)`, so that the page is rendered, and that we manipulate the GridView s control hierarchy prior to calling `base.Render(writer)`, so that the separator rows have been added to the GridView s control hierarchy before it s been rendered.
 
@@ -123,14 +123,14 @@ To inject the sort group headers we first need to ensure that the user has reque
 Assuming that the data has been sorted, our next task is to determine what column the data was sorted by and then to scan the rows looking for differences in that column s values. The following code ensures that the data has been sorted and finds the column by which the data has been sorted:
 
 
-[!code[Main](creating-a-customized-sorting-user-interface-cs/samples/sample3.xml)]
+[!code-csharp[Main](creating-a-customized-sorting-user-interface-cs/samples/sample3.cs)]
 
 If the GridView has yet to be sorted, the GridView s `SortExpression` property will not have been set. Therefore, we only want to add the separator rows if this property has some value. If it does, we next need to determine the index of the column by which the data was sorted. This is accomplished by looping through the GridView s `Columns` collection, searching for the column whose `SortExpression` property equals the GridView s `SortExpression` property. In addition to the column s index, we also grab the `HeaderText` property, which is used when displaying the separator rows.
 
 With the index of the column by which the data is sorted, the final step is to enumerate the rows of the GridView. For each row we need to determine whether the sorted column s value differs from the previous row s sorted column s value. If so, we need to inject a new `GridViewRow` instance into the control hierarchy. This is accomplished with the following code:
 
 
-[!code[Main](creating-a-customized-sorting-user-interface-cs/samples/sample4.xml)]
+[!code-csharp[Main](creating-a-customized-sorting-user-interface-cs/samples/sample4.cs)]
 
 This code starts by programmatically referencing the `Table` object found at the root of the GridView s control hierarchy and creating a string variable named `lastValue`. `lastValue` is used to compare the current row s sorted column value with the previous row s value. Next, the GridView s `Rows` collection is enumerated and for each row the value of the sorted column is stored in the `currentValue` variable.
 
@@ -144,7 +144,7 @@ Note that the separator row s lone `TableCell` is formatted such that it spans t
 The CSS class used to format the sorting group header row `SortHeaderRowStyle` needs to be specified in the `Styles.css` file. Feel free to use whatever style settings appeal to you; I used the following:
 
 
-[!code[Main](creating-a-customized-sorting-user-interface-cs/samples/sample5.xml)]
+[!code-css[Main](creating-a-customized-sorting-user-interface-cs/samples/sample5.css)]
 
 With the current code, the sorting interface adds sort group headers when sorting by any BoundField (see Figure 5, which shows a screenshot when sorting by supplier). However, when sorting by any other field type (such as a CheckBoxField or TemplateField), the sort group headers are nowhere to be found (see Figure 6).
 
@@ -164,7 +164,7 @@ The reason the sort group headers are missing when sorting by a CheckBoxField is
 To handle field types other than BoundFields, we need to augment the code where the `currentValue` variable is assigned to check for the existence of a CheckBox in the `TableCell` s `Controls` collection. Instead of using `currentValue = gvr.Cells[sortColumnIndex].Text`, replace this code with the following:
 
 
-[!code[Main](creating-a-customized-sorting-user-interface-cs/samples/sample6.xml)]
+[!code-csharp[Main](creating-a-customized-sorting-user-interface-cs/samples/sample6.cs)]
 
 This code examines the sorted column `TableCell` for the current row to determine if there are any controls in the `Controls` collection. If there are, and the first control is a CheckBox, the `currentValue` variable is set to Yes or No , depending on the CheckBox s `Checked` property. Otherwise, the value is taken from the `TableCell` s `Text` property. This logic can be replicated to handle sorting for any TemplateFields that may exist in the GridView.
 

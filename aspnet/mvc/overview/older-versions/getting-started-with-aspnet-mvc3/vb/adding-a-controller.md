@@ -46,7 +46,7 @@ Notice in **Solution Explorer** on the right that a new file has been created fo
 
 Inside the new `public class HelloWorldController` block, create two new methods that look like the following code. We'll return a string of HTML directly from the controller as an example.
 
-[!code[Main](adding-a-controller/samples/sample1.xml)]
+[!code-vb[Main](adding-a-controller/samples/sample1.vb)]
 
 Your controller is named `HelloWorldController` and your new method is named `Index`. Run the application (press F5 or Ctrl+F5). Once your browser has started up, append &quot;HelloWorld&quot; to the path in the address bar. (On my computer, it's `http://localhost:43246/HelloWorld`) Your browser will look like the screenshot below. In the method above, the code returned a string directly. We told the system to just return some HTML, and it did!
 
@@ -64,7 +64,7 @@ Browse to `http://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs 
 
 Let's modify the example slightly so that we can pass some parameter information in from the URL to the controller (for example,&#160; */HelloWorld/Welcome?name=Scott&amp;numtimes=4*). Change your `Welcome` method to include two parameters as shown below. Note that we've used the VB optional parameter feature to indicate that the `numTimes` parameter should default to 1 if no value is passed for that parameter.
 
-[!code[Main](adding-a-controller/samples/sample2.xml)]
+[!code-vb[Main](adding-a-controller/samples/sample2.vb)]
 
 Run your application and browse to `http://localhost:xxxx/HelloWorld/Welcome?name=Scott&numtimes=4`**.** You can try different values for&#160; `name` and `numtimes`. The system automatically maps the named parameters from your query string in the address bar to parameters in your method.
 

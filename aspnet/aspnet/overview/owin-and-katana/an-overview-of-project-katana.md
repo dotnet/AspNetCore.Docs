@@ -53,7 +53,7 @@ What was needed was a single hosting abstraction that would enable a developer t
 
 The resulting abstraction consists of two core elements. The first is the environment dictionary. This data structure is responsible for storing all of the state necessary for processing an HTTP request and response, as well as any relevant server state. The environment dictionary is defined as follows:
 
-[!code[Main](an-overview-of-project-katana/samples/sample1.xml)]
+[!code-console[Main](an-overview-of-project-katana/samples/sample1.cmd)]
 
 An OWIN-compatible Web server is responsible for populating the environment dictionary with data such as the body streams and header collections for an HTTP request and response. It is then the responsibility of the application or framework components to populate or update the dictionary with additional values and write to the response body stream.
 
@@ -104,11 +104,11 @@ One notable difference between JavaScript and .NET development is the presence (
 
 Next, we will install the [Microsoft.Owin.Host.SystemWeb](http://nuget.org/packages/Microsoft.Owin.Host.SystemWeb) NuGet package into the project. This package provides an OWIN server that runs in the ASP.NET request pipeline. It can be found on the [NuGet gallery](http://nuget.org/packages/Microsoft.Owin.Host.SystemWeb) and can be installed using either the Visual Studio package manager dialog or the package manager console with the following command:
 
-[!code[Main](an-overview-of-project-katana/samples/sample2.xml)]
+[!code-console[Main](an-overview-of-project-katana/samples/sample2.cmd)]
 
 Installing the `Microsoft.Owin.Host.SystemWeb` package will install a few additional packages as dependencies. One of those dependencies is `Microsoft.Owin`, a library which provides several helper types and methods for developing OWIN applications. We can use those types to quickly write the following "hello world" server.
 
-[!code[Main](an-overview-of-project-katana/samples/sample3.xml)]
+[!code-csharp[Main](an-overview-of-project-katana/samples/sample3.cs)]
 
 This very simple Web server can now be run using Visual Studio's **F5** command and includes full support for debugging.
 
@@ -118,7 +118,7 @@ By default, the previous "hello world" example runs in the ASP.NET request pipel
 
 To illustrate the portability goal, moving from a Web-server host to a command line host requires simply adding the new server and host dependencies to project's output folder and then starting the host. In this example, we'll host our Web server in a Katana host called `OwinHost.exe` and will use the Katana HttpListener-based server. Similarly to the other Katana components, these will be acquired from NuGet using the following command:
 
-[!code[Main](an-overview-of-project-katana/samples/sample4.xml)]
+[!code-console[Main](an-overview-of-project-katana/samples/sample4.cmd)]
 
 From the command line, we can then navigate to the project root folder and simply run the `OwinHost.exe` (which was installed in the tools folder of its respective NuGet package). By default, `OwinHost.exe` is configured to look for the HttpListener-based server and so no additional configuration is needed. Navigating in a Web browser to `http://localhost:5000/` shows the application now running through the console.
 
@@ -143,15 +143,15 @@ From the command line, we can then navigate to the project root folder and simpl
   
 **Custom Host**: The Katana component suite gives a developer the ability to host applications in her own custom process, whether that is a console application, Windows service, etc. This capability looks similar to the self-host capability provided by Web API. The following example shows a custom host of Web API code:  
 
-[!code[Main](an-overview-of-project-katana/samples/sample5.xml)]
+[!code-csharp[Main](an-overview-of-project-katana/samples/sample5.cs)]
 
 The self-host setup for a Katana application is similar:
 
-[!code[Main](an-overview-of-project-katana/samples/sample6.xml)]
+[!code-csharp[Main](an-overview-of-project-katana/samples/sample6.cs)]
 
 One notable difference between the Web API and Katana self-host examples is that the Web API configuration code is missing from the Katana self-host example. In order to enable both portability and composability, Katana separates the code that starts the server from the code that configures the request processing pipeline. The code that configures Web API, then is contained in the class Startup, which is additionally specified as the type parameter in WebApplication.Start.
 
-[!code[Main](an-overview-of-project-katana/samples/sample7.xml)]
+[!code-csharp[Main](an-overview-of-project-katana/samples/sample7.cs)]
 
 The startup class will be discussed in greater detail later in the article. However, the code required to start a Katana self-host process looks strikingly similar to the code that you may be using today in ASP.NET Web API self-host applications.
 
@@ -171,11 +171,11 @@ The startup class will be discussed in greater detail later in the article. Howe
  As previously mentioned, when the server accepts a request from a client, it is responsible for passing it through a pipeline of OWIN components, which are specified by the developer's startup code. These pipeline components are known as middleware.  
  At a very basic level, an OWIN middleware component simply needs to implement the OWIN application delegate so that it is callable.
 
-[!code[Main](an-overview-of-project-katana/samples/sample8.xml)]
+[!code-console[Main](an-overview-of-project-katana/samples/sample8.cmd)]
 
 However, in order to simplify the development and composition of middleware components, Katana supports a handful of conventions and helper types for middleware components. The most common of these is the `OwinMiddleware` class. A custom middleware component built using this class would look similar to the following: 
 
-[!code[Main](an-overview-of-project-katana/samples/sample9.xml)]
+[!code-csharp[Main](an-overview-of-project-katana/samples/sample9.cs)]
 
  This class derives from `OwinMiddleware`, implements a constructor that accepts an instance of the next middleware in the pipeline as one of its arguments, and then passes it to the base constructor. Additional arguments used to configure the middleware are also declared as constructor parameters after the next middleware parameter.   
   
@@ -183,11 +183,11 @@ At runtime, the middleware is executed via the overridden `Invoke` method. This 
   
 The middleware class can be easily added to the OWIN pipeline in the application startup code as follows:   
 
-[!code[Main](an-overview-of-project-katana/samples/sample10.xml)]
+[!code-csharp[Main](an-overview-of-project-katana/samples/sample10.cs)]
 
 Because the Katana infrastructure simply builds up a pipeline of OWIN middleware components, and because the components simply need to support the application delegate to participate in the pipeline, middleware components can range in complexity from simple loggers to entire frameworks like ASP.NET, Web API, or [SignalR](../../../signalr/index.md). For example, adding ASP.NET Web API to the previous OWIN pipeline requires adding the following startup code:
 
-[!code[Main](an-overview-of-project-katana/samples/sample11.xml)]
+[!code-csharp[Main](an-overview-of-project-katana/samples/sample11.cs)]
 
 The Katana infrastructure will build the pipeline of middleware components based on the order in which they were added to the IAppBuilder object in the Configuration method. In our example, then, LoggerMiddleware can handle all requests that flow through the pipeline, regardless of how those requests are ultimately handled. This enables powerful scenarios where a middleware component (e.g. an authentication component) can process requests for a pipeline that includes multiple components and frameworks (e.g. ASP.NET Web API, SignalR, and a static file server).
  

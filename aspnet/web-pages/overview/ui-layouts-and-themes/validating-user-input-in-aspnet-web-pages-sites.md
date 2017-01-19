@@ -87,14 +87,14 @@ In ASP.NET Web Pages 2, you can use the `Validator` helper to test user input. T
 `Validator.Url([error message])`
 3. When the page is submitted, check whether validation has passed by checking `Validation.IsValid`:
 
-    [!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample1.xml)]
+    [!code-csharp[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample1.cs)]
 
     If there are any validation errors, you skip normal page processing. For example, if the purpose of the page is to update a database, you don't do that until all validation errors have been fixed.
 4. If there are validation errors, display error messages in the page's markup by using `Html.ValidationSummary` or `Html.ValidationMessage`, or both.
 
 The following example shows a page that illustrates these steps.
 
-[!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample2.xml)]
+[!code-csharp[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample2.cs)]
 
 To see how validation works, run this page and deliberately make mistakes. For example, here's what the page looks like if you forget to enter a course name, if you enter an , and if you enter an invalid date:
 
@@ -112,14 +112,14 @@ You can add support to perform validation in client script. In that case, the va
 
 1. Register the following JavaScript libraries in the page:  
 
-    [!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample3.xml)]
+    [!code-html[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample3.html)]
 
  Two of the libraries are loadable from a content delivery network (CDN), so you don't necessarily have to have them on your computer or server. However, you must have a local copy of     *jquery.validate.unobtrusive.js* . If you are not already working with a WebMatrix template (like     **Starter Site** ) that includes the library, create a Web Pages site that's based on     **Starter Site** . Then copy the     *.js* file to your current site.
 2. In markup, for each element that you're validating, add a call to `Validation.For(field)`. This method emits attributes that are used by client-side validation. (Rather than emitting actual JavaScript code, the method emits attributes like `data-val-...`. These attributes support unobtrusive client validation that uses jQuery to do the work.)
 
 The following page shows how to add client validation features to the example shown earlier.
 
-[!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample4.xml?highlight=35-39,51,61,71)]
+[!code-csharp[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample4.cs?highlight=35-39,51,61,71)]
 
 Not all validation checks run on the client. In particular, data-type validation (integer, date, and so on) don't run on the client. The following checks work on both the client and server:
 
@@ -145,7 +145,7 @@ You can control how validation errors are displayed by defining CSS classes that
 
 The following `<style>` block shows rules for error conditions.
 
-[!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample5.xml)]
+[!code-css[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample5.css)]
 
 If you include this style block in the example pages from earlier in the article, the error display will look like the following illustration:
 
@@ -180,7 +180,7 @@ In this case, you want to make sure that the value that's passed to the page (he
 
 The following example shows how you might validate a value that's passed in a query string. The code tests that the value is not empty and that it's an integer.
 
-[!code[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample6.xml)]
+[!code-csharp[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample6.cs)]
 
 Notice that the test is performed when the request is not a form submission (`if(!IsPost)`). This test would pass the first time that the page is requested, but not when the request is a form submission.
 

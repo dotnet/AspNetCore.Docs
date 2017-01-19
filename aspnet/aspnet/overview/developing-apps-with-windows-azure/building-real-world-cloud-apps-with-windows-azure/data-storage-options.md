@@ -207,27 +207,27 @@ Whatever method you use to access the database, you want to minimize "chattiness
 
 In the Fix It app the `FixItContext` class, which derives from the Entity Framework `DbContext` class, identifies the database and specifies the tables in the database. The context specifies an entity set (table) for tasks, and the code passes in to the context the connection string name. That name refers to a connection string that is defined in the Web.config file.
 
-[!code[Main](data-storage-options/samples/sample1.xml?highlight=4,8)]
+[!code-csharp[Main](data-storage-options/samples/sample1.cs?highlight=4,8)]
 
 The connection string in the *Web.config* file is named appdb (here pointing to the local development database):
 
-[!code[Main](data-storage-options/samples/sample2.xml?highlight=3)]
+[!code-xml[Main](data-storage-options/samples/sample2.xml?highlight=3)]
 
 The Entity Framework creates a *FixItTasks* table based on the properties included in the `FixItTask` entity class. This is a simple POCO (Plain Old CLR Object) class, which means it doesn't inherit from or have any dependencies on the Entity Framework. But Entity Framework knows how to create a table based on it and execute CRUD (create-read-update-delete) operations with it.
 
-[!code[Main](data-storage-options/samples/sample3.xml)]
+[!code-csharp[Main](data-storage-options/samples/sample3.cs)]
 
 ![FixItTasks table](data-storage-options/_static/image15.png)
 
 The Fix It app includes a repository interface that it uses for CRUD operations working with the data store.
 
-[!code[Main](data-storage-options/samples/sample4.xml)]
+[!code-csharp[Main](data-storage-options/samples/sample4.cs)]
 
 Notice that the repository methods are all async, so all data access can be done in a completely asynchronous way.
 
 The repository implementation calls Entity Framework async methods to work with the data, including LINQ queries as well as for insert, update, and delete operations. Here's an example of the code for looking up a Fix It task.
 
-[!code[Main](data-storage-options/samples/sample5.xml)]
+[!code-csharp[Main](data-storage-options/samples/sample5.cs)]
 
 You'll notice there's also some timing and error logging code here, we'll look at that later in the [Monitoring and Telemetry chapter](monitoring-and-telemetry.md).
 

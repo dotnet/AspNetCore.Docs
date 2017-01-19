@@ -28,7 +28,7 @@ The `ReorderList` control in the AJAX Control Toolkit provides a list that can b
 
 There are several possible data sources for the `ReorderList` control. One is to use an `XmlDataSource` control:
 
-[!code[Main](using-postbacks-with-reorderlist-vb/samples/sample1.xml)]
+[!code-aspx[Main](using-postbacks-with-reorderlist-vb/samples/sample1.aspx)]
 
 In order to bind this XML to a `ReorderList` control and enable postbacks, the following attributes must be set:
 
@@ -39,23 +39,23 @@ In order to bind this XML to a `ReorderList` control and enable postbacks, the f
 
 Here is the appropriate markup for the control:
 
-[!code[Main](using-postbacks-with-reorderlist-vb/samples/sample2.xml)]
+[!code-aspx[Main](using-postbacks-with-reorderlist-vb/samples/sample2.aspx)]
 
 Within the `ReorderList` control, specific data from the data source may be bound using the `Eval()` method:
 
-[!code[Main](using-postbacks-with-reorderlist-vb/samples/sample3.xml)]
+[!code-aspx[Main](using-postbacks-with-reorderlist-vb/samples/sample3.aspx)]
 
 At an arbitrary position on the page, a label will hold the information when the last reordering occurred:
 
-[!code[Main](using-postbacks-with-reorderlist-vb/samples/sample4.xml)]
+[!code-aspx[Main](using-postbacks-with-reorderlist-vb/samples/sample4.aspx)]
 
 This label is filled with text in the server-side code, handling the postback:
 
-[!code[Main](using-postbacks-with-reorderlist-vb/samples/sample5.xml)]
+[!code-aspx[Main](using-postbacks-with-reorderlist-vb/samples/sample5.aspx)]
 
 Finally, in order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put on the page:
 
-[!code[Main](using-postbacks-with-reorderlist-vb/samples/sample6.xml)]
+[!code-aspx[Main](using-postbacks-with-reorderlist-vb/samples/sample6.aspx)]
 
 
 [![Each reordering triggers a postback](using-postbacks-with-reorderlist-vb/_static/image2.png)](using-postbacks-with-reorderlist-vb/_static/image1.png)

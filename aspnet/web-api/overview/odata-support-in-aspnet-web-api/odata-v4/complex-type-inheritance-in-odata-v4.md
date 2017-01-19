@@ -36,17 +36,17 @@ To illustrate complex type inheritance, we'll use the following class hierarchy.
 
 Here are the CLR classes that define these types.
 
-[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample1.xml)]
+[!code-csharp[Main](complex-type-inheritance-in-odata-v4/samples/sample1.cs)]
 
 ## Build the EDM Model
 
 To create the EDM, you can use **ODataConventionModelBuilder**, which infers the inheritance relationships from the CLR types.
 
-[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample2.xml)]
+[!code-csharp[Main](complex-type-inheritance-in-odata-v4/samples/sample2.cs)]
 
 You can also build the EDM explicitly, using **ODataModelBuilder**. This takes more code, but gives you more control over the EDM.
 
-[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample3.xml)]
+[!code-csharp[Main](complex-type-inheritance-in-odata-v4/samples/sample3.cs)]
 
 These two examples create the same EDM schema.
 
@@ -54,7 +54,7 @@ These two examples create the same EDM schema.
 
 Here is the OData metadata document, showing complex type inheritance.
 
-[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample4.xml?highlight=13,17,25,30)]
+[!code-xml[Main](complex-type-inheritance-in-odata-v4/samples/sample4.xml?highlight=13,17,25,30)]
 
 From the metadata document, you can see that:
 
@@ -66,8 +66,8 @@ From the metadata document, you can see that:
 
 Casting on complex types is now supported. For example, the following query casts a `Shape` to a `Rectangle`.
 
-[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample5.xml)]
+[!code-console[Main](complex-type-inheritance-in-odata-v4/samples/sample5.cmd)]
 
 Here's the response payload:
 
-[!code[Main](complex-type-inheritance-in-odata-v4/samples/sample6.xml)]
+[!code-console[Main](complex-type-inheritance-in-odata-v4/samples/sample6.cmd)]

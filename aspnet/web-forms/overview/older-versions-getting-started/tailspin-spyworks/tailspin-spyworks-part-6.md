@@ -50,31 +50,31 @@ The CheckOut.aspx page should only be available to users who are logged in so we
 
 To do this we'll add the following to the configuration section of our web.config file.
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample1.xml)]
+[!code-xml[Main](tailspin-spyworks-part-6/samples/sample1.xml)]
 
 The template for ASP.NET Web Forms applications automatically added an authentication section to our web.config file and established the default login page.
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample2.xml)]
+[!code-xml[Main](tailspin-spyworks-part-6/samples/sample2.xml)]
 
 We must modify the Login.aspx code behind file to migrate an anonymous shopping cart when the user logs in. Change the Page\_Load event as follows.
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample3.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-6/samples/sample3.cs)]
 
 Then add a "LoggedIn" event handler like this to set the session name to the newly logged in user and change the temporary session id in the shopping cart to that of the user by calling the MigrateCart method in our MyShoppingCart class. (Implemented in the .cs file)
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample4.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-6/samples/sample4.cs)]
 
 Implement the MigrateCart() method like this.
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample5.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-6/samples/sample5.cs)]
 
 In checkout.aspx we'll use an EntityDataSource and a GridView in our check out page much as we did in our shopping cart page.
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample6.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-6/samples/sample6.aspx)]
 
 Note that our GridView control specifies an "ondatabound" event handler named MyList\_RowDataBound so let's implement that event handler like this.
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample7.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-6/samples/sample7.cs)]
 
 This method keeps a running total of the shopping cart as each row is bound and updates the bottom row of the GridView.
 
@@ -82,11 +82,11 @@ At this stage we have implemented a "review" presentation of the order to be pla
 
 Let's handle an empty cart scenario by adding a few lines of code to our Page\_Load event:
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample8.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-6/samples/sample8.cs)]
 
 When the user clicks on the "Submit" button we will execute the following code in the Submit Button Click Event handler.
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample9.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-6/samples/sample9.cs)]
 
 The "meat" of the order submission process is to be implemented in the SubmitOrder() method of our MyShoppingCart class.
 
@@ -97,11 +97,11 @@ SubmitOrder will:
 - Clear the shopping cart.
 
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample10.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-6/samples/sample10.cs)]
 
 For the purposes of this sample application we'll calculate a ship date by simply adding two days to the current date.
 
-[!code[Main](tailspin-spyworks-part-6/samples/sample11.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-6/samples/sample11.cs)]
 
 Running the application now will permit us to test the shopping process from start to finish.
 

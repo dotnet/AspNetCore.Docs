@@ -80,7 +80,7 @@ Right out of the box, the Facebook template provides boilerplate code to help yo
 - In Visual Studio, open the app *Web.config*file that is located in the root folder of your project.
 - Copy and paste the **AppId, App Secret**, and **Namespace** values into the corresponding key elements in the `appSettings` collection in the *Web.config* file: 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample1.xml?highlight=7-9)]
+    [!code-xml[Main](aspnet-mvc-facebook-birthday-app/samples/sample1.xml?highlight=7-9)]
 
     > **Security Note**: Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See Jon Atten's [ASP.NET MVC: Keep Private Settings Out of Source Contro](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx)l.
 - Press CTRL+F5 to run the application. If you haven't installed the self-signed certificate for IIS Express, follow the instructions to install it. For more information see the Enable SSL for the Project section of my [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to an Azure Website](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/) tutorial.
@@ -95,37 +95,37 @@ Right out of the box, the Facebook template provides boilerplate code to help yo
 This section of the tutorial walks you through the code that was created by the Facebook template. If you prefer to just get started building the birthday application, you can skip to the next section.  
 You saw the main page that was displayed by the template application. It was displayed by the `Home` controller's `Index` action method.
 
-[!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample2.xml)]
+[!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample2.cs)]
 
 Notice that the `Index` action method is an asynchronous method. Because this method calls a web service to get Facebook data, there will be some latency. Making the method asynchronous enables the server to process high traffic loads more efficiently. For more information about asynchronous methods in ASP.NET MVC, see my [Using Asynchronous Methods in ASP.NET MVC](../performance/using-asynchronous-methods-in-aspnet-mvc-4.md) tutorial.
 
 The `FacebookAuthorize` attribute on the `Index` method is what causes the **Permissions** page to be displayed first when your application runs and the user hasn't given it permission yet. See [Facebook best practices for requesting permissions](https://developers.facebook.com/docs/sharing/best-practices). You use this attribute to specify the Facebook data that your application needs permission to retrieve. The *Web.config* file has a setting that specifies the URL to use when the application doesn't have the required permissions:
 
-[!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample3.xml?highlight=5)]
+[!code-xml[Main](aspnet-mvc-facebook-birthday-app/samples/sample3.xml?highlight=5)]
 
 The MVC model binder provides the `Permissions` method with a `FacebookRedirectContext` object that encapsulates information about the request, including the requested permissions:
 
-[!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample4.xml)]
+[!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample4.cs)]
 
 The *Views\Home\Permissions.cshtml* view displays the requested permissions:
 
-[!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample5.xml?highlight=11-14)]
+[!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample5.cshtml?highlight=11-14)]
 
 For the `Index` method that displays the main application page, the MVC model binder provides a `FacebookContextobject` that encapsulates information about the request:
 
-[!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample6.xml)]
+[!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample6.cs)]
 
 The `FacebookClient` object that is included in the context object provides methods you can use to get Facebook data about the user. The template code in the `Index` method specifies that it wants a `MyAppUser` object when it calls `FacebookClient.GetCurrentUserAsync`.
 
-[!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample7.xml?highlight=8)]
+[!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample7.cs?highlight=8)]
 
 The `MyAppUser` class specifies the data to retrieve for the user of the application:
 
-[!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample8.xml)]
+[!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample8.cs)]
 
 The `Index` view displays the following:
 
-[!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample9.xml)]
+[!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample9.cshtml)]
 
 The model passed to this view is a `MyAppUser` object. The `<article class="intro">` element displays the user's name, email address, and picture. The `<article id="content">` element displays the user's friends in the left `div` and the user's photos in the right `div`.
 
@@ -150,15 +150,15 @@ You'll begin by installing the Bootstrap NuGet package. [Bootstrap](http://getbo
  •     *bootstrap.js* (and the minified version).
 5. Add the Bootstrap CSS and JavaScript files to the *App\_Start\BundleConfig.cs* file. The completed *BundleConfig.cs* file looks like this: 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample10.xml?highlight=13,15)]
+    [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample10.cs?highlight=13,15)]
 6. Delete the *Views\Shared\\_Layout.cshtml* file and add in its place the same file from the downloaded project. To add the file, right-click the *Views\Shared* folder and click **Add Existing Item**, and then navigate to the downloaded version of the *Views\Shared\\_Layout.cshtml* file. The updated layout file is shown below, with the changes highlighted: 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample11.xml?highlight=9-11,35-65)]
+    [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample11.cshtml?highlight=9-11,35-65)]
 
     The markup inside the `wrapper div` uses Bootstrap to create a navigation bar at the top of the page that enables users to go to different application pages or search for specific friends. For more information about this use of Bootstrap, see [Twitter Bootstrap 101: The Navbar](http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/twitter-bootstrap-101-the-navbar/) and the [Bootstrap navbar help](http://getbootstrap.com/components/#navbar) pages.
 7. Open *Content\Site.css* and remove the margin line from the `h1` definition. 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample12.xml?highlight=4)]
+    [!code-css[Main](aspnet-mvc-facebook-birthday-app/samples/sample12.css?highlight=4)]
 
  This change prevents the     `h1` and     `h2`  headings from overlapping.
 8. Run the app and you'll see the new navigation bar and the new title text.   
@@ -175,13 +175,13 @@ The `MyAppUser` class determines what information is gathered from Facebook abou
   
  When you're done, the code will look like the following example : 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample13.xml)]
+    [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample13.cs)]
 5. Delete the *Models\MyAppUserFriend.cs* file, and add the same file from the downloaded project. The `MyAppUserFriend` class encapsulates information about one of the application user's Facebook friends. It is used for the initial list of all of the user's friends. 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample14.xml)]
+    [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample14.cs)]
 6. Delete the *Views\Home\Index.cshtml* file and replace it with the same file from the downloaded project. The new `Index` view is shown here:
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample15.xml)]
+    [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample15.cs)]
 
  The view displays the user's picture (if available), then displays each of the user's friends by using a    *Friends.cshtml* display template, which you will create next.
 7. Add a *DisplayTemplates* folder to the *Views\Home* folder.
@@ -189,7 +189,7 @@ The `MyAppUser` class determines what information is gathered from Facebook abou
   
  The Friends template displays the     `MyAppUserFriend`  model and is used in the     `Index`  view and the     `Search`  view. The     *Friends.cshtml* display template is shown here: 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample16.xml)]
+    [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample16.cshtml)]
 
  For each of the application user's friends, this template displays a picture of the friend (if one is available) and provides a link to suggested gifts that you can purchase.
 9. > [!NOTE] Facebook changed the way their "user\_friends" permission works. It used to return all of users friends and now only returns friends that also have your application. Unless you have a Facebook friend who has also installed this app, you will have an empty panel of friends to buy presents for. You can create test Facebook accounts to test this feature.
@@ -200,7 +200,7 @@ The `MyAppUser` class determines what information is gathered from Facebook abou
 
 1. Replace the *Controllers\HomeController.cs* file in your project with the same file from the downloaded project. 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample17.xml)]
+    [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample17.cs)]
 
     The asynchronous `Index` action method gets the current Facebook logged on user and populates the `MyAppUser` model, which contains the user's ID, name, email, profile picture and list of friends. Then it sorts the list of friends by calling the [OrderBy](https://msdn.microsoft.com/en-us/library/bb534966(v=vs.110).aspx) extension method. For each friend, it passes to the sort method the number of days until the person's birthday. To calculate the number of days it converts the birthdate to a string that has only the month and the day and then passes that value to a `GetDaysBeforeBirthday` helper method that you'll create later in the tutorial. If the birthday field doesn't have a valid date (typically because the birthday isn't public), it passes `int.MaxValue` to the sort method. The result is that all friends with known birthdays appear in birthday order starting with the birthday closest to the current date. Those that haven't made their birthdays public appear at the end of the list.  
   
@@ -213,7 +213,7 @@ Most of the action methods in the home controller are asynchronous. Asynchronous
 - Add the *SearchResultModel.cs*files from the *Models* folder of the downloaded project to your *Models* folder.   
  The classes in the     *SearchResultModel.cs* file contain the information that is returned by the Shop style API:  
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample18.xml)]
+    [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample18.cs)]
 
     This hierarchy of classes corresponds to the [response format of the Shop style API for Shopping](https://shopsense.shopstyle.com/api/overview). The API returns much more data than is specified here; only the properties that you are actually going to use are defined. The Product object from this data graph is provided to the RecommendGifts view.
 - In Solution Explorer, right click the SampleFacebookApp project, click **Add**, and then click **New Folder**.Name the folder *Helpers*.
@@ -222,17 +222,17 @@ Most of the action methods in the home controller are asynchronous. Asynchronous
 
     - The BirthdayCalculator helper calculates the number of days before each friend's birthday: 
 
-        [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample19.xml)]
+        [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample19.cs)]
 
  The code subtracts the current date from the current year birthday to get the number of days until the birthday. If that number is negative, the birthday in the current year is before the current date, and the number of days is recalculated using the birthday in the next year.
     - The `ShoppingSearchClient` helper uses the Shop style API for Shopping to search for products that match a user's gender:
 
-        [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample20.xml)]
+        [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample20.cs)]
 
  The         `ReadAsAsync<SearchResult>` method gets the JSON response from the Shop style API and uses it to populate a         `SearchResult`  object. You'll set up the key you need in order to call this API in the next section of the tutorial.
     - The `RecommendationEngine` helper uses the `ShoppingSearchClient` helper to get a list of suggested birthday gifts for a selected friend: 
 
-        [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample21.xml)]
+        [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample21.cs)]
 
  The         `MenCategoies`  and         `WomenCategoies`  list specifies a list of popular product categories to filter based on selected friend's gender.  
   
@@ -241,16 +241,16 @@ Most of the action methods in the home controller are asynchronous. Asynchronous
  The         `RecommendationEngine`  class uses a simple selection and search algorithm in order to keep the code easy to follow and understand; you can plug in a more sophisticated selection engine if you prefer.
 - Add the *Search.cshtml, RecommendGifts.cshtml*, and *About.cshtml*files from the *Views\Home* folder in the downloaded project to your project's *Views\Home* folder. The `Search` view displays the list of friends that is returned by the `Search` action method:
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample22.xml)]
+    [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample22.cs)]
 
  The     `RecommendGifts`  view displays the list of products that is returned by the     `RecommendGifts`  action method: 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample23.xml)]
+    [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample23.cshtml)]
   
  The CSS classes in this code are defined in the Bootstrap CSS files.   
  The     `About`  view credits the author of the application: 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample24.xml)]
+    [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample24.cshtml)]
 
 ## Create Shop style API Key
 
@@ -263,7 +263,7 @@ The application is now complete except for one thing: a key for the Shopstyle AP
 3. Once you are signed in, you can go to [https://shopsense.shopstyle.com/account](https://shopsense.shopstyle.com/account) to get your UID/API key.
 4. In Visual studio, open web.config and add a new key element to the appSettings collection: 
 
-    [!code[Main](aspnet-mvc-facebook-birthday-app/samples/sample25.xml?highlight=6)]
+    [!code-xml[Main](aspnet-mvc-facebook-birthday-app/samples/sample25.xml?highlight=6)]
 
     Run the application and you see that friends are now in birthday order. You can try the **Search** page by entering a search string and clicking **Search**, and you can see a list of recommended gifts by clicking a **Buy him a present** or **Buy her a present** link.
 

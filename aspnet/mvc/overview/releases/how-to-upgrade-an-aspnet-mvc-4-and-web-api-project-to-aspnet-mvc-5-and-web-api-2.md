@@ -31,11 +31,11 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 1. Backup your project. This walkthrough will require you to make changes to your project file, package configuration, and web.config files.
 2. For upgrading from Web API to Web API 2, in global.asax, change:
 
-    [!code[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample1.xml)]
+    [!code-unknown[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample-50580-1.unknown)]
 
  to
 
-    [!code[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample2.xml)]
+    [!code-unknown[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample-50580-2.unknown)]
 3. Make sure all the packages that your projects use are compatible with MVC 5 and Web API 2. The following table shows the MVC 4 and Web API related packages than need to be changed. If you have a package that is dependent on one of the packages listed below, please contact the publishers to get the newer versions that are compatible with MVC 5 and Web API 2. If you have the source code for those packages, you should recompile them with the new assemblies of MVC 5 and Web API 2.   
 
     | **Package Id** | **Old version** | **New version** |
@@ -90,13 +90,13 @@ Locate the `<runtime>/<assemblyBinding>` section, and make the following changes
 1. In the elements with the name attribute "System.Web.Mvc", change the version number from "4.0.0.0" to "5.0.0.0". (Two changes in that element.)
 2. In elements with the name attribute &quot;System.Web.Helpers" and &quot;System.Web.WebPages&quot; change the version number from "2.0.0.0" to "3.0.0.0". Four changes will occur, two in each of the elements.
 
-    [!code[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample3.xml?highlight=6,10,14)]
+    [!code-xml[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample3.xml?highlight=6,10,14)]
 3. Locate the `<appSettings>` section and update the webpages:version from 2.0.0.0.0 to 3.0.0.0 as shown below:
 
-    [!code[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample4.xml?highlight=2)]
+    [!code-xml[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample4.xml?highlight=2)]
 4. Remove any trust levels other than Full. For example:
 
-    [!code[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample5.xml?highlight=2)]
+    [!code-xml[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample5.xml?highlight=2)]
 
 ## Update the*web.config*files under the Views folder
 
@@ -104,17 +104,17 @@ If your application is using areas, you will also need to update each *web.confi
 
 1. Update all elements that contain "System.Web.Mvc" from version "4.0.0.0" to version"5.0.0.0".  
 
-    [!code[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample6.xml?highlight=2)]
+    [!code-xml[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample6.xml?highlight=2)]
 
-    [!code[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample7.xml?highlight=4-6,8)]
+    [!code-xml[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample7.xml?highlight=4-6,8)]
 2. Update all elements that contain "System.Web.WebPages.Razor" from version "2.0.0.0" to version"3.0.0.0". If this section contains "System.Web.WebPages", update those elements from version "2.0.0.0" to version"3.0.0.0"  
 
-    [!code[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample8.xml?highlight=3-5)]
+    [!code-xml[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample8.xml?highlight=3-5)]
 3. If you removed the `Microsoft-Web-Helpers` NuGet package in a previous step, install `Microsoft.AspNet.WebHelpers` with the following command in the PMC:  
     `Install-Package -Id Microsoft.AspNet.WebHelpers`
 4. If your app uses the [User.IsInRole()](https://msdn.microsoft.com/en-us/library/system.web.security.roleprincipal.isinrole(v=vs.110).aspx) method, add the following to the *Web.config* file.
 
-    [!code[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample9.xml)]
+    [!code-xml[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample9.xml)]
 
 ## Final Steps
 

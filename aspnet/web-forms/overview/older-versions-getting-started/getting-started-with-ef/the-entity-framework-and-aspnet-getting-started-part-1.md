@@ -69,15 +69,15 @@ This template creates a web application project that already includes a style sh
 
 Open the *Site.Master* file and change "My ASP.NET Application" to "Contoso University".
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-1/samples/sample1.xml)]
+[!code-html[Main](the-entity-framework-and-aspnet-getting-started-part-1/samples/sample1.html)]
 
 Find the *Menu* control named `NavigationMenu` and replace it with the following markup, which adds menu items for the pages you'll be creating.
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-1/samples/sample2.xml)]
+[!code-aspx[Main](the-entity-framework-and-aspnet-getting-started-part-1/samples/sample2.aspx)]
 
 Open the *Default.aspx* page and change the `Content` control named `BodyContent` to this:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-1/samples/sample3.xml)]
+[!code-aspx[Main](the-entity-framework-and-aspnet-getting-started-part-1/samples/sample3.aspx)]
 
 You now have a simple home page with links to the various pages that you'll be creating:
 

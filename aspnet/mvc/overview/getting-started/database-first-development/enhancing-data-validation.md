@@ -28,11 +28,11 @@ In this tutorial, you will add data annotations to restrict the length of the va
 
 Open the **Student.cs** file in the **Models** folder. Add the following highlighted code to the class.
 
-[!code[Main](enhancing-data-validation/samples/sample1.xml?highlight=5,15,17,20)]
+[!code-csharp[Main](enhancing-data-validation/samples/sample1.cs?highlight=5,15,17,20)]
 
 In Enrollment.cs, add the following highlighted code.
 
-[!code[Main](enhancing-data-validation/samples/sample2.xml?highlight=5,10)]
+[!code-csharp[Main](enhancing-data-validation/samples/sample2.cs?highlight=5,10)]
 
 Build the solution.
 
@@ -58,7 +58,7 @@ In the **Models** folder, add a class named **Metadata.cs**.
 
 Replace the code in Metadata.cs with the following code.
 
-[!code[Main](enhancing-data-validation/samples/sample3.xml)]
+[!code-csharp[Main](enhancing-data-validation/samples/sample3.cs)]
 
 These metadata classes contain all of the validation attributes that you had previously applied to the model classes. The **Display** attribute is used to change the value used for text labels.
 
@@ -68,7 +68,7 @@ In the **Models** folder, add a class named **PartialClasses.cs**.
 
 Replace the contents of the file with the following code.
 
-[!code[Main](enhancing-data-validation/samples/sample4.xml)]
+[!code-csharp[Main](enhancing-data-validation/samples/sample4.cs)]
 
 Notice that each class is marked as a `partial` class, and each matches the name and namespace as the class that is automatically generated. By applying the metadata attribute to the partial class, you ensure that the data validation attributes will be applied to the automatically-generated class. These attributes will not be lost when you regenerate the model classes because the metadata attribute is applied in partial classes that are not regenerated.
 

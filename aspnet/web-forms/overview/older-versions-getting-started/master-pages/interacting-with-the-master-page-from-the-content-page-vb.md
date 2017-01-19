@@ -76,7 +76,7 @@ The Configure Data Source wizard provides two means by which we can specify the 
 Because we want to return just the five most recently added products, we need to specify a custom SQL statement. Use the following `SELECT` query:
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample1.xml)]
+[!code-sql[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample1.sql)]
 
 The `TOP 5` keyword returns only the first five records from the query. The `Products` table's primary key, `ProductID`, is an `IDENTITY` column, which assures us that each new product added to the table will have a larger value than the previous entry. Therefore, sorting the results by `ProductID` in descending order returns the products starting with the most recently created ones.
 
@@ -89,7 +89,7 @@ The `TOP 5` keyword returns only the first five records from the query. The `Pro
 After completing the wizard, Visual Studio generates two BoundFields for the GridView to display the `ProductName` and `UnitPrice` fields returned from the database. At this point your master page's declarative markup should include markup similar to the following:
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample2.xml)]
+[!code-aspx[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample2.aspx)]
 
 As you can see, the markup contains: the Label Web control (`GridMessage`); the GridView `RecentProducts`, with two BoundFields; and a SqlDataSource control that returns the five most recently added products.
 
@@ -119,19 +119,19 @@ Recall that in the [*Specifying the Title, Meta Tags, and Other HTML Headers in 
 Finally, update the `Web.sitemap` file to include an entry for this lesson. Add the following markup beneath the `<siteMapNode>` for the Control ID Naming Issues lesson:
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample3.xml)]
+[!code-xml[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample3.xml)]
 
 As shown in Figure 6, the addition of this `<siteMapNode>` element is reflected in the Lessons list.
 
 Return to `AddProduct.aspx`. In the Content control for the `MainContent` ContentPlaceHolder, add a DetailsView control and name it `NewProduct`. Bind the DetailsView to a new SqlDataSource control named `NewProductDataSource`. Like with the SqlDataSource in Step 1, configure the wizard so that it uses the Northwind database and choose to specify a custom SQL statement. Because the DetailsView will be used to add items to the database, we need to specify both a `SELECT` statement and an `INSERT` statement. Use the following `SELECT` query:
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample4.xml)]
+[!code-sql[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample4.sql)]
 
 Then, from the INSERT tab, add the following `INSERT` statement:
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample5.xml)]
+[!code-sql[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample5.sql)]
 
 After completing the wizard go to the DetailsView's smart tag and check the "Enable Inserting" checkbox. This adds a CommandField to the DetailsView with its `ShowInsertButton` property set to True. Because this DetailsView will be used solely for inserting data, set the DetailsView's `DefaultMode` property to `Insert`.
 
@@ -155,12 +155,12 @@ In Step 1 we added a Label Web control named `GridMessage` above the GridView in
 Because the Label control is implemented as a protected member variable within the master page it cannot be accessed directly from content pages. In order to work with the Label within a master page from the content page (or, for that matter, any Web control in the master page) we need to create a public property in the master page that exposes the Web control or serves as a proxy by which one of its properties can be accessed. Add the following syntax to the master page's code-behind class to expose the Label's `Text` property:
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample6.xml)]
+[!code-vb[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample6.vb)]
 
 When a new record is added to the `Products` table from a content page the `RecentProducts` GridView in the master page needs to rebind to its underlying data source. To rebind the GridView call its `DataBind` method. Because the GridView in the master page is not programmatically accessible to the content pages, we need to create a public method in the master page that, when called, rebinds the data to the GridView. Add the following method to the master page's code-behind class:
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample7.xml)]
+[!code-vb[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample7.vb)]
 
 With the `GridMessageText` property and `RefreshRecentProductsGrid` method in place, any content page can programmatically set or read the value of the `GridMessage` Label's `Text` property or rebind the data to the `RecentProducts` GridView. Step 4 examines how to access the master page's public properties and methods from a content page.
 
@@ -185,7 +185,7 @@ All ASP.NET web pages must derive from the `Page` class, which is located in the
 The `Master` property returns an object of type [`MasterPage`](https://msdn.microsoft.com/en-us/library/system.web.ui.masterpage.aspx) (also located in the `System.Web.UI` namespace) which is the base type from which all master pages derive from. Therefore, to use public properties or methods defined in our website's master page we must cast the `MasterPage` object returned from the `Master` property to the appropriate type. Because we named our master page file `Site.master`, the code-behind class was named `Site`. Therefore, the following code casts the `Page.Master` property to an instance of the `Site` class.
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample8.xml)]
+[!code-vb[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample8.vb)]
 
 Now that we have casted the loosely-typed `Page.Master` property to the Site type we can reference the properties and methods specific to Site. As Figure 7 shows, the public property `GridMessageText` appears in the IntelliSense drop-down.
 
@@ -207,7 +207,7 @@ The automatic code generation that occurs whenever an ASP.NET page is visited pa
 Use the [`@MasterType` directive](https://msdn.microsoft.com/en-us/library/ms228274.aspx) to inform the ASP.NET engine of the content page's master page type. The `@MasterType` directive can accept either the type name of the master page or its file path. To specify that the `AddProduct.aspx` page uses `Site.master` as its master page, add the following directive to the top of `AddProduct.aspx`:
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample9.xml)]
+[!code-aspx[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample9.aspx)]
 
 This directive instructs the ASP.NET engine to add a strongly-typed reference to the master page through a property named `Master`. With the `@MasterType` directive in place, we can call the `Site.master` master page's public properties and methods directly through the `Master` property without any casts.
 
@@ -219,7 +219,7 @@ This directive instructs the ASP.NET engine to add a strongly-typed reference to
 Now that we know how to invoke a master page's public properties and methods from a content page, we're ready to update the `AddProduct.aspx` page so that the master page is refreshed after adding a new product. At the beginning of Step 4 we created an event handler for the DetailsView control's `ItemInserting` event, which executes immediately after the new product has been added to the database. Add the following code to that event handler:
 
 
-[!code[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample10.xml)]
+[!code-vb[Main](interacting-with-the-master-page-from-the-content-page-vb/samples/sample10.vb)]
 
 The above code uses both the loosely-typed `Page.Master` property and the strongly-typed `Master` property. Note that the `GridMessageText` property is set to "*ProductName* added to grid..." The just-added product's values are accessible through the `e.Values` collection; as you can see, the just-added `ProductName` value is accessed via `e.Values("ProductName")`.
 

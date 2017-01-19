@@ -56,15 +56,15 @@ Select the Web Forms template, and leave the other default options. Click OK to 
 
 First, you will make a couple of small changes to customize the appearance of the site. Open the **Site.Master** file, and change the title to include Contoso University instead of My ASP.NET Application.
 
-[!code[Main](retrieving-data/samples/sample1.xml?highlight=1)]
+[!code-aspx[Main](retrieving-data/samples/sample1.aspx?highlight=1)]
 
 Then, change the header text from **Application name** to **Contoso University**.
 
-[!code[Main](retrieving-data/samples/sample2.xml?highlight=7)]
+[!code-aspx[Main](retrieving-data/samples/sample2.aspx?highlight=7)]
 
 Also in Site.Master, change the navigation links that appear in the header to reflect the pages that are relevant to this site. You will not need either the **About** page or the **Contact** page so those links can be removed. Instead, you will need a link to a page called **Students**. This page has not been created yet.
 
-[!code[Main](retrieving-data/samples/sample3.xml)]
+[!code-aspx[Main](retrieving-data/samples/sample3.aspx)]
 
 Save and close Site.Master.
 
@@ -84,7 +84,7 @@ In the Models folder, add a new class named **UniversityModels.cs**.
 
 In this file, define the SchoolContext, Student, Enrollment, and Course classes as follows:
 
-[!code[Main](retrieving-data/samples/sample4.xml)]
+[!code-csharp[Main](retrieving-data/samples/sample4.cs)]
 
 The SchoolContext class derives from DbContext, which manages the database connection and changes in the data.
 
@@ -105,7 +105,7 @@ Notice that a new file named **Configuration.cs** has been created. In Visual St
 
 Add the following code to the Seed method. You'll need to add a **using** statement for the **ContosoUniversityModelBinding.Models** namespace.
 
-[!code[Main](retrieving-data/samples/sample5.xml)]
+[!code-csharp[Main](retrieving-data/samples/sample5.cs)]
 
 Save Configuration.cs.
 
@@ -133,17 +133,17 @@ With data in the database, you are now ready to retrieve that data and display i
 
 Open Students.aspx, and locate the **MainContent** placeholder. Within that placeholder, add a **GridView** control that includes the following code.
 
-[!code[Main](retrieving-data/samples/sample6.xml)]
+[!code-aspx[Main](retrieving-data/samples/sample6.aspx)]
 
 There are a couple of important concepts in this markup code for you to notice. First, notice that a value is set for the **SelectMethod** property in the GridView element. This value specifies the name of the method that is used for retrieving data for the GridView. You will create this method in the next step. Second, notice that the **ItemType** property is set to the Student class that you created earlier. By setting this value, you can refer to properties of that class in the markup code. For example, the Student class contains a collection named Enrollments. You can use **Item.Enrollments** to retrieve that collection and then use LINQ syntax to retrieve the sum of enrolled credits for each student.
 
 In the code-behind file, you need to add the method that is specified for the **SelectMethod** value. Open **Students.aspx.cs**, and add **using** statements for the **ContosoUniversityModelBinding.Models** and **System.Data.Entity** namespaces.
 
-[!code[Main](retrieving-data/samples/sample7.xml)]
+[!code-csharp[Main](retrieving-data/samples/sample7.cs)]
 
 Then, add the following method. Notice that the name of this method matches the name you provided for SelectMethod.
 
-[!code[Main](retrieving-data/samples/sample8.xml)]
+[!code-csharp[Main](retrieving-data/samples/sample8.cs)]
 
 The **Include** clause improves the performance of this query but is not essential for the query to work. Without the Include clause, the data would be retrieved using lazy loading, which involves sending a separate query to the database each time related data is retrieved. By providing the Include clause, the data is retrieved using eager loading, which means all of the related data is retrieved through a single query of the database. In cases where most of the related data is not be used, eager loading can be less efficient because more data is retrieved. However, in this case, eager loading provides the best performance because the related data is displayed for each record.
 
@@ -165,7 +165,7 @@ When setting a value for the **SelectMethod**, **UpdateMethod**, **InsertMethod*
 
 Visual Studio not only creates a method in the code-behind with the proper signature, but also generates implementation code to assist you with performing the operation. If you first set the **ItemType** property before using the automatic code generation feature, the generated code will use that type for the operations. For example, when setting the UpdateMethod property, the following code is automatically generated:
 
-[!code[Main](retrieving-data/samples/sample9.xml)]
+[!code-csharp[Main](retrieving-data/samples/sample9.cs)]
 
 Again, the above code does not need to be added to your project. In the next tutorial, you will implement methods for updating, deleting and adding new data.
 

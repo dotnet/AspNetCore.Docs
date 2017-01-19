@@ -50,7 +50,7 @@ The leading underscore ( `_` ) character is significant. If a page's name starts
 
 Replace the content in the page with the following:
 
-[!code[Main](layouts/samples/sample1.xml)]
+[!code-html[Main](layouts/samples/sample1.html)]
 
 As you can see, this markup is just HTML that uses `<div>` elements to define three sections in the page plus one more `<div>` element to hold the three sections. The footer contains a bit of Razor code: `@DateTime.Now.Year`, which will render the current year at that location in the page.
 
@@ -76,7 +76,7 @@ Inside the new *Styles* folder, create a file named *Movies.css*.
 
 Replace the contents of the new *.css* file with the following:
 
-[!code[Main](layouts/samples/sample2.xml)]
+[!code-css[Main](layouts/samples/sample2.css)]
 
 We won't say much about these CSS rules, except to note two things. One is that in addition to setting fonts and sizes, the rules use absolute positioning to establish the location of the header, footer, and main content area. If you're new to positioning in CSS, you can read the [CSS Positioning](http://www.w3schools.com/css/css_positioning.asp) tutorial at the W3Schools site.
 
@@ -86,11 +86,11 @@ The other thing to note is that at the bottom, we've copied the style rules that
 
 Now you can update the existing files in your site to use the new layout. Open the *Movies.cshtml* file. At the top, as the first line of code, add the following:
 
-[!code[Main](layouts/samples/sample3.xml)]
+[!code-unknown[Main](layouts/samples/sample-38470-3.unknown)]
 
 The page now starts out this way:
 
-[!code[Main](layouts/samples/sample4.xml?highlight=2)]
+[!code-cshtml[Main](layouts/samples/sample4.cshtml?highlight=2)]
 
 This one line of code tells ASP.NET that when the *Movies* page runs, it should be merged with the *\_Layout.cshtml* file.
 
@@ -100,7 +100,7 @@ Normally you wouldn't have to make these sorts of changes in a content page. Whe
 
 When you're finished, the *Movies.cshtml* page will look like the following:
 
-[!code[Main](layouts/samples/sample5.xml)]
+[!code-cshtml[Main](layouts/samples/sample5.cshtml)]
 
 ### Testing the Layout
 
@@ -116,11 +116,11 @@ The real benefit of layouts is that you can use them for all the pages in your s
 
 You might remember that the *AddMovie.cshtml* page originally had some CSS rules in it to define the look of validation error messages. Since you have a *.css* file for your site now, you can move those rules to the *.css* file. Remove them from the *AddMovie.cshtml* file and add them to the bottom of the *Movies.css* file. You are moving the following rules:
 
-[!code[Main](layouts/samples/sample6.xml)]
+[!code-css[Main](layouts/samples/sample6.css)]
 
 Now make the same sorts of changes in *AddMovie.cshtml* that you did for *Movies.cshtml* — add `Layout="~/_Layout.cshtml;` and remove the HTML markup that's now extraneous. Change the `<h1>` element to `<h2>`. When you're done, the page will look like this example:
 
-[!code[Main](layouts/samples/sample7.xml)]
+[!code-cshtml[Main](layouts/samples/sample7.cshtml)]
 
 Run the page. Now it looks like this illustration:
 
@@ -138,13 +138,13 @@ This title information is generic. Suppose that you want the title text to be mo
 
 Open the *Movies.cshtml* page again. In the code at the top, add the following line:
 
-[!code[Main](layouts/samples/sample8.xml)]
+[!code-csharp[Main](layouts/samples/sample8.cs)]
 
 The `Page` object is available on all *.cshtml* pages and is for this purpose, namely to share information between a page and its layout.
 
 Open the*\_Layout.cshtml* page. Change the `<title>` element so that it looks like this markup:
 
-[!code[Main](layouts/samples/sample9.xml)]
+[!code-unknown[Main](layouts/samples/sample-38470-9.unknown)]
 
 This code renders whatever is in the `Page.Title` property right at that location in the page.
 
@@ -167,7 +167,7 @@ If you want, view the page source in the browser. You can see that the `<title>`
 
 Open the *AddMovie.cshtml* page and add a line to the top of the code that provides a title for the *AddMovie.cshtml* page:
 
-[!code[Main](layouts/samples/sample10.xml)]
+[!code-csharp[Main](layouts/samples/sample10.cs)]
 
 Run the *AddMovie.cshtml* page. You see the new title there:
 
@@ -179,15 +179,15 @@ Now you can finish the remaining pages in your site so that they use the new lay
 
 Add the line of code that links to the layout page:
 
-[!code[Main](layouts/samples/sample11.xml)]
+[!code-unknown[Main](layouts/samples/sample-38470-11.unknown)]
 
 Add a line to set the title of the page:
 
-[!code[Main](layouts/samples/sample12.xml)]
+[!code-csharp[Main](layouts/samples/sample12.cs)]
 
 or:
 
-[!code[Main](layouts/samples/sample13.xml)]
+[!code-csharp[Main](layouts/samples/sample13.cs)]
 
 Remove all the extraneous HTML markup — basically, leave only the bits that are inside the `<body>` element (plus the code block at the top).
 
@@ -207,19 +207,19 @@ The combination of layout pages and *.css* files is powerful. As you'll see in t
 
 ## Complete Listing for Movie Page (Updated to Use a Layout Page)
 
-[!code[Main](layouts/samples/sample14.xml)]
+[!code-csharp[Main](layouts/samples/sample14.cs)]
 
 ## Complete Page Listing for Add Movie Page (Updated for Layout)
 
-[!code[Main](layouts/samples/sample15.xml)]
+[!code-csharp[Main](layouts/samples/sample15.cs)]
 
 ## Complete Page Listing for Delete Movie Page (Updated for Layout)
 
-[!code[Main](layouts/samples/sample16.xml)]
+[!code-csharp[Main](layouts/samples/sample16.cs)]
 
 ## Complete Page Listing for Edit Movie Page (Updated for Layout)
 
-[!code[Main](layouts/samples/sample17.xml)]
+[!code-csharp[Main](layouts/samples/sample17.cs)]
 
 ## Coming Up Next
 

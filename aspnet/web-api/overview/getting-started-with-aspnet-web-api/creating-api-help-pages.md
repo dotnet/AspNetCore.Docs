@@ -61,17 +61,17 @@ There are two packages, one for C# and one for Visual Basic. Make sure to use th
 
 This command installs the necessary assemblies and adds the MVC views for the help pages (located in the Areas/HelpPage folder). You'll need to manually add a link to the Help page. The URI is /Help. To create a link in a razor view, add the following:
 
-[!code[Main](creating-api-help-pages/samples/sample1.xml)]
+[!code-cshtml[Main](creating-api-help-pages/samples/sample1.cshtml)]
 
 Also, make sure to register areas. In the Global.asax file, add the following code to the **Application\_Start** method, if it is not there already:
 
-[!code[Main](creating-api-help-pages/samples/sample2.xml?highlight=4)]
+[!code-csharp[Main](creating-api-help-pages/samples/sample2.cs?highlight=4)]
 
 ## Adding API Documentation
 
 By default, the help pages have placeholder strings for documentation. You can use [XML documentation comments](https://msdn.microsoft.com/en-us/library/b2s063f7.aspx) to create the documentation. To enable this feature, open the file Areas/HelpPage/App\_Start/HelpPageConfig.cs and uncomment the following line:
 
-[!code[Main](creating-api-help-pages/samples/sample3.xml)]
+[!code-unknown[Main](creating-api-help-pages/samples/sample-45724-3.unknown)]
 
 Now enable XML documentation. In Solution Explorer, right-click the project and select **Properties**. Select the **Build** page.
 
@@ -83,7 +83,7 @@ Under **Output**, check **XML documentation file**. In the edit box, type "App\_
 
 Next, open the code for the `ValuesController` API controller, which is defined in /Controllers/ValuesControler.cs. Add some documentation comments to the controller methods. For example:
 
-[!code[Main](creating-api-help-pages/samples/sample4.xml)]
+[!code-csharp[Main](creating-api-help-pages/samples/sample4.cs)]
 
 > [!NOTE] Tip: If you position the caret on the line above the method and type three forward slashes, Visual Studio automatically inserts the XML elements. Then you can fill in the blanks.
 
@@ -106,7 +106,7 @@ If a controller action supports multiple HTTP methods, the **ApiExplorer** treat
 
 To hide an API from the **ApiExplorer**, add the **ApiExplorerSettings** attribute to the action and set *IgnoreApi* to true.
 
-[!code[Main](creating-api-help-pages/samples/sample5.xml)]
+[!code-csharp[Main](creating-api-help-pages/samples/sample5.cs)]
 
 You can also add this attribute to the controller, to exclude the entire controller.
 

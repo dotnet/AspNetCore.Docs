@@ -30,11 +30,11 @@ Using the designer, create the following form taking special note to include the
 
 Double click on the "Submit" button to generate a click event handler in the code behind file and implement a method to send the contact information as an email.
 
-[!code[Main](tailspin-spyworks-part-8/samples/sample1.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-8/samples/sample1.cs)]
 
 This code requires that your web.config file contain an entry in the configuration section that specifies the SMTP server to use for sending mail.
 
-[!code[Main](tailspin-spyworks-part-8/samples/sample2.xml)]
+[!code-xml[Main](tailspin-spyworks-part-8/samples/sample2.xml)]
 
 ## <a id="_Toc260221681"></a>  About Page
 
@@ -54,19 +54,19 @@ To solve this problem we will implement a global exception handler.
 
 To do this, open the Global.asax file and note the following pre-generated event handler.
 
-[!code[Main](tailspin-spyworks-part-8/samples/sample3.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-8/samples/sample3.cs)]
 
 Add code to implement the Application\_Error handler as follows.
 
-[!code[Main](tailspin-spyworks-part-8/samples/sample4.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-8/samples/sample4.cs)]
 
 Then add a page named Error.aspx to the solution and add this markup snippet.
 
-[!code[Main](tailspin-spyworks-part-8/samples/sample5.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-8/samples/sample5.aspx)]
 
 Now in the Page\_Load event handler extract the error messages from the Request Object.
 
-[!code[Main](tailspin-spyworks-part-8/samples/sample6.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-8/samples/sample6.cs)]
 
 ## <a id="_Toc260221683"></a>  Conclusion
 

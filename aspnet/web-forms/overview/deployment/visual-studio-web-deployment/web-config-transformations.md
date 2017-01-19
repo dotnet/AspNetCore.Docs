@@ -54,7 +54,7 @@ Later you'll create three more transformation files, one each for the test, stag
 
 An example of a setting that depends on build configuration rather than destination environment is the `debug` attribute. For a Release build, you typically want debugging disabled regardless of which environment you are deploying to. Therefore, by default the Visual Studio project templates create *Web.Release.config* transform files with code that removes the `debug` attribute from the `compilation` element. Here is the default *Web.Release.config*: in addition to some sample transformation code that is commented out, it includes code in the `compilation` element that removes the `debug` attribute:
 
-[!code[Main](web-config-transformations/samples/sample1.xml?highlight=18)]
+[!code-xml[Main](web-config-transformations/samples/sample1.xml?highlight=18)]
 
 The `xdt:Transform="RemoveAttributes(debug)"` attribute specifies that you want the `debug` attribute to be removed from the `system.web/compilation` element in the deployed *Web.config* file. This will be done every time you deploy a Release build.
 
@@ -62,7 +62,7 @@ The `xdt:Transform="RemoveAttributes(debug)"` attribute specifies that you want 
 
 If there's an error while the application runs, the application displays a generic error page in place of the system-generated error page, and it uses the [Elmah NuGet package](http://www.hanselman.com/blog/NuGetPackageOfTheWeek7ELMAHErrorLoggingModulesAndHandlersWithSQLServerCompact.aspx) for error logging and reporting. The `customErrors` element in the application *Web.config* file specifies the error page:
 
-[!code[Main](web-config-transformations/samples/sample2.xml)]
+[!code-xml[Main](web-config-transformations/samples/sample2.xml)]
 
 To see the error page, temporarily change the `mode` attribute of the `customErrors` element from "RemoteOnly" to "On" and run the application from Visual Studio. Cause an error by requesting an invalid URL, such as *Studentsxxx.aspx*. Instead of an IIS-generated "The resource cannot be found" error page, you see the *GenericErrorPage.aspx* page.
 
@@ -78,7 +78,7 @@ On your development computer it's convenient to allow free access to the error l
 
 Open *Web.Release.config* and add a new `location` element immediately before the closing `configuration` tag, as shown here.
 
-[!code[Main](web-config-transformations/samples/sample3.xml?highlight=27-34)]
+[!code-xml[Main](web-config-transformations/samples/sample3.xml?highlight=27-34)]
 
 The `Transform` attribute value of "Insert" causes this `location` element to be added as a sibling to any existing `location` elements in the *Web.config* file. (There is already one `location` element that specifies authorization rules for the **Update Credits** page.)
 
@@ -113,13 +113,13 @@ The environment indicator is omitted when the application is running in staging 
 
 The Contoso University web pages read a value that is set in `appSettings` in the *Web.config* file in order to determine what environment the application is running in:
 
-[!code[Main](web-config-transformations/samples/sample4.xml)]
+[!code-xml[Main](web-config-transformations/samples/sample4.xml)]
 
 The value should be "Test" in the test environment, and "Prod" for staging and production.
 
 The following code in a transform file will implement this transformation:
 
-[!code[Main](web-config-transformations/samples/sample5.xml)]
+[!code-xml[Main](web-config-transformations/samples/sample5.xml)]
 
 The `xdt:Transform` attribute value "SetAttributes" indicates that the purpose of this transform is to change attribute values of an existing element in the *Web.config* file. The `xdt:Locator` attribute value "Match(key)" indicates that the element to be modified is the one whose `key` attribute matches the `key` attribute specified here. The only other attribute of the `add` element is `value`, and that is what will be changed in the deployed *Web.config* file. The code shown here causes the `value` attribute of the `Environment` `appSettings` element to be set to "Test" in the *Web.config* file that is deployed.
 

@@ -28,13 +28,13 @@ Instead of letting a user type a value into a check box, a numeric up/down contr
 
 The ASP.NET AJAX Control Toolkit contains the `NumericUpDown` extender which automatically adds two buttons to a text box: One for increasing its value, one for decreasing it. However the control also supports a web service call (or page method call). Whenever the up or down button is clicked, the JavaScript code connects to the web server and executes a method there. The method signature is the following one:
 
-[!code[Main](creating-a-numeric-up-down-control-with-a-web-service-backend-vb/samples/sample1.xml)]
+[!code-vb[Main](creating-a-numeric-up-down-control-with-a-web-service-backend-vb/samples/sample1.vb)]
 
 The `current` argument is the current value in the text box; the `tag` attribute is additional context data that can be set as a property of the `NumericUpDown` extender (but is not required).
 
 For this sample, the numeric up/down control shall only allow values that are powers of two: 1, 2, 4, 8, 16, 32, 64, and so on. Therefore, the method executed when the user wants to increase the value must double the old value; the other method must divide value by two. So here is the complete web service:
 
-[!code[Main](creating-a-numeric-up-down-control-with-a-web-service-backend-vb/samples/sample2.xml)]
+[!code-aspx[Main](creating-a-numeric-up-down-control-with-a-web-service-backend-vb/samples/sample2.aspx)]
 
 Finally, create a new ASP.NET page. As usual, you need a `ScriptManager` control, a `TextBox` control and a `NumericUpDownExtender` control. For the latter, you have to provide the web service information:
 
@@ -45,7 +45,7 @@ Finally, create a new ASP.NET page. As usual, you need a `ScriptManager` control
 
 Here is the complete markup for the page:
 
-[!code[Main](creating-a-numeric-up-down-control-with-a-web-service-backend-vb/samples/sample3.xml)]
+[!code-aspx[Main](creating-a-numeric-up-down-control-with-a-web-service-backend-vb/samples/sample3.aspx)]
 
 If you run the page, notice how the value in the text box always doubles when you click on the upper button, and is halved when you click on the lower button.
 

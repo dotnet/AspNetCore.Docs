@@ -36,31 +36,31 @@ When a new course entity is created, it must have a relationship to an existing 
 
 In *CourseController.cs*, delete the four `Create` and `Edit` methods and replace them with the following code:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=3,11-12,19-25,40,44,46,48-78)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs?highlight=3,11-12,19-25,40,44,46,48-78)]
 
 Add the following `using` statement at the beginning of the file:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.cs)]
 
 The `PopulateDepartmentsDropDownList` method gets a list of all departments sorted by name, creates a `SelectList` collection for a drop-down list, and passes the collection to the view in a `ViewBag` property. The method accepts the optional `selectedDepartment` parameter that allows the calling code to specify the item that will be selected when the drop-down list is rendered. The view will pass the name `DepartmentID` to the [DropDownList](../../older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc.md) helper, and the helper then knows to look in the `ViewBag` object for a `SelectList` named `DepartmentID`.
 
 The `HttpGet` `Create` method calls the `PopulateDepartmentsDropDownList` method without setting the selected item, because for a new course the department is not established yet:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cs)]
 
 The `HttpGet` `Edit` method sets the selected item, based on the ID of the department that is already assigned to the course being edited:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=12)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs?highlight=12)]
 
 The `HttpPost` methods for both `Create` and `Edit` also include code that sets the selected item when they redisplay the page after an error:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml?highlight=6)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.cs?highlight=6)]
 
 This code ensures that when the page is redisplayed to show the error message, whatever department was selected stays selected.
 
 The Course views are already scaffolded with drop-down lists for the department field, but you don't want the DepartmentID caption for this field, so make the following highlighted change to the *Views\Course\Create.cshtml* file to change the caption.
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml?highlight=43)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.cs?highlight=43)]
 
 Make the same change in *Views\Course\Edit.cshtml*.
 
@@ -68,13 +68,13 @@ Normally the scaffolder doesn't scaffold a primary key because the key value is 
 
 In *Views\Course\Edit.cshtml*, add a course number field before the **Title** field. Because it's the primary key, it's displayed, but it can't be changed.
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.cs)]
 
 There's already a hidden field (`Html.HiddenFor` helper) for the course number in the Edit view. Adding an *Html.LabelFor* helper doesn't eliminate the need for the hidden field because it doesn't cause the course number to be included in the posted data when the user clicks **Save** on the Edit page.
 
 In *Views\Course\Delete.cshtml* and *Views\Course\Details.cshtml*, change the department name caption from "Name" to "Department" and add a course number field before the **Title** field.
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml?highlight=2,9-15)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.cs?highlight=2,9-15)]
 
 Run the **Create** page (display the Course Index page and click **Create New**) and enter data for a new course:
 
@@ -100,17 +100,17 @@ When you edit an instructor record, you want to be able to update the instructor
 
 Open *InstructorController.cs* and look at the `HttpGet` `Edit` method:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.cs)]
 
 The scaffolded code here isn't what you want. It's setting up data for a drop-down list, but you what you need is a text box. Replace this method with the following code:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.xml?highlight=7-10)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.cs?highlight=7-10)]
 
 This code drops the `ViewBag` statement and adds eager loading for the associated `OfficeAssignment` entity. You can't perform eager loading with the `Find` method, so the `Where` and `Single` methods are used instead to select the instructor.
 
 Replace the `HttpPost` `Edit` method with the following code. which handles office assignment updates:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.cs)]
 
 The reference to `RetryLimitExceededException` requires a `using` statement; to add it, right-click `RetryLimitExceededException`, and then click **Resolve** - **using System.Data.Entity.Infrastructure**.
 
@@ -122,15 +122,15 @@ The code does the following:
 - Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` navigation property. This is the same as what you did in the `HttpGet` `Edit` method.
 - Updates the retrieved `Instructor` entity with values from the model binder. The [TryUpdateModel](https://msdn.microsoft.com/en-us/library/dd470908(v=vs.108).aspx) overload used enables you to *whitelist*the properties you want to include. This prevents over-posting, as explained in [the second tutorial](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application.md).
 
-    [!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.xml)]
+    [!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.cs)]
 - If the office location is blank, sets the `Instructor.OfficeAssignment` property to null so that the related row in the `OfficeAssignment` table will be deleted.
 
-    [!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample13.xml)]
+    [!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample13.cs)]
 - Saves the changes to the database.
 
 In *Views\Instructor\Edit.cshtml*, after the `div` elements for the **Hire Date** field, add a new field for editing the office location:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample14.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample14.cs)]
 
 Run the page (select the **Instructors** tab and then click **Edit** on an instructor). Change the **Office Location** and click **Save**.
 
@@ -148,11 +148,11 @@ The UI that enables you to change which courses an instructor is assigned to is 
 
 To provide data to the view for the list of check boxes, you'll use a view model class. Create *AssignedCourseData.cs* in the *ViewModels* folder and replace the existing code with the following code:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample15.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample15.cs)]
 
 In *InstructorController.cs*, replace the `HttpGet` `Edit` method with the following code. The changes are highlighted.
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.xml?highlight=9,12,20-35)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.cs?highlight=9,12,20-35)]
 
 The code adds eager loading for the `Courses` navigation property and calls the new `PopulateAssignedCourseData` method to provide information for the check box array using the `AssignedCourseData` view model class.
 
@@ -160,7 +160,7 @@ The code in the `PopulateAssignedCourseData` method reads through all `Course` e
 
 Next, add the code that's executed when the user clicks **Save**. Replace the `EditPost` method with the following code, which calls a new method that updates the `Courses` navigation property of the `Instructor` entity. The changes are highlighted.
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.xml?highlight=3,11,25,37,40-68)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.cs?highlight=3,11,25,37,40-68)]
 
 The method signature is now different from the `HttpGet` `Edit` method, so the method name changes from `EditPost` back to `Edit`.
 
@@ -168,21 +168,21 @@ Since the view doesn't have a collection of `Course` entities, the model binder 
 
 If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `Courses` navigation property with an empty collection:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.cs)]
 
 The code then loops through all courses in the database and checks each course against the ones currently assigned to the instructor versus the ones that were selected in the view. To facilitate efficient lookups, the latter two collections are stored in `HashSet` objects.
 
 If the check box for a course was selected but the course isn't in the `Instructor.Courses` navigation property, the course is added to the collection in the navigation property.
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.cs)]
 
 If the check box for a course wasn't selected, but the course is in the `Instructor.Courses` navigation property, the course is removed from the navigation property.
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample20.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample20.cs)]
 
 In *Views\Instructor\Edit.cshtml*, add a **Courses** field with an array of check boxes by adding the following code immediately after the `div` elements for the `OfficeAssignment` field and before the `div` element for the **Save** button:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample21.xml)]
+[!code-html[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample21.html)]
 
 After you paste the code, if line breaks and indentation don't look like they do here, manually fix everything so that it looks like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@</tr>` lines must each be on a single line as shown or you'll get a runtime error.
 
@@ -194,11 +194,11 @@ After changing course assignments, you'll want to be able to verify the changes 
 
 In *Views\Instructor\Index.cshtml*, add a **Courses** heading immediately following the **Office** heading, as shown in the following example:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample22.xml?highlight=6)]
+[!code-html[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample22.html?highlight=6)]
 
 Then add a new detail cell immediately following the office location detail cell:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample23.xml?highlight=7-14)]
+[!code-cshtml[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample23.cshtml?highlight=7-14)]
 
 Run the **Instructor Index** page to see the courses assigned to each instructor:
 
@@ -217,7 +217,7 @@ Change some course assignments and click **Save**. The changes you make are refl
 
 In *InstructorController.cs*, delete the `DeleteConfirmed` method and insert the following code in its place.
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample24.xml?highlight=5-8,12-18)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample24.cs?highlight=5-8,12-18)]
 
 This code makes the following change:
 
@@ -230,7 +230,7 @@ This code doesn't handle the scenario of one instructor assigned as administrato
 In *InstructorController.cs*, delete the `HttpGet` and `HttpPost` `Create` methods, and then add the following code in their place:
 
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample25.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample25.cs)]
 
 This code is similar to what you saw for the Edit methods except that initially no courses are selected. The `HttpGet` `Create` method calls the `PopulateAssignedCourseData` method not because there might be courses selected but in order to provide an empty collection for the `foreach` loop in the view (otherwise the view code would throw a null reference exception).
 
@@ -238,17 +238,17 @@ The HttpPost Create method adds each selected course to the Courses navigation p
 
 Notice that in order to be able to add courses to the `Courses` navigation property you have to initialize the property as an empty collection:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample26.xml)]
+[!code-unknown[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample-51662-26.unknown)]
 
 As an alternative to doing this in controller code, you could do it in the Instructor model by changing the property getter to automatically create the collection if it doesn't exist, as shown in the following example:
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample27.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample27.cs)]
 
 If you modify the `Courses` property in this way, you can remove the explicit property initialization code in the controller.
 
 In *Views\Instructor\Create.cshtml*, add an office location text box and course check boxes after the hire date field and before the **Submit** button.
 
-[!code[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample28.xml)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample28.cs)]
 
 After you paste the code, fix line breaks and indentation as you did earlier for the Edit page.
 

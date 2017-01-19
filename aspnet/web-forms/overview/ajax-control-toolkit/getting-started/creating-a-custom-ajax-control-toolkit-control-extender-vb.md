@@ -107,7 +107,7 @@ Now that we have our class library, we can start building our extender control. 
 
 **Listing 1 - MyCustomExtender.vb**
 
-[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample1.xml)]
+[!code-vb[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample1.vb)]
 
 There are several things that you notice about the control extender class in Listing 1. First, notice that the class inherits from the base ExtenderControlBase class. All AJAX Control Toolkit extender controls derive from this base class. For example, the base class includes the TargetID property that is a required property of every control extender.
 
@@ -130,7 +130,7 @@ Let�s go ahead and implement the code for our DisabledButton extender. The cod
 
 **Listing 2 - DisabledButtonExtender.vb**
 
-[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample2.xml)]
+[!code-vb[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample2.vb)]
 
 The DisabledButton extender in Listing 2 has two properties named TargetButtonID and DisabledText. The IDReferenceProperty applied to the TargetButtonID property prevents you from assigning anything other than the ID of a Button control to this property.
 
@@ -142,7 +142,7 @@ The client-side component of a control extender is called a behavior. The actual
 
 **Listing 3 - DisabledButton.js**
 
-[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample3.xml)]
+[!code-javascript[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample3.js)]
 
 The JavaScript file in Listing 3 contains a client-side class named DisabledButtonBehavior. This class, like its server-side twin, includes two properties named TargetButtonID and DisabledText which you can access using get\_TargetButtonID/set\_<wbr />TargetButtonID and get\_DisabledText/set\_<wbr />DisabledText.
 
@@ -162,11 +162,11 @@ There is one last class that we need to create to complete our extender. We need
 
 **Listing 4 - DisabledButtonDesigner.vb**
 
-[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample4.xml)]
+[!code-vb[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample4.vb)]
 
 You associate the designer in Listing 4 with the DisabledButton extender with the Designer attribute.You need to apply the Designer attribute to the DisabledButtonExtender class like this:
 
-[!code[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample5.xml)]
+[!code-vb[Main](creating-a-custom-ajax-control-toolkit-control-extender-vb/samples/sample5.vb)]
 
 ## Using the Custom Extender
 

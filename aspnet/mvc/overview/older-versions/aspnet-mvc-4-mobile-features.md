@@ -78,7 +78,7 @@ Note: Currently a bug exists in the mobile caching engine. For production applic
 
 [CSS media queries](http://www.w3.org/TR/css3-mediaqueries/) are an extension to CSS for media types. They allow you to create rules that override the default CSS rules for specific browsers (user agents). A common rule for CSS that targets mobile browsers is defining the maximum screen size. The *Content\Site.css* file that's created when you create a new ASP.NET MVC 4 Internet project contains the following media query:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample1.xml)]
+[!code-css[Main](aspnet-mvc-4-mobile-features/samples/sample1.css)]
 
 If the browser window is 850 pixels wide or less, it will use the CSS rules inside this media block. You can use CSS media queries like this to provide a better display of HTML content on small browsers (like mobile browsers) than the default CSS rules that are designed for the wider displays of desktop browsers.
 
@@ -88,17 +88,17 @@ Most mobile browsers define a virtual browser window width (the *viewport*) that
 
 The viewport `<meta>` tag in the ASP.NET MVC 4 layout file sets the viewport to the device width. The following line shows the viewport `<meta>` tag in the ASP.NET MVC 4 layout file.
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample2.xml)]
+[!code-html[Main](aspnet-mvc-4-mobile-features/samples/sample2.html)]
 
 ## Examining the Effect of CSS Media Queries and the Viewport Meta Tag
 
 Open the *Views\Shared\\_Layout.cshtml* file in the editor and comment out the viewport `<meta>` tag. The following markup shows the commented-out line.
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample3.xml)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample3.cshtml)]
 
 Open the *MvcMobile\Content\Site.css*file in the editor and change the maximum width in the media query to zero pixels. This will prevent the CSS rules from being used in mobile browsers. The following line shows the modified media query:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample4.xml)]
+[!code-css[Main](aspnet-mvc-4-mobile-features/samples/sample4.css)]
 
 Save your changes and browse to the Conference application in a mobile browser emulator. The tiny text in the following image is the result of removing the viewport `<meta>` tag. With no viewport `<meta>` tag, the browser is zooming out to the default viewport width (850 pixels or wider for most mobile browsers.)
 
@@ -122,11 +122,11 @@ To start, copy *Views\Shared\\_Layout.cshtml* to *Views\Shared\\_Layout.Mobile.c
 
 In each `Html.ActionLink` call, remove "Browse by" in each link *ActionLink*. The following code shows the completed body section of the mobile layout file.
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample5.xml)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample5.cshtml)]
 
 Copy the *Views\Home\AllTags.cshtml* file to *Views\Home\AllTags.Mobile.cshtml*. Open the new file and change the `<h2>` element from "Tags" to "Tags (M)":
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample6.xml)]
+[!code-html[Main](aspnet-mvc-4-mobile-features/samples/sample6.html)]
 
 Browse to the tags page using a desktop browser and using mobile browser emulator. The mobile browser emulator shows the two changes you made.
 
@@ -142,7 +142,7 @@ In addition to mobile-specific and desktop-specific views, you can create views 
 
 Open the *Global.asax* file and add the following code to the `Application_Start` method.
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample7.xml)]
+[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample7.cs)]
 
 This code defines a new display mode named "iPhone" that will be matched against each incoming request. If the incoming request matches the condition you defined (that is, if the user agent contains the string "iPhone"), ASP.NET MVC will look for views whose name contains the "iPhone" suffix.
 
@@ -152,11 +152,11 @@ In the code, right-click `DefaultDisplayMode`, choose **Resolve**, and then choo
 
 Alternatively, you can just manually add the following line to the `using` section of the file.
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample8.xml)]
+[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample8.cs)]
 
 The complete contents of the *Global.asax* file is shown below.
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample9.xml)]
+[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample9.cs)]
 
 Save the changes. Copy the *MvcMobile\Views\Shared\\_Layout.Mobile.cshtml* file to *MvcMobile\Views\Shared\\_Layout.iPhone.cshtml*. Open the new file and then change the `h1` heading from `Conference (Mobile)` to `Conference (iPhone)`.
 
@@ -201,22 +201,22 @@ The jQuery.Mobile.MVC NuGet package installs the following:
 
 Open the *Global.asax* file and add the following code as the last line of the `Application_Start` method.
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample10.xml)]
+[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample10.cs)]
 
 The following code shows the complete *Global.asax* file.
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample11.xml?highlight=26)]
+[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample11.cs?highlight=26)]
 
 > [!NOTE] If you are using Internet Explorer 9 and you don't see the `BundleMobileConfig` line above in yellow highlight, click the [Compatibility View button](https://windows.microsoft.com/en-US/windows7/How-to-use-Compatibility-View-in-Internet-Explorer-9)![Picture of the Compatibility View button (off)](http://res2.windows.microsoft.com/resbox/en/Windows 7/main/f080e77f-9b66-4ac8-9af0-803c4f8a859c_15.jpg "Picture of the Compatibility View button (off)") in IE to make the icon change from an outline ![Picture of the Compatibility View button (off)](http://res2.windows.microsoft.com/resbox/en/Windows 7/main/f080e77f-9b66-4ac8-9af0-803c4f8a859c_15.jpg "Picture of the Compatibility View button (off)") to a solid color ![Picture of the Compatibility View button (on)](http://res1.windows.microsoft.com/resbox/en/Windows 7/main/156805ff-3130-481b-a12d-4d3a96470f36_14.jpg "Picture of the Compatibility View button (on)"). Alternatively you can view this tutorial in FireFox or Chrome.
 
 
 Open the *MvcMobile\Views\Shared\\_Layout.Mobile.cshtml* file and add the following markup directly after the `Html.Partial` call:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample12.xml)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample12.cshtml)]
 
 The complete *MvcMobile\Views\Shared\\_Layout.Mobile.cshtml* file is shown below:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample13.xml)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample13.cshtml)]
 
 Build the application, and in your mobile browser emulator browse to the *AllTags* view. You see the following:
 
@@ -231,7 +231,7 @@ In addition to the style changes, you see **Displaying mobile view** and a link 
 
 The desktop view doesn't provide a way to directly navigate back to the mobile view. You'll fix that now. Open the *Views\Shared\\_Layout.cshtml* file. Just under the page `body` element, add the following code, which renders the view-switcher widget:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample14.xml)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample14.cshtml)]
 
 Refresh the *AllTags* view in the mobile browser. You can now navigate between desktop and mobile views.
 
@@ -239,11 +239,11 @@ Refresh the *AllTags* view in the mobile browser. You can now navigate between d
 
 > [!NOTE] Debug note: You can add the following code to the end of the Views\Shared\\_ViewSwitcher.cshtml to help debug views when using a browser the user agent string set to a mobile device.
 > 
-> [!code[Main](aspnet-mvc-4-mobile-features/samples/sample15.xml)]
+> [!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample15.cs)]
 > 
 >  and adding the following heading to the *Views\Shared\\_Layout.cshtml* file.  
 > 
-> [!code[Main](aspnet-mvc-4-mobile-features/samples/sample16.xml)]
+> [!code-html[Main](aspnet-mvc-4-mobile-features/samples/sample16.html)]
 
 
 Browse to the *AllTags* page in a desktop browser. The view-switcher widget is not displayed in a desktop browser because it's added only to the mobile layout page. Later in the tutorial you'll see how you can add the view-switcher widget to the desktop view.
@@ -258,7 +258,7 @@ In the mobile browser, select the **Speakers** link. Because there's no mobile v
 
 You can globally disable a default (non-mobile) view from rendering inside a mobile layout by setting `RequireConsistentDisplayMode` to `true` in the *Views\\_ViewStart.cshtml* file, like this:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample17.xml)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample17.cshtml)]
 
 When `RequireConsistentDisplayMode` is set to `true`, the mobile layout (*\_Layout.Mobile.cshtml*) is used only for mobile views. (That is, the view file is of the form ***ViewName**.Mobile.cshtml*.) You might want to set `RequireConsistentDisplayMode` to `true` if your mobile layout doesn't work well with your non-mobile views. The screenshot below shows how the *Speakers* page renders when `RequireConsistentDisplayMode` is set to `true`.
 
@@ -266,7 +266,7 @@ When `RequireConsistentDisplayMode` is set to `true`, the mobile layout (*\_Layo
 
 You can disable consistent display mode in a view by setting `RequireConsistentDisplayMode` to `false` in the view file. The following markup in the *Views\Home\AllSpeakers.cshtml* file sets `RequireConsistentDisplayMode` to `false`:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample18.xml)]
+[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample18.cs)]
 
 ## Creating a Mobile Speakers View
 
@@ -276,7 +276,7 @@ Copy *AllSpeakers.cshtml* to *AllSpeakers.Mobile.cshtml*. Open the *AllSpeakers.
 
 In the `<ul>` tag, add the `data-role` attribute and set its value to `listview`. Like other [`data-*` attributes](http://html5doctor.com/html5-custom-data-attributes/), `data-role="listview"` makes the large list items easier to tap. This is what the completed markup looks like:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample19.xml)]
+[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample19.cs)]
 
 Refresh the mobile browser. The updated view looks like this:
 
@@ -284,7 +284,7 @@ Refresh the mobile browser. The updated view looks like this:
 
 Although the mobile view has improved, it's difficult to navigate the long list of speakers. To fix this, in the `<ul>` tag, add the `data-filter` attribute and set it to `true`. The code below shows the `ul` markup.
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample20.xml)]
+[!code-html[Main](aspnet-mvc-4-mobile-features/samples/sample20.html)]
 
 The following image shows the search filter box at the top of the page that results from the `data-filter` attribute.
 
@@ -302,7 +302,7 @@ Remove the &quot;hide&quot; suffix to the the *Views\Home\AllTags.Mobile.cshtml.
 
 Add the `data-role` and `data-filter` attributes to the `<ul>` tag, as shown here:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample21.xml)]
+[!code-html[Main](aspnet-mvc-4-mobile-features/samples/sample21.html)]
 
 The image below shows the tags page filtering on the letter `J`.
 
@@ -316,13 +316,13 @@ Copy the *Views\Home\AllDates.cshtml* file to *Views\Home\AllDates.Mobile.cshtml
 
 Add `data-role="listview"` to the `<ul>` tag, like this:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample22.xml)]
+[!code-html[Main](aspnet-mvc-4-mobile-features/samples/sample22.html)]
 
 The image below shows what the **Date** page looks like with the `data-role` attribute in place.
 
 [![p3_dates1](aspnet-mvc-4-mobile-features/_static/image43.png)](aspnet-mvc-4-mobile-features/_static/image42.png)Replace the contents of the *Views\Home\AllDates.Mobile.cshtml* file with the following code:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample23.xml)]
+[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample23.cs)]
 
 This code groups all sessions by days. It creates a list divider for each new day, and it lists all the sessions for each day under a divider. Here's what it looks like when this code runs:
 
@@ -342,7 +342,7 @@ Tap the **Scott Hanselman** link.
 
 As you can see, the display is difficult to read on a mobile browser. The date column is hard to read and the tags column is out of the view. To fix this, copy *Views\Home\SessionsTable.cshtml* to *Views\Home\SessionsTable.Mobile.cshtml*, and then replace the contents of the file with the following code:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample24.xml)]
+[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample24.cs)]
 
 The code removes the room and tags columns, and formats the title, speaker, and date vertically, so that all this information is readable on a mobile browser. The image below reflects the code changes.
 
@@ -366,7 +366,7 @@ The default desktop view is fine, but you can improve it.
 
 Copy the *Views\Home\SessionByCode.cshtml* to *Views\Home\SessionByCode.cshtml* and replace the contents of the *Views\Home\SessionByCode.Mobile.cshtml* file with the following markup:
 
-[!code[Main](aspnet-mvc-4-mobile-features/samples/sample25.xml)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample25.cshtml)]
 
 The new markup uses the `data-role` attribute to improve the layout of the view.
 

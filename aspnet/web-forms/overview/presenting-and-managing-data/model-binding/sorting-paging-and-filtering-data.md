@@ -35,7 +35,7 @@ In this tutorial, you'll:
 
 Enabling sorting in the GridView is very easy. In the Student.aspx file, simply set **AllowSorting** to **true** in the GridView. You do not need to set a **SortExpression** value for each column as the DataField is automatically used. The GridView modifies the query to include ordering the data by the selected value. The highlighted code below shows the addition you need to make to enable sorting.
 
-[!code[Main](sorting-paging-and-filtering-data/samples/sample1.xml?highlight=5)]
+[!code-aspx[Main](sorting-paging-and-filtering-data/samples/sample1.aspx?highlight=5)]
 
 Run the web application, and test sorting student records by the values in different columns.
 
@@ -45,7 +45,7 @@ Run the web application, and test sorting student records by the values in diffe
 
 Enabling paging is also very easy. In the GridView, set the **AllowPaging** property to **true** and set the **PageSize** property to the number of records you wish to display on each page. In this tutorial, you can set it to 4.
 
-[!code[Main](sorting-paging-and-filtering-data/samples/sample2.xml?highlight=5)]
+[!code-aspx[Main](sorting-paging-and-filtering-data/samples/sample2.aspx?highlight=5)]
 
 Run the web application, and notice that now the records are divided over multiple pages with no more than 4 records displayed on a single page.
 
@@ -71,17 +71,17 @@ In this tutorial, you will use a control's value to filter which records are dis
 
 First, above the ValidationSummary, add a drop down list for filtering which students are shown.
 
-[!code[Main](sorting-paging-and-filtering-data/samples/sample3.xml?highlight=3-11)]
+[!code-aspx[Main](sorting-paging-and-filtering-data/samples/sample3.aspx?highlight=3-11)]
 
 In the code-behind file, modify the select method to receive a value from the control, and set the name of the parameter to the name of the control that provides the value.
 
 You must add a **using** statement for the **System.Web.ModelBinding** namespace to resolve the Control attribute.
 
-[!code[Main](sorting-paging-and-filtering-data/samples/sample4.xml)]
+[!code-csharp[Main](sorting-paging-and-filtering-data/samples/sample4.cs)]
 
 The following code shows the select method re-worked to filter the returned data based on the value of the drop down list. Adding a control attribute before a parameter specifies that the value for this parameter comes from a control with the same name.
 
-[!code[Main](sorting-paging-and-filtering-data/samples/sample5.xml)]
+[!code-csharp[Main](sorting-paging-and-filtering-data/samples/sample5.cs)]
 
 Run the web application and select different values from the drop down list to filter the list of students.
 

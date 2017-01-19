@@ -36,29 +36,29 @@ As previously mentioned we will be extending the class that implements the MySho
 
 The generated call for our MyShoppingCart.aspx.cf file looks like this.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample1.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample1.cs)]
 
 Note the use of the "partial" keyword.
 
 The class file that we just generated looks like this.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample2.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample2.cs)]
 
 We will merge our implementations by adding the partial keyword to this file as well.
 
 Our new class file now looks like this.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample3.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample3.cs)]
 
 The first method that we will add to our class is the "AddItem" method. This is the method that will ultimately be called when the user clicks on the "Add to Art" links on the Product List and Product Details pages.
 
 Append the following to the using statements at the top of the page.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample4.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample4.cs)]
 
 And add this method to the MyShoppingCart class.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample5.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample5.cs)]
 
 We are using LINQ to Entities to see if the item is already in the cart. If so, we update the order quantity of the item, otherwise we create a new entry for the selected item
 
@@ -70,7 +70,7 @@ While we could use this page to display interim results like low stock issues, e
 
 To accomplish this we'll add the following code to the Page\_Load event.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample6.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample6.cs)]
 
 Note that we are retrieving the product to add to the shopping cart from a QueryString parameter and calling the AddItem method of our class.
 
@@ -90,13 +90,13 @@ Add the code to implement the method as follows.
 
 Note that we've also added update and checkout buttons and a label where we can display the cart "total".
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample7.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample7.cs)]
 
 We can now add items to our shopping cart but we have not implemented the logic to display the cart after a product has been added.
 
 So, in the MyShoppingCart.aspx page we'll add an EntityDataSource control and a GridVire control as follows.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample8.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-5/samples/sample8.aspx)]
 
 Call up the form in the designer so that you can double click on the Update Cart button and generate the click event handler that is specified in the declaration in the markup.
 
@@ -110,15 +110,15 @@ Note that we have deviated from the "default" grid display by implementing three
 
 The first is an Editable, "Bound" field for the Quantity:
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample9.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-5/samples/sample9.aspx)]
 
 The next is a "calculated" column that displays the line item total (the item cost times the quantity to be ordered):
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample10.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-5/samples/sample10.aspx)]
 
 Lastly we have a custom column that contains a CheckBox control that the user will use to indicate that the item should be removed from the shopping chart.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample11.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-5/samples/sample11.aspx)]
 
 ![](tailspin-spyworks-part-5/_static/image3.jpg)
 
@@ -128,7 +128,7 @@ We'll first implement a "GetTotal" method to our MyShoppingCart Class.
 
 In the MyShoppingCart.cs file add the following code.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample12.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample12.cs)]
 
 Then in the Page\_Load event handler we'll can call our GetTotal method. At the same time we'll add a test to see if the shopping cart is empty and adjust the display accordingly if it is.
 
@@ -146,33 +146,33 @@ We will need additional logic to recalculate the shopping cart by removing items
 
 Lets add a "RemoveItem" method to our shopping cart class in MyShoppingCart.cs to handle the case when a user marks an item for removal.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample13.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample13.cs)]
 
 Now let's ad a method to handle the circumstance when a user simply changes the quality to be ordered in the GridView.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample14.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample14.cs)]
 
 With the basic Remove and Update features in place we can implement the logic that actually updates the shopping cart in the database. (In MyShoppingCart.cs)
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample15.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample15.cs)]
 
 You'll note that this method expects two parameters. One is the shopping cart Id and the other is an array of objects of user defined type.
 
 So as to minimize the dependency of our logic on user interface specifics, we've defined a data structure that we can use to pass the shopping cart items to our code without our method needing to directly access the GridView control.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample16.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample16.cs)]
 
 In our MyShoppingCart.aspx.cs file we can use this structure in our Update Button Click Event handler as follows. Note that in addition to updating the cart we will update the cart total as well.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample17.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample17.cs)]
 
 Note with particular interest this line of code:
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample18.xml)]
+[!code-unknown[Main](tailspin-spyworks-part-5/samples/sample-25228-18.unknown)]
 
 GetValues() is a special helper function that we will implement in MyShoppingCart.aspx.cs as follows.
 
-[!code[Main](tailspin-spyworks-part-5/samples/sample19.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-5/samples/sample19.cs)]
 
 This provides a clean way to access the values of the bound elements in our GridView control. Since our "Remove Item" CheckBox Control is not bound we'll access it via the FindControl() method.
 

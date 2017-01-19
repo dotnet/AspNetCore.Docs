@@ -108,7 +108,7 @@ In **Server Explorer**, expand *School.mdf*, right-click the **Views** folder, a
 
 Click **Close** when the **Add Table** dialog box appears, and paste the following SQL statement into the SQL pane:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample1.xml)]
+[!code-sql[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample1.sql)]
 
 Save the view as `vInstructorName`.
 
@@ -147,7 +147,7 @@ Save and close the data model, and then rebuild the project.
 
 Create a new class file in the *DAL* folder, name it *SchoolRepository.cs*, and replace the existing code with the following code:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample2.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample2.cs)]
 
 This code provides a single `GetDepartments` method that returns all of the entities in the `Departments` entity set. Because you know that you will be accessing the `Person` navigation property for every row returned, you specify eager loading for that property by using the `Include` method. The class also implements the `IDisposable` interface to ensure that the database connection is released when the object is disposed.
 
@@ -158,7 +158,7 @@ The `GetDepartments` method returns an `IEnumerable` object rather than an `IQue
 
 Create a *Departments.aspx* page that uses the *Site.Master* master page, and add the following markup in the `Content` control named `Content2`:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample3.xml)]
+[!code-aspx[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample3.aspx)]
 
 This markup creates an `ObjectDataSource` control that uses the repository class you just created, and a `GridView` control to display the data. The `GridView` control specifies **Edit** and **Delete** commands, but you haven't added code to support them yet.
 
@@ -168,15 +168,15 @@ The `Vertical-Align="Top"` attributes will become important later when you add a
 
 Open the *Departments.aspx.cs* file and add the following `using` statement:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample4.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample4.cs)]
 
 Then add the following handler for the page's `Init` event:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample5.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample5.cs)]
 
 In the *DAL* folder, create a new class file named *Department.cs* and replace the existing code with the following code:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample6.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample6.cs)]
 
 This code adds metadata to the data model. It specifies that the `Budget` property of the `Department` entity actually represents currency although its data type is `Decimal`, and it specifies that the value must be between 0 and $1,000,000.00. It also specifies that the `StartDate` property should be formatted as a date in the format mm/dd/yyyy.
 
@@ -190,7 +190,7 @@ Notice that although you did not specify a format string in the *Departments.asp
 
 Open *SchoolRepository.cs*, add the following code in order to create an `Insert` method and a `Delete` method. The code also includes a method named `GenerateDepartmentID` that calculates the next available record key value for use by the `Insert` method. This is required because the database is not configured to calculate this automatically for the `Department` table.
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample7.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample7.cs)]
 
 ### The Attach Method
 
@@ -212,23 +212,23 @@ This simple repository class illustrates basic principles of how to perform CRUD
 
 Users must be able to select an administrator from a list of instructors in a drop-down list when creating new departments. Therefore, add the following code to *SchoolRepository.cs* to create a method to retrieve the list of instructors using the view that you created earlier:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample8.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample8.cs)]
 
 ### Creating a Page for Inserting Departments
 
 Create a *DepartmentsAdd.aspx* page that uses the *Site.Master* page, and add the following markup in the `Content` control named `Content2`:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample9.xml)]
+[!code-aspx[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample9.aspx)]
 
 This markup creates two `ObjectDataSource` controls, one for inserting new `Department` entities and one for retrieving instructor names for the `DropDownList` control that's used for selecting department administrators. The markup creates a `DetailsView` control for entering new departments, and it specifies a handler for the control's `ItemInserting` event so that you can set the `Administrator` foreign key value. At the end is a `ValidationSummary` control to display error messages.
 
 Open *DepartmentsAdd.aspx.cs* and add the following `using` statement:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample10.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample10.cs)]
 
 Add the following class variable and methods:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample11.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample11.cs)]
 
 The `Page_Init` method enables Dynamic Data functionality. The handler for the `DropDownList` control's `Init` event saves a reference to the control, and the handler for the `DetailsView` control's `Inserting` event uses that reference to get the `PersonID` value of the selected instructor and update the `Administrator` foreign key property of the `Department` entity.
 
@@ -246,7 +246,7 @@ Click **Insert**, and you see the error message displayed by the `ValidationSumm
 
 Next, close the browser and open the *Departments.aspx* page. Add delete capability to the *Departments.aspx* page by adding a `DeleteMethod` attribute to the `ObjectDataSource` control, and a `DataKeyNames` attribute to the `GridView` control. The opening tags for these controls will now resemble the following example:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample12.xml)]
+[!code-aspx[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample12.aspx)]
 
 Run the page.
 
@@ -258,7 +258,7 @@ Delete the department you added when you ran the *DepartmentsAdd.aspx* page.
 
 Open *SchoolRepository.cs* and add the following `Update` method:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample13.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample13.cs)]
 
 When you click **Update** in the *Departments.aspx* page, the `ObjectDataSource` control creates two `Department` entities to pass to the `UpdateDepartment` method. One contains the original values that have been stored in view state, and the other contains the new values that were entered in the `GridView` control. The code in the `UpdateDepartment` method passes the `Department` entity that has the original values to the `Attach` method in order to establish the tracking between the entity and what's in the database. Then the code passes the `Department` entity that has the new values to the `ApplyCurrentValues` method. The object context compares the old and new values. If a new value is different from an old value, the object context changes the property value. The `SaveChanges` method then updates only the changed columns in the database. (However, if the update function for this entity were mapped to a stored procedure, the entire row would be updated regardless of which columns were changed.)
 
@@ -272,29 +272,29 @@ Open the *Departments.aspx* file and add the following attributes to the `Depart
 
 The markup for the opening tag of the `ObjectDataSource` control now resembles the following example:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample14.xml)]
+[!code-aspx[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample14.aspx)]
 
 Add an `OnRowUpdating="DepartmentsGridView_RowUpdating"` attribute to the `GridView` control. You will use this to set the `Administrator` property value based on the row the user selects in a drop-down list. The `GridView` opening tag now resembles the following example:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample15.xml)]
+[!code-aspx[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample15.aspx)]
 
 Add an `EditItemTemplate` control for the `Administrator` column to the `GridView` control, immediately after the `ItemTemplate` control for that column:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample16.xml)]
+[!code-aspx[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample16.aspx)]
 
 This `EditItemTemplate` control is similar to the `InsertItemTemplate` control in the *DepartmentsAdd.aspx* page. The difference is that the initial value of the control is set using the `SelectedValue` attribute.
 
 Before the `GridView` control, add a `ValidationSummary` control as you did in the *DepartmentsAdd.aspx* page.
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample17.xml)]
+[!code-aspx[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample17.aspx)]
 
 Open *Departments.aspx.cs* and immediately after the partial-class declaration, add the following code to create a private field to reference the `DropDownList` control:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample18.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample18.cs)]
 
 Then add handlers for the `DropDownList` control's `Init` event and the `GridView` control's `RowUpdating` event:
 
-[!code[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample19.xml)]
+[!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-1-getting-started/samples/sample19.cs)]
 
 The handler for the `Init` event saves a reference to the `DropDownList` control in the class field. The handler for the `RowUpdating` event uses the reference to get the value the user entered and apply it to the `Administrator` property of the `Department` entity.
 

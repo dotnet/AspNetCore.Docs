@@ -23,25 +23,25 @@ This section gives a brief overview of how cookies are implemented at the HTTP l
 
 A cookie is a piece of data that a server sends in the HTTP response. The client (optionally) stores the cookie and returns it on subsequet requests. This allows the client and server to share state. To set a cookie, the server includes a Set-Cookie header in the response. The format of a cookie is a name-value pair, with optional attributes. For example:
 
-[!code[Main](http-cookies/samples/sample1.xml)]
+[!code-powershell[Main](http-cookies/samples/sample1.ps1)]
 
 Here is an example with attributes:
 
-[!code[Main](http-cookies/samples/sample2.xml)]
+[!code-powershell[Main](http-cookies/samples/sample2.ps1)]
 
 To return a cookie to the server, the client inclues a Cookie header in later requests.
 
-[!code[Main](http-cookies/samples/sample3.xml)]
+[!code-console[Main](http-cookies/samples/sample3.cmd)]
 
 ![](http-cookies/_static/image1.png)
 
 An HTTP response can include multiple Set-Cookie headers.
 
-[!code[Main](http-cookies/samples/sample4.xml)]
+[!code-powershell[Main](http-cookies/samples/sample4.ps1)]
 
 The client returns multiple cookies using a single Cookie header.
 
-[!code[Main](http-cookies/samples/sample5.xml)]
+[!code-console[Main](http-cookies/samples/sample5.cmd)]
 
 The scope and duration of a cookie are controlled by following attributes in the Set-Cookie header:
 
@@ -60,13 +60,13 @@ To add a cookie to an HTTP response, create a **CookieHeaderValue** instance tha
 
 For example, the following code adds a cookie within a controller action:
 
-[!code[Main](http-cookies/samples/sample6.xml)]
+[!code-csharp[Main](http-cookies/samples/sample6.cs)]
 
 Notice that **AddCookies** takes an array of **CookieHeaderValue** instances.
 
 To extract the cookies from a client request, call the **GetCookies** method:
 
-[!code[Main](http-cookies/samples/sample7.xml)]
+[!code-unknown[Main](http-cookies/samples/sample-43086-7.unknown)]
 
 A **CookieHeaderValue** contains a collection of **CookieState** instances. Each **CookieState** represents one cookie. Use the indexer method to get a **CookieState** by name, as shown.
 
@@ -79,15 +79,15 @@ Many browsers limit how many cookies they will store&#8212;both the total number
 
 Using the **CookieHeaderValue** class, you can pass a list of name-value pairs for the cookie data. These name-value pairs are encoded as URL-encoded form data in the Set-Cookie header:
 
-[!code[Main](http-cookies/samples/sample8.xml)]
+[!code-csharp[Main](http-cookies/samples/sample8.cs)]
 
 The previous code produces the following Set-Cookie header:
 
-[!code[Main](http-cookies/samples/sample9.xml)]
+[!code-powershell[Main](http-cookies/samples/sample9.ps1)]
 
 The **CookieState** class provides an indexer method to read the sub-values from a cookie in the request message:
 
-[!code[Main](http-cookies/samples/sample10.xml)]
+[!code-unknown[Main](http-cookies/samples/sample-43086-10.unknown)]
 
 ## Example: Set and Retrieve Cookies in a Message Handler
 
@@ -99,8 +99,8 @@ The following code shows a message handler for creating session IDs. The session
 
 This implementation does not validate that the session ID from the client was actually issued by the server. Don't use it as a form of authentication! The point of the example is to show HTTP cookie management.
 
-[!code[Main](http-cookies/samples/sample11.xml)]
+[!code-csharp[Main](http-cookies/samples/sample11.cs)]
 
 A controller can get the session ID from the **HttpRequestMessage.Properties** property bag.
 
-[!code[Main](http-cookies/samples/sample12.xml)]
+[!code-csharp[Main](http-cookies/samples/sample12.cs)]

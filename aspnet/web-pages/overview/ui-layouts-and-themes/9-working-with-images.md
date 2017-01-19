@@ -49,7 +49,7 @@ You can add images to your website and to individual pages while you're developi
 
 If an image is already available on your site and you just want to display it on a page, you use an HTML `<img>` element like this:
 
-[!code[Main](9-working-with-images/samples/sample1.xml)]
+[!code-html[Main](9-working-with-images/samples/sample1.html)]
 
 Sometimes, though, you need to be able to display images dynamically &#8212; that is, you don't know what image to display until the page is running.
 
@@ -64,7 +64,7 @@ The procedure in this section shows how to display an image on the fly where use
 5. Verify that the four images are not marked as read-only.
 6. Replace the existing content in the page with the following:
 
-    [!code[Main](9-working-with-images/samples/sample2.xml)]
+    [!code-cshtml[Main](9-working-with-images/samples/sample2.cshtml)]
 
     The body of the page has a drop-down list (a `<select>` element) that's named `photoChoice`. The list has three options, and the `value` attribute of each list option has the name of one of the images that you put in the *images* folder. Essentially, the list lets the user select a friendly name like &quot;Photo 1&quot;, and it then passes the *.jpg* file name when the page is submitted.
 
@@ -90,7 +90,7 @@ The previous example showed you how to display an image dynamically, but it work
 1. Add a new page and name it *UploadImage.cshtml*.
 2. Replace the existing content in the page with the following: 
 
-    [!code[Main](9-working-with-images/samples/sample3.xml)]
+    [!code-cshtml[Main](9-working-with-images/samples/sample3.cshtml)]
 
     The body of the text has an `<input type="file">` element, which lets users select a file to upload. When they click **Submit**, the file they picked is submitted along with the form.
 
@@ -104,7 +104,7 @@ The previous example showed you how to display an image dynamically, but it work
 
     You don't want all that path information, though &#8212; you just want the actual file name (*SamplePhoto1.jpg*). You can strip out just the file from a path by using the `Path.GetFileName` method, like this:
 
-    [!code[Main](9-working-with-images/samples/sample4.xml)]
+    [!code-unknown[Main](9-working-with-images/samples/sample-38939-4.unknown)]
 
     You then create a new unique file name by adding a GUID to the original name. (For more about GUIDs, see [About GUIDs](#SB_AboutGUIDs) later in this article.) Then you construct a complete path that you can use to save the image. The save path is made up of the new file name, the folder (images), and the current website location.
 
@@ -142,7 +142,7 @@ This procedure shows how to resize an uploaded image to create a thumbnail and t
 2. In the *images* folder, create a subfolder named *thumbs*.
 3. Replace the existing content in the page with the following: 
 
-    [!code[Main](9-working-with-images/samples/sample5.xml)]
+    [!code-cshtml[Main](9-working-with-images/samples/sample5.cshtml)]
 
     This code is similar to the code from the previous example. The difference is that this code saves the image twice, once normally and once after you create a thumbnail copy of the image. First you get the uploaded image and save it in the *images* folder. You then construct a new path for the thumbnail image. To actually create the thumbnail, you call the `WebImage` helper's `Resize` method to create a 60-pixel by 60-pixel image. The example shows how you preserve the aspect ratio and how you can prevent the image from being enlarged (in case the new size would actually make the image larger). The resized image is then saved in the *thumbs* subfolder.
 
@@ -162,11 +162,11 @@ The `WebImage` helper also lets you flip and rotate images. This procedure shows
 1. Add a new page named *FlipImage.cshtml*.
 2. Replace the existing content in the page with the following: 
 
-    [!code[Main](9-working-with-images/samples/sample6.xml)]
+    [!code-cshtml[Main](9-working-with-images/samples/sample6.cshtml)]
 
     The code uses the `WebImage` helper to get an image from the server. You create the path to the image using the same technique you used in earlier examples for saving images, and you pass that path when you create an image using `WebImage`:
 
-    [!code[Main](9-working-with-images/samples/sample7.xml)]
+    [!code-unknown[Main](9-working-with-images/samples/sample-38939-7.unknown)]
 
     If an image is found, you construct a new path and file name, like you did in earlier examples. To flip the image, you call the `FlipVertical` method, and then you save the image again.
 
@@ -186,7 +186,7 @@ When you add images to your website, you might want to add a watermark to the im
 1. Add a new page named *Watermark.cshtml*.
 2. Replace the existing content in the page with the following: 
 
-    [!code[Main](9-working-with-images/samples/sample8.xml)]
+    [!code-cshtml[Main](9-working-with-images/samples/sample8.cshtml)]
 
     This code is like the code in the *FlipImage.cshtml* page from earlier (although this time it uses the *Photo3.jpg* file). To add the watermark, you call the `WebImage` helper's `AddTextWatermark` method before you save the image. In the call to `AddTextWatermark`, you pass the text &quot;My Watermark&quot;, set the font color to yellow, and set the font family to Arial. (Although it's not shown here, the `WebImage` helper also lets you specify opacity, font family and font size, and the position of the watermark text.) When you save the image it must not be read-only.
 
@@ -204,7 +204,7 @@ Instead of using text for a watermark, you can use another image. People sometim
 2. Add an image to the *images* folder that you can use as a logo, and rename the image *MyCompanyLogo.jpg*. This image should be an image that you can see clearly when it's set to 80 pixels wide and 20 pixels high.
 3. Replace the existing content in the page with the following: 
 
-    [!code[Main](9-working-with-images/samples/sample9.xml)]
+    [!code-cshtml[Main](9-working-with-images/samples/sample9.cshtml)]
 
     This is another variation on the code from earlier examples. In this case, you call `AddImageWatermark` to add the watermark image to the target image (*Photo3.jpg*) before you save the image. When you call `AddImageWatermark`, you set its width to 80 pixels and the height to 20 pixels. The *MyCompanyLogo.jpg* image is horizontally aligned in the center and vertically aligned at the bottom of the target image. The opacity is set to 100% and the padding is set to 10 pixels. If the watermark image is bigger than the target image, nothing will happen. If the watermark image is bigger than the target image and you set the padding for the image watermark to zero, the watermark is ignored.
 

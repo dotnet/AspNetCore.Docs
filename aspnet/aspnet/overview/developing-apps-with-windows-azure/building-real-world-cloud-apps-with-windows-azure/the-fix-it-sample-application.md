@@ -89,25 +89,25 @@ Following are some issues that were fixed after being discovered in code review 
 
 The `FixItTaskRepository` class must dispose the Entity Framework `DbContext` instance. We did this by implementing `IDisposable` in the `FixItTaskRepository` class:
 
-[!code[Main](the-fix-it-sample-application/samples/sample1.xml)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample1.cs)]
 
 Note that AutoFac will automatically dispose the `FixItTaskRepository` instance, so we don't need to explicitly dispose it.
 
 Another option is to remove the `DbContext` member variable from `FixItTaskRepository`, and instead create a local `DbContext` variable within each repository method, inside a `using` statement. For example:
 
-[!code[Main](the-fix-it-sample-application/samples/sample2.xml)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample2.cs)]
 
 ### Register singletons as such with DI
 
 Since only one instance of the `PhotoService` class and `Logger` class is needed, these classes should be [registered as single instances for dependency injection](https://code.google.com/p/autofac/wiki/InstanceScope) in *DependenciesConfig.cs*:
 
-[!code[Main](the-fix-it-sample-application/samples/sample3.xml?highlight=1,3)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample3.cs?highlight=1,3)]
 
 ### Security: Don't show error details to users
 
 The original Fix It app didn't have a generic error page and just let all exceptions bubble up to the UI, so some exceptions such as database connection errors could result in a full stack trace being displayed to the browser. Detailed error information can sometimes facilitate attacks by malicious users. The solution is to log the exception details and display an error page to the user that doesn't include error details. The Fix It app was already logging, and in order to display an error page, we added `<customErrors mode=On>` in the Web.config file.
 
-[!code[Main](the-fix-it-sample-application/samples/sample4.xml?highlight=2)]
+[!code-xml[Main](the-fix-it-sample-application/samples/sample4.xml?highlight=2)]
 
 By default this causes *Views\Shared\Error.cshtml* to be displayed for errors. You can customize *Error.cshtml* or create your own error page view and add a `defaultRedirect` attribute. You can also specify different error pages for specific errors.
 
@@ -115,17 +115,17 @@ By default this causes *Views\Shared\Error.cshtml* to be displayed for errors. Y
 
 The Dashboard Index page only shows tasks created by the logged-on user, but a malicious user could create a URL with an ID to another user's task. We added code in *DashboardController.cs* to return a 404 in that case:
 
-[!code[Main](the-fix-it-sample-application/samples/sample5.xml?highlight=9-14,24-29)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample5.cs?highlight=9-14,24-29)]
 
 ### Don't swallow exceptions
 
 The original Fix It app just returned null after logging an exception that resulted from a SQL query:
 
-[!code[Main](the-fix-it-sample-application/samples/sample6.xml?highlight=4)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample6.cs?highlight=4)]
 
 This would make it look to the user as if the query succeeded but just didn't return any rows. Solution is to re-throw the exception after catching and logging:
 
-[!code[Main](the-fix-it-sample-application/samples/sample7.xml)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample7.cs)]
 
 ### Catch all exceptions in worker roles
 
@@ -135,39 +135,39 @@ Any unhandled exceptions in a worker role will cause the VM to be recycled, so y
 
 In order to display simple code, the original version of the Fix It app didn't specify lengths for the fields of the FixItTask entity, and as a result they were defined as varchar(max) in the database. As a result, the UI would accept almost any amount of input. Specifying lengths sets limits that apply both to user input in the web page and column size in the database:
 
-[!code[Main](the-fix-it-sample-application/samples/sample8.xml?highlight=4,7,10,12,14)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample8.cs?highlight=4,7,10,12,14)]
 
 ### Mark private members as readonly when they aren't expected to change
 
 For example, in the `DashboardController` class an instance of `FixItTaskRepository` is created and isn't expected to change, so we defined it as [readonly](https://msdn.microsoft.com/en-us/library/acdd6hb7.aspx).
 
-[!code[Main](the-fix-it-sample-application/samples/sample9.xml?highlight=3)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample9.cs?highlight=3)]
 
 ### Use list.Any() instead of list.Count() &gt; 0
 
 If you all you care about is whether one or more items in a list fit the specified criteria, use the [Any](https://msdn.microsoft.com/en-us/library/bb534972.aspx) method, because it returns as soon as an item fitting the criteria is found, whereas the `Count` method always has to iterate through every item. The Dashboard *Index.cshtml* file originally had this code:
 
-[!code[Main](the-fix-it-sample-application/samples/sample10.xml)]
+[!code-cshtml[Main](the-fix-it-sample-application/samples/sample10.cshtml)]
 
 We changed it to this:
 
-[!code[Main](the-fix-it-sample-application/samples/sample11.xml?highlight=1)]
+[!code-cshtml[Main](the-fix-it-sample-application/samples/sample11.cshtml?highlight=1)]
 
 ### Generate URLs in MVC views using MVC helpers
 
 For the **Create a Fix It** button on the home page, the Fix It app hard coded an anchor element:
 
-[!code[Main](the-fix-it-sample-application/samples/sample12.xml)]
+[!code-html[Main](the-fix-it-sample-application/samples/sample12.html)]
 
 For View/Action links like this it's better to use the [Url.Action](https://msdn.microsoft.com/en-us/library/system.web.mvc.urlhelper.action.aspx) HTML helper, for example:
 
-[!code[Main](the-fix-it-sample-application/samples/sample13.xml)]
+[!code-cshtml[Main](the-fix-it-sample-application/samples/sample13.cshtml)]
 
 ### Use Task.Delay instead of Thread.Sleep in worker role
 
 The new-project template puts `Thread.Sleep` in the sample code for a worker role, but causing the thread to sleep can cause the thread pool to spawn additional unnecessary threads. You can avoid that by using [Task.Delay](https://msdn.microsoft.com/en-us/library/hh139096.aspx) instead.
 
-[!code[Main](the-fix-it-sample-application/samples/sample14.xml?highlight=11)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample14.cs?highlight=11)]
 
 ### Avoid async void
 
@@ -175,7 +175,7 @@ If an async method doesn't need to return a value, return a `Task` type rather t
 
 This example is from the `FixItQueueManager` class: 
 
-[!code[Main](the-fix-it-sample-application/samples/sample15.xml)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample15.cs)]
 
 You should use `async void` only for top-level event handlers. If you define a method as `async void`, the caller cannot **await** the method or catch any exceptions the method throws. For more information, see [Best Practices in Asynchronous Programming](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx). 
 
@@ -187,19 +187,19 @@ Typically, the **Run** method on a worker role contains an infinite loop. When t
 
 In some cases, Internet Explorer reports a MIME type different than the type specified by the web server. For instance, if Internet Explorer finds HTML content in a file delivered with the HTTP response header Content-Type: text/plain, Internet Explorer determines that the content should be rendered as HTML. Unfortunately, this "MIME-sniffing" can also lead to security problems for servers hosting untrusted content. To combat this problem, Internet Explorer 8 has made a number of changes to MIME-type determination code and allows application developers to [opt out of MIME-sniffing](https://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx). The following code was added to the *Web.config* file.
 
-[!code[Main](the-fix-it-sample-application/samples/sample16.xml?highlight=2-7)]
+[!code-xml[Main](the-fix-it-sample-application/samples/sample16.xml?highlight=2-7)]
 
 ### Enable bundling and minification
 
 When Visual Studio creates a new web project, bundling and minification of JavaScript files is not enabled by default. We added a line of code in BundleConfig.cs:
 
-[!code[Main](the-fix-it-sample-application/samples/sample17.xml?highlight=9)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample17.cs?highlight=9)]
 
 ### Set an expiration time-out for authentication cookies
 
 By default, authentication cookies expire in two weeks. A shorter time is more secure. You can change this setting in *StartupAuth.cs*:
 
-[!code[Main](the-fix-it-sample-application/samples/sample18.xml?highlight=4-5)]
+[!code-csharp[Main](the-fix-it-sample-application/samples/sample18.cs?highlight=4-5)]
 
 <a id="run-in-vs"></a>
 ## How to run the app from Visual Studio on your local computer
@@ -232,7 +232,7 @@ There are two ways to run the Fix It app:
 2. Start Visual Studio with administrator privileges. (You'll be using the Azure compute emulator, and that requires administrator privileges.)
 3. In the application *Web.config* file in the *MyFixIt* project (the web project), change the value of `appSettings/UseQueues` to "true": 
 
-    [!code[Main](the-fix-it-sample-application/samples/sample19.xml?highlight=3)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample19.cmd?highlight=3)]
 4. If the [Azure storage emulator](https://msdn.microsoft.com/en-us/library/windowsazure/hh403989.aspx) isn't still running, start it again.
 5. Run the FixIt web project and the MyFixItCloudService project simultaneously.
 
@@ -268,30 +268,30 @@ These instructions assume you have already downloaded and run the Fix It solutio
 2. Start Azure PowerShell with the **Run as administrator** option.
 3. Run the [Set-ExecutionPolicy](https://go.microsoft.com/fwlink/p/?linkid=293941) cmdlet to set the Azure PowerShell execution policy to `RemoteSigned`. Enter **Y** (for Yes) to complete the policy change.
 
-    [!code[Main](the-fix-it-sample-application/samples/sample20.xml)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample20.cmd)]
 
     This setting enables you to run local scripts that aren't digitally signed. (You can also set the execution policy to `Unrestricted`, which would eliminate the need for the unblock step later, but this is not recommended for security reasons.)
 4. Run the `Add-AzureAccount` cmdlet to set up PowerShell with credentials for your account.
 
-    [!code[Main](the-fix-it-sample-application/samples/sample21.xml)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample21.cmd)]
 
     These credentials expire after a period of time and you have to re-run the `Add-AzureAccount` cmdlet. As this e-book is being written, the time limit before credentials expire is 12 hours.
 5. If you have multiple subscriptions, use the Select-AzureSubscription cmdlet to specify the subscription you want to create the test environment in.
 6. Import a management certificate for the same Azure subscription by using the `Get-AzurePublishSettingsFile` and `Import-AzurePublishSettingsFile` cmdlets. The first of these cmdlets downloads a certificate file, and in the second one you specify the location of that file in order to import it. > [!IMPORTANT] Keep the downloaded file in a safe location or delete it when you're done with it, because it contains a certificate that can be used to manage your Azure services.
 
-    [!code[Main](the-fix-it-sample-application/samples/sample22.xml)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample22.cmd)]
 
     The certificate is used for a REST API call that detects the development machine's IP address in order to set a firewall rule on the SQL Database server.
 7. Run the [Set-Location](https://go.microsoft.com/fwlink/p/?linkid=293912) cmdlet (aliases are `cd`, `chdir`, and `sl`) to navigate to the directory that contains the scripts. (They're located in the *Automation* folder in the Fix It solution folder.) Put the path in quotes if any of the directory names contain spaces. For example, to navigate to the `c:\Sample Apps\FixIt\Automation` directory you could enter the following command:
 
-    [!code[Main](the-fix-it-sample-application/samples/sample23.xml)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample23.cmd)]
 8. To allow Windows PowerShell to run these scripts, use the [Unblock-File](https://go.microsoft.com/fwlink/p/?linkid=294021) cmdlet. (The scripts are blocked because they were downloaded from the Internet.)
 
     > [!WARNING] Security - Before running `Unblock-File` on any script or executable file, open the file in Notepad, examine the commands, and verify that they do not contain any malicious code.
 
     For example, the following command runs the `Unblock-File` cmdlet on all scripts in the current directory.
 
-    [!code[Main](the-fix-it-sample-application/samples/sample24.xml)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample24.cmd)]
 9. To create the web app for the base (no queues processing) Fix It app, run the environment creation script.
 
     The required `Name` parameter specifies the name of the database and is also used for the storage account that the script creates. The name must be globally unique within the azurewebsites.net domain. If you specify a name that is not unique, like Fixit or Test (or even as in the example, fixitdemo), the `New-AzureWebsite` cmdlet fails with an Internal Error that reports a conflict. The script converts the name to all lower-case to comply with name requirements for web apps, storage accounts, and databases.
@@ -300,17 +300,17 @@ These instructions assume you have already downloaded and run the Fix It solutio
 
     For example, if you want to create a web app named "fixitdemo" and use a SQL Server administrator password of "Passw0rd1", you could enter the following command:
 
-    [!code[Main](the-fix-it-sample-application/samples/sample25.xml)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample25.cmd)]
 
     The name must be unique in the azurewebsites.net domain, and the password must meet SQL Database requirements for password complexity. (The example Passw0rd1 does meet the requirements.)
 
     Note that the command begins with ".\". To help prevent malicious execution of scripts, Windows PowerShell requires that you provide the fully qualified path to the script file when you run a script. You can use a dot to indicate the current directory (".\") or provide the fully qualified path, such as:
 
-    [!code[Main](the-fix-it-sample-application/samples/sample26.xml)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample26.cmd)]
 
     For more information about the script, use the `Get-Help` cmdlet.
 
-    [!code[Main](the-fix-it-sample-application/samples/sample27.xml)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample27.cmd)]
 
     You can use the `Detailed`, `Full`, `Parameters`, and `Examples` parameters of the Get-Help cmdlet to filter the help that is returned.
 
@@ -319,7 +319,7 @@ These instructions assume you have already downloaded and run the Fix It solutio
     After the script finishes, you can use the Azure Management Portal to see the resources that were created, as shown in the [Automate Everything](automate-everything.md) chapter.
 10. To deploy the FixIt project to the new Azure environment, use the *AzureWebsite.ps1* script. For example:
 
-    [!code[Main](the-fix-it-sample-application/samples/sample28.xml)]
+    [!code-console[Main](the-fix-it-sample-application/samples/sample28.cmd)]
 
     When deployment is done, the browser opens with Fix It running in Azure.
 
@@ -332,13 +332,13 @@ The most common errors encountered when running these scripts are related to per
 
 If the script returns errors, such as "Object reference not set to an instance of an object," which means that Windows PowerShell can't find an object to process (this is a null reference exception), run the `Add-AzureAccount` cmdlet and try the script again.
 
-[!code[Main](the-fix-it-sample-application/samples/sample29.xml)]
+[!code-console[Main](the-fix-it-sample-application/samples/sample29.cmd)]
 
 ### InternalError: The server encountered an internal error.
 
 The `New-AzureWebsite` cmdlet returns an internal error when the name is not unique in the azurewebsites.net domain. To resolve the error, use a different value for the name, which is in the Name parameter of *New-AzureWebsiteEnv.ps1*.
 
-[!code[Main](the-fix-it-sample-application/samples/sample30.xml)]
+[!code-console[Main](the-fix-it-sample-application/samples/sample30.cmd)]
 
 ### Restarting the script
 
@@ -362,7 +362,7 @@ To delete these resources, use the following commands. Note that if you delete t
 
 To enable queues, make the following change in the MyFixIt\Web.config file. Under `appSettings`, change the value of `UseQueues` to "true": 
 
-[!code[Main](the-fix-it-sample-application/samples/sample31.xml)]
+[!code-xml[Main](the-fix-it-sample-application/samples/sample31.xml)]
 
 Then deploy the MVC application to an web app in Azure App Service, as described [earlier](#deploybase).
 
@@ -376,17 +376,17 @@ In MyFixIt.WorkerRoler\app.config, under `connectionStrings`, replace the value 
 
 The result should look like the following:
 
-[!code[Main](the-fix-it-sample-application/samples/sample32.xml)]
+[!code-xml[Main](the-fix-it-sample-application/samples/sample32.xml)]
 
 In the same MyFixIt.WorkerRoler\app.config file, under `appSettings`, replace the two placeholder values for the Azure storage account.
 
-[!code[Main](the-fix-it-sample-application/samples/sample33.xml?highlight=2-3)]
+[!code-xml[Main](the-fix-it-sample-application/samples/sample33.xml?highlight=2-3)]
 
 You can get the access key from the portal. See [How To Manage Storage Accounts](https://www.windowsazure.com/en-us/manage/services/storage/how-to-manage-a-storage-account/).
 
 In MyFixItCloudService\ServiceConfiguration.Cloud.cscfg, replace the same two placeholders values for the Azure storage account.
 
-[!code[Main](the-fix-it-sample-application/samples/sample34.xml?highlight=3)]
+[!code-xml[Main](the-fix-it-sample-application/samples/sample34.xml?highlight=3)]
 
 Now you are ready to deploy the cloud service. In Solution Explore, right-click the MyFixItCloudService project and select **Publish**. For more information, see "[Deploy the Application to Azure](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/2-download-and-run/#deployAz)", which is in part 2 of [this tutorial](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/1-overview/).
 

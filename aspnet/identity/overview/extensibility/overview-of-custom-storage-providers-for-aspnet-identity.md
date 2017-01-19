@@ -95,7 +95,7 @@ Again, you only need to implement the classes that you intend to use in your app
 
 In the data access classes, you provide code to perform data operations for your particular persistence mechanism. For example, within the MySQL implementation, the UserTable class contains a method to insert a new record into the Users database table. The variable named `_database` is an instance of the MySQLDatabase class.
 
-[!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample1.xml)]
+[!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample1.cs)]
 
 After creating your data access classes, you must create store classes that call the specific methods in the data access layer.
 
@@ -114,7 +114,7 @@ The Identity framework also provides the [IUser](https://msdn.microsoft.com/en-u
 
 The IdentityUser class implements IUser and contains any additional properties or constructors for users on your web site. The following example shows an IdentityUser class that uses an integer for the key. The Id field is set to **int** to match the value of the generic parameter. 
 
-[!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample2.xml)]
+[!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample2.cs)]
 
  For a complete implementation, see [IdentityUser (MySQL)](https://aspnet.codeplex.com/SourceControl/latest#Samples/Identity/AspNet.Identity.MySQL/IdentityUser.cs). 
 
@@ -131,13 +131,13 @@ The default project template in Visual Studio contains code that assumes many of
 
  The following example shows a simple user store class. The **TUser** generic parameter takes the type of your user class which usually is the IdentityUser class you defined. The **TKey** generic parameter takes the type of your user key. 
 
-[!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample3.xml)]
+[!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample3.cs)]
 
  In this example, the constructor that takes a parameter named *database* of type ExampleDatabase is only an illustration of how to pass in your data access class. For example, in the MySQL implementation, this constructor takes a parameter of type MySQLDatabase. 
 
 Within your UserStore class, you use the data access classes that you created to perform operations. For example, in the MySQL implementation, the UserStore class has the CreateAsync method which uses an instance of UserTable to insert a new record. The **Insert** method on the **userTable** object is the same method that was shown in the previous section. 
 
-[!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample4.xml)]
+[!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample4.cs)]
 
 ### Interfaces to implement when customizing user store
 
@@ -170,7 +170,7 @@ The next image shows more details about the functionality defined in each interf
 
  You implement the interfaces that are needed in your application; such as, the IUserClaimStore, IUserLoginStore, IUserRoleStore, IUserPasswordStore, and IUserSecurityStampStore interfaces as shown below. 
 
-[!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample5.xml)]
+[!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample5.cs)]
 
 For a complete implementation (including all of interfaces), see [UserStore (MySQL)](https://aspnet.codeplex.com/SourceControl/latest#Samples/Identity/AspNet.Identity.MySQL/UserStore.cs).
 
@@ -178,7 +178,7 @@ For a complete implementation (including all of interfaces), see [UserStore (MyS
 
 The Microsoft.AspNet.Identity.EntityFramework namespace contains implementations of the [IdentityUserClaim](https://msdn.microsoft.com/en-us/library/dn613250(v=vs.108).aspx), [IdentityUserLogin](https://msdn.microsoft.com/en-us/library/dn613251(v=vs.108).aspx), and [IdentityUserRole](https://msdn.microsoft.com/en-us/library/dn613252(v=vs.108).aspx) classes. If you are using these features, you may want to create your own versions of these classes and define the properties for your application. However, sometimes it is more efficient to not load these entities into memory when performing basic operations (such as adding or removing a user's claim). Instead, the backend store classes can execute these operations directly on the data source. For example, the UserStore.GetClaimsAsync() method can call the userClaimTable.FindByUserId(user.Id) method to execute a query on that table directly and return a list of claims.
 
-[!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample6.xml)]
+[!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample6.cs)]
 
 <a id="role"></a>
 ## Customize the role class
@@ -195,7 +195,7 @@ The Identity framework also provides the [IRole](https://msdn.microsoft.com/en-u
 
 The following example shows an IdentityRole class that uses an integer for the key. The Id field is set to int to match the value of the generic parameter. 
 
-[!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample7.xml)]
+[!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample7.cs)]
 
  For a complete implementation, see [IdentityRole (MySQL)](https://aspnet.codeplex.com/SourceControl/latest#Samples/Identity/AspNet.Identity.MySQL/IdentityRole.cs). 
 
@@ -208,7 +208,7 @@ You also create a RoleStore class that provides the methods for all data operati
 
 The following example shows a role store class. The TRole generic parameter takes the type of your role class which usually is the IdentityRole class you defined. The TKey generic parameter takes the type of your role key. 
 
-[!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample8.xml)]
+[!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample8.cs)]
 
 - **IRoleStore&lt;TRole&gt;**  
  The     [IRoleStore](https://msdn.microsoft.com/en-us/library/dn468195.aspx) interface defines the methods to implement in your role store class. It contains methods for creating, updating, deleting and retrieving roles.
@@ -231,15 +231,15 @@ You have implemented your new storage provider. Now, you must configure your app
 4. Replace all references to `using Microsoft.AspNet.Identity.EntityFramework;` with a using statement for the namespace of your storage provider.
 5. In the **Startup.Auth.cs** class, change the **ConfigureAuth** method to use a single instance of the appropriate context. 
 
-    [!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample9.xml?highlight=3)]
+    [!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample9.cs?highlight=3)]
 6. In the App\_Start folder, open **IdentityConfig.cs**. In the ApplicationUserManager class, change the **Create** method to return a user manager that uses your customized user store. 
 
-    [!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample10.xml?highlight=3)]
+    [!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample10.cs?highlight=3)]
 7. Replace all references to **ApplicationUser** with **IdentityUser**.
 8. The default project includes some members in user class which are not defined in the IUser interface; such as Email, PasswordHash, and GenerateUserIdentityAsync. If your user class does not have these members, you must either implement them or change the code that uses these members.
 9. If you have created any instances of RoleManager, change that code to use your new RoleStore class.  
 
-    [!code[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample11.xml)]
+    [!code-csharp[Main](overview-of-custom-storage-providers-for-aspnet-identity/samples/sample11.cs)]
 10. The default project is designed for a user class that has a string value for the key. If your user class has a different type for the key (such as an integer), you must change the project to work with your type. See [Change Primary Key for Users in ASP.NET Identity](change-primary-key-for-users-in-aspnet-identity.md).
 11. If needed, add the connection string to the Web.config file.
 

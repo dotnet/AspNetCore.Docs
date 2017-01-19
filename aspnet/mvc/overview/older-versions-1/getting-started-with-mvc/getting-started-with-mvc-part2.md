@@ -43,7 +43,7 @@ Notice in the Solution Explorer on the right that a new file has been created fo
 
 Create two new methods that look like this inside of your new public class HelloWorldController. We'll return a string of HTML directly from our controller as an example.
 
-[!code[Main](getting-started-with-mvc-part2/samples/sample1.xml)]
+[!code-csharp[Main](getting-started-with-mvc-part2/samples/sample1.cs)]
 
 Your Controller is named HelloWorldController and your new Method is called Index. Run your application again, just as before (click the play button or press F5 to do this). Once your browser has started up, change the path in the address bar to `http://localhost:xx/HelloWorld` where xx is whatever number your computer has chosen. Now your browser should look like the screenshot below. In our method above we returned a string passed into a method called "Content." We told the system just returns some HTML, and it did!
 
@@ -63,7 +63,7 @@ Again, /[Controller]/[ActionName]/[Parameters] so Controller is HelloWorld and W
 
 Let's modify our sample slightly so that we can pass some information in from the URL to our controller, for example like this: /HelloWorld/Welcome?name=Scott&amp;numtimes=4. Change your Welcome method to include two parameters and update it like below. Note that we've used the C# optional parameter feature to indicate that the parameter numTimes should default to 1 if it's not passed in.
 
-[!code[Main](getting-started-with-mvc-part2/samples/sample2.xml)]
+[!code-csharp[Main](getting-started-with-mvc-part2/samples/sample2.cs)]
 
 Run your application and visit `http://localhost:xx/HelloWorld/Welcome?name=Scott&numtimes=4` changing the value of name and numtimes as you like. The system automatically mapped the named parameters from your query string in the address bar to parameters in your method.
 

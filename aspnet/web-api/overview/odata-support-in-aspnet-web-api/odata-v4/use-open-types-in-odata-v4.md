@@ -38,13 +38,13 @@ The value of a dynamic property can be a primitive type, complex type, or enumer
 
 Use NuGet Package Manager to install the latest Web API OData libraries. From the Package Manager Console window:
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample1.xml)]
+[!code-console[Main](use-open-types-in-odata-v4/samples/sample1.cmd)]
 
 ## Define the CLR Types
 
 Start by defining the EDM models as CLR types.
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample2.xml)]
+[!code-csharp[Main](use-open-types-in-odata-v4/samples/sample2.cs)]
 
 When the Entity Data Model (EDM) is created,
 
@@ -60,17 +60,17 @@ To create an open type, the CLR type must have a property of type `IDictionary<s
 
 If you use **ODataConventionModelBuilder** to create the EDM, `Press` and `Book` are automatically added as open types, based on the presence of a `IDictionary<string, object>` property.
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample3.xml)]
+[!code-csharp[Main](use-open-types-in-odata-v4/samples/sample3.cs)]
 
 You can also build the EDM explicitly, using **ODataModelBuilder**.
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample4.xml)]
+[!code-csharp[Main](use-open-types-in-odata-v4/samples/sample4.cs)]
 
 ## Add an OData Controller
 
 Next, add an OData controller. For this tutorial, we'll use a simplified controller that just supports GET and POST requests, and uses an in-memory list to store entities.
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample5.xml)]
+[!code-csharp[Main](use-open-types-in-odata-v4/samples/sample5.cs)]
 
 Notice that the first `Book` instance has no dynamic properties. The second `Book` instance has the following dynamic properties:
 
@@ -87,7 +87,7 @@ Also, the `Press` property of that `Book` instance has the following dynamic pro
 
 To get the OData metadata document, send a GET request to `~/$metadata`. The response body should look similar to this:
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample6.xml?highlight=5,21)]
+[!code-xml[Main](use-open-types-in-odata-v4/samples/sample6.xml?highlight=5,21)]
 
 From the metadata document, you can see that:
 
@@ -99,7 +99,7 @@ From the metadata document, you can see that:
 
 To get the book with ISBN equal to "978-0-7356-7942-9", send send a GET request to `~/Books('978-0-7356-7942-9')`. The response body should look similar to the following. (Indented to make it more readable.)
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample7.xml?highlight=8-13,15-23)]
+[!code-console[Main](use-open-types-in-odata-v4/samples/sample7.cmd?highlight=8-13,15-23)]
 
 Notice that the dynamic properties are included inline with the declared properties.
 
@@ -109,7 +109,7 @@ To add a Book entity, send a POST request to `~/Books`. The client can set dynam
 
 Here is an example request. Note the "Price" and "Published" properties.
 
-[!code[Main](use-open-types-in-odata-v4/samples/sample8.xml?highlight=10)]
+[!code-console[Main](use-open-types-in-odata-v4/samples/sample8.cmd?highlight=10)]
 
 If you set a breakpoint in the controller method, you can see that Web API added these properties to the `Properties` dictionary.
 

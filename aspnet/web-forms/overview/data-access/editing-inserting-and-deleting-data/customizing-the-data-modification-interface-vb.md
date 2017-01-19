@@ -45,7 +45,7 @@ For brevity, for this particular overload I've omitted the business rule check t
 The following code shows the new `UpdateProduct` overload in the `ProductsBLL` class:
 
 
-[!code[Main](customizing-the-data-modification-interface-vb/samples/sample1.xml)]
+[!code-vb[Main](customizing-the-data-modification-interface-vb/samples/sample1.vb)]
 
 ## Step 2: Crafting the Editable GridView
 
@@ -62,7 +62,7 @@ As we've seen throughout the data modification tutorials, the declarative syntax
 After this change, the ObjectDataSource's declarative markup should look like the following:
 
 
-[!code[Main](customizing-the-data-modification-interface-vb/samples/sample2.xml)]
+[!code-aspx[Main](customizing-the-data-modification-interface-vb/samples/sample2.aspx)]
 
 Note that the `OldValuesParameterFormatString` property has been removed and that there is a `Parameter` in the `UpdateParameters` collection for each of the input parameters expected by our `UpdateProduct` overload.
 
@@ -81,7 +81,7 @@ After these changes, the Designer will look similar to Figure 3, with the GridVi
 **Figure 3**: Remove the Unneeded Fields from the GridView ([Click to view full-size image](customizing-the-data-modification-interface-vb/_static/image9.png))
 
 
-[!code[Main](customizing-the-data-modification-interface-vb/samples/sample3.xml)]
+[!code-aspx[Main](customizing-the-data-modification-interface-vb/samples/sample3.aspx)]
 
 At this point the GridView's read-only behavior is complete. When viewing the data, each product is rendered as a row in the GridView, showing the product's name, category, supplier, and discontinued status.
 
@@ -112,7 +112,7 @@ To provide this behavior, we need to convert the `SupplierName` and `CategoryNam
 Start by converting the `SupplierName` and `CategoryName` BoundFields into TemplateFields by: clicking on the Edit Columns link from the GridView's smart tag; selecting the BoundField from the list in the lower left; and clicking the "Convert this field into a TemplateField" link. The conversion process will create a TemplateField with both an `ItemTemplate` and an `EditItemTemplate`, as shown in the declarative syntax below:
 
 
-[!code[Main](customizing-the-data-modification-interface-vb/samples/sample4.xml)]
+[!code-aspx[Main](customizing-the-data-modification-interface-vb/samples/sample4.aspx)]
 
 Since the BoundField was marked as read-only, both the `ItemTemplate` and `EditItemTemplate` contain a Label Web control whose `Text` property is bound to the applicable data field (`CategoryName`, in the syntax above). We need to modify the `EditItemTemplate`, replacing the Label Web control with a DropDownList control.
 
@@ -151,7 +151,7 @@ Finally, configure the DropDownList's settings such that the `CategoryName` fiel
 After making these changes the declarative markup for the `EditItemTemplate` in the `CategoryName` TemplateField will include both a DropDownList and an ObjectDataSource:
 
 
-[!code[Main](customizing-the-data-modification-interface-vb/samples/sample5.xml)]
+[!code-aspx[Main](customizing-the-data-modification-interface-vb/samples/sample5.aspx)]
 
 > [!NOTE] The DropDownList in the `EditItemTemplate` must have its view state enabled. We will soon add databinding syntax to the DropDownList's declarative syntax and databinding commands like `Eval()` and `Bind()` can only appear in controls whose view state is enabled.
 
@@ -200,7 +200,7 @@ In order to support `NULL` `CategoryID` and `SupplierID` values, we need to add 
 Start by setting both DropDownLists' `AppendDataBoundItems` property to `True`. Next, add the `NULL` `ListItem` by adding the following `<asp:ListItem>` element to each DropDownList so that the declarative markup looks like:
 
 
-[!code[Main](customizing-the-data-modification-interface-vb/samples/sample6.xml)]
+[!code-aspx[Main](customizing-the-data-modification-interface-vb/samples/sample6.aspx)]
 
 I've chosen to use "(None)" as the Text value for this `ListItem`, but you can change it to also be a blank string if you'd like.
 
@@ -238,7 +238,7 @@ We still need to assign the RadioButtonList controls' `SelectedValue` properties
 After adding the two RadioButtonLists and configuring them, the `Discontinued` TemplateField's declarative markup should look like:
 
 
-[!code[Main](customizing-the-data-modification-interface-vb/samples/sample7.xml)]
+[!code-aspx[Main](customizing-the-data-modification-interface-vb/samples/sample7.aspx)]
 
 With these changes, the `Discontinued` column has been transformed from a list of checkboxes to a list of radio button pairs (see Figure 14). When editing a product, the appropriate radio button is selected and the product's discontinued status can be updated by selecting the other radio button and clicking Update.
 

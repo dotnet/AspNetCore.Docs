@@ -120,7 +120,7 @@ In this task, you will go through the steps of enabling **Entity Framework Code 
 3. From the **Tools** menu in Visual Studio, select **Library Package Manager**, and then click **Package Manager Console**.
 4. In the **Package Manager Console**, enter the following command and then press **Enter**. An initial migration based on the existing model will be created.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample1.xml)]
+    [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample1.ps1)]
 
     ![Enabling Migrations](maintainable-azure-websites-managing-change-and-scale/_static/image1.png "Enabling Migrations")
 
@@ -134,7 +134,7 @@ In this task, you will go through the steps of enabling **Entity Framework Code 
 
     > [!NOTE] Make sure that there is no database named &quot;GeekQuizProd&quot; in your LocalDB instance.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample2.xml)]
+    [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample2.ps1)]
 
     ![Adding base schema migration](maintainable-azure-websites-managing-change-and-scale/_static/image2.png "Adding base schema migration")
 
@@ -143,7 +143,7 @@ In this task, you will go through the steps of enabling **Entity Framework Code 
     > [!NOTE] **Add-Migration** will scaffold the next migration based on changes you have made to your model since the last migration was created. In this case, as it is the first migration of the project, it will add the scripts to create all the tables defined in the **TriviaContext** class.
 7. Execute the migration to update the database by running the following command. For this command you will specify the **Verbose** flag to view the SQL statements being applied to the target database.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample3.xml)]
+    [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample3.ps1)]
 
     ![Creating initial database](maintainable-azure-websites-managing-change-and-scale/_static/image3.png "Creating initial database")
 
@@ -179,10 +179,10 @@ In this task, you will use **Entity Framework Code First Migrations** to detect 
 1. In **Solution Explorer**, double-click the **TriviaQuestion.cs** file located inside the **Models** folder.
 2. Add a new property named **Hint**, as shown in the following code snippet.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample4.xml)]
+    [!code-csharp[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample4.cs)]
 3. In the **Package Manager Console**, enter the following command and then press **Enter**. A new migration will be created reflecting the change in our model.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample5.xml)]
+    [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample5.ps1)]
 
     ![Add-Migration](maintainable-azure-websites-managing-change-and-scale/_static/image8.png "Add-Migration")
 
@@ -196,7 +196,7 @@ In this task, you will use **Entity Framework Code First Migrations** to detect 
     > When the Database Migration updates the database, it will run all migrations in the timestamp order, and only those that have not been used since the last update (The \_MigrationHistory table keeps track of which migrations have been applied). The **Up** method of all migrations will be called and will make the changes we have specified to the database. If we decide to go back to a previous migration, the **Down** method will be called to redo the changes in a reverse order.
 4. In the **Package Manager Console**, enter the following command and then press **Enter**.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample6.xml)]
+    [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample6.ps1)]
 5. The output of the **Update-Database** command generated an **Alter Table** SQL statement to add a new column to the **TriviaQuestions** table, as shown in the image below.
 
     ![Add column SQL statement generated](maintainable-azure-websites-managing-change-and-scale/_static/image9.png "Add column SQL statement generated")
@@ -209,13 +209,13 @@ In this task, you will use **Entity Framework Code First Migrations** to detect 
     *Showing the new Hint Column*
 7. Back in the **TriviaQuestion.cs** editor, add a **StringLength** constraint to the *Hint* property, as shown in the following code snippet.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample7.xml)]
+    [!code-csharp[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample7.cs)]
 8. In the **Package Manager Console**, enter the following command and then press **Enter**.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample8.xml)]
+    [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample8.ps1)]
 9. In the **Package Manager Console**, enter the following command and then press **Enter**.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample9.xml)]
+    [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample9.ps1)]
 10. The output of the **Update-Database** command generated an **Alter Table** SQL statement to update the *hint* column type of the **TriviaQuestions** table, as shown in the image below.
 
     ![Alter column SQL statement generated](maintainable-azure-websites-managing-change-and-scale/_static/image11.png "Alter column SQL statement generated")
@@ -342,7 +342,7 @@ In this task, you will use the **Entity Framework Code First Migrations** to cre
 9. Switch back to Visual Studio.
 10. In the **Package Manager Console**, execute the following command replacing *[YOUR-CONNECTION-STRING]* placeholder with the connection string you copied from Azure
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample10.xml)]
+    [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample10.ps1)]
 
     ![Update database targeting Windows Azure SQL Database](maintainable-azure-websites-managing-change-and-scale/_static/image30.png "Update database targeting Windows Azure SQL Database")
 
@@ -392,14 +392,14 @@ In this task, you will enable staged publishing in your web app. Then, you will 
     *Copying the Git URL value*
 8. Open a new **Git Bash** console and execute the following commands. Update the *[YOUR-APPLICATION-PATH]* placeholder with the path to the **GeekQuiz** solution, located in the **Source\Ex1-DeployingWebSiteToStaging\Begin** folder of this lab.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample11.xml)]
+    [!code-console[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample11.cmd)]
 
     ![Git initialization and first commit](maintainable-azure-websites-managing-change-and-scale/_static/image38.png)
 
     *Git initialization and first commit*
 9. Run the following command to push your web app to the remote **Git** repository. Replace the placeholder with the URL you obtained from the management portal. You will be prompted for your deployment password.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample12.xml)]
+    [!code-console[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample12.cmd)]
 
     ![Pushing to Windows Azure](maintainable-azure-websites-managing-change-and-scale/_static/image39.png)
 
@@ -457,7 +457,7 @@ Now that you have verified that the web app is working correctly in the staging 
 
     > [!NOTE] In the following exercises, you will push changes to the production site instead of staging just for the simplicity of the lab. In a real-world scenario, it is recommended to verify the changes in the staging environment before promoting to production.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample13.xml)]
+    [!code-console[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample13.cmd)]
 
 <a id="Exercise3"></a>
 ### Exercise 3: Performing Deployment Rollback in Production
@@ -492,7 +492,7 @@ In this task, you will refactor a small piece of code of the **TriviaController*
     *Specifying the name for the extracted method*
 6. The selected code is then extracted into the **MatchesOption** method. The resulting code is shown in the following snippet.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample14.xml)]
+    [!code-csharp[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample14.cs)]
 7. Press **CTRL + S** to save the changes.
 
 <a id="Ex3Task2"></a>
@@ -503,7 +503,7 @@ You will now push the changes you made in the previous task to the repository, w
 1. Open a new **Git Bash** console to deploy the updated application to Azure App Service.
 2. Execute the following commands to push the changes to Azure. Update the *[YOUR-APPLICATION-PATH]* placeholder with the path to the **GeekQuiz** solution. You will be prompted for your deployment password.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample15.xml)]
+    [!code-console[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample15.cmd)]
 
     ![Pushing refactored code to Azure](maintainable-azure-websites-managing-change-and-scale/_static/image50.png)
 
@@ -550,7 +550,7 @@ You will now push the changes you made in the previous task to the repository, w
 
     > [!NOTE] These commands create a new commit that undoes all changes in the Git repository that were made in the bad commit. Azure will then redeploy the application using the new commit.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample16.xml)]
+    [!code-console[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample16.cmd)]
 
 <a id="Exercise4"></a>
 ### Exercise 4: Scaling Using Azure Storage
@@ -666,14 +666,14 @@ In this task, you will configure the **GeekQuiz** solution to consume the image 
 
     (Code Snippet - *WebSitesInProduction - Ex4 - UrlRewriteRule*)
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample17.xml)]
+    [!code-xml[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample17.xml)]
 
     > [!NOTE] URL rewriting is the process of intercepting an incoming Web request and redirecting the request to a different resource. The URL rewriting rules tells the rewriting engine when a request needs to be redirected, and where should they be redirected. A rewriting rule is composed of two strings: the pattern to look for in the requested URL (usually, using regular expressions), and the string to replace the pattern with, if found. For more information, see [URL Rewriting in ASP.NET](https://msdn.microsoft.com/en-us/library/ms972974.aspx).
 3. Press **CTRL + S** to save the changes.
 4. Open a new **Git Bash** console to deploy the updated application to Azure App Service.
 5. Execute the following commands to push the changes to Azure. Update the *[YOUR-APPLICATION-PATH]* placeholder with the path to the **GeekQuiz** solution. You will be prompted for your deployment password.
 
-    [!code[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample18.xml)]
+    [!code-console[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample18.cmd)]
 
     ![Deploying update to Azure](maintainable-azure-websites-managing-change-and-scale/_static/image73.png)
 

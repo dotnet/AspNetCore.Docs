@@ -28,27 +28,27 @@ The Accordion control in the AJAX Control Toolkit provides multiple panes and al
 
 The Accordion control exposes all important properties to server-side code. Among other things, the `Panes` property grants access to the collection of panes that make up the Accordion. Every pane there is of type `AccordionPane`. It is therefore trivial to create such a pane:
 
-[!code[Main](dynamically-adding-an-accordion-pane-cs/samples/sample1.xml)]
+[!code-csharp[Main](dynamically-adding-an-accordion-pane-cs/samples/sample1.cs)]
 
 The `HeaderContainer` property of `AccordionPane` provides access to the ASP.NET controls within the header section of the pane; the `ContentContainer` property of `AccordionPane` does the same for the content section of the pane. This allows ASP.NET code to add content to the panes:
 
-[!code[Main](dynamically-adding-an-accordion-pane-cs/samples/sample2.xml)]
+[!code-csharp[Main](dynamically-adding-an-accordion-pane-cs/samples/sample2.cs)]
 
 Finally, the pane(s) must be added to the `Panes` collection of the Accordion:
 
-[!code[Main](dynamically-adding-an-accordion-pane-cs/samples/sample3.xml)]
+[!code-csharp[Main](dynamically-adding-an-accordion-pane-cs/samples/sample3.cs)]
 
 Here is a complete server-side code that adds two panes to an Accordion control:
 
-[!code[Main](dynamically-adding-an-accordion-pane-cs/samples/sample4.xml)]
+[!code-aspx[Main](dynamically-adding-an-accordion-pane-cs/samples/sample4.aspx)]
 
 The only missing element is the Accordion itself, which depends on the presence of the ASP.NET `ScriptManager` control:
 
-[!code[Main](dynamically-adding-an-accordion-pane-cs/samples/sample5.xml)]
+[!code-aspx[Main](dynamically-adding-an-accordion-pane-cs/samples/sample5.aspx)]
 
 To finish the example, the two CSS classes referenced in the Accordion control provide style information for the browser:
 
-[!code[Main](dynamically-adding-an-accordion-pane-cs/samples/sample6.xml)]
+[!code-css[Main](dynamically-adding-an-accordion-pane-cs/samples/sample6.css)]
 
 
 [![The data in the accordion was dynamically added by server-side code](dynamically-adding-an-accordion-pane-cs/_static/image2.png)](dynamically-adding-an-accordion-pane-cs/_static/image1.png)

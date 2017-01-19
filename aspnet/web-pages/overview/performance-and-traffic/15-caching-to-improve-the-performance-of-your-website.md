@@ -53,7 +53,7 @@ ASP.NET includes a `WebCache` helper that makes it easy to add caching to your s
 1. Add a new page named *WebCache.cshtml* to the website.
 2. Add the following code and markup to the page:
 
-    [!code[Main](15-caching-to-improve-the-performance-of-your-website/samples/sample1.xml)]
+    [!code-cshtml[Main](15-caching-to-improve-the-performance-of-your-website/samples/sample1.cshtml)]
 
     When you cache data, you put it into the cache using a name this is unique across the website. In this case, you'll use a cache entry named `CachedTime`. This is the `cacheItemKey` shown in the code example.
 

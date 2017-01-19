@@ -59,7 +59,7 @@ Let s also add the user interface for deleting the selected products. Add a Butt
 After making these changes, the GridView, ObjectDataSource, Button, and Label s declarative markup should similar to the following:
 
 
-[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample1.xml)]
+[!code-aspx[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample1.aspx)]
 
 Take a moment to view the page in a browser (see Figure 5). At this point you should see the name, category, and price of the first ten products.
 
@@ -98,7 +98,7 @@ The GridView s [`Rows` property](https://msdn.microsoft.com/en-us/library/system
 Create an event handler for the `DeleteSelectedProducts` Button Web control s `Click` event and add the following code:
 
 
-[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample2.xml)]
+[!code-vb[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample2.vb)]
 
 The `Rows` property returns a collection of `GridViewRow` instances that makeup the GridView s data rows. The `For Each` loop here enumerates this collection. For each `GridViewRow` object, the row s CheckBox is programmatically accessed using `row.FindControl("controlID")`. If the CheckBox is checked, the row s corresponding `ProductID` value is retrieved from the `DataKeys` collection. In this exercise, we simply display an informative message in the `DeleteResults` Label, although in a working application we d instead make a call to the `ProductsBLL` class s `DeleteProduct(productID)` method.
 
@@ -117,17 +117,17 @@ If a user wants to delete all products on the current page, they must check each
 Add two Button Web controls to the page, placing them above the GridView. Set the first one s `ID` to `CheckAll` and its `Text` property to Check All ; set the second one s `ID` to `UncheckAll` and its `Text` property to Uncheck All .
 
 
-[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample3.xml)]
+[!code-aspx[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample3.aspx)]
 
 Next, create a method in the code-behind class named `ToggleCheckState(checkState)` that, when invoked, enumerates the `Products` GridView s `Rows` collection and sets each CheckBox s `Checked` property to the value of the passed in *checkState* parameter.
 
 
-[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample4.xml)]
+[!code-vb[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample4.vb)]
 
 Next, create `Click` event handlers for the `CheckAll` and `UncheckAll` buttons. In `CheckAll` s event handler, simply call `ToggleCheckState(True)`; in `UncheckAll`, call `ToggleCheckState(False)`.
 
 
-[!code[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample5.xml)]
+[!code-vb[Main](adding-a-gridview-column-of-checkboxes-vb/samples/sample5.vb)]
 
 With this code, clicking the Check All button causes a postback and checks all of the checkboxes in the GridView. Likewise, clicking Uncheck All unselects all checkboxes. Figure 9 shows the screen after the Check All button has been checked.
 

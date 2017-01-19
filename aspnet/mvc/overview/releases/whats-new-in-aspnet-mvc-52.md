@@ -61,10 +61,10 @@ With the new attribute routing extensibility of IDirectRouteProvider, a user cou
 
 1. Support Inheritance of attribute routes. For example, in the following scenario Blog and Store controllers are using an attribute route convention that is defined by the BaseController. 
 
-    [!code[Main](whats-new-in-aspnet-mvc-52/samples/sample1.xml)]
+    [!code-csharp[Main](whats-new-in-aspnet-mvc-52/samples/sample1.cs)]
 2. Automatically generate route names for attribute routes. 
 
-    [!code[Main](whats-new-in-aspnet-mvc-52/samples/sample2.xml)]
+    [!code-csharp[Main](whats-new-in-aspnet-mvc-52/samples/sample2.cs)]
 3. Modify route prefixes in one central place before the routes get added to the route table.
 4. Filter out the controllers on which you want the attribute routing to look for. We hope to blog on 3 and 4 soon.
 

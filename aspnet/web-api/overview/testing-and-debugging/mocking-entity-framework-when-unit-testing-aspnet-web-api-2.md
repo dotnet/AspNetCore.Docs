@@ -75,7 +75,7 @@ After creating the application, you will see it contains two projects - **StoreA
 
 In your StoreApp project, add a class file to the **Models** folder named **Product.cs**. Replace the contents of the file with the following code.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample1.xml)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample1.cs)]
 
 Build the solution.
 
@@ -96,7 +96,7 @@ Set the following values:
 
 Click **Add** to create the controller with automatically-generated code. The code includes methods for creating, retrieving, updating and deleting instances of the Product class. The following code shows the method for add a Product. Notice that the method returns an instance of **IHttpActionResult**.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample2.xml)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample2.cs)]
 
 IHttpActionResult is one of the new features in Web API 2, and it simplifies unit test development.
 
@@ -111,7 +111,7 @@ Right-click the **Models** folder, and add a new interface named **IStoreAppCont
 
 Replace the code with the following code.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample3.xml)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample3.cs)]
 
 Open the StoreAppContext.cs file and make the following highlighted changes. The important changes to note are:
 
@@ -119,15 +119,15 @@ Open the StoreAppContext.cs file and make the following highlighted changes. The
 - MarkAsModified method is implemented
 
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample4.xml?highlight=6,14-17)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample4.cs?highlight=6,14-17)]
 
 Open the ProductController.cs file. Change the existing code to match the highlighted code. These changes break the dependency on StoreAppContext and enable other classes to pass in a different object for the context class. This change will enable you to pass in a test context during unit tests.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample5.xml?highlight=4,7-12)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample5.cs?highlight=4,7-12)]
 
 There is one more change you must make in ProductController. In the **PutProduct** method, replace the line that sets the entity state to modified with a call to the MarkAsModified method.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample6.xml?highlight=14-15)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample6.cs?highlight=14-15)]
 
 Build the solution.
 
@@ -157,15 +157,15 @@ Close the Manage NuGet Packages window.
 
 Add a class named **TestDbSet** to the test project. This class serves as the base class for your test data set. Replace the code with the following code.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample7.xml)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample7.cs)]
 
 Add a class named **TestProductDbSet** to the test project which contains the following code.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample8.xml)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample8.cs)]
 
 Add a class named **TestStoreAppContext** and replace the existing code with the following code.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample9.xml)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample9.cs)]
 
 <a id="tests"></a>
 ## Create tests
@@ -174,7 +174,7 @@ By default, your test project includes an empty test file named **UnitTest1.cs**
 
 Add a class named **TestProductController** to the test project. Replace the code with the following code.
 
-[!code[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample10.xml)]
+[!code-csharp[Main](mocking-entity-framework-when-unit-testing-aspnet-web-api-2/samples/sample10.cs)]
 
 <a id="runtests"></a>
 ## Run tests

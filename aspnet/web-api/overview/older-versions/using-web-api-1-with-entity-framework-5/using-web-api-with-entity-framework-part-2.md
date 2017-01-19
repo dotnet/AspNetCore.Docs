@@ -41,7 +41,7 @@ To create each class, right-click the Models folder in Solution Explorer. From t
 
 Add a `Product` class with the following implementation:
 
-[!code[Main](using-web-api-with-entity-framework-part-2/samples/sample1.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-2/samples/sample1.cs)]
 
 By convention, Entity Framework uses the `Id` property as the primary key and maps it to an identity column in the database table. When you create a new `Product` instance, you won't set a value for `Id`, because the database generates the value.
 
@@ -49,11 +49,11 @@ The **ScaffoldColumn** attribute tells ASP.NET MVC to skip the `Id` property whe
 
 Add the `Order` class:
 
-[!code[Main](using-web-api-with-entity-framework-part-2/samples/sample2.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-2/samples/sample2.cs)]
 
 Add the `OrderDetail` class:
 
-[!code[Main](using-web-api-with-entity-framework-part-2/samples/sample3.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-2/samples/sample3.cs)]
 
 ## Foreign Key Relations
 
@@ -73,7 +73,7 @@ Serialization by value creates a problem if an object graph contains circular re
 
 In Solution Explorer, expand the App\_Start folder and open the file named WebApiConfig.cs. Add the following code to the `WebApiConfig` class:
 
-[!code[Main](using-web-api-with-entity-framework-part-2/samples/sample4.xml?highlight=11)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-2/samples/sample4.cs?highlight=11)]
 
 This code sets the JSON formatter to preserve object references, and removes the XML formatter from the pipeline entirely. (You can configure the XML formatter to preserve object references, but it's a little more work, and we only need JSON for this application. For more information, see [Handling Circular Object References](../../formats-and-model-binding/json-and-xml-serialization.md#handling_circular_object_references).)
 

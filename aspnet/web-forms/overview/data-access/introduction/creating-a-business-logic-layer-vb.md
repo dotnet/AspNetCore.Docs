@@ -66,7 +66,7 @@ For the `ProductsBLL` class we need to add a total of seven methods:
 ProductsBLL.vb
 
 
-[!code[Main](creating-a-business-logic-layer-vb/samples/sample1.xml)]
+[!code-vb[Main](creating-a-business-logic-layer-vb/samples/sample1.vb)]
 
 The methods that simply return data `GetProducts`, `GetProductByProductID`, `GetProductsByCategoryID`, and `GetProductBySuppliersID` are fairly straightforward as they simply call down into the DAL. While in some scenarios there may be business rules that need to be implemented at this level (such as authorization rules based on the currently logged on user or the role to which the user belongs), we'll simply leave these methods as-is. For these methods, then, the BLL serves merely as a proxy through which the presentation layer accesses the underlying data from the Data Access Layer.
 
@@ -105,7 +105,7 @@ With the `ProductsBLL` class complete, we still need to add the classes for work
 The one method worth noting is the `SuppliersBLL` class's `UpdateSupplierAddress` method. This method provides an interface for updating just the supplier's address information. Internally, this method reads in the `SupplierDataRow` object for the specified `supplierID` (using `GetSupplierBySupplierID`), sets its address-related properties, and then calls down into the `SupplierDataTable`'s `Update` method. The `UpdateSupplierAddress` method follows:
 
 
-[!code[Main](creating-a-business-logic-layer-vb/samples/sample2.xml)]
+[!code-vb[Main](creating-a-business-logic-layer-vb/samples/sample2.vb)]
 
 Refer to this article's download for my complete implementation of the BLL classes.
 
@@ -114,12 +114,12 @@ Refer to this article's download for my complete implementation of the BLL class
 In the first tutorial we saw examples of working directly with the Typed DataSet programmatically, but with the addition of our BLL classes, the presentation tier should work against the BLL instead. In the `AllProducts.aspx` example from the first tutorial, the `ProductsTableAdapter` was used to bind the list of products to a GridView, as shown in the following code:
 
 
-[!code[Main](creating-a-business-logic-layer-vb/samples/sample3.xml)]
+[!code-vb[Main](creating-a-business-logic-layer-vb/samples/sample3.vb)]
 
 To use the new BLL classes, all that needs to be changed is the first line of code simply replace the `ProductsTableAdapter` object with a `ProductBLL` object:
 
 
-[!code[Main](creating-a-business-logic-layer-vb/samples/sample4.xml)]
+[!code-vb[Main](creating-a-business-logic-layer-vb/samples/sample4.vb)]
 
 The BLL classes can also be accessed declaratively (as can the Typed DataSet) by using the ObjectDataSource. We'll be discussing the ObjectDataSource in greater detail in the following tutorials.
 
@@ -161,7 +161,7 @@ Next, create an event handler for the `ColumnChanging` event that ensures that t
 ProductsDataTable.ColumnChanging.vb
 
 
-[!code[Main](creating-a-business-logic-layer-vb/samples/sample5.xml)]
+[!code-vb[Main](creating-a-business-logic-layer-vb/samples/sample5.vb)]
 
 ## Step 4: Adding Custom Business Rules to the BLL's Classes
 
@@ -178,14 +178,14 @@ Imagine that our business rules dictate that a product could not be marked disco
 To enforce this business rule in the `UpdateProducts` method we'd start by checking if `Discontinued` was set to `True` and, if so, we'd call `GetProductsBySupplierID` to determine how many products we purchased from this product's supplier. If only one product is purchased from this supplier, we throw an `ApplicationException`.
 
 
-[!code[Main](creating-a-business-logic-layer-vb/samples/sample6.xml)]
+[!code-vb[Main](creating-a-business-logic-layer-vb/samples/sample6.vb)]
 
 ## Responding to Validation Errors in the Presentation Tier
 
 When calling the BLL from the presentation tier we can decide whether to attempt to handle any exceptions that might be raised or let them bubble up to ASP.NET (which will raise the `HttpApplication`'s `Error` event). To handle an exception when working with the BLL programmatically, we can use a [Try...Catch](https://msdn.microsoft.com/en-us/library/fk6t46tz%28VS.80%29.aspx) block, as the following example shows:
 
 
-[!code[Main](creating-a-business-logic-layer-vb/samples/sample7.xml)]
+[!code-vb[Main](creating-a-business-logic-layer-vb/samples/sample7.vb)]
 
 As we'll see in future tutorials, handling exceptions that bubble up from the BLL when using a data Web control for inserting, updating, or deleting data can be handled directly in an event handler as opposed to having to wrap code in `Try...Catch` blocks.
 

@@ -52,7 +52,7 @@ In the **New Project** dialog, select the **Empty** template. Under &quot;Add fo
 
 From the **Tools** menu, select **NuGet Package Manager** &gt; **Package Manager Console**. In the Package Manager Console window, type:
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample1.xml)]
+[!code-console[Main](create-an-odata-v4-endpoint/samples/sample1.cmd)]
 
 This command installs the latest OData NuGet packages.
 
@@ -69,7 +69,7 @@ In Solution Explorer, right-click the Models folder. From the context menu, sele
 
 Name the class `Product`. In the Product.cs file, replace the boilerplate code with the following:
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample2.xml)]
+[!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample2.cs)]
 
 The `Id` property is the entity key. Clients can query entities by key. For example, to get the product with ID of 5, the URI is `/Products(5)`. The `Id` property will also be the primary key in the back-end database.
 
@@ -82,17 +82,17 @@ For this tutorial, we'll use Entity Framework (EF) Code First to create the back
 
 First, install the NuGet package for EF. From the **Tools** menu, select **NuGet Package Manager** &gt; **Package Manager Console**. In the Package Manager Console window, type:
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample3.xml)]
+[!code-console[Main](create-an-odata-v4-endpoint/samples/sample3.cmd)]
 
 Open the Web.config file, and add the following section inside the **configuration** element, after the **configSections** element.
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample4.xml?highlight=6)]
+[!code-xml[Main](create-an-odata-v4-endpoint/samples/sample4.xml?highlight=6)]
 
 This setting adds a connection string for a LocalDB database. This database will be used when you run the app locally.
 
 Next, add a class named `ProductsContext` to the Models folder:
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample5.xml)]
+[!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample5.cs)]
 
 In the constructor, `"name=ProductsContext"` gives the name of the connection string.
 
@@ -100,11 +100,11 @@ In the constructor, `"name=ProductsContext"` gives the name of the connection st
 
 Open the file App\_Start/WebApiConfig.cs. Add the following **using** statements:
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample6.xml)]
+[!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample6.cs)]
 
 Then add the following code to the **Register** method:
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample7.xml)]
+[!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample7.cs)]
 
 This code does two things:
 
@@ -128,7 +128,7 @@ In Solution Explorer, right-click the Controllers folder and select **Add** &gt;
 
 Replace the boilerplate code in ProductsController.cs with the following.
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample8.xml)]
+[!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample8.cs)]
 
 The controller uses the `ProductsContext` class to access the database using EF. Notice that the controller overrides the **Dispose** method to dispose of the **ProductsContext**.
 
@@ -138,7 +138,7 @@ This is the starting point for the controller. Next, we'll add methods for all o
 
 Add the following methods to `ProductsController`.
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample9.xml)]
+[!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample9.cs)]
 
 The parameterless version of the `Get` method returns the entire Products collection. The `Get` method with a *key* parameter looks up a product by its key (in this case, the `Id` property).
 
@@ -148,7 +148,7 @@ The **[EnableQuery]** attribute enables clients to modify the query, by using qu
 
 To enable clients to add a new product to the database, add the following method to `ProductsController`.
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample10.xml)]
+[!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample10.cs)]
 
 ## Updating an Entity
 
@@ -161,7 +161,7 @@ The disadvantage of PUT is that the client must send values for all of the prope
 
 In any case, here is the code for both PATCH and PUT methods:
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample11.xml)]
+[!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample11.cs)]
 
 In the case of PATCH, the controller uses the **Delta&lt;T&gt;** type to track the changes.
 
@@ -169,4 +169,4 @@ In the case of PATCH, the controller uses the **Delta&lt;T&gt;** type to track t
 
 To enable clients to delete a product from the database, add the following method to `ProductsController`.
 
-[!code[Main](create-an-odata-v4-endpoint/samples/sample12.xml)]
+[!code-csharp[Main](create-an-odata-v4-endpoint/samples/sample12.cs)]

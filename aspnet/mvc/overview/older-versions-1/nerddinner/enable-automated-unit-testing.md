@@ -66,13 +66,13 @@ When we click the "ok" button Visual Studio will add (and open) a DinnerTest.cs 
 
 The default Visual Studio unit test template has a bunch of boiler-plate code within it that I find a little messy. Let's clean it up to just contain the code below:
 
-[!code[Main](enable-automated-unit-testing/samples/sample1.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample1.cs)]
 
 The [TestClass] attribute on the DinnerTest class above identifies it as a class that will contain tests, as well as optional test initialization and teardown code. We can define tests within it by adding public methods that have a [TestMethod] attribute on them.
 
 Below are the first of two tests we'll add that exercise our Dinner class. The first test verifies that our Dinner is invalid if a new Dinner is created without all properties being set correctly. The second test verifies that our Dinner is valid when a Dinner has all properties set with valid values:
 
-[!code[Main](enable-automated-unit-testing/samples/sample2.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample2.cs)]
 
 You'll notice above that our test names are very explicit (and somewhat verbose). We are doing this because we might end up creating hundreds or thousands of small tests, and we want to make it easy to quickly determine the intent and behavior of each of them (especially when we are looking through a list of failures in a test runner). The test names should be named after the functionality they are testing. Above we are using a "Noun\_Should\_Verb" naming pattern.
 
@@ -104,7 +104,7 @@ Let's now create some unit tests that verify our DinnersController functionality
 
 We'll create two test methods that verify the Details() action method on the DinnersController. The first will verify that a View is returned when an existing Dinner is requested. The second will verify that a "NotFound" view is returned when a non-existent Dinner is requested:
 
-[!code[Main](enable-automated-unit-testing/samples/sample3.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample3.cs)]
 
 The above code compiles clean. When we run the tests, though, they both fail:
 
@@ -125,7 +125,7 @@ Let's look at a design pattern called "dependency injection" that can help us wo
 
 Right now DinnersController is tightly "coupled" to the DinnerRepository class. "Coupling" refers to a situation where a class explicitly relies on another class in order to work:
 
-[!code[Main](enable-automated-unit-testing/samples/sample4.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample4.cs)]
 
 Because the DinnerRepository class requires access to a database, the tightly coupled dependency the DinnersController class has on the DinnerRepository ends up requiring us to have a database in order for the DinnersController action methods to be tested.
 
@@ -149,11 +149,11 @@ This will launch the "Extract Interface" dialog and prompt us for the name of th
 
 When we click the "ok" button, Visual Studio will add a new IDinnerRepository interface to our application:
 
-[!code[Main](enable-automated-unit-testing/samples/sample5.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample5.cs)]
 
 And our existing DinnerRepository class will be updated so that it implements the interface:
 
-[!code[Main](enable-automated-unit-testing/samples/sample6.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample6.cs)]
 
 #### Updating DinnersController to support constructor injection
 
@@ -161,11 +161,11 @@ We'll now update the DinnersController class to use the new interface.
 
 Currently DinnersController is hard-coded such that its "dinnerRepository" field is always a DinnerRepository class:
 
-[!code[Main](enable-automated-unit-testing/samples/sample7.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample7.cs)]
 
 We'll change it so that the "dinnerRepository" field is of type IDinnerRepository instead of DinnerRepository. We'll then add two public DinnersController constructors. One of the constructors allows an IDinnerRepository to be passed as an argument. The other is a default constructor that uses our existing DinnerRepository implementation:
 
-[!code[Main](enable-automated-unit-testing/samples/sample8.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample8.cs)]
 
 Because ASP.NET MVC by default creates controller classes using default constructors, our DinnersController at runtime will continue to use the DinnerRepository class to perform data access.
 
@@ -185,11 +185,11 @@ We'll update the code so that the FakeDinnerRepository class implements the IDin
 
 This will cause Visual Studio to automatically add all of the IDinnerRepository interface members to our FakeDinnerRepository class with default "stub out" implementations:
 
-[!code[Main](enable-automated-unit-testing/samples/sample9.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample9.cs)]
 
 We can then update the FakeDinnerRepository implementation to work off of an in-memory List&lt;Dinner&gt; collection passed to it as a constructor argument:
 
-[!code[Main](enable-automated-unit-testing/samples/sample10.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample10.cs)]
 
 We now have a fake IDinnerRepository implementation that does not require a database, and can instead work off an in-memory list of Dinner objects.
 
@@ -197,7 +197,7 @@ We now have a fake IDinnerRepository implementation that does not require a data
 
 Let's return to the DinnersController unit tests that failed earlier because the database wasn't available. We can update the test methods to use a FakeDinnerRepository populated with sample in-memory Dinner data to the DinnersController using the code below:
 
-[!code[Main](enable-automated-unit-testing/samples/sample11.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample11.cs)]
 
 And now when we run these tests they both pass:
 
@@ -213,11 +213,11 @@ Best of all, they take only a fraction of a second to run, and do not require an
 
 Let's now create some unit tests that verify the Edit functionality of the DinnersController. We'll start by testing the HTTP-GET version of our Edit action:
 
-[!code[Main](enable-automated-unit-testing/samples/sample12.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample12.cs)]
 
 We'll create a test that verifies that a View backed by a DinnerFormViewModel object is rendered back when a valid dinner is requested:
 
-[!code[Main](enable-automated-unit-testing/samples/sample13.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample13.cs)]
 
 When we run the test, though, we'll find that it fails because a null reference exception is thrown when the Edit method accesses the User.Identity.Name property to perform the Dinner.IsHostedBy() check.
 
@@ -235,7 +235,7 @@ Once downloaded, we'll add a reference in our NerdDinner.Tests project to the Mo
 
 We'll then add a "CreateDinnersControllerAs(username)" helper method to our test class that takes a username as a parameter, and which then "mocks" the User.Identity.Name property on the DinnersController instance:
 
-[!code[Main](enable-automated-unit-testing/samples/sample14.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample14.cs)]
 
 Above we are using Moq to create a Mock object that fakes a ControllerContext object (which is what ASP.NET MVC passes to Controller classes to expose runtime objects like User, Request, Response, and Session). We are calling the "SetupGet" method on the Mock to indicate that the HttpContext.User.Identity.Name property on ControllerContext should return the username string we passed to the helper method.
 
@@ -243,7 +243,7 @@ We can mock any number of ControllerContext properties and methods. To illustrat
 
 We can now write unit tests that use this helper method to test Edit scenarios involving different users:
 
-[!code[Main](enable-automated-unit-testing/samples/sample15.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample15.cs)]
 
 And now when we run the tests they pass:
 
@@ -253,7 +253,7 @@ And now when we run the tests they pass:
 
 We've created tests that cover the HTTP-GET version of the Edit action. Let's now create some tests that verify the HTTP-POST version of the Edit action:
 
-[!code[Main](enable-automated-unit-testing/samples/sample16.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample16.cs)]
 
 The interesting new testing scenario for us to support with this action method is its usage of the UpdateModel() helper method on the Controller base class. We are using this helper method to bind form-post values to our Dinner object instance.
 
@@ -262,7 +262,7 @@ Below are two tests that demonstrates how we can supply form posted values for t
 The first test verifies that on a successful save the browser is redirected to the details action. The second test verifies that when invalid input is posted the action redisplays the edit view again with an error message.
 
 
-[!code[Main](enable-automated-unit-testing/samples/sample17.xml)]
+[!code-csharp[Main](enable-automated-unit-testing/samples/sample17.cs)]
 
 ### Testing Wrap-Up
 

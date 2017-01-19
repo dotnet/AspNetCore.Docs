@@ -45,25 +45,25 @@ You'll begin by adding some validation logic to the `Movie` class.
 
 Open the *Movie.cs* file. Add a `using` statement at the top of the file that references the [`System.ComponentModel.DataAnnotations`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace:
 
-[!code[Main](adding-validation-to-the-model/samples/sample1.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample1.cs)]
 
 The namespace is part of the .NET Framework. It provides a built-in set of validation attributes that you can apply declaratively to any class or property.
 
 Now update the `Movie` class to take advantage of the built-in [`Required`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx), [`StringLength`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.stringlengthattribute.aspx), and [`Range`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.rangeattribute.aspx) validation attributes. Use the following code as an example of where to apply the attributes.
 
-[!code[Main](adding-validation-to-the-model/samples/sample2.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample2.cs)]
 
 The validation attributes specify behavior that you want to enforce on the model properties they are applied to. The `Required` attribute indicates that a property must have a value; in this sample, a movie has to have values for the `Title`, `ReleaseDate`, `Genre`, and `Price` properties in order to be valid. The `Range` attribute constrains a value to within a specified range. The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length.
 
 Code First ensures that the validation rules you specify on a model class are enforced before the application saves changes in the database. For example, the code below will throw an exception when the `SaveChanges` method is called, because several required `Movie` property values are missing and the price is zero (which is out of the valid range).
 
-[!code[Main](adding-validation-to-the-model/samples/sample3.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample3.cs)]
 
 Having validation rules automatically enforced by the .NET Framework helps make your application more robust. It also ensures that you can't forget to validate something and inadvertently let bad data into the database.
 
 Here's a complete code listing for the updated *Movie.cs* file:
 
-[!code[Main](adding-validation-to-the-model/samples/sample4.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample4.cs)]
 
 ## Validation Error UI in ASP.NET MVC
 
@@ -81,13 +81,13 @@ A real benefit is that you didn't need to change a single line of code in the `M
 
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The next listing shows what the `Create` methods in the `MovieController` class look like. They're unchanged from how you created them earlier in this tutorial.
 
-[!code[Main](adding-validation-to-the-model/samples/sample5.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample5.cs)]
 
 The first action method displays the initial Create form. The second handles the form post. The second `Create` method calls `ModelState.IsValid` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the `Create` method redisplays the form. If there are no errors, the method saves the new movie in the database.
 
 Below is the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
-[!code[Main](adding-validation-to-the-model/samples/sample6.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample6.cs)]
 
 Notice how the code uses an `Html.EditorFor` helper to output the `<input>` element for each `Movie` property. Next to this helper is a call to the `Html.ValidationMessageFor` helper method. These two helper methods work with the model object that's passed by the controller to the view (in this case, a `Movie` object). They automatically look for validation attributes specified on the model and display error messages as appropriate.
 
@@ -99,19 +99,19 @@ If you want to change the validation logic later, you can do so in exactly one p
 
 Open the *Movie.cs* file. The [`System.ComponentModel.DataAnnotations`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace provides formatting attributes in addition to the built-in set of validation attributes. You'll apply the [`DisplayFormat`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute and a [`DataType`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.datatype.aspx) enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate [`DisplayFormat`](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.displayformatattribute.aspx) attribute.
 
-[!code[Main](adding-validation-to-the-model/samples/sample7.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample7.cs)]
 
 Alternatively, you could explicitly set a [`DataFormatString`](https://msdn.microsoft.com/en-us/library/system.string.format.aspx) value. The following code shows the release date property with a date format string (namely, "d"). You'd use this to specify that you don't want to time as part of the release date.
 
-[!code[Main](adding-validation-to-the-model/samples/sample8.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample8.cs)]
 
 The following code formats the `Price` property as currency.
 
-[!code[Main](adding-validation-to-the-model/samples/sample9.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample9.cs)]
 
 The complete `Movie` class is shown below.
 
-[!code[Main](adding-validation-to-the-model/samples/sample10.xml)]
+[!code-csharp[Main](adding-validation-to-the-model/samples/sample10.cs)]
 
 Run the application and browse to the `Movies` controller.
 

@@ -30,7 +30,7 @@ This topic describes what's new for ASP.NET Web API OData 5.3.
 
 The runtime features are released as NuGet packages on the NuGet gallery. You can install or update to the released NuGet packages by using the NuGet Package Manager Console:
 
-[!code[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample1.xml)]
+[!code-console[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample1.cmd)]
 
 <a id="documentation"></a>
 ## Documentation
@@ -49,11 +49,11 @@ For OData v4, Web API now uses ODataLib version 6.5.0
 
 You can use the $levels query option in $expand queries. For example:
 
-[!code[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample2.xml)]
+[!code-console[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample2.cmd)]
 
 This query is equivalent to:
 
-[!code[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample3.xml)]
+[!code-console[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample3.cmd)]
 
 <a id="open-entity-types"></a>
 ### Support for Open Entity Types
@@ -64,17 +64,17 @@ An *open type* is a stuctured type that contains dynamic properties, in addition
 
 Previously, a dynamic property had to be a single value. In 5.3, dynamic properties can have collection values. For example, in the following JSON payload, the `Emails` property is a dynamic property and is of collection of string type:
 
-[!code[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample4.xml)]
+[!code-console[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample4.cmd)]
 
 ### Support for inheritance for complex types
 
 Now complex types can inherit from a base type. For example, an OData service could define the following complex types:
 
-[!code[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample5.xml)]
+[!code-csharp[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample5.cs)]
 
 Here is the EDM for this example:
 
-[!code[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample6.xml?highlight=8,15)]
+[!code-xml[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample6.xml?highlight=8,15)]
 
 For more information, see [OData Complex Type Inheritance Sample](http://aspnet.codeplex.com/SourceControl/latest#Samples/WebApi/OData/v4/ODataComplexTypeInheritanceSample/ReadMe.txt).
 
@@ -91,7 +91,7 @@ Issue: Using nested $expand with $levels=max results in an incorrect expansion d
 
 For example, given the following request:
 
-[!code[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample7.xml)]
+[!code-console[Main](whats-new-in-aspnet-web-api-odata-53/samples/sample7.cmd)]
 
 If `MaxExpansionDepth` is 5, this query would result in an expansion depth of 6.
 

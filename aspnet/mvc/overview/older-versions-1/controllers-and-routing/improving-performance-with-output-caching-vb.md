@@ -30,7 +30,7 @@ You enable output caching by adding an &lt;OutputCache&gt; attribute to either a
 
 **Listing 1 – Controllers\HomeController.vb**
 
-[!code[Main](improving-performance-with-output-caching-vb/samples/sample1.xml)]
+[!code-vb[Main](improving-performance-with-output-caching-vb/samples/sample1.vb)]
 
 
 In the Beta versions of ASP.NET MVC, output caching does not work for a URL like [http://www.MySite.com/](http://www.mysite.com/). Instead, you must enter a URL like [http://www.MySite.com/Home/Index](http://www.mysite.com/Home/Index).
@@ -44,7 +44,7 @@ The Home controller in Listing 1 returns the Index view in Listing 2. There is n
 
 **Listing 2 – Views\Home\Index.aspx**
 
-[!code[Main](improving-performance-with-output-caching-vb/samples/sample2.xml)]
+[!code-aspx[Main](improving-performance-with-output-caching-vb/samples/sample2.aspx)]
 
 **Figure 1 – Cached Index view**
 
@@ -83,7 +83,7 @@ For example, the controller in Listing 3 exposes an action named GetName() that 
 
 **Listing 3 – Controllers\BadUserController.vb**
 
-[!code[Main](improving-performance-with-output-caching-vb/samples/sample3.xml)]
+[!code-vb[Main](improving-performance-with-output-caching-vb/samples/sample3.vb)]
 
 Most likely, the controller in Listing 3 does not work the way that you want. You don't want to display the message "Hi Jack" to Jill.
 
@@ -93,7 +93,7 @@ The modified controller in Listing 4 caches the output of the GetName() action. 
 
 **Listing 4 – Controllers\UserController.vb**
 
-[!code[Main](improving-performance-with-output-caching-vb/samples/sample4.xml)]
+[!code-vb[Main](improving-performance-with-output-caching-vb/samples/sample4.vb)]
 
 Notice that the &lt;OutputCache&gt; attribute in Listing 4 includes a Location property set to the value OutputCacheLocation.Client. The &lt;OutputCache&gt; attribute also includes a NoStore property. The NoStore property is used to inform proxy servers and browsers that they should not store a permanent copy of the cached content.
 
@@ -109,7 +109,7 @@ For example, the controller in Listing 5 exposes two actions named Master() and 
 
 **Listing 5 – Controllers\MoviesController.vb**
 
-[!code[Main](improving-performance-with-output-caching-vb/samples/sample5.xml)]
+[!code-vb[Main](improving-performance-with-output-caching-vb/samples/sample5.vb)]
 
 The Master() action includes a VaryByParam property with the value "none". When the Master() action is invoked, the same cached version of the Master view is returned. Any form parameters or query string parameters are ignored (see Figure 2).
 
@@ -146,13 +146,13 @@ For example, the &lt;caching&gt; web configuration section in Listing 6 defines 
 
 **Listing 6 – Caching section for web.config**
 
-[!code[Main](improving-performance-with-output-caching-vb/samples/sample6.xml)]
+[!code-xml[Main](improving-performance-with-output-caching-vb/samples/sample6.xml)]
 
 The controller in Listing 7 illustrates how you can apply the Cache1Hour profile to a controller action with the &lt;OutputCache&gt; attribute.
 
 **Listing 7 – Controllers\ProfileController.vb**
 
-[!code[Main](improving-performance-with-output-caching-vb/samples/sample7.xml)]
+[!code-vb[Main](improving-performance-with-output-caching-vb/samples/sample7.vb)]
 
 If you invoke the Index() action exposed by the controller in Listing 7 then the same time will be returned for 1 hour.
 

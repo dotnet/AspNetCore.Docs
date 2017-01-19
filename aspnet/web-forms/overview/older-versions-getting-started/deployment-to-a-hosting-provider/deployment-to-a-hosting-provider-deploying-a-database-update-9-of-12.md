@@ -34,15 +34,15 @@ In this section, you add a birth date column to the `Person` base class for the 
 
 In the *ContosoUniversity.DAL* project, open *Person.cs* and add the following property at the end of the `Person` class (there should be two closing curly braces following it):
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample1.xml)]
+[!code-csharp[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample1.cs)]
 
 Next, update the Seed method so that it provides a value for the new column. Open *Migrations\Configuration.cs* and replace the code block that begins `var instructors = new List<Instructor>` with the following code block which includes birth date information:
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample2.xml)]
+[!code-csharp[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample2.cs)]
 
 In the ContosoUniversity project, open *Instructors.aspx* and add a new template field to display the birth date. Add it between the ones for hire date and office assignment:
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample3.xml)]
+[!code-aspx[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample3.aspx)]
 
 (If code indentation gets out of sync, you can press CTRL-K and then CTRL-D to automatically reformat the file.)
 
@@ -50,7 +50,7 @@ Build the solution, and then open the **Package Manager Console** window. Make s
 
 In the **Package Manager Console** window, select **ContosoUniversity.DAL** as the **Default project**, and then enter the following command:
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample4.xml)]
+[!code-powershell[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample4.ps1)]
 
 When this command finishes, Visual Studio opens the class file that defines the new `DbMIgration` class, and in the `Up` method you can see the code that creates the new column.
 
@@ -58,7 +58,7 @@ When this command finishes, Visual Studio opens the class file that defines the 
 
 Build the solution, and then enter the following command in the **Package Manager Console** window (make sure the ContosoUniversity.DAL project is still selected):
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample5.xml)]
+[!code-powershell[Main](deployment-to-a-hosting-provider-deploying-a-database-update-9-of-12/samples/sample5.ps1)]
 
 When the command finishes, run the application and select the Instructors page. When the page loads, you see that it has the new birth date field.
 

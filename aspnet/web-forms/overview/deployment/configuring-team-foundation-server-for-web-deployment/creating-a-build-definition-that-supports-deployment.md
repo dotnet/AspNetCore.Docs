@@ -95,7 +95,7 @@ The next procedure describes how to create a build definition that CI triggers. 
 13. On the **Process** tab, in the **Build process parameters** table, expand the **Advanced** section.
 14. In the **MSBuild Arguments** row, add any MSBuild command-line arguments that *either* of your items to build requires. In the Contact Manager solution scenario, these arguments are required:
 
-    [!code[Main](creating-a-build-definition-that-supports-deployment/samples/sample1.xml)]
+    [!code-console[Main](creating-a-build-definition-that-supports-deployment/samples/sample1.cmd)]
 
     ![](creating-a-build-definition-that-supports-deployment/_static/image8.png)
 15. In this example:

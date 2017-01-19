@@ -40,11 +40,11 @@ The following image shows the same timing view of the About view shown previousl
 
 Minification performs a variety of different code optimizations to scripts or css, such as removing unnecessary white space and comments and shortening variable names to one character. Consider the following JavaScript function.
 
-[!code[Main](bundling-and-minification/samples/sample1.xml)]
+[!code-javascript[Main](bundling-and-minification/samples/sample1.js)]
 
 After minification, the function is reduced to the following:
 
-[!code[Main](bundling-and-minification/samples/sample2.xml)]
+[!code-javascript[Main](bundling-and-minification/samples/sample2.js)]
 
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
@@ -84,11 +84,11 @@ For more information on debugging with the F12 developer tools, see the MSDN art
 
 Bundling and minification is enabled or disabled by setting the value of the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file. In the following XML, `debug` is set to true so bundling and minification is disabled.
 
-[!code[Main](bundling-and-minification/samples/sample3.xml?highlight=2)]
+[!code-xml[Main](bundling-and-minification/samples/sample3.xml?highlight=2)]
 
 To enable bundling and minification, set the `debug` value to "false". You can override the *Web.config* setting with the `EnableOptimizations` property on the `BundleTable` class. The following code enables bundling and minification and overrides any setting in the *Web.config* file.
 
-[!code[Main](bundling-and-minification/samples/sample4.xml?highlight=7)]
+[!code-csharp[Main](bundling-and-minification/samples/sample4.cs?highlight=7)]
 
 > [!NOTE] Unless `EnableOptimizations` is `true` or the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file is set to `false`, files will not be bundled or minified. Additionally, the .min version of files will not be used, the full debug versions will be selected. `EnableOptimizations` overrides the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file
 
@@ -104,7 +104,7 @@ In this section we will create an ASP.NET MVC project to examine bundling and mi
 
 Open the *App\_Start\BundleConfig.cs* file and examine the `RegisterBundles` method which is used to create, register and configure bundles. The following code shows a portion of the `RegisterBundles` method.
 
-[!code[Main](bundling-and-minification/samples/sample5.xml)]
+[!code-csharp[Main](bundling-and-minification/samples/sample5.cs)]
 
 The  preceding code creates a new JavaScript bundle named *~/bundles/jquery*that includes all the appropriate (that is debug or minified but not .*vsdoc*) files in the *Scripts* folder that match the wild card string "~/Scripts/jquery-{version}.js". For ASP.NET MVC 4, this means with a debug configuration, the file *jquery-1.7.1.js* will be added to the bundle. In a release configuration, *jquery-1.7.1.min.js* will be added. The bundling framework follows several common conventions such as:
 
@@ -121,29 +121,29 @@ The `{version}` wild card matching shown above is used to automatically create a
 
  The follow code replaces the local jQuery bundle with a CDN jQuery bundle.
 
-[!code[Main](bundling-and-minification/samples/sample6.xml)]
+[!code-csharp[Main](bundling-and-minification/samples/sample6.cs)]
 
 In the code above, jQuery will be requested from the CDN while in release mode and the debug version of jQuery will be fetched locally in debug mode. When using a CDN, you should have a fallback mechanism in case the CDN request fails. The following markup fragment from the end of the layout file shows script added to request jQuery should the CDN fail.
 
-[!code[Main](bundling-and-minification/samples/sample7.xml?highlight=5-13)]
+[!code-cshtml[Main](bundling-and-minification/samples/sample7.cshtml?highlight=5-13)]
 
 ## Creating a Bundle
 
 The [Bundle](https://msdn.microsoft.com/en-us/library/system.web.optimization.bundle(v=VS.110).aspx) class `Include` method takes an array of strings, where each string is a virtual path to resource. The following code from the RegisterBundles method in the *App\_Start\BundleConfig.cs* file shows how multiple files are added to a bundle:
 
-[!code[Main](bundling-and-minification/samples/sample8.xml)]
+[!code-csharp[Main](bundling-and-minification/samples/sample8.cs)]
 
 The [Bundle](https://msdn.microsoft.com/en-us/library/system.web.optimization.bundle(v=VS.110).aspx) class `IncludeDirectory` method is provided to add all the files in a directory (and optionally all subdirectories) which match a search pattern. The [Bundle](https://msdn.microsoft.com/en-us/library/system.web.optimization.bundle(v=VS.110).aspx) class `IncludeDirectory` API is shown below:
 
-[!code[Main](bundling-and-minification/samples/sample9.xml)]
+[!code-csharp[Main](bundling-and-minification/samples/sample9.cs)]
 
 Bundles are referenced in views using the Render method , ( `Styles.Render` for CSS and `Scripts.Render` for JavaScript). The following markup from the *Views\Shared\\_Layout.cshtml* file shows how the default ASP.NET internet project views reference CSS and JavaScript bundles.
 
-[!code[Main](bundling-and-minification/samples/sample10.xml?highlight=5-6,11)]
+[!code-cshtml[Main](bundling-and-minification/samples/sample10.cshtml?highlight=5-6,11)]
 
 Notice the Render methods takes an array of strings, so you can add multiple bundles in one line of code. You will generally want to use the Render methods which create the necessary HTML to reference the asset. You can use the `Url` method to generate the URL to the asset without the markup needed to reference the asset. Suppose you wanted to use the new HTML5 [async](http://www.whatwg.org/specs/web-apps/current-work/#attr-script-async) attribute. The following code shows how to reference modernizr using the `Url` method.
 
-[!code[Main](bundling-and-minification/samples/sample11.xml?highlight=11)]
+[!code-cshtml[Main](bundling-and-minification/samples/sample11.cshtml?highlight=11)]
 
 ## Using the "\*" Wildcard Character to Select Files
 
@@ -176,7 +176,7 @@ Explicitly adding each file to a bundle is generally the preferred over wildcard
 - View specific files added to a directory using wild card loading can be included in all views referencing that bundle. If the view specific script is added to a bundle, you may get a JavaScript error on other views that reference the bundle.
 - CSS files that import other files result in the imported files loaded twice. For example, the following code creates a bundle with most of the jQuery UI theme CSS files loaded twice. 
 
-    [!code[Main](bundling-and-minification/samples/sample12.xml)]
+    [!code-csharp[Main](bundling-and-minification/samples/sample12.cs)]
 
  The wild card selector "\*.css" brings in each CSS file in the folder, including the     *Content\themes\base\jquery.ui.all.css* file. The     *jquery.ui.all.css* file imports other CSS files.
 
@@ -203,13 +203,13 @@ The bundling and minification framework provides a mechanism to process intermed
     ![NuGet dotless install](bundling-and-minification/_static/image9.png)
 3. Add a class that implements the [IBundleTransform](https://msdn.microsoft.com/en-us/library/system.web.optimization.ibundletransform(VS.110).aspx) interface. For the .less transform, add the following code to your project.
 
-    [!code[Main](bundling-and-minification/samples/sample13.xml)]
+    [!code-csharp[Main](bundling-and-minification/samples/sample13.cs)]
 4. Create a bundle of LESS files with the `LessTransform` and the [CssMinify](https://msdn.microsoft.com/en-us/library/system.web.optimization.cssminify(VS.110).aspx) transform. Add the following code to the `RegisterBundles` method in the *App\_Start\BundleConfig.cs*file.
 
-    [!code[Main](bundling-and-minification/samples/sample14.xml)]
+    [!code-csharp[Main](bundling-and-minification/samples/sample14.cs)]
 5. Add the following code to any views which references the LESS bundle.
 
-    [!code[Main](bundling-and-minification/samples/sample15.xml)]
+    [!code-cshtml[Main](bundling-and-minification/samples/sample15.cshtml)]
 
 ## Bundle Considerations
 

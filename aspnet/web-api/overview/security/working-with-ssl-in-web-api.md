@@ -34,11 +34,11 @@ For local testing, you can enable SSL in IIS Express from Visual Studio. In the 
 
 If you have both an HTTPS and an HTTP binding, clients can still use HTTP to access the site. You might allow some resources to be available through HTTP, while other resources require SSL. In that case, use an action filter to require SSL for the protected resources. The following code shows a Web API authentication filter that checks for SSL:
 
-[!code[Main](working-with-ssl-in-web-api/samples/sample1.xml)]
+[!code-csharp[Main](working-with-ssl-in-web-api/samples/sample1.cs)]
 
 Add this filter to any Web API actions that require SSL:
 
-[!code[Main](working-with-ssl-in-web-api/samples/sample2.xml)]
+[!code-csharp[Main](working-with-ssl-in-web-api/samples/sample2.cs)]
 
 ## SSL Client Certificates
 
@@ -59,7 +59,7 @@ To configure IIS to accept client certificates, open IIS Manager and perform the
 
 You can also set these options in the ApplicationHost.config file:
 
-[!code[Main](working-with-ssl-in-web-api/samples/sample3.xml)]
+[!code-xml[Main](working-with-ssl-in-web-api/samples/sample3.xml)]
 
 The **SslNegotiateCert** flag means IIS will accept a certificate from the client, but does not require one (equivalent to the "Accept" option in IIS Manager). To require a certificate, set the **SslRequireCert** flag. For testing, you can also set these options in IIS Express, in the local applicationhost.Config file, located in "Documents\IISExpress\config".
 
@@ -67,7 +67,7 @@ The **SslNegotiateCert** flag means IIS will accept a certificate from the clien
 
 For testing purposes, you can use [MakeCert.exe](https://msdn.microsoft.com/en-US/library/bfsktky3.aspx) to create a client certificate. First, create a test root authority:
 
-[!code[Main](working-with-ssl-in-web-api/samples/sample4.xml)]
+[!code-console[Main](working-with-ssl-in-web-api/samples/sample4.cmd)]
 
 Makecert will prompt you to enter a password for the private key.
 
@@ -84,10 +84,10 @@ Next, add the certificate to the test server's "Trusted Root Certification Autho
 
 Now create a client certificate that is signed by the first certificate:
 
-[!code[Main](working-with-ssl-in-web-api/samples/sample5.xml)]
+[!code-console[Main](working-with-ssl-in-web-api/samples/sample5.cmd)]
 
 ### Using Client Certificates in Web API
 
 On the server side, you can get the client certificate by calling [GetClientCertificate](https://msdn.microsoft.com/en-us/library/system.net.http.httprequestmessageextensions.getclientcertificate.aspx) on the request message. The method returns null if there is no client certificate. Otherwise, it returns an **X509Certificate2** instance. Use this object to get information from the certificate, such as the issuer and subject. Then you can use this information for authentication and/or authorization.
 
-[!code[Main](working-with-ssl-in-web-api/samples/sample6.xml)]
+[!code-csharp[Main](working-with-ssl-in-web-api/samples/sample6.cs)]

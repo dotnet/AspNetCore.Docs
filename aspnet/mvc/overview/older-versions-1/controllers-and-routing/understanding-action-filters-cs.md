@@ -40,7 +40,7 @@ For example, the Data controller in Listing 1 exposes an action named `Index()` 
 
 **Listing 1 – `Controllers\DataController.cs`**
 
-[!code[Main](understanding-action-filters-cs/samples/sample1.xml)]
+[!code-csharp[Main](understanding-action-filters-cs/samples/sample1.cs)]
 
 If you repeatedly invoke the `Index()` action by entering the URL /Data/Index into the address bar of your browser and hitting the Refresh button multiple times, then you will see the same time for 10 seconds. The output of the `Index()` action is cached for 10 seconds (see Figure 1).
 
@@ -98,7 +98,7 @@ In order to illustrate how you can build a custom action filter, we'll create a 
 
 **Listing 2 – `ActionFilters\LogActionFilter.cs`**
 
-[!code[Main](understanding-action-filters-cs/samples/sample2.xml)]
+[!code-csharp[Main](understanding-action-filters-cs/samples/sample2.cs)]
 
 In Listing 2, the `OnActionExecuting()`, `OnActionExecuted()`, `OnResultExecuting()`, and `OnResultExecuted()` methods all call the `Log()` method. The name of the method and the current route data is passed to the `Log()` method. The `Log()` method writes a message to the Visual Studio Output window (see Figure 2).
 
@@ -112,7 +112,7 @@ The Home controller in Listing 3 illustrates how you can apply the Log action fi
 
 **Listing 3 – `Controllers\HomeController.cs`**
 
-[!code[Main](understanding-action-filters-cs/samples/sample3.xml)]
+[!code-csharp[Main](understanding-action-filters-cs/samples/sample3.cs)]
 
 ### Summary
 

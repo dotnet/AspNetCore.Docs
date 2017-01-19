@@ -40,7 +40,7 @@ Now you'll add code that runs when the **Select** link is clicked and displays a
 
 In *Instructors.aspx*, add the following markup immediately after the **ErrorMessageLabel** `Label` control:
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12/samples/sample1.xml)]
+[!code-aspx[Main](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12/samples/sample1.aspx)]
 
 Run the page and select an instructor. You see a list of courses taught by that instructor.
 
@@ -95,7 +95,7 @@ Name the folder *SolutionFiles*.
 
 In the new folder create an HTML page named *app\_offline.htm*. Replace the existing contents with the following markup:
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12/samples/sample2.xml)]
+[!code-html[Main](deployment-to-a-hosting-provider-deploying-a-code-only-update-8-of-12/samples/sample2.html)]
 
 You can copy the *app\_offline.htm* file to the site by using an FTP connection or the **File Manager** utility in the hosting provider's control panel. For this tutorial, you'll use the **File Manager**.
 

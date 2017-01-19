@@ -64,7 +64,7 @@ Let s start by adding validation logic to the Create view. Fortunately, because 
 
 **Listing 1 - \Views\Contact\Create.aspx**
 
-[!code[Main](iteration-3-add-form-validation-vb/samples/sample1.xml)]
+[!code-aspx[Main](iteration-3-add-form-validation-vb/samples/sample1.aspx)]
 
 The field-validation-error class is used to style the output rendered by the Html.ValidationMessage() helper. The input-validation-error class is used to style the textbox (input) rendered by the Html.TextBox() helper. The validation-summary-errors class is used to style the unordered list rendered by the Html.ValidationSummary() helper.
 
@@ -86,7 +86,7 @@ The modified Create() method in Listing 2 contains a new section that validates 
 
 **Listing 2 - Controllers\ContactController.<wbr />vb (Create with validation)**
 
-[!code[Main](iteration-3-add-form-validation-vb/samples/sample2.xml)]
+[!code-vb[Main](iteration-3-add-form-validation-vb/samples/sample2.vb)]
 
 The validate section enforces four distinct validation rules:
 
@@ -112,7 +112,7 @@ The modified Contact controller class is contained in Listing 3. This class has 
 
 **Listing 3 - Controllers\ContactController.<wbr />vb**
 
-[!code[Main](iteration-3-add-form-validation-vb/samples/sample3.xml)]
+[!code-vb[Main](iteration-3-add-form-validation-vb/samples/sample3.vb)]
 
 ## Summary
 

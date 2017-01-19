@@ -61,13 +61,13 @@ To add or remove users from a group, you call the [Add](https://msdn.microsoft.c
 
 The following example shows the `Groups.Add` and `Groups.Remove` methods used in Hub methods.
 
-[!code[Main](working-with-groups/samples/sample1.xml?highlight=5,10)]
+[!code-csharp[Main](working-with-groups/samples/sample1.cs?highlight=5,10)]
 
 The `Groups.Add` and `Groups.Remove` methods execute asynchronously.
 
 If you want to add a client to a group and immediately send a message to the client by using the group, you have to make sure that the Groups.Add method finishes first. The following code examples show how to do that.
 
-[!code[Main](working-with-groups/samples/sample2.xml?highlight=1,3)]
+[!code-csharp[Main](working-with-groups/samples/sample2.cs?highlight=1,3)]
 
 In general, you should not include `await` when calling the `Groups.Remove` method because the connection id that you are trying to remove might no longer be available. In that case, `TaskCanceledException` is thrown after the request times out. If your application must ensure that the user has been removed from the group before sending a message to the group, you can add `await` before Groups.Remove, and then catch the `TaskCanceledException` exception that might be thrown.
 
@@ -79,13 +79,13 @@ You can send messages to all of the members of a group or only specified members
 
 - **All** connected clients in a specified group. 
 
-    [!code[Main](working-with-groups/samples/sample3.xml)]
+    [!code-unknown[Main](working-with-groups/samples/sample-51301-3.unknown)]
 - All connected clients in a specified group **except the specified clients**, identified by connection ID. 
 
-    [!code[Main](working-with-groups/samples/sample4.xml)]
+    [!code-unknown[Main](working-with-groups/samples/sample-51301-4.unknown)]
 - All connected clients in a specified group **except the calling client**. 
 
-    [!code[Main](working-with-groups/samples/sample5.xml)]
+    [!code-unknown[Main](working-with-groups/samples/sample-51301-5.unknown)]
 
 <a id="storedatabase"></a>
 
@@ -93,11 +93,11 @@ You can send messages to all of the members of a group or only specified members
 
 The following examples show how to retain group and user information in a database. You can use any data access technology; however, the example below shows how to define models using Entity Framework. These entity models correspond to database tables and fields. Your data structure could vary considerably depending on the requirements of your application. This example includes a class named `ConversationRoom` which would be unique to an application that enables users to join conversations about different subjects, such as sports or gardening. This example also includes a class for the connections. The connection class is not absolutely required for tracking group membership but is frequently part of robust solution to tracking users.
 
-[!code[Main](working-with-groups/samples/sample6.xml)]
+[!code-csharp[Main](working-with-groups/samples/sample6.cs)]
 
 Then, in the hub, you can retrieve the group and user information from the database and manually add the user to the appropriate groups. The example does not include code for tracking the user connections. In this example, the `await` keyword is not applied before `Groups.Add` because a message is not immediately sent to members of the group. If you want to send a message to all members of the group immediately after adding the new member, you would want to apply the `await` keyword to make sure the asynchronous operation has completed.
 
-[!code[Main](working-with-groups/samples/sample7.xml)]
+[!code-csharp[Main](working-with-groups/samples/sample7.cs)]
 
 <a id="storeazuretable"></a>
 
@@ -105,11 +105,11 @@ Then, in the hub, you can retrieve the group and user information from the datab
 
 Using Azure table storage to store group and user information is similar to using a database. The following example shows a table entity that stores the user name and group name.
 
-[!code[Main](working-with-groups/samples/sample8.xml)]
+[!code-csharp[Main](working-with-groups/samples/sample8.cs)]
 
 In the hub, you retrieve the assigned groups when the user connects.
 
-[!code[Main](working-with-groups/samples/sample9.xml)]
+[!code-csharp[Main](working-with-groups/samples/sample9.cs)]
 
 <a id="verify"></a>
 
@@ -121,8 +121,8 @@ In general, you should use the default behavior of automatically rejoining group
 
 If you must verify group membership on reconnect, create a new hub pipeline module that returns a list of assigned groups, as shown below.
 
-[!code[Main](working-with-groups/samples/sample10.xml)]
+[!code-csharp[Main](working-with-groups/samples/sample10.cs)]
 
 Then, add that module to the hub pipeline, as highlighted below.
 
-[!code[Main](working-with-groups/samples/sample11.xml?highlight=4)]
+[!code-csharp[Main](working-with-groups/samples/sample11.cs?highlight=4)]

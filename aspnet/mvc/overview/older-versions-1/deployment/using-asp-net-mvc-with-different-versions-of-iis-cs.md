@@ -76,7 +76,7 @@ The easiest way to get ASP.NET Routing to work with older versions of IIS is to 
 
 **Listing 1 - Global.asax (unmodified)**
 
-[!code[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample1.xml)]
+[!code-csharp[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample1.cs)]
 
 The Default route configured in Listing 1 enables you to route URLs that look like this:
 
@@ -104,7 +104,7 @@ The modified Global.asax file in Listing 2 works with older versions of IIS.
 
 **Listing 2 - Global.asax (modified with extensions)**
 
-[!code[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample2.xml)]
+[!code-csharp[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample2.cs)]
 
 **Important**: remember to build your ASP.NET MVC Application again after changing the Global.asax file.
 
@@ -138,7 +138,7 @@ For example, the modified Global.asax file in Listing 3 uses the .aspx extension
 
 **Listing 3 - Global.asax (modified with .aspx extensions)**
 
-[!code[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample3.xml)]
+[!code-csharp[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample3.cs)]
 
 The Global.asax file in Listing 3 is exactly the same as the previous Global.asax file except for the fact that it uses the .aspx extension instead of the .mvc extension. You don't have to perform any setup on your remote web server to use the .aspx extension.
 
@@ -185,7 +185,7 @@ After you enable wildcard script maps, you need to modify the route table in the
 
 **Listing 4 - Global.asax (modified with Root route)**
 
-[!code[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample4.xml)]
+[!code-csharp[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample4.cs)]
 
 After you enable a wildcard script map for either IIS 7.0 or IIS 6.0, you can make requests that work with the default route table that look like this:
 

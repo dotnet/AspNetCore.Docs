@@ -76,7 +76,7 @@ In the **Add New** Item dialog, name the class &quot;Product&quot;.
 
 In the Product.cs file, add the following class definition:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample1.xml)]
+[!code-csharp[Main](creating-an-odata-endpoint/samples/sample1.cs)]
 
 The ID property will be the entity key. Clients can query products by ID. This field would also be the primary key in the back-end database.
 
@@ -123,7 +123,7 @@ The scaffolding adds two code files to the project:
 
 In Solution Explorer, expand the App\_Start folder and open the file named WebApiConfig.cs. This class holds configuration code for Web API. Replace this code with the following:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample2.xml)]
+[!code-csharp[Main](creating-an-odata-endpoint/samples/sample2.cs)]
 
 This code does two things:
 
@@ -134,13 +134,13 @@ An EDM is an abstract model of the data. The EDM is used to create the metadata 
 
 The **EntitySet** method adds an entity set to the EDM:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample3.xml)]
+[!code-csharp[Main](creating-an-odata-endpoint/samples/sample3.cs)]
 
 The string "Products" defines the name of the entity set. The name of the controller must match the name of the entity set. In this tutorial, the entity set is named "Products" and the controller is named `ProductsController`. If you named the entity set "ProductSet", you would name the controller `ProductSetController`. Note that an endpoint can have multiple entity sets. Call **EntitySet&lt;T&gt;** for each entity set, and then define a corresponding controller.
 
 The **MapODataRoute** method adds a route for the OData endpoint.
 
-[!code[Main](creating-an-odata-endpoint/samples/sample4.xml)]
+[!code-unknown[Main](creating-an-odata-endpoint/samples/sample-51293-4.unknown)]
 
 The first parameter is a friendly name for the route. Clients of your service do not see this name. The second parameter is the URI prefix for the endpoint. Given this code, the URI for the Products entity set is http://*hostname*/odata/Products. Your application can have more than one OData endpoint. For each endpoint, call **MapODataRoute** and provide a unique route name and a unique URI prefix.
 
@@ -151,7 +151,7 @@ In this step, you will use Entity Framework to seed the database with some test 
 
 From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample5.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample5.cmd)]
 
 This adds a folder named Migrations and a code file named Configuration.cs.
 
@@ -159,11 +159,11 @@ This adds a folder named Migrations and a code file named Configuration.cs.
 
 Open this file and add the following code to the `Configuration.Seed` method.
 
-[!code[Main](creating-an-odata-endpoint/samples/sample6.xml)]
+[!code-csharp[Main](creating-an-odata-endpoint/samples/sample6.cs)]
 
 In the Package Manager Console Window, enter the following commands:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample7.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample7.cmd)]
 
 These commands generate code that creates the database, and then executes that code.
 
@@ -194,7 +194,7 @@ Double-click the response in the Web Sessions list to see the details of the res
 
 The raw HTTP response message should look similar to the following:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample8.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample8.cmd)]
 
 By default, Web API returns the service document in AtomPub format. To request JSON, add the following header to the HTTP request:
 
@@ -204,7 +204,7 @@ By default, Web API returns the service document in AtomPub format. To request J
 
 Now the HTTP response contains a JSON payload:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample9.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample9.cmd)]
 
 ### Service Metadata Document
 
@@ -212,19 +212,19 @@ The *service metadata document* describes the data model of the service, using a
 
 To get the metadata document, send a GET request to `http://localhost:port/odata/$metadata`. Here is the metadata for the endpoint shown in this tutorial.
 
-[!code[Main](creating-an-odata-endpoint/samples/sample10.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample10.cmd)]
 
 ### Entity Set
 
 To get the Products entity set, send a GET request to `http://localhost:port/odata/Products`.
 
-[!code[Main](creating-an-odata-endpoint/samples/sample11.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample11.cmd)]
 
 ### Entity
 
 To get an individual product, send a GET request to `http://localhost:port/odata/Products(1)`, where "1" is the product ID.
 
-[!code[Main](creating-an-odata-endpoint/samples/sample12.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample12.cmd)]
 
 <a id="formats"></a>
 ## OData Serialization Formats
@@ -239,17 +239,17 @@ By default, Web API uses AtomPubJSON "light" format.
 
 To get AtomPub format, set the Accept header to "application/atom+xml". Here is an example response body:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample13.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample13.cmd)]
 
 You can see one obvious disadvantage of the Atom format: It's a lot more verbose than the JSON light. However, if you have a client that understands AtomPub, the client might prefer that format over JSON.
 
 Here is the JSON light version of the same entity:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample14.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample14.cmd)]
 
 The JSON light format was introduced in version 3 of the OData protocol. For backward compatibility, a client can request the older "verbose" JSON format. To request verbose JSON, set the Accept header to `application/json;odata=verbose`. Here is the verbose version:
 
-[!code[Main](creating-an-odata-endpoint/samples/sample15.xml)]
+[!code-console[Main](creating-an-odata-endpoint/samples/sample15.cmd)]
 
 This format conveys more metadata in the response body, which can add considerable overhead over an entire session. Also, it adds a level of indirection by wrapping the object in a property named "d".
 

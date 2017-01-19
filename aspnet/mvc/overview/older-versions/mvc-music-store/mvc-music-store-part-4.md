@@ -38,17 +38,17 @@ We will be leveraging the database creation feature in Entity Framework in this 
 
 Our Albums will be associated with Artists, so we'll add a simple model class to describe an Artist. Add a new class to the Models folder named Artist.cs using the code shown below.
 
-[!code[Main](mvc-music-store-part-4/samples/sample1.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample1.cs)]
 
 #### Updating our Model Classes
 
 Update the Album class as shown below.
 
-[!code[Main](mvc-music-store-part-4/samples/sample2.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample2.cs)]
 
 Next, make the following updates to the Genre class.
 
-[!code[Main](mvc-music-store-part-4/samples/sample3.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample3.cs)]
 
 ### Adding the App\_Data folder
 
@@ -64,7 +64,7 @@ We will add a few lines to the website's configuration file so that Entity Frame
 
 Scroll to the bottom of this file and add a &lt;connectionStrings&gt; section directly above the last line, as shown below.
 
-[!code[Main](mvc-music-store-part-4/samples/sample4.xml)]
+[!code-xml[Main](mvc-music-store-part-4/samples/sample4.xml)]
 
 ### Adding a Context Class
 
@@ -74,7 +74,7 @@ Right-click the Models folder and add a new class named MusicStoreEntities.cs.
 
 This class will represent the Entity Framework database context, and will handle our create, read, update, and delete operations for us. The code for this class is shown below.
 
-[!code[Main](mvc-music-store-part-4/samples/sample5.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample5.cs)]
 
 That's it - there's no other configuration, special interfaces, etc. By extending the DbContext base class, our MusicStoreEntities class is able to handle our database operations for us. Now that we've got that hooked up, let's add a few more properties to our model classes to take advantage of some of the additional information in our database.
 
@@ -88,7 +88,7 @@ Within the Code / Models folder, locate the SampleData.cs file and drop it into 
 
 Now we need to add one line of code to tell Entity Framework about that SampleData class. Double-click on the Global.asax file in the root of the project to open it and add the following line to the top the Application\_Start method.
 
-[!code[Main](mvc-music-store-part-4/samples/sample6.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample6.cs)]
 
 At this point, we've completed the work necessary to configure Entity Framework for our project.
 
@@ -96,13 +96,13 @@ At this point, we've completed the work necessary to configure Entity Framework 
 
 Now let's update our StoreController so that instead of using "dummy data" it instead calls into our database to query all of its information. We'll start by declaring a field on the **StoreController** to hold an instance of the MusicStoreEntities class, named storeDB:
 
-[!code[Main](mvc-music-store-part-4/samples/sample7.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample7.cs)]
 
 ### Updating the Store Index to query the database
 
 The MusicStoreEntities class is maintained by the Entity Framework and exposes a collection property for each table in our database. Let's update our StoreController's Index action to retrieve all Genres in our database. Previously we did this by hard-coding string data. Now we can instead just use the Entity Framework context Generes collection:
 
-[!code[Main](mvc-music-store-part-4/samples/sample8.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample8.cs)]
 
 No changes need to happen to our View template since we're still returning the same StoreIndexViewModel we returned before - we're just returning live data from our database now.
 
@@ -114,7 +114,7 @@ When we run the project again and visit the "/Store" URL, we'll now see a list o
 
 With the /Store/Browse?genre=*[some-genre]* action method, we're searching for a Genre by name. We only expect one result, since we shouldn't ever have two entries for the same Genre name, and so we can use the .Single() extension in LINQ to query for the appropriate Genre object like this (don't type this yet):
 
-[!code[Main](mvc-music-store-part-4/samples/sample9.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample9.cs)]
 
 The Single method takes a Lambda expression as a parameter, which specifies that we want a single Genre object such that its name matches the value we've defined. In the case above, we are loading a single Genre object with a Name value matching Disco.
 
@@ -122,11 +122,11 @@ We'll take advantage of an Entity Framework feature that allows us to indicate o
 
 With the explanations out of the way, here's how our updated Browse controller action looks:
 
-[!code[Main](mvc-music-store-part-4/samples/sample10.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample10.cs)]
 
 We can now update the Store Browse View to display the albums which are available in each Genre. Open the view template (found in /Views/Store/Browse.cshtml) and add a bulleted list of Albums as shown below.
 
-[!code[Main](mvc-music-store-part-4/samples/sample11.xml)]
+[!code-cshtml[Main](mvc-music-store-part-4/samples/sample11.cshtml)]
 
 Running our application and browsing to /Store/Browse?genre=Jazz shows that our results are now being pulled from the database, displaying all albums in our selected Genre.
 
@@ -134,7 +134,7 @@ Running our application and browsing to /Store/Browse?genre=Jazz shows that our 
 
 We'll make the same change to our /Store/Details/[id] URL, and replace our dummy data with a database query which loads an Album whose ID matches the parameter value.
 
-[!code[Main](mvc-music-store-part-4/samples/sample12.xml)]
+[!code-csharp[Main](mvc-music-store-part-4/samples/sample12.cs)]
 
 Running our application and browsing to /Store/Details/1 shows that our results are now being pulled from the database.
 
@@ -142,7 +142,7 @@ Running our application and browsing to /Store/Details/1 shows that our results 
 
 Now that our Store Details page is set up to display an album by the Album ID, let's update the **Browse** view to link to the Details view. We will use Html.ActionLink, exactly as we did to link from Store Index to Store Browse at the end of the previous section. The complete source for the Browse view appears below.
 
-[!code[Main](mvc-music-store-part-4/samples/sample13.xml)]
+[!code-cshtml[Main](mvc-music-store-part-4/samples/sample13.cshtml)]
 
 We're now able to browse from our Store page to a Genre page, which lists the available albums, and by clicking on an album we can view details for that album.
 

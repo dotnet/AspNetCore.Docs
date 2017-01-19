@@ -38,7 +38,7 @@ This tutorial uses the same model and controller classes as the [Getting Started
 
 First, add a model class. In **Solution Explorer**, right-click the project and select **Add Class**. Name the class Product, and add the following implementation:
 
-[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample1.xml)]
+[!code-csharp[Main](using-web-api-with-aspnet-web-forms/samples/sample1.cs)]
 
 Next, add a Web API controller to the project., A *controller* is the object that handles HTTP requests for Web API.
 
@@ -52,7 +52,7 @@ Under **Installed Templates**, expand **Visual C#** and select **Web**. Then, fr
 
 The **Add New Item** wizard will create a file named ProductsController.cs. Delete the methods that the wizard included and add the following methods:
 
-[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample2.xml)]
+[!code-csharp[Main](using-web-api-with-aspnet-web-forms/samples/sample2.cs)]
 
 For more information about the code in this controller, see the [Getting Started](tutorial-your-first-web-api.md) tutorial.
 
@@ -62,11 +62,11 @@ Next, we'll add a URI route so that URIs of the form &quot;/api/products/&quot; 
 
 In **Solution Explorer**, double-click Global.asax to open the code-behind file Global.asax.cs. Add the following **using** statement.
 
-[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample3.xml)]
+[!code-csharp[Main](using-web-api-with-aspnet-web-forms/samples/sample3.cs)]
 
 Then add the following code to the **Application\_Start** method:
 
-[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample4.xml)]
+[!code-csharp[Main](using-web-api-with-aspnet-web-forms/samples/sample4.cs)]
 
 For more information about routing tables, see [Routing in ASP.NET Web API](../web-api-routing-and-actions/routing-in-aspnet-web-api.md).
 
@@ -76,11 +76,11 @@ That's all you need to create a web API that clients can access. Now let's add a
 
 Open the file Default.aspx. Replace the boilerplate text that is in the main content section, as shown:
 
-[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample5.xml)]
+[!code-aspx[Main](using-web-api-with-aspnet-web-forms/samples/sample5.aspx)]
 
 Next, add a reference to the jQuery source file in the `HeaderContent` section:
 
-[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample6.xml?highlight=2)]
+[!code-aspx[Main](using-web-api-with-aspnet-web-forms/samples/sample6.aspx?highlight=2)]
 
 Note: You can easily add the script reference by dragging and dropping the file from **Solution Explorer** into the code editor window.
 
@@ -88,7 +88,7 @@ Note: You can easily add the script reference by dragging and dropping the file 
 
 Below the jQuery script tag, add the following script block:
 
-[!code[Main](using-web-api-with-aspnet-web-forms/samples/sample7.xml)]
+[!code-html[Main](using-web-api-with-aspnet-web-forms/samples/sample7.html)]
 
 When the document loads, this script makes an AJAX request to &quot;api/products&quot;. The request returns a list of products in JSON format. The script adds the product information to the HTML table.
 

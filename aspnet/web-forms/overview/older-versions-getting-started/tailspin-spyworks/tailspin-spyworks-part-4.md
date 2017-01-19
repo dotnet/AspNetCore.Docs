@@ -48,7 +48,7 @@ To accomplish this we'll tell the EntityDataSource to Auto Generate the WHERE cl
 
 You'll recall that when we created the Menu Items in our "Product Category Menu" we dynamically built the link by adding the CatagoryID to the QueryString for each link. We will tell the Entity Data Source to derive the WHERE parameter from that QueryString parameter.
 
-[!code[Main](tailspin-spyworks-part-4/samples/sample1.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-4/samples/sample1.aspx)]
 
 Next, we'll configure the ListView control to display a list of products. To create an optimal shopping experience we'll compact several concise features into each individual product displayed in our ListVew.
 
@@ -59,7 +59,7 @@ Next, we'll configure the ListView control to display a list of products. To cre
 
 Here is the markup for our ListView control instance.
 
-[!code[Main](tailspin-spyworks-part-4/samples/sample2.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-4/samples/sample2.aspx)]
 
 We are dynamically building several links for each displayed product.
 
@@ -81,7 +81,7 @@ Use File-&gt;New to create a page name ProductDetails.aspx using the site Master
 
 We will again use an EntityDataSource control to access the specific product record in the database and we will use an ASP.NET FormView control to display the product data as follows.
 
-[!code[Main](tailspin-spyworks-part-4/samples/sample3.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-4/samples/sample3.aspx)]
 
 Don't worry if the formatting looks a bit funny to you. The markup above leaves room in the display layout for a couple of features we'll implement later on.
 

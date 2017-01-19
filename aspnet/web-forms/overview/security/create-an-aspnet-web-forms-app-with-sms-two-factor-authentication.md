@@ -57,24 +57,24 @@ This tutorial uses Twilio, but you can use any SMS provider.
 4. Make the Twilio **Account SID**, **Auth Token** and **phone number** available to the app. To keep things simple you will store these values in the *web.config* file. When you deploy to Azure, you can store the values securely in the **appSettings** section on the web site configure tab. Also, when adding the phone number, only use numbers.   
  Notice that you can also add SendGrid credentials. SendGrid is an email notification service. For details about how to enable SendGrid, see the 'Hook Up SendGrid' section of the tutorial titled     [Create a Secure ASP.NET Web Forms App with user registration, email confirmation and password reset.](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset.md)
 
-    [!code[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample1.xml?highlight=2,6-10)]
+    [!code-xml[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample1.xml?highlight=2,6-10)]
 
     > [!WARNING] Security - Never store sensitive data in your source code. In this example, the account and credentials are stored in the **appSettings** section of the *Web.config* file. On Azure, you can securely store these values on the **[Configure](https://blogs.msdn.com/b/webdev/archive/2014/06/04/queuebackgroundworkitem-to-reliably-schedule-and-run-long-background-process-in-asp-net.aspx)** tab in the Azure portal. For related information, see Rick Anderson's topic titled [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure](https://go.microsoft.com/fwlink/?LinkId=513141).
 5. Configure the `SmsService` class in the *App\_Start\IdentityConfig.cs*file by making the following changes highlighted in yellow: 
 
-    [!code[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample2.xml?highlight=5-17)]
+    [!code-csharp[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample2.cs?highlight=5-17)]
 6. Add the following `using` statements to the beginning of the *IdentityConfig.cs* file: 
 
-    [!code[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample3.xml?highlight=1-4)]
+    [!code-csharp[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample3.cs?highlight=1-4)]
 7. Update the *Account/Manage.aspx* file by removing the lines highlighted in yellow:  
 
-    [!code[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample4.xml?highlight=38,53,57-60,63,66,70,73)]
+    [!code-aspx[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample4.aspx?highlight=38,53,57-60,63,66,70,73)]
 8. In the `Page_Load` handler of the *Manage.aspx.cs* code-behind, uncomment the line of code highlighted in yellow so that it appears as follows: 
 
-    [!code[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample5.xml?highlight=8)]
+    [!code-csharp[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample5.cs?highlight=8)]
 9. In the codebehind of *Account*/*TwoFactorAuthenticationSignIn.aspx.cs*, update the `Page_Load` handler by adding the following code highlighted in yellow: 
 
-    [!code[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample6.xml?highlight=3-4,13)]
+    [!code-csharp[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample6.cs?highlight=3-4,13)]
 
  By making the above code change, the "Providers" DropDownList containing the authentication options will not be reset to the first value. This will allow the user to successfully select all options to use when authenticating, not just the first.
 10. In **Solution Explorer**, right-click *Default.aspx* and select **Set As Start Page**.

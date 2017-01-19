@@ -53,11 +53,11 @@ If the application shuts down, all of the information is lost, but it will be re
 
 The first example shows a class that manages the mapping of users to connections. The key for the HashSet will be the user's name.
 
-[!code[Main](mapping-users-to-connections/samples/sample1.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample1.cs)]
 
 The next example shows how to use the connection mapping class from a hub. The instance of the class is stored in a variable name `_connections`.
 
-[!code[Main](mapping-users-to-connections/samples/sample2.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample2.cs)]
 
 <a id="groups"></a>
 
@@ -69,7 +69,7 @@ You should not manually remove the user from the group when the user disconnects
 
 The following example shows how to implement single-user groups.
 
-[!code[Main](mapping-users-to-connections/samples/sample3.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample3.cs)]
 
 <a id="database"></a>
 
@@ -83,11 +83,11 @@ The following examples show how to retain connection and user information in a d
 
 The first example shows how to define a user entity that can be associated with many connection entities.
 
-[!code[Main](mapping-users-to-connections/samples/sample4.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample4.cs)]
 
 Then, from the hub, you can track the state of each connection with the code shown below.
 
-[!code[Main](mapping-users-to-connections/samples/sample5.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample5.cs)]
 
 ### Azure table storage
 
@@ -95,8 +95,8 @@ The following Azure table storage example is similar to the database example. It
 
 The following example shows a table entity for storing connection information. It partitions the data by user name, and identifies each entity by the connection id, so a user can have multiple connections at any time.
 
-[!code[Main](mapping-users-to-connections/samples/sample6.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample6.cs)]
 
 In the hub, you track the status of each user's connection.
 
-[!code[Main](mapping-users-to-connections/samples/sample7.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample7.cs)]

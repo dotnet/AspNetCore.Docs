@@ -48,7 +48,7 @@ In an ASP.NET application, configure Web API by calling [GlobalConfiguration.Con
 
 Here is an example using an anonymous delegate:
 
-[!code[Main](configuring-aspnet-web-api/samples/sample1.xml)]
+[!code-csharp[Main](configuring-aspnet-web-api/samples/sample1.cs)]
 
 In Visual Studio 2013, the "ASP.NET Web Application" project template automatically sets up the configuration code, if you select "Web API" in the **New ASP.NET Project** dialog.
 
@@ -58,18 +58,18 @@ The project template creates a file named WebApiConfig.cs inside the App\_Start 
 
 ![](configuring-aspnet-web-api/_static/image3.png)
 
-[!code[Main](configuring-aspnet-web-api/samples/sample2.xml?highlight=12)]
+[!code-csharp[Main](configuring-aspnet-web-api/samples/sample2.cs?highlight=12)]
 
 The project template also adds the code that calls the delegate from **Application\_Start**.
 
-[!code[Main](configuring-aspnet-web-api/samples/sample3.xml?highlight=5)]
+[!code-csharp[Main](configuring-aspnet-web-api/samples/sample3.cs?highlight=5)]
 
 <a id="selfhost"></a>
 ## Configuring Web API with OWIN Self-Hosting
 
 If you are self-hosting with OWIN, create a new **HttpConfiguration** instance. Perform any configuration on this instance, and then pass the instance to the **Owin.UseWebApi** extension method.
 
-[!code[Main](configuring-aspnet-web-api/samples/sample4.xml)]
+[!code-csharp[Main](configuring-aspnet-web-api/samples/sample4.cs)]
 
 The tutorial [Use OWIN to Self-Host ASP.NET Web API 2](../hosting-aspnet-web-api/use-owin-to-self-host-web-api.md) shows the complete steps.
 
@@ -117,11 +117,11 @@ Multiple-Instance Services
 
 To add a custom implementation to a multi-instance service, call **Add** or **Insert** on the **Services** collection:
 
-[!code[Main](configuring-aspnet-web-api/samples/sample5.xml)]
+[!code-unknown[Main](configuring-aspnet-web-api/samples/sample-42873-5.unknown)]
 
 To replace a single-instance service with a custom implementation, call **Replace** on the **Services** collection:
 
-[!code[Main](configuring-aspnet-web-api/samples/sample6.xml)]
+[!code-unknown[Main](configuring-aspnet-web-api/samples/sample-42873-6.unknown)]
 
 <a id="percontrollerconfig"></a>
 ## Per-Controller Configuration
@@ -136,7 +136,7 @@ To do so, define a custom attribute that implements the **IControllerConfigurati
 
 The following example replaces the default media-type formatters with a custom formatter.
 
-[!code[Main](configuring-aspnet-web-api/samples/sample7.xml)]
+[!code-csharp[Main](configuring-aspnet-web-api/samples/sample7.cs)]
 
 The **IControllerConfiguration.Initialize** method takes two parameters:
 

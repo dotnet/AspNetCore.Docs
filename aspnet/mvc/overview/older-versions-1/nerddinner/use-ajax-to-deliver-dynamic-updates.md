@@ -36,15 +36,15 @@ Users can visit the */Dinners/Details/[id*] URL to see details about a particula
 
 The Details() action method is implemented like so:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample1.xml)]
+[!code-csharp[Main](use-ajax-to-deliver-dynamic-updates/samples/sample1.cs)]
 
 Our first step to implement RSVP support will be to add an "IsUserRegistered(username)" helper method to our Dinner object (within the Dinner.cs partial class we built earlier). This helper method returns true or false depending on whether the user is currently RSVP'd for the Dinner:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample2.xml)]
+[!code-csharp[Main](use-ajax-to-deliver-dynamic-updates/samples/sample2.cs)]
 
 We can then add the following code to our Details.aspx view template to display an appropriate message indicating whether the user is registered or not for the event:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample3.xml)]
+[!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample3.html)]
 
 And now when a user visits a Dinner they are registered for they'll see this message:
 
@@ -62,7 +62,7 @@ To implement this, we'll create a new "RSVPController" class by right-clicking o
 
 We'll implement a "Register" action method within the new RSVPController class that takes an id for a Dinner as an argument, retrieves the appropriate Dinner object, checks to see if the logged-in user is currently in the list of users who have registered for it, and if not adds an RSVP object for them:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample4.xml)]
+[!code-csharp[Main](use-ajax-to-deliver-dynamic-updates/samples/sample4.cs)]
 
 Notice above how we are returning a simple string as the output of the action method. We could have embedded this message within a view template – but since it is so small we'll just use the Content() helper method on the controller base class and return a string message like above.
 
@@ -70,13 +70,13 @@ Notice above how we are returning a simple string as the output of the action me
 
 We'll use AJAX to invoke the Register action method from our Details view. Implementing this is pretty easy. First we'll add two script library references:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample5.xml)]
+[!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample5.html)]
 
 The first library references the core ASP.NET AJAX client-side script library. This file is approximately 24k in size (compressed) and contains core client-side AJAX functionality. The second library contains utility functions that integrate with ASP.NET MVC's built-in AJAX helper methods (which we'll use shortly).
 
 We can then update the view template code we added earlier so that instead of outputing a "You are not registered for this event" message, we instead render a link that when pushed performs an AJAX call that invokes our RSVPForEvent action method on our RSVP controller and RSVPs the user:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample6.xml)]
+[!code-aspx[Main](use-ajax-to-deliver-dynamic-updates/samples/sample6.aspx)]
 
 The Ajax.ActionLink() helper method used above is built-into ASP.NET MVC and is similar to the Html.ActionLink() helper method except that instead of performing a standard navigation it makes an AJAX call to the action method when the link is clicked. Above we are calling the "Register" action method on the "RSVP" controller and passing the DinnerID as the "id" parameter to it. The final AjaxOptions parameter we are passing indicates that we want to take the content returned from the action method and update the HTML &lt;div&gt; element on the page whose id is "rsvpmsg".
 
@@ -90,11 +90,11 @@ If they click the "RSVP for this event" link they'll make an AJAX call to the Re
 
 The network bandwidth and traffic involved when making this AJAX call is really lightweight. When the user clicks on the "RSVP for this event" link, a small HTTP POST network request is made to the */Dinners/Register/1* URL that looks like below on the wire:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample7.xml)]
+[!code-console[Main](use-ajax-to-deliver-dynamic-updates/samples/sample7.cmd)]
 
 And the response from our Register action method is simply:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample8.xml)]
+[!code-console[Main](use-ajax-to-deliver-dynamic-updates/samples/sample8.cmd)]
 
 This lightweight call is fast and will work even over a slow network.
 
@@ -106,7 +106,7 @@ The default ASP.NET MVC project template includes jQuery – an excellent (and v
 
 To use jQuery we'll first add a script reference to it. Because we are going to be using jQuery within a variety of places within our site, we'll add the script reference within our Site.master master page file so that all pages can use it.
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample9.xml)]
+[!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample9.html)]
 
 *Tip: make sure you have installed the JavaScript intellisense hotfix for VS 2008 SP1 that enables richer intellisense support for JavaScript files (including jQuery). You can download it from: http://tinyurl.com/vs2008javascripthotfix*
 
@@ -116,11 +116,11 @@ Once you've selected elements, you can call methods on them to take action, like
 
 For our RSVP scenario, we'll define a simple JavaScript function named "AnimateRSVPMessage" that selects the "rsvpmsg" &lt;div&gt; and animates the size of its text content. The below code starts the text small and then causes it to increase over a 400 milliseconds timeframe:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample10.xml)]
+[!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample10.html)]
 
 We can then wire-up this JavaScript function to be called after our AJAX call successfully completes by passing its name to our Ajax.ActionLink() helper method (via the AjaxOptions "OnSuccess" event property):
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample11.xml)]
+[!code-aspx[Main](use-ajax-to-deliver-dynamic-updates/samples/sample11.aspx)]
 
 And now when the "RSVP for this event" link is clicked and our AJAX call completes successfully, the content message sent back will animate and grow large:
 
@@ -138,7 +138,7 @@ Once we've done that, let's also create another partial view – EditAndDeleteLi
 
 Our details view template can then just include two Html.RenderPartial() method calls at the bottom:
 
-[!code[Main](use-ajax-to-deliver-dynamic-updates/samples/sample12.xml)]
+[!code-aspx[Main](use-ajax-to-deliver-dynamic-updates/samples/sample12.aspx)]
 
 This makes the code cleaner to read and maintain.
 

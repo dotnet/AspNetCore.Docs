@@ -21,7 +21,7 @@ You'll create a view template file using the [Razor view engine](../../../../web
 
 Currently the `Index` method returns a string with a message that is hard-coded in the controller class. Change the `Index` method to return a `View` object, as shown in the following code:
 
-[!code[Main](adding-a-view/samples/sample1.xml?highlight=1,3)]
+[!code-csharp[Main](adding-a-view/samples/sample1.cs?highlight=1,3)]
 
 The `Index` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as [action methods](http://rachelappel.com/asp.net-mvc-actionresults-explained)), such as the `Index` method above, generally return an [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult.aspx) (or a class derived from [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult.aspx)), not primitive types like string.
 
@@ -45,7 +45,7 @@ The *MvcMovie\Views\HelloWorld\Index.cshtml* file is created.
 
 Add the following highlighed markup.
 
-[!code[Main](adding-a-view/samples/sample2.xml?highlight=4-11)]
+[!code-cshtml[Main](adding-a-view/samples/sample2.cshtml?highlight=4-11)]
 
 Right click the*Index.cshtml*file and select **View in Browser**.
 
@@ -69,7 +69,7 @@ Layout templates allow you to specify the HTML container layout of your site in 
 
 Change the contents of the title element. Change the [ActionLink](https://msdn.microsoft.com/en-us/library/dd504972(v=vs.108).aspx) in the layout template from &quot;Application name&quot; to &quot;MVC Movie&quot; and the controller from `Home` to `Movies`. The complete layout file is shown below:
 
-[!code[Main](adding-a-view/samples/sample3.xml?highlight=6,20)]
+[!code-cshtml[Main](adding-a-view/samples/sample3.cshtml?highlight=6,20)]
 
 Run the application and notice that it now says &quot;MVC Movie &quot;. Click the **About** link, and you see how that page shows &quot;MVC Movie&quot;, too. We were able to make the change once in the layout template and have all pages on the site reflect the new title.
 
@@ -77,11 +77,11 @@ Run the application and notice that it now says &quot;MVC Movie &quot;. Click th
 
 When we first created the *Views\HelloWorld\Index.cshtml* file, it contained the following code:
 
-[!code[Main](adding-a-view/samples/sample4.xml)]
+[!code-cshtml[Main](adding-a-view/samples/sample4.cshtml)]
 
 The Razor code above is explicted setting the layout page. Examine the *Views\\_ViewStart.cshtml* file, it contains the exact same Razor markup. The*[Views\\_ViewStart.cshtml](https://weblogs.asp.net/scottgu/archive/2010/10/22/asp-net-mvc-3-layouts.aspx)* file defines the common layout that all views will use, therefore you can comment out or remove that code from the *Views\HelloWorld\Index.cshtml* file.
 
-[!code[Main](adding-a-view/samples/sample5.xml?highlight=1-3)]
+[!code-cshtml[Main](adding-a-view/samples/sample5.cshtml?highlight=1-3)]
 
 You can use the `Layout` property to set a different layout view, or set it to `null` so no layout file will be used.
 
@@ -89,11 +89,11 @@ Now, let's change the title of the Index view.
 
 Open *MvcMovie\Views\HelloWorld\Index.cshtml*. There are two places to make a change: first, the text that appears in the title of the browser, and then in the secondary header (the `<h2>` element). You'll make them slightly different so you can see which bit of code changes which part of the app.
 
-[!code[Main](adding-a-view/samples/sample6.xml?highlight=2,5)]
+[!code-cshtml[Main](adding-a-view/samples/sample6.cshtml?highlight=2,5)]
 
 To indicate the HTML title to display, the code above sets a `Title` property of the `ViewBag` object (which is in the *Index.cshtml* view template). Notice that the layout template ( *Views\Shared\\_Layout.cshtml* ) uses this value in the `<title>` element as part of the `<head>` section of the HTML that we modified previously.
 
-[!code[Main](adding-a-view/samples/sample7.xml?highlight=6)]
+[!code-cshtml[Main](adding-a-view/samples/sample7.cshtml?highlight=6)]
 
 Using this `ViewBag` approach, you can easily pass other parameters between your view template and your layout file.
 
@@ -115,7 +115,7 @@ Currently, the `Welcome` action method in the `HelloWorldController` class takes
 
 Return to the *HelloWorldController.cs* file and change the `Welcome` method to add a `Message` and `NumTimes` value to the `ViewBag` object. `ViewBag` is a dynamic object, which means you can put whatever you want in to it; the `ViewBag` object has no defined properties until you put something inside it. The [ASP.NET MVC model binding system](http://odetocode.com/Blogs/scott/archive/2009/04/27/6-tips-for-asp-net-mvc-model-binding.aspx) automatically maps the named parameters (`name` and `numTimes`) from the query string in the address bar to parameters in your method. The complete *HelloWorldController.cs* file looks like this:
 
-[!code[Main](adding-a-view/samples/sample8.xml)]
+[!code-csharp[Main](adding-a-view/samples/sample8.cs)]
 
 Now the `ViewBag` object contains data that will be passed to the view automatically. Next, you need a Welcome view template! In the **Build** menu, select **Build Solution** (or Ctrl+Shift+B) to make sure the project is compiled. Right click the *Views\HelloWorld*folder and click **Add**, then click **MVC 5 View Page with (Layout Razor)**.
   
@@ -131,7 +131,7 @@ The *MvcMovie\Views\HelloWorld\Welcome.cshtml* file is created.
 
 Replace the markup in the *Welcome.cshtml* file. You'll create a loop that says &quot;Hello&quot; as many times as the user says it should. The complete *Welcome.cshtml* file is shown below.
 
-[!code[Main](adding-a-view/samples/sample9.xml)]
+[!code-cshtml[Main](adding-a-view/samples/sample9.cshtml)]
 
 Run the application and browse to the following URL:
 

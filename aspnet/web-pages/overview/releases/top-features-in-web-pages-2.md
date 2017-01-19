@@ -70,7 +70,7 @@ The Beta version released in February 2012 has only a few changes from the Beta 
 
 - Razor now supports conditional attributes. In an HTML element, if you set an attribute to a value that resolves in server code to `false` or `null`, ASP.NET does not render the attribute at all. For example, imagine you have the following markup for a check box:
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample1.xml)]
+    [!code-html[Main](top-features-in-web-pages-2/samples/sample1.html)]
 
     If the value of `checked1` resolves to `false` or to `null`, the `checked` attribute is not rendered. This is a breaking change.
 - The `Validation.GetHtml` method has been renamed to `Validation.For`. This is a breaking change; `Validation.GetHtml` will not work in the Beta release.
@@ -127,21 +127,21 @@ To use the new validation features, do the following:
 
 In the page's code, register an element to be validated by using methods of the `Validation` helper: `Validation.RequireField`, `Validation.RequireFields` (to register multiple elements to be required), or `Validation.Add`. The `Add` method lets you specify other types of validation checks, like data-type checking, comparing entries in different fields, string-length checks, and patterns (using regular expressions). Here are some examples:
 
-[!code[Main](top-features-in-web-pages-2/samples/sample2.xml)]
+[!code-unknown[Main](top-features-in-web-pages-2/samples/sample-24965-2.unknown)]
 
 To display a field-specific error, call `Html.ValidationMessage` in the markup for each element being validated:
 
-[!code[Main](top-features-in-web-pages-2/samples/sample3.xml)]
+[!code-cshtml[Main](top-features-in-web-pages-2/samples/sample3.cshtml)]
 
 To display a summary (`<ul>` list) of all the errors in the page, `Html.ValidationSummary` in the markup:
 
-[!code[Main](top-features-in-web-pages-2/samples/sample4.xml)]
+[!code-cshtml[Main](top-features-in-web-pages-2/samples/sample4.cshtml)]
 
 These steps are enough to implement server-side validation. If you want to add client-side validation, do the following in addition.
 
 Add the following script file references inside the `<head>` section of a web page. The first two script references point to remote files on a content delivery network (CDN) server. The third reference points to a local script file.
 
-[!code[Main](top-features-in-web-pages-2/samples/sample5.xml)]
+[!code-html[Main](top-features-in-web-pages-2/samples/sample5.html)]
 
 The easiest way to get a local copy of the *jquery.validate.unobtrusive.min.js* library is to create a new Web Pages site based on one of the site templates (such as Starter Site). The site created by the template includes *jquery.validate.unobtrusive.js* file in its Scripts folder, from which you can copy it to your site.
 
@@ -149,7 +149,7 @@ If your website uses a*\_SiteLayout* page to control the page layout, you can in
 
 In the markup for an individual element, call the `Validation.For` method. This method emits attributes that jQuery can hook in order to provide client-side validation. For example:
 
-[!code[Main](top-features-in-web-pages-2/samples/sample6.xml)]
+[!code-cshtml[Main](top-features-in-web-pages-2/samples/sample6.cshtml)]
 
 The following example shows a page that validates user input on a form. To run and test this validation code, do this:
 
@@ -158,7 +158,7 @@ The following example shows a page that validates user input on a form. To run a
 3. Run the page in a browser. Enter valid and invalid values to see the effects on validation. For example, leave a required field blank or enter a letter in the **Credits** field.
 
 
-[!code[Main](top-features-in-web-pages-2/samples/sample7.xml)]
+[!code-csharp[Main](top-features-in-web-pages-2/samples/sample7.cs)]
 
 Here is the page when a user submits valid input:
 
@@ -214,19 +214,19 @@ To run the sample:
 
 *Test.js*
 
-[!code[Main](top-features-in-web-pages-2/samples/sample8.xml)]
+[!code-javascript[Main](top-features-in-web-pages-2/samples/sample8.js)]
 
 *Helpers.cshtml*
 
-[!code[Main](top-features-in-web-pages-2/samples/sample9.xml)]
+[!code-cshtml[Main](top-features-in-web-pages-2/samples/sample9.cshtml)]
 
 *\_SiteLayout.cshtml*
 
-[!code[Main](top-features-in-web-pages-2/samples/sample10.xml)]
+[!code-html[Main](top-features-in-web-pages-2/samples/sample10.html)]
 
 *ContentPage.cshtml*
 
-[!code[Main](top-features-in-web-pages-2/samples/sample11.xml)]
+[!code-cshtml[Main](top-features-in-web-pages-2/samples/sample11.cshtml)]
 
 The following screenshot shows *ContentPage.cshtml* in a browser when you hold the mouse pointer over the note:
 
@@ -258,13 +258,13 @@ This section provides an example of how to let users log in from external sites 
 
 1. In your website, edit the *\_AppStart.cshtml* page and add the following two lines of code in the Razor code block after the call to the `WebSecurity.InitializeDatabaseConnection` method. This code enables both the Google and Yahoo OpenID providers. 
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample12.xml)]
+    [!code-unknown[Main](top-features-in-web-pages-2/samples/sample-24965-12.unknown)]
 2. In the *~/Account/Login.cshtml* page, remove the comments from the following `<fieldset>` block of markup near the end of the page. To uncomment the code, remove the `@*` characters that precede and follow the `<fieldset>` block. The resulting code block looks like this:
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample13.xml)]
+    [!code-html[Main](top-features-in-web-pages-2/samples/sample13.html)]
 3. Add an `<input>` element for the Google or Yahoo provider to the `<fieldset>` group in the *~/Account/Login.cshtml* page. The updated `<fieldset>` group with `<input>` elements for both Google and Yahoo looks like the following example: 
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample14.xml)]
+    [!code-html[Main](top-features-in-web-pages-2/samples/sample14.html)]
 4. In the *~/Account/AssociateServiceAccount.cshtml* page, add `<input>` elements for Google or Yahoo to the `<fieldset>` group near the end of the file. You can copy the same `<input>` elements that you just added to the `<fieldset>` section in the *~/Account/Login.cshtml* page. 
 
     The *~/Account/AssociateServiceAccount.cshtml* page in the Starter Site template can be used if you want to create a page on which users can associate multiple logins from other sites with a single account on your website.
@@ -306,13 +306,13 @@ Now you make changes to two pages in your website so that users will able to log
 
 1. In your website, edit the *\_AppStart.cshtml* page and uncomment the code for the Facebook OAuth provider. The uncommented code block looks like the following: 
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample15.xml)]
+    [!code-unknown[Main](top-features-in-web-pages-2/samples/sample-24965-15.unknown)]
 2. Copy the **App ID** value from the Facebook application as the value of the `consumerKey` parameter (inside the quotation marks).
 3. Copy **App Secret** value from the Facebook application as the `consumerSecret` parameter value.
 4. Save and close the file.
 5. Edit the *~/Account/Login.cshtml* page and remove the comments from the `<fieldset>` block near the end of the page. To uncomment the code, remove the `@*` characters that precede and follow the `<fieldset>` block. The code block with comments removed looks like the following: 
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample16.xml)]
+    [!code-html[Main](top-features-in-web-pages-2/samples/sample16.html)]
 6. Save and close the file.
 
 Now you can test the Facebook login.
@@ -353,13 +353,13 @@ Now you make changes to two pages in your website so that users will be able to 
 
 1. In your website, edit the *\_AppStart.cshtml* page and uncomment the code for the Twitter OAuth provider. The uncommented code block looks like this: 
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample17.xml)]
+    [!code-unknown[Main](top-features-in-web-pages-2/samples/sample-24965-17.unknown)]
 2. Copy the **Consumer Key** value from the Twitter application as the value of the `consumerKey` parameter (inside the quotation marks).
 3. Copy the **Consumer Secret** value from the Twitter application as the value of the `consumerSecret` parameter.
 4. Save and close the file.
 5. Edit the *~/Account/Login.cshtml* page and remove the comments from the `<fieldset>` block near the end of the page. To uncomment the code, remove the `@*` characters that precede and follow the `<fieldset>` block. The code block with comments removed looks like the following: 
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample18.xml)]
+    [!code-html[Main](top-features-in-web-pages-2/samples/sample18.html)]
 6. Save and close the file.
 
 Now you can test the Twitter login.
@@ -401,15 +401,15 @@ To create mapping pages:
 2. Create a file named *MapAddress.cshtml* in the root of the site. This page will generate a map based on an address that you pass to it.
 3. Copy the following code into the file, overwriting the existing content. 
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample19.xml)]
+    [!code-cshtml[Main](top-features-in-web-pages-2/samples/sample19.cshtml)]
 4. Create a file named *\_MapLayout.cshtml* in the root of the site. This page will be the layout page for the two mapping pages.
 5. Copy the following code into the file, overwriting the existing content. 
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample20.xml)]
+    [!code-html[Main](top-features-in-web-pages-2/samples/sample20.html)]
 6. Create a file named *MapCoordinates.cshtml* in the root of the site. This page will generate a map based on a set of coordinates that you pass to it.
 7. Copy the following code into the file, overwriting the existing content. 
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample21.xml)]
+    [!code-cshtml[Main](top-features-in-web-pages-2/samples/sample21.cshtml)]
 
 To test your mapping pages:
 
@@ -432,7 +432,7 @@ Here are some things to remember when you install the Web Pages 2 Beta with WebM
 - By default, existing Web Pages applications will run as version 2 applications on your computer. (The assemblies for version 2 are installed in the GAC and will be used automatically.)
 - If you want to run a site using Web Pages version 1 (instead of the default, as in the previous point), you can configure the site to do that. If your site doesn't already have a *web.config* file in the root of the site, create a new one and copy the following XML into it, overwriting the existing content. If the site already contains a *web.config* file, add an `<appSettings>` element like the following one to the `<configuration>` section.
 
-    [!code[Main](top-features-in-web-pages-2/samples/sample22.xml)]
+    [!code-xml[Main](top-features-in-web-pages-2/samples/sample22.xml)]
 `- If you do not specify a version in the *web.config* file, a site is deployed as a version 2 site. (The version 2 assemblies are copied to the *bin* folder in the deployed site.)
 - New applications that you create using the site templates in Web Matrix version 2 Beta include the Web Pages version 2 assemblies in the site's *bin* folder.
 
@@ -460,11 +460,11 @@ To build and run the code sample:
 
 *Page1.cshtml*
 
-[!code[Main](top-features-in-web-pages-2/samples/sample23.xml)]
+[!code-html[Main](top-features-in-web-pages-2/samples/sample23.html)]
 
 *Page1.Mobile.cshtml*
 
-[!code[Main](top-features-in-web-pages-2/samples/sample24.xml)]
+[!code-html[Main](top-features-in-web-pages-2/samples/sample24.html)]
 
 *Page1.cshtml* rendered in a desktop browser:
 

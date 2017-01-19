@@ -65,11 +65,11 @@ In this tutorial, we will roughly sketch out how to use [OWIN](https://msdn.micr
 
 Add an [OWIN Startup class](owin-startup-class-detection.md) under the project root folder named *Startup*.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample1.xml?highlight=8)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample1.cs?highlight=8)]
 
 Create an *App\_Start* folder. Select the *App\_Start* folder and use Shift+Alt+A to add the downloaded version of the *AuthorizationServer\App\_Start\Startup.Auth.cs* file.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample2.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample2.cs)]
 
 The code above enables application/external sign in cookies and Google authentication, which are used by authorization server itself to manage accounts.
 
@@ -91,9 +91,9 @@ The `UseOAuthAuthorizationServer` extension method is to setup the authorization
 
 OAuth doesn't care where or how you manage your user account information. It's [ASP.NET Identity](../authentication-and-identity.md) which is responsible for it. In this tutorial, we will simplify the account management code and just make sure that user can login using OWIN cookie middleware. Here is the simplified sample code for the `AccountController`:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample3.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample3.cs)]
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample4.xml?highlight=1)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample4.cs?highlight=1)]
 
 `ValidateClientRedirectUri` is used to validate the client with its registered redirect URL. `ValidateClientAuthentication` checks the basic scheme header and form body to get the client's credentials.
 
@@ -119,11 +119,11 @@ Review the IETF's OAuth 2 [Authorization Code Grant](http://tools.ietf.org/html/
 
 A sample implementation for `AuthorizationCodeProvider.CreateAsync` and `ReceiveAsync` to control the creation and validation of authorization code is shown below.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample5.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample5.cs)]
 
 The code above uses an in-memory concurrent dictionary to store the code and identity ticket and restore the identity after receiving the code. In a real application, it would be replaced by a persistent data store. The authorization endpoint is for the resource owner to grant access to the client. Usually, it needs a user interface to allow the user to click a button and confirm the grant. OWIN OAuth middleware allows application code to handle the authorization endpoint. In our sample app, we use an MVC controller called `OAuthController` to handle it. Here is the sample implementation:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample6.xml?highlight=15)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample6.cs?highlight=15)]
 
 The `Authorize` action will first check if the user has logged in to the authorization server. If not, the authentication middleware challenges the caller to authenticate using the "Application" cookie and redirects to the login page. (See highlighted code above.) If user has logged in, it will render the Authorize view, as shown below:![](owin-oauth-20-authorization-server/_static/image2.png)If the **Grant** button is selected, the `Authorize` action will create a new "Bearer" identity and sign in with it. It will trigger the authorization server to generate a bearer token and send it back to the client with JSON payload. 
 
@@ -163,7 +163,7 @@ Refer to the IETF's OAuth 2 [Resource Owner Password Credentials Grant](http://t
 
 Here is the sample implementation for `Provider.GrantResourceOwnerCredentials`:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample7.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample7.cs)]
 
 > [!NOTE] The code above is intended to explain this section of the tutorial and should not be used in secure or production apps. It does not check the resource owners credentials. It assumes every credential is valid and creates a new identity for it. The new identity will be used to generate the access token and refresh token. Please replace the code with your own secure account management code.
 
@@ -183,7 +183,7 @@ Refer to the IETF's OAuth 2 [Client Credentials Grant](http://tools.ietf.org/htm
 
 Here is the sample implementation for `Provider.GrantClientCredentials`:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample8.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample8.cs)]
 
 > [!NOTE] The code above is intended to explain this section of the tutorial and should not be used in secure or production apps. Please replace the code with your own secure client management code.
 
@@ -203,9 +203,9 @@ Refer to the IETF's OAuth 2 [Refresh Token](http://tools.ietf.org/html/rfc6749#s
 
 Here is the sample implementation for `Provider.GrantRefreshToken`: 
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample9.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample9.cs)]
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample10.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample10.cs)]
 
 ## Create a Resource Server which is protected by Access Token
 
@@ -217,15 +217,15 @@ Create an empty web app project and install following packages in the project:
 
 Create a startup class and configure authentication and Web API. See *AuthorizationServer\ResourceServer\Startup.cs* in the sample download.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample11.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample11.cs)]
 
 See *AuthorizationServer\ResourceServer\App\_Start\Startup.Auth.cs* in the sample download.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample12.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample12.cs)]
 
 See *AuthorizationServer\ResourceServer\App\_Start\Startup.WebApi.cs* in the sample download.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample13.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample13.cs)]
 
 - `UseCors` method allows CORS for all domains.
 - `UseOAuthBearerAuthentication` method enables OAuth bearer token authentication middleware which will receive and validate bearer token from authorization header in the request.
@@ -234,11 +234,11 @@ See *AuthorizationServer\ResourceServer\App\_Start\Startup.WebApi.cs* in the sam
 
 In order to demonstrate the authenticated identity, we create an ApiController to output current user's claims.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample14.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample14.cs)]
 
 If the authorization server and the resource server are not on the same computer, the OAuth middleware will use the different machine keys to encrypt and decrypt bearer access token. In order to share the same private key between both projects, we add the same `machinekey` setting in both *web.config* files.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample15.xml?highlight=8-10)]
+[!code-xml[Main](owin-oauth-20-authorization-server/samples/sample15.xml?highlight=8-10)]
 
 ## Create OAuth 2.0 Clients
 
@@ -256,11 +256,11 @@ If the authorization server and the resource server are not on the same computer
 
 Here is the sample code of the `HomeController` of the client.
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample16.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample16.cs)]
 
 `DotNetOpenAuth` requires SSL by default. Since our demo is using HTTP, you need to add following setting in the config file:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample17.xml?highlight=4-6)]
+[!code-xml[Main](owin-oauth-20-authorization-server/samples/sample17.xml?highlight=4-6)]
 
 > [!WARNING] Security - Never disable SSL in a production app. Your login credentials are now being sent in clear-text across the wire. The code above is just for local sample debugging and exploration.
 
@@ -278,11 +278,11 @@ The following image shows this process:
 
 The client should have two pages: one for home page and the other for callback.Here is the sample JavaScript code found in the *Index.cshtml* file:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample18.xml)]
+[!code-html[Main](owin-oauth-20-authorization-server/samples/sample18.html)]
 
 Here is the callback handling code in *SignIn.cshtml* file:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample19.xml)]
+[!code-html[Main](owin-oauth-20-authorization-server/samples/sample19.html)]
 
 > [!NOTE] A best practice is to move the JavaScript to an external file and not embed it with the Razor markup. To keep this sample simple, they have been combined.
 
@@ -291,10 +291,10 @@ Here is the callback handling code in *SignIn.cshtml* file:
 
 We uses a console app to demo this client. Here is the code:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample20.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample20.cs)]
 
 ### Client Credentials Grant Client
 
 Similar to the Resource Owner Password Credentials Grant, here is console app code:
 
-[!code[Main](owin-oauth-20-authorization-server/samples/sample21.xml)]
+[!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample21.cs)]

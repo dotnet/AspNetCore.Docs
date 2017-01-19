@@ -60,7 +60,7 @@ If you'd rather build up the `ItemTemplate` manually, you can add and configure 
 Regardless of what approach you decided to take, at this point your FormView's declarative markup should look like:
 
 
-[!code[Main](using-the-formview-s-templates-vb/samples/sample1.xml)]
+[!code-aspx[Main](using-the-formview-s-templates-vb/samples/sample1.aspx)]
 
 Take a moment to check the Enable Paging checkbox in the FormView's smart tag; this will add the `AllowPaging="True"` attribute to the FormView's declarative syntax. Also, set the `EnableViewState` property to False.
 
@@ -73,7 +73,7 @@ This markup can be entered in through the FormView's template editing interface 
 The following markup shows the FormView declarative markup after the `ItemTemplate`'s structure has been completed:
 
 
-[!code[Main](using-the-formview-s-templates-vb/samples/sample2.xml)]
+[!code-aspx[Main](using-the-formview-s-templates-vb/samples/sample2.aspx)]
 
 Notice that the databinding syntax - `<%# Eval("ProductName") %>`, for example can be injected directly into the template's output. That is, it need not be assigned to a Label control's `Text` property. For example, we have the `ProductName` value displayed in an `<h3>` element using `<h3><%# Eval("ProductName") %></h3>`, which for the product Chai will render as `<h3>Chai</h3>`.
 

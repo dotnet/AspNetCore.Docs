@@ -19,27 +19,27 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 In this section, you will add the ability to view details for each book. In app.js, add to the following code to the view model:
 
-[!code[Main](part-8/samples/sample1.xml)]
+[!code-javascript[Main](part-8/samples/sample1.js)]
 
 In Views/Home/Index.cshtml, add a data-bind element to the Details link:
 
-[!code[Main](part-8/samples/sample2.xml?highlight=5)]
+[!code-html[Main](part-8/samples/sample2.html?highlight=5)]
 
 This binds the click handler for the &lt;a&gt; element to the `getBookDetail` function on the view model.
 
 In the same file, replace the following mark-up:
 
-[!code[Main](part-8/samples/sample3.xml)]
+[!code-html[Main](part-8/samples/sample3.html)]
 
 with this:
 
-[!code[Main](part-8/samples/sample4.xml)]
+[!code-html[Main](part-8/samples/sample4.html)]
 
 This markup creates a table that is data-bound to the properties of the `detail` observable in the view model.
 
 The "&lt;!-- ko --&gt;&quot; syntax lets you include a Knockout binding outside of a DOM element. In this case, the `if` binding causes this section of markup to be displayed only when `details` is non-null.
 
-[!code[Main](part-8/samples/sample5.xml)]
+[!code-html[Main](part-8/samples/sample5.html)]
 
 Now if you run the app and click one of the &quot;Detail&quot; links, the app will display the book details.
 

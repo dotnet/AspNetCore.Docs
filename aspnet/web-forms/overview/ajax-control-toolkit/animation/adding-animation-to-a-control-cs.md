@@ -28,19 +28,19 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 The first step is as usual to include the `ScriptManager` in the page so that the ASP.NET AJAX library is loaded and the Control Toolkit can be used:
 
-[!code[Main](adding-animation-to-a-control-cs/samples/sample1.xml)]
+[!code-aspx[Main](adding-animation-to-a-control-cs/samples/sample1.aspx)]
 
 The animation in this scenario will be applied to a panel of text which looks like this:
 
-[!code[Main](adding-animation-to-a-control-cs/samples/sample2.xml)]
+[!code-aspx[Main](adding-animation-to-a-control-cs/samples/sample2.aspx)]
 
 The associated CSS class for the panel defines a background color and a width:
 
-[!code[Main](adding-animation-to-a-control-cs/samples/sample3.xml)]
+[!code-css[Main](adding-animation-to-a-control-cs/samples/sample3.css)]
 
 Next up, we need the `AnimationExtender`. After providing an `ID` and the usual `runat="server"`, the `TargetControlID` attribute must be set to the control to animate in our case, the panel:
 
-[!code[Main](adding-animation-to-a-control-cs/samples/sample4.xml)]
+[!code-aspx[Main](adding-animation-to-a-control-cs/samples/sample4.aspx)]
 
 The whole animation is applied declaratively, using an XML syntax, unfortunately currently not fully supported by Visual Studio's IntelliSense. The root node is `<Animations>;` within this node, several events are allowed which determine when the animation(s) take(s) place:
 
@@ -63,7 +63,7 @@ The framework comes with a set of animations, each one represented by its own XM
 
 In this example, the panel shall fade out. The animation shall take 1.5 seconds (`Duration` attribute), displaying 24 frames (animation steps) per second (`Fps` attributs). Here is the complete markup for the `AnimationExtender` control:
 
-[!code[Main](adding-animation-to-a-control-cs/samples/sample5.xml)]
+[!code-aspx[Main](adding-animation-to-a-control-cs/samples/sample5.aspx)]
 
 When you run this script, the panel is displayed and fades out in one and a half seconds.
 

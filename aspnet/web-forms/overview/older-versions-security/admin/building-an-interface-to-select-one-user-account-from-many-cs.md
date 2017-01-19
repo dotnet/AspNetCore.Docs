@@ -41,13 +41,13 @@ Also add two pages to the website's root directory: `ChangePassword.aspx` and `R
 
 These four pages should, at this point, have two Content controls, one for each of the master page's ContentPlaceHolders: `MainContent` and `LoginContent`.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample1.xml)]
+[!code-aspx[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample1.aspx)]
 
 We want to show the master page's default markup for the `LoginContent` ContentPlaceHolder for these pages. Therefore, remove the declarative markup for the `Content2` Content control. After doing so, the pages' markup should contain just one Content control.
 
 The ASP.NET pages in the `Administration` folder are intended solely for administrative users. We added an Administrators role to the system in the <a id="_msoanchor_2"></a>[*Creating and Managing Roles*](../roles/creating-and-managing-roles-cs.md) tutorial; restrict access to these two pages to this role. To accomplish this, add a `Web.config` file to the `Administration` folder and configure its `<authorization>` element to admit users in the Administrators role and to deny all others.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample2.xml)]
+[!code-xml[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample2.xml)]
 
 At this point your project's Solution Explorer should look similar to the screen shot shown in Figure 1.
 
@@ -59,7 +59,7 @@ At this point your project's Solution Explorer should look similar to the screen
 
 Finally, update the site map (`Web.sitemap`) to include an entry to the `ManageUsers.aspx` page. Add the following XML after the `<siteMapNode>` we added for the Roles tutorials.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample3.xml)]
+[!code-xml[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample3.xml)]
 
 With the site map updated, visit the site through a browser. As Figure 2 shows, the navigation on the left now includes items for the Administration tutorials.
 
@@ -85,11 +85,11 @@ In order to display the desired user account information in the GridView, set th
 
 After configuring your GridView, ensure that its declarative markup resembles the following:
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample4.xml)]
+[!code-aspx[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample4.aspx)]
 
 Next, we need to write code that binds the user accounts to the GridView. Create a method named `BindUserAccounts` to perform this task and then call it from the `Page_Load` event handler on the first page visit.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample5.xml)]
+[!code-csharp[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample5.cs)]
 
 Take a moment to test the page through a browser. As Figure 4 shows, the `UserAccounts` GridView lists the username, email address, and other pertinent account information for all users in the system.
 
@@ -107,11 +107,11 @@ Our first task is to add the 27 LinkButton controls. One option would be to crea
 
 Start by adding a Repeater control to the page above the `UserAccounts` GridView. Set the Repeater's `ID` property to `FilteringUI`. Configure the Repeater's templates so that its `ItemTemplate` renders a LinkButton whose `Text` and `CommandName` properties are bound to the current array element. As we saw in the <a id="_msoanchor_3"></a>[*Assigning Roles to Users*](../roles/assigning-roles-to-users-cs.md) tutorial, this can be accomplished using the `Container.DataItem` databinding syntax. Use the Repeater's `SeparatorTemplate` to display a vertical line between each link.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample6.xml)]
+[!code-aspx[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample6.aspx)]
 
 To populate this Repeater with the desired filtering options, create a method named `BindFilteringUI`. Be sure to call this method from the `Page_Load` event handler on the first page load.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample7.xml)]
+[!code-csharp[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample7.cs)]
 
 This method specifies the filtering options as elements in the `string` array `filterOptions`. For each element in the array, the Repeater will render a LinkButton with its `Text` and `CommandName` properties assigned to the value of the array element.
 
@@ -130,19 +130,19 @@ Clicking any of the filtering LinkButtons causes a postback and raises the Repea
 
 Start by updating the `ManageUser.aspx` page's code-behind class so that it includes a property named `UsernameToMatch`. This property persists the username filter string across postbacks:
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample8.xml)]
+[!code-csharp[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample8.cs)]
 
 The `UsernameToMatch` property stores its value it is assigned into the `ViewState` collection using the key UsernameToMatch . When this property's value is read, it checks to see if a value exists in the `ViewState` collection; if not, it returns the default value, an empty string. The `UsernameToMatch` property exhibits a common pattern, namely persisting a value to view state so that any changes to the property are persisted across postbacks. For more information on this pattern, read [Understanding ASP.NET View State](https://msdn.microsoft.com/en-us/library/ms972976.aspx).
 
 Next, update the `BindUserAccounts` method so that instead of calling `Membership.GetAllUsers`, it calls `Membership.FindUsersByName`, passing in the value of the `UsernameToMatch` property appended with the SQL wildcard character, %.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample9.xml)]
+[!code-csharp[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample9.cs)]
 
 To display just those users whose username starts with the letter A , set the `UsernameToMatch` property to A and then call `BindUserAccounts`. This would result in a call to `Membership.FindUsersByName("A%")`, which will return all users whose username starts with A . Likewise, to return *all* users, assign an empty string to the `UsernameToMatch` property so that the `BindUserAccounts` method will invoke `Membership.FindUsersByName("%")`, thereby returning all user accounts.
 
 Create an event handler for the Repeater's `ItemCommand` event. This event is raised whenever one of the filter LinkButtons is clicked; it is passed the clicked LinkButton's `CommandName` value through the `RepeaterCommandEventArgs` object. We need to assign the appropriate value to the `UsernameToMatch` property and then call the `BindUserAccounts` method. If the `CommandName` is All , assign an empty string to `UsernameToMatch` so that all user accounts are displayed. Otherwise, assign the `CommandName` value to `UsernameToMatch`.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample10.xml)]
+[!code-csharp[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample10.cs)]
 
 With this code in place, test out the filtering functionality. When the page is first visited, all user accounts are displayed (refer back to Figure 5). Clicking the A LinkButton causes a postback and filters the results, displaying only those user accounts that start with A .
 
@@ -183,7 +183,7 @@ One option would be to create a proxy class that exposes the interface the Objec
 
 Let's build a paging interface with First, Previous, Next, and Last LinkButtons. The First LinkButton, when clicked, will take the user to the first page of data, whereas Previous will return him to the previous page. Likewise, Next and Last will move the user to the next and last page, respectively. Add the four LinkButton controls beneath the `UserAccounts` GridView.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample11.xml)]
+[!code-aspx[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample11.aspx)]
 
 Next, create an event handler for each of the LinkButton's `Click` events.
 
@@ -199,7 +199,7 @@ Figure 7 shows the four LinkButtons when viewed through the Visual Web Developer
 
 When a user first visits the `ManageUsers.aspx` page or clicks one of the filtering buttons, we want to display the first page of data in the GridView. When the user clicks one of the navigation LinkButtons, however, we need to update the page index. To maintain the page index and the number of records to display per page, add the following two properties to the page's code-behind class:
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample12.xml)]
+[!code-csharp[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample12.cs)]
 
 Like the `UsernameToMatch` property, the `PageIndex` property persists its value to view state. The read-only `PageSize` property returns a hard-coded value, 10. I invite the interested reader to update this property to use the same pattern as `PageIndex`, and then to augment the `ManageUsers.aspx` page such that the person visiting the page can specify how many user accounts to display per page.
 
@@ -209,7 +209,7 @@ With the paging interface in place and the `PageIndex` and `PageSize` properties
 
 Update the `BindUserAccounts` method with the following code:
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample13.xml)]
+[!code-csharp[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample13.cs)]
 
 Note that the total number of records being paged through is determined by the last parameter of the `FindUsersByName` method. This is an `out` parameter, so we need to first declare a variable to hold this value (`totalRecords`) and then prefix it with the `out` keyword.
 
@@ -217,7 +217,7 @@ After the specified page of user accounts are returned, the four LinkButtons are
 
 The last step is to write the code for the four LinkButtons' `Click` event handlers. These event handlers need to update the `PageIndex` property and then rebind the data to the GridView via a call to `BindUserAccounts`. The First, Previous, and Next event handlers are very simple. The `Click` event handler for the Last LinkButton, however, is a bit more complex because we need to determine how many records are being displayed in order to determine the last page index.
 
-[!code[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample14.xml)]
+[!code-csharp[Main](building-an-interface-to-select-one-user-account-from-many-cs/samples/sample14.cs)]
 
 Figures 8 and 9 show the custom paging interface in action. Figure 8 shows the `ManageUsers.aspx` page when viewing the first page of data for all user accounts. Note that only 10 of the 13 accounts are displayed. Clicking the Next or Last link causes a postback, updates the `PageIndex` to 1, and binds the second page of user accounts to the grid (see Figure 9).
 

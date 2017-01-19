@@ -37,7 +37,7 @@ The runtime features are released as NuGet packages on the NuGet gallery. All th
 
 You can install or update to the released NuGet packages by using the NuGet Package Manager Console:
 
-[!code[Main](whats-new-in-aspnet-web-api-22/samples/sample1.xml)]
+[!code-console[Main](whats-new-in-aspnet-web-api-22/samples/sample1.cmd)]
 
 <a id="documentation"></a>
 ## Documentation
@@ -85,7 +85,7 @@ Following are some examples on what you could do with this new extensibility poi
 
     Here a request like "/api/values/10" would successfully return "Success:10"
 
-    [!code[Main](whats-new-in-aspnet-web-api-22/samples/sample2.xml)]
+    [!code-csharp[Main](whats-new-in-aspnet-web-api-22/samples/sample2.cs)]
 2. Provide a default route name for your attribute routes by following some convention you like. By default, attribute routing doesn't automatically create names for attribute routes.
 3. Modify attribute routes' route template at one central place before they end up in the route table.
 
@@ -107,7 +107,7 @@ Issue: Overloaded Functions could not be exposed as FunctionImport
 
 If there are 2 overloaded functions and they are also FunctionImport as shown below then requesting ~/GetAllConventionCustomers(CustomerName={customerName}) results in System.InvalidOperationException.
 
-[!code[Main](whats-new-in-aspnet-web-api-22/samples/sample3.xml)]
+[!code-xml[Main](whats-new-in-aspnet-web-api-22/samples/sample3.xml)]
 
 Workaround: The workaround for this issue is to add both the function overloads as FunctionImports.
 
@@ -143,7 +143,7 @@ The recommended way to resolve this issue is to replace all instances of **Query
 
 An alternative workaround is to use the following code in your Web API configuration:
 
-[!code[Main](whats-new-in-aspnet-web-api-22/samples/sample4.xml)]
+[!code-unknown[Main](whats-new-in-aspnet-web-api-22/samples/sample-57883-4.unknown)]
 
 ### Attribute Routing
 

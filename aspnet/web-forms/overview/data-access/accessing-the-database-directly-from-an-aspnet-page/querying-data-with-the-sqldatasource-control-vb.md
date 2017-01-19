@@ -82,7 +82,7 @@ Like in the other folders, `Default.aspx` in the `SqlDataSource` folder will lis
 Lastly, add these four pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Adding Custom Buttons to the DataList and Repeater `<siteMapNode>`:
 
 
-[!code[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample1.xml)]
+[!code-sql[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample1.sql)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the editing, inserting, and deleting tutorials.
 
@@ -138,7 +138,7 @@ To complete the wizard, click Finish.
 Like with the ObjectDataSource, the SqlDataSource s wizard merely assigns values to the control s properties, namely the [`ConnectionString`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.connectionstring.aspx) and [`SelectCommand`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.selectcommand.aspx) properties. After completing the wizard, your SqlDataSource control s declarative markup should look similar to the following:
 
 
-[!code[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample2.xml)]
+[!code-aspx[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample2.aspx)]
 
 The `ConnectionString` property provides information on how to connect to the database. This property can be assigned a complete, hard-coded connection string value or can point to a connection string in `Web.config`. To reference a connection string value in Web.config, use the syntax `<%$ expressionPrefix:expressionValue %>`. Typically, *expressionPrefix* is ConnectionStrings and *expressionValue* is the name of the connect string in the `Web.config` [`<connectionStrings>` section](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx). However, the syntax can be used to reference `<appSettings>` elements or content from resource files. See [ASP.NET Expressions Overview](https://msdn.microsoft.com/en-us/library/d5bd1tad.aspx) for more on this syntax.
 
@@ -159,7 +159,7 @@ Once you ve selected the SqlDataSource control from the drop-down list in the Gr
 Take a moment to configure the GridView s three BoundFields. Change the `ProductName` field s `HeaderText` property to Product Name and the `UnitPrice` field s to Price . Also format the `UnitPrice` field as a currency. After making these modifications, your GridView s declarative markup should look similar to the following:
 
 
-[!code[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample3.xml)]
+[!code-aspx[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample3.aspx)]
 
 Visit this page through a browser. As Figure 11 shows, the GridView lists each product s `ProductID`, `ProductName`, and `UnitPrice` values.
 
@@ -206,7 +206,7 @@ The next screen asks us to specify the database. As we did back in Figure 7, sel
 The custom SQL statement can be entered by hand into the textbox or can be constructed graphically by clicking the Query Builder button. From either the Query Builder or the textbox, use the following query to return the `ProductID` and `ProductName` fields from the `Products` table using a `JOIN` to retrieve the product s `CategoryName` from the `Categories` table:
 
 
-[!code[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample4.xml)]
+[!code-sql[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample4.sql)]
 
 
 ![You can Graphically Construct the Query Using the Query Builder](querying-data-with-the-sqldatasource-control-vb/_static/image20.gif)
@@ -219,7 +219,7 @@ After specifying the query, click Next to proceed to the Test Query screen. Clic
 After completing the wizard, the GridView will have three BoundFields added to it displaying the `ProductID`, `ProductName`, and `CategoryName` columns returned from the query and resulting in the following declarative markup:
 
 
-[!code[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample5.xml)]
+[!code-aspx[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample5.aspx)]
 
 
 [![The GridView Shows Each Product s ID, Name, and Associated Category Name](querying-data-with-the-sqldatasource-control-vb/_static/image22.gif)](querying-data-with-the-sqldatasource-control-vb/_static/image21.gif)

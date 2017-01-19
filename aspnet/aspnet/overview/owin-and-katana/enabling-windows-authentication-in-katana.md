@@ -42,11 +42,11 @@ Let's start by creating a new ASP.NET application, using the "ASP.NET Empty Web 
 
 Next, add NuGet packages. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-[!code[Main](enabling-windows-authentication-in-katana/samples/sample1.xml)]
+[!code-console[Main](enabling-windows-authentication-in-katana/samples/sample1.cmd)]
 
 Now add a class named `Startup` with the following code:
 
-[!code[Main](enabling-windows-authentication-in-katana/samples/sample2.xml)]
+[!code-csharp[Main](enabling-windows-authentication-in-katana/samples/sample2.cs)]
 
 That's all you need to create a "Hello world" application for OWIN, running on IIS. Press F5 to debug the application. You should see "Hello World!" in the browser window.
 
@@ -60,7 +60,7 @@ In the **Properties** window, set **Anonymous Authentication** to **Disabled** a
 
 When you run the application from Visual Studio, IIS Express will require the user's Windows credentials. You can see this by using [Fiddler](http://fiddler2.com/home) or another HTTP debugging tool. Here is an example HTTP response:
 
-[!code[Main](enabling-windows-authentication-in-katana/samples/sample3.xml?highlight=1,5-6)]
+[!code-console[Main](enabling-windows-authentication-in-katana/samples/sample3.cmd?highlight=1,5-6)]
 
 The WWW-Authenticate headers in this response indicate that the server supports the [Negotiate](http://www.ietf.org/rfc/rfc4559.txt) protocol, which uses either Kerberos or NTLM.
 
@@ -72,21 +72,21 @@ If you are using Microsoft.Owin.Host.HttpListener to self-host Katana, you can e
 
 First, create a new console application. Next, add NuGet packages. From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-[!code[Main](enabling-windows-authentication-in-katana/samples/sample4.xml)]
+[!code-console[Main](enabling-windows-authentication-in-katana/samples/sample4.cmd)]
 
 Now add a class named `Startup` with the following code:
 
-[!code[Main](enabling-windows-authentication-in-katana/samples/sample5.xml)]
+[!code-csharp[Main](enabling-windows-authentication-in-katana/samples/sample5.cs)]
 
 This class implements the same "Hello world" example from before, but it also sets Windows Authentication as the authentication scheme.
 
 Inside the `Main` function, start the OWIN pipeline:
 
-[!code[Main](enabling-windows-authentication-in-katana/samples/sample6.xml)]
+[!code-csharp[Main](enabling-windows-authentication-in-katana/samples/sample6.cs)]
 
 You can send a request in Fiddler to confirm that the application is using Windows Authentication:
 
-[!code[Main](enabling-windows-authentication-in-katana/samples/sample7.xml?highlight=1,4-5)]
+[!code-console[Main](enabling-windows-authentication-in-katana/samples/sample7.cmd?highlight=1,4-5)]
 
 ## Related Topics
 

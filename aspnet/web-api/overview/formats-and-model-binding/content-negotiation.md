@@ -34,21 +34,21 @@ If a Web API controller returns a resource as CLR type, the pipeline serializes 
 
 For example, consider the following controller action:
 
-[!code[Main](content-negotiation/samples/sample1.xml)]
+[!code-csharp[Main](content-negotiation/samples/sample1.cs)]
 
 A client might send this HTTP request:
 
-[!code[Main](content-negotiation/samples/sample2.xml)]
+[!code-console[Main](content-negotiation/samples/sample2.cmd)]
 
 In response, the server might send:
 
-[!code[Main](content-negotiation/samples/sample3.xml)]
+[!code-console[Main](content-negotiation/samples/sample3.cmd)]
 
 In this example, the client requested either JSON, Javascript, or "anything" (\*/\*). The server responsed with a JSON representation of the `Product` object. Notice that the Content-Type header in the response is set to &quot;application/json&quot;.
 
 A controller can also return an **HttpResponseMessage** object. To specify a CLR object for the response body, call the **CreateResponse** extension method:
 
-[!code[Main](content-negotiation/samples/sample4.xml)]
+[!code-csharp[Main](content-negotiation/samples/sample4.cs)]
 
 This option gives you more control over the details of the response. You can set the status code, add HTTP headers, and so forth.
 
@@ -73,7 +73,7 @@ If no formatter is found, the **Negotiate** method returns **null**, and the cli
 
 The following code shows how a controller can directly invoke content negotiation:
 
-[!code[Main](content-negotiation/samples/sample5.xml)]
+[!code-csharp[Main](content-negotiation/samples/sample5.cs)]
 
 This code is equivalent to the what the pipeline does automatically.
 
@@ -90,7 +90,7 @@ Next, the content negotiator looks at each formatter and evaluates how well it m
 
 If there are multiple matches, the match with the highest quality factor wins. For example:
 
-[!code[Main](content-negotiation/samples/sample6.xml)]
+[!code-console[Main](content-negotiation/samples/sample6.cmd)]
 
 In this example, application/json has an implied quality factor of 1.0, so it is preferred over application/xml.
 

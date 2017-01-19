@@ -43,7 +43,7 @@ By selecting **Installed packages**, you can see the Glimpse dependent modules i
 
 The following commands install Glimpse MVC5 and EF6 modules from the package manager console:
 
-[!code[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample1.xml)]
+[!code-console[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample1.cmd)]
 
 <a id="eg"></a>
 ## Enable Glimpse for localhost
@@ -71,7 +71,7 @@ In the image above, the [Execution tab](http://getglimpse.com/Docs/Execution-Tab
 
 I've modified Tom Dykstra's outstanding [EF 6/MVC 5 tutorial](../getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md) with the following code change to the instructors controller:
 
-[!code[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample2.xml?highlight=1,20-31)]
+[!code-csharp[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample2.cs?highlight=1,20-31)]
 
 The code above allows me to pass in query string (`eager`) to control eager or explicit loading of data. In the image below, explicit loading is used and the timing page shows each enrollment loaded in the `Index` action method:
 
@@ -102,13 +102,13 @@ The [model binding tab](http://getglimpse.com/Docs/Model-Binding-Tab)provides a 
 
 The Glimpse default security policy only allows Glimpse data to be displayed from local host. You can change this security policy so you can view this data on a remote server (such as a web app on Azure). For test environments on Azure, add the highlighted mark up to the bottom of the *web.confg* file to enable Glimpse:
 
-[!code[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample3.xml?highlight=2-6)]
+[!code-xml[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample3.xml?highlight=2-6)]
 
 With this change alone, any user can see your Glimpse data on a remote site. Consider adding the markup above to a publish profile so it's only deployed an applyed when you use that publish profile (for example, your Azure test proifle.) To restrict Glimpse data, we will add the `canViewGlimpseData` role and only allow users in this role to view Glimpse data.
 
 Remove the comments from the *GlimpseSecurityPolicy.cs*file and change the [IsInRole](https://msdn.microsoft.com/en-us/library/system.security.principal.iprincipal.isinrole(v=vs.110).aspx) call from `Administrator` to the `canViewGlimpseData` role:
 
-[!code[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample4.xml?highlight=6)]
+[!code-csharp[Main](profile-and-debug-your-aspnet-mvc-app-with-glimpse/samples/sample4.cs?highlight=6)]
 
 > [!WARNING] Security - The rich data provided by Glimpse could expose the security of your app. Microsoft has not performed a security audit of Glimpse for use on productions apps.
 

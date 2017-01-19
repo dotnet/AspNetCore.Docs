@@ -30,7 +30,7 @@ This page describes some common problems that may arise when you deploy an ASP.N
 
 After deploying a site to a remote host, you get an error message that mentions the customErrors setting in the Web.config file but doesn't indicate what the actual cause of the error was:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample1.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample1.cmd)]
 
 ### Possible Cause and Solution
 
@@ -40,7 +40,7 @@ To enable the application to display detailed error messages when it runs on the
 
 1. If the application Web.config file has a `customErrors` element in the `system.web` element, change the `mode` attribute to "off". Otherwise add a `customErrors` element in the `system.web` element with the `mode` attribute set to "off", as shown in the following example:
 
-    [!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample2.xml?highlight=3)]
+    [!code-xml[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample2.xml?highlight=3)]
 2. Deploy the application.
 3. Run the application and repeat whatever you did earlier that caused the error to occur. Now you can see what the actual error message is.
 4. When you have resolved the error, restore the original `customErrors` setting and redeploy the application.
@@ -51,7 +51,7 @@ To enable the application to display detailed error messages when it runs on the
 
 When you deploy a site that uses SQL Server Compact and you run a page in the deployed site that accesses the database, you see the following error message:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample3.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample3.cmd)]
 
 ### Possible Cause and Solution
 
@@ -63,7 +63,7 @@ The NETWORK SERVICE account on the server needs to be able to read SQL Service C
 
 When you click the Visual Studio publish button to deploy an application to IIS on your local machine, publishing fails and the **Output** window shows an error message similar to this:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample4.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample4.cmd)]
 
 ### Possible Cause and Solution
 
@@ -75,7 +75,7 @@ To use one-click publish to IIS on your local machine, you must be running Visua
 
 When you click the Visual Studio publish button to deploy an application, publishing fails and the **Output** window shows an error message similar to this:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample5.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample5.cmd)]
 
 ### Possible Cause and Solution
 
@@ -89,13 +89,13 @@ If the problem persists, contact your system administrator to determine what can
 
 When you deploy an application that requires the .NET Framework 4, you see the following error message:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample6.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample6.cmd)]
 
 ### Possible Cause and Solution
 
 ASP.NET 4 is not installed in IIS. If the server you are deploying to is your development computer and has Visual Studio 2010 installed on it, ASP.NET 4 is installed on the computer but might not be installed in IIS. On the server that you are deploying to, open an elevated command prompt and install ASP.NET 4 in IIS by running the following commands:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample7.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample7.cmd)]
 
 You might also need to manually set the .NET Framework version of the default application pool. For more information, see the [Deploying to IIS as a Test Environment](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md) tutorial.
 
@@ -105,17 +105,17 @@ You might also need to manually set the .NET Framework version of the default ap
 
 After you deploy an application using one-click publish, when you run a page that accesses the database you get the following error message:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample8.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample8.cmd)]
 
 ### Possible Cause and Solution
 
 Open the *Web.config* file in the deployed site and check to see whether the connection string values begin with `$(ReplacableToken_` , as in the following example:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample9.xml)]
+[!code-xml[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample9.xml)]
 
 If the connection strings look like this example, edit the project file and add the following property to the `PropertyGroup` element that is for all build configurations:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample10.xml)]
+[!code-xml[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample10.xml)]
 
 Then redeploy the application.
 
@@ -125,7 +125,7 @@ Then redeploy the application.
 
 When you run the deployed site, you see the following error message without specific information indicating the cause of the error:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample11.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample11.cmd)]
 
 ### Possible Cause and Solution
 
@@ -137,13 +137,13 @@ There are many causes of 500 errors, but one possible cause if you are following
 
 When you run the deployed site, you see the following error message:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample12.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample12.cmd)]
 
 ### Possible Cause and Solution
 
 The site you have deployed targets ASP.NET 4, but ASP.NET 4 is not registered in IIS on the server. On the server open an elevated command prompt and register ASP.NET 4 by running the following commands:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample13.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample13.cmd)]
 
 You might also need to manually set the .NET Framework version of the default application pool. For more information, see the [Deploying to IIS as a Test Environment](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md) tutorial.
 
@@ -153,7 +153,7 @@ You might also need to manually set the .NET Framework version of the default ap
 
 You updated the *Web.config* file connection string to point to a SQL Server Express database as an *.mdf* file in your *App\_Data* folder, and the first time you run the application you see the following error message:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample14.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample14.cmd)]
 
 ### Possible Cause and Solution
 
@@ -165,7 +165,7 @@ The name of the *.mdf* file cannot match the name of any SQL Server Express data
 
 You updated the *Web.config* file connection string to point to a new SQL Server Express database, and the first time you run the application you see the following error message:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample15.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample15.cmd)]
 
 ### Possible Cause and Solution
 
@@ -177,7 +177,7 @@ If the database name you put in the Web.config file was ever used before on your
 
 You are using database deployment configured on the **Package/Publish SQL** tab, SQL scripts that run during deployment include Create User or Create Role commands, and script execution fails when those commands are executed. You might see more detailed messages, such as the following:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample16.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample16.cmd)]
 
 If this error occurs when you have configured database deployment in the **Publish Web** wizard rather than the **Package/Publish SQL** tab, create a thread in the [Configuration and Deployment](https://forums.asp.net/26.aspx/1?Configuration+and+Deployment) forum, and the solution will be added to this troubleshooting page.
 
@@ -185,7 +185,7 @@ If this error occurs when you have configured database deployment in the **Publi
 
 The user account you are using to perform deployment does not have permission to create users or roles. For example, the hosting company might assign the `db_datareader`, `db_datawriter`, and `db_ddladmin` roles to the user account that it sets up for you. These are sufficient for creating most database objects, but not for creating users or roles. One way to avoid the error is by excluding users and roles from database deployment. You can do this by editing the `PreSource` element for the database's automatically generated script so that it includes the following attributes:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample17.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample17.cmd)]
 
 For information about how to edit the `PreSource` element in the project file, see [How to: Edit Deployment Settings in the Project File](https://msdn.microsoft.com/en-us/library/ff398069(v=vs.100).aspx). If the users or roles in your development database need to be in the destination database, contact your hosting provider for assistance.
 
@@ -207,7 +207,7 @@ If you have configured transaction settings so that all are the same but still g
 
 When you are installing a package using the *deploy.cmd* file with the `t` (test) option, you see the following error message:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample18.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample18.cmd)]
 
 ### Possible Cause and Solution
 
@@ -225,7 +225,7 @@ When you attempt to deploy, you see the following error message:
 
 ASP.NET 4 is not installed in IIS. If the server you are deploying to is your development computer and has Visual Studio 2010 installed on it, ASP.NET 4 is installed on the computer but might not be installed in IIS. On the server that you are deploying to, open an elevated command prompt and install ASP.NET 4 in IIS by running the following commands:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample19.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample19.cmd)]
 
 ## Unable to cast Microsoft.Web.Deployment.DeploymentProviderOptions
 
@@ -233,7 +233,7 @@ ASP.NET 4 is not installed in IIS. If the server you are deploying to is your de
 
 When you are deploying a package, you see the following error message:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample20.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample20.cmd)]
 
 ### Possible Cause and Solution
 
@@ -245,7 +245,7 @@ You are trying to deploy from IIS Manager using the Web Deploy 1.1 UI to a serve
 
 When you run the deployed site, you see the following error message:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample21.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample21.cmd)]
 
 ### Possible Cause and Solution
 
@@ -257,7 +257,7 @@ The deployed site does not have *amd64* and *x86* subfolders with the native ass
 
 You deploy an application that uses Entity Framework Code First Migrations and a DBMS such as SQL Server Compact which stores its database in a file in the App\_Data folder. You have Code First Migrations configured to create the database after your first deployment. When you run the application you get an error message like the following example:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample22.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample22.cmd)]
 
 ### Possible Cause and Solution
 
@@ -269,7 +269,7 @@ Code First is attempting to create the database but the App\_Data folder does no
 
 You have been successfully using one-click publish to deploy your application and then you start getting this error:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample23.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample23.cmd)]
 
 ### Possible Cause and Solution
 
@@ -301,11 +301,11 @@ By default, Visual Studio sets read permissions on the root folder of the site a
 
 You successfully published a web project that targets ASP.NET 4.5, but when you run the application (with the `customErrors` mode set to "off" in the Web.config file) you get the following error:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample24.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample24.cmd)]
 
 The Source Error box of the error page highlights the following line from Web.config as the cause of the error:
 
-[!code[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample25.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample25.cmd)]
 
 ### Possible Cause and Solution
 

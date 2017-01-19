@@ -65,7 +65,7 @@ The [DbSet&lt;TEntity&gt;](https://msdn.microsoft.com/en-us/library/gg696460.asp
 
 In *DepartmentController.cs*, in the `Details` method, replace the `db.Departments.FindAsync` method call with a `db.Departments.SqlQuery` method call, as shown in the following highlighted code:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample1.xml?highlight=8-14)]
+[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample1.cs?highlight=8-14)]
 
 To verify that the new code works correctly, select the **Departments** tab and then **Details** for one of the departments.
 
@@ -75,13 +75,13 @@ To verify that the new code works correctly, select the **Departments** tab and 
 
 Earlier you created a student statistics grid for the About page that showed the number of students for each enrollment date. The code that does this in *HomeController.cs* uses LINQ:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample2.xml)]
+[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample2.cs)]
 
 Suppose you want to write the code that retrieves this data directly in SQL rather than using LINQ. To do that you need to run a query that returns something other than entity objects, which means you need to use the [Database.SqlQuery](https://msdn.microsoft.com/en-us/library/system.data.entity.database.sqlquery(v=VS.103).aspx) method.
 
 In *HomeController.cs*, replace the LINQ statement in the `About` method with a SQL statement, as shown in the following highlighted code:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample3.xml?highlight=3-18)]
+[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample3.cs?highlight=3-18)]
 
 Run the About page. It displays the same data it did before.
 
@@ -95,7 +95,7 @@ Suppose Contoso University administrators want to be able to perform bulk change
 
 In *CourseContoller.cs*, add `UpdateCourseCredits` methods for `HttpGet` and `HttpPost`:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample4.xml)]
+[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample4.cs)]
 
 When the controller processes an `HttpGet` request, nothing is returned in the `ViewBag.RowsAffected` variable, and the view displays an empty text box and a submit button, as shown in the preceding illustration.
 
@@ -109,7 +109,7 @@ In *CourseController.cs*, right-click one of the `UpdateCourseCredits` methods, 
 
 In *Views\Course\UpdateCourseCredits.cshtml*, replace the template code with the following code:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample5.xml)]
+[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample5.cs)]
 
 Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:50205/Course/UpdateCourseCredits`). Enter a number in the text box:
 
@@ -144,11 +144,11 @@ Sometimes it's helpful to be able to see the actual SQL queries that are sent to
 
 In *Controllers/CourseController*, replace the `Index` method with the following code, in order to temporarily stop eager loading:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample6.xml)]
+[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample6.cs)]
 
 Now set a breakpoint on the `return` statement (F9 with the cursor on that line). Press F5 to run the project in debug mode, and select the Course Index page. When the code reaches the breakpoint, examine the `sql` variable. You see the query that's sent to SQL Server. It's a simple `Select` statement.
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.xml)]
+[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.json)]
 
 Click the magnifying class to see the query in the **Text Visualizer**.
 
@@ -158,7 +158,7 @@ Now you'll add a drop-down list to the Courses Index page so that users can filt
 
 In *CourseController.cs*, replace the `Index` method with the following code:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample8.xml)]
+[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample8.cs)]
 
 Restore the breakpoint on the `return` statement.
 
@@ -170,7 +170,7 @@ For the `Get` method of the `Course` repository, the code specifies a filter exp
 
 In *Views\Course\Index.cshtml*, immediately before the opening `table` tag, add the following code to create the drop-down list and a submit button:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample9.xml)]
+[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample9.cs)]
 
 With the breakpoint still set, run the Course Index page. Continue through the first times that the code hits a breakpoint, so that the page is displayed in the browser. Select a department from the drop-down list and click **Filter**:
 
@@ -178,7 +178,7 @@ With the breakpoint still set, run the Course Index page. Continue through the f
 
 This time the first breakpoint will be for the departments query for the drop-down list. Skip that and view the `query` variable the next time the code reaches the breakpoint in order to see what the `Course` query now looks like. You'll see something like the following:
 
-[!code[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample10.xml)]
+[!code-sql[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample10.sql)]
 
 You can see that the query is now a `JOIN` query that loads `Department` data along with the `Course` data, and that it includes a `WHERE` clause.
 

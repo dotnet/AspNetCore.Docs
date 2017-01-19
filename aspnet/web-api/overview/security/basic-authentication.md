@@ -50,7 +50,7 @@ IIS supports Basic authentication, but there is a caveat: The user is authentica
 
 To enable Basic authentication using IIS, set the authentication mode to "Windows" in the Web.config of your ASP.NET project:
 
-[!code[Main](basic-authentication/samples/sample1.xml)]
+[!code-xml[Main](basic-authentication/samples/sample1.xml)]
 
 In this mode, IIS uses Windows credentials to authenticate. In addition, you must enable Basic authentication in IIS. In IIS Manager, go to Features View, select Authentication, and enable Basic authentication.
 
@@ -68,11 +68,11 @@ The following code how an HTTP module that performs Basic Authentication. You ca
 
 In Web API 2, you should consider writing an [authentication filter](authentication-filters.md) or [OWIN middleware](../../../aspnet/overview/owin-and-katana/index.md), instead of an HTTP module.
 
-[!code[Main](basic-authentication/samples/sample2.xml)]
+[!code-csharp[Main](basic-authentication/samples/sample2.cs)]
 
 To enable the HTTP module, add the following to your web.config file in the **system.webServer** section:
 
-[!code[Main](basic-authentication/samples/sample3.xml?highlight=4)]
+[!code-xml[Main](basic-authentication/samples/sample3.xml?highlight=4)]
 
 Replace "YourAssemblyName" with the name of the assembly (not including the "dll" extension).
 

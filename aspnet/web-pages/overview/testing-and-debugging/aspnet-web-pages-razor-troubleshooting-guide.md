@@ -73,7 +73,7 @@ This error can occur if the server is not configured correctly to use the .NET F
 
 This error can occur if *.cshtml* or *.vbhtml* extensions have been explicitly blocked on the server. A symptom of this problem is that URLs work when they do not include the extension, but URLs that include *.cshtml* or *.vbhtml* do not work. A possible solution is to re-enable the extensions in the site's *Web.config* file. The following example shows how to enable the *.cshtml* extension.
 
-[!code[Main](aspnet-web-pages-razor-troubleshooting-guide/samples/sample1.xml?highlight=5-6)]
+[!code-xml[Main](aspnet-web-pages-razor-troubleshooting-guide/samples/sample1.xml?highlight=5-6)]
 
 ### HTTP Error 404.8 - Not Found
 
@@ -105,7 +105,7 @@ If you are using the built-in security (membership) system in ASP.NET Web Pages 
 
 This error can indicate that no `AspNetSqlMembershipProvider` class is configured. (A symptom is that the site works fine locally but throws this error when you publish it to a hosting provider's server.) One fix for this problem is to explicitly enable simple membership by adding the following to the site's *Web.config* file:
 
-[!code[Main](aspnet-web-pages-razor-troubleshooting-guide/samples/sample2.xml?highlight=6)]
+[!code-xml[Main](aspnet-web-pages-razor-troubleshooting-guide/samples/sample2.xml?highlight=6)]
 
 <a id="email"></a>
 ## Issues with Sending Email
@@ -126,7 +126,7 @@ If there is an error sending email, you might see a standard ASP.NET error messa
 
 You can also debug problems with sending email by using a `try-catch` block, as in the following example. When you use a `try-catch` block, ASP.NET does not display its standard error messages. Instead, you can capture the error in the `catch` portion of the block.
 
-[!code[Main](aspnet-web-pages-razor-troubleshooting-guide/samples/sample3.xml)]
+[!code-csharp[Main](aspnet-web-pages-razor-troubleshooting-guide/samples/sample3.cs)]
 
 Substitute the appropriate values for `your-SMTP-server-name`, and so on. Some of the error messages you might see this way include the following:
 

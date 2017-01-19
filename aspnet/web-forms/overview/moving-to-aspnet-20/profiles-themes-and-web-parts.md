@@ -26,15 +26,15 @@ ASP.NET profiles are similar to sessions. The difference is that a profile is pe
 
 A profile is defined in either the machines configuration file or the web.config file for the application. (You cannot define a profile in a sub-folders web.config file.) The code below defines a profile to store the Web site visitors first and last name.
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample1.xml)]
+[!code-xml[Main](profiles-themes-and-web-parts/samples/sample1.xml)]
 
 The default data type for a profile property is System.String. In the above example, no data type was specified. Therefore the FirstName and LastName properties are both of type String. As previously mentioned, profile properties are strongly typed. The code below adds a new property for age that is of type Int32.
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample2.xml)]
+[!code-xml[Main](profiles-themes-and-web-parts/samples/sample2.xml)]
 
 Profiles are generally used with ASP.NET Forms authentication. When used in combination with Forms authentication, each user has a separate profile associated with their user ID. However, it is also possible to allow the use of profiles in an anonymous application using the &lt;anonymousIdentification&gt; element in the configuration file along with the **allowAnonymous** attribute as shown below:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample3.xml)]
+[!code-xml[Main](profiles-themes-and-web-parts/samples/sample3.xml)]
 
 When an anonymous user browses the site, ASP.NET creates an instance of **ProfileCommon** for the user. This profile uses a unique ID stored in a cookie on the browser to identify the user as a unique visitor. In this way, you can store profile information for users who are browsing anonymously.
 
@@ -44,31 +44,31 @@ It is possible to group properties of profiles. By grouping properties, it is po
 
 The following configuration configures a FirstName and LastName property for two groups; Buyers and Prospects.
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample4.xml)]
+[!code-xml[Main](profiles-themes-and-web-parts/samples/sample4.xml)]
 
 It is then possible to set properties on a particular group as follows:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample5.xml)]
+[!code-unknown[Main](profiles-themes-and-web-parts/samples/sample-25177-5.unknown)]
 
 ## Storing Complex Objects
 
 So far, the examples we've covered have stored simple data types in a profile. It is also possible to store complex data types in a profile by specifying the method of serialization using the **serializeAs** attribute as follows:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample6.xml)]
+[!code-xml[Main](profiles-themes-and-web-parts/samples/sample6.xml)]
 
 In this case, the type is PurchaseInvoice. The PurchaseInvoice class needs to be marked as serializable and can contain any number of properties. For example, if PurchaseInvoice has a property called **NumItemsPurchased**, you can refer to that property in code as follows:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample7.xml)]
+[!code-unknown[Main](profiles-themes-and-web-parts/samples/sample-25177-7.unknown)]
 
 ## Profile Inheritance
 
 It is possible to create a profile for use in multiple applications. By creating a profile class that derives from ProfileBase, you can reuse a profile in several applications by using the **inherits** attribute as shown below:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample8.xml)]
+[!code-xml[Main](profiles-themes-and-web-parts/samples/sample8.xml)]
 
 In this case, the class **PurchasingProfile** would look like so:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample9.xml)]
+[!code-csharp[Main](profiles-themes-and-web-parts/samples/sample9.cs)]
 
 ## Profile Providers
 
@@ -118,7 +118,7 @@ The following tables describe the properties and methods that you must implement
 
 Because profile providers store profile information separately for each application, you must ensure that your data schema includes the application name and that queries and updates also include the application name. For example, the following command is used to retrieve a property value from a database based on the user name and whether the profile is anonymous, and ensures that the **ApplicationName** value is included in the query.
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample10.xml)]
+[!code-sql[Main](profiles-themes-and-web-parts/samples/sample10.sql)]
 
 ## ASP.NET Themes
 
@@ -146,7 +146,7 @@ A theme is made up of one or more CSS files, an optional skin file, and an optio
 
 The skin file is an XML file that contains property definitions for ASP.NET server controls. The code listed below is an example skin file.
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample11.xml)]
+[!code-aspx[Main](profiles-themes-and-web-parts/samples/sample11.aspx)]
 
 **Figure 1** below shows a small ASP.NET page browsed without a theme applied. **Figure 2** shows the same file with a theme applied. The background color and text color are configured via a CSS file. The appearance of the button and textbox are configured using the skin file listed above.
 
@@ -165,7 +165,7 @@ The skin file listed above defines a default skin for all TextBox controls and B
 
 The code below defines a skin for a Button control. Only Button controls with a **SkinID** property of **goButton** will take on the appearance of the skin.
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample12.xml)]
+[!code-aspx[Main](profiles-themes-and-web-parts/samples/sample12.aspx)]
 
 You can only have one default skin per server control type. If you require additional skins, you should use the SkinID property.
 
@@ -181,7 +181,7 @@ A theme can be applied using any one of the following methods:
 
 To apply a theme in the applications configuration file, use the following syntax:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample13.xml)]
+[!code-xml[Main](profiles-themes-and-web-parts/samples/sample13.xml)]
 
 The theme name specified here must match the name of the themes folder. This folder can exist either in any one of the locations mentioned earlier in this course. If you attempt to apply a theme that doesn't exist, a configuration error will occur.
 
@@ -191,7 +191,7 @@ You can also apply a theme in the @ Page directive. This method allows you to us
 
 To apply a theme in the @Page directive, use the following syntax:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample14.xml)]
+[!code-aspx[Main](profiles-themes-and-web-parts/samples/sample14.aspx)]
 
 Once again, the theme specified here must match the theme folder as mentioned previously. If you attempt to apply a theme that doesn't exist, a build failure will occur. Visual Studio will also highlight the attribute and notify you that no such theme exists.
 
@@ -201,7 +201,7 @@ To apply a theme programmatically, you must specify the **Theme** property for t
 
 To apply a theme programmatically, use the following syntax:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample15.xml)]
+[!code-unknown[Main](profiles-themes-and-web-parts/samples/sample-25177-15.unknown)]
 
 It is necessary to apply the theme in the PreInit method due to the page lifecycle. If you apply it after that point, the pages theme will have already been applied by the runtime and a change at that point is too late in the lifecycle. If you apply a theme that doesn't exist, an **HttpException** occurs. When a theme is applied programmatically, a build warning will occur if any server controls have a SkinID property specified. This warning is intended to inform you that no theme is declaratively applied and it can be ignored.
 
@@ -221,12 +221,12 @@ In this exercise, you will apply an ASP.NET theme to a Web site.
 8. Choose Style Sheet from the list of files and click Add. You now have all of the files necessary to implement your new theme. However, Visual Studio has named your themes folder SkinFile. Right-click on that folder and change the name to CoolTheme.
 9. Open the SkinFile.skin file and add the following code the end of the file: 
 
-    [!code[Main](profiles-themes-and-web-parts/samples/sample16.xml)]
+    [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample16.aspx)]
 10. Save the SkinFile.skin file.
 11. Open the StyleSheet.css.
 12. Replace all of the text in it with the following: 
 
-    [!code[Main](profiles-themes-and-web-parts/samples/sample17.xml)]
+    [!code-css[Main](profiles-themes-and-web-parts/samples/sample17.css)]
 13. Save the StyleSheet.css file.
 14. Open the Default.aspx page.
 15. Add a TextBox control and a Button control.
@@ -234,7 +234,7 @@ In this exercise, you will apply an ASP.NET theme to a Web site.
 17. Open the web.config file.
 18. Add the following directly underneath the opening `<system.web>` tag: 
 
-    [!code[Main](profiles-themes-and-web-parts/samples/sample18.xml)]
+    [!code-xml[Main](profiles-themes-and-web-parts/samples/sample18.xml)]
 19. Save the web.config file. Now browse the Default.aspx page. It should display with the theme applied.
 20. If it's not already open, open the Default.aspx page in Visual Studio.
 21. Select the Button.
@@ -251,7 +251,7 @@ If you'd like to be able to override the properties defined in the theme's skin 
 
 To see this in action, open the web.config file from the project in exercise 1 and change the &lt;pages&gt; element to the following:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample19.xml)]
+[!code-xml[Main](profiles-themes-and-web-parts/samples/sample19.xml)]
 
 Now browse the Default.aspx page and you'll see that the Button control has a Text property of "Button" again. That's because the explicit property setting in the designer is overriding the Text property set by the goButton SkinID.
 
@@ -261,7 +261,7 @@ A global theme can be overridden by applying a theme by the same name in the App
 
 The StyleSheetTheme property is overridable and can be overridden in code as follows:
 
-[!code[Main](profiles-themes-and-web-parts/samples/sample20.xml)]
+[!code-unknown[Main](profiles-themes-and-web-parts/samples/sample-25177-20.unknown)]
 
 ## Web Parts
 
@@ -356,7 +356,7 @@ The layout of a Web Parts zone is specified by a **&lt;zonetemplate&gt;** elemen
 2. Switch to **Source** view. Notice that a **&lt;zonetemplate&gt;** element was added to wrap the **Label** control in the MainZone.
 3. Add an attribute named **title** to the **&lt;asp:label&gt;** element, and set its value to Content. Remove the Text="Label" attribute from the **&lt;asp:label&gt;** element. Between the opening and closing tags of the **&lt;asp:label&gt;** element, add some text such as **Welcome to my Home Page** within a pair of **&lt;h2&gt;** element tags. Your code should look as follows. 
 
-    [!code[Main](profiles-themes-and-web-parts/samples/sample21.xml)]
+    [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample21.aspx)]
 4. Save the file.
 
 Next, create a user control that can also be added to the page as a Web Parts control.
@@ -371,7 +371,7 @@ Next, create a user control that can also be added to the page as a Web Parts co
 4. Drag a Button control onto the page on the new line below the text box you just added.
 5. Switch to **Source** view. Ensure that the source code for the user control looks like the following example. 
 
-    [!code[Main](profiles-themes-and-web-parts/samples/sample22.xml)]
+    [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample22.aspx)]
 6. Save and close the file.
 
 Now you can add Web Parts controls to the Sidebar zone. You are adding two controls to the Sidebar zone, one containing a list of links and another that is the user control you created in the previous procedure. The links are added as a standard **Label** server control, similar to the way you created the static text for the Main zone. However, although the individual server controls contained in the user control could be contained directly in the zone (like the label control), in this case they are not. Instead, they are part of the user control you created in the previous procedure. This demonstrates a common way to package whatever controls and extra functionality you want in a user control, and then reference that control in a zone as a Web Parts control.
@@ -387,7 +387,7 @@ At run time, the Web Parts control set wraps both controls with GenericWebPart c
 5. Switch to **Source** view.
 6. Inside the **&lt;asp:webpartzone&gt;** element for the SidebarZone, just above the reference to your user control, add an **&lt;asp:label&gt;** element with contained links, as shown in the following example. Also, add a **Title** attribute to the user control tag, with a value of **Search**, as shown. 
 
-    [!code[Main](profiles-themes-and-web-parts/samples/sample23.xml)]
+    [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample23.aspx)]
 7. Save and close the file.
 
 Now you can test your page by browsing to it in your browser. The page displays the two zones. The following screen shot shows the page.
@@ -416,7 +416,7 @@ In this part of the walkthrough, you add the ability for users to edit the basic
 4. Switch to **Source** view.
 5. Remove all the existing code in the new file, and paste in the following code. This user control code uses features of the Web Parts control set that enable a page to change its view or display mode, and also enables you to change the physical appearance and layout of the page while you are in certain display modes. 
 
-    [!code[Main](profiles-themes-and-web-parts/samples/sample24.xml)]
+    [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample24.aspx)]
 6. Save the file by clicking the save icon on the toolbar, or by selecting **Save** on the **File** menu.
 
 ### To enable users to change the layout
@@ -428,7 +428,7 @@ In this part of the walkthrough, you add the ability for users to edit the basic
 5. From the **WebParts** section of the Toolbox, drag an AppearanceEditorPart control and a LayoutEditorPart control into the **EditorZone** control.
 6. Switch to **Source** view. The resulting code in the table cell should look similar to the following code. 
 
-    [!code[Main](profiles-themes-and-web-parts/samples/sample25.xml)]
+    [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample25.aspx)]
 7. Save the WebPartsDemo.aspx file. You have created a user control that allows you to change display modes and change page layout, and you have referenced the control on the primary Web page.
 
 You can now test the capability to edit pages and change layout.
@@ -495,7 +495,7 @@ You can also allow users to add Web Parts controls to their page at run time. To
   
  The code for the two controls contained in the     **DeclarativeCatalogPart** control should look as follows. 
 
-    [!code[Main](profiles-themes-and-web-parts/samples/sample26.xml)]
+    [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample26.aspx)]
 9. Save the page.
 
 You can now test the catalog.

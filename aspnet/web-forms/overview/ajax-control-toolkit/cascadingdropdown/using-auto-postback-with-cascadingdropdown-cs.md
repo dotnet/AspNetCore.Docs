@@ -28,27 +28,27 @@ The CascadingDropDown control in the AJAX Control Toolkit extends a DropDownList
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the &lt;`form`&gt; element):
 
-[!code[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample1.xml)]
+[!code-aspx[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample1.aspx)]
 
 Then, a DropDownList control is required:
 
-[!code[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample2.aspx)]
 
 For this list, a CascadingDropDown extender is added, providing web service URL and method information:
 
-[!code[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample3.aspx)]
 
 The CascadingDropDown extender then asynchronously calls a web service with the following method signature:
 
-[!code[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample4.xml)]
+[!code-csharp[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample4.cs)]
 
 The method returns an array of type CascadingDropDown value. The type's constructor expects first the list entry's caption and then the value (HTML `value` attribute).
 
-[!code[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample5.xml)]
+[!code-aspx[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample5.aspx)]
 
 Loading the page in the browser will fill the dropdown list with three vendors, the second one being preselected. Also, ASP.NET defines the `__doPostBack()` JavaScript method. Once the page has been loaded, this JavaScript call is added to the dropdown list, but only if there are elements in it. If there are no elements in the list, the Control Toolkit is currently loading them, so the JavaScript code uses a timeout and tries again in a half second.
 
-[!code[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample6.xml)]
+[!code-html[Main](using-auto-postback-with-cascadingdropdown-cs/samples/sample6.html)]
 
 This way, a postback is only executed when there are actually elements in the list and the user selects an entry.
 

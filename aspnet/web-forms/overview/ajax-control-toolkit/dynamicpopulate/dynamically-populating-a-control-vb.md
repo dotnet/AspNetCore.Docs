@@ -30,21 +30,21 @@ First of all, you need an ASP.NET Web Service which implements the method to be 
 
 The web method must expect one argument of type string, called `contextKey`, since the `DynamicPopulate` control sends one piece of context information with each web service call. The following web service returns the current date in a format represented by the `contextKey` argument:
 
-[!code[Main](dynamically-populating-a-control-vb/samples/sample1.xml)]
+[!code-aspx[Main](dynamically-populating-a-control-vb/samples/sample1.aspx)]
 
 The web service is then saved as `DynamicPopulate.vb.asmx`. Alternatively, you could implement the `getDate()` method as a page method within the actual ASP.NET page with the `DynamicPopulate` control.
 
 In the next step, create a new ASP.NET file. As always, the first step is to include the `ScriptManager` in the current page to load the ASP.NET AJAX library and to make the Control Toolkit work:
 
-[!code[Main](dynamically-populating-a-control-vb/samples/sample2.xml)]
+[!code-aspx[Main](dynamically-populating-a-control-vb/samples/sample2.aspx)]
 
 Then, add a label control (for instance using the HTML control of the same name, or the &lt;`asp:Label` /&gt; web control) which will later show the result of the web service call.
 
-[!code[Main](dynamically-populating-a-control-vb/samples/sample3.xml)]
+[!code-aspx[Main](dynamically-populating-a-control-vb/samples/sample3.aspx)]
 
 An HTML button (as an HTML control, since we do not require a postback to the server) will then be used to trigger the dynamic population:
 
-[!code[Main](dynamically-populating-a-control-vb/samples/sample4.xml)]
+[!code-aspx[Main](dynamically-populating-a-control-vb/samples/sample4.aspx)]
 
 Finally, we need the `DynamicPopulateExtender` control to wire things up. The following attributes will be set (apart from the obvious ones, `ID` and `runat`=`"server"`):
 
@@ -57,7 +57,7 @@ Finally, we need the `DynamicPopulateExtender` control to wire things up. The fo
 
 As you can see, the control requires some information but putting everything into place is quite straight-forward. Here is the markup for the `DynamicPopulateExtender` control in the current scenario:
 
-[!code[Main](dynamically-populating-a-control-vb/samples/sample5.xml)]
+[!code-aspx[Main](dynamically-populating-a-control-vb/samples/sample5.aspx)]
 
 Run the ASP.NET page in the browser and click on the button; you will receive the current date in month-day-year format.
 

@@ -66,11 +66,11 @@ Next, add classes for domain models. In Solution Explorer, right-click the Model
 
 Replace the code in Author.cs with the following:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample1.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample1.cs)]
 
 Now add another class named `Book`.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample2.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample2.cs)]
 
 ### Add a Web API Controller
 
@@ -104,15 +104,15 @@ From the Tools menu, select **Library Package Manager**, and then select **Packa
 
 In the Package Manager Console window, enter the following command:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample3.xml)]
+[!code-powershell[Main](create-a-rest-api-with-attribute-routing/samples/sample3.ps1)]
 
 This command creates a Migrations folder and adds a new code file named Configuration.cs. Open this file and add the following code to the `Configuration.Seed` method.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample4.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample4.cs)]
 
 In the Package Manager Console window, type the following commands.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample5.xml)]
+[!code-powershell[Main](create-a-rest-api-with-attribute-routing/samples/sample5.ps1)]
 
 These commands create a local database and invoke the Seed method to populate the database.
 
@@ -122,38 +122,38 @@ These commands create a local database and invoke the Seed method to populate th
 
 If you run the application now and send a GET request to /api/books/1, the response looks similar to the following. (I added indentation for readability.)
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample6.xml)]
+[!code-json[Main](create-a-rest-api-with-attribute-routing/samples/sample6.json)]
 
 Instead, I want this request to return a subset of the fields. Also, I want it to return the author's name, rather than the author ID. To accomplish this, we'll modify the controller methods to return a *data transfer object* (DTO) instead of the EF model. A DTO is an object that is designed only to carry data.
 
 In Solution Explorer, right-click the project and select **Add** | **New Folder**. Name the folder &quot;DTOs&quot;. Add a class named `BookDto` to the DTOs folder, with the following definition:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample7.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample7.cs)]
 
 Add another class named `BookDetailDto`.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample8.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample8.cs)]
 
 Next, update the `BooksController` class to return `BookDto` instances. We'll use the [Queryable.Select](https://msdn.microsoft.com/en-us/library/system.linq.queryable.select.aspx) method to project `Book` instances to `BookDto` instances. Here is the updated code for the controller class.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample9.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample9.cs)]
 
 > [!NOTE] I deleted the `PutBook`, `PostBook`, and `DeleteBook` methods, because they aren't needed for this tutorial.
 
 
 Now if you run the application and request /api/books/1, the response body should look like this:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample10.xml)]
+[!code-json[Main](create-a-rest-api-with-attribute-routing/samples/sample10.json)]
 
 ## Add Route Attributes
 
 Next, we'll convert the controller to use attribute routing. First, add a **RoutePrefix** attribute to the controller. This attribute defines the initial URI segments for all methods on this controller.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample11.xml?highlight=1)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample11.cs?highlight=1)]
 
 Then add **[Route]** attributes to the controller actions, as follows:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample12.xml?highlight=1,7)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample12.cs?highlight=1,7)]
 
 The route template for each controller method is the prefix plus the string specified in the **Route** attribute. For the `GetBook` method, the route template includes the parameterized string &quot;{id:int}&quot;, which matches if the URI segment contains an integet value.
 
@@ -168,11 +168,11 @@ To get book details, the client will send a GET request to `/api/books/{id}/deta
 
 Add the following method to the `BooksController` class.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample13.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample13.cs)]
 
 If you request `/api/books/1/detail`, the response looks like this:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample14.xml)]
+[!code-json[Main](create-a-rest-api-with-attribute-routing/samples/sample14.json)]
 
 ## Get Books By Genre
 
@@ -180,7 +180,7 @@ To get a list of books in a specific genre, the client will send a GET request t
 
 Add the following method to `BooksController`.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample15.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample15.cs)]
 
 Here we are defining a route that contains a {genre} parameter in the URI template. Notice that Web API is able to distinguish these two URIs and route them to different methods:
 
@@ -190,7 +190,7 @@ Here we are defining a route that contains a {genre} parameter in the URI templa
 
 That's because the `GetBook` method includes a constraint that the "id" segment must be an integer value:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample16.xml?highlight=1)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample16.cs?highlight=1)]
 
 If you request /api/books/fantasy, the response looks like this:
 
@@ -202,7 +202,7 @@ To get a list of a books for a particular author, the client will send a GET req
 
 Add the following method to `BooksController`.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample17.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample17.cs)]
 
 This example is interesting because &quot;books&quot; is treated a child resource of &quot;authors&quot;. This pattern is quite common in RESTful APIs.
 
@@ -214,7 +214,7 @@ To get a list of books by publication date, the client will send a GET request t
 
 Here is one way to do this:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample18.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample18.cs)]
 
 The `{pubdate:datetime}` parameter is constrained to match a **DateTime** value. This works, but it's actually more permissive than we'd like. For example, these URIs will also match the route:
 
@@ -224,17 +224,17 @@ The `{pubdate:datetime}` parameter is constrained to match a **DateTime** value.
 
 There's nothing wrong with allowing these URIs. However, you can restrict the route to a particular format by adding a regular-expression constraint to the route template:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample19.xml?highlight=1)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample19.cs?highlight=1)]
 
 Now only dates in the form &quot;yyyy-mm-dd&quot; will match. Notice that we don't use the regex to validate that we got a real date. That is handled when Web API tries to convert the URI segment into a **DateTime** instance. An invalid date such as '2012-47-99' will fail to be converted, and the client will get a 404 error.
 
 You can also support a slash separator (`/api/books/date/yyyy/mm/dd`) by adding another **[Route]** attribute with a different regex.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample20.xml)]
+[!code-unknown[Main](create-a-rest-api-with-attribute-routing/samples/sample-47564-20.unknown)]
 
 There is a subtle but important detail here. The second route template has a wildcard character (\*) at the start of the {pubdate} parameter:
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample21.xml)]
+[!code-json[Main](create-a-rest-api-with-attribute-routing/samples/sample21.json)]
 
 This tells the routing engine that {pubdate} should match the rest of the URI. By default, a template parameter matches a single URI segment. In this case, we want {pubdate} to span several URI segments:
 
@@ -244,7 +244,7 @@ This tells the routing engine that {pubdate} should match the rest of the URI. B
 
 Here is the complete code for the BooksController class.
 
-[!code[Main](create-a-rest-api-with-attribute-routing/samples/sample22.xml)]
+[!code-csharp[Main](create-a-rest-api-with-attribute-routing/samples/sample22.cs)]
 
 ## Summary
 

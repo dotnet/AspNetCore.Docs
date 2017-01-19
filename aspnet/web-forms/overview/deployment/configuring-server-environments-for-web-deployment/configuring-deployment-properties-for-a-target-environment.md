@@ -83,7 +83,7 @@ In this example:
 - You&#x27;re using integrated authentication to deploy the **ContactManager** database to TESTDB1. The database will be deployed using the credentials you used to invoke MSBuild.
 
 
-[!code[Main](configuring-deployment-properties-for-a-target-environment/samples/sample1.xml)]
+[!code-xml[Main](configuring-deployment-properties-for-a-target-environment/samples/sample1.xml)]
 
 
 ### Example 2&#x2014;Deployment to the Web Deploy Handler Endpoint
@@ -96,7 +96,7 @@ In this example:
 - You&#x27;re using SQL Server authentication to deploy the **ContactManager** database to STAGEDB1.
 
 
-[!code[Main](configuring-deployment-properties-for-a-target-environment/samples/sample2.xml)]
+[!code-xml[Main](configuring-deployment-properties-for-a-target-environment/samples/sample2.xml)]
 
 
 ## Conclusion

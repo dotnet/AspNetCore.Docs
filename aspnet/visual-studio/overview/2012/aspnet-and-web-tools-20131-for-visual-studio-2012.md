@@ -131,14 +131,14 @@ To fix this error for Web API:
 
 1. Add the following WebApiConfig class to your project.
 
-    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample1.xml)]
+    [!code-csharp[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample1.cs)]
 
-    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample2.xml)]
+    [!code-vb[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample2.vb)]
 2. Configure WebApiConfig.Register in the Application\_Start method in Global.asax as follows:
 
-    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample3.xml)]
+    [!code-csharp[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample3.cs)]
 
-    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample4.xml)]
+    [!code-vb[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample4.vb)]
 
 <a id="expressissue"></a>
 #### Visual Studio Express 2012 for Web stops working after adding a scaffolded item
@@ -152,7 +152,7 @@ To correct this problem, configure Visual Studio Express to work with the MSIL i
 3. Open VWDExpress.exe.config in a text editor.
 4. Add the following line under the &lt;configuration&gt;/&lt;runtime&gt; element:  
 
-    [!code[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample5.xml)]
+    [!code-xml[Main](aspnet-and-web-tools-20131-for-visual-studio-2012/samples/sample5.xml)]
 5. Restart Visual Studio Express 2012 for Web.
 
 <a id="issuerazor"></a>

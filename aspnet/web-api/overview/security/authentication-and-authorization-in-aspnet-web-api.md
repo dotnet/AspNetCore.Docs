@@ -54,7 +54,7 @@ If your application performs any custom authentication logic, you must set the p
 
 The following code shows how to set the principal:
 
-[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample1.xml)]
+[!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample1.cs)]
 
 For web-hosting, you must set the principal in both places; otherwise the security context may become inconsistent. For self-hosting, however, **HttpContext.Current** is null. To ensure your code is host-agnostic, therefore, check for null before assigning to **HttpContext.Current**, as shown.
 
@@ -76,23 +76,23 @@ You can apply the filter globally, at the controller level, or at the level of i
 
 **Globally**: To restrict access for every Web API controller, add the **AuthorizeAttribute** filter to the global filter list:
 
-[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample2.xml)]
+[!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample2.cs)]
 
 **Controller**: To restrict access for a specific controller, add the filter as an attribute to the controller:
 
-[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample3.xml)]
+[!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample3.cs)]
 
 **Action**: To restrict access for specific actions, add the attribute to the action method:
 
-[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample4.xml)]
+[!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample4.cs)]
 
 Alternatively, you can restrict the controller and then allow anonymous access to specific actions, by using the `[AllowAnonymous]` attribute. In the following example, the `Post` method is restricted, but the `Get` method allows anonymous access.
 
-[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample5.xml)]
+[!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample5.cs)]
 
 In the previous examples, the filter allows any authenticated user to access the restricted methods; only anonymous users are kept out. You can also limit access to specific users or to users in specific roles:
 
-[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample6.xml)]
+[!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample6.cs)]
 
 > [!NOTE] The **AuthorizeAttribute** filter for Web API controllers is located in the **System.Web.Http** namespace. There is a similar filter for MVC controllers in the **System.Web.Mvc** namespace, which is not compatible with Web API controllers.
 
@@ -113,4 +113,4 @@ The following diagram shows the class hierarchy for the **AuthorizeAttribute** c
 
 In some cases, you might allow a request to proceed, but change the behavior based on the principal. For example, the information that you return might change depending on the user's role. Within a controller method, you can get the current principle from the **ApiController.User** property.
 
-[!code[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample7.xml)]
+[!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample7.cs)]

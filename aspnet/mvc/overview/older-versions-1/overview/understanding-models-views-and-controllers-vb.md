@@ -90,7 +90,7 @@ ASP.NET Routing uses a route table to handle incoming requests. This route table
 
 **Listing 1 - Global.asax**
 
-[!code[Main](understanding-models-views-and-controllers-vb/samples/sample1.xml)]
+[!code-vb[Main](understanding-models-views-and-controllers-vb/samples/sample1.vb)]
 
 When an ASP.NET application first starts, the Application\_Start() method is called. In Listing 1, this method calls the RegisterRoutes() method and the RegisterRoutes() method creates the default route table.
 
@@ -138,7 +138,7 @@ A controller is just a class (for example, a Visual Basic or C# class). The samp
 
 **Listing 2 - HomeController.cs**
 
-[!code[Main](understanding-models-views-and-controllers-vb/samples/sample2.xml)]
+[!code-vb[Main](understanding-models-views-and-controllers-vb/samples/sample2.vb)]
 
 Notice that the HomeController has two methods named Index() and About(). These two methods correspond to the two actions exposed by the controller. The URL /Home/Index invokes the HomeController.Index() method and the URL /Home/About invokes the HomeController.About() method.
 
@@ -162,7 +162,7 @@ The file in Listing 3 contains the About.aspx view.
 
 **Listing 3 - About.aspx**
 
-[!code[Main](understanding-models-views-and-controllers-vb/samples/sample3.xml)]
+[!code-aspx[Main](understanding-models-views-and-controllers-vb/samples/sample3.aspx)]
 
 If you ignore the first line in Listing 3, most of the rest of the view consists of standard HTML. You can modify the contents of the view by entering any HTML that you want here.
 

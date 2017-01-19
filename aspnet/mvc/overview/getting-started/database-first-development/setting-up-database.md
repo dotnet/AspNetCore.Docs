@@ -62,7 +62,7 @@ Add a new table named Student.
 
 In the table file, replace the T-SQL command with the following code to create the table.
 
-[!code[Main](setting-up-database/samples/sample1.xml)]
+[!code-sql[Main](setting-up-database/samples/sample1.sql)]
 
 Notice that the design window automatically synchronizes with the code. You can work with either the code or designer.
 
@@ -70,11 +70,11 @@ Notice that the design window automatically synchronizes with the code. You can 
 
 Add another table. This time name it Course and use the following T-SQL command.
 
-[!code[Main](setting-up-database/samples/sample2.xml)]
+[!code-sql[Main](setting-up-database/samples/sample2.sql)]
 
 And, repeat one more time to create a table named Enrollment.
 
-[!code[Main](setting-up-database/samples/sample3.xml)]
+[!code-sql[Main](setting-up-database/samples/sample3.sql)]
 
 You can populate your database with data through a script that is run after the database is deployed. Add a Post-Deployment Script to the project. You can use the default name.
 
@@ -82,7 +82,7 @@ You can populate your database with data through a script that is run after the 
 
 Add the following T-SQL code to the post-deployment script. This script simply adds data to the database when no matching record is found. It does not overwrite or delete any data you may have entered into the database.
 
-[!code[Main](setting-up-database/samples/sample4.xml)]
+[!code-sql[Main](setting-up-database/samples/sample4.sql)]
 
 It is important to note that the post-deployment script is run every time you deploy your database project. Therefore, you need to carefully consider your requirements when writing this script. In some cases, you may wish to start over from a known set of data every time the project is deployed. In other cases, you may not want to alter the existing data in any way. Based on your requirements, you can decide whether you need a post-deployment script or what you need to include in the script. For more information about populating your database with a post-deployment script, see [Including Data in a SQL Server Database Project](https://blogs.msdn.com/b/ssdt/archive/2012/02/02/including-data-in-an-sql-server-database-project.aspx).
 

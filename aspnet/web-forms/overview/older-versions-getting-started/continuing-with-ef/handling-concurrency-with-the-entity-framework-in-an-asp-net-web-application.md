@@ -95,11 +95,11 @@ Save and close the data model.
 
 Open *SchoolRepository.cs* and add the following `using` statement for the `System.Data` namespace:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample1.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample1.cs)]
 
 Add the following new `SaveChanges` method, which handles optimistic concurrency exceptions:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample2.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample2.cs)]
 
 If a concurrency error occurs when this method is called, the property values of the entity in memory are replaced with the values currently in the database. The concurrency exception is rethrown so that the web page can handle it.
 
@@ -109,25 +109,25 @@ In the `DeleteDepartment` and `UpdateDepartment` methods, replace the existing c
 
 Open *Departments.aspx* and add an `OnDeleted="DepartmentsObjectDataSource_Deleted"` attribute to the `DepartmentsObjectDataSource` control. The opening tag for the control will now resemble the following example.
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample3.xml)]
+[!code-aspx[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample3.aspx)]
 
 In the `DepartmentsGridView` control, specify all of the table columns in the `DataKeyNames` attribute, as shown in the following example. Note that this will create very large view state fields, which is one reason why using a tracking field is generally the preferred way to track concurrency conflicts.
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample4.xml)]
+[!code-aspx[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample4.aspx)]
 
 Open *Departments.aspx.cs* and add the following `using` statement for the `System.Data` namespace:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample5.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample5.cs)]
 
 Add the following new method, which you will call from the data source control's `Updated` and `Deleted` event handlers for handling concurrency exceptions:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample6.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample6.cs)]
 
 This code checks the exception type, and if it's a concurrency exception, the code dynamically creates a `CustomValidator` control that in turn displays a message in the `ValidationSummary` control.
 
 Call the new method from the `Updated` event handler that you added earlier. In addition, create a new `Deleted` event handler that calls the same method (but doesn't do anything else):
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample7.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample7.cs)]
 
 ### Testing Optimistic Concurrency in the Departments Page
 
@@ -180,7 +180,7 @@ Set the **Insert**, **Update**, and **Delete** functions to use their correspond
 
 When the Entity Framework calls the `UpdateOfficeAssignment` stored procedure, it will pass the original value of the `Timestamp` column in the `OrigTimestamp` parameter. The stored procedure uses this parameter in its `Where` clause:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample8.xml)]
+[!code-sql[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample8.sql)]
 
 The stored procedure also selects the new value of the `Timestamp` column after the update so that the Entity Framework can keep the `OfficeAssignment` entity that's in memory in sync with the corresponding database row.
 
@@ -192,27 +192,27 @@ Save and close the data model.
 
 Open *ISchoolRepository.cs* and add the following CRUD methods for the `OfficeAssignment` entity set:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample9.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample9.cs)]
 
 Add the following new methods to *SchoolRepository.cs*. In the `UpdateOfficeAssignment` method, you call the local `SaveChanges` method instead of `context.SaveChanges`.
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample10.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample10.cs)]
 
 In the test project, open *MockSchoolRepository.cs* and add the following `OfficeAssignment` collection and CRUD methods to it. (The mock repository must implement the repository interface, or the solution won't compile.)
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample11.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample11.cs)]
 
 ### Adding OfficeAssignment Methods to the BLL
 
 In the main project, open *SchoolBL.cs* and add the following CRUD methods for the `OfficeAssignment` entity set to it:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample12.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample12.cs)]
 
 ## Creating an OfficeAssignments Web Page
 
 Create a new web page that uses the *Site.Master* master page and name it *OfficeAssignments.aspx*. Add the following markup to the `Content` control named `Content2`:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample13.xml)]
+[!code-aspx[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample13.aspx)]
 
 Notice that in the `DataKeyNames` attribute, the markup specifies the `Timestamp` property as well as the record key (`InstructorID`). Specifying properties in the `DataKeyNames` attribute causes the control to save them in control state (which is similar to view state) so that the original values are available during postback processing.
 
@@ -220,11 +220,11 @@ If you didn't save the `Timestamp` value, the Entity Framework would not have it
 
 Open *OfficeAssignments.aspx.cs* and add the following `using` statement for the data access layer:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample14.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample14.cs)]
 
 Add the following `Page_Init` method, which enables Dynamic Data functionality. Also add the following handler for the `ObjectDataSource` control's `Updated` event in order to check for concurrency errors:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample15.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample15.cs)]
 
 ### Testing Optimistic Concurrency in the OfficeAssignments Page
 
@@ -266,10 +266,10 @@ Open the *Courses.aspx* page and make the following changes:
 
 - In the `CoursesEntityDataSource` control, add `EnableUpdate="true"` and `EnableDelete="true"` attributes. The opening tag for that control now resembles the following example:
 
-    [!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample16.xml)]
+    [!code-aspx[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample16.aspx)]
 - In the `CoursesGridView` control, change the `DataKeyNames` attribute value to `"CourseID,Title,Credits,DepartmentID"`. Then add a `CommandField` element to the `Columns` element that shows **Edit** and **Delete** buttons (`<asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />`). The `GridView` control now resembles the following example:
 
-    [!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample17.xml)]
+    [!code-aspx[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample17.aspx)]
 
 Run the page and create a conflict situation as you did before in the Departments page. Run the page in two browser windows, click **Edit** in the same line in each window, and make a different change in each one. Click **Update** in one window and then click **Update** in the other window. When you click **Update** the second time, you see the error page that results from an unhandled concurrency exception.
 
@@ -277,17 +277,17 @@ Run the page and create a conflict situation as you did before in the Department
 
 You handle this error in a manner very similar to how you handled it for the `ObjectDataSource` control. Open the *Courses.aspx* page, and in the `CoursesEntityDataSource` control, specify handlers for the `Deleted` and `Updated` events. The opening tag of the control now resembles the following example:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample18.xml)]
+[!code-aspx[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample18.aspx)]
 
 Before the `CoursesGridView` control, add the following `ValidationSummary` control:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample19.xml)]
+[!code-aspx[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample19.aspx)]
 
 In *Courses.aspx.cs*, add a `using` statement for the `System.Data` namespace, add a method that checks for concurrency exceptions, and add handlers for the `EntityDataSource` control's `Updated` and `Deleted` handlers. The code will look like the following:
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample20.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample20.cs)]
 
-[!code[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample21.xml)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-web-application/samples/sample21.cs)]
 
 The only difference between this code and what you did for the `ObjectDataSource` control is that in this case the concurrency exception is in the `Exception` property of the event arguments object rather than in that exception's `InnerException` property.
 

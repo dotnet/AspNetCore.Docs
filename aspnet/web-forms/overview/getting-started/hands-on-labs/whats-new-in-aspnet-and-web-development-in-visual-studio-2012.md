@@ -100,7 +100,7 @@ In this task, you will discover the new features of the CSS Editor. This new edi
 
     CSS
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample1.xml)]
+    [!code-css[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample1.css)]
 
     ![Hierarchical alignment in CSS](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image10.png "Hierarchical alignment in CSS")
 
@@ -159,7 +159,7 @@ In this task, you will learn how to use cross-browser compatible CSS3 snippets i
 
     CSS
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample2.xml)]
+    [!code-css[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample2.css)]
 3. Press **F5** to run the solution. Notice that each page now has rounded borders.
 
     ![Rounded corners](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image18.png "Rounded corners")
@@ -178,12 +178,12 @@ In this task, you will learn how to use cross-browser compatible CSS3 snippets i
 
     CSS
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample3.xml)]
+    [!code-unknown[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample-45259-3.unknown)]
 8. Type **transform** and press the **TAB** key twice in order to insert the transform snippet. Then, enter **rotate(-15deg)** to change the rotation angle value when images are hovered.
 
     CSS
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample4.xml)]
+    [!code-css[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample4.css)]
 9. Press **F5** to run the solution and browse to the CSS3 page. Notice that the images have rounded corners and box shadows. Hover the mouse over the images and watch them rotate.
 
     ![Transform snippet rotating an image](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image20.png "Transform snippet rotating an image")
@@ -251,7 +251,7 @@ Visual Studio now updates the HTML opening or closing tags of the element that y
 
     HTML
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample5.xml)]
+    [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample5.aspx)]
 2. Change the **H3** tag and type **H2** or **H1.**
 
     Notice that the end tag automatically updates. You can also modify the end tag to see that the start tag updates accordingly too.
@@ -279,7 +279,7 @@ Visual Studio now includes several HTML5 code snippets. In this task, you will u
 
     HTML
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample6.xml)]
+    [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample6.aspx)]
 
     > [!NOTE] You will need to add the audio file to the solution.
 4. Press **F5** to run the site and play the audio.
@@ -399,7 +399,7 @@ This task will introduce you to some of the new JavaScript editor features, whic
 
     JavaScript
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample7.xml)]
+    [!code-html[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample7.html)]
 
     > [!NOTE] Ensure the DOCTYPE is set to XHTML5 before proceeding with the next steps.
 5. Edit the code and notice that IntelliSense for JavaScript includes HTML5 features, like local storage, and their inner methods.
@@ -432,7 +432,7 @@ In this task, you will discover the new JavaScript validation for the ECMAScript
 
     JavaScript
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample8.xml)]
+    [!code-unknown[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample-45259-8.unknown)]
 
     You can check out the &quot; **use strict** &quot; direction in the first line of the file, which enables ECMAScript5 **strict mode**. This mode consists in a subset of the language that clarifies ambiguities from the past edition, and adds some new features, such as getters and setters, library support for JSON, and more complete reflection on object properties.
 2. Open the **Error List** if not already opened (**View** menu | **Error List**). Notice the **function** declaration is underlined. This is because in ECMA5 standard functions cannot be nested inside language structures. In the error list below you will see the warning details.
@@ -466,7 +466,7 @@ In this task, you will explore Visual Studio features for XML documentation in J
 
     JavaScript
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample9.xml)]
+    [!code-javascript[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample9.js)]
 
     ![XML documentation for JavaScript functions](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image45.png "XML documentation for JavaScript functions")
 
@@ -539,21 +539,21 @@ In this task, you will learn how to enable and reference the bundled and minifie
 
     C#
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample10.xml)]
+    [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample10.cs)]
 4. Locate the **Application\_Start** method.
 
     In this method, uncomment the EnableDefaultBundles call as shown in the snippet below. This enables us to reference a bundled collection of CSS files in a folder by using the path to that folder, plus the &quot;CSS&quot; or the &quot;JS&quot; suffix.
 
     C#
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample11.xml)]
+    [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample11.cs)]
 5. Open the **Optimization.aspx** file and locate the content control for **HeadContent**.
 
     Notice the CSS files and the JS files have a single referenced tag.
 
     HTML
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample12.xml)]
+    [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample12.aspx)]
 
     > [!NOTE] This code is for demo purposes. Ideally, you will reference the bundles in the Site.Master file. In this sample code, you will find that some of the bundled files are also being referenced by the Site.Master file, making this last reference redundant.
 6. Notice that the links are using the bundling conventions in the **href** attribute to get all the CSS or JS files from the Styles and Scripts\custom folder respectively.
@@ -562,7 +562,7 @@ In this task, you will learn how to enable and reference the bundled and minifie
 
     HTML
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample13.xml)]
+    [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample13.aspx)]
 7. Open the **Styles\Site.css** file.
 
     Notice that the original CSS file contains indented code, blank spaces and comments that enlarge the file. (Also the JavaScript file contains blank spaces and comments).
@@ -605,14 +605,14 @@ In this task, you will configure a static bundle to define a specific set of fil
 
     C#
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample14.xml)]
+    [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample14.cs)]
 4. Open the **Optimization.aspx** file.
 
     Notice that the link to **Static JS Bundle** is using the path you have declared when you configured the static bundle in the Global.asax.cs file: **/StaticBundle**.
 
     HTML
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample15.xml)]
+    [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample15.aspx)]
 5. Press **F5** to run the application, and then navigate to the **Optimization** page.
 6. Click on the **Static JS Bundle** link to open the file.
 
@@ -639,7 +639,7 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     C#
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample16.xml)]
+    [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample16.cs)]
 3. Open the NuGet Package Manager Console. To do this, use the menu **View** | **Other Windows** | **Package Manager Console**.
 4. In the **Package Manager Console,** type **Install-Package CoffeeSharp** and press **ENTER**.
 5. Click the **Show All Files** button in the **Solution Explorer** window
@@ -658,7 +658,7 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     C#
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample17.xml)]
+    [!code-csharp[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample17.cs)]
 8. Open the **Script1.coffee** and **Script2.coffee** files from the **Scripts/bundle** folder.
 
     These files will include the CoffeScript code to be compiled while performing the bundling with the CoffeeMinify class.
@@ -676,7 +676,7 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     HTML
 
-    [!code[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample18.xml)]
+    [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample18.aspx)]
 10. Press **F5** to run the application, and then navigate to the **Optimization** page.
 11. Click on the **Dynamic JS Bundle** link to open the generated file.
 

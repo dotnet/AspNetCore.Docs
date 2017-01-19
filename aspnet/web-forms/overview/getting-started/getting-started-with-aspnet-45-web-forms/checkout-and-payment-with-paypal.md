@@ -51,11 +51,11 @@ Earlier in this tutorial series, you defined the schema for categories, products
  The new class file is displayed in the editor.
 2. Replace the default code with the following:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample1.xml)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample1.cs)]
 3. Add an *OrderDetail.cs* class to the *Models* folder.
 4. Replace the default code with the following code:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample2.xml)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample2.cs)]
 
 The `Order` and `OrderDetail` classes contain the schema to define the order information used for purchasing and shipping.
 
@@ -64,7 +64,7 @@ In addition, you will need to update the database context class that manages the
 1. In **Solution Explorer**, find and open the *ProductContext.cs* file.
 2. Add the highlighted code to the *ProductContext.cs* file as shown below:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample3.xml?highlight=14-15)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample3.cs?highlight=14-15)]
 
 As mentioned previously in this tutorial series, the code in the *ProductContext.cs* file adds the `System.Data.Entity` namespace so that you have access to all the core functionality of the Entity Framework. This functionality includes the capability to query, insert, update, and delete data by working with strongly typed objects. The above code in the `ProductContext` class adds Entity Framework access to the newly added `Order` and `OrderDetail` classes.
 
@@ -104,7 +104,7 @@ By adding a new *Web.config* file to the *Checkout* folder, you will be able to 
 2. Select the **Visual C#** -&gt; **Web** templates group on the left. Then, from the middle pane, select **Web Configuration File**, accept the default name of *Web.config*, and then select **Add**.
 3. Replace the existing XML content in the *Web.config* file with the following:  
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample4.xml)]
+    [!code-xml[Main](checkout-and-payment-with-paypal/samples/sample4.xml)]
 4. Save the *Web.config* file.
 
 The *Web.config* file specifies that all unknown users of the Web application must be denied access to the pages contained in the *Checkout* folder. However, if the user has registered an account and is logged on, they will be a known user and will have access to the pages in the *Checkout* folder.
@@ -153,7 +153,7 @@ The following steps will allow you to add a Google authentication provider.
 1. Open the *App\_Start\Startup.Auth.cs* file.
 2. Remove the comment characters from the `app.UseGoogleAuthentication()` method so that the method appears as follows: 
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample5.xml)]
+    [!code-unknown[Main](checkout-and-payment-with-paypal/samples/sample-42864-5.unknown)]
 3. Navigate to the [Google Developers Console](https://console.developers.google.com/). You will also need to sign-in with your Google developer email account (gmail.com). If you do not have a Google account, select the **Create an account** link.   
  Next, you'll see the     **Google Developers Console** .   
     ![Google Developers Console](checkout-and-payment-with-paypal/_static/image8.png)
@@ -171,7 +171,7 @@ The following steps will allow you to add a Google authentication provider.
  This URL is the origin for your application. For this sample, you will only enter the localhost test URL. However, you can enter multiple URLs to account for localhost and production.
 9. Set the **Authorized Redirect URI** to the following: 
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample6.xml)]
+    [!code-unknown[Main](checkout-and-payment-with-paypal/samples/sample-42864-6.unknown)]
 
  This value is the URI that ASP.NET OAuth users to communicate with the google OAuth server. Remember the SSL URL you used above (    `https://localhost:44300/` unless you've created other SSL projects).
 10. Click the **Create Client ID** button.
@@ -183,7 +183,7 @@ The following steps will allow you to add a Google authentication provider.
  From the     **Manage NuGet Packages** window, find and update the     **Microsoft.Owin** package to version 3.0.0.
 14. In Visual Studio, update the `UseGoogleAuthentication` method of the *Startup.Auth.cs* page by copying and pasting the **Client ID** and **Client Secret** into the method. The **Client ID** and **Client Secret** values shown below are samples and will not work. 
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample7.xml?highlight=64-65)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample7.cs?highlight=64-65)]
 15. Press **CTRL+F5** to build and run the application. Click the **Log in** link.
 16. Under **Use another service to log in**, click **Google**.  
     ![Log in](checkout-and-payment-with-paypal/_static/image11.png)
@@ -202,7 +202,7 @@ As previously mentioned in this tutorial series, much of the user registration f
 1. In **Solution Explorer**, find and open the *Account* folder.
 2. Modify the code-behind page named *Login.aspx.cs* to include the code highlighted in yellow, so that it appears as follows:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample8.xml?highlight=41-43)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample8.cs?highlight=41-43)]
 3. Save the *Login.aspx.cs* file.
 
 For now, you can ignore the warning that there is no definition for the `MigrateCart` method. You will be adding it a bit later in this tutorial.
@@ -216,7 +216,7 @@ In addition to modifying the *Login.aspx.cs* code-behind file to migrate the sho
 1. In the *Account* folder, open the code-behind file named *Register.aspx.cs*.
 2. Modify the code-behind file by including the code in yellow, so that it appears as follows:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample9.xml?highlight=28-32)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample9.cs?highlight=28-32)]
 3. Save the *Register.aspx.cs* file. Once again, ignore the warning about the `MigrateCart` method.
 
 Notice that the code you used in the `CreateUser_Click` event handler is very similar to the code you used in the `LogIn` method. When the user registers or logs in to the site, a call to the `MigrateCart` method will be made.
@@ -228,7 +228,7 @@ Now that you have the log-in and registration process updated, you can add the c
 1. In **Solution Explorer**, find the *Logic* folder and open the *ShoppingCartActions.cs*class file.
 2. Add the code highlighted in yellow to the existing code in the *ShoppingCartActions.cs* file, so that the code in the *ShoppingCartActions.cs* file appears as follows:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample10.xml?highlight=215-224)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample10.cs?highlight=215-224)]
 
 The `MigrateCart` method uses the existing cartId to find the shopping cart of the user. Next, the code loops through all the shopping cart items and replaces the `CartId` property (as specified by the `CartItem` schema) with the logged-in user name.
 
@@ -239,7 +239,7 @@ If you are following this tutorial using the **prebuilt** Wingtip Toys sample ap
 1. Open the *Web.config* file at the root of the project.
 2. Update the default connection string so that it appears as follows:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample11.xml)]
+    [!code-xml[Main](checkout-and-payment-with-paypal/samples/sample11.xml)]
 
 <a id="PayPalWebForms"></a>
 ## Integrating PayPal
@@ -293,10 +293,10 @@ You will place the majority of the PayPal code into a single class. This class c
  The new class file is displayed in the editor.
 5. Replace the default code with the following code:  
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample12.xml)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample12.cs)]
 6. Add the Merchant API credentials (Username, Password, and Signature) that you displayed earlier in this tutorial so that you can make function calls to the PayPal testing environment.  
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample13.xml)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample13.cs)]
 
 > [!NOTE] 
 > 
@@ -318,7 +318,7 @@ The `ShortcutExpressCheckout` method collects the test purchase information and 
 
 Notice that the return and cancel URLs that are specified in the **ShortcutExpressCheckout** method use a port number.
 
-[!code[Main](checkout-and-payment-with-paypal/samples/sample14.xml)]
+[!code-unknown[Main](checkout-and-payment-with-paypal/samples/sample-42864-14.unknown)]
 
 When Visual Web Developer runs a web project using SSL, commonly the port 44300 is used for the web server. As shown above, the port number is 44300. When you run the application, you could see a different port number. Your port number needs to be correctly set in the code so that you can successful run the Wingtip Toys sample application at the end of this tutorial. The next section of this tutorial explains how to retrieve the local host port number and update the PayPal class.
 
@@ -331,7 +331,7 @@ The Wingtip Toys sample application purchases products by navigating to the PayP
 3. Retrieve the port number from the **Project Url** box.
 4. If needed, update the `returnURL` and `cancelURL` in the PayPal class (`NVPAPICaller`) in the *PayPalFunctions.cs* file to use the port number of your web application:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample15.xml?highlight=1-2)]
+    [!code-unknown[Main](checkout-and-payment-with-paypal/samples/sample-42864-15.unknown?highlight=1-2)]
 
 Now the code that you added will match the expected port for your local Web application. PayPal will be able to return to the correct URL on your local machine.
 
@@ -343,13 +343,13 @@ Now that the primary PayPal functions have been added to the sample application,
 2. Scroll to the bottom of the file and find the `<!--Checkout Placeholder -->` comment.
 3. Replace the comment with an `ImageButton` control so that the mark up is replaced as follows:  
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample16.xml)]
+    [!code-aspx[Main](checkout-and-payment-with-paypal/samples/sample16.aspx)]
 4. In the *ShoppingCart.aspx.cs* file, after the `UpdateBtn_Click` event handler near the end of the file, add the `CheckOutBtn_Click` event handler:  
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample17.xml)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample17.cs)]
 5. Also in the *ShoppingCart.aspx.cs* file, add a reference to the `CheckoutBtn`, so that the new image button is referenced as follows:  
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample18.xml?highlight=18)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample18.cs?highlight=18)]
 6. Save your changes to both the *ShoppingCart.aspx* file and the *ShoppingCart.aspx.cs* file.
 7. From the menu, select **Debug**-&gt;**Build WingtipToys**.  
  The project will be rebuilt with the newly added     **ImageButton** control.
@@ -362,7 +362,7 @@ When the user clicks the **Checkout** button on the shopping cart page (*Shoppin
  Be sure to open the code-behind file.
 2. Replace the existing code with the following:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample19.xml)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample19.cs)]
 
 When the user of the application clicks the **Checkout** button on the shopping cart page, the browser will navigate to the *CheckoutStart.aspx* page. When the *CheckoutStart.aspx* page loads, the `ShortcutExpressCheckout` method is called. At this point, the user is transferred to the PayPal testing web site. On the PayPal site, the user enters their PayPal credentials, reviews the purchase details, accepts the PayPal agreement and returns to the Wingtip Toys sample application where the `ShortcutExpressCheckout` method completes. When the `ShortcutExpressCheckout` method is complete, it will redirect the user to the *CheckoutReview.aspx* page specified in the `ShortcutExpressCheckout` method. This allows the user to review the order details from within the Wingtip Toys sample application.
 
@@ -373,10 +373,10 @@ After returning from PayPal, the *CheckoutReview.aspx* page of the Wingtip Toys 
 1. In the *Checkout* folder, open the page named *CheckoutReview.aspx*.
 2. Replace the existing markup with the following:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample20.xml)]
+    [!code-aspx[Main](checkout-and-payment-with-paypal/samples/sample20.aspx)]
 3. Open the code-behind page named *CheckoutReview.aspx.cs*and replace the existing code with the following:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample21.xml)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample21.cs)]
 
 The **DetailsView** control is used to display the order details that have been returned from PayPal. Also, the above code saves the order details to the Wingtip Toys database as an `OrderDetail` object. When the user clicks on the **Complete Order** button, they are redirected to the *CheckoutComplete.aspx* page.
 
@@ -400,10 +400,10 @@ The **DetailsView** control is used to display the order details that have been 
 1. In the *Checkout* folder, open the page named *CheckoutComplete.aspx*.
 2. Replace the existing markup with the following:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample22.xml)]
+    [!code-aspx[Main](checkout-and-payment-with-paypal/samples/sample22.aspx)]
 3. Open the code-behind page named *CheckoutComplete.aspx.cs*and replace the existing code with the following:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample23.xml)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample23.cs)]
 
 When the *CheckoutComplete.aspx* page is loaded, the `DoCheckoutPayment` method is called. As mentioned earlier, the `DoCheckoutPayment` method completes the purchase from the PayPal testing environment. Once PayPal has completed the purchase of the order, the *CheckoutComplete.aspx* page displays a payment transaction `ID` to the purchaser.
 
@@ -414,7 +414,7 @@ If the user decides to cancel the purchase, they will be directed to the *Checko
 1. Open the page named *CheckoutCancel.aspx* in the *Checkout* folder.
 2. Replace the existing markup with the following:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample24.xml)]
+    [!code-aspx[Main](checkout-and-payment-with-paypal/samples/sample24.aspx)]
 
 ### Handle Purchase Errors
 
@@ -423,7 +423,7 @@ Errors during the purchase process will be handled by the *CheckoutError.aspx* p
 1. Open the page named *CheckoutError.aspx* in the *Checkout* folder.
 2. Replace the existing markup with the following:   
 
-    [!code[Main](checkout-and-payment-with-paypal/samples/sample25.xml)]
+    [!code-aspx[Main](checkout-and-payment-with-paypal/samples/sample25.aspx)]
 
 The *CheckoutError.aspx* page is displayed with the error details when an error occurs during the checkout process.
 

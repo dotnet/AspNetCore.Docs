@@ -211,7 +211,7 @@ After you complete these steps, the controller in Listing 1 is created. Notice t
 
 **Listing 1 – Controllers\HomeController.vb**
 
-[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample1.xml)]
+[!code-vb[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample1.vb)]
 
 ## Listing Database Records
 
@@ -227,7 +227,7 @@ The list of movies is passed to the view. Anything that gets passed to the View(
 
 **Listing 2 – Controllers/HomeController.vb (modified Index method)**
 
-[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample2.xml)]
+[!code-vb[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample2.vb)]
 
 The Index() method returns a view named Index. We need to create this view to display the list of movie database records. Follow these steps:
 
@@ -254,7 +254,7 @@ After you complete these steps, a new view named Index.aspx is added to the View
 **Figure 10**: Creating a new view with the Add View dialog ([Click to view full-size image](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/_static/image20.png))
 
 
-[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample3.xml)]
+[!code-aspx[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample3.aspx)]
 
 The Index view displays all of the movie records from the Movies database table within an HTML table. The view contains a For Each loop that iterates through each movie represented by the ViewData.Model property. If you run your application by hitting the F5 key, then you'll see the web page in Figure 11.
 
@@ -281,7 +281,7 @@ This second Create() method has been modified in the updated HomeController clas
 
 **Listing 4 – Controllers\HomeController.vb (modified Create method)**
 
-[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample4.xml)]
+[!code-vb[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample4.vb)]
 
 Visual Studio makes it easy to create the form for creating a new movie database record (see Figure 12). Follow these steps:
 
@@ -301,7 +301,7 @@ Visual Studio generates the view in Listing 5 automatically. This view contains 
 
 **Listing 5 – Views\Home\Create.aspx**
 
-[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample5.xml)]
+[!code-aspx[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample5.aspx)]
 
 > [!NOTE] 
 > 
@@ -347,7 +347,7 @@ Finally, we need to modify the Home controller so that it supports editing a dat
 
 **Listing 6 – Controllers\HomeController.vb (Edit methods)**
 
-[!code[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample6.xml)]
+[!code-vb[Main](create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-vb/samples/sample6.vb)]
 
 In Listing 6, I've added additional logic to both overloads of the Edit() method. The first Edit() method returns the movie database record that corresponds to the Id parameter passed to the method. The second overload performs the updates to a movie record in the database.
 

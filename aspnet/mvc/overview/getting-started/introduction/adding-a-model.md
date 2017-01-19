@@ -29,19 +29,19 @@ Enter the *class* name &quot;Movie&quot;.
 
 Add the following five properties to the `Movie` class:
 
-[!code[Main](adding-a-model/samples/sample1.xml)]
+[!code-csharp[Main](adding-a-model/samples/sample1.cs)]
 
 We'll use the `Movie` class to represent movies in a database. Each instance of a `Movie` object will correspond to a row within a database table, and each property of the `Movie` class will map to a column in the table.
 
 In the same file, add the following `MovieDBContext` class:
 
-[!code[Main](adding-a-model/samples/sample2.xml?highlight=2,15-18)]
+[!code-csharp[Main](adding-a-model/samples/sample2.cs?highlight=2,15-18)]
 
 The `MovieDBContext` class represents the Entity Framework movie database context, which handles fetching, storing, and updating `Movie` class instances in a database. The `MovieDBContext` derives from the `DbContext` base class provided by the Entity Framework.
 
 In order to be able to reference `DbContext` and `DbSet`, you need to add the following `using` statement at the top of the file:
 
-[!code[Main](adding-a-model/samples/sample3.xml)]
+[!code-csharp[Main](adding-a-model/samples/sample3.cs)]
 
 You can do this by manually adding the using statement, or you can right click on the red squiggly lines and click **Resolve**, and then click **using** **System****.****Data****.****Entity**.
 

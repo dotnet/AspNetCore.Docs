@@ -48,7 +48,7 @@ Consider the controller in Listing 1. It exposes two actions named `Index()` and
 
 **Listing 1 – `Controllers\HomeController.vb`**
 
-[!code[Main](passing-data-to-view-master-pages-vb/samples/sample1.xml)]
+[!code-vb[Main](passing-data-to-view-master-pages-vb/samples/sample1.vb)]
 
 Notice that both the `Index()` and the `Details()` actions add two items to view data. The `Index()` action adds two keys: categories and movies. The categories key represents the list of movie categories displayed by the view master page. The movies key represents the list of movies displayed by the Index view page.
 
@@ -64,13 +64,13 @@ The Index view is contained in Listing 2. It simply iterates through the list of
 
 **Listing 2 – `Views\Home\Index.aspx`**
 
-[!code[Main](passing-data-to-view-master-pages-vb/samples/sample2.xml)]
+[!code-aspx[Main](passing-data-to-view-master-pages-vb/samples/sample2.aspx)]
 
 The view master page is contained in Listing 3. The view master page iterates and renders all of the movie categories represented by the categories item from view data.
 
 **Listing 3 – `Views\Shared\Site.master`**
 
-[!code[Main](passing-data-to-view-master-pages-vb/samples/sample3.xml)]
+[!code-aspx[Main](passing-data-to-view-master-pages-vb/samples/sample3.aspx)]
 
 All data is passed to the view and the view master page through view data. That is the correct way to pass data to the master page.
 
@@ -86,7 +86,7 @@ The ApplicationController class is contained in Listing 4.
 
 **Listing 4 – `Controllers\ApplicationController.vb`**
 
-[!code[Main](passing-data-to-view-master-pages-vb/samples/sample4.xml)]
+[!code-vb[Main](passing-data-to-view-master-pages-vb/samples/sample4.vb)]
 
 There are three things that you should notice about the Application controller in Listing 4. First, notice that the class inherits from the base System.Web.Mvc.Controller class. The Application controller is a controller class.
 
@@ -98,7 +98,7 @@ The Movies controller in Listing 5 inherits from the Application controller.
 
 **Listing 5 – `Controllers\MoviesController.vb`**
 
-[!code[Main](passing-data-to-view-master-pages-vb/samples/sample5.xml)]
+[!code-vb[Main](passing-data-to-view-master-pages-vb/samples/sample5.vb)]
 
 The Movies controller, just like the Home controller discussed in the previous section, exposes two action methods named `Index()` and `Details()`. Notice that the list of movie categories displayed by the view master page is not added to view data in either the `Index()` or `Details()` method. Because the Movies controller inherits from the Application controller, the list of movie categories is added to view data automatically.
 

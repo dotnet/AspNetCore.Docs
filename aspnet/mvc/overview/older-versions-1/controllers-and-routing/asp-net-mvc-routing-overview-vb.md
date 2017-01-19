@@ -32,7 +32,7 @@ The file in Listing 1 contains the default Global.asax file for an ASP.NET MVC a
 
 **Listing 1 - Global.asax.vb**
 
-[!code[Main](asp-net-mvc-routing-overview-vb/samples/sample1.xml)]
+[!code-vb[Main](asp-net-mvc-routing-overview-vb/samples/sample1.vb)]
 
 When an MVC application first starts, the Application\_Start() method is called. This method, in turn, calls the RegisterRoutes() method. The RegisterRoutes() method creates the route table.
 
@@ -64,7 +64,7 @@ Because of the Default route parameter defaults, entering this URL will cause th
 
 **Listing 2 - HomeController.vb**
 
-[!code[Main](asp-net-mvc-routing-overview-vb/samples/sample2.xml)]
+[!code-vb[Main](asp-net-mvc-routing-overview-vb/samples/sample2.vb)]
 
 In Listing 2, the HomeController class includes a method named Index() that accepts a single parameter named Id. The URL /Home causes the Index() method to be called with the value Nothing as the value of the Id parameter.
 
@@ -72,7 +72,7 @@ Because of the way that the MVC framework invokes controller actions, the URL /H
 
 **Listing 3 - HomeController.vb (Index action with no parameter)**
 
-[!code[Main](asp-net-mvc-routing-overview-vb/samples/sample3.xml)]
+[!code-vb[Main](asp-net-mvc-routing-overview-vb/samples/sample3.vb)]
 
 The Index() method in Listing 3 does not accept any parameters. The URL /Home will cause this Index() method to be called. The URL /Home/Index/3 also invokes this method (the Id is ignored).
 
@@ -80,7 +80,7 @@ The URL /Home also matches the Index() method of the HomeController class in Lis
 
 **Listing 4 - HomeController.vb (Index action with nullable parameter)**
 
-[!code[Main](asp-net-mvc-routing-overview-vb/samples/sample4.xml)]
+[!code-vb[Main](asp-net-mvc-routing-overview-vb/samples/sample4.vb)]
 
 In Listing 4, the Index() method has one Integer parameter. Because the parameter is a nullable parameter (can have the value Nothing), the Index() can be called without raising an error.
 
@@ -88,7 +88,7 @@ Finally, invoking the Index() method in Listing 5 with the URL /Home causes an e
 
 **Listing 5 - HomeController.vb (Index action with Id parameter)**
 
-[!code[Main](asp-net-mvc-routing-overview-vb/samples/sample5.xml)]
+[!code-vb[Main](asp-net-mvc-routing-overview-vb/samples/sample5.vb)]
 
 
 [![Invoking a controller action that expects a parameter value](asp-net-mvc-routing-overview-vb/_static/image1.jpg)](asp-net-mvc-routing-overview-vb/_static/image1.png)

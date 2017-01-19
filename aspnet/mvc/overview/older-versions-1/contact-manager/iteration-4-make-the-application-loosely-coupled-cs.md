@@ -77,13 +77,13 @@ First, we need to create an interface that describes all of the data access meth
 
 **Listing 1 - Models\<wbr />IContactManagerRepositiory.cs**
 
-[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample1.xml)]
+[!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample1.cs)]
 
 Next, we need to create a concrete class that implements the IContactManagerRepository interface. Because we are using the Microsoft Entity Framework to access the database, we'll create a new class named EntityContactManagerRepository<wbr />. This class is contained in Listing 2.
 
 **Listing 2 - Models\<wbr />EntityContactManagerRepository<wbr />.cs**
 
-[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample2.xml)]
+[!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample2.cs)]
 
 Notice that the EntityContactManagerRepository class implements the IContactManagerRepository interface. The class implements all five of the methods described by that interface.
 
@@ -110,7 +110,7 @@ The modified Contact controller is contained in Listing 3.
 
 **Listing 3 - Controllers\ContactController.<wbr />cs**
 
-[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample3.xml)]
+[!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample3.cs)]
 
 Notice that the Contact controller in Listing 3 has two constructors. The first constructor passes a concrete instance of the IContactManagerRepository interface to the second constructor. The Contact controller class uses *Constructor Dependency Injection*.
 
@@ -135,7 +135,7 @@ The ContactManagerService is contained in Listing 4. It contains the validation 
 
 **Listing 4 - Models\ContactManagerService.<wbr />cs**
 
-[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample4.xml)]
+[!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample4.cs)]
 
 Notice that the constructor for the ContactManagerService requires a ValidationDictionary. The service layer communicates with the controller layer through this ValidationDictionary. We discuss the ValidationDictionary in detail in the following section when we discuss the Decorator pattern.
 
@@ -145,13 +145,13 @@ The IContactManagerService interface is contained in Listing 5.
 
 **Listing 5 - Models\IContactManagerService.<wbr />cs**
 
-[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample5.xml)]
+[!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample5.cs)]
 
 The modified Contact controller class is contained in Listing 6. Notice that the Contact controller no longer interacts with the ContactManager repository. Instead, the Contact controller interacts with the ContactManager service. Each layer is isolated as much as possible from other layers.
 
 **Listing 6 - Controllers\ContactController.<wbr />cs**
 
-[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample6.xml)]
+[!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample6.cs)]
 
 Our application no longer runs afoul of the Single Responsibility Principle (SRP). The Contact controller in Listing 6 has been stripped of every responsibility other than controlling the flow of application execution. All the validation logic has been removed from the Contact controller and pushed into the service layer. All of the database logic has been pushed into the repository layer.
 
@@ -167,15 +167,15 @@ The Decorator pattern enables you to wrap an existing class in a new class in or
 
 **Listing 7 - Models\Validation\<wbr />ModelStateWrapper.cs**
 
-[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample7.xml)]
+[!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample7.cs)]
 
 **Listing 8 - Models\Validation\<wbr />IValidationDictionary.cs**
 
-[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample8.xml)]
+[!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample8.cs)]
 
 If you take a close look at Listing 5 then you'll see that the ContactManager service layer uses the IValidationDictionary interface exclusively. The ContactManager service is not dependent on the ModelStateDictionary class. When the Contact controller creates the ContactManager service, the controller wraps its ModelState like this:
 
-[!code[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample9.xml)]
+[!code-unknown[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample-25238-9.unknown)]
 
 ## Summary
 

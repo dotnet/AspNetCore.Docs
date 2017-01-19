@@ -44,13 +44,13 @@ The Controller base class exposes a "ViewData" dictionary property that can be u
 
 For example, to support the scenario where we want to change the "Country" textbox within our Edit view from being an HTML textbox to a dropdownlist, we can update our Edit() action method to pass (in addition to a Dinner object) a SelectList object that can be used as the model of a countries dropdownlist.
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample1.xml)]
+[!code-csharp[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample1.cs)]
 
 The constructor of the SelectList above is accepting a list of counties to populate the drop-downlist with, as well as the currently selected value.
 
 We can then update our Edit.aspx view template to use the Html.DropDownList() helper method instead of the Html.TextBox() helper method we used previously:
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample2.xml)]
+[!code-aspx[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample2.aspx)]
 
 The Html.DropDownList() helper method above takes two parameters. The first is the name of the HTML form element to output. The second is the "SelectList" model we passed via the ViewData dictionary. We are using the C# "as" keyword to cast the type within the dictionary as a SelectList.
 
@@ -60,7 +60,7 @@ And now when we run our application and access the */Dinners/Edit/1* URL within 
 
 Because we also render the Edit view template from the HTTP-POST Edit method (in scenarios when errors occur), we'll want to make sure that we also update this method to add the SelectList to ViewData when the view template is rendered in error scenarios:
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample3.xml)]
+[!code-csharp[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample3.cs)]
 
 And now our DinnersController edit scenario supports a DropDownList.
 
@@ -72,15 +72,15 @@ An alternative approach that we could use is one often referred to as the "ViewM
 
 For example, to enable dinner form editing scenarios we can create a "DinnerFormViewModel" class like below that exposes two strongly-typed properties: a Dinner object, and the SelectList model needed to populate the countries dropdownlist:
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample4.xml)]
+[!code-csharp[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample4.cs)]
 
 We can then update our Edit() action method to create the DinnerFormViewModel using the Dinner object we retrieve from our repository, and then pass it to our view template:
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample5.xml)]
+[!code-csharp[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample5.cs)]
 
 We'll then update our view template so that it expects a "DinnerFormViewModel" instead of a "Dinner" object by changing the "inherits" attribute at the top of the edit.aspx page like so:
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample6.xml)]
+[!code-unknown[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample-25186-6.unknown)]
 
 Once we do this, the intellisense of the "Model" property within our view template will be updated to reflect the object model of the DinnerFormViewModel type we are passing it:
 
@@ -90,19 +90,19 @@ Once we do this, the intellisense of the "Model" property within our view templa
 
 We can then update our view code to work off of it. Notice below how we are not changing the names of the input elements we are creating (the form elements will still be named "Title", "Country") – but we are updating the HTML Helper methods to retrieve the values using the DinnerFormViewModel class:
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample7.xml)]
+[!code-aspx[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample7.aspx)]
 
 We'll also update our Edit post method to use the DinnerFormViewModel class when rendering errors:
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample8.xml)]
+[!code-csharp[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample8.cs)]
 
 We can also update our Create() action methods to re-use the exact same *DinnerFormViewModel* class to enable the countries DropDownList within those as well. Below is the HTTP-GET implementation:
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample9.xml)]
+[!code-csharp[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample9.cs)]
 
 Below is the implementation of the HTTP-POST Create method:
 
-[!code[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample10.xml)]
+[!code-csharp[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample10.cs)]
 
 And now both our Edit and Create screens support drop-downlists for picking the country.
 

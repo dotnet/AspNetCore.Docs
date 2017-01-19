@@ -84,7 +84,7 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
   
  Make the credentials and sender phone number available to the app. To keep things simple we will store these values in the     *web.config* file. When we deploy to Azure, we can store the values securely in the     **app settings** section on the web site configure tab. 
 
-    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample1.xml?highlight=8-10)]
+    [!code-xml[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample1.xml?highlight=8-10)]
 
     > [!WARNING] Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure](../../../identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md).
 6. **Implementation of data transfer to SMS provider**  
@@ -93,13 +93,13 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
   
  Depending on the used SMS provider activate either the     **Twilio** or the     **ASPSMS** section: 
 
-    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample2.xml)]
+    [!code-csharp[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample2.cs)]
 7. Update the *Views\Manage\Index.cshtml* Razor view: (note: don't just remove the comments in the exiting code, use the code below.)  
 
-    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample3.xml?highlight=29-66)]
+    [!code-csharp[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample3.cs?highlight=29-66)]
 8. Verify the `EnableTwoFactorAuthentication` and `DisableTwoFactorAuthentication` action methods in the `ManageController` have the[[ValidateAntiForgeryToken]](https://msdn.microsoft.com/en-us/library/system.web.mvc.validateantiforgerytokenattribute(v=vs.118).aspx) attribute:  
 
-    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample4.xml?highlight=3,16)]
+    [!code-csharp[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample4.cs?highlight=3,16)]
 9. Run the app and log in with the account you previously registered.
 10. Click on your User ID, which activates the `Index` action method in `Manage` controller.  
     ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image3.png)
@@ -107,7 +107,7 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
     ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image4.png)
 12. The `AddPhoneNumber` action method displays a dialog box to enter a phone number that can receive SMS messages.
 
-    [!code[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample5.xml)]
+    [!code-csharp[Main](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/samples/sample5.cs)]
 
     ![](aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication/_static/image5.png)
 13. In a few seconds you will get a text message with the verification code. Enter it and press **Submit**.  

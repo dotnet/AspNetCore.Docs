@@ -87,7 +87,7 @@ If Solution Explorer is not already visible, click the **View** menu and select 
 
 Add the following properties to the `Product` class.
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample1.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample1.cs)]
 
 ## Adding a Repository
 
@@ -103,11 +103,11 @@ In the **Templates** pane, select **Installed Templates** and expand the C# node
 
 Add the following implementation:
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample2.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample2.cs)]
 
 Now add another class to the Models folder, named &quot;ProductRepository.&quot; This class will implement the `IProductRespository` interface. Add the following implementation:
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample3.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample3.cs)]
 
 The repository keeps the list in local memory. This is OK for a tutorial, but in a real application, you would store the data externally, either a database or in cloud storage. The repository pattern will make it easier to change the implementation later.
 
@@ -133,11 +133,11 @@ In the **Add Controller** wizard, name the controller &quot;ProductsController&q
 
 The **Add Controller** wizard will create a file named ProductsController.cs in the Controllers folder. If this file is not open already, double-click the file to open it. Add the following **using** statement:
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample4.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample4.cs)]
 
 Add a field that holds an **IProductRepository** instance.
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample5.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample5.cs)]
 
 > [!NOTE] Calling `new ProductRepository()` in the controller is not the best design, because it ties the controller to a particular implementation of `IProductRepository`. For a better approach, see [Using the Web API Dependency Resolver](../advanced/dependency-injection.md).
 
@@ -154,13 +154,13 @@ The ProductStore API will expose several &quot;read&quot; actions as HTTP GET me
 
 To get the list of all products, add this method to the `ProductsController` class:
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample6.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample6.cs)]
 
 The method name starts with &quot;Get&quot;, so by convention it maps to GET requests. Also, because the method has no parameters, it maps to a URI that does not contain an *&quot;id&quot;* segment in the path.
 
 To get a product by ID, add this method to the `ProductsController` class:
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample7.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample7.cs)]
 
 This method name also starts with &quot;Get&quot;, but the method has a parameter named *id*. This parameter is mapped to the &quot;id&quot; segment of the URI path. The ASP.NET Web API framework automatically converts the ID to the correct data type (**int**) for the parameter.
 
@@ -168,7 +168,7 @@ The GetProduct method throws an exception of type **HttpResponseException** if *
 
 Finally, add a method to find products by category:
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample8.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample8.cs)]
 
 If the request URI has a query string, Web API tries to match the query parameters to parameters on the controller method. Therefore, a URI of the form "api/products?category=*category*" will map to this method.
 
@@ -176,7 +176,7 @@ If the request URI has a query string, Web API tries to match the query paramete
 
 Next, we'll add a method to the `ProductsController` class to create a new product. Here is a simple implementation of the method:
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample9.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample9.cs)]
 
 Note two things about this method:
 
@@ -190,7 +190,7 @@ This implementation will work, but it is not quite complete. Ideally, we would l
 
 ASP.NET Web API makes it easy to manipulate the HTTP response message. Here is the improved implementation:
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample10.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample10.cs)]
 
 Notice that the method return type is now **HttpResponseMessage**. By returning an **HttpResponseMessage** instead of a Product, we can control the details of the HTTP response message, including the status code and the Location header.
 
@@ -203,7 +203,7 @@ The **CreateResponse** method creates an **HttpResponseMessage** and automatical
 
 Updating a product with PUT is straightforward:
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample11.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample11.cs)]
 
 The method name starts with &quot;Put...&quot;, so Web API matches it to PUT requests. The method takes two parameters, the product ID and the updated product. The *id* parameter is taken from the URI path, and the *product* parameter is deserialized from the request body. By default, the ASP.NET Web API framework takes simple parameter types from the route and complex types from the request body.
 
@@ -211,6 +211,6 @@ The method name starts with &quot;Put...&quot;, so Web API matches it to PUT req
 
 To delete a resourse, define a "Delete..." method.
 
-[!code[Main](creating-a-web-api-that-supports-crud-operations/samples/sample12.xml)]
+[!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample12.cs)]
 
 If a DELETE request succeeds, it can return status 200 (OK) with an entity-body that describes the status; status 202 (Accepted) if the deletion is still pending; or status 204 (No Content) with no entity body. In this case, the `DeleteProduct` method has a `void` return type, so ASP.NET Web API automatically translates this into status code 204 (No Content).

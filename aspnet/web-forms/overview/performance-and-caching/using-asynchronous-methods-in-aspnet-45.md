@@ -83,11 +83,11 @@ You can download the sample application from [https://github.com/RickAndMSFT/Asy
 
  The following code shows the `Page_Load` synchronous method that is used to display a list of gizmos. (For this article, a gizmo is a fictional mechanical device.) 
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample1.xml)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample1.cs)]
 
 The following code shows the `GetGizmos` method of the gizmo service.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample2.xml)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample2.cs)]
 
 The `GizmoService GetGizmos` method passes a URI to an ASP.NET Web API HTTP service which returns a list of gizmos data. The *WebAPIpgw* project contains the implementation of the Web API `gizmos, widget` and `product` controllers.  
 The following image shows the gizmos page from the sample project.
@@ -100,15 +100,15 @@ The sample uses the new [async](https://msdn.microsoft.com/en-us/library/hh15651
 
 ASP.NET asynchronous pages must include the [Page](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) directive with the `Async` attribute set to "true". The following code shows the [Page](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) directive with the `Async` attribute set to "true" for the *GizmosAsync.aspx*page.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample3.xml?highlight=1)]
+[!code-aspx[Main](using-asynchronous-methods-in-aspnet-45/samples/sample3.aspx?highlight=1)]
 
 The following code shows the `Gizmos` synchronous `Page_Load` method and the `GizmosAsync` asynchronous page. If your browser supports the [HTML 5 &lt;mark&gt; element](http://www.w3.org/wiki/HTML/Elements/mark), you'll see the changes in `GizmosAsync` in yellow highlight.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample4.xml)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample4.cs)]
 
 The asynchronous version:
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample5.xml?highlight=3,6-7,9,11)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample5.cs?highlight=3,6-7,9,11)]
 
  The following changes were applied to allow the `GizmosAsync` page be asynchronous.
 
@@ -126,9 +126,9 @@ The **await** keyword does not block the thread until the task is complete. It s
 
 The following code shows the `GetGizmos` and `GetGizmosAsync` methods.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample6.xml)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample6.cs)]
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample7.xml?highlight=1,4-8)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample7.cs?highlight=1,4-8)]
 
  The asynchronous changes are similar to those made to the **GizmosAsync** above. 
 
@@ -146,7 +146,7 @@ The browsers presentation of the gizmos data is identical to the view created by
 
 Methods hooked up with `RegisterAsyncTask` will run immediately after [PreRender](https://msdn.microsoft.com/en-us/library/ms178472.aspx). You can also use async void page events directly, as shown in the following code:
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample8.xml)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample8.cs)]
 
 The downside to async void events is that developers no longer has full control over when events execute. For example, if both an .aspx and a .Master define `Page_Load` events and one or both of them are asynchronous, the order of execution can't be guaranteed. The same indeterminiate order for non event handlers (such as `async void Button_Click` ) applies. For most developers this should be acceptable, but those who require full control over the order of execution should only use APIs like `RegisterAsyncTask` that consume methods which return a Task object.
 
@@ -154,11 +154,11 @@ The downside to async void events is that developers no longer has full control 
 
 Asynchronous Methods have a significant advantage over synchronous methods when an action must perform several independent operations. In the sample provided, the synchronous page *PWG.aspx*(for Products, Widgets and Gizmos) displays the results of three web service calls to get a list of products, widgets, and gizmos. The [ASP.NET Web API](../../../web-api/index.md) project that provides these services uses [Task.Delay](https://msdn.microsoft.com/en-us/library/hh139096(VS.110).aspx) to simulate latency or slow network calls. When the delay is set to 500 milliseconds, the asynchronous *PWGasync.aspx* page takes a little over 500 milliseconds to complete while the synchronous `PWG` version takes over 1,500 milliseconds. The synchronous *PWG.aspx*page is shown in the following code.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample9.xml)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample9.cs)]
 
 The asynchronous `PWGasync` code behind is shown below.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample10.xml?highlight=5,11,21)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample10.cs?highlight=5,11,21)]
 
 The following image shows the view returned from the asynchronous *PWGasync.aspx* page.
 
@@ -168,11 +168,11 @@ The following image shows the view returned from the asynchronous *PWGasync.aspx
 
 Asynchronous Methods returning `Task`are cancelable, that is they take a [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken(VS.110).aspx) parameter when one is provided with the `AsyncTimeout` attribute of the [Page](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) directive. The following code shows the*GizmosCancelAsync.aspx* page with a timeout of on second.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample11.xml?highlight=1)]
+[!code-aspx[Main](using-asynchronous-methods-in-aspnet-45/samples/sample11.aspx?highlight=1)]
 
 The following code shows the *GizmosCancelAsync.aspx.cs* file.
 
-[!code[Main](using-asynchronous-methods-in-aspnet-45/samples/sample12.xml?highlight=6,9)]
+[!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample12.cs?highlight=6,9)]
 
 In the sample application provided, selecting the *GizmosCancelAsync* link calls the*GizmosCancelAsync.aspx* page and demonstrates the cancelation (by timing out) of the asynchronous call. Because the delay time is within a random range, you might need to refresh the page a couple times to get the time out error message.
 

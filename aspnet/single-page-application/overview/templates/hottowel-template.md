@@ -78,7 +78,7 @@ Hot Towel can be installed as a Visual Studio 2012 template. Just click `File` |
 
 Hot Towel is also a NuGet package that augments an existing empty ASP.NET MVC project. Just install using Nuget and then run!
 
-[!code[Main](hottowel-template/samples/sample1.xml)]
+[!code-powershell[Main](hottowel-template/samples/sample1.ps1)]
 
 ## How Do I Build On Hot Towel?
 
@@ -96,7 +96,7 @@ Simply start adding code!
 
 index.cshtml is the starting route and view for the MVC application. It contains all the standard meta tags, css links, and JavaScript references you would expect. The body contains a single `<div>` which is where all of the content (your views) will be placed when they are requested. The `@Scripts.Render` uses Require.js to run the entrance point for the application's code, which is contained in the `main.js` file. A splash screen is provided to demonstrate how to create a splash screen while your app loads.
 
-[!code[Main](hottowel-template/samples/sample2.xml)]
+[!code-cshtml[Main](hottowel-template/samples/sample2.cshtml)]
 
 ### App/main.js
 
@@ -104,7 +104,7 @@ The `main.js` file contains the code that will run as soon as your app is loaded
 
 The `main.js` file defines several of durandal's modules to help the application kick start. The define statement helps resolve the modules dependencies so they are available for the function. First the debugging messages are enabled, which send messages about what events the application is performing to the console window. The app.start code tells durandal framework to start the application. The conventions are set so that durandal knows all views and viewmodels are contained in the same named folders, respectively. Finally, the `app.setRoot` kicks loads the `shell` using a predefined `entrance` animation.
 
-[!code[Main](hottowel-template/samples/sample3.xml)]
+[!code-javascript[Main](hottowel-template/samples/sample3.js)]
 
 ## Views
 
@@ -116,13 +116,13 @@ The `shell.html` contains the master layout for your HTML. All of your other vie
 
 The `compose` bindings for the header and footer are hard coded in Hot Towel to point to the `nav` and `footer` views, respectively. The compose binding for the section `#content` is bound to the `router` module's active item. In other words, when you click a navigation link it's corresponding view is loaded in this area.
 
-[!code[Main](hottowel-template/samples/sample4.xml)]
+[!code-html[Main](hottowel-template/samples/sample4.html)]
 
 ### nav.html
 
 The `nav.html` contains the navigation links for the SPA. This is where the menu structure can be placed, for example. Often this is data bound (using Knockout) to the `router` module to display the navigation you defined in the `shell.js`. Knockout looks for the data-bind attributes and binds those to the `shell` viewmodel to display the navigation routes and to show a progressbar (using Twitter Bootstrap) if the `router` module is in the middle of navigating from one view to another (see `router.isNavigating`).
 
-[!code[Main](hottowel-template/samples/sample5.xml)]
+[!code-html[Main](hottowel-template/samples/sample5.html)]
 
 ### home.html and details.html
 
@@ -140,13 +140,13 @@ ViewModels are found in the `App/viewmodels` folder.
 
 The `shell` viewmodel contains properties and functions that are bound to the `shell` view. Often this is where the menu navigation bindings are found (see the `router.mapNav` logic).
 
-[!code[Main](hottowel-template/samples/sample6.xml)]
+[!code-javascript[Main](hottowel-template/samples/sample6.js)]
 
 ### home.js and details.js
 
 These viewmodels contain the properties and functions that are bound to the `home` view. it also contains the presentation logic for the view, and is the glue between the data and the view.
 
-[!code[Main](hottowel-template/samples/sample7.xml)]
+[!code-javascript[Main](hottowel-template/samples/sample7.js)]
 
 ## Services
 

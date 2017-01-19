@@ -21,21 +21,21 @@ In **Solution Explorer**, right-click the *Controllers* folder and then select *
 
 Edit the *StoreManager\Index.cshtml* view and remove `AlbumArtUrl`. Removing `AlbumArtUrl` will make the presentation more readable. The completed code is shown below.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample1.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample1.cs)]
 
 Open the *Controllers\StoreManagerController.cs* file and find the `Index` method. Add the `OrderBy` clause so the albums will be sorted by price. The complete code is shown below.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample2.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample2.cs)]
 
 Sorting by price will make it easier to test changes to the database. When you are testing the edit and create methods, you can use a low price so the saved data will appear first.
 
 Open the *StoreManager\Edit.cshtml* file. Add the following line just after the legend tag.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample3.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample3.cs)]
 
 The following code shows the context of this change:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample4.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample4.cs)]
 
 The `AlbumId` is required to make changes to an album record.
 
@@ -61,11 +61,11 @@ The HTML `<select>` element (created by the HTML [DropDownList](https://msdn.mic
 
 Open the *Controllers\StoreManagerController.cs* file and find the `HTTP GET Create` method.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample5.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample5.cs)]
 
 The `Create` method adds two [SelectList](https://msdn.microsoft.com/en-us/library/system.web.mvc.selectlist.aspx) objects to the `ViewBag`, one to contain the genre information, and one to contain the artist information. The [SelectList](https://msdn.microsoft.com/en-us/library/dd505286.aspx) constructor overload used above takes three arguments:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample6.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample6.cs)]
 
 1. *items*: An [IEnumerable](https://msdn.microsoft.com/en-us/library/system.collections.ienumerable.aspx) containing the items in the list. In the example above, the list of genres returned by `db.Genres`.
 2. *dataValueField*: The name of the property in the **IEnumerable** list that contains the key value. In the example above, `GenreId` and `ArtistId`.
@@ -73,13 +73,13 @@ The `Create` method adds two [SelectList](https://msdn.microsoft.com/en-us/libra
 
 Open the *Views\StoreManager\Create.cshtml* file and examine the `Html.DropDownList` helper markup for the genre field.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample7.xml)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample7.cshtml)]
 
 The first line shows that the create view takes an `Album` model. In the `Create` method shown above, no model was passed, so the view gets a **null** `Album` model. At this point we are creating a new album so we don't have any `Album` data for it.
 
 The [Html.DropDownList](https://msdn.microsoft.com/en-us/library/dd492948.aspx) overload shown above takes the name of the field to bind to the model. It also uses this name to look for a **ViewBag** object containing a [SelectList](https://msdn.microsoft.com/en-us/library/dd505286.aspx) object. Using this overload, you are required to name the **ViewBag SelectList** object `GenreId`. The second parameter (`String.Empty`) is the text to display when no item is selected. This is exactly what we want when creating a new album. If you removed the second parameter and used the following code:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample8.xml)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample8.cshtml)]
 
 The select list would default to the first element, or Rock in our sample.
 
@@ -87,7 +87,7 @@ The select list would default to the first element, or Rock in our sample.
 
 Examining the `HTTP POST Create` method.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample9.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample9.cs)]
 
 This overload of the `Create` method takes an `album` object, created by the ASP.NET MVC model binding system from the form values posted. When you submit a new album, if model state is valid and there are no database errors, the new album is added the database. The following image shows the creation of a new album.
 
@@ -103,11 +103,11 @@ Both the `Edit` methods and the `HTTP POST Create` method have identical code to
 
 Create a new method to add a genre and artist **SelectList** to the **ViewBag**.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample10.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample10.cs)]
 
 Replace the two lines setting the `ViewBag` in each of the `Create` and `Edit` methods with a call to the `SetGenreArtistViewBag` method. The completed code is shown below.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample11.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample11.cs)]
 
 Create a new album and edit an album to verify the changes work.
 
@@ -115,19 +115,19 @@ Create a new album and edit an album to verify the changes work.
 
 The create and edit views created by the ASP.NET MVC scaffolding use the following **DropDownList** overload:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample12.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample12.cs)]
 
 The `DropDownList` markup for the create view is shown below.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample13.xml)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample13.cshtml)]
 
 Because the `ViewBag` property for the `SelectList` is named `GenreId`, the **DropDownList** helper will use the `GenreId`**SelectList** in the **ViewBag**. In the following **DropDownList** overload, the `SelectList` is explicitly passed in.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample14.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample14.cs)]
 
 Open the *Views\StoreManager\Edit.cshtml* file, and change the **DropDownList** call to explicitly pass in the **SelectList**, using the overload above. Do this for the Genre category. The completed code is shown below:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample15.xml)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample15.cshtml)]
 
 Run the application and click the **Admin** link, then navigate to a Jazz album and select the **Edit** link.
 
@@ -137,17 +137,17 @@ Instead of showing Jazz as the currently selected genre, Rock is displayed. When
 
 Open the *Controllers\StoreManagerController.cs* file and change the **SelectList** object names to `Genres` and `Artists`. The completed code is shown below:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample16.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample16.cs)]
 
 The names Genres and Artists are better names for the categories, as they contain more than just the ID of each category. The refactoring we did earlier paid off. Instead of changing the **ViewBag** in four methods, our changes were isolated to the `SetGenreArtistViewBag` method.
 
 Change the **DropDownList** call in the create and edit views to use the new **SelectList** names. The new markup for the edit view is shown below:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample17.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample17.cs)]
 
 The Create view requires an empty string to prevent the first item in the SelectList from being displayed.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample18.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample18.cs)]
 
 Create a new album and edit an album to verify the changes work. Test the edit code by selecting an album with a genre other than Rock.
 
@@ -155,7 +155,7 @@ Create a new album and edit an album to verify the changes work. Test the edit c
 
 Create a new class in the ViewModels folder named `AlbumSelectListViewModel`. Replace the code in the `AlbumSelectListViewModel` class with the following:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample19.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample19.cs)]
 
 The `AlbumSelectListViewModel` constructor takes an album, a list of artists and genres and creates an object containing the album and a `SelectList` for genres and artists.
 
@@ -163,7 +163,7 @@ Build the project so the `AlbumSelectListViewModel` is available when we create 
 
 Add an `EditVM` method to the `StoreManagerController`. The completed code is shown below.
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample20.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample20.cs)]
 
 Right click `AlbumSelectListViewModel`, select **Resolve**, then **using MvcMusicStore.ViewModels;**.
 
@@ -171,7 +171,7 @@ Right click `AlbumSelectListViewModel`, select **Resolve**, then **using MvcMusi
 
 Alternatively, you can add the following using statement:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample21.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample21.cs)]
 
 Right click `EditVM` and select **Add View**. Use the options shown below.
 
@@ -179,7 +179,7 @@ Right click `EditVM` and select **Add View**. Use the options shown below.
 
 Select **Add**, then replace the contents of the *Views\StoreManager\EditVM.cshtml* file with the following:
 
-[!code[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample22.xml)]
+[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample22.cs)]
 
 The `EditVM` markup is very similar to the original `Edit` markup with the following exceptions.
 

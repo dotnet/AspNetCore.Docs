@@ -29,33 +29,33 @@ by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson](https://
 1. **Naming Convention**: Katana looks for a class named `Startup` in namespace matching the assembly name or the global namespace.
 2. **OwinStartup Attribute**: This is the approach most developers will take to specify the startup class. The following attribute will set the startup class to the `TestStartup` class in the `StartupDemo` namespace. 
 
-    [!code[Main](owin-startup-class-detection/samples/sample1.xml)]
+    [!code-csharp[Main](owin-startup-class-detection/samples/sample1.cs)]
 
  The     `OwinStartup` attribute overrides the naming convention. You can also specify a friendly name with this attribute, however, using a friendly name requires you to also use the     `appSetting` element in the configuration file.
 3. **The appSetting element in the Configuration file**: The `appSetting` element overrides the `OwinStartup` attribute and naming convention. You can have multiple startup classes (each using an `OwinStartup` attribute) and configure which startup class will be loaded in a configuration file using markup similar to the following:  
 
-    [!code[Main](owin-startup-class-detection/samples/sample2.xml)]
+    [!code-xml[Main](owin-startup-class-detection/samples/sample2.xml)]
 
  The following key, which explicitly specifies the startup class and assembly can also be used: 
 
-    [!code[Main](owin-startup-class-detection/samples/sample3.xml)]
+    [!code-xml[Main](owin-startup-class-detection/samples/sample3.xml)]
 
  The following XML in the configuration file specifies a friendly startup class name of     `ProductionConfiguration` .  
 
-    [!code[Main](owin-startup-class-detection/samples/sample4.xml)]
+    [!code-xml[Main](owin-startup-class-detection/samples/sample4.xml)]
 
  The above markup must be used with the following     `OwinStartup` attribute which specifies a friendly name and causes the     `ProductionStartup2` class to run.
 
-    [!code[Main](owin-startup-class-detection/samples/sample5.xml?highlight=1,16)]
+    [!code-csharp[Main](owin-startup-class-detection/samples/sample5.cs?highlight=1,16)]
 4. To disable OWIN startup discovery add the `appSetting owin:AutomaticAppStartup` with a value of `"false"` in the web.config file.
 
-    [!code[Main](owin-startup-class-detection/samples/sample6.xml)]
+    [!code-xml[Main](owin-startup-class-detection/samples/sample6.xml)]
 
 ## Create an ASP.NET Web App using OWIN Startup
 
 1. Create an empty Asp.Net web application and name it **StartupDemo**. - Install `Microsoft.Owin.Host.SystemWeb` using the NuGet package manager. From the **Tools** menu, select **Library Package Manager**, and then **Package Manager Console**. Enter the following command:  
 
-    [!code[Main](owin-startup-class-detection/samples/sample7.xml)]
+    [!code-powershell[Main](owin-startup-class-detection/samples/sample7.ps1)]
 - Add an OWIN startup class. In Visual Studio 2013 right click the project and select **Add Class**.- In the **Add New Item** dialog box, enter *OWIN* in the search field, and change the name to Startup.cs, and then click **Add**.  
   
     ![](owin-startup-class-detection/_static/image1.png)   
@@ -70,7 +70,7 @@ by [Praburaj Thiagarajan](https://github.com/Praburaj), [Rick Anderson](https://
   
 - Replace the generated code in the *Startup.cs* file with the following:  
 
-    [!code[Main](owin-startup-class-detection/samples/sample8.xml?highlight=5,7,15-28,31-34)]
+    [!code-csharp[Main](owin-startup-class-detection/samples/sample8.cs?highlight=5,7,15-28,31-34)]
   
  The     `app.Use` lambda expression is used to register the specified middleware component to the OWIN pipeline. In this case we are setting up logging of incoming requests before responding to the incoming request. The     `next` parameter is the delegate (     [Func](https://msdn.microsoft.com/en-us/library/vstudio/bb534960(v=vs.100).aspx) &lt;    [Task](https://msdn.microsoft.com/en-us/library/vstudio/dd321424(v=vs.100).aspx) &gt; ) to the next component in the pipeline. The     `app.Run` lambda expression hooks up the pipeline to incoming requests and provides the response mechanism.     > [!NOTE] In the code above we have commented out the     `OwinStartup` attribute and we're relying on the convention of running the class named     `Startup` .- Press ***F5*** to run the application. Hit refresh a few times.  
   
@@ -87,57 +87,57 @@ In this section we'll add another Startup class. You can add multiple OWIN start
 1. Create a new OWIN Startup class and name it `ProductionStartup`.
 2. Replace the generated code with the following:
 
-    [!code[Main](owin-startup-class-detection/samples/sample9.xml?highlight=14-18)]
+    [!code-csharp[Main](owin-startup-class-detection/samples/sample9.cs?highlight=14-18)]
 3. Press Control F5 to run the app. The `OwinStartup` attribute specifies the production startup class is run.  
   
     ![](owin-startup-class-detection/_static/image6.png)
 4. Create another OWIN Startup class and name it `TestStartup`.
 5. Replace the generated code with the following:  
 
-    [!code[Main](owin-startup-class-detection/samples/sample10.xml?highlight=6,14-18)]
+    [!code-csharp[Main](owin-startup-class-detection/samples/sample10.cs?highlight=6,14-18)]
 
  The     `OwinStartup` attribute overload above specifies     `TestingConfiguration` as the     *friendly* name of the Startup class.
 6. Open the *web.config* file and add the OWIN App startup key which specifies the friendly name of the Startup class:
 
-    [!code[Main](owin-startup-class-detection/samples/sample11.xml?highlight=3-5)]
+    [!code-xml[Main](owin-startup-class-detection/samples/sample11.xml?highlight=3-5)]
 7. Press Control F5 to run the app. The app settings element takes precedent, and the test configuration is run.  
   
     ![](owin-startup-class-detection/_static/image7.png)
 8. Remove the *friendly*name from the `OwinStartup` attribute in the `TestStartup` class.
 
-    [!code[Main](owin-startup-class-detection/samples/sample12.xml)]
+    [!code-csharp[Main](owin-startup-class-detection/samples/sample12.cs)]
 9. Replace the OWIN App startup key in the *web.config* file with the following:
 
-    [!code[Main](owin-startup-class-detection/samples/sample13.xml)]
+    [!code-xml[Main](owin-startup-class-detection/samples/sample13.xml)]
 10. Revert the `OwinStartup` attribute in each class to the default attribute code generated by Visual Studio:  
 
-    [!code[Main](owin-startup-class-detection/samples/sample14.xml)]
+    [!code-csharp[Main](owin-startup-class-detection/samples/sample14.cs)]
 
  Each of the OWIN App startup keys below will cause the production class to run. 
 
-    [!code[Main](owin-startup-class-detection/samples/sample15.xml)]
+    [!code-xml[Main](owin-startup-class-detection/samples/sample15.xml)]
 
  The last startup key specifies the startup configuration method. The following OWIN App startup key allows you to change the name of the configuration class to     `MyConfiguration` .
 
-    [!code[Main](owin-startup-class-detection/samples/sample16.xml)]
+    [!code-xml[Main](owin-startup-class-detection/samples/sample16.xml)]
 
 ## Using Owinhost.exe
 
 1. Replace the Web.config file with the following markup:  
 
-    [!code[Main](owin-startup-class-detection/samples/sample17.xml?highlight=3-6)]
+    [!code-xml[Main](owin-startup-class-detection/samples/sample17.xml?highlight=3-6)]
 
  The last key wins, so in this case     `TestStartup` is specified.
 2. Install Owinhost from the PMC: 
 
-    [!code[Main](owin-startup-class-detection/samples/sample18.xml)]
+    [!code-console[Main](owin-startup-class-detection/samples/sample18.cmd)]
 3. Navigate to the application folder (the folder containing the *Web.config* file) and in a command prompt and type: 
 
-    [!code[Main](owin-startup-class-detection/samples/sample19.xml)]
+    [!code-console[Main](owin-startup-class-detection/samples/sample19.cmd)]
 
  The command window will show: 
 
-    [!code[Main](owin-startup-class-detection/samples/sample20.xml)]
+    [!code-console[Main](owin-startup-class-detection/samples/sample20.cmd)]
 4. Launch a browser with the URL `http://localhost:5000/`. zz  
   
     ![](owin-startup-class-detection/_static/image8.png)  
@@ -146,14 +146,14 @@ In this section we'll add another Startup class. You can add multiple OWIN start
 5. In the command window, press Enter to exit OwinHost.
 6. In the `ProductionStartup` class, add the following OwinStartup attribute which specifies a friendly name of *ProductionConfiguration*.
 
-    [!code[Main](owin-startup-class-detection/samples/sample21.xml)]
+    [!code-csharp[Main](owin-startup-class-detection/samples/sample21.cs)]
 7. In the command prompt and type: 
 
-    [!code[Main](owin-startup-class-detection/samples/sample22.xml)]
+    [!code-console[Main](owin-startup-class-detection/samples/sample22.cmd)]
 
  The Production startup class is loaded.  
     ![](owin-startup-class-detection/_static/image9.png)  
  Our application has multiple startup classes, and in this example we have deferred which startup class to load until runtime.
 8. Test the following runtime startup options:
 
-    [!code[Main](owin-startup-class-detection/samples/sample23.xml)]
+    [!code-console[Main](owin-startup-class-detection/samples/sample23.cmd)]

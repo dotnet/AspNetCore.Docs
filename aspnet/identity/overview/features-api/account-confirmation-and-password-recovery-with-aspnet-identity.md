@@ -111,7 +111,7 @@ Examine the `ApplicationUserManager` class, which contains the users identity in
 
 The `ApplicationUserManager` class derives from the generic `UserManager<ApplicationUser>` class. `ApplicationUser` derives from [IdentityUser](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.identity.entityframework.identityuser.aspx). `IdentityUser` derives from the generic `IdentityUser` class:
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample1.xml)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample1.cs)]
 
 The properties above coincide with the properties in the `AspNetUsers` table, shown above.
 
@@ -121,13 +121,13 @@ Generic arguments on `IUser` enable you to derive a class using different types 
 
 `ApplicationUser` (`public class ApplicationUserManager : UserManager<ApplicationUser>`) is defined in *Models\IdentityModels.cs*as:
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample2.xml?highlight=8-9)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample2.cs?highlight=8-9)]
 
 The highlighted code above generates a [ClaimsIdentity](https://msdn.microsoft.com/en-us/library/system.security.claims.claimsidentity.aspx). ASP.NET Identity and OWIN Cookie Authentication are claims-based, therefore the framework requires the app to generate a `ClaimsIdentity` for the user. `ClaimsIdentity` has information about all the claims for the user, such as the user's name, age and what roles the user belongs to. You can also add more claims for the user at this stage.
 
 The OWIN `AuthenticationManager.SignIn` method passes in the `ClaimsIdentity` and signs in the user:
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample3.xml?highlight=4-6)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample3.cs?highlight=4-6)]
 
 [MVC 5 App with Facebook, Twitter, LinkedIn and Google OAuth2 Sign-on](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md) shows how you can add additional properties to the `ApplicationUser` class.
 
@@ -142,7 +142,7 @@ In this section, you'll use NuGet to download a more complete sample we will wor
 1. Create a new ***empty*** ASP.NET Web project.
 2. In the Package Manager Console, enter the following the following commands: 
 
-    [!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample4.xml)]
+    [!code-console[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample4.cmd)]
 
  In this tutorial, we'll use     [SendGrid](http://sendgrid.com/) to send email. The     `Identity.Samples` package installs the code we will be working with.
 3. Set the [project to use SSL](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md).
@@ -163,11 +163,11 @@ Change the password and change the name to an account where you can receive emai
 
 As mentioned previously, the `app.CreatePerOwinContext` call in the startup class adds callbacks to the `Create` method of the app DB content, user manager and role manger classes. The OWIN pipeline calls the `Create` method on these classes for each request and stores the context for each class. The account controller exposes the user manager from the HTTP context (which contains the OWIN context):
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample5.xml)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample5.cs)]
 
 When a user registers a local account, the `HTTP Post Register` method is called:
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample6.xml)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample6.cs)]
 
 The code above uses the model data to create a new user account using the email and password entered. If the email alias is in the data store, account creation fails and the form is displayed again. The `GenerateEmailConfirmationTokenAsync` method creates a secure confirmation token and stores it in the ASP.NET Identity data store. The [Url.Action](https://msdn.microsoft.com/en-us/library/dd505232(v=vs.118).aspx) method creates a link containing the `UserId` and confirmation token. This link is then emailed to the user, the user can click on the link in their email app to confirm their account.
 
@@ -177,14 +177,14 @@ The code above uses the model data to create a new user account using the email 
 
 Go to the [Azure SendGrid sign up page](https://azure.microsoft.com/en-us/gallery/store/sendgrid/sendgrid-azure/) and register for free account. Add code similar to the following to configure SendGrid:
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample7.xml?highlight=5)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample7.cs?highlight=5)]
 
 > [!NOTE] Email clients frequently accept only text messages (no HTML). You should provide the message in text and HTML. In the SendGrid sample above, this is done with the `myMessage.Text` and `myMessage.Html` code shown above.
 
 
 The following code shows how to send email using the [MailMessage](https://msdn.microsoft.com/en-us/library/system.net.mail.mailmessage.aspx) class where `message.Body` returns only the link.
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample8.xml)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample8.cs)]
 
 > [!WARNING] Security - Never store sensitive data in your source code. The account and credentials are stored in the appSetting. On Azure, you can securely store these values on the **[Configure](https://blogs.msdn.com/b/webdev/archive/2014/06/04/queuebackgroundworkitem-to-reliably-schedule-and-run-long-background-process-in-asp-net.aspx)** tab in the Azure portal. See [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md).
 
@@ -203,23 +203,23 @@ The user is sent an email with a confirmation token for their account.
 
 The following code shows the `POST ForgotPassword` method.
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample9.xml)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample9.cs)]
 
 The method fails silently if the user email has not been confirmed. If an error was posted for an invalid email address, malicious users could use that information to find valid userId (email aliases) to attack.
 
 The following code shows the `ConfirmEmail` method in the account controller that is called when the user clicks the confirmation link in the email sent to them:
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample10.xml)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample10.cs)]
 
 Once a forgotten password token has been used, it's invalidated. The following code change in the `Create` method (in the *App\_Start\IdentityConfig.cs* file) sets the tokens to expire in 3 hours.
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample11.xml?highlight=6-8)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample11.cs?highlight=6-8)]
 
 With the code above, the forgotten password and the email confirmation tokens will expire in 3 hours. The default `TokenLifespan` is one day.
 
 The following code shows the email confirmation method:
 
-[!code[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample12.xml)]
+[!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample12.cs)]
 
  To make your app more secure, ASP.NET Identity supports Two-Factor authentication (2FA). See [ASP.NET Identity 2.0: Setting Up Account Validation and Two-Factor Authorization](http://typecastexception.com/post/2014/04/20/ASPNET-Identity-20-Setting-Up-Account-Validation-and-Two-Factor-Authorization.aspx) by John Atten. Although you can set account lockout on login password attempt failures, that approach makes your login susceptible to [DOS](http://en.wikipedia.org/wiki/Denial-of-service_attack) lockouts. We recommend you use account lockout only with 2FA.  
 <a id="addRes"></a>

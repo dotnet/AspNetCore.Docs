@@ -61,7 +61,7 @@ In this procedure, you'll create a layout page that uses the `GetGoogleHtml` hel
 2. Create an account with Google Analytics and record the account name.
 3. Create a layout page named *Analytics.cshtml* and add the following markup:
 
-    [!code[Main](14-analyzing-traffic/samples/sample1.xml)]
+    [!code-cshtml[Main](14-analyzing-traffic/samples/sample1.cshtml)]
 
     > [!NOTE] You must place the call to the `Analytics` helper in the body of your web page (before the `</body>` tag). Otherwise, the browser will not run the script.
 
@@ -73,7 +73,7 @@ In this procedure, you'll create a layout page that uses the `GetGoogleHtml` hel
 5. Run the page in the browser. (Make sure the page is selected in the **Files** workspace before you run it.)
 6. In the browser, view the page source. You'll be able to see the rendered analytics code:
 
-    [!code[Main](14-analyzing-traffic/samples/sample2.xml)]
+    [!code-html[Main](14-analyzing-traffic/samples/sample2.html)]
 7. Log onto the Google Analytics site and examine the statistics for your site. If you're running the page on a live site, you see an entry that logs the visit to your page.
 
 <a id="Additional_Resources"></a>

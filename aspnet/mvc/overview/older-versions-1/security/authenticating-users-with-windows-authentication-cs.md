@@ -26,7 +26,7 @@ Using Windows authentication makes sense when you are building an internal compa
 
 When you create a new ASP.NET MVC application, Windows authentication is not enabled by default. Forms authentication is the default authentication type enabled for MVC applications. You must enable Windows authentication by modifying your MVC application's web configuration (web.config) file. Find the &lt;authentication&gt; section and modify it to use Windows instead of Forms authentication like this:
 
-[!code[Main](authenticating-users-with-windows-authentication-cs/samples/sample1.xml)]
+[!code-xml[Main](authenticating-users-with-windows-authentication-cs/samples/sample1.xml)]
 
 When you enable Windows authentication, your web server becomes responsible for authenticating users. Typically, there are two different types of web servers that you use when creating and deploying an ASP.NET MVC application.
 
@@ -67,7 +67,7 @@ For example, the Home controller in Listing 1 exposes three actions named Index(
 
 **Listing 1 – Controllers\HomeController.cs**
 
-[!code[Main](authenticating-users-with-windows-authentication-cs/samples/sample2.xml)]
+[!code-csharp[Main](authenticating-users-with-windows-authentication-cs/samples/sample2.cs)]
 
 > [!NOTE] 
 > 

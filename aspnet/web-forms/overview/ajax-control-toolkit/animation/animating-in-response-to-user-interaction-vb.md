@@ -28,19 +28,19 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-[!code[Main](animating-in-response-to-user-interaction-vb/samples/sample1.xml)]
+[!code-aspx[Main](animating-in-response-to-user-interaction-vb/samples/sample1.aspx)]
 
 The animation will be applied to a panel of text which looks like this:
 
-[!code[Main](animating-in-response-to-user-interaction-vb/samples/sample2.xml)]
+[!code-aspx[Main](animating-in-response-to-user-interaction-vb/samples/sample2.aspx)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-[!code[Main](animating-in-response-to-user-interaction-vb/samples/sample3.xml)]
+[!code-css[Main](animating-in-response-to-user-interaction-vb/samples/sample3.css)]
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server"`:
 
-[!code[Main](animating-in-response-to-user-interaction-vb/samples/sample4.xml)]
+[!code-aspx[Main](animating-in-response-to-user-interaction-vb/samples/sample4.aspx)]
 
 Within the `<Animations>` node, there are five ways to start the animation via user interaction (the missing element is `<OnLoad>` which is executed once the whole page has been fully loaded):
 
@@ -52,7 +52,7 @@ Within the `<Animations>` node, there are five ways to start the animation via u
 
 In this scenario, `<OnClick>` is used. When the user clicks on the panel, it is resized and fades out at the same time.
 
-[!code[Main](animating-in-response-to-user-interaction-vb/samples/sample5.xml)]
+[!code-aspx[Main](animating-in-response-to-user-interaction-vb/samples/sample5.aspx)]
 
 
 [![A mouse click starts the animation](animating-in-response-to-user-interaction-vb/_static/image2.png)](animating-in-response-to-user-interaction-vb/_static/image1.png)

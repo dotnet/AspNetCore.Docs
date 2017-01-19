@@ -30,7 +30,7 @@ First of all, you need (at least) two kinds of images: one for a filled out rati
 
 Then, create a new ASP.NET file and start with adding a `ScriptManager` control to it:
 
-[!code[Main](creating-a-rating-control-vb/samples/sample1.xml)]
+[!code-aspx[Main](creating-a-rating-control-vb/samples/sample1.aspx)]
 
 Then, add the `Rating` control from the ASP.NET AJAX Control Toolkit. The following attributes need to be set for this example:
 
@@ -43,21 +43,21 @@ Then, add the `Rating` control from the ASP.NET AJAX Control Toolkit. The follow
 
 And here is the markup which creates a rating control with five items (smileys) of which none is filled out initially:
 
-[!code[Main](creating-a-rating-control-vb/samples/sample2.xml)]
+[!code-aspx[Main](creating-a-rating-control-vb/samples/sample2.aspx)]
 
 The three referenced CSS classes now need to show the appropriate image files, which is easy to do using CSS:
 
-[!code[Main](creating-a-rating-control-vb/samples/sample3.xml)]
+[!code-css[Main](creating-a-rating-control-vb/samples/sample3.css)]
 
 Make sure that you provide the width and height of the three images, otherwise the display may look a bit messed up.
 
 Finally, the result of the rating should be displayed to the user (or, at least saved in a database). So add a label for the output of a text message and a submit button to post back the rating form to the server:
 
-[!code[Main](creating-a-rating-control-vb/samples/sample4.xml)]
+[!code-aspx[Main](creating-a-rating-control-vb/samples/sample4.aspx)]
 
 In the server-side code, access the Rating control via its `ID` and then access its `CurrentRating` property which is the number of the selected rating items, in our example a value between 0 and 5.
 
-[!code[Main](creating-a-rating-control-vb/samples/sample5.xml)]
+[!code-aspx[Main](creating-a-rating-control-vb/samples/sample5.aspx)]
 
 Save the page and load it into your browser. When you hover over the (initially empty) rating items, a JavaScript effect occurs: The rating changes. When you click on the set of stars, the current rating is retained. Finally, when you submit the form, the server-side code outputs the selected rating.
 

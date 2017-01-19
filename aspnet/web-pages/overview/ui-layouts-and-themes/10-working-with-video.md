@@ -42,7 +42,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
 You might want to display a video on your site. One way to do that is to link to a site that already has the video, like YouTube. If you want to embed a video from these sites directly in your own pages, you can usually get HTML markup from the site and then copy it into your page. For example, the following example shows how to embed a YouTube video:
 
-[!code[Main](10-working-with-video/samples/sample1.xml?highlight=10-14)]
+[!code-html[Main](10-working-with-video/samples/sample1.html?highlight=10-14)]
 
 If you want to play a video that's on your own website (not on a public video-sharing site), you can't directly link to it using embedded markup like this. However, you can play videos from your site by using the `Video` helper, which renders a media player directly in a page.
 
@@ -107,14 +107,14 @@ This procedure shows you how to play a Flash video named *sample.swf*. The proce
 2. In the website, add a page and name it *FlashVideo.cshtml*.
 3. Add the following markup to the page: 
 
-    [!code[Main](10-working-with-video/samples/sample2.xml)]
+    [!code-cshtml[Main](10-working-with-video/samples/sample2.cshtml)]
 4. Run the page in a browser. (Make sure the page is selected in the **Files** workspace before you run it.) The page is displayed and the video plays automatically. 
 
     ![[image]](10-working-with-video/_static/image1.jpg "ch08_video-1.jpg")
 
 You can set the `quality` parameter for a Flash video to `low`, `autolow`, `autohigh`, `medium`, `high`, and `best`:
 
-[!code[Main](10-working-with-video/samples/sample3.xml)]
+[!code-cshtml[Main](10-working-with-video/samples/sample3.cshtml)]
 
 You can change the Flash video to play at a specific size using the `scale` parameter, which you can set to the following:
 
@@ -124,7 +124,7 @@ You can change the Flash video to play at a specific size using the `scale` para
 
 If you don't specify a `scale` parameter, the entire video will be visible and the original aspect ratio will be maintained without any cropping. The following example shows how to use the `scale` parameter:
 
-[!code[Main](10-working-with-video/samples/sample4.xml)]
+[!code-cshtml[Main](10-working-with-video/samples/sample4.cshtml)]
 
 The Flash player supports a video mode setting named `windowMode`. You can set this to `window`, `opaque`, and `transparent`. By default, the `windowMode` is set to `window`, which displays the video in a separate window on the web page. The `opaque` setting hides everything behind the video on the web page. The `transparent` setting lets the background of the web page show through the video, assuming any part of the video is transparent.
 
@@ -137,26 +137,26 @@ The following procedure shows you how to play a Window Media video named *sample
 2. Create a new page named *MediaPlayerVideo.cshtml*.
 3. Add the following markup to the page: 
 
-    [!code[Main](10-working-with-video/samples/sample5.xml)]
+    [!code-cshtml[Main](10-working-with-video/samples/sample5.cshtml)]
 4. Run the page in a browser. The video loads and plays automatically. 
 
     ![[image]](10-working-with-video/_static/image2.jpg "ch08_video-2.jpg")
 
 You can set `playCount` to an integer that indicates how many times to play the video automatically:
 
-[!code[Main](10-working-with-video/samples/sample6.xml)]
+[!code-cshtml[Main](10-working-with-video/samples/sample6.cshtml)]
 
 The `uiMode` parameter lets you specify which controls show up in the user interface. You can set `uiMode` to `invisible`, `none`, `mini`, or `full`. If you don't specify a `uiMode` parameter, the video will be displayed with the status window, seek bar, control buttons, and volume controls in addition to the video window. These controls will also be displayed if you use the player to play an audio file. Here's an example of how to use the `uiMode` parameter:
 
-[!code[Main](10-working-with-video/samples/sample7.xml)]
+[!code-cshtml[Main](10-working-with-video/samples/sample7.cshtml)]
 
 By default, audio is on when the video plays. You can mute the audio by setting the `mute` parameter to true:
 
-[!code[Main](10-working-with-video/samples/sample8.xml)]
+[!code-cshtml[Main](10-working-with-video/samples/sample8.cshtml)]
 
 You can control the audio level of the MediaPlayer video by setting the `volume` parameter to a value between 0 and 100. The default value is 50. Here's an example:
 
-[!code[Main](10-working-with-video/samples/sample9.xml)]
+[!code-cshtml[Main](10-working-with-video/samples/sample9.cshtml)]
 
 <a id="Playing_Silverlight"></a>
 ## Playing Silverlight Videos
@@ -167,7 +167,7 @@ This procedure shows you how to play video contained in a Silverlight *.xap* pag
 2. Create a new page named *SilverlightVideo.cshtml*.
 3. Add the following markup to the page: 
 
-    [!code[Main](10-working-with-video/samples/sample10.xml)]
+    [!code-cshtml[Main](10-working-with-video/samples/sample10.cshtml)]
 4. Run the page in a browser. 
 
     ![[image]](10-working-with-video/_static/image3.jpg "ch08_video-3.jpg")

@@ -64,22 +64,22 @@ In this section, you'll update the application created in the [SignalR 1.x versi
 1. Once you've finished the Getting Started tutorial, right-click on the project, and select **Properties**. Verify that the **Target framework** is set to **.NET Framework 4.5.**
 2. Open the Package Manager Console. Remove SignalR 1.x from the project using the following command:
 
-    [!code[Main](upgrading-signalr-1x-projects-to-20/samples/sample1.xml)]
+    [!code-powershell[Main](upgrading-signalr-1x-projects-to-20/samples/sample1.ps1)]
 3. Install SignalR 2 using the following command:
 
-    [!code[Main](upgrading-signalr-1x-projects-to-20/samples/sample2.xml)]
+    [!code-powershell[Main](upgrading-signalr-1x-projects-to-20/samples/sample2.ps1)]
 4. In the HTML page, update the script reference for SignalR to match the version of the script now included in the project.
 
-    [!code[Main](upgrading-signalr-1x-projects-to-20/samples/sample3.xml)]
+    [!code-html[Main](upgrading-signalr-1x-projects-to-20/samples/sample3.html)]
 5. In the global application class, remove the call to MapHubs.
 
-    [!code[Main](upgrading-signalr-1x-projects-to-20/samples/sample4.xml)]
+    [!code-csharp[Main](upgrading-signalr-1x-projects-to-20/samples/sample4.cs)]
 6. Right-click the solution, and select **Add**, **New Item...**. In the dialog, select **Owin Startup Class**. Name the new class **Startup.cs**.
 
     ![](upgrading-signalr-1x-projects-to-20/_static/image1.png)
 7. Replace the contents of Startup.cs with the following code:
 
-    [!code[Main](upgrading-signalr-1x-projects-to-20/samples/sample5.xml)]
+    [!code-csharp[Main](upgrading-signalr-1x-projects-to-20/samples/sample5.cs)]
 
     The assembly attribute adds the class to Owin's startup process, which executes the `Configuration` method when Owin starts up. This in turn calls the `MapSignalR` method, which creates routes for all SignalR hubs in the application.
 8. Run the project, and copy the URL of the main page into another browser or browser pane, as before. Each page will ask for a username, and messages sent from each page should be visible in both browser panes.

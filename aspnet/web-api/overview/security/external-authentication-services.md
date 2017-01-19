@@ -100,7 +100,7 @@ When Visual Studio 2013 has finished creating your project, open the *Startup.Au
 
 When you first create the project, none of the external authentication services are enabled in *Startup.Auth.cs* file; the following illustrates what your code might resemble, with the sections highlighted for where you would enable an external authentication service and any relevant settings in order to use Microsoft Accounts, Twitter, Facebook, or Google authentication with your ASP.NET application:
 
-[!code[Main](external-authentication-services/samples/sample1.xml)]
+[!code-csharp[Main](external-authentication-services/samples/sample1.cs)]
 
 When you press F5 to build and debug your web application, it will display a login screen where you will see that no external authentication services have been defined.
 
@@ -120,10 +120,10 @@ Once you have obtained your application ID and secret key, use the following ste
     [![](external-authentication-services/_static/image18.png "Click to Expand the Image")](external-authentication-services/_static/image17.png)
 2. Locate the highlighted section of code:
 
-    [!code[Main](external-authentication-services/samples/sample2.xml)]
+    [!code-csharp[Main](external-authentication-services/samples/sample2.cs)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your application ID and secret key. Once you have added those parameters, you can recompile your project:
 
-    [!code[Main](external-authentication-services/samples/sample3.xml)]
+    [!code-csharp[Main](external-authentication-services/samples/sample3.cs)]
 4. When you press F5 to open your web application in your web browser, you will see that Facebook has been defined as an external authentication service:
 
     [![](external-authentication-services/_static/image20.png "Click to Expand the Image")](external-authentication-services/_static/image19.png)
@@ -149,10 +149,10 @@ To enable Google authentication for your web application, use the following step
     [![](external-authentication-services/_static/image28.png "Click to Expand the Image")](external-authentication-services/_static/image27.png)
 2. Locate the highlighted section of code:
 
-    [!code[Main](external-authentication-services/samples/sample4.xml)]
+    [!code-csharp[Main](external-authentication-services/samples/sample4.cs)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted line of code, and then recompile your project:
 
-    [!code[Main](external-authentication-services/samples/sample5.xml)]
+    [!code-csharp[Main](external-authentication-services/samples/sample5.cs)]
 4. When you press F5 to open your web application in your web browser, you will see that Google has been defined as an external authentication service:
 
     [![](external-authentication-services/_static/image30.png "Click to Expand the Image")](external-authentication-services/_static/image29.png)
@@ -181,10 +181,10 @@ Once you have obtained your consumer key and consumer secret, use the following 
     [![](external-authentication-services/_static/image40.png "Click to Expand the Image")](external-authentication-services/_static/image39.png)
 2. Locate the highlighted section of code:
 
-    [!code[Main](external-authentication-services/samples/sample6.xml)]
+    [!code-csharp[Main](external-authentication-services/samples/sample6.cs)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your client ID and client secret. Once you have added those parameters, you can recompile your project:
 
-    [!code[Main](external-authentication-services/samples/sample7.xml)]
+    [!code-csharp[Main](external-authentication-services/samples/sample7.cs)]
 4. When you press F5 to open your web application in your web browser, you will see that Microsoft has been defined as an external authentication service:
 
     [![](external-authentication-services/_static/image42.png "Click to Expand the Image")](external-authentication-services/_static/image41.png)
@@ -213,10 +213,10 @@ Once you have obtained your consumer key and consumer secret, use the following 
     [![](external-authentication-services/_static/image52.png "Click to Expand the Image")](external-authentication-services/_static/image51.png)
 2. Locate the highlighted section of code:
 
-    [!code[Main](external-authentication-services/samples/sample8.xml)]
+    [!code-csharp[Main](external-authentication-services/samples/sample8.cs)]
 3. Remove the &quot;//&quot; characters to uncomment the highlighted lines of code, and then add your consumer key and consumer secret. Once you have added those parameters, you can recompile your project:
 
-    [!code[Main](external-authentication-services/samples/sample9.xml)]
+    [!code-csharp[Main](external-authentication-services/samples/sample9.cs)]
 4. When you press F5 to open your web application in your web browser, you will see that Twitter has been defined as an external authentication service:
 
     [![](external-authentication-services/_static/image54.png "Click to Expand the Image")](external-authentication-services/_static/image53.png)
@@ -297,7 +297,7 @@ Linking an application to Windows Live for Microsoft Authentication is a simple 
 
 The current ASP.NET local registration functionality does not prevent automated programs (bots) from creating member accounts; for example, by using a bot-prevention and validation technology like [CAPTCHA](../../../web-pages/overview/security/16-adding-security-and-membership.md). Because of this, you should remove the local login form and registration link on the login page. To do so, open the *\_Login.cshtml* page in your project, and then comment out the lines for the local login panel and the registration link. The resulting page should like like the following code sample:
 
-[!code[Main](external-authentication-services/samples/sample10.xml)]
+[!code-html[Main](external-authentication-services/samples/sample10.html)]
 
 Once the local login panel and the registration link have been disabled, your login page will only display the external authentication providers that you have enabled:
 

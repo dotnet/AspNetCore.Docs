@@ -32,15 +32,15 @@ For this sample, we assume that the instance of the SQL Server 2005 Express Edit
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-[!code[Main](using-a-confirmbutton-in-a-repeater-cs/samples/sample1.xml)]
+[!code-aspx[Main](using-a-confirmbutton-in-a-repeater-cs/samples/sample1.aspx)]
 
 Then, a data source is required. For the sake of simplicity, only the first five entries in AdventureWorks' Vendors table are retrieved. Note that when using the Visual Studio wizard to create the data source, the table name (`Vendors`) is currently not correctly prefixed with `Purchasing`. The following markup is the correct one:
 
-[!code[Main](using-a-confirmbutton-in-a-repeater-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-a-confirmbutton-in-a-repeater-cs/samples/sample2.aspx)]
 
 This data source can then be used within a repeater. As usual, the `DataBinder.Eval()` method retrieves data from the data source. The `ConfirmButtonExtender` control must then be placed within the `<ItemTemplate>` section of the repeater so that it appears for every entry in the data source.
 
-[!code[Main](using-a-confirmbutton-in-a-repeater-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-a-confirmbutton-in-a-repeater-cs/samples/sample3.aspx)]
 
 
 [![The confirm button appears next to each entry from the data source](using-a-confirmbutton-in-a-repeater-cs/_static/image2.png)](using-a-confirmbutton-in-a-repeater-cs/_static/image1.png)

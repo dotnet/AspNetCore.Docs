@@ -52,7 +52,7 @@ Next, open the `Default.aspx` page and drag the `SectionLevelTutorialListing.asc
 
 In order to have the bulleted list display the master/detail tutorials we'll be creating, we need to add them to the site map. Open the `Web.sitemap` file and add the following markup after the "Displaying Data with the DataList and Repeater" site map node markup:
 
-[!code[Main](master-detail-filtering-with-a-dropdownlist-datalist-cs/samples/sample1.xml)]
+[!code-xml[Main](master-detail-filtering-with-a-dropdownlist-datalist-cs/samples/sample1.xml)]
 
 
 ![Update the Site Map to Include the New ASP.NET Pages](master-detail-filtering-with-a-dropdownlist-datalist-cs/_static/image5.png)
@@ -108,7 +108,7 @@ Upon completing the Configure Data Source wizard, Visual Studio will automatical
 
 After making these changes, your DataList and its ObjectDataSource's markup should look similar to the following:
 
-[!code[Main](master-detail-filtering-with-a-dropdownlist-datalist-cs/samples/sample2.xml)]
+[!code-aspx[Main](master-detail-filtering-with-a-dropdownlist-datalist-cs/samples/sample2.aspx)]
 
 Take a moment to check out our progress in a browser. When first visiting the page, those products belonging to the selected category (Beverages) are displayed (as shown in Figure 9), but changing the DropDownList doesn't update the data. This is because a postback must occur for the DataList to update. To accomplish this we can either set the DropDownList's `AutoPostBack` property to `true` or add a Button Web control to the page. For this tutorial, I've opted to set the DropDownList's `AutoPostBack` property to `true`.
 
@@ -139,7 +139,7 @@ To add a new list item to the DropDownList, go to the Properties window and clic
 
 Alternatively, you can add the list item by adding the following markup to the DropDownList:
 
-[!code[Main](master-detail-filtering-with-a-dropdownlist-datalist-cs/samples/sample3.xml)]
+[!code-aspx[Main](master-detail-filtering-with-a-dropdownlist-datalist-cs/samples/sample3.aspx)]
 
 Additionally, we need to set the DropDownList control's `AppendDataBoundItems` to `true` because if it's set to `false` (the default), when the categories are bound to the DropDownList from the ObjectDataSource they'll overwrite any manually-added list items.
 

@@ -96,7 +96,7 @@ We need to modify the Index() action exposed by the Movie controller so that it 
 
 **Listing 1 – Controllers\MovieController.vb**
 
-[!code[Main](displaying-a-table-of-database-data-vb/samples/sample1.xml)]
+[!code-vb[Main](displaying-a-table-of-database-data-vb/samples/sample1.vb)]
 
 In Listing 1, the MoviesDBEntities class is used to represent the MoviesDB database. The expression *entities.MovieSet.ToList()* returns the set of all movies from the Movies database table.
 
@@ -126,7 +126,7 @@ After you click the **Add** button, the view in Listing 2 is generated automatic
 
 **Listing 2 – Views\Movie\Index.aspx**
 
-[!code[Main](displaying-a-table-of-database-data-vb/samples/sample2.xml)]
+[!code-aspx[Main](displaying-a-table-of-database-data-vb/samples/sample2.aspx)]
 
 You can run the application by selecting the menu option **Debug, Start Debugging** (or hitting the F5 key). Running the application launches Internet Explorer. If you navigate to the /Movie URL then you'll see the page in Figure 7.
 
@@ -156,7 +156,7 @@ After you complete these steps, modify the MovieTemplate partial to look like Li
 
 **Listing 3 – Views\Movie\MovieTemplate.ascx**
 
-[!code[Main](displaying-a-table-of-database-data-vb/samples/sample3.xml)]
+[!code-aspx[Main](displaying-a-table-of-database-data-vb/samples/sample3.aspx)]
 
 The partial in Listing 3 contains a template for a single row of records.
 
@@ -164,7 +164,7 @@ The modified Index view in Listing 4 uses the MovieTemplate partial.
 
 **Listing 4 – Views\Movie\Index.aspx**
 
-[!code[Main](displaying-a-table-of-database-data-vb/samples/sample4.xml)]
+[!code-aspx[Main](displaying-a-table-of-database-data-vb/samples/sample4.aspx)]
 
 The view in Listing 4 contains a For Each loop that iterates through all of the movies. For each movie, the MovieTemplate partial is used to format the movie. The MovieTemplate is rendered by calling the RenderPartial() helper method.
 

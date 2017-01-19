@@ -73,17 +73,17 @@ In this tutorial, you'll create a server that's hosted in a console application,
 2. Open the library package manager console by selecting **Tools**, **Library Package Manager**, **Package Manager Console**.
 3. In the package manager console, enter the following command:
 
-    [!code[Main](tutorial-signalr-self-host/samples/sample1.xml)]
+    [!code-powershell[Main](tutorial-signalr-self-host/samples/sample1.ps1)]
 
     This command adds the SignalR 2 Self-Host libraries to the project.
 4. In the package manager console, enter the following command:
 
-    [!code[Main](tutorial-signalr-self-host/samples/sample2.xml)]
+    [!code-powershell[Main](tutorial-signalr-self-host/samples/sample2.ps1)]
 
     This command adds the Microsoft.Owin.Cors library to the project. This library will be used for cross-domain support, which is required for applications that host SignalR and a web page client in different domains. Since you'll be hosting the SignalR server and the web client on different ports, this means that cross-domain must be enabled for communication between these components.
 5. Replace the contents of Program.cs with the following code.
 
-    [!code[Main](tutorial-signalr-self-host/samples/sample3.xml)]
+    [!code-csharp[Main](tutorial-signalr-self-host/samples/sample3.cs)]
 
     The above code includes three classes:
 
@@ -110,7 +110,7 @@ In this section, you'll use the same JavaScript client from the [Getting Started
     ![](tutorial-signalr-self-host/_static/image4.png)
 3. In the package manager console, select the "JavascriptClient" project in the **Default project** drop-down, and execute the following command:
 
-    [!code[Main](tutorial-signalr-self-host/samples/sample4.xml)]
+    [!code-powershell[Main](tutorial-signalr-self-host/samples/sample4.ps1)]
 
     This command installs the SignalR and JQuery libraries that you'll need in the client.
 4. Right-click on your project and select **Add**, **New Item**. Select the **Web** node, and select HTML Page. Name the page **Default.html**.
@@ -118,11 +118,11 @@ In this section, you'll use the same JavaScript client from the [Getting Started
     ![](tutorial-signalr-self-host/_static/image5.png)
 5. Replace the contents of the new HTML page with the following code. Verify that the script references here match the scripts in the Scripts folder of the project.
 
-    [!code[Main](tutorial-signalr-self-host/samples/sample5.xml?highlight=31-32)]
+    [!code-html[Main](tutorial-signalr-self-host/samples/sample5.html?highlight=31-32)]
 
     The following code (highlighted in the code sample above) is the addition that you've made to the client used in the Getting Stared tutorial (in addition to upgrading the code to SignalR version 2 beta). This line of code explicitly sets the base connection URL for SignalR on the server.
 
-    [!code[Main](tutorial-signalr-self-host/samples/sample6.xml)]
+    [!code-csharp[Main](tutorial-signalr-self-host/samples/sample6.cs)]
 6. Right-click on the solution, and select **Set Startup Projects...**. Select the **Multiple startup projects** radio button, and set both projects' **Action** to **Start**.
 
     ![](tutorial-signalr-self-host/_static/image6.png)

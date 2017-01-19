@@ -32,36 +32,36 @@ The solution used in this tutorial can be downloaded from [CodePlex](http://aspn
 
 1. Define the CLR types.
 
-    [!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample1.xml)]
+    [!code-csharp[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample1.cs)]
 2. Generate the EDM model based on the CLR types.
 
-    [!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample2.xml)]
+    [!code-csharp[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample2.cs)]
 
     Here, `builder.Singleton<Company>("Umbrella")` tells the model builder to create a singleton named `Umbrella` in the EDM model.
 
     The generated metadata will look like the following:
 
-    [!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample3.xml)]
+    [!code-xml[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample3.xml)]
 
     From the metadata we can see that the navigation property `Company` in the `Employees` entity set is bound to the singleton `Umbrella`. The binding is done automatically by `ODataConventionModelBuilder`, since only `Umbrella` has the `Company` type. If there is any ambiguity in the model, you can use `HasSingletonBinding` to explicitly bind a navigation property to a singleton; `HasSingletonBinding` has the same effect as using the `Singleton` attribute in the CLR type definition:
 
-    [!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample4.xml)]
+    [!code-csharp[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample4.cs)]
 
 ## Define the singleton controller
 
 Like the EntitySet controller, the singleton controller inherits from `ODataController`, and the singleton controller name should be `[singletonName]Controller`.
 
-[!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample5.xml)]
+[!code-csharp[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample5.cs)]
 
 In order to handle different kinds of requests, actions are required to be pre-defined in the controller. **Attribute routing** is enabled by default in WebApi 2.2. For example, to define an action to handle querying `Revenue` from `Company` using attribute routing, use the following:
 
-[!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample6.xml)]
+[!code-csharp[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample6.cs)]
 
 If you are not willing to define attributes for each action, just define your actions following [OData Routing Conventions](../odata-routing-conventions.md). Since a key is not required for querying a singleton, the actions defined in the singleton controller are slightly different from actions defined in the entityset controller.
 
 For reference, method signatures for every action definition in the singleton controller are listed below.
 
-[!code[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample7.xml)]
+[!code-csharp[Main](using-a-singleton-in-an-odata-endpoint-in-web-api-22/samples/sample7.cs)]
 
 Basically, this is all you need to do on the service side. The [sample project](http://aspnet.codeplex.com/sourcecontrol/latest#Samples/WebApi/OData/v4/ODataSingletonSample/) contains all of the code for the solution and the OData client that shows how to use the singleton. The client is built by following the steps in [Create an OData v4 Client App](create-an-odata-v4-client-app.md).
 

@@ -32,19 +32,19 @@ For this sample, we assume that the instance of the SQL Server 2005 Express Edit
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-[!code[Main](using-hovermenu-with-a-repeater-control-vb/samples/sample1.xml)]
+[!code-aspx[Main](using-hovermenu-with-a-repeater-control-vb/samples/sample1.aspx)]
 
 Then, add a data source to the page. In order to use a limited amount of data, we only select the first five entries in the Vendor table of the AdventureWorks database. If you are using the Visual Studio assistant to create the data source, mind that a bug in the current version does not prefix the table name (`Vendor`) with `Purchasing`. The following markup shows the correct syntax:
 
-[!code[Main](using-hovermenu-with-a-repeater-control-vb/samples/sample2.xml)]
+[!code-aspx[Main](using-hovermenu-with-a-repeater-control-vb/samples/sample2.aspx)]
 
 Next, add a panel which serves as the modal popup:
 
-[!code[Main](using-hovermenu-with-a-repeater-control-vb/samples/sample3.xml)]
+[!code-aspx[Main](using-hovermenu-with-a-repeater-control-vb/samples/sample3.aspx)]
 
 Now, the `HoverMenuExtender` comes into play. So that every element in the data source gets its own popup, the extender must be put within the repeater's `<ItemTemplate>` section. Here is the markup:
 
-[!code[Main](using-hovermenu-with-a-repeater-control-vb/samples/sample4.xml)]
+[!code-aspx[Main](using-hovermenu-with-a-repeater-control-vb/samples/sample4.aspx)]
 
 Now every item in the data source displays a popup to the right (`PopupPosition` attribute) after a delay of 50 milliseconds (`PopDelay` attribute).
 

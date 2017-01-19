@@ -28,7 +28,7 @@ Let's start by creating the controller that we intend to test. The controller, n
 
 **Listing 1 – `ProductController.vb`**
 
-[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample1.xml)]
+[!code-vb[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample1.vb)]
 
 The `ProductController` contains two action methods named `Index()` and `Details()`. Both action methods return a view. Notice that the `Details()` action accepts a parameter named Id.
 
@@ -38,17 +38,17 @@ Imagine that we want to test whether or not the `ProductController` returns the 
 
 **Listing 2 – `ProductControllerTest.vb`**
 
-[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample2.xml)]
+[!code-vb[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample2.vb)]
 
 The class in Listing 2 includes a test method named `TestDetailsView()`. This method contains three lines of code. The first line of code creates a new instance of the `ProductController` class. The second line of code invokes the controller's `Details()` action method. Finally, the last line of code checks whether or not the view returned by the `Details()` action is the Details view.
 
 The `ViewResult.ViewName` property represents the name of the view returned by a controller. One big warning about testing this property. There are two ways that a controller can return a view. A controller can explicitly return a view like this:
 
-[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample3.xml)]
+[!code-vb[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample3.vb)]
 
 Alternatively, the name of the view can be inferred from the name of the controller action like this:
 
-[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample4.xml)]
+[!code-vb[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample4.vb)]
 
 This controller action also returns a view named `Details`. However, the name of the view is inferred from the action name. If you want to test the view name, then you must explicitly return the view name from the controller action.
 
@@ -73,7 +73,7 @@ The modified `ProductController` in Listing 3 includes an updated `Details()` ac
 
 **Listing 3 – `ProductController.vb`**
 
-[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample5.xml)]
+[!code-vb[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample5.vb)]
 
 First, the `Details()` action creates a new instance of the `Product` class that represents a laptop computer. Next, the instance of the `Product` class is passed as the second parameter to the `View()` method.
 
@@ -81,7 +81,7 @@ You can write unit tests to test whether the expected data is contained in view 
 
 **Listing 4 – `ProductControllerTest.vb`**
 
-[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample6.xml)]
+[!code-vb[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample6.vb)]
 
 In Listing 4, the `TestDetailsView()` method tests the View Data returned by invoking the `Details()` method. The `ViewData` is exposed as a property on the `ViewResult` returned by invoking the `Details()` method. The `ViewData.Model` property contains the product passed to the view. The test simply verifies that the product contained in the View Data has the name Laptop.
 
@@ -93,13 +93,13 @@ For example, the modified `Details()` action in Listing 5 returns the `Details` 
 
 **Listing 5 – `ProductController.vb`**
 
-[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample7.xml)]
+[!code-vb[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample7.vb)]
 
 You can test the behavior of the `Details()` action with the unit test in Listing 6. The unit test in Listing 6 verifies that you are redirected to the `Index` view when an Id with the value -1 is passed to the `Details()` method.
 
 **Listing 6 – `ProductControllerTest.vb`**
 
-[!code[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample8.xml)]
+[!code-vb[Main](creating-unit-tests-for-asp-net-mvc-applications-vb/samples/sample8.vb)]
 
 When you call the `RedirectToAction()` method in a controller action, the controller action returns a `RedirectToRouteResult`. The test checks whether the `RedirectToRouteResult` will redirect the user to a controller action named `Index`.
 

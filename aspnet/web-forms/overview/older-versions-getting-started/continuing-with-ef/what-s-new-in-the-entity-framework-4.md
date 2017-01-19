@@ -39,13 +39,13 @@ The reason for this approach was that, strictly speaking, foreign keys are a phy
 
 For an example of how foreign keys in the data model can simplify your code, consider how you would have had to code the *DepartmentsAdd.aspx* page without them. In the `Department` entity, the `Administrator` property is a foreign key that corresponds to `PersonID` in the `Person` entity. In order to establish the association between a new department and its administrator, all you had to do was set the value for the `Administrator` property in the `ItemInserting` event handler of the databound control:
 
-[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample1.xml)]
+[!code-csharp[Main](what-s-new-in-the-entity-framework-4/samples/sample1.cs)]
 
 Without foreign keys in the data model, you'd handle the `Inserting` event of the data source control instead of the `ItemInserting` event of the databound control, in order to get a reference to the entity itself before the entity is added to the entity set. When you have that reference, you establish the association using code like that in the following examples:
 
-[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample2.xml)]
+[!code-csharp[Main](what-s-new-in-the-entity-framework-4/samples/sample2.cs)]
 
-[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample3.xml)]
+[!code-csharp[Main](what-s-new-in-the-entity-framework-4/samples/sample3.cs)]
 
 As you can see in the Entity Framework team's [blog post on Foreign Key associations](https://blogs.msdn.com/b/efdesign/archive/2009/03/16/foreign-keys-in-the-entity-framework.aspx), there are other cases where the difference in code complexity is much greater. To meet the needs of those who prefer to live with implementation details in the conceptual data model for the sake of simpler code, the Entity Framework now gives you the option of including foreign keys in the data model.
 
@@ -59,15 +59,15 @@ Suppose Contoso University administrators want to be able to perform bulk change
 
 Create a new page that uses the *Site.Master* master page and name it *UpdateCredits.aspx*. Then add the following markup to the `Content` control named `Content2`:
 
-[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample4.xml)]
+[!code-aspx[Main](what-s-new-in-the-entity-framework-4/samples/sample4.aspx)]
 
 This markup creates a `TextBox` control in which the user can enter the multiplier value, a `Button` control to click in order to execute the command, and a `Label` control for indicating the number of rows affected.
 
 Open *UpdateCredits.aspx.cs*, and add the following `using` statement and a handler for the button's `Click` event:
 
-[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample5.xml)]
+[!code-csharp[Main](what-s-new-in-the-entity-framework-4/samples/sample5.cs)]
 
-[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample6.xml)]
+[!code-csharp[Main](what-s-new-in-the-entity-framework-4/samples/sample6.cs)]
 
 This code executes the SQL `Update` command using the value in the text box and uses the label to display the number of rows affected. Before you run the page, run the *Courses.aspx* page to get a "before" picture of some data.
 
@@ -155,13 +155,13 @@ Using **Server Explorer**, add the following rows to the `Alumnus` and `Donation
 
 Create a new web page named *Alumni.aspx* that uses the *Site.Master* master page. Add the following markup to the `Content` control named `Content2`:
 
-[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample7.xml)]
+[!code-aspx[Main](what-s-new-in-the-entity-framework-4/samples/sample7.aspx)]
 
 This markup creates nested `GridView` controls, the outer one to display alumni names and the inner one to display donation dates and amounts.
 
 Open *Alumni.aspx.cs*. Add a `using` statement for the data access layer and a handler for the outer `GridView` control's `RowDataBound` event:
 
-[!code[Main](what-s-new-in-the-entity-framework-4/samples/sample8.xml)]
+[!code-csharp[Main](what-s-new-in-the-entity-framework-4/samples/sample8.cs)]
 
 This code databinds the inner `GridView` control using the `Donations` navigation property of the current row's `Alumnus` entity.
 

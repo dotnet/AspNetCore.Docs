@@ -64,4 +64,4 @@ Using a backplane, the maximum message throughput is lower than it is when clien
 
 To enable tracing for the backplanes, add the following sections to the web.config file, under the root **configuration** element:
 
-[!code[Main](scaleout-in-signalr/samples/sample1.xml)]
+[!code-html[Main](scaleout-in-signalr/samples/sample1.html)]

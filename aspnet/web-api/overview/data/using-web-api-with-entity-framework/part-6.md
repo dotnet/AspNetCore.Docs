@@ -39,7 +39,7 @@ This approach makes it easy to change the layout and UI of your app, because you
 
 In Visual Studio, from the **Tools** menu, select **Library Package Manager**. Then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-[!code[Main](part-6/samples/sample1.xml)]
+[!code-console[Main](part-6/samples/sample1.cmd)]
 
 This command adds the Knockout files to the Scripts folder.
 
@@ -47,7 +47,7 @@ This command adds the Knockout files to the Scripts folder.
 
 Add a JavaScript file named app.js to the Scripts folder. (In Solution Explorer, right-click the Scripts folder, select **Add**, then select **JavaScript File**.) Paste in the following code:
 
-[!code[Main](part-6/samples/sample2.xml)]
+[!code-javascript[Main](part-6/samples/sample2.js)]
 
 In Knockout, the `observable` class enables data-binding. When the contents of an observable change, the observable notifies all of the data-bound controls, so they can update themselves. (The `observableArray` class is the array version of *observable*.) To start with, our view model has two observables:
 
@@ -64,7 +64,7 @@ Bundling is a feature in ASP.NET 4.5 that makes it easy to combine or bundle mul
 
 Open the file App\_Start/BundleConfig.cs. Add the following code to the RegisterBundles method.
 
-[!code[Main](part-6/samples/sample3.xml)]
+[!code-csharp[Main](part-6/samples/sample3.cs)]
 
 >[!div class="step-by-step"]
 [Previous](part-5.md)

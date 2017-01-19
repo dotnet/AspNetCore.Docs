@@ -56,13 +56,13 @@ If you want to store data in a text file, you can use the `File.WriteAllText` me
 2. At the root of your website, create a new file named *UserData.cshtml*.
 3. Replace the existing content with the following: 
 
-    [!code[Main](working-with-files/samples/sample1.xml)]
+    [!code-csharp[Main](working-with-files/samples/sample1.cs)]
 
     The HTML markup creates the form with the three text boxes. In the code, you use the `IsPost` property to determine whether the page has been submitted before you start processing.
 
     The first task is to get the user input and assign it to variables. The code then concatenates the values of the separate variables into one comma-delimited string, which is then stored in a different variable. Notice that the comma separator is a string contained in quotation marks (","), because you're literally embedding a comma into the big string that you're creating. At the end of the data that you concatenate together, you add `Environment.NewLine`. This adds a line break (a newline character). What you're creating with all this concatenation is a string that looks like this:
 
-    [!code[Main](working-with-files/samples/sample2.xml)]
+    [!code-unknown[Main](working-with-files/samples/sample-38938-2.unknown)]
 
     (With an invisible line break at the end.)
 
@@ -95,7 +95,7 @@ In the previous example, you used `WriteAllText` to create a text file that's go
 1. In the website, make a copy of the *UserData.cshtml* file and name the copy *UserDataMultiple.cshtml*.
 2. Replace the code block before the opening `<!DOCTYPE html>` tag with the following code block: 
 
-    [!code[Main](working-with-files/samples/sample3.xml)]
+    [!code-csharp[Main](working-with-files/samples/sample3.cs)]
 
     This code has one change in it from the previous example. Instead of using `WriteAllText`, it uses `the AppendAllText` method. The methods are similar, except that `AppendAllText` adds the data to the end of the file. As with `WriteAllText`, `AppendAllText` creates the file if it doesn't already exist.
 3. Run the page in a browser.
@@ -116,11 +116,11 @@ This procedure shows you how to read and display the data that you created in th
 1. At the root of your website, create a new file named *DisplayData.cshtml*.
 2. Replace the existing content with the following: 
 
-    [!code[Main](working-with-files/samples/sample4.xml)]
+    [!code-cshtml[Main](working-with-files/samples/sample4.cshtml)]
 
     The code starts by reading the file that you created in the previous example into a variable named `userData`, using this method call:
 
-    [!code[Main](working-with-files/samples/sample5.xml)]
+    [!code-unknown[Main](working-with-files/samples/sample-38938-5.unknown)]
 
     The code to do this is inside an `if` statement. When you want to read a file, it's a good idea to use the `File.Exists` method to determine first whether the file is available. The code also checks whether the file is empty.
 
@@ -155,7 +155,7 @@ To delete files from your website, you can use the `File.Delete` method. This pr
 3. In the root of the website, create a new file named *FileDelete.cshtml*.
 4. Replace the existing content with the following: 
 
-    [!code[Main](working-with-files/samples/sample6.xml)]
+    [!code-csharp[Main](working-with-files/samples/sample6.cs)]
 
     This page contains a form where users can enter the name of an image file. They don't enter the *.jpg* file-name extension; by restricting the file name like this, you help prevents users from deleting arbitrary files on your site.
 
@@ -177,7 +177,7 @@ The `FileUpload` helper lets users upload files to your website. The procedure b
 3. In the root, create a new file named *FileUpload.cshtml*.
 4. Replace the existing content in the page with the following: 
 
-    [!code[Main](working-with-files/samples/sample7.xml)]
+    [!code-csharp[Main](working-with-files/samples/sample7.cs)]
 
     The body portion of the page uses the `FileUpload` helper to create the upload box and buttons that you're probably familiar with:
 
@@ -193,7 +193,7 @@ The `FileUpload` helper lets users upload files to your website. The procedure b
 
     You don't want all that path information, though, because that's the path on the user's computer, not for your server. You just want the actual file name (*Sample.txt*). You can strip out just the file from a path by using the `Path.GetFileName` method, like this:
 
-    [!code[Main](working-with-files/samples/sample8.xml)]
+    [!code-unknown[Main](working-with-files/samples/sample-38938-8.unknown)]
 
     The `Path` object is a utility that has a number of methods like this that you can use to strip paths, combine paths, and so on.
 
@@ -223,7 +223,7 @@ In the previous example, you let users upload one file. But you can use the `Fil
 2. Create a new page named *FileUploadMultiple.cshtml*.
 3. Replace the existing content in the page with the following:  
 
-    [!code[Main](working-with-files/samples/sample9.xml)]
+    [!code-csharp[Main](working-with-files/samples/sample9.cs)]
 
     In this example, the `FileUpload` helper in the body of the page is configured to let users upload two files by default. Because `allowMoreFilesToBeAdded` is set to `true`, the helper renders a link that lets user add more upload boxes:
 
@@ -233,7 +233,7 @@ In the previous example, you let users upload one file. But you can use the `Fil
 
     With this number in hand, you can loop through `Request.Files`, fetch each file in turn, and save it. When you want to loop a known number of times through a collection, you can use a `for` loop, like this:
 
-    [!code[Main](working-with-files/samples/sample10.xml)]
+    [!code-unknown[Main](working-with-files/samples/sample-38938-10.unknown)]
 
     The variable `i` is just a temporary counter that will go from zero to whatever upper limit you set. In this case, the upper limit is the number of files. But because the counter starts at zero, as is typical for counting scenarios in ASP.NET, the upper limit is actually one less than the file count. (If three files are uploaded, the count is zero to 2.)
 

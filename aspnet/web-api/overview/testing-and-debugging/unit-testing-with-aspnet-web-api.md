@@ -95,7 +95,7 @@ In the unit test project, add a project reference to the original project.
 
 In your StoreApp project, add a class file to the **Models** folder named **Product.cs**. Replace the contents of the file with the following code.
 
-[!code[Main](unit-testing-with-aspnet-web-api/samples/sample1.xml)]
+[!code-csharp[Main](unit-testing-with-aspnet-web-api/samples/sample1.cs)]
 
 Build the solution.
 
@@ -109,7 +109,7 @@ Set the controller name to **SimpleProductController**, and click **Add**.
 
 Replace the existing code with the following code. To simplify this example, the data is stored in a list rather than a database. The list defined in this class represents the production data. Notice that the controller includes a constructor that takes as a parameter a list of Product objects. This constructor enables you to pass test data when unit testing. The controller also includes two **async** methods to illustrate unit testing asynchronous methods. These async methods were implemented by calling **Task.FromResult** to minimize extraneous code, but normally the methods would include resource-intensive operations.
 
-[!code[Main](unit-testing-with-aspnet-web-api/samples/sample2.xml)]
+[!code-csharp[Main](unit-testing-with-aspnet-web-api/samples/sample2.cs)]
 
 The GetProduct method returns an instance of the **IHttpActionResult** interface. IHttpActionResult is one of the new features in Web API 2, and it simplifies unit test development. Classes that implement the IHttpActionResult interface are found in the [System.Web.Http.Results](https://msdn.microsoft.com/en-us/library/system.web.http.results.aspx) namespace. These classes represent possible responses from an action request, and they correspond to HTTP status codes.
 
@@ -141,7 +141,7 @@ By default, your test project includes an empty test file named UnitTest1.cs. Th
 
 For this tutorial, you will create your own test class. You can delete the UnitTest1.cs file. Add a class named **TestSimpleProductController.cs**, and replace the code with the following code.
 
-[!code[Main](unit-testing-with-aspnet-web-api/samples/sample3.xml)]
+[!code-csharp[Main](unit-testing-with-aspnet-web-api/samples/sample3.cs)]
 
 <a id="runtests"></a>
 ## Run tests

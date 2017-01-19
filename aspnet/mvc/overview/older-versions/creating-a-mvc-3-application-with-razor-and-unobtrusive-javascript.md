@@ -49,7 +49,7 @@ In this tutorial you will not be using the ASP.NET membership provider, so you c
 
 Edit the *\_Layout.cshtml* file and replace the markup inside the `<div>` element named `logindisplay` with the message *&quot;*Login Disabled&quot;. The following example shows the new markup:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample1.xml)]
+[!code-html[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample1.html)]
 
 ## Adding the Model
 
@@ -59,21 +59,21 @@ In **Solution Explorer**, right-click the *Models* folder, select **Add**, and t
 
 Name the class `UserModel`. Replace the contents of the *UserModel* file with the following code:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample2.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample2.cs)]
 
 The `UserModel` class represents users. Each member of the class is annotated with the [Required](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx) attribute from the [DataAnnotations](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace. The attributes in the [DataAnnotations](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) namespace provide automatic client- and server-side validation for web applications.
 
 Open the `HomeController` class and add a `using` directive so that you can access the `UserModel` and `Users` classes:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample3.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample3.cs)]
 
 Just after the `HomeController` declaration, add the following comment and the reference to a `Users` class:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample4.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample4.cs)]
 
 The `Users` class is a simplified, in-memory data store that you'll use in this tutorial. In a real application you would use a database to store user information. The first few lines of the `HomeController` file are shown in the following example:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample5.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample5.cs)]
 
 Build the application so that the user model will be available to the scaffolding wizard in the next step.
 
@@ -85,7 +85,7 @@ Delete the existing *Views\Home\Index*file. You will create a new *Index*file to
 
 In the `HomeController` class, replace the contents of the `Index` method with the following code:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample6.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample6.cs)]
 
 Right-click inside the `Index` method and then click **Add View**.
 
@@ -101,7 +101,7 @@ The new view automatically scaffolds the user data that's passed to the `Index` 
 
 Open the *Index.cshtml* file and replace the `ActionLink` markup for **Edit**, **Details**, and **Delete** with the following code:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample7.xml)]
+[!code-cshtml[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample7.cshtml)]
 
 The user name is used as the ID to find the selected record in the **Edit**, **Details**, and **Delete** links.
 
@@ -113,7 +113,7 @@ The next step is to add a `Details` action method and view in order to display u
 
 Add the following `Details` method to the home controller:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample8.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample8.cs)]
 
 Right-click inside the `Details` method and then select **Add View**. Verify that the **View data class** box contains **Mvc3Razor.Models.UserModel***.* Set **View content** to **Details** and then click **Add**.
 
@@ -127,7 +127,7 @@ Run the application and select a details link. The automatic scaffolding shows e
 
 Add the following `Edit` method to the home controller.
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample9.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample9.cs)]
 
 Add a view as in the previous steps, but set **View content** to **Edit**.
 
@@ -139,11 +139,11 @@ Run the application and edit the first and last name of one of the users. If you
 
 In this tutorial, you're treating the user name as the primary key. Therefore, the user name property cannot be changed. In the *Edit.cshtml* file, just after the `Html.BeginForm` statement, set the user name to be a hidden field. This causes the property to be passed in the model. The following code fragment shows the placement of the `Hidden` statement:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample10.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample10.cs)]
 
 Replace the `TextBoxFor` and `ValidationMessageFor` markup for the user name with a `DisplayFor` call. The `DisplayFor` method displays the property as a read-only element. The following example shows the completed markup. The original `TextBoxFor` and `ValidationMessageFor` calls are commented out with the Razor begin-comment and end-comment characters (`@* *@`)
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample11.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample11.cs)]
 
 ## Enabling Client-Side Validation
 
@@ -151,23 +151,23 @@ To enable client-side validation in ASP.NET MVC 3, you must set two flags and yo
 
 Open the application's *Web.config* file. Verify `that ClientValidationEnabled` and `UnobtrusiveJavaScriptEnabled` are set to true in the application settings. The following fragment from the root *Web.config* file shows the correct settings:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample12.xml)]
+[!code-xml[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample12.xml)]
 
 Setting `UnobtrusiveJavaScriptEnabled` to true enables unobtrusive Ajax and unobtrusive client validation. When you use unobtrusive validation, the validation rules are turned into HTML5 attributes. HTML5 attribute names can consist of only lowercase letters, numbers, and dashes.
 
 Setting `ClientValidationEnabled` to true enables client-side validation. By setting these keys in the application *Web.config* file, you enable client validation and unobtrusive JavaScript for the entire application. You can also enable or disable these settings in individual views or in controller methods using the following code:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample13.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample13.cs)]
 
 You also need to include several JavaScript files in the rendered view. An easy way to include the JavaScript in all views is to add them to the *Views\Shared\\_Layout.cshtml* file. Replace the `<head>` element of the *\_Layout.cshtml* file with the following code:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample14.xml)]
+[!code-cshtml[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample14.cshtml)]
 
 The first two jQuery scripts are hosted by the Microsoft Ajax Content Delivery Network (CDN). By taking advantage of the Microsoft Ajax CDN, you can significantly improve the first-hit performance of your applications.
 
 Run the application and click an edit link. View the page's source in the browser. The browser source shows many attributes of the form `data-val` (for data validation). When client validation and unobtrusive JavaScript is enabled, input fields with a client-validation rule contain the `data-val="true"` attribute to trigger unobtrusive client validation. For example, the `City` field in the model was decorated with the [Required](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.requiredattribute.aspx) attribute, which results in the HTML shown in the following example:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample15.xml)]
+[!code-html[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample15.html)]
 
 For each client-validation rule, an attribute is added that has the form `data-val-rulename="message"`. Using the `City` field example shown earlier, the required client-validation rule generates the `data-val-required` attribute and the message &quot;The City field is required&quot;. Run the application, edit one of the users, and clear the `City` field. When you tab out of the field, you see a client-side validation error message.
 
@@ -175,7 +175,7 @@ For each client-validation rule, an attribute is added that has the form `data-v
 
 Similarly, for each parameter in the client-validation rule, an attribute is added that has the form `data-val-rulename-paramname=paramvalue`. For example, the `FirstName` property is annotated with the [StringLength](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.stringlengthattribute.aspx) attribute and specifies a minimum length of 3 and a maximum length of 8. The data validation rule named `length` has the parameter name `max` and the parameter value 8. The following shows the HTML that is generated for the `FirstName` field when you edit one of the users:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample16.xml)]
+[!code-html[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample16.html)]
 
 For more information about unobtrusive client validation, see the entry [Unobtrusive Client Validation in ASP.NET MVC 3](http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html) in Brad Wilson's blog.
 
@@ -186,7 +186,7 @@ For more information about unobtrusive client validation, see the entry [Unobtru
 
 The next step is to add a `Create` action method and view in order to enable the user to create a new user. Add the following `Create` method to the home controller:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample17.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample17.cs)]
 
 Add a view as in the previous steps, but set **View content** to **Create**.
 
@@ -198,7 +198,7 @@ Run the application, select the **Create** link, and add a new user. The `Create
 
 To complete the tutorial, add the following `Delete` method to the home controller:
 
-[!code[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample18.xml)]
+[!code-csharp[Main](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/samples/sample18.cs)]
 
 Add a `Delete` view as in the previous steps, setting **View content** to **Delete**.
 

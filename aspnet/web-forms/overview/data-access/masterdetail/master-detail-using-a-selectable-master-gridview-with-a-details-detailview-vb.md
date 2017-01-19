@@ -63,7 +63,7 @@ Edit the GridView's fields removing all but the `ProductName` and `UnitPrice` Bo
 The final markup for the GridView is:
 
 
-[!code[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample1.xml)]
+[!code-aspx[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample1.aspx)]
 
 Next, we need to mark the GridView as selectable, which will add a Select button to each row. To accomplish this, simply check the Enable Selection checkbox in the GridView's smart tag.
 
@@ -76,7 +76,7 @@ Next, we need to mark the GridView as selectable, which will add a Select button
 Checking the Enabling Selection option adds a CommandField to the `ProductsGrid` GridView with its `ShowSelectButton` property set to True. This results in a Select button for each row of the GridView, as Figure 6 illustrates. By default, the Select buttons are rendered as LinkButtons, but you can use Buttons or ImageButtons instead through the CommandField's `ButtonType` property.
 
 
-[!code[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample2.xml)]
+[!code-aspx[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample2.aspx)]
 
 When a GridView row's Select button is clicked a postback ensues and the GridView's `SelectedRow` property is updated. In addition to the `SelectedRow` property, the GridView provides the [SelectedIndex](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.selectedindex%28VS.80%29.aspx), [SelectedValue](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.selectedvalue%28VS.80%29.aspx), and [SelectedDataKey](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.selecteddatakey%28VS.80%29.aspx) properties. The `SelectedIndex` property returns the index of the selected row, whereas the `SelectedValue` and `SelectedDataKey` properties return values based upon the GridView's [DataKeyNames property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.datakeynames%28VS.80%29.aspx).
 
@@ -99,12 +99,12 @@ The `ProductsGrid` GridView has a `SelectedRowStyle` property that can be used t
 As with our earlier tutorials, let's strive to keep the aesthetic-related settings defined as CSS classes. Therefore, create a new CSS class in `Styles.css` named `SelectedRowStyle`.
 
 
-[!code[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample3.xml)]
+[!code-css[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample3.css)]
 
 To apply this CSS class to the `SelectedRowStyle` property of *all* GridViews in our tutorial series, edit the `GridView.skin` Skin in the `DataWebControls` Theme to include the `SelectedRowStyle` settings as shown below:
 
 
-[!code[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample4.xml)]
+[!code-aspx[Main](master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb/samples/sample4.aspx)]
 
 With this addition, the selected GridView row is now highlighted with a yellow background color.
 

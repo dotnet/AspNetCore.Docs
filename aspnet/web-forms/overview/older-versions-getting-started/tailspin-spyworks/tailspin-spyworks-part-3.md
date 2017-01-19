@@ -24,11 +24,11 @@ by [Joe Stagner](https://github.com/JoeStagner)
 
 In our site master page we'll add a div for the left side column that will contain our product category menu.
 
-[!code[Main](tailspin-spyworks-part-3/samples/sample1.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-3/samples/sample1.aspx)]
 
 Note that the desired aligning and other formatting will be provided by the CSS class that we added to our Style.css file.
 
-[!code[Main](tailspin-spyworks-part-3/samples/sample2.xml)]
+[!code-css[Main](tailspin-spyworks-part-3/samples/sample2.css)]
 
 The product category menu will be dynamically created at runtime by querying the Commerce database for existing product categories and creating the menu items and corresponding links.
 
@@ -56,7 +56,7 @@ Now let's set the ID property of the ListView control instance that we placed on
 
 Though we could use control options to format the data item display and formatting, our menu creation will only require simple markup so we will enter the code in the source view.
 
-[!code[Main](tailspin-spyworks-part-3/samples/sample3.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-3/samples/sample3.aspx)]
 
 Please note the "Eval" statement : &lt;%# Eval("CategoryName") %&gt;
 

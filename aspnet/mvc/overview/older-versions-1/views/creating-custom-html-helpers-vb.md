@@ -52,7 +52,7 @@ For example, consider the form in Listing 1. This form is rendered with the help
 
 **Listing 1 – `Views\Home\Index.aspx`**
 
-[!code[Main](creating-custom-html-helpers-vb/samples/sample1.xml)]
+[!code-aspx[Main](creating-custom-html-helpers-vb/samples/sample1.aspx)]
 
 The `Html.BeginForm()` Helper method is used to create the opening and closing HTML `<form>` tags. Notice that the `Html.BeginForm()` method is called within a using statement. The using statement ensures that the `<form>` tag gets closed at the end of the using block.
 
@@ -66,7 +66,7 @@ The ASP.NET MVC framework contains a small set of helpers. Most likely, you will
 
 **Listing 2 – `Index.aspx Source`**
 
-[!code[Main](creating-custom-html-helpers-vb/samples/sample2.xml)]
+[!code-aspx[Main](creating-custom-html-helpers-vb/samples/sample2.aspx)]
 
 ### Creating HTML Helpers with Shared Methods
 
@@ -74,7 +74,7 @@ The easiest way to create a new HTML Helper is to create a shared method that re
 
 **Listing 2 – `Helpers\LabelHelper.vb`**
 
-[!code[Main](creating-custom-html-helpers-vb/samples/sample3.xml)]
+[!code-vb[Main](creating-custom-html-helpers-vb/samples/sample3.vb)]
 
 There is nothing special about the class in Listing 2. The `Label()` method simply returns a string.
 
@@ -82,7 +82,7 @@ The modified Index view in Listing 3 uses the `LabelHelper` to render HTML `<lab
 
 **Listing 2 – `Views\Home\Index2.aspx`**
 
-[!code[Main](creating-custom-html-helpers-vb/samples/sample4.xml)]
+[!code-aspx[Main](creating-custom-html-helpers-vb/samples/sample4.aspx)]
 
 ### Creating HTML Helpers with Extension Methods
 
@@ -94,7 +94,7 @@ Second, notice that the first parameter of the `Label()` method represents the `
 
 **Listing 3 – `Helpers\LabelExtensions.vb`**
 
-[!code[Main](creating-custom-html-helpers-vb/samples/sample5.xml)]
+[!code-vb[Main](creating-custom-html-helpers-vb/samples/sample5.vb)]
 
 After you create an extension method, and build your application successfully, the extension method appears in Visual Studio Intellisense like all of the other methods of a class (see Figure 2). The only difference is that extension methods appear with a special symbol next to them (an icon of a downward arrow).
 
@@ -108,7 +108,7 @@ The modified Index view in Listing 4 uses the Html.Label() extension method to r
 
 **Listing 4 – `Views\Home\Index3.aspx`**
 
-[!code[Main](creating-custom-html-helpers-vb/samples/sample6.xml)]
+[!code-aspx[Main](creating-custom-html-helpers-vb/samples/sample6.aspx)]
 
 ## Summary
 

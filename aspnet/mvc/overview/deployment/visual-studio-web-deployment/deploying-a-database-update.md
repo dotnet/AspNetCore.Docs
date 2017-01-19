@@ -36,22 +36,22 @@ In this section, you add a birth date column to the `Person` base class for the 
 
 1. In the *ContosoUniversity.DAL* project, open *Person.cs* and add the following property at the end of the `Person` class (there should be two closing curly braces following it):
 
-    [!code[Main](deploying-a-database-update/samples/sample1.xml)]
+    [!code-csharp[Main](deploying-a-database-update/samples/sample1.cs)]
 
     Next, update the `Seed` method so that it provides a value for the new column. Open *Migrations\Configuration.cs* and replace the code block that begins `var instructors = new List<Instructor>` with the following code block which includes birth date information:
 
-    [!code[Main](deploying-a-database-update/samples/sample2.xml)]
+    [!code-csharp[Main](deploying-a-database-update/samples/sample2.cs)]
 2. Build the solution, and then open the **Package Manager Console** window. Make sure that ContosoUniversity.DAL is still selected as the **Default project**.
 3. In the **Package Manager Console** window, select **ContosoUniversity.DAL** as the **Default project**, and then enter the following command:
 
-    [!code[Main](deploying-a-database-update/samples/sample3.xml)]
+    [!code-powershell[Main](deploying-a-database-update/samples/sample3.ps1)]
 
     When this command finishes, Visual Studio opens the class file that defines the new `DbMIgration` class, and in the `Up` method you can see the code that creates the new column. The `Up` method creates the column when you are implementing the change, and the `Down` method deletes the column when you are rolling back the change.
 
     ![AddBirthDate_migration_code](deploying-a-database-update/_static/image1.png)
 4. Build the solution, and then enter the following command in the **Package Manager Console** window (make sure the ContosoUniversity.DAL project is still selected):
 
-    [!code[Main](deploying-a-database-update/samples/sample4.xml)]
+    [!code-powershell[Main](deploying-a-database-update/samples/sample4.ps1)]
 
     The Entity Framework runs the `Up` method and then runs the `Seed` method.
 
@@ -59,7 +59,7 @@ In this section, you add a birth date column to the `Person` base class for the 
 
 1. In the ContosoUniversity project, open *Instructors.aspx* and add a new template field to display the birth date. Add it between the ones for hire date and office assignment:
 
-    [!code[Main](deploying-a-database-update/samples/sample5.xml?highlight=9-17)]
+    [!code-aspx[Main](deploying-a-database-update/samples/sample5.aspx?highlight=9-17)]
 
     (If code indentation gets out of sync, you can press CTRL-K and then CTRL-D to automatically reformat the file.)
 2. Run the application and click the **Instructors** link.
@@ -113,7 +113,7 @@ In this section, you add a *Comments* column to the *User* table in the membersh
 2. Create a new **Web Form Using Master Page** and name it *UserInfo.aspx*. Accept the default *Site.Master* file as the master page.
 3. Copy the following markup into the `MainContent` `Content` element (the last of the 3 `Content` elements):
 
-    [!code[Main](deploying-a-database-update/samples/sample6.xml)]
+    [!code-aspx[Main](deploying-a-database-update/samples/sample6.aspx)]
 4. Right-click the *UserInfo.aspx* page and click **View in Browser**.
 5. Log in with your *admin* user credentials (password is *devpwd*) and add some comments to a user to verify that the page works correctly.
 

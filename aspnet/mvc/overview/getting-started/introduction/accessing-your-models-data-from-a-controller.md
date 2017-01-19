@@ -67,11 +67,11 @@ Create a couple more movie entries. Try the **Edit**, **Details**, and **Delete*
 
 Open the *Controllers\MoviesController.cs* file and examine the generated `Index` method. A portion of the movie controller with the `Index` method is shown below.
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample1.xml)]
+[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample1.cs)]
 
 A request to the `Movies` controller returns all the entries in the `Movies` table and then passes the results to the `Index` view. The following line from the `MoviesController` class instantiates a movie database context, as described previously. You can use the movie database context to query, edit, and delete movies.
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample2.xml)]
+[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample2.cs)]
 
 ## Strongly Typed Models and the @model Keyword
 
@@ -81,7 +81,7 @@ MVC also provides the ability to pass *strongly* typed objects to a view templat
 
 In the *Controllers\MoviesController.cs* file examine the generated `Details` method. The `Details` method is shown below.
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample3.xml)]
+[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample3.cs)]
 
 The `id` parameter is generally passed as route data, for example `http://localhost:1234/movies/details/1` will set the controller to the movie controller, the action to `details` and the `id` to 1. You could also pass in the id with a query string as follows:
 
@@ -89,29 +89,29 @@ The `id` parameter is generally passed as route data, for example `http://localh
 
 If a `Movie` is found, an instance of the `Movie` model is passed to the `Details` view:
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample4.xml)]
+[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample4.cs)]
 
 Examine the contents of the *Views\Movies\Details.cshtml* file:
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample5.xml?highlight=1-2)]
+[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample5.cs?highlight=1-2)]
 
 By including a `@model` statement at the top of the view template file, you can specify the type of object that the view expects. When you created the movie controller, Visual Studio automatically included the following `@model` statement at the top of the *Details.cshtml* file:
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample6.xml)]
+[!code-cshtml[Main](accessing-your-models-data-from-a-controller/samples/sample6.cshtml)]
 
 This `@model` directive allows you to access the movie that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Details.cshtml* template, the code passes each movie field to the `DisplayNameFor` and [DisplayFor](https://msdn.microsoft.com/en-us/library/system.web.mvc.html.displayextensions.displayfor(VS.98).aspx) HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and view templates also pass a movie model object.
 
 Examine the *Index.cshtml* view template and the `Index` method in the *MoviesController.cs* file. Notice how the code creates a [`List`](https://msdn.microsoft.com/en-us/library/6sh2ey19.aspx) object when it calls the `View` helper method in the `Index` action method. The code then passes this `Movies` list from the `Index` action method to the view:
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample7.xml?highlight=3)]
+[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample7.cs?highlight=3)]
 
 When you created the movie controller, Visual Studio automatically included the following `@model` statement at the top of the *Index.cshtml* file:
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample8.xml)]
+[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample8.cs)]
 
 This `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.cshtml* template, the code loops through the movies by doing a `foreach` statement over the strongly typed `Model` object:
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample9.xml?highlight=1,4,7,10,13,16,19-21)]
+[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample9.cs?highlight=1,4,7,10,13,16,19-21)]
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each `item` object in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code and full IntelliSense support in the code editor:
 

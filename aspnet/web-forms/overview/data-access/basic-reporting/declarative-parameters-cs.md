@@ -64,7 +64,7 @@ Since the method we selected includes a parameter, there's one more screen for t
 
 After completing the Configure Data Source wizard, the ObjectDataSource control's declarative markup includes a `Parameter` object in the `SelectParameters` collection for each of the input parameters expected by the method defined in the `SelectMethod` property. Since the method we're using in this example expects just a single input parameter, `parameterID`, there's only one entry here. The `SelectParameters` collection can contain any class that derives from the `Parameter` class in the `System.Web.UI.WebControls` namespace. For hard-coded parameter values the base `Parameter` class is used, but for the other parameter source options a derived `Parameter` class is used; you can also create your own [custom parameter types](http://www.leftslipper.com/ShowFaq.aspx?FaqId=11), if needed.
 
-[!code[Main](declarative-parameters-cs/samples/sample1.xml)]
+[!code-aspx[Main](declarative-parameters-cs/samples/sample1.aspx)]
 
 > [!NOTE] If you're following along on your own computer the declarative markup you see at this point may include values for the `InsertMethod`, `UpdateMethod`, and `DeleteMethod` properties, as well as `DeleteParameters`. The ObjectDataSource's Choose Data Source wizard automatically specifies the methods from the `ProductBLL` to use for inserting, updating, and deleting, so unless you explicitly cleared those out, they'll be included in the markup above.
 
@@ -105,7 +105,7 @@ Since the `GetSuppliersByCountry(country)` method has an input parameter, the wi
 
 The ObjectDataSource's declarative markup differs slightly from our first example, using a [ControlParameter](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.controlparameter.aspx) instead of the standard `Parameter` object. A `ControlParameter` has additional properties to specify the `ID` of the Web control and the property value to use for the parameter (`PropertyName`). The Configure Data Source wizard was smart enough to determine that, for a TextBox, we'll likely want to use the `Text` property for the parameter value. If, however, you want to use a different property value from the Web control you can change the `PropertyName` value here or by clicking the "Show advanced properties" link in the wizard.
 
-[!code[Main](declarative-parameters-cs/samples/sample2.xml)]
+[!code-aspx[Main](declarative-parameters-cs/samples/sample2.aspx)]
 
 When visiting the page for the first time the `CountryName` TextBox is empty. The ObjectDataSource's `Select` method is still invoked by the GridView, but a value of `null` is passed into the `GetSuppliersByCountry(country)` method. The TableAdapter converts the `null` into a database `NULL` value (`DBNull.Value`), but the query used by the `GetSuppliersByCountry(country)` method is written such that it doesn't return any values when a `NULL` value is specified for the `@CategoryID` parameter. In short, no suppliers are returned.
 
@@ -121,7 +121,7 @@ Once the visitor enters in a country, however, and clicks the Show Suppliers but
 
 Rather than show none of the suppliers when first viewing the page we may want to show *all* suppliers at first, allowing the user to pare down the list by entering a country name in the TextBox. When the TextBox is empty, the `SuppliersBLL` class's `GetSuppliersByCountry(country)` method is passed in a `null` value for its *`country`* input parameter. This `null` value is then passed down into the DAL's `GetSupplierByCountry(country)` method, where it's translated to a database `NULL` value for the `@Country` parameter in the following query:
 
-[!code[Main](declarative-parameters-cs/samples/sample3.xml)]
+[!code-sql[Main](declarative-parameters-cs/samples/sample3.sql)]
 
 The expression `Country = NULL` always returns False, even for records whose `Country` column has a `NULL` value; therefore, no records are returned.
 
@@ -129,7 +129,7 @@ To return *all* suppliers when the country TextBox is empty, we can augment the 
 
 Change the `GetSuppliersByCountry(country)` method in the `SuppliersBLL` class to the following:
 
-[!code[Main](declarative-parameters-cs/samples/sample4.xml)]
+[!code-csharp[Main](declarative-parameters-cs/samples/sample4.cs)]
 
 With this change the `DeclarativeParams.aspx` page shows all of the suppliers when first visited (or whenever the `CountryName` TextBox is empty).
 

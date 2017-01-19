@@ -49,7 +49,7 @@ A form has user input elements &mdash; text boxes, buttons, radio buttons, check
 
 The basic HTML syntax of a form is illustrated by this example:
 
-[!code[Main](form-basics/samples/sample1.xml)]
+[!code-html[Main](form-basics/samples/sample1.html)]
 
 When this markup runs in a page, it creates a simple form that looks like this illustration:
 
@@ -106,7 +106,7 @@ In WebMatrix, in the **Files** workspace, open the *Movies.cshtml* page.
 
 After the closing `</h1>` tag and before the opening `<div>` tag of the `grid.GetHtml` call, add the following markup:
 
-[!code[Main](form-basics/samples/sample2.xml)]
+[!code-html[Main](form-basics/samples/sample2.html)]
 
 This markup creates a form that has a text box named `searchGenre` and a submit button. The text box and submit button are enclosed in a `<form>` element whose `method` attribute is set to `get`. (Remember that if you don't put the text box and submit button inside a `<form>` element, nothing will be submitted when you click the button.) You use the `GET` verb here because you're creating a form that does not make any changes on the server — it just results in a search. (In the previous tutorial, you used a `post` method, which is how you submit changes to the server. You'll see that in the next tutorial again.)
 
@@ -134,7 +134,7 @@ It's simple enough to read the value of the text box. But if the user didn't ent
 
 The following code is an example that shows how to implement these conditions. (You don't have to add this code yet; you'll do that in a moment.)
 
-[!code[Main](form-basics/samples/sample3.xml)]
+[!code-csharp[Main](form-basics/samples/sample3.cs)]
 
 The test breaks down in this way:
 
@@ -193,7 +193,7 @@ The placeholder is the `@` character followed by zero. As you might guess, a que
 
 To set up the query and actually pass it the value, you use the code like the following:
 
-[!code[Main](form-basics/samples/sample4.xml)]
+[!code-sql[Main](form-basics/samples/sample4.sql)]
 
 This code is similar to what you've already done to display data in the grid. The only differences are:
 
@@ -203,7 +203,7 @@ This code is similar to what you've already done to display data in the grid. Th
 
 If you put all these elements together, you get the following code:
 
-[!code[Main](form-basics/samples/sample5.xml)]
+[!code-csharp[Main](form-basics/samples/sample5.cs)]
 
 > [!NOTE] 
 > 
@@ -216,19 +216,19 @@ If you put all these elements together, you get the following code:
 
 Now you can update the code in the *Movies.cshtml* file. To begin, replace the code in the code block at the top of the page with this code:
 
-[!code[Main](form-basics/samples/sample6.xml)]
+[!code-csharp[Main](form-basics/samples/sample6.cs)]
 
 The difference here is that you've put the query into the `selectCommand` variable, which you'll pass to `db.Query` later. Putting the SQL statement into a variable lets you change the statement, which is what you'll do to perform the search.
 
 You've also removed these two lines, which you'll put back in later:
 
-[!code[Main](form-basics/samples/sample7.xml)]
+[!code-csharp[Main](form-basics/samples/sample7.cs)]
 
 You don't want to run the query yet (that is, call `db.Query`) and you don't want to initialize the `WebGrid` helper yet either. You'll do those things after you've figured out which SQL statement has to run.
 
 After this rewritten block, you can add the new logic for handling the search. The completed code will look like the following. Update the code in your page so it matches this example:
 
-[!code[Main](form-basics/samples/sample8.xml)]
+[!code-cshtml[Main](form-basics/samples/sample8.cshtml)]
 
 The page now works like this. Every time the page runs, the code opens the database and the `selectCommand` variable is set to the SQL statement that gets all the records from the `Movies` table. The code also initializes the `searchTerm` variable.
 
@@ -266,7 +266,7 @@ There's actually an easy way to get around this issue. The genre that you entere
 
 Update the markup for the text box so that the `value` attribute gets its value from `searchTerm`, like this example:
 
-[!code[Main](form-basics/samples/sample9.xml?highlight=1)]
+[!code-html[Main](form-basics/samples/sample9.html?highlight=1)]
 
 In this page, you could have also set the `value` attribute to the `searchTerm` variable, since that variable also contains the genre you entered. But using the `Request` object to set the `value` attribute as shown here is the standard way to accomplish this task. (Assuming you even want to do this &mdash; in some situations, you might want to render the page *without* values in the fields. It all depends on what's going on with your app.)
 
@@ -289,11 +289,11 @@ The search term `LIKE '%adventure%'` therefore means "with 'adventure' anywhere 
 
 Inside the `<form>` element, add the following markup right under the closing `</div>` tag for the genre search (just before the closing `</form>` element):
 
-[!code[Main](form-basics/samples/sample10.xml)]
+[!code-html[Main](form-basics/samples/sample10.html)]
 
 The code to handle this search is similar to the code for the genre search, except that you have to assemble the `LIKE` search. Inside the code block at the top of the page, add this `if` block just after the `if` block for the genre search:
 
-[!code[Main](form-basics/samples/sample11.xml)]
+[!code-csharp[Main](form-basics/samples/sample11.cs)]
 
 This code uses the same logic you saw earlier, except that the search uses a `LIKE` operator and the code puts "`%`" before and after the search term.
 
@@ -305,7 +305,7 @@ Notice how it was easy to add another search to the page. All you had to do was:
 
 Here's the complete code block, which contains the new logic for a title search:
 
-[!code[Main](form-basics/samples/sample12.xml)]
+[!code-cshtml[Main](form-basics/samples/sample12.cshtml)]
 
 Here's a summary of what this code does:
 
@@ -343,7 +343,7 @@ In the next tutorial, you'll create a page that uses a form to let users add mov
 
 ## Complete Listing for Movie Page (Updated with Search)
 
-[!code[Main](form-basics/samples/sample13.xml)]
+[!code-cshtml[Main](form-basics/samples/sample13.cshtml)]
 
 ## Additional Resources
 

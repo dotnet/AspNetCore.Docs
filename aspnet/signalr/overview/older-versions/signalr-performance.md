@@ -45,13 +45,13 @@ You can reduce the size of a SignalR message by reducing the size of your serial
 
 **.NET server code that demonstrates the JsonIgnore attribute to exclude data from being sent to the client, and the JsonProperty attribute to reduce message size**
 
-[!code[Main](signalr-performance/samples/sample1.xml?highlight=5,7,10)]
+[!code-csharp[Main](signalr-performance/samples/sample1.cs?highlight=5,7,10)]
 
 In order to retain readability/ maintainability in the client code, the abbreviated property names can be remapped to human-friendly names after the message is received. The following code sample demonstrates one possible way of remapping shortened names to longer ones, by defining a message contract (mapping), and using the `reMap` function to apply the contract to the optimized message class:
 
 **Client-side JavaScript code that remaps shortened property names to human-readable names**
 
-[!code[Main](signalr-performance/samples/sample2.xml)]
+[!code-javascript[Main](signalr-performance/samples/sample2.js)]
 
 Names can be shortened in messages from the client to the server as well, using the same method.
 
@@ -71,13 +71,13 @@ The following configuration settings can be used to tune your server for better 
 
     **.NET server code in Global.asax for decreasing default message buffer size**
 
-    [!code[Main](signalr-performance/samples/sample3.xml)]
+    [!code-csharp[Main](signalr-performance/samples/sample3.cs)]
 
 **IIS configuration settings**
 
 - **Max concurrent requests per application**: Increasing the number of concurrent IIS requests will increase server resources available for serving requests. The default value is 5000; to increase this setting, execute the following commands in an elevated command prompt:
 
-    [!code[Main](signalr-performance/samples/sample4.xml)]
+    [!code-console[Main](signalr-performance/samples/sample4.cmd)]
 
 **ASP.NET configuration settings**
 
@@ -90,10 +90,10 @@ ASP.NET settings that may improve SignalR performance include the following:
 
 - **Maximum concurrent requests per CPU**: Increasing this setting may alleviate performance bottlenecks. To increase this setting, add the following configuration setting to the `aspnet.config` file:
 
-    [!code[Main](signalr-performance/samples/sample5.xml?highlight=4)]
+    [!code-xml[Main](signalr-performance/samples/sample5.xml?highlight=4)]
 - **Request Queue Limit**: When the total number of connections exceeds the `maxConcurrentRequestsPerCPU` setting, ASP.NET will start throttling requests using a queue. To increase the size of the queue, you can increase the `requestQueueLimit` setting. To do this, add the following configuration setting to the `processModel` node in `config/machine.config` (rather than `aspnet.config`):
 
-    [!code[Main](signalr-performance/samples/sample6.xml)]
+    [!code-xml[Main](signalr-performance/samples/sample6.xml)]
 
 <a id="troubleshooting"></a>
 
@@ -126,11 +126,11 @@ Peformance counters can be added to the server using a utility called SignalR.ex
 
 To install SignalR performance counters, run SignalR.exe in an elevated command prompt with the following parameter:
 
-[!code[Main](signalr-performance/samples/sample7.xml)]
+[!code-console[Main](signalr-performance/samples/sample7.cmd)]
 
 To remove SignalR performance counters, run SignalR.exe in an elevated command prompt with the following parameter:
 
-[!code[Main](signalr-performance/samples/sample8.xml)]
+[!code-console[Main](signalr-performance/samples/sample8.cmd)]
 
 ### SignalR Performance counters
 

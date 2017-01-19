@@ -22,11 +22,11 @@ In this section we are going to look at how we can have our HelloWorldController
 
 Let's start by using a View template with our Index method. Our method is called Index and it's in the HelloWorldController. Currently our Index() method returns a string with a message that is hardcoded within the Controller class.
 
-[!code[Main](getting-started-with-mvc-part3/samples/sample1.xml)]
+[!code-csharp[Main](getting-started-with-mvc-part3/samples/sample1.cs)]
 
 Let's now change the Index method to instead look like this:
 
-[!code[Main](getting-started-with-mvc-part3/samples/sample2.xml)]
+[!code-csharp[Main](getting-started-with-mvc-part3/samples/sample2.cs)]
 
 Let's now add a View template to our project that we can use for our Index() method. To do this, right-click with your mouse somewhere in the middle of the Index method and click Add View...
 
@@ -42,7 +42,7 @@ After you click Add, a new folder and a new file will appear in the Solution Fol
 
 The new Index file is also already opened and ready for editing. Add some text under the first &lt;h2&gt;Index&lt;/h2&gt; like "Hello World."
 
-[!code[Main](getting-started-with-mvc-part3/samples/sample3.xml)]
+[!code-html[Main](getting-started-with-mvc-part3/samples/sample3.html)]
 
 Run your application and visit [`http://localhost:xx/HelloWorld`](http://localhostxx)again in your browser. The Index method in our controller in this example didn't do any work, but did call "return View()" which indicated that we wanted to use a view template file to render a response back to the client. Because we did not explicitly specify the name of the view template file to use, ASP.NET MVC defaulted to using the Index.aspx view file within the \Views\HelloWorld folder. Now we see the string we hard-coded in our View.
 
@@ -56,23 +56,23 @@ First, let's change the text "My MVC Application." That text is shared and appea
 
 Notice some text that says ContentPlaceholder "MainContent" in this file.
 
-[!code[Main](getting-started-with-mvc-part3/samples/sample4.xml)]
+[!code-aspx[Main](getting-started-with-mvc-part3/samples/sample4.aspx)]
 
 That placeholder is where all the pages you create will show up, "wrapped" in the master page. Try changing the title, then run your app and visit multiple pages. You'll notice that your one change appears on multiple pages.
 
-[!code[Main](getting-started-with-mvc-part3/samples/sample5.xml)]
+[!code-html[Main](getting-started-with-mvc-part3/samples/sample5.html)]
 
 Now every page will have the Primary Heading - that's H1 - of "My MVC Movie Application." That handles the white text at the top there that's shared across all the pages.
 
 Here is the Site.Master in its entirety with our changed title:
 
-[!code[Main](getting-started-with-mvc-part3/samples/sample6.xml)]
+[!code-aspx[Main](getting-started-with-mvc-part3/samples/sample6.aspx)]
 
 Now, let's change the title of the Index page.
 
 Open /HelloWorld/Index.aspx. There's two places to change. First, the Title that appears in the title of the browser, then the secondary header - that's H2 - as well. I'll make them each slightly different so you can see which bit of code changes which part of the app.
 
-[!code[Main](getting-started-with-mvc-part3/samples/sample7.xml)]
+[!code-aspx[Main](getting-started-with-mvc-part3/samples/sample7.aspx)]
 
 Run your app and visit /Movies. Notice that the browser title, the primary heading and the secondary headings have changed. It's easy to make big changes in your app with small changes to your view.
 
@@ -88,7 +88,7 @@ Previously with our HelloWorld sample, our Welcome() action method took a name a
 
 Return to the HelloWorldController.cs file and add a new "WelcomeViewModel" class and change the Welcome method inside your controller. Here is the complete HelloWorldController.cs with the new class in the same file.
 
-[!code[Main](getting-started-with-mvc-part3/samples/sample8.xml)]
+[!code-csharp[Main](getting-started-with-mvc-part3/samples/sample8.cs)]
 
 Even though it's on multiple lines, our Welcome method is really only two code statements. The first statement packages up our two parameters into a ViewModel object, and the second passes the resulting object onto the View.
 
@@ -101,7 +101,7 @@ Here's what your Add View dialog should look like. Click the Add button. ![Add V
 
 Add this code under the &lt;h2&gt; in your new Welcome.aspx. We'll make a loop and say Hello as many times as the user says we should!
 
-[!code[Main](getting-started-with-mvc-part3/samples/sample9.xml)]
+[!code-aspx[Main](getting-started-with-mvc-part3/samples/sample9.aspx)]
 
 Also, notice while you're typing that because we told this View about the WelcomeViewModel (they are married, remember?) that we get helpful Intellisense each time we reference our Model object as seen in the screenshot below:
 

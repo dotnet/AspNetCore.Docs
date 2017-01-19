@@ -38,13 +38,13 @@ The JQuery UI Datepicker widget enables users to easily select a date from a cal
 
 First, you will add a **Datetime** property to your Student model and migrate that change to the database. Open **UniversityModels.cs**, and add the highlighted code to the Student model.
 
-[!code[Main](integrating-jquery-ui/samples/sample1.xml?highlight=16-18)]
+[!code-csharp[Main](integrating-jquery-ui/samples/sample1.cs?highlight=16-18)]
 
 The **RangeAttribute** is included to enforce validation rules for the property. For this tutorial, we will assume that Contoso University was founded on January 1st, 2013 and therefore earlier enrollment dates are not valid.
 
 In the Package Management window, add a migration by running the command **add-migration AddEnrollmentDate**. Notice that the migration code adds the new Datetime column to the Student table. To match the value you specified in the RangeAttribute, add a default value for the new column, as shown in the highlighted code below.
 
-[!code[Main](integrating-jquery-ui/samples/sample2.xml?highlight=11)]
+[!code-csharp[Main](integrating-jquery-ui/samples/sample2.cs?highlight=11)]
 
 Save your change to the migration file.
 
@@ -60,7 +60,7 @@ First, it is important to note that you do not need to make any change to the **
 
 Open **Students.aspx**, and add the following highlighted code.
 
-[!code[Main](integrating-jquery-ui/samples/sample3.xml?highlight=13)]
+[!code-aspx[Main](integrating-jquery-ui/samples/sample3.aspx?highlight=13)]
 
 Run the application and notice that you can set the value of the enrollment date by typing a date. When adding a new student:
 
@@ -80,17 +80,17 @@ The **Juice UI** NuGet package enables easy integration of the JQuery UI widgets
 
 The version of Juice UI that you install may conflict with the version of JQuery in your application. Before proceeding with this tutorial, try running your application. If you encounter a JavaScript error, you need to reconcile the JQuery version. You can either add the expected version of JQuery to your Scripts folder (version 1.8.2 at time of writing this tutorial), or in Site.master specify the path to the JQuery file.
 
-[!code[Main](integrating-jquery-ui/samples/sample4.xml)]
+[!code-aspx[Main](integrating-jquery-ui/samples/sample4.aspx)]
 
 ## Customize DateTime template to include Datepicker widget
 
 You will add the Datepicker widget to the dynamic data template for editing a datetime value. By adding the widget to the template, it is automatically rendered in both the form for adding a new student and in the grid view for editing students. Open **DateTime\_Edit.ascx**, and add the following highlighted code.
 
-[!code[Main](integrating-jquery-ui/samples/sample5.xml?highlight=3)]
+[!code-aspx[Main](integrating-jquery-ui/samples/sample5.aspx?highlight=3)]
 
 In the code-behind file, you will set the minimum and maximum dates for the DatePicker. By setting these values, you will prevent users from navigating to invalid dates. You will retrieve the minimum and maximum values from the **RangeAttribute** on the DateTime property, if one is provided. Open **DateTime\_Edit.ascx.cs**, and add the following highlighted code to the Page\_Load method.
 
-[!code[Main](integrating-jquery-ui/samples/sample6.xml?highlight=9-14)]
+[!code-csharp[Main](integrating-jquery-ui/samples/sample6.cs?highlight=9-14)]
 
 Run the web application and navigate to the AddStudent page. Provide values for the fields and notice that when you click on the text box for Enrollment Date, the calendar is displayed.
 

@@ -29,7 +29,7 @@ For this article, I'll use an OData service that defines three entities: Product
 
 Here are the C# classes that define the entity models:
 
-[!code[Main](using-select-expand-and-value/samples/sample1.xml)]
+[!code-csharp[Main](using-select-expand-and-value/samples/sample1.cs)]
 
 Notice that the `Product` class defines navigation properties for the `Supplier` and `Category`. The `Category` class defines a navigation property for the products in each category.
 
@@ -41,11 +41,11 @@ In Visual Studio 2013, the Web API OData scaffolding creates a controller that a
 
 For collections, the controller's `Get` method must return an **IQueryable**.
 
-[!code[Main](using-select-expand-and-value/samples/sample2.xml)]
+[!code-csharp[Main](using-select-expand-and-value/samples/sample2.cs)]
 
 For single entities, return a **SingleResult&lt;T&gt;**, where T is an **IQueryable** that contains zero or one entities.
 
-[!code[Main](using-select-expand-and-value/samples/sample3.xml)]
+[!code-csharp[Main](using-select-expand-and-value/samples/sample3.cs)]
 
 Also, decorate your `Get` methods with the **[Queryable]** attribute, as shown in the previous code snippets. Alternatively, call **EnableQuerySupport** on the **HttpConfiguration** object at startup. (For more information, see [Enabling OData Query Options](supporting-odata-query-options.md#enable).)
 
@@ -53,37 +53,37 @@ Also, decorate your `Get` methods with the **[Queryable]** attribute, as shown i
 
 When you query an OData entity or collection, the default response does not include related entities. For example, here is the default response for the Categories entity set:
 
-[!code[Main](using-select-expand-and-value/samples/sample4.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample4.cmd)]
 
 As you can see, the response does not include any products, even though the Category entity has a Products navigation link. However, the client can use $expand to get the list of products for each category. The $expand option goes in the query string of the request:
 
-[!code[Main](using-select-expand-and-value/samples/sample5.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample5.cmd)]
 
 Now the server will include the products for each category, inline with the categories. Here is the response payload:
 
-[!code[Main](using-select-expand-and-value/samples/sample6.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample6.cmd)]
 
 Notice that each entry in the "value" array contains a Products list.
 
 The $expand option takes a comma-separated list of navigation properties to expand. The following request expands both the category and the supplier for a product.
 
-[!code[Main](using-select-expand-and-value/samples/sample7.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample7.cmd)]
 
 Here is the response body:
 
-[!code[Main](using-select-expand-and-value/samples/sample8.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample8.cmd)]
 
 You can expand more than one level of navigation property. The following example includes all the products for a category and also the supplier for each product.
 
-[!code[Main](using-select-expand-and-value/samples/sample9.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample9.cmd)]
 
 Here is the response body:
 
-[!code[Main](using-select-expand-and-value/samples/sample10.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample10.cmd)]
 
 By default, Web API limits the maximum expansion depth to 2. That prevents the client from sending complex requests like `$expand=Orders/OrderDetails/Product/Supplier/Region`, which might be inefficient to query and create large responses. To override the default, set the **MaxExpansionDepth** property on the **[Queryable]** attribute.
 
-[!code[Main](using-select-expand-and-value/samples/sample11.xml)]
+[!code-csharp[Main](using-select-expand-and-value/samples/sample11.cs)]
 
 For more information about the $expand option, see [Expand System Query Option ($expand)](http://www.odata.org/documentation/odata-v2-documentation/uri-conventions/#46_Expand_System_Query_Option_expand) in the official OData documentation.
 
@@ -91,27 +91,27 @@ For more information about the $expand option, see [Expand System Query Option (
 
 The $select option specifies a subset of properties to include in the response body. For example, to get only the name and price of each product, use the following query:
 
-[!code[Main](using-select-expand-and-value/samples/sample12.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample12.cmd)]
 
 Here is the response body:
 
-[!code[Main](using-select-expand-and-value/samples/sample13.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample13.cmd)]
 
 You can combine $select and $expand in the same query. Make sure to include the expanded property in the $select option. For example, the following request gets the product name and supplier.
 
-[!code[Main](using-select-expand-and-value/samples/sample14.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample14.cmd)]
 
 Here is the response body:
 
-[!code[Main](using-select-expand-and-value/samples/sample15.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample15.cmd)]
 
 You can also select the properties within an expanded property. The following request expands Products and selects category name plus product name.
 
-[!code[Main](using-select-expand-and-value/samples/sample16.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample16.cmd)]
 
 Here is the response body:
 
-[!code[Main](using-select-expand-and-value/samples/sample17.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample17.cmd)]
 
 For more information about the $select option, see [Select System Query Option ($select)](http://www.odata.org/documentation/odata-v2-documentation/uri-conventions/#48_Select_System_Query_Option_select) in the official OData documentation.
 
@@ -121,20 +121,20 @@ There are two ways for an OData client to get an individual property from an ent
 
 The following request gets a property in OData format.
 
-[!code[Main](using-select-expand-and-value/samples/sample18.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample18.cmd)]
 
 Here is an example response in JSON format:
 
-[!code[Main](using-select-expand-and-value/samples/sample19.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample19.cmd)]
 
 To get the raw value of the property, append $value to the URI:
 
-[!code[Main](using-select-expand-and-value/samples/sample20.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample20.cmd)]
 
 Here is the response. Notice that the content type is "text/plain", not JSON.
 
-[!code[Main](using-select-expand-and-value/samples/sample21.xml)]
+[!code-console[Main](using-select-expand-and-value/samples/sample21.cmd)]
 
 To support these queries in your OData controller, add a method named `GetProperty`, where `Property` is the name of the property. For example, the method to get the Name property would be named `GetName`. The method should return the value of that property:
 
-[!code[Main](using-select-expand-and-value/samples/sample22.xml)]
+[!code-csharp[Main](using-select-expand-and-value/samples/sample22.cs)]

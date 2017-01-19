@@ -71,7 +71,7 @@ The following procedure describes how to create the site and configure it.
 3. In the left pane, click the **Files** workspace selector.
 4. In the root folder of your website, open the *\_AppStart.cshtml* file, which is a special file that's used to contain global settings. It contains some statements that are commented out using the `//` characters:
 
-    [!code[Main](16-adding-security-and-membership/samples/sample1.xml)]
+    [!code-csharp[Main](16-adding-security-and-membership/samples/sample1.cs)]
 
     These statements configure the `WebMail` helper, which can be used to send email. The membership system can use email to send confirmation messages when users register or when they want to change their passwords. (For example, after users register, they get an email that includes a link that they can click in order to finish the registration process.)
 
@@ -97,7 +97,7 @@ The following procedure describes how to create the site and configure it.
 
     > [!NOTE] If you see an error that tells you that a property must be an instance of `ExtendedMembershipProvider`, the site might not be configured to use the ASP.NET Web Pages membership system (SimpleMembership). This can sometimes occur if a hosting provider's server is configured differently than your local server. To fix this, add the following element to the site's *Web.config* file:
     > 
-    > [!code[Main](16-adding-security-and-membership/samples/sample2.xml)]
+    > [!code-xml[Main](16-adding-security-and-membership/samples/sample2.xml)]
     > 
     > Add this element as a child of the `<configuration>` element and as a peer of the `<system.web>` element.
 9. In the upper-right corner of the page, click the **Register** link. The *Register.cshtml* page is displayed.
@@ -141,7 +141,7 @@ In this procedure, you'll create a folder that will contain pages that are avail
 3. Inside the *Members* folder, create a new page and named it *MembersInformation.cshtml*.
 4. Replace the existing content with the following code and markup:
 
-    [!code[Main](16-adding-security-and-membership/samples/sample3.xml)]
+    [!code-csharp[Main](16-adding-security-and-membership/samples/sample3.cs)]
 
     This code tests the `IsAuthenticated` property of the `WebSecurity` object, which returns `true` if the user has logged in. If the user is not logged in, the code calls `Response.Redirect` to send the user to the *Login.cshtml* page in the *Account* folder.
 
@@ -188,10 +188,10 @@ The ASP.NET membership system is set up to support roles. However, unlike member
     Now that you have roles defined, you can configure a page that's accessible to users who are in that role.
 10. In the website root folder, create a new page named *AdminError.cshtml* and replace the existing content with the following code. This will be the page that users are redirected to if they aren't allowed access to a page.
 
-    [!code[Main](16-adding-security-and-membership/samples/sample4.xml)]
+    [!code-cshtml[Main](16-adding-security-and-membership/samples/sample4.cshtml)]
 11. In the website root folder, create a new page named *AdminOnly.cshtml* and replace the existing code with the following code:
 
-    [!code[Main](16-adding-security-and-membership/samples/sample5.xml)]
+    [!code-cshtml[Main](16-adding-security-and-membership/samples/sample5.cshtml)]
 
     The `Roles.IsUserInRole` method returns `true` if the current user is a member of the specified role (in this case, the "admin" role).
 12. Run *Default.cshtml* in a browser, but don't log in. (If you're already logged in, log out.)
@@ -210,11 +210,11 @@ The login page will not stop automated programs (sometimes referred to as *web r
 3. In the *Account* folder, open the file named *Register.cshtml*.
 4. In the code at the top of the page, find the following lines and uncomment them by removing the `//` comment characters:
 
-    [!code[Main](16-adding-security-and-membership/samples/sample6.xml)]
+    [!code-csharp[Main](16-adding-security-and-membership/samples/sample6.cs)]
 5. Replace `PRIVATE_KEY` with your own ReCaptcha private key.
 6. In the markup of the page, remove the `@*` and `*@` commenting characters from around the following lines in the page markup:
 
-    [!code[Main](16-adding-security-and-membership/samples/sample7.xml)]
+    [!code-cshtml[Main](16-adding-security-and-membership/samples/sample7.cshtml)]
 7. Replace `PUBLIC_KEY` with your key.
 8. If you haven't removed it already, remove the `<div>` element that contains text that starts with "To enable CAPTCHA verification ...". (Remove the entire `<div>` element and its contents.)
 

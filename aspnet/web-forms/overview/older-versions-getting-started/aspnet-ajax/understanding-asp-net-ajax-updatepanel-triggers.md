@@ -62,13 +62,13 @@ Similarly, the `<asp:PostBackTrigger>` element can be used to trigger a partial 
 
 **Listing 1: Markup for default.aspx:** 
 
-[!code[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample1.xml)]
+[!code-aspx[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample1.aspx)]
 
 1. In the Click event handler for Button1, set Label1.Text and Label2.Text to something time-dependent (such as DateTime.Now.ToLongTimeString()). For the Click event handler for Button2, set only Label1.Text to the time-dependent value.
 
 **Listing 2: Codebehind (trimmed) in default.aspx.cs:** 
 
-[!code[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample2.xml)]
+[!code-csharp[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample2.cs)]
 
 1. Press F5 to build and run the project. Note that, when you click Update Both Panels , both labels change text; however, when you click Update This Panel, only Label1 updates.
 
@@ -114,13 +114,13 @@ For example, let's add two additional controls to the page, leaving one control 
 
 **Listing 3: New Markup**
 
-[!code[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample3.xml)]
+[!code-aspx[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample3.aspx)]
 
 And here is the new code-behind:
 
 **Listing 4: Codebehind**
 
-[!code[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample4.xml)]
+[!code-csharp[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample4.cs)]
 
 The idea behind this page is that the drop-down list selects one of three colors to show the second label, that the check box determines both whether it is bold, and whether the labels display the date as well as the time. The check box should not cause an AJAX update, but the drop-down list should, even though it is not housed within an UpdatePanel.
 

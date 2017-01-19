@@ -32,18 +32,18 @@ You can download the solution used in this topic from [CodePlex](https://aspnet.
 
 1. Define the CLR types.
 
-    [!code[Main](odata-containment-in-web-api-22/samples/sample1.xml)]
+    [!code-csharp[Main](odata-containment-in-web-api-22/samples/sample1.cs)]
 
     The `Contained` attribute is used for containment navigation properties.
 2. Generate the EDM model based on the CLR types.
 
-    [!code[Main](odata-containment-in-web-api-22/samples/sample2.xml)]
+    [!code-csharp[Main](odata-containment-in-web-api-22/samples/sample2.cs)]
 
     The `ODataConventionModelBuilder` will handle building the EDM model if the `Contained` attribute is added to the corresponding navigation property. If the property is a collection type, a `GetCount(string NameContains)` function will also be created.
 
     The generated metadata will look like the following:
 
-    [!code[Main](odata-containment-in-web-api-22/samples/sample3.xml?highlight=10)]
+    [!code-xml[Main](odata-containment-in-web-api-22/samples/sample3.xml?highlight=10)]
 
     The `ContainsTarget` attribute indicates that the navigation property is a containment.
 
@@ -51,7 +51,7 @@ You can download the solution used in this topic from [CodePlex](https://aspnet.
 
 Contained entities don't have their own controller; the action is defined in the containing entity set controller. In this sample, there is an AccountsController, but no PaymentInstrumentsController.
 
-[!code[Main](odata-containment-in-web-api-22/samples/sample4.xml)]
+[!code-csharp[Main](odata-containment-in-web-api-22/samples/sample4.cs)]
 
 If the OData path is 4 or more segments, only attribute routing works, such as `[ODataRoute("Accounts({accountId})/PayinPIs({paymentInstrumentId})")]` in the above controller. Otherwise, both attribute and conventional routing works: for instance, `GetPayInPIs(int key)` matches `GET ~/Accounts(1)/PayinPIs`.
 

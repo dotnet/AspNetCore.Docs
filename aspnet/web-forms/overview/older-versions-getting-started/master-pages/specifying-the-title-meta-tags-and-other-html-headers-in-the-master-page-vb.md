@@ -33,7 +33,7 @@ In this tutorial we examine how to define global and page-specific `<head>` sect
 The default master page file created by Visual Studio 2008 contains the following markup in its `<head>` section:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample1.xml)]
+[!code-aspx[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample1.aspx)]
 
 Notice that the `<head>` element contains a `runat="server"` attribute, which indicates that it is a server control (rather than static HTML). All ASP.NET pages derive from the [`Page` class](https://msdn.microsoft.com/en-us/library/system.web.ui.page.aspx), which is located in the `System.Web.UI` namespace. This class contains a [`Header` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.header.aspx) that provides access to the page's `<head>` region. Using the `Header` property we can set an ASP.NET page's title or add additional markup to the rendered `<head>` section. It is possible, then, to customize a content page's `<head>` element by writing a bit of code in the page's `Page_Load` event handler. We examine how to programmatically set the page's title in Step 1.
 
@@ -42,7 +42,7 @@ The markup shown in the `<head>` element above also includes a ContentPlaceHolde
 In addition to the `<title>` element and `head` ContentPlaceHolder, the master page's `<head>` element should contain any `<head>`-level markup that's common to all pages. In our website, all pages use the CSS rules defined in the `Styles.css` file. Consequently, we updated the `<head>` element in the [*Creating a Site-Wide Layout with Master Pages*](creating-a-site-wide-layout-using-master-pages-vb.md) tutorial to include a corresponding `<link>` element. Our `Site.master` master page's current `<head>` markup is shown below.
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample2.xml)]
+[!code-aspx[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample2.aspx)]
 
 ## Step 1: Setting a Content Page's Title
 
@@ -66,7 +66,7 @@ A content page's title can be set declaratively through the `Title` attribute of
 From the Source view, locate the `<%@ Page %>` directive, which is at the top of the page's declarative markup. The `<%@ Page %>` directive for `Default.aspx` follows:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample3.xml)]
+[!code-aspx[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample3.aspx)]
 
 The `<%@ Page %>` directive specifies page-specific attributes used by the ASP.NET engine when parsing and compiling the page. This includes its master page file, the location of its code file, and its title, among other information.
 
@@ -93,7 +93,7 @@ The master page's `<head runat="server">` markup is translated into an [`HtmlHea
 To practice setting the page's title programmatically, navigate to the `About.aspx` page's code-behind class and create an event handler for the page's `Load` event. Next, set the page's title to "Master Page Tutorials :: About :: *date*", where *date* is the current date. After adding this code your `Page_Load` event handler should look similar to the following:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample4.xml)]
+[!code-vb[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample4.vb)]
 
 Figure 3 shows the browser's title bar when visiting the `About.aspx` page.
 
@@ -130,14 +130,14 @@ Our first task is to create a base page class, which is a class that extends the
 Because the custom base page serves as the base class for ASP.NET pages' code-behind classes, it needs to extend the `Page` class.
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample5.xml)]
+[!code-vb[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample5.vb)]
 
 Whenever an ASP.NET page is requested it proceeds through a series of stages, culminating in the requested page being rendered into HTML. We can tap into a stage by overriding the `Page` class's `OnEvent` method. For our base page let's automatically set the title if it has not been explicitly specified by the `LoadComplete` stage (which, as you might have guessed, occurs after the `Load` stage).
 
 To accomplish this, override the `OnLoadComplete` method and enter the following code:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample6.xml)]
+[!code-vb[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample6.vb)]
 
 The `OnLoadComplete` method starts by determining if the `Title` property has not yet been explicitly set. If the `Title` property is `Nothing`, an empty string, or has the value "Untitled Page", it is assigned to the filename of the requested ASP.NET page. The physical path to the requested ASP.NET page - `C:\MySites\Tutorial03\Login.aspx`, for example - is accessible via the `Request.PhysicalPath` property. The `Path.GetFileNameWithoutExtension` method is used to pull out just the filename portion, and this filename is then assigned to the `Page.Title` property.
 
@@ -149,12 +149,12 @@ The `OnLoadComplete` method starts by determining if the `Title` property has no
 We now need to update the ASP.NET pages in our site to derive from the custom base page (`BasePage`) instead of the `Page` class. To accomplish this go to each code-behind class and change the class declaration from:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample7.xml)]
+[!code-vb[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample7.vb)]
 
 To:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample8.xml)]
+[!code-vb[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample8.vb)]
 
 After doing so, visit the site through a browser. If you visit a page whose title is explicitly set, such as `Default.aspx` or `About.aspx`, the explicitly specified title is used. If, however, you visit a page whose title has not been changed from the default ("Untitled Page"), the base page class sets the title to the page's filename.
 
@@ -190,7 +190,7 @@ Start by creating a site map file in the website's root folder named `Web.sitema
 Add the following XML to the `Web.sitemap` file:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample9.xml)]
+[!code-xml[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample9.xml)]
 
 This XML defines the hierarchical site map structure shown in Figure 7.
 
@@ -222,7 +222,7 @@ From the Data Source Configuration Wizard choose to bind the ListView to a new S
 After creating the SiteMapDataSource control, we need to define the ListView's templates so that it renders an unordered list with a list item for each node returned by the SiteMapDataSource control. This can be accomplished using the following template markup:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample10.xml)]
+[!code-aspx[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample10.aspx)]
 
 The `LayoutTemplate` generates the markup for an unordered list (`<ul>...</ul>`) while the `ItemTemplate` renders each item returned by the SiteMapDataSource as a list item (`<li>`) that contains a link to the particular lesson.
 
@@ -239,7 +239,7 @@ To display multiple levels we could nest multiple ListViews within the `ItemTemp
 With this change, the ListView displays bullet items for the About and Using Multiple ContentPlaceHolder Controls lessons, but omits a bullet item for Home. To remedy this, we can explicitly add a bullet item for Home in the `LayoutTemplate`:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample11.xml)]
+[!code-aspx[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample11.aspx)]
 
 By configuring the SiteMapDataSource to omit the starting node and explicitly adding a Home bullet item, the Lessons section now displays the intended output.
 
@@ -262,7 +262,7 @@ With the site map in place, we can update our `BasePage` class to use the title 
 Update the `BasePage` class's `OnLoadComplete` method to include the following code:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample12.xml)]
+[!code-vb[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample12.vb)]
 
 As before, the `OnLoadComplete` method starts by determining whether the page's title has been explicitly set. If `Page.Title` is `Nothing`, an empty string, or is assigned the value "Untitled Page" then the code automatically assigns a value to `Page.Title`.
 
@@ -287,12 +287,12 @@ To illustrate adding custom `<head>` markup to a page, let's include a `<meta>` 
 A `<meta>` description element has the following form:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample13.xml)]
+[!code-html[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample13.html)]
 
 To add this markup to a content page, add the above text to the Content control that maps to the master page's `head` ContentPlaceHolder. For example, to define a `<meta>` description element for `Default.aspx`, add the following markup:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample14.xml)]
+[!code-aspx[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample14.aspx)]
 
 Because the `head` ContentPlaceHolder is not within the HTML page's body, the markup added to the Content control is not displayed in the Design view. To see the `<meta>` description element visit `Default.aspx` through a browser. After the page has been loaded, view the source and note that the `<head>` section includes the markup specified in the Content control.
 
@@ -305,7 +305,7 @@ The `head` ContentPlaceHolder allows us to declaratively add custom markup to th
 Being able to programmatically add content to the `<head>` region is useful when the content to add is dynamic. Perhaps it's based on the user visiting the page; maybe it's being pulled from a database. Regardless of the reason, you can add content to the `HtmlHead` by adding controls to its `Controls` collection like so:
 
 
-[!code[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample15.xml)]
+[!code-vb[Main](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb/samples/sample15.vb)]
 
 The above code adds the `<meta>` keywords element to the `<head>` region, which provides a comma-delimited list of keywords that describe the page. Note that to add a `<meta>` tag you create an [`HtmlMeta`](https://msdn.microsoft.com/en-us/library/system.web.ui.htmlcontrols.htmlmeta.aspx) instance, set its `Name` and `Content` properties, and then add it to the `Header`'s `Controls` collection. Similarly, to programmatically add a `<link>` element, create an [`HtmlLink`](https://msdn.microsoft.com/en-us/library/system.web.ui.htmlcontrols.htmllink.aspx) object, set its properties, and then add it to the `Header`'s `Controls` collection.
 

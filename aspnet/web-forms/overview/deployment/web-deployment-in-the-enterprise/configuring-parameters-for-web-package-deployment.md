@@ -44,7 +44,7 @@ When you build and package a web application, the WPP will automatically paramet
 For example, if you were to build and package the [Contact Manager](the-contact-manager-solution.md) sample solution without touching the parameterization process in any way, the WPP would generate this *ContactManager.Mvc.SetParameters.xml* file:
 
 
-[!code[Main](configuring-parameters-for-web-package-deployment/samples/sample1.xml)]
+[!code-xml[Main](configuring-parameters-for-web-package-deployment/samples/sample1.xml)]
 
 
 In this case:
@@ -69,13 +69,13 @@ The easiest way to parameterize these properties is to add a *parameters.xml* fi
 If you open this file, you&#x27;ll see that it contains a single **parameter** entry. The entry uses an XML Path Language (XPath) query to locate and parameterize the endpoint URL of the ContactService Windows Communication Foundation (WCF) service in the *web.config* file.
 
 
-[!code[Main](configuring-parameters-for-web-package-deployment/samples/sample2.xml)]
+[!code-xml[Main](configuring-parameters-for-web-package-deployment/samples/sample2.xml)]
 
 
 In addition to parameterizing the endpoint URL in the deployment package, the WPP also adds a corresponding entry to the *SetParameters.xml* file that gets generated alongside the deployment package.
 
 
-[!code[Main](configuring-parameters-for-web-package-deployment/samples/sample3.xml)]
+[!code-xml[Main](configuring-parameters-for-web-package-deployment/samples/sample3.xml)]
 
 
 If you install the deployment package manually, IIS Manager will prompt you for the service endpoint address alongside the properties that were parameterized automatically. If you install the deployment package by running the *.deploy.cmd* file, you can edit the *SetParameters.xml* file to provide a value for the service endpoint address together with values for the properties that were parameterized automatically.
@@ -94,7 +94,7 @@ The [Contact Manager sample solution](the-contact-manager-solution.md) illustrat
 First, the parameter values of interest are defined as properties in the environment-specific project file (for example, *Env-Dev.proj*).
 
 
-[!code[Main](configuring-parameters-for-web-package-deployment/samples/sample4.xml)]
+[!code-xml[Main](configuring-parameters-for-web-package-deployment/samples/sample4.xml)]
 
 
 > [!NOTE] For guidance on how to customize the environment-specific project files for your own server environments, see [Configure Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).
@@ -103,7 +103,7 @@ First, the parameter values of interest are defined as properties in the environ
 Next, the *Publish.proj*file imports these properties. Because each *SetParameters.xml* file is associated with a *.deploy.cmd* file, and we ultimately want the project file to invoke each *.deploy.cmd* file, the project file creates an MSBuild *item* for each *.deploy.cmd* file and defines the properties of interest as *item metadata*.
 
 
-[!code[Main](configuring-parameters-for-web-package-deployment/samples/sample5.xml)]
+[!code-xml[Main](configuring-parameters-for-web-package-deployment/samples/sample5.xml)]
 
 
 In this case:
@@ -116,7 +116,7 @@ In this case:
 Finally, in the *Publish.proj* file, the **PublishWebPackages** target uses the **XmlPoke** task to modify these values in the *SetParameters.xml* file.
 
 
-[!code[Main](configuring-parameters-for-web-package-deployment/samples/sample6.xml)]
+[!code-xml[Main](configuring-parameters-for-web-package-deployment/samples/sample6.xml)]
 
 
 You&#x27;ll notice that each **XmlPoke** task specifies four attribute values:

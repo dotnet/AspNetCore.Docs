@@ -103,7 +103,7 @@ Next, add a master page to the site in the root directory by right-clicking on t
 
 Adding a new master page file through Visual Web Developer creates a master page with the following declarative markup:
 
-[!code[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample1.xml)]
+[!code-aspx[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample1.aspx)]
 
 The first line in the declarative markup is the [`@Master` directive](https://msdn.microsoft.com/en-us/library/ms228176.aspx). The `@Master` directive is similar to the [`@Page` directive](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) that appears in ASP.NET pages. It defines the server-side language (C#) and information about the location and inheritance of the master page's code-behind class.
 
@@ -131,13 +131,13 @@ Let's expand `Site.master`'s default declarative markup to create a site layout 
 
 To achieve the site layout shown in Figure 6, start by updating the `Site.master` master page so that it contains the following declarative markup:
 
-[!code[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample2.xml)]
+[!code-aspx[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample2.aspx)]
 
 The master page's layout is defined using a series of `<div>` HTML elements. The `topContent` `<div>` contains the markup that appears at the top of each page, while the `mainContent`, `leftContent`, and `footerContent` `<div>` s are used to display the page's content, the left column, and the "Powered by Microsoft ASP.NET" icon, respectively. In addition to adding these `<div>` elements, I also renamed the `ID` property of the primary ContentPlaceHolder control from `ContentPlaceHolder1` to `MainContent`.
 
 The formatting and layout rules for these assorted `<div>` elements is spelled out in the [Cascading Stylesheet (CSS)](http://en.wikipedia.org/wiki/Cascading_Style_Sheets) file `Styles.css`, which is specified via a &lt;link&gt; element in the master page's &lt;head&gt; element. These various rules define the look and feel of each `<div>` element noted above. For example, the `topContent` `<div>` element, which displays the "Master Pages Tutorials" text and link, has its formatting rules specified in `Styles.css` as follows:
 
-[!code[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample3.xml)]
+[!code-css[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample3.css)]
 
 If you are following along at your computer, you will need to download this tutorial's accompanying code and add the `Styles.css` file to your project. Similarly, you will also need to create a folder named Images and copy the "Powered by Microsoft ASP.NET" icon from the downloaded demo website to your project.
 
@@ -174,7 +174,7 @@ Let's add a new ASP.NET page to the project and bind it to the `Site.master` mas
 
 As the following declarative markup shows, a new content page contains a `@Page` directive that points back to its master page and a Content control for each of the master page's ContentPlaceHolder controls.
 
-[!code[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample4.xml)]
+[!code-aspx[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample4.aspx)]
 
 > [!NOTE] In the "Creating a Simple Site Layout" section in Step 1 I renamed `ContentPlaceHolder1` to `MainContent`. If you did not rename this ContentPlaceHolder control's `ID` in the same way, your content page's declarative markup will differ slightly from the markup shown above. Namely, the second Content control's `ContentPlaceHolderID` will reflect the `ID` of the corresponding ContentPlaceHolder control in your master page.
 
@@ -226,11 +226,11 @@ One of the primary benefits of master pages is that a single master page may be 
 
 To illustrate this behavior, let's update our master page to include the current date in at the top of the left column. Add a Label named `DateDisplay` to the `leftContent` `<div>`.
 
-[!code[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample5.xml)]
+[!code-aspx[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample5.aspx)]
 
 Next, create a `Page_Load` event handler for the master page and add the following code:
 
-[!code[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample6.xml)]
+[!code-csharp[Main](creating-a-site-wide-layout-using-master-pages-cs/samples/sample6.cs)]
 
 The above code sets the Label's `Text` property to the current date and time formatted as the day of the week, the name of the month, and the two-digit day (see Figure 11). With this change, revisit one of your content pages. As Figure 11 shows, the resulting markup is immediately updated to include the change to the master page.
 

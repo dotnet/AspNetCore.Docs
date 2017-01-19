@@ -30,11 +30,11 @@ The ASP.NET AJAX Control Toolkit contains the `FilteredTextBox` control which ex
 
 For this to work, we first need as usual the ASP.NET AJAX `ScriptManager` which loads the JavaScript libraries which are also used by the ASP.NET AJAX Control Toolkit:
 
-[!code[Main](allowing-only-certain-characters-in-a-text-box-vb/samples/sample1.xml)]
+[!code-aspx[Main](allowing-only-certain-characters-in-a-text-box-vb/samples/sample1.aspx)]
 
 Then, we need a text box:
 
-[!code[Main](allowing-only-certain-characters-in-a-text-box-vb/samples/sample2.xml)]
+[!code-aspx[Main](allowing-only-certain-characters-in-a-text-box-vb/samples/sample2.aspx)]
 
 Finally, the `FilteredTextBoxExtender` control takes care of restricting the characters the user is allowed to type. First, set the `TargetControlID` attribute to the `ID` of the `TextBox` control. Then, choose one of the available `FilterType` values:
 
@@ -47,7 +47,7 @@ If the `Custom FilterType` is used, the `ValidChars` property must be set and pr
 
 Here is the markup for the `FilteredTextBoxExtender` control that only allows digits (something that would also have been possible with `FilterType="Numbers"`):
 
-[!code[Main](allowing-only-certain-characters-in-a-text-box-vb/samples/sample3.xml)]
+[!code-aspx[Main](allowing-only-certain-characters-in-a-text-box-vb/samples/sample3.aspx)]
 
 Run the page and try to enter a letter if JavaScript is enabled, it will not work; digits however appear on the page. However note that the protection `FilteredTextBox` provides is not bullet-proof: If JavaScript is enabled, any data may be entered in the text box, so you have to use additional validation means, i.e. ASP.NET's validation controls.
 

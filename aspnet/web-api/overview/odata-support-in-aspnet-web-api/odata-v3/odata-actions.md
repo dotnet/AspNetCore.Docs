@@ -38,7 +38,7 @@ In this example, we want to let users rate products, and then expose the average
 
 Here is the model we might use to represent the ratings in Entity Framework:
 
-[!code[Main](odata-actions/samples/sample1.xml)]
+[!code-csharp[Main](odata-actions/samples/sample1.cs)]
 
 But we don't want clients to POST a `ProductRating` object to a "Ratings" collection. Intuitively, the rating is associated with the Products collection, and the client should only need to post the rating value.
 
@@ -46,17 +46,17 @@ Therefore, instead of using the normal CRUD operations, we define an action that
 
 >Actions have side-effects on the server. For this reason, they are invoked using HTTP POST requests. Actions can have parameters and return types, which are described in the service metadata. The client sends the parameters in the request body, and the server sends the return value in the response body. To invoke the "Rate Product" action, the client sends a POST to a URI like the following:
 
-[!code[Main](odata-actions/samples/sample2.xml)]
+[!code-console[Main](odata-actions/samples/sample2.cmd)]
 
 The data in the POST request is simply the product rating:
 
-[!code[Main](odata-actions/samples/sample3.xml)]
+[!code-console[Main](odata-actions/samples/sample3.cmd)]
 
 ## Declare the Action in the Entity Data Model
 
 In your Web API configuration, add the action to the entity data model (EDM):
 
-[!code[Main](odata-actions/samples/sample4.xml)]
+[!code-csharp[Main](odata-actions/samples/sample4.cs)]
 
 This code defines "RateProduct" as an action that can be performed on Product entities. It also declares that the action takes an **int** parameter named "Rating", and returns an **int** value.
 
@@ -64,7 +64,7 @@ This code defines "RateProduct" as an action that can be performed on Product en
 
 The "RateProduct" action is bound to Product entities. To implement the action, add a method named `RateProduct` to the Products controller:
 
-[!code[Main](odata-actions/samples/sample5.xml)]
+[!code-csharp[Main](odata-actions/samples/sample5.cs)]
 
 Notice that the method name matches the name of the action in the EDM. The method has two parameters:
 
@@ -75,7 +75,7 @@ If you are using the default routing conventions, the key parameter must be name
 
 Use the *parameters* dictionary to get the action parameters:
 
-[!code[Main](odata-actions/samples/sample6.xml)]
+[!code-csharp[Main](odata-actions/samples/sample6.cs)]
 
 If the client sends the action parameters in the correct format, the value of **ModelState.IsValid** is true. In that case, you can use the **ODataActionParameters** dictionary to get the parameter values. In this example, the `RateProduct` action takes a single parameter named "Rating".
 
@@ -83,7 +83,7 @@ If the client sends the action parameters in the correct format, the value of **
 
 To view the service metadata, send a GET request to /odata/$metadata. Here is the portion of the metadata that declares the `RateProduct` action:
 
-[!code[Main](odata-actions/samples/sample7.xml)]
+[!code-xml[Main](odata-actions/samples/sample7.xml)]
 
 The **FunctionImport** element declares the action. Most of the fields are self-explanatory, but two are worth noting:
 
@@ -94,7 +94,7 @@ The difference is that some actions are always available to clients, but other a
 
 When you define the EDM, the **Action** method creates an always-bindable action:
 
-[!code[Main](odata-actions/samples/sample8.xml?highlight=1)]
+[!code-csharp[Main](odata-actions/samples/sample8.cs?highlight=1)]
 
 I'll talk about not-always-bindable actions (also called *transient* actions) later in this topic.
 
@@ -102,11 +102,11 @@ I'll talk about not-always-bindable actions (also called *transient* actions) la
 
 Now let's see how a client would invoke this action. Suppose the client wants to give a rating of 2 to the product with ID = 4. Here is an example request message, using JSON format for the request body:
 
-[!code[Main](odata-actions/samples/sample9.xml)]
+[!code-console[Main](odata-actions/samples/sample9.cmd)]
 
 Here is the response message:
 
-[!code[Main](odata-actions/samples/sample10.xml)]
+[!code-console[Main](odata-actions/samples/sample10.cmd)]
 
 ## Binding an Action to an Entity Set
 
@@ -114,25 +114,25 @@ In the previous example, the action is bound to a single entity: The client rate
 
 In the EDM, add the action to the entity's **Collection** property.
 
-[!code[Main](odata-actions/samples/sample11.xml?highlight=1)]
+[!code-csharp[Main](odata-actions/samples/sample11.cs?highlight=1)]
 
 In the controller method, omit the *key* parameter.
 
-[!code[Main](odata-actions/samples/sample12.xml)]
+[!code-csharp[Main](odata-actions/samples/sample12.cs)]
 
 Now the client invokes the action on the Products entity set:
 
-[!code[Main](odata-actions/samples/sample13.xml)]
+[!code-console[Main](odata-actions/samples/sample13.cmd)]
 
 ## Actions with Collection Parameters
 
 Actions can have parameters that take a collection of values. In the EDM, use **CollectionParameter&lt;T&gt;** to declare the parameter.
 
-[!code[Main](odata-actions/samples/sample14.xml)]
+[!code-csharp[Main](odata-actions/samples/sample14.cs)]
 
 This declares a parameter named "Ratings" that takes a collection of **int** values. In the controller method, you still get the parameter value from the **ODataActionParameters** object, but now the value is an **ICollection&lt;int&gt;** value:
 
-[!code[Main](odata-actions/samples/sample15.xml)]
+[!code-csharp[Main](odata-actions/samples/sample15.cs)]
 
 ## Transient Actions
 
@@ -140,21 +140,21 @@ In the "RateProduct" example, users can always rate a product, so the action is 
 
 In the service metadata, a transient action has **IsAlwaysBindable** equal to false. That's actually the default value, so the metadata will look like this:
 
-[!code[Main](odata-actions/samples/sample16.xml)]
+[!code-xml[Main](odata-actions/samples/sample16.xml)]
 
 Here's why this matters: If an action is transient, the server needs to tell the client when the action is available. It does this by including a link to the action in the entity. Here is an example for a Movie entity:
 
-[!code[Main](odata-actions/samples/sample17.xml)]
+[!code-console[Main](odata-actions/samples/sample17.cmd)]
 
 The "#CheckOut" property contains a link to the CheckOut action. If the action is not available, the server omits the link.
 
 To declare a transient action in the EDM, call the **TransientAction** method:
 
-[!code[Main](odata-actions/samples/sample18.xml)]
+[!code-csharp[Main](odata-actions/samples/sample18.cs)]
 
 Also, you must provide a function that returns an action link for a given entity. Set this function by calling **HasActionLink**. You can write the function as a lambda expression:
 
-[!code[Main](odata-actions/samples/sample19.xml)]
+[!code-csharp[Main](odata-actions/samples/sample19.cs)]
 
 If the action is available, the lambda expression returns a link to the action. The OData serializer includes this link when it serializes the entity. When the action is not available, the function returns `null`.
 

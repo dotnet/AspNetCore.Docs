@@ -124,11 +124,11 @@ Notice that the new design for the Contact Manager includes images for editing a
 
 Originally, these links that were rendered with the HTML.ActionLink() helper like this:
 
-[!code[Main](iteration-2-make-the-application-look-nice-cs/samples/sample1.xml)]
+[!code-aspx[Main](iteration-2-make-the-application-look-nice-cs/samples/sample1.aspx)]
 
 The Html.ActionLink() method does not support images (the method HTML encodes the link text for security reasons). Therefore, I replaced the calls to Html.ActionLink() with calls to Url.Action() like this:
 
-[!code[Main](iteration-2-make-the-application-look-nice-cs/samples/sample2.xml)]
+[!code-aspx[Main](iteration-2-make-the-application-look-nice-cs/samples/sample2.aspx)]
 
 The Html.ActionLink() method renders an entire HTML hyperlink. The Url.Action() method, on the other hand, renders just the URL without the &lt;a&gt; tag.
 
@@ -144,7 +144,7 @@ To support rendering both selected and unselected tabs, I created a custom HTML 
 
 **Listing 1 - Helpers\MenuItemHelper.cs**
 
-[!code[Main](iteration-2-make-the-application-look-nice-cs/samples/sample3.xml)]
+[!code-csharp[Main](iteration-2-make-the-application-look-nice-cs/samples/sample3.cs)]
 
 The MenuItemHelper uses the TagBuilder class internally to build the &lt;li&gt; HTML tag. The TagBuilder class is a very useful utility class that you can use whenever you need to build up a new HTML tag. It includes methods for adding attributes, adding CSS classes, generating Ids, and modifying the tag s inner HTML.
 

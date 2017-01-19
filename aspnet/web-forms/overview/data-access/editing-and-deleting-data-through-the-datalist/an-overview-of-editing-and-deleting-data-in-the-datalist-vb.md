@@ -62,7 +62,7 @@ Like in the other folders, `Default.aspx` in the `EditDeleteDataList` folder lis
 Lastly, add the pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Master/Detail Reports with the DataList and Repeater `<siteMapNode>`:
 
 
-[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample1.xml)]
+[!code-xml[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the DataList editing and deleting tutorials.
 
@@ -128,7 +128,7 @@ After configuring the ObjectDataSource, click Finish, returning to the Designer.
 After replacing the default DataList `ItemTemplate` with a customized one, the declarative markup on your page should look similar to the following:
 
 
-[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample2.xml)]
+[!code-aspx[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample2.aspx)]
 
 Take a moment to view our progress through a browser. As Figure 7 shows, the DataList displays the product name and unit price for each product in two columns.
 
@@ -198,7 +198,7 @@ Add to the `EditItemTemplate` two Button Web controls, one whose `CommandName` i
 With the `EditItemTemplate` complete your DataList s declarative markup should look similar to the following:
 
 
-[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample3.xml)]
+[!code-aspx[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample3.aspx)]
 
 ## Step 5: Adding the Plumbing to Enter Edit Mode
 
@@ -220,7 +220,7 @@ Clicking the button causes a postback, but does *not* bring the product listing 
 Since the DataList s `EditCommand` event is fired when the Edit button is clicked, create an `EditCommand` event handler with the following code:
 
 
-[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample4.xml)]
+[!code-vb[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample4.vb)]
 
 The `EditCommand` event handler is passed in an object of type `DataListCommandEventArgs` as its second input parameter, which includes a reference to the `DataListItem` whose Edit button was clicked (`e.Item`). The event handler first sets the DataList s `EditItemIndex` to the `ItemIndex` of the editable `DataListItem` and then rebinds the data to the DataList by calling the DataList s `DataBind()` method.
 
@@ -244,7 +244,7 @@ To have the DataList render all of its items in the read-only mode, we need to:
 These steps can be accomplished with the following event handler code:
 
 
-[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample5.xml)]
+[!code-vb[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample5.vb)]
 
 With this addition, clicking the Cancel button returns the DataList to its pre-editing state.
 
@@ -262,7 +262,7 @@ To get the updated product name and price, we need to use the `FindControl` meth
 The following code implements the four steps:
 
 
-[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample6.xml)]
+[!code-vb[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample6.vb)]
 
 The event handler starts by reading in the edited product s `ProductID` from the `DataKeys` collection. Next, the two TextBoxes in the `EditItemTemplate` are referenced and their `Text` properties stored in local variables, `productNameValue` and `unitPriceValue`. We use the `Decimal.Parse()` method to read the value from the `UnitPrice` TextBox so that if the value entered has a currency symbol, it can still be correctly converted into a `Decimal` value.
 
@@ -304,12 +304,12 @@ When clicked, a Button whose `CommandName` is Edit , Update , or Cancel raises t
 Add a Delete button next to the Edit button in the `ItemTemplate`, setting its `CommandName` property to Delete . After adding this Button control your DataList s `ItemTemplate` declarative syntax should look like:
 
 
-[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample7.xml)]
+[!code-aspx[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample7.aspx)]
 
 Next, create an event handler for the DataList s `DeleteCommand` event, using the following code:
 
 
-[!code[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample8.xml)]
+[!code-vb[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample8.vb)]
 
 Clicking the Delete button causes a postback and fires the DataList s `DeleteCommand` event. In the event handler, the clicked product s `ProductID` value is accessed from the `DataKeys` collection. Next, the product is deleted by calling the `ProductsBLL` class s `DeleteProduct` method.
 

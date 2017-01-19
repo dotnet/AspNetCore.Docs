@@ -40,7 +40,7 @@ In **Server Explorer**, expand *School.mdf*, right-click **Stored Procedures**, 
 
 Copy the following SQL statements and paste them into the stored procedure window, replacing the skeleton stored procedure.
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample1.xml)]
+[!code-sql[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample1.sql)]
 
 [![image14](the-entity-framework-and-aspnet-getting-started-part-7/_static/image4.png)](the-entity-framework-and-aspnet-getting-started-part-7/_static/image3.png)
 
@@ -50,19 +50,19 @@ Save and close the stored procedure window.
 
 Create an `InsertInstructor` stored procedure in the same manner, using the following SQL statements:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample2.xml)]
+[!code-sql[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample2.sql)]
 
 Create `Update` stored procedures for `Student` and `Instructor` entities also. (The database already has a `DeletePerson` stored procedure which will work for both `Instructor` and `Student` entities.)
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample3.xml)]
+[!code-sql[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample3.sql)]
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample4.xml)]
+[!code-sql[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample4.sql)]
 
 In this tutorial you'll map all three functions -- insert, update, and delete -- for each entity type. The Entity Framework version 4 allows you to map just one or two of these functions to stored procedures without mapping the others, with one exception: if you map the update function but not the delete function, the Entity Framework will throw an exception when you attempt to delete an entity. In the Entity Framework version 3.5, you did not have this much flexibility in mapping stored procedures: if you mapped one function you were required to map all three.
 
 To create a stored procedure that reads rather than updates data, create one that selects all `Course` entities, using the following SQL statements:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample5.xml)]
+[!code-sql[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample5.sql)]
 
 ## Adding the Stored Procedures to the Data Model
 
@@ -120,11 +120,11 @@ The Entity Framework does not automatically run stored procedures such as `GetCo
 
 Open the *InstructorsCourses.aspx.cs* file. The `PopulateDropDownLists` method uses a LINQ-to-Entities query to retrieve all course entities so that it can loop through the list and determine which ones an instructor is assigned to and which ones are unassigned:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample6.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample6.cs)]
 
 Replace this with the following code:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample7.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-7/samples/sample7.cs)]
 
 The page now uses the `GetCourses` stored procedure to retrieve the list of all courses. Run the page to verify that it works as it did before.
 

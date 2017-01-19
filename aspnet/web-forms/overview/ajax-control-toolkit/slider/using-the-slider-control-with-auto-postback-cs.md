@@ -28,23 +28,23 @@ The Slider control in the AJAX Control Toolkit provides a graphical slider that 
 
 In order to make the slider automatically postback upon a change, both text boxes need the attribute `AutoPostBack="true"`: The text box that will become the slider itself, and the text box that holds the slider's position. Here is the required markup for that:
 
-[!code[Main](using-the-slider-control-with-auto-postback-cs/samples/sample1.xml)]
+[!code-aspx[Main](using-the-slider-control-with-auto-postback-cs/samples/sample1.aspx)]
 
 The `SliderExtender` control from the ASP.NET AJAX Control Toolkit assigns the slider functionality to the two text boxes:
 
-[!code[Main](using-the-slider-control-with-auto-postback-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-the-slider-control-with-auto-postback-cs/samples/sample2.aspx)]
 
 An additional label element will later be used to inform the user of a postback:
 
-[!code[Main](using-the-slider-control-with-auto-postback-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-the-slider-control-with-auto-postback-cs/samples/sample3.aspx)]
 
 Finally, the `ScriptManager` control of ASP.NET AJAX loads the required JavaScript for the Control Toolkit to work:
 
-[!code[Main](using-the-slider-control-with-auto-postback-cs/samples/sample4.xml)]
+[!code-aspx[Main](using-the-slider-control-with-auto-postback-cs/samples/sample4.aspx)]
 
 Now the slider is posting back; on the server-side, this event may be caught and acted upon:
 
-[!code[Main](using-the-slider-control-with-auto-postback-cs/samples/sample5.xml)]
+[!code-aspx[Main](using-the-slider-control-with-auto-postback-cs/samples/sample5.aspx)]
 
 
 [![Moving the slider triggers a postback](using-the-slider-control-with-auto-postback-cs/_static/image2.png)](using-the-slider-control-with-auto-postback-cs/_static/image1.png)

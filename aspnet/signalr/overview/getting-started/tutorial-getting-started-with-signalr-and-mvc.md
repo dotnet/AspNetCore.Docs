@@ -104,13 +104,13 @@ This section shows how to create an ASP.NET MVC 5 application, add the SignalR l
     ![Create new hub](tutorial-getting-started-with-signalr-and-mvc/_static/image6.png)
 9. Replace the code in the **ChatHub** class with the following code.
 
-    [!code[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample1.xml)]
+    [!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample1.cs)]
 10. Create a new class called Startup.cs. Change the contents of the file to the following.
 
-    [!code[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample2.xml)]
+    [!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample2.cs)]
 11. Edit the `HomeController` class found in **Controllers/HomeController.cs** and add the following method to the class. This method returns the **Chat** view that you will create in a later step.
 
-    [!code[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample3.xml)]
+    [!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample3.cs)]
 12. Right-click the **Views/Home** folder, and select **Add... | View**.
 13. In the **Add View** dialog, name the new view **Chat**.
 
@@ -119,7 +119,7 @@ This section shows how to create an ASP.NET MVC 5 application, add the SignalR l
 
     > [!IMPORTANT] When you add SignalR and other script libraries to your Visual Studio project, the Package Manager might install a version of the SignalR script file that is more recent than the version shown in this topic. Make sure that the script reference in your code matches the version of the script library installed in your project.
 
-    [!code[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample4.xml)]
+    [!code-cshtml[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample4.cshtml)]
 15. **Save All** for the project.
 
 <a id="run"></a>
@@ -158,7 +158,7 @@ The **Send** method demonstrates several hub concepts :
 - Use the **Microsoft.AspNet.SignalR.Hub.Clients** property to access all clients connected to this hub.
 - Call a function on the client (such as the `addNewMessageToPage` function) to update clients.
 
-    [!code[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample5.xml)]
+    [!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample5.cs)]
 
 ### SignalR and jQuery
 
@@ -166,21 +166,21 @@ The **Chat.cshtml** view file in the code sample shows how to use the SignalR jQ
 
 The following code declares a reference to a hub proxy.
 
-[!code[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample6.xml)]
+[!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample6.cs)]
 
 > [!NOTE] In JavaScript the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in JavaScript as **chatHub**. If you want to reference the `ChatHub` class in jQuery with conventional Pascal casing as you would in C#, edit the ChatHub.cs class file. Add a `using` statement to reference the `Microsoft.AspNet.SignalR.Hubs` namespace. Then add the `HubName` attribute to the `ChatHub` class, for example `[HubName("ChatHub")]`. Finally, update your jQuery reference to the `ChatHub` class.
 
 
 The following code shows how to create a callback function in the script. The hub class on the server calls this function to push content updates to each client. The optional call to the `htmlEncode` function shows a way to HTML encode the message content before displaying it in the page, as a way to prevent script injection.
 
-[!code[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample7.xml)]
+[!code-html[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample7.html)]
 
 The following code shows how to open a connection with the hub. The code starts the connection and then passes it a function to handle the click event on the **Send** button in the Chat page.
 
 > [!NOTE] This approach ensures that the connection is established before the event handler executes.
 
 
-[!code[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample8.xml)]
+[!code-javascript[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample8.js)]
 
 <a id="next"></a>
 

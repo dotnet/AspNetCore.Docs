@@ -43,7 +43,7 @@ Notice in **Solution Explorer** that a new file has been created named *HelloWor
 
 Replace the contents of the file with the following code.
 
-[!code[Main](adding-a-controller/samples/sample1.xml)]
+[!code-csharp[Main](adding-a-controller/samples/sample1.cs)]
 
 The controller methods will return a string of HTML as an example. The controller is named `HelloWorldController` and the first method is named `Index`. Let's invoke it from a browser. Run the application (press F5 or Ctrl+F5). In the browser, append &quot;HelloWorld&quot; to the path in the address bar. (For example, in the illustration below, it's `http://localhost:1234/HelloWorld.`) The page in the browser will look like the following screenshot. In the method above, the code returned a string directly. You told the system to just return some HTML, and it did!
 
@@ -55,7 +55,7 @@ ASP.NET MVC invokes different controller classes (and different action methods w
 
 You set the format for routing in the *App\_Start/RouteConfig.cs* file.
 
-[!code[Main](adding-a-controller/samples/sample2.xml?highlight=7-8)]
+[!code-csharp[Main](adding-a-controller/samples/sample2.cs?highlight=7-8)]
 
 When you run the application and don't supply any URL segments, it defaults to the "Home" controller and the "Index" action method specified in the defaults section of the code above.
 
@@ -67,7 +67,7 @@ Browse to `http://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs 
 
 Let's modify the example slightly so that you can pass some parameter information from the URL to the controller (for example, */HelloWorld/Welcome?name=Scott&amp;numtimes=4*). Change your `Welcome` method to include two parameters as shown below. Note that the code uses the C# optional-parameter feature to indicate that the `numTimes` parameter should default to 1 if no value is passed for that parameter.
 
-[!code[Main](adding-a-controller/samples/sample3.xml)]
+[!code-csharp[Main](adding-a-controller/samples/sample3.cs)]
 
 > [!NOTE] Security Note: The code above uses [HttpServerUtility.HtmlEncode](https://msdn.microsoft.com/en-us/library/w3te6wfz.aspx) to protect the application from malicious input (namely JavaScript). For more information see [How to: Protect Against Script Exploits in a Web Application by Applying HTML Encoding to Strings](https://msdn.microsoft.com/en-us/library/a2a4yykt(v=vs.100).aspx).
 
@@ -80,7 +80,7 @@ In the sample above, the URL segment ( `Parameters`) is not used, the `name` and
 
 Replace the Welcome method with the following code:
 
-[!code[Main](adding-a-controller/samples/sample4.xml)]
+[!code-csharp[Main](adding-a-controller/samples/sample4.cs)]
 
 Run the application and enter the following URL: `http://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
 
@@ -88,11 +88,11 @@ Run the application and enter the following URL: `http://localhost:xxx/HelloWorl
 
 This time the third URL segment matched the route parameter `ID.` The `Welcome` action method contains a parameter (`ID`) that matched the URL specification in the `RegisterRoutes` method.
 
-[!code[Main](adding-a-controller/samples/sample5.xml?highlight=7)]
+[!code-csharp[Main](adding-a-controller/samples/sample5.cs?highlight=7)]
 
 In ASP.NET MVC applications, it's more typical to pass in parameters as route data (like we did with ID above) than passing them as query strings. You could also add a route to pass both the `name` and `numtimes` in parameters as route data in the URL. In the *App\_Start\RouteConfig.cs* file, add the "Hello" route:
 
-[!code[Main](adding-a-controller/samples/sample6.xml?highlight=13-16)]
+[!code-csharp[Main](adding-a-controller/samples/sample6.cs?highlight=13-16)]
 
 Run the application and browse to `/localhost:XXX/HelloWorld/Welcome/Scott/3`.
 

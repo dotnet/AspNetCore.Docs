@@ -203,15 +203,15 @@ ASP.NET MVC now supports attribute routing, thanks to a contribution by Tim McCa
 
 ASP.NET Web API now supports attribute routing, thanks to a contribution by Tim McCall, the author of [http://attributerouting.net](http://attributerouting.net). With attribute routing you can specify your Web API routes by annotating your actions and controllers like this:
 
-[!code[Main](release-notes/samples/sample1.xml)]
+[!code-csharp[Main](release-notes/samples/sample1.cs)]
 
 Attribute routing gives you more control over the URIs in your web API. For example, you can easily define a resource hierarchy using a single API controller:
 
-[!code[Main](release-notes/samples/sample2.xml)]
+[!code-csharp[Main](release-notes/samples/sample2.cs)]
 
 Attribute routing also provides a convenient syntax for specifying optional parameters, default values, and route constraints:
 
-[!code[Main](release-notes/samples/sample3.xml)]
+[!code-csharp[Main](release-notes/samples/sample3.cs)]
 
 For more information about attribute routing, see [Attribute Routing in Web API 2](../../../web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2.md).
 
@@ -251,7 +251,7 @@ Request batching combines multiple operations into a single HTTP POST request, t
 
 To enable request batching, simply add a route with a batching handler to your Web API configuration:
 
-[!code[Main](release-notes/samples/sample4.xml)]
+[!code-csharp[Main](release-notes/samples/sample4.cs)]
 
 You can also control whether requests or executed sequentially or in any order.
 
@@ -339,15 +339,15 @@ In a **Self-hosted application**, the Startup class is passed as the type parame
 
 **Mapping hubs and connections in SignalR 1.x (from the global application file in a web application):** 
 
-[!code[Main](release-notes/samples/sample5.xml)]
+[!code-csharp[Main](release-notes/samples/sample5.cs)]
 
 **Mapping hubs and connections in SignalR 2.0 (from an Owin Startup class file):** 
 
-[!code[Main](release-notes/samples/sample6.xml)]
+[!code-csharp[Main](release-notes/samples/sample6.cs)]
 
 In a **Self-hosted application**, the Startup class is passed as the type parameter for the `WebApp.Start` method, as shown below.
 
-[!code[Main](release-notes/samples/sample7.xml)]
+[!code-csharp[Main](release-notes/samples/sample7.cs)]
 
 <a id="crossdomain"></a>
 
@@ -361,7 +361,7 @@ To add the new CORS middleware in SignalR 2.0, add the `Microsoft.Owin.Cors` lib
 
 **Adding Microsoft.Owin.Cors to your project**: To install this library, run the following command in the Package Manager Console:
 
-[!code[Main](release-notes/samples/sample8.xml)]
+[!code-powershell[Main](release-notes/samples/sample8.ps1)]
 
 This command will add the 2.0.0 version of the package to your project.
 
@@ -371,13 +371,13 @@ The following code snippets demonstrate how to implement cross-domain connection
 
 **Implementing cross-domain requests in SignalR 1.x (from the global application file)**
 
-[!code[Main](release-notes/samples/sample9.xml)]
+[!code-csharp[Main](release-notes/samples/sample9.cs)]
 
 **Implementing cross-domain requests in SignalR 2.0 (from a C# code file)**
 
 The following code demonstrates how to enable CORS or JSONP in a SignalR 2.0 project. This code sample uses `Map` and `RunSignalR` instead of `MapSignalR`, so that the CORS middleware runs only for the SignalR requests that require CORS support (rather than for all traffic at the path specified in `MapSignalR`.) `Map` can also be used for any other middleware that needs to run for a specific URL prefix, rather than for the entire application.
 
-[!code[Main](release-notes/samples/sample10.xml)]
+[!code-csharp[Main](release-notes/samples/sample10.cs)]
 
 <a id="mobile"></a>
 
@@ -420,11 +420,11 @@ In SignalR 2.0, it's possible to send a message using a list of client and group
 
 **Sending a message to a list of clients and groups using PersistentConnection**
 
-[!code[Main](release-notes/samples/sample11.xml)]
+[!code-csharp[Main](release-notes/samples/sample11.cs)]
 
 **Sending a message to a list of clients and groups using Hubs**
 
-[!code[Main](release-notes/samples/sample12.xml)]
+[!code-csharp[Main](release-notes/samples/sample12.cs)]
 
 <a id="sendtouser"></a>
 
@@ -434,7 +434,7 @@ This feature allows users to specify what the userId is based on an IRequest via
 
 **The IUserIdProvider interface**
 
-[!code[Main](release-notes/samples/sample13.xml)]
+[!code-csharp[Main](release-notes/samples/sample13.cs)]
 
 By default there will be an implementation that uses the user's IPrincipal.Identity.Name as the user name.
 
@@ -442,7 +442,7 @@ In hubs, you'll be able to send messages to these users via a new API:
 
 **Using the Clients.User API**
 
-[!code[Main](release-notes/samples/sample14.xml)]
+[!code-csharp[Main](release-notes/samples/sample14.cs)]
 
 <a id="errorhandling"></a>
 
@@ -454,15 +454,15 @@ The **show detailed hub exceptions** setting has no bearing on **HubException** 
 
 **Server-side code demonstrating sending a HubException to the client**
 
-[!code[Main](release-notes/samples/sample15.xml)]
+[!code-csharp[Main](release-notes/samples/sample15.cs)]
 
 **JavaScript client code demonstrating responding to a HubException sent from the server**
 
-[!code[Main](release-notes/samples/sample16.xml)]
+[!code-html[Main](release-notes/samples/sample16.html)]
 
 **.NET client code demonstrating responding to a HubException sent from the server**
 
-[!code[Main](release-notes/samples/sample17.xml)]
+[!code-csharp[Main](release-notes/samples/sample17.cs)]
 
 <a id="unittesting"></a>
 
@@ -472,11 +472,11 @@ SignalR 2.0 includes an interface called `IHubCallerConnectionContext` on Hubs t
 
 **Unit testing SignalR with xUnit.net**
 
-[!code[Main](release-notes/samples/sample18.xml)]
+[!code-csharp[Main](release-notes/samples/sample18.cs)]
 
 **Unit testing SignalR with moq**
 
-[!code[Main](release-notes/samples/sample19.xml)]
+[!code-csharp[Main](release-notes/samples/sample19.cs)]
 
 <a id="javascripterror"></a>
 
@@ -486,7 +486,7 @@ In SignalR 2.0, all JavaScript error handling callbacks return JavaScript error 
 
 **JavaScript client code that handles the Start.Fail exception**
 
-[!code[Main](release-notes/samples/sample20.xml)]
+[!code-javascript[Main](release-notes/samples/sample20.js)]
 
 <a id="TOC8"></a>
 ## ASP.NET Identity
@@ -595,11 +595,11 @@ This section describes known issues and breaking changes in the ASP.NET and Web 
 
     Our earlier samples for `ODataQueryOptions<T>` always casted the return value from `ApplyTo` to `IQueryable<T>`. This worked earlier because the query options that we supported earlier (`$filter`, `$orderby`, `$skip`, `$top`) do not change the shape of the query. Now that we support `$select` and `$expand` the return value from `ApplyTo` will not be `IQueryable<T>` always.
 
-    [!code[Main](release-notes/samples/sample21.xml)]
+    [!code-csharp[Main](release-notes/samples/sample21.cs)]
 
     If you are using the sample code from earlier, it will continue working if the client does not send `$select` and `$expand`. However, if you wish to support `$select` and `$expand` you have to change that code to this.
 
-    [!code[Main](release-notes/samples/sample22.xml)]
+    [!code-csharp[Main](release-notes/samples/sample22.cs)]
 2. **Request.Url or RequestContext.Url is null during a batch request**
 
     In a batching scenario, **UrlHelper** is null when accessed from **Request.Url** or **RequestContext.Url**.
@@ -610,7 +610,7 @@ This section describes known issues and breaking changes in the ASP.NET and Web 
 
     **Creating a new instance of UrlHelper**
 
-    [!code[Main](release-notes/samples/sample23.xml)]
+    [!code-csharp[Main](release-notes/samples/sample23.cs)]
 
 ### ASP.NET MVC
 
@@ -640,7 +640,7 @@ This section describes known issues and breaking changes in the ASP.NET and Web 
 
     For example, after you make the above changes, the assembly bindings should look like this:
 
-    [!code[Main](release-notes/samples/sample24.xml)]
+    [!code-xml[Main](release-notes/samples/sample24.xml)]
 
     For information on upgrading MVC 4 projects to MVC 5, see [How to Upgrade an ASP.NET MVC 4 and Web API Project to ASP.NET MVC 5 and Web API 2](../../../mvc/overview/releases/how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2.md).
 3. When using client-side validation with jQuery Unobtrusive Validation, the validation message is sometimes incorrect for an HTML input element with type='number'. The validation error for a required value ("The Age field is required") is shown when an invalid number is entered instead of the correct message that a valid number is required.
@@ -689,17 +689,17 @@ Workaround:
 
         **C#**
 
-        [!code[Main](release-notes/samples/sample25.xml)]
+        [!code-csharp[Main](release-notes/samples/sample25.cs)]
 
         **Visual Basic**
 
-        [!code[Main](release-notes/samples/sample26.xml)]
+        [!code-vb[Main](release-notes/samples/sample26.vb)]
     2. Configure WebApiConfig.Register in the Application\_Start method in Global.asax as follows:
 
         **C#**
 
-        [!code[Main](release-notes/samples/sample27.xml)]
+        [!code-csharp[Main](release-notes/samples/sample27.cs)]
 
         **Visual Basic**
 
-        [!code[Main](release-notes/samples/sample28.xml)]
+        [!code-vb[Main](release-notes/samples/sample28.vb)]

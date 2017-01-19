@@ -34,13 +34,13 @@ When using a `PopupControl` with a postback, an `UpdatePanel` can prevent the pa
 - Within the panel, a `Calendar` control is embedded within an `UpdatePanel` control
 - Two `PopupControlExtender` controls that assign the panel to the text boxes
 
-[!code[Main](handling-postbacks-from-a-popup-control-with-an-updatepanel-vb/samples/sample1.xml)]
+[!code-aspx[Main](handling-postbacks-from-a-popup-control-with-an-updatepanel-vb/samples/sample1.aspx)]
 
 Note that the `OnSelectionChanged` attribute of the `Calendar` control is set. So when the user selects a date within the calendar, a postback occurs and the server-side method `c1_SelectionChanged()` is executed. Within that method, the current date must be retrieved and written back to the textbox.
 
 The syntax for that is as follows: First of all, a proxy object for the `PopupControlExtender` on the page must be generated. The ASP.NET AJAX Control Toolkit offers the `GetProxyForCurrentPopup()` method. The object this method returns supports the `Commit()` method which sends a value back to the control that triggered the popup (not the control that triggered the method call!). The following code provides the selected date as the argument for the `Commit()` method, causing the code to write the selected date back to the text box:
 
-[!code[Main](handling-postbacks-from-a-popup-control-with-an-updatepanel-vb/samples/sample2.xml)]
+[!code-aspx[Main](handling-postbacks-from-a-popup-control-with-an-updatepanel-vb/samples/sample2.aspx)]
 
 Now whenever you click on a calendar date, the selected date appears in the associated text box, creating a date picker control that can currently be found on many websites.
 

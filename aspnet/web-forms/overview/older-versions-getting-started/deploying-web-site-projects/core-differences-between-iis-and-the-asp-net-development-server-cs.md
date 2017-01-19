@@ -37,7 +37,7 @@ The ASP.NET Development Server associates incoming requests with the security co
 
 To show this type of error in action I've created a page in the Book Reviews website that creates a file on disk that stores the most recent date and time someone viewed the *Teach Yourself ASP.NET 3.5 in 24 Hours* review. To follow along, open the `~/Tech/TYASP35.aspx` page and add the following code to the `Page_Load` event handler:
 
-[!code[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample1.xml)]
+[!code-csharp[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample1.cs)]
 
 > [!NOTE] The [`File.WriteAllText` method](https://msdn.microsoft.com/en-us/library/system.io.file.writealltext.aspx) creates a new file if it does not exist and then writes the specified contents to it. If the file already exists, it's existing content is overwritten.
 
@@ -75,15 +75,15 @@ Consider a website that supports user accounts using forms-based authorization a
 
 What happens if a visitor attempts to view one of these PDF files by entering the URL directly in his browser's Address bar? To find out, let's create a new folder in the Book Reviews site, add some PDF files, and configure the site to use URL authorization to prohibit anonymous users from visiting this folder. If you download the demo application you'll see that I created a folder called `PrivateDocs` and added a PDF from my [Website Security Tutorials](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md) (how fitting!). The `PrivateDocs` folder also contains a `Web.config` file that specifies the URL authorization rules to deny anonymous users:
 
-[!code[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample2.xml)]
+[!code-xml[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample2.xml)]
 
 Finally, I configured the web application to use forms-based authentication by updating the `Web.config` file in the root directory, replacing:
 
-[!code[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample3.xml)]
+[!code-xml[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample3.xml)]
 
 With:
 
-[!code[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample4.xml)]
+[!code-xml[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample4.xml)]
 
 Using the ASP.NET Development Server, visit the site and enter the direct URL to one of the PDF files in your browser's Address bar. If you downloaded the website associated with this tutorial the URL should look something like: `http://localhost:portNumber/PrivateDocs/aspnet_tutorial01_Basics_vb.pdf`
 
@@ -109,7 +109,7 @@ There are a couple of techniques you can use to protect static content from unau
 
 Once IIS has been configured to use the integrated pipeline add the following markup to the `Web.config` file in the root directory:
 
-[!code[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample5.xml)]
+[!code-xml[Main](core-differences-between-iis-and-the-asp-net-development-server-cs/samples/sample5.xml)]
 
 This markup instructs IIS 7 to use the ASP.NET-based authentication and authorization modules. Re-deploy your application and then re-visit the PDF file. This time when IIS handles the request it gives the ASP.NET runtime's authentication and authorization logic an opportunity to inspect the request. Because only authenticated users are authorized to view the contents in the `PrivateDocs` folder, the anonymous visitor is automatically redirected to the login page (refer back to Figure 3).
 

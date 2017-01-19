@@ -54,11 +54,11 @@ When adding a new content page to the website, Visual Web Developer automaticall
 
 To illustrate this, add a new content page to the root directory named `MultipleContentPlaceHolders.aspx` that is bound to the `Site.master` master page. Visual Web Developer creates this page with the following declarative markup:
 
-[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample1.xml)]
+[!code-aspx[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample1.aspx)]
 
 Enter some content into the Content control referencing the `MainContent` ContentPlaceHolders (`Content2`). Next, add the following markup to the `Content3` Content control (which references the `LeftColumnContent` ContentPlaceHolder):
 
-[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample2.xml)]
+[!code-html[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample2.html)]
 
 After adding this markup, visit the page through a browser. As Figure 3 shows, the markup placed in the `Content3` Content control is displayed in the left column beneath the News section (circled in red). The markup placed in `Content2` is displayed in the right portion of the page (circled in blue).
 
@@ -84,7 +84,7 @@ To add a Content control for the `LeftColumnContent` ContentPlaceHolder to `Abou
 
 Clicking the Create Custom Content link generates the necessary Content control in the page and sets its `ContentPlaceHolderID` property to the ContentPlaceHolder's `ID`. For example, clicking the Create Custom Content link for `LeftColumnContent` region in `About.aspx` adds the following declarative markup to the page:
 
-[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample3.xml)]
+[!code-aspx[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample3.aspx)]
 
 ### Omitting Content Controls
 
@@ -113,7 +113,7 @@ A better solution is to define the username and password textboxes as the Conten
 
 Open the `Site.master` master page and add the following markup to the left column between the `DateDisplay` Label and Lessons section:
 
-[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample4.xml)]
+[!code-aspx[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample4.aspx)]
 
 After adding this markup your master page's Design view should look similar to Figure 6.
 
@@ -135,7 +135,7 @@ Add a Login control to the `MainContent` Content control. Likewise, feel free to
 
 After defining the content for the `MainContent` and `LeftColumnContent` regions, your login page's declarative markup should look similar to the following:
 
-[!code[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample5.xml)]
+[!code-aspx[Main](multiple-contentplaceholders-and-default-content-vb/samples/sample5.aspx)]
 
 Figure 7 shows this page when viewed through a browser. Because this page specifies a Content control for the `QuickLoginUI` ContentPlaceHolder, it overrides the default content specified in the master page. The net effect is that the Login control displayed in the master page's Design view (see Figure 6) is not rendered in this page.
 

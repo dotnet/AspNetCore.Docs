@@ -38,7 +38,7 @@ For simplicity, the client application in this tutorial is a Windows console app
 
 In Visual Studio, create a new Windows console application and paste in the following code.
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample1.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample1.cs)]
 
 This code provides the skeleton for the application. The `Main``RunAsync` method and blocks until it completes. The reason for this approach is that most **HttpClient** methods are async, because they perform network I/O. All of the async tasks will be done inside `RunAsync`. In a console application, it's OK to block the main thread inside of `Main`. In a GUI application, you should never block the UI thread.
 
@@ -49,14 +49,14 @@ Use NuGet Package Manager to install the Web API Client Libraries package.
 
 From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample2.xml)]
+[!code-console[Main](calling-a-web-api-from-a-net-client/samples/sample2.cmd)]
 
 <a id="AddModelClass"></a>
 ## Add a Model Class
 
 Add the following class to the application:
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample3.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample3.cs)]
 
 This class matches the data model used by the web API. We can use **HttpClient** to read a `Product` instance from an HTTP response, without having to write a lot of deserialization code.
 
@@ -65,14 +65,14 @@ This class matches the data model used by the web API. We can use **HttpClient**
 
 Add a static **HttpClient** property to the `Program` class. 
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample4.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample4.cs)]
 
 > **HttpClient** is intended to be instantiated once and re-used throughout the life of an application. Especially in server applications, creating a new **HttpClient** instance for every request will exhaust the number of sockets available under heavy loads. This will result in **SocketException** errors.
 
 
 To initialize the **HttpClient** instance, add the following code to the `RunAsync` method: 
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample5.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample5.cs)]
 
 This code sets the base URI for HTTP requests, and sets the Accept header to "application/json", which tells the server to send data in JSON format.
 
@@ -81,7 +81,7 @@ This code sets the base URI for HTTP requests, and sets the Accept header to "ap
 
 The following code sends a GET request for a product:
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample6.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample6.cs)]
 
 The **GetAsync** method sends the HTTP GET request. The method is asynchronous, because it performs network I/O. When the method completes, it returns an **HttpResponseMessage** that contains the HTTP response. If the status code in the response is a success code, the response body contains the JSON representation of a product. Call **ReadAsAsync** to deserialize the JSON payload to a `Product` instance. The **ReadAsync** method is asynchronous because the response body can be arbitrarily large.
 
@@ -94,7 +94,7 @@ When **ReadAsAsync** is called with no parameters, it uses a default set of *med
 
 Instead of using the default formatters, you can provide a list of formatters to the **ReadAsync** method, which is useful if you have a custom media-type formatter:
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample7.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample7.cs)]
 
 For more information, see [Media Formatters in ASP.NET Web API 2](../formats-and-model-binding/media-formatters.md)
 
@@ -102,7 +102,7 @@ For more information, see [Media Formatters in ASP.NET Web API 2](../formats-and
 
 The following code sends a POST request that contains a `Product` instance in JSON format:
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample8.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample8.cs)]
 
 The **PostAsJsonAsync** method serializes an object to JSON and then sends the JSON payload in a POST request. If the request succeeds, it should return a 201 (Created) response, with the URL of the created resources in the Location header.
 
@@ -111,7 +111,7 @@ The **PostAsJsonAsync** method serializes an object to JSON and then sends the J
 
 The following code sends a PUT request to update a product.
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample9.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample9.cs)]
 
 The **PutAsJsonAsync** method works like **PostAsJsonAsync**, except that it sends a PUT request instead of POST.
 
@@ -120,7 +120,7 @@ The **PutAsJsonAsync** method works like **PostAsJsonAsync**, except that it sen
 
 The following code sends a DELETE request to delete a product.
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample10.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample10.cs)]
 
 Like GET, a DELETE request does not have a request body, so you don't need to specify JSON or XML format.
 
@@ -128,4 +128,4 @@ Like GET, a DELETE request does not have a request body, so you don't need to sp
 
 Here is the complete code for this tutorial. The code is very simple and doesn't include much error handling, but it shows the basic CRUD operations using **HttpClient**.
 
-[!code[Main](calling-a-web-api-from-a-net-client/samples/sample11.xml)]
+[!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample11.cs)]

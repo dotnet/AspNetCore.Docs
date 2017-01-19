@@ -63,18 +63,18 @@ It is possible, and usually ideal, to create the application services database o
 
 If you add the application services database objects to a database other than `ASPNETDB` you will need to customize the `SqlMembershipProvider` and `SqlRoleProvider` provider classes configurations so that they use the appropriate database. To customize the Membership provider add a [<u>&lt;membership&gt;</u><u> element</u>](https://msdn.microsoft.com/en-us/library/1b9hw62f.aspx) within the `<system.web>` section in `Web.config`; use the [<u>&lt;roleManager&gt;</u><u> element</u>](https://msdn.microsoft.com/en-us/library/ms164660.aspx) to configure the Roles provider. The following snippet is taken from the Book Reviews application s `Web.config` and shows the configure settings for the Membership and Roles APIs. Note that both register a new provider - `ReviewMembership` and `ReviewRole` - that use the `SqlMembershipProvider` and `SqlRoleProvider` providers, respectively.
 
-[!code[Main](configuring-a-website-that-uses-application-services-cs/samples/sample1.xml)]
+[!code-xml[Main](configuring-a-website-that-uses-application-services-cs/samples/sample1.xml)]
 
 The `Web.config` file s `<authentication>` element has also been configured to support forms-based authentication.
   
 
-[!code[Main](configuring-a-website-that-uses-application-services-cs/samples/sample2.xml)]
+[!code-xml[Main](configuring-a-website-that-uses-application-services-cs/samples/sample2.xml)]
 
 ### Limiting Access to the Administration Pages
 
 ASP.NET makes it easy to grant or deny access to a particular file or folder by user or by role via its *URL authorization* feature. (We briefly discussed URL authorization in the *Core Differences Between IIS and the ASP.NET Development Server* tutorial and showed how IIS and the ASP.NET Development Server apply URL authorization rules differently for static versus dynamic content.) Because we want to prohibit access to the `~/Admin` folder except for those users in the Admin role, we need to add URL authorization rules to this folder. Specifically, the URL authorization rules need to allow users in the Admin role and deny all other users. This is accomplished by adding a `Web.config` file to the `~/Admin` folder with the following contents:
 
-[!code[Main](configuring-a-website-that-uses-application-services-cs/samples/sample3.xml)]
+[!code-xml[Main](configuring-a-website-that-uses-application-services-cs/samples/sample3.xml)]
 
 For more information on ASP.NET s URL authorization feature and how to use it to spell out authorization rules for users and for roles, be sure to read the [<u>User-Based Authorization</u>](../../older-versions-security/membership/user-based-authorization-cs.md) and [<u>Role-Based Authorization</u>](../../older-versions-security/roles/role-based-authorization-cs.md) tutorials from my [<u>Website Security Tutorials</u>](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md).
 
@@ -146,7 +146,7 @@ But what happens if the `applicationName` attribute is not specified in `Web.con
 
 The good news is that there is a simple step you can take to ensure that the two environments use the same `ApplicationId` - explicitly set the `applicationName` attribute in `Web.config` for all of your application services providers. I explicitly set the `applicationName` attribute to "BookReviews" in the `<membership>` and `<roleManager>` elements as this snippet from `Web.config` shows.
 
-[!code[Main](configuring-a-website-that-uses-application-services-cs/samples/sample4.xml)]
+[!code-xml[Main](configuring-a-website-that-uses-application-services-cs/samples/sample4.xml)]
 
 For more discussion on setting the `applicationName` attribute and the rationale behind it, refer to [<u>Scott Guthrie</u>](https://weblogs.asp.net/scottgu/) s blog post, [<u>Always set the </u><u>applicationName</u><u> property when configuring ASP.NET Membership and other Providers</u>](https://weblogs.asp.net/scottgu/443634).
 

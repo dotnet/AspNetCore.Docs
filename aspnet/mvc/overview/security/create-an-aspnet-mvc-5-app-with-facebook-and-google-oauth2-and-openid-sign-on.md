@@ -98,7 +98,7 @@ To connect to authentication providers like Google and Facebook, you will need t
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image10.png)
 7. Add the [RequireHttps](https://msdn.microsoft.com/en-us/library/system.web.mvc.requirehttpsattribute.aspx) attribute to the `Home` controller to require all requests must use HTTPS. A more secure approach is to add the [RequireHttps](https://msdn.microsoft.com/en-us/library/system.web.mvc.requirehttpsattribute.aspx) filter to the application. See the section &quot;Protect the Application with SSL and the Authorize Attribute&quot; in my tutoral [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/). A portion of the Home controller is shown below.
 
-    [!code[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample1.xml?highlight=1)]
+    [!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample1.cs?highlight=1)]
 8. Press CTRL+F5 to run the application. If you've installed the certificate in the past, you can skip the rest of this section and jump to [Creating a Google app for OAuth 2 and connecting the app to the project](#goog), otherwise, follow the instructions to trust the self-signed certificate that IIS Express has generated.  
   
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image11.png)
@@ -134,7 +134,7 @@ To connect to authentication providers like Google and Facebook, you will need t
     ![](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image16.png)
 7. Copy and paste the **AppId** and **App Secret** into the `UseGoogleAuthentication` method. The **AppId** and **App Secret** values shown below are samples and will not work.
 
-    [!code[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample2.xml?highlight=37-39)]
+    [!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample2.cs?highlight=37-39)]
 
     > **Security Note**: Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure App Service](../../../identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure.md).
 8. Press **CTRL+F5** to build and run the application. Click the **Log in** link.  
@@ -186,7 +186,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 10. In Visual Studio, open *App\_Start\Startup.Auth.cs*.
 11. Copy and paste the **AppId** and **App Secret** into the `UseFacebookAuthentication` method. The **AppId** and **App Secret** values shown below are samples and will not work.
 
-    [!code[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample3.xml?highlight=33-35,38-39)]
+    [!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample3.cs?highlight=33-35,38-39)]
 12. Click **Save Changes**.
 13. Press **CTRL+F5** to run the application.
 
@@ -229,19 +229,19 @@ In this section you'll add birth date and home town to the user data during regi
 
 Open the *Models\IdentityModels.cs*file and add birth date and home town properties:
 
-[!code[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample4.xml?highlight=3-4)]
+[!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample4.cs?highlight=3-4)]
 
 Open the *Models\AccountViewModels.cs* file and the set birth date and home town properties in `ExternalLoginConfirmationViewModel`.
 
-[!code[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample5.xml?highlight=8-9)]
+[!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample5.cs?highlight=8-9)]
 
 Open the *Controllers\AccountController.cs* file and add code for birth date and home town in the `ExternalLoginConfirmation` action method as shown:
 
-[!code[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample6.xml?highlight=21-23)]
+[!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample6.cs?highlight=21-23)]
 
 Add birth date and home town to the *Views\Account\ExternalLoginConfirmation.cshtml* file:
 
-[!code[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample7.xml?highlight=27-40)]
+[!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample7.cs?highlight=27-40)]
 
 Delete the membership database so you can again register your Facebook account with your application and verify you can add the new birth date and home town profile information.
 

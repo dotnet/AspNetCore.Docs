@@ -127,7 +127,7 @@ Once you've got a database with data in it, you can display the data in an ASP.N
 2. In the root of the website, create a new CSHTML page named *ListProducts.cshtml*.
 3. Replace the existing markup with the following:
 
-    [!code[Main](5-working-with-data/samples/sample1.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample1.cshtml)]
 
     In the first code block, you open the *SmallBakery.sdf* file (database) that you created earlier. The `Database.Open` method assumes that the *.sdf* file is in your website's *App\_Data* folder. (Notice that you don't need to specify the *.sdf* extension &#8212; in fact, if you do, the `Open` method won't work.)
 
@@ -135,7 +135,7 @@ Once you've got a database with data in it, you can display the data in an ASP.N
 
     You then make a request to query the database using the following SQL `Select` statement:
 
-    [!code[Main](5-working-with-data/samples/sample2.xml)]
+    [!code-sql[Main](5-working-with-data/samples/sample2.sql)]
 
     In the statement, `Product` identifies the table to query. The `*` character specifies that the query should return all the columns from the table. (You could also list columns individually, separated by commas, if you wanted to see only some of the columns.) The `Order By` clause indicates how the data should be sorted &#8212; in this case, by the *Name* column. This means that the data is sorted alphabetically based on the value of the *Name* column for each row.
 
@@ -178,23 +178,23 @@ The page includes validation to make sure that the data that the user enters is 
 1. In the website, create a new CSHTML file named *InsertProducts.cshtml*.
 2. Replace the existing markup with the following:
 
-    [!code[Main](5-working-with-data/samples/sample3.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample3.cshtml)]
 
     The body of the page contains an HTML form with three text boxes that let users enter a name, description, and price. When users click the **Insert** button, the code at the top of the page opens a connection to the *SmallBakery.sdf* database. You then get the values that the user has submitted by using the `Request` object and assign those values to local variables.
 
     To validate that the user entered a value for each required column, you register each `<input>` element that you want to validate:
 
-    [!code[Main](5-working-with-data/samples/sample4.xml)]
+    [!code-unknown[Main](5-working-with-data/samples/sample-38935-4.unknown)]
 
     The `Validation` helper checks that there is a value in each of the fields that you've registered. You can test whether all the fields passed validation by checking `Validation.IsValid()`, which you typically do before you process the information you get from the user:
 
-    [!code[Main](5-working-with-data/samples/sample5.xml)]
+    [!code-csharp[Main](5-working-with-data/samples/sample5.cs)]
 
     (The `&&` operator means AND — this test is *If this is a form submission AND all the fields have passed validation*.)
 
     If all the columns validated (none were empty), you go ahead and create a SQL statement to insert the data and then execute it as shown next:
 
-    [!code[Main](5-working-with-data/samples/sample6.xml)]
+    [!code-csharp[Main](5-working-with-data/samples/sample6.cs)]
 
     For the values to insert, you include parameter placeholders (`@0`, `@1`, `@2`).
 
@@ -202,15 +202,15 @@ The page includes validation to make sure that the data that the user enters is 
 
     To execute the query, you use this statement, passing to it the variables that contain the values to substitute for the placeholders:
 
-    [!code[Main](5-working-with-data/samples/sample7.xml)]
+    [!code-unknown[Main](5-working-with-data/samples/sample-38935-7.unknown)]
 
     After the `Insert Into` statement has executed, you send the user to the page that lists the products using this line:
 
-    [!code[Main](5-working-with-data/samples/sample8.xml)]
+    [!code-unknown[Main](5-working-with-data/samples/sample-38935-8.unknown)]
 
     If validation didn't succeed, you skip the insert. Instead, you have a helper in the page that can display the accumulated error messages (if any):
 
-    [!code[Main](5-working-with-data/samples/sample9.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample9.cshtml)]
 
     Notice that the style block in the markup includes a CSS class definition named `.validation-summary-errors`. This is the name of the CSS class that's used by default for the `<div>` element that contains any validation errors. In this case, the CSS class specifies that validation summary errors are displayed in red and in bold, but you can define the `.validation-summary-errors` class to display any formatting you like.
 
@@ -237,17 +237,17 @@ After data has been entered into a table, you might need to update it. This proc
 1. In the website, create a new CSHTML file named *EditProducts.cshtml*.
 2. Replace the existing markup in the file with the following:
 
-    [!code[Main](5-working-with-data/samples/sample10.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample10.cshtml)]
 
     The only difference between this page and the *ListProducts.cshtml* page from earlier is that the HTML table in this page includes an extra column that displays an **Edit** link. When you click this link, it takes you to the *UpdateProducts.cshtml* page (which you'll create next) where you can edit the selected record.
 
     Look at the code that creates the **Edit** link:
 
-    [!code[Main](5-working-with-data/samples/sample11.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample11.cshtml)]
 
     This creates an HTML `<a>` element whose `href` attribute is set dynamically. The `href` attribute specifies the page to display when the user clicks the link. It also passes the `Id` value of the current row to the link. When the page runs, the page source might contain links like these:
 
-    [!code[Main](5-working-with-data/samples/sample12.xml)]
+    [!code-html[Main](5-working-with-data/samples/sample12.html)]
 
     Notice that the `href` attribute is set to `UpdateProducts/n`, where *n* is a product number. When a user clicks one of these links, the resulting URL will look something like this:
 
@@ -262,43 +262,43 @@ After data has been entered into a table, you might need to update it. This proc
 4. In the website, create a new CSHTML file named *UpdateProducts.cshtml*.
 5. Replace the existing markup in the file with the following.
 
-    [!code[Main](5-working-with-data/samples/sample13.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample13.cshtml)]
 
     The body of the page contains an HTML form where a product is displayed and where users can edit it. To get the product to display, you use this SQL statement:
 
-    [!code[Main](5-working-with-data/samples/sample14.xml)]
+    [!code-sql[Main](5-working-with-data/samples/sample14.sql)]
 
     This will select the product whose ID matches the value that's passed in the `@0` parameter. (Because *Id* is the primary key and therefore must be unique, only one product record can ever be selected this way.) To get the ID value to pass to this `Select` statement, you can read the value that's passed to the page as part of the URL, using the following syntax:
 
-    [!code[Main](5-working-with-data/samples/sample15.xml)]
+    [!code-csharp[Main](5-working-with-data/samples/sample15.cs)]
 
     To actually fetch the product record, you use the `QuerySingle` method, which will return just one record:
 
-    [!code[Main](5-working-with-data/samples/sample16.xml)]
+    [!code-csharp[Main](5-working-with-data/samples/sample16.cs)]
 
     The single row is returned into the `row` variable. You can get data out of each column and assign it to local variables like this:
 
-    [!code[Main](5-working-with-data/samples/sample17.xml)]
+    [!code-csharp[Main](5-working-with-data/samples/sample17.cs)]
 
     In the markup for the form, these values are displayed automatically in individual text boxes by using embedded code like the following:
 
-    [!code[Main](5-working-with-data/samples/sample18.xml)]
+    [!code-html[Main](5-working-with-data/samples/sample18.html)]
 
     That part of the code displays the product record to be updated. Once the record has been displayed, the user can edit individual columns.
 
     When the user submits the form by clicking the **Update** button, the code in the `if(IsPost)` block runs. This gets the user's values from the `Request` object, stores the values in variables, and validates that each column has been filled in. If validation passes, the code creates the following SQL Update statement:
 
-    [!code[Main](5-working-with-data/samples/sample19.xml)]
+    [!code-sql[Main](5-working-with-data/samples/sample19.sql)]
 
     In a SQL `Update` statement, you specify each column to update and the value to set it to. In this code, the values are specified using the parameter placeholders `@0`, `@1`, `@2`, and so on. (As noted earlier, for security, you should always pass values to a SQL statement by using parameters.)
 
     When you call the `db.Execute` method, you pass the variables that contain the values in the order that corresponds to the parameters in the SQL statement:
 
-    [!code[Main](5-working-with-data/samples/sample20.xml)]
+    [!code-unknown[Main](5-working-with-data/samples/sample-38935-20.unknown)]
 
     After the `Update` statement has been executed, you call the following method in order to redirect the user back to the edit page:
 
-    [!code[Main](5-working-with-data/samples/sample21.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample21.cshtml)]
 
     The effect is that the user sees an updated listing of the data in the database and can edit another product.
 6. Save the page.
@@ -319,11 +319,11 @@ This section shows how to let users delete a product from the *Product* database
 1. In the website, create a new CSHTML file named *ListProductsForDelete.cshtml*.
 2. Replace the existing markup with the following:
 
-    [!code[Main](5-working-with-data/samples/sample22.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample22.cshtml)]
 
     This page is similar to the *EditProducts.cshtml* page from earlier. However, instead of displaying an **Edit** link for each product, it displays a **Delete** link. The **Delete** link is created using the following embedded code in the markup:
 
-    [!code[Main](5-working-with-data/samples/sample23.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample23.cshtml)]
 
     This creates a URL that looks like this when users click the link:
 
@@ -333,17 +333,17 @@ This section shows how to let users delete a product from the *Product* database
 3. Save the file, but leave it open.
 4. Create another CHTML file named *DeleteProduct.cshtml*. Replace the existing content with the following:
 
-    [!code[Main](5-working-with-data/samples/sample24.xml)]
+    [!code-cshtml[Main](5-working-with-data/samples/sample24.cshtml)]
 
     This page is called by *ListProductsForDelete.cshtml* and lets users confirm that they want to delete a product. To list the product to be deleted, you get the ID of the product to delete from the URL using the following code:
 
-    [!code[Main](5-working-with-data/samples/sample25.xml)]
+    [!code-csharp[Main](5-working-with-data/samples/sample25.cs)]
 
     The page then asks the user to click a button to actually delete the record. This is an important security measure: when you perform sensitive operations in your website like updating or deleting data, these operations should always be done using a POST operation, not a GET operation. If your site is set up so that a delete operation can be performed using a GET operation, anyone can pass a URL like `http://<server>/DeleteProduct/4` and delete anything they want from your database. By adding the confirmation and coding the page so that the deletion can be performed only by using a POST, you add a measure of security to your site.
 
     The actual delete operation is performed using the following code, which first confirms that this is a post operation and that the ID isn't empty:
 
-    [!code[Main](5-working-with-data/samples/sample26.xml)]
+    [!code-csharp[Main](5-working-with-data/samples/sample26.cs)]
 
     The code runs a SQL statement that deletes the specified record and then redirects the user back to the listing page.
 5. Run *ListProductsForDelete.cshtml* in a browser.
@@ -367,13 +367,13 @@ This section shows how to let users delete a product from the *Product* database
 > 
 > In WebMatrix, connection strings are usually stored in an XML file named *Web.config*. As the name implies, you can use a *Web.config* file in the root of your website to store the site's configuration information, including any connection strings that your site might require. An example of a connection string in a *Web.config* file might look like the following:
 > 
-> [!code[Main](5-working-with-data/samples/sample27.xml)]
+> [!code-xml[Main](5-working-with-data/samples/sample27.xml)]
 > 
 > In the example, the connection string points to a database in an instance of SQL Server that's running on a server somewhere (as opposed to a local *.sdf* file). You would need to substitute the appropriate names for `myServer` and `myDatabase`, and specify SQL Server login values for `username` and `password`. (The username and password values are not necessarily the same as your Windows credentials or as the values that your hosting provider has given you for logging in to their servers. Check with the administrator for the exact values you need.)
 > 
 > The `Database.Open` method is flexible, because it lets you pass either the name of a database *.sdf* file or the name of a connection string that's stored in the *Web.config* file. The following example shows how to connect to the database using the connection string illustrated in the previous example:
 > 
-> [!code[Main](5-working-with-data/samples/sample28.xml)]
+> [!code-cshtml[Main](5-working-with-data/samples/sample28.cshtml)]
 > 
 > As noted, the `Database.Open` method lets you pass either a database name or a connection string, and it'll figure out which to use. This is very useful when you deploy (publish) your website. You can use an *.sdf* file in the *App\_Data* folder when you're developing and testing your site. Then when you move your site to a production server, you can use a connection string in the *Web.config* file that has the same name as your *.sdf* file but that points to the hosting provider's database &#8212; all without having to change your code.
 > 

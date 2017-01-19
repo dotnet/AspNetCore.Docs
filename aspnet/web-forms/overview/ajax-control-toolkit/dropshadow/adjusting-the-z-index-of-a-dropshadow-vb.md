@@ -28,26 +28,26 @@ The DropShadow control in the AJAX Control Toolkit extends a panel with a drop s
 
 The code commences with the Panel itself, containing enough text so that the panel contains enough text for the effect to be visible:
 
-[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample1.xml)]
+[!code-aspx[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample1.aspx)]
 
 Another panel is placed directly before the `panelShadow` panel. It contains a menu with horizontal orientation so that menu entries appear over (or rather: under) the `dropShadow` panel):
 
-[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample2.xml)]
+[!code-aspx[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample2.aspx)]
 
 Then, the `DropShadowExtender` is added to extend the `panelShadow` panel with a drop shadow effect:
 
-[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample3.xml)]
+[!code-aspx[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample3.aspx)]
 
 Finally, the ASP.NET AJAX `ScriptManager` control enables the Control Toolkit to work:
 
-[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample4.xml)]
+[!code-aspx[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample4.aspx)]
 
 When you run this script, the menu entries appear underneath the panel. However the menu uses the CSS class `panel` where you just have to define two things to make elements appear in front of the other panel:
 
 - Relative positioning
 - A positive z-index
 
-[!code[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample5.xml)]
+[!code-css[Main](adjusting-the-z-index-of-a-dropshadow-vb/samples/sample5.css)]
 
 Then, the `DropShadowExtender` control does not conflict any longer with the Menu control.
 

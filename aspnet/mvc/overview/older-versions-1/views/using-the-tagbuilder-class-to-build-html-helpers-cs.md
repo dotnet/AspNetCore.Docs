@@ -48,7 +48,7 @@ For example, Listing 1 contains an Image HTML helper. The Image helper is implem
 
 **Listing 1 - Helpers\ImageHelper.cs**
 
-[!code[Main](using-the-tagbuilder-class-to-build-html-helpers-cs/samples/sample1.xml)]
+[!code-csharp[Main](using-the-tagbuilder-class-to-build-html-helpers-cs/samples/sample1.cs)]
 
 The class in Listing 1 contains two static overloaded methods named Image. When you call the Image() method, you can pass an object which represents a set of HTML attributes or not.
 
@@ -58,7 +58,7 @@ After you create the Image helper, you can use the helper in your ASP.NET MVC vi
 
 **Listing 2 - Home\Index.aspx**
 
-[!code[Main](using-the-tagbuilder-class-to-build-html-helpers-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-the-tagbuilder-class-to-build-html-helpers-cs/samples/sample2.aspx)]
 
 
 [![The New Project dialog box](using-the-tagbuilder-class-to-build-html-helpers-cs/_static/image1.jpg)](using-the-tagbuilder-class-to-build-html-helpers-cs/_static/image1.png)
@@ -68,7 +68,7 @@ After you create the Image helper, you can use the helper in your ASP.NET MVC vi
 
 Notice that you must import the namespace associated with the Image helper at the top of the Index.aspx view. The helper is imported with the following directive:
 
-[!code[Main](using-the-tagbuilder-class-to-build-html-helpers-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-the-tagbuilder-class-to-build-html-helpers-cs/samples/sample3.aspx)]
 
 >[!div class="step-by-step"]
 [Previous](creating-custom-html-helpers-cs.md)

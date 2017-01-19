@@ -51,12 +51,12 @@ Note that this package will install the dependency packages: EntityFramework and
 2. In the **Specify Name for Item** dialog box, name the new web form **Register**, and then click **OK**
 3. Replace the markup in the generated *Register.aspx* file with the code below. The code changes are highlighted.   
 
-    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample1.xml?highlight=9,12-40)]
+    [!code-aspx[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample1.aspx?highlight=9,12-40)]
 
     > [!NOTE] This is just a simplified version of the*Register.aspx*file that is created when you create a new ASP.NET Web Forms project. The markup above adds form fields and a button to register a new user.
 4. Open the *Register.aspx.cs* file and replace the contents of the file with the following code:
 
-    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample2.xml)]
+    [!code-csharp[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample2.cs)]
 
     > [!NOTE] 
     > 
@@ -70,7 +70,7 @@ Note that this package will install the dependency packages: EntityFramework and
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image5.png)
 6. Open the *Web.config* file and add a connection string entry for the database we will use to store user information. The database will be created at runtime by EntityFramework for the Identity entities. The connection string is similar to one created for you when you create a new Web Forms project. The highlighted code shows the markup you should add:
 
-    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample3.xml?highlight=11-14)]
+    [!code-xml[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample3.xml?highlight=11-14)]
 7. Right click file *Register.aspx* in your project and select **Set as Start Page**. Press Ctrl + F5 to build and run the web application. Enter a new user name and password and then click on **Register**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image6.png)  
@@ -108,7 +108,7 @@ At this point we have only added support for creating users. Now, we are going t
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image11.png)
 2. In the Startup.cs file, add the highlighted code shown below to configure OWIN cookie authentication.
 
-    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample4.xml?highlight=1,3,15-19)]
+    [!code-csharp[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample4.cs?highlight=1,3,15-19)]
 
     > [!NOTE] This class contains the `OwinStartup` attribute for specifying the OWIN startup class. Every OWIN application has a startup class where you specify components for the application pipeline. See [OWIN Startup Class Detection](../../../aspnet/overview/owin-and-katana/owin-startup-class-detection.md) for more info on this model.
 
@@ -116,7 +116,7 @@ At this point we have only added support for creating users. Now, we are going t
 
 1. Open the *Register.cs* file and add the following code which will log in the user when registration succeeds. The changes are highlighted below.
 
-    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample5.xml)]
+    [!code-csharp[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample5.cs)]
 
     > [!NOTE] 
     > 
@@ -127,10 +127,10 @@ At this point we have only added support for creating users. Now, we are going t
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image12.png)
 3. Replace the contents of the*Login.aspx* file with the following code:  
 
-    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample6.xml)]
+    [!code-aspx[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample6.aspx)]
 4. Replace the contents of the *Login.aspx.cs* file with the following:  
 
-    [!code[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample7.xml)]
+    [!code-csharp[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample7.cs)]
 
     > [!NOTE] 
     > 

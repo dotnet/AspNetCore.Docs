@@ -62,7 +62,7 @@ The `application.start` method creates the modal views and attaches event handle
 
 Events are always important when developing loosely coupled components. Applications often perform multiple operations in response to a user action. Backbone provides built-in events with components such as Model, Collection, and View. Instead of creating inter-dependencies among these components, the template uses a "pub/sub" model: The `events` object, defined in events.ts, acts as an event hub for publishing and subscribing to application events. The `events` object is a singleton. The following code shows how to subscribe to an event and then trigger the event:
 
-[!code[Main](backbonejs-template/samples/sample1.xml)]
+[!code-csharp[Main](backbonejs-template/samples/sample1.cs)]
 
 **Router**
 
@@ -72,35 +72,35 @@ In Backbone.js, a router provides methods for routing client-side pages and conn
 
 The views are defined in ~/Scripts/application/views. There are two kinds of views, activable views and modal dialog views. Activable views are invoked by the router. When an activable view is shown, all other activable views become inactive. To create an activable view, extend the view with the `Activable` object:
 
-[!code[Main](backbonejs-template/samples/sample2.xml)]
+[!code-javascript[Main](backbonejs-template/samples/sample2.js)]
 
 Extending with `Activable` adds two new methods to the view, `activate` and `deactivate`. The router calls these methods to activate and deactive the view.
 
 Modal views are implemented as [Twitter Bootstrap](http://twitter.github.com/bootstrap/) modal dialogs. The `Membership` and `Profile` views are modal views. Model views can be invoked by any application events. For example, in the `Navigation` view, clicking the "My Account" link shows either the `Membership` view or the `Profile` view, depending on whether the user is logged in. The `Navigation` attaches click event handlers to any child elements that have the `data-command` attribute. Here is the HTML markup:
 
-[!code[Main](backbonejs-template/samples/sample3.xml)]
+[!code-html[Main](backbonejs-template/samples/sample3.html)]
 
 Here is the code in navigation.ts to hook up the events:
 
-[!code[Main](backbonejs-template/samples/sample4.xml)]
+[!code-csharp[Main](backbonejs-template/samples/sample4.cs)]
 
 **Models**
 
 The models are defined in ~/Scripts/application/models. The models all have three basic things: default attributes, validation rules, and a server-side end point. Here is a typical example:
 
-[!code[Main](backbonejs-template/samples/sample5.xml)]
+[!code-javascript[Main](backbonejs-template/samples/sample5.js)]
 
 **Plug-ins**
 
 The ~/Scripts/application/lib folder contains a few handy jQuery plug-ins. The form.ts file defines a plug-in for working with form data. Often you need to serialize or deserialize form data and show any model validation errors. The form.ts plug-in has methods such as `serializeFields`, `deserializeFields`, and `showFieldErrors`. The following example shows how to serialize a form to a model.
 
-[!code[Main](backbonejs-template/samples/sample6.xml)]
+[!code-csharp[Main](backbonejs-template/samples/sample6.cs)]
 
 The flashbar.ts plug-in gives various kinds of feedback messages to the user. The methods are `$.showSuccessbar`, `$.showErrorbar` and `$.showInfobar`. Behind the scenes, it uses Twitter Bootstrap alerts to show nicely animated messages.
 
 The confirm.ts plug-in replaces the browser's confirm dialog, although the API is somewhat different:
 
-[!code[Main](backbonejs-template/samples/sample7.xml)]
+[!code-csharp[Main](backbonejs-template/samples/sample7.cs)]
 
 ## Walkthrough: Server Code
 
@@ -112,13 +112,13 @@ In a single page application, the server plays only a small role in the user int
 
 The template has two MVC controllers: `HomeController` renders the initial page, and `SupportsController` is used to confirm new user accounts and reset passwords. All other controllers in the template are ASP.NET Web API controllers, which send and receive JSON data. By default, the controllers use the new `WebSecurity` class to perform user-related tasks. However, they also have optional constructors that let you pass in delegates for these tasks. This makes testing easier, and lets you replace `WebSecurity` with something else, by using an IoC Container. Here is an example:
 
-[!code[Main](backbonejs-template/samples/sample8.xml)]
+[!code-csharp[Main](backbonejs-template/samples/sample8.cs)]
 
 ## Views
 
 The views are designed to be modular: Each section of a page has its own dedicated view. In a single page application, it is common to include views that do not have any corresponding controller. You can include a view by calling `@Html.Partial('myView')`, but this gets tedious. To make this easier, the template defines a helper method, `IncludeClientViews`, that renders all of the views in a specified folder:
 
-[!code[Main](backbonejs-template/samples/sample9.xml)]
+[!code-cshtml[Main](backbonejs-template/samples/sample9.cshtml)]
 
 If the folder name is not specified, the default folder name is "ClientViews". If your client view also uses partial views, name the partial view with an underscore character (for example, `_SignUp`). The `IncludeClientViews` method excludes any views whose name starts with an underscore. To include a partial view in the client view, call `Html.ClientView('SignUp')` instead of `Html.Partial('_SignUp')`.
 

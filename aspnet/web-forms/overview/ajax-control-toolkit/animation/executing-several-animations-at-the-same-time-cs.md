@@ -28,25 +28,25 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-[!code[Main](executing-several-animations-at-the-same-time-cs/samples/sample1.xml)]
+[!code-aspx[Main](executing-several-animations-at-the-same-time-cs/samples/sample1.aspx)]
 
 The animation will be applied to a panel of text which looks like this:
 
-[!code[Main](executing-several-animations-at-the-same-time-cs/samples/sample2.xml)]
+[!code-aspx[Main](executing-several-animations-at-the-same-time-cs/samples/sample2.aspx)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-[!code[Main](executing-several-animations-at-the-same-time-cs/samples/sample3.xml)]
+[!code-css[Main](executing-several-animations-at-the-same-time-cs/samples/sample3.css)]
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server"`:
 
-[!code[Main](executing-several-animations-at-the-same-time-cs/samples/sample4.xml)]
+[!code-aspx[Main](executing-several-animations-at-the-same-time-cs/samples/sample4.aspx)]
 
 Within the `<Animations>` node, use `<OnLoad>` to run the animations once the page has been fully loaded. Generally, `<OnLoad>` only accepts one animation. The Animation framework allows you to join several animations into one using the `<Parallel>` element. All animations within `<Parallel>` are executed at the same time.
 
 Here is the a possible markup for the `AnimationExtender` control, fading out and resizing the panel at the same time:
 
-[!code[Main](executing-several-animations-at-the-same-time-cs/samples/sample5.xml)]
+[!code-aspx[Main](executing-several-animations-at-the-same-time-cs/samples/sample5.aspx)]
 
 And indeed: when you run this script, the panel is displayed, then resizes (more than threefolding its width and halfing its height) and fades out at the same time.
 

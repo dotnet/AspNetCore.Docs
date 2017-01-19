@@ -59,7 +59,7 @@ If Solution Explorer is not already visible, click the **View** menu and select 
 
 Name the class &quot;Product&quot;. Add the following properties to the `Product` class.
 
-[!code[Main](tutorial-your-first-web-api/samples/sample1.xml)]
+[!code-csharp[Main](tutorial-your-first-web-api/samples/sample1.cs)]
 
 ## Adding a Controller
 
@@ -88,7 +88,7 @@ The scaffolding creates a file named ProductsController.cs in the Controllers fo
 
 If this file is not open already, double-click the file to open it. Replace the code in this file with the following:
 
-[!code[Main](tutorial-your-first-web-api/samples/sample2.xml)]
+[!code-csharp[Main](tutorial-your-first-web-api/samples/sample2.cs)]
 
 To keep the example simple, products are stored in a fixed array inside the controller class. Of course, in a real application, you would query a database or use some other external data source.
 
@@ -122,7 +122,7 @@ In the **Add New Item** dialog, select the **Web** node under **Visual C#**, and
 
 Replace everything in this file with the following:
 
-[!code[Main](tutorial-your-first-web-api/samples/sample3.xml)]
+[!code-html[Main](tutorial-your-first-web-api/samples/sample3.html)]
 
 There are several ways to get jQuery. In this example, I used the [Microsoft Ajax CDN](../../../ajax/cdn/overview.md). You can also download it from [http://jquery.com/](http://jquery.com/), and the ASP.NET "Web API" project template includes jQuery as well.
 
@@ -132,13 +132,13 @@ To get a list of products, send an HTTP GET request to &quot;/api/products&quot;
 
 The jQuery [getJSON](http://api.jquery.com/jQuery.getJSON/) function sends an AJAX request. For response contains array of JSON objects. The `done` function specifies a callback that is called if the request succeeds. In the callback, we update the DOM with the product information.
 
-[!code[Main](tutorial-your-first-web-api/samples/sample4.xml)]
+[!code-html[Main](tutorial-your-first-web-api/samples/sample4.html)]
 
 ### Getting a Product By ID
 
 To get a product by ID, send an HTTP GET request to &quot;/api/products/*id*&quot;, where *id* is the product ID.
 
-[!code[Main](tutorial-your-first-web-api/samples/sample5.xml)]
+[!code-javascript[Main](tutorial-your-first-web-api/samples/sample5.js)]
 
 We still call `getJSON` to send the AJAX request, but this time we put the ID in the request URI. The response from this request is a JSON representation of a single product.
 

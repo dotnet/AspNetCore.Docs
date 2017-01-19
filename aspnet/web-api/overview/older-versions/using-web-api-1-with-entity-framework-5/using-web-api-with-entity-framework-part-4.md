@@ -23,7 +23,7 @@ Now we'll turn to the client side, and add a page that can consume data from the
 
 In Solution Explorer, expand the Controllers folder and open the file named HomeController.cs. This file contains an MVC controller. Add a method named `Admin`:
 
-[!code[Main](using-web-api-with-entity-framework-part-4/samples/sample1.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-4/samples/sample1.cs)]
 
 The **HttpRouteUrl** method creates the URI to the web API, and we store this in the view bag for later.
 
@@ -37,13 +37,13 @@ In the **Add View** dialog, name the view "Admin". Select the check box labeled 
 
 Clicking **Add** adds a file named Admin.cshtml under Views/Home. Open this file and add the following HTML. This HTML defines the structure of the page, but no functionality is wired up yet.
 
-[!code[Main](using-web-api-with-entity-framework-part-4/samples/sample2.xml)]
+[!code-cshtml[Main](using-web-api-with-entity-framework-part-4/samples/sample2.cshtml)]
 
 ## Create a Link to the Admin Page
 
 In Solution Explorer, expand the Views folder and then expand the Shared folder. Open the file named \_Layout.cshtml. Locate the **ul** element with id = "menu", and an action link for the Admin view:
 
-[!code[Main](using-web-api-with-entity-framework-part-4/samples/sample3.xml)]
+[!code-cshtml[Main](using-web-api-with-entity-framework-part-4/samples/sample3.cshtml)]
 
 > [!NOTE] In the sample project, I made a few other cosmetic changes, such as replacing the string "Your logo here". These don't affect the functionality of the application. You can download the project and compare the files.
 
@@ -60,17 +60,17 @@ The Admin page is currently accessible to anyone visiting the site. Let's change
 
 Start by adding an "Administrator" role and an administrator user. In Solution Explorer, expand the Filters folder and open the file named InitializeSimpleMembershipAttribute.cs. Locate the `SimpleMembershipInitializer` constructor. After the call to **WebSecurity.InitializeDatabaseConnection**, add the following code:
 
-[!code[Main](using-web-api-with-entity-framework-part-4/samples/sample4.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-4/samples/sample4.cs)]
 
 This is a quick-and-dirty way to add the "Administrator" role and create a user for the role.
 
 In Solution Explorer, expand the Controllers folder and open the HomeController.cs file. Add the **Authorize** attribute to the `Admin` method.
 
-[!code[Main](using-web-api-with-entity-framework-part-4/samples/sample5.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-4/samples/sample5.cs)]
 
 Open the AdminController.cs file and add the **Authorize** attribute to the entire `AdminController` class.
 
-[!code[Main](using-web-api-with-entity-framework-part-4/samples/sample6.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-4/samples/sample6.cs)]
 
 > [!NOTE] MVC and Web API both define **Authorize** attributes, in different namespaces. MVC uses **System.Web.Mvc.AuthorizeAttribute**, while Web API uses **System.Web.Http.AuthorizeAttribute**.
 

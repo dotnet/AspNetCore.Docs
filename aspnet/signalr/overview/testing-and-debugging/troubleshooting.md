@@ -71,19 +71,19 @@ SignalR uses two communication models: Hubs and PersistentConnections. The synta
 
 **JavaScript client code that creates a PersistentConnection in a JavaScript client**
 
-[!code[Main](troubleshooting/samples/sample1.xml)]
+[!code-csharp[Main](troubleshooting/samples/sample1.cs)]
 
 **JavaScript client code that creates a Hub Proxy in a Javascript client**
 
-[!code[Main](troubleshooting/samples/sample2.xml)]
+[!code-csharp[Main](troubleshooting/samples/sample2.cs)]
 
 **C# server code that maps a route to a PersistentConnection**
 
-[!code[Main](troubleshooting/samples/sample3.xml)]
+[!code-csharp[Main](troubleshooting/samples/sample3.cs)]
 
 **C# server code that maps a route to a Hub, or to mulitple hubs if you have multiple applications**
 
-[!code[Main](troubleshooting/samples/sample4.xml)]
+[!code-unknown[Main](troubleshooting/samples/sample-51354-4.unknown)]
 
 ### Connection started before subscriptions are added
 
@@ -91,13 +91,13 @@ If the Hub's connection is started before methods that can be called from the se
 
 **Incorrect JavaScript client code that will not allow Hubs messages to be received**
 
-[!code[Main](troubleshooting/samples/sample5.xml)]
+[!code-csharp[Main](troubleshooting/samples/sample5.cs)]
 
 Instead, add the method subscriptions before calling Start:
 
 **JavaScript client code that correctly adds subscriptions to a hub**
 
-[!code[Main](troubleshooting/samples/sample6.xml)]
+[!code-csharp[Main](troubleshooting/samples/sample6.cs)]
 
 ### Missing method name on the hub proxy
 
@@ -105,7 +105,7 @@ Verify that the method defined on the server is subscribed to on the client. Eve
 
 **JavaScript client code that adds methods to a hub proxy**
 
-[!code[Main](troubleshooting/samples/sample7.xml)]
+[!code-csharp[Main](troubleshooting/samples/sample7.cs)]
 
 ### Hub or hub methods not declared as Public
 
@@ -125,7 +125,7 @@ This behavior is by design. When `OnDisconnected` is called, the hub has already
 
 **C# server code that correctly executes code in the OnDisconnected event**
 
-[!code[Main](troubleshooting/samples/sample8.xml)]
+[!code-csharp[Main](troubleshooting/samples/sample8.cs)]
 
 ### OnDisconnect not firing at consistent times
 
@@ -147,7 +147,7 @@ A connection in a .NET client application that uses Domain security may fail if 
 
 **C# client code that implements connection credentials**
 
-[!code[Main](troubleshooting/samples/sample9.xml)]
+[!code-unknown[Main](troubleshooting/samples/sample-51354-9.unknown)]
 
 <a id="pong"></a>
 
@@ -167,7 +167,7 @@ This error is commonly seen if code references SignalR objects before the connec
 
 **JavaScript client code that correctly adds event handlers that reference SignalR objects**
 
-[!code[Main](troubleshooting/samples/sample10.xml?highlight=1)]
+[!code-javascript[Main](troubleshooting/samples/sample10.js?highlight=1)]
 
 This error will also be seen if a connection stops while SignalR objects are still being referenced.
 
@@ -188,7 +188,7 @@ There are several causes for this issue. Verify all of the following:
 - **Using IIS 7 or 7.5 without the update for extensionless URLs:** Using IIS 7 or 7.5 requires an update for extensionless URLs so that the server can provide access to the hub definitions at `/signalr/hubs`. The update can be found [here](https://support.microsoft.com/kb/980368/en-us).
 - **IIS cache out of date or corrupt:** To verify that the cache contents are not out of date, enter the following command in a PowerShell window to clear the cache:
 
-    [!code[Main](troubleshooting/samples/sample11.xml)]
+    [!code-powershell[Main](troubleshooting/samples/sample11.ps1)]
 
 ### "500 Internal Server Error"
 
@@ -230,7 +230,7 @@ This error results from not having jQuery or the hubs proxy referenced properly.
 
 **HTML client-side code that correctly references the Hubs proxy**
 
-[!code[Main](troubleshooting/samples/sample12.xml)]
+[!code-html[Main](troubleshooting/samples/sample12.html)]
 
 ### "RuntimeBinderException was unhandled by user code" error
 
@@ -238,7 +238,7 @@ This error may occur when the incorrect overload of `Hub.On` is used. If the met
 
 **Method defined on the client (without generated proxy)**
 
-[!code[Main](troubleshooting/samples/sample13.xml?highlight=1)]
+[!code-unknown[Main](troubleshooting/samples/sample-51354-13.unknown?highlight=1)]
 
 ### Connection ID is inconsistent or connection breaks between page loads
 
@@ -272,7 +272,7 @@ jQuery Mobile's `initializePage` function forces the scripts in each page to be 
 
 Messages are delayed when using server sent events on Silverlight. To force long polling to be used instead, use the following when starting the connection:
 
-[!code[Main](troubleshooting/samples/sample14.xml)]
+[!code-unknown[Main](troubleshooting/samples/sample-51354-14.unknown)]
 
 ### "Permission Denied" using Forever Frame protocol
 
@@ -364,7 +364,7 @@ This section contains issues with Microsoft Azure.
 
 Hosting SignalR in an Azure Worker Role might result in the exception "Could not load file or assembly 'Microsoft.Owin, Version=2.0.0.0". This is a known issue with NuGet; Binding redirects are not added automatically in Azure Worker Role projects. To fix this, you can add the binding redirects manually. Add the following lines to the `app.config` file for your Worker Role project.
 
-[!code[Main](troubleshooting/samples/sample15.xml)]
+[!code-xml[Main](troubleshooting/samples/sample15.xml)]
 
 ### Messages are not received through the Azure backplane after altering topic names
 

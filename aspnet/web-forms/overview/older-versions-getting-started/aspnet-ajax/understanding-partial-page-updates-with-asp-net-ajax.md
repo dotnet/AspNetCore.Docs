@@ -51,11 +51,11 @@ The ability to integrate partial page rendering is integrated into ASP.NET with 
 
 **Listing 1: Markup for default.aspx before partial rendering is enabled**
 
-[!code[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample1.xml)]
+[!code-aspx[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample1.aspx)]
 
 **Listing 2: Codebehind (trimmed) in default.aspx.cs**
 
-[!code[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample2.xml)]
+[!code-csharp[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample2.cs)]
 
 1. Press F5 to launch your web site. Visual Studio will prompt you to add a web.config file to enable debugging; do so. When you click the button, notice that the page refreshes to change the text in the label, and there is a brief flicker as the page is redrawn.
 2. After closing your browser window, return to Visual Studio and to the markup page. Scroll down in the Visual Studio toolbox, and find the tab labeled AJAX Extensions. (If you do not have this tab because you are using an older version of AJAX or Atlas extensions, refer to the walkthrough for registering the AJAX Extensions toolbox items later in this whitepaper, or install the current version with the Windows Installer downloadable from the website).
@@ -83,7 +83,7 @@ The ability to integrate partial page rendering is integrated into ASP.NET with 
 
 **Listing 3: Markup for default.aspx with partial rendering enabled**
 
-[!code[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample3.xml)]
+[!code-aspx[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample3.aspx)]
 
 1. Open your web.config file. Notice that Visual Studio has automatically added a compilation reference to System.Web.Extensions.dll.
 
@@ -167,7 +167,7 @@ Client-side customization is also possible instead of using the default alert bo
 
 **Listing 5: Client-side script to display custom errors**
 
-[!code[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample4.xml)]
+[!code-html[Main](understanding-partial-page-updates-with-asp-net-ajax/samples/sample4.html)]
 
 Quite simply, the above script registers a callback with the client-side AJAX runtime for when the asynchronous request has been completed. It then checks to see whether an error was reported, and if so, processes the details of it, finally indicating to the runtime that the error was handled in custom script.
 

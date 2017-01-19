@@ -51,7 +51,7 @@ This type of URI is difficult to create using convention-based routing. Although
 
 With attribute routing, it's trivial to define a route for this URI. You simply add an attribute to the controller action:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample1.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample1.cs)]
 
 Here are some other patterns that attribute routing makes easy.
 
@@ -81,11 +81,11 @@ In this example, "1" is an order number, but "2013/06/16" specifies a date.
 
 To enable attribute routing, call **MapHttpAttributeRoutes** during configuration. This extension method is defined in the **System.Web.Http.HttpConfigurationExtensions** class.
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample2.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample2.cs)]
 
 Attribute routing can be combined with [convention-based](routing-in-aspnet-web-api.md) routing. To define convention-based routes, call the **MapHttpRoute** method.
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample3.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample3.cs)]
 
 For more information about configuring Web API, see [Configuring ASP.NET Web API 2](../advanced/configuring-aspnet-web-api.md).
 
@@ -94,11 +94,11 @@ For more information about configuring Web API, see [Configuring ASP.NET Web API
 
 Prior to Web API 2, the Web API project templates generated code like this:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample4.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample4.cs)]
 
 If attribute routing is enabled, this code will throw an exception. If you upgrade an existing Web API project to use attribute routing, make sure to update this configuration code to the following:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample5.xml?highlight=4)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample5.cs?highlight=4)]
 
 > [!NOTE] For more information, see [Configuring Web API with ASP.NET Hosting](../advanced/configuring-aspnet-web-api.md).
 
@@ -108,7 +108,7 @@ If attribute routing is enabled, this code will throw an exception. If you upgra
 
 Here is an example of a route defined using an attribute:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample6.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample6.cs)]
 
 The string &quot;customers/{customerId}/orders&quot; is the URI template for the route. Web API tries to match the request URI to the template. In this example, "customers" and "orders" are literal segments, and "{customerId}" is a variable parameter. The following URIs would match this template:
 
@@ -122,7 +122,7 @@ Notice that the &quot;{customerId}&quot; parameter in the route template matches
 
 A URI template can have several parameters:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample7.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample7.cs)]
 
 Any controller methods that do not have a route attribute use convention-based routing. That way, you can combine both types of routing in the same project.
 
@@ -142,37 +142,37 @@ You can override this convention by decorating the mathod with any the following
 
 The following example maps the CreateBook method to HTTP POST requests.
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample8.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample8.cs)]
 
 For all other HTTP methods, including non-standard methods, use the **AcceptVerbs** attribute, which takes a list of HTTP methods.
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample9.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample9.cs)]
 
 <a id="prefixes"></a>
 ## Route Prefixes
 
 Often, the routes in a controller all start with the same prefix. For example:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample10.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample10.cs)]
 
 You can set a common prefix for an entire controller by using the **[RoutePrefix]** attribute:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample11.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample11.cs)]
 
 Use a tilde (~) on the method attribute to override the route prefix:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample12.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample12.cs)]
 
 The route prefix can include parameters:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample13.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample13.cs)]
 
 <a id="constraints"></a>
 ## Route Constraints
 
 Route constraints let you restrict how the parameters in the route template are matched. The general syntax is &quot;{parameter:constraint}&quot;. For example:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample14.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample14.cs)]
 
 Here, the first route will only be selected if the &quot;id&quot; segment of the URI is an integer. Otherwise, the second route will be chosen.
 
@@ -199,21 +199,21 @@ The following table lists the constraints that are supported.
 
 Notice that some of the constraints, such as &quot;min&quot;, take arguments in parentheses. You can apply multiple constraints to a parameter, separated by a colon.
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample15.xml)]
+[!code-unknown[Main](attribute-routing-in-web-api-2/samples/sample-47563-15.unknown)]
 
 ### Custom Route Constraints
 
 You can create custom route constraints by implementing the **IHttpRouteConstraint** interface. For example, the following constraint restricts a parameter to a non-zero integer value.
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample16.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample16.cs)]
 
 The following code shows how to register the constraint:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample17.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample17.cs)]
 
 Now you can apply the constraint in your routes:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample18.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample18.cs)]
 
 You can also replace the entire **DefaultInlineConstraintResolver** class by implementing the **IInlineConstraintResolver** interface. Doing so will replace all of the built-in constraints, unless your implementation of **IInlineConstraintResolver** specifically adds them.
 
@@ -222,13 +222,13 @@ You can also replace the entire **DefaultInlineConstraintResolver** class by imp
 
 You can make a URI parameter optional by adding a question mark to the route parameter. If a route parameter is optional, you must define a default value for the method parameter.
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample19.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample19.cs)]
 
 In this example, `/api/books/locale/1033` and `/api/books/locale` return the same resource.
 
 Alternatively, you can specify a default value inside the route template, as follows:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample20.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample20.cs)]
 
 This is almost the same as the previous example, but there is a slight difference of behavior when the default value is applied.
 
@@ -244,7 +244,7 @@ In Web API, every route has a name. Route names are useful for generating links,
 
 To specify the route name, set the **Name** property on the attribute. The following example shows how to set the route name, and also how to use the route name when generating a link.
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample21.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample21.cs)]
 
 <a id="order"></a>
 ## Route Order
@@ -265,7 +265,7 @@ Here is how the total ordering is determined:
 
 Here is an example. Suppose you define the following controller:
 
-[!code[Main](attribute-routing-in-web-api-2/samples/sample22.xml)]
+[!code-csharp[Main](attribute-routing-in-web-api-2/samples/sample22.cs)]
 
 These routes are ordered as follows.
 

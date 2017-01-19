@@ -50,7 +50,7 @@ Open the Typed DataSet and, from the Designer, right-click on the `CategoriesTab
 We now need to specify the `INSERT` SQL statement. The wizard automatically suggests an `INSERT` statement corresponding to the TableAdapter s main query. In this case, it s an `INSERT` statement that inserts the `CategoryName`, `Description`, and `BrochurePath` values. Update the statement so that the `Picture` column is included along with a `@Picture` parameter, like so:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample1.xml)]
+[!code-sql[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample1.sql)]
 
 The final screen of the wizard asks us to name the new TableAdapter method. Enter `InsertWithPicture` and click Finish.
 
@@ -65,7 +65,7 @@ The final screen of the wizard asks us to name the new TableAdapter method. Ente
 Since the Presentation Layer should only interface with the Business Logic Layer rather than bypassing it to go directly to the Data Access Layer, we need to create a BLL method that invokes the DAL method we just created (`InsertWithPicture`). For this tutorial, create a method in the `CategoriesBLL` class named `InsertWithPicture` that accepts as input three `string` s and a `byte` array. The `string` input parameters are for the category s name, description, and brochure file path, while the `byte` array is for the binary contents of the category s picture. As the following code shows, this BLL method invokes the corresponding DAL method:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample2.xml)]
+[!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample2.cs)]
 
 > [!NOTE] Make sure that you have saved the Typed DataSet before adding the `InsertWithPicture` method to the BLL. Since the `CategoriesTableAdapter` class code is auto-generated based on the Typed DataSet, if you don t first save your changes to the Typed DataSet the `Adapter` property won t know about the `InsertWithPicture` method.
 
@@ -108,7 +108,7 @@ Start by clicking the Configure Data Source link from the ObjectDataSource s sma
 After completing the wizard, the ObjectDataSource will now include a value for its `InsertMethod` property as well as `InsertParameters` for the four category columns, as the following declarative markup illustrates:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample3.xml)]
+[!code-aspx[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample3.aspx)]
 
 ## Step 5: Creating the Inserting Interface
 
@@ -137,7 +137,7 @@ Remove the `NumberOfProducts` BoundField from the DetailsView altogether and the
 If you converted the `BrochurePath` BoundField into a TemplateField through the Edit Fields dialog box, the TemplateField includes an `ItemTemplate`, `EditItemTemplate`, and `InsertItemTemplate`. Only the `InsertItemTemplate` is needed, however, so feel free to remove the other two templates. At this point your DetailsView s declarative syntax should look like the following:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample4.xml)]
+[!code-aspx[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample4.aspx)]
 
 ## Adding FileUpload Controls for the Brochure and Picture Fields
 
@@ -154,7 +154,7 @@ From the DetailsView s smart tag, choose the Edit Templates option and then sele
 After making these additions, the two TemplateField s declarative syntax will be:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample5.xml)]
+[!code-aspx[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample5.aspx)]
 
 When a user adds a new category, we want to ensure that the brochure and picture are of the correct file type. For the brochure, the user must supply a PDF. For the picture, we need the user to upload an image file, but do we allow *any* image file or only image files of a particular type, such as GIFs or JPGs? In order to allow for different file types, we d need to extend the `Categories` schema to include a column that captures the file type so that this type can be sent to the client through `Response.ContentType` in `DisplayCategoryPicture.aspx`. Since we don t have such a column, it would be prudent to restrict users to only providing a specific image file type. The `Categories` table s existing images are bitmaps, but JPGs are a more appropriate file format for images served over the web.
 
@@ -170,7 +170,7 @@ When the user enters the values for a new category and clicks the Insert button,
 Before the ObjectDataSource s `Insert()` method is invoked, we must first ensure that the appropriate file types were uploaded by the user and then save the brochure PDF to the web server s file system. Create an event handler for the DetailsView s `ItemInserting` event and add the following code:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample6.xml)]
+[!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample6.cs)]
 
 The event handler starts by referencing the `BrochureUpload` FileUpload control from the DetailsView s templates. Then, if a brochure has been uploaded, the uploaded file s extension is examined. If the extension is not .PDF , then a warning is displayed, the insert is cancelled, and the execution of the event handler ends.
 
@@ -182,12 +182,12 @@ As discussed in the [Uploading Files](uploading-files-cs.md) tutorial, care must
 The following code uses the [`File.Exists(path)` method](https://msdn.microsoft.com/en-us/library/system.io.file.exists.aspx) to determine if a file already exists with the specified file name. If so, it continues to try new file names for the brochure until no conflict is found.
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample7.xml)]
+[!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample7.cs)]
 
 Once a valid file name has been found, the file needs to be saved to the file system and the ObjectDataSource s `brochurePath``InsertParameter` value needs to be updated so that this file name is written to the database. As we saw back in the *Uploading Files* tutorial, the file can be saved using the FileUpload control s `SaveAs(path)` method. To update the ObjectDataSource s `brochurePath` parameter, use the `e.Values` collection.
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample8.xml)]
+[!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample8.cs)]
 
 ## Step 7: Saving the Uploaded Picture to the Database
 
@@ -196,21 +196,21 @@ To store the uploaded picture in the new `Categories` record, we need to assign 
 While the `Categories` table allows `NULL` values for the `Picture` column, all categories currently have a picture. Let s force the user to provide a picture when adding a new category through this page. The following code checks to ensure that a picture has been uploaded and that it has an appropriate extension.
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample9.xml)]
+[!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample9.cs)]
 
 This code should be placed *before* the code from Step 6 so that if there is a problem with the picture upload, the event handler will terminate before the brochure file is saved to the file system.
 
 Assuming that an appropriate file has been uploaded, assign the uploaded binary content to the picture parameter s value with the following line of code:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample10.xml)]
+[!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample10.cs)]
 
 ## The Complete`ItemInserting`Event Handler
 
 For completeness, here is the `ItemInserting` event handler in its entirety:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample11.xml)]
+[!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample11.cs)]
 
 ## Step 8: Fixing the`DisplayCategoryPicture.aspx`Page
 
@@ -235,7 +235,7 @@ The reason the new picture is not displayed is because the `DisplayCategoryPictu
 Since there are now both bitmaps with OLE headers and JPGs in the `Categories` table, we need to update `DisplayCategoryPicture.aspx` so that it does the OLE header stripping for the original eight categories and bypasses this stripping for the newer category records. In our next tutorial we'll examine how to update an existing record s image, and we'll update all of the old category pictures so that they are JPGs. For now, though, use the following code in `DisplayCategoryPicture.aspx` to strip the OLE headers only for those original eight categories:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample12.xml)]
+[!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample12.cs)]
 
 With this change, the JPG image is now rendered correctly in the GridView.
 
@@ -254,7 +254,7 @@ Now, what happens if the database is offline, or if there is an error in the `IN
 As discussed previously in the [Handling BLL- and DAL-Level Exceptions in an ASP.NET Page](../editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs.md) tutorial, when an exception is thrown from within the depths of the architecture it is bubbled up through the various layers. At the Presentation Layer, we can determine if an exception has occurred from the DetailsView s `ItemInserted` event. This event handler also provides the values of the ObjectDataSource s `InsertParameters`. Therefore, we can create an event handler for the `ItemInserted` event that checks if there was an exception and, if so, deletes the file specified by the ObjectDataSource s `brochurePath` parameter:
 
 
-[!code[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample13.xml)]
+[!code-csharp[Main](including-a-file-upload-option-when-adding-a-new-record-cs/samples/sample13.cs)]
 
 ## Summary
 

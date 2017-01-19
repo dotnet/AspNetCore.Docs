@@ -32,7 +32,7 @@ This article shows how to post form-urlencoded data to a Web API controller.
 
 HTML forms use either GET or POST to send data to the server. The **method** attribute of the **form** element gives the HTTP method:
 
-[!code[Main](sending-html-form-data-part-1/samples/sample1.xml)]
+[!code-html[Main](sending-html-form-data-part-1/samples/sample1.html)]
 
 The default method is GET. If the form uses GET, the form data is encoded in the URI as a query string. If the form uses POST, the form data is placed in the request body. For POSTed data, the **enctype** attribute specifies the format of the request body:
 
@@ -48,18 +48,18 @@ Part 1 of this article looks at x-www-form-urlencoded format. [Part 2](sending-h
 
 Typically, you will send a complex type, composed of values taken from several form controls. Consider the following model that represents a status update:
 
-[!code[Main](sending-html-form-data-part-1/samples/sample2.xml)]
+[!code-csharp[Main](sending-html-form-data-part-1/samples/sample2.cs)]
 
 Here is a Web API controller that accepts an `Update` object via POST.
 
-[!code[Main](sending-html-form-data-part-1/samples/sample3.xml)]
+[!code-csharp[Main](sending-html-form-data-part-1/samples/sample3.cs)]
 
 > [!NOTE] This controller uses [action-based routing](../web-api-routing-and-actions/routing-in-aspnet-web-api.md#routing_by_action_name), so the route template is &quot;api/{controller}/{action}/{id}&quot;. The client will post the data to &quot;/api/updates/complex&quot;.
 
 
 Now let's write an HTML form for users to submit a status update.
 
-[!code[Main](sending-html-form-data-part-1/samples/sample4.xml)]
+[!code-html[Main](sending-html-form-data-part-1/samples/sample4.html)]
 
 Notice that the **action** attribute on the form is the URI of our controller action. Here is the form with some values entered in:
 
@@ -67,7 +67,7 @@ Notice that the **action** attribute on the form is the URI of our controller ac
 
 When the user clicks Submit, the browser sends an HTTP request similar to the following:
 
-[!code[Main](sending-html-form-data-part-1/samples/sample5.xml)]
+[!code-console[Main](sending-html-form-data-part-1/samples/sample5.cmd)]
 
 Notice that the request body contains the form data, formatted as name/value pairs. Web API automatically converts the name/value pairs into an instance of the `Update` class.
 
@@ -78,7 +78,7 @@ When a user submits a form, the browser navigates away from the current page and
 
 The following code shows how to post form data using jQuery.
 
-[!code[Main](sending-html-form-data-part-1/samples/sample6.xml)]
+[!code-html[Main](sending-html-form-data-part-1/samples/sample6.html)]
 
 The jQuery **submit** function replaces the form action with a new function. This overrides the default behavior of the Submit button. The **serialize** function serializes the form data into name/value pairs. To send the form data to the server, call `$.post()`.
 
@@ -96,7 +96,7 @@ In the previous sections, we sent a complex type, which Web API deserialized to 
 
 The basic steps to send a simple type are the same, but there are two subtle differences. First, in the controller, you must decorate the parameter name with the **FromBody** attribute.
 
-[!code[Main](sending-html-form-data-part-1/samples/sample7.xml?highlight=3)]
+[!code-csharp[Main](sending-html-form-data-part-1/samples/sample7.cs?highlight=3)]
 
 By default, Web API tries to get simple types from the request URI. The **FromBody** attribute tells Web API to read the value from the request body.
 
@@ -105,23 +105,23 @@ By default, Web API tries to get simple types from the request URI. The **FromBo
 
 Second, the client needs to send the value with the following format:
 
-[!code[Main](sending-html-form-data-part-1/samples/sample8.xml)]
+[!code-unknown[Main](sending-html-form-data-part-1/samples/sample-39134-8.unknown)]
 
 Specifically, the name portion of the name/value pair must be empty for a simple type. Not all browsers support this for HTML forms, but you create this format in script as follows:
 
-[!code[Main](sending-html-form-data-part-1/samples/sample9.xml)]
+[!code-javascript[Main](sending-html-form-data-part-1/samples/sample9.js)]
 
 Here is an example form:
 
-[!code[Main](sending-html-form-data-part-1/samples/sample10.xml)]
+[!code-html[Main](sending-html-form-data-part-1/samples/sample10.html)]
 
 And here is the script to submit the form value. The only difference from the previous script is the argument passed into the **post** function.
 
-[!code[Main](sending-html-form-data-part-1/samples/sample11.xml?highlight=2)]
+[!code-javascript[Main](sending-html-form-data-part-1/samples/sample11.js?highlight=2)]
 
 You can use the same approach to send an array of simple types:
 
-[!code[Main](sending-html-form-data-part-1/samples/sample12.xml)]
+[!code-javascript[Main](sending-html-form-data-part-1/samples/sample12.js)]
 
 ## Additional Resources
 

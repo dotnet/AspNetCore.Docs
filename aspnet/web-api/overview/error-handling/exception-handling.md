@@ -29,11 +29,11 @@ What happens if a Web API controller throws an uncaught exception? By default, m
 
 The **HttpResponseException** type is a special case. This exception returns any HTTP status code that you specify in the exception constructor. For example, the following method returns 404, Not Found, if the *id* parameter is not valid.
 
-[!code[Main](exception-handling/samples/sample1.xml)]
+[!code-csharp[Main](exception-handling/samples/sample1.cs)]
 
 For more control over the response, you can also construct the entire response message and include it with the **HttpResponseException:** 
 
-[!code[Main](exception-handling/samples/sample2.xml)]
+[!code-csharp[Main](exception-handling/samples/sample2.cs)]
 
 <a id="exception_filters"></a>
 ## Exception Filters
@@ -47,7 +47,7 @@ Exception filters implement the **System.Web.Http.Filters.IExceptionFilter** int
 
 Here is a filter that converts **NotImplementedException** exceptions into HTTP status code 501, Not Implemented:
 
-[!code[Main](exception-handling/samples/sample3.xml)]
+[!code-csharp[Main](exception-handling/samples/sample3.cs)]
 
 The **Response** property of the **HttpActionExecutedContext** object contains the HTTP response message that will be sent to the client.
 
@@ -62,32 +62,32 @@ There are several ways to register a Web API exception filter:
 
 To apply the filter to a specific action, add the filter as an attribute to the action:
 
-[!code[Main](exception-handling/samples/sample4.xml)]
+[!code-csharp[Main](exception-handling/samples/sample4.cs)]
 
 To apply the filter to all of the actions on a controller, add the filter as an attribute to the controller class:
 
-[!code[Main](exception-handling/samples/sample5.xml)]
+[!code-csharp[Main](exception-handling/samples/sample5.cs)]
 
 To apply the filter globally to all Web API controllers, add an instance of the filter to the **GlobalConfiguration.Configuration.Filters** collection. Exeption filters in this collection apply to any Web API controller action.
 
-[!code[Main](exception-handling/samples/sample6.xml)]
+[!code-csharp[Main](exception-handling/samples/sample6.cs)]
 
 If you use the "ASP.NET MVC 4 Web Application" project template to create your project, put your Web API configuration code inside the `WebApiConfig` class, which is located in the App\_Start folder:
 
-[!code[Main](exception-handling/samples/sample7.xml?highlight=5)]
+[!code-csharp[Main](exception-handling/samples/sample7.cs?highlight=5)]
 
 <a id="httperror"></a>
 ## HttpError
 
 The **HttpError** object provides a consistent way to return error information in the response body. The following example shows how to return HTTP status code 404 (Not Found) with an **HttpError** in the response body.
 
-[!code[Main](exception-handling/samples/sample8.xml)]
+[!code-csharp[Main](exception-handling/samples/sample8.cs)]
 
 **CreateErrorResponse** is an extension method defined in the **System.Net.Http.HttpRequestMessageExtensions** class. Internally, **CreateErrorResponse** creates an **HttpError** instance and then creates an **HttpResponseMessage** that contains the **HttpError**.
 
 In this example, if the method is successful, it returns the product in the HTTP response. But if the requested product is not found, the HTTP response contains an **HttpError** in the request body. The response might look like the following:
 
-[!code[Main](exception-handling/samples/sample9.xml)]
+[!code-console[Main](exception-handling/samples/sample9.cmd)]
 
 Notice that the **HttpError** was serialized to JSON in this example. One advantage of using **HttpError** is that it goes through the same [content-negotiation](../formats-and-model-binding/content-negotiation.md) and serialization process as any other strongly-typed model.
 
@@ -95,11 +95,11 @@ Notice that the **HttpError** was serialized to JSON in this example. One advant
 
 For model validation, you can pass the model state to **CreateErrorResponse**, to include the validation errors in the response:
 
-[!code[Main](exception-handling/samples/sample10.xml)]
+[!code-csharp[Main](exception-handling/samples/sample10.cs)]
 
 This example might return the following response:
 
-[!code[Main](exception-handling/samples/sample11.xml)]
+[!code-console[Main](exception-handling/samples/sample11.cmd)]
 
 For more information about model validation, see [Model Validation in ASP.NET Web API](../formats-and-model-binding/model-validation-in-aspnet-web-api.md).
 
@@ -107,4 +107,4 @@ For more information about model validation, see [Model Validation in ASP.NET We
 
 The previous examples return an **HttpResponseMessage** message from the controller action, but you can also use **HttpResponseException** to return an **HttpError**. This lets you return a strongly-typed model in the normal success case, while still returning **HttpError** if there is an error:
 
-[!code[Main](exception-handling/samples/sample12.xml)]
+[!code-csharp[Main](exception-handling/samples/sample12.cs)]

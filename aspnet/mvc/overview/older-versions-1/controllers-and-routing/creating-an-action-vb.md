@@ -26,7 +26,7 @@ You add a new action to a controller by adding a new method to the controller. F
 
 **Listing 1 - Controllers\HomeController.vb**
 
-[!code[Main](creating-an-action-vb/samples/sample1.xml)]
+[!code-vb[Main](creating-an-action-vb/samples/sample1.vb)]
 
 In order to be exposed to the universe as an action, a method must meet certain requirements:
 
@@ -48,7 +48,7 @@ If you need to create a public method in a controller class and you don't want t
 
 **Listing 2 - Controllers\WorkController.vb**
 
-[!code[Main](creating-an-action-vb/samples/sample2.xml)]
+[!code-vb[Main](creating-an-action-vb/samples/sample2.vb)]
 
 If you attempt to invoke the CompanySecrets() controller action by typing /Work/CompanySecrets into the address bar of your browser then you'll get the error message in Figure 1.
 

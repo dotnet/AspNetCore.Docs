@@ -34,7 +34,7 @@ You'll also create a page that works with a many-to-many relationship by assigni
 
 Create a new web page named *CoursesAdd.aspx* that uses the *Site.Master* master page, and add the following markup to the `Content` control named `Content2`:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample1.xml)]
+[!code-aspx[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample1.aspx)]
 
 This markup creates an `EntityDataSource` control that selects courses, that enables inserting, and that specifies a handler for the `Inserting` event. You'll use the handler to update the `Department` navigation property when a new `Course` entity is created.
 
@@ -44,15 +44,15 @@ You use a template field for the `Department` navigation property because naviga
 
 In *CoursesAdd.aspx.cs* just after the partial-class declaration, add a class field to hold a reference to the `DepartmentsDropDownList` control:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample2.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample2.cs)]
 
 Add a handler for the `DepartmentsDropDownList` control's `Init` event so that you can store a reference to the control. This lets you get the value the user has entered and use it to update the `DepartmentID` value of the `Course` entity.
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample3.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample3.cs)]
 
 Add a handler for the `DetailsView` control's `Inserting` event:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample4.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample4.cs)]
 
 When the user clicks `Insert`, the `Inserting` event is raised before the new record is inserted. The code in the handler gets the `DepartmentID` from the `DropDownList` control and uses it to set the value that will be used for the `DepartmentID` property of the `Course` entity.
 
@@ -74,7 +74,7 @@ The relationship between the `Courses` entity set and the `People` entity set is
 
 Create a new web page named *InstructorsCourses.aspx* that uses the *Site.Master* master page, and add the following markup to the `Content` control named `Content2`:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample5.xml)]
+[!code-aspx[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample5.aspx)]
 
 This markup creates an `EntityDataSource` control that retrieves the name and `PersonID` of `Person` entities for instructors. A `DropDrownList` control is bound to the `EntityDataSource` control. The `DropDownList` control specifies a handler for the `DataBound` event. You'll use this handler to databind the two drop-down lists that display courses.
 
@@ -88,29 +88,29 @@ Finally, the markup also creates a group of controls to use for removing a cours
 
 In *InstructorsCourses.aspx.cs*, add a using statement:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample6.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample6.cs)]
 
 Add a method for populating the two drop-down lists that display courses:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample7.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample7.cs)]
 
 This code gets all courses from the `Courses` entity set and gets the courses from the `Courses` navigation property of the `Person` entity for the selected instructor. It then determines which courses are assigned to that instructor and populates the drop-down lists accordingly.
 
 Add a handler for the `Assign` button's `Click` event:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample8.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample8.cs)]
 
 This code gets the `Person` entity for the selected instructor, gets the `Course` entity for the selected course, and adds the selected course to the `Courses` navigation property of the instructor's `Person` entity. It then saves the changes to the database and repopulates the drop-down lists so the results can be seen immediately.
 
 Add a handler for the `Remove` button's `Click` event:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample9.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample9.cs)]
 
 This code gets the `Person` entity for the selected instructor, gets the `Course` entity for the selected course, and removes the selected course from the `Person` entity's `Courses` navigation property. It then saves the changes to the database and repopulates the drop-down lists so the results can be seen immediately.
 
 Add code to the `Page_Load` method that makes sure the error messages are not visible when there's no error to report, and add handlers for the `DataBound` and `SelectedIndexChanged` events of the instructors drop-down list to populate the courses drop-down lists:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample10.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-5/samples/sample10.cs)]
 
 Run the page.
 

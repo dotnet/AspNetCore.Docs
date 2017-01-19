@@ -74,7 +74,7 @@ At this point, the DropDownList lists the company names of the suppliers in the 
 After the `AppendDataBoundItems` property has been set and the `ListItem` added, the DropDownList s declarative markup should look like:
 
 
-[!code[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample1.xml)]
+[!code-aspx[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample1.aspx)]
 
 Figure 5 shows a screen shot of our current progress, when viewed through a browser.
 
@@ -100,7 +100,7 @@ Since the `SuppliersBLL` class s `UpdateSupplierAddress` method only accepts fou
 After configuring the `SupplierDetails` DetailsView and `AllSuppliersDataSource` ObjectDataSource, we will have the following declarative markup:
 
 
-[!code[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample2.xml)]
+[!code-aspx[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample2.aspx)]
 
 At this point the DetailsView can be paged through and the selected supplier s address information can be updated, regardless of the selection made in the `Suppliers` DropDownList (see Figure 6).
 
@@ -133,7 +133,7 @@ Next, we re prompted to specify the parameter source for the `GetSupplierBySuppl
 Even with this second ObjectDataSource added, the DetailsView control is currently configured to always use the `AllSuppliersDataSource` ObjectDataSource. We need to add logic to adjust the data source used by the DetailsView depending on the `Suppliers` DropDownList item selected. To accomplish this, create a `SelectedIndexChanged` event handler for the Suppliers DropDownList. This can most easily be created by double-clicking the DropDownList in the Designer. This event handler needs to determine what data source to use and must rebind the data to the DetailsView. This is accomplished with the following code:
 
 
-[!code[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample3.xml)]
+[!code-vb[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample3.vb)]
 
 The event handler begins by determining whether the "Show/Edit ALL Suppliers" option was selected. If it was, it sets the `SupplierDetails` DetailsView s `DataSourceID` to `AllSuppliersDataSource` and returns the user to the first record in the set of suppliers by setting the `PageIndex` property to 0. If, however, the user has selected a particular supplier from the DropDownList, the DetailsView s `DataSourceID` is assigned to `SingleSuppliersDataSource`. Regardless of what data source is used, the `SuppliersDetails` mode is reverted back to the read-only mode and the data is rebound to the DetailsView by a call to the `SuppliersDetails` control s `DataBind()` method.
 
@@ -158,7 +158,7 @@ With this event handler in place, the DetailsView control now shows the selected
 With the DetailsView complete, our next step is to include an editable GridView that lists those products provided by the selected supplier. This GridView should allow edits to only the `ProductName` and `QuantityPerUnit` fields. Moreover, if the user visiting the page is from a particular supplier, it should only allow updates to those products that are *not* discontinued. To accomplish this we'll need to first add an overload of the `ProductsBLL` class s `UpdateProducts` method that takes in just the `ProductID`, `ProductName`, and `QuantityPerUnit` fields as inputs. We ve stepped through this process beforehand in numerous tutorials, so let s just look at the code here, which should be added to `ProductsBLL`:
 
 
-[!code[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample4.xml)]
+[!code-vb[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample4.vb)]
 
 With this overload created, we re ready to add the GridView control and its associated ObjectDataSource. Add a new GridView to the page, set its `ID` property to `ProductsBySupplier`, and configure it to use a new ObjectDataSource named `ProductsBySupplierDataSource`. Since we want this GridView to list those products by the selected supplier, use the `ProductsBLL` class s `GetProductsBySupplierID(supplierID)` method. Also map the `Update()` method to the new `UpdateProduct` overload we just created.
 
@@ -179,7 +179,7 @@ We re prompted to select the parameter source for the `GetProductsBySupplierID(s
 Returning to the GridView, remove all of the GridView fields except for `ProductName`, `QuantityPerUnit`, and `Discontinued`, marking the `Discontinued` CheckBoxField as read-only. Also, check the Enable Editing option from the GridView s smart tag. After these changes have been made, the declarative markup for the GridView and ObjectDataSource should look similar to the following:
 
 
-[!code[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample5.xml)]
+[!code-aspx[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample5.aspx)]
 
 As with our previous ObjectDataSources, this one s `OldValuesParameterFormatString` property is set to `original_{0}`, which will cause problems when attempting to update a product s name or quantity per unit. Remove this property from the declarative syntax altogether or set it to its default, `{0}`.
 
@@ -203,7 +203,7 @@ While the `ProductsBySupplier` GridView is fully functional, it currently grants
 Create an event handler for the GridView s `RowDataBound` event. In this event handler we need to determine whether or not the user is associated with a particular supplier, which, for this tutorial, can be determined by checking the Suppliers DropDownList s `SelectedValue` property - if it s something other than -1, then the user is associated with a particular supplier. For such users, we then need to determine whether or not the product is discontinued. We can grab a reference to the actual `ProductRow` instance bound to the GridView row via the `e.Row.DataItem` property, as discussed in the [*Displaying Summary Information in the GridView s Footer*](../custom-formatting/displaying-summary-information-in-the-gridview-s-footer-vb.md) tutorial. If the product is discontinued, we can grab a programmatic reference to the Edit button in the GridView s CommandField using the techniques discussed in the previous tutorial, [*Adding Client-Side Confirmation When Deleting*](adding-client-side-confirmation-when-deleting-vb.md). Once we have a reference we can then hide or disable the button.
 
 
-[!code[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample6.xml)]
+[!code-vb[Main](limiting-data-modification-functionality-based-on-the-user-vb/samples/sample6.vb)]
 
 With this event handler in place, when visiting this page as a user from a specific supplier those products that are discontinued are not editable, as the Edit button is hidden for these products. For example, Chef Anton s Gumbo Mix is a discontinued product for the New Orleans Cajun Delights supplier. When visiting the page for this particular supplier, the Edit button for this product is hidden from sight (see Figure 14). However, when visiting using the "Show/Edit ALL Suppliers," the Edit button is available (see Figure 15).
 

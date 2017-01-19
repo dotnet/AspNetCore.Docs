@@ -42,7 +42,7 @@ Incorporating the ASP.NET Authentication and Profiling services themselves into 
 
 The ASP.NET AJAX Authentication service must be enabled in the web.config file:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample1.xml)]
+[!code-xml[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample1.xml)]
 
 The Authentication service requires ASP.NET Forms authentication to be enabled and requires cookies to be enabled on the client browser (a script cannot enable a cookieless session since cookieless sessions require URL parameters).
 
@@ -102,7 +102,7 @@ This property specifies a function that should be called if a failure to communi
 
 The function reference specified by this property should have the following signature:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample2.xml)]
+[!code-javascript[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample2.js)]
 
 *Parameters:*
 
@@ -118,7 +118,7 @@ This property specifies a function that should be called when the login web serv
 
 The function reference specified by this property should have the following signature:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample3.xml)]
+[!code-javascript[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample3.js)]
 
 *Parameters:*
 
@@ -134,7 +134,7 @@ This property specifies a function that should be called when the logout web ser
 
 The function reference specified by this property should have the following signature:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample4.xml)]
+[!code-javascript[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample4.js)]
 
 *Parameters:*
 
@@ -170,7 +170,7 @@ This property is a `Number` object representing the number of milliseconds to wa
 
 The following markup is an example ASP.NET page with a simple script call to the login and logout methods of the AuthenticationService class.
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample5.xml)]
+[!code-aspx[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample5.aspx)]
 
 ## Accessing ASP.NET Profiling Data via AJAX
 
@@ -178,11 +178,11 @@ The ASP.NET profiling service is also exposed through the ASP.NET AJAX Extension
 
 The profile service must be enabled in web.config; it is not by default. To do so, ensure that the `profileService` child element has enabled= true specified in web.config, and that you have specified which properties can be read or written as follows:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample6.xml)]
+[!code-xml[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample6.xml)]
 
 The profile service must also be configured. Although configuration of the profiling service is outside of the scope of this whitepaper, it is worthwhile to note that groups as defined in profile configuration settings will be accessible as sub-properties of the group name. For example, with the following profile section specified:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample7.xml)]
+[!code-xml[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample7.xml)]
 
 Client script would be able to access Name, Address.Line1, Address.Line2, Address.City, Address.State, Address.Zip, and BackgroundColor as properties of the properties field of the ProfileService class.
 
@@ -194,7 +194,7 @@ Once the AJAX Profiling Service is configured, it will be immediately available 
 
 The properties field exposes all configured profile data as child properties that can be referenced by the dot-operator-name convention. Properties that are children of property groups are referred to as GroupName.PropertyName. In the example profile configuration presented above, to get the state of the user, you could use the following identifier:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample8.xml)]
+[!code-unknown[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample-24878-8.unknown)]
 
 *load method:*
 
@@ -236,7 +236,7 @@ This property specifies a function that should be called if a failure to communi
 
 The function reference specified by this property should have the following signature:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample9.xml)]
+[!code-javascript[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample9.js)]
 
 *Parameters:*
 
@@ -252,7 +252,7 @@ This property specifies a function that should be called upon the completion of 
 
 The function reference specified by this property should have the following signature:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample10.xml)]
+[!code-javascript[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample10.js)]
 
 *Parameters:*
 
@@ -268,7 +268,7 @@ This property specifies a function that should be called upon the completion of 
 
 The function reference specified by this property should have the following signature:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample11.xml)]
+[!code-javascript[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample11.js)]
 
 *Parameters:*
 
@@ -298,7 +298,7 @@ This property is a `Number` object representing the number of milliseconds to wa
 
 The following code will check to see whether a user is authenticated, and if so, will load the user's preferred background color as the page's.
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample12.xml)]
+[!code-javascript[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample12.js)]
 
 ## *Using a Custom Authentication Service Provider*
 
@@ -310,23 +310,23 @@ Once you have created the custom web service, you will need to specify the path 
 
 To set the path declaratively, include the AuthenticationService child of the ScriptManager object on your ASP.NET page:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample13.xml)]
+[!code-aspx[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample13.aspx)]
 
 *To set the path in code:*
 
 To set the path programmatically, specify the path via the instance of your script manager:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample14.xml)]
+[!code-csharp[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample14.cs)]
 
 *To set the path in script:*
 
 To set the path programmatically in script, utilize the `path` property of the AuthenticationService class:
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample15.xml)]
+[!code-javascript[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample15.js)]
 
 *Sample Web Service for Custom Authentication*
 
-[!code[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample16.xml)]
+[!code-aspx[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample16.aspx)]
 
 ## Summary
 

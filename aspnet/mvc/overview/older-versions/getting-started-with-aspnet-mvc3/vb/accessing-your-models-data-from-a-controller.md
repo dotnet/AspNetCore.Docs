@@ -68,11 +68,11 @@ Create a couple more movie entries. Try the **Edit**, **Details**, and **Delete*
 
 Open the *Controllers\MoviesController.vb* file and examine the generated `Index` method. A portion of the movie controller with the `Index` method is shown below.
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample1.xml)]
+[!code-vb[Main](accessing-your-models-data-from-a-controller/samples/sample1.vb)]
 
 The following line from the `MoviesController` class instantiates a movie database context, as described previously. You can use the movie database context to query, edit, and delete movies.
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample2.xml)]
+[!code-vb[Main](accessing-your-models-data-from-a-controller/samples/sample2.vb)]
 
 A request to the `Movies` controller returns all the entries in the `Movies` table of the movie database and then passes the results to the `Index` view.
 
@@ -84,15 +84,15 @@ ASP.NET MVC also provides the ability to pass strongly typed data or objects to 
 
 Notice how the code creates a [`List`](https://msdn.microsoft.com/en-us/library/6sh2ey19.aspx) object when it calls the `View` helper method in the `Index` action method. The code then passes this `Movies` list from the controller to the view:
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample3.xml)]
+[!code-vb[Main](accessing-your-models-data-from-a-controller/samples/sample3.vb)]
 
 By including a `@ModelType` statement at the top of the view template file, you can specify the type of object that the view expects. When you created the movie controller, Visual Web Developer automatically included the following `@model` statement at the top of the *Index.vbhtml* file:
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample4.xml)]
+[!code-vbhtml[Main](accessing-your-models-data-from-a-controller/samples/sample4.vbhtml)]
 
 This `@ModelType` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.vbhtml* template, the code loops through the movies by doing a `foreach` statement over the strongly typed `Model` object:
 
-[!code[Main](accessing-your-models-data-from-a-controller/samples/sample5.xml)]
+[!code-vb[Main](accessing-your-models-data-from-a-controller/samples/sample5.vb)]
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each `item` object in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code and full IntelliSense support in the code editor:
 

@@ -19,21 +19,21 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 In this section, you will add the ability for users to create a new book. In app.js, add the following code to the view model:
 
-[!code[Main](part-9/samples/sample1.xml)]
+[!code-javascript[Main](part-9/samples/sample1.js)]
 
 In Index.cshtml, replace the following markup:
 
-[!code[Main](part-9/samples/sample2.xml)]
+[!code-html[Main](part-9/samples/sample2.html)]
 
 With:
 
-[!code[Main](part-9/samples/sample3.xml)]
+[!code-html[Main](part-9/samples/sample3.html)]
 
 This markup creates a form for submitting a new author. The values for the author drop-down list are data-bound to the `authors` observable in the view model. For the other form inputs, the values are data-bound to the `newBook` property of the view model.
 
 The submit handler on the form is bound to the `addBook` function:
 
-[!code[Main](part-9/samples/sample4.xml)]
+[!code-html[Main](part-9/samples/sample4.html)]
 
 The `addBook` function reads the current values of the data-bound form inputs to create a JSON object. Then it POSTs the JSON object to `/api/books`.
 

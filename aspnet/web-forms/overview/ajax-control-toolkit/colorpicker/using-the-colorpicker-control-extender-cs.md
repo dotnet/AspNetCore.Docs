@@ -32,7 +32,7 @@ Imagine, for example, that you want to create a website that enables visitors to
 
 **Listing 1 - CreateCard.aspx**
 
-[!code[Main](using-the-colorpicker-control-extender-cs/samples/sample1.xml)]
+[!code-aspx[Main](using-the-colorpicker-control-extender-cs/samples/sample1.aspx)]
 
 The form in Listing 1 works, but it does not provide a great user experience. The user has to type a color into the textbox. If the user wants a specialized color - for example, just the right shade of pea green - then the user must figure out the HTML color code without any help.
 
@@ -72,7 +72,7 @@ After you make these changes, the source for the page looks like Listing 2.
 
 Listing 2 - CreateCard.aspx (with ColorPicker)
 
-[!code[Main](using-the-colorpicker-control-extender-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-the-colorpicker-control-extender-cs/samples/sample2.aspx)]
 
 Notice that the page now contains a ColorPickerExtender control that appears directly below the txtCardColor TextBox control. The ColorPickerExtender control extends the txtCardColor control so that it displays a color picker dialog.
 
@@ -89,7 +89,7 @@ You can use these properties to customize how the color picker dialog is display
 
 **Listing 3 - CreateCardButton.aspx**
 
-[!code[Main](using-the-colorpicker-control-extender-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-the-colorpicker-control-extender-cs/samples/sample3.aspx)]
 
 The page in Listing 3 includes a Pick Color button (see Figure 5). When you click this button, the color picker dialog appears above the TextBox. If you select a color from the dialog then the selected color appears as the background color of the lblSample Label control.
 

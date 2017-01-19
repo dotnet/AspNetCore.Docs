@@ -57,12 +57,12 @@ In this procedure, you create two pages. The first page has a form that lets use
 1. Create a new website.
 2. Add a new page named *EmailRequest.cshtml* and add the following markup: 
 
-    [!code[Main](11-adding-email-to-your-web-site/samples/sample1.xml)]
+    [!code-html[Main](11-adding-email-to-your-web-site/samples/sample1.html)]
 
     Notice that the `action` attribute of the form element has been set to *ProcessRequest.cshtml*. This means that the form will be submitted to that page instead of back to the current page.
 3. Add a new page named *ProcessRequest.cshtml* to the website and add the following code and markup:   
 
-    [!code[Main](11-adding-email-to-your-web-site/samples/sample2.xml)]
+    [!code-cshtml[Main](11-adding-email-to-your-web-site/samples/sample2.cshtml)]
 
     In the code, you get the values of the form fields that were submitted to the page. You then call the `WebMail` helper's `Send` method to create and send the email message. In this case, the values to use are made up of text that you concatenate with the values that were submitted from the form.
 
@@ -111,10 +111,10 @@ You can also send files that are attached to email messages. In this procedure, 
     `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
 3. Create a page named *SendFile.cshtml* and add the following markup: 
 
-    [!code[Main](11-adding-email-to-your-web-site/samples/sample3.xml)]
+    [!code-html[Main](11-adding-email-to-your-web-site/samples/sample3.html)]
 4. Create a page named *ProcessFile.cshtml* and add the following markup: 
 
-    [!code[Main](11-adding-email-to-your-web-site/samples/sample4.xml)]
+    [!code-cshtml[Main](11-adding-email-to-your-web-site/samples/sample4.cshtml)]
 5. Modify the following email related settings in the code from the example:
 
     - Set `your-SMTP-host` to the name of an SMTP server that you have access to.

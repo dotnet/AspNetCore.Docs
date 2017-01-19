@@ -28,27 +28,27 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-[!code[Main](triggering-an-animation-in-another-control-vb/samples/sample1.xml)]
+[!code-aspx[Main](triggering-an-animation-in-another-control-vb/samples/sample1.aspx)]
 
 The animation will be applied to a panel of text which looks like this:
 
-[!code[Main](triggering-an-animation-in-another-control-vb/samples/sample2.xml)]
+[!code-aspx[Main](triggering-an-animation-in-another-control-vb/samples/sample2.aspx)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-[!code[Main](triggering-an-animation-in-another-control-vb/samples/sample3.xml)]
+[!code-css[Main](triggering-an-animation-in-another-control-vb/samples/sample3.css)]
 
 In order to start animating the panel, an HTML button is used. Note that `<input type="button" />` is favoured over `<asp:Button />` since we do not want a postback when the user clicks on that button.
 
-[!code[Main](triggering-an-animation-in-another-control-vb/samples/sample4.xml)]
+[!code-aspx[Main](triggering-an-animation-in-another-control-vb/samples/sample4.aspx)]
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server"`. It is important to set `TargetControlID` to the ID of the button (the element triggering the animation), not to the ID of the panel (the element being animated)
 
-[!code[Main](triggering-an-animation-in-another-control-vb/samples/sample5.xml)]
+[!code-aspx[Main](triggering-an-animation-in-another-control-vb/samples/sample5.aspx)]
 
 Within the `<Animations>` node, place animations as usual. In order to make them change the panel, not the button, set the `AnimationTarget` attribute for every animation element within `AnimationExtender`. The value for `AnimationTarget` is the ID of the panel, of course. That way, the animations happen with the panel, not with the triggering button. Here is the `AnimationExtender` markup for this scenario:
 
-[!code[Main](triggering-an-animation-in-another-control-vb/samples/sample6.xml)]
+[!code-aspx[Main](triggering-an-animation-in-another-control-vb/samples/sample6.aspx)]
 
 Note the special order in which the individual animations appear. First of all, the button gets deactivated once the animation runs. Since there is no `AnimationTarget` attribute in the `<EnableAction>` element, this animation is applied to the originating control: the button. The next two animation steps shall be carried out parallelly (`<Parallel>` element). Both have their `AnimationTarget` attributes set to `"Panel1"`, thus animating the panel, not the button.
 

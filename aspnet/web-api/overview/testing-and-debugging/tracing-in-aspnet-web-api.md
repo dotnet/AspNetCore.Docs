@@ -39,7 +39,7 @@ From the **Tools** menu, select **Library Package Manager**, then **Package Mana
 
 In the Package Manager Console window, type the following commands.
 
-[!code[Main](tracing-in-aspnet-web-api/samples/sample1.xml)]
+[!code-console[Main](tracing-in-aspnet-web-api/samples/sample1.cmd)]
 
 The first command installs the latest Web API tracing package. It also updates the core Web API packages. The second command updates the WebApi.WebHost package to the latest version.
 
@@ -48,7 +48,7 @@ The first command installs the latest Web API tracing package. It also updates t
 
 Open the file WebApiConfig.cs in the App\_Start folder. Add the following code to the **Register** method.
 
-[!code[Main](tracing-in-aspnet-web-api/samples/sample2.xml?highlight=6)]
+[!code-csharp[Main](tracing-in-aspnet-web-api/samples/sample2.cs?highlight=6)]
 
 This code adds the [SystemDiagnosticsTraceWriter](https://msdn.microsoft.com/en-us/library/system.web.http.tracing.systemdiagnosticstracewriter.aspx) class to the Web API pipeline. The **SystemDiagnosticsTraceWriter** class writes traces to [System.Diagnostics.Trace](https://msdn.microsoft.com/en-us/library/system.diagnostics.trace).
 
@@ -66,7 +66,7 @@ Because **SystemDiagnosticsTraceWriter** writes traces to **System.Diagnostics.T
 
 The following code shows how to configure the trace writer.
 
-[!code[Main](tracing-in-aspnet-web-api/samples/sample3.xml)]
+[!code-csharp[Main](tracing-in-aspnet-web-api/samples/sample3.cs)]
 
 There are two settings that you can control:
 
@@ -77,7 +77,7 @@ There are two settings that you can control:
 
 Adding a trace writer gives you immediate access to the traces created by the Web API pipeline. You can also use the trace writer to trace your own code:
 
-[!code[Main](tracing-in-aspnet-web-api/samples/sample4.xml)]
+[!code-csharp[Main](tracing-in-aspnet-web-api/samples/sample4.cs)]
 
 To get the trace writer, call **HttpConfiguration.Services.GetTraceWriter**. From a controller, this method is accessible through the **ApiController.Configuration** property.
 
@@ -91,7 +91,7 @@ The Microsoft.AspNet.WebApi.Tracing package is built on top of a more general tr
 
 To collect traces, implement the **ITraceWriter** interface. Here is a simple example:
 
-[!code[Main](tracing-in-aspnet-web-api/samples/sample5.xml)]
+[!code-csharp[Main](tracing-in-aspnet-web-api/samples/sample5.cs)]
 
 The **ITraceWriter.Trace** method creates a trace. The caller specifies a category and trace level. The category can be any user-defined string. Your implementation of **Trace** should do the following:
 
@@ -103,7 +103,7 @@ The **ITraceWriter.Trace** method creates a trace. The caller specifies a catego
 
 To enable tracing, you must configure Web API to use your **ITraceWriter** implementation. You do this through the **HttpConfiguration** object, as shown in the following code:
 
-[!code[Main](tracing-in-aspnet-web-api/samples/sample6.xml)]
+[!code-csharp[Main](tracing-in-aspnet-web-api/samples/sample6.cs)]
 
 Only one trace writer can be active. By default, Web API sets a &quot;no-op&quot; tracer that does nothing. (The &quot;no-op&quot; tracer exists so that tracing code does not have to check whether the trace writer is **null** before writing a trace.)
 
@@ -122,6 +122,6 @@ The benefits of this design include:
 
 You can also replace the entire Web API trace framework with your own custom framework, by replacing the default **ITraceManager** service:
 
-[!code[Main](tracing-in-aspnet-web-api/samples/sample7.xml)]
+[!code-csharp[Main](tracing-in-aspnet-web-api/samples/sample7.cs)]
 
 Implement **ITraceManager.Initialize** to initialize your tracing system. Be aware that this replaces the *entire* trace framework, including all of the tracing code that is built into Web API.

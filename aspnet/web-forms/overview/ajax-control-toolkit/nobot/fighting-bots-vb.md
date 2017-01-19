@@ -44,19 +44,19 @@ In order to check for these conditions, the `NoBot` control requires these attri
 
 The following markup demands that at least two seconds elapse between postbacks and that there are only five postbacks or less within a 30 seconds interval:
 
-[!code[Main](fighting-bots-vb/samples/sample1.xml)]
+[!code-aspx[Main](fighting-bots-vb/samples/sample1.aspx)]
 
 Then as usual make sure to include the `ScriptManager` in the page so that the ASP.NET AJAX library is loaded and the Control Toolkit can be used:
 
-[!code[Main](fighting-bots-vb/samples/sample2.xml)]
+[!code-aspx[Main](fighting-bots-vb/samples/sample2.aspx)]
 
 Since most of the checks `NoBot` is doing occur on the server side, you need to check the result of these validations. This can be done by calling `NoBot`'s `IsValid()` method. It has one argument (as an `out` parameter/`ByRef` parameter) which is of type `NoBotState`. Its string representation contains the reason when the check fails and `Valid` otherwise. The following code outputs a message according to `NoBot`'s result:
 
-[!code[Main](fighting-bots-vb/samples/sample3.xml)]
+[!code-aspx[Main](fighting-bots-vb/samples/sample3.aspx)]
 
 Finally, you need a form to submit and a label element to output the message, and you are done!
 
-[!code[Main](fighting-bots-vb/samples/sample4.xml)]
+[!code-aspx[Main](fighting-bots-vb/samples/sample4.aspx)]
 
 When you run this script and deactivate JavaScript or submit the form within the first two seconds or submit the form seven times within thirty seconds, you will get an error message. However use this control wisely, since only about 90-95% of users have JavaScript activated, therefore 5-10% of users will fail `NoBot`'s test.
 

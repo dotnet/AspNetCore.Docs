@@ -183,7 +183,7 @@ Complete the wizard by clicking Finish. After the wizard closes we are returned 
 
 At this point we have a Typed DataSet with a single DataTable (`Northwind.Products`) and a strongly-typed DataAdapter class (`NorthwindTableAdapters.ProductsTableAdapter`) with a `GetProducts()` method. These objects can be used to access a list of all products from code like:
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample1.xml)]
+[!code-vb[Main](creating-a-data-access-layer-vb/samples/sample1.vb)]
 
 This code did not require us to write one bit of data access-specific code. We did not have to instantiate any ADO.NET classes, we didn't have to refer to any connection strings, SQL queries, or stored procedures. Instead, the TableAdapter provides the low-level data access code for us.
 
@@ -191,11 +191,11 @@ Each object used in this example is also strongly-typed, allowing Visual Studio 
 
 AllProducts.aspx
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample2.xml)]
+[!code-aspx[Main](creating-a-data-access-layer-vb/samples/sample2.aspx)]
 
 AllProducts.aspx.vb
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample3.xml)]
+[!code-vb[Main](creating-a-data-access-layer-vb/samples/sample3.vb)]
 
 
 [![The List of Products is Displayed in a GridView](creating-a-data-access-layer-vb/_static/image36.png)](creating-a-data-access-layer-vb/_static/image35.png)
@@ -263,11 +263,11 @@ With the `GetProductsByCategoryID(categoryID)` method in our DAL, we can now cre
 
 Beverages.aspx
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample4.xml)]
+[!code-aspx[Main](creating-a-data-access-layer-vb/samples/sample4.aspx)]
 
 Beverages.aspx.vb
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample5.xml)]
+[!code-vb[Main](creating-a-data-access-layer-vb/samples/sample5.vb)]
 
 
 [![Those Products in the Beverages Category are Displayed](creating-a-data-access-layer-vb/_static/image53.png)](creating-a-data-access-layer-vb/_static/image52.png)
@@ -313,11 +313,11 @@ To examine or modify any of these database command properties, click on the `Com
 
 The following code example shows how to use the batch update pattern to double the price of all products that are not discontinued and that have 25 units in stock or less:
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample6.xml)]
+[!code-vb[Main](creating-a-data-access-layer-vb/samples/sample6.vb)]
 
 The code below illustrates how to use the DB direct pattern to programmatically delete a particular product, then update one, and then add a new one:
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample7.xml)]
+[!code-vb[Main](creating-a-data-access-layer-vb/samples/sample7.vb)]
 
 ## Creating Custom Insert, Update, and Delete Methods
 
@@ -359,7 +359,7 @@ By default, insert methods issue non-query methods, meaning that they return the
 
 The following code shows this new `InsertProduct` method in action:
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample8.xml)]
+[!code-vb[Main](creating-a-data-access-layer-vb/samples/sample8.vb)]
 
 ## Step 5: Completing the Data Access Layer
 
@@ -367,7 +367,7 @@ Note that the `ProductsTableAdapters` class returns the `CategoryID` and `Suppli
 
 This can present a problem, however, as the TableAdapter's methods for inserting, updating, and deleting data are based off of this initial method. Fortunately, the auto-generated methods for inserting, updating, and deleting are not affected by subqueries in the `SELECT` clause. By taking care to add our queries to `Categories` and `Suppliers` as subqueries, rather than `JOIN` s, we'll avoid having to rework those methods for modifying data. Right-click on the `GetProducts()` method in the `ProductsTableAdapter` and choose Configure. Then, adjust the `SELECT` clause so that it looks like:
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample9.xml)]
+[!code-sql[Main](creating-a-data-access-layer-vb/samples/sample9.sql)]
 
 
 [![Update the SELECT Statement for the GetProducts() Method](creating-a-data-access-layer-vb/_static/image80.png)](creating-a-data-access-layer-vb/_static/image79.png)
@@ -397,46 +397,46 @@ Take a few minutes to create the following TableAdapters and methods using the f
 
     - **GetProducts**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample10.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample10.sql)]
     - **GetProductsByCategoryID**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample11.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample11.sql)]
     - **GetProductsBySupplierID**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample12.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample12.sql)]
     - **GetProductByProductID**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample13.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample13.sql)]
 - **CategoriesTableAdapter**
 
     - **GetCategories**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample14.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample14.sql)]
     - **GetCategoryByCategoryID**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample15.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample15.sql)]
 - **SuppliersTableAdapter**
 
     - **GetSuppliers**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample16.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample16.sql)]
     - **GetSuppliersByCountry**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample17.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample17.sql)]
     - **GetSupplierBySupplierID**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample18.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample18.sql)]
 - **EmployeesTableAdapter**
 
     - **GetEmployees**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample19.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample19.sql)]
     - **GetEmployeesByManager**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample20.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample20.sql)]
     - **GetEmployeeByEmployeeID**: 
 
-        [!code[Main](creating-a-data-access-layer-vb/samples/sample21.xml)]
+        [!code-sql[Main](creating-a-data-access-layer-vb/samples/sample21.sql)]
 
 
 [![The DataSet Designer After the Four TableAdapters Have Been Added](creating-a-data-access-layer-vb/_static/image84.png)](creating-a-data-access-layer-vb/_static/image83.png)
@@ -466,7 +466,7 @@ While auto-generated code can be a great time saver, the code is often very gene
 
 To demonstrate how to customize the DAL, let's add a `GetProducts()` method to the `SuppliersRow` class. The `SuppliersRow` class represents a single record in the `Suppliers` table; each supplier can provider zero to many products, so `GetProducts()` will return those products of the specified supplier. To accomplish this create a new class file in the `App_Code` folder named `SuppliersRow.vb` and add the following code:
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample22.xml)]
+[!code-vb[Main](creating-a-data-access-layer-vb/samples/sample22.vb)]
 
 This partial class instructs the compiler that when building the `Northwind.SuppliersRow` class to include the `GetProducts()` method we just defined. If you build your project and then return to the Class View you'll see `GetProducts()` now listed as a method of `Northwind.SuppliersRow`.
 
@@ -478,7 +478,7 @@ This partial class instructs the compiler that when building the `Northwind.Supp
 
 The `GetProducts()` method can now be used to enumerate the set of products for a particular supplier, as the following code shows:
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample23.xml)]
+[!code-vb[Main](creating-a-data-access-layer-vb/samples/sample23.vb)]
 
 This data can also be displayed in any of ASP.NET's data Web controls. The following page uses a GridView control with two fields:
 
@@ -489,11 +489,11 @@ We'll examine how to display such master-detail reports in future tutorials. For
 
 SuppliersAndProducts.aspx
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample24.xml)]
+[!code-aspx[Main](creating-a-data-access-layer-vb/samples/sample24.aspx)]
 
 SuppliersAndProducts.aspx.vb
 
-[!code[Main](creating-a-data-access-layer-vb/samples/sample25.xml)]
+[!code-vb[Main](creating-a-data-access-layer-vb/samples/sample25.vb)]
 
 
 [![The Supplier's Company Name is Listed in the Left Column, Their Products in the Right](creating-a-data-access-layer-vb/_static/image92.png)](creating-a-data-access-layer-vb/_static/image91.png)

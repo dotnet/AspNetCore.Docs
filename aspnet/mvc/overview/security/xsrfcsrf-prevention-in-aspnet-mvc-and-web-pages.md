@@ -26,21 +26,21 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 To walk through an XSRF attack, consider a user who wants to perform some online banking transactions. This user first visits WoodgroveBank.com and logs in, at which point the response header will contain her authentication cookie:
 
-[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample1.xml)]
+[!code-console[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample1.cmd)]
 
 Because the authentication cookie is a session cookie, it will be automatically cleared by the browser when the browser process exits. However, until that time, the browser will automatically include the cookie with each request to WoodgroveBank.com. The user now wants to transfer $1000 to another account, so she fills out a form on the banking site, and the browser makes this request to the server:
 
-[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample2.xml)]
+[!code-console[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample2.cmd)]
 
 Because this operation has a side effect (it initiates a monetary transaction), the banking site has chosen to require an HTTP POST in order to initiate this operation. The server reads the authentication token from the request, looks up the current user's account number, verifies that sufficient funds exist, and then initiates the transaction into the destination account.
 
 Her online banking complete, the user navigates away from the banking site and visits other locations on the web. One of those sites – fabrikam.com – includes the following markup on a page embedded within an &lt;iframe&gt;:
 
-[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample3.xml)]
+[!code-html[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample3.html)]
 
 Which then causes the browser to make this request:
 
-[!code[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample4.xml)]
+[!code-console[Main](xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages/samples/sample4.cmd)]
 
 The attacker is exploiting the fact that the user might still have a valid authentication token for the target web site, and she is using a small snippet of Javascript to cause the browser to make an HTTP POST to the target site automatically. If the authentication token is still valid, the banking site will initiate a transfer of $250 into the account of the attacker's choosing.
 

@@ -60,7 +60,7 @@ This procedure shows how you can create a chart from data in arrays, using the d
 1. Create a new file named *ChartArrayBasic.cshtml*.
 2. Replace the existing content with the following: 
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample1.xml)]
+    [!code-cshtml[Main](7-displaying-data-in-a-chart/samples/sample1.cshtml)]
 
     The code first creates a new chart and sets its width and height. You specify the chart title by using the `AddTitle` method. To add data, you use the `AddSeries` method. In this example, you use the `name`, `xValue`, and `yValues` parameters of the `AddSeries` method. The `name` parameter is displayed in the chart legend. The `xValue` parameter contains an array of data that's displayed along the horizontal axis of the chart. The `yValues` parameter contains an array of data that's used to plot the vertical points of the chart.
 
@@ -78,17 +78,17 @@ If the information you want to chart is in a database, you can run a database qu
 3. Create a new file named *ChartDataQuery.cshtml*.
 4. Replace the existing content with the following:   
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample2.xml)]
+    [!code-cshtml[Main](7-displaying-data-in-a-chart/samples/sample2.cshtml)]
 
     The code first opens the SmallBakery database and assigns it to a variable named `db`. This variable represents a `Database` object that can be used to read from and write to the database. Next, the code runs a SQL query to get the name and price of each product. The code creates a new chart and passes the database query to it by calling the chart's `DataBindTable` method. This method takes two parameters: the `dataSource` parameter is for the data from the query, and the `xField` parameter lets you set which data column is used for the chart's x-axis.
 
     As an alternative to using the `DataBindTable` method, you can use the `AddSeries` method of the `Chart` helper. The `AddSeries` method lets you set the `xValue` and `yValues` parameters. For example, instead of using the `DataBindTable` method like this:
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample3.xml)]
+    [!code-unknown[Main](7-displaying-data-in-a-chart/samples/sample-38937-3.unknown)]
 
     You can use the `AddSeries` method like this:
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample4.xml)]
+    [!code-unknown[Main](7-displaying-data-in-a-chart/samples/sample-38937-4.unknown)]
 
     Both render the same results. The `AddSeries` method is more flexible because you can specify the chart type and data more explicitly, but the `DataBindTable` method is easier to use if you don't need the extra flexibility.
 5. Run the page in a browser. 
@@ -102,15 +102,15 @@ The third option for charting is to use an XML file as the data for the chart. T
 1. In the *App\_Data* folder, create a new XML file named *data.xml*.
 2. Replace the existing XML with the following, which is some XML data about employees in a fictional company. 
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample5.xml)]
+    [!code-xml[Main](7-displaying-data-in-a-chart/samples/sample5.xml)]
 3. In the *App\_Data* folder, create a new XML file named *data.xsd*. (Note that the extension this time is *.xsd*.)
 4. Replace the existing XML with the following: 
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample6.xml)]
+    [!code-xml[Main](7-displaying-data-in-a-chart/samples/sample6.xml)]
 5. In the root of the website, create a new file named *ChartDataXML.cshtml*.
 6. Replace the existing content with the following: 
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample7.xml)]
+    [!code-cshtml[Main](7-displaying-data-in-a-chart/samples/sample7.cshtml)]
 
     The code first creates a `DataSet` object. This object is used to manage the data that's read from the XML file and organize it according to the information in the schema file. (Notice that the top of the code includes the statement `using SystemData`. This is required in order to be able to work with the `DataSet` object. For more information, see [&quot;Using&quot; Statements and Fully Qualified Names](#SB_UsingStatements) later in this article.)
 
@@ -144,7 +144,7 @@ The third option for charting is to use an XML file as the data for the chart. T
 > 
 > If you have to use the `DataSet` class repeatedly you can import a namespace like this and then use just the class name in code:
 > 
-> [!code[Main](7-displaying-data-in-a-chart/samples/sample8.xml)]
+> [!code-cshtml[Main](7-displaying-data-in-a-chart/samples/sample8.cshtml)]
 > 
 > You can add `using` statements for any other .NET Framework namespaces that you want to reference. However, as noted, you won't need to do this often, because most of the classes that you'll work with are in namespaces that are imported automatically by ASP.NET for use in *.cshtml* and *.vbhtml* pages.
 
@@ -161,7 +161,7 @@ The second step is to display the resulting image in another page. To display th
 1. Create a file named *ShowChart.cshtml*.
 2. Replace the existing content with the following: 
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample9.xml)]
+    [!code-html[Main](7-displaying-data-in-a-chart/samples/sample9.html)]
 
     The code uses the `<img>` element to display the chart that you created earlier in the *ChartArrayBasic.cshtml* file.
 3. Run the web page in a browser. The *ShowChart.cshtml* file displays the chart image based on the code contained in the *ChartArrayBasic.cshtml* file.
@@ -186,11 +186,11 @@ You can specify the theme to use when you create a new chart.
 1. Create a new file named *ChartStyleGreen.cshtml*.
 2. Replace the existing content in the page with the following:
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample10.xml)]
+    [!code-cshtml[Main](7-displaying-data-in-a-chart/samples/sample10.cshtml)]
 
     This code is the same as the earlier example that uses the database for data, but adds the `theme` parameter when it creates the `Chart` object. The following shows the changed code:
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample11.xml)]
+    [!code-csharp[Main](7-displaying-data-in-a-chart/samples/sample11.cs)]
 3. Run the page in a browser. You see the same data as before, but the chart looks more polished: 
 
     ![](7-displaying-data-in-a-chart/_static/image12.jpg)
@@ -217,7 +217,7 @@ Charts saved to the cache might be removed if the server runs low on memory. In 
 1. At the root of your website, create a file named *ShowCachedChart.cshtml*.
 2. Replace the existing content with the following: 
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample12.xml)]
+    [!code-html[Main](7-displaying-data-in-a-chart/samples/sample12.html)]
 
     The `<img>` tag includes a `src` attribute that points to the *ChartSaveToCache.cshtml* file and passes a key to the page as a query string. The key contains the value &quot;myChartKey&quot;. The *ChartSaveToCache.cshtml* file contains the `Chart` helper that creates the chart. You'll create this page in a moment.
 
@@ -225,7 +225,7 @@ Charts saved to the cache might be removed if the server runs low on memory. In 
 3. At the root of your website, create a new file named *ChartSaveToCache.cshtml*.
 4. Replace the existing content with the following:
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample13.xml)]
+    [!code-cshtml[Main](7-displaying-data-in-a-chart/samples/sample13.cshtml)]
 
     The code first checks whether anything was passed as the key value in the query string. If so, the code tries to read a chart out of the cache by calling the `GetFromCache` method and passing it the key. If it turns out that there's nothing in the cache under that key (which would happen the first time that the chart is requested), the code creates the chart as usual. When the chart is finished, the code saves it to the cache by calling `SaveToCache`. That method requires a key (so the chart can be requested later), and the amount of time that the chart should be saved in the cache. (The exact time you'd cache a chart would depend on how often you thought the data it represents might change.) The `SaveToCache` method also requires a `slidingExpiration` parameter &#8212; if this is set to true, the timeout counter is reset each time the chart is accessed. In this case, it in effect means that the chart's cache entry expires 2 minutes after the last time someone accessed the chart. (The alternative to sliding expiration is absolute expiration, meaning that the cache entry would expire exactly 2 minutes after it was put into the cache, no matter how often it had been accessed.)
 
@@ -234,7 +234,7 @@ Charts saved to the cache might be removed if the server runs low on memory. In 
     Notice that in the example, the `AddTitle` method includes a timestamp. (It adds the current date and time &#8212; `DateTime.Now` &#8212; to the title.)
 5. Create a new page named *ClearCache.cshtml* and replace its content with the following:
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample14.xml)]
+    [!code-cshtml[Main](7-displaying-data-in-a-chart/samples/sample14.cshtml)]
 
     This page uses the `WebCache` helper to remove the chart that's cached in *ChartSaveToCache.cshtml*. As noted earlier, you don't normally have to have a page like this. You're creating it here only to make it easier to test caching.
 6. Run the *ShowCachedChart.cshtml* web page in a browser. The page displays the chart image based on the code contained in the *ChartSaveToCache.cshtml* file. Take note of what the timestamp says in the chart title. 
@@ -253,7 +253,7 @@ You can also save a chart as an image file (for example, as a *.jpg* file) on th
 2. At the root of your website, create a new file named *ChartSave.cshtml*.
 3. Replace the existing content with the following:
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample15.xml)]
+    [!code-cshtml[Main](7-displaying-data-in-a-chart/samples/sample15.cshtml)]
 
     The code first checks to see whether the *.jpg* file exists by calling the `File.Exists` method. If the file does not exist, the code creates a new `Chart` from an array. This time, the code calls the `Save` method and passes the `path` parameter to specify the file path and file name of where to save the chart. In the body of the page, an `<img>` element uses the path to point to the *.jpg* file to display.
 4. Run the *ChartSave.cshtml* file.
@@ -266,14 +266,14 @@ Finally, you can save a chart as an XML file on the server. An advantage of usin
 1. At the root of your website, create a new file named *ChartSaveXml.cshtml*.
 2. Replace the existing content with the following:
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample16.xml)]
+    [!code-cshtml[Main](7-displaying-data-in-a-chart/samples/sample16.cshtml)]
 
     This code is similar to the code that you saw earlier for storing a chart in the cache, except that it uses an XML file. The code first checks to see whether the XML file exists by calling the `File.Exists` method. If the file does exist, the code creates a new `Chart` object and passes the file name as the `themePath` parameter. This creates the chart based on whatever's in the XML file. If the XML file doesn't already exist, the code creates a chart like normal and then calls `SaveXml` to save it. The chart is rendered using the `Write` method, as you've seen before.
 
     As with the page that showed caching, this code includes a timestamp in the chart title.
 3. Create a new page named *ChartDisplayXMLChart.cshtml* and add the following markup to it: 
 
-    [!code[Main](7-displaying-data-in-a-chart/samples/sample17.xml)]
+    [!code-html[Main](7-displaying-data-in-a-chart/samples/sample17.html)]
 4. Run the *ChartDisplayXMLChart.cshtml* page. The chart is displayed. Take note of the timestamp in the chart's title.
 5. Close the browser.
 6. In WebMatrix, right-click the *\_ChartFiles* folder, click **Refresh**, and then open the folder. The *XMLChart.xml* file in this folder was created by the `Chart` helper. 

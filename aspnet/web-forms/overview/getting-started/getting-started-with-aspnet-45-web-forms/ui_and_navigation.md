@@ -41,15 +41,15 @@ You'll continue this tutorial series by modifying the *Default.aspx* page. You w
 2. If the page appears in **Design** view, switch to **Source** view.
 3. At the top of the page in the `@Page` directive, change the `Title` attribute to "Welcome", as shown highlighted in yellow below. 
 
-    [!code[Main](ui_and_navigation/samples/sample1.xml?highlight=1)]
+    [!code-aspx[Main](ui_and_navigation/samples/sample1.aspx?highlight=1)]
 4. Also on the *Default.aspx* page, replace all of the default content contained in the `<asp:Content>` tag so that the markup appears as below. 
 
-    [!code[Main](ui_and_navigation/samples/sample2.xml)]
+    [!code-aspx[Main](ui_and_navigation/samples/sample2.aspx)]
 5. Save the *Default.aspx* page by selecting **Save Default.aspx** from the **File** menu.
 
  The resulting *Default.aspx* page will appear as follows: 
 
-[!code[Main](ui_and_navigation/samples/sample3.xml)]
+[!code-aspx[Main](ui_and_navigation/samples/sample3.aspx)]
 
 In the example, you have set the `Title` attribute of the `@Page` directive. When the HTML is displayed in a browser, the server code `<%: Page.Title %>` resolves to the content contained in the `Title` attribute.
 
@@ -99,7 +99,7 @@ The new site needs a single logo to display on every page. To add this logo, you
 2. If the page is in **Design** view, switch to **Source** view.
 3. Update the master page by **modifying or adding** the markup highlighted in yellow: 
 
-    [!code[Main](ui_and_navigation/samples/sample4.xml?highlight=9,49,76-81,87)]
+    [!code-aspx[Main](ui_and_navigation/samples/sample4.aspx?highlight=9,49,76-81,87)]
 
 This HTML will display the image named *logo.jpg* from the *Images* folder of the Web application, which you'll add later. When a page that uses the master page is displayed in a browser, the logo will be displayed. If a user clicks on the logo, the user will navigate back to the *Default.aspx* page. The HTML anchor tag `<a>` wraps the image server control and allows the image to be included as part of the link. The `href` attribute for the anchor tag specifies the root "`~/`" of the Web site as the link location. By default, the *Default.aspx* page is displayed when the user navigates to the root of the Web site. The **Image** `<asp:Image>` server control includes addition properties, such as `BorderStyle`, that render as HTML when displayed in a browser.
 
@@ -185,7 +185,7 @@ The default navigation for every page in the application can be modified by chan
 1. In **Solution Explorer**, locate and open the *Site.Master* page.
 2. Add the additional navigation link highlighted in yellow to the unordered list shown below:   
 
-    [!code[Main](ui_and_navigation/samples/sample5.xml?highlight=5)]
+    [!code-html[Main](ui_and_navigation/samples/sample5.html?highlight=5)]
 
 As you can see in the above HTML, you modified each line item `<li>` containing an anchor tag `<a>` with a link `href` attribute. Each `href` points to a page in the Web application. In the browser, when a user clicks on one of these links (such as **Products**), they will navigate to the page contained in the `href` (such as **ProductList.aspx**). You will run the application at the end of this tutorial.
 
@@ -202,7 +202,7 @@ You'll use a **ListView** control to display all the categories contained in the
 
 1. In the *Site.Master* page, add the following highlighted `<div>` element **after** the `<div>` element containing the `id="TitleContent"` that you added earlier:  
 
-    [!code[Main](ui_and_navigation/samples/sample6.xml?highlight=7-21)]
+    [!code-aspx[Main](ui_and_navigation/samples/sample6.aspx?highlight=7-21)]
 
 This code will display all the categories from the database. The **ListView** control displays each category name as link text and includes a link to the *ProductList.aspx* page with a query-string value containing the `ID` of the category. By setting the `ItemType` property in the **ListView** control, the data-binding expression `Item` is available within the `ItemTemplate` node and the control becomes strongly typed. You can select details of the `Item` object using IntelliSense, such as specifying the `CategoryName`. This code is contained inside the container `<%#: %>` that marks a data-binding expression. By adding the (:) to the end of the `<%#` prefix, the result of the data-binding expression is HTML-encoded. When the result is HTML-encoded, your application is better protected against cross-site script injection (XSS) and HTML injection attacks.
 
@@ -222,10 +222,10 @@ Before you can display data in the data control, you need to link the data contr
 1. In **Solution Explorer**, right-click the *Site.Master* page and then click **View Code**. The *Site.Master.cs* file is opened in the editor.
 2. Near the beginning of the *Site.Master.cs* file, add two additional namespaces so that all the included namespaces appear as follows:  
 
-    [!code[Main](ui_and_navigation/samples/sample7.xml?highlight=8-9)]
+    [!code-csharp[Main](ui_and_navigation/samples/sample7.cs?highlight=8-9)]
 3. Add the highlighted `GetCategories` method after the `Page_Load` event handler as follows:  
 
-    [!code[Main](ui_and_navigation/samples/sample8.xml?highlight=6-11)]
+    [!code-csharp[Main](ui_and_navigation/samples/sample8.cs?highlight=6-11)]
 
 The above code is executed when any page that uses the master page is loaded in the browser. The `ListView` control (named "categoryList") that you added earlier in this tutorial uses model binding to select data. In the markup of the `ListView` control you set the control's `SelectMethod` property to the `GetCategories` method, shown above. The `ListView` control calls the `GetCategories` method at the appropriate time in the page life cycle and automatically binds the returned data. You will learn more about binding data in the next tutorial.
 
@@ -244,7 +244,7 @@ Earlier in this tutorial series you created an initializer class (named "Product
 
 Open the *Web.config* file and look at the connection string section. You can see that the `AttachDbFilename` value in the connection string points to the `DataDirectory` for the Web application project. The value `|DataDirectory|` is a reserved value that represents the *App\_Data* folder in the project. This folder is where the database that was created from your entity classes is located.
 
-[!code[Main](ui_and_navigation/samples/sample9.xml)]
+[!code-xml[Main](ui_and_navigation/samples/sample9.xml)]
 
 > [!NOTE] 
 > 

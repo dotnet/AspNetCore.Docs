@@ -41,15 +41,15 @@ We'll use the following Data Annotation attributes:
 
 Open the Album class and add the following *using* statements to the top.
 
-[!code[Main](mvc-music-store-part-6/samples/sample1.xml)]
+[!code-csharp[Main](mvc-music-store-part-6/samples/sample1.cs)]
 
 Next, update the properties to add display and validation attributes as shown below.
 
-[!code[Main](mvc-music-store-part-6/samples/sample2.xml)]
+[!code-csharp[Main](mvc-music-store-part-6/samples/sample2.cs)]
 
 While we're there, we've also changed the Genre and Artist to virtual properties. This allows Entity Framework to lazy-load them as necessary.
 
-[!code[Main](mvc-music-store-part-6/samples/sample3.xml)]
+[!code-csharp[Main](mvc-music-store-part-6/samples/sample3.cs)]
 
 After having added these attributes to our Album model, our Create and Edit screen immediately begin validating fields and using the Display Names we've chosen (e.g. Album Art Url instead of AlbumArtUrl). Run the application and browse to /StoreManager/Create.
 

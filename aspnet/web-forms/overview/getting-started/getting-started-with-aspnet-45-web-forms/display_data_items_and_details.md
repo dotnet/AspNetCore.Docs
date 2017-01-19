@@ -59,11 +59,11 @@ Using the steps below, you'll modify the markup in the *ProductList.aspx* page s
 1. In **Solution Explorer**, open the *ProductList.aspx* page.
 2. Replace the existing markup with the following markup:   
 
-    [!code[Main](display_data_items_and_details/samples/sample1.xml)]
+    [!code-aspx[Main](display_data_items_and_details/samples/sample1.aspx)]
 
 This code uses a **ListView** control named "productList" to display the products.
 
-[!code[Main](display_data_items_and_details/samples/sample2.xml)]
+[!code-aspx[Main](display_data_items_and_details/samples/sample2.aspx)]
 
 The **ListView** control displays data in a format that you define by using templates and styles. It is useful for data in any repeating structure. This **ListView** example simply shows data from the database, however you can enable users to edit, insert, and delete data, and to sort and page data, all without code.
 
@@ -80,13 +80,13 @@ In this step, you'll add code to populate the **ListView** control with product 
 1. In **Solution Explorer**, right-click *ProductList.aspx* and then click **View Code**.
 2. Replace the existing code in the *ProductList.aspx.cs* file with the following code:   
 
-    [!code[Main](display_data_items_and_details/samples/sample3.xml)]
+    [!code-csharp[Main](display_data_items_and_details/samples/sample3.cs)]
 
 This code shows the `GetProducts` method that's referenced by the `ItemType` property of the **ListView** control in the *ProductList.aspx* page. To limit the results to a specific category in the database, the code sets the `categoryId` value from the query string value passed to the *ProductList.aspx* page when the *ProductList.aspx* page is navigated to. The `QueryStringAttribute` class in the `System.Web.ModelBinding` namespace is used to retrieve the value of the query string variable id. This instructs model binding to try to bind a value from the query string to the `categoryId` parameter at run time.
 
 When a valid category is passed as a query string to the page, the results of the query are limited to those products in the database that match the `categoryId` value. For instance, if the URL to the *ProductsList.aspx* page is the following:
 
-[!code[Main](display_data_items_and_details/samples/sample4.xml)]
+[!code-console[Main](display_data_items_and_details/samples/sample4.cmd)]
 
 The page displays only the products where the `category` equals `1`.
 
@@ -117,7 +117,7 @@ Next, you'll modify the markup in the *ProductDetails.aspx* page that you added 
 1. In **Solution Explorer**, open the *ProductDetails.aspx* page.
 2. Replace the existing markup with the following markup:   
 
-    [!code[Main](display_data_items_and_details/samples/sample5.xml)]
+    [!code-aspx[Main](display_data_items_and_details/samples/sample5.aspx)]
 
 This code uses a **FormView** control to display details about an individual product. This markup uses methods like those that are used to display data in the *ProductList.aspx* page. The **FormView** control is used to display a single record at a time from a data source. When you use the **FormView** control, you create templates to display and edit data-bound values. The templates contain controls, binding expressions, and formatting that define the look and functionality of the form.
 
@@ -127,7 +127,7 @@ To connect the above markup to the database, you must add additional code to the
  The     *ProductDetails.aspx.cs* file will be displayed.
 2. Replace the existing code with the following code:   
 
-    [!code[Main](display_data_items_and_details/samples/sample6.xml)]
+    [!code-csharp[Main](display_data_items_and_details/samples/sample6.cs)]
 
 This code checks for a "`productID`" query-string value. If a valid query-string value is found, the matching product is displayed. If no query-string is found, or the query-string value is not valid, no product is displayed on the *ProductDetails.aspx* page.
 

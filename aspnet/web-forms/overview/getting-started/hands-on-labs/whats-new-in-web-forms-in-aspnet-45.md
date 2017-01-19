@@ -114,20 +114,20 @@ In this task, you will discover the new strongly-typed bindings available in ASP
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample1.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample1.aspx)]
 3. Open the **Customers.aspx.cs** file.
 4. Add the following using statement.
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample2.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample2.cs)]
 5. In the **Page\_Load** method, add code to populate the repeater with the list of customers.
 
     (Code Snippet - *Web Forms Lab - Ex01 - Bind Customers Data Source*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample3.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample3.cs)]
 
     The solution uses EntityFramework together with CodeFirst to create and access the database. In the following code, the customersRepeater is bound to a materialized query that returns all the customers from the database.
 6. Press **F5** to run the solution and go to the **Customers** page to see the repeater in action. As the solution is using CodeFirst, the database will be created and populated in your local SQL Express instance when running the application.
@@ -142,14 +142,14 @@ In this task, you will discover the new strongly-typed bindings available in ASP
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample4.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample4.aspx)]
 
     The ItemType property enables you to declare which type of data the control is going to be bound to and allows you to use strongly-typed binding inside the data-bound control.
 9. Replace the ItemTemplate content with the following code.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample5.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample5.aspx)]
 
     One downside with the above approaches is that the calls to Eval() and Bind() are late-bound - meaning you pass strings to represent the property names. This means you don't get Intellisense for the member names, support for code navigation (like Go To Definition), nor compile-time checking support.
 
@@ -182,31 +182,31 @@ To learn about this, you will use a GridView to list the product categories usin
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample6.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample6.aspx)]
 2. Use the new **SelectMethod** attribute to configure the GridView to call a **GetCategories** method to select the data.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample7.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample7.aspx)]
 3. Open the **Products.aspx.cs** code-behind file and add the following using statements.
 
     (Code Snippet - *Web Forms Lab - Ex01 - Namespaces*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample8.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample8.cs)]
 4. Add a private member in the **Products** class and assign a new instance of **ProductsContext**. This property will store the Entity Framework data context that enables you to connect to the database.
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample9.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample9.cs)]
 5. Create a **GetCategories** method to retrieve the list of categories using LINQ. The query will include the **Products** property so the GridView can show the amount of products for each category. Notice that the method returns a raw IQueryable object that represent the query to be executed later on the page lifecycle.
 
     (Code Snippet - *Web Forms Lab - Ex01 - GetCategories*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample10.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample10.cs)]
 
     > [!NOTE] In previous versions of ASP.NET Web Forms, enabling sorting and paging using your own repository logic within an Object Data Source context, required to write your own custom code and receive all the necessary parameters. Now, as the data-binding methods can return IQueryable and this represents a query still to be executed, ASP.NET can take care of modifying the query to add the proper sorting and paging parameters.
 6. Press **F5** to start debugging the site and go to the Products page. You should see that the GridView is populated with the categories returned by the GetCategories method.
@@ -239,24 +239,24 @@ In this task, you will update the GridView to filter its results by the amount o
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample11.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample11.aspx)]
 3. Add an **EmptyDataTemplate** to the GridView to show a message when there are no categories with the selected number of products.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample12.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample12.aspx)]
 4. Open the **Products.aspx.cs** code-behind and add the following using statement.
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample13.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample13.cs)]
 5. Modify the **GetCategories** method to receive an integer **minProductsCount** argument and filter the returned results. To do this, replace the method with the following code.
 
     (Code Snippet - *Web Forms Lab - Ex01 - GetCategories 2*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample14.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample14.cs)]
 
     The new **[Control]** attribute on the **minProductsCount** argument will let ASP.NET know its value must be populated using a control in the page. ASP.NET will look for any control matching the name of the argument (minProductsCount) and perform the necessary mapping and conversion to fill the parameter with the control value.
 
@@ -279,33 +279,33 @@ In this task, you will add a second, child GridView to show the products within 
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample15.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample15.aspx)]
 2. Add a second **GridView** named **productsGrid** at the bottom. Set the **ItemType** to **WebFormsLab.Model.Product**, the **DataKeyNames** to **ProductId** and the **SelectMethod** to **GetProducts**. Set **AutoGenerateColumns** to **false** and add the columns for ProductId, ProductName, Description and UnitPrice.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample16.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample16.aspx)]
 3. Open the **Products.aspx.cs** code-behind file. Implement the **GetProducts** method to receive the category ID from the category GridView and filter the products. Model binding will set the parameter value using the selected row in the **categoriesGrid**. Since the argument name and control name do not match, you should specify the name of the control in the Control value provider.
 
     (Code Snippet - *Web Forms Lab - Ex01 - GetProducts*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample17.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample17.cs)]
 
     > [!NOTE] This approach makes it easier to unit test these methods. On a unit test context, where Web Forms is not executing, the [Control] attribute will not perform any specific action.
 4. Open the **Products.aspx** page and locate the products GridView. Update the products GridView to show a link for editing the selected product.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample18.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample18.aspx)]
 5. Open the **ProductDetails.aspx** page code-behind and replace the **SelectProduct** method with the following code.
 
     (Code Snippet - *Web Forms Lab - Ex01 - SelectProduct Method*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample19.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample19.cs)]
 
     > [!NOTE] Notice that the **[QueryString]** attribute is used to fill the method parameter from a productId parameter in the query string.
 6. Press **F5** to start debugging the site and go to the Products page. Select any category from the categories GridView and notice that the products GridView is updated.
@@ -334,7 +334,7 @@ You will update the categories GridView to let the user update categories.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample20.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample20.aspx)]
 
     The DataKeyNames attribute in the GridView define which are the members that uniquely identify the model-bound object and therefore, which are the parameters the update method should at least receive.
 2. Open the **Products.aspx.cs** code-behind file and implement the **UpdateCategory** method. The method should receive the category ID to load the current category, populate the values from the GridView and then update the category.
@@ -343,7 +343,7 @@ You will update the categories GridView to let the user update categories.
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample21.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample21.cs)]
 
     The new **TryUpdateModel** method in the Page class is responsible of populating the model object using the values from the controls in the page. In this case, it will replace the updated values from the current GridView row being edited into the **category** object.
 
@@ -391,7 +391,7 @@ In this section, you will enable unobtrusive validation in ASP.NET to compare th
 
     XML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample22.xml)]
+    [!code-xml[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample22.xml)]
 
     > [!NOTE] You can also set this property in the &quot;**Page\_Load**&quot; event in case you want to enable Unobtrusive Validation only for some pages.
 7. Open **CustomerDetails.aspx** and press **F5** to start the Web application.
@@ -426,7 +426,7 @@ ASP.NET 4.5 introduces data annotations validation for Web Forms. Instead of hav
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample23.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample23.cs)]
 
     > [!NOTE] .NET Framework 4.5 has extended the existing data annotation collection. These are some of the data annotations you can use: [CreditCard], [Phone], [EmailAddress], [Range], [Compare], [Url], [FileExtensions], [Required], [Key], [RegularExpression].
     > 
@@ -443,7 +443,7 @@ ASP.NET 4.5 introduces data annotations validation for Web Forms. Instead of hav
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample24.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample24.aspx)]
 
     > [!NOTE] One advantage of using data annotations is that validation logic is not duplicated in your application pages. You define it once in the model, and use it across all the application pages that manipulate data.
 4. Open **CustomerDetails.aspx** code-behind and locate the SaveCustomer method. This method is called when inserting a new customer and receives the Customer parameter from the FormView control values. When the mapping between the page controls and the parameter object occurrs, ASP.NET will execute the model validation against all the data annotation attributes and fill the ModelState dictionary with the errors encountered, if any.
@@ -452,12 +452,12 @@ ASP.NET 4.5 introduces data annotations validation for Web Forms. Instead of hav
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample25.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample25.cs)]
 5. Add a **ValidationSummary** control at the end of the CustomerDetails page to show the list of model errors.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample26.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample26.aspx)]
 
     The **ShowModelStateErrors** is a new property on the ValidationSummary control that when set to **true**, the control will show the errors from the ModelState dictionary. These errors come from the data annotations validation.
 6. Press **F5** to run the Web application. Complete the form with some erroneous values and click **Save** to execute validation. Notice the error summary at the bottom.
@@ -494,14 +494,14 @@ In this task, you will add code to properly handle database exceptions and show 
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample27.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample27.cs)]
 
     > [!NOTE] Ideally, you would have to identify the cause of the DbUpdateException and check if the root cause is the violation of a unique key constraint.
 3. Open **Products.aspx** and add a **ValidationSummary** control below the categories GridView to show the list of model errors.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample28.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample28.aspx)]
 4. Run the site and go to the Products page. Try to update the name of a category using an duplicated value.
 
     Notice that the exception was handled and the error message appears in the **ValidationSummary** control.
@@ -533,7 +533,7 @@ The request validation feature in ASP.NET provides a certain level of default pr
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample29.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample29.aspx)]
 6. Press **F5** to run the web application. Open the edit product page again and complete a product description including HTML tags. Notice that you can now add HTML content to the description.
 
     ![Request validation disabled for the product description](whats-new-in-web-forms-in-aspnet-45/_static/image20.png "Request validation disabled for the product description")
@@ -581,33 +581,33 @@ In this task, you will update the product details page to allow the user to spec
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample30.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample30.aspx)]
 3. Add a field to specify the image URL in the FormView's EditTemplate.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample31.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample31.aspx)]
 4. Open the **ProductDetails.aspx.cs** code-behind file and add the following namespace directives.
 
     (Code Snippet - *Web Forms Lab - Ex03 - Namespaces*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample32.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample32.cs)]
 5. Create an **UpdateProductImage** method to store remote images in the local **Images** folder and update the product entity with the new image location value.
 
     (Code Snippet - *Web Forms Lab - Ex03 - UpdateProductImage*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample33.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample33.cs)]
 6. Update the **UpdateProduct** method to call the **UpdateProductImage** method.
 
     (Code Snippet - *Web Forms Lab - Ex03 - UpdateProductImage Call*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample34.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample34.cs)]
 7. Run the application and try to upload an image for a product. For example, you can use the following image URL from Office Clip Arts: [[http://officeimg.vo.msecnd.net/en-us/images/MB900437099.jpg](http://officeimg.vo.msecnd.net/en-us/images/MB900437099.jpg)](http://officeimg.vo.msecnd.net/en-us/images/MB900437099.jpg)
 
     ![Setting an image for a product](whats-new-in-web-forms-in-aspnet-45/_static/image23.png "Setting an image for a product")
@@ -627,26 +627,26 @@ Time-consuming operations on your web site are great candidates for asynchronous
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample35.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample35.aspx)]
 2. Add a Label at the bottom of the page to show the details of the threads running the page.
 
     HTML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample36.xml)]
+    [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample36.aspx)]
 3. Open up **ProductDetails.aspx.cs** and add the following namespace directives.
 
     (Code Snippet - *Web Forms Lab - Ex03 - Namespaces 2*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample37.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample37.cs)]
 4. Modify the **UpdateProductImage** method to download the image with an asynchronous task. You will replace the **WebClient** **DownloadFile** method with the **DownloadFileTaskAsync** method and include the **await** keyword.
 
     (Code Snippet - *Web Forms Lab - Ex03 - UpdateProductImage Async*)
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample38.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample38.cs)]
 
     The RegisterAsyncTask registers a new page asynchronous task to be executed in a different thread. It receives a lambda expression with the Task (t) to be executed. The **await** keyword in the **DownloadFileTaskAsync** method converts the remainder of the method into a callback that is invoked asynchronously after the **DownloadFileTaskAsync** method has completed. ASP.NET will resume the execution of the method by automatically maintaining all the HTTP request original values. The new asynchronous programming model in .NET 4.5 enables you to write asynchronous code that looks very much like synchronous code, and let the compiler handle the complications of callback functions or continuation code. > [!NOTE] RegisterAsyncTask and PageAsyncTask were already available since .NET 2.0. The await keyword is new from the .NET 4.5 asynchronous programming model and can be used together with the new TaskAsync methods from the .NET WebClient object.
 5. Add code to display the threads on which the code started and finished executing. To do this, update the **UpdateProductImage** method with the following code.
@@ -655,12 +655,12 @@ Time-consuming operations on your web site are great candidates for asynchronous
 
     C#
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample39.xml)]
+    [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample39.cs)]
 6. Open the web site's **Web.config** file. Add the following appSetting variable.
 
     XML
 
-    [!code[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample40.xml)]
+    [!code-xml[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample40.xml)]
 7. Press **F5** to run the application and upload an image for the product. Notice the threads ID where the code started and finished may be different. This is because asynchronous tasks run on a separate thread from ASP.NET thread pool. When the task completes, ASP.NET puts the task back in the queue and assigns any of the available threads.
 
     ![Downloading an image asynchronously](whats-new-in-web-forms-in-aspnet-45/_static/image24.png "Downloading an image asynchronously")

@@ -57,7 +57,7 @@ Define the site-wide page layout here in the master page. You can use the Design
 Site.master
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample1.xml)]
+[!code-aspx[Main](master-pages-and-site-navigation-cs/samples/sample1.aspx)]
 
 A master page defines both the static page layout and the regions that can be edited by the ASP.NET pages that use the master page. These content editable regions are indicated by the ContentPlaceHolder control, which can be seen within the content `<div>`. Our master page has a single ContentPlaceHolder (`MainContent`), but master page's may have multiple ContentPlaceHolders.
 
@@ -92,14 +92,14 @@ After picking the master page, the new ASP.NET pages will contain the following 
 Default.aspx
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample2.xml)]
+[!code-aspx[Main](master-pages-and-site-navigation-cs/samples/sample2.aspx)]
 
 In the `@Page` directive there's a reference to the master page file used (`MasterPageFile="~/Site.master"`), and the ASP.NET page's markup contains a Content control for each of the ContentPlaceHolder controls defined in the master page, with the control's `ContentPlaceHolderID` mapping the Content control to a specific ContentPlaceHolder. The Content control is where you place the markup you want to appear in the corresponding ContentPlaceHolder. Set the `@Page` directive's `Title` attribute to Home and add some welcoming content to the Content control:
 
 Default.aspx
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample3.xml)]
+[!code-aspx[Main](master-pages-and-site-navigation-cs/samples/sample3.aspx)]
 
 The `Title` attribute in the `@Page` directive allows us to set the page's title from the ASP.NET page, even though the `<title>` element is defined in the master page. We can also set the title programmatically, using `Page.Title`. Also note that the master page's references to stylesheets (such as `Style.css`) are automatically updated so that they work in any ASP.NET page, regardless of what directory the ASP.NET page is in relative to the master page.
 
@@ -150,7 +150,7 @@ Define the site map to mimic the file system structure. That is, add a `<siteMap
 Web.sitemap
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample4.xml)]
+[!code-xml[Main](master-pages-and-site-navigation-cs/samples/sample4.xml)]
 
 The site map defines the website's navigational structure, which is a hierarchy that describes the various sections of the site. Each `<siteMapNode>` element in `Web.sitemap` represents a section in the site's navigational structure.
 
@@ -171,31 +171,31 @@ The data source controls serve as a proxy between your ASP.NET page and the unde
 To aid in working with the site map's data, ASP.NET includes the SiteMapDataSource control, which allows us to bind a Web control against our website's site map. Two Web controls the TreeView and Menu are commonly used to provide a navigation user interface. To bind the site map data to one of these two controls, simply add a SiteMapDataSource to the page along with a TreeView or Menu control whose `DataSourceID` property is set accordingly. For example, we could add a Menu control to the master page using the following markup:
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample5.xml)]
+[!code-aspx[Main](master-pages-and-site-navigation-cs/samples/sample5.aspx)]
 
 For a finer degree of control over the emitted HTML, we can bind the SiteMapDataSource control to the Repeater control, like so:
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample6.xml)]
+[!code-aspx[Main](master-pages-and-site-navigation-cs/samples/sample6.aspx)]
 
 The SiteMapDataSource control returns the site map hierarchy one level at a time, starting with the root site map node (Home, in our site map), then the next level (Basic Reporting, Filtering Reports, and Customized Formatting), and so on. When binding the SiteMapDataSource to a Repeater, it enumerates the first level returned and instantiates the `ItemTemplate` for each `SiteMapNode` instance in that first level. To access a particular property of the `SiteMapNode`, we can use `Eval(propertyName)`, which is how we get each `SiteMapNode`'s `Url` and `Title` properties for the HyperLink control.
 
 The Repeater example above will render the following markup:
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample7.xml)]
+[!code-html[Main](master-pages-and-site-navigation-cs/samples/sample7.html)]
 
 These site map nodes (Basic Reporting, Filtering Reports, and Customized Formatting) comprise the *second* level of the site map being rendered, not the first. This is because the SiteMapDataSource's `ShowStartingNode` property is set to False, causing the SiteMapDataSource to bypass the root site map node and instead begin by returning the second level in the site map hierarchy.
 
 To display the children for the Basic Reporting, Filtering Reports, and Customized Formatting `SiteMapNode` s, we can add another Repeater to the initial Repeater's `ItemTemplate`. This second Repeater will be bound to the `SiteMapNode` instance's `ChildNodes` property, like so:
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample8.xml)]
+[!code-aspx[Main](master-pages-and-site-navigation-cs/samples/sample8.aspx)]
 
 These two Repeaters result in the following markup (some markup has been removed for brevity):
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample9.xml)]
+[!code-html[Main](master-pages-and-site-navigation-cs/samples/sample9.html)]
 
 Using CSS styles chosen from [Rachel Andrew](http://www.rachelandrew.co.uk/)'s book [The CSS Anthology: 101 Essential Tips, Tricks, &amp; Hacks](https://www.amazon.com/gp/product/0957921888/qid=1137565739/sr=8-1/ref=pd_bbs_1/103-0562306-3386214?n=507846&amp;s=books&amp;v=glance), the `<ul>` and `<li>` elements are styled such that the markup produces the following visual output:
 
@@ -220,7 +220,7 @@ View state can be disabled at the page or control level by setting the `EnableVi
 To reduce the page's view state let's set the Repeater control's `EnableViewState` property to `false`. This can be done through the Properties window in the Designer or declaratively in the Source view. After making this change the Repeater's declarative markup should look like:
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample10.xml)]
+[!code-aspx[Main](master-pages-and-site-navigation-cs/samples/sample10.aspx)]
 
 After this change, the page's rendered view state size has shrunk to a mere 52 bytes, a 97% savings in view state size! In the tutorials throughout this series we'll disable the view state of the data Web controls by default in order to reduce the size of the rendered markup. In the majority of the examples the `EnableViewState` property will be set to `false` and done so without mention. The only time view state will be discussed is in scenarios where it must be enabled in order for the data Web control to provide its expected functionality.
 
@@ -231,7 +231,7 @@ To complete the master page, let's add a breadcrumb navigation UI element to eac
 For our site, add this control to the header `<div>`:
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample11.xml)]
+[!code-aspx[Main](master-pages-and-site-navigation-cs/samples/sample11.aspx)]
 
 The breadcrumb shows the current page the user is visiting in the site map hierarchy as well as that site map node's "ancestors," all the way up to the root (Home, in our site map).
 
@@ -256,12 +256,12 @@ Let's display an unordered list using a Repeater again, but this time we'll disp
 SectionLevelTutorialListing.ascx
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample12.xml)]
+[!code-aspx[Main](master-pages-and-site-navigation-cs/samples/sample12.aspx)]
 
 SectionLevelTutorialListing.ascx.cs
 
 
-[!code[Main](master-pages-and-site-navigation-cs/samples/sample13.xml)]
+[!code-csharp[Main](master-pages-and-site-navigation-cs/samples/sample13.cs)]
 
 In the previous Repeater example we bound the `SiteMap` data to the Repeater declaratively; the `SectionLevelTutorialListing` User Control, however, does so programmatically. In the `Page_Load` event handler, a check is made to ensure that this page s URL maps to a node in the site map. If this User Control is used in a page that does not have a corresponding `<siteMapNode>` entry, `SiteMap.CurrentNode` will return `null` and no data will be bound to the Repeater. Assuming we have a `CurrentNode`, we bind its `ChildNodes` collection to the Repeater. Since our site map is set up such that the `Default.aspx` page in each section is the parent node of all of the tutorials within that section, this code will display links to and descriptions of all of the section's tutorials, as shown in the screen shot below.
 

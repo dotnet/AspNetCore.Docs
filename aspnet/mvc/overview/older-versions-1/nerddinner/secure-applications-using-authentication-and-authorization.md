@@ -80,7 +80,7 @@ Now we can add authorization logic to the application, and use the authenticatio
 
 Implementing this logic is pretty easy. All we need to-do is to add an [Authorize] filter attribute to our Create action methods like so:
 
-[!code[Main](secure-applications-using-authentication-and-authorization/samples/sample1.xml)]
+[!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample1.cs)]
 
 ASP.NET MVC supports the ability to create "action filters" that can be used to implement re-usable logic that can be declaratively applied to action methods. The [Authorize] filter is one of the built-in action filters provided by ASP.NET MVC, and it enables a developer to declaratively apply authorization rules to action methods and controller classes.
 
@@ -88,11 +88,11 @@ When applied without any parameters (like above) the [Authorize] filter enforces
 
 The [Authorize] filter optionally supports the ability to specify a "Users" or "Roles" property that can be used to require that the user is both logged in and within a list of allowed users or a member of an allowed security role. For example, the code below only allows two specific users, "scottgu" and "billg", to access the /Dinners/Create URL:
 
-[!code[Main](secure-applications-using-authentication-and-authorization/samples/sample2.xml)]
+[!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample2.cs)]
 
 Embedding specific user names within code tends to be pretty un-maintainable though. A better approach is to define higher-level "roles" that the code checks against, and then to map users into the role using either a database or active directory system (enabling the actual user mapping list to be stored externally from the code). ASP.NET includes a built-in role management API as well as a built-in set of role providers (including ones for SQL and Active Directory) that can help perform this user/role mapping. We could then update the code to only allow users within a specific "admin" role to access the /Dinners/Create URL:
 
-[!code[Main](secure-applications-using-authentication-and-authorization/samples/sample3.xml)]
+[!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample3.cs)]
 
 ### Using the User.Identity.Name property when Creating Dinners
 
@@ -100,7 +100,7 @@ We can retrieve the username of the currently logged-in user of a request using 
 
 Earlier when we implemented the HTTP-POST version of our Create() action method we had hardcoded the "HostedBy" property of the Dinner to a static string. We can now update this code to instead use the User.Identity.Name property, as well as automatically add an RSVP for the host creating the Dinner:
 
-[!code[Main](secure-applications-using-authentication-and-authorization/samples/sample4.xml)]
+[!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample4.cs)]
 
 Because we have added an [Authorize] attribute to the Create() method, ASP.NET MVC ensures that the action method only executes if the user visiting the /Dinners/Create URL is logged in on the site. As such, the User.Identity.Name property value will always contain a valid username.
 
@@ -110,17 +110,17 @@ Let's now add some authorization logic that restricts users so that they can onl
 
 To help with this, we'll first add an "IsHostedBy(username)" helper method to our Dinner object (within the Dinner.cs partial class we built earlier). This helper method returns true or false depending on whether a supplied username matches the Dinner HostedBy property, and encapsulates the logic necessary to perform a case-insensitive string comparison of them:
 
-[!code[Main](secure-applications-using-authentication-and-authorization/samples/sample5.xml)]
+[!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample5.cs)]
 
 We'll then add an [Authorize] attribute to the Edit() action methods within our DinnersController class. This will ensure that users must be logged in to request a */Dinners/Edit/[id]* URL.
 
 We can then add code to our Edit methods that uses the Dinner.IsHostedBy(username) helper method to verify that the logged-in user matches the Dinner host. If the user is not the host, we'll display an "InvalidOwner" view and terminate the request. The code to do this looks like below:
 
-[!code[Main](secure-applications-using-authentication-and-authorization/samples/sample6.xml)]
+[!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample6.cs)]
 
 We can then right-click on the \Views\Dinners directory and choose the Add-&gt;View menu command to create a new "InvalidOwner" view. We'll populate it with the below error message:
 
-[!code[Main](secure-applications-using-authentication-and-authorization/samples/sample7.xml)]
+[!code-aspx[Main](secure-applications-using-authentication-and-authorization/samples/sample7.aspx)]
 
 And now when a user attempts to edit a dinner they don't own, they'll get an error message:
 
@@ -138,11 +138,11 @@ Currently we are showing the Edit and Delete action links regardless of whether 
 
 The Details() action method within our DinnersController retrieves a Dinner object and then passes it as the model object to our view template:
 
-[!code[Main](secure-applications-using-authentication-and-authorization/samples/sample8.xml)]
+[!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample8.cs)]
 
 We can update our view template to conditionally show/hide the Edit and Delete links by using the Dinner.IsHostedBy() helper method like below:
 
-[!code[Main](secure-applications-using-authentication-and-authorization/samples/sample9.xml)]
+[!code-aspx[Main](secure-applications-using-authentication-and-authorization/samples/sample9.aspx)]
 
 #### Next Steps
 

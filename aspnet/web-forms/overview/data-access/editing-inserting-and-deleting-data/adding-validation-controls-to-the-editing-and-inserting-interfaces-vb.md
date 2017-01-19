@@ -78,13 +78,13 @@ To add validation controls to the editing and inserting interfaces, the BoundFie
 
 Converting a BoundField into a TemplateField through the Fields dialog box generates a TemplateField that exhibits the same read-only, editing, and inserting interfaces as the BoundField itself. The following markup shows the declarative syntax for the `ProductName` field in the DetailsView after it has been converted into a TemplateField:
 
-[!code[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample1.xml)]
+[!code-aspx[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample1.aspx)]
 
 Note that this TemplateField had three templates automatically created `ItemTemplate`, `EditItemTemplate`, and `InsertItemTemplate`. The `ItemTemplate` displays a single data field value (`ProductName`) using a Label Web control, while the `EditItemTemplate` and `InsertItemTemplate` present the data field value in a TextBox Web control that associates the data field with the TextBox's `Text` property using two-way databinding. Since we are only using the DetailsView in this page for inserting, you may remove the `ItemTemplate` and `EditItemTemplate` from the two TemplateFields, although there's no harm in leaving them.
 
 Since the GridView does not support the built-in inserting features of the DetailsView, converting the GridView's `ProductName` field into a TemplateField results in only an `ItemTemplate` and `EditItemTemplate`:
 
-[!code[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample2.xml)]
+[!code-aspx[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample2.aspx)]
 
 By clicking the "Convert this field into a TemplateField," Visual Studio has created a TemplateField whose templates mimic the user interface of the converted BoundField. You can verify this by visiting this page through a browser. You'll find that the appearance and behavior of the TemplateFields is identical to the experience when BoundFields were used instead.
 
@@ -148,7 +148,7 @@ Before we add the CompareValidator to the `UnitPrice` `EditItemTemplate`, let's 
 
 To indicate that the `UnitPrice` value must be greater than or equal to 0, set the CompareValidator's [Operator property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.comparevalidator.operator(VS.80).aspx) to `GreaterThanEqual`, its [ValueToCompare property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.comparevalidator.valuetocompare(VS.80).aspx) to "0", and its [Type property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.basecomparevalidator.type.aspx) to `Currency`. The following declarative syntax shows the `UnitPrice` TemplateField's `EditItemTemplate` after these changes have been made:
 
-[!code[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample3.xml)]
+[!code-aspx[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample3.aspx)]
 
 After making these changes, open the page in a browser. If you attempt to omit the name or enter an invalid price value when editing a product, an asterisk appears next to the textbox. As Figure 8 shows, a price value that includes the currency symbol such as $19.95 is considered invalid. The CompareValidator's `Currency` `Type` allows for digit separators (such as commas or periods, depending on the culture settings) and a leading plus or minus sign, but does *not* permit a currency symbol. This behavior may perplex users as the editing interface currently renders the `UnitPrice` using the currency format.
 
@@ -236,15 +236,15 @@ After these changes, the DetailsView and GridView's TemplateFields and CommandFi
 
 The DetailsView's TemplateFields and CommandField
 
-[!code[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample4.xml)]
+[!code-aspx[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample4.aspx)]
 
 The GridView's CommandField and TemplateFields
 
-[!code[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample5.xml)]
+[!code-aspx[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample5.aspx)]
 
 At this point the edit-specific validation controls fire only when the GridView's Update button is clicked and the insert-specific validation controls fire only when the DetailsView's Insert button is clicked, resolving the problem highlighted by Figure 13. However, with this change our ValidationSummary control no longer displays when entering invalid data. The ValidationSummary control also contains a `ValidationGroup` property and only shows summary information for those validation controls in its validation group. Therefore, we need to have two validation controls in this page, one for the `InsertValidationControls` validation group and one for `EditValidationControls`.
 
-[!code[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample6.xml)]
+[!code-aspx[Main](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/samples/sample6.aspx)]
 
 With this addition our tutorial is complete!
 

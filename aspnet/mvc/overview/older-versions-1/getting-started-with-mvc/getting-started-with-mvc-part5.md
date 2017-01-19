@@ -26,7 +26,7 @@ Right click on the Controllers folder and make a new MoviesController.
 
 This will create a new "MoviesController.cs" file underneath our \Controllers folder within our project. Let's update the MovieController to retrieve the list of movies from our newly populated database.
 
-[!code[Main](getting-started-with-mvc-part5/samples/sample1.xml)]
+[!code-csharp[Main](getting-started-with-mvc-part5/samples/sample1.cs)]
 
 We are performing a LINQ query so that we only retrieve movies released after the summer of 1984. We'll need a View template to render this list of movies back, so right-click in the method and select Add View to create it.
 
@@ -48,7 +48,7 @@ We won't be implementing Edit, Details and Delete functionality with this applic
 
 Here is the source code for what our updated View template should look like once we make these changes:
 
-[!code[Main](getting-started-with-mvc-part5/samples/sample2.xml)]
+[!code-aspx[Main](getting-started-with-mvc-part5/samples/sample2.aspx)]
 
 It's creating links that we won't need, so we'll delete them for this example. We will keep our Create New link though, as that's next! Here's what our app looks like with that column removed.
 

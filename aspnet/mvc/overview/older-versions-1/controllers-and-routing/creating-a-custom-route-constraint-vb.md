@@ -24,7 +24,7 @@ In this tutorial, we create a Localhost route constraint. The Localhost route co
 
 You implement a custom route constraint by implementing the IRouteConstraint interface. This is an extremely simple interface which describes a single method:
 
-[!code[Main](creating-a-custom-route-constraint-vb/samples/sample1.xml)]
+[!code-vb[Main](creating-a-custom-route-constraint-vb/samples/sample1.vb)]
 
 The method returns a Boolean value. If you return False, the route associated with the constraint won't match the browser request.
 
@@ -32,7 +32,7 @@ The Localhost constraint is contained in Listing 1.
 
 **Listing 1 - LocalhostConstraint.vb**
 
-[!code[Main](creating-a-custom-route-constraint-vb/samples/sample2.xml)]
+[!code-vb[Main](creating-a-custom-route-constraint-vb/samples/sample2.vb)]
 
 The constraint in Listing 1 takes advantage of the IsLocal property exposed by the HttpRequest class. This property returns true when the IP address of the request is either 127.0.0.1 or when the IP of the request is the same as the server's IP address.
 
@@ -40,7 +40,7 @@ You use a custom constraint within a route defined in the Global.asax file. The 
 
 **Listing 2 - Global.asax**
 
-[!code[Main](creating-a-custom-route-constraint-vb/samples/sample3.xml)]
+[!code-vb[Main](creating-a-custom-route-constraint-vb/samples/sample3.vb)]
 
 The Localhost constraint is used in the definition of the Admin route. This route won't be matched by a remote browser request. Realize, however, that other routes defined in Global.asax might match the same request. It is important to understand that a constraint prevents a particular route from matching a request and not all routes defined in the Global.asax file.
 

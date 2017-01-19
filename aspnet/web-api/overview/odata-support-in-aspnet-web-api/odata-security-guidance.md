@@ -23,11 +23,11 @@ The query semantics are based on the entity data model (EDM), not the underlying
 
 There are two ways to exlude a property from the EDM. You can set the **[IgnoreDataMember]** attribute on the property in the model class:
 
-[!code[Main](odata-security-guidance/samples/sample1.xml)]
+[!code-csharp[Main](odata-security-guidance/samples/sample1.cs)]
 
 You can also remove the property from the EDM programmatically:
 
-[!code[Main](odata-security-guidance/samples/sample2.xml)]
+[!code-csharp[Main](odata-security-guidance/samples/sample2.cs)]
 
 ## Query Security
 
@@ -42,25 +42,25 @@ If you know that all clients are trusted (for example, in an enterprise environm
 - Test your service with various queries and profile the DB.
 - Enable server-driven paging, to avoid returning a large data set in one query. For more information, see [Server-Driven Paging](supporting-odata-query-options.md#server-paging). 
 
-    [!code[Main](odata-security-guidance/samples/sample3.xml)]
+    [!code-csharp[Main](odata-security-guidance/samples/sample3.cs)]
 - Do you need $filter and $orderby? Some applications might allow client paging, using $top and $skip, but disable the other query options. 
 
-    [!code[Main](odata-security-guidance/samples/sample4.xml)]
+    [!code-csharp[Main](odata-security-guidance/samples/sample4.cs)]
 - Consider restricting $orderby to properties in a clustered index. Sorting large data without a clustered index is slow. 
 
-    [!code[Main](odata-security-guidance/samples/sample5.xml)]
+    [!code-csharp[Main](odata-security-guidance/samples/sample5.cs)]
 - Maximum node count: The **MaxNodeCount** property on **[Queryable]** sets the maximum number nodes allowed in the $filter syntax tree. The default value is 100, but you may want to set a lower value, because a large number of nodes can be slow to compile. This is particularly true if you are using LINQ to Objects (i.e., LINQ queries on a collection in memory, without the use of an intermediate LINQ provider). 
 
-    [!code[Main](odata-security-guidance/samples/sample6.xml)]
+    [!code-csharp[Main](odata-security-guidance/samples/sample6.cs)]
 - Consider disabling the any() and all() functions, as these can be slow. 
 
-    [!code[Main](odata-security-guidance/samples/sample7.xml)]
+    [!code-csharp[Main](odata-security-guidance/samples/sample7.cs)]
 - If any string properties contain large strings&#8212for example, a product description or a blog entry&#8212consider disabling the string functions. 
 
-    [!code[Main](odata-security-guidance/samples/sample8.xml)]
+    [!code-csharp[Main](odata-security-guidance/samples/sample8.cs)]
 - Consider disallowing filtering on navigation properties. Filtering on navigation properties can result in a join, which might be slow, depending on your database schema. The following code shows a query validator that prevents filtering on navigation properties. For more information about query validators, see [Query Validation](supporting-odata-query-options.md#query-validation). 
 
-    [!code[Main](odata-security-guidance/samples/sample9.xml)]
+    [!code-csharp[Main](odata-security-guidance/samples/sample9.cs)]
 - Consider restricting $filter queries by writing a validator that is customized for your database. For example, consider these two queries: 
 
     - All movies with actors whose last name starts with ‘A'.
@@ -70,5 +70,5 @@ If you know that all clients are trusted (for example, in an enterprise environm
 
     The following code shows a validator that allows filtering on the "ReleaseYear" and "Title" properties but no other properties.
 
-    [!code[Main](odata-security-guidance/samples/sample10.xml)]
+    [!code-csharp[Main](odata-security-guidance/samples/sample10.cs)]
 - In general, consider which $filter functions you need. If your clients do not need the full expressiveness of $filter, you can limit the allowed functions.

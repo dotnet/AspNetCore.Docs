@@ -49,11 +49,11 @@ To use OData query options, you must enable them explicitly. You can enable them
 
 To enable OData query options globally, call **EnableQuerySupport** on the **HttpConfiguration** class at startup:
 
-[!code[Main](supporting-odata-query-options/samples/sample1.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample1.cs)]
 
 The **EnableQuerySupport** method enables query options globally for any controller action that returns an **IQueryable** type. If you don't want query options enabled for the entire application, you can enable them for specific controller actions by adding the **[Queryable]** attribute to the action method.
 
-[!code[Main](supporting-odata-query-options/samples/sample2.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample2.cs)]
 
 <a id="examples"></a>
 ## Example Queries
@@ -95,11 +95,11 @@ To sort the results, use the $orderby filter.
 
 If your database contains millions of records, you don't want to send them all in one payload. To prevent this, the server can limit the number of entries that it sends in a single response. To enable server paging, set the **PageSize** property in the **Queryable** attribute. The value is the maximum number of entries to return.
 
-[!code[Main](supporting-odata-query-options/samples/sample3.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample3.cs)]
 
 If your controller returns OData format, the response body will contain a link to the next page of data:
 
-[!code[Main](supporting-odata-query-options/samples/sample4.xml?highlight=8)]
+[!code-json[Main](supporting-odata-query-options/samples/sample4.json?highlight=8)]
 
 The client can use this link to fetch the next page. To learn the total number of entries in the result set, the client can set the $inlinecount query option with the value "allpages".
 
@@ -107,18 +107,18 @@ The client can use this link to fetch the next page. To learn the total number o
 
 The value "allpages" tells the server to include the total count in the response:
 
-[!code[Main](supporting-odata-query-options/samples/sample5.xml?highlight=3)]
+[!code-json[Main](supporting-odata-query-options/samples/sample5.json?highlight=3)]
 
 > [!NOTE] Next-page links and inline count both require OData format. The reason is that OData defines special fields in the response body to hold the link and count.
 
 
 For non-OData formats, it is still possible to support next-page links and inline count, by wrapping the query results in a **PageResult&lt;T&gt;** object. However, it requires a bit more code. Here is an example:
 
-[!code[Main](supporting-odata-query-options/samples/sample6.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample6.cs)]
 
 Here is an example JSON response:
 
-[!code[Main](supporting-odata-query-options/samples/sample7.xml)]
+[!code-json[Main](supporting-odata-query-options/samples/sample7.json)]
 
 <a id="limiting_query_options"></a>
 ## Limiting the Query Options
@@ -127,30 +127,30 @@ The query options give the client a lot of control over the query that is run on
 
 Allow only $skip and $top, to support paging and nothing else:
 
-[!code[Main](supporting-odata-query-options/samples/sample8.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample8.cs)]
 
 Allow ordering only by certain properties, to prevent sorting on properties that are not indexed in the database:
 
-[!code[Main](supporting-odata-query-options/samples/sample9.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample9.cs)]
 
 Allow the "eq" logical function but no other logical functions:
 
-[!code[Main](supporting-odata-query-options/samples/sample10.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample10.cs)]
 
 Do not allow any arithmetic operators:
 
-[!code[Main](supporting-odata-query-options/samples/sample11.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample11.cs)]
 
 You can restrict options globally by constructing a **QueryableAttribute** instance and passing it to the **EnableQuerySupport** function:
 
-[!code[Main](supporting-odata-query-options/samples/sample12.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample12.cs)]
 
 <a id="ODataQueryOptions"></a>
 ## Invoking Query Options Directly
 
 Instead of using the **[Queryable]** attribute, you can invoke the query options directly in your controller. To do so, add an **ODataQueryOptions** parameter to the controller method. In this case, you don't need the **[Queryable]** attribute.
 
-[!code[Main](supporting-odata-query-options/samples/sample13.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample13.cs)]
 
 Web API populates the **ODataQueryOptions** from the URI query string. To apply the query, pass an **IQueryable** to the **ApplyTo** method. The method returns another **IQueryable**.
 
@@ -165,16 +165,16 @@ Also see [OData Security Guidance](odata-security-guidance.md).
 
 First, override one of the validator classes that is defined in the **Web.Http.OData.Query.Validators** namespace. For example, the following validator class disables the 'desc' option for the $orderby option.
 
-[!code[Main](supporting-odata-query-options/samples/sample14.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample14.cs)]
 
 Subclass the **[Queryable]** attribute to override the **ValidateQuery** method.
 
-[!code[Main](supporting-odata-query-options/samples/sample15.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample15.cs)]
 
 Then set your custom attribute either globally or per-controller:
 
-[!code[Main](supporting-odata-query-options/samples/sample16.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample16.cs)]
 
 If you are using **ODataQueryOptions** directly, set the validator on the options:
 
-[!code[Main](supporting-odata-query-options/samples/sample17.xml)]
+[!code-csharp[Main](supporting-odata-query-options/samples/sample17.cs)]

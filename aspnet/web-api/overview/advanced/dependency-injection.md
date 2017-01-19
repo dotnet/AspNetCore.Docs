@@ -31,15 +31,15 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 A *dependency* is any object that another object requires. For example, it's common to define a [repository](http://martinfowler.com/eaaCatalog/repository.html) that handles data access. Let's illustrate with an example. First, we'll define a domain model:
 
-[!code[Main](dependency-injection/samples/sample1.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample1.cs)]
 
 Here is a simple repository class that stores items in a database, using Entity Framework.
 
-[!code[Main](dependency-injection/samples/sample2.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample2.cs)]
 
 Now let's define a Web API controller that supports GET requests for `Product` entities. (I'm leaving out POST and other methods for simplicity.) Here is a first attempt:
 
-[!code[Main](dependency-injection/samples/sample3.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample3.cs)]
 
 Notice that the controller class depends on `ProductRepository`, and we are letting the controller create the `ProductRepository` instance. However, it's a bad idea to hard code the dependency in this way, for several reasons.
 
@@ -49,11 +49,11 @@ Notice that the controller class depends on `ProductRepository`, and we are lett
 
 We can address these problems by *injecting* the repository into the controller. First, refactor the `ProductRepository` class into an interface:
 
-[!code[Main](dependency-injection/samples/sample4.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample4.cs)]
 
 Then provide the `IProductRepository` as a constructor parameter:
 
-[!code[Main](dependency-injection/samples/sample5.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample5.cs)]
 
 This example uses [constructor injection](http://www.martinfowler.com/articles/injection.html#FormsOfDependencyInjection). You can also use *setter injection*, where you set the dependency through a setter method or property.
 
@@ -63,7 +63,7 @@ But now there is a problem, because your application doesn't create the controll
 
 Web API defines the **IDependencyResolver** interface for resolving dependencies. Here is the definition of the interface:
 
-[!code[Main](dependency-injection/samples/sample6.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample6.cs)]
 
 The **IDependencyScope** interface has two methods:
 
@@ -85,11 +85,11 @@ An IoC container is a software component that is responsible for managing depend
 
 For this tutorial, we'll use [Unity](https://msdn.microsoft.com/en-us/library/ff647202.aspx) from Microsoft Patterns &amp; Practices. (Other popular libraries include [Castle Windsor](http://www.castleproject.org/), [Spring.Net](http://www.springframework.net/), [Autofac](https://code.google.com/p/autofac/), [Ninject](http://www.ninject.org/), and [StructureMap](http://docs.structuremap.net/).) You can use NuGet Package Manager to install Unity. From the **Tools** menu in Visual Studio, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, type the following command:
 
-[!code[Main](dependency-injection/samples/sample7.xml)]
+[!code-console[Main](dependency-injection/samples/sample7.cmd)]
 
 Here is an implementation of **IDependencyResolver** that wraps a Unity container.
 
-[!code[Main](dependency-injection/samples/sample8.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample8.cs)]
 
 > [!NOTE] If the **GetService** method cannot resolve a type, it should return **null**. If the **GetServices** method cannot resolve a type, it should return an empty collection object. Don't throw exceptions for unknown types.
 
@@ -100,7 +100,7 @@ Set the dependency resolver on the **DependencyResolver** property of the global
 
 The following code registers the `IProductRepository` interface with Unity and then creates a `UnityResolver`.
 
-[!code[Main](dependency-injection/samples/sample9.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample9.cs)]
 
 ## Dependenecy Scope and Controller Lifetime
 
@@ -112,6 +112,6 @@ Web API then calls **GetService** on the child scope to create the controller. W
 
 How you implement **BeginScope** depends on the IoC container. For Unity, scope corresponds to a child container:
 
-[!code[Main](dependency-injection/samples/sample10.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample10.cs)]
 
 Most IoC containers have similar equivalents.

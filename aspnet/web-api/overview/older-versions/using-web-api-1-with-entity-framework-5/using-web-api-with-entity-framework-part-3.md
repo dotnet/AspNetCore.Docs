@@ -48,15 +48,15 @@ Here's what got added to the project:
 
 Open the OrdersContext.cs file. Notice that the constructor specifies the name of the database connection string. This name refers to the connection string that was added to Web.config.
 
-[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample1.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-3/samples/sample1.cs)]
 
 Add the following properties to the `OrdersContext` class:
 
-[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample2.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-3/samples/sample2.cs)]
 
 A **DbSet** represents a set of entities that can be queried. Here is the complete listing for the `OrdersContext` class:
 
-[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample3.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-3/samples/sample3.cs)]
 
 The `AdminController` class defines five methods that implement basic CRUD functionality. Each method corresponds to a URI that the client can invoke:
 
@@ -76,7 +76,7 @@ Entity Framework has a nice feature that lets you populate the database on start
 
 In Solution Explorer, right-click the Models folder and create a new class named `OrdersContextInitializer`. Paste in the following implementation:
 
-[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample4.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-3/samples/sample4.cs)]
 
 By inheriting from the **DropCreateDatabaseIfModelChanges** class, we are telling Entity Framework to drop the database whenever we modify the model classes. When Entity Framework creates (or recreates) the database, it calls the **Seed** method to populate the tables. We use the **Seed** method to add some example products plus an example order.
 
@@ -84,7 +84,7 @@ This feature is great for testing, but don't use the **DropCreateDatabaseIfModel
 
 Next, open Global.asax and add the following code to the **Application\_Start** method:
 
-[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample5.xml)]
+[!code-csharp[Main](using-web-api-with-entity-framework-part-3/samples/sample5.cs)]
 
 ## Send a Request to the Controller
 
@@ -92,7 +92,7 @@ At this point, we haven't written any client code, but you can invoke the web AP
 
 Send an HTTP request to "`http://localhost:*portnum*/api/admin`. The first request may be slow to complete, because Entify Framework needs to create and seed the database. The response should something similar to the following:
 
-[!code[Main](using-web-api-with-entity-framework-part-3/samples/sample6.xml)]
+[!code-console[Main](using-web-api-with-entity-framework-part-3/samples/sample6.cmd)]
 
 >[!div class="step-by-step"]
 [Previous](using-web-api-with-entity-framework-part-2.md)

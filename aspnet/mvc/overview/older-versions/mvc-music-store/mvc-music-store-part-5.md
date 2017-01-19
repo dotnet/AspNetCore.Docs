@@ -46,11 +46,11 @@ It's important to remember that, while this code was generated for us, it's stan
 
 So, let's start with a quick edit to the StoreManager Index view (/Views/StoreManager/Index.cshtml). This view will display a table which lists the Albums in our store with Edit / Details / Delete links, and includes the Album's public properties. We'll remove the AlbumArtUrl field, as it's not very useful in this display. In &lt;table&gt; section of the view code, remove the &lt;th&gt; and &lt;td&gt; elements surrounding AlbumArtUrl references, as indicated by the highlighted lines below:
 
-[!code[Main](mvc-music-store-part-5/samples/sample1.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample1.cs)]
 
 The modified view code will appear as follows:
 
-[!code[Main](mvc-music-store-part-5/samples/sample2.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample2.cs)]
 
 ## A first look at the Store Manager
 
@@ -78,17 +78,17 @@ We're not done with the Store Manager, but we have working controller and view c
 
 The Store Manager Controller contains a good amount of code. Let's go through this from top to bottom. The controller includes some standard namespaces for an MVC controller, as well as a reference to our Models namespace. The controller has a private instance of MusicStoreEntities, used by each of the controller actions for data access.
 
-[!code[Main](mvc-music-store-part-5/samples/sample3.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample3.cs)]
 
 ### Store Manager Index and Details actions
 
 The index view retrieves a list of Albums, including each album's referenced Genre and Artist information, as we previously saw when working on the Store Browse method. The Index view is following the references to the linked objects so that it can display each album's Genre name and Artist name, so the controller is being efficient and querying for this information in the original request.
 
-[!code[Main](mvc-music-store-part-5/samples/sample4.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample4.cs)]
 
 The StoreManager Controller's Details controller action works exactly the same as the Store Controller Details action we wrote previously - it queries for the Album by ID using the Find() method, then returns it to the view.
 
-[!code[Main](mvc-music-store-part-5/samples/sample5.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample5.cs)]
 
 ### The Create Action Methods
 
@@ -106,7 +106,7 @@ The ViewBag is a dynamic object, meaning that you can type ViewBag.Foo or ViewBa
 
 These dropdown values are returned to the form using the SelectList object, which is built just for that purpose. This is done using code like this:
 
-[!code[Main](mvc-music-store-part-5/samples/sample6.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample6.cs)]
 
 As you can see from the action method code, three parameters are being used to create this object:
 
@@ -116,13 +116,13 @@ As you can see from the action method code, three parameters are being used to c
 
 With that in mind, then, the HTTP-GET Create action is pretty simple - two SelectLists are added to the ViewBag, and no model object is passed to the form (since it hasn't been created yet).
 
-[!code[Main](mvc-music-store-part-5/samples/sample7.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample7.cs)]
 
 ### HTML Helpers to display the Drop Downs in the Create View
 
 Since we've talked about how the drop down values are passed to the view, let's take a quick look at the view to see how those values are displayed. In the view code (/Views/StoreManager/Create.cshtml), you'll see the following call is made to display the Genre drop down.
 
-[!code[Main](mvc-music-store-part-5/samples/sample8.xml)]
+[!code-cshtml[Main](mvc-music-store-part-5/samples/sample8.cshtml)]
 
 This is known as an HTML Helper - a utility method which performs a common view task. HTML Helpers are very useful in keeping our view code concise and readable. The Html.DropDownList helper is provided by ASP.NET MVC, but as we'll see later it's possible to create our own helpers for view code we'll reuse in our application.
 
@@ -132,7 +132,7 @@ The Html.DropDownList call just needs to be told two things - where to get the l
 
 As we discussed before, there are two action methods associated with each form. The first handles the HTTP-GET request and displays the form. The second handles the HTTP-POST request, which contains the submitted form values. Notice that controller action has an [HttpPost] attribute, which tells ASP.NET MVC that it should only respond to HTTP-POST requests.
 
-[!code[Main](mvc-music-store-part-5/samples/sample9.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample9.cs)]
 
 This action has four responsibilities:
 
@@ -153,7 +153,7 @@ The model is validated with a simple call to ModelState.IsValid. We haven't adde
 
 If the form submission passes validation, it's time to save the values to the database. With Entity Framework, that just requires adding the model to the Albums collection and calling SaveChanges.
 
-[!code[Main](mvc-music-store-part-5/samples/sample10.xml)]
+[!code-unknown[Main](mvc-music-store-part-5/samples/sample-24896-10.unknown)]
 
 Entity Framework generates the appropriate SQL commands to persist the value. After saving the data, we redirect back to the list of Albums so we can see our update. This is done by returning RedirectToAction with the name of the controller action we want displayed. In this case, that's the Index method.
 
@@ -175,11 +175,11 @@ Fill in some values and click the Create button to submit the form.
 
 The Edit action pair (HTTP-GET and HTTP-POST) are very similar to the Create action methods we just looked at. Since the edit scenario involves working with an existing album, the Edit HTTP-GET method loads the Album based on the "id" parameter, passed in via the route. This code for retrieving an album by AlbumId is the same as we've previously looked at in the Details controller action. As with the Create / HTTP-GET method, the drop down values are returned via the ViewBag. This allows us to return an Album as our model object to the view (which is strongly typed to the Album class) while passing additional data (e.g. a list of Genres) via the ViewBag.
 
-[!code[Main](mvc-music-store-part-5/samples/sample11.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample11.cs)]
 
 The Edit HTTP-POST action is very similar to the Create HTTP-POST action. The only difference is that instead of adding a new album to the db.Albums collection, we're finding the current instance of the Album using db.Entry(album) and setting its state to Modified. This tells Entity Framework that we are modifying an existing album as opposed to creating a new one.
 
-[!code[Main](mvc-music-store-part-5/samples/sample12.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample12.cs)]
 
 We can test this out by running the application and browsing to /StoreManger/, then clicking the Edit link for an album.
 
@@ -199,7 +199,7 @@ Deletion follows the same pattern as Edit and Create, using one controller actio
 
 The HTTP-GET Delete controller action is exactly the same as our previous Store Manager Details controller action.
 
-[!code[Main](mvc-music-store-part-5/samples/sample13.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample13.cs)]
 
 We display a form that's strongly typed to an Album type, using the Delete view content template.
 
@@ -207,7 +207,7 @@ We display a form that's strongly typed to an Album type, using the Delete view 
 
 The Delete template shows all the fields for the model, but we can simplify that down quite a bit. Change the view code in /Views/StoreManager/Delete.cshtml to the following.
 
-[!code[Main](mvc-music-store-part-5/samples/sample14.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample14.cs)]
 
 This displays a simplified Delete confirmation.
 
@@ -215,7 +215,7 @@ This displays a simplified Delete confirmation.
 
 Clicking the Delete button causes the form to be posted back to the server, which executes the DeleteConfirmed action.
 
-[!code[Main](mvc-music-store-part-5/samples/sample15.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample15.cs)]
 
 Our HTTP-POST Delete Controller Action takes the following actions:
 
@@ -243,13 +243,13 @@ We've got one potential issue with our Store Manager Index page. Our Album Title
 
 Razor's @helper syntax has made it pretty easy to create your own helper functions for use in your views. Open the /Views/StoreManager/Index.cshtml view and add the following code directly after the @model line.
 
-[!code[Main](mvc-music-store-part-5/samples/sample16.xml)]
+[!code-cshtml[Main](mvc-music-store-part-5/samples/sample16.cshtml)]
 
 This helper method takes a string and a maximum length to allow. If the text supplied is shorter than the length specified, the helper outputs it as-is. If it is longer, then it truncates the text and renders "…" for the remainder.
 
 Now we can use our Truncate helper to ensure that both the Album Title and Artist Name properties are less than 25 characters. The complete view code using our new Truncate helper appears below.
 
-[!code[Main](mvc-music-store-part-5/samples/sample17.xml)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample17.cs)]
 
 Now when we browse the /StoreManager/ URL, the albums and titles are kept below our maximum lengths.
 

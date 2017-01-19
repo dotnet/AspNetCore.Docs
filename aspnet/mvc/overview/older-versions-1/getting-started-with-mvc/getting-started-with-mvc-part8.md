@@ -46,19 +46,19 @@ There are a few ways we could update our view templates to reflect the new Ratin
 
 Open up the \Views\Movies\Index.aspx template and add a &lt;th&gt;Rating&lt;/th&gt; to the head of the Movie table. I added mine after Genre. Then, in the same column position but lower down, add a line to output our new Rating.
 
-[!code[Main](getting-started-with-mvc-part8/samples/sample1.xml)]
+[!code-aspx[Main](getting-started-with-mvc-part8/samples/sample1.aspx)]
 
 Our final Index.aspx template will look like this:
 
-[!code[Main](getting-started-with-mvc-part8/samples/sample2.xml)]
+[!code-aspx[Main](getting-started-with-mvc-part8/samples/sample2.aspx)]
 
 Let's then open up the \Views\Movies\Create.aspx template and add a Label and Textbox for our new Rating property:
 
-[!code[Main](getting-started-with-mvc-part8/samples/sample3.xml)]
+[!code-aspx[Main](getting-started-with-mvc-part8/samples/sample3.aspx)]
 
 Our final Create.aspx template will look like this, and let's change our browser's title and secondary &lt;h2&gt; title to something like "Create a Movie" while we're in here!
 
-[!code[Main](getting-started-with-mvc-part8/samples/sample4.xml)]
+[!code-aspx[Main](getting-started-with-mvc-part8/samples/sample4.aspx)]
 
 Run your app and now you've got a new field in the database that's been added to the Create page. Add a new Movie - this time with a Rating - and click Create.
 

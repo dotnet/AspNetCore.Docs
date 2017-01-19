@@ -41,25 +41,25 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 First, we need a related entity. Add a class named `Supplier` in the Models folder.
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample1.xml)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample1.cs)]
 
 Add a navigation property to the `Product` class:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample2.xml?highlight=13-15)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample2.cs?highlight=13-15)]
 
 Add a new **DbSet** to the `ProductsContext` class, so that Entity Framework will include the Supplier table in the database.
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample3.xml?highlight=10)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample3.cs?highlight=10)]
 
 In WebApiConfig.cs, add a &quot;Suppliers&quot; entity set to the entity data model:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample4.xml?highlight=6)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample4.cs?highlight=6)]
 
 ## Add a Suppliers Controller
 
 Add a `SuppliersController` class to the Controllers folder.
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample5.xml)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample5.cs)]
 
 I won't show how to add CRUD operations for this controller. The steps are the same as for the Products controller (see [Create an OData v4 Endpoint](create-an-odata-v4-endpoint.md)).
 
@@ -67,11 +67,11 @@ I won't show how to add CRUD operations for this controller. The steps are the s
 
 To get the supplier for a product, the client sends a GET request:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample6.xml)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample6.cmd)]
 
 To support this request, add the following method to the `ProductsController` class:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample7.xml)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample7.cs)]
 
 This method uses a default naming convention
 
@@ -82,27 +82,27 @@ If you follow this naming convention, Web API automatically maps the HTTP reques
 
 Example HTTP request:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample8.xml)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample8.cmd)]
 
 Example HTTP response:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample9.xml)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample9.cmd)]
 
 ### Getting a related collection
 
 In the previous example, a product has one supplier. A navigation property can also return a collection. The following code gets the products for a supplier:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample10.xml)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample10.cs)]
 
 In this case, the method returns an **IQueryable** instead of a **SingleResult&lt;T&gt;**
 
 Example HTTP request:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample11.xml)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample11.cmd)]
 
 Example HTTP response:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample12.xml)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample12.cmd)]
 
 ## Creating a Relationship Between Entities
 
@@ -110,7 +110,7 @@ OData supports creating or removing relationships between two existing entities.
 
 A reference has its own URI, with the form `/Entity/NavigationProperty/$ref`. For example, here is the URI to address the reference between a product and its supplier:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample13.xml)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample13.cmd)]
 
 To add a relationship, the client sends a POST or PUT request to this address.
 
@@ -119,15 +119,15 @@ To add a relationship, the client sends a POST or PUT request to this address.
 
 The body of the request contains the URI of the other entity in the relation. Here is an example request:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample14.xml)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample14.cmd)]
 
 In this example, the client sends a PUT request to `/Products(6)/Supplier/$ref`, which is the $ref URI for the `Supplier` of the product with ID = 6. If the request succeeds, the server sends a 204 (No Content) response:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample15.xml)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample15.cmd)]
 
 Here is the controller method to add a relationship to a `Product`:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample16.xml)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample16.cs)]
 
 The *navigationProperty* parameter specifies which relationship to set. (If there is more than one navigation property on the entity, you can add more `case` statements.)
 
@@ -135,7 +135,7 @@ The *link* parameter contains the URI of the supplier. Web API automatically par
 
 To look up the supplier, we need the ID (or key), which is part of the *link* parameter. To do this, use the following helper method:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample17.xml)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample17.cs)]
 
 Basically, this method uses the OData library to split the URI path into segments, find the segment that contains the key, and convert the key into the correct type.
 
@@ -143,20 +143,20 @@ Basically, this method uses the OData library to split the URI path into segment
 
 To delete a relationship, the client sends an HTTP DELETE request to the $ref URI:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample18.xml)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample18.cmd)]
 
 Here is the controller method to delete the relationship between a Product and a Supplier:
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample19.xml)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample19.cs)]
 
 In this case, `Product.Supplier` is the &quot;1&quot; end of a 1-to-many relation, so you can remove the relationship just by setting `Product.Supplier` to `null`.
 
 In the &quot;many&quot; end of a relationship, the client must specify which related entity to remove. To do so, the client sends the URI of the related entity in the query string of the request. For example, to remove "Product 1" from "Supplier 1":
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample20.xml?highlight=1)]
+[!code-console[Main](entity-relations-in-odata-v4/samples/sample20.cmd?highlight=1)]
 
 To support this in Web API, we need to include an extra parameter in the `DeleteRef` method. Here is the controller method to remove a product from the `Supplier.Products` relation.
 
-[!code[Main](entity-relations-in-odata-v4/samples/sample21.xml)]
+[!code-csharp[Main](entity-relations-in-odata-v4/samples/sample21.cs)]
 
 The *key* parameter is the key for the supplier, and the *relatedKey* parameter is the key for the product to remove from the `Products` relationship. Note that Web API automatically gets the key from the query string.

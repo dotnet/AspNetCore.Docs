@@ -74,11 +74,11 @@ The specific syntax for registering HTTP Modules and Handlers depends upon the w
 
 Start by registering the `ErrorLogModule` HTTP Module and the `ErrorLogPageFactory` HTTP Handler in the `<httpModules>` and `<httpHandlers>` section in `<system.web>`. If your configuration already defines these two elements then simply include the `<add>` element for ELMAH's HTTP Module and Handler.
 
-[!code[Main](logging-error-details-with-elmah-vb/samples/sample1.xml)]
+[!code-xml[Main](logging-error-details-with-elmah-vb/samples/sample1.xml)]
 
 Next, register ELMAH's HTTP Module and Handler in the `<system.webServer>` element. As before, if this element is not already present in your configuration then add it.
 
-[!code[Main](logging-error-details-with-elmah-vb/samples/sample2.xml)]
+[!code-xml[Main](logging-error-details-with-elmah-vb/samples/sample2.xml)]
 
 By default, IIS 7 complains if HTTP Modules and Handlers are registered in the `<system.web>` section. The `validateIntegratedModeConfiguration` attribute in the `<validation>` element instructs IIS 7 to suppress such error messages.
 
@@ -88,7 +88,7 @@ Note that the syntax for registering the `ErrorLogPageFactory` HTTP Handler incl
 
 ELMAH looks for its configuration options in the website's `Web.config` file in a custom configuration section named `<elmah>`. In order to use a custom section in `Web.config` it must first be defined in the `<configSections>` element. Open the `Web.config` file and add the following markup to the `<configSections>`:
 
-[!code[Main](logging-error-details-with-elmah-vb/samples/sample3.xml)]
+[!code-xml[Main](logging-error-details-with-elmah-vb/samples/sample3.xml)]
 
 > [!NOTE] If you are configuring ELMAH for an ASP.NET 1.x application then remove the `requirePermission="false"` attribute from the `<section>` elements above.
 
@@ -97,7 +97,7 @@ The above syntax registers the custom `<elmah>` section and its subsections: `<s
 
 Next, add the `<elmah>` section to `Web.config`. This section should appear at the same level as the `<system.web>` element. Inside the `<elmah>` section add the `<security>` and `<errorLog>` sections like so:
 
-[!code[Main](logging-error-details-with-elmah-vb/samples/sample4.xml)]
+[!code-xml[Main](logging-error-details-with-elmah-vb/samples/sample4.xml)]
 
 The `<security>` section's `allowRemoteAccess` attribute indicates whether remote access is allowed. If this value is set to 0, then the error log web page can only be viewed locally. If this attribute is set to 1 then the error log web page is enabled for both remote and local visitors. For now, let's disable the error log web page for remote visitors. We'll allow remote access later after we have an opportunity to discuss the security concerns of doing so.
 
@@ -169,7 +169,7 @@ Recall that in the ELMAH configuration's `<security>` section we set the `allowR
 
 The following configuration permits only users in the Admin role to access the error log web page:
 
-[!code[Main](logging-error-details-with-elmah-vb/samples/sample5.xml)]
+[!code-xml[Main](logging-error-details-with-elmah-vb/samples/sample5.xml)]
 
 > [!NOTE] The Admin role and the three users in the system - Scott, Jisun, and Alice - were added in the [*Configuring a Website That Uses Application Services* tutorial](configuring-a-website-that-uses-application-services-vb.md). Users Scott and Jisun are members of the Admin role. For more information on authentication and authorization, refer to my [Website Security Tutorials](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md).
 
@@ -187,17 +187,17 @@ ELMAH's `ErrorLogModule` HTTP Module automatically logs unhandled exceptions to 
 
 The `ErrorSignal` class is useful in situations where there is some action that may fail, but its failure is not catastrophic to the overall operation being performed. For instance, a website may contain a form that takes the user's input, stores it in a database, and then sends the user an e-mail informing them that they information was processed. What should happen if the information is saved to the database successfully, but there is an error when sending the e-mail message? One option would be to throw an exception and send the user to the error page. However, this might confuse the user into thinking that the information they entered was not saved. Another approach would be to log the e-mail-related error, but not alter the user's experience in any way. This is where the `ErrorSignal` class is useful.
 
-[!code[Main](logging-error-details-with-elmah-vb/samples/sample6.xml)]
+[!code-vb[Main](logging-error-details-with-elmah-vb/samples/sample6.vb)]
 
 ## Error Notification Via E-Mail
 
 Along with logging errors to a database, ELMAH can also be configured to e-mail error details to a specified recipient. This functionality is provided by the `ErrorMailModule` HTTP Module; therefore, you must register this HTTP Module in `Web.config` in order to send error details via e-mail.
 
-[!code[Main](logging-error-details-with-elmah-vb/samples/sample7.xml)]
+[!code-xml[Main](logging-error-details-with-elmah-vb/samples/sample7.xml)]
 
 Next, specify information about the error e-mail in the `<elmah>` element's `<errorMail>` section, indicating the e-mail's sender and recipient, the subject, and whether the e-mail is sent asynchronously.
 
-[!code[Main](logging-error-details-with-elmah-vb/samples/sample8.xml)]
+[!code-xml[Main](logging-error-details-with-elmah-vb/samples/sample8.xml)]
 
 With the above settings in place, whenever a runtime error occurs ELMAH sends an e-mail to support@example.com with the error details. ELMAH's error e-mail includes the same information shown in the error details web page, namely the error message, the stack trace, and the server variables (refer back to **Figures 4** and **5**). The error e-mail also includes the Exception Details Yellow Screen of Death content as an attachment (`YSOD.html`).
 
@@ -214,7 +214,7 @@ By default, ELMAH logs the details of every unhandled exception, including 404 a
 
 The following markup instructs ELMAH to not log 404 errors.
 
-[!code[Main](logging-error-details-with-elmah-vb/samples/sample9.xml)]
+[!code-xml[Main](logging-error-details-with-elmah-vb/samples/sample9.xml)]
 
 > [!NOTE] Don't forget, in order to use error filtering you must register the `ErrorFilterModule` HTTP Module.
 

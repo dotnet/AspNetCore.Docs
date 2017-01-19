@@ -87,7 +87,7 @@ The `UrlAuthorizationModule` determines whether to grant or deny access to a req
 
 The following markup illustrates how to use the URL authorization rules to allow users Tito and Scott and deny all others:
 
-[!code[Main](user-based-authorization-cs/samples/sample1.xml)]
+[!code-xml[Main](user-based-authorization-cs/samples/sample1.xml)]
 
 The `<allow>` element defines what users are permitted - Tito and Scott - while the `<deny>` element instructs that *all* users are denied.
 
@@ -96,11 +96,11 @@ The `<allow>` element defines what users are permitted - Tito and Scott - while 
 
 The following setting grants access to anyone other than Sam (including anonymous visitors):
 
-[!code[Main](user-based-authorization-cs/samples/sample2.xml)]
+[!code-xml[Main](user-based-authorization-cs/samples/sample2.xml)]
 
 To allow only authenticated users, use the following configuration, which denies access to all anonymous users:
 
-[!code[Main](user-based-authorization-cs/samples/sample3.xml)]
+[!code-xml[Main](user-based-authorization-cs/samples/sample3.xml)]
 
 The authorization rules are defined within the `<system.web>` element in `Web.config` and apply to all of the ASP.NET resources in the web application. Oftentimes, an application has different authorization rules for different sections. For example, at an eCommerce site, all visitors may peruse the products, see product reviews, search the catalog, and so on. However, only authenticated users may reach the checkout or the pages to manage one's shipping history. Moreover, there may be portions of the site that are only accessible by select users, such as site administrators.
 
@@ -124,7 +124,7 @@ At this point your project should contain two `Web.config` files: one in the roo
 
 Update the configuration file in the `Membership` folder so that it prohibits access to anonymous users.
 
-[!code[Main](user-based-authorization-cs/samples/sample4.xml)]
+[!code-xml[Main](user-based-authorization-cs/samples/sample4.xml)]
 
 That's all there is to it!
 
@@ -146,7 +146,7 @@ The authorization settings defined in the `<system.web>` section of `Web.config`
 
 To illustrate using the `<location>` element to override the configuration settings for a specific resource, let's customize the authorization settings so that only Tito can visit `CreatingUserAccounts.aspx`. To accomplish this, add a `<location>` element to the `Membership` folder's `Web.config` file and update its markup so that it looks like the following:
 
-[!code[Main](user-based-authorization-cs/samples/sample5.xml)]
+[!code-xml[Main](user-based-authorization-cs/samples/sample5.xml)]
 
 The `<authorization>` element in `<system.web>` defines the default URL authorization rules for ASP.NET resources in the `Membership` folder and its subfolders. The `<location>` element allows us to override these rules for a particular resource. In the above markup the `<location>` element references the `CreatingUserAccounts.aspx` page and specifies its authorization rules such as to allow Tito, but deny everyone else.
 
@@ -163,7 +163,7 @@ To better understand the process used by the `UrlAuthorizationModule` to determi
 
 Since the `UrlAuthorizationModule` processes the authorization rules from the top down, stopping at any match, it is important to have the more specific rules come before the less specific ones. That is, to define authorization rules that forbid Jisun and anonymous users, but allow all other authenticated users, you would start with the most specific rule - the one impacting Jisun - and then proceed to the less specific rules - those allowing all other authenticated users, but denying all anonymous users. The following URL authorization rules implements this policy by first denying Jisun, and then denying any anonymous user. Any authenticated user other than Jisun will be granted access because neither of these `<deny>` statements will match.
 
-[!code[Main](user-based-authorization-cs/samples/sample6.xml)]
+[!code-xml[Main](user-based-authorization-cs/samples/sample6.xml)]
 
 ## Step 2: Fixing the Workflow for Unauthorized, Authenticated Users
 
@@ -173,7 +173,7 @@ Returning an authenticated user to the login page is likely to confuse them sinc
 
 Start by creating a new ASP.NET page in the web application's root folder named `UnauthorizedAccess.aspx`; don't forget to associate this page with the `Site.master` master page. After creating this page, remove the Content control that references the `LoginContent` ContentPlaceHolder so that the master page's default content will be displayed. Next, add a message that explains the situation, namely that the user attempted to access a protected resource. After adding such a message, the `UnauthorizedAccess.aspx` page's declarative markup should look similar to the following:
 
-[!code[Main](user-based-authorization-cs/samples/sample7.xml)]
+[!code-aspx[Main](user-based-authorization-cs/samples/sample7.aspx)]
 
 We now need to alter the workflow so that if an unauthorized request is performed by an authenticated user they are sent to the `UnauthorizedAccess.aspx` page instead of the login page. The logic that redirects unauthorized requests to the login page is buried within a private method of the `FormsAuthenticationModule` class, so we cannot customize this behavior. What we can do, however, is add our own logic to the login page that redirects the user to `UnauthorizedAccess.aspx`, if needed.
 
@@ -181,7 +181,7 @@ When the `FormsAuthenticationModule` redirects an unauthorized visitor to the lo
 
 To accomplish this, add the following code to the login page's `Page_Load` event handler:
 
-[!code[Main](user-based-authorization-cs/samples/sample8.xml)]
+[!code-csharp[Main](user-based-authorization-cs/samples/sample8.cs)]
 
 The above code redirects authenticated, unauthorized users to the `UnauthorizedAccess.aspx` page. To see this logic in action, visit the site as an anonymous visitor and click on the Creating User Accounts link in the left column. This will take you to the `~/Membership/CreatingUserAccounts.aspx` page, which in Step 1 we configured to only permit access to Tito. Since anonymous users are prohibited, the `FormsAuthenticationModule` redirects us back to the login page.
 
@@ -212,11 +212,11 @@ Start by opening the `UserBasedAuthorization.aspx` file in the `Membership` fold
 
 After configuring the GridView's columns, click OK to close the Fields dialog box. From the Properties window, set the GridView's `DataKeyNames` property to `FullName`. At this point the GridView's declarative markup should look like the following:
 
-[!code[Main](user-based-authorization-cs/samples/sample9.xml)]
+[!code-aspx[Main](user-based-authorization-cs/samples/sample9.aspx)]
 
 With the GridView's markup created, we're ready to write the code that will retrieve the files in a particular directory and bind them to the GridView. Add the following code to the page's `Page_Load` event handler:
 
-[!code[Main](user-based-authorization-cs/samples/sample10.xml)]
+[!code-csharp[Main](user-based-authorization-cs/samples/sample10.cs)]
 
 The above code uses the [`DirectoryInfo` class](https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx) to obtain a list of the files in the application's root folder. The [`GetFiles()` method](https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.getfiles.aspx) returns all of the files in the directory as an array of [`FileInfo` objects](https://msdn.microsoft.com/en-us/library/system.io.fileinfo.aspx), which is then bound to the GridView. The `FileInfo` object has an assortment of properties, such as `Name`, `Length`, and `IsReadOnly`, among others. As you can see from its declarative markup, the GridView displays just the `Name` and `Length` properties.
 
@@ -233,11 +233,11 @@ Take a moment to visit this page through a browser. It will display the list of 
 
 We need a means to display the contents of the selected file. Return to Visual Studio and add a TextBox named `FileContents` above the GridView. Set its `TextMode` property to `MultiLine` and its `Columns` and `Rows` properties to 95% and 10, respectively.
 
-[!code[Main](user-based-authorization-cs/samples/sample11.xml)]
+[!code-aspx[Main](user-based-authorization-cs/samples/sample11.aspx)]
 
 Next, create an event handler for the GridView's [`SelectedIndexChanged` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.selectedindexchanged.aspx) and add the following code:
 
-[!code[Main](user-based-authorization-cs/samples/sample12.xml)]
+[!code-csharp[Main](user-based-authorization-cs/samples/sample12.cs)]
 
 This code uses the GridView's `SelectedValue` property to determine the full file name of the selected file. Internally, the `DataKeys` collection is referenced in order to obtain the `SelectedValue`, so it is imperative that you set the GridView's `DataKeyNames` property to Name , as described earlier in this step. The [`File` class](https://msdn.microsoft.com/en-us/library/system.io.file.aspx) is used to read the selected file's contents into a string, which is then assigned to the `FileContents` TextBox's `Text` property, thereby displaying the contents of the selected file on the page.
 
@@ -252,7 +252,7 @@ This code uses the GridView's `SelectedValue` property to determine the full fil
 
 Finally, add an event handler with the following code for the GridView's [`RowDeleting` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rowdeleting.aspx):
 
-[!code[Main](user-based-authorization-cs/samples/sample13.xml)]
+[!code-csharp[Main](user-based-authorization-cs/samples/sample13.cs)]
 
 The code simply displays the full name of the file to delete in the `FileContents` TextBox *without* actually deleting the file.
 
@@ -264,7 +264,7 @@ The code simply displays the full name of the file to delete in the `FileContent
 
 In Step 1 we configured the URL authorization rules to prohibit anonymous users from viewing the pages in the `Membership` folder. In order to better exhibit fine grain authentication, let's allow anonymous users to visit the `UserBasedAuthorization.aspx` page, but with limited functionality. To open this page up to be accessed by all users, add the following `<location>` element to the `Web.config` file in the `Membership` folder:
 
-[!code[Main](user-based-authorization-cs/samples/sample14.xml)]
+[!code-xml[Main](user-based-authorization-cs/samples/sample14.xml)]
 
 After adding this `<location>` element, test the new URL authorization rules by logging out of the site. As an anonymous user you should be permitted to visit the `UserBasedAuthorization.aspx` page.
 
@@ -274,15 +274,15 @@ Currently, any authenticated or anonymous user can visit the `UserBasedAuthoriza
 
 As we've seen in past tutorials, the LoginView control is useful for displaying different interfaces for authenticated and anonymous users, and offers an easy way to hide functionality that is not accessible to anonymous users. Since anonymous users cannot view or delete files, we only need to show the `FileContents` TextBox when the page is visited by an authenticated user. To achieve this, add a LoginView control to the page, name it `LoginViewForFileContentsTextBox`, and move the `FileContents` TextBox's declarative markup into the LoginView control's `LoggedInTemplate`.
 
-[!code[Main](user-based-authorization-cs/samples/sample15.xml)]
+[!code-aspx[Main](user-based-authorization-cs/samples/sample15.aspx)]
 
 The Web controls in the LoginView's templates are no longer directly accessible from the code-behind class. For example, the `FilesGrid` GridView's `SelectedIndexChanged` and `RowDeleting` event handlers currently reference the `FileContents` TextBox control with code like:
 
-[!code[Main](user-based-authorization-cs/samples/sample16.xml)]
+[!code-csharp[Main](user-based-authorization-cs/samples/sample16.cs)]
 
 However, this code is no longer valid. By moving the `FileContents` TextBox into the `LoggedInTemplate` the TextBox cannot be directly accessed. Instead, we must use the `FindControl("controlId")` method to programmatically reference the control. Update the `FilesGrid` event handlers to reference the TextBox like so:
 
-[!code[Main](user-based-authorization-cs/samples/sample17.xml)]
+[!code-csharp[Main](user-based-authorization-cs/samples/sample17.cs)]
 
 After moving the TextBox to the LoginView's `LoggedInTemplate` and updating the page's code to reference the TextBox using the `FindControl("controlId")` pattern, visit the page as an anonymous user. As Figure 10 shows, the `FileContents` TextBox is not displayed. However, the View LinkButton is still displayed.
 
@@ -294,15 +294,15 @@ After moving the TextBox to the LoginView's `LoggedInTemplate` and updating the 
 
 One way to hide the View button for anonymous users is to convert the GridView field into a TemplateField. This will generate a template that contains the declarative markup for the View LinkButton. We can then add a LoginView control to the TemplateField and place the LinkButton within the LoginView's `LoggedInTemplate`, thereby hiding the View button from anonymous visitors. To accomplish this, click on the Edit Columns link from the GridView's Smart Tag to launch the Fields dialog box. Next, select the Select button from the list in the lower left corner and then click the Convert this field to a TemplateField link. Doing so will modify the field's declarative markup from:
 
-[!code[Main](user-based-authorization-cs/samples/sample18.xml)]
+[!code-aspx[Main](user-based-authorization-cs/samples/sample18.aspx)]
 
  To: 
 
-[!code[Main](user-based-authorization-cs/samples/sample19.xml)]
+[!code-aspx[Main](user-based-authorization-cs/samples/sample19.aspx)]
 
 At this point, we can add a LoginView to the TemplateField. The following markup displays the View LinkButton only for authenticated users.
 
-[!code[Main](user-based-authorization-cs/samples/sample20.xml)]
+[!code-aspx[Main](user-based-authorization-cs/samples/sample20.aspx)]
 
 As Figure 11 shows, the end result is not that pretty as the View column is still displayed even though the View LinkButtons within the column are hidden. We will look at how to hide the entire GridView column (and not just the LinkButton) in the next section.
 
@@ -325,7 +325,7 @@ To demonstrate the application of these two tasks, let's only allow Tito to dele
 
 Add the following code to the `Page_Load` event handler prior to binding the data to the GridView:
 
-[!code[Main](user-based-authorization-cs/samples/sample21.xml)]
+[!code-csharp[Main](user-based-authorization-cs/samples/sample21.cs)]
 
 As we discussed in the [*An Overview of Forms Authentication*](../introduction/an-overview-of-forms-authentication-cs.md) tutorial, `User.Identity.Name` returns the identity's name. This corresponds to the username entered in the Login control. If it is Tito visiting the page, the GridView's second column's `Visible` property is set to `true`; otherwise, it is set to `false`. The net result is that when someone other than Tito visits the page, either another authenticated user or an anonymous user, the Delete column is not rendered (see Figure 12); however, when Tito visits the page, the Delete column is present (see Figure 13).
 
@@ -348,7 +348,7 @@ An easy way to ensure that a particular piece of functionality cannot be accesse
 
 Let's demonstrate using the `PrincipalPermission` attribute on the GridView's `SelectedIndexChanged` and `RowDeleting` event handlers to prohibit execution by anonymous users and users other than Tito, respectively. All we need to do is add the appropriate attribute atop each function definition:
 
-[!code[Main](user-based-authorization-cs/samples/sample22.xml)]
+[!code-csharp[Main](user-based-authorization-cs/samples/sample22.cs)]
 
 The attribute for the `SelectedIndexChanged` event handler dictates that only authenticated users can execute the event handler, where as the attribute on the `RowDeleting` event handler limits the execution to Tito.
 
@@ -363,7 +363,7 @@ If, somehow, a user other than Tito attempts to execute the `RowDeleting` event 
 > [!NOTE] To allow multiple security contexts to access a class or method, decorate the class or method with a `PrincipalPermission` attribute for each security context. That is, to allow both Tito and Bruce to execute the `RowDeleting` event handler, add *two* `PrincipalPermission` attributes:
 
 
-[!code[Main](user-based-authorization-cs/samples/sample23.xml)]
+[!code-csharp[Main](user-based-authorization-cs/samples/sample23.cs)]
 
 In addition to ASP.NET pages, many applications also have an architecture that includes various layers, such as Business Logic and Data Access Layers. These layers are typically implemented as Class Libraries and offer classes and methods for performing business logic- and data-related functionality. The `PrincipalPermission` attribute is useful for applying authorization rules to these layers.
 

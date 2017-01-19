@@ -46,7 +46,7 @@ This section lists a few tips that you absolutely need to know as you start writ
 
 The `@` character starts inline expressions, single-statement blocks, and multi-statement blocks:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample1.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample1.vb)]
 
 The result displayed in a browser:
 
@@ -67,7 +67,7 @@ The result displayed in a browser:
 
 A code block includes one or more code statements and is enclosed with the keywords `Code` and `End Code`. Place the opening `Code` keyword immediately after the `@` character &#8212; there can't be whitespace between them.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample2.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample2.vb)]
 
 The result displayed in a browser:
 
@@ -77,13 +77,13 @@ The result displayed in a browser:
 
 In a Visual Basic code block, each statement ends with a line break. (Later in the article you'll see a way to wrap a long code statement into multiple lines if needed.)
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample3.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample3.vb)]
 
 ### 4. You use variables to store values
 
 You can store values in a *variable*, including strings, numbers, and dates, etc. You create a new variable using the `Dim` keyword. You can insert variable values directly in a page using `@`.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample4.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample4.vb)]
 
 The result displayed in a browser:
 
@@ -93,11 +93,11 @@ The result displayed in a browser:
 
 A *string* is a sequence of characters that are treated as text. To specify a string, you enclose it in double quotation marks:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample5.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample5.vb)]
 
 To embed double quotation marks within a string value, insert two double quotation mark characters. If you want the double quotation character to appear once in the page output, enter it as `""` within the quoted string, and if you want it to appear twice, enter it as `""""` within the quoted string.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample6.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample6.vb)]
 
 The result displayed in a browser:
 
@@ -109,7 +109,7 @@ The Visual Basic language is not case sensitive. Programming keywords (like `Dim
 
 The following lines of code assign a value to the variable `lastname` using a lowercase name, and then output the variable value to the page using an uppercase name.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample7.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample7.vb)]
 
 The result displayed in a browser:
 
@@ -121,7 +121,7 @@ An object represents a thing that you can program with &#8212; a page, a text bo
 
 You'll often work with the `Request` object, which gives you information like the values of form fields on the page (text boxes, etc.), what type of browser made the request, the URL of the page, the user identity, etc. This example shows how to access properties of the `Request` object and how to call the `MapPath` method of the `Request` object, which gives you the absolute path of the page on the server:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample8.xml)]
+[!code-html[Main](introducing-razor-syntax-vb/samples/sample8.html)]
 
 The result displayed in a browser:
 
@@ -131,7 +131,7 @@ The result displayed in a browser:
 
 A key feature of dynamic web pages is that you can determine what to do based on conditions. The most common way to do this is with the `If` statement (and optional `Else` statement).
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample9.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample9.vb)]
 
 The statement `If IsPost` is a shorthand way of writing `If IsPost = True`. Along with `If` statements, there are a variety of ways to test conditions, repeat blocks of code, and so on, which are described later in this article.
 
@@ -155,7 +155,7 @@ This procedure shows you how to create a page that illustrates basic programming
 1. In your editor, create a new file and name it *AddNumbers.vbhtml*.
 2. Copy the following code and markup into the page, replacing anything already in the page.
 
-    [!code[Main](introducing-razor-syntax-vb/samples/sample10.xml)]
+    [!code-vb[Main](introducing-razor-syntax-vb/samples/sample10.vb)]
 
     Here are some things for you to note:
 
@@ -182,21 +182,21 @@ In server code blocks, you'll often want to output text and markup to the page. 
 
 - Enclose the text in an HTML block element like `<p></p>` or `<em></em>`:
 
-    [!code[Main](introducing-razor-syntax-vb/samples/sample11.xml)]
+    [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample11.vbhtml)]
 
     The HTML element can include text, additional HTML elements, and server-code expressions. When ASP.NET sees the opening HTML tag (for example, `<p>`), it renders everything the element and its content as is to the browser (and resolves the server-code expressions).
 
 - Use the `@:` operator or the `<text>` element. The `@:` outputs a single line of content containing plain text or unmatched HTML tags; the `<text>` element encloses multiple lines to output. These options are useful when you don't want to render an HTML element as part of the output.
 
-    [!code[Main](introducing-razor-syntax-vb/samples/sample12.xml)]
+    [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample12.vbhtml)]
 
     The following example repeats the previous example but uses a single pair of `<text>` tags to enclose the text to render.
 
-    [!code[Main](introducing-razor-syntax-vb/samples/sample13.xml)]
+    [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample13.vbhtml)]
 
     In the following example, the `<text>` and `</text>` tags enclose three lines, all of which have some uncontained text and unmatched HTML tags (`<br />`), along with server code and matched HTML tags. Again, you could also precede each line individually with the `@:` operator; either way works.
 
-    [!code[Main](introducing-razor-syntax-vb/samples/sample14.xml)]
+    [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample14.vbhtml)]
 
     > [!NOTE] When you output text as shown in this section &#8212; using an HTML element, the `@:` operator, or the `<text>` element &#8212; ASP.NET doesn't HTML-encode the output. (As noted earlier, ASP.NET does encode the output of server code expressions and server code blocks that are preceded by `@`, except in the special cases noted in this section.)
 
@@ -204,17 +204,17 @@ In server code blocks, you'll often want to output text and markup to the page. 
 
 Extra spaces in a statement (and outside of a string literal) don't affect the statement:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample15.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample15.vb)]
 
 ### Breaking long statements into multiple lines
 
 You can break a long code statement into multiple lines by using the underscore character `_` (which in Visual Basic is called the *continuation character*) after each line of code. To break a statement onto the next line, at the end of the line add a space and then the continuation character. Continue the statement on the next line. You can wrap statements onto as many lines as you need to improve readability. The following statements are the same:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample16.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample16.vb)]
 
 However, you can't wrap a line in the middle of a string literal. The following example doesn't work:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample17.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample17.vb)]
 
 To combine a long string that wraps to multiple lines like the above code, you would need to use the *concatenation operator* (`&`), which you'll see later in this article.
 
@@ -222,11 +222,11 @@ To combine a long string that wraps to multiple lines like the above code, you w
 
 Comments let you leave notes for yourself or others. Razor syntax comments are prefixed with `@*` and end with `*@`.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample18.xml)]
+[!code-cshtml[Main](introducing-razor-syntax-vb/samples/sample18.cshtml)]
 
 Within code blocks you can use the Razor syntax comments, or you can use ordinary Visual Basic comment character, which is a single quote (`'`) prefixed to each line.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample19.xml)]
+[!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample19.vbhtml)]
 
 ## Variables
 
@@ -240,11 +240,11 @@ However, you don't have to specify a type for a variable. In most cases ASP.NET 
 
 To declare a variable without specifying a type, use `Dim` plus the variable name (for instance, `Dim myVar`). To declare a variable with a type, use `Dim` plus the variable name, followed by `As` and then the type name (for instance, `Dim myVar As String`).
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample20.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample20.vb)]
 
 The following example shows some inline expressions that use the variables in a web page.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample21.xml)]
+[!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample21.vbhtml)]
 
 The result displayed in a browser:
 
@@ -256,7 +256,7 @@ Although ASP.NET can usually determine a data type automatically, sometimes it c
 
 The most common case is that you have to convert a string to another type, such as to an integer or date. The following example shows a typical case where you must convert a string to a number.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample22.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample22.vb)]
 
 As a rule, user input comes to you as strings. Even if you've prompted the user to enter a number, and even if they've entered a digit, when user input is submitted and you read it in code, the data is in string format. Therefore, you must convert the string to a number. In the example, if you try to perform arithmetic on the values without converting them, the following error results, because ASP.NET cannot add two strings:
 
@@ -268,12 +268,12 @@ The following table lists some common conversion and test methods for variables.
 
 | **Method** | **Description** | **Example** |
 | --- | --- | --- |
-| `AsInt(), IsInt()` | Converts a string that represents a whole number (like &quot;593&quot;) to an integer. | [!code[Main](introducing-razor-syntax-vb/samples/sample23.xml)] |
-| `AsBool(), IsBool()` | Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type. | [!code[Main](introducing-razor-syntax-vb/samples/sample24.xml)] |
-| `AsFloat(), IsFloat()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number. | [!code[Main](introducing-razor-syntax-vb/samples/sample25.xml)] |
-| `AsDecimal(), IsDecimal()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.) | [!code[Main](introducing-razor-syntax-vb/samples/sample26.xml)] |
-| `AsDateTime(), IsDateTime()` | Converts a string that represents a date and time value to the ASP.NET `DateTime` type. | [!code[Main](introducing-razor-syntax-vb/samples/sample27.xml)] |
-| `ToString()` | Converts any other data type to a string. | [!code[Main](introducing-razor-syntax-vb/samples/sample28.xml)] |
+| `AsInt(), IsInt()` | Converts a string that represents a whole number (like &quot;593&quot;) to an integer. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample23.vb)] |
+| `AsBool(), IsBool()` | Converts a string like &quot;true&quot; or &quot;false&quot; to a Boolean type. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample24.vb)] |
+| `AsFloat(), IsFloat()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample25.vb)] |
+| `AsDecimal(), IsDecimal()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.) | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample26.vb)] |
+| `AsDateTime(), IsDateTime()` | Converts a string that represents a date and time value to the ASP.NET `DateTime` type. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample27.vb)] |
+| `ToString()` | Converts any other data type to a string. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample28.vb)] |
 
 ## Operators
 
@@ -281,16 +281,16 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
 
 | **Operator** | **Description** | **Examples** |
 | --- | --- | --- |
-| `+ - * /` | Math operators used in numerical expressions. | [!code[Main](introducing-razor-syntax-vb/samples/sample29.xml)] |
-| `=` | Assignment and equality. Depending on context, either assigns the value on the right side of a statement to the object on the left side, or checks the values for equality. | [!code[Main](introducing-razor-syntax-vb/samples/sample30.xml)] |
-| `<>` | Inequality. Returns `True` if the values are not equal. | [!code[Main](introducing-razor-syntax-vb/samples/sample31.xml)] |
-| `< > <= >=` | Less than, greater than, less than or equal, and greater than or equal. | [!code[Main](introducing-razor-syntax-vb/samples/sample32.xml)] |
-| `&` | Concatenation, which is used to join strings. | [!code[Main](introducing-razor-syntax-vb/samples/sample33.xml)] |
-| `+= -=` | The increment and decrement operators, which add and subtract 1 (respectively) from a variable. | [!code[Main](introducing-razor-syntax-vb/samples/sample34.xml)] |
-| `.` | Dot. Used to distinguish objects and their properties and methods. | [!code[Main](introducing-razor-syntax-vb/samples/sample35.xml)] |
-| `()` | Parentheses. Used to group expressions, to pass parameters to methods, and to access members of arrays and collections. | [!code[Main](introducing-razor-syntax-vb/samples/sample36.xml)] |
-| `Not` | Not. Reverses a true value to false and vice versa. Typically used as a shorthand way to test for `False` (that is, for not `True`). | [!code[Main](introducing-razor-syntax-vb/samples/sample37.xml)] |
-| `AndAlso OrElse` | Logical AND and OR, which are used to link conditions together. | [!code[Main](introducing-razor-syntax-vb/samples/sample38.xml)] |
+| `+ - * /` | Math operators used in numerical expressions. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample29.vb)] |
+| `=` | Assignment and equality. Depending on context, either assigns the value on the right side of a statement to the object on the left side, or checks the values for equality. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample30.vb)] |
+| `<>` | Inequality. Returns `True` if the values are not equal. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample31.vb)] |
+| `< > <= >=` | Less than, greater than, less than or equal, and greater than or equal. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample32.vb)] |
+| `&` | Concatenation, which is used to join strings. | [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample33.vbhtml)] |
+| `+= -=` | The increment and decrement operators, which add and subtract 1 (respectively) from a variable. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample34.vb)] |
+| `.` | Dot. Used to distinguish objects and their properties and methods. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample35.vb)] |
+| `()` | Parentheses. Used to group expressions, to pass parameters to methods, and to access members of arrays and collections. | [!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample36.vbhtml)] |
+| `Not` | Not. Reverses a true value to false and vice versa. Typically used as a shorthand way to test for `False` (that is, for not `True`). | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample37.vb)] |
+| `AndAlso OrElse` | Logical AND and OR, which are used to link conditions together. | [!code-vb[Main](introducing-razor-syntax-vb/samples/sample38.vb)] |
 
 ## Working with File and Folder Paths in Code
 
@@ -322,13 +322,13 @@ The `Server.MapPath` method converts a virtual path (like */default.cshtml*) to 
 
 You typically don't know the absolute physical path of your site on a hosting site's server, so this method can convert the path you do know — the virtual path — to the corresponding path on the server for you. You pass the virtual path to a file or folder to the method, and it returns the physical path:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample39.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample39.vb)]
 
 ### Referencing the virtual root: the ~ operator and Href method
 
 In a *.cshtml* or *.vbhtml* file, you can reference the virtual root path using the `~` operator. This is very handy because you can move pages around in a site, and any links they contain to other pages won't be broken. It's also handy in case you ever move your website to a different location. Here are some examples:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample40.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample40.vb)]
 
 If the website is `http://myserver/myapp`, here's how ASP.NET will treat these paths when the page runs:
 
@@ -339,7 +339,7 @@ If the website is `http://myserver/myapp`, here's how ASP.NET will treat these p
 
 You can use the `~` operator both in server code (as above) and in markup, like this:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample41.xml)]
+[!code-html[Main](introducing-razor-syntax-vb/samples/sample41.html)]
 
 In markup, you use the `~` operator to create paths to resources like image files, other web pages, and CSS files. When the page runs, ASP.NET looks through the page (both code and markup) and resolves all the `~` references to the appropriate path.
 
@@ -351,25 +351,25 @@ ASP.NET server code lets you perform tasks based on conditions and write code th
 
 To test a simple condition you use the `If...Then` statement, which returns `True` or `False` based on a test you specify:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample42.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample42.vb)]
 
 The `If` keyword starts a block. The actual test (condition) follows the `If` keyword and returns true or false. The `If` statement ends with `Then`. The statements that will run if the test is true are enclosed by `If` and `End If`. An `If` statement can include an `Else` block that specifies statements to run if the condition is false:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample43.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample43.vb)]
 
 If an `If` statement starts a code block, you don't have to use the normal `Code...End Code` statements to include the blocks. You can just add `@` to the block, and it will work. This approach works with `If` as well as other Visual Basic programming keywords that are followed by code blocks, including `For`, `For Each`, `Do While`, etc.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample44.xml)]
+[!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample44.vbhtml)]
 
 You can add multiple conditions using one or more `ElseIf` blocks:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample45.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample45.vb)]
 
 In this example, if the first condition in the `If` block is not true, the `ElseIf` condition is checked. If that condition is met, the statements in the `ElseIf` block are executed. If none of the conditions are met, the statements in the `Else` block are executed. You can add any number of `ElseIf` blocks, and then close with an `Else` block as the &quot;everything else&quot; condition.
 
 To test a large number of conditions, use a `Select Case` block:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample46.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample46.vb)]
 
 The value to test is in parentheses (in the example, the weekday variable). Each individual test uses a `Case` statement that lists a value. If the value of a `Case` statement matches the test value, the code in that `Case` block is executed.
 
@@ -381,7 +381,7 @@ The result of the last two conditional blocks displayed in a browser:
 
 You often need to run the same statements repeatedly. You do this by looping. For example, you often run the same statements for each item in a collection of data. If you know exactly how many times you want to loop, you can use a `For` loop. This kind of loop is especially useful for counting up or counting down:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample47.xml)]
+[!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample47.vbhtml)]
 
 The loop begins with the `For` keyword, followed by three elements:
 
@@ -397,7 +397,7 @@ If you're working with a collection or array, you often use a `For Each` loop. A
 
 This example returns the items in the `Request.ServerVariables` collection (which contains information about your web server). It uses a `For Each` loop to display the name of each item by creating a new `<li>` element in an HTML bulleted list.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample48.xml)]
+[!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample48.vbhtml)]
 
 The `For Each` keyword is followed by a variable that represents a single item in the collection (in the example, `myItem`), followed by the `In` keyword, followed by the collection you want to loop through. In the body of the `For Each` loop, you can access the current item using the variable that you declared earlier.
 
@@ -405,7 +405,7 @@ The `For Each` keyword is followed by a variable that represents a single item i
 
 To create a more general-purpose loop, use the `Do While` statement:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample49.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample49.vb)]
 
 This loop begins with the `Do While` keyword, followed by a condition, followed by the block to repeat. Loops typically increment (add to) or decrement (subtract from) a variable or object used for counting. In the example, the `+=` operator adds 1 to the value of a variable each time the loop runs. (To decrement a variable in a loop that counts down, you would use the decrement operator `-=`.)
 
@@ -417,14 +417,14 @@ Nearly everything in an ASP.NET website is an object, including the web page its
 
 The most basic object in ASP.NET is the page. You can access properties of the page object directly without any qualifying object. The following code gets the page's file path, using the `Request` object of the page:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample50.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample50.vb)]
 
 You can use properties of the `Page` object to get a lot of information, such as:
 
 - `Request`. As you've already seen, this is a collection of information about the current request, including what type of browser made the request, the URL of the page, the user identity, etc.
 - `Response`. This is a collection of information about the response (page) that will be sent to the browser when the server code has finished running. For example, you can use this property to write information into the response.
 
-    [!code[Main](introducing-razor-syntax-vb/samples/sample51.xml)]
+    [!code-vb[Main](introducing-razor-syntax-vb/samples/sample51.vb)]
 
 ### Collection objects (arrays and dictionaries)
 
@@ -432,11 +432,11 @@ A collection is a group of objects of the same type, such as a collection of `Cu
 
 You'll often work with data in collections. Two common collection types are the *array* and the *dictionary*. An array is useful when you want to store a collection of similar items but don't want to create a separate variable to hold each item:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample52.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample52.vb)]
 
 With arrays, you declare a specific data type, such as `String`, `Integer`, or `DateTime`. To indicate that the variable can contain an array, you add parentheses to the variable name in the declaration (such as `Dim myVar() As String`). You can access items in an array using their position (index) or by using the `For Each` statement. Array indexes are zero-based &#8212; that is, the first item is at position 0, the second item is at position 1, and so on.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample53.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample53.vb)]
 
 You can determine the number of items in an array by getting its `Length` property. To get the position of a specific item in the array (that is, to search the array), use the `Array.IndexOf` method. You can also do things like reverse the contents of an array (the `Array.Reverse` method) or sort the contents (the `Array.Sort` method).
 
@@ -446,23 +446,23 @@ The output of the string array code displayed in a browser:
 
 A dictionary is a collection of key/value pairs, where you provide the key (or name) to set or retrieve the corresponding value:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample54.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample54.vb)]
 
 To create a dictionary, you use the `New` keyword to indicate that you're creating a new `Dictionary` object. You can assign a dictionary to a variable using the `Dim` keyword. You indicate the data types of the items in the dictionary using parentheses ( `( )` ). At the end of the declaration, you must add another pair of parentheses, because this is actually a method that creates a new dictionary.
 
 To add items to the dictionary, you can call the `Add` method of the dictionary variable (`myScores` in this case), and then specify a key and a value. Alternatively, you can use parentheses to indicate the key and do a simple assignment, as in the following example:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample55.xml)]
+[!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample55.vbhtml)]
 
 To get a value from the dictionary, you specify the key in parentheses:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample56.xml)]
+[!code-vbhtml[Main](introducing-razor-syntax-vb/samples/sample56.vbhtml)]
 
 ## Calling Methods with Parameters
 
 As you saw earlier in this article, the objects that you program with have methods. For example, a `Database` object might have a `Database.Connect` method. Many methods also have one or more parameters. A *parameter* is a value that you pass to a method to enable the method to complete its task. For example, look at a declaration for the `Request.MapPath` method, which takes three parameters:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample57.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample57.vb)]
 
 This method returns the physical path on the server that corresponds to a specified virtual path. The three parameters for the method are `virtualPath`, `baseVirtualDir`, and `allowCrossAppMapping`. (Notice that in the declaration, the parameters are listed with the data types of the data that they'll accept.) When you call this method, you must supply values for all three parameters.
 
@@ -470,13 +470,13 @@ When you're using Visual Basic with the Razor syntax, you have two options for p
 
 The following example assumes you have a folder named *scripts* on your website. The code calls the `Request.MapPath` method and passes values for the three parameters in the correct order. It then displays the resulting mapped path.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample58.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample58.vb)]
 
 When there are many parameters for a method, you can keep your code cleaner and more readable by using named parameters. To call a method using named parameters, specify the parameter name followed by `:=` and then provide the value. An advantage of named parameters is that you can add them in any order you want. (A disadvantage is that the method call is not as compact.)
 
 The following example calls the same method as above, but uses named parameters to supply the values:
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample59.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample59.vb)]
 
 As you can see, the parameters are passed in a different order. However, if you run the previous example and this example, they'll return the same value.
 
@@ -502,7 +502,7 @@ The following example shows a page that creates a text file on the first request
 
 If your code didn't handle the exception, you would see an error page like the previous screen shot. However, the `Try/Catch` section helps prevent the user from seeing these types of errors.
 
-[!code[Main](introducing-razor-syntax-vb/samples/sample60.xml)]
+[!code-vb[Main](introducing-razor-syntax-vb/samples/sample60.vb)]
 
 ## Additional Resources
 

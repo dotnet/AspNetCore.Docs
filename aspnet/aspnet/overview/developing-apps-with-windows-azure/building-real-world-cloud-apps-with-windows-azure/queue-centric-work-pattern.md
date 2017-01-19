@@ -106,7 +106,7 @@ To put a Fix It task on the queue, the web front end performs the following step
 
 We'll do this work in the constructor and `SendMessageAsync` method of a new `FixItQueueManager` class.
 
-[!code[Main](queue-centric-work-pattern/samples/sample1.xml?highlight=11-12,16,18-25)]
+[!code-csharp[Main](queue-centric-work-pattern/samples/sample1.cs?highlight=11-12,16,18-25)]
 
 Here we are using the [Json.NET](http://json.codeplex.com/) library to serialize the fixit to JSON format. You can use whatever serialization approach you prefer. JSON has the advantage of being human-readable, while being less verbose than XML.
 
@@ -114,7 +114,7 @@ Production-quality code would add error handling logic, pause if the database be
 
 In the front-end MVC application, we need to update the code that creates a new task. Instead of putting the task into the repository, call the `SendMessageAsync` method shown above.
 
-[!code[Main](queue-centric-work-pattern/samples/sample2.xml?highlight=10)]
+[!code-csharp[Main](queue-centric-work-pattern/samples/sample2.cs?highlight=10)]
 
 ## Processing Queue Messages
 
@@ -153,11 +153,11 @@ For more information, see [Creating an Azure Project with Visual Studio.](https:
 
 Inside the worker role, we poll for messages by calling the `ProcessMessageAsync` method of the `FixItQueueManager` class that we saw earlier.
 
-[!code[Main](queue-centric-work-pattern/samples/sample3.xml?highlight=25)]
+[!code-csharp[Main](queue-centric-work-pattern/samples/sample3.cs?highlight=25)]
 
 The `ProcessMessagesAsync` method checks if there's a message waiting. If there is one, it deserializes the message into a `FixItTask` entity and saves the entity in the database. It loops until the queue is empty.
 
-[!code[Main](queue-centric-work-pattern/samples/sample4.xml)]
+[!code-csharp[Main](queue-centric-work-pattern/samples/sample4.cs)]
 
 Polling for queue messages incurs a small transaction charge, so when there's no message waiting to be processed, the worker role's `RunAsync` method waits a second before polling again by calling `Task.Delay(1000)`.
 

@@ -58,7 +58,7 @@ In the next two steps we'll examine the SQL script needed to respond to these tw
 Before we examine how to retrieve the precise subset of records for the page being displayed, let s first look at how to return the total number of records being paged through. This information is needed in order to properly configure the paging user interface. The total number of records returned by a particular SQL query can be obtained by using the [`COUNT` aggregate function](https://msdn.microsoft.com/en-US/library/ms175997.aspx). For example, to determine the total number of records in the `Products` table, we can use the following query:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample1.xml)]
+[!code-sql[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample1.sql)]
 
 Let s add a method to our DAL that returns this information. In particular, we'll create a DAL method called `TotalNumberOfProducts()` that executes the `SELECT` statement shown above.
 
@@ -99,7 +99,7 @@ After clicking Finish, the wizard will add the `TotalNumberOfProducts` method to
 In addition to the DAL method, we also need a method in the BLL. Open the `ProductsBLL` class file and add a `TotalNumberOfProducts` method that simply calls down to the DAL s `TotalNumberOfProducts` method:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample2.xml)]
+[!code-vb[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample2.vb)]
 
 The DAL s `TotalNumberOfProducts` method returns a nullable integer; however, we ve created the `ProductsBLL` class s `TotalNumberOfProducts` method so that it returns a standard integer. Therefore, we need to have the `ProductsBLL` class s `TotalNumberOfProducts` method return the value portion of the nullable integer returned by the DAL s `TotalNumberOfProducts` method. The call to `GetValueOrDefault()` returns the value of the nullable integer, if it exists; if the nullable integer is `null`, however, it returns the default integer value, 0.
 
@@ -123,12 +123,12 @@ This tutorial implements custom paging using the `ROW_NUMBER()` keyword. For mor
 The `ROW_NUMBER()` keyword associated a ranking with each record returned over a particular ordering using the following syntax:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample3.xml)]
+[!code-sql[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample3.sql)]
 
 `ROW_NUMBER()` returns a numerical value that specifies the rank for each record with regards to the indicated ordering. For example, to see the rank for each product, ordered from the most expensive to the least, we could use the following query:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample4.xml)]
+[!code-sql[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample4.sql)]
 
 Figure 5 shows this query s results when run through the query window in Visual Studio. Note that the products are ordered by price, along with a price rank for each row.
 
@@ -146,12 +146,12 @@ When ranking the results by the specified `ORDER BY` column in the `OVER` clause
 The ranking information returned by `ROW_NUMBER()` cannot directly be used in the `WHERE` clause. However, a derived table can be used to return the `ROW_NUMBER()` result, which can then appear in the `WHERE` clause. For example, the following query uses a derived table to return the ProductName and UnitPrice columns, along with the `ROW_NUMBER()` result, and then uses a `WHERE` clause to only return those products whose price rank is between 11 and 20:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample5.xml)]
+[!code-sql[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample5.sql)]
 
 Extending this concept a bit further, we can utilize this approach to retrieve a specific page of data given the desired Start Row Index and Maximum Rows values:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample6.xml)]
+[!code-html[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample6.html)]
 
 > [!NOTE] As we will see later on in this tutorial, the *`StartRowIndex`* supplied by the ObjectDataSource is indexed starting at zero, whereas the `ROW_NUMBER()` value returned by SQL Server 2005 is indexed starting at 1. Therefore, the `WHERE` clause returns those records where `PriceRank` is strictly greater than *`StartRowIndex`* and less than or equal to *`StartRowIndex`* + *`MaximumRows`*.
 
@@ -171,7 +171,7 @@ In the previous section we created the DAL method as an ad-hoc SQL statement. Un
 This stored procedure should accept two integer input parameters - `@startRowIndex` and `@maximumRows` and use the `ROW_NUMBER()` function ordered by the `ProductName` field, returning only those rows greater than the specified `@startRowIndex` and less than or equal to `@startRowIndex` + `@maximumRow` s. Enter the following script into the new stored procedure and then click the Save icon to add the stored procedure to the database.
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample7.xml)]
+[!code-sql[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample7.sql)]
 
 After creating the stored procedure, take a moment to test it out. Right-click on the `GetProductsPaged` stored procedure name in the Server Explorer and choose the Execute option. Visual Studio will then prompt you for the input parameters, `@startRowIndex` and `@maximumRow` s (see Figure 7). Try different values and examine the results.
 
@@ -224,7 +224,7 @@ Finally, indicate the names of the methods you want to have created. As with our
 In addition to created a DAL method to return a particular page of products, we also need to provide such functionality in the BLL. Like the DAL method, the BLL s GetProductsPaged method must accept two integer inputs for specifying the Start Row Index and Maximum Rows, and must return just those records that fall within the specified range. Create such a BLL method in the ProductsBLL class that merely calls down into the DAL s GetProductsPaged method, like so:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample8.xml)]
+[!code-vb[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample8.vb)]
 
 You can use any name for the BLL method s input parameters, but, as we will see shortly, choosing to use `startRowIndex` and `maximumRows` saves us from an extra bit of work when configuring an ObjectDataSource to use this method.
 
@@ -251,7 +251,7 @@ Next, the ObjectDataSource wizard prompts us for the sources of the `GetProducts
 After completing the ObjectDataSource wizard, the GridView will contain a BoundField or CheckBoxField for each of the product data fields. Feel free to tailor the GridView s appearance as you see fit. I ve opted to display only the `ProductName`, `CategoryName`, `SupplierName`, `QuantityPerUnit`, and `UnitPrice` BoundFields. Also, configure the GridView to support paging by checking the Enable Paging checkbox in its smart tag. After these changes, the GridView and ObjectDataSource declarative markup should look similar to the following:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample9.xml)]
+[!code-aspx[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample9.aspx)]
 
 If you visit the page through a browser, however, the GridView is no where to be found.
 
@@ -273,7 +273,7 @@ To remedy this, we need to configure the ObjectDataSource to use custom paging. 
 After making these changes, the ObjectDataSource s declarative syntax should look like the following:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample10.xml)]
+[!code-aspx[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample10.aspx)]
 
 Note that the `EnablePaging` and `SelectCountMethod` properties have been set and the `<asp:Parameter>` elements have been removed. Figure 16 shows a screen shot of the Properties window after these changes have been made.
 
@@ -326,12 +326,12 @@ To fix this we have two options. The first is to create an event handler for the
 This approach works because it updates the `PageIndex` after Step 1 but before Step 2. Therefore, in Step 2, the appropriate set of records is returned. To accomplish this, use code like the following:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample11.xml)]
+[!code-vb[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample11.vb)]
 
 An alternative workaround is to create an event handler for the ObjectDataSource s `RowDeleted` event and to set the `AffectedRows` property to a value of 1. After deleting the record in Step 1 (but before re-retrieving the data in Step 2), the GridView updates its `PageIndex` property if one or more rows were affected by the operation. However, the `AffectedRows` property is not set by the ObjectDataSource and therefore this step is omitted. One way to have this step executed is to manually set the `AffectedRows` property if the delete operation completes successfully. This can be accomplished using code like the following:
 
 
-[!code[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample12.xml)]
+[!code-vb[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample12.vb)]
 
 The code for both of these events handlers can be found in code-behind class of the `EfficientPaging.aspx` example.
 

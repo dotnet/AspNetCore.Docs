@@ -49,7 +49,7 @@ The most important change to note is that you are no longer executing the code f
 
 Replace the code in SchoolBL.cs with the following code.
 
-[!code[Main](adding-business-logic-layer/samples/sample1.xml)]
+[!code-csharp[Main](adding-business-logic-layer/samples/sample1.cs)]
 
 ## Revise existing pages to retrieve data from business logic layer
 
@@ -67,23 +67,23 @@ You now should have no code in the code-behind file that pertains to data operat
 
 The **OnCallingDataMethods** event handler enables you to specify an object to use for the data methods. In Students.aspx, add a value for that event handler and change the names of the data methods to the names of the methods in the business logic class.
 
-[!code[Main](adding-business-logic-layer/samples/sample2.xml?highlight=3-4,8)]
+[!code-aspx[Main](adding-business-logic-layer/samples/sample2.aspx?highlight=3-4,8)]
 
 In the code-behind file for Students.aspx, define the event handler for the CallingDataMethods event. In this event handler, you specify the business logic class for data operations.
 
-[!code[Main](adding-business-logic-layer/samples/sample3.xml)]
+[!code-csharp[Main](adding-business-logic-layer/samples/sample3.cs)]
 
 In AddStudent.aspx, make similar changes.
 
-[!code[Main](adding-business-logic-layer/samples/sample4.xml?highlight=3-4)]
+[!code-aspx[Main](adding-business-logic-layer/samples/sample4.aspx?highlight=3-4)]
 
-[!code[Main](adding-business-logic-layer/samples/sample5.xml)]
+[!code-csharp[Main](adding-business-logic-layer/samples/sample5.cs)]
 
 In Courses.aspx, make similar changes.
 
-[!code[Main](adding-business-logic-layer/samples/sample6.xml?highlight=3-4)]
+[!code-aspx[Main](adding-business-logic-layer/samples/sample6.aspx?highlight=3-4)]
 
-[!code[Main](adding-business-logic-layer/samples/sample7.xml)]
+[!code-csharp[Main](adding-business-logic-layer/samples/sample7.cs)]
 
 Run the application and notice that all of the pages function as they had previously. The validation logic also works correctly.
 

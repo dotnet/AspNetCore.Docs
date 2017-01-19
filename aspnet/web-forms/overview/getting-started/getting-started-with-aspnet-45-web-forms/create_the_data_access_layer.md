@@ -70,10 +70,10 @@ In this tutorial, you'll start out by adding simple entity classes representing 
  The new class file is displayed in the editor.
 5. Replace the default code with the following code:   
 
-    [!code[Main](create_the_data_access_layer/samples/sample1.xml)]
+    [!code-csharp[Main](create_the_data_access_layer/samples/sample1.cs)]
 6. Create another class by repeating steps 1 through 4, however, name the new class *Category.cs* and replace the default code with the following code:  
 
-    [!code[Main](create_the_data_access_layer/samples/sample2.xml)]
+    [!code-csharp[Main](create_the_data_access_layer/samples/sample2.cs)]
 
 As previously mentioned, the `Category` class represents the type of product that the application is designed to sell (such as <a id="a"></a>&quot;Cars&quot;, &quot;Boats&quot;, &quot;Rockets&quot;, and so on), and the `Product` class represents the individual products (toys) in the database. Each instance of a `Product` object will correspond to a row within a relational database table, and each property of the Product class will map to a column in the relational database table. Later in this tutorial, you'll review the product data contained in the database.
 
@@ -92,7 +92,7 @@ This procedure adds a new C# context class to the *Models* folder.
 2. Select **Class** from the middle pane, name it *ProductContext.cs*and click **Add**.
 3. Replace the default code contained in the class with the following code:   
 
-    [!code[Main](create_the_data_access_layer/samples/sample3.xml)]
+    [!code-csharp[Main](create_the_data_access_layer/samples/sample3.cs)]
 
 This code adds the `System.Data.Entity` namespace so that you have access to all the core functionality of Entity Framework, which includes the capability to query, insert, update, and delete data by working with strongly typed objects.
 
@@ -107,7 +107,7 @@ This procedure adds a new C# initializer class to the *Models* folder.
 1. Create another `Class` in the *Models* folder and name it *ProductDatabaseInitializer.cs*.
 2. Replace the default code contained in the class with the following code:   
 
-    [!code[Main](create_the_data_access_layer/samples/sample4.xml)]
+    [!code-csharp[Main](create_the_data_access_layer/samples/sample4.cs)]
 
 As you can see from the above code, when the database is created and initialized, the `Seed` property is overridden and set. When the `Seed` property is set, the values from the categories and products are used to populate the database. If you attempt to update the seed data by modifying the above code after the database has been created, you won't see any updates when you run the Web application. The reason is the above code uses an implementation of the `DropCreateDatabaseIfModelChanges` class to recognize if the model (schema) has changed before resetting the seed data. If no changes are made to the `Category` and `Product` entity classes, the database will not be reinitialized with the seed data.
 
@@ -135,7 +135,7 @@ To initialize the data models when the application starts, you will update the `
 
 1. Add the following code highlighted in yellow to the `Application_Start` method in the *Global.asax.cs* file.   
 
-    [!code[Main](create_the_data_access_layer/samples/sample5.xml?highlight=9-10,22-23)]
+    [!code-csharp[Main](create_the_data_access_layer/samples/sample5.cs?highlight=9-10,22-23)]
 
 > [!NOTE] 
 > 
@@ -151,7 +151,7 @@ Although Entity Framework Code First will generate a database for you in a defau
 1. In **Solution Explorer**, find and open the *Web.config* file.
 2. Add the connection string highlighted in yellow to the `<connectionStrings>` section of the *Web.config* file as follows:  
 
-    [!code[Main](create_the_data_access_layer/samples/sample6.xml?highlight=4-7)]
+    [!code-xml[Main](create_the_data_access_layer/samples/sample6.xml?highlight=4-7)]
 
 When the application is run for the first time, it will build the database at the location specified by the connection string. But before running the application, let's build it first.
 

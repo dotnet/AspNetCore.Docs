@@ -46,7 +46,7 @@ Hosting providers typically run your web site in *medium trust*, which means the
 
 In the application Web.config file, add a **trust** element in the **system.web** element, as shown in this example.
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample1.xml?highlight=4)]
+[!code-xml[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample1.xml?highlight=4)]
 
 The application will now run in medium trust in IIS even on your local computer. This setting enables you to catch as early as possible any attempts by application code to do something that would fail in production.
 
@@ -77,7 +77,7 @@ If you see only two application pools and both of them are set to the .NET Frame
 
 - Open a command prompt window by right-clicking **Command Prompt** in the Windows **Start** menu and selecting **Run as Administrator**. Then run [aspnet\_regiis.exe](https://msdn.microsoft.com/en-us/library/k6h9cz8h.aspx) to install ASP.NET 4 in IIS, using the following commands. (In 64-bit systems, replace "Framework" with "Framework64".)
 
-    [!code[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample2.xml)]
+    [!code-console[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample2.cmd)]
 
     [![aspnet_regiis_installing_ASP.NET_4](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/_static/image4.png)](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/_static/image3.png)
 
@@ -147,7 +147,7 @@ Leave the **Remove additional files at destination** check box cleared. Since th
 
 In the **Databases** section, enter the following value in the connection string box for **SchoolContext**:
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample3.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample3.cmd)]
 
 The deployment process will put this connection string in the deployed Web.config file because **Use this connection string at runtime** is selected.
 
@@ -155,7 +155,7 @@ Also under **SchoolContext**, select **Apply Code First Migrations**. This optio
 
 In the connection string box for **DefaultConnection**, enter the following value:
 
-[!code[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample4.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12/samples/sample4.cmd)]
 
 Leave **Update database** cleared. The membership database will be deployed by copying the .sdf file in App\_Data, and you don't want the deployment process to do anything else with this database.
 

@@ -45,11 +45,11 @@ These are some of the general things to test, but the specifics depend on your c
 
 Here is an example of a controller whose actions return **HttpResponseMessage**.
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample1.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample1.cs)]
 
 Notice the controller uses dependency injection to inject an `IProductRepository`. That makes the controller more testable, because you can inject a mock repository. The following unit test verifies that the `Get` method writes a `Product` to the response body. Assume that `repository` is a mock `IProductRepository`.
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample2.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample2.cs)]
 
 It's important to set **Request** and **Configuration** on the controller. Otherwise, the test will fail with an **ArgumentNullException** or **InvalidOperationException**.
 
@@ -57,13 +57,13 @@ It's important to set **Request** and **Configuration** on the controller. Other
 
 The `Post` method calls **UrlHelper.Link** to create links in the response. This requires a little more setup in the unit test:
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample3.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample3.cs)]
 
 The **UrlHelper** class needs the request URL and route data, so the test has to set values for these. Another option is mock or stub **UrlHelper**. With this approach, you replace the default value of [ApiController.Url](https://msdn.microsoft.com/en-us/library/system.web.http.apicontroller.url.aspx) with a mock or stub version that returns a fixed value.
 
 Let's rewrite the test using the [Moq](https://github.com/Moq) framework.
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample4.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample4.cs)]
 
 In this version, you don't need to set up any route data, because the mock **UrlHelper** returns a constant string.
 
@@ -76,7 +76,7 @@ In Web API 2, a controller action can return **IHttpActionResult**, which is ana
 
 Here is an example controller whose actions return **IHttpActionResult**.
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample5.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample5.cs)]
 
 This example shows some common patterns using **IHttpActionResult**. Let's see how to unit test them.
 
@@ -84,7 +84,7 @@ This example shows some common patterns using **IHttpActionResult**. Let's see h
 
 The `Get` method calls `Ok(product)` if the product is found. In the unit test, make sure the return type is **OkNegotiatedContentResult** and the returned product has the right ID.
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample6.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample6.cs)]
 
 Notice that the unit test doesn't execute the action result. You can assume the action result creates the HTTP response correctly. (That's why the Web API framework has its own unit tests!)
 
@@ -92,25 +92,25 @@ Notice that the unit test doesn't execute the action result. You can assume the 
 
 The `Get` method calls `NotFound()` if the product is not found. For this case, the unit test just checks if the return type is **NotFoundResult**.
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample7.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample7.cs)]
 
 ### Action returns 200 (OK) with no response body
 
 The `Delete` method calls `Ok()` to return an empty HTTP 200 response. Like the previous example, the unit test checks the return type, in this case **OkResult**.
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample8.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample8.cs)]
 
 ### Action returns 201 (Created) with a Location header
 
 The `Post` method calls `CreatedAtRoute` to return an HTTP 201 response with a URI in the Location header. In the unit test, verify that the action sets the correct routing values.
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample9.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample9.cs)]
 
 ### Action returns another 2xx with a response body
 
 The `Put` method calls `Content` to return an HTTP 202 (Accepted) response with a response body. This case is similar to returning 200 (OK), but the unit test should also check the status code.
 
-[!code[Main](unit-testing-controllers-in-web-api/samples/sample10.xml)]
+[!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample10.cs)]
 
 ## Additional Resources
 

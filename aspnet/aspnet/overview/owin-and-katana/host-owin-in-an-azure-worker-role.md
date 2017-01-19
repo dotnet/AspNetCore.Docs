@@ -56,7 +56,7 @@ From the **Tools** menu, click **Library Package Manager**, then click **Package
 
 In the Package Manager Console window, enter the following command:
 
-[!code[Main](host-owin-in-an-azure-worker-role/samples/sample1.xml)]
+[!code-console[Main](host-owin-in-an-azure-worker-role/samples/sample1.cmd)]
 
 ## Add an HTTP Endpoint
 
@@ -76,7 +76,7 @@ In Solution Explorer, right click the WorkerRole1 project and select **Add** / *
 
 Replace all of the boilerplate code with the following:
 
-[!code[Main](host-owin-in-an-azure-worker-role/samples/sample2.xml)]
+[!code-csharp[Main](host-owin-in-an-azure-worker-role/samples/sample2.cs)]
 
 The `UseWelcomePage` extension method adds a simple HTML page to your application, to verify the site is working.
 
@@ -86,25 +86,25 @@ Open the WorkerRole.cs file. This class defines the code that runs when the work
 
 Add the following using statement:
 
-[!code[Main](host-owin-in-an-azure-worker-role/samples/sample3.xml)]
+[!code-csharp[Main](host-owin-in-an-azure-worker-role/samples/sample3.cs)]
 
 Add an **IDisposable** member to the `WorkerRole` class:
 
-[!code[Main](host-owin-in-an-azure-worker-role/samples/sample4.xml)]
+[!code-csharp[Main](host-owin-in-an-azure-worker-role/samples/sample4.cs)]
 
 In the `OnStart` method, add the following code to start the host:
 
-[!code[Main](host-owin-in-an-azure-worker-role/samples/sample5.xml?highlight=5)]
+[!code-csharp[Main](host-owin-in-an-azure-worker-role/samples/sample5.cs?highlight=5)]
 
 The **WebApp.Start** method starts the OWIN host. The name of the `Startup` class is a type parameter to the method. By convention, the host will call the `Configure` method of this class.
 
 Override the `OnStop` to dispose of the *\_app* instance:
 
-[!code[Main](host-owin-in-an-azure-worker-role/samples/sample6.xml)]
+[!code-csharp[Main](host-owin-in-an-azure-worker-role/samples/sample6.cs)]
 
 Here is the complete code for WorkerRole.cs:
 
-[!code[Main](host-owin-in-an-azure-worker-role/samples/sample7.xml)]
+[!code-csharp[Main](host-owin-in-an-azure-worker-role/samples/sample7.cs)]
 
 Build the solution, and press F5 to run the application locally in the Azure Compute Emulator. Depending on your firewall settings, you might need to allow the emulator through your firewall.
 

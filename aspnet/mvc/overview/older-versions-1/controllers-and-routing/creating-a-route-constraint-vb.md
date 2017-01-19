@@ -24,13 +24,13 @@ For example, imagine that you have defined the route in Listing 1 in your Global
 
 **Listing 1 - Global.asax.vb**
 
-[!code[Main](creating-a-route-constraint-vb/samples/sample1.xml)]
+[!code-vb[Main](creating-a-route-constraint-vb/samples/sample1.vb)]
 
 Listing 1 contains a route named Product. You can use the Product route to map browser requests to the ProductController contained in Listing 2.
 
 **Listing 2 - Controllers\ProductController.vb**
 
-[!code[Main](creating-a-route-constraint-vb/samples/sample2.xml)]
+[!code-vb[Main](creating-a-route-constraint-vb/samples/sample2.vb)]
 
 Notice that the Details() action exposed by the Product controller accepts a single parameter named productId. This parameter is an integer parameter.
 
@@ -56,7 +56,7 @@ What you really want to do is only match URLs that contain a proper integer prod
 
 **Listing 3 - Global.asax.vb**
 
-[!code[Main](creating-a-route-constraint-vb/samples/sample3.xml)]
+[!code-vb[Main](creating-a-route-constraint-vb/samples/sample3.vb)]
 
 The regular expression \d+ matches one or more integers. This constraint causes the Product route to match the following URLs:
 

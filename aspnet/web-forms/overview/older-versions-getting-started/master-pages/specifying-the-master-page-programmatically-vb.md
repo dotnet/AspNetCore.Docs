@@ -25,7 +25,7 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 Since the inaugural example in [*Creating a Site-Wide Layout Using Master Pages*](creating-a-site-wide-layout-using-master-pages-vb.md), all content pages have referenced their master page declaratively via the `MasterPageFile` attribute in the `@Page` directive. For example, the following `@Page` directive links the content page to the master page `Site.master`:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample1.xml)]
+[!code-aspx[Main](specifying-the-master-page-programmatically-vb/samples/sample1.aspx)]
 
 The [`Page` class](https://msdn.microsoft.com/en-us/library/system.web.ui.page.aspx) in the `System.Web.UI` namespace includes a [`MasterPageFile` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.masterpagefile.aspx) that returns the path to the content page's master page; it is this property that is set by the `@Page` directive. This property can also be used to programmatically specify the content page's master page. This approach is useful if you want to dynamically assign the master page based on external factors, such as the user visiting the page.
 
@@ -52,19 +52,19 @@ At the start of the PreInit stage the `Page` object raises its [`PreInit` event]
 Start by opening `Default.aspx.vb`, the code-behind class file for our site's homepage. Add an event handler for the page's `PreInit` event by typing in the following code:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample2.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample2.vb)]
 
 From here we can set the `MasterPageFile` property. Update the code so that it assigns the value "~/Site.master" to the `MasterPageFile` property.
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample3.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample3.vb)]
 
 If you set a breakpoint and start with debugging you'll see that whenever the `Default.aspx` page is visited or whenever there's a postback to this page, the `Page_PreInit` event handler executes and the `MasterPageFile` property is assigned to "~/Site.master".
 
 Alternatively, you can override the `Page` class's `OnPreInit` method and set the `MasterPageFile` property there. For this example, let's not set the master page in a particular page, but rather from `BasePage`. Recall that we created a custom base page class (`BasePage`) back in the [*Specifying the Title, Meta Tags, and Other HTML Headers in the Master Page*](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb.md) tutorial. Currently `BasePage` overrides the `Page` class's `OnLoadComplete` method, where it sets the page's `Title` property based on the site map data. Let's update `BasePage` to also override the `OnPreInit` method to programmatically specify the master page.
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample4.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample4.vb)]
 
 Because all our content pages derive from `BasePage`, all of them now have their master page programmatically assigned. At this point the `PreInit` event handler in `Default.aspx.vb` is superfluous; feel free to remove it.
 
@@ -122,12 +122,12 @@ Some of the content pages in our website include just one or two Content control
 To get your `Alternate.master` master page to look similar to mine (see Figure 4), start by defining the master page's styles in the `AlternateStyles.css` style sheet. Add the following rules into `AlternateStyles.css`:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample5.xml)]
+[!code-css[Main](specifying-the-master-page-programmatically-vb/samples/sample5.css)]
 
 Next, add the following declarative markup to `Alternate.master`. As you can see, `Alternate.master` contains four ContentPlaceHolder controls with the same `ID` values as the ContentPlaceHolder controls in `Site.master`. Moreover, it includes a ScriptManager control, which is necessary for those pages in our website that use the ASP.NET AJAX framework.
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample6.xml)]
+[!code-aspx[Main](specifying-the-master-page-programmatically-vb/samples/sample6.aspx)]
 
 ### Testing the New Master Page
 
@@ -136,7 +136,7 @@ To test this new master page update the `BasePage` class's `OnPreInit` method so
 These errors occur because the `Site.master` code-behind class includes public events, properties, and methods that are not defined in `Alternate.master`. The markup portion of these two pages have a `@MasterType` directive that references the `Site.master` master page.
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample7.xml)]
+[!code-aspx[Main](specifying-the-master-page-programmatically-vb/samples/sample7.aspx)]
 
 Also, the DetailsView's `ItemInserted` event handler in `~/Admin/AddProduct.aspx` includes code that casts the loosely-typed `Page.Master` property to an object of type `Site`. The `@MasterType` directive (used this way) and the cast in the `ItemInserted` event handler tightly couples the `~/Admin/AddProduct.aspx` and `~/Admin/Products.aspx` pages to the `Site.master` master page.
 
@@ -153,43 +153,43 @@ We also need to define the `PricesDoubled` event in `BaseMasterPage` and provide
 Update your `BaseMasterPage` class so that it contains the following code:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample8.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample8.vb)]
 
 Next, go to the `Site.master` code-behind class and have it derive from `BaseMasterPage`. Because `BaseMasterPage` contains members marked `MustOverride` we need to override those members here in `Site.master`. Add the `Overrides` keyword to the method and property definitions. Also update the code that raises the `PricesDoubled` event in the `DoublePrice` Button's `Click` event handler with a call to the base class's `OnPricesDoubled` method.
 
 After these modifications the `Site.master` code-behind class should contain the following code:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample9.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample9.vb)]
 
 We also need to update `Alternate.master`'s code-behind class to derive from `BaseMasterPage` and override the two `MustOverride` members. But because `Alternate.master` does not contain a GridView that lists the most recent products nor a Label that displays a message after a new product is added to the database, these methods do not need to do anything.
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample10.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample10.vb)]
 
 ### Referencing the Base Master Page Class
 
 Now that we have completed the `BaseMasterPage` class and have our two master pages extending it, our final step is to update the `~/Admin/AddProduct.aspx` and `~/Admin/Products.aspx` pages to refer to this common type. Start by changing the `@MasterType` directive in both pages from:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample11.xml)]
+[!code-aspx[Main](specifying-the-master-page-programmatically-vb/samples/sample11.aspx)]
 
 To:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample12.xml)]
+[!code-aspx[Main](specifying-the-master-page-programmatically-vb/samples/sample12.aspx)]
 
 Rather than referencing a file path, the `@MasterType` property now references the base type (`BaseMasterPage`). Consequently, the strongly-typed `Master` property used in both pages' code-behind classes is now of type `BaseMasterPage` (instead of type `Site`). With this change in place revisit `~/Admin/Products.aspx`. Previously, this resulted in a casting error because the page is configured to use the `Alternate.master` master page, but the `@MasterType` directive referenced the `Site.master` file. But now the page renders without error. This is because the `Alternate.master` master page can be cast to an object of type `BaseMasterPage` (since it extends it).
 
 There's one small change that needs to be made in `~/Admin/AddProduct.aspx`. The DetailsView control's `ItemInserted` event handler uses both the strongly-typed `Master` property and the loosely-typed `Page.Master` property. We fixed the strongly-typed reference when we updated the `@MasterType` directive, but we still need to update the loosely-typed reference. Replace the following line of code:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample13.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample13.vb)]
 
 With the following, which casts `Page.Master` to the base type:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample14.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample14.vb)]
 
 ## Step 4: Determining What Master Page to Bind to the Content Pages
 
@@ -208,26 +208,26 @@ Let's create a web page that allows the user to choose which master page to use 
 Update the `Web.sitemap` file to include an entry for this lesson. Add the following markup beneath the `<siteMapNode>` for the Master Pages and ASP.NET AJAX lesson:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample15.xml)]
+[!code-xml[Main](specifying-the-master-page-programmatically-vb/samples/sample15.xml)]
 
 Before adding any content to the `ChooseMasterPage.aspx` page take a moment to update the page's code-behind class so that it derives from `BasePage` (rather than `System.Web.UI.Page`). Next, add a DropDownList control to the page, set its `ID` property to `MasterPageChoice`, and add two ListItems with the `Text` values of "~/Site.master" and "~/Alternate.master".
 
 Add a Button Web control to the page and set its `ID` and `Text` properties to `SaveLayout` and "Save Layout Choice", respectively. At this point your page's declarative markup should look similar to the following:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample16.xml)]
+[!code-aspx[Main](specifying-the-master-page-programmatically-vb/samples/sample16.aspx)]
 
 When the page is first visited we need to display the user's currently selected master page choice. Create a `Page_Load` event handler and add the following code:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample17.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample17.vb)]
 
 The above code executes only on the first page visit (and not on subsequent postbacks). It first checks to see if the Session variable `MyMasterPage` exists. If it does, it attempts to find the matching ListItem in the `MasterPageChoice` DropDownList. If a matching ListItem is found, its `Selected` property is set to `True`.
 
 We also need code that saves the user's choice into the `MyMasterPage` Session variable. Create an event handler for the `SaveLayout` Button's `Click` event and add the following code:
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample18.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample18.vb)]
 
 > [!NOTE] By the time the `Click` event handler executes on postback, the master page has already been selected. Therefore, the user's drop-down list selection won't be in effect until the next page visit. The `Response.Redirect` forces the browser to re-request `ChooseMasterPage.aspx`.
 
@@ -235,7 +235,7 @@ We also need code that saves the user's choice into the `MyMasterPage` Session v
 With the `ChooseMasterPage.aspx` page complete, our final task is to have `BasePage` assign the `MasterPageFile` property based on the value of the `MyMasterPage` Session variable. If the Session variable is not set have `BasePage` default to `Site.master`.
 
 
-[!code[Main](specifying-the-master-page-programmatically-vb/samples/sample19.xml)]
+[!code-vb[Main](specifying-the-master-page-programmatically-vb/samples/sample19.vb)]
 
 > [!NOTE] I moved the code that assigns the `Page` object's `MasterPageFile` property out of the `OnPreInit` event handler and into two separate methods. This first method, `SetMasterPageFile`, assigns the `MasterPageFile` property to the value returned by the second method, `GetMasterPageFileFromSession`. I marked the `SetMasterPageFile` method `Overridable` so that future classes that extend `BasePage` can optionally override it to implement custom logic, if needed. We'll see an example of overriding `BasePage`'s `SetMasterPageFile` property in the next tutorial.
 

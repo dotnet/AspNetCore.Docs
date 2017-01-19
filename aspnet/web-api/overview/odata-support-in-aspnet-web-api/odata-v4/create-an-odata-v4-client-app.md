@@ -57,7 +57,7 @@ At this point, you'll get an error, which you can ignore. Visual Studio automati
 
 Open the file ProductClient.odata.config. In the `Parameter` element, paste in the URI from the ProductService project (previous step). For example:
 
-[!code[Main](create-an-odata-v4-client-app/samples/sample1.xml)]
+[!code-xml[Main](create-an-odata-v4-client-app/samples/sample1.xml)]
 
 [![](create-an-odata-v4-client-app/_static/image11.png)](create-an-odata-v4-client-app/_static/image10.png)
 
@@ -71,12 +71,12 @@ The template creates a code file named ProductClient.cs that defines the proxy. 
 
 Open the file Program.cs and replace the boilerplate code with the following.
 
-[!code[Main](create-an-odata-v4-client-app/samples/sample2.xml)]
+[!code-csharp[Main](create-an-odata-v4-client-app/samples/sample2.cs)]
 
 Replace the value of *serviceUri* with the service URI from earlier.
 
-[!code[Main](create-an-odata-v4-client-app/samples/sample3.xml)]
+[!code-csharp[Main](create-an-odata-v4-client-app/samples/sample3.cs)]
 
 When you run the app, it should output the following:
 
-[!code[Main](create-an-odata-v4-client-app/samples/sample4.xml)]
+[!code-console[Main](create-an-odata-v4-client-app/samples/sample4.cmd)]

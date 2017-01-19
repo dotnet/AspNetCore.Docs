@@ -52,7 +52,7 @@ Create a page named *AddMovie.cshtml*.
 
 Replace what's in the file with the following markup. Overwrite everything; you'll add a code block at the top shortly.
 
-[!code[Main](entering-data/samples/sample1.xml)]
+[!code-html[Main](entering-data/samples/sample1.html)]
 
 This example shows typical HTML for creating a form. It uses `<input>` elements for the text boxes and for the submit button. The captions for the text boxes are created by using standard `<label>` elements. The `<fieldset>` and `<legend>` elements put a nice box around the form.
 
@@ -72,7 +72,7 @@ Next, you add code that processes the form. In outline, you'll do the following:
 
 At the top of the file, add the following code:
 
-[!code[Main](entering-data/samples/sample2.xml)]
+[!code-cshtml[Main](entering-data/samples/sample2.cshtml)]
 
 The first few lines create variables (`title`, `genre`, and `year`) to hold the values from the text boxes. The line `if(IsPost)` makes sure that the variables are set *only* when users click the **Add Movie** button — that is, when the form has been posted.
 
@@ -84,7 +84,7 @@ The names of the variables (`title`, `genre`, and `year`) are arbitrary. Like th
 
 In the code block you just added, just *inside* the closing brace ( `}` ) of the `if` block (not just inside the code block), add the following code:
 
-[!code[Main](entering-data/samples/sample3.xml)]
+[!code-csharp[Main](entering-data/samples/sample3.cs)]
 
 This example is similar to the code you used in a previous tutorial to fetch and display data. The line that starts with `db =` opens the database, like before, and the next line defines a SQL statement, again as you saw before. However, this time it defines a SQL `Insert Into` statement. The following example shows the general syntax of the `Insert Into` statement:
 
@@ -98,13 +98,13 @@ The columns that you're inserting into are already listed in the command — `(T
 
 Still inside the `if` block, add the following line after the `db.Execute` line:
 
-[!code[Main](entering-data/samples/sample4.xml)]
+[!code-unknown[Main](entering-data/samples/sample-38467-4.unknown)]
 
 After the new movie has been inserted into the database, this line jumps you (redirects) to the *Movies* page so you can see the movie you just entered. The `~` operator means "root of the website." (The `~` operator works only in ASP.NET pages, not in HTML generally.)
 
 The complete code block looks like this example:
 
-[!code[Main](entering-data/samples/sample5.xml)]
+[!code-cshtml[Main](entering-data/samples/sample5.cshtml)]
 
 ## Testing the Insert Command (So Far)
 
@@ -144,7 +144,7 @@ Obviously, you don't want to let users enter half-empty movie information into t
 > 
 > In programming, there's a distinction between different notions of "no value." In general, a value is *null* if it has never been set or initialized in any way. In contrast, a variable that expects character data (strings) can be set to an *empty string*. In that case, the value is not null; it's just been explicitly set to a string of characters whose length is zero. These two statements show the difference:
 > 
-> [!code[Main](entering-data/samples/sample6.xml)]
+> [!code-csharp[Main](entering-data/samples/sample6.cs)]
 > 
 > It's a little more complicated than that, but the important point is that `null` represents a sort of undetermined state.
 > 
@@ -165,19 +165,19 @@ To validate the user's input, you'll do the following:
 
 In the code block in the *AddMovie* page, right up at the top before the variable declarations, add the following code:
 
-[!code[Main](entering-data/samples/sample7.xml)]
+[!code-unknown[Main](entering-data/samples/sample-38467-7.unknown)]
 
 You call `Validation.RequireField` once for each field (`<input>` element) where you want to require an entry. You can also add a custom error message for each call, like you see here. (We varied the messages just to show that you can put anything you like there.)
 
 If there's a problem, you want to prevent the new movie information from being inserted into the database. In the `if(IsPost)` block, use `&&` (logical AND) to add another condition that tests `Validation.IsValid()`. When you're done, the whole `if(IsPost)` block looks like this code:
 
-[!code[Main](entering-data/samples/sample8.xml)]
+[!code-csharp[Main](entering-data/samples/sample8.cs)]
 
 If there's a validation error with any of the fields that you registered by using the `Validation` helper, the `Validation.IsValid` method returns false. And in that case, none of the code in that block will run, so no invalid movie entries will be inserted into the database. And of course you're not redirected to the *Movies* page.
 
 The complete code block, including the validation code, now looks like this example:
 
-[!code[Main](entering-data/samples/sample9.xml?highlight=10)]
+[!code-cshtml[Main](entering-data/samples/sample9.cshtml?highlight=10)]
 
 ## Displaying Validation Errors
 
@@ -187,11 +187,11 @@ Next to each `<input>` element that you're validating, call the `Html.Validation
 
 Change the markup in the page so that it includes an `Html.ValidationMessage` method for each of the three `<input>` elements on the page, like this example:
 
-[!code[Main](entering-data/samples/sample10.xml?highlight=3,8,13)]
+[!code-cshtml[Main](entering-data/samples/sample10.cshtml?highlight=3,8,13)]
 
 To see how the summary works, also add the following markup and code right after the `<h1>Add a Movie</h1>` element on the page:
 
-[!code[Main](entering-data/samples/sample11.xml)]
+[!code-cshtml[Main](entering-data/samples/sample11.cshtml)]
 
 By default, the `Html.ValidationSummary` method displays all the validation messages in a list (a `<ul>` element that's inside a `<div>` element). As with the `Html.ValidationMessage` method, the markup for the validation summary is always rendered; if there are no errors, no list items are rendered.
 
@@ -199,7 +199,7 @@ The summary can be an alternative way to display validation messages instead of 
 
 The complete page now looks like this example:
 
-[!code[Main](entering-data/samples/sample12.xml)]
+[!code-cshtml[Main](entering-data/samples/sample12.cshtml)]
 
 That's it. You can now test the page by adding a movie but leaving out one or more of the fields. When you do, you see the following error display:
 
@@ -213,7 +213,7 @@ To style the individual error messages that are displayed by `Html.ValidationMes
 
 To see how this technique works, add a `<style>` element inside the `<head>` section of the page. Then define style classes named `field-validation-error` and `validation-summary-errors` that contain the following rules:
 
-[!code[Main](entering-data/samples/sample13.xml?highlight=4-17)]
+[!code-html[Main](entering-data/samples/sample13.html?highlight=4-17)]
 
 Normally you'd probably put style information into a separate *.css* file, but for simplicity you can put them in the page for now. (Later in this tutorial set, you'll move the CSS rules to a separate *.css* file.)
 
@@ -229,7 +229,7 @@ One final step is to make it convenient to get to the *AddMovie* page from the o
 
 Open the *Movies* page again. After the closing `</div>` tag that follows the `WebGrid` helper, add the following markup:
 
-[!code[Main](entering-data/samples/sample14.xml)]
+[!code-html[Main](entering-data/samples/sample14.html)]
 
 As you saw before, ASP.NET interprets the `~` operator as the root of the website. You don't have to use the `~` operator; you could use the markup `<a href="./AddMovie">Add a movie</a>` or some other way to define the path that HTML understands. But the `~` operator is a good general approach when you create links for Razor pages, because it makes the site more flexible — if you move the current page to a subfolder, the link will still go to the *AddMovie* page. (Remember that the `~` operator only works in *.cshtml* pages. ASP.NET understands it, but it's not standard HTML.)
 
@@ -245,7 +245,7 @@ In the next tutorial, you'll learn how to let users edit data that's already in 
 
 ## Complete Listing for AddMovie Page
 
-[!code[Main](entering-data/samples/sample15.xml)]
+[!code-cshtml[Main](entering-data/samples/sample15.cshtml)]
 
 ## Additional Resources
 

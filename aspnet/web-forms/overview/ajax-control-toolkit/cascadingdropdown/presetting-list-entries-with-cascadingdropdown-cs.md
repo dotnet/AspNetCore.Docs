@@ -28,23 +28,23 @@ The CascadingDropDown control in the AJAX Control Toolkit extends a DropDownList
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample1.xml)]
+[!code-aspx[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample1.aspx)]
 
 Then, a DropDownList control is required:
 
-[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample2.xml)]
+[!code-aspx[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample2.aspx)]
 
 For this list, a CascadingDropDown extender is added, providing web service URL and method information:
 
-[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample3.xml)]
+[!code-aspx[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample3.aspx)]
 
 The CascadingDropDown extender then asynchronously calls a web service with the following method signature:
 
-[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample4.xml)]
+[!code-csharp[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample4.cs)]
 
 The method returns an array of type CascadingDropDown value. The type's constructor expects first the list entry's caption and then the value (HTML `value` attribute). If the third argument is set to true, the list element is automatically selected in the browser.
 
-[!code[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample5.xml)]
+[!code-aspx[Main](presetting-list-entries-with-cascadingdropdown-cs/samples/sample5.aspx)]
 
 Loading the page in the browser will fill the dropdown list with three vendors, the second one being preselected.
 

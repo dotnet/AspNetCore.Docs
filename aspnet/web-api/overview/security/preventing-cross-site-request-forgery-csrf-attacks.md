@@ -23,7 +23,7 @@ Here is an example of a CSRF attack:
 2. The server authenticates the user. The response from the server includes an authentication cookie.
 3. Without logging out, the user visits a malicious web site. This malicious site contains the following HTML form: 
 
-    [!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample1.xml)]
+    [!code-html[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample1.html)]
 
     Notice that the form action posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 4. The user clicks the submit button. The browser includes the authentication cookie with the request.
@@ -44,7 +44,7 @@ To help prevent CSRF attacks, ASP.NET MVC uses anti-forgery tokens, also called 
 
 Here is an example of an HTML form with a hidden form token:
 
-[!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample2.xml)]
+[!code-html[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample2.html)]
 
 Anti-forgery tokens work because the malicious page cannot read the user's tokens, due to same-origin policies. ([Same-orgin policies](http://www.w3.org/Security/wiki/Same_Origin_Policy) prevent documents hosted on two different sites from accessing each other's content. So in the earlier example, the malicious page can send requests to example.com, but it cannot read the response.)
 
@@ -56,7 +56,7 @@ You should require anti-forgery tokens for any nonsafe methods (POST, PUT, DELET
 
 To add the anti-forgery tokens to a Razor page, use the **HtmlHelper.AntiForgeryToken** helper method:
 
-[!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample3.xml)]
+[!code-csharp[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample3.cs)]
 
 This method adds the hidden form field and also sets the cookie token.
 
@@ -64,8 +64,8 @@ This method adds the hidden form field and also sets the cookie token.
 
 The form token can be a problem for AJAX requests, because an AJAX request might send JSON data, not HTML form data. One solution is to send the tokens in a custom HTTP header. The following code uses Razor syntax to generate the tokens, and then adds the tokens to an AJAX request. The tokens are generated at the server by calling **AntiForgery.GetTokens**.
 
-[!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample4.xml)]
+[!code-html[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample4.html)]
 
 When you process the request, extract the tokens from the request header. Then call the **AntiForgery.Validate** method to validate the tokens. The **Validate** method throws an exception if the tokens are not valid.
 
-[!code[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample5.xml)]
+[!code-csharp[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample5.cs)]

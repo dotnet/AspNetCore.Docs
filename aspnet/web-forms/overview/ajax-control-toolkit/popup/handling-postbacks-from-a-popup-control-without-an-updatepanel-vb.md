@@ -30,19 +30,19 @@ When using a `PopupControl` with a postback, but without having an `UpdatePanel`
 
 First of all, here is the basic setup: two text boxes which both trigger the same popup, a calendar. Two `PopupControlExtenders` bring text boxes and popup together.
 
-[!code[Main](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/samples/sample1.xml)]
+[!code-aspx[Main](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/samples/sample1.aspx)]
 
 The basic idea is to add a hidden form field in the &lt;`form`&gt; element that holds the text box which launched the popup:
 
-[!code[Main](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/samples/sample2.xml)]
+[!code-aspx[Main](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/samples/sample2.aspx)]
 
 When the page is loaded, JavaScript code adds an event handler to both text boxes: Whenever the user clicks on a text box, its name is written into the hidden form field:
 
-[!code[Main](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/samples/sample3.xml)]
+[!code-html[Main](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/samples/sample3.html)]
 
 In the server-side code, the value of the hidden field must be read. Since hidden form fields are trivial to manipulate, a whitelist approach to validate the hidden value is required. Once the correct text box has been identified, the date from the calendar is written into it.
 
-[!code[Main](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/samples/sample4.xml)]
+[!code-aspx[Main](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/samples/sample4.aspx)]
 
 
 [![The Calendar appears when the user clicks into the textbox](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/_static/image2.png)](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb/_static/image1.png)

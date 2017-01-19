@@ -78,13 +78,13 @@ The following code shows how to enable tracing for each category of event. This 
 
 **XML server code for enabling tracing**
 
-[!code[Main](enabling-signalr-tracing/samples/sample1.xml)]
+[!code-html[Main](enabling-signalr-tracing/samples/sample1.html)]
 
 In the code above, the `SignalRSwitch` entry specifies the [TraceLevel](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracelevel(v=vs.110).aspx) used for events sent to the specified log. In this case, it is set to `Verbose` which means all debugging and tracing messages are logged.
 
 The following output shows entries from the `transports.log.txt` file for an application using the above configuration file. It shows a new connection, a removed connection, and transport heartbeat events.
 
-[!code[Main](enabling-signalr-tracing/samples/sample2.xml)]
+[!code-console[Main](enabling-signalr-tracing/samples/sample2.cmd)]
 
 <a id="server_eventlog"></a>
 ### Logging server events to the event log
@@ -93,7 +93,7 @@ To log events to the event log rather than a text file, change the values for th
 
 **XML server code for logging events to the event log**
 
-[!code[Main](enabling-signalr-tracing/samples/sample3.xml)]
+[!code-xml[Main](enabling-signalr-tracing/samples/sample3.xml)]
 
 The events are logged in the Application log, and are available through the Event Viewer, as shown below:
 
@@ -113,18 +113,18 @@ To enable logging in the .NET client, set the connection's `TraceLevel` property
 
 The following C# code shows how to log events in the .NET client to the console:
 
-[!code[Main](enabling-signalr-tracing/samples/sample4.xml?highlight=2-3)]
+[!code-csharp[Main](enabling-signalr-tracing/samples/sample4.cs?highlight=2-3)]
 
 <a id="desktop_text"></a>
 ### Logging Desktop client events to a text file
 
 The following C# code shows how to log events in the .NET client to a text file:
 
-[!code[Main](enabling-signalr-tracing/samples/sample5.xml?highlight=4-5)]
+[!code-csharp[Main](enabling-signalr-tracing/samples/sample5.cs?highlight=4-5)]
 
 The following output shows entries from the `ClientLog.txt` file for an application using the above configuration file. It shows the client connecting to the server, and the hub invoking a client method called `addMessage`:
 
-[!code[Main](enabling-signalr-tracing/samples/sample6.xml)]
+[!code-console[Main](enabling-signalr-tracing/samples/sample6.cmd)]
 
 <a id="phone"></a>
 ## Enabling tracing in Windows Phone 8 clients
@@ -136,7 +136,7 @@ SignalR applications for Windows Phone apps use the same .NET client as desktop 
 
 The [SignalR codebase](https://github.com/SignalR/SignalR/archive/master.zip) includes a Windows Phone sample that writes trace output to a [TextBlock](https://msdn.microsoft.com/library/windows/apps/windows.ui.xaml.controls.textblock.aspx) using a custom [TextWriter](https://msdn.microsoft.com/en-us/library/system.io.textwriter(v=vs.110).aspx) implementation called `TextBlockWriter`. This class can be found in the **samples/Microsoft.AspNet.SignalR.Client.WP8.Samples** project. When creating an instance of `TextBlockWriter`, pass in the current [SynchronizationContext](https://msdn.microsoft.com/en-us/library/system.threading.synchronizationcontext(v=vs.110).aspx), and a [StackPanel](https://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.stackpanel.aspx) where it will create a [TextBlock](https://msdn.microsoft.com/library/windows/apps/windows.ui.xaml.controls.textblock.aspx) to use for trace output:
 
-[!code[Main](enabling-signalr-tracing/samples/sample7.xml)]
+[!code-unknown[Main](enabling-signalr-tracing/samples/sample-59043-7.unknown)]
 
 The trace output will then be written to a new [TextBlock](https://msdn.microsoft.com/library/windows/apps/windows.ui.xaml.controls.textblock.aspx) created in the [StackPanel](https://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.stackpanel.aspx) you passed in:
 
@@ -147,7 +147,7 @@ The trace output will then be written to a new [TextBlock](https://msdn.microsof
 
 To send output to the debug console rather than the UI, create an implementation of [TextWriter](https://msdn.microsoft.com/en-us/library/system.io.textwriter(v=vs.110).aspx) that writes to the debug window, and assign it to your connection's [TraceWriter](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.client.connection.tracewriter(v=vs.118).aspx) property:
 
-[!code[Main](enabling-signalr-tracing/samples/sample8.xml)]
+[!code-csharp[Main](enabling-signalr-tracing/samples/sample8.cs)]
 
 Trace information will then be written to the debug window in Visual Studio:
 
@@ -160,11 +160,11 @@ To enable client-side logging on a connection, set the `logging` property on the
 
 **Client JavaScript code for enabling tracing to the browser console (with the generated proxy)**
 
-[!code[Main](enabling-signalr-tracing/samples/sample9.xml?highlight=1)]
+[!code-javascript[Main](enabling-signalr-tracing/samples/sample9.js?highlight=1)]
 
 **Client JavaScript code for enabling tracing to the browser console (without the generated proxy)**
 
-[!code[Main](enabling-signalr-tracing/samples/sample10.xml?highlight=2)]
+[!code-csharp[Main](enabling-signalr-tracing/samples/sample10.cs?highlight=2)]
 
 When tracing is enabled, the JavaScript client logs events to the browser console. To access the browser console, see [Monitoring Transports](../getting-started/introduction-to-signalr.md).
 

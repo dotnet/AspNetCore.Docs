@@ -55,7 +55,7 @@ For this report remove the `ProductID`, `SupplierID`, `CategoryID`, and `Reorder
 After making these changes, your DetailsView control's declarative markup should look similar to the following:
 
 
-[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample1.xml)]
+[!code-aspx[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample1.aspx)]
 
 Take a moment to view the page through a browser. At this point you should see a single product listed (Chai) with rows showing the product's name, category, supplier, price, units in stock, units on order, and its discontinued status.
 
@@ -114,7 +114,7 @@ For the `UnitPrice` field use the currency formatting specified either by select
 Declaratively, the formatting specification is indicated as a second parameter into the `Bind` or `Eval` methods. The settings just made through the Designer result in the following databinding expression in the declarative markup:
 
 
-[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample2.aspx)]
 
 ## Adding the Remaining Data Fields to the TemplateField
 
@@ -128,7 +128,7 @@ Add the static markup, Label Web controls, and databinding syntax so that the Pr
 After performing this task your DetailsView's declarative markup should look similar to the following:
 
 
-[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample3.aspx)]
 
 With these changes we've consolidated the price and inventory information into a single DetailsView row.
 
@@ -155,7 +155,7 @@ Imagine that we didn't want the strings "True" or "False" to be used, but "YES" 
 Add a formatting method to the `DetailsViewTemplateField.aspx` page's code-behind class named `DisplayDiscontinuedAsYESorNO` that accepts a Boolean as an input parameter and returns a string. As discussed in the previous tutorial, this method *must* be marked as `protected` or `public` in order to be accessible from the template.
 
 
-[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample4.xml)]
+[!code-csharp[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample4.cs)]
 
 This method checks the input parameter (`discontinued`) and returns "YES" if it is `true`, "NO" otherwise.
 
@@ -165,7 +165,7 @@ This method checks the input parameter (`discontinued`) and returns "YES" if it 
 With this formatting method complete, all that remains is to call it from the TemplateField's `ItemTemplate`. To create the TemplateField either remove the `Discontinued` BoundField and add a new TemplateField or convert the `Discontinued` BoundField into a TemplateField. Then, from the declarative markup view, edit the TemplateField so that it contains just an ItemTemplate that invokes the `DisplayDiscontinuedAsYESorNO` method, passing in the value of the current `ProductRow` instance's `Discontinued` property. This can be accessed via the `Eval` method. Specifically, the TemplateField's markup should look like:
 
 
-[!code[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample5.xml)]
+[!code-aspx[Main](using-templatefields-in-the-detailsview-control-cs/samples/sample5.aspx)]
 
 This will cause the `DisplayDiscontinuedAsYESorNO` method to be invoked when rendering the DetailsView, passing in the `ProductRow` instance's `Discontinued` value. Since the `Eval` method returns a value of type `object`, but the `DisplayDiscontinuedAsYESorNO` method expects an input parameter of type `bool`, we cast the `Eval` methods return value to `bool`. The `DisplayDiscontinuedAsYESorNO` method will then return "YES" or "NO" depending on the value it receives. The returned value is what is displayed in this DetailsView row (see Figure 10).
 

@@ -51,7 +51,7 @@ Notice in **Solution Explorer** that a new file has been created named *HelloWor
 
 Inside the `public class HelloWorldController` block, create two methods that look like the following code. The controller will return a string of HTML as an example.
 
-[!code[Main](adding-a-controller/samples/sample1.xml)]
+[!code-csharp[Main](adding-a-controller/samples/sample1.cs)]
 
 Your controller is named `HelloWorldController` and the first method above is named `Index`. Let's invoke it from a browser. Run the application (press F5 or Ctrl+F5). In the browser, append "HelloWorld" to the path in the address bar. (For example, in the illustration below, it's `http://localhost:43246/HelloWorld.`) The page in the browser will look like the following screenshot. In the method above, the code returned a string directly. You told the system to just return some HTML, and it did!
 
@@ -69,7 +69,7 @@ Browse to `http://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs 
 
 Let's modify the example slightly so that you can pass some parameter information from the URL to the controller (for example, */HelloWorld/Welcome?name=Scott&amp;numtimes=4*). Change your `Welcome` method to include two parameters as shown below. Note that the code uses the C# optional-parameter feature to indicate that the `numTimes` parameter should default to 1 if no value is passed for that parameter.
 
-[!code[Main](adding-a-controller/samples/sample2.xml)]
+[!code-csharp[Main](adding-a-controller/samples/sample2.cs)]
 
 Run your application and browse to the example URL (`http://localhost:xxxx/HelloWorld/Welcome?name=Scott&numtimes=4)`. You can try different values for `name` and `numtimes` in the URL. The system automatically maps the named parameters from the query string in the address bar to parameters in your method.
 

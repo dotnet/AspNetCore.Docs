@@ -54,15 +54,15 @@ Notice that your project now includes a folder named **DynamicData**. In that fo
 
 Enabling users to update and delete records in the database is very similar to the process for retrieving data. In the **UpdateMethod** and **DeleteMethod** properties, you specify the names of the methods that perform those operations. With a GridView control, you can also specify the automatic generation of edit and delete buttons. The following highlighted code shows the additions to the GridView code.
 
-[!code[Main](updating-deleting-and-creating-data/samples/sample1.xml?highlight=4-5)]
+[!code-aspx[Main](updating-deleting-and-creating-data/samples/sample1.aspx?highlight=4-5)]
 
 In the code-behind file, add a using statement for **System.Data.Entity.Infrastructure**.
 
-[!code[Main](updating-deleting-and-creating-data/samples/sample2.xml)]
+[!code-csharp[Main](updating-deleting-and-creating-data/samples/sample2.cs)]
 
 Then, add the following update and delete methods.
 
-[!code[Main](updating-deleting-and-creating-data/samples/sample3.xml)]
+[!code-csharp[Main](updating-deleting-and-creating-data/samples/sample3.cs)]
 
 The **TryUpdateModel** method applies the matching data-bound values from the web form to the data item. The data item is retrieved based on the value of the id parameter.
 
@@ -72,7 +72,7 @@ The validation attributes that you applied to the FirstName, LastName, and Year 
 
 If the user violates one of the validation requirements, the update does not proceed. To see the error message, add a ValidationSummary control above the GridView. To display the validation errors from model binding, set the **ShowModelStateErrors** property set to **true**. 
 
-[!code[Main](updating-deleting-and-creating-data/samples/sample4.xml)]
+[!code-aspx[Main](updating-deleting-and-creating-data/samples/sample4.aspx)]
 
 Run the web application, and update and delete any of the records.
 
@@ -90,7 +90,7 @@ The GridView control does not include the **InsertMethod** property and therefor
 
 First, add a link to the new page you will create for adding a new record. Above the ValidationSummary, add:
 
-[!code[Main](updating-deleting-and-creating-data/samples/sample5.xml)]
+[!code-aspx[Main](updating-deleting-and-creating-data/samples/sample5.aspx)]
 
 The new link will appear at the top of the content for the Students page.
 
@@ -100,15 +100,15 @@ Then, add a new web form using a master page, and name it **AddStudent**. Select
 
 You will render the fields for adding a new student by using a **DynamicEntity** control. The DynamicEntity control renders that editable properties in the class specified in the ItemType property. The StudentID property was marked with the **[ScaffoldColumn(false)]** attribute so it is not rendered. In the MainContent placeholder of the AddStudent page, add the following code.
 
-[!code[Main](updating-deleting-and-creating-data/samples/sample6.xml)]
+[!code-aspx[Main](updating-deleting-and-creating-data/samples/sample6.aspx)]
 
 In the code-behind file (AddStudent.aspx.cs), add a **using** statement for the **ContosoUniversityModelBinding.Models** namespace.
 
-[!code[Main](updating-deleting-and-creating-data/samples/sample7.xml)]
+[!code-csharp[Main](updating-deleting-and-creating-data/samples/sample7.cs)]
 
 Then, add the following methods to specify how to insert a new record and an event handler for the cancel button.
 
-[!code[Main](updating-deleting-and-creating-data/samples/sample8.xml)]
+[!code-csharp[Main](updating-deleting-and-creating-data/samples/sample8.cs)]
 
 Save all of the changes.
 

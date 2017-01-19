@@ -23,21 +23,21 @@ Skip this section if you are already familiar with dependency injection.
 
 *Dependency injection* (DI) is a pattern where objects are not responsible for creating their own dependencies. Here is a simple example to motivate DI. Suppose you have an object that needs to log messages. You might define a logging interface:
 
-[!code[Main](dependency-injection/samples/sample1.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample1.cs)]
 
 In your object, you can create an `ILogger` to log messages:
 
-[!code[Main](dependency-injection/samples/sample2.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample2.cs)]
 
 This works, but it's not the best design. If you want to replace `FileLogger` with another `ILogger` implementation, you will have to modify `SomeComponent`. Supposing that a lot of other objects use `FileLogger`, you will need to change all of them. Or if you decide to make `FileLogger` a singleton, you'll also need to make changes throughout the application.
 
 A better approach is to "inject" an `ILogger` into the object—for example, by using a constructor argument:
 
-[!code[Main](dependency-injection/samples/sample3.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample3.cs)]
 
 Now the object is not responsible for selecting which `ILogger` to use. You can swich `ILogger` implementations without changing the objects that depend on it.
 
-[!code[Main](dependency-injection/samples/sample4.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample4.cs)]
 
 This pattern is called [constructor injection](http://www.martinfowler.com/articles/injection.html#FormsOfDependencyInjection). Another pattern is setter injection, where you set the dependency through a setter method or property.
 
@@ -45,15 +45,15 @@ This pattern is called [constructor injection](http://www.martinfowler.com/artic
 
 Consider the Chat application from the tutorial [Getting Started with SignalR](../getting-started/tutorial-getting-started-with-signalr.md). Here is the hub class from that application:
 
-[!code[Main](dependency-injection/samples/sample5.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample5.cs)]
 
 Suppose that you want to store chat messages on the server before sending them. You might define an interface that abstracts this functionality, and use DI to inject the interface into the `ChatHub` class.
 
-[!code[Main](dependency-injection/samples/sample6.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample6.cs)]
 
 The only problem is that a SignalR application does not directly create hubs; SignalR creates them for you. By default, SignalR expects a hub class to have a parameterless constructor. However, you can easily register a function to create hub instances, and use this function to perform DI. Register the function by calling **GlobalHost.DependencyResolver.Register**.
 
-[!code[Main](dependency-injection/samples/sample7.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample7.cs)]
 
 Now SignalR will invoke this anonymous function whenever it needs to create a `ChatHub` instance.
 
@@ -61,7 +61,7 @@ Now SignalR will invoke this anonymous function whenever it needs to create a `C
 
 The previous code is fine for simple cases. But you still had to write this:
 
-[!code[Main](dependency-injection/samples/sample8.xml)]
+[!code-unknown[Main](dependency-injection/samples/sample-47346-8.unknown)]
 
 In a complex application with many dependencies, you might need to write a lot of this "wiring" code. This code can be hard to maintain, especially if dependencies are nested. It is also hard to unit test.
 
@@ -85,11 +85,11 @@ We can use an IoC container to untangle these dependencies a bit. First, let's s
 
 Remove the parameterless constructor from `StockTicker`. Instead, we will always use DI to create the hub.
 
-[!code[Main](dependency-injection/samples/sample9.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample9.cs)]
 
 For StockTicker, remove the singleton instance. Later, we'll use the IoC container to control the StockTicker lifetime. Also, make the constructor public.
 
-[!code[Main](dependency-injection/samples/sample10.xml?highlight=7)]
+[!code-csharp[Main](dependency-injection/samples/sample10.cs?highlight=7)]
 
 Next, we can refactor the code by creating an interface for `StockTicker`. We'll use this interface to decouple the `StockTickerHub` from the `StockTicker` class.
 
@@ -105,11 +105,11 @@ Visual Studio creates a new interface named `IStockTicker`, and also changes `St
 
 Open the file IStockTicker.cs and change the interface to **public**.
 
-[!code[Main](dependency-injection/samples/sample11.xml?highlight=1)]
+[!code-csharp[Main](dependency-injection/samples/sample11.cs?highlight=1)]
 
 In the `StockTickerHub` class, change the two instances of `StockTicker` to `IStockTicker`:
 
-[!code[Main](dependency-injection/samples/sample12.xml?highlight=4,6)]
+[!code-csharp[Main](dependency-injection/samples/sample12.cs?highlight=4,6)]
 
 Creating an `IStockTicker` interface isn't strictly necessary, but I wanted to show how DI can help to reduce coupling between components in your application.
 
@@ -119,13 +119,13 @@ There are many open-source IoC containers for .NET. For this tutorial, I'll use 
 
 Use NuGet Package Manager to install the [Ninject library](https://nuget.org/packages/Ninject/3.0.1.10). In Visual Studio, from the **Tools** menu select **Library Package Manager** | **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-[!code[Main](dependency-injection/samples/sample13.xml)]
+[!code-powershell[Main](dependency-injection/samples/sample13.ps1)]
 
 ## Replace the SignalR Dependency Resolver
 
 To use Ninject within SignalR, create a class that derives from **DefaultDependencyResolver**.
 
-[!code[Main](dependency-injection/samples/sample14.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample14.cs)]
 
 This class overrides the **GetService** and **GetServices** methods of **DefaultDependencyResolver**. SignalR calls these methods to create various objects at runtime, including hub instances, as well as various services used internally by SignalR.
 
@@ -138,33 +138,33 @@ Now we'll use Ninject to declare type bindings.
 
 Open the file RegisterHubs.cs. In the `RegisterHubs.Start` method, create the Ninject container, which Ninject calls the *kernel*.
 
-[!code[Main](dependency-injection/samples/sample15.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample15.cs)]
 
 Create an instance of our custom dependency resolver:
 
-[!code[Main](dependency-injection/samples/sample16.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample16.cs)]
 
 Create a binding for `IStockTicker` as follows:
 
-[!code[Main](dependency-injection/samples/sample17.xml)]
+[!code-unknown[Main](dependency-injection/samples/sample-47346-17.unknown)]
 
 This code is saying two things. First, whenever the application needs an `IStockTicker`, the kernel should create an instance of `StockTicker`. Second, the `StockTicker` class should be a created as a singleton object. Ninject will create one instance of the object, and return the same instance for each request.
 
 Create a binding for **IHubConnectionContext** as follows:
 
-[!code[Main](dependency-injection/samples/sample18.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample18.cs)]
 
 This code creatres an anonymous function that returns an **IHubConnection**. The **WhenInjectedInto** method tells Ninject to use this function only when creating `IStockTicker` instances. The reason is that SignalR creates **IHubConnectionContext** instances internally, and we don't want to override how SignalR creates them. This function only applies to our `StockTicker` class.
 
 Pass the dependency resolver into the **MapHubs** method:
 
-[!code[Main](dependency-injection/samples/sample19.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample19.cs)]
 
 Now SignalR will use the resolver specified in **MapHubs**, instead of the default resolver.
 
 Here is the complete code listing for `RegisterHubs.Start`.
 
-[!code[Main](dependency-injection/samples/sample20.xml)]
+[!code-csharp[Main](dependency-injection/samples/sample20.cs)]
 
 To run the StockTicker application in Visual Studio, press F5. In the browser window, navigate to `http://localhost:*port*/SignalR.Sample/StockTicker.html`.
 

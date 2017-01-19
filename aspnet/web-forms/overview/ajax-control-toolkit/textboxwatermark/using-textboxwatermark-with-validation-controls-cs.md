@@ -28,21 +28,21 @@ The `TextBoxWatermark` control in the AJAX Control Toolkit extends a text box so
 
 The basic setup of the sample is the following: a `TextBox` control is watermarked using a `TextBoxWatermarkExtender` control. A button triggers a postback and will later be used to trigger the validation controls on the page. Also, a `ScriptManager` control is required to initialize ASP.NET AJAX:
 
-[!code[Main](using-textboxwatermark-with-validation-controls-cs/samples/sample1.xml)]
+[!code-aspx[Main](using-textboxwatermark-with-validation-controls-cs/samples/sample1.aspx)]
 
 Now add a `RequiredFieldValidator` control that checks whether there is text in the field when the form is submitted. The `InitialValue` property of the validator must be set to the same value that is used in the `TextBoxWatermarkExtender` control: When the form is submitted, the value of an unchanged textbox is the watermark value within it:
 
-[!code[Main](using-textboxwatermark-with-validation-controls-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-textboxwatermark-with-validation-controls-cs/samples/sample2.aspx)]
 
 However there is one problem with this approach: If the client disables JavaScript, the text field is not prefilled with the watermark text, therefore the `RequiredFieldValidator` does not trigger an error message. Therefore, a second `RequiredFieldValidator` control is required which checks for an empty text box (omitting the `InitialValue` attribute).
 
-[!code[Main](using-textboxwatermark-with-validation-controls-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-textboxwatermark-with-validation-controls-cs/samples/sample3.aspx)]
 
 Since both validators use `Display`=`"Dynamic"`, the end user cannot distinguish from the visual appearance which of the two validators was fired; instead, it looks like there was only one of them.
 
 Finally, add some server-side code to output the text in the field if no validator issued an error message:
 
-[!code[Main](using-textboxwatermark-with-validation-controls-cs/samples/sample4.xml)]
+[!code-aspx[Main](using-textboxwatermark-with-validation-controls-cs/samples/sample4.aspx)]
 
 
 [![The validator complains that there is no text in the field](using-textboxwatermark-with-validation-controls-cs/_static/image2.png)](using-textboxwatermark-with-validation-controls-cs/_static/image1.png)

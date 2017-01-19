@@ -55,7 +55,7 @@ Open the `Default.aspx` page and drag the `SectionLevelTutorialListing.ascx` Use
 In order to have the bulleted list display the DataList and Repeater tutorials we'll be creating, we need to add them to the site map. Open the `Web.sitemap` file and add the following markup after the Adding Custom Buttons site map node markup:
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample1.xml)]
+[!code-xml[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample1.xml)]
 
 
 ![Update the Site Map to Include the New ASP.NET Pages](displaying-data-with-the-datalist-and-repeater-controls-vb/_static/image5.png)
@@ -94,7 +94,7 @@ From the DataList s smart tag, add a new ObjectDataSource and configure it to us
 After configuring the ObjectDataSource and associating it with the DataList through its smart tag, Visual Studio will automatically create an `ItemTemplate` in the DataList that displays the name and value of each data field returned by the data source (see the markup below). This default `ItemTemplate` s appearance is identical to that of the templates automatically created when binding a data source to the FormView through the Designer.
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample2.xml)]
+[!code-aspx[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample2.aspx)]
 
 > [!NOTE] Recall that when binding a data source to a FormView control through the FormView s smart tag, Visual Studio created an `ItemTemplate`, `InsertItemTemplate`, and `EditItemTemplate`. With the DataList, however, only an `ItemTemplate` is created. This is because the DataList does not have the same built-in editing and inserting support offered by the FormView. The DataList does contain edit- and delete-related events, and editing and deleting support can be added with a bit of code, but there s no simple out-of-the-box support as with the FormView. We'll see how to include editing and deleting support with the DataList in a future tutorial.
 
@@ -104,7 +104,7 @@ Let s take a moment to improve the appearance of this template. Rather than disp
 To make these changes you can either use the template editing features in the Designer from the DataList s smart tag click on the Edit Templates link or you can modify the template manually through the page s declarative syntax. If you use the Edit Templates option in the Designer, your resulting markup may not match the following markup exactly, but when viewed through a browser should look very similar to the screen shot shown in Figure 8.
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample3.xml)]
+[!code-aspx[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample3.aspx)]
 
 > [!NOTE] The example above uses Label Web controls whose `Text` property is assigned the value of the databinding syntax. Alternatively, we could have omitted the Labels altogether, typing in just the databinding syntax. That is, instead of using `<asp:Label ID="CategoryNameLabel" runat="server" Text='<%# Eval("CategoryName") %>' />` we could have instead used the declarative syntax `<%# Eval("CategoryName") %>`.
 
@@ -136,7 +136,7 @@ To add a Skin file, right-click on the `App_Themes/DataWebControls` folder, choo
 Use the following markup for the `DataList.skin` file:
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample4.xml)]
+[!code-aspx[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample4.aspx)]
 
 These settings assign the same CSS classes to the appropriate DataList properties as were used with the GridView and DetailsView controls. The CSS classes used here `DataWebControlStyle`, `AlternatingRowStyle`, `RowStyle`, and so on are defined in the `Styles.css` file and were added in previous tutorials.
 
@@ -175,12 +175,12 @@ For our example, let s have the title Product Information displayed at the top o
 Alternatively, this can be added declaratively by entering the following markup within the `<asp:DataList>` tags:
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample5.xml)]
+[!code-html[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample5.html)]
 
 To add a bit of space between each product listing, let s add a `SeparatorTemplate` that includes a line between each section. The horizontal rule tag (`<hr>`), adds such a divider. Create the `SeparatorTemplate` so that it has the following markup:
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample6.xml)]
+[!code-html[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample6.html)]
 
 > [!NOTE] Like the `HeaderTemplate` and `FooterTemplates`, the `SeparatorTemplate` is not bound to any record from the data source and therefore cannot directly access the data source records bound to the DataList.
 
@@ -246,12 +246,12 @@ Unlike the DataList, Visual Studio does not automatically create an ItemTemplate
 To display the categories as a single-row `<table>` with a column for each category, we need the Repeater to emit markup similar to the following:
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample7.xml)]
+[!code-html[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample7.html)]
 
 Since the `<td>Category X</td>` text is the portion that repeats, this will appear in the Repeater s ItemTemplate. The markup that appears before it - `<table><tr>` - will be placed in the `HeaderTemplate` while the ending markup - `</tr></table>` - will placed in the `FooterTemplate`. To enter these template settings, go to the declarative portion of the ASP.NET page by clicking on the Source button in the lower left corner and type in the following syntax:
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample8.xml)]
+[!code-aspx[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample8.aspx)]
 
 The Repeater emits the precise markup as specified by its templates, nothing more, nothing less. Figure 17 shows the Repeater s output when viewed through a browser.
 
@@ -268,17 +268,17 @@ Since the Repeater emits precisely the markup specified by its templates, it sho
 For our example, let s have the category columns alternate background colors, like with the alternating rows in the DataList. To accomplish this, we need to assign the `RowStyle` CSS class to each Repeater item and the `AlternatingRowStyle` CSS class to each alternating Repeater item through the `ItemTemplate` and `AlternatingItemTemplate` templates, like so:
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample9.xml)]
+[!code-aspx[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample9.aspx)]
 
 Let s also add a header row to the output with the text Product Categories . Since we don t know how many columns our resulting `<table>` will be comprised of, the simplest way to generate a header row that is guaranteed to span all columns is to use *two*`<table>` s. The first `<table>` will contain two rows the header row and a row that will contain the second, single-row `<table>` that has a column for each category in the system. That is, we want to emit the following markup:
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample10.xml)]
+[!code-html[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample10.html)]
 
 The following `HeaderTemplate` and `FooterTemplate` result in the desired markup:
 
 
-[!code[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample11.xml)]
+[!code-aspx[Main](displaying-data-with-the-datalist-and-repeater-controls-vb/samples/sample11.aspx)]
 
 Figure 18 shows the Repeater after these changes have been made.
 

@@ -238,11 +238,11 @@ The cursor is positioned to added code for this event handler.
 
 **C#**
 
-    [!code[Main](creating-a-basic-web-forms-page/samples/sample1.xml?highlight=3)]
+    [!code-csharp[Main](creating-a-basic-web-forms-page/samples/sample1.cs?highlight=3)]
 
 **VB**
 
-    [!code[Main](creating-a-basic-web-forms-page/samples/sample2.xml?highlight=2)]
+    [!code-vb[Main](creating-a-basic-web-forms-page/samples/sample2.vb?highlight=2)]
 5. Switch back to viewing the **Source** view of your HTML markup by right-clicking *FirstWebPage.aspx* in the **Solution Explorer** and selecting **View Markup**.
 6. Scroll to the **&lt;asp:Button&gt;** element. Note that the **&lt;asp:Button&gt;** element now has the attribute **onclick=&quot;Button1\_Click&quot;**.
 
@@ -314,11 +314,11 @@ In this section, you will program the [Calendar](https://msdn.microsoft.com/libr
 
 **C#**
 
-    [!code[Main](creating-a-basic-web-forms-page/samples/sample3.xml?highlight=3)]
+    [!code-csharp[Main](creating-a-basic-web-forms-page/samples/sample3.cs?highlight=3)]
 
 **VB**
 
-    [!code[Main](creating-a-basic-web-forms-page/samples/sample4.xml?highlight=2)]
+    [!code-vb[Main](creating-a-basic-web-forms-page/samples/sample4.vb?highlight=2)]
 
  The above code sets the text of the label control to the selected date of the calendar control.
 

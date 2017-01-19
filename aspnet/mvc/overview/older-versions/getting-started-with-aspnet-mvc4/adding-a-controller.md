@@ -40,7 +40,7 @@ Notice in **Solution Explorer** that a new file has been created named *HelloWor
 
 Replace the contents of the file with the following code.
 
-[!code[Main](adding-a-controller/samples/sample1.xml)]
+[!code-csharp[Main](adding-a-controller/samples/sample1.cs)]
 
 The controller methods will return a string of HTML as an example. The controller is named `HelloWorldController` and the first method above is named `Index`. Let's invoke it from a browser. Run the application (press F5 or Ctrl+F5). In the browser, append &quot;HelloWorld&quot; to the path in the address bar. (For example, in the illustration below, it's `http://localhost:1234/HelloWorld.`) The page in the browser will look like the following screenshot. In the method above, the code returned a string directly. You told the system to just return some HTML, and it did!
 
@@ -58,7 +58,7 @@ Browse to `http://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs 
 
 Let's modify the example slightly so that you can pass some parameter information from the URL to the controller (for example, */HelloWorld/Welcome?name=Scott&amp;numtimes=4*). Change your `Welcome` method to include two parameters as shown below. Note that the code uses the C# optional-parameter feature to indicate that the `numTimes` parameter should default to 1 if no value is passed for that parameter.
 
-[!code[Main](adding-a-controller/samples/sample2.xml)]
+[!code-csharp[Main](adding-a-controller/samples/sample2.cs)]
 
 Run your application and browse to the example URL (`http://localhost:xxxx/HelloWorld/Welcome?name=Scott&numtimes=4)`. You can try different values for `name` and `numtimes` in the URL. The [ASP.NET MVC model binding system](http://odetocode.com/Blogs/scott/archive/2009/04/27/6-tips-for-asp-net-mvc-model-binding.aspx) automatically maps the named parameters from the query string in the address bar to parameters in your method.
 

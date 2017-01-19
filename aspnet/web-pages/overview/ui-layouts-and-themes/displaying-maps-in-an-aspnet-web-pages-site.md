@@ -73,7 +73,7 @@ The following example shows how to create a page that renders a map based on an 
 1. Create a file named *MapAddress.cshtml* in the root of the site. This page will generate a map based on an address that you pass to it.
 2. Copy the following code into the file, overwriting the existing content.
 
-    [!code[Main](displaying-maps-in-an-aspnet-web-pages-site/samples/sample1.xml)]
+    [!code-cshtml[Main](displaying-maps-in-an-aspnet-web-pages-site/samples/sample1.cshtml)]
 
     Notice the following features of the page:
 
@@ -91,7 +91,7 @@ This example shows how to create a map based on coordinates. This example shows 
 
 1. Create a file named *MapCoordinates.cshtml* in the root of the site and replace the existing content with the following code and markup:
 
-    [!code[Main](displaying-maps-in-an-aspnet-web-pages-site/samples/sample2.xml)]
+    [!code-cshtml[Main](displaying-maps-in-an-aspnet-web-pages-site/samples/sample2.cshtml)]
 2. Replace `your-key-here` with the Bing Maps key that you generated earlier.
 3. Run the *MapCoordinates.cshtml* page, enter latitude and longitude coordinates, and then click the **Map It!** button. (If you don't know any coordinates, try the following. This is a location on the Microsoft Redmond campus.)
 

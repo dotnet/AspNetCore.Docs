@@ -38,7 +38,7 @@ As described in [Understanding the Build Process](understanding-the-build-proces
 The *Publish.proj* file uses an **Import** element to import the environment-specific project file.
 
 
-[!code[Main](creating-and-running-a-deployment-command-file/samples/sample1.xml)]
+[!code-xml[Main](creating-and-running-a-deployment-command-file/samples/sample1.xml)]
 
 
 As such, when you use MSBuild.exe to build and deploy the Contact Manager solution, you need to:
@@ -49,13 +49,13 @@ As such, when you use MSBuild.exe to build and deploy the Contact Manager soluti
 To do this, your MSBuild command should resemble this:
 
 
-[!code[Main](creating-and-running-a-deployment-command-file/samples/sample2.xml)]
+[!code-console[Main](creating-and-running-a-deployment-command-file/samples/sample2.cmd)]
 
 
 From here, it&#x27;s a simple step to move to a repeatable, single-step deployment. All you need to do is to add your MSBuild command to a .cmd file. In the Contact Manager solution, the Publish folder includes a file named *Publish-Dev.cmd* that does exactly this.
 
 
-[!code[Main](creating-and-running-a-deployment-command-file/samples/sample3.xml)]
+[!code-console[Main](creating-and-running-a-deployment-command-file/samples/sample3.cmd)]
 
 
 > [!NOTE] The **/fl** switch instructs MSBuild to create a log file named *msbuild.log* in the working directory in which MSBuild.exe was invoked.
@@ -94,13 +94,13 @@ When you&#x27;ve created a command file for your target environment, you should 
 Creating a command file containing your MSBuild instructions provides you with a quick and easy way of building and deploying a multi-project solution to a specific destination environment. If you need to repeatedly deploy your solution to multiple destination environments, you can create multiple command files. In each command file, the MSBuild command will build the same universal project file, but it will specify a different environment-specific project file. For example, a command file to publish to a developer or test environment might contain this MSBuild command:
 
 
-[!code[Main](creating-and-running-a-deployment-command-file/samples/sample4.xml)]
+[!code-console[Main](creating-and-running-a-deployment-command-file/samples/sample4.cmd)]
 
 
 A command file to publish to a staging environment might contain this MSBuild command:
 
 
-[!code[Main](creating-and-running-a-deployment-command-file/samples/sample5.xml)]
+[!code-console[Main](creating-and-running-a-deployment-command-file/samples/sample5.cmd)]
 
 
 > [!NOTE] For guidance on how to customize the environment-specific project files for your own server environments, see [Configure Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).

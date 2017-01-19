@@ -144,7 +144,7 @@ In this task, you will add SignalR to the solution and send updates to the clien
 1. From the **Tools** menu in Visual Studio, select **Library Package Manager**, and then click **Package Manager Console**.
 2. In the **Package Manager Console** window, execute the following command:
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample1.xml)]
+    [!code-powershell[Main](real-time-web-applications-with-signalr/samples/sample1.ps1)]
 
     ![SignalR package installation](real-time-web-applications-with-signalr/_static/image9.png "SignalR package installation")
 
@@ -152,7 +152,7 @@ In this task, you will add SignalR to the solution and send updates to the clien
 
     > [!NOTE] When installing **SignalR** NuGet packages version 2.0.2 from a brand new MVC 5 application, you will need to manually update **OWIN** packages to version 2.0.1 (or higher) before installing SignalR. To do this, you can execute the following script in the **Package Manager Console**:
     > 
-    > [!code[Main](real-time-web-applications-with-signalr/samples/sample2.xml)]
+    > [!code-powershell[Main](real-time-web-applications-with-signalr/samples/sample2.ps1)]
     > 
     > In a future release of SignalR, OWIN dependencies will be automatically updated.
 3. In **Solution Explorer**, expand the **Scripts** folder and notice that the SignalR *js* files were added to the solution.
@@ -175,44 +175,44 @@ In this task, you will add SignalR to the solution and send updates to the clien
 
     (Code Snippet - *RealTimeSignalR - Ex1 - StatisticsHubClass*)
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample3.xml)]
+    [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample3.cs)]
 8. Open **Startup.cs** and add the following line at the end of the **Configuration** method.
 
     (Code Snippet - *RealTimeSignalR - Ex1 - MapSignalR*)
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample4.xml)]
+    [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample4.cs)]
 9. Open the **StatisticsService.cs** page inside the **Services** folder and add the following using directives.
 
     (Code Snippet - *RealTimeSignalR - Ex1 - UsingDirectives*)
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample5.xml)]
+    [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample5.cs)]
 10. To notify connected clients of updates, you first retrieve a **Context** object for the current connection. The **Hub** object contains methods to send messages to a single client or broadcast to all connected clients. Add the following method to the **StatisticsService** class to broadcast the statistics data.
 
     (Code Snippet - *RealTimeSignalR - Ex1 - NotifyUpdatesMethod*)
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample6.xml)]
+    [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample6.cs)]
 
     > [!NOTE] In the code above, you are using an arbitrary method name to call a function on the client (i.e.: *updateStatistics*). The method name that you specify is interpreted as a dynamic object, which means there is no IntelliSense or compile-time validation for it. The expression is evaluated at run time. When the method call executes, SignalR sends the method name and the parameter values to the client. If the client has a method that matches the name, that method is called and the parameter values are passed to it. If no matching method is found on the client, no error is raised. For more information, refer to [ASP.NET SignalR Hubs API Guide](../guide-to-the-api/hubs-api-guide-server.md).
 11. Open the **TriviaController.cs** page inside the **Controllers** folder and add the following using directives.
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample7.xml)]
+    [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample7.cs)]
 12. Add the following highlighted code to the **Post** action method.
 
     (Code Snippet - *RealTimeSignalR - Ex1 - NotifyUpdatesCall*)
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample8.xml)]
+    [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample8.cs)]
 13. Open the **Statistics.cshtml** page inside the **Views | Home** folder. Locate the **Scripts** section and add the following script references at the beginning of the section.
 
     (Code Snippet - *RealTimeSignalR - Ex1 - SignalRScriptReferences*)
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample9.xml)]
+    [!code-cshtml[Main](real-time-web-applications-with-signalr/samples/sample9.cshtml)]
 
     > [!NOTE] When you add SignalR and other script libraries to your Visual Studio project, the Package Manager might install a version of the SignalR script file that is more recent than the version shown in this topic. Make sure that the script reference in your code matches the version of the script library installed in your project.
 14. Add the following highlighted code to connect the client to the SignalR hub and update the statistics data when a new message is received from the hub.
 
     (Code Snippet - *RealTimeSignalR - Ex1 - SignalRClientCode*)
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample10.xml)]
+    [!code-cshtml[Main](real-time-web-applications-with-signalr/samples/sample10.cshtml)]
 
     In this code, you are creating a Hub Proxy and registering an event handler to listen for messages sent by the server. In this case, you listen for messages sent through the *updateStatistics* method.
 
@@ -328,14 +328,14 @@ In this task, you will create a database that will serve as a backplane for the 
     *Opening a New Query*
 7. To check whether Service Broker is enabled, query the **is\_broker\_enabled** column in the **sys.databases** catalog view. Execute the following script in the recently opened query window.
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample11.xml)]
+    [!code-sql[Main](real-time-web-applications-with-signalr/samples/sample11.sql)]
 
     ![Querying the Service Broker Status](real-time-web-applications-with-signalr/_static/image25.png "Querying the Service Broker Status")
 
     *Querying the Service Broker Status*
 8. If the value of the **is\_broker\_enabled** column in your database is &quot;0&quot;, use the following command to enable it. Replace **&lt;YOUR-DATABASE&gt;** with the name you set when creating the database (e.g.: SignalR).
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample12.xml)]
+    [!code-sql[Main](real-time-web-applications-with-signalr/samples/sample12.sql)]
 
     ![Enabling Service Broker](real-time-web-applications-with-signalr/_static/image26.png "Enabling Service Broker")
 
@@ -350,13 +350,13 @@ In this task, you will configure **Geek Quiz** to connect to the SQL Server back
 
 1. Open the **Package Manager Console** from **Tools** | **Library Package Manager**. Make sure that **GeekQuiz** project is selected in the **Default project** drop-down list. Type the following command to install the **Microsoft.AspNet.SignalR.SqlServer** NuGet package.
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample13.xml)]
+    [!code-powershell[Main](real-time-web-applications-with-signalr/samples/sample13.ps1)]
 2. Repeat the previous step but this time for project **GeekQuiz2**.
 3. To configure the SQL Server backplane, open the **Startup.cs** file of the **GeekQuiz** project and add the following code to the **Configure** method. Replace **&lt;YOUR-DATABASE&gt;** with your database name you used when creating the SQL Server backplane. Repeat this step for the **GeekQuiz2** project.
 
     (Code Snippet - *RealTimeSignalR - Ex2 - StartupConfiguration*)
 
-    [!code[Main](real-time-web-applications-with-signalr/samples/sample14.xml)]
+    [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample14.cs)]
 4. Now that both projects are configured to use the SQL Server backplane, press **F5** to run them simultaneously.
 5. Again, **Visual Studio** will launch two instances of **Geek Quiz** in different ports. Pin one of the browsers on the left and the other on the right of your screen and log in with your credentials. Keep the Trivia page on the left and go to **Statistics** pagein the right browser.
 6. Start answering questions in the left browser. This time, the **Statistics** page is updated thanks to the backplane. Switch between applications (**Statistics** is now on the left, and **Trivia** is on the right) and repeat the test to validate that it is working for both instances. The backplane serves as a *shared cache* of messages for each connected server, and each server will store the messages in their own local cache to distribute to connected clients.

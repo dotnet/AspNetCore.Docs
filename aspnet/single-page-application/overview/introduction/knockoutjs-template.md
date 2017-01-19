@@ -91,7 +91,7 @@ These are the database models for Entity Framework Code First. Notice that these
 
 The `ToDoItem` class also uses the **[ForeignKey]** attribute to specify that `ToDoListId` is a foreign key into the `ToDoList` table. This tells EF to add a foreign-key constraint to the database.
 
-[!code[Main](knockoutjs-template/samples/sample1.xml)]
+[!code-csharp[Main](knockoutjs-template/samples/sample1.cs)]
 
 **TodoItemDto, TodoListDto**
 
@@ -114,7 +114,7 @@ The SPA template uses EF Code First. In Code First development, you define the m
 
 The `TodoItemContext` class in the Models folder derives from **DbContext**. This class provides the "glue" between the models and EF. The `TodoItemContext` holds a `ToDoItem` collection and a `TodoList` collection. To query the database, you simply write a LINQ query against these collections. For example, here is how you can select all of the to-do lists for user "Alice":
 
-[!code[Main](knockoutjs-template/samples/sample2.xml)]
+[!code-csharp[Main](knockoutjs-template/samples/sample2.cs)]
 
 You can also add new items to the collection, update items, or delete items from the collection, and persist the changes to the database.
 
@@ -131,7 +131,7 @@ These names are significant, because Web API matches the URI path to the control
 
 Let's look at the `ToDoListController` class. It contains a single data member:
 
-[!code[Main](knockoutjs-template/samples/sample3.xml)]
+[!code-csharp[Main](knockoutjs-template/samples/sample3.cs)]
 
 The `TodoItemContext` is used to communicate with EF, as described earlier. The methods on the controller implement the CRUD operations. Web API maps HTTP requests from the client to controller methods, as follows:
 
@@ -157,7 +157,7 @@ The `TodoController` class is very similar to `TodoListController`. The biggest 
 
 The MVC controllers are also located in the Controllers folder of the solution. `HomeController` renders the main HTML for the application. The view for the Home controller is defined in Views/Home/Index.cshtml. The Home view renders different content depending on whether the user is logged in:
 
-[!code[Main](knockoutjs-template/samples/sample4.xml)]
+[!code-cshtml[Main](knockoutjs-template/samples/sample4.cshtml)]
 
 When users are logged in, they see the main UI. Otherwise, they see the login panel. Note that this conditional rendering happens on the server side. Never try to hide sensitive content on the client side&#8212anything that you send in an HTTP response is visible to someone who is watching the raw HTTP messages.
 
@@ -189,23 +189,23 @@ These script files are located in the Scripts/app folder of the solution.
 
 Many of the properties in the model classes are of type "ko.observable". Observables are how Knockout does its magic. From the [Knockout documentation](http://knockoutjs.com/documentation/introduction.html): An observable is a "JavaScript object that can notify subscribers about changes." When the value of an observable changes, Knockout updates any HTML elements that are bound to those observables. For example, todoItem has observables for the title and isDone properties:
 
-[!code[Main](knockoutjs-template/samples/sample5.xml)]
+[!code-javascript[Main](knockoutjs-template/samples/sample5.js)]
 
 You can also subscribe to an observable in code. For example, the todoItem class subscribes to changes in the "isDone" and "title" properties:
 
-[!code[Main](knockoutjs-template/samples/sample6.xml)]
+[!code-javascript[Main](knockoutjs-template/samples/sample6.js)]
 
 **View Model**
 
 The view model is defined in todo.viewmodel.js. The view model is the central point where the application binds the HTML page elements to the domain data. In the SPA template, the view model contains an observable array of todoLists. The following code in the view model tells Knockout to apply the bindings:
 
-[!code[Main](knockoutjs-template/samples/sample7.xml)]
+[!code-javascript[Main](knockoutjs-template/samples/sample7.js)]
 
 ## HTML and Data Binding
 
 The main HTML for the page is defined in Views/Home/Index.cshtml. Because we are using data-binding, the HTML is only a template for what actually gets rendered. Knockout uses *declarative* bindings. You bind page elements to data by adding a "data-bind" attribute to the element. Here is a very simple example, taken from the Knockout documentation:
 
-[!code[Main](knockoutjs-template/samples/sample8.xml)]
+[!code-html[Main](knockoutjs-template/samples/sample8.html)]
 
 In this example, Knockout updates the contents of the **&lt;span&gt;** element with the value of `myItems.count()`. Whenever this value changes, Knockout updates the document.
 

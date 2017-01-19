@@ -75,7 +75,7 @@ The SQL syntax includes a number of statements for creating and modifying variou
 
 Returning to our earlier example, image that during development of an already-deployed application you add a new column to the `Employees` table, remove a column from the `Orders` table, and add a new table (`ProductCategories`). Such actions would result in a change log file with the following SQL commands:
 
-[!code[Main](strategies-for-database-development-and-deployment-cs/samples/sample1.xml)]
+[!code-sql[Main](strategies-for-database-development-and-deployment-cs/samples/sample1.sql)]
 
 Pushing these changes to the production database at deploy-time is a one-click operation: open SQL Server Management Studio, connect to your production database, open a New Query window, paste the contents of the change log, and click Execute to run the script.
 

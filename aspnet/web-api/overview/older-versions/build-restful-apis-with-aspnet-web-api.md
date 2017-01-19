@@ -121,7 +121,7 @@ In this task, you will create the controller classes in which API methods will r
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample1.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample1.cs)]
 5. Press **F5** to debug the application. The default home page for a Web API project should appear.
 
     ![The default home page of an ASP.NET Web API application](build-restful-apis-with-aspnet-web-api/_static/image5.png "The default home page of an ASP.NET Web API application")
@@ -173,7 +173,7 @@ In this task, you will create the controller classes in which API methods will r
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample2.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample2.cs)]
 4. In the **ContactController** class, select the word **string** in method definition of the **Get** method, and type the word *Contact*. Once the word is typed in, an indicator will appear at the beginning of the word **Contact**. Either hold down the **Ctrl** key and press the period (.) key or click the icon using your mouse to open up the assistance dialog in the code editor, to automatically fill in the **using** directive for the Models namespace.
 
     ![Using Intellisense assistance for namespace declarations](build-restful-apis-with-aspnet-web-api/_static/image12.png)
@@ -185,7 +185,7 @@ In this task, you will create the controller classes in which API methods will r
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample3.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample3.cs)]
 6. Press **F5** to debug the web application in the browser. To view the changes made to the response output of the API, perform the following steps.
 
     1. Once the browser opens, press **F12** if the developer tools are not open yet.
@@ -225,34 +225,34 @@ This task will demonstrate how to extract functionality into a Service layer to 
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample4.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample4.cs)]
 5. Add the following highlighted code to the **ContactRepository.cs** file to implement GetAllContacts method.
 
     (Code Snippet - *Web API Lab - Ex01 - Contact Repository*)
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample5.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample5.cs)]
 6. Open the **ContactController.cs** file if it is not already open.
 7. Add the following using statement to the namespace declaration section of the file.
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample6.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample6.cs)]
 8. Add the following highlighted code to the **ContactController.cs** class to add a private field to represent the instance of the repository, so that the rest of the class members can make use of the service implementation.
 
     (Code Snippet - *Web API Lab - Ex01 - Contact Controller*)
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample7.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample7.cs)]
 9. Change the **Get** method so that it makes use of the contact repository service.
 
     (Code Snippet - *Web API Lab - Ex01 - Returning a list of contacts via the repository*)
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample8.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample8.cs)]
 10. Put a breakpoint on the **ContactController**'s **Get** method definition.
 
     ![Adding breakpoints to the contact controller](build-restful-apis-with-aspnet-web-api/_static/image17.png "Adding breakpoints to the contact controller")
@@ -316,21 +316,21 @@ In this task, you will augment the ContactRepository class of the Web API projec
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample9.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample9.cs)]
 2. Add a constructor to the **ContactRepository** containing the following code.
 
     (Code Snippet - *Web API Lab - Ex02 - Contact Repository Constructor*)
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample10.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample10.cs)]
 3. Modify the code for the **GetAllContacts** method as demonstrated below.
 
     (Code Snippet - *Web API Lab - Ex02 - Get All Contacts*)
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample11.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample11.cs)]
 
     > [!NOTE] This example is for demonstration purposes and will use the web server's cache as a storage medium, so that the values will be available to multiple clients simultaneously, rather than use a Session storage mechanism or a Request storage lifetime. One could use Entity Framework, XML storage, or any other variety in place of the web server cache.
 4. Implement a new method named **SaveContact** to the **ContactRepository** class to do the work of saving a contact. The **SaveContact** method should take a single **Contact** parameter and return a Boolean value indicating success or failure.
@@ -339,7 +339,7 @@ In this task, you will augment the ContactRepository class of the Web API projec
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample12.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample12.cs)]
 
 <a id="Exercise3"></a>
 
@@ -368,12 +368,12 @@ In this task, you will modify the default Index view of the web application to s
 
     HTML
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample13.xml)]
+    [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample13.html)]
 5. Add the following Javascript code at the bottom of the file to perform the HTTP request to the Web API.
 
     HTML
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample14.xml)]
+    [!code-cshtml[Main](build-restful-apis-with-aspnet-web-api/samples/sample14.cshtml)]
 6. Open the **ContactController.cs** file if it is not already open.
 7. Place a breakpoint on the **Get** method of the **ContactController** class.
 
@@ -409,18 +409,18 @@ In this task, you will continue to modify the Index view of the MVC application.
 
     C#
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample15.xml)]
+    [!code-csharp[Main](build-restful-apis-with-aspnet-web-api/samples/sample15.cs)]
 3. Open the **Index.cshtml** file in Visual Studio if it is not already open.
 4. Add the HTML code below to the file just after the unordered list you added in the previous task.
 
     HTML
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample16.xml)]
+    [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample16.html)]
 5. Within the script element at the bottom of the document, add the following highlighted code to handle button-click events, which will post the data to the Web API using an HTTP POST call.
 
     JavaScript
 
-    [!code[Main](build-restful-apis-with-aspnet-web-api/samples/sample17.xml)]
+    [!code-html[Main](build-restful-apis-with-aspnet-web-api/samples/sample17.html)]
 6. In **ContactController.cs**, place a breakpoint on the **Post** method.
 7. Press **F5** to run the application in the browser.
 8. Once the page is loaded in the browser, type in a new contact name and Id and click the **Save** button.

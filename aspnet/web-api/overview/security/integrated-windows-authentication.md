@@ -26,10 +26,10 @@ Integrated Windows authentication enables users to log in with their Windows cre
 
 To create an application that uses Integrated Windows authentication, select the "Intranet Application" template in the MVC 4 project wizard. This project template puts the following setting in the Web.config file:
 
-[!code[Main](integrated-windows-authentication/samples/sample1.xml)]
+[!code-xml[Main](integrated-windows-authentication/samples/sample1.xml)]
 
 On the client side, Integrated Windows authentication works with any browser that supports the [Negotiate](http://www.ietf.org/rfc/rfc4559.txt) authentication scheme, which includes most major browsers. For .NET client applications, the **HttpClient** class supports Windows authentication:
 
-[!code[Main](integrated-windows-authentication/samples/sample2.xml)]
+[!code-csharp[Main](integrated-windows-authentication/samples/sample2.cs)]
 
 Windows authentication is vulnerable to cross-site request forgery (CSRF) attacks. See [Preventing Cross-Site Request Forgery (CSRF) Attacks](preventing-cross-site-request-forgery-csrf-attacks.md).

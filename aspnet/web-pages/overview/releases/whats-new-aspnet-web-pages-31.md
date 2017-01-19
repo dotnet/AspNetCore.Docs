@@ -26,7 +26,7 @@ The runtime features are released as NuGet packages on the NuGet gallery. All th
 
 You can install or update to the released NuGet packages by using the NuGet Package Manager Console:
 
-[!code[Main](whats-new-aspnet-web-pages-31/samples/sample1.xml)]
+[!code-console[Main](whats-new-aspnet-web-pages-31/samples/sample1.cmd)]
 
 <a id="bug-fixes"></a>
 ## Bug Fixes

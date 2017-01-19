@@ -53,7 +53,7 @@ In Solution Explorer, right click the project and select **Add** / **Class** to 
 
 Replace all of the boilerplate code in this file with the following:
 
-[!code[Main](use-owin-to-self-host-web-api/samples/sample1.xml)]
+[!code-csharp[Main](use-owin-to-self-host-web-api/samples/sample1.cs)]
 
 ## Add a Web API Controller
 
@@ -61,19 +61,19 @@ Next, add a Web API controller class. In Solution Explorer, right click the proj
 
 Replace all of the boilerplate code in this file with the following:
 
-[!code[Main](use-owin-to-self-host-web-api/samples/sample2.xml)]
+[!code-csharp[Main](use-owin-to-self-host-web-api/samples/sample2.cs)]
 
 ## Start the OWIN Host and Make a Request Using HttpClient
 
 Replace all of the boilerplate code in the Program.cs file with the following:
 
-[!code[Main](use-owin-to-self-host-web-api/samples/sample3.xml)]
+[!code-csharp[Main](use-owin-to-self-host-web-api/samples/sample3.cs)]
 
 ## Running the Application
 
 To run the application, press F5 in Visual Studio. The output should look like the following:
 
-[!code[Main](use-owin-to-self-host-web-api/samples/sample4.xml)]
+[!code-console[Main](use-owin-to-self-host-web-api/samples/sample4.cmd)]
 
 ![](use-owin-to-self-host-web-api/_static/image6.png)
 

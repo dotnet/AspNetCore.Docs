@@ -35,43 +35,43 @@ First we'll define the view-model. After that, we will bind the HTML markup to t
 
 Add the following Razor section to Admin.cshtml:
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample1.xml)]
+[!code-cshtml[Main](using-web-api-with-entity-framework-part-5/samples/sample1.cshtml)]
 
 You can add this section anywhere in the file. When the view is rendered, the section appears at the bottom of the HTML page, right before the closing &lt;/body&gt; tag.
 
 All of the script for this page will go inside the script tag indicated by the comment:
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample2.xml)]
+[!code-html[Main](using-web-api-with-entity-framework-part-5/samples/sample2.html)]
 
 First, define a view-model class:
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample3.xml)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample3.js)]
 
 **ko.observableArray** is a special kind of object in Knockout, called an *observable*. From the [Knockout.js documentation](http://knockoutjs.com/documentation/observables.html): An observable is a "JavaScript object that can notify subscribers about changes." When the contents of an observable change, the view is automatically updated to match.
 
 To populate the `products` array, make an AJAX request to the web API. Recall that we stored the base URI for the API in the view bag (see [Part 4](using-web-api-with-entity-framework-part-4.md) of the tutorial).
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample4.xml?highlight=5)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample4.js?highlight=5)]
 
 Next, add functions to the view-model to create, update, and delete products. These functions submit AJAX calls to the web API and use the results to update the view-model.
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample5.xml?highlight=7)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample5.js?highlight=7)]
 
 Now the most important part: When the DOM is fulled loaded, call the **ko.applyBindings** function and pass in a new instance of the `ProductsViewModel`:
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample6.xml)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample6.js)]
 
 The **ko.applyBindings** method activates Knockout and wires up the view-model to the view.
 
 Now that we have a view-model, we can create the bindings. In Knockout.js, you do this by adding `data-bind` attributes to HTML elements. For example, to bind an HTML list to an array, use the `foreach` binding:
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample7.xml?highlight=1)]
+[!code-html[Main](using-web-api-with-entity-framework-part-5/samples/sample7.html?highlight=1)]
 
 The `foreach` binding iterates through the array and creates child elements for each object in the array. Bindings on the child elements can refer to properties on the array objects.
 
 Add the following bindings to the "update-products" list:
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample8.xml)]
+[!code-html[Main](using-web-api-with-entity-framework-part-5/samples/sample8.html)]
 
 The `<li>` element occurs within the scope of the **foreach** binding. That means Knockout will render the element once for each product in the `products` array. All of the bindings within the `<li>` element refer to that product instance. For example, `$data.Name` refers to the `Name` property on the product.
 
@@ -79,13 +79,13 @@ To set the values of the text inputs, use the `value` binding. The buttons are b
 
 Next, add a binding for the **submit** event on the Add Product form:
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample9.xml)]
+[!code-html[Main](using-web-api-with-entity-framework-part-5/samples/sample9.html)]
 
 This binding calls the `create` function on the view-model to create a new product.
 
 Here is the complete code for the Admin view:
 
-[!code[Main](using-web-api-with-entity-framework-part-5/samples/sample10.xml)]
+[!code-cshtml[Main](using-web-api-with-entity-framework-part-5/samples/sample10.cshtml)]
 
 Run the application, log in with the Administrator account, and click the "Admin" link. You should see the list of products, and be able to create, update, or delete products.
 

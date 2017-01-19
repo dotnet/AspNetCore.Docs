@@ -43,7 +43,7 @@ If you create a controller that is missing the *Controller* suffix then you won'
 
 **Listing 1 - Controllers\ProductController.vb**
 
-[!code[Main](creating-a-controller-vb/samples/sample1.xml)]
+[!code-vb[Main](creating-a-controller-vb/samples/sample1.vb)]
 
 You should always create controllers in the Controllers folder. Otherwise, you'll be violating the conventions of ASP.NET MVC and other developers will have a more difficult time understanding your application.
 
@@ -59,7 +59,7 @@ When you create a controller, you have the option to generate Create, Update, an
 
 **Listing 2 - Controllers\CustomerController.vb**
 
-[!code[Main](creating-a-controller-vb/samples/sample2.xml)]
+[!code-vb[Main](creating-a-controller-vb/samples/sample2.vb)]
 
 These generated methods are stub methods. You must add the actual logic for creating, updating, and showing details for a customer yourself. But, the stub methods provide you with a nice starting point.
 
@@ -79,7 +79,7 @@ The ASP.NET MVC controller is just a class. If you prefer, you can ignore the co
 
 **Listing 3 - Controllers\PersonController.vb**
 
-[!code[Main](creating-a-controller-vb/samples/sample3.xml)]
+[!code-vb[Main](creating-a-controller-vb/samples/sample3.vb)]
 
 The controller in Listing 3 exposes one action named Index() that returns the string "Hello World!". You can invoke this controller action by running your application and requesting a URL like the following:
 

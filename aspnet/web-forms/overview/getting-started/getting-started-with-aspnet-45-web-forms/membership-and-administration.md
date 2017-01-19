@@ -53,11 +53,11 @@ Using ASP.NET Identity, you can add a custom role and assign a user to that role
 2. Name the new class *RoleActions.cs*.
 3. Modify the code so that it appears as follows:  
 
-    [!code[Main](membership-and-administration/samples/sample1.xml?highlight=8)]
+    [!code-csharp[Main](membership-and-administration/samples/sample1.cs?highlight=8)]
 4. In **Solution Explorer**, open the *Global.asax.cs* file.
 5. Modify the *Global.asax.cs* file by adding the code highlighted in yellow so that it appears as follows:  
 
-    [!code[Main](membership-and-administration/samples/sample2.xml?highlight=11,26-28)]
+    [!code-csharp[Main](membership-and-administration/samples/sample2.cs?highlight=11,26-28)]
 6. Notice that `AddUserAndRole` is underlined in red. Double-click the AddUserAndRole code.  
  The letter "A" at the beginning of the highlighted method will be underlined.
 7. Hover over the letter "A" and click the UI that allows you to generate a method stub for the `AddUserAndRole` method. 
@@ -69,7 +69,7 @@ Using ASP.NET Identity, you can add a custom role and assign a user to that role
  The     `AddUserAndRole` method has been added to the class file.
 10. Modify the *RoleActions.cs* file by removing the `NotImplementedeException` and adding the code highlighted in yellow, so that it appears as follows:  
 
-    [!code[Main](membership-and-administration/samples/sample3.xml?highlight=5-7,15-51)]
+    [!code-csharp[Main](membership-and-administration/samples/sample3.cs?highlight=5-7,15-51)]
 
 The above code first establishes a database context for the membership database. The membership database is also stored as an *.mdf* file in the *App\_Data* folder. You will be able to view this database once the first user has signed in to this web application. 
 
@@ -126,7 +126,7 @@ By adding a *Web.config* file to the *Admin* folder, you can restrict access to 
 2. From the list of Visual C# web templates, select **Web Configuration File**from the middle list, accept the default name of *Web.config***,** and then select **Add**.
 3. Replace the existing XML content in the *Web.config* file with the following:  
 
-    [!code[Main](membership-and-administration/samples/sample4.xml)]
+    [!code-xml[Main](membership-and-administration/samples/sample4.xml)]
 
 Save the *Web.config* file. The *Web.config* file specifies that only user belonging to the "canEdit" role of the application can access the page contained in the *Admin* folder.
 
@@ -137,10 +137,10 @@ To enable the user of the custom "canEdit" role to navigate to the administratio
 1. In Solution Explorer, find and open the *Site.Master* page.
 2. To create a link for the user of the "canEdit" role, add the markup highlighted in yellow to the following unordered list `<ul>` element so that the list appears as follows:  
 
-    [!code[Main](membership-and-administration/samples/sample5.xml?highlight=2-3)]
+    [!code-html[Main](membership-and-administration/samples/sample5.html?highlight=2-3)]
 3. Open the *Site.Master.cs* file. Make the **Admin** link visible only to the "canEditUser" user by adding the code highlighted in yellow to the `Page_Load` handler. The `Page_Load` handler will appear as follows:   
 
-    [!code[Main](membership-and-administration/samples/sample6.xml?highlight=3-6)]
+    [!code-csharp[Main](membership-and-administration/samples/sample6.cs?highlight=3-6)]
 
 When the page loads, the code checks whether the logged-in user has the role of "canEdit". If the user belongs to the "canEdit" role, the span element containing the link to the *AdminPage.aspx* page (and consequently the link inside the span) is made visible.
 
@@ -151,11 +151,11 @@ So far, you have created the "canEdit" role and added an "canEditUser" user, an 
 1. In **Solution Explorer**, open the *AdminPage.aspx* file from the *Admin* folder.
 2. Replace the existing markup with the following:  
 
-    [!code[Main](membership-and-administration/samples/sample7.xml)]
+    [!code-aspx[Main](membership-and-administration/samples/sample7.aspx)]
 3. Next, open the *AdminPage.aspx.cs* code-behind file by right-clicking the *AdminPage.aspx* and clicking **View Code**.
 4. Replace the existing code in the *AdminPage.aspx.cs* code-behind file with the following code:  
 
-    [!code[Main](membership-and-administration/samples/sample8.xml)]
+    [!code-csharp[Main](membership-and-administration/samples/sample8.cs)]
 
 In the code that you entered for the *AdminPage.aspx.cs* code-behind file, a class called `AddProducts` does the actual work of adding products to the database. This class doesn't exist yet, so you will create it now.
 
@@ -165,7 +165,7 @@ In the code that you entered for the *AdminPage.aspx.cs* code-behind file, a cla
  The new class file is displayed.
 3. Replace the existing code with the following:  
 
-    [!code[Main](membership-and-administration/samples/sample9.xml)]
+    [!code-csharp[Main](membership-and-administration/samples/sample9.cs)]
 
 The *AdminPage.aspx* page allows the user belonging to the "canEdit" role to add and remove products. When a new product is added, the details about the product are validated and then entered into the database. The new product is immediately available to all users of the web application.
 
@@ -173,13 +173,13 @@ The *AdminPage.aspx* page allows the user belonging to the "canEdit" role to add
 
 The product details that the user provides on the *AdminPage.aspx* page are validated using validation controls (`RequiredFieldValidator` and `RegularExpressionValidator`). These controls automatically use unobtrusive validation. Unobtrusive validation allows the validation controls to use JavaScript for client-side validation logic, which means the page does not require a trip to the server to be validated. By default, unobtrusive validation is included in the *Web.config* file based on the following configuration setting:
 
-[!code[Main](membership-and-administration/samples/sample10.xml)]
+[!code-xml[Main](membership-and-administration/samples/sample10.xml)]
 
 #### Regular Expressions
 
 The product price on the *AdminPage.aspx* page is validated using a **RegularExpressionValidator** control. This control validates whether the value of the associated input control (the "AddProductPrice" TextBox) matches the pattern specified by the regular expression. A regular expression is a pattern-matching notation that enables you to quickly find and match specific character patterns. The **RegularExpressionValidator** control includes a property named `ValidationExpression` that contains the regular expression used to validate price input, as shown below:
 
-[!code[Main](membership-and-administration/samples/sample11.xml)]
+[!code-aspx[Main](membership-and-administration/samples/sample11.aspx)]
 
 #### FileUpload Control
 
@@ -191,15 +191,15 @@ Earlier in this tutorial series you used model binding to populate a **ListView*
 
 The markup that you added to the *AdminPage.aspx* file contains a **DropDownList** control called `DropDownAddCategory`:
 
-[!code[Main](membership-and-administration/samples/sample12.xml)]
+[!code-aspx[Main](membership-and-administration/samples/sample12.aspx)]
 
 You use model binding to populate this **DropDownList** by setting the `ItemType` attribute and the `SelectMethod` attribute. The `ItemType` attribute specifies that you use the `WingtipToys.Models.Category` type when populating the control. You defined this type at the beginning of this tutorial series by creating the `Category` class (shown below). The `Category` class is in the *Models* folder inside the *Category.cs* file.
 
-[!code[Main](membership-and-administration/samples/sample13.xml)]
+[!code-csharp[Main](membership-and-administration/samples/sample13.cs)]
 
 The `SelectMethod` attribute of the **DropDownList** control specifies that you use the `GetCategories` method (shown below) that is included in the code-behind file (*AdminPage.aspx.cs*).
 
-[!code[Main](membership-and-administration/samples/sample14.xml)]
+[!code-csharp[Main](membership-and-administration/samples/sample14.cs)]
 
 This method specifies that an `IQueryable` interface is used to evaluate a query against a `Category` type. The returned value is used to populate the **DropDownList** in the markup of the page (*AdminPage.aspx*).
 
@@ -209,17 +209,17 @@ The text displayed for each item in the list is specified by setting the `DataTe
 
 When the user belonging to the "canEdit" role navigates to the page for the first time, the `DropDownAddCategory`**DropDownList** control is populated as described above. The `DropDownRemoveProduct`**DropDownList** control is also populated with products using the same approach. The user belonging to the "canEdit" role selects the category type and adds product details (**Name**, **Description**, **Price**, and **Image File**). When the user belonging to the "canEdit" role clicks the **Add Product** button, the `AddProductButton_Click` event handler is triggered. The `AddProductButton_Click` event handler located in the code-behind file (*AdminPage.aspx.cs*) checks the image file to make sure it matches the allowed file types *(.gif*, *.png*, *.jpeg*, or *.jpg*). Then, the image file is saved into a folder of the Wingtip Toys sample application. Next, the new product is added to the database. To accomplish adding a new product, a new instance of the `AddProducts` class is created and named products. The `AddProducts` class has a method named `AddProduct`, and the products object calls this method to add products to the database.
 
-[!code[Main](membership-and-administration/samples/sample15.xml)]
+[!code-csharp[Main](membership-and-administration/samples/sample15.cs)]
 
 If the code successfully adds the new product to the database, the page is reloaded with the query string value `ProductAction=add`.
 
-[!code[Main](membership-and-administration/samples/sample16.xml)]
+[!code-csharp[Main](membership-and-administration/samples/sample16.cs)]
 
 When the page reloads, the query string is included in the URL. By reloading the page, the user belonging to the "canEdit" role can immediately see the updates in the **DropDownList** controls on the *AdminPage.aspx* page. Also, by including the query string with the URL, the page can display a success message to the user belonging to the "canEdit" role.
 
 When the *AdminPage.aspx* page reloads, the `Page_Load` event is called.
 
-[!code[Main](membership-and-administration/samples/sample17.xml)]
+[!code-csharp[Main](membership-and-administration/samples/sample17.cs)]
 
 The `Page_Load` event handler checks the query string value and determines whether to show a success message.
 

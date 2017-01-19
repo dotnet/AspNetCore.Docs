@@ -94,7 +94,7 @@ The code editor in Visual Studio helps you to avoid errors as you write code, an
 You are using the event handler only as a place to write some code.
 2. Inside the handler, type the following line that contains an error and press **ENTER**:
 
-    [!code[Main](code-editing-in-web-forms-pages/samples/sample1.xml)]
+    [!code-unknown[Main](code-editing-in-web-forms-pages/samples/sample-54653-1.unknown)]
 
  When you press     **ENTER** , the code editor places green and red underlines (commonly call &quot;squiggly&quot; lines) under areas of the code that have issues. A green underline indicates a warning. A red underline indicates an error that you must fix. 
 
@@ -128,15 +128,15 @@ In this part of the walkthrough, you will write some simple code, and then extra
 2. In the **Toolbox**, from the **Standard** tab, drag a [Button](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.button.aspx) control onto the page.
 3. Double-click the **Button** control to create a handler for its [Click](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.button.click.aspx) event, and then add the following highlighted code:
 
-    [!code[Main](code-editing-in-web-forms-pages/samples/sample2.xml?highlight=3-16)]
+    [!code-csharp[Main](code-editing-in-web-forms-pages/samples/sample2.cs?highlight=3-16)]
 
  The code creates an     **ArrayList** object, uses a loop to load it with values, and then uses another loop to display the contents of the     **ArrayList** object.
 4. Press **CTRL+F5** to run the page, and then click the **button** to make sure that you see the following output:   
 
-    [!code[Main](code-editing-in-web-forms-pages/samples/sample3.xml)]
+    [!code-unknown[Main](code-editing-in-web-forms-pages/samples/sample-54653-3.unknown)]
 5. Return to the code editor, and then select the following lines in the event handler.   
 
-    [!code[Main](code-editing-in-web-forms-pages/samples/sample4.xml)]
+    [!code-html[Main](code-editing-in-web-forms-pages/samples/sample4.html)]
 6. Right-click the selection, click **Refactor**, and then choose **Extract Method**. 
 
     The **Extract Method** dialog box appears.
@@ -144,7 +144,7 @@ In this part of the walkthrough, you will write some simple code, and then extra
 
     The code editor creates a new method named `DisplayArray`, and puts a call to the new method in the **Click** handler where the loop was originally.
 
-    [!code[Main](code-editing-in-web-forms-pages/samples/sample5.xml?highlight=12)]
+    [!code-csharp[Main](code-editing-in-web-forms-pages/samples/sample5.cs?highlight=12)]
 8. Press **CTRL+F5** to run the page again, and click the **button**.
 
     The page functions the same as it did before. The `DisplayArray` method can now be call from anywhere in the page class.
@@ -158,7 +158,7 @@ When you work with variables, as well as objects, you might want to rename them 
 
 1. In the **Click** event handler, locate the following line:
 
-    [!code[Main](code-editing-in-web-forms-pages/samples/sample6.xml)]
+    [!code-unknown[Main](code-editing-in-web-forms-pages/samples/sample-54653-6.unknown)]
 2. Right-click the variable name `alist`, choose **Refactor**, and then choose **Rename**.
 
     The **Rename** dialog box appears.
@@ -169,7 +169,7 @@ When you work with variables, as well as objects, you might want to rename them 
 
     The variables that refer specifically to the instance that you selected are renamed. Note, however, that the variable `alist` in the following line is not renamed.
 
-    [!code[Main](code-editing-in-web-forms-pages/samples/sample7.xml)]
+    [!code-csharp[Main](code-editing-in-web-forms-pages/samples/sample7.cs)]
 
     The variable `alist` in this line is not renamed because it does not represent the same value as the variable `alist` that you renamed. The variable `alist` in the `DisplayArray` declaration is a local variable for that method. This illustrates that using refactoring to rename variables is different than simply performing a find-and-replace action in the editor; refactoring renames variables with knowledge of the semantics of the variable that it is working with.
 

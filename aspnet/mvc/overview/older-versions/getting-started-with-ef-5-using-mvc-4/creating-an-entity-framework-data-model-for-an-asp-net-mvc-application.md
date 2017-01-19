@@ -95,7 +95,7 @@ A few simple changes will set up the site menu, layout, and home page.
 
 Open *Views\Shared\\_Layout.cshtml*, and replace the contents of the file with the following code. The changes are highlighted.
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample1.xml?highlight=5,15,25-28,43)]
+[!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample1.cshtml?highlight=5,15,25-28,43)]
 
 This code makes the following changes:
 
@@ -104,11 +104,11 @@ This code makes the following changes:
 
 In *Views\Home\Index.cshtml*, replace the contents of the file with the following code to eliminate the template paragraphs about ASP.NET and MVC:
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample2.xml)]
+[!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample2.cshtml)]
 
 In *Controllers\HomeController.cs*, change the value for `ViewBag.Message` in the `Index` Action method to "Welcome to Contoso University!", as shown in the following example:
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample3.xml?highlight=3)]
+[!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample3.cs?highlight=3)]
 
 Press CTRL+F5 to run the site. You see the home page with the main menu.
 
@@ -133,7 +133,7 @@ In the following sections you'll create a class for each one of these entities.
 
 In the *Models* folder, create *Student.cs* and replace the existing code with the following code:
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample4.xml)]
+[!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample4.cs)]
 
 The `StudentID` property will become the primary key column of the database table that corresponds to this class. By default, the Entity Framework interprets a property that's named `ID` or *classname*`ID` as the primary key.
 
@@ -149,7 +149,7 @@ If a navigation property can hold multiple entities (as in many-to-many or one-t
 
 In the *Models* folder, create *Enrollment.cs* and replace the existing code with the following code:
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample5.xml)]
+[!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample5.cs)]
 
 The Grade property is an [enum](https://msdn.microsoft.com/en-us/data/hh859576.aspx). The question mark after the `Grade` type declaration indicates that the `Grade` property is [nullable](https://msdn.microsoft.com/en-us/library/2cf62fcy.aspx). A grade that's null is different from a zero grade — null means a grade isn't known or hasn't been assigned yet.
 
@@ -163,7 +163,7 @@ The `CourseID` property is a foreign key, and the corresponding navigation prope
 
 In the *Models* folder, create*Course.cs*, replacing the existing code with the following code:
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample6.xml)]
+[!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample6.cs)]
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
@@ -175,7 +175,7 @@ The main class that coordinates Entity Framework functionality for a given data 
 
 Create a folder named *DAL* (for Data Access Layer). In that folder create a new class file named *SchoolContext.cs*, and replace the existing code with the following code:
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample7.xml)]
+[!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample7.cs)]
 
 This code creates a [DbSet](https://msdn.microsoft.com/en-us/library/system.data.entity.dbset(v=VS.103).aspx) property for each entity set. In Entity Framework terminology, an *entity set* typically corresponds to a database table, and an *entity* corresponds to a row in the table.
 
@@ -191,7 +191,7 @@ In Visual Studio 2012 and later versions, LocalDB is installed by default with V
 
 In this tutorial you'll work with LocalDB so that the database can be stored in the *App\_Data* folder as an *.mdf* file. Open the root *Web.config* file and add a new connection string to the `connectionStrings` collection, as shown in the following example. (Make sure you update the *Web.config* file in the root project folder. There's also a *Web.config* file is in the *Views* subfolder that you don't need to update.)
 
-[!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample8.xml)]
+[!code-xml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample8.xml)]
 
 By default, the Entity Framework looks for a connection string named the same as the `DbContext` class (`SchoolContext` for this project). The connection string you've added specifies a LocalDB database named *ContosoUniversity.mdf* located in the *App\_Data* folder. For more information, see [SQL Server Connection Strings for ASP.NET Web Applications](https://msdn.microsoft.com/en-us/library/jj653752.aspx).
 
@@ -210,7 +210,7 @@ When you first start to develop an application, your data model changes frequent
     ![Selecting_Package_Manager_Console](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image10.png)
 2. At the `PM>` prompt enter the following command:
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample9.xml)]
+    [!code-powershell[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample9.ps1)]
 
     ![enable-migrations command](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image11.png)
 
@@ -220,7 +220,7 @@ When you first start to develop an application, your data model changes frequent
 
     The `Configuration` class includes a `Seed` method that is called when the database is created and every time it is updated after a data model change.
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample10.xml)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample10.cs)]
 
     The purpose of this `Seed` method is to enable you to insert test data into the database after Code First creates it or updates it.
 
@@ -234,7 +234,7 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
 1. Replace the contents of the *Configuration.cs* file with the following code, which will load test data into the new database. 
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.xml)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample11.cs)]
 
     The [Seed](https://msdn.microsoft.com/en-us/library/hh829453(v=vs.103).aspx) method takes the database context object as an input parameter, and the code in the method uses that object to add new entities to the database. For each entity type, the code creates a collection of new entities, adds them to the appropriate [DbSet](https://msdn.microsoft.com/en-us/library/system.data.entity.dbset(v=vs.103).aspx) property, and then saves the changes to the database. It isn't necessary to call the [SaveChanges](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext.savechanges(v=VS.103).aspx) method after each group of entities, as is done here, but doing that helps you locate the source of a problem if an exception occurs while the code is writing to the database.
 
@@ -242,7 +242,7 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
     The first parameter passed to the [AddOrUpdate](https://msdn.microsoft.com/en-us/library/system.data.entity.migrations.idbsetextensions.addorupdate(v=vs.103).aspx) method specifies the property to use to check if a row already exists. For the test student data that you are providing, the `LastName` property can be used for this purpose since each last name in the list is unique:
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample12.xml)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample12.cs)]
 
     This code assumes that last names are unique. If you manually add a student with a duplicate last name, you'll get the following exception the next time you perform a migration.
 
@@ -252,7 +252,7 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
     The code that adds `Enrollment` entities doesn't use the `AddOrUpdate` method. It checks if an entity already exists and inserts the entity if it doesn't exist. This approach will preserve changes you make to an enrollment grade when migrations run. The code loops through each member of the `Enrollment`[List](https://msdn.microsoft.com/en-us/library/6sh2ey19.aspx) and if the enrollment is not found in the database, it adds the enrollment to the database. The first time you update the database, the database will be empty, so it will add each enrollment.
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.xml)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample13.cs)]
 
     For information about how to debug the `Seed` method and how to handle redundant data such as two students named "Alexander Carson", see [Seeding and Debugging Entity Framework (EF) DBs](https://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx) on Rick Anderson's blog.
 2. Build the project.
@@ -261,7 +261,7 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
 1. In the Package Manager Console window, enter the following commands: 
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample14.xml)]
+    [!code-powershell[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample14.ps1)]
 
     ![](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image13.png)
 
@@ -271,7 +271,7 @@ For this tutorial, you'll be using Migrations for deployment, but your `Seed` me
 
     The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets, and the `Down` method deletes them. Migrations calls the `Up` method to implement the data model changes for a migration. When you enter a command to roll back the update, Migrations calls the `Down` method. The following code shows the contents of the `InitialCreate` file:
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample15.xml)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample15.cs)]
 
     The `update-database` command runs the `Up` method to create the database and then it runs the `Seed` method to populate the database.
 
@@ -312,15 +312,15 @@ The next step is to create an ASP.NET MVC controller and views in your applicati
     ![Add_Controller_dialog_box_for_Student_controller](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image20.png)
 - Visual Studio opens the *Controllers\StudentController.cs* file. You see a class variable has been created that instantiates a database context object:
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample16.xml)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample16.cs)]
 
     The `Index` action method gets a list of students from the *Students* entity set by reading the `Students` property of the database context instance:
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample17.xml)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample17.cs)]
 
     The *Student\Index.cshtml* view displays this list in a table:
 
-    [!code[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample18.xml)]
+    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample18.cs)]
 - Press CTRL+F5 to run the project.
 
     Click the **Students** tab to see the test data that the `Seed` method inserted.

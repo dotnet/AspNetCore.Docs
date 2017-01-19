@@ -54,7 +54,7 @@ The SQL statements used to create, commit, and roll back the transaction can be 
 When working with the SqlClient provider in ADO.NET, transactions are initiated through a call to the [`SqlConnection` class](https://msdn.microsoft.com/en-US/library/system.data.sqlclient.sqlconnection.aspx) s [`BeginTransaction` method](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlconnection.begintransaction.aspx), which returns a [`SqlTransaction` object](https://msdn.microsoft.com/en-US/library/system.data.sqlclient.sqltransaction.aspx). The data modification statements that makeup the transaction are placed within a `try...catch` block. If an error occurs in a statement in the `try` block, execution transfers to the `catch` block where the transaction can be rolled back via the `SqlTransaction` object s [`Rollback` method](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.rollback.aspx). If all of the statements complete successfully, a call to the `SqlTransaction` object s [`Commit` method](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction.commit.aspx) at the end of the `try` block commits the transaction. The following code snippet illustrates this pattern. See [Maintaining Database Consistency with Transactions](http://aspnet.4guysfromrolla.com/articles/072705-1.aspx) for additional syntax and examples of using transactions with ADO.NET.
 
 
-[!code[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample1.xml)]
+[!code-csharp[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample1.cs)]
 
 By default, the TableAdapters in a Typed DataSet do not use transactions. To provide support for transactions we need to augment the TableAdapter classes to include additional methods that use the above pattern to perform a series of data modification statements within the scope of a transaction. In Step 2 we'll see how to use partial classes to add these methods.
 
@@ -85,7 +85,7 @@ As with the other folders, `Default.aspx` will use the `SectionLevelTutorialList
 Lastly, add these four pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Customizing the Site Map `<siteMapNode>`:
 
 
-[!code[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample2.xml)]
+[!code-xml[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample2.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the working with batched data tutorials.
 
@@ -114,7 +114,7 @@ The Typed DataSet `Northwind.xsd` is located in the `App_Code` folder s `DAL` su
 Enter the following code into the `ProductsTableAdapter.TransactionSupport.cs` file:
 
 
-[!code[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample3.xml)]
+[!code-csharp[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample3.cs)]
 
 The `partial` keyword in the class declaration here indicates to the compiler that the members added within are to be added to the `ProductsTableAdapter` class in the `NorthwindTableAdapters` namespace. Note the `using System.Data.SqlClient` statement at the top of the file. Since the TableAdapter was configured to use the SqlClient provider, internally it uses a [`SqlDataAdapter`](https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldataadapter.aspx) object to issue its commands to the database. Consequently, we need to use the `SqlTransaction` class to begin the transaction and then to commit it or roll it back. If you are using a data store other than Microsoft SQL Server, you'll need to use the appropriate provider.
 
@@ -125,14 +125,14 @@ These methods provide the building blocks needed to start, rollback, and commit 
 With these methods complete, we re ready to add methods to `ProductsDataTable` or the BLL that perform a series of commands under the umbrella of a transaction. The following method uses the Batch Update pattern to update a `ProductsDataTable` instance using a transaction. It starts a transaction by calling the `BeginTransaction` method and then uses a `try...catch` block to issue the data modification statements. If the call to the `Adapter` object s `Update` method results in an exception, execution will transfer to the `catch` block where the transaction will be rolled back and the exception re-thrown. Recall that the `Update` method implements the Batch Update pattern by enumerating the rows of the supplied `ProductsDataTable` and performing the necessary `InsertCommand`, `UpdateCommand`, and `DeleteCommand` s. If any one of these commands results in an error, the transaction is rolled back, undoing the previous modifications made during the transaction s lifetime. Should the `Update` statement complete without error, the transaction is committed in its entirety.
 
 
-[!code[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample4.xml)]
+[!code-csharp[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample4.cs)]
 
 Add the `UpdateWithTransaction` method to the `ProductsTableAdapter` class through the partial class in `ProductsTableAdapter.TransactionSupport.cs`. Alternatively, this method could be added to the Business Logic Layer s `ProductsBLL` class with a few minor syntactical changes. Namely, the keyword this in `this.BeginTransaction()`, `this.CommitTransaction()`, and `this.RollbackTransaction()` would need to be replaced with `Adapter` (recall that `Adapter` is the name of a property in `ProductsBLL` of type `ProductsTableAdapter`).
 
 The `UpdateWithTransaction` method uses the Batch Update pattern, but a series of DB-Direct calls can also be used within the scope of a transaction, as the following method shows. The `DeleteProductsWithTransaction` method accepts as input a `List<T>` of type `int`, which are the `ProductID` s to delete. The method initiates the transaction via a call to `BeginTransaction` and then, in the `try` block, iterates through the supplied list calling the DB-Direct pattern `Delete` method for each `ProductID` value. If any of the calls to `Delete` fails, control is transferred to the `catch` block where the transaction is rolled back and the exception re-thrown. If all calls to `Delete` succeed, then transaction is committed. Add this method to the `ProductsBLL` class.
 
 
-[!code[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample5.xml)]
+[!code-csharp[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample5.cs)]
 
 ## Applying Transactions Across Multiple TableAdapters
 
@@ -149,7 +149,7 @@ In Step 3 we added an `UpdateWithTransaction` method to the `ProductsTableAdapte
 Open the `ProductsBLL` class file and add a method named `UpdateWithTransaction` that simply calls down to the corresponding DAL method. There should now be two new methods in `ProductsBLL`: `UpdateWithTransaction`, which you just added, and `DeleteProductsWithTransaction`, which was added in Step 3.
 
 
-[!code[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample6.xml)]
+[!code-csharp[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample6.cs)]
 
 > [!NOTE] These methods do not include the `DataObjectMethodAttribute` attribute assigned to most other methods in the `ProductsBLL` class because we'll be invoking these methods directly from the ASP.NET pages code-behind classes. Recall that `DataObjectMethodAttribute` is used to flag what methods should appear in the ObjectDataSource s Configure Data Source wizard and under what tab (SELECT, UPDATE, INSERT, or DELETE). Since the GridView lacks any built-in support for batch editing or deleting, we'll have to invoke these methods programmatically rather than use the code-free declarative approach.
 
@@ -174,12 +174,12 @@ Start by opening the `Transactions.aspx` page in the `BatchData` folder and drag
 After completing the Configure Data Source wizard, Visual Studio will create BoundFields and a CheckBoxField for the product data fields. Remove all of these fields except for `ProductID`, `ProductName`, `CategoryID`, and `CategoryName` and rename the `ProductName` and `CategoryName` BoundFields `HeaderText` properties to Product and Category , respectively. From the smart tag, check the Enable Paging option. After making these modifications, the GridView and ObjectDataSource s declarative markup should look like the following:
 
 
-[!code[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample7.xml)]
+[!code-aspx[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample7.aspx)]
 
 Next, add three Button Web controls above the GridView. Set the first Button s Text property to Refresh Grid , the second s to Modify Categories (WITH TRANSACTION) , and the third one s to Modify Categories (WITHOUT TRANSACTION) .
 
 
-[!code[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample8.xml)]
+[!code-aspx[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample8.aspx)]
 
 At this point the Design view in Visual Studio should look similar to the screen shot shown in Figure 7.
 
@@ -192,7 +192,7 @@ At this point the Design view in Visual Studio should look similar to the screen
 Create event handlers for each of the three Button s `Click` events and use the following code:
 
 
-[!code[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample9.xml)]
+[!code-csharp[Main](wrapping-database-modifications-within-a-transaction-cs/samples/sample9.cs)]
 
 The refresh Button s `Click` event handler simply rebinds the data to the GridView by calling the `Products` GridView s `DataBind` method.
 

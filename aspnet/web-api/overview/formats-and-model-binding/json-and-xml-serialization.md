@@ -50,7 +50,7 @@ JSON formatting is provided by the **JsonMediaTypeFormatter** class. By default,
 
 If you prefer, you can configure the **JsonMediaTypeFormatter** class to use the **DataContractJsonSerializer** instead of Json.NET. To do so, set the **UseDataContractJsonSerializer** property to **true**:
 
-[!code[Main](json-and-xml-serialization/samples/sample1.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample1.cs)]
 
 ### JSON Serialization
 
@@ -60,11 +60,11 @@ This section describes some specific behaviors of the JSON formatter, using the 
 
 By default, all public properties and fields are included in the serialized JSON. To omit a property or field, decorate it with the **JsonIgnore** attribute.
 
-[!code[Main](json-and-xml-serialization/samples/sample2.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample2.cs)]
 
 If you prefer an &quot;opt-in&quot; approach, decorate the class with the **DataContract** attribute. If this attribute is present, members are ignored unless they have the **DataMember**. You can also use **DataMember** to serialize private members.
 
-[!code[Main](json-and-xml-serialization/samples/sample3.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample3.cs)]
 
 <a id="json_readonly"></a>
 ### Read-Only Properties
@@ -76,44 +76,44 @@ Read-only properties are serialized by default.
 
 By default, Json.NET writes dates in [ISO 8601](http://www.w3.org/TR/NOTE-datetime) format. Dates in UTC (Coordinated Universal Time) are written with a "Z" suffix. Dates in local time include a time-zone offset. For example:
 
-[!code[Main](json-and-xml-serialization/samples/sample4.xml)]
+[!code-console[Main](json-and-xml-serialization/samples/sample4.cmd)]
 
 By default, Json.NET preserves the time zone. You can override this by setting the DateTimeZoneHandling property:
 
-[!code[Main](json-and-xml-serialization/samples/sample5.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample5.cs)]
 
 If you prefer to use [Microsoft JSON date format](https://msdn.microsoft.com/en-us/library/bb299886.aspx#intro_to_json_sidebarb) (`"\/Date(ticks)\/"`) instead of ISO 8601, set the **DateFormatHandling** property on the serializer settings:
 
-[!code[Main](json-and-xml-serialization/samples/sample6.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample6.cs)]
 
 <a id="json_indenting"></a>
 ### Indenting
 
 To write indented JSON, set the **Formatting** setting to **Formatting.Indented**:
 
-[!code[Main](json-and-xml-serialization/samples/sample7.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample7.cs)]
 
 <a id="json_camelcasing"></a>
 ### Camel Casing
 
 To write JSON property names with camel casing, without changing your data model, set the **CamelCasePropertyNamesContractResolver** on the serializer:
 
-[!code[Main](json-and-xml-serialization/samples/sample8.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample8.cs)]
 
 <a id="json_anon"></a>
 ### Anonymous and Weakly-Typed Objects
 
 An action method can return an anonymous object and serialize it to JSON. For example:
 
-[!code[Main](json-and-xml-serialization/samples/sample9.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample9.cs)]
 
 The response message body will contain the following JSON:
 
-[!code[Main](json-and-xml-serialization/samples/sample10.xml)]
+[!code-json[Main](json-and-xml-serialization/samples/sample10.json)]
 
 If your web API receives loosely structured JSON objects from clients, you can deserialize the request body to a **Newtonsoft.Json.Linq.JObject** type.
 
-[!code[Main](json-and-xml-serialization/samples/sample11.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample11.cs)]
 
 However, it is usually better to use strongly typed data objects. Then you don't need to parse the data yourself, and you get the benefits of model validation.
 
@@ -126,7 +126,7 @@ XML formatting is provided by the **XmlMediaTypeFormatter** class. By default, *
 
 If you prefer, you can configure the **XmlMediaTypeFormatter** to use the **XmlSerializer** instead of the **DataContractSerializer**. To do so, set the **UseXmlSerializer** property to **true**:
 
-[!code[Main](json-and-xml-serialization/samples/sample12.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample12.cs)]
 
 The **XmlSerializer** class supports a narrower set of types than **DataContractSerializer**, but gives more control over the resulting XML. Consider using **XmlSerializer** if you need to match an existing XML schema.
 
@@ -156,7 +156,7 @@ If you need more control over the serialization, you can decorate the class with
 
 Read-only properties are not serialized. If a read-only property has a backing private field, you can mark the private field with the **DataMember** attribute. This approach requires the **DataContract** attribute on the class.
 
-[!code[Main](json-and-xml-serialization/samples/sample13.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample13.cs)]
 
 <a id="xml_dates"></a>
 ### Dates
@@ -168,7 +168,7 @@ Dates are written in ISO 8601 format. For example, &quot;2012-05-23T20:21:37.911
 
 To write indented XML, set the **Indent** property to **true**:
 
-[!code[Main](json-and-xml-serialization/samples/sample14.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample14.cs)]
 
 <a id="xml_pertype"></a>
 ## Setting Per-Type XML Serializers
@@ -177,7 +177,7 @@ You can set different XML serializers for different CLR types. For example, you 
 
 To set an XML serializer for a particular type, call **SetSerializer**.
 
-[!code[Main](json-and-xml-serialization/samples/sample15.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample15.cs)]
 
 You can specify an **XmlSerializer** or any object that derives from **XmlObjectSerializer**.
 
@@ -191,7 +191,7 @@ You can remove the JSON formatter or the XML formatter from the list of formatte
 
 The following code shows how to remove the default formatters. Call this from your **Application\_Start** method, defined in Global.asax.
 
-[!code[Main](json-and-xml-serialization/samples/sample16.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample16.cs)]
 
 <a id="handling_circular_object_references"></a>
 ## Handling Circular Object References
@@ -200,17 +200,17 @@ By default, the JSON and XML formatters write all objects as values. If two prop
 
 Consider the following object models and controller.
 
-[!code[Main](json-and-xml-serialization/samples/sample17.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample17.cs)]
 
 Invoking this action will cause the formatter to thrown an exception, which translates to a status code 500 (Internal Server Error) response to the client.
 
 To preserve object references in JSON, add the following code to **Application\_Start** method in the Global.asax file:
 
-[!code[Main](json-and-xml-serialization/samples/sample18.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample18.cs)]
 
 Now the controller action will return JSON that looks like this:
 
-[!code[Main](json-and-xml-serialization/samples/sample19.xml)]
+[!code-json[Main](json-and-xml-serialization/samples/sample19.json)]
 
 Notice that the serializer adds an &quot;$id&quot; property to both objects. Also, it detects that the Employee.Department property creates a loop, so it replaces the value with an object reference: {&quot;$ref&quot;:&quot;1&quot;}.
 
@@ -219,19 +219,19 @@ Notice that the serializer adds an &quot;$id&quot; property to both objects. Als
 
 To preserve object references in XML, you have two options. The simpler option is to add `[DataContract(IsReference=true)]` to your model class. The *IsReference* parameter enables object references. Remember that **DataContract** makes serialization opt-in, so you will also need to add **DataMember** attributes to the properties:
 
-[!code[Main](json-and-xml-serialization/samples/sample20.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample20.cs)]
 
 Now the formatter will produce XML similar to following:
 
-[!code[Main](json-and-xml-serialization/samples/sample21.xml)]
+[!code-xml[Main](json-and-xml-serialization/samples/sample21.xml)]
 
 If you want to avoid attributes on your model class, there is another option: Create a new type-specific **DataContractSerializer** instance and set *preserveObjectReferences* to **true** in the constructor. Then set this instance as a per-type serializer on the XML media-type formatter. The following code show how to do this:
 
-[!code[Main](json-and-xml-serialization/samples/sample22.xml?highlight=3)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample22.cs?highlight=3)]
 
 <a id="testing_object_serialization"></a>
 ## Testing Object Serialization
 
 As you design your web API, it is useful to test how your data objects will be serialized. You can do this without creating a controller or invoking a controller action.
 
-[!code[Main](json-and-xml-serialization/samples/sample23.xml)]
+[!code-csharp[Main](json-and-xml-serialization/samples/sample23.cs)]

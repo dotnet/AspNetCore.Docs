@@ -51,7 +51,7 @@ Before we can create the DataList s editable interface, we first need to build t
 After configuring the ObjectDataSource, Visual Studio will create a default `ItemTemplate` for the DataList that lists the name and value for each of the data fields returned. Modify the `ItemTemplate` so that the template lists the product name in an `<h4>` element along with the category name, supplier name, price, and discontinued status. Moreover, add an Edit button, making sure that its `CommandName` property is set to Edit . The declarative markup for my `ItemTemplate` follows:
 
 
-[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample1.xml)]
+[!code-aspx[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample1.aspx)]
 
 The above markup lays out the product information using an &lt;h4&gt; heading for the product s name and a four-column `<table>` for the remaining fields. The `ProductPropertyLabel` and `ProductPropertyValue` CSS classes, defined in `Styles.css`, have been discussed in previous tutorials. Figure 3 shows our progress when viewed through a browser.
 
@@ -95,7 +95,7 @@ Lastly, add the Update and Cancel buttons. Remember that for these two buttons i
 Feel free to lay out the editing interface however you like. I ve opted to use the same four-column `<table>` layout from the read-only interface, as the following declarative syntax and screen shot illustrates:
 
 
-[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample2.xml)]
+[!code-aspx[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample2.aspx)]
 
 
 [![The Editing Interface is Laid Out like the Read-Only Interface](customizing-the-datalist-s-editing-interface-vb/_static/image20.png)](customizing-the-datalist-s-editing-interface-vb/_static/image19.png)
@@ -110,7 +110,7 @@ Currently, there is no databinding syntax in the `EditItemTemplate` (except for 
 Create these two event handlers and have them use the following code:
 
 
-[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample3.xml)]
+[!code-vb[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample3.vb)]
 
 With these two event handlers in place, clicking the Edit button displays the editing interface and clicking the Cancel button returns the edited item to its read-only mode. Figure 8 shows the DataList after the Edit button has been clicked for Chef Anton s Gumbo Mix. Since we ve yet to add any databinding syntax to the editing interface, the `ProductName` TextBox is blank, the `Discontinued` CheckBox unchecked, and the first items selected from the `Categories` and `Suppliers` DropDownLists.
 
@@ -137,7 +137,7 @@ Assign the `ProductName` data field value to the `ProductName` TextBox s `Text` 
 When the user edits a product and clicks the Update button, a postback occurs and the DataList s `UpdateCommand` event fires. In the event handler, we need to read the values from the Web controls in the `EditItemTemplate` and interface with the BLL to update the product in the database. As we ve seen in previous tutorials, the `ProductID` of the updated product is accessible through the `DataKeys` collection. The user-entered fields are accessed by programmatically referencing the Web controls using `FindControl("controlID")`, as the following code shows:
 
 
-[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample4.xml)]
+[!code-vb[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample4.vb)]
 
 The code starts out by consulting the `Page.IsValid` property to ensure that all the validation controls on the page are valid. If `Page.IsValid` is `True`, the edited product s `ProductID` value is read from the `DataKeys` collection and the data entry Web controls in the `EditItemTemplate` are programmatically referenced. Next, the values from these Web controls are read into variables that are then passed into the appropriate `UpdateProduct` overload. After updating the data, the DataList is returned to its pre-editing state.
 
@@ -153,7 +153,7 @@ To support `NULL` values for the category and supplier DropDownLists, we need to
 After making these changes, the DropDownLists markup in the DataList s `EditItemTemplate` should look similar to the following:
 
 
-[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample5.xml)]
+[!code-aspx[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample5.aspx)]
 
 > [!NOTE] Static `ListItem` s can be added to a DropDownList through the Designer or directly through the declarative syntax. When adding a DropDownList item to represent a database `NULL` value, be sure to add the `ListItem` through the declarative syntax. If you use the `ListItem` Collection Editor in the Designer, the generated declarative syntax will omit the `Value` setting altogether when assigned a blank string, creating declarative markup like: `<asp:ListItem>(None)</asp:ListItem>`. While this may look harmless, the missing `Value` causes the DropDownList to use the `Text` property value in its place. That means that if this `NULL` `ListItem` is selected, the value (None) will be attempted to be assigned to the product data field (`CategoryID` or `SupplierID`, in this tutorial), which will result in an exception. By explicitly setting `Value=""`, a `NULL` value will be assigned to the product data field when the `NULL` `ListItem` is selected.
 
@@ -169,7 +169,7 @@ Take a moment to view our progress through a browser. When editing a product, no
 To save the (None) option as a database `NULL` value, we need to return to the `UpdateCommand` event handler. Change the `categoryIDValue` and `supplierIDValue` variables to be nullable integers and assign them a value other than `Nothing` only if the DropDownList s `SelectedValue` is not an empty string:
 
 
-[!code[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample6.xml)]
+[!code-vb[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample6.vb)]
 
 With this change, a value of `Nothing` will be passed into the `UpdateProduct` BLL method if the user selected the (None) option from either of the drop-down lists, which corresponds to a `NULL` database value.
 

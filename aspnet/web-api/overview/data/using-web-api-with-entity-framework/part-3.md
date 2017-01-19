@@ -21,7 +21,7 @@ In this section, you will use [Code First Migrations](https://msdn.microsoft.com
 
 From the **Tools** menu, select **Library Package Manager**, then select **Package Manager Console**. In the Package Manager Console window, enter the following command:
 
-[!code[Main](part-3/samples/sample1.xml)]
+[!code-console[Main](part-3/samples/sample1.cmd)]
 
 This command adds a folder named Migrations to your project, plus a code file named Configuration.cs in the Migrations folder.
 
@@ -29,15 +29,15 @@ This command adds a folder named Migrations to your project, plus a code file na
 
 Open the Configuration.cs file. Add the following **using** statement.
 
-[!code[Main](part-3/samples/sample2.xml)]
+[!code-csharp[Main](part-3/samples/sample2.cs)]
 
 Then add the following code to the **Configuration.Seed** method:
 
-[!code[Main](part-3/samples/sample3.xml)]
+[!code-csharp[Main](part-3/samples/sample3.cs)]
 
 In the Package Manager Console window, type the following commands:
 
-[!code[Main](part-3/samples/sample4.xml)]
+[!code-console[Main](part-3/samples/sample4.cmd)]
 
 The first command generates code that creates the database, and the second command executes that code. The database is created locally, using [LocalDB](https://msdn.microsoft.com/en-us/library/hh510202.aspx).
 

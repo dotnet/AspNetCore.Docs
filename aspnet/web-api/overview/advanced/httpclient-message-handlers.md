@@ -32,7 +32,7 @@ On the client side, the **HttpClient** class uses a message handler to process r
 
 To write a custom message handler, derive from **System.Net.Http.DelegatingHandler** and override the **SendAsync** method. Here is the method signature:
 
-[!code[Main](httpclient-message-handlers/samples/sample1.xml)]
+[!code-csharp[Main](httpclient-message-handlers/samples/sample1.cs)]
 
 The method takes an **HttpRequestMessage** as input and asynchronously returns an **HttpResponseMessage**. A typical implementation does the following:
 
@@ -43,16 +43,16 @@ The method takes an **HttpRequestMessage** as input and asynchronously returns a
 
 The following example shows a message handler that adds a custom header to the outgoing request:
 
-[!code[Main](httpclient-message-handlers/samples/sample2.xml)]
+[!code-csharp[Main](httpclient-message-handlers/samples/sample2.cs)]
 
 The call to `base.SendAsync` is asynchronous. If the handler does any work after this call, use the **await** keyword to resume execution after the method completes. The following example shows a handler that logs error codes. The logging itself is not very interesting, but the example shows how to get at the response inside the handler.
 
-[!code[Main](httpclient-message-handlers/samples/sample3.xml?highlight=10,13)]
+[!code-csharp[Main](httpclient-message-handlers/samples/sample3.cs?highlight=10,13)]
 
 ## Adding Message Handlers to the Client Pipeline
 
 To add custom handlers to **HttpClient**, use the **HttpClientFactory.Create** method:
 
-[!code[Main](httpclient-message-handlers/samples/sample4.xml)]
+[!code-unknown[Main](httpclient-message-handlers/samples/sample-43130-4.unknown)]
 
 Message handlers are called in the order that you pass them into the **Create** method. Because handlers are nested, the response message travels in the other direction. That is, the last handler is the first to get the response message.

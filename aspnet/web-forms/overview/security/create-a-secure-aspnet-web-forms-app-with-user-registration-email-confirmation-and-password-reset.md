@@ -73,13 +73,13 @@ Although this tutorial only shows how to add email notification through [SendGri
 2. Go to the [Azure SendGrid sign-up page](https://azure.microsoft.com/en-us/gallery/store/sendgrid/sendgrid-azure/) and register for free SendGrid account. You can also sign-up for a free SendGrid account directly on [SendGrid's site](http://www.sendgrid.com).
 3. From **Solution Explorer** open the *IdentityConfig.cs* file in the *App\_Start* folder and add the following code highlighted in yellow to the `EmailService` class to configure **SendGrid**:
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample1.xml?highlight=3,5,8-37)]
+    [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample1.cs?highlight=3,5,8-37)]
 4. Also, add the following `using` statements to the beginning of the *IdentityConfig.cs* file: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample2.xml?highlight=1-4)]
+    [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample2.cs?highlight=1-4)]
 5. To keep this sample simple, you'll store the email service account values in the `appSettings` section of the *web.config* file. Add the following XML highlighted in yellow to the *web.config* file at the root of your project:
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample3.xml?highlight=2-5)]
+    [!code-xml[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample3.xml?highlight=2-5)]
 
     > [!WARNING] Security - Never store sensitive data in your source code. In this example, the account and credentials are stored in the **appSetting** section of the *Web.config* file. On Azure, you can securely store these values on the **[Configure](https://blogs.msdn.com/b/webdev/archive/2014/06/04/queuebackgroundworkitem-to-reliably-schedule-and-run-long-background-process-in-asp-net.aspx)** tab in the Azure portal. For related information see Rick Anderson's topic titled [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure](https://go.microsoft.com/fwlink/?LinkId=513141).
 6. Add the email service values to reflect your SendGrid authentication values (User Name and Password) so that you can successful send email from your app. Be sure to use your SendGrid account name rather than the email address you provided SendGrid.
@@ -91,7 +91,7 @@ Although this tutorial only shows how to add email notification through [SendGri
 
 1. In the *Account* folder, open the *Register.aspx.cs* code-behind and update the `CreateUser_Click` method to enable the following highlighted changes: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample4.xml?highlight=9-11)]
+    [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample4.cs?highlight=9-11)]
 2. In **Solution Explorer**, right-click *Default.aspx* and select **Set As Start Page**.
 3. Run the app by pressing **F5.** After the page is displayed, click the **Register** link to display the Register page.
 4. Enter your email and password, then click the **Register** button to send an email message via SendGrid.  
@@ -107,10 +107,10 @@ Although you have confirmed the email account, at this point you would not need 
 
 1. In **Solution Explorer** of Visual Studio, update the `CreateUser_Click` event in the *Register.aspx.cs* code-behind contained in the *Accounts* folder with the following highlighted changes: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample5.xml?highlight=13-14,17-21)]
+    [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample5.cs?highlight=13-14,17-21)]
 2. Update the `LogIn` method in the *Login.aspx.cs* code-behind with the following highlighted changes: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample6.xml?highlight=9-19,45-46)]
+    [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample6.cs?highlight=9-19,45-46)]
 
 ### Run the Application
 
@@ -127,13 +127,13 @@ Although you have confirmed the email account, at this point you would not need 
 
 1. In Visual Studio, remove the comment characters from the `Forgot` method in the *Forgot.aspx.cs* code-behind contained in the *Account* folder, so that the method appears as follows: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample7.xml?highlight=16-18)]
+    [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample7.cs?highlight=16-18)]
 2. Open the *Login.aspx* page. Replace the markup near the end of the **loginForm** section as highlighted below: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample8.xml?highlight=52-53)]
+    [!code-aspx[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample8.aspx?highlight=52-53)]
 3. Open the *Login.aspx.cs* code-behind and uncomment the following line of code highlighted in yellow from the `Page_Load` event handler: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample9.xml?highlight=5)]
+    [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample9.cs?highlight=5)]
 4. Run the app by pressing **F5.** After the page is displayed, click the **Log in** link.
 5. Click the **Forgot your password?** link to display the **Forgot Password** page.
 6. Enter your email address and click the **Submit** button to send an email to your address which will allow you to reset your password.   
@@ -148,13 +148,13 @@ Once a user creates a new local account, they are emailed a confirmation link th
 
 1. In Visual Studio, open the **Login.aspx.cs** code-behind and add the following event handler after the `LogIn` event handler:   
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample10.xml)]
+    [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample10.cs)]
 2. Modify the `LogIn` event handler in the *Login.aspx.cs* code-behind by changing the code highlighted in yellow as follows: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample11.xml?highlight=15-17)]
+    [!code-csharp[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample11.cs?highlight=15-17)]
 3. Update the *Login.aspx* page by adding the code highlighted in yellow as follows: 
 
-    [!code[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample12.xml?highlight=45-46)]
+    [!code-aspx[Main](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/samples/sample12.aspx?highlight=45-46)]
 4. Delete any accounts in the **AspNetUsers** table that contain the email alias you wish to test.
 5. Run the app (**F5**) and register your email address.
 6. Before confirming your new account via the email that was just sent, attempt to log in with the new account.  

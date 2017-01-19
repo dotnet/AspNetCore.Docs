@@ -51,39 +51,39 @@ Let's define an action to rate a product.
 
 First, add a `ProductRating` model to represent the ratings.
 
-[!code[Main](odata-actions-and-functions/samples/sample1.xml)]
+[!code-csharp[Main](odata-actions-and-functions/samples/sample1.cs)]
 
 Also add a **DbSet** to the `ProductsContext` class, so that EF will create a Ratings table in the database.
 
-[!code[Main](odata-actions-and-functions/samples/sample2.xml)]
+[!code-csharp[Main](odata-actions-and-functions/samples/sample2.cs)]
 
 ### Add the Action to the EDM
 
 In WebApiConfig.cs, add the following code:
 
-[!code[Main](odata-actions-and-functions/samples/sample3.xml)]
+[!code-csharp[Main](odata-actions-and-functions/samples/sample3.cs)]
 
 The **EntityTypeConfiguration.Action** method adds an action to the entity data model (EDM). The **Parameter** method specifies a typed parameter for the action.
 
 This code also sets the namespace for the EDM. The namespace matters because the URI for the action includes the fully-qualified action name:
 
-[!code[Main](odata-actions-and-functions/samples/sample4.xml)]
+[!code-console[Main](odata-actions-and-functions/samples/sample4.cmd)]
 
 > [!NOTE] In a typical IIS configuration, the dot in this URL will cause IIS to return error 404. You can resolve this by adding the following section to your Web.Config file:
 
-[!code[Main](odata-actions-and-functions/samples/sample5.xml)]
+[!code-xml[Main](odata-actions-and-functions/samples/sample5.xml)]
 
 ### Add a Controller Method for the Action
 
 To enable the &quot;Rate&quot; action, add the following method to `ProductsController`:
 
-[!code[Main](odata-actions-and-functions/samples/sample6.xml)]
+[!code-csharp[Main](odata-actions-and-functions/samples/sample6.cs)]
 
 Notice that the method name matches the action name. The **[HttpPost]** attribute specifies the method is an HTTP POST method.
 
 To invoke the action, the client sends an HTTP POST request like the following:
 
-[!code[Main](odata-actions-and-functions/samples/sample7.xml)]
+[!code-console[Main](odata-actions-and-functions/samples/sample7.cmd)]
 
 The &quot;Rate&quot; action is bound to Product instances, so the URI for the action is the fully-qualified action name appended to the entity URI. (Recall that we set the EDM namespace to &quot;ProductService&quot;, so the fully-qualified action name is &quot;ProductService.Rate&quot;.)
 
@@ -91,27 +91,27 @@ The body of the request contains the action parameters as a JSON payload. Web AP
 
 If the client sends the action parameters in the wrong format, the value of **ModelState.IsValid** is false. Check this flag in your controller method and return an error if **IsValid** is false.
 
-[!code[Main](odata-actions-and-functions/samples/sample8.xml)]
+[!code-csharp[Main](odata-actions-and-functions/samples/sample8.cs)]
 
 ## Example: Adding a Function
 
 Now let's add an OData function that returns the most expensive product. As before, the first step is adding the function to the EDM. In WebApiConfig.cs, add the following code.
 
-[!code[Main](odata-actions-and-functions/samples/sample9.xml)]
+[!code-csharp[Main](odata-actions-and-functions/samples/sample9.cs)]
 
 In this case, the function is bound to the Products collection, rather than individual Product instances. Clients invoke the function by sending a GET request:
 
-[!code[Main](odata-actions-and-functions/samples/sample10.xml)]
+[!code-console[Main](odata-actions-and-functions/samples/sample10.cmd)]
 
 Here is the controller method for this function:
 
-[!code[Main](odata-actions-and-functions/samples/sample11.xml)]
+[!code-csharp[Main](odata-actions-and-functions/samples/sample11.cs)]
 
 Notice that the method name matches the function name. The **[HttpGet]** attribute specifies the method is an HTTP GET method.
 
 Here is the HTTP response:
 
-[!code[Main](odata-actions-and-functions/samples/sample12.xml)]
+[!code-console[Main](odata-actions-and-functions/samples/sample12.cmd)]
 
 ## Example: Adding an Unbound Function
 
@@ -119,20 +119,20 @@ The previous example was a function bound to a collection. In this next example,
 
 In the WebApiConfig file, add the function to the EDM:
 
-[!code[Main](odata-actions-and-functions/samples/sample13.xml)]
+[!code-csharp[Main](odata-actions-and-functions/samples/sample13.cs)]
 
 Notice that we are calling **Function** directly on the **ODataModelBuilder**, instead of the entity type or collection. This tells the model builder that the function is unbound.
 
 Here is the controller method that implements the function:
 
-[!code[Main](odata-actions-and-functions/samples/sample14.xml)]
+[!code-csharp[Main](odata-actions-and-functions/samples/sample14.cs)]
 
 It does not matter which Web API controller you place this method in. You could put it in `ProductsController`, or define a separate controller. The **[ODataRoute]** attribute defines the URI template for the function.
 
 Here is an example client request:
 
-[!code[Main](odata-actions-and-functions/samples/sample15.xml)]
+[!code-console[Main](odata-actions-and-functions/samples/sample15.cmd)]
 
 The HTTP response:
 
-[!code[Main](odata-actions-and-functions/samples/sample16.xml)]
+[!code-console[Main](odata-actions-and-functions/samples/sample16.cmd)]

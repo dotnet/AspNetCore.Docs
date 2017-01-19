@@ -26,7 +26,7 @@ We want to provide a simple, consistent way to log and handle (where possible) t
 
 There are two major cases for handling exceptions, the case where we are able to send an error response and the case where all we can do is log the exception. An example for the latter case is when an exception is thrown in the middle of streaming response content; in that case it is too late to send a new response message since the status code, headers, and partial content have already gone across the wire, so we simply abort the connection. Even though the exception can't be handled to produce a new response message, we still support logging the exception. In cases where we can detect an error, we can return an appropriate error response as shown in the following:
 
-[!code[Main](web-api-global-error-handling/samples/sample1.xml?highlight=6)]
+[!code-csharp[Main](web-api-global-error-handling/samples/sample1.cs?highlight=6)]
 
 ### Existing Options
 
@@ -56,11 +56,11 @@ Both services provide access to an exception context containing relevant informa
 
  The exception logger and handler service interfaces are simple async methods taking the respective contexts: 
 
-[!code[Main](web-api-global-error-handling/samples/sample2.xml)]
+[!code-csharp[Main](web-api-global-error-handling/samples/sample2.cs)]
 
  We also provide base classes for both of these interfaces. Overriding the core (sync or async) methods is all that is required to log or handle at the recommended times. For logging, the `ExceptionLogger` base class will ensure that the core logging method is only called once for each exception (even if it later propagates further up the call stack and is caught again). The `ExceptionHandler` base class will call the core handling method only for exceptions at the top of the call stack, ignoring legacy nested catch blocks. (Simplified versions of these base classes are in the appendix below.) Both `IExceptionLogger` and `IExceptionHandler` receive information about the exception via an `ExceptionContext`.
 
-[!code[Main](web-api-global-error-handling/samples/sample3.xml)]
+[!code-csharp[Main](web-api-global-error-handling/samples/sample3.cs)]
 
 When the framework calls an exception logger or an exception handler, it will always provide an `Exception` and a `Request`. Except for unit testing, it will also always provide a `RequestContext`. It will rarely provide a `ControllerContext` and `ActionContext` (only when calling from the catch block for exception filters). It will very rarely provide a `Response`(only in certain IIS cases when in the middle of trying to write the response). Note that because some of these properties may be `null` it is up to the consumer to check for `null` before accessing members of the exception class.`CatchBlock` is a string indicating which catch block saw the exception. The catch block strings are as follows:
 
@@ -82,13 +82,13 @@ The list of catch block strings is also available via static readonly properties
 
 In addition to the `ExceptionContext`, a logger gets one more piece of information via the full `ExceptionLoggerContext`:
 
-[!code[Main](web-api-global-error-handling/samples/sample4.xml)]
+[!code-csharp[Main](web-api-global-error-handling/samples/sample4.cs)]
 
 The second property, `CanBeHandled`, allows a logger to identify an exception that cannot be handled. When the connection is about to be aborted and no new response message can be sent, the loggers will be called but the handler will ***not*** be called, and the loggers can identify this scenario from this property.
 
 In additional to the `ExceptionContext`, a handler gets one more property it can set on the full `ExceptionHandlerContext` to handle the exception:
 
-[!code[Main](web-api-global-error-handling/samples/sample5.xml)]
+[!code-csharp[Main](web-api-global-error-handling/samples/sample5.cs)]
 
 An exception handler indicates that it has handled an exception by setting the `Result` property to an action result (for example, an [ExceptionResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.exceptionresult(v=vs.118).aspx), [InternalServerErrorResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.internalservererrorresult(v=vs.118).aspx), [StatusCodeResult](https://msdn.microsoft.com/en-us/library/system.web.http.results.statuscoderesult(v=vs.118).aspx), or a custom result). If the `Result` property is null, the exception is unhandled and the original exception will be re-thrown.
 
@@ -105,14 +105,14 @@ For both exception loggers and exception handlers, we don't do anything to recov
 
 The exception logger below send exception data to configured Trace sources (including the Debug output window in Visual Studio).
 
-[!code[Main](web-api-global-error-handling/samples/sample6.xml)]
+[!code-csharp[Main](web-api-global-error-handling/samples/sample6.cs)]
 
 ### Custom Error Message Exception Handler
 
 The following below produces a custom error response to clients, including an email address for contacting support.
 
-[!code[Main](web-api-global-error-handling/samples/sample7.xml)]
+[!code-csharp[Main](web-api-global-error-handling/samples/sample7.cs)]
 
 ## Appendix: Base Class Details
 
-[!code[Main](web-api-global-error-handling/samples/sample8.xml)]
+[!code-csharp[Main](web-api-global-error-handling/samples/sample8.cs)]

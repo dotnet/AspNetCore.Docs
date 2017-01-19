@@ -34,15 +34,15 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 Tutorials frequently show sensitive data in source code, hopefully with a caveat that you should never store sensitive data in source code. For example, my [ASP.NET MVC 5 app with SMS and email 2FA](../../../mvc/overview/security/aspnet-mvc-5-app-with-sms-and-email-two-factor-authentication.md) tutorial shows the following in the *web.config* file:
 
-[!code[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample1.xml)]
+[!code-xml[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample1.xml)]
 
 The *web.config* file is source code, so these secrets should never be stored in that file. Fortunately, the `<appSettings>` element has a `file` attribute that allows you to specify an external file that contains sensitive app config settings. You can move all your secrets to an external file as long as the external file is not checked into your source tree. For example, in the following markup, the file *AppSettingsSecrets.config* contains all the app secrets:
 
-[!code[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample2.xml)]
+[!code-xml[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample2.xml)]
 
 The markup in the external file (*AppSettingsSecrets.config* in this sample), is the same markup found in the *web.config* file:
 
-[!code[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample3.xml)]
+[!code-xml[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample3.xml)]
 
 The ASP.NET runtime merges the contents of the external file with the markup in &lt;appSettings&gt; element. The runtime ignores the file attribute if the specified file cannot be found.
 
@@ -56,7 +56,7 @@ Visual Studio creates new ASP.NET projects that use [LocalDB](https://blogs.msdn
 
 You can use the `configSource` attribute to replace the entire `<connectionStrings>` markup. Unlike the `<appSettings>``file` attribute that merges the markup, the `configSource` attribute replaces the markup. The following markup shows the `configSource` attribute in the *web.config* file:
 
-[!code[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample4.xml?highlight=1)]
+[!code-xml[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample4.xml?highlight=1)]
 
 > [!NOTE] If you use the `configSource` attribute as shown above to move your connection strings to an external file, and have Visual Studio create a new web site, it won't be able to detect you are using a database, and you won't get the option of configuring the database when you publish to Azure from Visual Studio. If you are using the `configSource` attribute, you can use PowerShell to create and deploy your web site and database, or you can create the web site and the database in the portal before you publish. The [New-AzureWebsitewithDB.ps1](https://gallery.technet.microsoft.com/scriptcenter/Ultimate-Create-Web-SQL-DB-9e0fdfd3) script will create a new web site and database.
 
@@ -72,7 +72,7 @@ You can use the `configSource` attribute to replace the entire `<connectionStrin
 
 The *app.config* file used by a console app doesn't support relative paths, but it does support absolute paths. You can use an absolute path to move your secrets out of your project directory. The following markup shows the secrets in the *C:\secrets\AppSettingsSecrets.config* file, and non sensitive data in the *app.config* file.
 
-[!code[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample5.xml?highlight=2)]
+[!code-xml[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample5.xml?highlight=2)]
 
 <a id="da"></a>
 ## Deploying secrets to Azure
@@ -87,11 +87,11 @@ The **app settings** and **connection string** values override the same settings
 
 A best practice is to follow a [DevOps workflow](../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything.md) and use [Azure PowerShell](https://azure.microsoft.com/en-us/documentation/articles/install-configure-powershell/) (or another framework such as [Chef](http://www.opscode.com/chef/) or [Puppet](http://puppetlabs.com/puppet/what-is-puppet)) to automate setting these values in Azure. The following PowerShell script uses [Export-CliXml](http://www.powershellcookbook.com/recipe/PukO/securely-store-credentials-on-disk)to export the encrypted secrets to disk:
 
-[!code[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample6.xml)]
+[!code-javascript[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample6.js)]
 
 In the script above, ‘Name' is the name of the secret key, such as ‘&quot;FB\_AppSecret&quot; or "TwitterSecret". You can view the ".credential" file created by the script in your browser. The snippet below tests each of the credential files and sets the secrets for the named web app:
 
-[!code[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample7.xml)]
+[!code-javascript[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample7.js)]
 
 > [!WARNING] Security - Don't include passwords or other secrets in the PowerShell script, doing so defeats the purpose of using a PowerShell script to deploy sensitive data. The [Get-Credential](https://technet.microsoft.com/en-us/library/hh849815.aspx) cmdlet provides a secure mechanism to obtain a password. Using a UI prompt can prevent leaking a password.
 

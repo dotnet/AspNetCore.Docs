@@ -28,19 +28,19 @@ The PopupControl extender in the AJAX Control Toolkit offers an easy way to trig
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the `<form>` element):
 
-[!code[Main](using-multiple-popup-controls-cs/samples/sample1.xml)]
+[!code-aspx[Main](using-multiple-popup-controls-cs/samples/sample1.aspx)]
 
 Next, add a panel which serves as the popup. In the current scenario, the panel contains a `Calendar` control. In order to avoid the page refreshes caused by the Calendar's postbacks, the panel is put within an `UpdatePanel` control:
 
-[!code[Main](using-multiple-popup-controls-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-multiple-popup-controls-cs/samples/sample2.aspx)]
 
 The page also contains two text boxes. For each text box, the calendar popup shall appear once the text box is activated.
 
-[!code[Main](using-multiple-popup-controls-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-multiple-popup-controls-cs/samples/sample3.aspx)]
 
 Now extend each of the two text boxes with a `PopupControlExtender`. The `TargetControlID` attribute provides the ID of the control tied to the extender. The `PopupControlID` attribute contains the ID of the popup panel. In this case, both extenders show the same panel, but different panels are possible, as well.
 
-[!code[Main](using-multiple-popup-controls-cs/samples/sample4.xml)]
+[!code-aspx[Main](using-multiple-popup-controls-cs/samples/sample4.aspx)]
 
 Now whenever you click within a text field, a calendar appears below the field, allowing you to select a date. (Getting the selected date back into the text boxes will be covered in a different tutorial.)
 

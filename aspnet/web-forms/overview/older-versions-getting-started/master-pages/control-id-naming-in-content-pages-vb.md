@@ -46,17 +46,17 @@ To demonstrate the concepts discussed in this tutorial, let's add a new ASP.NET 
 Visual Studio automatically creates a Content control for each of the master page's four ContentPlaceHolders. As noted in the [*Multiple ContentPlaceHolders and Default Content*](multiple-contentplaceholders-and-default-content-vb.md) tutorial, if a Content control is not present the master page's default ContentPlaceHolder content is emitted instead. Because the `QuickLoginUI` and `LeftColumnContent` ContentPlaceHolders contain suitable default markup for this page, go ahead and remove their corresponding Content controls from `IDIssues.aspx`. At this point, the content page's declarative markup should look like the following:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample1.xml)]
+[!code-aspx[Main](control-id-naming-in-content-pages-vb/samples/sample1.aspx)]
 
 In the [*Specifying the Title, Meta Tags, and Other HTML Headers in the Master Page*](specifying-the-title-meta-tags-and-other-html-headers-in-the-master-page-vb.md) tutorial we created a custom base page class (`BasePage`) that automatically configures the page's title if it is not explicitly set. For the `IDIssues.aspx` page to employ this functionality, the page's code-behind class must derive from the `BasePage` class (instead of `System.Web.UI.Page`). Modify the code-behind class's definition so that it looks like the following:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample2.xml)]
+[!code-vb[Main](control-id-naming-in-content-pages-vb/samples/sample2.vb)]
 
 Finally, update the `Web.sitemap` file to include an entry for this new lesson. Add a `<siteMapNode>` element and set its `title` and `url` attributes to "Control ID Naming Issues" and `~/IDIssues.aspx`, respectively. After making this addition your `Web.sitemap` file's markup should look similar to the following:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample3.xml)]
+[!code-xml[Main](control-id-naming-in-content-pages-vb/samples/sample3.xml)]
 
 As Figure 2 illustrates, the new site map entry in `Web.sitemap` is immediately reflected in the Lessons section in the left column.
 
@@ -73,7 +73,7 @@ To better understand the modifications the ASP.NET engine makes to the rendered 
 At this point your Content control's declarative markup should look similar to the following:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample4.xml)]
+[!code-aspx[Main](control-id-naming-in-content-pages-vb/samples/sample4.aspx)]
 
 Figure 3 shows the page when viewed through Visual Studio's designer.
 
@@ -86,7 +86,7 @@ Figure 3 shows the page when viewed through Visual Studio's designer.
 Visit the page through a browser and then view the HTML source. As the markup below shows, the `id` values of the HTML elements for the TextBox, Button, and Label Web controls are a combination of the `ID` values of the Web controls and the `ID` values of the naming containers in the page.
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample5.xml)]
+[!code-html[Main](control-id-naming-in-content-pages-vb/samples/sample5.html)]
 
 As noted earlier in this tutorial, both the master page and its ContentPlaceHolders serve as naming containers. Consequently, both contribute the rendered `ID` values of their nested controls. Take the TextBox's `id` attribute, for instance: `ctl00_MainContent_Age`. Recall that the TextBox control's `ID` value was `Age`. This is prefixed with its ContentPlaceHolder control's `ID` value, `MainContent`. Furthermore, this value is prefixed with the master page's `ID` value, `ctl00`. The net effect is an `id` attribute value consisting of the `ID` values of the master page, the ContentPlaceHolder control, and the TextBox itself.
 
@@ -104,7 +104,7 @@ Figure 4 illustrates this behavior. To determine the rendered `id` of the `Age` 
 Because the master page itself serves as a naming container, the Web controls defined in the master page also have altered rendered `id` attribute values. For example, the `DisplayDate` Label we added to the master page in the [*Creating a Site-Wide Layout with Master Pages*](creating-a-site-wide-layout-using-master-pages-vb.md) tutorial has the following rendered markup:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample6.xml)]
+[!code-html[Main](control-id-naming-in-content-pages-vb/samples/sample6.html)]
 
 Note that the `id` attribute includes both the master page's `ID` value (`ctl00`) and the `ID` value of the Label Web control (`DateDisplay`).
 
@@ -119,7 +119,7 @@ To illustrate using the `FindControl` method to search for controls within a con
 > [!NOTE] Of course, we don't need to use `FindControl` to reference the Label and TextBox controls for this example. We could reference them directly via their `ID` property values. I use `FindControl` here to illustrate what happens when using `FindControl` from a content page.
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample7.xml)]
+[!code-vb[Main](control-id-naming-in-content-pages-vb/samples/sample7.vb)]
 
 While the syntax used to call the `FindControl` method differs slightly in the first two lines of `SubmitButton_Click`, they are semantically equivalent. Recall that all ASP.NET server controls include a `FindControl` method. This includes the `Page` class, from which all ASP.NET code-behind classes must derive from. Therefore, calling `FindControl("controlID")` is equivalent to calling `Page.FindControl("controlID")`, assuming you haven't overridden the `FindControl` method in your code-behind class or in a custom base class.
 
@@ -142,26 +142,26 @@ There are two workarounds to this challenge: we can drill down, one naming conta
 To use `FindControl` to reference the `Results` Label or `Age` TextBox, we need to call `FindControl` from an ancestor control in the same naming container. As Figure 4 showed, the `MainContent` ContentPlaceHolder control is the only ancestor of `Results` or `Age` that is within the same naming container. In other words, calling the `FindControl` method from the `MainContent` control, as shown in the code snippet below, correctly returns a reference to the `Results` or `Age` controls.
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample8.xml)]
+[!code-vb[Main](control-id-naming-in-content-pages-vb/samples/sample8.vb)]
 
 However, we cannot work with the `MainContent` ContentPlaceHolder from our content page's code-behind class using the above syntax because the ContentPlaceHolder is defined in the master page. Instead, we have to use `FindControl` to get a reference to `MainContent`. Replace the code in the `SubmitButton_Click` event handler with the following modifications:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample9.xml)]
+[!code-vb[Main](control-id-naming-in-content-pages-vb/samples/sample9.vb)]
 
 If you visit the page through a browser, enter your age, and click the "Submit" button, a `NullReferenceException` is raised. If you set a breakpoint in the `SubmitButton_Click` event handler you will see that this exception occurs when attempting to call the `MainContent` object's `FindControl` method. The `MainContent` object is equal to `Nothing` because the `FindControl` method cannot locate an object named "MainContent". The underlying reason is the same as with the `Results` Label and `Age` TextBox controls: `FindControl` starts its search from the top of the control hierarchy and does not penetrate naming containers, but the `MainContent` ContentPlaceHolder is within the master page, which is a naming container.
 
 Before we can use `FindControl` to get a reference to `MainContent`, we first need a reference to the master page control. Once we have a reference to the master page we can get a reference to the `MainContent` ContentPlaceHolder via `FindControl` and, from there, references to the `Results` Label and `Age` TextBox (again, through using `FindControl`). But how do we get a reference to the master page? By inspecting the `id` attributes in the rendered markup it's evident that the master page's `ID` value is `ctl00`. Therefore, we could use `Page.FindControl("ctl00")` to get a reference to the master page, then use that object to get a reference to `MainContent`, and so on. The following snippet illustrates this logic:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample10.xml)]
+[!code-vb[Main](control-id-naming-in-content-pages-vb/samples/sample10.vb)]
 
 While this code will certainly work, it assumes that the master page's autogenerated `ID` will always be `ctl00`. It's never a good idea to make assumptions about autogenerated values.
 
 Fortunately, a reference to the master page is accessible through the `Page` class's `Master` property. Therefore, instead of having to use `FindControl("ctl00")` to get a reference of the master page in order to access the `MainContent` ContentPlaceHolder, we can instead use `Page.Master.FindControl("MainContent")`. Update the `SubmitButton_Click` event handler with the following code:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample11.xml)]
+[!code-vb[Main](control-id-naming-in-content-pages-vb/samples/sample11.vb)]
 
 This time, visiting the page through a browser, entering your age, and clicking the "Submit" button displays the message in the `Results` Label, as expected.
 
@@ -187,7 +187,7 @@ To create the extension method, add a new file to the `App_Code` folder named `P
 Add the following code to the `PageExtensionMethods.vb` file to define this `Module` and the `FindControlRecursive` extension method:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample12.xml)]
+[!code-vb[Main](control-id-naming-in-content-pages-vb/samples/sample12.vb)]
 
 With this code in place, return to the `IDIssues.aspx` page's code-behind class and comment out the current `FindControl` method calls. Replace them with calls to `Page.FindControlRecursive("controlID")`. What's neat about extension methods is that they appear directly within the IntelliSense drop-down lists. As Figure 7 shows, when you type `Page` and then hit period, the `FindControlRecursive` method is included in the IntelliSense drop-down along with the other `Control` class methods.
 
@@ -200,7 +200,7 @@ With this code in place, return to the `IDIssues.aspx` page's code-behind class 
 Enter the following code into the `SubmitButton_Click` event handler and then test it by visiting the page, entering your age, and clicking the "Submit" button. As shown back in Figure 6, the resulting output will be the message, "You are age years old!"
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample13.xml)]
+[!code-vb[Main](control-id-naming-in-content-pages-vb/samples/sample13.vb)]
 
 > [!NOTE] Because extension methods are new to C# 3.0 and Visual Basic 9, if you are using Visual Studio 2005 you cannot use extension methods. Instead, you'll need to implement the `FindControlRecursive` method in a helper class. [Rick Strahl](http://www.west-wind.com/WebLog/default.aspx) has such an example in his blog post, [ASP.NET Maser Pages and `FindControl`](http://www.west-wind.com/WebLog/posts/5127.aspx).
 
@@ -210,7 +210,7 @@ Enter the following code into the `SubmitButton_Click` event handler and then te
 As noted in this tutorial's introduction, a Web control's rendered `id` attribute is oftentimes used in client-side script to programmatically reference a particular HTML element. For example, the following JavaScript references an HTML element by its `id` and then displays its value in a modal message box:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample14.xml)]
+[!code-csharp[Main](control-id-naming-in-content-pages-vb/samples/sample14.cs)]
 
 Recall that in ASP.NET pages that do not include a naming container, the rendered HTML element's `id` attribute is identical to the Web control's `ID` property value. Because of this, it is tempting to hard code in `id` attribute values into JavaScript code. That is, if you know you want to access the `Age` TextBox Web control through client-side script, do so via a call to `document.getElementById("Age")`.
 
@@ -219,12 +219,12 @@ The problem with this approach is that when using master pages (or other naming 
 The good news is that the `id` attribute value that is rendered is accessible in server-side code through the Web control's [`ClientID` property](https://msdn.microsoft.com/en-us/library/system.web.ui.control.clientid.aspx). You should use this property to determine the `id` attribute value used in client-side script. For example, to add a JavaScript function to the page that, when called, displays the value of the `Age` TextBox in a modal message box, add the following code to the `Page_Load` event handler:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample15.xml)]
+[!code-vb[Main](control-id-naming-in-content-pages-vb/samples/sample15.vb)]
 
 The above code injects the value of the `Age` TextBox's `ClientID` property into the JavaScript call to `getElementById`. If you visit this page through a browser and view the HTML source, you'll find the following JavaScript code:
 
 
-[!code[Main](control-id-naming-in-content-pages-vb/samples/sample16.xml)]
+[!code-html[Main](control-id-naming-in-content-pages-vb/samples/sample16.html)]
 
 Notice how the correct `id` attribute value, `ctl00_MainContent_Age`, appears within the call to `getElementById`. Because this value is calculated at runtime, it works regardless of later changes to the page control hierarchy.
 

@@ -129,7 +129,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > The following example shows how to use `Html.Raw`:
 > 
-> [!code[Main](beta3/samples/sample1.xml)]
+> [!code-cshtml[Main](beta3/samples/sample1.cshtml)]
 
 
 <a id="Changes"></a>
@@ -147,11 +147,11 @@ This section of the document describes new features, changes, and known issues w
 > 
 > For example, the following `@helper` syntax works in the Beta 3 release:
 > 
-> [!code[Main](beta3/samples/sample2.xml)]
+> [!code-cshtml[Main](beta3/samples/sample2.cshtml)]
 > 
 > In the Beta 3 release, this helper must be changed to look like the following example:
 > 
-> [!code[Main](beta3/samples/sample3.xml)]
+> [!code-cshtml[Main](beta3/samples/sample3.cshtml)]
 > 
 > Notice that the `@{ }` characters around the initial code in the helper is no longer used. This is because the contents of the helpers are treated as a code block by default. The helper renders markup, which starts with the opening `<a>` tag. If the helper must render plain text or tags that do not include a closing tag (for example, `<meta>` tags), the content to be rendered must be in `<text></text>` tags.
 
@@ -192,7 +192,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > To disable automatic request validation, call the `Request.Unvalidated` method, passing it the name of the field or other post object that you want to bypass request validation for. You can use this method to bypass validation for any items in the `Form`, `QueryString`, `Cookies`, and `ServerVariables` collections. The following examples show how to use the `Unvalidated` method:
 > 
-> [!code[Main](beta3/samples/sample4.xml)]
+> [!code-unknown[Main](beta3/samples/sample-38457-4.unknown)]
 
 
 <a id="Issues"></a>
@@ -256,7 +256,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > If you experience problems in working with an external service or working with the package feed, put the following elements into your application's root *Web.config* file:
 > 
-> [!code[Main](beta3/samples/sample5.xml)]
+> [!code-xml[Main](beta3/samples/sample5.xml)]
 > 
 > For more information about configuring a proxy server, see [&lt;proxy&gt; Element (Network Settings)](https://msdn.microsoft.com/en-us/library/sa91de1e.aspx) on the MSDN Web site.
 
@@ -281,7 +281,7 @@ This section of the document describes new features, changes, and known issues w
 >   
 > `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config (64-bit)`
 > 
-> [!code[Main](beta3/samples/sample6.xml)]
+> [!code-xml[Main](beta3/samples/sample6.xml)]
 
 
 #### Issue: Applications previously deployed with ASP.NET assemblies in the Bin folder experience errors
@@ -306,7 +306,7 @@ This section of the document describes new features, changes, and known issues w
 > - If you do not have control over the server computer (for example, you are deploying to a hosting website), add the following to the website's *Web.config* file:
 > 
 > 
-> [!code[Main](beta3/samples/sample7.xml)]
+> [!code-xml[Main](beta3/samples/sample7.xml)]
 
 
 #### Issue: Using Web Application Project or ASP.NET MVC and ASP.NET Web pages in the same application
@@ -316,11 +316,11 @@ This section of the document describes new features, changes, and known issues w
 > **Workaround**  
 > If you get this error, change the base class from which the application derives. In the *Global.asax* file, change the following line:
 > 
-> [!code[Main](beta3/samples/sample8.xml)]
+> [!code-csharp[Main](beta3/samples/sample8.cs)]
 > 
 > To this:
 > 
-> [!code[Main](beta3/samples/sample9.xml)]
+> [!code-csharp[Main](beta3/samples/sample9.cs)]
 > 
 > This in effect reverses a change that was introduced for the Beta 1 release of ASP.NET Web Pages with Razor syntax.
 
@@ -340,7 +340,7 @@ This section of the document describes new features, changes, and known issues w
 > 3. Add the following element as a child of the **&lt;configuration&gt;** element (not inside the **&lt;system.web&gt;** element):
 > 
 > 
-> [!code[Main](beta3/samples/sample10.xml)]
+> [!code-xml[Main](beta3/samples/sample10.xml)]
 
 
 #### Issue: Database and WebGrid helpers do not work in Medium Trust in Visual Basic
@@ -362,31 +362,31 @@ This section of the document describes new features, changes, and known issues w
 > 
 > ***C#***
 > 
-> [!code[Main](beta3/samples/sample11.xml)]
+> [!code-unknown[Main](beta3/samples/sample-38457-11.unknown)]
 > 
 > ***Visual Basic***
 > 
-> [!code[Main](beta3/samples/sample12.xml)]
+> [!code-vb[Main](beta3/samples/sample12.vb)]
 > 
 > To change the encryption mode of an existing SQL Server Compact 4.0 database, do the following:
 > 
 > ***C#***
 > 
-> [!code[Main](beta3/samples/sample13.xml)]
+> [!code-unknown[Main](beta3/samples/sample-38457-13.unknown)]
 > 
 > ***Visual Basic***
 > 
-> [!code[Main](beta3/samples/sample14.xml)]
+> [!code-vb[Main](beta3/samples/sample14.vb)]
 > 
 > To encrypt an unencrypted SQL Server Compact 4.0 database, do the following:
 > 
 > ***C#***
 > 
-> [!code[Main](beta3/samples/sample15.xml)]
+> [!code-unknown[Main](beta3/samples/sample-38457-15.unknown)]
 > 
 > ***Visual Basic***
 > 
-> [!code[Main](beta3/samples/sample16.xml)]
+> [!code-vb[Main](beta3/samples/sample16.vb)]
 
 
 #### Issue: Microsoft Visual C++ 2008 runtime libraries are required
@@ -405,7 +405,7 @@ This section of the document describes new features, changes, and known issues w
 
 > SQL Server Compact can be installed on a machine that does not have .NET Framework installed because SQL Server Compact does require the .NET framework. If neither .NET Framework version 3.5 nor 4 is installed before you install SQL Server Compact, the SQL Server Compact Setup does not register its provider invariant name in the *machine.config* file. Any application that relies on the SQL Server Compact entry in the *machine.config* file will fail. The invariant name registration entry in *machine.config* looks like the following example:
 > 
-> [!code[Main](beta3/samples/sample17.xml)]
+> [!code-xml[Main](beta3/samples/sample17.xml)]
 > 
 > **Workaround**  
 > Uninstall SQL Server Compact 4.0 CTP1. Download and install the full versions of the .NET Framework from the following location:
@@ -471,10 +471,10 @@ This section of the document describes new features, changes, and known issues w
 > 1. Copy the *Microsoft.Web.dll* and *Microsoft.Web.Administration.dll* assemblies from the WebMatrix installation location to the *bin* directory of the WCF application. By default, WebMatrix is installed in the *Microsoft WebMatrix* subfolder under the system's *Program Files* folder.
 > 2. On Microsoft Windows Vista or higher, create a symlink to the assemblies in the *bin* directory using the following commands. (This approach has the advantage that it does not create a copy of the assemblies.)
 > 
->     [!code[Main](beta3/samples/sample18.xml)]
+>     [!code-console[Main](beta3/samples/sample18.cmd)]
 > 3. Install the two assemblies in the GAC. From an elevated prompt, run the following commands:
 > 
->     [!code[Main](beta3/samples/sample19.xml)]
+>     [!code-console[Main](beta3/samples/sample19.cmd)]
 
 
 #### Issue: WebMatrix Beta 3 is unable to perform certain tasks that require elevation
@@ -542,11 +542,11 @@ This section of the document describes new features, changes, and known issues w
 > 
 > ***C#***
 > 
-> [!code[Main](beta3/samples/sample20.xml)]
+> [!code-sql[Main](beta3/samples/sample20.sql)]
 > 
 > ***Visual Basic***
 > 
-> [!code[Main](beta3/samples/sample21.xml)]
+> [!code-vb[Main](beta3/samples/sample21.vb)]
 
 
 <a id="More_Info"></a>

@@ -64,7 +64,7 @@ You can create a web deployment package for a web application project at any tim
 You can create a web deployment package from the command line by invoking the **Package** target on your web application project using MSBuild. The command should resemble this:
 
 
-[!code[Main](manually-installing-web-packages/samples/sample1.xml)]
+[!code-console[Main](manually-installing-web-packages/samples/sample1.cmd)]
 
 
 Whichever approach you use, the end result is the same. The WPP creates a web deployment package as a zip file, together with various supporting resources, in the output folder for your web application project.

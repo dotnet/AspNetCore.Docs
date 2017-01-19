@@ -28,15 +28,15 @@ Like other filters, authentication filters can be applied per-controller, per-ac
 
 To apply an authentication filter to a controller, decorate the controller class with the filter attribute. The following code sets the `[IdentityBasicAuthentication]` filter on a controller class, which enables Basic Authentication for all of the controller's actions.
 
-[!code[Main](authentication-filters/samples/sample1.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample1.cs)]
 
 To apply the filter to one action, decorate the action with the filter. The following code sets the `[IdentityBasicAuthentication]` filter on the controller's `Post` method.
 
-[!code[Main](authentication-filters/samples/sample2.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample2.cs)]
 
 To apply the filter to all Web API controllers, add it to **GlobalConfiguration.Filters**.
 
-[!code[Main](authentication-filters/samples/sample3.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample3.cs)]
 
 ## Implementing a Web API Authentication Filter
 
@@ -86,7 +86,7 @@ Other combinations are possible&mdash;for example, if the controller action allo
 
 The **AuthenticateAsync** method tries to authenticate the request. Here is the method signature:
 
-[!code[Main](authentication-filters/samples/sample4.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample4.cs)]
 
 The **AuthenticateAsync** method must do one of the following:
 
@@ -107,7 +107,7 @@ Here is a general outline for implementing **AuthenticateAsync**.
 
 The follow code shows the **AuthenticateAsync** method from the [Basic Authentication](http://aspnet.codeplex.com/sourcecontrol/latest#Samples/WebApi/BasicAuthentication/ReadMe.txt) sample. The comments indicate each step. The code shows several types of error: An Authorization header with no credentials, malformed credentials, and bad username/password.
 
-[!code[Main](authentication-filters/samples/sample5.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample5.cs)]
 
 ## Setting an Error Result
 
@@ -115,13 +115,13 @@ If the credentials are invalid, the filter must set `context.ErrorResult` to an 
 
 The Basic Authentication sample includes an `AuthenticationFailureResult` class that is suitable for this purpose.
 
-[!code[Main](authentication-filters/samples/sample6.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample6.cs)]
 
 ## Implementing ChallengeAsync
 
 The purpose of the **ChallengeAsync** method is to add authentication challenges to the response, if needed. Here is the method signature:
 
-[!code[Main](authentication-filters/samples/sample7.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample7.cs)]
 
 The method is called on every authentication filter in the request pipeline.
 
@@ -137,7 +137,7 @@ I'll call the original **IHttpActionResult** the *inner result*, and the new **I
 
 The following example is taken from the Basic Authentication sample. It defines an **IHttpActionResult** for the outer result.
 
-[!code[Main](authentication-filters/samples/sample8.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample8.cs)]
 
 The `InnerResult` property holds the inner **IHttpActionResult**. The `Challenge` property represents a Www-Authentication header. Notice that **ExecuteAsync** first calls `InnerResult.ExecuteAsync` to create the HTTP response, and then adds the challenge if needed.
 
@@ -145,7 +145,7 @@ Check the response code before adding the challenge. Most authentication schemes
 
 Given the `AddChallengeOnUnauthorizedResult` class, the actual code in **ChallengeAsync** is simple. You just create the result and attach it to `context.Result`.
 
-[!code[Main](authentication-filters/samples/sample9.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample9.cs)]
 
 Note: The Basic Authentication sample abstracts this logic a bit, by placing it in an extension method.
 
@@ -157,7 +157,7 @@ Often, you may want to to enable host-level authentication for the rest of your 
 
 To disable host-level authentication inside the Web API pipeline, call `config.SuppressHostPrincipal()` in your configuration. This causes Web API to remove the **IPrincipal** from any request that enters the Web API pipeline. Effectively, it &quot;un-authenticates&quot; the request.
 
-[!code[Main](authentication-filters/samples/sample10.xml)]
+[!code-csharp[Main](authentication-filters/samples/sample10.cs)]
 
 ## Additional Resources
 

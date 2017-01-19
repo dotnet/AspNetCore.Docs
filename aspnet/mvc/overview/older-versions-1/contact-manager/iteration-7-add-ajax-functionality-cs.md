@@ -82,7 +82,7 @@ If you plan to use Ajax in multiple pages in your application then it makes sens
 
 Add the following JavaScript includes inside the &lt;head&gt; tag of your view master page:
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample1.xml)]
+[!code-html[Main](iteration-7-add-ajax-functionality-cs/samples/sample1.html)]
 
 ## Refactoring the Index View to use Ajax
 
@@ -98,7 +98,7 @@ The first step is to separate the part of the view that we want to update asynch
 
 **Listing 1 - Views\Contact\ContactList.ascx**
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample2.xml)]
+[!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample2.aspx)]
 
 Notice that the partial in Listing 1 has a different model than the Index view. The *Inherits* attribute in the &lt;%@ Page %&gt; directive specifies that the partial inherits from the ViewUserControl&lt;Group&gt; class.
 
@@ -106,13 +106,13 @@ The updated Index view is contained in Listing 2.
 
 **Listing 2 - Views\Contact\Index.aspx**
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample3.xml)]
+[!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample3.aspx)]
 
 There are two things that you should notice about the updated view in Listing 2. First, notice that all of the content moved into the partial is replaced with a call to Html.RenderPartial(). The Html.RenderPartial() method is called when the Index view is first requested in order to display the initial set of contacts.
 
 Second, notice that the Html.ActionLink() used to display contact groups has been replaced with an Ajax.ActionLink(). The Ajax.ActionLink() is called with the following parameters:
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample4.xml)]
+[!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample4.aspx)]
 
 The first parameter represents the text to display for the link, the second parameter represents the route values, and the third parameter represents the Ajax options. In this case, we use the UpdateTargetId Ajax option to point to the HTML &lt;div&gt; tag that we want to update after the Ajax request completes. We want to update the &lt;div&gt; tag with the new list of contacts.
 
@@ -120,7 +120,7 @@ The updated Index() method of the Contact controller is contained in Listing 3.
 
 **Listing 3 - Controllers\ContactController.cs (Index method)**
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample5.xml)]
+[!code-csharp[Main](iteration-7-add-ajax-functionality-cs/samples/sample5.cs)]
 
 The updated Index() action conditionally returns one of two things. If the Index() action is invoked by an Ajax request then the controller returns a partial. Otherwise, the Index() action returns an entire view.
 
@@ -142,7 +142,7 @@ We'll use the jQuery library which is included with the Microsoft ASP.NET MVC fr
 
 **Listing 4 - Views\Contact\Index.aspx**
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample6.xml)]
+[!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample6.aspx)]
 
 Notice that the updated Index view contains three new JavaScript functions. The first two functions use jQuery to fade out and fade in the list of contacts when you click a new contact group. The third function displays an error message when an Ajax request results in an error (for example, network timeout).
 
@@ -150,7 +150,7 @@ The first function also takes care of highlighting the selected group. A class= 
 
 These scripts are tied to the group links with the help of the Ajax.ActionLink() AjaxOptions parameter. The updated Ajax.ActionLink() method call looks like this:
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample7.xml)]
+[!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample7.aspx)]
 
 ## Adding Browser History Support
 
@@ -170,7 +170,7 @@ The updated Index view is contained in Listing 5.
 
 **Listing 5 - Views\Contact\Index.aspx**
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample8.xml)]
+[!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample8.aspx)]
 
 In Listing 5, Browser History is enabled in the pageInit() function. The pageInit() function is also used to set up the event handler for the navigate event. The navigate event is raised whenever the browser Forward or Back button causes the state of the page to change.
 
@@ -178,7 +178,7 @@ The beginContactList() method is called when you click a contact group. This met
 
 The group id is retrieved from an expando attribute on the contact group link. The link is rendered with the following call to Ajax.ActionLink().
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample9.xml)]
+[!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample9.aspx)]
 
 The last parameter passed to the Ajax.ActionLink() adds an expando attribute named groupid to the link (lowercase for XHTML compatibility).
 
@@ -200,11 +200,11 @@ The Delete link is contained in the ContactList partial. An updated version of t
 
 **Listing 6 - Views\Contact\ContactList.ascx**
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample10.xml)]
+[!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample10.aspx)]
 
 The Delete link is rendered with the following call to the Ajax.ImageActionLink() method:
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample11.xml)]
+[!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample11.aspx)]
 
 > [!NOTE] 
 > 
@@ -217,7 +217,7 @@ Listing 7 contains a new AjaxDelete() action that has been added to the Contact 
 
 **Listing 7 - Controllers\ContactController.cs (AjaxDelete)**
 
-[!code[Main](iteration-7-add-ajax-functionality-cs/samples/sample12.xml)]
+[!code-csharp[Main](iteration-7-add-ajax-functionality-cs/samples/sample12.cs)]
 
 The AjaxDelete() action is decorated with an AcceptVerbs attribute. This attribute prevents the action from being invoked except by any HTTP operation other than an HTTP DELETE operation. In particular, you cannot invoke this action with an HTTP GET.
 

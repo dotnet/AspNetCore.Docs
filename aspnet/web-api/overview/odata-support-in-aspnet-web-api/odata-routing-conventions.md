@@ -125,14 +125,14 @@ Here are some rules for the method signatures:
 
 For reference, here is an example that shows method signatures for every built-in OData routing convention.
 
-[!code[Main](odata-routing-conventions/samples/sample1.xml)]
+[!code-csharp[Main](odata-routing-conventions/samples/sample1.cs)]
 
 <a id="custom"></a>
 ## Custom Routing Conventions
 
 Currently the built-in conventions do not cover all possible OData URIs. You can add new conventions by implementing the **IODataRoutingConvention** interface. This interface has two methods:
 
-[!code[Main](odata-routing-conventions/samples/sample2.xml)]
+[!code-csharp[Main](odata-routing-conventions/samples/sample2.cs)]
 
 - **SelectController** returns the name of the controller.
 - **SelectAction** returns the name of the action.
@@ -151,11 +151,11 @@ Typically, an implementation of **IODataRoutingConvention** does the following:
 
 Let's look at a specific example. The built-in routing conventions do not support indexing into a navigation collection. In other words, there is no convention for URIs like the following:
 
-[!code[Main](odata-routing-conventions/samples/sample3.xml)]
+[!code-unknown[Main](odata-routing-conventions/samples/sample-48216-3.unknown)]
 
 Here is a custom routing convention to handle this type of query.
 
-[!code[Main](odata-routing-conventions/samples/sample4.xml)]
+[!code-csharp[Main](odata-routing-conventions/samples/sample4.cs)]
 
 Notes:
 
@@ -166,7 +166,7 @@ Notes:
 
 The next step is adding the new convention to the list of routing conventions. This happens during configuration, as shown in the following code:
 
-[!code[Main](odata-routing-conventions/samples/sample5.xml)]
+[!code-csharp[Main](odata-routing-conventions/samples/sample5.cs)]
 
 Here are some other sample routing conventions that be useful to study:
 

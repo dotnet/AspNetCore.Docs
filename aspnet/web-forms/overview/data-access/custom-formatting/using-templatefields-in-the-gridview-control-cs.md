@@ -58,7 +58,7 @@ Binding the GridView in this manner will automatically add a BoundField for each
 After you have removed the `EmployeeID`, `ReportsTo`, and `Country` BoundFields, your GridView's markup should look like:
 
 
-[!code[Main](using-templatefields-in-the-gridview-control-cs/samples/sample1.xml)]
+[!code-aspx[Main](using-templatefields-in-the-gridview-control-cs/samples/sample1.aspx)]
 
 Take a moment to view our progress in a browser. At this point you should see a table with a record for each employee and four columns: one for the employee's last name, one for their first name, one for their title, and one for their hire date.
 
@@ -85,14 +85,14 @@ To convert an existing BoundField into a TemplateField, click on the Edit Column
 Go ahead and convert the `FirstName` BoundField into a TemplateField. After this change there's no perceptive difference in the Designer. This is because converting the BoundField into a TemplateField creates a TemplateField that maintains the look and feel of the BoundField. Despite there being no visual difference at this point in the Designer, this conversion process has replaced the BoundField's declarative syntax - `<asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />` - with the following TemplateField syntax:
 
 
-[!code[Main](using-templatefields-in-the-gridview-control-cs/samples/sample2.xml)]
+[!code-aspx[Main](using-templatefields-in-the-gridview-control-cs/samples/sample2.aspx)]
 
 As you can see, the TemplateField consists of two templates an `ItemTemplate` that has a Label whose `Text` property is set to the value of the `FirstName` data field, and an `EditItemTemplate` with a TextBox control whose `Text` property is also set to the `FirstName` data field. The databinding syntax - `<%# Bind("fieldName") %>` - indicates that the data field *`fieldName`* is bound to the specified Web control property.
 
 To add the `LastName` data field value to this TemplateField we need to add another Label Web control in the `ItemTemplate` and bind its `Text` property to `LastName`. This can be accomplished either by hand or through the Designer. To do it by hand, simply add the appropriate declarative syntax to the `ItemTemplate`:
 
 
-[!code[Main](using-templatefields-in-the-gridview-control-cs/samples/sample3.xml)]
+[!code-aspx[Main](using-templatefields-in-the-gridview-control-cs/samples/sample3.aspx)]
 
 To add it through the Designer, click on the Edit Templates link from the GridView's smart tag. This will display the GridView's template editing interface. In this interface's smart tag is a list of the templates in the GridView. Since we only have one TemplateField at this point, the only templates listed in the drop-down list are those templates for the `FirstName` TemplateField along with the `EmptyDataTemplate` and `PagerTemplate`. The `EmptyDataTemplate` template, if specified, is used to render the GridView's output if there are no results in the data bound to the GridView; the `PagerTemplate`, if specified, is used to render the paging interface for a GridView that supports paging.
 
@@ -140,7 +140,7 @@ Take a moment to view this page through a browser. As you can see, the GridView 
 To complete this first step, remove the `LastName` BoundField and rename the `FirstName` TemplateField's `HeaderText` property to "Name". After these changes the GridView's declarative markup should look like the following:
 
 
-[!code[Main](using-templatefields-in-the-gridview-control-cs/samples/sample4.xml)]
+[!code-aspx[Main](using-templatefields-in-the-gridview-control-cs/samples/sample4.aspx)]
 
 
 [![Each Employee's First and Last Names are Displayed in One Colum](using-templatefields-in-the-gridview-control-cs/_static/image29.png)](using-templatefields-in-the-gridview-control-cs/_static/image28.png)
@@ -212,7 +212,7 @@ Both of these scenarios can be handled by creating a *formatting method* in the 
 To illustrate this concept, let's augment our tutorial to show a column that lists the total number of days an employee has been on the job. This formatting method will take in a `Northwind.EmployeesRow` object and return the number of days the employee has been employed as a string. This method can be added to the ASP.NET page's code-behind class, but *must* be marked as `protected` or `public` in order to be accessible from the template.
 
 
-[!code[Main](using-templatefields-in-the-gridview-control-cs/samples/sample5.xml)]
+[!code-csharp[Main](using-templatefields-in-the-gridview-control-cs/samples/sample5.cs)]
 
 Since the `HiredDate` field can contain `NULL` database values we must first ensure that the value is not `NULL` before proceeding with the calculation. If the `HiredDate` value is `NULL`, we simply return the string "Unknown"; if it is not `NULL`, we compute the difference between the current time and the `HiredDate` value and return the number of days.
 
@@ -227,7 +227,7 @@ To utilize this method we need to invoke it from a TemplateField in the GridView
 Set this new TemplateField's `HeaderText` property to "Days on the Job" and its `ItemStyle`'s `HorizontalAlign` property to `Center`. To call the `DisplayDaysOnJob` method from the template, add an `ItemTemplate` and use the following databinding syntax:
 
 
-[!code[Main](using-templatefields-in-the-gridview-control-cs/samples/sample6.xml)]
+[!code-aspx[Main](using-templatefields-in-the-gridview-control-cs/samples/sample6.aspx)]
 
 `Container.DataItem` returns a `DataRowView` object corresponding to the `DataSource` record bound to the `GridViewRow`. Its `Row` property returns the strongly-typed `Northwind.EmployeesRow`, which is passed to the `DisplayDaysOnJob` method. This databinding syntax can appear directly in the `ItemTemplate` (as shown in the declarative syntax below) or can be assigned to the `Text` property of a Label Web control.
 
@@ -239,7 +239,7 @@ Due to these subtleties, I've opted to pass in the entire `EmployeesRow` instanc
 The following shows the declarative syntax for our GridView after the TemplateField has been added and the `DisplayDaysOnJob` method called from the `ItemTemplate`:
 
 
-[!code[Main](using-templatefields-in-the-gridview-control-cs/samples/sample7.xml)]
+[!code-aspx[Main](using-templatefields-in-the-gridview-control-cs/samples/sample7.aspx)]
 
 Figure 16 shows the completed tutorial, when viewed through a browser.
 

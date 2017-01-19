@@ -60,7 +60,7 @@ Since there is only one tutorial for this section, we don t need `Default.aspx` 
 Next, update `Web.sitemap` to include a reference to the `Default.aspx` page. Specifically, add the following markup after the Caching `<siteMapNode>`:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample1.xml)]
+[!code-xml[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes an item for the sole site map provider tutorial.
 
@@ -102,7 +102,7 @@ Next, add a HyperLinkField and position it so that it s the left-most field. Set
 After creating the ObjectDataSource and customizing the GridView s fields, the two controls declarative markup will look like the following:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample2.xml)]
+[!code-aspx[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample2.aspx)]
 
 Figure 7 shows `Default.aspx` when viewed through a browser. Clicking a category s View Products link takes you to `ProductsByCategory.aspx?CategoryID=categoryID`, which we will build in Step 3.
 
@@ -143,7 +143,7 @@ Next, add a HyperLinkField and move it to the left-most position. Set its `Text`
 After making these customizations, the GridView and ObjectDataSource s declarative markup should resemble the following:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample3.xml)]
+[!code-aspx[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample3.aspx)]
 
 Return to viewing `Default.aspx` through a browser and click on the View Products link for Beverages. This will take you to `ProductsByCategory.aspx?CategoryID=1`, displaying the names, prices, and suppliers of the products in the Northwind database that belong to the Beverages category (see Figure 11). Feel free to further enhance this page to include a link to return users to the category listing page (`Default.aspx`) and a DetailsView or FormView control that displays the selected category s name and description.
 
@@ -174,7 +174,7 @@ The last step of the Configure Data Source wizard prompts for the source of the 
 After completing the Configure Data Source wizard, Visual Studio will create corresponding BoundFields and a CheckBoxField in the DetailsView for the product data fields. Remove the `ProductID`, `SupplierID`, and `CategoryID` BoundFields and configure the remaining fields as you see fit. After a handful of aesthetic configurations, my DetailsView and ObjectDataSource s declarative markup looked like the following:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample4.xml)]
+[!code-aspx[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample4.aspx)]
 
 To test this page, return to `Default.aspx` and click on View Products for the Beverages category. From the listing of beverage products, click on the View Details link for Chai Tea. This will take you to `ProductDetails.aspx?ProductID=1`, which shows a Chai Tea s details (see Figure 14).
 
@@ -207,7 +207,7 @@ When creating a custom site map provider that extends `StaticSiteMapProvider`, t
 Before a web application can use a site map provider it must be registered in the application s configuration. By default, the `XmlSiteMapProvider` class is registered using the name `AspNetXmlSiteMapProvider`. To register additional site map providers, add the following markup to `Web.config`:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample5.xml)]
+[!code-xml[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample5.xml)]
 
 The *name* value assigns a human-readable name to the provider while *type* specifies the fully-qualified type name of the site map provider. We'll explore concrete values for the *name* and *type* values in Step 7, after we ve created our custom site map provider.
 
@@ -223,7 +223,7 @@ For performance and scalability reasons, it s important that we cache the in-mem
 To create a custom site map provider that builds the site map from the categories and products in the Northwind database, we need to create a class that extends `StaticSiteMapProvider`. In Step 1 I asked you to add a `CustomProviders` folder in the `App_Code` folder - add a new class to this folder named `NorthwindSiteMapProvider`. Add the following code to the `NorthwindSiteMapProvider` class:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample6.xml)]
+[!code-csharp[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample6.cs)]
 
 Let s start with exploring this class s `BuildSiteMap` method, which starts with a [`lock` statement](https://msdn.microsoft.com/en-us/library/c5kehkcz.aspx). The `lock` statement only allows one thread at a time to enter, thereby serializing access to its code and preventing two concurrent threads from stepping on one another s toes.
 
@@ -257,7 +257,7 @@ The remaining methods are fairly straightforward. `GetRootNodeCore` is responsib
 In order for our web application to use the `NorthwindSiteMapProvider` site map provider created in Step 6, we need to register it in the `<siteMap>` section of `Web.config`. Specifically, add the following markup within the `<system.web>` element in `Web.config`:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample7.xml)]
+[!code-xml[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample7.xml)]
 
 This markup does two things: first, it indicates that the built-in `AspNetXmlSiteMapProvider` is the default site map provider; second, it registers the custom site map provider created in Step 6 with the human-friendly name Northwind .
 
@@ -313,19 +313,19 @@ Other navigation user interface elements can be used in addition to the SiteMapP
 As mentioned earlier in this tutorial, the site map structure can be accessed programmatically through the `SiteMap` class. The following code returns the root `SiteMapNode` of the default provider:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample8.xml)]
+[!code-csharp[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample8.cs)]
 
 Since the `AspNetXmlSiteMapProvider` is the default provider for our application, the above code would return the root node defined in `Web.sitemap`. To reference a site map provider other than the default, use the `SiteMap` class s [`Providers` property](https://msdn.microsoft.com/en-us/library/system.web.sitemap.providers.aspx) like so:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample9.xml)]
+[!code-csharp[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample9.cs)]
 
 Where *name* is the name of the custom site map provider ( Northwind , for our web application).
 
 To access a member specific to a site map provider, use `SiteMap.Providers["name"]` to retrieve the provider instance and then cast it to the appropriate type. For example, to display the `NorthwindSiteMapProvider` s `CachedDate` property in an ASP.NET page, use the following code:
 
 
-[!code[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample10.xml)]
+[!code-csharp[Main](building-a-custom-database-driven-site-map-provider-cs/samples/sample10.cs)]
 
 > [!NOTE] Be sure to test out the SQL cache dependency feature. After visiting the `Default.aspx`, `ProductsByCategory.aspx`, and `ProductDetails.aspx` pages, go to one of the tutorials in the Editing, Inserting, and Deleting section and edit the name of a category or product. Then return to one of the pages in the `SiteMapProvider` folder. Assuming enough time has passed for the polling mechanism to note the change to the underlying database, the site map should be updated to show the new product or category name.
 

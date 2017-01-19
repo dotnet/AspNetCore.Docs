@@ -56,7 +56,7 @@ Next, open the `Default.aspx` page and drag the `SectionLevelTutorialListing.asc
 In order to have the bulleted list display the paging and sorting tutorials we'll be creating, we need to add them to the site map. Open the `Web.sitemap` file and add the following markup after the Editing and Deleting with the DataList site map node markup:
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample1.xml)]
+[!code-xml[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample1.xml)]
 
 
 ![Update the Site Map to Include the New ASP.NET Pages](paging-report-data-in-a-datalist-or-repeater-control-vb/_static/image5.png)
@@ -98,7 +98,7 @@ Add a method to the `ProductsBLL` class named `GetProductsAsPagedDataSource` tha
 `GetProductsAsPagedDataSource` starts by retrieving *all* of the records from `GetProducts()`. It then creates a `PagedDataSource` object, setting its `CurrentPageIndex` and `PageSize` properties to the values of the passed-in `pageIndex` and `pageSize` parameters. The method concludes by returning this configured `PagedDataSource`:
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample2.xml)]
+[!code-vb[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample2.vb)]
 
 ## Step 3: Displaying Product Information in a DataList Using Default Paging
 
@@ -135,7 +135,7 @@ After configuring the ObjectDataSource, Visual Studio automatically creates an `
 After making these changes, the DataList and ObjectDataSource s markup should look similar to the following:
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample3.xml)]
+[!code-aspx[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample3.aspx)]
 
 > [!NOTE] Since we are not performing any update or delete functionality in this tutorial, you may disable the DataList s view state to reduce the rendered page size.
 
@@ -170,7 +170,7 @@ For the DataList and Repeater, we are responsible for deciding upon a paging int
 For this tutorial, let s use the Next, Previous, First, Last interface. Add four Button Web controls to the page and set their `ID` s to `FirstPage`, `PrevPage`, `NextPage`, and `LastPage`. Set the `Text` properties to &lt;&lt; First , &lt; Prev , Next &gt; , and Last &gt;&gt; .
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample4.xml)]
+[!code-aspx[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample4.aspx)]
 
 Next, create a `Click` event handler for each of these Buttons. In a moment we'll add the code necessary to display the requested page.
 
@@ -186,12 +186,12 @@ The page count is calculated as the ceiling of the total row count divided by th
 If the paging interface includes a Last button, it is imperative that the total number of records being paged through be remembered across postbacks so that when the Last button is clicked we can determine the last page index. To facilitate this, create a `TotalRowCount` property in the ASP.NET page s code-behind class that persists its value to view state:
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample5.xml)]
+[!code-vb[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample5.vb)]
 
 In addition to `TotalRowCount`, take a minute to create read-only page-level properties for easily accessing the page index, page size, and page count:
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample6.xml)]
+[!code-vb[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample6.vb)]
 
 ## Determining the Total Number of Records Being Paged Through
 
@@ -200,7 +200,7 @@ The `PagedDataSource` object returned from the ObjectDataSource s `Select()` met
 To accomplish this, create an event handler for the ObjectDataSource s `Selected` event. In the `Selected` event handler we have access to the return value of the ObjectDataSource s `Select()` method in this case, the `PagedDataSource`.
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample7.xml)]
+[!code-vb[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample7.vb)]
 
 ## Displaying the Requested Page of Data
 
@@ -209,7 +209,7 @@ When the user clicks one of the buttons in the paging interface, we need to disp
 To facilitate this, create a `RedirectUser(sendUserToPageIndex)` method that redirects the user to `Paging.aspx?pageIndex=sendUserToPageIndex`. Then, call this method from the four Button `Click` event handlers. In the `FirstPage` `Click` event handler, call `RedirectUser(0)`, to send them to the first page; in the `PrevPage` `Click` event handler, use `PageIndex - 1` as the page index; and so on.
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample8.xml)]
+[!code-vb[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample8.vb)]
 
 With the `Click` event handlers complete, the DataList s records can be paged through by clicking the buttons. Take a moment to try it out!
 
@@ -220,14 +220,14 @@ Currently, all four buttons are enabled regardless of the page being viewed. How
 Add the following to the ObjectDataSource s `Selected` event handler:
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample9.xml)]
+[!code-vb[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample9.vb)]
 
 With this addition, the First and Previous buttons will be disabled when viewing the first page, while the Next and Last buttons will be disabled when viewing the last page.
 
 Let s complete the paging interface by informing the user what page they re currently viewing and how many total pages exist. Add a Label Web control to the page and set its `ID` property to `CurrentPageNumber`. Set its `Text` property in the ObjectDataSource s Selected event handler such that it includes the current page being viewed (`PageIndex + 1`) and the total number of pages (`PageCount`).
 
 
-[!code[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample10.xml)]
+[!code-vb[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample10.vb)]
 
 Figure 10 shows `Paging.aspx` when first visited. Since the querystring is empty, the DataList defaults to showing the first four products; the First and Previous buttons are disabled. Clicking Next displays the next four records (see Figure 11); the First and Previous buttons are now enabled.
 

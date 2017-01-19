@@ -85,7 +85,7 @@ This step is cosmetic, but it will make the pages render like the earlier screen
 
 In Solution Explorer, expand the Content folder and open the file named Site.css. Add the following CSS styles:
 
-[!code[Main](using-web-api-with-entity-framework-part-1/samples/sample1.xml)]
+[!code-css[Main](using-web-api-with-entity-framework-part-1/samples/sample1.css)]
 
 >[!div class="step-by-step"]
 [Next](using-web-api-with-entity-framework-part-2.md)

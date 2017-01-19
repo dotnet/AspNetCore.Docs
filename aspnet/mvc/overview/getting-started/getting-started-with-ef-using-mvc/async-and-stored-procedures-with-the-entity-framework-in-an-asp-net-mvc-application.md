@@ -48,7 +48,7 @@ Create a Department controller the same way you did the earlier controllers, exc
 
 The following highlights show what was added to the synchronous code for the `Index` method to make it asynchronous:
 
-[!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml?highlight=1,4)]
+[!code-csharp[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs?highlight=1,4)]
 
 Four changes were applied to enable the Entity Framework database query to execute asynchronously:
 
@@ -61,15 +61,15 @@ Why is the `departments.ToList` statement modified but not the `departments = db
 
 In the `Details` method and the `HttpGet` `Edit` and `Delete` methods, the `Find` method is the one that causes a query to be sent to the database, so that's the method that gets executed asynchronously:
 
-[!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml?highlight=7)]
+[!code-csharp[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.cs?highlight=7)]
 
 In the `Create` , `HttpPost Edit`, and `DeleteConfirmed` methods, it is the `SaveChanges` method call that causes a command to be executed, not statements such as `db.Departments.Add(department)` which only cause entities in memory to be modified.
 
-[!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=6)]
+[!code-csharp[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cs?highlight=6)]
 
 Open *Views\Department\Index.cshtml*, and replace the template code with the following code:
 
-[!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml?highlight=3,5,20-22,36-38)]
+[!code-csharp[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs?highlight=3,5,20-22,36-38)]
 
 This code changes the title from Index to Departments, moves the Administrator name to the right, and provides the full name of the administrator.
 
@@ -77,11 +77,11 @@ In the Create, Delete, Details, and Edit views, change the caption for the `Inst
 
 In the Create and Edit views use the following code:
 
-[!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml)]
+[!code-html[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.html)]
 
 In the Delete and Details views use the following code:
 
-[!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml)]
+[!code-html[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.html)]
 
 Run the application, and click the **Departments** tab.
 
@@ -100,7 +100,7 @@ Some developers and DBAs prefer to use stored procedures for database access. In
 
 1. In *DAL\SchoolContext.cs*, add the highlighted code to the `OnModelCreating` method.
 
-    [!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml?highlight=9)]
+    [!code-csharp[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.cs?highlight=9)]
 
     This code instructs Entity Framework to use stored procedures for insert, update, and delete operations on the `Department` entity.
 2. In Package Manage Console, enter the following command:
@@ -109,7 +109,7 @@ Some developers and DBAs prefer to use stored procedures for database access. In
 
     Open *Migrations\&lt;timestamp&gt;\_DepartmentSP.cs* to see the code in the `Up` method that creates Insert, Update, and Delete stored procedures:
 
-    [!code[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml?highlight=3-4,26-27,42-43)]
+    [!code-csharp[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.cs?highlight=3-4,26-27,42-43)]
 - In Package Manage Console, enter the following command:
 
     `update-database`

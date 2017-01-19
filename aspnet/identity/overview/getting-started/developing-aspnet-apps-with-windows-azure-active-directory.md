@@ -100,7 +100,7 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image15.png)
 2. Go back to Visual Studio and expand the **Controllers** folder and then open the **HomeController.cs** file. You'll see a **UserProfile()** action that contains code to retrieve a token and then call the Graph API. This code is duplicated below: 
 
-    [!code[Main](developing-aspnet-apps-with-windows-azure-active-directory/samples/sample1.xml?highlight=22)]
+    [!code-csharp[Main](developing-aspnet-apps-with-windows-azure-active-directory/samples/sample1.cs?highlight=22)]
 
     To call the Graph API, you first need to retrieve a token. When the token is retrieved, its string value must be appended in the Authorization header for all subsequent requests to the Graph API. Most of the code above handles the details of authenticating to Azure AD to get a token, using the token to make a call to the Graph API, and then transforming the response so that it can be presented in the View.
 
@@ -133,7 +133,7 @@ If you get the following error:
 
 Replace the code in the *Views\Shared\\_LoginPartial.cshtml* file with the following:
 
-[!code[Main](developing-aspnet-apps-with-windows-azure-active-directory/samples/sample2.xml?highlight=1-8,15-16)]
+[!code-cshtml[Main](developing-aspnet-apps-with-windows-azure-active-directory/samples/sample2.cshtml?highlight=1-8,15-16)]
 
 After running the app, if the logged in user shows "Null User", sign out, and sign back in with the Active Directory account you created earlier.
 

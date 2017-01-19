@@ -155,7 +155,7 @@ The final step is to display the details for the selected product in a DetailsVi
 You can choose to display any of the available fields in the DetailsView. I've opted to remove the `ProductID`, `SupplierID`, and `CategoryID` fields and reordered and formatted the remaining fields. In addition, I cleared out the DetailsView's `Height` and `Width` properties, allowing the DetailsView to expand to the width needed to best display its data rather than having it constrained to a specified size. The full markup appears below:
 
 
-[!code[Main](master-detail-filtering-with-two-dropdownlists-cs/samples/sample1.xml)]
+[!code-aspx[Main](master-detail-filtering-with-two-dropdownlists-cs/samples/sample1.aspx)]
 
 Take a moment to try out the `MasterDetailsDetails.aspx` page in a browser. At first glance it may appear that everything is working as desired, but there's a subtle problem. When you choose a new category the `ProductsByCategory` DropDownList is updated to include those products for the selected category, but the `ProductDetails` DetailsView continued to show the previous product information. The DetailsView is updated when choosing a different product for the selected category. Furthermore, if you test thoroughly enough, you'll find that if you continually choose new categories (such as choosing Beverages from the `Categories` DropDownList, then Condiments, then Confections) every other category selection causes the `ProductDetails` DetailsView to be refreshed.
 
@@ -190,7 +190,7 @@ The problem that arises in this situation is that the point in the page lifecycl
 To remedy this we need to explicitly rebind the `ProductDetails` DetailsView after the `ProductsByCategory` DropDownList has been bound. We can accomplish this by calling the `ProductDetails` DetailsView's `DataBind()` method when the `ProductsByCategory` DropDownList's `DataBound` event fires. Add the following event handler code to the `MasterDetailsDetails.aspx` page's code-behind class (refer to the "[Programmatically Setting the ObjectDataSource's Parameter Values](../basic-reporting/programmatically-setting-the-objectdatasource-s-parameter-values-cs.md)" for a discussion on how to add an event handler):
 
 
-[!code[Main](master-detail-filtering-with-two-dropdownlists-cs/samples/sample2.xml)]
+[!code-csharp[Main](master-detail-filtering-with-two-dropdownlists-cs/samples/sample2.cs)]
 
 After this explicit call to the `ProductDetails` DetailsView's `DataBind()` method has been added, the tutorial works as expected. Figure 21 highlights how this changed remedied our earlier problem.
 

@@ -34,11 +34,11 @@ In Solution Explorer, right click the Models folder. Select **Add**, then select
 
 Replace all of the boilerplate code in Author.cs with the following code.
 
-[!code[Main](part-2/samples/sample1.xml)]
+[!code-csharp[Main](part-2/samples/sample1.cs)]
 
 Add another class named `Book`, with the following code.
 
-[!code[Main](part-2/samples/sample2.xml)]
+[!code-csharp[Main](part-2/samples/sample2.cs)]
 
 Entity Framework will use these models to create database tables. For each model, the `Id` property will become the primary key column of the database table.
 

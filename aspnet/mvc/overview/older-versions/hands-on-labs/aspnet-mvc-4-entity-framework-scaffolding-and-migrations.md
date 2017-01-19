@@ -100,7 +100,7 @@ In this exercise, you will learn how to use ASP.NET MVC 4 scaffolding with code 
 
     C#
 
-    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample1.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample1.cs)]
 6. Click **Build | Build Solution** to save the changes and build the project.
 
     ![Building the application](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image3.png "Building the application")
@@ -172,7 +172,7 @@ In this task you will update the database using Entity Framework Migrations. You
 
     PMC
 
-    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample2.xml)]
+    [!code-powershell[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample2.ps1)]
 
     ![Enabling Migrations](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image11.png "Enabling Migrations")
 
@@ -187,12 +187,12 @@ In this task you will update the database using Entity Framework Migrations. You
 
     C#
 
-    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample3.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample3.cs)]
 4. Open the Person class and add an attribute for the person's middle name. With this new attribute, you are changing the model.
 
     C#
 
-    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample4.xml)]
+    [!code-csharp[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample4.cs)]
 5. Select **Build | Build Solution** on the menu to build the application.
 
     ![Building the application](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image13.png "Building the application")
@@ -202,7 +202,7 @@ In this task you will update the database using Entity Framework Migrations. You
 
     PMC
 
-    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample5.xml)]
+    [!code-powershell[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample5.ps1)]
 
     This command will look for changes in the data objects, and then, it will add the necessary commands to modify the database accordingly.
 
@@ -213,7 +213,7 @@ In this task you will update the database using Entity Framework Migrations. You
 
     PMC
 
-    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample6.xml)]
+    [!code-powershell[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample6.ps1)]
 
     ![Generating a SQL script](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image15.png "Generating a SQL script")
 
@@ -226,7 +226,7 @@ In this task you will update the database using Entity Framework Migrations. You
 
     PMC
 
-    [!code[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample7.xml)]
+    [!code-powershell[Main](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/samples/sample7.ps1)]
 
     ![Updating the Database](aspnet-mvc-4-entity-framework-scaffolding-and-migrations/_static/image17.png "Updating the Database")
 

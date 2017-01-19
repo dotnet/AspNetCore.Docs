@@ -28,23 +28,23 @@ The Animation control in the ASP.NET AJAX Control Toolkit is not just a control 
 
 First of all, include the `ScriptManager` in the page; then, the ASP.NET AJAX library is loaded, making it possible to use the Control Toolkit:
 
-[!code[Main](changing-an-animation-using-client-side-code-cs/samples/sample1.xml)]
+[!code-aspx[Main](changing-an-animation-using-client-side-code-cs/samples/sample1.aspx)]
 
 The animation will be applied to a panel of text which looks like this:
 
-[!code[Main](changing-an-animation-using-client-side-code-cs/samples/sample2.xml)]
+[!code-aspx[Main](changing-an-animation-using-client-side-code-cs/samples/sample2.aspx)]
 
 In the associated CSS class for the panel, define a nice background color and also set a fixed width for the panel:
 
-[!code[Main](changing-an-animation-using-client-side-code-cs/samples/sample3.xml)]
+[!code-css[Main](changing-an-animation-using-client-side-code-cs/samples/sample3.css)]
 
 The actual animation is launched by an HTML button:
 
-[!code[Main](changing-an-animation-using-client-side-code-cs/samples/sample4.xml)]
+[!code-aspx[Main](changing-an-animation-using-client-side-code-cs/samples/sample4.aspx)]
 
 Then, add the `AnimationExtender` to the page, providing an `ID`, the `TargetControlID` attribute and the obligatory `runat="server"`:
 
-[!code[Main](changing-an-animation-using-client-side-code-cs/samples/sample5.xml)]
+[!code-aspx[Main](changing-an-animation-using-client-side-code-cs/samples/sample5.aspx)]
 
 Note that there is no `<Animations>` node within the `AnimationExtender` control. Custom JavaScript code is used to provide the animations to be used with the control.
 
@@ -60,11 +60,11 @@ The format of the return value of the `get_*()` functions and the format of the 
 
 Here is a JSON string (without the delimiting quotes and formatted nicely) representing an animation triggered by the button, but animating the panel by resizing it and fading it out at the same time:
 
-[!code[Main](changing-an-animation-using-client-side-code-cs/samples/sample6.xml)]
+[!code-json[Main](changing-an-animation-using-client-side-code-cs/samples/sample6.json)]
 
 The following JavaScript code assigns this JSON descripting to the `OnClick` animation of the current extender and runs it:
 
-[!code[Main](changing-an-animation-using-client-side-code-cs/samples/sample7.xml)]
+[!code-html[Main](changing-an-animation-using-client-side-code-cs/samples/sample7.html)]
 
 
 [![The animation runs immediately, without a mouse click (and with very little markup)](changing-an-animation-using-client-side-code-cs/_static/image2.png)](changing-an-animation-using-client-side-code-cs/_static/image1.png)

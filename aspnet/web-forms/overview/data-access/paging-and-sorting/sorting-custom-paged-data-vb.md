@@ -32,12 +32,12 @@ Compared to default paging, custom paging can improve the performance of paging 
 For custom paging to work properly, we must implement some technique that can efficiently grab a particular subset of records given the Start Row Index and Maximum Rows parameters. There are a handful of techniques that can be used to achieve this aim. In the preceding tutorial we looked at accomplishing this using Microsoft SQL Server 2005 s new `ROW_NUMBER()` ranking function. In short, the `ROW_NUMBER()` ranking function assigns a row number to each row returned by a query that is ranked by a specified sort order. The appropriate subset of records is then obtained by returning a particular section of the numbered results. The following query illustrates how to use this technique to return those products numbered 11 through 20 when ranking the results ordered alphabetically by the `ProductName`:
 
 
-[!code[Main](sorting-custom-paged-data-vb/samples/sample1.xml)]
+[!code-sql[Main](sorting-custom-paged-data-vb/samples/sample1.sql)]
 
 This technique works well for paging using a specific sort order (`ProductName` sorted alphabetically, in this case), but the query needs to be modified to show the results sorted by a different sort expression. Ideally, the above query could be rewritten to use a parameter in the `OVER` clause, like so:
 
 
-[!code[Main](sorting-custom-paged-data-vb/samples/sample2.xml)]
+[!code-sql[Main](sorting-custom-paged-data-vb/samples/sample2.sql)]
 
 Unfortunately, parameterized `ORDER BY` clauses are not allowed. Instead, we must create a stored procedure that accepts a `@sortExpression` input parameter, but uses one of the following workarounds:
 
@@ -52,7 +52,7 @@ While none of these approaches is perfect, I think the third option is the best 
 To implement this functionality, create a new stored procedure in the Northwind database named `GetProductsPagedAndSorted`. This stored procedure should accept three input parameters: `@sortExpression`, an input parameter of type `nvarchar(100`) that specifies how the results should be sorted and is injected directly after the `ORDER BY` text in the `OVER` clause; and `@startRowIndex` and `@maximumRows`, the same two integer input parameters from the `GetProductsPaged` stored procedure examined in the preceding tutorial. Create the `GetProductsPagedAndSorted` stored procedure using the following script:
 
 
-[!code[Main](sorting-custom-paged-data-vb/samples/sample3.xml)]
+[!code-sql[Main](sorting-custom-paged-data-vb/samples/sample3.sql)]
 
 The stored procedure starts by ensuring that a value for the `@sortExpression` parameter has been specified. If it is missing, the results are ranked by `ProductID`. Next, the dynamic SQL query is constructed. Note that the dynamic SQL query here differs slightly from our previous queries used to retrieve all rows from the Products table. In prior examples, we obtained each product s associated category s and supplier s names using a subquery. This decision was made back in the [Creating a Data Access Layer](../introduction/creating-a-data-access-layer-vb.md) tutorial and was done in lieu of using `JOIN` s because the TableAdapter cannot automatically create the associated insert, update, and delete methods for such queries. The `GetProductsPagedAndSorted` stored procedure, however, must use `JOIN` s for the results to be ordered by the category or supplier names.
 
@@ -111,7 +111,7 @@ Finally, create DAL methods that use both the Fill a DataTable and Return a Data
 Now that we ve extended the DAL, we re ready to turn to the BLL. Open the `ProductsBLL` class file and add a new method, `GetProductsPagedAndSorted`. This method needs to accept three input parameters `sortExpression`, `startRowIndex`, and `maximumRows` and should simply call down into the DAL s `GetProductsPagedAndSorted` method, like so:
 
 
-[!code[Main](sorting-custom-paged-data-vb/samples/sample4.xml)]
+[!code-vb[Main](sorting-custom-paged-data-vb/samples/sample4.vb)]
 
 ## Step 3: Configuring the ObjectDataSource to Pass in the SortExpression Parameter
 
@@ -122,7 +122,7 @@ Start by changing the ObjectDataSource s `SelectMethod` from `GetProductsPaged` 
 After making these two changes, the ObjectDataSource s declarative syntax should look similar to the following:
 
 
-[!code[Main](sorting-custom-paged-data-vb/samples/sample5.xml)]
+[!code-aspx[Main](sorting-custom-paged-data-vb/samples/sample5.aspx)]
 
 > [!NOTE] As with the preceding tutorial, ensure that the ObjectDataSource does *not* include the sortExpression, startRowIndex, or maximumRows input parameters in its SelectParameters collection.
 

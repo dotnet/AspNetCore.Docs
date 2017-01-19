@@ -46,7 +46,7 @@ You only need *robots.txt* in staging, so the only publish profile you need to u
 1. In Visual Studio, open *Staging.pubxml*.
 2. At the end of the file, before the closing `</Project>` tag, add the following markup:
 
-    [!code[Main](deploying-extra-files/samples/sample1.xml)]
+    [!code-xml[Main](deploying-extra-files/samples/sample1.xml)]
 
     This code creates a new *target* that will collect additional files to be deployed. A target is composed of one or more tasks that MSBuild will execute based on conditions you specify.
 
@@ -55,13 +55,13 @@ You only need *robots.txt* in staging, so the only publish profile you need to u
     The `DestinationRelativePath` element specifies that the folders and files should be copied to the root folder of the destination web site, in the same file and folder structure as they are found in the *ExtraFiles* folder. If you wanted to copy the *ExtraFiles* folder itself, the `DestinationRelativePath` value would be *ExtraFiles\%(RecursiveDir)%(Filename)%(Extension)*.
 3. At the end of the file, before the closing `</Project>` tag, add the following markup that specifies when to execute the new target.
 
-    [!code[Main](deploying-extra-files/samples/sample2.xml)]
+    [!code-xml[Main](deploying-extra-files/samples/sample2.xml)]
 
     This code causes the new `CustomCollectFiles` target to be executed whenever the target that copies files to the destination folder is executed. There is a separate target for publish versus deployment package creation, and the new target is injected in both targets in case you decide to deploy by using a deployment package instead of publishing.
 
     The *.pubxml* file now looks like the following example:
 
-    [!code[Main](deploying-extra-files/samples/sample3.xml?highlight=53-71)]
+    [!code-xml[Main](deploying-extra-files/samples/sample3.xml?highlight=53-71)]
 4. Save and close the *Staging.pubxml* file.
 
 ## Publish to staging

@@ -205,7 +205,7 @@ If you want to disable keepalive functionality, set `KeepAlive` to null. Keepali
 
 To change the default values for these settings, set them in `Application_Start` in your *Global.asax* file, as shown in the following example. The values shown in the sample code are the same as the default values.
 
-[!code[Main](handling-connection-lifetime-events/samples/sample1.xml)]
+[!code-csharp[Main](handling-connection-lifetime-events/samples/sample1.cs)]
 
 <a id="notifydisconnect"></a>
 
@@ -215,13 +215,13 @@ In some applications you might want to display a message to the user when there 
 
 - Handle the `connectionSlow` event to display a message as soon as SignalR is aware of connection problems, before it goes into reconnecting mode.
 
-    [!code[Main](handling-connection-lifetime-events/samples/sample2.xml)]
+    [!code-javascript[Main](handling-connection-lifetime-events/samples/sample2.js)]
 - Handle the `reconnecting` event to display a message when SignalR is aware of a disconnection and is going into reconnecting mode.
 
-    [!code[Main](handling-connection-lifetime-events/samples/sample3.xml)]
+    [!code-javascript[Main](handling-connection-lifetime-events/samples/sample3.js)]
 - Handle the `disconnected` event to display a message when an attempt to reconnect has timed out. In this scenario, the only way to re-establish a connection with the server again is to restart the SignalR connection by calling the `Start` method, which will create a new connection ID. The following code sample uses a flag to make sure that you issue the notification only after a reconnecting timeout, not after a normal end to the SignalR connection caused by calling the `Stop` method.
 
-    [!code[Main](handling-connection-lifetime-events/samples/sample4.xml)]
+    [!code-csharp[Main](handling-connection-lifetime-events/samples/sample4.cs)]
 
 <a id="continuousreconnect"></a>
 
@@ -229,7 +229,7 @@ In some applications you might want to display a message to the user when there 
 
 In some applications you might want to automatically re-establish a connection after it has been lost and the attempt to reconnect has timed out. To do that, you can call the `Start` method from your `Closed` event handler (`disconnected` event handler on JavaScript clients). You might want to wait a period of time before calling `Start` in order to avoid doing this too frequently when the server or the physical connection are unavailable. The following code sample is for a JavaScript client using the generated proxy.
 
-[!code[Main](handling-connection-lifetime-events/samples/sample5.xml)]
+[!code-javascript[Main](handling-connection-lifetime-events/samples/sample5.js)]
 
 A potential problem to be aware of in mobile clients is that continuous reconnection attempts when the server or physical connection isn't available could cause unnecessary battery drain.
 
@@ -239,7 +239,7 @@ A potential problem to be aware of in mobile clients is that continuous reconnec
 
 SignalR version 2 does not have a built-in server API for disconnecting clients. There are [plans for adding this functionality in the future](https://github.com/SignalR/SignalR/issues/2101). In the current SignalR release, the simplest way to disconnect a client from the server is to implement a disconnect method on the client and call that method from the server. The following code sample shows a disconnect method for a JavaScript client using the generated proxy.
 
-[!code[Main](handling-connection-lifetime-events/samples/sample6.xml)]
+[!code-csharp[Main](handling-connection-lifetime-events/samples/sample6.cs)]
 
 > [!NOTE] 
 > 
@@ -253,8 +253,8 @@ SignalR 2.1 adds an overload to the server `OnDisconnect` event that indicates i
 
 **C# server code: `stopCalled` parameter**
 
-[!code[Main](handling-connection-lifetime-events/samples/sample7.xml?highlight=1,3)]
+[!code-csharp[Main](handling-connection-lifetime-events/samples/sample7.cs?highlight=1,3)]
 
 **JavaScript client code: accessing `lastError` in the `disconnect` event.**
 
-[!code[Main](handling-connection-lifetime-events/samples/sample8.xml?highlight=2-3)]
+[!code-javascript[Main](handling-connection-lifetime-events/samples/sample8.js?highlight=2-3)]

@@ -59,7 +59,7 @@ The database context class performs lazy loading by default. There are two ways 
 - For specific navigation properties, omit the `virtual` keyword when you declare the property.
 - For all navigation properties, set `LazyLoadingEnabled` to `false`. For example, you can put the following code in the constructor of your context class: 
 
-    [!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.xml)]
+    [!code-unknown[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample-25074-1.unknown)]
 
 Lazy loading can mask code that causes performance problems. For example, code that doesn't specify eager or explicit loading but processes a high volume of entities and uses several navigation properties in each iteration might be very inefficient (because of many round trips to the database). An application that performs well in development using an on premise SQL server might have performance problems when moved to Azure SQL Database due to the increased latency and lazy loading. Profiling the database queries with a realistic test load will help you determine if lazy loading is appropriate. For more information see [Demystifying Entity Framework Strategies: Loading Related Data](https://msdn.microsoft.com/en-us/magazine/hh205756.aspx) and [Using the Entity Framework to Reduce Network Latency to SQL Azure](https://msdn.microsoft.com/en-us/magazine/gg309181.aspx).
 
@@ -73,13 +73,13 @@ Create a controller named `CourseController` for the `Course` entity type, using
 
 Open *Controllers\CourseController.cs* and look at the `Index` method:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.cs)]
 
 The automatic scaffolding has specified eager loading for the `Department` navigation property by using the `Include` method.
 
 Open *Views\Course\Index.cshtml* and replace the existing code with the following code. The changes are highlighted:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.xml?highlight=4,15,18,28-30)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cs?highlight=4,15,18,28-30)]
 
 You've made the following changes to the scaffolded code:
 
@@ -90,7 +90,7 @@ You've made the following changes to the scaffolded code:
 
 Notice that for the last column, the scaffolded code displays the `Name` property of the `Department` entity that's loaded into the `Department` navigation property:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs)]
 
 Run the page (select the **Courses** tab on the Contoso University home page) to see the list with department names.
 
@@ -114,13 +114,13 @@ The Instructor Index page shows three different tables. Therefore, you'll create
 
 In the *ViewModels* folder, create *InstructorIndexData.cs* and replace the existing code with the following code:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.cs)]
 
 ### Adding a Style for Selected Rows
 
 To mark selected rows you need a different background color. To provide a style for this UI, add the following highlighted code to the section `/* info and errors */` in *Content\Site.css*, as shown below:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.xml?highlight=2-5)]
+[!code-css[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.css?highlight=2-5)]
 
 ### Creating the Instructor Controller and Views
 
@@ -130,15 +130,15 @@ Create an `InstructorController` controller as shown in the following illustrati
 
 Open *Controllers\InstructorController.cs* and add a `using` statement for the `ViewModels` namespace:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample7.cs)]
 
 The scaffolded code in the `Index` method specifies eager loading only for the `OfficeAssignment` navigation property:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.cs)]
 
 Replace the `Index` method with the following code to load additional related data and put it in the view model:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.cs)]
 
 The method accepts optional route data (`id`) and a query string parameter (`courseID`) that provide the ID values of the selected instructor and selected course, and passes all of the required data to the view. The parameters are provided by the **Select** hyperlinks on the page.
 
@@ -164,46 +164,46 @@ The method accepts optional route data (`id`) and a query string parameter (`cou
 > 
 > The URLs are created by `ActionLink` statements in the Razor view. In the following code, the `id` parameter matches the default route, so `id` is added to the route data.
 > 
-> [!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.xml)]
+> [!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample10.cshtml)]
 > 
 > In the following code, `courseID` doesn't match a parameter in the default route, so it's added as a query string.
 > 
-> [!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.xml)]
+> [!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample11.cshtml)]
 
 
 The code begins by creating an instance of the view model and putting in it the list of instructors. The code specifies eager loading for the `Instructor.OfficeAssignment` and the `Instructor.Courses` navigation property.
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.xml?highlight=3-4)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.cs?highlight=3-4)]
 
 The second `Include` method loads Courses, and for each Course that is loaded it does eager loading for the `Course.Department` navigation property.
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample13.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample13.cs)]
 
 As mentioned previously, eager loading is not required but is done to improve performance. Since the view always requires the `OfficeAssignment` entity, it's more efficient to fetch that in the same query. `Course` entities are required when an instructor is selected in the web page, so eager loading is better than lazy loading only if the page is displayed more often with a course selected than without.
 
 If an instructor ID was selected, the selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is then loaded with the `Course` entities from that instructor's `Courses` navigation property.
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample14.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample14.cs)]
 
 The `Where` method returns a collection, but in this case the criteria passed to that method result in only a single `Instructor` entity being returned. The `Single` method converts the collection into a single `Instructor` entity, which gives you access to that entity's `Courses` property.
 
 You use the [Single](https://msdn.microsoft.com/en-us/library/system.linq.enumerable.single.aspx) method on a collection when you know the collection will have only one item. The `Single` method throws an exception if the collection passed to it is empty or if there's more than one item. An alternative is [SingleOrDefault](https://msdn.microsoft.com/en-us/library/bb342451.aspx), which returns a default value (`null` in this case) if the collection is empty. However, in this case that would still result in an exception (from trying to find a `Courses` property on a `null` reference), and the exception message would less clearly indicate the cause of the problem. When you call the `Single` method, you can also pass in the `Where` condition instead of calling the `Where` method separately:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample15.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample15.cs)]
 
 Instead of:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample16.cs)]
 
 Next, if a course was selected, the selected course is retrieved from the list of courses in the view model. Then the view model's `Enrollments` property is loaded with the `Enrollment` entities from that course's `Enrollments` navigation property.
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.cs)]
 
 ### Modifying the Instructor Index View
 
 In *Views\Instructor\Index.cshtml*, replace the existing code with the following code. The changes are highlighted:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.xml?highlight=1,4,18,22-27,29,43-48)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.cs?highlight=1,4,18,22-27,29,43-48)]
 
 You've made the following changes to the existing code:
 
@@ -213,10 +213,10 @@ You've made the following changes to the existing code:
 - Removed the **FullName** column.
 - Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` is not null. (Because this is a one-to-zero-or-one relationship, there might not be a related `OfficeAssignment` entity.) 
 
-    [!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.xml)]
+    [!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.cshtml)]
 - Added code that will dynamically add `class="selectedrow"` to the `tr` element of the selected instructor. This sets a background color for the selected row using the CSS class that you created earlier. (The `valign` attribute will be useful in the following tutorial when you add a multi-row column to the table.) 
 
-    [!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample20.xml)]
+    [!code-html[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample20.html)]
 - Added a new `ActionLink` labeled **Select** immediately before the other links in each row, which causes the selected instructor ID to be sent to the `Index` method.
 
 Run the application and select the **Instructors** tab. The page displays the `Location` property of related `OfficeAssignment` entities and an empty table cell when there's no related `OfficeAssignment` entity.
@@ -225,7 +225,7 @@ Run the application and select the **Instructors** tab. The page displays the `L
 
 In the *Views\Instructor\Index.cshtml* file, after the closing `table` element (at the end of the file), add the following highlighted code. This displays a list of courses related to an instructor when an instructor is selected.
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample21.xml?highlight=11-46)]
+[!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample21.cshtml?highlight=11-46)]
 
 This code reads the `Courses` property of the view model to display a list of courses. It also provides a `Select` hyperlink that sends the ID of the selected course to the `Index` action method.
 
@@ -238,7 +238,7 @@ Run the page and select an instructor. Now you see a grid that displays courses 
 
 After the code block you just added, add the following code. This displays a list of the students who are enrolled in a course when that course is selected.
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample22.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample22.cs)]
 
 This code reads the `Enrollments` property of the view model in order to display a list of students enrolled in the course.
 
@@ -250,21 +250,21 @@ Run the page and select an instructor. Then select a course to see the list of e
 
 Open *InstructorController.cs* and look at how the `Index` method gets the list of enrollments for a selected course:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample23.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample23.cs)]
 
 When you retrieved the list of instructors, you specified eager loading for the `Courses` navigation property and for the `Department` property of each course. Then you put the `Courses` collection in the view model, and now you're accessing the `Enrollments` navigation property from one entity in that collection. Because you didn't specify eager loading for the `Course.Enrollments` navigation property, the data from that property is appearing in the page as a result of lazy loading.
 
 If you disabled lazy loading without changing the code in any other way, the `Enrollments` property would be null regardless of how many enrollments the course actually had. In that case, to load the `Enrollments` property, you'd have to specify either eager loading or explicit loading. You've already seen how to do eager loading. In order to see an example of explicit loading, replace the `Index` method with the following code, which explicitly loads the `Enrollments` property. The code changed are highlighted.
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample24.xml?highlight=20-27)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample24.cs?highlight=20-27)]
 
 After getting the selected `Course` entity, the new code explicitly loads that course's `Enrollments` navigation property:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample25.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample25.cs)]
 
 Then it explicitly loads each `Enrollment` entity's related `Student` entity:
 
-[!code[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample26.xml)]
+[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample26.cs)]
 
 Notice that you use the `Collection` method to load a collection property, but for a property that holds just one entity, you use the `Reference` method. You can run the Instructor Index page now and you'll see no difference in what's displayed on the page, although you've changed how the data is retrieved.
 

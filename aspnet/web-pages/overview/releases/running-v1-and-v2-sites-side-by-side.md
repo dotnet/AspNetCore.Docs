@@ -44,7 +44,7 @@ Here are some things to remember when you install the Web Pages with WebMatrix:
 - By default, existing Web Pages applications will run as the latest version on your computer. (The assemblies are installed in the global assembly cache (GAC) and are used automatically.)
 - If you want to run a site using a different version of ASP.NET Web Pages, you can configure the site to do that. If your site doesn't already have a *web.config* file in the root of the site, create a new one and copy the following XML into it, overwriting the existing content. If the site already contains a *web.config* file, add an `<appSettings>` element like the following one to the `<configuration>` section.
 
-    [!code[Main](running-v1-and-v2-sites-side-by-side/samples/sample1.xml)]
+    [!code-xml[Main](running-v1-and-v2-sites-side-by-side/samples/sample1.xml)]
 `- If you do not specify a version in the *web.config* file, a site is deployed as the latest version. (The assemblies are copied to the *bin* folder in the deployed site.)
 - New applications that you create using the site templates in Web Matrix include the Web Pages version assemblies in the site's *bin* folder.
 

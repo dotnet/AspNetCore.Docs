@@ -82,7 +82,7 @@ By default, the role cache cookie mechanism is disabled. It can be enabled throu
 
 Let's configure our application to use non-persistent role cache cookies. To accomplish this, update the `<roleManager>` element in `Web.config` to include the following cookie-related attributes:
 
-[!code[Main](role-based-authorization-cs/samples/sample1.xml)]
+[!code-xml[Main](role-based-authorization-cs/samples/sample1.xml)]
 
 I updated the `<roleManager>` element by adding three attributes: `cacheRolesInCookie`, `createPersistentCookie`, and `cookieProtection`. By setting `cacheRolesInCookie` to `true`, the `RoleManagerModule` will now automatically cache the user's roles in a cookie rather than having to lookup the user's role information on each request. I explicitly set the `createPersistentCookie` and `cookieProtection` attributes to `false` and `All`, respectively. Technically, I didn't need to specify values for these attributes since I just assigned them to their default values, but I put them here to make it explicitly clear that I am not using persistent cookies and that the cookie is both encrypted and validated.
 
@@ -100,7 +100,7 @@ As discussed in the <a id="_msoanchor_6"></a>[*User-Based Authorization*](../mem
 
 For example, the URL authorization rules grant access to those users in the Administrators and Supervisors roles, but deny access to all others:
 
-[!code[Main](role-based-authorization-cs/samples/sample2.xml)]
+[!code-xml[Main](role-based-authorization-cs/samples/sample2.xml)]
 
 The `<allow>` element in the above markup states that the Administrators and Supervisors roles are allowed; the `<deny>` element instructs that *all* users are denied.
 
@@ -116,7 +116,7 @@ To accomplish this, start by adding a `Web.config` file to the `Roles` folder.
 
 Next, add the following configuration markup to `Web.config`:
 
-[!code[Main](role-based-authorization-cs/samples/sample3.xml)]
+[!code-xml[Main](role-based-authorization-cs/samples/sample3.xml)]
 
 The `<authorization>` element in the `<system.web>` section indicates that only users in the Administrators role may access the ASP.NET resources in the `Roles` directory. The `<location>` element defines an alternate set of URL authorization rules for the `RoleBasedAuthorization.aspx` page, allowing all users to visit the page.
 
@@ -170,17 +170,17 @@ For the "Email" TemplateField, add a TextBox named `Email` to its `EditItemTempl
 
 After configuring these TemplateFields, their declarative markup should look similar to the following:
 
-[!code[Main](role-based-authorization-cs/samples/sample4.xml)]
+[!code-aspx[Main](role-based-authorization-cs/samples/sample4.aspx)]
 
 When editing or deleting a user account we will need to know that user's `UserName` property value. Set the GridView's `DataKeyNames` property to "UserName" so that this information is available through the GridView's `DataKeys` collection.
 
 Finally, add a ValidationSummary control to the page and set its `ShowMessageBox` property to True and its `ShowSummary` property to False. With these settings, the ValidationSummary will display a client-side alert if the user attempts to edit a user account with a missing or invalid email address.
 
-[!code[Main](role-based-authorization-cs/samples/sample5.xml)]
+[!code-aspx[Main](role-based-authorization-cs/samples/sample5.aspx)]
 
 We have now completed this page's declarative markup. Our next task is to bind the set of user accounts to the GridView. Add a method named `BindUserGrid` to the `RoleBasedAuthorization.aspx` page's code-behind class that binds the `MembershipUserCollection` returned by `Membership.GetAllUsers` to the `UserGrid` GridView. Call this method from the `Page_Load` event handler on the first page visit.
 
-[!code[Main](role-based-authorization-cs/samples/sample6.xml)]
+[!code-csharp[Main](role-based-authorization-cs/samples/sample6.cs)]
 
 With this code in place, visit the page through a browser. As Figure 7 shows, you should see a GridView listing information about each user account in the system.
 
@@ -197,7 +197,7 @@ The GridView control offers built-in editing and deleting support when the contr
 
 Start by creating the event handlers for the GridView's `RowEditing`, `RowCancelingEdit`, and `RowUpdating` events and then add the following code:
 
-[!code[Main](role-based-authorization-cs/samples/sample7.xml)]
+[!code-csharp[Main](role-based-authorization-cs/samples/sample7.cs)]
 
 The `RowEditing` and `RowCancelingEdit` event handlers simply set the GridView's `EditIndex` property and then rebind the list of user accounts to the grid. The interesting stuff happens in the `RowUpdating` event handler. This event handler starts by ensuring that the data is valid and then grabs the `UserName` value of the edited user account from the `DataKeys` collection. The `Email` and `Comment` TextBoxes in the two TemplateFields' `EditItemTemplate` s are then programmatically referenced. Their `Text` properties contain the edited email address and comment.
 
@@ -205,7 +205,7 @@ In order to update a user account through the Membership API we need to first ge
 
 Next, create the `RowDeleting` event handler and then add the following code:
 
-[!code[Main](role-based-authorization-cs/samples/sample8.xml)]
+[!code-csharp[Main](role-based-authorization-cs/samples/sample8.cs)]
 
 The above event handler starts by grabbing the `UserName` value from the GridView's `DataKeys` collection; this `UserName` value is then passed into the Membership class's [`DeleteUser` method](https://msdn.microsoft.com/en-us/library/system.web.security.membership.deleteuser.aspx). The `DeleteUser` method deletes the user account from the system, including related membership data (such as what roles this user belongs to). After deleting the user, the grid's `EditIndex` is set to -1 (in case the user clicked Delete while another row was in edit mode) and the `BindUserGrid` method is called.
 
@@ -222,7 +222,7 @@ As we've seen in past tutorials, the LoginView control is useful for displaying 
 
 Start by adding a LoginView above the `UserGrid` GridView. As we've discussed earlier, the LoginView control has two built-in templates: `AnonymousTemplate` and `LoggedInTemplate`. Enter a brief message in both of these templates that informs the user that they cannot edit or delete any user information.
 
-[!code[Main](role-based-authorization-cs/samples/sample9.xml)]
+[!code-aspx[Main](role-based-authorization-cs/samples/sample9.aspx)]
 
 In addition to the `AnonymousTemplate` and `LoggedInTemplate`, the LoginView control can include *RoleGroups*, which are role-specific templates. Each RoleGroup contains a single property, `Roles`, which specifies what roles the RoleGroup applies to. The `Roles` property can be set to a single role (like "Administrators") or to a comma-delimited list of roles (like "Administrators, Supervisors").
 
@@ -238,7 +238,7 @@ Click OK to close the RoleGroup Collection Editor; this updates the LoginView's 
 
 Edit the RoleGroups so that users in the Supervisors role are displayed instructions on how to edit user accounts, while users in the Administrators role are shown instructions for editing and deleting. After making these changes, your LoginView's declarative markup should look similar to the following.
 
-[!code[Main](role-based-authorization-cs/samples/sample10.xml)]
+[!code-aspx[Main](role-based-authorization-cs/samples/sample10.aspx)]
 
 After making these changes, save the page and then visit it through a browser. First visit the page as an anonymous user. You should be shown the message, "You are not logged into the system. Therefore you cannot edit or delete any user information." Then log in as an authenticated user, but one that is neither in the Supervisors nor Administrators role. This time you should see the message, "You are not a member of the Supervisors or Administrators roles. Therefore you cannot edit or delete any user information."
 
@@ -279,13 +279,13 @@ The easiest way to programmatically reference controls in a CommandField is to f
 
 Update the Edit and Delete LinkButtons in the `ItemTemplate`, setting their `ID` properties to values of `EditButton` and `DeleteButton`, respectively.
 
-[!code[Main](role-based-authorization-cs/samples/sample11.xml)]
+[!code-aspx[Main](role-based-authorization-cs/samples/sample11.aspx)]
 
 Whenever data is bound to the GridView, the GridView enumerates the records in its `DataSource` property and generates a corresponding `GridViewRow` object. As each `GridViewRow` object is created, the `RowCreated` event is fired. In order to hide the Edit and Delete buttons for unauthorized users, we need to create an event handler for this event and programmatically reference the Edit and Delete LinkButtons, setting their `Visible` properties accordingly.
 
 Create an event handler the `RowCreated` event and then add the following code:
 
-[!code[Main](role-based-authorization-cs/samples/sample12.xml)]
+[!code-csharp[Main](role-based-authorization-cs/samples/sample12.cs)]
 
 Keep in mind that the `RowCreated` event fires for *all* of the GridView rows, including the header, the footer, the pager interface, and so forth. We only want to programmatically reference the Edit and Delete LinkButtons if we are dealing with a data row not in edit mode (since the row in edit mode has Update and Cancel buttons instead of Edit and Delete). This check is handled by the `if` statement.
 
@@ -332,7 +332,7 @@ We looked at using the `PrincipalPermission` attribute back in the <a id="_msoan
 
 Let's demonstrate using the `PrincipalPermission` attribute on the GridView's `RowUpdating` and `RowDeleting` event handlers to prohibit execution for non-authorized users. All we need to do is add the appropriate attribute atop each function definition:
 
-[!code[Main](role-based-authorization-cs/samples/sample13.xml)]
+[!code-csharp[Main](role-based-authorization-cs/samples/sample13.cs)]
 
 The attribute for the `RowUpdating` event handler dictates that only users in the Administrators or Supervisors roles can execute the event handler, where as the attribute on the `RowDeleting` event handler limits the execution to users in the Administrators role.
 

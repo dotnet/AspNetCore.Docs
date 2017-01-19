@@ -57,13 +57,13 @@ Copy the following into the file, completely replacing what's there already.
 > [!NOTE] When you copy code or markup from the examples into a page, the indentation and alignment might not be the same as in the tutorial. Indentation and alignment don't affect how the code runs, though.
 
 
-[!code[Main](intro-to-web-pages-programming/samples/sample1.xml)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample1.cshtml)]
 
 ## Examining the Example Page
 
 Most of what you see is ordinary HTML. However, at the top there's this code block:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample2.xml)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample2.cshtml)]
 
 Notice the following things about this code block:
 
@@ -87,7 +87,7 @@ As you can see from the example, DateTime is an object that lets you program dat
 
 In the body of the page, notice the following:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample3.xml)]
+[!code-html[Main](intro-to-web-pages-programming/samples/sample3.html)]
 
 Again, the @ character tells ASP.NET that what follows is code, not HTML. In the markup you can add @ followed by a code expression, and ASP.NET will render the value of that expression right at that point. In the example, @a will render whatever the value is of the variable named a, @product renders whatever is in the variable named product, and so on.
 
@@ -135,7 +135,7 @@ In WebMatrix, create a page and name it *TestRazorPart2.cshtml*. (In the ribbon,
 
 Replace the contents of that page with the following:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample4.xml)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample4.cshtml)]
 
 The code block at the top initializes a variable named message with some text. In the body of the page, the contents of the message variable are displayed inside a &lt;p&gt; element. The markup also contains an &lt;input&gt; element to create a **Submit** button.
 
@@ -143,19 +143,19 @@ Run the page to see how it works now. For now, it's basically a static page, eve
 
 Go back to WebMatrix. Inside the code block, add the following highlighted code *after* the line that initializes message:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample5.xml?highlight=4-6)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample5.cshtml?highlight=4-6)]
 
 ### The if { } block
 
 What you just added was an if condition. In code, the if condition has a structure like this:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample6.xml)]
+[!code-csharp[Main](intro-to-web-pages-programming/samples/sample6.cs)]
 
 The condition to test is in parentheses. It has to be a value or an expression that returns true or false. If the condition is true, ASP.NET runs the statement or statements that are inside the braces. (Those are the *then* part of the *if-then* logic.) If the condition is false, the block of code is skipped.
 
 Here are a few examples of conditions you can test in an if statement:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample7.xml)]
+[!code-csharp[Main](intro-to-web-pages-programming/samples/sample7.cs)]
 
 You can test variables against values or against expressions by using a *logical operator* or *comparison operator*: equal to (==), greater than (&gt;), less than (&lt;), greater than or equal to (&gt;=), and less than or equal to (&lt;=). The != operator means not equal to — for example, if(a != 0) means *if* *a**is not equal to 0*.
 
@@ -172,7 +172,7 @@ You can combine conditions by using a logical AND (&amp;&amp; operator) or logic
 
 One final thing about if blocks: an if block can be followed by an else block. An else block is useful is you have to execute different code when the condition is false. Here's a simple example:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample8.xml)]
+[!code-csharp[Main](intro-to-web-pages-programming/samples/sample8.cs)]
 
 You'll see some examples in later tutorials in this series where using an else block is useful.
 
@@ -186,7 +186,7 @@ Click the **Submit** button. The page is requested again. As before, the message
 
 Now add an if condition in the markup. Below the &lt;p&gt; element that contains the **Submit** button, add the following markup:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample9.xml)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample9.cshtml)]
 
 You're adding code inside the markup, so you have to start with @. Then there's an if test similar to the one you added earlier up in the code block. Inside the braces, though, you're adding ordinary HTML — at least, it's ordinary until it gets to @DateTime.Now. This is another little bit of Razor code, so again you have to add @ in front of it.
 
@@ -202,11 +202,11 @@ One more test. This time, you'll add an if block that tests a value named show t
 
 At the bottom (but inside) the code block at the top of the page, add the following:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample10.xml)]
+[!code-csharp[Main](intro-to-web-pages-programming/samples/sample10.cs)]
 
 The complete code block now look like the following example. (Remember that when you copy the code into your page, the indentation might look different. But that doesn't affect how the code runs.)
 
-[!code[Main](intro-to-web-pages-programming/samples/sample11.xml)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample11.cshtml)]
 
 The new code in the block initializes a variable named showMessage to false. It then does an if test to look for a value in the query string. When you first request the page, it has a URL like this one:
 
@@ -229,11 +229,11 @@ There's a trick here, as you can see. Like the name says, the query string is a 
 
 In the markup of the page, remove or comment out this element (here it's shown commented out):
 
-[!code[Main](intro-to-web-pages-programming/samples/sample12.xml)]
+[!code-html[Main](intro-to-web-pages-programming/samples/sample12.html)]
 
 Right where you removed or commented out that text, add the following:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample13.xml)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample13.cshtml)]
 
 The if test says that if the showMessage variable is true, render a &lt;p&gt; element with the value of the message variable.
 
@@ -312,7 +312,7 @@ This feature is known as *IntelliSense*. It helps you code by providing context-
 
 Press G on the keyboard, and you see that IntelliSense finds the GetHtml method. Press Tab. IntelliSense inserts the selected method (GetHtml) for you. Type an open parenthesis, and notice that the closing parenthesis is automatically added. Type your email address in quotation marks between the two parenthesis. If you have a Gravatar account, your profile picture will be returned. If you do not have a Gravatar account, a default image is returned. When you're done, the line looks like this:
 
-[!code[Main](intro-to-web-pages-programming/samples/sample14.xml)]
+[!code-unknown[Main](intro-to-web-pages-programming/samples/sample-38464-14.unknown)]
 
 Now view the page in a browser. Either your picture or the default image is displayed, depending on whether you have a Gravatar account.
 
@@ -322,7 +322,7 @@ To get an idea of what the helper is doing for you, view the source of the page 
 
 The GetHtml method also enables you to customize the image by providing other parameters. The following code shows how to request an image has a width and height of 40 pixels, and uses a specified default image named **wavatar** if the specified account does not exist.
 
-[!code[Main](intro-to-web-pages-programming/samples/sample15.xml)]
+[!code-unknown[Main](intro-to-web-pages-programming/samples/sample-38464-15.unknown)]
 
 This code produces something like the following result (the default image will randomly vary).
 
@@ -336,15 +336,15 @@ The next tutorial introduces you to working with a database. In that tutorial, y
 
 ## Complete Listing for TestRazor Page
 
-[!code[Main](intro-to-web-pages-programming/samples/sample16.xml)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample16.cshtml)]
 
 ## Complete Listing for TestRazorPart2 Page
 
-[!code[Main](intro-to-web-pages-programming/samples/sample17.xml)]
+[!code-csharp[Main](intro-to-web-pages-programming/samples/sample17.cs)]
 
 ## Complete Listing for GravatarTest Page
 
-[!code[Main](intro-to-web-pages-programming/samples/sample18.xml)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample18.cshtml)]
 
 ## Additional Resources
 

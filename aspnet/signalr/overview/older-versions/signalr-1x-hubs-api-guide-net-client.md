@@ -77,7 +77,7 @@ If the version of SignalR that you have on the client is different from the vers
 
 Before you can establish a connection, you have to create a `HubConnection` object and create a proxy. To establish the connection, call the `Start` method on the `HubConnection` object.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample1.xml?highlight=1,4)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample1.cs?highlight=1,4)]
 
 > [!NOTE] For JavaScript clients you have to register at least one event handler before calling the `Start` method to establish the connection. This is not necessary for .NET clients. For JavaScript clients, the generated proxy code automatically creates proxies for all Hubs that exist on the server, and registering a handler is how you indicate which Hubs your client intends to use. But for a .NET client you create Hub proxies manually, so SignalR assumes that you will be using any Hub that you create a proxy for.
 
@@ -86,9 +86,9 @@ The sample code uses the default "/signalr" URL to connect to your SignalR servi
 
 The `Start` method executes asynchronously. To make sure that subsequent lines of code don't execute until after the connection is established, use `await` in an ASP.NET 4.5 asynchronous method or `.Wait()` in a synchronous method. Don't use `.Wait()` in a WinRT client.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample2.xml?highlight=1)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample2.cs?highlight=1)]
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample3.xml?highlight=1)]
+[!code-unknown[Main](signalr-1x-hubs-api-guide-net-client/samples/sample-47182-3.unknown?highlight=1)]
 
 The `HubConnection` class is thread-safe.
 
@@ -116,7 +116,7 @@ Before you establish a connection, you can specify any of the following options:
 
 In WPF clients, you might have to increase the maximum number of concurrent connections from its default value of 2. The recommended value is 10.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample4.xml?highlight=4)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample4.cs?highlight=4)]
 
 For more information, see [ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.defaultconnectionlimit.aspx).
 
@@ -126,11 +126,11 @@ For more information, see [ServicePointManager.DefaultConnectionLimit](https://m
 
 If you want to send data to the server when the client connects, you can add query string parameters to the connection object. The following example shows how to set a query string parameter in client code.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample5.xml)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample5.cs)]
 
 The following example shows how to read a query string parameter in server code.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample6.xml?highlight=5)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample6.cs?highlight=5)]
 
 <a id="transport"></a>
 
@@ -138,7 +138,7 @@ The following example shows how to read a query string parameter in server code.
 
 As part of the process of connecting, a SignalR client normally negotiates with the server to determine the best transport that is supported by both server and client. If you already know which transport you want to use, you can bypass this negotiation process. To specify the transport method, pass in a transport object to the Start method. The following example shows how to specify the transport method in client code.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample7.xml?highlight=4)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample7.cs?highlight=4)]
 
 The [Microsoft.AspNet.SignalR.Client.Transports](https://msdn.microsoft.com/en-us/library/jj918090(v=vs.111).aspx) namespace includes the following classes that you can use to specify the transport.
 
@@ -157,7 +157,7 @@ For information about how to check the transport method in server code, see [ASP
 
 To set HTTP headers, use the `Headers` property on the connection object. The following example shows how to add an HTTP header.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample8.xml?highlight=2)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample8.cs?highlight=2)]
 
 <a id="clientcertificate"></a>
 
@@ -165,7 +165,7 @@ To set HTTP headers, use the `Headers` property on the connection object. The fo
 
 To add client certificates, use the `AddClientCertificate` method on the connection object.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample9.xml?highlight=2)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample9.cs?highlight=2)]
 
 <a id="proxy"></a>
 
@@ -175,21 +175,21 @@ In order to define methods on the client that a Hub can call from the server, an
 
 **Hub class on server**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample10.xml?highlight=1)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample10.cs?highlight=1)]
 
 **Create client proxy for the Hub class**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample11.xml?highlight=2)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample11.cs?highlight=2)]
 
 If you decorate your Hub class with a `HubName` attribute, use that name.
 
 **Hub class on server**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample12.xml)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample12.cs)]
 
 **Create client proxy for the Hub class**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample13.xml?highlight=2)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample13.cs?highlight=2)]
 
 The proxy object is thread-safe. In fact, if you call `HubConnection.CreateHubProxy` multiple times with the same `hubName`, you get the same cached `IHubProxy` object.
 
@@ -211,11 +211,11 @@ If the method you're handling does not have parameters, use the non-generic over
 
 **Server code calling client method without parameters**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample14.xml?highlight=5)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample14.cs?highlight=5)]
 
 **WinRT Client code for method called from server without parameters ([see WPF and Silverlight examples later in this topic](#wpfsl))**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample15.xml)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample15.cs)]
 
 <a id="clientmethodswithparmtypes"></a>
 
@@ -225,15 +225,15 @@ If the method you're handling has parameters, specify the types of the parameter
 
 **Server code calling client method with a parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample16.xml?highlight=3)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample16.cs?highlight=3)]
 
 **The Stock class used for the parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample17.xml)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample17.cs)]
 
 **WinRT Client code for a method called from server with a parameter ([see WPF and Silverlight examples later in this topic](#wpfsl))**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample18.xml?highlight=1,5)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample18.cs?highlight=1,5)]
 
 <a id="clientmethodswithdynamparms"></a>
 
@@ -243,15 +243,15 @@ As an alternative to specifying parameters as generic types of the `On` method, 
 
 **Server code calling client method with a parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample19.xml?highlight=3)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample19.cs?highlight=3)]
 
 **The Stock class used for the parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample20.xml)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample20.cs)]
 
 **WinRT Client code for a method called from server with a parameter, using a dynamic object for the parameter ([see WPF and Silverlight examples later in this topic](#wpfsl))**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample21.xml?highlight=1,5)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample21.cs?highlight=1,5)]
 
 <a id="removehandler"></a>
 
@@ -261,11 +261,11 @@ To remove a handler, call its `Dispose` method.
 
 **Client code for a method called from server**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample22.xml?highlight=1)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample22.cs?highlight=1)]
 
 **Client code to remove the handler**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample23.xml?highlight=1)]
+[!code-unknown[Main](signalr-1x-hubs-api-guide-net-client/samples/sample-47182-23.unknown?highlight=1)]
 
 <a id="callserver"></a>
 
@@ -277,29 +277,29 @@ If the server method has no return value, use the non-generic overload of the `I
 
 **Server code for a method that has no return value**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample24.xml?highlight=3)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample24.cs?highlight=3)]
 
 **Client code calling a method that has no return value**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample25.xml?highlight=1)]
+[!code-unknown[Main](signalr-1x-hubs-api-guide-net-client/samples/sample-47182-25.unknown?highlight=1)]
 
 If the server method has a return value, specify the return type as the generic type of the `Invoke` method.
 
 **Server code for a method that has a return value and takes a complex type parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample26.xml?highlight=1)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample26.cs?highlight=1)]
 
 **The Stock class used for the parameter and return value**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample27.xml)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample27.cs)]
 
 **Client code calling a method that has a return value and takes a complex type parameter, in an ASP.NET 4.5 async method**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample28.xml?highlight=1-2)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample28.cs?highlight=1-2)]
 
 **Client code calling a method that has a return value and takes a complex type parameter, in a synchronous method**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample29.xml?highlight=1-2)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample29.cs?highlight=1-2)]
 
 The `Invoke` method executes asynchronously and returns a `Task` object. If you don't specify `await` or `.Wait()`, the next line of code will execute before the method that you invoke has finished executing.
 
@@ -318,7 +318,7 @@ SignalR provides the following connection lifetime events that you can handle:
 
 For example, if you want to display warning messages for errors that are not fatal but cause intermittent connection problems, such as slowness or frequent dropping of the connection, handle the `ConnectionSlow` event.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample30.xml)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample30.cs)]
 
 For more information, see [Understanding and Handling Connection Lifetime Events in SignalR](../guide-to-the-api/handling-connection-lifetime-events.md).
 
@@ -328,17 +328,17 @@ For more information, see [Understanding and Handling Connection Lifetime Events
 
 If you don't explicitly enable detailed error messages on the server, the exception object that SignalR returns after an error contains minimal information about the error. For example, if a call to `newContosoChatMessage` fails, the error message in the error object contains "`There was an error invoking Hub method 'contosoChatHub.newContosoChatMessage'.`" Sending detailed error messages to clients in production is not recommended for security reasons, but if you want to enable detailed error messages for troubleshooting purposes, use the following code on the server.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample31.xml?highlight=2)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample31.cs?highlight=2)]
 
 <a id="handleerrors"></a>
 
 To handle errors that SignalR raises, you can add a handler for the `Error` event on the connection object.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample32.xml)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample32.cs)]
 
 To handle errors from method invocations, wrap the code in a try-catch block.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample33.xml)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample33.cs)]
 
 <a id="logging"></a>
 
@@ -346,7 +346,7 @@ To handle errors from method invocations, wrap the code in a try-catch block.
 
 To enable client-side logging, set the `TraceLevel` and `TraceWriter` properties on the connection object.
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample34.xml?highlight=2-3)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample34.cs?highlight=2-3)]
 
 <a id="wpfsl"></a>
 
@@ -358,40 +358,40 @@ The code samples shown earlier for defining client methods that the server can c
 
 **WPF client code for method called from server without parameters**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample35.xml?highlight=1)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample35.cs?highlight=1)]
 
 **Silverlight client code for method called from server without parameters**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample36.xml?highlight=1)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample36.cs?highlight=1)]
 
 **Console application client code for method called from server without parameters**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample37.xml?highlight=1)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample37.cs?highlight=1)]
 
 ### Methods with parameters, specifying the parameter types
 
 **WPF client code for a method called from server with a parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample38.xml?highlight=1,4)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample38.cs?highlight=1,4)]
 
 **Silverlight client code for a method called from server with a parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample39.xml?highlight=1,5)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample39.cs?highlight=1,5)]
 
 **Console application client code for a method called from server with a parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample40.xml?highlight=1-2)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample40.cs?highlight=1-2)]
 
 ### Methods with parameters, specifying dynamic objects for the parameters
 
 **WPF client code for a method called from server with a parameter, using a dynamic object for the parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample41.xml?highlight=1,4)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample41.cs?highlight=1,4)]
 
 **Silverlight client code for a method called from server with a parameter, using a dynamic object for the parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample42.xml?highlight=1,5)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample42.cs?highlight=1,5)]
 
 **Console application client code for a method called from server with a parameter, using a dynamic object for the parameter**
 
-[!code[Main](signalr-1x-hubs-api-guide-net-client/samples/sample43.xml?highlight=1-2)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample43.cs?highlight=1-2)]

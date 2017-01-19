@@ -26,11 +26,11 @@ An understanding of caching is important for a well-performing ASP.NET applicati
 
 Cache profiles allow developers to define specific cache settings that can then be applied to individual pages. For example, if you have some pages that should be expired from cache after 12 hours, you can easily create a cache profile that can be applied to those pages. To add a new cache profile, use the &lt;outputCacheSettings&gt; section in the configuration file. For example, below is the configuration of a cache profile called *twoday* that configures a cache duration of 12 hours.
 
-[!code[Main](caching/samples/sample1.xml)]
+[!code-xml[Main](caching/samples/sample1.xml)]
 
 To apply this cache profile to a particular page, use the CacheProfile attribute of the @ OutputCache directive as shown below:
 
-[!code[Main](caching/samples/sample2.xml)]
+[!code-aspx[Main](caching/samples/sample2.aspx)]
 
 ## Custom Cache Dependencies
 
@@ -38,17 +38,17 @@ ASP.NET 1.x developers cried out for custom cache dependencies. In ASP.NET 1.x, 
 
 For example, the code below creates a new custom cache dependency based on a file called stuff.xml located in the root of the Web application:
 
-[!code[Main](caching/samples/sample3.xml)]
+[!code-csharp[Main](caching/samples/sample3.cs)]
 
 In this scenario, when the stuff.xml file changes, the cached item is invalidated.
 
 It is also possible to create a custom cache dependency using cache keys. Using this method, the removal of the cache key will invalidate the cached data. The following example illustrates this:
 
-[!code[Main](caching/samples/sample4.xml)]
+[!code-csharp[Main](caching/samples/sample4.cs)]
 
 To invalidate the item that was inserted above, simply remove the item that was inserted into cache to act as the cache key.
 
-[!code[Main](caching/samples/sample5.xml)]
+[!code-csharp[Main](caching/samples/sample5.cs)]
 
 Note that the key of the item that acts as the cache key must be the same as the value added to the array of cache keys.
 
@@ -63,7 +63,7 @@ In order for a SQL cache dependency using the polling-based model to work correc
 
 The following command line registers the Products table in the Northwind database located on a SQL Server instance named *dbase* for SQL cache dependency.
 
-[!code[Main](caching/samples/sample6.xml)]
+[!code-console[Main](caching/samples/sample6.cmd)]
 
 The following is an explanation of the command line switches used in the above command:
 
@@ -109,7 +109,7 @@ There are several steps that are required for configuring polling-based SQL cach
 
 In addition to adding a connection string as discussed in a previous module, you must also configure a &lt;cache&gt; element with a &lt;sqlCacheDependency&gt; element as shown below:
 
-[!code[Main](caching/samples/sample7.xml)]
+[!code-xml[Main](caching/samples/sample7.xml)]
 
 This configuration enables a SQL cache dependency on the *pubs* database. Note that the pollTime attribute in the &lt;sqlCacheDependency&gt; element defaults to 60000 milliseconds or 1 minute. (This value cannot be less than 500 milliseconds.) In this example, the &lt;add&gt; element adds a new database and overrides the pollTime, setting it to 9000000 milliseconds.
 
@@ -117,15 +117,15 @@ This configuration enables a SQL cache dependency on the *pubs* database. Note t
 
 The next step is to configure the SqlCacheDependency. The easiest way to accomplish that is to specify the value for the SqlDependency attribute in the @ Outcache directive as follows:
 
-[!code[Main](caching/samples/sample8.xml)]
+[!code-aspx[Main](caching/samples/sample8.aspx)]
 
 In the above @ OutputCache directive, a SQL cache dependency is configured for the *authors*table in the *pubs* database. Multiple dependencies can be configured by separating them with a semi-colon like so:
 
-[!code[Main](caching/samples/sample9.xml)]
+[!code-aspx[Main](caching/samples/sample9.aspx)]
 
 Another method of configuring the SqlCacheDependency is to do so programmatically. The following code creates a new SQL cache dependency on the *authors* table in the *pubs* database.
 
-[!code[Main](caching/samples/sample10.xml)]
+[!code-csharp[Main](caching/samples/sample10.cs)]
 
 One of the benefits of programmatically defining the SQL cache dependency is that you can handle any exceptions that might occur. For example, if you attempt to define a SQL cache dependency for a database that has not been enabled for notification, a **DatabaseNotEnabledForNotificationException** exception will be thrown. In that case, you can attempt to enable the database for notifications by calling the **SqlCacheDependencyAdmin.EnableNotifications** method and passing it the database name.
 
@@ -133,7 +133,7 @@ Likewise, if you attempt to define a SQL cache dependency for a table that has n
 
 The following code sample illustrates how to properly configure exception handling when configuring a SQL cache dependency.
 
-[!code[Main](caching/samples/sample11.xml)]
+[!code-csharp[Main](caching/samples/sample11.cs)]
 
 More Information: [https://msdn.microsoft.com/en-us/library/t9x04ed2.aspx](https://msdn.microsoft.com/en-us/library/t9x04ed2.aspx)
 
@@ -145,20 +145,20 @@ The simplest way to enable query-based notification is to do so declaratively by
 
 The following example configures a data source control for SQL cache dependency:
 
-[!code[Main](caching/samples/sample12.xml)]
+[!code-aspx[Main](caching/samples/sample12.aspx)]
 
 In this case, if the query specified in the **SelectCommand** returns a different result than it did originally, the results that are cached are invalidated.
 
 You can also specify that all of your data sources be enabled for SQL cache dependencies by setting the **SqlDependency** attribute of the **@ OutputCache** directive to **CommandNotification**. The example below illustrates this.
 
-[!code[Main](caching/samples/sample13.xml)]
+[!code-aspx[Main](caching/samples/sample13.aspx)]
 
 > [!NOTE] For more information on query notifications in SQL Server 2005, see the SQL Server Books Online.
 
 
 Another method of configuring a query-based SQL cache dependency is to do so programmatically using the SqlCacheDependency class. The following code sample illustrates how this is accomplished.
 
-[!code[Main](caching/samples/sample14.xml)]
+[!code-csharp[Main](caching/samples/sample14.cs)]
 
 More Information: [https://msdn.microsoft.com/library/default.asp?url=/library/enus/dnvs05/html/querynotification.asp](https://msdn.microsoft.com/library/default.asp?url=/library/enus/dnvs05/html/querynotification.asp)
 
@@ -270,15 +270,15 @@ There is some additional information that you should be aware of regarding cache
 2. Add a new XML file called cache.xml and save it to the root of the Web application.
 3. Add the following code to the Page\_Load method in the code-behind of default.aspx: 
 
-    [!code[Main](caching/samples/sample15.xml)]
+    [!code-csharp[Main](caching/samples/sample15.cs)]
 4. Add the following to the top of default.aspx in source view: 
 
-    [!code[Main](caching/samples/sample16.xml)]
+    [!code-aspx[Main](caching/samples/sample16.aspx)]
 5. Browse Default.aspx. What does the time say?
 6. Refresh the browser. What does the time say?
 7. Open cache.xml and add the following code: 
 
-    [!code[Main](caching/samples/sample17.xml)]
+    [!code-xml[Main](caching/samples/sample17.xml)]
 8. Save cache.xml.
 9. Refresh your browser. What does the time say?
 10. Explain why the time updated instead of displaying the previously cached values:
@@ -290,17 +290,17 @@ This lab uses the project you created in the previous module that allows for edi
 1. Open the project in Visual Studio 2005.
 2. Run the aspnet\_regsql utility against the Northwind database to enable the database and the Products table. Use the following command from a Visual Studio Command Prompt: 
 
-    [!code[Main](caching/samples/sample18.xml)]
+    [!code-console[Main](caching/samples/sample18.cmd)]
 3. Add the following to your web.config file: 
 
-    [!code[Main](caching/samples/sample19.xml)]
+    [!code-xml[Main](caching/samples/sample19.xml)]
 4. Add a new webform called showdata.aspx.
 5. Add the following @ outputcache directive to the showdata.aspx page: 
 
-    [!code[Main](caching/samples/sample20.xml)]
+    [!code-aspx[Main](caching/samples/sample20.aspx)]
 6. Add the following code to the Page\_Load of showdata.aspx: 
 
-    [!code[Main](caching/samples/sample21.xml)]
+    [!code-html[Main](caching/samples/sample21.html)]
 7. Add a new SqlDataSource control to showdata.aspx and configure it to use the Northwind database connection. Click Next.
 8. Select the ProductName and ProductID checkboxes and click Next.
 9. Click Finish.

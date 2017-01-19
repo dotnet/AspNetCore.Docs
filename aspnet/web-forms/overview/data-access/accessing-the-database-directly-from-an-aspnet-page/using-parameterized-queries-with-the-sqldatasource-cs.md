@@ -27,12 +27,12 @@ In the previous tutorial we saw how to use the SqlDataSource control to retrieve
 The SQL `SELECT` statements used in the previous tutorial s demos lacked `WHERE` clauses. In a `SELECT` statement, the `WHERE` clause can be used to limit the results returned. For example, to display the names of products costing more than $50.00, we could use the following query:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample1.xml)]
+[!code-sql[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample1.sql)]
 
 Typically, the values used in a `WHERE` clause are determine by some external source, such as a querystring value, a session variable, or user input from a Web control on the page. Ideally, such inputs are specified through the use of *parameters*. With Microsoft SQL Server, parameters are denoted using `@parameterName`, as in:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample2.xml)]
+[!code-sql[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample2.sql)]
 
 The SqlDataSource supports parameterized queries, both for `SELECT` statements and `INSERT`, `UPDATE`, and `DELETE` statements. Moreover, the parameter values can be automatically pulled from a variety of sources the querystring, session state, controls on the page, and so on or can be assigned programmatically. In this tutorial, we'll see how to define parameterized queries as well as how to specify the parameter values both declaratively and programmatically.
 
@@ -74,7 +74,7 @@ For this example, let s only return those results where the `UnitPrice` value is
 After adding the parameter, click OK to return to the Configure Data Source wizard. The `SELECT` statement at the bottom of the wizard should now include a `WHERE` clause with a parameter named `@UnitPrice`:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample3.xml)]
+[!code-sql[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample3.sql)]
 
 > [!NOTE] If you specify multiple conditions in the `WHERE` clause from the Add `WHERE` Clause dialog box, the wizard joins them with the `AND` operator. If you need to include an `OR` in the `WHERE` clause (such as `WHERE UnitPrice <= @UnitPrice OR Discontinued = 1`) then you have to build the `SELECT` statement through the custom SQL statement screen.
 
@@ -82,7 +82,7 @@ After adding the parameter, click OK to return to the Configure Data Source wiza
 Complete configuring the SqlDataSource (click Next, then Finish) and then inspect the SqlDataSource s declarative markup. The markup now includes a `<SelectParameters>` collection, which spells out the sources for the parameters in the `SelectCommand`.
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample4.xml)]
+[!code-aspx[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample4.aspx)]
 
 When the SqlDataSource s `Select()` method is invoked, the `UnitPrice` parameter value (25.00) is applied to the `@UnitPrice` parameter in the `SelectCommand` before being sent to the database. The net result is that only those products less than or equal to $25.00 are returned from the `Products` table. To confirm this, add a GridView to the page, bind it to this data source, and then view the page through a browser. You should only see those products listed that are less than or equal to $25.00, as Figure 3 confirms.
 
@@ -99,7 +99,7 @@ When adding a custom SQL statement you can enter the `WHERE` clause explicitly o
 Next, drag a GridView onto the page and from its smart tag choose to create a new SqlDataSource named `ProductsFilteredByPriceDataSource`. From the Configure Data Source wizard, proceed to the Specify a custom SQL statement or stored procedure screen (see Figure 4) and enter the following query:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample5.xml)]
+[!code-sql[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample5.sql)]
 
 After entering the query (either manually or through the Query Builder), click Next.
 
@@ -120,7 +120,7 @@ Since the query includes parameters, the next screen in the wizard prompts us fo
 Complete the Configure Data Source wizard by clicking Next, then Finish. The declarative markup for the GridView, TextBox, Button, and SqlDataSource follows:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample6.xml)]
+[!code-aspx[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample6.aspx)]
 
 Note that the parameter within the SqlDataSource s `<SelectParameters>` section is a `ControlParameter`, which includes additional properties like `ControlID` and `PropertyName`. When the SqlDataSource s `Select()` method is invoked, the `ControlParameter` grabs the value from the specified Web control property and assigns it to the corresponding parameter in the `SelectCommand`. In this example, the `MaxPrice` s Text property is used as the `@MaxPrice` parameter value.
 
@@ -151,7 +151,7 @@ In previous tutorials - [Declarative Parameters](../basic-reporting/declarative-
 Unfortunately, we bypass the architecture when using the SqlDataSource. Instead, we need to customize the SQL statement to intelligently grab all records if the `@MaximumPrice` parameter is `NULL` or some reserved value. For this exercise, let s have it so that if the `@MaximumPrice` parameter is equal to `-1.0`, then *all* of the records are to be returned (`-1.0` works as a reserved value since no product can have a negative `UnitPrice` value). To accomplish this we can use the following SQL statement:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample7.xml)]
+[!code-sql[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample7.sql)]
 
 This `WHERE` clause returns *all* records if the `@MaximumPrice` parameter equals `-1.0`. If the parameter value is not `-1.0`, only those products whose `UnitPrice` is less than or equal to the `@MaximumPrice` parameter value are returned. By setting the default value of the `@MaximumPrice` parameter to `-1.0`, on the first page load (or whenever the `MaxPrice` TextBox is empty), `@MaximumPrice` will have a value of `-1.0` and all products will be displayed.
 
@@ -174,7 +174,7 @@ To illustrate using stored procedures in the SqlDataSource, let s create a new s
 From the `NORTHWND.MDF` database, right-click on the Stored Procedures folder, choose Add New Stored Procedure , and enter the following syntax:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample8.xml)]
+[!code-sql[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample8.sql)]
 
 Click the Save icon (or Ctrl+S) to save the stored procedure. You can test the stored procedure by right-clicking it from the Stored Procedures folder and choosing Execute. This will prompt you for the stored procedure s parameters (`@CategoryID`, in this instance), after which the results will be displayed in the Output window.
 
@@ -203,7 +203,7 @@ Since the stored procedure accepts an input parameter (`@CategoryID`), clicking 
 As the following declarative markup shows, when using a stored procedure, the SqlDataSource s `SelectCommand` property is set to the name of the stored procedure and the [`SelectCommandType` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sqldatasource.selectcommandtype.aspx) is set to `StoredProcedure`, indicating that the `SelectCommand` is the name of a stored procedure rather than an ad-hoc SQL statement.
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample9.xml)]
+[!code-aspx[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample9.aspx)]
 
 Test out the page in a browser. Only those products that belong to the Beverages category are displayed, although *all* of the product fields are displayed since the `GetProductsByCategory` stored procedure returns all of the columns from the `Products` table. We could, of course, limit or customize the fields displayed in the GridView from the GridView s Edit Columns dialog box.
 
@@ -224,7 +224,7 @@ To accomplish this we need two SqlDataSource controls one to grab a random categ
 Start by adding a SqlDataSource to `ParameterizedQueries.aspx` and set its `ID` to `RandomCategoryDataSource`. Configure it so that it uses the following SQL query:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample10.xml)]
+[!code-sql[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample10.sql)]
 
 `ORDER BY NEWID()` returns the records sorted in random order (see [Using `NEWID()` to Randomly Sort Records](http://www.sqlteam.com/item.asp?ItemID=8747)). `SELECT TOP 1` returns the first record from the result set. Put together, this query returns the `CategoryID` and `CategoryName` column values from a single, randomly selected category.
 
@@ -235,7 +235,7 @@ The `Select()` method returns an object that implements `IEnumerable`. The preci
 The following code illustrates how to retrieve the records from the `RandomCategoryDataSource` SqlDataSource as a DataView as well as how to read the `CategoryName` column value from the first DataView row:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample11.xml)]
+[!code-csharp[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample11.cs)]
 
 `randomCategoryView[0]` returns the first `DataRowView` in the DataView. `randomCategoryView[0]["CategoryName"]` returns the value of the `CategoryName` column in this first row. Note that the DataView is loosely-typed. To reference a particular column value we need to pass in the name of the column as a string ( CategoryName , in this case). Figure 13 shows the message displayed in the `CategoryNameLabel` when viewing the page. Of course, the actual category name displayed is randomly selected by the `RandomCategoryDataSource` SqlDataSource on each visit to the page (including postbacks).
 
@@ -248,7 +248,7 @@ The following code illustrates how to retrieve the records from the `RandomCateg
 > [!NOTE] If the SqlDataSource control s `DataSourceMode` property had been set to `DataReader`, the return value from the `Select()` method would have needed to be cast to `IDataReader`. To read the `CategoryName` column value from the first row, we d use code like:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample12.xml)]
+[!code-csharp[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample12.cs)]
 
 With the SqlDataSource randomly selecting a category, we re ready to add the GridView that lists the category s products.
 
@@ -270,12 +270,12 @@ Start by adding a GridView to the page and bind it to a new SqlDataSource named 
 After completing the SqlDataSource wizard, the resulting declarative markup should look similar to the following:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample13.xml)]
+[!code-aspx[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample13.aspx)]
 
 We can assign the `DefaultValue` of the `CategoryID` parameter programmatically in the `Page_Load` event handler:
 
 
-[!code[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample14.xml)]
+[!code-csharp[Main](using-parameterized-queries-with-the-sqldatasource-cs/samples/sample14.cs)]
 
 With this addition, the page includes a GridView that shows the products associated with the randomly selected category.
 

@@ -103,7 +103,7 @@ Next, spend a few minutes creating the content for the error page. I've created 
 
 With the error page completed, configure the web application to use the custom error page in lieu of the Runtime Error YSOD. This is accomplished by specifying the URL of the error page in the `<customErrors>` section's `defaultRedirect` attribute. Add the following markup to your application's `Web.config` file:
 
-[!code[Main](displaying-a-custom-error-page-vb/samples/sample1.xml)]
+[!code-xml[Main](displaying-a-custom-error-page-vb/samples/sample1.xml)]
 
 The above markup configures the application to show the Exception Details YSOD to users visiting locally, while using the custom error page Oops.aspx for those users visiting remotely. To see this in action, deploy your website to the production environment and then visit the Genre.aspx page on the live site with an invalid querystring value. You should see the custom error page (refer back to **Figure 3**).
 
@@ -126,7 +126,7 @@ What this means for the web application in production is that if a user requests
 
 By default, all types of errors cause the same custom error page to be displayed. However, you can specify a different custom error page for a specific HTTP status code using `<error>` children elements within the `<customErrors>` section. For example, to have a different error page displayed in the event of a page not found error, which has an HTTP status code of 404, update the `<customErrors>` section to include the following markup:
 
-[!code[Main](displaying-a-custom-error-page-vb/samples/sample2.xml)]
+[!code-xml[Main](displaying-a-custom-error-page-vb/samples/sample2.xml)]
 
 With this change in place, whenever a user visiting remotely requests an ASP.NET resource that does not exist, they will be redirected to the `404.aspx` custom error page instead of `Oops.aspx`. As **Figure 7** illustrates, the `404.aspx` page can include a more specific message than the general custom error page.
 

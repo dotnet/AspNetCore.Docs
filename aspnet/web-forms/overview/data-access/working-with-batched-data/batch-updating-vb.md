@@ -73,7 +73,7 @@ Like the GridView, the ObjectDataSource s modification features are designed to 
 After completing the Configure Data Source wizard, the ObjectDataSource s declarative markup should look like the following:
 
 
-[!code[Main](batch-updating-vb/samples/sample1.xml)]
+[!code-aspx[Main](batch-updating-vb/samples/sample1.aspx)]
 
 Completing the Configure Data Source wizard also causes Visual Studio to create BoundFields and a CheckBoxField for the product data fields in the GridView. For this tutorial, let s only allow the user to view and edit the product s name, category, price, and discontinued status. Remove all but the `ProductName`, `CategoryName`, `UnitPrice`, and `Discontinued` fields and rename the `HeaderText` properties of the first three fields to Product , Category , and Price , respectively. Lastly, check the Enable Paging and Enable Sorting checkboxes in the GridView s smart tag.
 
@@ -149,7 +149,7 @@ Since this ObjectDataSource is used merely to retrieve data, set the drop-down l
 After completing the wizard, the `CategoriesDataSource` s declarative markup should look like the following:
 
 
-[!code[Main](batch-updating-vb/samples/sample2.xml)]
+[!code-aspx[Main](batch-updating-vb/samples/sample2.aspx)]
 
 With the `CategoriesDataSource` created and configured, return to the `CategoryName` TemplateField s `ItemTemplate` and, from the DropDownList s smart tag, click on the Choose Data Source link. In the Data Source Configuration wizard, select the `CategoriesDataSource` option from the first drop-down list and choose to have `CategoryName` used for the display and `CategoryID` as the value.
 
@@ -170,7 +170,7 @@ At this point the `Categories` DropDownList lists all of the categories, but it 
 One last problem remains: if the product doesn t have a `CategoryID` value specified then the databinding statement on `SelectedValue` will result in an exception. This is because the DropDownList contains only items for the categories and does not offer an option for those products that have a `NULL` database value for `CategoryID`. To remedy this, set the DropDownList s `AppendDataBoundItems` property to `True` and add a new item to the DropDownList, omitting the `Value` property from the declarative syntax. That is, make sure that the `Categories` DropDownList s declarative syntax looks like the following:
 
 
-[!code[Main](batch-updating-vb/samples/sample3.xml)]
+[!code-aspx[Main](batch-updating-vb/samples/sample3.aspx)]
 
 Note how the `<asp:ListItem Value="">` -- Select One -- has its `Value` attribute explicitly set to an empty string. Refer back to the [Customizing the Data Modification Interface](../editing-inserting-and-deleting-data/customizing-the-data-modification-interface-vb.md) tutorial for a more thorough discussion on why this additional DropDownList item is needed to handle the `NULL` case and why assignment of the `Value` property to an empty string is essential.
 
@@ -210,7 +210,7 @@ Since the GridView s editing interface is defined in its TemplateFields `ItemTem
 After making the above mentioned formatting changes, adding the Button controls, and removing the unnecessary `EditItemTemplate` s, your page s declarative syntax should look like the following:
 
 
-[!code[Main](batch-updating-vb/samples/sample4.xml)]
+[!code-aspx[Main](batch-updating-vb/samples/sample4.aspx)]
 
 Figure 16 shows this page when viewed through a browser after the Button Web controls have been added and the formatting changes made.
 
@@ -227,7 +227,7 @@ When a user visits this page they will make their modifications and then click o
 Create a method named `BatchUpdate` in `BatchUpdate.aspx.vb` and add the following code:
 
 
-[!code[Main](batch-updating-vb/samples/sample5.xml)]
+[!code-vb[Main](batch-updating-vb/samples/sample5.vb)]
 
 This method starts out by getting all of the products back in a `ProductsDataTable` via a call to the BLL s `GetProducts` method. It then enumerates the `ProductGrid` GridView s [`Rows` collection](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rows(VS.80).aspx). The `Rows` collection contains a [`GridViewRow` instance](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridviewrow.aspx) for each row displayed in the GridView. Since we are showing at most ten rows per page, the GridView s `Rows` collection will have no more than ten items.
 
@@ -243,7 +243,7 @@ The code used in `BatchUpdate` is similar to that used in the BLL s `UpdateProdu
 To complete this tutorial, we need to have the `BatchUpdate` method invoked when either of the Update Products buttons is clicked. Create event handlers for the `Click` events of these two Button controls and add the following code in the event handlers:
 
 
-[!code[Main](batch-updating-vb/samples/sample6.xml)]
+[!code-vb[Main](batch-updating-vb/samples/sample6.vb)]
 
 First a call is made to `BatchUpdate`. Next, the [`ClientScript` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.clientscript(VS.80).aspx) is used to inject JavaScript that will display a messagebox that reads The products have been updated.
 
@@ -256,7 +256,7 @@ The `BatchUpdate` method we just examined retrieves *all* of the products from t
 For those types of situations, consider using the following `BatchUpdateAlternate` method instead:
 
 
-[!code[Main](batch-updating-vb/samples/sample7.xml)]
+[!code-vb[Main](batch-updating-vb/samples/sample7.vb)]
 
 `BatchMethodAlternate` starts by creating a new empty `ProductsDataTable` named `products`. It then steps through the GridView s `Rows` collection and for each row gets the particular product information using the BLL s `GetProductByProductID(productID)` method. The retrieved `ProductsRow` instance has its properties updated in the same fashion as `BatchUpdate`, but after updating the row it is imported into the `products` `ProductsDataTable` via the DataTable s [`ImportRow(DataRow)` method](https://msdn.microsoft.com/en-us/library/system.data.datatable.importrow(VS.80).aspx).
 
@@ -265,7 +265,7 @@ After the `For Each` loop completes, `products` contains one `ProductsRow` insta
 This can be accomplished by adding a new method to the BLL named `UpdateProductsWithTransaction`. `UpdateProductsWithTransaction`, shown below, sets the `RowState` of each of the `ProductsRow` instances in the `ProductsDataTable` to `Modified` and then passes the `ProductsDataTable` to the DAL s `UpdateWithTransaction` method.
 
 
-[!code[Main](batch-updating-vb/samples/sample8.xml)]
+[!code-vb[Main](batch-updating-vb/samples/sample8.vb)]
 
 ## Summary
 

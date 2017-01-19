@@ -117,23 +117,23 @@ ASP.NET Identity is implemented using the following procedure. The purpose of th
   
  When the user clicks the     **Register** button, the     `Register` action of the Account controller creates the user by calling the ASP.NET Identity API, as highlighted below:
 
-    [!code[Main](introduction-to-aspnet-identity/samples/sample1.xml?highlight=8-9)]
+    [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample1.cs?highlight=8-9)]
 4. Log in.  
  If the user was successfully created, she is logged in by the     `SignInAsync`  method.  
 
-    [!code[Main](introduction-to-aspnet-identity/samples/sample2.xml?highlight=12)]
+    [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample2.cs?highlight=12)]
 
-    [!code[Main](introduction-to-aspnet-identity/samples/sample3.xml?highlight=5-6)]
+    [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample3.cs?highlight=5-6)]
 
  The highlighted code above in the     `SignInAsync`  method generates a     [ClaimsIdentity](https://msdn.microsoft.com/en-us/library/system.security.claims.claimsidentity.aspx) . Since ASP.NET Identity and OWIN Cookie Authentication are claims-based system, the framework requires the app to generate a ClaimsIdentity for the user. ClaimsIdentity has information about all the claims for the user, such as what roles the user belongs to. You can also add more claims for the user at this stage.  
   
  The highlighted code below in the     `SignInAsync`  method signs in the user by using the AuthenticationManager from OWIN and calling     `SignIn` and passing in the ClaimsIdentity.  
 
-    [!code[Main](introduction-to-aspnet-identity/samples/sample4.xml?highlight=8-11)]
+    [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample4.cs?highlight=8-11)]
 5. Log off.  
  Clicking the     **Log off** link calls the LogOff action in the account controller. 
 
-    [!code[Main](introduction-to-aspnet-identity/samples/sample5.xml?highlight=6)]
+    [!code-csharp[Main](introduction-to-aspnet-identity/samples/sample5.cs?highlight=6)]
 
  The highlighted code above shows the OWIN     `AuthenticationManager.SignOut` method. This is analogous to     [FormsAuthentication.SignOut](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthentication.signout.aspx) method used by the     [FormsAuthentication](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationmodule.aspx) module in Web Forms.
 

@@ -99,7 +99,7 @@ ASP.NET 4 introduces a number of features that improve core ASP.NET services suc
 
 The `Web.config` file that contains the configuration for a Web application has grown considerably over the past few releases of the .NET Framework as new features have been added, such as Ajax, routing, and integration with IIS 7. This has made it harder to configure or start new Web applications without a tool like Visual Studio. In .the NET Framework 4, the major configuration elements have been moved to the `machine.config` file, and applications now inherit these settings. This allows the `Web.config` file in ASP.NET 4 applications either to be empty or to contain just the following lines, which specify for Visual Studio what version of the framework the application is targeting:
 
-[!code[Main](overview/samples/sample1.xml)]
+[!code-xml[Main](overview/samples/sample1.xml)]
 
 <a id="0.2__Toc253429240"></a><a id="0.2__Toc243304614"></a>
 
@@ -111,17 +111,17 @@ ASP.NET 4 adds an extensibility point to output caching that enables you to conf
 
 You create a custom output-cache provider as a class that derives from the new *System.Web.Caching.OutputCacheProvider* type. You can then configure the provider in the `Web.config` file by using the new *providers* subsection of the *outputCache*element, as shown in the following example:
 
-[!code[Main](overview/samples/sample2.xml)]
+[!code-xml[Main](overview/samples/sample2.xml)]
 
 By default in ASP.NET 4, all HTTP responses, rendered pages, and controls use the in-memory output cache, as shown in the previous example, where the *defaultProvider* attribute is set to AspNetInternalProvider. You can change the default output-cache provider used for a Web application by specifying a different provider name for *defaultProvider*.
 
 In addition, you can select different output-cache providers per control and per request. The easiest way to choose a different output-cache provider for different Web user controls is to do so declaratively by using the new *providerName* attribute in a control directive, as shown in the following example:
 
-[!code[Main](overview/samples/sample3.xml)]
+[!code-aspx[Main](overview/samples/sample3.aspx)]
 
 Specifying a different output cache provider for an HTTP request requires a little more work. Instead of declaratively specifying the provider, you override the new *GetOuputCacheProviderName* method in the `Global.asax` file to programmatically specify which provider to use for a specific request. The following example shows how to do this.
 
-[!code[Main](overview/samples/sample4.xml)]
+[!code-csharp[Main](overview/samples/sample4.cs)]
 
 With the addition of output-cache provider extensibility to ASP.NET 4, you can now pursue more aggressive and more intelligent output-caching strategies for your Web sites. For example, it is now possible to cache the "Top 10" pages of a site in memory, while caching pages that get lower traffic on disk. Alternatively, you can cache every vary-by combination for a rendered page, but use a distributed cache so that the memory consumption is offloaded from front-end Web servers.
 
@@ -144,17 +144,17 @@ A new scalability feature named *auto-star*t that directly addresses this scenar
 
 To use the auto-start feature, an IIS administrator sets an application pool in IIS 7.5 to be automatically started by using the following configuration in the `applicationHost.config` file:
 
-[!code[Main](overview/samples/sample5.xml)]
+[!code-xml[Main](overview/samples/sample5.xml)]
 
 Because a single application pool can contain multiple applications, you specify individual applications to be automatically started by using the following configuration in the `applicationHost.config` file:
 
-[!code[Main](overview/samples/sample6.xml)]
+[!code-xml[Main](overview/samples/sample6.xml)]
 
 When an IIS 7.5 server is cold-started or when an individual application pool is recycled, IIS 7.5 uses the information in the `applicationHost.config` file to determine which Web applications need to be automatically started. For each application that is marked for auto-start, IIS7.5 sends a request to ASP.NET 4 to start the application in a state during which the application temporarily does not accept HTTP requests. When it is in this state, ASP.NET instantiates the type defined by the *serviceAutoStartProvider* attribute (as shown in the previous example) and calls into its public entry point.
 
 You create a managed auto-start type with the necessary entry point by implementing the *IProcessHostPreloadClient* interface, as shown in the following example:
 
-[!code[Main](overview/samples/sample7.xml)]
+[!code-csharp[Main](overview/samples/sample7.cs)]
 
 After your initialization code runs in the *Preload* method and the method returns, the ASP.NET application is ready to process requests.
 
@@ -168,7 +168,7 @@ It is common practice in Web applications to move pages and other content around
 
 ASP.NET 4 adds a new *RedirectPermanent* helper method that makes it easy to issue HTTP 301 Moved Permanently responses, as in the following example:
 
-[!code[Main](overview/samples/sample8.xml)]
+[!code-csharp[Main](overview/samples/sample8.cs)]
 
 Search engines and other user agents that recognize permanent redirects will store the new URL that is associated with the content, which eliminates the unnecessary round trip made by the browser for temporary redirects.
 
@@ -180,7 +180,7 @@ ASP.NET provides two default options for storing session state across a Web farm
 
 ASP.NET 4 introduces a new compression option for both kinds of out-of-process session-state providers. When the *compressionEnabled* configuration option shown in the following example is set to *true*, ASP.NET will compress (and decompress) serialized session state by using the .NET Framework *System.IO.Compression.GZipStream* class.
 
-[!code[Main](overview/samples/sample9.xml)]
+[!code-xml[Main](overview/samples/sample9.xml)]
 
 With the simple addition of the new attribute to the `Web.config` file, applications with spare CPU cycles on Web servers can realize substantial reductions in the size of serialized session-state data.
 
@@ -190,13 +190,13 @@ With the simple addition of the new attribute to the `Web.config` file, applicat
 
 ASP.NET 4 introduces new options for expanding the size of application URLs. Previous versions of ASP.NET constrained URL path lengths to 260 characters, based on the NTFS file-path limit. In ASP.NET 4, you have the option to increase (or decrease) this limit as appropriate for your applications, using two new *httpRuntime* configuration attributes. The following example shows these new attributes.
 
-[!code[Main](overview/samples/sample10.xml)]
+[!code-xml[Main](overview/samples/sample10.xml)]
 
 To allow longer or shorter paths (the portion of the URL that does not include protocol, server name, and query string), modify the *[maxUrlLength](https://msdn.microsoft.com/en-us/library/system.web.configuration.httpruntimesection.maxurllength.aspx)* attribute. To allow longer or shorter query strings, modify the value of the *[maxQueryStringLength](https://msdn.microsoft.com/en-us/library/system.web.configuration.httpruntimesection.maxquerystringlength.aspx)* attribute.
 
 ASP.NET 4 also enables you to configure the characters that are used by the URL character check. When ASP.NET finds an invalid character in the path portion of a URL, it rejects the request and issues an HTTP 400 error. In previous versions of ASP.NET, the URL character checks were limited to a fixed set of characters. In ASP.NET 4, you can customize the set of valid characters using the new *requestPathInvalidChars* attribute of the *httpRuntime* configuration element, as shown in the following example:
 
-[!code[Main](overview/samples/sample11.xml)]
+[!code-xml[Main](overview/samples/sample11.xml)]
 
 By default, the *requestPathInvalidChars* attribute defines eight characters as invalid. (In the string that is assigned to *requestPathInvalidChars* by default*,*the less than (&lt;), greater than (&gt;), and ampersand (&amp;) characters are encoded, because the `Web.config` file is an XML file.) You can customize the set of invalid characters as needed.
 
@@ -211,11 +211,11 @@ ASP.NET request validation searches incoming HTTP request data for strings that 
 
 In ASP.NET 4, the request validation feature has been made extensible so that you can use custom request-validation logic. To extend request validation, you create a class that derives from the new *System.Web.Util.RequestValidator*type, and you configure the application (in the *httpRuntime* section of the `Web.config` file) to use the custom type. The following example shows how to configure a custom request-validation class:
 
-[!code[Main](overview/samples/sample12.xml)]
+[!code-xml[Main](overview/samples/sample12.xml)]
 
 The new *requestValidationType* attribute requires a standard .NET Framework type identifier string that specifies the class that provides custom request validation. For each request, ASP.NET invokes the custom type to process each piece of incoming HTTP request data. The incoming URL, all the HTTP headers (both cookies and custom headers), and the entity body are all available for inspection by a custom request validation class like that shown in the following example:
 
-[!code[Main](overview/samples/sample13.xml)]
+[!code-csharp[Main](overview/samples/sample13.cs)]
 
 For cases where you do not want to inspect a piece of incoming HTTP data, the request-validation class can fall back to let the ASP.NET default request validation run by simply calling *base.IsValidRequestString.*
 
@@ -234,7 +234,7 @@ The new *MemoryCache* class is modeled closely on the ASP.NET cache, and it shar
 
 An in-depth discussion of the new *MemoryCache* class and supporting base APIs would require an entire document. However, the following example gives you an idea of how the new cache API works. The example was written for a Windows Forms application, without any dependency on `System.Web.dll`.
 
-[!code[Main](overview/samples/sample14.xml)]
+[!code-csharp[Main](overview/samples/sample14.cs)]
 
 <a id="0.2__Toc253429247"></a><a id="0.2__Toc243304621"></a>
 
@@ -249,7 +249,7 @@ In ASP.NET 4, you can create custom encoding routines for the following common t
 
 You can create a custom encoder by deriving from the new *System.Web.Util.HttpEncoder* type and then configuring ASP.NET to use the custom type in the *httpRuntime* section of the `Web.config` file, as shown in the following example:
 
-[!code[Main](overview/samples/sample15.xml)]
+[!code-xml[Main](overview/samples/sample15.xml)]
 
 After a custom encoder has been configured, ASP.NET automatically calls the custom encoding implementation whenever public encoding methods of the *System.Web.HttpUtility* or *System.Web.HttpServerUtility* classes are called. This lets one part of a Web development team create a custom encoder that implements aggressive character encoding, while the rest of the Web development team continues to use the public ASP.NET encoding APIs. By centrally configuring a custom encoder in the *httpRuntime*element, you are guaranteed that all text-encoding calls from the public ASP.NET encoding APIs are routed through the custom encoder.
 
@@ -261,7 +261,7 @@ In order to increase the number of Web sites that can be hosted on a single serv
 
 ASP.NET 4 leverages new resource-monitoring functionality introduced by the CLR. To enable this functionality, you can add the following XML configuration snippet to the `aspnet.config` configuration file.
 
-[!code[Main](overview/samples/sample16.xml)]
+[!code-xml[Main](overview/samples/sample16.xml)]
 
 > Note The `aspnet.config` file is in the directory where the .NET Framework is installed. It is not the `Web.config` file.
 
@@ -276,7 +276,7 @@ You can create an application that targets a specific version of the .NET Framew
 
 The following example shows the use of the *targetFramework* attribute in the *compilation* element of the `Web.config` file.
 
-[!code[Main](overview/samples/sample17.xml)]
+[!code-xml[Main](overview/samples/sample17.xml)]
 
 Note the following about targeting a specific version of the .NET Framework:
 
@@ -303,7 +303,7 @@ Include the unminified version of jQuery while developing an application. Includ
 
 For example, the following Web Forms page illustrates how you can use jQuery to change the background color of ASP.NET TextBox controls to yellow when they have focus.
 
-[!code[Main](overview/samples/sample18.xml)]
+[!code-aspx[Main](overview/samples/sample18.aspx)]
 
 <a id="0.2__Toc253429252"></a><a id="0.2__Toc243304626"></a>
 
@@ -311,7 +311,7 @@ For example, the following Web Forms page illustrates how you can use jQuery to 
 
 The Microsoft Ajax Content Delivery Network (CDN) enables you to easily add ASP.NET Ajax and jQuery scripts to your Web applications. For example, you can start using the jQuery library simply by adding a `<script>` tag to your page that points to Ajax.microsoft.com like this:
 
-[!code[Main](overview/samples/sample19.xml)]
+[!code-html[Main](overview/samples/sample19.html)]
 
 By taking advantage of the Microsoft Ajax CDN, you can significantly improve the performance of your Ajax applications. The contents of the Microsoft Ajax CDN are cached on servers located around the world. In addition, the Microsoft Ajax CDN enables browsers to reuse cached JavaScript files for Web sites that are located in different domains.
 
@@ -323,13 +323,13 @@ To learn more about the Microsoft Ajax CDN, visit the following website:
 
 The ASP.NET ScriptManager supports the Microsoft Ajax CDN. Simply by setting one property, the EnableCdn property, you can retrieve all ASP.NET framework JavaScript files from the CDN:
 
-[!code[Main](overview/samples/sample20.xml)]
+[!code-aspx[Main](overview/samples/sample20.aspx)]
 
 After you set the EnableCdn property to the value true, the ASP.NET framework will retrieve all ASP.NET framework JavaScript files from the CDN including all JavaScript files used for validation and the UpdatePanel. Setting this one property can have a dramatic impact on the performance of your web application.
 
 You can set the CDN path for your own JavaScript files by using the WebResource attribute. The new CdnPath property specifies the path to the CDN used when you set the EnableCdn property to the value true:
 
-[!code[Main](overview/samples/sample21.xml)]
+[!code-csharp[Main](overview/samples/sample21.cs)]
 
 <a id="0.2__Toc253429253"></a><a id="0.2__Toc243304627"></a>
 
@@ -345,7 +345,7 @@ The ScriptManager.AjaxFrameworkMode property can be set to the following values:
 
 For example, if you set the AjaxFrameworkMode property to the value Explicit then you can specify the particular ASP.NET Ajax component scripts that you need:
 
-[!code[Main](overview/samples/sample22.xml)]
+[!code-aspx[Main](overview/samples/sample22.aspx)]
 
 <a id="0.2__The_DataView_Control"></a><a id="0.2__The_DataContext_and"></a><a id="0.2__Refactoring_the_Microsoft"></a><a id="0.2__Toc224729032"></a><a id="0.2__Toc253429256"></a><a id="0.2__Toc243304630"></a>
 
@@ -368,7 +368,7 @@ Web Forms has been a core feature in ASP.NET since the release of ASP.NET 1.0. M
 
 ASP.NET 4 adds two properties to the *Page* class, *MetaKeywords* and *MetaDescription*. These two properties represent corresponding *meta* tags in your page, as shown in the following example:
 
-[!code[Main](overview/samples/sample23.xml)]
+[!code-aspx[Main](overview/samples/sample23.aspx)]
 
 These two properties work the same way that the page's *Title* property does. They follow these rules:
 
@@ -379,7 +379,7 @@ You can set these properties at run time, which lets you get the content from a 
 
 You can also set the *Keywords* and *Description* properties in the *@ Page* directive at the top of the Web Forms page markup, as in the following example:
 
-[!code[Main](overview/samples/sample24.xml)]
+[!code-aspx[Main](overview/samples/sample24.aspx)]
 
 This will override the *meta* tag contents (if any) already declared in the page.
 
@@ -397,7 +397,7 @@ The *ViewStateMode* property takes an enumeration that has three values: *Enable
 
 The following example shows how the *ViewStateMode* property works. The markup and code for the controls in the following page includes values for the *ViewStateMode* property:
 
-[!code[Main](overview/samples/sample25.xml)]
+[!code-aspx[Main](overview/samples/sample25.aspx)]
 
 As you can see, the code disables view state for the PlaceHolder1 control. The child label1 control inherits this property value (*Inherit* is the default value for *ViewStateMode* for controls.) and therefore saves no view state. In the PlaceHolder2 control, *ViewStateMode* is set to *Enabled*, so label2 inherits this property and saves view state. When the page is first loaded, the *Text* property of both *Label* controls is set to the string "[DynamicValue]".
 
@@ -417,7 +417,7 @@ The label1 control (whose *ViewStateMode* value is set to *Disabled*) has not pr
 
 You can also set *ViewStateMode* in the *@ Page* directive, as in the following example:
 
-[!code[Main](overview/samples/sample26.xml)]
+[!code-aspx[Main](overview/samples/sample26.aspx)]
 
 The *Page* class is just another control; it acts as the parent control for all the other controls in the page. The default value of *ViewStateMode* is *Enabled* for instances of *Page*. Because controls default to *Inherit*, controls will inherit the *Enabled* property value unless you set *ViewStateMode* at page or control level.
 
@@ -453,11 +453,11 @@ In ASP.NET version 3.5 Service Pack 1, you can define the capabilities that a br
 
 - At the computer level, you create or update a `.browser` XML file in the following folder:
 
-- [!code[Main](overview/samples/sample27.xml)]
+- [!code-console[Main](overview/samples/sample27.cmd)]
 
 - After you define the browser capability, you run the following command from the Visual Studio Command Prompt in order to rebuild the browser capabilities assembly and add it to the GAC:
 
-- [!code[Main](overview/samples/sample28.xml)]
+- [!code-console[Main](overview/samples/sample28.cmd)]
 
 - For an individual application, you create a `.browser` file in the application's `App_Browsers` folder.
 
@@ -475,18 +475,18 @@ To replace the ASP.NET browser capabilities definition functionality completely,
 
 1. Create a provider class that derives from *HttpCapabilitiesProvider* and that overrides the *GetBrowserCapabilities* method, as in the following example: 
 
-    [!code[Main](overview/samples/sample29.xml)]
+    [!code-csharp[Main](overview/samples/sample29.cs)]
 
     The code in this example creates a new *HttpBrowserCapabilities* object, specifying only the capability named browser and setting that capability to MyCustomBrowser.
 2. Register the provider with the application. 
 
     In order to use a provider with an application, you must add the *provider* attribute to the *browserCaps* section in the `Web.config` or `Machine.config` files. (You can also define the provider attributes in a *location* element for specific directories in application, such as in a folder for a specific mobile device.) The following example shows how to set the *provider* attribute in a configuration file:
 
-    [!code[Main](overview/samples/sample30.xml)]
+    [!code-xml[Main](overview/samples/sample30.xml)]
 
     Another way to register the new browser capability definition is to use code, as shown in the following example:
 
-    [!code[Main](overview/samples/sample31.xml)]
+    [!code-csharp[Main](overview/samples/sample31.cs)]
 
     This code must run in the *Application\_Start* event of the `Global.asax` file. Any change to the *BrowserCapabilitiesProvider* class must occur before any code in the application executes, in order to make sure that the cache remains in a valid state for the resolved *HttpCapabilitiesBase* object.
 
@@ -496,7 +496,7 @@ The preceding example has one problem, which is that the code would run each tim
 
 1. Create a class that derives from *HttpCapabilitiesProvider*, like the one in the following example: 
 
-    [!code[Main](overview/samples/sample32.xml)]
+    [!code-csharp[Main](overview/samples/sample32.cs)]
 
     In the example, the code generates a cache key by calling a custom BuildCacheKey method, and it gets the length of time to cache by calling a custom GetCacheTime method. The code then adds the resolved *HttpBrowserCapabilities* object to the cache. The object can be retrieved from the cache and reused on subsequent requests that make use of the custom provider.
 2. Register the provider with the application as described in the preceding procedure.
@@ -507,7 +507,7 @@ The previous section described how to create a new *HttpBrowserCapabilities* obj
 
 1. Create a class that derives from *HttpCapabilitiesEvaluator* and that overrides the *GetBrowserCapabilities* method, as shown in the following example: 
 
-    [!code[Main](overview/samples/sample33.xml)]
+    [!code-csharp[Main](overview/samples/sample33.cs)]
 
     This code first uses the ASP.NET browser capabilities functionality to try to identify the browser. However, if no browser is identified based on the information defined in the request (that is, if the *Browser* property of the *HttpBrowserCapabilities* object is the string "Unknown"), the code calls the custom provider (MyBrowserCapabilitiesEvaluator) to identify the browser.
 2. Register the provider with the application as described in the previous example.
@@ -518,11 +518,11 @@ In addition to creating a custom browser definition provider and to dynamically 
 
 1. Create a class that derives from *HttpCapabilitiesEvaluator* and that overrides the *GetBrowserCapabilities* method, as shown in the following example: 
 
-    [!code[Main](overview/samples/sample34.xml)]
+    [!code-csharp[Main](overview/samples/sample34.cs)]
 
     The example code extends the existing ASP.NET *HttpCapabilitiesEvaluator* class and gets the *HttpBrowserCapabilities* object that matches the current request definition by using the following code:
 
-    [!code[Main](overview/samples/sample35.xml)]
+    [!code-csharp[Main](overview/samples/sample35.cs)]
 
     The code can then add or modify a capability for this browser. There are two ways to specify a new browser capability:
 
@@ -538,11 +538,11 @@ In addition to creating a custom browser definition provider and to dynamically 
 
 ASP.NET 4 adds built-in support for using routing with Web Forms. Routing lets you configure an application to accept request URLs that do not map to physical files. Instead, you can use routing to define URLs that are meaningful to users and that can help with search-engine optimization (SEO) for your application. For example, the URL for a page that displays product categories in an existing application might look like the following example:
 
-[!code[Main](overview/samples/sample36.xml)]
+[!code-console[Main](overview/samples/sample36.cmd)]
 
 By using routing, you can configure the application to accept the following URL to render the same information:
 
-[!code[Main](overview/samples/sample37.xml)]
+[!code-console[Main](overview/samples/sample37.cmd)]
 
 Routing has been available starting with ASP.NET 3.5 SP1. (For an example of how to use routing in ASP.NET 3.5 SP1, see the entry [Using Routing With WebForms](http://haacked.com/archive/2008/03/11/using-routing-with-webforms.aspx "Title of this entry.") on Phil Haack's blog.) However, ASP.NET 4 includes some features that make it easier to use routing, including the following:
 
@@ -557,11 +557,11 @@ Routing has been available starting with ASP.NET 3.5 SP1. (For an example of how
 
 The following example shows how to define a Web Forms route by using the new *MapPageRoute* method of the *Route* class:
 
-[!code[Main](overview/samples/sample38.xml)]
+[!code-csharp[Main](overview/samples/sample38.cs)]
 
 ASP.NET 4 introduces the *MapPageRoute* method. The following example is equivalent to the SearchRoute definition shown in the previous example, but uses the *PageRouteHandler* class.
 
-[!code[Main](overview/samples/sample39.xml)]
+[!code-csharp[Main](overview/samples/sample39.cs)]
 
 The code in the example maps the route to a physical page (in the first route, to `~/search.aspx`). The first route definition also specifies that the parameter named searchterm should be extracted from the URL and passed to the page.
 
@@ -573,7 +573,7 @@ The *MapPageRoute*method supports the following method overloads:
 
 The *checkPhysicalUrlAccess* parameter specifies whether the route should check the security permissions for the physical page being routed to (in this case, search.aspx) and the permissions on the incoming URL (in this case, search/{searchterm}). If the value of *checkPhysicalUrlAccess* is *false*, only the permissions of the incoming URL will be checked. These permissions are defined in the `Web.config` file using settings such as the following:
 
-[!code[Main](overview/samples/sample40.xml)]
+[!code-xml[Main](overview/samples/sample40.xml)]
 
 In the example configuration, access is denied to the physical page `search.aspx` for all users except those who are in the admin role. When the *checkPhysicalUrlAccess* parameter is set to *true* (which is its default value), only admin users are allowed to access the URL /search/{searchterm}, because the physical page search.aspx is restricted to users in that role. If *checkPhysicalUrlAccess* is set to *false* and the site is configured as shown in the previous example, all authenticated users are allowed to access the URL /search/{searchterm}.
 
@@ -581,11 +581,11 @@ In the example configuration, access is denied to the physical page `search.aspx
 
 In the code of the Web Forms physical page, you can access the information that routing has extracted from the URL (or other information that another object has added to the *RouteData* object) by using two new properties: *HttpRequest.RequestContext* and *Page.RouteData*. (*Page.RouteData* wraps *HttpRequest.RequestContext.RouteData*.) The following example shows how to use *Page.RouteData*.
 
-[!code[Main](overview/samples/sample41.xml)]
+[!code-csharp[Main](overview/samples/sample41.cs)]
 
 The code extracts the value that was passed for the searchterm parameter, as defined in the example route earlier. Consider the following request URL:
 
-[!code[Main](overview/samples/sample42.xml)]
+[!code-console[Main](overview/samples/sample42.cmd)]
 
 When this request is made, the word "scott" would be rendered in the `search.aspx` page.
 
@@ -595,19 +595,19 @@ The method described in the previous section shows how to get route data in code
 
 ASP.NET 4 includes two new expression builders for Web Forms routing. The following example shows how to use them.
 
-[!code[Main](overview/samples/sample43.xml)]
+[!code-aspx[Main](overview/samples/sample43.aspx)]
 
 In the example, the *RouteUrl* expression is used to define a URL that is based on a route parameter. This saves you from having to hard-code the complete URL into the markup, and lets you change the URL structure later without requiring any change to this link.
 
 Based on the route defined earlier, this markup generates the following URL:
 
-[!code[Main](overview/samples/sample44.xml)]
+[!code-console[Main](overview/samples/sample44.cmd)]
 
 ASP.NET automatically works out the correct route (that is, it generates the correct URL) based on the input parameters. You can also include a route name in the expression, which lets you specify a route to use.
 
 The following example shows how to use the *RouteValue* expression.
 
-[!code[Main](overview/samples/sample45.xml)]
+[!code-aspx[Main](overview/samples/sample45.aspx)]
 
 When the page that contains this control runs, the value "scott" is displayed in the label.
 
@@ -617,7 +617,7 @@ The *RouteValue* expression makes it simple to use route data in markup, and it 
 
 The *RouteParameter* class lets you specify route data as a parameter value for queries in a data source control. It [works much like the](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.formparameter.aspx)class, as shown in the following example:
 
-[!code[Main](overview/samples/sample46.xml)]
+[!code-aspx[Main](overview/samples/sample46.aspx)]
 
 In this case, the value of the route parameter searchterm will be used for the @companyname parameter in the *Select* statement.
 
@@ -642,27 +642,27 @@ The default *ClientIDMode* value at the page level is *AutoID*, and the default 
 
 You set the page-level value in the *@ Page* directive, as shown in the following example:
 
-[!code[Main](overview/samples/sample47.xml)]
+[!code-aspx[Main](overview/samples/sample47.aspx)]
 
 You can also set the *ClientIDMode* value in the configuration file, either at the computer (machine) level or at the application level. This defines the default *ClientIDMode* setting for all controls in all pages in the application. If you set the value at the computer level, it defines the default *ClientIDMode* setting for all Web sites on that computer. The following example shows the *ClientIDMode* setting in the configuration file:
 
-[!code[Main](overview/samples/sample48.xml)]
+[!code-xml[Main](overview/samples/sample48.xml)]
 
 As noted earlier, the value of the *ClientID* property is derived from the naming container for a control's parent. In some scenarios, such as when you are using master pages, controls can end up with IDs like those in the following rendered HTML:
 
-[!code[Main](overview/samples/sample49.xml)]
+[!code-html[Main](overview/samples/sample49.html)]
 
 Even though the *input* element shown in the markup (from a *TextBox* control) is only two naming containers deep in the page (the nested *ContentPlaceholder* controls), because of the way master pages are processed, the end result is a control ID like the following:
 
-[!code[Main](overview/samples/sample50.xml)]
+[!code-console[Main](overview/samples/sample50.cmd)]
 
 This ID is guaranteed to be unique in the page, but is unnecessarily long for most purposes. Imagine that you want to reduce the length of the rendered ID, and to have more control over how the ID is generated. (For example, you want to eliminate "ctlxxx" prefixes.) The easiest way to achieve this is by setting the *ClientIDMode* property as shown in the following example:
 
-[!code[Main](overview/samples/sample51.xml)]
+[!code-aspx[Main](overview/samples/sample51.aspx)]
 
 In this sample, the *ClientIDMode* property is set to *Static* for the outermost *NamingPanel* element, and set to *Predictable* for the inner *NamingControl* element. These settings result in the following markup (the rest of the page and the master page is assumed to be the same as in the previous example):
 
-[!code[Main](overview/samples/sample52.xml)]
+[!code-html[Main](overview/samples/sample52.html)]
 
 The *Static* setting has the effect of resetting the naming hierarchy for any controls inside the outermost *NamingPanel* element, and of eliminating the *ContentPlaceHolder* and *MasterPage* IDs from the generated ID. (The *name* attribute of rendered elements is unaffected, so the normal ASP.NET functionality is retained for events, view state, and so on.) A side effect of resetting the naming hierarchy is that even if you move the markup for the *NamingPanel* elements to a different *ContentPlaceholder* control, the rendered client IDs remain the same.
 
@@ -675,23 +675,23 @@ The *ClientID* values that are generated for controls in a data-bound list contr
 
 The markup in the following example includes a *ListView* control:
 
-[!code[Main](overview/samples/sample53.xml)]
+[!code-aspx[Main](overview/samples/sample53.aspx)]
 
 In the previous example, the *ClientIDMode* and *RowClientIDRowSuffix* properties are set in markup. The *ClientIDRowSuffix* property can be used only in data-bound controls, and its behavior differs depending on which control you are using. The differences are these:
 
 - *GridView* control — You can specify the name of one or more columns in the data source, which are combined at run time to create the client IDs. For example, if you set *RowClientIDRowSuffix* to "ProductName, ProductId", control IDs for rendered elements will have a format like the following:
 
-- [!code[Main](overview/samples/sample54.xml)]
+- [!code-console[Main](overview/samples/sample54.cmd)]
 
 - *ListView* control — You can specify a single column in the data source that is appended to the client ID. For example, if you set *ClientIDRowSuffix* to "ProductName", the rendered control IDs will have a format like the following:
 
-- [!code[Main](overview/samples/sample55.xml)]
+- [!code-console[Main](overview/samples/sample55.cmd)]
 
 - In this case the trailing 1 is derived from the product ID of the current data item.
 
 - *Repeater* control— This control does not support the *ClientIDRowSuffix* property. In a *Repeater* control, the index of the current row is used. When you use ClientIDMode="Predictable" with a *Repeater* control, client IDs are generated that have the following format:
 
-- [!code[Main](overview/samples/sample56.xml)]
+- [!code-console[Main](overview/samples/sample56.cmd)]
 
 - The trailing 0 is the index of the current row.
 
@@ -705,7 +705,7 @@ The *GridView* and *ListView* controls can let users select a row. In previous v
 
 Persisted selection was initially supported only in Dynamic Data projects in the .NET Framework 3.5 SP1. When this feature is enabled, the current selected item is based on the data key for the item. This means that if you select the third row on page 1 and move to page 2, nothing is selected on page 2. When you move back to page 1, the third row is still selected. Persisted selection is now supported for the *GridView* and *ListView* controls in all projects by using the *EnablePersistedSelection* property, as shown in the following example:
 
-[!code[Main](overview/samples/sample57.xml)]
+[!code-aspx[Main](overview/samples/sample57.aspx)]
 
 <a id="0.2__Toc253429263"></a><a id="0.2__Toc243304637"></a>
 
@@ -740,13 +740,13 @@ For more examples of how to use the ASP.NET Chart control, download the sample c
 
 The following example shows how to add a *Chart* control to an ASP.NET page by using markup. In the example, the *Chart* control produces a column chart for static data points.
 
-[!code[Main](overview/samples/sample58.xml)]
+[!code-aspx[Main](overview/samples/sample58.aspx)]
 
 #### Using 3-D Charts
 
 The *Chart* control contains a *ChartAreas* collection, which can contain *ChartArea* objects that define characteristics of chart areas. For example, to use 3-D for a chart area, use the *Area3DStyle* property as in the following example:
 
-[!code[Main](overview/samples/sample59.xml)]
+[!code-aspx[Main](overview/samples/sample59.aspx)]
 
 The figure below shows a 3-D chart with four series of the *Bar* chart type.
 
@@ -758,7 +758,7 @@ Figure 3: 3-D Bar Chart
 
 Scale breaks and logarithmic scales are two additional ways to add sophistication to the chart. These features are specific to each axis in a chart area. For example, to use these features on the primary Y axis of a chart area, use the *AxisY.IsLogarithmic* and *ScaleBreakStyle* properties in a *ChartArea* object. The following snippet shows how to use scale breaks on the primary Y axis.
 
-[!code[Main](overview/samples/sample60.xml)]
+[!code-aspx[Main](overview/samples/sample60.aspx)]
 
 The figure below shows the Y axis with scale breaks enabled.
 
@@ -780,29 +780,29 @@ The *QueryExtender* control supports a variety of filter options. The following 
 
 For the search option, the *QueryExtender* control performs a search in specified fields. In the following example, the control uses the text that is entered in the TextBoxSearch control and searches for its contents in the `ProductName` and `Supplier.CompanyName` columns in the data that is returned from the *LinqDataSource* control.
 
-[!code[Main](overview/samples/sample61.xml)]
+[!code-aspx[Main](overview/samples/sample61.aspx)]
 
 #### Range
 
 The range option is similar to the search option, but specifies a pair of values to define the range. In the following example, the *QueryExtender* control searches the `UnitPrice` column in the data returned from the *LinqDataSource* control. The range is read from the TextBoxFrom and TextBoxTo controls on the page.
 
-[!code[Main](overview/samples/sample62.xml)]
+[!code-aspx[Main](overview/samples/sample62.aspx)]
 
 #### PropertyExpression
 
 The property expression option lets you define a comparison to a property value. If the expression evaluates to *true*, the data that is being examined is returned. In the following example, the *QueryExtender* control filters data by comparing the data in the `Discontinued` column to the value from the CheckBoxDiscontinued control on the page.
 
-[!code[Main](overview/samples/sample63.xml)]
+[!code-aspx[Main](overview/samples/sample63.aspx)]
 
 #### CustomExpression
 
 Finally, you can specify a custom expression to use with the *QueryExtender* control. This option lets you call a function in the page that defines custom filter logic. The following example shows how to declaratively specify a custom expression in the *QueryExtender* control.
 
-[!code[Main](overview/samples/sample64.xml)]
+[!code-aspx[Main](overview/samples/sample64.aspx)]
 
 The following example shows the custom function that is invoked by the *QueryExtender* control. In this case, instead of using a database query that includes a *Where* clause, the code uses a LINQ query to filter the data.
 
-[!code[Main](overview/samples/sample65.xml)]
+[!code-csharp[Main](overview/samples/sample65.cs)]
 
 These examples show only one expression being used in the *QueryExtender* control at a time. However, you can include multiple expressions inside the *QueryExtender* control.
 
@@ -814,11 +814,11 @@ Some ASP.NET sites (especially with ASP.NET MVC) rely heavily on using `<%`= `ex
 
 ASP.NET 4 introduces the following new syntax for code expressions:
 
-[!code[Main](overview/samples/sample66.xml)]
+[!code-aspx[Main](overview/samples/sample66.aspx)]
 
 This syntax uses HTML encoding by default when writing to the response. This new expression effectively translates to the following:
 
-[!code[Main](overview/samples/sample67.xml)]
+[!code-aspx[Main](overview/samples/sample67.aspx)]
 
 For example, &lt;%: Request["UserInput"] %&gt; performs HTML encoding on the value of *Request["UserInput"]*.
 
@@ -826,7 +826,7 @@ The goal of this feature is to make it possible to replace all instances of the 
 
 For those cases, ASP.NET 4 introduces a new interface, *IHtmlString*, along with a concrete implementation, *HtmlString*. Instances of these types let you indicate that the return value is already properly encoded (or otherwise examined) for displaying as HTML, and that therefore the value should not be HTML-encoded again. For example, the following should not be (and is not) HTML encoded:
 
-[!code[Main](overview/samples/sample68.xml)]
+[!code-aspx[Main](overview/samples/sample68.aspx)]
 
 ASP.NET MVC 2 helper methods have been updated to work with this new syntax so that they are not double encoded, but only when you are running ASP.NET 4. This new syntax does not work when you run an application using ASP.NET 3.5 SP1.
 
@@ -918,7 +918,7 @@ One of the major areas of work in ASP.NET 4 has been to help render HTML that is
 
 By default, when a Web application or Web site targets the .NET Framework 4, the *controlRenderingCompatibilityVersion* attribute of the *pages* element is set to "4.0". This element is defined in the machine-level `Web.config` file and by default applies to all ASP.NET 4 applications:
 
-[!code[Main](overview/samples/sample69.xml)]
+[!code-xml[Main](overview/samples/sample69.xml)]
 
 The value for *controlRenderingCompatibility* is a string, which allows potential new version definitions in future releases. In the current release, the following values are supported for this property:
 
@@ -937,19 +937,19 @@ In ASP.NET 3.5 SP1 and earlier versions, the framework renders the *disabled* at
 
 In ASP.NET 4, you can set the *controlRenderingCompatabilityVersion* property to "3.5", as in the following example:
 
-[!code[Main](overview/samples/sample70.xml)]
+[!code-xml[Main](overview/samples/sample70.xml)]
 
 You might create markup for a *Label* control like the following, which disables the control:
 
-[!code[Main](overview/samples/sample71.xml)]
+[!code-aspx[Main](overview/samples/sample71.aspx)]
 
 The *Label* control would render the following HTML:
 
-[!code[Main](overview/samples/sample72.xml)]
+[!code-html[Main](overview/samples/sample72.html)]
 
 In ASP.NET 4, you can set the *controlRenderingCompatabilityVersion* to "4.0". In that case, only controls that render *input* elements will render a *disabled* attribute when the control's *Enabled* property is set to *false*. Controls that do not render HTML *input* elements instead render a *class*attribute that references a CSS class that you can use to define a disabled look for the control. For example, the *Label* control shown in the earlier example would generate the following markup:
 
-[!code[Main](overview/samples/sample73.xml)]
+[!code-html[Main](overview/samples/sample73.html)]
 
 The default value for the class that specified for this control is "aspNetDisabled". However, you can change this default value by setting the static *DisabledCssClass* static property of the *WebControl* class. For control developers, the behavior to use for a specific control can also be defined using the *SupportsDisabledAttribute* property.
 
@@ -959,11 +959,11 @@ The default value for the class that specified for this control is "aspNetDisabl
 
 ASP.NET 2.0 and later versions render system-specific hidden fields (such as the *hidden* element used to store view state information) inside *div* element in order to comply with the XHTML standard. However, this can cause a problem when a CSS rule affects *div* elements on a page. For example, it can result in a one-pixel line appearing in the page around hidden *div* elements. In ASP.NET 4, *div* elements that enclose the hidden fields generated by ASP.NET add a CSS class reference as in the following example:
 
-[!code[Main](overview/samples/sample74.xml)]
+[!code-html[Main](overview/samples/sample74.html)]
 
 You can then define a CSS class that applies only to the *hidden* elements that are generated by ASP.NET, as in the following example:
 
-[!code[Main](overview/samples/sample75.xml)]
+[!code-css[Main](overview/samples/sample75.css)]
 
 <a id="0.2__Toc253429269"></a><a id="0.2__Toc243304643"></a>
 
@@ -980,15 +980,15 @@ By default, the following ASP.NET Web server controls that support templates are
 
 A new property named *RenderOuterTable* has been added to these controls that allows the outer table to be removed from the markup. For example, consider the following example of a *FormView* control:
 
-[!code[Main](overview/samples/sample76.xml)]
+[!code-aspx[Main](overview/samples/sample76.aspx)]
 
 This markup renders the following output to the page, which includes an HTML table:
 
-[!code[Main](overview/samples/sample77.xml)]
+[!code-html[Main](overview/samples/sample77.html)]
 
 To prevent the table from being rendered, you can set the *FormView* control's *RenderOuterTable* property, as in the following example:
 
-[!code[Main](overview/samples/sample78.xml)]
+[!code-aspx[Main](overview/samples/sample78.aspx)]
 
 The previous example renders the following output, without the *table*, *tr*, and *td* elements:
 
@@ -1006,11 +1006,11 @@ This enhancement can make it easier to style the content of the control with CSS
 
 The *ListView* control has been made easier to use in ASP.NET 4. The earlier version of the control required that you specify a layout template that contained a server control with a known ID. The following markup shows a typical example of how to use the *ListView* control in ASP.NET 3.5.
 
-[!code[Main](overview/samples/sample79.xml)]
+[!code-aspx[Main](overview/samples/sample79.aspx)]
 
 In ASP.NET 4, the *ListView* control does not require a layout template. The markup shown in the previous example can be replaced with the following markup:
 
-[!code[Main](overview/samples/sample80.xml)]
+[!code-aspx[Main](overview/samples/sample80.aspx)]
 
 <a id="0.2__Toc253429271"></a><a id="0.2__Toc243304645"></a>
 
@@ -1023,11 +1023,11 @@ In ASP.NET 3.5, you can specify layout for the *CheckBoxList* and *RadioButtonLi
 
 The following example shows markup for each of these controls.
 
-[!code[Main](overview/samples/sample81.xml)]
+[!code-aspx[Main](overview/samples/sample81.aspx)]
 
 By default, the controls render HTML similar to the following:
 
-[!code[Main](overview/samples/sample82.xml)]
+[!code-html[Main](overview/samples/sample82.html)]
 
 Because these controls contain lists of items, to render semantically correct HTML, they should render their contents using HTML list (*li*) elements. This makes it easier for users who read Web pages using assistive technology, and makes the controls easier to style using CSS.
 
@@ -1038,11 +1038,11 @@ In ASP.NET 4, the *CheckBoxList* and *RadioButtonList* controls support the foll
 
 The following example shows how to use these new values.
 
-[!code[Main](overview/samples/sample83.xml)]
+[!code-aspx[Main](overview/samples/sample83.aspx)]
 
 The preceding markup generates the following HTML:
 
-[!code[Main](overview/samples/sample84.xml)]
+[!code-html[Main](overview/samples/sample84.html)]
 
 > Note If you set *RepeatLayout* to *OrderedList* or *UnorderedList*, the *RepeatDirection* property can no longer be used and will throw an exception at run time if the property has been set within your markup or code. The property would have no value because the visual layout of these controls is defined using CSS instead.
 
@@ -1055,11 +1055,11 @@ Before ASP.NET 4, the *Menu* control rendered a series of HTML tables. This made
 
 In ASP.NET 4, the control now renders HTML using semantic markup that consists of an unordered list and list elements. The following example shows markup in an ASP.NET page for the *Menu* control.
 
-[!code[Main](overview/samples/sample85.xml)]
+[!code-aspx[Main](overview/samples/sample85.aspx)]
 
 When the page renders, the control produces the following HTML (the *onclick* code has been omitted for clarity):
 
-[!code[Main](overview/samples/sample86.xml)]
+[!code-html[Main](overview/samples/sample86.html)]
 
 In addition to rendering improvements, keyboard navigation of the menu has been improved using focus management. When the *Menu* control gets focus, you can use the arrow keys to navigate elements. The *Menu* control also now attaches accessible rich internet applications (ARIA) roles and attributes follo[wing the](http://www.w3.org/TR/wai-aria-practices/#menu "Menu ARIA guidelines")for improved accessibility.
 
@@ -1071,15 +1071,15 @@ Styles for the menu control are rendered in a style block at the top of the page
 
 The ASP.NET *Wizard* and *CreateUserWizard* controls support templates that let you define the HTML that they render. (*CreateUserWizard* derives from *Wizard*.) The following example shows the markup for a fully templated *CreateUserWizard* control:
 
-[!code[Main](overview/samples/sample87.xml)]
+[!code-aspx[Main](overview/samples/sample87.aspx)]
 
 The control renders HTML similar to the following:
 
-[!code[Main](overview/samples/sample88.xml)]
+[!code-html[Main](overview/samples/sample88.html)]
 
 In ASP.NET 3.5 SP1, although you can change the template contents, you still have limited control over the output of the *Wizard* control. In ASP.NET 4, you can create a *LayoutTemplate* template and insert *PlaceHolder* controls (using reserved names) to specify how you want the*Wizard control*to render. The following example shows this:
 
-[!code[Main](overview/samples/sample89.xml)]
+[!code-aspx[Main](overview/samples/sample89.aspx)]
 
 The example contains the following named placeholders in the *LayoutTemplate* element:
 
@@ -1090,7 +1090,7 @@ The example contains the following named placeholders in the *LayoutTemplate* el
 
 The markup in the example that uses placeholders renders the following HTML (without the content actually defined in the templates):
 
-[!code[Main](overview/samples/sample90.xml)]
+[!code-html[Main](overview/samples/sample90.html)]
 
 The only HTML that is now not user-defined is a *span* element. (We anticipate that in future releases, even the *span* element will not be rendered.) This now gives you full control over virtually all the content that is generated by the *Wizard* control.
 
@@ -1154,17 +1154,17 @@ However, these features had the following requirements:
 
 A major goal of Dynamic Data support in ASP.NET 4 is to enable the new functionality of Dynamic Data for any ASP.NET application. The following example shows markup for controls that can take advantage of Dynamic Data functionality in an existing page.
 
-[!code[Main](overview/samples/sample91.xml)]
+[!code-aspx[Main](overview/samples/sample91.aspx)]
 
 In the code for the page, the following code must be added in order to enable Dynamic Data support for these controls:
 
-[!code[Main](overview/samples/sample92.xml)]
+[!code-csharp[Main](overview/samples/sample92.cs)]
 
 When the *GridView* control is in edit mode, Dynamic Data automatically validates that the data entered is in the proper format. If it is not, an error message is displayed.
 
 This functionality also provides other benefits, such as being able to specify default values for insert mode. Without Dynamic Data, to implement a default value for a field, you must attach to an event, locate the control (using *FindControl*), and set its value. In ASP.NET 4, the *EnableDynamicData* call supports a second parameter that lets you pass default values for any field on the object, as shown in this example:
 
-[!code[Main](overview/samples/sample93.xml)]
+[!code-csharp[Main](overview/samples/sample93.cs)]
 
 <a id="0.2__Toc224729043"></a><a id="0.2__Toc253429280"></a><a id="0.2__Toc243304651"></a>
 
@@ -1172,7 +1172,7 @@ This functionality also provides other benefits, such as being able to specify d
 
 The *DynamicDataManager* control has been enhanced so that you can configure it declaratively, as with most controls in ASP.NET, instead of only in code. The markup for the *DynamicDataManager* control looks like the following example:
 
-[!code[Main](overview/samples/sample94.xml)]
+[!code-aspx[Main](overview/samples/sample94.aspx)]
 
 This markup enables Dynamic Data behavior for the GridView1 control that is referenced in the *DataControls* section of the *DynamicDataManager* control.
 
@@ -1184,23 +1184,23 @@ Entity templates offer a new way to customize the layout of data without requiri
 
 The following list shows the new project directory layout that contains entity templates:
 
-[!code[Main](overview/samples/sample95.xml)]
+[!code-console[Main](overview/samples/sample95.cmd)]
 
 The `EntityTemplate` directory contains templates for how to display data model objects. By default, objects are rendered by using the `Default.ascx` template, which provides markup that looks just like the markup created by the *DetailsView* control used by Dynamic Data in ASP.NET 3.5 SP1. The following example shows the markup for the `Default.ascx` control:
 
-[!code[Main](overview/samples/sample96.xml)]
+[!code-aspx[Main](overview/samples/sample96.aspx)]
 
 The default templates can be edited to change the look and feel for the entire site. There are templates for display, edit, and insert operations. New templates can be added based on the name of the data object in order to change the look and feel of just one type of object. For example, you can add the following template:
 
-[!code[Main](overview/samples/sample97.xml)]
+[!code-console[Main](overview/samples/sample97.cmd)]
 
 The template might contain the following markup:
 
-[!code[Main](overview/samples/sample98.xml)]
+[!code-aspx[Main](overview/samples/sample98.aspx)]
 
 The new entity templates are displayed on a page by using the new *DynamicEntity* control. At run time, this control is replaced with the contents of the entity template. The following markup shows the *FormView* control in the `Detail.aspx` page template that uses the entity template. Notice the *DynamicEntity* element in the markup.
 
-[!code[Main](overview/samples/sample99.xml)]
+[!code-aspx[Main](overview/samples/sample99.aspx)]
 
 <a id="0.2__Toc224729045"></a><a id="0.2__Toc253429282"></a><a id="0.2__Toc243304653"></a>
 
@@ -1210,7 +1210,7 @@ ASP.NET 4 introduces two new built-in field templates, `EmailAddress.ascx` and `
 
 The following example shows how fields would be marked.
 
-[!code[Main](overview/samples/sample100.xml)]
+[!code-csharp[Main](overview/samples/sample100.cs)]
 
 <a id="0.2__Toc224729046"></a><a id="0.2__Toc253429283"></a><a id="0.2__Toc243304654"></a>
 
@@ -1218,7 +1218,7 @@ The following example shows how fields would be marked.
 
 Dynamic Data uses the new routing feature that was added in the .NET Framework 3.5 SP1 to control the URLs that end users see when they access the Web site. The new *DynamicHyperLink* control makes it easy to build links to pages in a Dynamic Data site. The following example shows how to use the *DynamicHyperLink* control:
 
-[!code[Main](overview/samples/sample101.xml)]
+[!code-aspx[Main](overview/samples/sample101.aspx)]
 
 This markup creates a link that points to the List page for the `Products` table based on routes that are defined in the `Global.asax` file. The control automatically uses the default table name that the Dynamic Data page is based on.
 
@@ -1321,7 +1321,7 @@ For Web application deployment, Visual Studio 2010 introduces [XML Document Tran
 
 The following example shows a portion of a `web.release.config` file that might be produced for deployment of your release configuration. The Replace keyword in the example specifies that during deployment the *connectionString* node in the `Web.config` file will be replaced with the values that are listed in the example.
 
-[!code[Main](overview/samples/sample102.xml)]
+[!code-xml[Main](overview/samples/sample102.xml)]
 
 For more information, see [Web.config Transformation Syntax for Web Application Project Deployment](https://msdn.microsoft.com/en-us/library/dd465326%28VS.100%29.aspx) on the MSDN <a id="0.2_a"></a> Web site and[Web Deployment: Web.Config Transformation](http://vishaljoshi.blogspot.com/2009/03/web-deployment-webconfig-transformation_23.html) on Vishal Joshi's blog.
 

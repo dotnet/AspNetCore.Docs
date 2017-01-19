@@ -34,7 +34,7 @@ You'll replace that with code that displays a summary of student enrollment.
 
 Open the *About.aspx* page, delete all of the markup inside the `MainContent``Content` element, and insert the following markup in its place:
 
-[!code[Main](command-line-deployment/samples/sample1.xml)]
+[!code-aspx[Main](command-line-deployment/samples/sample1.aspx)]
 
 Run the project and select the **About** page.
 
@@ -50,7 +50,7 @@ Right-click the icon for **Developer Command Prompt for VS2012** and click **Run
 
 Enter the following command at the command prompt, replacing the path to the solution file with the path to your solution file:
 
-[!code[Main](command-line-deployment/samples/sample2.xml)]
+[!code-console[Main](command-line-deployment/samples/sample2.cmd)]
 
 MSBuild builds the solution and deploys it to the test environment.
 
@@ -66,7 +66,7 @@ If you haven't created any students in test, you'll see an empty page under the 
 
 The command that you entered passed the solution file path and two properties to MSBuild:
 
-[!code[Main](command-line-deployment/samples/sample3.xml)]
+[!code-console[Main](command-line-deployment/samples/sample3.cmd)]
 
 ### Deploying the solution versus deploying individual projects
 
@@ -77,7 +77,7 @@ Specifying the solution file causes all projects in the solution to be built. If
 
 If you specify an individual project instead of a solution, you have to add a parameter that specifies the Visual Studio version. If you are using Visual Studio 2012 the command line would be similar to the following example:
 
-[!code[Main](command-line-deployment/samples/sample4.xml?highlight=1)]
+[!code-console[Main](command-line-deployment/samples/sample4.cmd?highlight=1)]
 
 The version number for Visual Studio 2010 is 10.0. For more information, see [Visual Studio project compatability and VisualStudioVersion](http://sedodream.com/2012/08/19/VisualStudioProjectCompatabilityAndVisualStudioVersion.aspx) on Sayed Hashimi's blog.
 
@@ -85,7 +85,7 @@ The version number for Visual Studio 2010 is 10.0. For more information, see [Vi
 
 You can specify the publish profile by name or by the full path to the *.pubxml* file, as shown in the following example:
 
-[!code[Main](command-line-deployment/samples/sample5.xml?highlight=1)]
+[!code-console[Main](command-line-deployment/samples/sample5.cmd?highlight=1)]
 
 ### Web publish methods supported for command-line publishing
 
@@ -109,7 +109,7 @@ To deploy to Azure, you must add the password to the command line. If you saved 
 2. In the Windows 8 Start page, search for **Developer Command Prompt for VS2012**, and click the icon to open the command prompt. (You don't have to open it as administrator this time because you aren't deploying to IIS on the local computer.)
 3. Enter the following command at the command prompt, replacing the path to the solution file with the path to your solution file and the password with your password:
 
-    [!code[Main](command-line-deployment/samples/sample6.xml)]
+    [!code-console[Main](command-line-deployment/samples/sample6.cmd)]
 
     Notice that this command line includes an extra parameter: `/p:AllowUntrustedCertificate=true`. As this tutorial is being written, the `AllowUntrustedCertificate` property must be set when you publish to Azure from the command line. When the fix for this bug is released, you won't need that parameter.
 4. Open a browser and go to the URL of your staging site, and then click the **About** page to verify that the deployment was successful.
@@ -124,7 +124,7 @@ The process for deploying to production is similar to the process for staging.
 2. Open **Developer Command Prompt for VS2012**.
 3. Enter the following command at the command prompt, replacing the path to the solution file with the path to your solution file and the password with your password:
 
-    [!code[Main](command-line-deployment/samples/sample7.xml)]
+    [!code-console[Main](command-line-deployment/samples/sample7.cmd)]
 
     For a real production site, if there was also a database change, you would typically copy the *app\_offline.htm* file to the site before deployment and delete it after successful deployment.
 4. Open a browser and go to the URL of your staging site, and then click the **About** page to verify that the deployment was successful.

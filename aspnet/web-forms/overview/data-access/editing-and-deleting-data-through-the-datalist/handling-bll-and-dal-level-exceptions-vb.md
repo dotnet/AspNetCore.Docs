@@ -46,7 +46,7 @@ After completing the ObjectDataSource wizard, Visual Studio will automatically c
 After these changes, your page s declarative markup should look similar to the following. Double-check to make certain that the Edit, Cancel, and Update buttons have their `CommandName` properties set to Edit , Cancel , and Update , respectively.
 
 
-[!code[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample1.xml)]
+[!code-aspx[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample1.aspx)]
 
 > [!NOTE] For this tutorial the DataList s view state must be enabled.
 
@@ -62,14 +62,14 @@ Take a moment to view our progress through a browser (see Figure 2).
 Currently, the Edit button only causes a postback it doesn t yet make the product editable. To enable editing, we need to create event handlers for the DataList s `EditCommand`, `CancelCommand`, and `UpdateCommand` events. The `EditCommand` and `CancelCommand` events simply update the DataList s `EditItemIndex` property and rebind the data to the DataList:
 
 
-[!code[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample2.xml)]
+[!code-vb[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample2.vb)]
 
 The `UpdateCommand` event handler is a bit more involved. It needs to read in the edited product s `ProductID` from the `DataKeys` collection along with the product s name and price from the TextBoxes in the `EditItemTemplate`, and then call the `ProductsBLL` class s `UpdateProduct` method before returning the DataList to its pre-editing state.
 
 For now, let s just use the exact same code from the `UpdateCommand` event handler in the *Overview of Editing and Deleting Data in the DataList* tutorial. We'll add the code to gracefully handle exceptions in step 2.
 
 
-[!code[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample3.xml)]
+[!code-vb[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample3.vb)]
 
 In the face of invalid input which can be in the form of an improperly formatted unit price, an illegal unit price value like -$5.00 , or the omission of the product s name an exception will be raised. Since the `UpdateCommand` event handler does not include any exception handling code at this point, the exception will bubble up to the ASP.NET runtime, where it will be displayed to the end user (see Figure 3).
 
@@ -88,21 +88,21 @@ When an exception occurs, we want to display an informative message within the p
 When an error occurs, we only want the Label to be displayed once. That is, on subsequent postbacks, the Label s warning message should disappear. This can be accomplished by either clearing out the Label s `Text` property or settings its `Visible` property to `False` in the `Page_Load` event handler (as we did back in the [Handling BLL- and DAL-Level Exceptions in an ASP.NET Page](../editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb.md) tutorial) or by disabling the Label s view state support. Let s use the latter option.
 
 
-[!code[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample4.xml)]
+[!code-aspx[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample4.aspx)]
 
 When an exception is raised, we'll assign the details of the exception to the `ExceptionDetails` Label control s `Text` property. Since its view state is disabled, on subsequent postbacks the `Text` property s programmatic changes will be lost, reverting back to the default text (an empty string), thereby hiding the warning message.
 
 To determine when an error has been raised in order to display a helpful message on the page, we need to add a `Try ... Catch` block to the `UpdateCommand` event handler. The `Try` portion contains code that may lead to an exception, while the `Catch` block contains code that is executed in the face of an exception. Check out the [Exception Handling Fundamentals](https://msdn.microsoft.com/en-us/library/2w8f0bss.aspx) section in the .NET Framework documentation for more information on the `Try ... Catch` block.
 
 
-[!code[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample5.xml)]
+[!code-vb[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample5.vb)]
 
 When an exception of any type is thrown by code within the `Try` block, the `Catch` block s code will begin executing. The type of exception that is thrown `DbException`, `NoNullAllowedException`, `ArgumentException`, and so on depends on what, exactly, precipitated the error in the first place. If there s a problem at the database level, a `DbException` will be thrown. If an illegal value is entered for the `UnitPrice`, `UnitsInStock`, `UnitsOnOrder`, or `ReorderLevel` fields, an `ArgumentException` will be thrown, as we added code to validate these field values in the `ProductsDataTable` class (see the [Creating a Business Logic Layer](../introduction/creating-a-business-logic-layer-vb.md) tutorial).
 
 We can provide a more helpful explanation to the end user by basing the message text on the type of exception caught. The following code which was used in a nearly identical form back in the [Handling BLL- and DAL-Level Exceptions in an ASP.NET Page](../editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-vb.md) tutorial provides this level of detail:
 
 
-[!code[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample6.xml)]
+[!code-vb[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample6.vb)]
 
 To complete this tutorial, simply call the `DisplayExceptionDetails` method from the `Catch` block passing in the caught `Exception` instance (`ex`).
 

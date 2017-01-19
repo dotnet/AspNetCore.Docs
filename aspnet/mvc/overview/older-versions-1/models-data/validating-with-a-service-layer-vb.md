@@ -28,13 +28,13 @@ For example, Listing 1 contains a simple repository named the ProductRepository.
 
 **Listing 1 - Models\ProductRepository.vb**
 
-[!code[Main](validating-with-a-service-layer-vb/samples/sample1.xml)]
+[!code-vb[Main](validating-with-a-service-layer-vb/samples/sample1.vb)]
 
 The controller in Listing 2 uses the repository layer in both its Index() and Create() actions. Notice that this controller does not contain any database logic. Creating a repository layer enables you to maintain a clean separation of concerns. Controllers are responsible for application flow control logic and the repository is responsible for data access logic.
 
 **Listing 2 - Controllers\ProductController.vb**
 
-[!code[Main](validating-with-a-service-layer-vb/samples/sample2.xml)]
+[!code-vb[Main](validating-with-a-service-layer-vb/samples/sample2.vb)]
 
 ## Creating a Service Layer
 
@@ -46,13 +46,13 @@ For example, the product service layer in Listing 3 has a CreateProduct() method
 
 **Listing 3 - Models\ProductService.vb**
 
-[!code[Main](validating-with-a-service-layer-vb/samples/sample3.xml)]
+[!code-vb[Main](validating-with-a-service-layer-vb/samples/sample3.vb)]
 
 The Product controller has been updated in Listing 4 to use the service layer instead of the repository layer. The controller layer talks to the service layer. The service layer talks to the repository layer. Each layer has a separate responsibility.
 
 **Listing 4 - Controllers\ProductController.vb**
 
-[!code[Main](validating-with-a-service-layer-vb/samples/sample4.xml)]
+[!code-vb[Main](validating-with-a-service-layer-vb/samples/sample4.vb)]
 
 Notice that the product service is created in the product controller constructor. When the product service is created, the model state dictionary is passed to the service. The product service uses model state to pass validation error messages back to the controller.
 
@@ -66,25 +66,25 @@ In Listing 5, the service layer has been updated so that it no longer uses model
 
 **Listing 5 - Models\ProductService.vb (decoupled)**
 
-[!code[Main](validating-with-a-service-layer-vb/samples/sample5.xml)]
+[!code-vb[Main](validating-with-a-service-layer-vb/samples/sample5.vb)]
 
 The IValidationDictionary interface is defined in Listing 6. This simple interface has a single method and a single property.
 
 **Listing 6 - Models\IValidationDictionary.cs**
 
-[!code[Main](validating-with-a-service-layer-vb/samples/sample6.xml)]
+[!code-vb[Main](validating-with-a-service-layer-vb/samples/sample6.vb)]
 
 The class in Listing 7, named the ModelStateWrapper class, implements the IValidationDictionary interface. You can instantiate the ModelStateWrapper class by passing a model state dictionary to the constructor.
 
 **Listing 7 - Models\ModelStateWrapper.vb**
 
-[!code[Main](validating-with-a-service-layer-vb/samples/sample7.xml)]
+[!code-vb[Main](validating-with-a-service-layer-vb/samples/sample7.vb)]
 
 Finally, the updated controller in Listing 8 uses the ModelStateWrapper when creating the service layer in its constructor.
 
 **Listing 8 - Controllers\ProductController.vb**
 
-[!code[Main](validating-with-a-service-layer-vb/samples/sample8.xml)]
+[!code-vb[Main](validating-with-a-service-layer-vb/samples/sample8.vb)]
 
 Using the IValidationDictionary interface and the ModelStateWrapper class enables us to completely isolate our service layer from our controller layer. The service layer is no longer dependent on model state. You can pass any class that implements the IValidationDictionary interface to the service layer. For example, a WPF application might implement the IValidationDictionary interface with a simple collection class.
 

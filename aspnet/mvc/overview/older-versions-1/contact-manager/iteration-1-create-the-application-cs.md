@@ -247,7 +247,7 @@ When you create the Home controller, you get the class in Listing 1.
 
 **Listing 1 - Controllers\HomeController.cs**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample1.xml)]
+[!code-csharp[Main](iteration-1-create-the-application-cs/samples/sample1.cs)]
 
 ## Listing the Contacts
 
@@ -257,7 +257,7 @@ The Home controller already contains an Index() action. We need to modify this m
 
 **Listing 2 - Controllers\HomeController.cs**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample2.xml)]
+[!code-csharp[Main](iteration-1-create-the-application-cs/samples/sample2.cs)]
 
 Notice that the Home controller class in Listing 2 contains a private field named \_entities. The \_entities field represents the entities from the data model. We use the \_entities field to communicate with the database.
 
@@ -287,7 +287,7 @@ The body of the Index view contains a foreach loop that iterates through each of
 
 **Listing 3 - Views\Home\Index.aspx (unmodified)**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample3.xml)]
+[!code-aspx[Main](iteration-1-create-the-application-cs/samples/sample3.aspx)]
 
 We need to make one modification to the Index view. Because we are not creating a Details view, we can remove the Details link. Find and remove the following code from the Index view:
 
@@ -319,7 +319,7 @@ The new Create() methods that we need to add to the Home controller are containe
 
 **Listing 4 - Controllers\HomeController.cs (with Create methods)**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample4.xml)]
+[!code-csharp[Main](iteration-1-create-the-application-cs/samples/sample4.cs)]
 
 The first Create() method can be invoked with an HTTP GET while the second Create() method can be invoked only by an HTTP POST. In other words, the second Create() method can be invoked only when posting an HTML form. The first Create() method simply returns a view that contains the HTML form for creating a new contact. The second Create() method is much more interesting: it adds the new contact to the database.
 
@@ -349,7 +349,7 @@ The Create view contains form fields for each of the properties of the Contact c
 
 **Listing 5 - Views\Home\Create.aspx**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample5.xml)]
+[!code-aspx[Main](iteration-1-create-the-application-cs/samples/sample5.aspx)]
 
 After you modify the Create() methods and add the Create view, you can run the Contact Manger application and create new contacts. Click the **Create New** link that appears in the Index view to navigate to the Create view. You should see the view in Figure 18.
 
@@ -365,7 +365,7 @@ Adding the functionality for editing a contact record is very similar to adding 
 
 **Listing 6 - Controllers\HomeController.cs (with Edit methods)**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample6.xml)]
+[!code-csharp[Main](iteration-1-create-the-application-cs/samples/sample6.cs)]
 
 The first Edit() method is invoked by an HTTP GET operation. An Id parameter is passed to this method which represents the Id of the contact record being edited. The Entity Framework is used to retrieve a contact that matches the Id. A view that contains an HTML form for editing a record is returned.
 
@@ -385,7 +385,7 @@ When you click the Add button, a new Edit view is generated automatically. The H
 
 **Listing 7 - Views\Home\Edit.aspx**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample7.xml)]
+[!code-aspx[Main](iteration-1-create-the-application-cs/samples/sample7.aspx)]
 
 ## Deleting Contacts
 
@@ -400,7 +400,7 @@ The two new Delete() methods are contained in Listing 8.
 
 **Listing 8 - Controllers\HomeController.cs (Delete methods)**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample8.xml)]
+[!code-csharp[Main](iteration-1-create-the-application-cs/samples/sample8.cs)]
 
 The first Delete() method returns a confirmation form for deleting a contact record from the database (see Figure20). The second Delete() method performs the actual delete operation against the database. After the original contact has been retrieved from the database, the Entity Framework DeleteObject() and SaveChanges() methods are called to perform the database delete.
 
@@ -434,7 +434,7 @@ The content of the Delete view is contained in Listing 9. This view contains a f
 
 **Listing 9 - Views\Home\Delete.aspx**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample9.xml)]
+[!code-aspx[Main](iteration-1-create-the-application-cs/samples/sample9.aspx)]
 
 ## Changing the Name of the Default Controller
 
@@ -467,7 +467,7 @@ We need to update the default route in the Global.asax file to use the Contact c
 
 **Listing 10 - Global.asax.cs**
 
-[!code[Main](iteration-1-create-the-application-cs/samples/sample10.xml)]
+[!code-csharp[Main](iteration-1-create-the-application-cs/samples/sample10.cs)]
 
 After you make these changes, the Contact Manager will run correctly. Now, it will use the Contact controller class as the default controller.
 

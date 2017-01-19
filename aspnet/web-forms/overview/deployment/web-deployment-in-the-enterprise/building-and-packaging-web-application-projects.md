@@ -33,7 +33,7 @@ In Visual Studio 2010, the build and deployment process for web application proj
 If you take a look at the project file for a C#-based web application project, you can see that it imports two .targets files.
 
 
-[!code[Main](building-and-packaging-web-application-projects/samples/sample1.xml)]
+[!code-xml[Main](building-and-packaging-web-application-projects/samples/sample1.xml)]
 
 
 The first **Import** statement is common to all Visual C# projects. This file, *Microsoft.CSharp.targets*, contains targets and tasks that are specific to Visual C#. For example, the C# compiler (**Csc**) task is invoked here. The *Microsoft.CSharp.targets* file in turn imports the *Microsoft.Common.targets* file. This defines targets that are common to all projects, like **Build**, **Rebuild**, **Run**, **Compile**, and **Clean**. The second **Import** statement is specific to web application projects. The *Microsoft.WebApplication.targets* file in turn imports the *Microsoft.Web.Publishing.targets* file. The *Microsoft.Web.Publishing.targets* file essentially *is* the WPP. It defines targets, like **Package** and **MSDeployPublish**, that invoke Web Deploy to complete various deployment tasks.
@@ -41,7 +41,7 @@ The first **Import** statement is common to all Visual C# projects. This file, *
 To understand how these additional targets are used, in the Contact Manager sample solution, open the *Publish.proj* file and take a look at the **BuildProjects** target.
 
 
-[!code[Main](building-and-packaging-web-application-projects/samples/sample2.xml)]
+[!code-xml[Main](building-and-packaging-web-application-projects/samples/sample2.xml)]
 
 
 This target uses the **MSBuild** task to build various projects. Notice the **DeployOnBuild** and **DeployTarget** properties:

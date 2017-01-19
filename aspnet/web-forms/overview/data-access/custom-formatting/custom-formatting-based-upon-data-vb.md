@@ -53,7 +53,7 @@ Once you've bound the ObjectDataSource to the DetailsView, take a moment to modi
 After these changes, the DetailsView markup will be:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample1.xml)]
+[!code-aspx[Main](custom-formatting-based-upon-data-vb/samples/sample1.aspx)]
 
 Take a moment to test out this page in your browser.
 
@@ -79,14 +79,14 @@ In order to display the price in a bold, italic font for those products whose `U
 Doing so will automatically create the event handler and take you to the code portion where it has been added. At this point you will see:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample2.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample2.vb)]
 
 The data bound to the DetailsView can be accessed via the `DataItem` property. Recall that we are binding our controls to a strongly-typed DataTable, which is composed of a collection of strongly-typed DataRow instances. When the DataTable is bound to the DetailsView, the first DataRow in the DataTable is assigned to the DetailsView's `DataItem` property. Specifically, the `DataItem` property is assigned a `DataRowView` object. We can use the `DataRowView`'s `Row` property to get access to the underlying DataRow object, which is actually a `ProductsRow` instance. Once we have this `ProductsRow` instance we can make our decision by simply inspecting the object's property values.
 
 The following code illustrates how to determine whether the `UnitPrice` value bound to the DetailsView control is greater than $75.00:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample3.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample3.vb)]
 
 > [!NOTE] Since `UnitPrice` can have a `NULL` value in the database, we first check to make sure that we're not dealing with a `NULL` value before accessing the `ProductsRow`'s `UnitPrice` property. This check is important because if we attempt to access the `UnitPrice` property when it has a `NULL` value the `ProductsRow` object will throw a [StrongTypingException exception](https://msdn.microsoft.com/en-us/library/system.data.strongtypingexception.aspx).
 
@@ -98,22 +98,22 @@ At this point we can determine whether the `UnitPrice` value bound to the Detail
 Accessing a row programmatically requires that you know the row's index, which starts at 0. The `UnitPrice` row is the fifth row in the DetailsView, giving it an index of 4 and making it programmatically accessible using `ExpensiveProductsPriceInBoldItalic.Rows(4)`. At this point we could have the entire row's content displayed in a bold, italic font by using the following code:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample4.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample4.vb)]
 
 However, this will make *both* the label (Price) and the value bold and italic. If we want to make just the value bold and italic we need to apply this formatting to the second cell in the row, which can be accomplished using the following:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample5.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample5.vb)]
 
 Since our tutorials thus far have used stylesheets to maintain a clean separation between the rendered markup and style-related information, rather than setting the specific style properties as shown above let's instead use a CSS class. Open the `Styles.css` stylesheet and add a new CSS class named `ExpensivePriceEmphasis` with the following definition:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample6.xml)]
+[!code-css[Main](custom-formatting-based-upon-data-vb/samples/sample6.css)]
 
 Then, in the `DataBound` event handler, set the cell's `CssClass` property to `ExpensivePriceEmphasis`. The following code shows the `DataBound` event handler in its entirety:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample7.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample7.vb)]
 
 When viewing Chai, which costs less than $75.00, the price is displayed in a normal font (see Figure 4). However, when viewing Mishi Kobe Niku, which has a price of $97.00, the price is displayed in a bold, italic font (see Figure 5).
 
@@ -143,7 +143,7 @@ Add a FormView to the `CustomColors.aspx` page beneath the DetailsView and set i
 After these edits your FormView's markup should look similar to the following:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample8.xml)]
+[!code-aspx[Main](custom-formatting-based-upon-data-vb/samples/sample8.aspx)]
 
 Note that the `ItemTemplate` contains:
 
@@ -164,24 +164,24 @@ With the FormView's markup complete, the next step is to programmatically determ
 In the event handler cast the FormView's `DataItem` property to a `ProductsRow` instance and determine whether the `UnitsInPrice` value is such that we need to display it in a red font.
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample9.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample9.vb)]
 
 ## Step 6: Formatting the UnitsInStockLabel Label Control in the FormView's ItemTemplate
 
 The final step is to format the displayed `UnitsInStock` value in a red font if the value is 10 or less. To accomplish this we need to programmatically access the `UnitsInStockLabel` control in the `ItemTemplate` and set its style properties so that its text is displayed in red. To access a Web control in a template, use the `FindControl("controlID")` method like this:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample10.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample10.vb)]
 
 For our example we want to access a Label control whose `ID` value is `UnitsInStockLabel`, so we'd use:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample11.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample11.vb)]
 
 Once we have a programmatic reference to the Web control, we can modify its style-related properties as needed. As with the earlier example, I've created a CSS class in `Styles.css` named `LowUnitsInStockEmphasis`. To apply this style to the Label Web control, set its `CssClass` property accordingly.
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample12.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample12.vb)]
 
 > [!NOTE] The syntax for formatting a template programmatically accessing the Web control using `FindControl("controlID")` and then setting its style-related properties can also be used when using [TemplateFields](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.templatefield(VS.80).aspx) in the DetailsView or GridView controls. We'll examine TemplateFields in our next tutorial.
 
@@ -235,7 +235,7 @@ To customize the format of the GridView's individual records, then, we need to c
 Add a GridView beneath the FormView from the previous example and set its `ID` property to `HighlightCheapProducts`. Since we already have an ObjectDataSource that returns all products on the page, bind the GridView to that. Finally, edit the GridView's BoundFields to include just the products' names, categories, and prices. After these edits the GridView's markup should look like:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample13.xml)]
+[!code-aspx[Main](custom-formatting-based-upon-data-vb/samples/sample13.aspx)]
 
 Figure 9 shows our progress to this point when viewed through a browser.
 
@@ -260,12 +260,12 @@ This event handler can be created using the same series of steps as with the For
 Creating the event hander in this manner will cause the following code to be automatically added to the ASP.NET page's code portion:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample14.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample14.vb)]
 
 When the `RowDataBound` event fires, the event handler is passed as its second parameter an object of type `GridViewRowEventArgs`, which has a property named `Row`. This property returns a reference to the `GridViewRow` that was just data bound. To access the `ProductsRow` instance bound to the `GridViewRow` we use the `DataItem` property like so:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample15.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample15.vb)]
 
 When working with the `RowDataBound` event handler it is important to keep in mind that the GridView is composed of different types of rows and that this event is fired for *all* row types. A `GridViewRow`'s type can be determined by its `RowType` property, and can have one of the possible values:
 
@@ -279,7 +279,7 @@ When working with the `RowDataBound` event handler it is important to keep in mi
 Since the `EmptyDataRow`, `Header`, `Footer`, and `Pager` rows aren't associated with a `DataSource` record, they will always have a value of `Nothing` for their `DataItem` property. For this reason, before attempting to work with the current `GridViewRow`'s `DataItem` property, we first must make sure that we're dealing with a `DataRow`. This can be accomplished by checking the `GridViewRow`'s `RowType` property like so:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample16.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample16.vb)]
 
 ## Step 9: Highlighting the Row Yellow When the UnitPrice Value is Less than $10.00
 
@@ -288,12 +288,12 @@ The last step is to programmatically highlight the entire `GridViewRow` if the `
 Instead of `GridViewID.Rows(index)`, we can reference the current `GridViewRow` instance in the `RowDataBound` event handler using `e.Row`. That is, in order to highlight the current `GridViewRow` instance from the `RowDataBound` event handler we would use:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample17.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample17.vb)]
 
 Rather than set the `GridViewRow`'s `BackColor` property directly, let's stick with using CSS classes. I've created a CSS class named `AffordablePriceEmphasis` that sets the background color to yellow. The completed `RowDataBound` event handler follows:
 
 
-[!code[Main](custom-formatting-based-upon-data-vb/samples/sample18.xml)]
+[!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample18.vb)]
 
 
 [![The Most Affordable Products are Highlighted Yellow](custom-formatting-based-upon-data-vb/_static/image26.png)](custom-formatting-based-upon-data-vb/_static/image25.png)

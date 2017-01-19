@@ -51,13 +51,13 @@ AdRotator controls use either an XML file or a table in a database for data. The
 
 A typical XML file might look like the following:
 
-[!code[Main](data-bound-controls/samples/sample1.xml)]
+[!code-xml[Main](data-bound-controls/samples/sample1.xml)]
 
 In the above example, the ad for Contoso is twice as likely to appear as the ad for the ASP.NET Web site because of the value for the Impressions attribute.
 
 To display ads from the above XML file, add an AdRotator control to a page and set the **AdvertisementFile** property to point to the XML file as shown below:
 
-[!code[Main](data-bound-controls/samples/sample2.xml)]
+[!code-aspx[Main](data-bound-controls/samples/sample2.aspx)]
 
 If you choose to use a database table as the data source for your AdRotator control, you will first need to set up a database using the following schema:
 
@@ -76,7 +76,7 @@ In cases where you already have a database with a different schema, you can use 
 
 The following code snippet sets the ImageUrl, NavigateUrl, and AlternateText for an ad programmatically:
 
-[!code[Main](data-bound-controls/samples/sample3.xml)]
+[!code-csharp[Main](data-bound-controls/samples/sample3.cs)]
 
 ## List Controls
 
@@ -381,7 +381,7 @@ The Menu control in ASP.NET 2.0 is designed to be a full-featured navigation sys
 
 A Menu controls structure can be defined declaratively or dynamically and consists of a single root node and any number of sub-nodes. The following code declaratively defines a menu for the Menu control.
 
-[!code[Main](data-bound-controls/samples/sample4.xml)]
+[!code-aspx[Main](data-bound-controls/samples/sample4.aspx)]
 
 In the above example, the Home.aspx node is the root node. All other nodes are nested within the root node at various levels.
 
@@ -398,7 +398,7 @@ The **MaximumDynamicDisplayLevels** property configures the maximum number of dy
 
 The Menu control can be bound to any hierarchical data source such as the SiteMapDataSource or the XMLDataSource. The SiteMapDataSource is the most commonly used method for data binding to a Menu control because it feeds off of the Web.sitemap file and its schema provides a known API to the Menu control. The listing below shows a simple Web.sitemap file.
 
-[!code[Main](data-bound-controls/samples/sample5.xml)]
+[!code-xml[Main](data-bound-controls/samples/sample5.xml)]
 
 Notice that there is only one root siteMapNode element, in this case, the Home element. Several attributes can be configured for each siteMapNode. The most commonly used attributes are:
 
@@ -437,7 +437,7 @@ The MenuItemClicked event is raised when a menu item is clicked. The MenuItemDat
 
 You can also affect the appearance of a menu control using one or more of the many styles available to format menus. Among these are **StaticMenuStyle**, **DynamicMenuStyle**, **DynamicMenuItemStyle**, **DynamicSelectedStyle**, and **DynamicHoverStyle**. These properties are configured using a standard HTML Style string. For example, the following will affect the style for dynamic menus.
 
-[!code[Main](data-bound-controls/samples/sample6.xml)]
+[!code-aspx[Main](data-bound-controls/samples/sample6.aspx)]
 
 > [!NOTE] If you are using any of the Hover styles, you will need to add a &lt;head&gt; element in to the page with the *runat* element set to *server*.
 
@@ -468,7 +468,7 @@ By setting the **PopulateNodesFromClient** and the **PopulateOnDemand** properti
 
 ASP.NET dynamically creates the client code that implements this functionality. The &lt;script&gt; tags that contain the script are generated pointing to an AXD file. For example, the listing below shows the script links for the script code that generates the XMLHttp request.
 
-[!code[Main](data-bound-controls/samples/sample7.xml)]
+[!code-html[Main](data-bound-controls/samples/sample7.html)]
 
 If you browse the AXD file above in your browser and open it, you will see the code that implements the XMLHttp request. This method prevents customers from modifying the script file.
 
@@ -535,13 +535,13 @@ The TreeView control provides many properties for controlling the appearance of 
 
 Each of these properties is read-only. However, they will each return a **TreeNodeStyle** object, and the properties of that object can be modified using the *property-subproperty* format. For example, to set the **ForeColor** property of the **SelectedNodeStyle**, you would use the following syntax:
 
-[!code[Main](data-bound-controls/samples/sample8.xml)]
+[!code-aspx[Main](data-bound-controls/samples/sample8.aspx)]
 
 Notice that the tag above is not closed. That is because when using the declarative syntax shown here, you would include the TreeViews nodes in the HTML code as well.
 
 The style properties can also be specified in code using the *property.subproperty* format. For example, to set the **ForeColor** property of the **RootNodeStyle** in code, you would use the following syntax:
 
-[!code[Main](data-bound-controls/samples/sample9.xml)]
+[!code-csharp[Main](data-bound-controls/samples/sample9.cs)]
 
 > [!NOTE] For a comprehensive list of the different style properties, see the MSDN documentation on the TreeNodeStyle object.
 
@@ -592,11 +592,11 @@ The following styles are available for formatting of a SiteMapPath control.
 
 The NodeStyle property is overridden by either the CurrentNodeStyle or the RootNodeStyle. Each of these properties is read-only and returns a **Style** object. To affect the appearance of a node using one of these properties, you will need to set the properties of the Style object that is returned. For example, the code below changes the forecolor property of the current node.
 
-[!code[Main](data-bound-controls/samples/sample10.xml)]
+[!code-aspx[Main](data-bound-controls/samples/sample10.aspx)]
 
 The property can also be applied programmatically as follows:
 
-[!code[Main](data-bound-controls/samples/sample11.xml)]
+[!code-csharp[Main](data-bound-controls/samples/sample11.cs)]
 
 > [!NOTE] If a template is applied, the style will not be applied.
 
@@ -607,7 +607,7 @@ The property can also be applied programmatically as follows:
 2. Add a Site Map file by selecting File, New, File and choosing Site Map from the list of file templates.
 3. Open the site map (Web.sitemap by default) and modify it so that it looks like the listing below. The pages to which you are linking in the site map file do not really exist, but that will not be an issue for this exercise.
 
-    [!code[Main](data-bound-controls/samples/sample12.xml)]
+    [!code-xml[Main](data-bound-controls/samples/sample12.xml)]
 4. Open the default Web form in Design view.
 5. From the Navigation section of the Toolbox, add a new Menu control to the page.
 6. From the Data section of the Toolbox, add a new SiteMapDataSource. The SiteMapDataSource will automatically use the Web.sitemap file in your site. (The Web.sitemap file *must* be in the root folder of the site.)
@@ -626,7 +626,7 @@ This exercise assumes that you have SQL Server running locally and that the Nort
 1. Create a new Web site.
 2. Switch to Code view for Default.aspx and replace all code with the code listed below. 
 
-    [!code[Main](data-bound-controls/samples/sample13.xml)]
+    [!code-aspx[Main](data-bound-controls/samples/sample13.aspx)]
 3. Save the page as treeview.aspx.
 4. Browse the page.
 5. When the page is first displayed, view the source of the page in your browser. Note that only the visible nodes were sent to the client.
@@ -639,7 +639,7 @@ This exercise assumes that you have SQL Server running locally and that the Nort
 2. Add a new web.config to the Web site.
 3. Add a connection string to the web.config file as shown below: 
 
-    [!code[Main](data-bound-controls/samples/sample14.xml)]
+    [!code-xml[Main](data-bound-controls/samples/sample14.xml)]
 
     > [!NOTE] You may need to change the connection string based upon your environment.
 4. Save and close the web.config file.

@@ -53,11 +53,11 @@ Open the *Movies.cshtml* file.
 
 Change the `WebGrid` markup in the body of the page by adding a column. Here's the modified markup:
 
-[!code[Main](deleting-data/samples/sample1.xml?highlight=9-10)]
+[!code-html[Main](deleting-data/samples/sample1.html?highlight=9-10)]
 
 The new column is this one:
 
-[!code[Main](deleting-data/samples/sample2.xml)]
+[!code-html[Main](deleting-data/samples/sample2.html)]
 
 The way the grid is configured, the **Edit** column is leftmost in the grid and the **Delete** column is rightmost. (There's a comma after the `Year` column now, in case you didn't notice that.) There's nothing special about where these link columns go, and you could as easily put them next to each other. In this case, they're separate to make them harder to get mixed up.
 
@@ -65,7 +65,7 @@ The way the grid is configured, the **Edit** column is leftmost in the grid and 
 
 The new column shows a link (`<a>` element) whose text says "Delete". The target of the link (its `href` attribute) is code that ultimately resolves to something like this URL, with the `id` value different for each movie:
 
-[!code[Main](deleting-data/samples/sample3.xml)]
+[!code-unknown[Main](deleting-data/samples/sample-38469-3.unknown)]
 
 This link will invoke a page named *DeleteMovie* and pass it the ID of the movie you've selected.
 
@@ -86,7 +86,7 @@ Now you can create the page that will be the target for the **Delete** link in t
 
 Create a page named *DeleteMovie.cshtml* and replace what's in the file with the following markup:
 
-[!code[Main](deleting-data/samples/sample4.xml)]
+[!code-cshtml[Main](deleting-data/samples/sample4.cshtml)]
 
 This markup is like the *EditMovie* pages, except that instead of using text boxes (`<input type="text">`), the markup includes `<span>` elements. There's nothing here to edit. All you have to do is display the movie details so that users can make sure that they're deleting the right movie.
 
@@ -102,7 +102,7 @@ You'll have to write code to 1) read the movie details when the page is first di
 
 At the top of the *DeleteMovie.cshtml* page, add the following code block:
 
-[!code[Main](deleting-data/samples/sample5.xml)]
+[!code-cshtml[Main](deleting-data/samples/sample5.cshtml)]
 
 This markup is the same as the corresponding code in the *EditMovie* page. It gets the movie ID out of the query string and uses the ID to read a record from the database. The code includes the validation test (`IsInt()` and `row != null`) to make sure that the movie ID being passed to the page is valid.
 
@@ -112,13 +112,13 @@ Remember that this code should only run the first time the page runs. You don't 
 
 To delete the movie when the user clicks the button, add the following code just inside the closing brace of the `@` block:
 
-[!code[Main](deleting-data/samples/sample6.xml)]
+[!code-csharp[Main](deleting-data/samples/sample6.cs)]
 
 This code is similar to the code for updating an existing record, but simpler. The code basically runs a SQL `Delete` statement.
 
  As in the *EditMovie* page, the code is in an `if(IsPost)` block. This time, the `if()` condition is a little more complicated: 
 
-[!code[Main](deleting-data/samples/sample7.xml)]
+[!code-csharp[Main](deleting-data/samples/sample7.cs)]
 
 There are two conditions here. The first is that the page is being submitted, as you've seen before &mdash; `if(IsPost)`.
 
@@ -154,11 +154,11 @@ The next tutorial shows you how to give all the pages on your site a common look
 
 ## Complete Listing for Movie Page (Updated with Delete Links)
 
-[!code[Main](deleting-data/samples/sample8.xml)]
+[!code-cshtml[Main](deleting-data/samples/sample8.cshtml)]
 
 ## Complete Listing for DeleteMovie Page
 
-[!code[Main](deleting-data/samples/sample9.xml)]
+[!code-cshtml[Main](deleting-data/samples/sample9.cshtml)]
 
 ## Additional Resources
 

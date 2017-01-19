@@ -82,11 +82,11 @@ This tutorial uses the same model and controller classes as the [Getting Started
 
 Add a public class named `Product`.
 
-[!code[Main](self-host-a-web-api/samples/sample1.xml)]
+[!code-csharp[Main](self-host-a-web-api/samples/sample1.cs)]
 
 Add a public class named `ProductsController`. Derive this class from **System.Web.Http.ApiController**.
 
-[!code[Main](self-host-a-web-api/samples/sample2.xml)]
+[!code-csharp[Main](self-host-a-web-api/samples/sample2.cs)]
 
 For more information about the code in this controller, see the [Getting Started](../getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md) tutorial. This controller defines three GET actions:
 
@@ -100,11 +100,11 @@ For more information about the code in this controller, see the [Getting Started
 
 Open the file Program.cs and add the following using statements:
 
-[!code[Main](self-host-a-web-api/samples/sample3.xml)]
+[!code-csharp[Main](self-host-a-web-api/samples/sample3.cs)]
 
 Add the following code to the **Program** class.
 
-[!code[Main](self-host-a-web-api/samples/sample4.xml)]
+[!code-csharp[Main](self-host-a-web-api/samples/sample4.cs)]
 
 ## (Optional) Add an HTTP URL Namespace Reservation
 
@@ -115,13 +115,13 @@ This application listens to `http://localhost:8080/`. By default, listening at a
 
 To use Netsh.exe, open a command prompt with administrator privileges and enter the following command:following command:
 
-[!code[Main](self-host-a-web-api/samples/sample5.xml)]
+[!code-console[Main](self-host-a-web-api/samples/sample5.cmd)]
 
 where *machine\username* is your user account.
 
 When you are finished self-hosting, be sure to delete the reservation:
 
-[!code[Main](self-host-a-web-api/samples/sample6.xml)]
+[!code-console[Main](self-host-a-web-api/samples/sample6.cmd)]
 
 ## Call the Web API from a Client Application (C#)
 
@@ -154,15 +154,15 @@ Add a reference in ClientApp to the SelfHost project:
 
 Open the Client/Program.cs file. Add the following **using** statement:
 
-[!code[Main](self-host-a-web-api/samples/sample7.xml)]
+[!code-csharp[Main](self-host-a-web-api/samples/sample7.cs)]
 
 Add a static **HttpClient** instance:
 
-[!code[Main](self-host-a-web-api/samples/sample8.xml)]
+[!code-csharp[Main](self-host-a-web-api/samples/sample8.cs)]
 
 Add the following methods to list all products, list a product by ID, and list products by category.
 
-[!code[Main](self-host-a-web-api/samples/sample9.xml)]
+[!code-csharp[Main](self-host-a-web-api/samples/sample9.cs)]
 
 Each of these methods follows the same pattern:
 
@@ -176,10 +176,10 @@ For more information about using HttpClient, including how to make non-blocking 
 
 Before calling these methods, set the BaseAddress property on the HttpClient instance to "`http://localhost:8080`". For example:
 
-[!code[Main](self-host-a-web-api/samples/sample10.xml)]
+[!code-csharp[Main](self-host-a-web-api/samples/sample10.cs)]
 
 This should output the following. (Remember to run the SelfHost application first.)
 
-[!code[Main](self-host-a-web-api/samples/sample11.xml)]
+[!code-console[Main](self-host-a-web-api/samples/sample11.cmd)]
 
 ![](self-host-a-web-api/_static/image7.png)

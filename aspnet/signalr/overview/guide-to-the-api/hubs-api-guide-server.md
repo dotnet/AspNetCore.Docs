@@ -97,7 +97,7 @@ The server components for SignalR 2 are only available in .NET 4.5. Servers runn
 
 To define the route that clients will use to connect to your Hub, call the `MapSignalR` method when the application starts. `MapSignalR` is an [extension method](https://msdn.microsoft.com/en-us/library/vstudio/bb383977.aspx) for the `OwinExtensions` class. The following example shows how to define the SignalR Hubs route using an OWIN startup class.
 
-[!code[Main](hubs-api-guide-server/samples/sample1.xml)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample1.cs)]
 
 If you are adding SignalR functionality to an ASP.NET MVC application, make sure that the SignalR route is added before the other routes. For more information, see [Tutorial: Getting Started with SignalR 2 and MVC 5](../getting-started/tutorial-getting-started-with-signalr-and-mvc.md).
 
@@ -111,19 +111,19 @@ There might be extraordinary circumstances that make this base URL not usable fo
 
 **Server code that specifies the URL**
 
-[!code[Main](hubs-api-guide-server/samples/sample2.xml?highlight=1)]
+[!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-2.unknown?highlight=1)]
 
 **JavaScript client code that specifies the URL (with the generated proxy)**
 
-[!code[Main](hubs-api-guide-server/samples/sample3.xml?highlight=1)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample3.js?highlight=1)]
 
 **JavaScript client code that specifies the URL (without the generated proxy)**
 
-[!code[Main](hubs-api-guide-server/samples/sample4.xml?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample4.cs?highlight=1)]
 
 **.NET client code that specifies the URL**
 
-[!code[Main](hubs-api-guide-server/samples/sample5.xml?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample5.cs?highlight=1)]
 
 <a id="options"></a>
 
@@ -143,7 +143,7 @@ Overloads of the `MapSignalR` method enable you to specify a custom URL, a custo
 
 The following example shows how to specify the SignalR connection URL and these options in a call to the `MapSignalR` method. To specify a custom URL, replace "/signalr" in the example with the URL that you want to use.
 
-[!code[Main](hubs-api-guide-server/samples/sample6.xml)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample6.cs)]
 
 <a id="hubclass"></a>
 
@@ -151,7 +151,7 @@ The following example shows how to specify the SignalR connection URL and these 
 
 To create a Hub, create a class that derives from [Microsoft.Aspnet.Signalr.Hub](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hub(v=vs.111).aspx). The following example shows a simple Hub class for a chat application.
 
-[!code[Main](hubs-api-guide-server/samples/sample7.xml)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample7.cs)]
 
 In this example, a connected client can call the `NewContosoChatMessage` method, and when it does, the data received is broadcasted to all connected clients.
 
@@ -173,21 +173,21 @@ By default, JavaScript clients refer to Hubs by using a camel-cased version of t
 
 **Server**
 
-[!code[Main](hubs-api-guide-server/samples/sample8.xml?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample8.cs?highlight=1)]
 
 **JavaScript client using generated proxy**
 
-[!code[Main](hubs-api-guide-server/samples/sample9.xml?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample9.cs?highlight=1)]
 
 If you want to specify a different name for clients to use, add the `HubName` attribute. When you use a `HubName` attribute, there is no name change to camel case on JavaScript clients.
 
 **Server**
 
-[!code[Main](hubs-api-guide-server/samples/sample10.xml?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample10.cs?highlight=1)]
 
 **JavaScript client using generated proxy**
 
-[!code[Main](hubs-api-guide-server/samples/sample11.xml?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample11.cs?highlight=1)]
 
 <a id="multiplehubs"></a>
 
@@ -213,7 +213,7 @@ You can define multiple Hub classes in an application. When you do that, the con
 
 To define an interface for your hub methods that your client can reference (and enable Intellisense on your hub methods), derive your hub from `Hub<T>` (introduced in SignalR 2.1) rather than `Hub`:
 
-[!code[Main](hubs-api-guide-server/samples/sample12.xml)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample12.cs)]
 
 <a id="hubmethods"></a>
 
@@ -221,9 +221,9 @@ To define an interface for your hub methods that your client can reference (and 
 
 To expose a method on the Hub that you want to be callable from the client, declare a public method, as shown in the following examples.
 
-[!code[Main](hubs-api-guide-server/samples/sample13.xml?highlight=3)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample13.cs?highlight=3)]
 
-[!code[Main](hubs-api-guide-server/samples/sample14.xml?highlight=3)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample14.cs?highlight=3)]
 
 You can specify a return type and parameters, including complex types and arrays, as you would in any C# method. Any data that you receive in parameters or return to the caller is communicated between the client and the server by using JSON, and SignalR handles the binding of complex objects and arrays of objects automatically.
 
@@ -235,21 +235,21 @@ By default, JavaScript clients refer to Hub methods by using a camel-cased versi
 
 **Server**
 
-[!code[Main](hubs-api-guide-server/samples/sample15.xml?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample15.cs?highlight=1)]
 
 **JavaScript client using generated proxy**
 
-[!code[Main](hubs-api-guide-server/samples/sample16.xml?highlight=1)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample16.js?highlight=1)]
 
 If you want to specify a different name for clients to use, add the `HubMethodName` attribute.
 
 **Server**
 
-[!code[Main](hubs-api-guide-server/samples/sample17.xml?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample17.cs?highlight=1)]
 
 **JavaScript client using generated proxy**
 
-[!code[Main](hubs-api-guide-server/samples/sample18.xml?highlight=1)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample18.js?highlight=1)]
 
 <a id="asyncmethods"></a>
 
@@ -263,15 +263,15 @@ The following example shows the same method coded to run synchronously or asynch
 
 **Synchronous**
 
-[!code[Main](hubs-api-guide-server/samples/sample19.xml)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample19.cs)]
 
 **Asynchronous**
 
-[!code[Main](hubs-api-guide-server/samples/sample20.xml?highlight=1,7-8)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample20.cs?highlight=1,7-8)]
 
 **JavaScript client using generated proxy**
 
-[!code[Main](hubs-api-guide-server/samples/sample21.xml)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample21.js)]
 
 For more information about how to use asynchronous methods in ASP.NET 4.5, see [Using Asynchronous Methods in ASP.NET MVC 4](../../../mvc/overview/performance/using-asynchronous-methods-in-aspnet-mvc-4.md).
 
@@ -286,7 +286,7 @@ If you want to define overloads for a method, the number of parameters in each o
 
 SignalR 2.1 adds support for the [progress reporting pattern](https://blogs.msdn.com/b/dotnet/archive/2012/06/06/async-in-4-5-enabling-progress-and-cancellation-in-async-apis.aspx) introduced in .NET 4.5. To implement progress reporting, define an `IProgress<T>` parameter for your hub method that your client can access:
 
-[!code[Main](hubs-api-guide-server/samples/sample22.xml)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample22.cs)]
 
 When writing a long-running server method, it is important to use an asynchronous programming pattern like Async/ Await rather than blocking the hub thread.
 
@@ -298,11 +298,11 @@ To call client methods from the server, use the `Clients` property in a method i
 
 **Server**
 
-[!code[Main](hubs-api-guide-server/samples/sample23.xml?highlight=5)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample23.cs?highlight=5)]
 
 **JavaScript client using generated proxy**
 
-[!code[Main](hubs-api-guide-server/samples/sample24.xml?highlight=1)]
+[!code-html[Main](hubs-api-guide-server/samples/sample24.html?highlight=1)]
 
 You can't get a return value from a client method; syntax such as `int x = Clients.All.add(1,1)` does not work.
 
@@ -310,15 +310,15 @@ You can specify complex types and arrays for the parameters. The following examp
 
 **Server code that calls a client method using a complex object**
 
-[!code[Main](hubs-api-guide-server/samples/sample25.xml?highlight=3)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample25.cs?highlight=3)]
 
 **Server code that defines the complex object**
 
-[!code[Main](hubs-api-guide-server/samples/sample26.xml?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample26.cs?highlight=1)]
 
 **JavaScript client using generated proxy**
 
-[!code[Main](hubs-api-guide-server/samples/sample27.xml?highlight=2-3)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample27.cs?highlight=2-3)]
 
 <a id="selectingclients"></a>
 
@@ -328,47 +328,47 @@ The Clients property returns a [HubConnectionContext](https://msdn.microsoft.com
 
 - All connected clients.
 
-    [!code[Main](hubs-api-guide-server/samples/sample28.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-28.unknown)]
 - Only the calling client.
 
-    [!code[Main](hubs-api-guide-server/samples/sample29.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-29.unknown)]
 - All clients except the calling client.
 
-    [!code[Main](hubs-api-guide-server/samples/sample30.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-30.unknown)]
 - A specific client identified by connection ID.
 
-    [!code[Main](hubs-api-guide-server/samples/sample31.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-31.unknown)]
 
     This example calls `addContosoChatMessageToPage` on the calling client and has the same effect as using `Clients.Caller`.
 - All connected clients except the specified clients, identified by connection ID.
 
-    [!code[Main](hubs-api-guide-server/samples/sample32.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-32.unknown)]
 - All connected clients in a specified group.
 
-    [!code[Main](hubs-api-guide-server/samples/sample33.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-33.unknown)]
 - All connected clients in a specified group except the specified clients, identified by connection ID.
 
-    [!code[Main](hubs-api-guide-server/samples/sample34.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-34.unknown)]
 - All connected clients in a specified group except the calling client.
 
-    [!code[Main](hubs-api-guide-server/samples/sample35.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-35.unknown)]
 - A specific user, identified by userId.
 
-    [!code[Main](hubs-api-guide-server/samples/sample36.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-36.unknown)]
 
     By default, this is `IPrincipal.Identity.Name`, but this can be changed by [registering an implementation of IUserIdProvider with the global host](mapping-users-to-connections.md).
 - All clients and groups in a list of connection IDs.
 
-    [!code[Main](hubs-api-guide-server/samples/sample37.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-37.unknown)]
 - A list of groups.
 
-    [!code[Main](hubs-api-guide-server/samples/sample38.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-38.unknown)]
 - A user by name.
 
-    [!code[Main](hubs-api-guide-server/samples/sample39.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-39.unknown)]
 - A list of user names (introduced in SignalR 2.1).
 
-    [!code[Main](hubs-api-guide-server/samples/sample40.xml)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample40.cs)]
 
 <a id="dynamicmethodnames"></a>
 
@@ -390,7 +390,7 @@ The method that you call executes asynchronously. Any code that comes after a me
 
 **Using Await (.NET 4.5)**
 
-[!code[Main](hubs-api-guide-server/samples/sample41.xml?highlight=1,3)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample41.cs?highlight=1,3)]
 
 If you use `await` to wait until a client method finishes before the next line of code executes, that does not mean that clients will actually receive the message before the next line of code executes. "Completion" of a client method call only means that SignalR has done everything necessary to send the message. If you need verification that clients received the message, you have to program that mechanism yourself. For example, you could code a `MessageReceived` method on the Hub, and in the `addContosoChatMessageToPage` method on the client you could call `MessageReceived` after you do whatever work you need to do on the client. In `MessageReceived` in the Hub you can do whatever work depends on actual client reception and processing of the original method call.
 
@@ -398,7 +398,7 @@ If you use `await` to wait until a client method finishes before the next line o
 
 If you want to invoke a client method by using a string variable as the method name, cast `Clients.All` (or `Clients.Others`, `Clients.Caller`, etc.) to `IClientProxy` and then call [Invoke(methodName, args...)](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hubs.iclientproxy.invoke(v=vs.111).aspx).
 
-[!code[Main](hubs-api-guide-server/samples/sample42.xml)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample42.cs)]
 
 <a id="groupsfromhub"></a>
 
@@ -410,13 +410,13 @@ To manage group membership, use the [Add](https://msdn.microsoft.com/en-us/libra
 
 **Server**
 
-[!code[Main](hubs-api-guide-server/samples/sample43.xml?highlight=5,10)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample43.cs?highlight=5,10)]
 
 **JavaScript client using generated proxy**
 
-[!code[Main](hubs-api-guide-server/samples/sample44.xml)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample44.js)]
 
-[!code[Main](hubs-api-guide-server/samples/sample45.xml)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample45.js)]
 
 You don't have to explicitly create groups. In effect a group is automatically created the first time you specify its name in a call to `Groups.Add`, and it is deleted when you remove the last connection from membership in it.
 
@@ -430,7 +430,7 @@ The `Groups.Add` and `Groups.Remove` methods execute asynchronously. If you want
 
 **Adding a client to a group and then messaging that client**
 
-[!code[Main](hubs-api-guide-server/samples/sample46.xml?highlight=1,3)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample46.cs?highlight=1,3)]
 
 <a id="grouppersistence"></a>
 
@@ -463,7 +463,7 @@ Applications that use SignalR typically have to keep track of the associations b
 
 Typical reasons for handling connection lifetime events are to keep track of whether a user is connected or not, and to keep track of the association between user names and connection IDs. To run your own code when clients connect or disconnect, override the `OnConnected`, `OnDisconnected`, and `OnReconnected` virtual methods of the Hub class, as shown in the following example.
 
-[!code[Main](hubs-api-guide-server/samples/sample47.xml?highlight=3,14,22)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample47.cs?highlight=3,14,22)]
 
 <a id="onreconnected"></a>
 
@@ -491,42 +491,42 @@ To get information about the client, use the `Context` property of the Hub class
 
 - The connection ID of the calling client.
 
-    [!code[Main](hubs-api-guide-server/samples/sample48.xml?highlight=1)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-48.unknown?highlight=1)]
 
     The connection ID is a GUID that is assigned by SignalR (you can't specify the value in your own code). There is one connection ID for each connection, and the same connection ID is used by all Hubs if you have multiple Hubs in your application.
 - HTTP header data.
 
-    [!code[Main](hubs-api-guide-server/samples/sample49.xml?highlight=1)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-49.unknown?highlight=1)]
 
     You can also get HTTP headers from `Context.Headers`. The reason for multiple references to the same thing is that `Context.Headers` was created first, the `Context.Request` property was added later, and `Context.Headers` was retained for backward compatibility.
 - Query string data.
 
-    [!code[Main](hubs-api-guide-server/samples/sample50.xml?highlight=1)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-50.unknown?highlight=1)]
 
     You can also get query string data from `Context.QueryString`.
 
     The query string that you get in this property is the one that was used with the HTTP request that established the SignalR connection. You can add query string parameters in the client by configuring the connection, which is a convenient way to pass data about the client from the client to the server. The following example shows one way to add a query string in a JavaScript client when you use the generated proxy.
 
-    [!code[Main](hubs-api-guide-server/samples/sample51.xml?highlight=1)]
+    [!code-javascript[Main](hubs-api-guide-server/samples/sample51.js?highlight=1)]
 
     For more information about setting query string parameters, see the API guides for the [JavaScript](hubs-api-guide-javascript-client.md) and [.NET](hubs-api-guide-net-client.md) clients.
 
     You can find the transport method used for the connection in the query string data, along with some other values used internally by SignalR:
 
-    [!code[Main](hubs-api-guide-server/samples/sample52.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-52.unknown)]
 
     The value of `transportMethod` will be "webSockets", "serverSentEvents", "foreverFrame" or "longPolling". Note that if you check this value in the `OnConnected` event handler method, in some scenarios you might initially get a transport value that is not the final negotiated transport method for the connection. In that case the method will throw an exception and will be called again later when the final transport method is established.
 - Cookies.
 
-    [!code[Main](hubs-api-guide-server/samples/sample53.xml?highlight=1)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-53.unknown?highlight=1)]
 
     You can also get cookies from `Context.RequestCookies`.
 - User information.
 
-    [!code[Main](hubs-api-guide-server/samples/sample54.xml?highlight=1)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-54.unknown?highlight=1)]
 - The HttpContext object for the request :
 
-    [!code[Main](hubs-api-guide-server/samples/sample55.xml?highlight=1)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-55.unknown?highlight=1)]
 
     Use this method instead of getting `HttpContext.Current` to get the `HttpContext` object for the SignalR connection.
 
@@ -540,15 +540,15 @@ Creating or updating data in the `state` object and the `Clients.Caller` propert
 
 The following example shows JavaScript client code that stores state for transmission to the server with every method call.
 
-[!code[Main](hubs-api-guide-server/samples/sample56.xml?highlight=1-2)]
+[!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-56.unknown?highlight=1-2)]
 
 The following example shows the equivalent code in a .NET client.
 
-[!code[Main](hubs-api-guide-server/samples/sample57.xml?highlight=1-2)]
+[!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-57.unknown?highlight=1-2)]
 
 In your Hub class, you can access this data in the `Clients.Caller` property. The following example shows code that retrieves the state referred to in the previous example.
 
-[!code[Main](hubs-api-guide-server/samples/sample58.xml?highlight=3-4)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample58.cs?highlight=3-4)]
 
 > [!NOTE] This mechanism for persisting state is not intended for large amounts of data, since everything you put in the `state` or `Clients.Caller` property is round-tripped with every method invocation. It's useful for smaller items such as user names or counters.
 
@@ -557,11 +557,11 @@ In VB.NET or in a strongly-typed hub, the caller state object can't be accessed 
 
 **Using CallerState in C#**
 
-[!code[Main](hubs-api-guide-server/samples/sample59.xml?highlight=3-4)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample59.cs?highlight=3-4)]
 
 **Using CallerState in Visual Basic**
 
-[!code[Main](hubs-api-guide-server/samples/sample60.xml)]
+[!code-vb[Main](hubs-api-guide-server/samples/sample60.vb)]
 
 <a id="handleErrors"></a>
 
@@ -572,24 +572,24 @@ To handle errors that occur in your Hub class methods, use one or more of the fo
 - Wrap your method code in try-catch blocks and log the exception object. For debugging purposes you can send the exception to the client, but for security reasons sending detailed information to clients in production is not recommended.
 - Create a Hubs pipeline module that handles the [OnIncomingError](https://msdn.microsoft.com/en-us/library/microsoft.aspnet.signalr.hubs.hubpipelinemodule.onincomingerror(v=vs.111).aspx) method. The following example shows a pipeline module that logs errors, followed by code in Startup.cs that injects the module into the Hubs pipeline.
 
-    [!code[Main](hubs-api-guide-server/samples/sample61.xml)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample61.cs)]
 
-    [!code[Main](hubs-api-guide-server/samples/sample62.xml?highlight=4)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample62.cs?highlight=4)]
 - Use the `HubException` class (introduced in SignalR 2). This error can be thrown from any hub invocation. The `HubError` constructor takes a string message, and an object for storing extra error data. SignalR will auto-serialize the exception and send it to the client, where it will be used to reject or fail the hub method invocation.
 
     The following code samples demonstrate how to throw a `HubException` during a Hub invocation, and how to handle the exception on JavaScript and .NET clients.
 
     **Server code demonstrating the HubException class**
 
-    [!code[Main](hubs-api-guide-server/samples/sample63.xml)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample63.cs)]
 
     **JavaScript client code demonstrating response to throwing a HubException in a hub**
 
-    [!code[Main](hubs-api-guide-server/samples/sample64.xml)]
+    [!code-html[Main](hubs-api-guide-server/samples/sample64.html)]
 
     **.NET client code demonstrating response to throwing a HubException in a hub**
 
-    [!code[Main](hubs-api-guide-server/samples/sample65.xml)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample65.cs)]
 
 For more information about Hub pipeline modules, see [How to customize the Hubs pipeline](#hubpipeline) later in this topic.
 
@@ -599,7 +599,7 @@ For more information about Hub pipeline modules, see [How to customize the Hubs 
 
 To enable server-side tracing, add a system.diagnostics element to your Web.config file, as shown in this example:
 
-[!code[Main](hubs-api-guide-server/samples/sample66.xml?highlight=17-72)]
+[!code-html[Main](hubs-api-guide-server/samples/sample66.html?highlight=17-72)]
 
 When you run the application in Visual Studio, you can view the logs in the **Output** window.
 
@@ -611,7 +611,7 @@ To call client methods from a different class than your Hub class, get a referen
 
 The following sample `StockTicker` class gets the context object, stores it in an instance of the class, stores the class instance in a static property, and uses the context from the singleton class instance to call the `updateStockPrice` method on clients that are connected to a Hub named `StockTickerHub`.
 
-[!code[Main](hubs-api-guide-server/samples/sample67.xml?highlight=8,24)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample67.cs?highlight=8,24)]
 
 If you need to use the context multiple-times in a long-lived object, get the reference once and save it rather than getting it again each time. Getting the context once ensures that SignalR sends messages to clients in the same sequence in which your Hub methods make client method invocations. For a tutorial that shows how to use the SignalR context for a Hub, see [Server Broadcast with ASP.NET SignalR](../getting-started/tutorial-server-broadcast-with-signalr.md).
 
@@ -623,23 +623,23 @@ You can specify which clients will receive the RPC, but you have fewer options t
 
 - All connected clients.
 
-    [!code[Main](hubs-api-guide-server/samples/sample68.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-68.unknown)]
 - A specific client identified by connection ID.
 
-    [!code[Main](hubs-api-guide-server/samples/sample69.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-69.unknown)]
 - All connected clients except the specified clients, identified by connection ID.
 
-    [!code[Main](hubs-api-guide-server/samples/sample70.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-70.unknown)]
 - All connected clients in a specified group.
 
-    [!code[Main](hubs-api-guide-server/samples/sample71.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-71.unknown)]
 - All connected clients in a specified group except specified clients, identified by connection ID.
 
-    [!code[Main](hubs-api-guide-server/samples/sample72.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-72.unknown)]
 
 If you are calling into your non-Hub class from methods in your Hub class, you can pass in the current connection ID and use that with `Clients.Client`, `Clients.AllExcept`, or `Clients.Group` to simulate `Clients.Caller`, `Clients.Others`, or `Clients.OthersInGroup`. In the following example, the `MoveShapeHub` class passes the connection ID to the `Broadcaster` class so that the `Broadcaster` class can simulate `Clients.Others`.
 
-[!code[Main](hubs-api-guide-server/samples/sample73.xml?highlight=12,36)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample73.cs?highlight=12,36)]
 
 <a id="managinggroupsoutsidehub"></a>
 
@@ -649,10 +649,10 @@ For managing groups you have the same options as you do in a Hub class.
 
 - Add a client to a group
 
-    [!code[Main](hubs-api-guide-server/samples/sample74.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-74.unknown)]
 - Remove a client from a group
 
-    [!code[Main](hubs-api-guide-server/samples/sample75.xml)]
+    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-75.unknown)]
 
 <a id="hubpipeline"></a>
 
@@ -660,10 +660,10 @@ For managing groups you have the same options as you do in a Hub class.
 
 SignalR enables you to inject your own code into the Hub pipeline. The following example shows a custom Hub pipeline module that logs each incoming method call received from the client and outgoing method call invoked on the client:
 
-[!code[Main](hubs-api-guide-server/samples/sample76.xml)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample76.cs)]
 
 The following code in the *Startup.cs* file registers the module to run in the Hub pipeline:
 
-[!code[Main](hubs-api-guide-server/samples/sample77.xml?highlight=3)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample77.cs?highlight=3)]
 
 There are many different methods that you can override. For a complete list, see [HubPipelineModule Methods](https://msdn.microsoft.com/en-us/library/jj918633(v=vs.111).aspx).

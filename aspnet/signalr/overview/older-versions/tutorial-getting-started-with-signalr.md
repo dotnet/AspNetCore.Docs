@@ -72,21 +72,21 @@ The following steps use Visual Studio 2012 to create an ASP.NET Empty Web Applic
     ![Library references](tutorial-getting-started-with-signalr/_static/image3.png)
 5. Replace the code in the **ChatHub** class with the following code.
 
-    [!code[Main](tutorial-getting-started-with-signalr/samples/sample1.xml)]
+    [!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample1.cs)]
 6. In **Solution Explorer**, right-click the project, then click **Add | New Item**. In the **Add New Item** dialog, select **Global Application Class** and click **Add**.
 
     ![Add global](tutorial-getting-started-with-signalr/_static/image4.png)
 7. Add the following `using` statements after the provided `using` statements in the Global.asax.cs class.
 
-    [!code[Main](tutorial-getting-started-with-signalr/samples/sample2.xml)]
+    [!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample2.cs)]
 8. Add the following line of code in the `Application_Start` method of the Global class to register the default route for SignalR hubs.
 
-    [!code[Main](tutorial-getting-started-with-signalr/samples/sample3.xml)]
+    [!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample3.cs)]
 9. In **Solution Explorer**, right-click the project, then click **Add | New Item**. In the **Add New Item** dialog, select Html Page and click **Add**.
 10. In **Solution Explorer**, right-click the HTML page you just created and click **Set as Start Page**.
 11. Replace the default code in the HTML page with the following code.
 
-    [!code[Main](tutorial-getting-started-with-signalr/samples/sample4.xml)]
+    [!code-html[Main](tutorial-getting-started-with-signalr/samples/sample4.html)]
 12. **Save All** for the project.
 
 <a id="run"></a>
@@ -127,7 +127,7 @@ The **Send** method demonstrates several hub concepts :
 - Use the **Microsoft.AspNet.SignalR.Hub.Clients** dynamic property to access all clients connected to this hub.
 - Call a jQuery function on the client (such as the `broadcastMessage` function) to update clients.
 
-    [!code[Main](tutorial-getting-started-with-signalr/samples/sample5.xml)]
+    [!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample5.cs)]
 
 ### SignalR and jQuery
 
@@ -135,21 +135,21 @@ The HTML page in the code sample shows how to use the SignalR jQuery library to 
 
 The following code declares a proxy for a hub.
 
-[!code[Main](tutorial-getting-started-with-signalr/samples/sample6.xml)]
+[!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample6.cs)]
 
 > [!NOTE] In jQuery the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in jQuery as **chatHub**.
 
 
 The following code is how you create a callback function in the script. The hub class on the server calls this function to push content updates to each client. The two lines that HTML encode the content before displaying it are optional and show a simple way to prevent script injection.
 
-[!code[Main](tutorial-getting-started-with-signalr/samples/sample7.xml)]
+[!code-html[Main](tutorial-getting-started-with-signalr/samples/sample7.html)]
 
 The following code shows how to open a connection with the hub. The code starts the connection and then passes it a function to handle the click event on the **Send** button in the HTML page.
 
 > [!NOTE] This approach insures that the connection is established before the event handler executes.
 
 
-[!code[Main](tutorial-getting-started-with-signalr/samples/sample8.xml)]
+[!code-javascript[Main](tutorial-getting-started-with-signalr/samples/sample8.js)]
 
 <a id="next"></a>
 

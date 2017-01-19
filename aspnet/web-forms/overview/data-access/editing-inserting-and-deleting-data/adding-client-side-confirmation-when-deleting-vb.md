@@ -48,14 +48,14 @@ Start by adding a FormView to the `ConfirmationOnDelete.aspx` page in the `EditI
 After these steps, the new ObjectDataSource s declarative markup will look like the following:
 
 
-[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample1.xml)]
+[!code-aspx[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample1.aspx)]
 
 As in our past examples that did not use optimistic concurrency, take a moment to clear out the ObjectDataSource s `OldValuesParameterFormatString` property.
 
 Since it has been bound to an ObjectDataSource control that only supports deleting, the FormView s `ItemTemplate` offers only the Delete button, lacking the New and Update buttons. The FormView s declarative markup, however, includes a superfluous `EditItemTemplate` and `InsertItemTemplate`, which can be removed. Take a moment to customize the `ItemTemplate` so that is shows only a subset of the product data fields. I ve configured mine to show the product s name in an `<h3>` heading above its supplier and category names (along with the Delete button).
 
 
-[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample2.xml)]
+[!code-aspx[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample2.aspx)]
 
 With these changes, we have a fully functional web page that allows a user to toggle through the products one at a time, with the ability to delete a product by simply clicking the Delete button. Figure 2 shows a screen shot of our progress thus far when viewed through a browser.
 
@@ -72,7 +72,7 @@ With the FormView created, the final step is to configure the Delete button such
 After this change the Delete LinkButton s declarative syntax should look something like:
 
 
-[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample3.xml)]
+[!code-aspx[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample3.aspx)]
 
 That s all there is to it! Figure 3 shows a screen shot of this confirmation in action. Clicking the Delete button brings up the confirm dialog box. If the user clicks Cancel, the postback is cancelled and the product is not deleted. If, however, the user clicks OK, the postback continues and the ObjectDataSource s `Delete()` method is invoked, culminating in the database record being deleted.
 
@@ -96,17 +96,17 @@ To practice setting the `OnClientClick` property for the Delete button(s) in a C
 After making these changes, your GridView s declarative markup should look like the following:
 
 
-[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample4.xml)]
+[!code-aspx[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample4.aspx)]
 
 The CommandField contains a single Delete LinkButton instance that can be accessed programmatically from the GridView s `RowDataBound` event handler. Once referenced, we can set its `OnClientClick` property accordingly. Create an event handler for the `RowDataBound` event using the following code:
 
 
-[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample5.xml)]
+[!code-vb[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample5.vb)]
 
 This event handler works with data rows (those that will have the Delete button) and begins by programmatically referencing the Delete button. In general use the following pattern:
 
 
-[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample6.xml)]
+[!code-vb[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample6.vb)]
 
 *ButtonType* is the type of button being used by the CommandField - Button, LinkButton, or ImageButton. By default, the CommandField uses LinkButtons, but this can be customized via the CommandField s `ButtonType property`. The *commandFieldIndex* is the ordinal index of the CommandField within the GridView s `Columns` collection, whereas the *controlIndex* is the index of the Delete button within the CommandField s `Controls` collection. The *controlIndex* value depends on the button s position relative to other buttons in the CommandField. For example, if the only button displayed in the CommandField is the Delete button, use an index of 0. If, however, there s an Edit button that precedes the Delete button, use an index of 2. The reason an index of 2 is used is because two controls are added by the CommandField before the Delete button: the Edit button and a LiteralControl that s used to add some space between the Edit and Delete buttons.
 
@@ -131,7 +131,7 @@ One of the disadvantages of the CommandField is that its buttons must be accesse
 An alternative approach is to convert the GridView and DetailsView s CommandFields into TemplateFields. This will generate a TemplateField with an `ItemTemplate` that has a LinkButton (or Button or ImageButton) for each button in the CommandField. These buttons `OnClientClick` properties can be assigned declaratively, as we saw with the FormView, or can be programmatically accessed in the appropriate `DataBound` event handler using the following pattern:
 
 
-[!code[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample7.xml)]
+[!code-vb[Main](adding-client-side-confirmation-when-deleting-vb/samples/sample7.vb)]
 
 Where *controlID* is the value of the button s `ID` property. While this pattern still requires a hard-coded type for the cast, it removes the need for indexing, allowing for the layout to change without resulting in a runtime error.
 

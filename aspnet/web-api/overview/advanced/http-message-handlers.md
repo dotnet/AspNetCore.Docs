@@ -46,7 +46,7 @@ This diagram shows two custom handlers inserted into the pipeline:
 
 To write a custom message handler, derive from **System.Net.Http.DelegatingHandler** and override the **SendAsync** method. This method has the following signature:
 
-[!code[Main](http-message-handlers/samples/sample1.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample1.cs)]
 
 The method takes an **HttpRequestMessage** as input and asynchronously returns an **HttpResponseMessage**. A typical implementation does the following:
 
@@ -57,14 +57,14 @@ The method takes an **HttpRequestMessage** as input and asynchronously returns a
 
 Here is a trivial example:
 
-[!code[Main](http-message-handlers/samples/sample2.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample2.cs)]
 
 > [!NOTE] The call to `base.SendAsync` is asynchronous. If the handler does any work after this call, use the **await** keyword, as shown.
 
 
 A delegating handler can also skip the inner handler and directly create the response:
 
-[!code[Main](http-message-handlers/samples/sample3.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample3.cs)]
 
 If a delegating handler creates the response without calling `base.SendAsync`, the request skips the rest of the pipeline. This can be useful for a handler that validates the request (creating an error response).
 
@@ -74,7 +74,7 @@ If a delegating handler creates the response without calling `base.SendAsync`, t
 
 To add a message handler on the server side, add the handler to the **HttpConfiguration.MessageHandlers** collection. If you used the "ASP.NET MVC 4 Web Application" template to create the project, you can do this inside the **WebApiConfig** class:
 
-[!code[Main](http-message-handlers/samples/sample4.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample4.cs)]
 
 Message handlers are called in the same order that they appear in **MessageHandlers** collection. Because they are nested, the response message travels in the other direction. That is, the last handler is the first to get the response message.
 
@@ -82,7 +82,7 @@ Notice that you don't need to set the inner handlers; the Web API framework auto
 
 If you are [self-hosting](../older-versions/self-host-a-web-api.md), create an instance of the **HttpSelfHostConfiguration** class and add the handlers to the **MessageHandlers** collection.
 
-[!code[Main](http-message-handlers/samples/sample5.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample5.cs)]
 
 Now let's look at some examples of custom message handlers.
 
@@ -90,11 +90,11 @@ Now let's look at some examples of custom message handlers.
 
 X-HTTP-Method-Override is a non-standard HTTP header. It is designed for clients that cannot send certain HTTP request types, such as PUT or DELETE. Instead, the client sends a POST request and sets the X-HTTP-Method-Override header to the desired method. For example:
 
-[!code[Main](http-message-handlers/samples/sample6.xml)]
+[!code-console[Main](http-message-handlers/samples/sample6.cmd)]
 
 Here is a message handler that adds support for X-HTTP-Method-Override:
 
-[!code[Main](http-message-handlers/samples/sample7.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample7.cs)]
 
 In the **SendAsync** method, the handler checks whether the request message is a POST request, and whether it contains the X-HTTP-Method-Override header. If so, it validates the header value, and then modifies the request method. Finally, the handler calls `base.SendAsync` to pass the message to the next handler.
 
@@ -104,19 +104,19 @@ When the request reaches the **HttpControllerDispatcher** class, **HttpControlle
 
 Here is a message handler that adds a custom header to every response message:
 
-[!code[Main](http-message-handlers/samples/sample8.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample8.cs)]
 
 First, the handler calls `base.SendAsync` to pass the request to the inner message handler. The inner handler returns a response message, but it does so asynchronously using a **Task&lt;T&gt;** object. The response message is not available until `base.SendAsync` completes asynchronously.
 
 This example uses the **await** keyword to perform work asynchronously after `SendAsync` completes. If you are targeting .NET Framework 4.0, use the **Task**&lt;T&gt;**.ContinueWith** method:
 
-[!code[Main](http-message-handlers/samples/sample9.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample9.cs)]
 
 ## Example: Checking for an API Key
 
 Some web services require clients to include an API key in their request. The following example shows how a message handler can check requests for a valid API key:
 
-[!code[Main](http-message-handlers/samples/sample10.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample10.cs)]
 
 This handler looks for the API key in the URI query string. (For this example, we assume that the key is a static string. A real implementation would probably use more complex validation.) If the query string contains the key, the handler passes the request to the inner handler.
 
@@ -131,7 +131,7 @@ Handlers in the **HttpConfiguration.MessageHandlers** collection apply globally.
 
 Alternatively, you can add a message handler to a specific route when you define the route:
 
-[!code[Main](http-message-handlers/samples/sample11.xml?highlight=16)]
+[!code-csharp[Main](http-message-handlers/samples/sample11.cs?highlight=16)]
 
 In this example, if the request URI matches "Route2", the request is dispatched to `MessageHandler2`. The following diagram shows the pipeline for these two routes:
 
@@ -145,4 +145,4 @@ Alternatively, a per-route message handler can delegate to **HttpControllerDispa
 
 The following code shows how to configure this route:
 
-[!code[Main](http-message-handlers/samples/sample12.xml)]
+[!code-csharp[Main](http-message-handlers/samples/sample12.cs)]

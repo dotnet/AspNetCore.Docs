@@ -168,7 +168,7 @@ Now that you have created a web app and database for the staging environment, yo
     Visual Studio creates the *Web.Staging.config* transform file and opens it.
 3. In the *Web.Staging.config* transform file, insert the following code immediately after the opening `configuration` tag.
 
-    [!code[Main](deploying-to-production/samples/sample1.xml)]
+    [!code-xml[Main](deploying-to-production/samples/sample1.xml)]
 
     When you use the Staging publish profile, this transform sets the environment indicator to "Prod". In the deployed web app, you won't see any suffix such as "(Dev)" or "(Test)" after the "Contoso University" H1 heading.
 4. Right-click the *Web.Staging.config* file and click **Preview Transform** to make sure that the transform you coded produces the expected changes.
@@ -190,7 +190,7 @@ For this tutorial, you'll create a *robots.txt* file.
 1. In **Solution Explorer**, right-click the ContosoUniversity project and click **Add New Item**.
 2. Create a new **Text File** named *robots.txt*, and put the following text in it:
 
-    [!code[Main](deploying-to-production/samples/sample2.xml)]
+    [!code-console[Main](deploying-to-production/samples/sample2.cmd)]
 
     The `User-agent` line tells search engines that the rules in the file apply to all search engine web crawlers (robots), and the `Disallow` line specifies that no pages on the site should be crawled.
 
@@ -255,11 +255,11 @@ A *.pubxml* file contains the settings that pertain to a specific publish profil
 3. Right-click *Production.pubxml* and click **Open**.
 4. Add the following lines immediately before the closing `PropertyGroup` element:
 
-    [!code[Main](deploying-to-production/samples/sample3.xml)]
+    [!code-xml[Main](deploying-to-production/samples/sample3.xml)]
 
     The .pubxml file now looks like the following example:
 
-    [!code[Main](deploying-to-production/samples/sample4.xml?highlight=18-20)]
+    [!code-xml[Main](deploying-to-production/samples/sample4.xml?highlight=18-20)]
 
     For more information about how to exclude files and folders, see [Can I exclude specific files or folders from deployment?](https://msdn.microsoft.com/en-us/library/ee942158.aspx#can_i_exclude_specific_files_or_folders_from_deployment) in the **Web Deployment FAQ for Visual Studio and ASP.NET** on MSDN.
 

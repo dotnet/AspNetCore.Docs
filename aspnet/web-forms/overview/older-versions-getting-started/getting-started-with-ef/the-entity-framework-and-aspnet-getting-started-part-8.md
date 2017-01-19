@@ -34,25 +34,25 @@ To see how this works, you'll change the controls you use to display and edit fi
 
 Open the *Students.aspx* page and in the `StudentsGridView` control replace the **Name** and **Enrollment Date** `TemplateField` elements with the following markup:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample1.xml)]
+[!code-aspx[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample1.aspx)]
 
 This markup uses `DynamicControl` controls in place of `TextBox` and `Label` controls in the student name template field, and it uses a `DynamicField` control for the enrollment date. No format strings are specified.
 
 Add a `ValidationSummary` control after the `StudentsGridView` control.
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample2.xml)]
+[!code-aspx[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample2.aspx)]
 
 In the `SearchGridView` control replace the markup for the **Name** and **Enrollment Date** columns as you did in the `StudentsGridView` control, except omit the `EditItemTemplate` element. The `Columns` element of the `SearchGridView` control now contains the following markup:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample3.xml)]
+[!code-aspx[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample3.aspx)]
 
 Open *Students.aspx.cs* and add the following `using` statement:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample4.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample4.cs)]
 
 Add a handler for the page's `Init` event:
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample5.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample5.cs)]
 
 This code specifies that Dynamic Data will provide formatting and validation in these data-bound controls for fields of the `Student` entity. If you get an error message like the following example when you run the page, it typically means you've forgotten to call the `EnableDynamicData` method in `Page_Init`:
 
@@ -88,7 +88,7 @@ In **Solution Explorer**, right-click the **ContosoUniversity** project, select 
 
 In the *DAL* folder, create a new class file, name it *Student.cs*, and replace the template code in it with the following code.
 
-[!code[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample6.xml)]
+[!code-csharp[Main](the-entity-framework-and-aspnet-getting-started-part-8/samples/sample6.cs)]
 
 This code creates a partial class for the `Student` entity. The `MetadataType` attribute applied to this partial class identifies the class that you're using to specify metadata. The metadata class can have any name, but using the entity name plus "Metadata" is a common practice.
 

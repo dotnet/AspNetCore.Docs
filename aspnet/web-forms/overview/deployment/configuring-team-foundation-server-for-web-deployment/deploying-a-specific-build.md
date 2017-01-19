@@ -43,19 +43,19 @@ In the [sample solution](../web-deployment-in-the-enterprise/the-contact-manager
 > [!NOTE] **OutputRoot** is a commonly used property name. Visual C# and Visual Basic project files also declare this property to store the root location for all build outputs.
 
 
-[!code[Main](deploying-a-specific-build/samples/sample1.xml)]
+[!code-xml[Main](deploying-a-specific-build/samples/sample1.xml)]
 
 
 If you want your project file to deploy web packages and database scripts from a different location&#x2014;like the outputs of a previous TFS build&#x2014;you simply need to override the **OutputRoot** property. You should set the property value to the relevant build folder on the Team Build server. If you were running MSBuild from the command line, you could specify a value for **OutputRoot** as a command-line argument:
 
 
-[!code[Main](deploying-a-specific-build/samples/sample2.xml)]
+[!code-console[Main](deploying-a-specific-build/samples/sample2.cmd)]
 
 
 In practice, however, you&#x27;d also want to skip the **Build** target&#x2014;there&#x27;s no point in building your solution if you don&#x27;t plan to use the build outputs. You could do this by specifying the targets you want to execute from the command line:
 
 
-[!code[Main](deploying-a-specific-build/samples/sample3.xml)]
+[!code-console[Main](deploying-a-specific-build/samples/sample3.cmd)]
 
 
 However, in most cases, you&#x27;ll want to build your deployment logic into a TFS build definition. This enables users with the **Queue builds** permission to trigger the deployment from any Visual Studio installation with a connection to the TFS server.
@@ -89,7 +89,7 @@ In this case, you don&#x27;t want the build definition to actually build anythin
 11. In the **Build process parameters** table, expand the **Advanced** section.
 12. In the **MSBuild Arguments** row, specify the location of your environment-specific project file and add a placeholder for the location of your build folder:
 
-    [!code[Main](deploying-a-specific-build/samples/sample4.xml)]
+    [!code-console[Main](deploying-a-specific-build/samples/sample4.cmd)]
 
     ![](deploying-a-specific-build/_static/image6.png)
 
@@ -106,7 +106,7 @@ When you trigger a build, you need to update the **OutputRoot** property to poin
 2. In the **Queue Build** dialog box, on the **Parameters** tab, expand the **Advanced** section.
 3. In the **MSBuild Arguments** row, replace the value of the **OutputRoot** property with the location of your build folder. For example:
 
-    [!code[Main](deploying-a-specific-build/samples/sample5.xml)]
+    [!code-console[Main](deploying-a-specific-build/samples/sample5.cmd)]
 
     ![](deploying-a-specific-build/_static/image8.png)
 

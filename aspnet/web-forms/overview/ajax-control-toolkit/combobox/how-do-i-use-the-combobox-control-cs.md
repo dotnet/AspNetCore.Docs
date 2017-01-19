@@ -58,7 +58,7 @@ The second option is to add the list of items in between the opening and closing
 
 **Listing 1 - Static.aspx**
 
-[!code[Main](how-do-i-use-the-combobox-control-cs/samples/sample1.xml)]
+[!code-aspx[Main](how-do-i-use-the-combobox-control-cs/samples/sample1.aspx)]
 
 When you open the page in Listing 1, you can select one of the pre-existing options from the ComboBox. In other words, the ComboBox works just like a DropDownList control.
 
@@ -114,7 +114,7 @@ After you complete the steps above, the ComboBox is bound to a SqlDataSource con
 
 **Listing 2 - Movies.aspx**
 
-[!code[Main](how-do-i-use-the-combobox-control-cs/samples/sample2.xml)]
+[!code-aspx[Main](how-do-i-use-the-combobox-control-cs/samples/sample2.aspx)]
 
 Notice that the ComboBox control has a DataSourceID property that points to the SqlDataSource control. When you open the page in a browser, the list of movies from the database is displayed (see Figure 7). You can either a pick a movie from the list or enter a new movie by typing the movie into the ComboBox.
 

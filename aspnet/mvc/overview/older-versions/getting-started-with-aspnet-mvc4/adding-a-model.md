@@ -32,23 +32,23 @@ Enter the *class* name &quot;Movie&quot;.
 
 Add the following five properties to the `Movie` class:
 
-[!code[Main](adding-a-model/samples/sample1.xml)]
+[!code-csharp[Main](adding-a-model/samples/sample1.cs)]
 
 We'll use the `Movie` class to represent movies in a database. Each instance of a `Movie` object will correspond to a row within a database table, and each property of the `Movie` class will map to a column in the table.
 
 In the same file, add the following `MovieDBContext` class:
 
-[!code[Main](adding-a-model/samples/sample2.xml)]
+[!code-csharp[Main](adding-a-model/samples/sample2.cs)]
 
 The `MovieDBContext` class represents the Entity Framework movie database context, which handles fetching, storing, and updating `Movie` class instances in a database. The `MovieDBContext` derives from the `DbContext` base class provided by the Entity Framework.
 
 In order to be able to reference `DbContext` and `DbSet`, you need to add the following `using` statement at the top of the file:
 
-[!code[Main](adding-a-model/samples/sample3.xml)]
+[!code-csharp[Main](adding-a-model/samples/sample3.cs)]
 
 The complete *Movie.cs* file is shown below. (Several using statements that are not needed have been removed.)
 
-[!code[Main](adding-a-model/samples/sample4.xml)]
+[!code-csharp[Main](adding-a-model/samples/sample4.cs)]
 
 ## Creating a Connection String and Working with SQL Server LocalDB
 
@@ -60,11 +60,11 @@ Open the application root *Web.config* file. (Not the *Web.config* file in the *
 
 Add the following connection string to the `<connectionStrings>` element in the *Web.config* file.
 
-[!code[Main](adding-a-model/samples/sample5.xml)]
+[!code-xml[Main](adding-a-model/samples/sample5.xml)]
 
 The following example shows a portion of the *Web.config* file with the new connection string added:
 
-[!code[Main](adding-a-model/samples/sample6.xml?highlight=6-9)]
+[!code-xml[Main](adding-a-model/samples/sample6.xml?highlight=6-9)]
 
 This small amount of code and XML is everything you need to write in order to represent and store the movie data in a database.
 

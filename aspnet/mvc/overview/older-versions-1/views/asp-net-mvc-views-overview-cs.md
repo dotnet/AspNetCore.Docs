@@ -30,7 +30,7 @@ Listing 1 contains a simple controller named the HomeController. The HomeControl
 
 **Listing 1 - HomeController.cs**
 
-[!code[Main](asp-net-mvc-views-overview-cs/samples/sample1.xml)]
+[!code-csharp[Main](asp-net-mvc-views-overview-cs/samples/sample1.cs)]
 
 You can invoke the first action, the Index() action, by typing the following URL into your browser address bar:
 
@@ -73,7 +73,7 @@ For example, the view in Listing 2 displays the current date and time.
 
 **Listing 2 - \Views\Home\Index.aspx**
 
-[!code[Main](asp-net-mvc-views-overview-cs/samples/sample2.xml)]
+[!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample2.aspx)]
 
 Notice that the body of the HTML page in Listing 2 contains the following script:
 
@@ -85,7 +85,7 @@ Since you call Response.Write() so often, Microsoft provides you with a shortcut
 
 **Listing 3 - Views\Home\Index2.aspx**
 
-[!code[Main](asp-net-mvc-views-overview-cs/samples/sample3.xml)]
+[!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample3.aspx)]
 
 You can use any .NET language to generate dynamic content in a view. Normally, you�ll use either Visual Basic .NET or C# to write your controllers and views.
 
@@ -97,7 +97,7 @@ For example, the view in Listing 4 takes advantage of three HTML Helpers -- the 
 
 **Listing 4 -- \Views\Home\Login.aspx**
 
-[!code[Main](asp-net-mvc-views-overview-cs/samples/sample4.xml)]
+[!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample4.aspx)]
 
 
 [![The New Project dialog box](asp-net-mvc-views-overview-cs/_static/image1.jpg)](asp-net-mvc-views-overview-cs/_static/image1.png)
@@ -113,7 +113,7 @@ Using HTML Helper methods is optional. They make your life easier by reducing th
 
 **Listing 5 -- \Views\Home\Login.aspx**
 
-[!code[Main](asp-net-mvc-views-overview-cs/samples/sample5.xml)]
+[!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample5.aspx)]
 
 You also have the option of creating your own HTML Helpers. For example, you can create a GridView() helper method that displays a set of database records in an HTML table automatically. We explore this topic in the tutorial **Creating Custom HTML Helpers**.
 
@@ -123,7 +123,7 @@ You use view data to pass data from a controller to a view. Think of view data l
 
 **Listing 6 - ProductController.cs**
 
-[!code[Main](asp-net-mvc-views-overview-cs/samples/sample6.xml)]
+[!code-csharp[Main](asp-net-mvc-views-overview-cs/samples/sample6.cs)]
 
 The controller ViewData property represents a collection of name and value pairs. In Listing 6, the Index() method adds an item to the view data collection named message with the value Hello World! . When the view is returned by the Index() method, the view data is passed to the view automatically.
 
@@ -131,7 +131,7 @@ The view in Listing 7 retrieves the message from the view data and renders the m
 
 **Listing 7 -- \Views\Product\Index.aspx**
 
-[!code[Main](asp-net-mvc-views-overview-cs/samples/sample7.xml)]
+[!code-aspx[Main](asp-net-mvc-views-overview-cs/samples/sample7.aspx)]
 
 Notice that the view takes advantage of the Html.Encode() HTML Helper method when rendering the message. The Html.Encode() HTML Helper encodes special characters such as &lt; and &gt; into characters that are safe to display in a web page. Whenever you render content that a user submits to a website, you should encode the content to prevent JavaScript injection attacks.
 

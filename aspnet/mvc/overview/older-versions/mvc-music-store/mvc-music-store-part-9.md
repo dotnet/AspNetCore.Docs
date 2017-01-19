@@ -52,15 +52,15 @@ This is actually very simple to do, as our ShoppingCart class already has a meth
 
 Open the **AccountController** class that we added when we were setting up Membership and Authorization. Add a using statement referencing MvcMusicStore.Models, then add the following MigrateShoppingCart method:
 
-[!code[Main](mvc-music-store-part-9/samples/sample1.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample1.cs)]
 
 Next, modify the LogOn post action to call MigrateShoppingCart after the user has been validated, as shown below:
 
-[!code[Main](mvc-music-store-part-9/samples/sample2.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample2.cs)]
 
 Make the same change to the Register post action, immediately after the user account is successfully created:
 
-[!code[Main](mvc-music-store-part-9/samples/sample3.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample3.cs)]
 
 That's it - now an anonymous shopping cart will be automatically transferred to a user account upon successful registration or login.
 
@@ -72,7 +72,7 @@ Right-click on the Controllers folder and add a new Controller to the project na
 
 First, add the Authorize attribute above the Controller class declaration to require users to register before checkout:
 
-[!code[Main](mvc-music-store-part-9/samples/sample4.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample4.cs)]
 
 *Note: This is similar to the change we previously made to the StoreManagerController, but in that case the Authorize attribute required that the user be in an Administrator role. In the Checkout Controller, we're requiring the user be logged in but aren't requiring that they be administrators.*
 
@@ -80,7 +80,7 @@ For the sake of simplicity, we won't be dealing with payment information in this
 
 As in the StoreController, we'll declare a field to hold an instance of the MusicStoreEntities class, named storeDB. In order to make use of the MusicStoreEntities class, we will need to add a using statement for the MvcMusicStore.Models namespace. The top of our Checkout controller appears below.
 
-[!code[Main](mvc-music-store-part-9/samples/sample5.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample5.cs)]
 
 The CheckoutController will have the following controller actions:
 
@@ -92,23 +92,23 @@ The CheckoutController will have the following controller actions:
 
 First, let's rename the Index controller action (which was generated when we created the controller) to AddressAndPayment. This controller action just displays the checkout form, so it doesn't require any model information.
 
-[!code[Main](mvc-music-store-part-9/samples/sample6.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample6.cs)]
 
 Our AddressAndPayment POST method will follow the same pattern we used in the StoreManagerController: it will try to accept the form submission and complete the order, and will re-display the form if it fails.
 
 After validating the form input meets our validation requirements for an Order, we will check the PromoCode form value directly. Assuming everything is correct, we will save the updated information with the order, tell the ShoppingCart object to complete the order process, and redirect to the Complete action.
 
-[!code[Main](mvc-music-store-part-9/samples/sample7.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample7.cs)]
 
 Upon successful completion of the checkout process, users will be redirected to the Complete controller action. This action will perform a simple check to validate that the order does indeed belong to the logged-in user before showing the order number as a confirmation.
 
-[!code[Main](mvc-music-store-part-9/samples/sample8.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample8.cs)]
 
 *Note: The Error view was automatically created for us in the /Views/Shared folder when we began the project.*
 
 The complete CheckoutController code is as follows:
 
-[!code[Main](mvc-music-store-part-9/samples/sample9.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample9.cs)]
 
 ## Adding the AddressAndPayment view
 
@@ -123,13 +123,13 @@ This view will make use of two of the techniques we looked at while building the
 
 We'll start by updating the form code to use Html.EditorForModel(), followed by an additional textbox for the Promo Code. The complete code for the AddressAndPayment view is shown below.
 
-[!code[Main](mvc-music-store-part-9/samples/sample10.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample10.cs)]
 
 ## Defining validation rules for the Order
 
 Now that our view is set up, we will set up the validation rules for our Order model as we did previously for the Album model. Right-click on the Models folder and add a class named Order. In addition to the validation attributes we used previously for the Album, we will also be using a Regular Expression to validate the user's e-mail address.
 
-[!code[Main](mvc-music-store-part-9/samples/sample11.xml)]
+[!code-csharp[Main](mvc-music-store-part-9/samples/sample11.cs)]
 
 Attempting to submit the form with missing or invalid information will now show error message using client-side validation.
 
@@ -145,7 +145,7 @@ The Checkout Complete view is pretty simple, as it just needs to display the Ord
 
 Now we will update the view code to display the Order ID, as shown below.
 
-[!code[Main](mvc-music-store-part-9/samples/sample12.xml)]
+[!code-cshtml[Main](mvc-music-store-part-9/samples/sample12.cshtml)]
 
 ## Updating The Error view
 
@@ -153,7 +153,7 @@ The default template includes an Error view in the Shared views folder so that i
 
 Since this is a generic error page, the content is very simple. We'll include a message and a link to navigate to the previous page in history if the user wants to re-try their action.
 
-[!code[Main](mvc-music-store-part-9/samples/sample13.xml)]
+[!code-cshtml[Main](mvc-music-store-part-9/samples/sample13.cshtml)]
 
 *Please use the Discussions at [http://mvcmusicstore.codeplex.com](http://mvcmusicstore.codeplex.com) for any questions or comments.*
 

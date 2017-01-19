@@ -24,23 +24,23 @@ ASP.NET 2.0 enhances server controls in many ways. In this module, we'll cover s
 
 The primary change in view state in ASP.NET 2.0 is a dramatic reduction in size. Consider a page with only a Calendar control on it. Here is the view state in ASP.NET 1.1.
 
-[!code[Main](server-controls/samples/sample1.xml)]
+[!code-unknown[Main](server-controls/samples/sample-25170-1.unknown)]
 
 Now here's the view state on an identical page in ASP.NET 2.0.
 
-[!code[Main](server-controls/samples/sample2.xml)]
+[!code-unknown[Main](server-controls/samples/sample-25170-2.unknown)]
 
 That's a pretty significant change, and considering that view state is carried back and forth over the wire, this change can give developers a significant performance increase. The reduction in size of view state is largely due to the way that we handle it internally. Remember that view state is a Base64 encoded string. To better understand the change in view state in ASP.NET 2.0, let's have a look at the decoded values from the examples above.
 
 Here is the 1.1 view state decoded:
 
-[!code[Main](server-controls/samples/sample3.xml)]
+[!code-unknown[Main](server-controls/samples/sample-25170-3.unknown)]
 
 This may look a bit like gibberish, but there is a pattern here. In ASP.NET 1.x, we used single characters to identify data-types and delimited values using the &lt;&gt; characters. The "t" in the view state sample above represents a Triplet. The Triplet contains a pair of ArrayLists (the "l" represents an ArrayList.) One of those ArrayLists contains an Int32 ("i") with a value of 1 and the other contains another Triplet. The Triplet contains a pair of ArrayLists, etc. The important thing to remember is that we use Triplets that contain pairs, we identify the data-types via a letter, and we use the &lt; and &gt; characters as delimiters.
 
 In ASP.NET 2.0, the decoded view state looks a bit different.
 
-[!code[Main](server-controls/samples/sample4.xml)]
+[!code-unknown[Main](server-controls/samples/sample-25170-4.unknown)]
 
 You should notice a huge change in the appearance of the decoded view state. This change has several architectural underpinnings. View state in ASP.NET 1.x used the LosFormatter to serialize data. In 2.0, we use the new ObjectStateFormatter class. This class was specifically designed to aid in the serialization and deserialization of view state and control state. (Control state will be covered in the next section.) There are many benefits gained by changing the method by which serialization and deserialization take place. One of the most dramatic is the fact that unlike the LosFormatter which uses a TextWriter, the ObjectStateFormatter uses a BinaryWriter. This allows ASP.NET 2.0 to store view state a series of bytes instead of strings. Take, for example, an integer. In ASP.NET 1.1, an integer required 4 bytes of view state. In ASP.NET 2.0, that same integer only requires 1 byte. Other enhancements were made to decrease the amount of view state that is stored. DateTime values, for example, are now stored using a TickCount instead of a string.
 
@@ -72,7 +72,7 @@ The RegisterRequiresControlState method informs ASP.NET that a control needs to 
 
 It is important to note that registration does not persist from request to request. Therefore, this method must be called on every request if a control is to persist control state. It is recommended that the method be called in OnInit.
 
-[!code[Main](server-controls/samples/sample5.xml)]
+[!code-csharp[Main](server-controls/samples/sample5.cs)]
 
 ## Step 2: Override SaveControlState
 
@@ -88,19 +88,19 @@ Any Web developer knows the importance of standards in Web applications. In orde
 
 The DOCTYPE definition in ASP.NET 1.1 was as follows:
 
-[!code[Main](server-controls/samples/sample6.xml)]
+[!code-html[Main](server-controls/samples/sample6.html)]
 
 In ASP.NET 2.0, the default DOCTYPE definition is as follows:
 
-[!code[Main](server-controls/samples/sample7.xml)]
+[!code-html[Main](server-controls/samples/sample7.html)]
 
 If you choose, you can alter the default XHML compliance via the xhtmlConformance node in the configuration file. For example, the following node in the web.config file will change XHTML compliance to XHTML 1.0 Strict:
 
-[!code[Main](server-controls/samples/sample8.xml)]
+[!code-xml[Main](server-controls/samples/sample8.xml)]
 
 If you choose, you can also configure ASP.NET to use the legacy configuration used in ASP.NET 1.x as follows:
 
-[!code[Main](server-controls/samples/sample9.xml)]
+[!code-xml[Main](server-controls/samples/sample9.xml)]
 
 ## Adaptive Rendering Using Adapters
 
@@ -115,7 +115,7 @@ Much like the &lt;browserCaps&gt; section in 1.x, the browser definition file us
 
 You can develop your own custom adapter by inheriting from ControlAdapter. Additionally, you can inherit from the abstract class PageAdapter in cases where an adapter is needed for a page. Mapping of controls to your custom adapter is accomplished via the &lt;controlAdapters&gt; element in the browser definition file. For example, the following XML from a browser definition file maps the Menu control to the MenuAdapter class:
 
-[!code[Main](server-controls/samples/sample10.xml)]
+[!code-unknown[Main](server-controls/samples/sample-25170-10.unknown)]
 
 Using this model, it becomes quite easy for a control developer to target a particular device or browser. It's also quite simple for a developer to have complete control over how pages render on every device.
 
@@ -123,7 +123,7 @@ Using this model, it becomes quite easy for a control developer to target a part
 
 Server control properties in ASP.NET 2.0 can be specified per-device using a browser-specific prefix. For example, the code below will change the Text of a label depending upon which device is being used to browse the page.
 
-[!code[Main](server-controls/samples/sample11.xml)]
+[!code-aspx[Main](server-controls/samples/sample11.aspx)]
 
 When the page containing this label is browsed from Internet Explorer, the label will display text saying "You are browsing from Internet Explorer." When the page is browsed from Firefox, the label will display the text "You are browsing from Firefox." When the page is browsed from any other device, it will display "You are browsing from an unknown device." Any property can be specified using this special syntax.
 
@@ -131,15 +131,15 @@ When the page containing this label is browsed from Internet Explorer, the label
 
 ASP.NET 1.x developers frequently asked about how to set initial focus on a particular control. For example, on a login page, it's useful to have the User ID textbox get the focus when the page first loads. In ASP.NET 1.x, doing this required writing some client-side script. Even though such a script is a trivial task, it's no longer necessary in ASP.NET 2.0 thanks to the SetFocus method. The SetFocus method takes one argument indicating the control that should receive focus. This argument can either be the client ID of the control as a string or the name of the Server control as a Control object. For example, to set the initial focus to a TextBox control called txtUserID when the page first loads, add the following code to Page\_Load:
 
-[!code[Main](server-controls/samples/sample12.xml)]
+[!code-csharp[Main](server-controls/samples/sample12.cs)]
 
 -- or
 
-[!code[Main](server-controls/samples/sample13.xml)]
+[!code-csharp[Main](server-controls/samples/sample13.cs)]
 
 ASP.NET 2.0 uses the Webresource.axd handler (discussed previously) to render a client-side function that sets the focus. The name of the client-side function is WebForm\_AutoFocus as shown here:
 
-[!code[Main](server-controls/samples/sample14.xml)]
+[!code-html[Main](server-controls/samples/sample14.html)]
 
 Alternatively, you can use the Focus method for a control to set the initial focus to that control. The Focus method derives from the Control class and is available to all ASP.NET 2.0 controls. It is also possible to set focus to a particular control when a validation error occurs. That will be covered in a later module.
 

@@ -71,11 +71,11 @@ For these tutorials, you'll assume that the `Student` and `Enrollment` tables sh
 
 Since you will be using Code First Migrations, you do not have to use the `DropCreateDatabaseIfModelChanges` Code First initializer. The code for this initializer is in the *SchoolInitializer.cs* file in the ContosoUniversity.DAL project. A setting in the `appSettings` element of the *Web.config* file causes this initializer to run whenever the application tries to access the database for the first time:
 
-[!code[Main](preparing-databases/samples/sample1.xml?highlight=3)]
+[!code-xml[Main](preparing-databases/samples/sample1.xml?highlight=3)]
 
 Open the application *Web.config* file and remove or comment out the `add` element that specifies the Code First initializer class. The `appSettings` element now looks like this:
 
-[!code[Main](preparing-databases/samples/sample2.xml)]
+[!code-xml[Main](preparing-databases/samples/sample2.xml)]
 
 > [!NOTE] Another way to specify an initializer class is do it by calling `Database.SetInitializer` in the `Application_Start` method in the *Global.asax* file. If you are enabling Migrations in a project that uses that method to specify the initializer, remove that line of code.
 
@@ -111,14 +111,14 @@ Since the `Seed` method runs after every migration, there is data already in the
 
 1. Open the *Configuration.cs* file and replace the comments in the `Seed` method with the following code:
 
-    [!code[Main](preparing-databases/samples/sample3.xml)]
+    [!code-csharp[Main](preparing-databases/samples/sample3.cs)]
 2. The references to `List` have red squiggly lines under them because you don't have a `using` statement for its namespace yet. Right-click one of the instances of `List` and click **Resolve**, and then click **using System.Collections.Generic**.
 
     ![Resolve with using statement](preparing-databases/_static/image6.png)
 
     This menu selection adds the following code to the `using` statements near the top of the file.
 
-    [!code[Main](preparing-databases/samples/sample4.xml)]
+    [!code-csharp[Main](preparing-databases/samples/sample4.cs)]
 3. Press CTRL-SHIFT-B to build the project.
 
 The project is now ready to deploy the *ContosoUniversity* database. After you deploy the application, the first time you run it and navigate to a page that accesses the database, Code First will create the database and run this `Seed` method.

@@ -38,7 +38,7 @@ Now you'll add code that runs when the **Select** link is clicked and displays a
 
 1. In *Instructors.aspx*, add the following markup immediately after the **ErrorMessageLabel** `Label` control:
 
-    [!code[Main](deploying-a-code-update/samples/sample1.xml)]
+    [!code-aspx[Main](deploying-a-code-update/samples/sample1.aspx)]
 2. Run the page and select an instructor. You see a list of courses taught by that instructor.
 
     ![Instructors page with courses taught](deploying-a-code-update/_static/image2.png)
@@ -80,7 +80,7 @@ The change you're deploying now is a simple change to a single page. But sometim
 
 You can configure Web Deploy to automatically put a default *app\_offline.htm* file on the server when it starts deploying and remove it when it finishes. To do that all you have to do is add the following XML element to your publish profile (.pubxml) file:
 
-[!code[Main](deploying-a-code-update/samples/sample2.xml)]
+[!code-xml[Main](deploying-a-code-update/samples/sample2.xml)]
 
 For this tutorial you'll see how to create and use a custom *app\_offline.htm* file.
 
@@ -92,7 +92,7 @@ Using *app\_offline.htm* in the staging site isn't required, because you don't h
 2. Create an **HTML Page** named *app\_offline.htm* (delete the final "l" in the *.html* extension that Visual Studio creates by default).
 3. Replace the template markup with the following markup:
 
-    [!code[Main](deploying-a-code-update/samples/sample3.xml)]
+    [!code-html[Main](deploying-a-code-update/samples/sample3.html)]
 4. Save and close the file.
 
 ### Copy app\_offline.htm to the root folder of the web site
@@ -142,7 +142,7 @@ Visual Studio 2012 also gives you the ability to deploy individual files. For a 
 1. Open *Content/Site.css*, and find the block for the `body` tag.
 2. Change the value for `background-color` from `#fff` to `darkblue`.
 
-    [!code[Main](deploying-a-code-update/samples/sample4.xml?highlight=2)]
+    [!code-css[Main](deploying-a-code-update/samples/sample4.css?highlight=2)]
 
 ### View the change in the Publish Preview window
 

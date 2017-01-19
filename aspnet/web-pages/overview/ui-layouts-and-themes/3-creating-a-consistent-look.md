@@ -55,22 +55,22 @@ In this procedure, you'll create a page that references two content blocks (a he
 1. In the root folder of your website, create a file named *Index.cshtml*.
 2. Replace the existing markup with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample1.xml)]
+    [!code-html[Main](3-creating-a-consistent-look/samples/sample1.html)]
 3. In the root folder, create a folder named *Shared*.
 
     > [!NOTE] It's common practice to store files that are shared among web pages in a folder named *Shared*.
 4. In the *Shared* folder, create a file named *\_Header.cshtml*.
 5. Replace any existing content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample2.xml)]
+    [!code-html[Main](3-creating-a-consistent-look/samples/sample2.html)]
 
     Notice that the file name is *\_Header.cshtml*, with an underscore (\_) as a prefix. ASP.NET won't send a page to the browser if its name starts with an underscore. This prevents people from requesting (inadvertently or otherwise) these pages directly. It's a good idea to use an underscore to name pages that have content blocks in them, because you don't really want users to be able to request these pages &#8212; they exist strictly to be inserted into other pages.
 6. In the *Shared* folder, create a file named *\_Footer.cshtml* and replace the content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample3.xml)]
+    [!code-html[Main](3-creating-a-consistent-look/samples/sample3.html)]
 7. In the *Index.cshtml* page, add two calls to the `RenderPage` method, as shown here:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample4.xml)]
+    [!code-html[Main](3-creating-a-consistent-look/samples/sample4.html)]
 
     This shows how to insert a content block into a web page. You call the `RenderPage` method and pass it the name of the file whose contents you want to insert at that point. Here, you're inserting the contents of the *\_Header.cshtml* and *\_Footer.cshtml* files into the *Index.cshtml* file.
 8. Run the *Index.cshtml* page in a browser. (In WebMatrix, in the **Files** workspace, right-click the file and then select **Launch in browser**.)
@@ -78,7 +78,7 @@ In this procedure, you'll create a page that references two content blocks (a he
 
     This lets you see the web page markup that's sent to the browser, which combines the index page markup with the content blocks. The following example shows the page source that's rendered for *Index.cshtml*. The calls to `RenderPage` that you inserted into *Index.cshtml* have been replaced with the actual contents of the header and footer files.
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample5.xml)]
+    [!code-html[Main](3-creating-a-consistent-look/samples/sample5.html)]
 
 ## Creating a Consistent Look Using Layout Pages
 
@@ -95,21 +95,21 @@ The following procedure shows how to create a layout page and link content pages
 1. In the *Shared* folder of your website, create a file named *\_Layout1.cshtml*.
 2. Replace any existing content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample6.xml)]
+    [!code-html[Main](3-creating-a-consistent-look/samples/sample6.html)]
 
     You use the `RenderPage` method in a layout page to insert content blocks. A layout page can contain only one call to the `RenderBody` method.
 3. In the *Shared* folder, create a file named *\_Header2.cshtml* and replace any existing content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample7.xml)]
+    [!code-html[Main](3-creating-a-consistent-look/samples/sample7.html)]
 4. In the root folder, create a new folder and name it *Styles*.
 5. In the *Styles* folder, create a file named *Site.css* and add the following style definitions:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample8.xml)]
+    [!code-css[Main](3-creating-a-consistent-look/samples/sample8.css)]
 
     These style definitions are here only to show how style sheets can be used with layout pages. If you want, you can define your own styles for these elements.
 6. In the root folder, create a file named *Content1.cshtml* and replace any existing content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample9.xml)]
+    [!code-cshtml[Main](3-creating-a-consistent-look/samples/sample9.cshtml)]
 
     This is a page that will use a layout page. The code block at the top of the page indicates which layout page to use to format this content.
 7. Run *Content1.cshtml*in a browser. The rendered page uses the format and style sheet defined in *\_Layout1.cshtml* and the text (content) defined in *Content1.cshtml*.
@@ -133,12 +133,12 @@ This procedure shows how to create a content page that has multiple content sect
 1. In the *Shared* folder, create a file named *\_Layout2.cshtml*.
 2. Replace any existing content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample10.xml)]
+    [!code-html[Main](3-creating-a-consistent-look/samples/sample10.html)]
 
     You use the `RenderSection` method to render both the header and list sections.
 3. In the root folder, create a file named *Content2.cshtml* and replace any existing content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample11.xml)]
+    [!code-cshtml[Main](3-creating-a-consistent-look/samples/sample11.cshtml)]
 
     This content page contains a code block at the top of the page. Each named section is contained in a section block. The rest of the page contains the default (unnamed) content section.
 4. Run *Content2.cshtml* in a browser.
@@ -157,21 +157,21 @@ However, you can override this behavior for a named section by declaring the sec
 
 1. Open *Content2.cshtml* and remove the following section:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample12.xml)]
+    [!code-cshtml[Main](3-creating-a-consistent-look/samples/sample12.cshtml)]
 2. Save the page and then run it in a browser. An error message is displayed, because the content page doesn't provide content for a section defined in the layout page, namely the header section.
 
     ![Screenshot that shows the error that occurs if you run a page that calls RenderSection method but the corresponding section is not provided.](3-creating-a-consistent-look/_static/image7.jpg)
 3. In the *Shared* folder, open the *\_Layout2.cshtml* page and replace this line:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample13.xml)]
+    [!code-unknown[Main](3-creating-a-consistent-look/samples/sample-38933-13.unknown)]
 
     with the following code:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample14.xml)]
+    [!code-unknown[Main](3-creating-a-consistent-look/samples/sample-38933-14.unknown)]
 
     As an alternative, you could replace the previous line of code with the following code block, which produces the same results:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample15.xml)]
+    [!code-cshtml[Main](3-creating-a-consistent-look/samples/sample15.cshtml)]
 4. Run the *Content2.cshtml* page in a browser again. (If you still have this page open in the browser, you can just refresh it.) This time the page is displayed with no error, even though it has no header.
 
 ## Passing Data to Layout Pages
@@ -190,19 +190,19 @@ The following procedure shows how to pass data from a content page to a layout p
 
 1. In the root folder, create a file named *Content3.cshtml* and replace any existing content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample16.xml)]
+    [!code-csharp[Main](3-creating-a-consistent-look/samples/sample16.cs)]
 
     The code stores two pieces of data in the `PageData` property &#8212; the title of the web page and true or false to specify whether to display a list.
 
     Notice that ASP.NET lets you put HTML markup into the page conditionally using a code block. For example, the `if/else` block in the body of the page determines which form to display depending on whether `PageData["ShowList"]` is set to true.
 2. In the *Shared* folder, create a file named *\_Layout3.cshtml* and replace any existing content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample17.xml)]
+    [!code-cshtml[Main](3-creating-a-consistent-look/samples/sample17.cshtml)]
 
     The layout page includes an expression in the `<title>` element that gets the title value from the `PageData` property. It also uses the `ShowList` value of the `PageData` property to determine whether to display the list content block.
 3. In the *Shared* folder, create a file named *\_List.cshtml* and replace any existing content with the following:
 
-    [!code[Main](3-creating-a-consistent-look/samples/sample18.xml)]
+    [!code-html[Main](3-creating-a-consistent-look/samples/sample18.html)]
 4. Run the *Content3.cshtml* page in a browser. The page is displayed with the list visible on the left side of the page and a **Hide List** button at the bottom.
 
     ![Screenshot showing the page that includes the list and a button that says 'Hide List'.](3-creating-a-consistent-look/_static/image10.jpg)

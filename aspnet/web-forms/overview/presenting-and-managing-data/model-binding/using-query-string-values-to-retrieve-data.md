@@ -40,7 +40,7 @@ Add a new web form that uses the Site.master master page, and name the page **Co
 
 In the **Courses.aspx** file, add a grid view to display the courses for the selected student.
 
-[!code[Main](using-query-string-values-to-retrieve-data/samples/sample1.xml)]
+[!code-aspx[Main](using-query-string-values-to-retrieve-data/samples/sample1.aspx)]
 
 ## Define the select method
 
@@ -48,11 +48,11 @@ In **Courses.aspx.cs**, you will add the select method with the name you specifi
 
 First, you must add the following **using** statements.
 
-[!code[Main](using-query-string-values-to-retrieve-data/samples/sample2.xml)]
+[!code-csharp[Main](using-query-string-values-to-retrieve-data/samples/sample2.cs)]
 
 Then, add the following code to Courses.aspx.cs:
 
-[!code[Main](using-query-string-values-to-retrieve-data/samples/sample3.xml)]
+[!code-csharp[Main](using-query-string-values-to-retrieve-data/samples/sample3.cs)]
 
 The QueryString attribute means that a query string value named StudentID is automatically assigned to the parameter in this method.
 
@@ -62,7 +62,7 @@ In the grid view on Students.aspx, you will add a hyperlink field that links to 
 
 In Students.aspx, add the following field to the grid view columns just below the field for Total Credits.
 
-[!code[Main](using-query-string-values-to-retrieve-data/samples/sample4.xml?highlight=7-8)]
+[!code-aspx[Main](using-query-string-values-to-retrieve-data/samples/sample4.aspx?highlight=7-8)]
 
 Run the application and notice that the grid view now includes the Courses link.
 

@@ -95,7 +95,7 @@ When using ASP.NET 4, you can redirect all requests for ASP.NET framework script
 
 Use the ScriptManager EnableCDN property to redirect all ASP.NET framework script requests to the Microsoft Ajax CDN:
 
-[!code[Main](overview/samples/sample1.xml)]
+[!code-aspx[Main](overview/samples/sample1.aspx)]
 
 <a id="Using_jQuery_from_the_CDN_21"></a>
 
@@ -103,19 +103,19 @@ Use the ScriptManager EnableCDN property to redirect all ASP.NET framework scrip
 
 You can use jQuery scripts hosted on CDN in your Web application by adding the following script element to a page:
 
-[!code[Main](overview/samples/sample2.xml)]
+[!code-html[Main](overview/samples/sample2.html)]
 
 The CDN also includes the minified version of the jQuery script, which you can get using the following element:
 
-[!code[Main](overview/samples/sample3.xml)]
+[!code-html[Main](overview/samples/sample3.html)]
 
 To allow your page to fallback to loading jQuery from a local path on your own website if the CDN happens to be unavailable, add the following element immediately after the element referencing the CDN:
 
-[!code[Main](overview/samples/sample4.xml)]
+[!code-html[Main](overview/samples/sample4.html)]
 
 The following sample page uses the CDN version of the jQuery library (with fallback to a local copy) to display the contents of a div element when a button is clicked.
 
-[!code[Main](overview/samples/sample5.xml)]
+[!code-html[Main](overview/samples/sample5.html)]
 
 You can learn more about jQuery and download a local copy of jQuery by visiting the [jQuery](http://jquery.com/) Web site.
 
@@ -125,7 +125,7 @@ You can learn more about jQuery and download a local copy of jQuery by visiting 
 
 The CDN also hosts the jQuery UI library. The jQuery UI library includes a rich set of widgets and effects that you can use in your ASP.NET applications. For example, the following page illustrates how you can use the jQuery UI Datepicker in the context of an ASP.NET Web Forms application to display a pop-up calendar:
 
-[!code[Main](overview/samples/sample6.xml)]
+[!code-aspx[Main](overview/samples/sample6.aspx)]
 
 When you move focus to the TextBox using your keyboard, a calendar is displayed:
 

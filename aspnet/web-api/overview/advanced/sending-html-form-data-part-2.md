@@ -24,7 +24,7 @@ This tutorial shows how to upload files to a web API. It also describes how to p
 
 Here is an example of an HTML form for uploading a file:
 
-[!code[Main](sending-html-form-data-part-2/samples/sample1.xml)]
+[!code-html[Main](sending-html-form-data-part-2/samples/sample1.html)]
 
 ![](sending-html-form-data-part-2/_static/image1.png)
 
@@ -32,7 +32,7 @@ This form contains a text input control and a file input control. When a form co
 
 The format of a multipart MIME message is easiest to understand by looking at an example request:
 
-[!code[Main](sending-html-form-data-part-2/samples/sample2.xml)]
+[!code-console[Main](sending-html-form-data-part-2/samples/sample2.cmd)]
 
 This message is divided into two *parts*, one for each form control. Part boundaries are indicated by the lines that start with dashes.
 
@@ -50,7 +50,7 @@ In the previous example, the user uploaded a file named GrandCanyon.jpg, with co
 
 Now let's look at a Web API controller that reads files from a multipart MIME message. The controller will read the files asynchronously. Web API supports asynchronous actions using the [task-based programming model](https://msdn.microsoft.com/library/dd460693.aspx). First, here is the code if you are targeting .NET Framework 4.5, which supports the **async** and **await** keywords.
 
-[!code[Main](sending-html-form-data-part-2/samples/sample3.xml)]
+[!code-csharp[Main](sending-html-form-data-part-2/samples/sample3.cs)]
 
 Notice that the controller action does not take any parameters. That's because we process the request body inside the action, without invoking a media-type formatter.
 
@@ -67,27 +67,27 @@ As the name suggests, **ReadAsMultipartAsync** is an asynchronous method. To per
 
 Here is the .NET Framework 4.0 version of the previous code:
 
-[!code[Main](sending-html-form-data-part-2/samples/sample4.xml)]
+[!code-csharp[Main](sending-html-form-data-part-2/samples/sample4.cs)]
 
 ## Reading Form Control Data
 
 The HTML form that I showed earlier had a text input control.
 
-[!code[Main](sending-html-form-data-part-2/samples/sample5.xml)]
+[!code-html[Main](sending-html-form-data-part-2/samples/sample5.html)]
 
 You can get the value of the control from the **FormData** property of the **MultipartFormDataStreamProvider**.
 
-[!code[Main](sending-html-form-data-part-2/samples/sample6.xml?highlight=15)]
+[!code-csharp[Main](sending-html-form-data-part-2/samples/sample6.cs?highlight=15)]
 
 **FormData** is a **NameValueCollection** that contains name/value pairs for the form controls. The collection can contain duplicate keys. Consider this form:
 
-[!code[Main](sending-html-form-data-part-2/samples/sample7.xml)]
+[!code-html[Main](sending-html-form-data-part-2/samples/sample7.html)]
 
 ![](sending-html-form-data-part-2/_static/image2.png)
 
 The request body might look like this:
 
-[!code[Main](sending-html-form-data-part-2/samples/sample8.xml)]
+[!code-console[Main](sending-html-form-data-part-2/samples/sample8.cmd)]
 
 In that case, the **FormData** collection would contain the following key/value pairs:
 

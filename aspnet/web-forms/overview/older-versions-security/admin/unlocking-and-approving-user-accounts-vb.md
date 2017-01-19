@@ -74,7 +74,7 @@ After adding these controls, the Design view in Visual Studio should look simila
 
 With the user interface complete, our next task is to set the `IsApproved` CheckBox and other controls based on the selected user's information. Create an event handler for the page's `Load` event and add the following code:
 
-[!code[Main](unlocking-and-approving-user-accounts-vb/samples/sample1.xml)]
+[!code-vb[Main](unlocking-and-approving-user-accounts-vb/samples/sample1.vb)]
 
 The above code starts by ensuring that this is the first visit to the page and not a subsequent postback. It then reads the username passed through the `user` querystring field and retrieves information about that user account via the `Membership.GetUser(username)` method. If no username was supplied through the querystring, or if the specified user could not be found, the administrator is sent back to the `ManageUsers.aspx` page.
 
@@ -86,7 +86,7 @@ Take a moment to test the `UserInformation.aspx` page through a browser. You wil
 
 Return to Visual Studio and create event handlers for the `IsApproved` CheckBox's `CheckedChanged` event and the `UnlockUser` Button's `Click` event. In the `CheckedChanged` event handler, set the user's `IsApproved` property to the `Checked` property of the CheckBox and then save the changes via a call to `Membership.UpdateUser`. In the `Click` event handler, simply call the `MembershipUser` object's `UnlockUser` method. In both event handlers, display a suitable message in the `StatusMessage` Label.
 
-[!code[Main](unlocking-and-approving-user-accounts-vb/samples/sample2.xml)]
+[!code-vb[Main](unlocking-and-approving-user-accounts-vb/samples/sample2.vb)]
 
 ### Testing the`UserInformation.aspx`Page
 
@@ -144,7 +144,7 @@ To send an email from the CreateUserWizard control, configure its `MailDefinitio
 
 Start by creating a new email template named `CreateUserWizard.txt` in the `EmailTemplates` folder. Use the following text for the template:
 
-[!code[Main](unlocking-and-approving-user-accounts-vb/samples/sample3.xml)]
+[!code-aspx[Main](unlocking-and-approving-user-accounts-vb/samples/sample3.aspx)]
 
 Set the `MailDefinition`'s `BodyFileName` property to "~/EmailTemplates/CreateUserWizard.txt" and its `Subject` property to "Welcome to My Website! Please activate your account."
 
@@ -152,7 +152,7 @@ Note that the `CreateUserWizard.txt` email template includes a `<%VerificationUr
 
 To accomplish this, create an event handler for the CreateUserWizard's [`SendingMail` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.sendingmail.aspx) and add the following code:
 
-[!code[Main](unlocking-and-approving-user-accounts-vb/samples/sample4.xml)]
+[!code-vb[Main](unlocking-and-approving-user-accounts-vb/samples/sample4.vb)]
 
 The `SendingMail` event fires after the `CreatedUser` event, meaning that by the time the above event handler executes the new user account has already been created. We can access the new user's `UserId` value by calling the `Membership.GetUser` method, passing in the `UserName` entered into the CreateUserWizard control. Next, the verification URL is formed. The statement `Request.Url.GetLeftPart(UriPartial.Authority)` returns the `http://yourserver.com` portion of the URL; `Request.ApplicationPath` returns path where the application is rooted. The verification URL is then defined as `Verification.aspx?ID=userId`. These two strings are then concatenated to form the complete URL. Finally, the email message body (`e.Message.Body`) has all occurrences of `<%VerificationUrl%>` replaced with the full URL.
 
@@ -173,7 +173,7 @@ Our final task is to create the `Verification.aspx` page. Add this page to the r
 
 Add a Label Web control to the `Verification.aspx` page, set its `ID` to `StatusMessage` and clear out its text property. Next, create the `Page_Load` event handler and add the following code:
 
-[!code[Main](unlocking-and-approving-user-accounts-vb/samples/sample5.xml)]
+[!code-vb[Main](unlocking-and-approving-user-accounts-vb/samples/sample5.vb)]
 
 The bulk of the above code verifies that the UserId supplied through the querystring exists, that it is a valid `Guid` value, and that it references an existing user account. If all of these checks pass, the user account is approved; otherwise, a suitable status message is displayed.
 

@@ -45,13 +45,13 @@ In ASP.NET pages, you can use the `ReCaptcha` helper to render a CAPTCHA test th
 3. If you don't already have a *\_AppStart.cshtml* file, in the root folder of a website create a file named *\_AppStart.cshtml*.
 4. Add the following `Recaptcha` helper settings in the *\_AppStart.cshtml* file: 
 
-    [!code[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample1.xml?highlight=6-7)]
+    [!code-cshtml[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample1.cshtml?highlight=6-7)]
 5. Set the `PublicKey` and `PrivateKey` properties using your own public and private keys.
 6. Save the *\_AppStart.cshtml* file and close it.
 7. In the root folder of a website, create new page named *Recaptcha.cshtml*.
 8. Replace the existing content with the following: 
 
-    [!code[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample2.xml)]
+    [!code-csharp[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample2.cs)]
 9. Run the *Recaptcha.cshtml* page in a browser. If the `PrivateKey` value is valid, the page displays the ReCaptcha control and a button. If you had not set the keys globally in *\_AppStart.html*, the page would display an error. 
 
     ![](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/_static/image1.png)
@@ -59,7 +59,7 @@ In ASP.NET pages, you can use the `ReCaptcha` helper to render a CAPTCHA test th
 
 > [!NOTE] If your computer is on a domain that uses proxy server, you might need to configure the `defaultproxy` element of the *Web.config* file. The following example shows a *Web.config* file with the `defaultproxy` element configured to enable the ReCaptcha service to work.
 > 
-> [!code[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample3.xml)]
+> [!code-xml[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample3.xml)]
 
 
 <a id="Additional_Resources"></a>

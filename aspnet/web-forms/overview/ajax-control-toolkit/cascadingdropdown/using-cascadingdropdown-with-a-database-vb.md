@@ -32,11 +32,11 @@ For this sample, we assume that the instance of the SQL Server 2005 Express Edit
 
 In order to activate the functionality of ASP.NET AJAX and the Control Toolkit, the `ScriptManager` control must be put anywhere on the page (but within the &lt;`form`&gt; element):
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample1.xml)]
+[!code-aspx[Main](using-cascadingdropdown-with-a-database-vb/samples/sample1.aspx)]
 
 In the next step, two DropDownList controls are required. In this sample, we use the vendor and contact information from AdventureWorks, thus we create one list for the available vendors and one for the available contacts:
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample2.xml)]
+[!code-aspx[Main](using-cascadingdropdown-with-a-database-vb/samples/sample2.aspx)]
 
 Then, two CascadingDropDown extenders must be added to the page. One fills the first (vendors) list, and the other one fills the second (contacts) list. The following attributes must be set:
 
@@ -49,35 +49,35 @@ Then, two CascadingDropDown extenders must be added to the page. One fills the f
 
 Depending on the programming language used, the name of the web service in question changes, but all other attribute values are the same. Here is the CascadingDropDown element for the first dropdown list:
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample3.xml)]
+[!code-aspx[Main](using-cascadingdropdown-with-a-database-vb/samples/sample3.aspx)]
 
 The control extenders for the second list need to set the `ParentControlID` attribute so that selecting an entry in the vendors list triggers loading associated elements in the contacts list.
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample4.xml)]
+[!code-aspx[Main](using-cascadingdropdown-with-a-database-vb/samples/sample4.aspx)]
 
 The actual work is then done in the web service, which is set up as follows. Note that the `[ScriptService]` attribute is used, otherwise ASP.NET AJAX cannot create the JavaScript proxy to access the web methods from client-side script code.
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample5.xml)]
+[!code-aspx[Main](using-cascadingdropdown-with-a-database-vb/samples/sample5.aspx)]
 
 The signature of the web methods called by CascadingDropDown is as follows:
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample6.xml)]
+[!code-vb[Main](using-cascadingdropdown-with-a-database-vb/samples/sample6.vb)]
 
 So the return value must be an array of type `CascadingDropDownNameValue` which is defined by the Control Toolkit. The `GetVendors()` method is quite easy to implement: The code connects to the AdventureWorks database and queries the first 25 vendors. The first parameter in the `CascadingDropDownNameValue` constructor is the caption of the list entry, the second one its value (value attribute in HTML's &lt;`option`&gt; element). Here is the code:
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample7.xml)]
+[!code-vb[Main](using-cascadingdropdown-with-a-database-vb/samples/sample7.vb)]
 
 Getting the associated contacts for a vendor (method name: `GetContactsForVendor()`) is a bit trickier. First of all, the vendor which has been selected in the first dropdown list must be determined. The Control Toolkit defines a helper method for that task: The `ParseKnownCategoryValuesString()` method returns a `StringDictionary` element with the dropdown data:
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample8.xml)]
+[!code-vb[Main](using-cascadingdropdown-with-a-database-vb/samples/sample8.vb)]
 
 For security reasons, this data must be validated first. So if there is a Vendor entry (because the `Category` property of the first CascadingDropDown element is set to `"Vendor"`), the ID of the selected vendor may be retrieved:
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample9.xml)]
+[!code-vb[Main](using-cascadingdropdown-with-a-database-vb/samples/sample9.vb)]
 
 The rest of the method is fairly straight-forward, then. The vendor's ID is used as a parameter for an SQL query that retrieves all associated contacts for that vendor. Once again, the method returns an array of type `CascadingDropDownNameValue`.
 
-[!code[Main](using-cascadingdropdown-with-a-database-vb/samples/sample10.xml)]
+[!code-vb[Main](using-cascadingdropdown-with-a-database-vb/samples/sample10.vb)]
 
 Load the ASP.NET page, and after a short while the vendor list is filled with 25 entries. Pick one entry and notice how the second dropdown list is filled with data.
 

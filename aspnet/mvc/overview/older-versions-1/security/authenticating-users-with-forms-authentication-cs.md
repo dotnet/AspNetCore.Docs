@@ -56,7 +56,7 @@ For example, the controller in Listing 1 exposes an action named CompanySecrets(
 
 **Listing 1 – Controllers\HomeController.cs**
 
-[!code[Main](authenticating-users-with-forms-authentication-cs/samples/sample1.xml)]
+[!code-csharp[Main](authenticating-users-with-forms-authentication-cs/samples/sample1.cs)]
 
 If you invoke the CompanySecrets() action by entering the URL /Home/CompanySecrets in the address bar of your browser, and you are not an authenticated user, then you will be redirected to the Login view automatically (see Figure 5).
 
@@ -82,7 +82,7 @@ You can use the [Authorize] attribute to restrict access to a controller action 
 
 **Listing 2 – Controllers\HomeController.cs**
 
-[!code[Main](authenticating-users-with-forms-authentication-cs/samples/sample2.xml)]
+[!code-csharp[Main](authenticating-users-with-forms-authentication-cs/samples/sample2.cs)]
 
 Only a user with the user name Stephen can invoke the StephenSecrets() action. All other users get redirected to the Login view. The Users property accepts a comma separated list of user account names.
 
@@ -119,7 +119,7 @@ After you create the necessary database objects, you need to modify the database
 
 **Listing 3 – Web.config**
 
-[!code[Main](authenticating-users-with-forms-authentication-cs/samples/sample3.xml)]
+[!code-xml[Main](authenticating-users-with-forms-authentication-cs/samples/sample3.xml)]
 
 #### Configuring Database Permissions
 

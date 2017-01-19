@@ -30,7 +30,7 @@ I'm not recommending that you add your validation or database logic to a control
 
 **Listing 1 - Controllers\ProductController.cs**
 
-[!code[Main](performing-simple-validation-cs/samples/sample1.xml)]
+[!code-csharp[Main](performing-simple-validation-cs/samples/sample1.cs)]
 
 In Listing 1, the Name, Description, and UnitsInStock properties of the Product class are validated. If any of these properties fail a validation test then an error is added to the model state dictionary (represented by the ModelState property of the Controller class).
 
@@ -66,7 +66,7 @@ After you complete these steps, you get the Create view in Listing 2.
 
 **Listing 2 - Views\Product\Create.aspx**
 
-[!code[Main](performing-simple-validation-cs/samples/sample2.xml)]
+[!code-aspx[Main](performing-simple-validation-cs/samples/sample2.aspx)]
 
 In Listing 2, the Html.ValidationSummary() helper is called immediately above the HTML form. This helper is used to display a list of validation error messages. The Html.ValidationSummary() helper renders the errors in a bulleted list.
 
@@ -109,7 +109,7 @@ There are actually two types of validation error messages - those generated befo
 
 The Create() action exposed by the Product controller in Listing 1 accepts an instance of the Product class. The signature of the Create method looks like this:
 
-[!code[Main](performing-simple-validation-cs/samples/sample3.xml)]
+[!code-csharp[Main](performing-simple-validation-cs/samples/sample3.cs)]
 
 The values of the HTML form fields from the Create form are bound to the productToCreate class by something called a model binder. The default model binder adds an error message to model state automatically when it cannot bind a form field to a form property.
 

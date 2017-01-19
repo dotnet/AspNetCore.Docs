@@ -190,7 +190,7 @@ Click the **OK** button. WebMatrix opens a new file with some skeleton elements 
 
 At the top of the page, between the `@{` and `}` characters, enter the following code. (Make sure that you enter this code between the opening and closing braces.)
 
-[!code[Main](displaying-data/samples/sample1.xml)]
+[!code-csharp[Main](displaying-data/samples/sample1.cs)]
 
 The first line opens the database that you created earlier, which is always the first step before doing something with the database. You tell the `Database.Open` method name of the database to open. Notice that you don't include *.sdf* in the name. The `Open` method assumes that it's looking for an *.sdf* file (that is, *WebPagesMovies.sdf*) and that the *.sdf* file is in the *App\_Data* folder. (Earlier we noted that the *App\_Data* folder is reserved; this scenario is one of the places where ASP.NET makes assumptions about that name.)
 
@@ -241,11 +241,11 @@ At this stage, the database has been opened, you've gotten the data you want, an
 
 Inside the `<head>` element, set contents of the `<title>` element to "Movies":
 
-[!code[Main](displaying-data/samples/sample2.xml?highlight=3)]
+[!code-html[Main](displaying-data/samples/sample2.html?highlight=3)]
 
 Inside the `<body>` element of the page, add the following:
 
-[!code[Main](displaying-data/samples/sample3.xml)]
+[!code-html[Main](displaying-data/samples/sample3.html)]
 
 That's it. The `grid` variable is the value you created when you created the `WebGrid` object in code earlier.
 
@@ -267,7 +267,7 @@ To start, you can specify that you want to display only certain columns. By defa
 
 In the *Movies.cshtml* file, replace the `@grid.GetHtml()` markup that you just added with the following:
 
-[!code[Main](displaying-data/samples/sample4.xml)]
+[!code-unknown[Main](displaying-data/samples/sample-38465-4.unknown)]
 
 To tell the helper which columns to display, you include a `columns` parameter for the `GetHtml` method and pass in a collection of columns. In the collection, you specify each column to include. You specify an individual column to display by including a `grid.Column` object, and pass in the name of the data column you want. (These columns must be included in the SQL query results — the `WebGrid` helper cannot display columns that were not returned by the query.)
 
@@ -281,7 +281,7 @@ There are quite a few more options for displaying columns, some of which will be
 
 Inside the `<head>` section of the page, just before the closing `</head>` tag, add the following `<style>` element:
 
-[!code[Main](displaying-data/samples/sample5.xml)]
+[!code-css[Main](displaying-data/samples/sample5.css)]
 
 This CSS markup defines classes named `grid`, `head`, and so on. You could also put these style definitions in a separate *.css* file and link that to the page. (In fact, you'll do that later in this tutorial set.) But to make things easy for this tutorial, they're inside the same page that displays the data.
 
@@ -289,7 +289,7 @@ Now you can get the `WebGrid` helper to use these style classes. The helper has 
 
 Change the `grid.GetHtml` markup so that it now looks like this code:
 
-[!code[Main](displaying-data/samples/sample6.xml)]
+[!code-unknown[Main](displaying-data/samples/sample-38465-6.unknown)]
 
 What's new here is that you've added `tableStyle`, `headerStyle`, and `alternatingRowStyle` parameters to the `GetHtml` method. These parameters have been set to the names of the CSS styles that you added a moment ago.
 
@@ -309,7 +309,7 @@ As the last task for this tutorial, you'll add paging to the grid. Right now it'
 
 In the page code, change the line that creates the `WebGrid` object to the following code:
 
-[!code[Main](displaying-data/samples/sample7.xml)]
+[!code-csharp[Main](displaying-data/samples/sample7.cs)]
 
 The only difference from before is that you've added a `rowsPerPage` parameter that's set to 3.
 
@@ -323,7 +323,7 @@ In the next tutorial, you'll learn how to use Razor and C# code to get user inpu
 
 ## Complete Listing for Movies Page
 
-[!code[Main](displaying-data/samples/sample8.xml)]
+[!code-cshtml[Main](displaying-data/samples/sample8.cshtml)]
 
 ## Additional Resources
 

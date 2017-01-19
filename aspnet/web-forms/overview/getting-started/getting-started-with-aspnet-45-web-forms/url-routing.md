@@ -63,13 +63,13 @@ Before you can include routes to pages of the Wingtip Toys sample application, y
 1. In **Solution Explorer**of Visual Studio, find and open the *Global.asax.cs* file.
 2. Add the code highlighted in yellow to the *Global.asax.cs* file as follows:   
 
-    [!code[Main](url-routing/samples/sample1.xml?highlight=30-31,34-46)]
+    [!code-csharp[Main](url-routing/samples/sample1.cs?highlight=30-31,34-46)]
 
 When the Wingtip Toys sample application starts, it calls the `Application_Start` event handler. At the end of this event handler, the `RegisterCustomRoutes` method is called. The `RegisterCustomRoutes` method adds each route by calling the `MapPageRoute` method of the `RouteCollection` object. Routes are defined using a route name, a route URL and a physical URL.
 
 The first parameter ("`ProductsByCategoryRoute`") is the route name. It is used to call the route when it is needed. The second parameter ("`Category/{categoryName}`") defines the friendly replacement URL that can be dynamic based on code. You use this route when you are populating a data control with links that are generated based on data. A route is shown as follows:
 
-[!code[Main](url-routing/samples/sample2.xml)]
+[!code-csharp[Main](url-routing/samples/sample2.cs)]
 
 The second parameter of the route includes a dynamic value specified by braces (`{ }`). In this case, the `categoryName` is a variable that will be used to determine the proper routing path.
 
@@ -97,17 +97,17 @@ Next, you'll update the application to use the `ProductsByCategoryRoute` to dete
 1. In **Solution Explorer**, open the *Site.Master* page if it is not already open.
 2. Update the **ListView** control named "`categoryList`" with the changes highlighted in yellow, so the markup appears as follows:   
 
-    [!code[Main](url-routing/samples/sample3.xml?highlight=7-9)]
+    [!code-aspx[Main](url-routing/samples/sample3.aspx?highlight=7-9)]
 3. In **Solution Explorer**, open the *ProductList.aspx* page.
 4. Update the `ItemTemplate` element of the *ProductList.aspx*page with the updates highlighted in yellow, so the markup appears as follows:   
 
-    [!code[Main](url-routing/samples/sample4.xml?highlight=6-9,14-16)]
+    [!code-aspx[Main](url-routing/samples/sample4.aspx?highlight=6-9,14-16)]
 5. Open the code-behind of *ProductList.aspx.cs* and add the following namespace as highlighted in yellow:  
 
-    [!code[Main](url-routing/samples/sample5.xml?highlight=9)]
+    [!code-csharp[Main](url-routing/samples/sample5.cs?highlight=9)]
 6. Replace the `GetProducts` method of the code-behind (*ProductList.aspx.cs*) with the following code:   
 
-    [!code[Main](url-routing/samples/sample6.xml)]
+    [!code-csharp[Main](url-routing/samples/sample6.cs)]
 
 #### Add Code for Product Details
 
@@ -115,7 +115,7 @@ Now, update the code-behind (*ProductDetails.aspx.cs*) for the *ProductDetails.a
 
 1. Replace the `GetProduct` method of the code-behind (*ProductDetails.aspx.cs*) with the following code:   
 
-    [!code[Main](url-routing/samples/sample7.xml)]
+    [!code-csharp[Main](url-routing/samples/sample7.cs)]
 
 ## Running the Application
 

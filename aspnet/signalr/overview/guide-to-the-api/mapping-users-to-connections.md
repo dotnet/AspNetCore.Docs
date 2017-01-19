@@ -72,17 +72,17 @@ This feature allows users to specify what the userId is based on an IRequest via
 
 **The IUserProvider**
 
-[!code[Main](mapping-users-to-connections/samples/sample1.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample1.cs)]
 
 By default, there will be an implementation that uses the user's `IPrincipal.Identity.Name` as the user name. To change this, register your implementation of `IUserIdProvider` with the global host when your application starts:
 
-[!code[Main](mapping-users-to-connections/samples/sample2.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample2.cs)]
 
 From within a hub, you'll be able to send messages to these users via the following API:
 
 **Sending a message to a specific user**
 
-[!code[Main](mapping-users-to-connections/samples/sample3.xml?highlight=5)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample3.cs?highlight=5)]
 
 <a id="inmemory"></a>
 
@@ -94,11 +94,11 @@ If the application shuts down, all of the information is lost, but it will be re
 
 The first example shows a class that manages the mapping of users to connections. The key for the HashSet will be the user's name.
 
-[!code[Main](mapping-users-to-connections/samples/sample4.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample4.cs)]
 
 The next example shows how to use the connection mapping class from a hub. The instance of the class is stored in a variable name `_connections`.
 
-[!code[Main](mapping-users-to-connections/samples/sample5.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample5.cs)]
 
 <a id="groups"></a>
 
@@ -110,7 +110,7 @@ You should not manually remove the user from the group when the user disconnects
 
 The following example shows how to implement single-user groups.
 
-[!code[Main](mapping-users-to-connections/samples/sample6.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample6.cs)]
 
 <a id="database"></a>
 
@@ -124,11 +124,11 @@ The following examples show how to retain connection and user information in a d
 
 The first example shows how to define a user entity that can be associated with many connection entities.
 
-[!code[Main](mapping-users-to-connections/samples/sample7.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample7.cs)]
 
 Then, from the hub, you can track the state of each connection with the code shown below.
 
-[!code[Main](mapping-users-to-connections/samples/sample8.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample8.cs)]
 
 <a id="azure"></a>
 ### Azure table storage
@@ -137,8 +137,8 @@ The following Azure table storage example is similar to the database example. It
 
 The following example shows a table entity for storing connection information. It partitions the data by user name, and identifies each entity by the connection id, so a user can have multiple connections at any time.
 
-[!code[Main](mapping-users-to-connections/samples/sample9.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample9.cs)]
 
 In the hub, you track the status of each user's connection.
 
-[!code[Main](mapping-users-to-connections/samples/sample10.xml)]
+[!code-csharp[Main](mapping-users-to-connections/samples/sample10.cs)]

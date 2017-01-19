@@ -35,7 +35,7 @@ You'll create a view template file using the new [Razor view engine](https://web
 
 Start by using a view template with the `Index` method in the `HelloWorldController` class. Currently the `Index` method returns a string with a message that is hard-coded in the controller class. Change the `Index` method to return a `View` object, as shown in the following:
 
-[!code[Main](adding-a-view/samples/sample1.xml)]
+[!code-csharp[Main](adding-a-view/samples/sample1.cs)]
 
 This code uses a view template to generate an HTML response to the browser. In the project, add a view template that you can use with the `Index` method. To do this, right-click inside the `Index` method and click **Add View**.
 
@@ -55,7 +55,7 @@ The following shows the *Index.cshtml* file that was created:
 
 Add some HTML under the `<h2>` tag. The modified *MvcMovie\Views\HelloWorld\Index.cshtml* file is shown below.
 
-[!code[Main](adding-a-view/samples/sample2.xml)]
+[!code-cshtml[Main](adding-a-view/samples/sample2.cshtml)]
 
 Run the application and browse to the `HelloWorld` controller (`http://localhost:xxxx/HelloWorld`). The `Index` method in your controller didn't do much work; it simply ran the statement `return View()`, which specified that the method should use a view template file to render a response to the browser. Because you didn't explicitly specify the name of the view template file to use, ASP.NET MVC defaulted to using the *Index.cshtml* view file in the *\Views\HelloWorld* folder. The image below shows the string hard-coded in the view.
 
@@ -71,7 +71,7 @@ First, you want to change the "My MVC Application" title at the top of the page.
 
 Layout templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Note the `@RenderBody()` line near the bottom of the file. `RenderBody` is a placeholder where all the view-specific pages you create show up, "wrapped" in the layout page. Change the title heading in the layout template from "My MVC Application" to "MVC Movie App".
 
-[!code[Main](adding-a-view/samples/sample3.xml)]
+[!code-html[Main](adding-a-view/samples/sample3.html)]
 
 Run the application and notice that it now says "MVC Movie App". Click the **About** link, and you see how that page shows "MVC Movie App", too. We were able to make the change once in the layout template and have all pages on the site reflect the new title.
 
@@ -79,13 +79,13 @@ Run the application and notice that it now says "MVC Movie App". Click the **Abo
 
 The complete *\_Layout.cshtml* file is shown below:
 
-[!code[Main](adding-a-view/samples/sample4.xml)]
+[!code-cshtml[Main](adding-a-view/samples/sample4.cshtml)]
 
 Now, let's change the title of the Index page (view).
 
 Open *MvcMovie\Views\HelloWorld\Index.cshtml*. There are two places to make a change: first, the text that appears in the title of the browser, and then in the secondary header (the `<h2>` element). You'll make them slightly different so you can see which bit of code changes which part of the app.
 
-[!code[Main](adding-a-view/samples/sample5.xml)]
+[!code-cshtml[Main](adding-a-view/samples/sample5.cshtml)]
 
 To indicate the HTML title to display, the code above sets a `Title` property of the `ViewBag` object (which is in the *Index.cshtml* view template). If you look back at the source code of the layout template, you'll notice that the template uses this value in the `<title>` element as part of the `<head>` section of the HTML. Using this approach, you can easily pass other parameters between your view template and your layout file.
 
@@ -107,7 +107,7 @@ Currently, the `Welcome` action method in the `HelloWorldController` class takes
 
 Return to the *HelloWorldController.cs* file and change the `Welcome` method to add a `Message` and `NumTimes` value to the `ViewBag` object. `ViewBag` is a dynamic object, which means you can put whatever you want in to it; the `ViewBag` object has no defined properties until you put something inside it. The complete *HelloWorldController.cs* file looks like this:
 
-[!code[Main](adding-a-view/samples/sample6.xml)]
+[!code-csharp[Main](adding-a-view/samples/sample6.cs)]
 
 Now the `ViewBag` object contains data that will be passed to the view automatically.
 
@@ -121,7 +121,7 @@ Then right-click inside the `Welcome` method and click **Add View**. Here's what
 
 Click **Add**, and then add the following code under the `<h2>` element in the new *Welcome.cshtml* file. You'll create a loop that says "Hello" as many times as the user says it should. The complete *Welcome.cshtml* file is shown below.
 
-[!code[Main](adding-a-view/samples/sample7.xml)]
+[!code-cshtml[Main](adding-a-view/samples/sample7.cshtml)]
 
 Run the application and browse to the following URL:
 

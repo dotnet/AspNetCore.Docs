@@ -253,7 +253,7 @@ The `Membership` class has a [`Providers` property](https://msdn.microsoft.com/e
 
 The `Providers` property's contents are specified through the web application's configuration settings. By default, all web applications have a provider named `AspNetSqlMembershipProvider` of type `SqlMembershipProvider`. This default Membership provider is registered in `machine.config` (located at `%WINDIR%\Microsoft.Net\Framework\v2.0.50727\CONFIG)`:
 
-[!code[Main](creating-the-membership-schema-in-sql-server-cs/samples/sample1.xml)]
+[!code-xml[Main](creating-the-membership-schema-in-sql-server-cs/samples/sample1.xml)]
 
 As the markup above shows, the [`<membership>` element](https://msdn.microsoft.com/en-us/library/1b9hw62f.aspx) defines the configuration settings for the Membership framework while the [`<providers>` child element](https://msdn.microsoft.com/en-us/library/6d4936ht.aspx) specifies the registered providers. Providers may be added or removed using the [`<add>`](https://msdn.microsoft.com/en-us/library/whae3t94.aspx) or [`<remove>`](https://msdn.microsoft.com/en-us/library/aykw9a6d.aspx) elements; use the [`<clear>`](https://msdn.microsoft.com/en-us/library/t062y6yc.aspx) element to remove all currently registered providers. As the markup above shows, `machine.config` adds a provider named `AspNetSqlMembershipProvider` of type `SqlMembershipProvider`.
 
@@ -292,7 +292,7 @@ In addition to `AspNetSqlMembershipProvider`, other Membership providers may be 
 
 The default `SqlMembershipProvider` (`AspNetSqlMembershipProvider`) has its `connectionStringName` attribute set to `LocalSqlServer`. Like the `AspNetSqlMembershipProvider` provider, the connection string name `LocalSqlServer` is defined in `machine.config`.
 
-[!code[Main](creating-the-membership-schema-in-sql-server-cs/samples/sample2.xml)]
+[!code-xml[Main](creating-the-membership-schema-in-sql-server-cs/samples/sample2.xml)]
 
 As you can see, this connection string defines a SQL 2005 Express Edition database located at |DataDirectory|aspnetdb.mdf�. The string |DataDirectory|� is translated at runtime to point to the `~/App_Data/` directory, so the database path |DataDirectory|aspnetdb.mdf" translates to `~/App_Data`/`aspnet.mdf`.
 
@@ -303,13 +303,13 @@ If we did not specify any Membership provider information in our application's `
 
 Before we can add a new registered provider that references the `SecurityTutorials.mdf` database, we first need to add an appropriate connection string value in the `<connectionStrings>` section in `Web.config`. The following markup adds a new connection string named `SecurityTutorialsConnectionString` that references the SQL Server 2005 Express Edition `SecurityTutorials.mdf` database in the `App_Data` folder.
 
-[!code[Main](creating-the-membership-schema-in-sql-server-cs/samples/sample3.xml)]
+[!code-xml[Main](creating-the-membership-schema-in-sql-server-cs/samples/sample3.xml)]
 
 > [!NOTE] If you are using an alternate database file, update the connection string as needed. For more information on forming the correct connection string, refer to [ConnectionStrings.com](http://www.connectionstrings.com/).
 
 Next, add the following Membership configuration markup to the `Web.config` file. This markup registers a new provider named `SecurityTutorialsSqlMembershipProvider`.
 
-[!code[Main](creating-the-membership-schema-in-sql-server-cs/samples/sample4.xml)]
+[!code-xml[Main](creating-the-membership-schema-in-sql-server-cs/samples/sample4.xml)]
 
 In addition to registering the `SecurityTutorialsSqlMembershipProvider` provider, the above markup defines the `SecurityTutorialsSqlMembershipProvider` as the default provider (via the `defaultProvider` attribute in the `<membership>` element). Recall that the Membership framework can have multiple registered providers. Since `AspNetSqlMembershipProvider` is registered as the first provider in `machine.config`, it serves as the default provider unless we indicate otherwise.
 

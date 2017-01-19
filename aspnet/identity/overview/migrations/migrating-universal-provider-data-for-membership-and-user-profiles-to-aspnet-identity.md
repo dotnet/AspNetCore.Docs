@@ -45,17 +45,17 @@ After migrating the application to use the new ASP.NET Identity system, the prof
     ![](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/_static/image1.png)
 3. As an example, let us store the date of birth, city, height and weight of the user in profile. The height and weight are stored as a custom class called 'PersonalStats'. To store and retrieve the profile, we need a class that extends 'ProfileBase'. Let's create a new class 'AppProfile' to get and store profile information.
 
-    [!code[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample1.xml)]
+    [!code-csharp[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample1.cs)]
 4. Enable profile in the *web.config* file. Enter the class name to be used to store/retrieve user information created in step #3.
 
-    [!code[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample2.xml)]
+    [!code-xml[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample2.xml)]
 5. Add a web forms page in 'Account' folder to get the profile data from the user and store it. Right click on project and select 'Add new Item'. Add a new webforms page with master page 'AddProfileData.aspx'. Copy the following in the 'MainContent' section:
 
-    [!code[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample3.xml)]
+    [!code-html[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample3.html)]
 
  Add the following code in the code behind:
 
-    [!code[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample4.xml)]
+    [!code-csharp[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample4.cs)]
 
  Add the namespace under which AppProfile class is defined to remove the compilation errors.
 6. Run the app and create a new user with username '**olduser'.** Navigate to the 'AddProfileData' page and add profile information for the user.  
@@ -92,7 +92,7 @@ Paste the SQL script from [https://raw.github.com/suhasj/UniversalProviders-Iden
  More information on managing Nuget packages can be found     [here](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog)
 2. To work with existing data in the table, we need to create model classes which map back to the tables and hook them up in the Identity system. As part of the Identity contract, the model classes should either implement the interfaces defined in the Identity.Core dll or can extend the existing implementation of these interfaces available in Microsoft.AspNet.Identity.EntityFramework. We will be using the existing classes for role, user logins and user claims. We need to use a custom user for our sample. Right click on the project and create new folder 'IdentityModels'. Add a new 'User' class as shown below:
 
-    [!code[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample5.xml)]
+    [!code-csharp[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample5.cs)]
 
  Notice that the 'ProfileInfo' is now a property on the user class. Hence we can use the user class to directly work with profile data.
 
@@ -108,7 +108,7 @@ As mentioned earlier, we need to deserialize the xml data in the Profiles tables
 3. Add the web application created above as a reference to the console application. To do this right click on Project, then 'Add References', then Solution, then click on the project and click OK.
 4. Copy the below code in the Program.cs class. This logic reads profile data for each user, serializes it as 'ProfileInfo' object and stores it back to the database.
 
-    [!code[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample6.xml)]
+    [!code-csharp[Main](migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity/samples/sample6.cs)]
 
  Some of the models used are defined in the 'IdentityModels' folder of the web application project, so you must include the corresponding namespaces.
 5. The above code works on the database file in the App\_Data folder of the web application project created in the previous steps. To reference that, update the connection string in the app.config file of the console application with the connection string in the web.config of the web application. Also provide the complete physical path in the 'AttachDbFilename' property.

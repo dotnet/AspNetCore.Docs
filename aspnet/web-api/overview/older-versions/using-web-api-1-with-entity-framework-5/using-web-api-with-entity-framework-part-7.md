@@ -30,25 +30,25 @@ In this section, you will create the main application page. This page will be mo
 
 We'll start by defining some basic layout in HTML, with no data binding or script. Open the file Views/Home/Index.cshtml and replace all of the contents with the following:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample1.xml)]
+[!code-html[Main](using-web-api-with-entity-framework-part-7/samples/sample1.html)]
 
 Next, add a Scripts section and create an empty view-model:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample2.xml)]
+[!code-cshtml[Main](using-web-api-with-entity-framework-part-7/samples/sample2.cshtml)]
 
 Based on the design sketched earlier, our view model needs observables for products, cart, orders, and details. Add the following variables to the `AppViewModel` object:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample3.xml)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-7/samples/sample3.js)]
 
 Users can add items from the products list into the cart, and remove items from the cart. To encapsulate these functions, we'll create another view-model class that represents a product. Add the following code to `AppViewModel`:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample4.xml?highlight=4)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-7/samples/sample4.js?highlight=4)]
 
 The `ProductViewModel` class contains two functions that are used to move the product to and from the cart: `addItemToCart` adds one unit of the product to the cart, and `removeAllFromCart` removes all quantities of the product.
 
 Users can select an existing order and get the order details. We'll encapsulate this functionality into another view-model:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample5.xml?highlight=4)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-7/samples/sample5.js?highlight=4)]
 
 The `OrderDetailsViewModel` is initialized with an order, and it fetches the order details by sending an AJAX request to the server.
 
@@ -61,11 +61,11 @@ Next, add these functions to `AppViewModel`:
 - `createOrder` creates a new order and empties the cart.
 
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample6.xml?highlight=4)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-7/samples/sample6.js?highlight=4)]
 
 Finally, initialize the view model by making AJAX requests for the products and orders:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample7.xml)]
+[!code-javascript[Main](using-web-api-with-entity-framework-part-7/samples/sample7.js)]
 
 OK, that's a lot of code, but we built it up step-by-step, so hopefully the design is clear. Now we can add some Knockout.js bindings to the HTML.
 
@@ -73,7 +73,7 @@ OK, that's a lot of code, but we built it up step-by-step, so hopefully the desi
 
 Here are the bindings for the product list:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample8.xml)]
+[!code-html[Main](using-web-api-with-entity-framework-part-7/samples/sample8.html)]
 
 This iterates over the products array and displays the name and price. The "Add to Order" button is visible only when the user is logged in.
 
@@ -83,7 +83,7 @@ The "Add to Order" button calls `addItemToCart` on the `ProductViewModel` instan
 
 Here are the bindings for the cart:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample9.xml)]
+[!code-html[Main](using-web-api-with-entity-framework-part-7/samples/sample9.html)]
 
 This iterates over the cart array and displays the name, price, and quantity. Note that the "Remove" link and the "Create Order" button are bound to view-model functions.
 
@@ -91,7 +91,7 @@ This iterates over the cart array and displays the name, price, and quantity. No
 
 Here are the bindings for the orders list:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample10.xml)]
+[!code-html[Main](using-web-api-with-entity-framework-part-7/samples/sample10.html)]
 
 This iterates over the orders and shows the order ID. The click event on the link is bound to the `getDetails` function.
 
@@ -99,7 +99,7 @@ This iterates over the orders and shows the order ID. The click event on the lin
 
 Here are the bindings for the order details:
 
-[!code[Main](using-web-api-with-entity-framework-part-7/samples/sample11.xml)]
+[!code-html[Main](using-web-api-with-entity-framework-part-7/samples/sample11.html)]
 
 This iterates over the items in the order and displays the product, price, and quanity. The surrounding div is visible only if the details array contains one or more items.
 

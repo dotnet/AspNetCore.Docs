@@ -33,14 +33,14 @@ Before we get into looking at how to configure data source controls, we should c
 
 The snippet below adds a new connection string.
 
-[!code[Main](data-source-controls/samples/sample1.xml)]
+[!code-xml[Main](data-source-controls/samples/sample1.xml)]
 
 > [!NOTE] Just as with the &lt;appSettings&gt; section, the &lt;connectionStrings&gt; section appears outside of the &lt;system.web&gt; section in the configuration file.
 
 
 To use this connection string, you can use the following syntax when setting the ConnectionString attribute of a server control.
 
-[!code[Main](data-source-controls/samples/sample2.xml)]
+[!code-aspx[Main](data-source-controls/samples/sample2.aspx)]
 
 The &lt;connectionStrings&gt; section can also be encrypted so that sensitive information is not exposed. That ability will be covered in a later module.
 
@@ -77,7 +77,7 @@ In order to use the SqlDataSource, you simply provide a value for the Connection
 
 The code snippet below binds a DropDownList control to a SqlDataSource control using the connection string that is stored in the configuration file as shown above.
 
-[!code[Main](data-source-controls/samples/sample3.xml)]
+[!code-aspx[Main](data-source-controls/samples/sample3.aspx)]
 
 As illustrated above, the DataSourceMode property of the SqlDataSource specifies the mode for the data source. In the example above, the DataSourceMode is set to DataReader. In that case, the SqlDataSource will return an IDataReader object using a forward-only and read-only cursor. The specified type of object that is returned is controlled by the provider that is used. In this case, I'm using the System.Data.SqlClient provider as specified in the &lt;connectionStrings&gt; section of the web.config file. Therefore, the object that is returned will be of type SqlDataReader. By specifying a DataSourceMode value of DataSet, the data can be stored in a DataSet on the server. This mode allows you to add features such as sorting, paging, etc. If I had been data-binding the SqlDataSource to a GridView control, I would have chosen the DataSet mode. However, in the case of a DropDownList, the DataReader mode is the correct choice.
 
@@ -148,7 +148,7 @@ Returns the parameters that are used by the UpdateCommand of the SqlDataSourceVi
 
 The AccessDataSource control derives from the SqlDataSource class and is used to data-bind to a Microsoft Access database. The ConnectionString property for the AccessDataSource control is a read-only property. Instead of using the ConnectionString property, the DataFile property is used to point to the Access Database as shown below.
 
-[!code[Main](data-source-controls/samples/sample4.xml)]
+[!code-aspx[Main](data-source-controls/samples/sample4.aspx)]
 
 The AccessDataSource will always set the ProviderName of the base SqlDataSource to System.Data.OleDb and connects to the database using the Microsoft.Jet.OLEDB.4.0 OLE DB provider. You cannot use the AccessDataSource control to connect to a password-protected Access database. If you have to connect to a password protected database, you should use the SqlDataSource control.
 
@@ -161,7 +161,7 @@ The XmlDataSource is used to data-bind XML data to data-bound controls. You can 
 
 Consider the following XML file:
 
-[!code[Main](data-source-controls/samples/sample5.xml)]
+[!code-xml[Main](data-source-controls/samples/sample5.xml)]
 
 Notice that the XmlDataSource uses an XPath property of *People/Person* in order to filter on just the &lt;Person&gt; nodes. The DropDownList then data-binds to the LastName attribute using the DataTextField property.
 
@@ -207,10 +207,10 @@ The following exercise uses the SqlDataSource control to connect to the Northwin
     2. Choose Web Configuration File from the list of templates and click Add.
 3. Edit the &lt;connectionStrings&gt; section as follows: 
 
-    [!code[Main](data-source-controls/samples/sample6.xml)]
+    [!code-aspx[Main](data-source-controls/samples/sample6.aspx)]
 4. Switch to Code view and add a ConnectionString attribute and a SelectCommand attribute to the &lt;asp:SqlDataSource&gt; control as follows: 
 
-    [!code[Main](data-source-controls/samples/sample7.xml)]
+    [!code-aspx[Main](data-source-controls/samples/sample7.aspx)]
 5. From Design view, add a new GridView control.
 6. From the Choose Data Source dropdown in the GridView Tasks menu, choose SqlDataSource1.
 7. Right-click on Default.aspx and choose View in Browser from the menu. Click Yes when prompted to save.
@@ -227,20 +227,20 @@ The following exercise demonstrates how to data bind a DropDownList control usin
 3. Switch to Source view.
 4. Add a DataSourceId, DataTextField, and DataValueField attribute to the &lt;asp:DropDownList&gt; control as follows: 
 
-    [!code[Main](data-source-controls/samples/sample8.xml)]
+    [!code-aspx[Main](data-source-controls/samples/sample8.aspx)]
 5. Save Default.aspx and view it in the browser. Note that the DropDownList contains all of the products from the Northwind database.
 6. Close the browser.
 7. In Source view of Default.aspx, add a new TextBox control below the DropDownList control. Change the ID property of the TextBox to txtProductName.
 8. Under the TextBox control, add a new Button control. Change the ID property of the Button to btnUpdate and the Text property to **Update Product Name**.
 9. In Source view of Default.aspx, add an UpdateCommand property and two new UpdateParameters to the SqlDataSource tag as follows: 
 
-    [!code[Main](data-source-controls/samples/sample9.xml)]
+    [!code-aspx[Main](data-source-controls/samples/sample9.aspx)]
 
     > Note that there are two update parameters (ProductName and ProductID) added in this code. These parameters are mapped to the Text property of the txtProductName TextBox and the SelectedValue property of the ddlProducts DropDownList.
 10. Switch to Design view and double-click on the Button control to add an event handler.
 11. Add the following code to the btnUpdate\_Click code: 
 
-    [!code[Main](data-source-controls/samples/sample10.xml)]
+    [!code-unknown[Main](data-source-controls/samples/sample-25172-10.unknown)]
 12. Right-click on Default.aspx and choose to view it in the browser. Click Yes when prompted to save all changes.
 13. ASP.NET 2.0 partial classes allow for compilation at runtime. It is not necessary to build an application in order to see code changes take effect.
 14. Select a product from the DropDownList.
@@ -258,9 +258,9 @@ This exercise will demonstrate how to use the ObjectDataSource control and a sou
 5. Click Yes when prompted to add the class to the App\_Code folder.
 6. Add the following code to the NorthwindData.cs file: 
 
-    [!code[Main](data-source-controls/samples/sample11.xml)]
+    [!code-csharp[Main](data-source-controls/samples/sample11.cs)]
 7. Add the following code to the Source view of object.aspx: 
 
-    [!code[Main](data-source-controls/samples/sample12.xml)]
+    [!code-aspx[Main](data-source-controls/samples/sample12.aspx)]
 8. Save all files and browse object.aspx.
 9. Interact with the interface by viewing details, editing employees, adding employees, and deleting employees.

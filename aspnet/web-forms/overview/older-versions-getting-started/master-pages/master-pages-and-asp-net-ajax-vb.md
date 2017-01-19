@@ -36,7 +36,7 @@ If your site uses master pages (as it should), you do not necessarily need to ad
 The ScriptManager control emits markup that instructs the browser to download the JavaScript files that makeup the ASP.NET AJAX Client Library. It also adds a bit of inline JavaScript to the page that initializes this library. The following markup shows the content that is added to the rendered output of a page that includes a ScriptManager control:
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample1.xml)]
+[!code-html[Main](master-pages-and-asp-net-ajax-vb/samples/sample1.html)]
 
 The `<script src="url"></script>` tags instruct the browser to download and execute the JavaScript file at *url*. The ScriptManager emits three such tags; one references the file `WebResource.axd`, while the other two reference the file `ScriptResource.axd`. These files do not actually exist as files in your website. Instead, when a request for either one of these files arrives at the web server, the ASP.NET engine examines the querystring and returns the appropriate JavaScript content. The script provided by these three external JavaScript files constitute the ASP.NET AJAX framework's Client Library. The other `<script>` tags emitted by the ScriptManager include inline script that initializes this library.
 
@@ -86,7 +86,7 @@ Recall that in the Specifying the Title, Meta Tags, and Other HTML Headers in th
 Finally, update the `Web.sitemap` file to include an entry for this lesson. Add the following markup beneath the `<siteMapNode>` for the Master to Content Page Interaction lesson:
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample2.xml)]
+[!code-xml[Main](master-pages-and-asp-net-ajax-vb/samples/sample2.xml)]
 
 The addition of this `<siteMapNode>` element is reflected in the Lessons list (see Figure 5).
 
@@ -105,7 +105,7 @@ Our first task is to display information about a randomly selected product withi
 Configure the SqlDataSource control to connect to the Northwind database via the `NorthwindConnectionString` (which we created in the Interacting with the Master Page from the Content Page[SKM2] tutorial). When configuring the select statement choose to specify a custom SQL statement and then enter the following query:
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample3.xml)]
+[!code-sql[Main](master-pages-and-asp-net-ajax-vb/samples/sample3.sql)]
 
 The `TOP 1` keyword in the `SELECT` clause returns only the first record returned by the query. The `NEWID()` function generates a new globally unique identifier value (GUID) and can be used in an `ORDER BY` clause to return the table's records in a random order.
 
@@ -118,7 +118,7 @@ The `TOP 1` keyword in the `SELECT` clause returns only the first record returne
 After completing the wizard, Visual Studio creates a BoundField for the two columns returned by the above query. At this point your page's declarative markup should look similar to the following:
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample4.xml)]
+[!code-aspx[Main](master-pages-and-asp-net-ajax-vb/samples/sample4.aspx)]
 
 Figure 5 shows the `ShowRandomProduct.aspx` page when viewed through a browser. Click your browser's Refresh button to reload the page; you should see the `ProductName` and `UnitPrice` values for a new randomly selected record.
 
@@ -135,19 +135,19 @@ The ASP.NET AJAX framework includes a Timer control that performs a postback at 
 To accomplish this, drag a Timer from the Toolbox and drop it into the UpdatePanel. Change the Timer's `ID` from `Timer1` to `ProductTimer` and its `Interval` property from 60000 to 15000. The `Interval` property indicates the number of milliseconds between postbacks; setting it to 15000 causes the Timer to trigger a partial page postback every 15 seconds. At this point your Timer's declarative markup should look similar to the following:
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample5.xml)]
+[!code-aspx[Main](master-pages-and-asp-net-ajax-vb/samples/sample5.aspx)]
 
 Create an event handler for the Timer's `Tick` event. In this event handler we need to rebind the data to the DetailsView by calling the DetailsView's `DataBind` method. Doing so instructs the DetailsView to re-retrieve the data from its data source control, which will select and display a new randomly selected record (just like when reloading the page by clicking the browser's Refresh button).
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample6.xml)]
+[!code-vb[Main](master-pages-and-asp-net-ajax-vb/samples/sample6.vb)]
 
 That's all there is to it! Revisit the page through a browser. Initially, a random product's information is displayed. If you patiently watch the screen you'll notice that, after 15 seconds, information about a new product magically replaces the existing display.
 
 To better see what's happening here, let's add a Label control to the UpdatePanel that displays the time the display was last updated. Add a Label Web control within the UpdatePanel, set its `ID` to `LastUpdateTime`, and clear its `Text` property. Next, create an event handler for the UpdatePanel's `Load` event and display the current time in the Label. (The UpdatePanel's `Load` event is fired on every full or partial page postback.)
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample7.xml)]
+[!code-vb[Main](master-pages-and-asp-net-ajax-vb/samples/sample7.vb)]
 
 With this change complete, the page includes the time the currently displayed product was loaded. Figure 6 shows the page when first visited. Figure 7 shows the page 15 seconds later after the Timer control has "ticked" and the UpdatePanel has been refreshed to display information about a new product.
 
@@ -195,7 +195,7 @@ Start by creating a new folder in the website named `Scripts`. Next, add a new f
 Next, add the following scrip to the `TimerScript.js` file:
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample8.xml)]
+[!code-csharp[Main](master-pages-and-asp-net-ajax-vb/samples/sample8.cs)]
 
 We now need to register this custom JavaScript file in `ShowRandomProduct.aspx`. Return to `ShowRandomProduct.aspx` and add a ScriptManagerProxy control to the page; set its `ID` to `MyManagerProxy`. To register a custom JavaScript file select the ScriptManagerProxy control in the Designer and then go to the Properties window. One of the properties is titled Scripts. Selecting this property displays the ScriptReference Collection Editor shown in Figure 10. Click the Add button to include a new script reference and then enter the path to the script file in the Path property: `~/Scripts/TimerScript.js`.
 
@@ -208,14 +208,14 @@ We now need to register this custom JavaScript file in `ShowRandomProduct.aspx`.
 After adding the script reference the ScriptManagerProxy control's declarative markup is updated to include a `<Scripts>` collection with a single `ScriptReference` entry, as the following snippet of markup illustrates:
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample9.xml)]
+[!code-aspx[Main](master-pages-and-asp-net-ajax-vb/samples/sample9.aspx)]
 
 The `ScriptReference` entry instructs the ScriptManagerProxy to include a reference to the JavaScript file in its rendered markup. That is, by registering the custom script in the ScriptManagerProxy the `ShowRandomProduct.aspx` page's rendered output now includes another `<script src="url"></script>` tag: `<script src="Scripts/TimerScript.js" type="text/javascript"></script>`.
 
 We can now call the `ToggleTimer` function defined in `TimerScript.js` from the client script in the `ShowRandomProduct.aspx` page. Add the following HTML within the UpdatePanel:
 
 
-[!code[Main](master-pages-and-asp-net-ajax-vb/samples/sample10.xml)]
+[!code-aspx[Main](master-pages-and-asp-net-ajax-vb/samples/sample10.aspx)]
 
 This displays a button with the text "Pause". Whenever it is clicked, the JavaScript function `ToggleTimer` is called, passing in a reference to the button and the `id` value of the Timer control (`ProductTimer`). Note the syntax for obtaining the `id` value of the Timer control. `<%=ProductTimer.ClientID%>` emits the value of the `ProductTimer` Timer control's `ClientID` property. In the Control ID Naming in Content Pages[SKM3] tutorial we discussed the differences between the server-side `ID` value and the resulting client-side `id` value, and how `ClientID` returns the client-side `id`.
 

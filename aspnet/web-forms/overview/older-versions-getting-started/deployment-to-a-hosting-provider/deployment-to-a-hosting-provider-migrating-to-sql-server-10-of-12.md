@@ -80,7 +80,7 @@ When the application runs in IIS on your development computer, the application a
 
 In the solution's *SolutionFiles* folder that you created in the [Deploying to the Production Environment](../../../../mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12.md) tutorial, create a new SQL file named *Grant.sql*. Copy the following SQL commands into the file, and then save and close the file:
 
-[!code[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample1.xml)]
+[!code-sql[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample1.sql)]
 
 > [!NOTE] This script is designed to work with SQL Server 2008 and with the IIS settings in Windows 7 as they are specified in this tutorial. If you're using a different version of SQL Server or of Windows, or if you set up IIS on your computer differently, changes to this script might be required. For more information about SQL Server scripts, see [SQL Server Books Online](https://go.microsoft.com/fwlink/?LinkId=132511).
 
@@ -128,7 +128,7 @@ In **Connection string for destination database**, enter a connection string tha
 
 The same connection string is reproduced here:
 
-[!code[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample2.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample2.cmd)]
 
 Copy and paste this connection string into **Connection string for destination database** in the **Package/Publish SQL** tab.
 
@@ -152,7 +152,7 @@ Next, select the **SchoolContext-Deployment** row in the **Database Entries** ta
 
 You can use the same method you used earlier to get the connection string for the new SQL Server Express database. Copy this connection string into **Connection string for destination database** in the **Package/Publish SQL** tab.
 
-[!code[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample3.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample3.cmd)]
 
 Make sure that **Pull data and/or schema from an existing database** is selected.
 
@@ -204,7 +204,7 @@ The connection strings for the new SQL Express databases that you entered on the
 
 Open *Web.Test.config* and replace the `connectionStrings` element with the `connectionStrings` element in the following example. (Make sure you only copy the connectionStrings element, not the surrounding code that is shown here to provide context.)
 
-[!code[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample4.xml?highlight=2-11)]
+[!code-xml[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample4.xml?highlight=2-11)]
 
 This code causes the `connectionString` and `providerName` attributes of each `add` element to be replaced in the deployed *Web.config* file. These connection strings are not identical to the ones you entered in the **Package/Publish SQL** tab. The setting "MultipleActiveResultSets=True" has been added to them because it's required for the Entity Framework and the Universal Providers.
 
@@ -299,11 +299,11 @@ To configure settings that apply to the membership database, select the **Defaul
 
 In **Connection string for destination database**, enter a connection string that points to the new production SQL Server database that you just created. You can get the connection string from your welcome email. The relevant part of the email contains the following sample connection string:
 
-[!code[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample5.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample5.cmd)]
 
 After you replace the three variables, the connection string you need looks like this example:
 
-[!code[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample6.xml)]
+[!code-console[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample6.cmd)]
 
 Copy and paste this connection string into **Connection string for destination database** in the **Package/Publish SQL** tab.
 
@@ -331,7 +331,7 @@ Next, you'll set up *Web.config* transformations so that the connection strings 
 
 Open *Web.Production.config* and replace the `connectionStrings` element with a `connectionStrings` element that looks like the following example. (Only copy the `connectionStrings` element, not the surrounding tags that are provided to show the context.)
 
-[!code[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample7.xml?highlight=2-11)]
+[!code-xml[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample7.xml?highlight=2-11)]
 
 You sometimes see advice that tells you to always encrypt connection strings in the *Web.config* file. This might be appropriate if you were deploying to servers on your own company's network. When you are deploying to a shared hosting environment, though, you're trusting the security practices of the hosting provider, and it's not necessary or practical to encrypt the connection strings.
 
@@ -390,7 +390,7 @@ The simplest way to perform this migration is to let Code First and the membersh
 
 Open the *Web.config* file and replace the `connectionStrings` element with the following code:
 
-[!code[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample8.xml)]
+[!code-xml[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample8.xml)]
 
 ### Creating the Membership Database
 
@@ -414,7 +414,7 @@ In the **Default project** drop-down list, select the ContosoUniversity.DAL proj
 
 Enter the following command:
 
-[!code[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample9.xml)]
+[!code-powershell[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample9.ps1)]
 
 Code First Migrations applies the Initial migration that creates the database and then applies the AddBirthDate migration, then it runs the Seed method.
 

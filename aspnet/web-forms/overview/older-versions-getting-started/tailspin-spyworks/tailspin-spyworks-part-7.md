@@ -39,13 +39,13 @@ In the "Account" folder create two .aspx pages one named OrderList.aspx and the 
 
 OrderList.aspx will leverage the GridView and EntityDataSoure controls much as we have previously.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample1.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample1.aspx)]
 
 The EntityDataSoure selects records from the Orders table filtered on the UserName (see the WhereParameter) which we set in a session variable when the user log's in.
 
 Note also these parameters in the HyperlinkField of the GridView:
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample2.xml)]
+[!code-unknown[Main](tailspin-spyworks-part-7/samples/sample-25230-2.unknown)]
 
 These specify the link to the Order details view for each product specifying the OrderID field as a QueryString parameter to the OrderDetails.aspx page.
 
@@ -53,17 +53,17 @@ These specify the link to the Order details view for each product specifying the
 
 We will use an EntityDataSource control to access the Orders and a FormView to display the Order data and another EntityDataSource with a GridView to display all the Order's line items.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample3.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample3.aspx)]
 
 In the Code Behind file (OrderDetails.aspx.cs) we have two little bits of housekeeping.
 
 First we need to make sure that OrderDetails always gets an OrderId.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample4.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-7/samples/sample4.cs)]
 
 We also need to calculate and display the order total from the line items.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample5.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-7/samples/sample5.cs)]
 
 ## <a id="_Toc260221676"></a>  The Home Page
 
@@ -73,13 +73,13 @@ First I'll create a "Content" folder and within it an Images folder (and I'll in
 
 Into the bottom placeholder of the Default.aspx page, add the following markup.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample6.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample6.aspx)]
 
 ## <a id="_Toc260221677"></a>  Product Reviews
 
 First we'll add a button with a link to a form that we can use to enter a product review.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample7.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample7.aspx)]
 
 ![](tailspin-spyworks-part-7/_static/image1.jpg)
 
@@ -95,13 +95,13 @@ In design mode, drag controls and validators from the toolbox and build a form l
 
 The markup will look something like this.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample8.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample8.aspx)]
 
 Now that we can enter reviews, lets display those reviews on the product page.
 
 Add this markup to the ProductDetails.aspx page.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample9.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample9.aspx)]
 
 Running our application now and navigating to a product shows the product information including customer reviews.
 
@@ -125,17 +125,17 @@ Specify a name for our control of "PopularItems". Note that the file extension f
 
 Our Popular Items User control will be defined as follows.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample10.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample10.aspx)]
 
 Here we're using a method we have not used yet in this application. We're using the repeater control and instead of using a data source control we're binding the Repeater Control to the results of a LINQ to Entities query.
 
 In the code behind of our control we do that as follows.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample11.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-7/samples/sample11.cs)]
 
 Note also this important line at the top of our control's markup.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample12.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample12.aspx)]
 
 Since the most popular items won't be changing on a minute to minute basis we can add a aching directive to improve the performance of our application. This directive will cause the controls code to only be executed when the cached output of the control expires. Otherwise, the cached version of the control's output will be used.
 
@@ -163,7 +163,7 @@ Given the complexity of this logic, we will implement this algorithm as a stored
 
 The T-SQL for the stored procedure is as follows.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample13.xml)]
+[!code-sql[Main](tailspin-spyworks-part-7/samples/sample13.sql)]
 
 Note that this stored procedure (SelectPurchasedWithProducts) existed in the database when we included it in our application and when we generated the Entity Data Model we specified that, in addition to the Tables and Views that we needed, the Entity Data Model should include this stored procedure.
 
@@ -187,13 +187,13 @@ So, in our "Controls" folder create a new user control named AlsoPurchased.ascx.
 
 The markup for this control will look very familiar to the PopularItems control.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample14.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample14.aspx)]
 
 The notable difference is that are not caching the output since the item's to be rendered will differ by product.
 
 The ProductId will be a "property" to the control.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample15.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-7/samples/sample15.cs)]
 
 In the control's PreRender event handler we eed to do three things.
 
@@ -203,23 +203,23 @@ In the control's PreRender event handler we eed to do three things.
 
 Note how easy it is to call the stored procedure through the model.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample16.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-7/samples/sample16.cs)]
 
 After determining that there ARE "also purchased" we can simply bind the repeater to the results returned by the query.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample17.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-7/samples/sample17.cs)]
 
 If there were not any "also purchased" items we'll simply display other popular items from our catalog.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample18.xml)]
+[!code-csharp[Main](tailspin-spyworks-part-7/samples/sample18.cs)]
 
 To view the "Also Purchased" items, open the ProductDetails.aspx page and drag the AlsoPurchased control from the Solutions Explorer so that it appears in this position in the markup.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample19.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample19.aspx)]
 
 Doing so will create a reference to the control at the top of the ProductDetails page.
 
-[!code[Main](tailspin-spyworks-part-7/samples/sample20.xml)]
+[!code-aspx[Main](tailspin-spyworks-part-7/samples/sample20.aspx)]
 
 Since the AlsoPurchased user control requires a ProductId number we will set the ProductID property of our control by using an Eval statement against the current data model item of the page.
 

@@ -56,7 +56,7 @@ Like in the other folders, `Default.aspx` in the `CustomButtons` folder will lis
 Lastly, add the pages as entries to the `Web.sitemap` file. Specifically, add the following markup after the Paging and Sorting `<siteMapNode>`:
 
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample1.xml)]
+[!code-xml[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample1.xml)]
 
 After updating `Web.sitemap`, take a moment to view the tutorials website through a browser. The menu on the left now includes items for the editing, inserting, and deleting tutorials.
 
@@ -89,7 +89,7 @@ Configure this new ObjectDataSource such that it queries from the `SuppliersBLL`
 After configuring the ObjectDataSource, Visual Studio will generate an `InsertItemTemplate`, `EditItemTemplate`, and `ItemTemplate` for the FormView. Remove the `InsertItemTemplate` and `EditItemTemplate` and modify the `ItemTemplate` so that it displays just the supplier s company name and phone number. Finally, turn on paging support for the FormView by checking the Enable Paging checkbox from its smart tag (or by setting its `AllowPaging` property to `True`). After these changes your page s declarative markup should look similar to the following:
 
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample2.xml)]
+[!code-aspx[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample2.aspx)]
 
 Figure 7 shows the CustomButtons.aspx page when viewed through a browser.
 
@@ -128,7 +128,7 @@ Since the `GetProductsBySupplierID(supplierID)` method accepts an input paramete
 After completing the ObjectDataSource wizard, the GridView will contain a BoundField or CheckBoxField for each of the product s data fields. Let s trim this down to show just the `ProductName` and `UnitPrice` BoundFields along with the `Discontinued` CheckBoxField; furthermore, let s format the `UnitPrice` BoundField such that its text is formatted as a currency. Your GridView and `SuppliersProductsDataSource` ObjectDataSource s declarative markup should look similar to the following markup:
 
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample3.xml)]
+[!code-aspx[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample3.aspx)]
 
 At this point our tutorial displays a master/details report, allowing the user to pick a supplier from the FormView at the top and to view the products provided by that supplier through the GridView at the bottom. Figure 11 shows a screen shot of this page when selecting the Tokyo Traders supplier from the FormView.
 
@@ -161,7 +161,7 @@ Next, the wizard prompts us as to what type of query to create. Since the `Disco
 The next wizard screen provides the TableAdapter s existing `UPDATE` statement, which updates each of the fields defined in the `Products` DataTable. Replace this query text with the following statement:
 
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample4.xml)]
+[!code-sql[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample4.sql)]
 
 After entering this query and clicking Next, the last wizard screen asks for the new method s name use `DiscontinueAllProductsForSupplier`. Complete the wizard by clicking the Finish button. Upon returning to the DataSet Designer you should see a new method in the `ProductsTableAdapter` named `DiscontinueAllProductsForSupplier(@SupplierID)`.
 
@@ -174,7 +174,7 @@ After entering this query and clicking Next, the last wizard screen asks for the
 With the `DiscontinueAllProductsForSupplier(supplierID)` method created in the Data Access Layer, our next task is to create the `DiscontinueAllProductsForSupplier(supplierID)` method in the Business Logic Layer. To accomplish this, open the `ProductsBLL` class file and add the following:
 
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample5.xml)]
+[!code-vb[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample5.vb)]
 
 This method simply calls down to the `DiscontinueAllProductsForSupplier(supplierID)` method in the DAL, passing along the provided *`supplierID`* parameter value. If there were any business rules that only allowed a supplier s products to be discontinued under certain circumstances, those rules should be implemented here, in the BLL.
 
@@ -200,12 +200,12 @@ Finally, let s use a client-side confirm dialog box to ensure that the user real
 After making these changes, the FormView s declarative syntax should look like the following:
 
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample6.xml)]
+[!code-aspx[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample6.aspx)]
 
 Next, create an event handler for the FormView s `ItemCommand` event. In this event handler we need to first determine whether the Discontinue All Products Button was clicked. If so, we want to create an instance of the `ProductsBLL` class and invoke its `DiscontinueAllProductsForSupplier(supplierID)` method, passing in the `SupplierID` of the selected FormView:
 
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample7.xml)]
+[!code-vb[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample7.vb)]
 
 Note that the `SupplierID` of the current selected supplier in the FormView can be accessed using the FormView s [`SelectedValue` property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.formview.selectedvalue.aspx). The `SelectedValue` property returns the first data key value for the record being displayed in the FormView. The FormView s [`DataKeyNames` property](https://msdn.microsoft.com/en-us/system.web.ui.webcontrols.formview.datakeynames.aspx), which indicates the data fields from which the data key values are pulled from, was automatically set to `SupplierID` by Visual Studio when binding the ObjectDataSource to the FormView back in Step 2.
 
@@ -238,7 +238,7 @@ Our past `UpdateProduct` overloads have taken in some combination of product fie
 The `UpdateProduct` overload for this tutorial is shown below:
 
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample8.xml)]
+[!code-vb[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample8.vb)]
 
 This overload retrieves information about the specified product through the DAL s `GetProductByProductID(productID)` method. It then checks to see whether the product s `UnitPrice` is assigned a database `NULL` value. If it is, the price is left unaltered. If, however, there is a non-`NULL` `UnitPrice` value, the method updates the product s `UnitPrice` by the specified percent (`unitPriceAdjustmentPercent`).
 
@@ -264,11 +264,11 @@ Move the two ButtonFields so that they appear as the first two GridView fields. 
 **Figure 19**: Configure the ButtonFields `Text`, `CommandName`, and `ButtonType` Properties
 
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample9.xml)]
+[!code-aspx[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample9.aspx)]
 
 With these ButtonFields created, the final step is to create an event handler for the GridView s `RowCommand` event. This event handler, if fired because either the Price +10% or Price -10% buttons were clicked, needs to determine the `ProductID` for the row whose button was clicked and then invoke the `ProductsBLL` class s `UpdateProduct` method, passing in the appropriate `UnitPrice` percentage adjustment along with the `ProductID`. The following code performs these tasks:
 
-[!code[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample10.xml)]
+[!code-vb[Main](adding-and-responding-to-buttons-to-a-gridview-vb/samples/sample10.vb)]
 
 In order to determine the `ProductID` for the row whose Price +10% or Price -10% button was clicked, we need to consult the GridView s `DataKeys` collection. This collection holds the values of the fields specified in the `DataKeyNames` property for each GridView row. Since the GridView s `DataKeyNames` property was set to ProductID by Visual Studio when binding the ObjectDataSource to the GridView, `DataKeys(rowIndex).Value` provides the `ProductID` for the specified *rowIndex*.
 

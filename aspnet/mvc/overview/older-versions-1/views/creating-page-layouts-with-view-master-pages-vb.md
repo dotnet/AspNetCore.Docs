@@ -46,7 +46,7 @@ For example, the view master page in Listing 1 defines a two-column layout. It c
 
 **Listing 1 – `Views\Shared\Site.master`**
 
-[!code[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample1.xml)]
+[!code-aspx[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample1.aspx)]
 
 The body of the view master page in Listing 1 contains two `<div>` tags that correspond to the two columns. The Cascading Style Sheet column class is applied to both `<div>` tags. This class is defined in the style sheet declared at the top of the master page. You can preview how the view master page will be rendered by switching to Design view. Click the Design tab at the bottom-left of the source code editor (see Figure 2).
 
@@ -78,7 +78,7 @@ After you create a new view content page based on the Site.master master page, y
 
 **Listing 2 – `Views\Home\Index.aspx`**
 
-[!code[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample2.xml)]
+[!code-aspx[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample2.aspx)]
 
 Notice that this view contains a `<asp:Content>` tag that corresponds to each of the `<asp:ContentPlaceHolder>` tags in the view master page. Each `<asp:Content>` tag includes a ContentPlaceHolderID attribute that points to the particular `<asp:ContentPlaceHolder>` that it overrides.
 
@@ -92,7 +92,7 @@ For example, the modified Index view in Listing 3 contains only two `<asp:Conten
 
 **Listing 3 – `Views\Home\Index.aspx (modified)`**
 
-[!code[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample3.xml)]
+[!code-aspx[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample3.aspx)]
 
 When the view in Listing 3 is requested, it renders the page in Figure 5. Notice that the view renders a page with two columns. Notice, furthermore, that the content from the view content page is merged with the content from the view master page.
 
@@ -108,7 +108,7 @@ One issue that you encounter almost immediately when working with view master pa
 
 There are two ways that you can modify the title displayed by a view content page. First, you can assign a page title to the title attribute of the `<%@ page %>` directive declared at the top of a view content page. For example, if you want to assign the page title "Super Great Website" to the Index view, then you can include the following directive at the top of the Index view:
 
-[!code[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample4.xml)]
+[!code-aspx[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample4.aspx)]
 
 When the Index view is rendered to the browser, the desired title appears in the browser title bar:
 
@@ -122,7 +122,7 @@ An alternative approach to modifying master page content from an individual view
 
 **Listing 4 – `Views\Shared\Site2.master`**
 
-[!code[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample5.xml)]
+[!code-aspx[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample5.aspx)]
 
 Notice that the `<asp:ContentPlaceHolder>` tag in Listing 4 includes default content: a default title and default meta tags. If you don't override this `<asp:ContentPlaceHolder>` tag in an individual view content page, then the default content will be displayed.
 
@@ -130,7 +130,7 @@ The content view page in Listing 5 overrides the `<asp:ContentPlaceHolder>` tag 
 
 **Listing 5 – `Views\Home\Index2.aspx`**
 
-[!code[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample6.xml)]
+[!code-aspx[Main](creating-page-layouts-with-view-master-pages-vb/samples/sample6.aspx)]
 
 ### Summary
 

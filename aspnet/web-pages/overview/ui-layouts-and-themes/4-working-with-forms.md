@@ -45,7 +45,7 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 1. Create a new website.
 2. In the root folder, create a web page named *Form.cshtml* and enter the following markup:
 
-    [!code[Main](4-working-with-forms/samples/sample1.xml)]
+    [!code-html[Main](4-working-with-forms/samples/sample1.html)]
 3. Launch the page in your browser. (In WebMatrix, in the **Files** workspace, right-click the file and then select **Launch in browser**.) A simple form with three input fields and a **Submit** button is displayed.
 
     ![Screenshot of a form with three text boxes.](4-working-with-forms/_static/image1.jpg)
@@ -58,7 +58,7 @@ To process the form, you add code that reads the submitted field values and does
 
 1. At the top of the *Form.cshtml* file, enter the following code:
 
-    [!code[Main](4-working-with-forms/samples/sample2.xml)]
+    [!code-csharp[Main](4-working-with-forms/samples/sample2.cs)]
 
     When the user first requests the page, only the empty form is displayed. The user (which will be you) fills in the form and then clicks **Submit**. This submits (posts) the user input to the server. By default, the request goes to the same page (namely, *Form.cshtml*).
 
@@ -95,14 +95,14 @@ This procedure shows how to validate all three form fields to make sure the user
 
 1. In the *Form.cshtml* file, replace the first block of code with the following code: 
 
-    [!code[Main](4-working-with-forms/samples/sample3.xml)]
+    [!code-csharp[Main](4-working-with-forms/samples/sample3.cs)]
 
     To validate user input, you use the `Validation` helper. You register required fields by calling `Validation.RequireField`. You register other types of validation by calling `Validation.Add` and specifying the field to validate and the type of validation to perform.
 
     When the page runs, ASP.NET does all the validation for you. You can check the results by calling `Validation.IsValid`, which returns true if everything passed and false if any field failed validation. Typically, you call `Validation.IsValid` before you perform any processing on the user input.
 2. Update the `<body>` element by adding three calls to the `Html.ValidationMessage` method, like this:
 
-    [!code[Main](4-working-with-forms/samples/sample4.xml?highlight=8,13,18)]
+    [!code-cshtml[Main](4-working-with-forms/samples/sample4.cshtml?highlight=8,13,18)]
 
     To display validation error messages, you can call Html.`ValidationMessage` and pass it the name of the field that you want the message for.
 3. Run the page. Leave the fields blank and click **Submit**. You see error messages.
@@ -122,7 +122,7 @@ You can fix this easily, however. You have access to the values that were submit
 
 1. In the *Form.cshtml* file, replace the `value` attributes of the `<input>` elements using the `value` attribute.: 
 
-    [!code[Main](4-working-with-forms/samples/sample5.xml?highlight=13,19,25)]
+    [!code-cshtml[Main](4-working-with-forms/samples/sample5.cshtml?highlight=13,19,25)]
 
     The `value` attribute of the `<input>` elements has been set to dynamically read the field value out of the `Request.Form` object. The first time that the page is requested, the values in the `Request.Form` object are all empty. This is fine, because that way the form is blank.
 2. Launch the page in your browser, fill in the form fields or leave them blank, and click **Submit**. A page that shows the submitted values is displayed.
