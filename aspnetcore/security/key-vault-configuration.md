@@ -35,26 +35,28 @@ App Setting | Description | Example
 
 [!code-csharp[Main](key-vault-configuration/sample/Startup.cs?name=snippet1&highlight=5,10-13)]
 
-`AddAzureKeyVault()` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, the interface can be implemented to load configuration values by environment, where you would prefix environment names to configuration secrets you've stored in the key vault. Key vault secrets `Development-ConnectionString` and `Production-ConnectionString` can be loaded from configuration as `ConnectionString`, and the application will take its configuration for the connection string from the secret that matches the application's environment. An example of this implementation is shown below.
+`AddAzureKeyVault()` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, the interface can be implemented to load configuration values by application, where you would prefix application names to configuration secrets you've stored in the key vault. This would allow you to maintain secrets for multiple applications in one key vault.
+
+Assume we have `ConnectionString` key vault secrets with the application name prefixed to them. For the sample application, we would create a secret in key vault for `KeyVaultConfigProviderSample-ConnectionString` along with its value. For a second application, we would create a secret for `SomeOtherApplicationName-ConnectionString` along with its value. We would like each app to load its own `ConnectionString` secret into its configuration as `ConnectionString`. An example of this implementation is shown below.
 
 ```csharp
 public class EnvironmentSecretManager : IKeyVaultSecretManager
 {
-    private readonly string _environmentPrefix;
+    private readonly string _appNamePrefix;
 
-    public EnvironmentSecretManager(string environment)
+    public EnvironmentSecretManager(string appName)
     {
-        _environmentPrefix = environment + "-";
+        _appNamePrefix = appName + "-";
     }
 
     public bool Load(SecretItem secret)
     {
-        return secret.Identifier.Name.StartsWith(_environmentPrefix);
+        return secret.Identifier.Name.StartsWith(_appNamePrefix);
     }
 
     public string GetKey(SecretBundle secret)
     {
-        return secret.SecretIdentifier.Name.Substring(_environmentPrefix.Length);
+        return secret.SecretIdentifier.Name.Substring(_appNamePrefix.Length);
     }
 }
 ```
@@ -64,16 +66,36 @@ builder.AddAzureKeyVault(
     $"https://{config["Vault"]}.vault.azure.net/",
     config["ClientId"],
     config["ClientSecret"],
-    new EnvironmentSecretManager(config["ASPNETCORE_ENVIRONMENT"]));
+    new EnvironmentSecretManager(env.ApplicationName));
     
 Configuration = builder.Build();
-
-// Configuration["ConnectionString"] will be loaded from Development-ConnectionString
-// if the environment is Development and Production-ConnectionString if the environment 
-// is Production.
 ```
 
-You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`. Supplying a custom client allows you to share a single instance of the client between the configuration provider and other parts of your application. 
+The `Load()` method is called by an algorithm in the provider that iterates through the secrets to find the one that matches the application name as a prefix to the secret's name. When a match is found with `Load()`, the algorithm uses the `GetKey()` method to return the configuration name of the secret name. It simply strips off the application name prefix from the secret's name and returns the name for loading along with its value into the app's configuration name-value pairs.
+
+If the sample application were accessing a key vault with `ConnectionString` values for multiple applications, the key vault secrets would be loaded, the string secret for `KeyVaultConfigProviderSample-ConnectionString` would be matched, and the application name `KeyVaultConfigProviderSample` (with the dash) would be stripped off to load `ConnectionString` with its value into the app's configuration.
+
+You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`. Supplying a custom client allows you to share a single instance of the client between the configuration provider and other parts of your application.
+
+## Controlling access to the ClientSecret
+To maintain the `ClientSecret` outside of your project tree, you can use the [Secret Manager tool](xref:security/app-secrets), whereby you can associate app secrets with a specific project and share them across multiple projects. However, the Secret Manager tool does not encrypt the stored secrets and should not be treated as a trusted store.
+
+For environments that support certificates and when developing a .NET Framework app, you can authenticate to Azure Key Vault with an X.509 certificate, whose private key would be managed by the OS. For more information on this approach, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret) and use the `AddAzureKeyVault()` overload that accepts an `X509Certificate2`.
+
+```csharp
+var store = new X509Store(StoreLocation.CurrentUser);
+store.Open(OpenFlags.ReadOnly);
+var cert = store.Certificates.Find(X509FindType.FindByThumbprint, config["CertificateThumbprint"], false);
+
+builder.AddAzureKeyVault(
+    config["Vault"],
+    config["ClientId"],
+    cert.OfType<X509Certificate2>().Single(),
+    new EnvironmentSecretManager(env.ApplicationName));
+store.Close();
+
+Configuration = builder.Build();
+```
 
 ## Creating key vault secrets and loading configuration values
 1. Create a key vault and set up Azure Active Directory (Azure AD) for the application following the guidance in [Get started with Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/).
