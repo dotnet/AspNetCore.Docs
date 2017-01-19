@@ -1,5 +1,4 @@
 # [Publishing to IIS](iis.md)
-# [Publishing to IIS with Web Deploy using Visual Studio](iis-with-msdeploy.md)
 # [How Web Publishing In Visual Studio Works](web-publishing-vs.md)
 # [Deploy an ASP.NET Core web app to Azure using Visual Studio](../tutorials/publish-to-azure-webapp-using-vs.md)
 # [Publishing to an Azure Web App with Continuous Deployment](azure-continuous-deployment.md)
