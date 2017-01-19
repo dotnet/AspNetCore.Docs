@@ -37,7 +37,7 @@ App Setting | Description | Example
 
 `AddAzureKeyVault()` also provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, the interface can be implemented to load configuration values by application, where you would prefix application names to configuration secrets you've stored in the key vault. This would allow you to maintain secrets for multiple applications in one key vault.
 
-Assume we have `ConnectionString` key vault secrets with the application name prefixed to them. For the sample application, we would create a secret in key vault for `KeyVaultConfigProviderSample-ConnectionString` along with its value. For a second application, we would create a secret for `SomeOtherApplicationName-ConnectionString` along with its value. We would like each app to load its own `ConnectionString` secret into its configuration as `ConnectionString`. An example of this implementation is shown below.
+Assume we have several `ConnectionString` key vault secrets with the application name prefixed. For the sample application, we would create a secret in key vault for `KeyVaultConfigProviderSample-ConnectionString` and its value. For a second application, we would create a secret for `SomeOtherApplicationName-ConnectionString` and its value. We would like each app to load its own `ConnectionString` secret into its configuration as `ConnectionString`. An example of this implementation is shown below.
 
 ```csharp
 public class EnvironmentSecretManager : IKeyVaultSecretManager
@@ -71,9 +71,9 @@ builder.AddAzureKeyVault(
 Configuration = builder.Build();
 ```
 
-The `Load()` method is called by an algorithm in the provider that iterates through the secrets to find the one that matches the application name as a prefix to the secret's name. When a match is found with `Load()`, the algorithm uses the `GetKey()` method to return the configuration name of the secret name. It simply strips off the application name prefix from the secret's name and returns the name for loading along with its value into the app's configuration name-value pairs.
+The `Load()` method is called by an algorithm in the provider that iterates through the secrets to find the one that matches the application name as a prefix to the secret's name. When a match is found with `Load()`, the algorithm uses the `GetKey()` method to return the configuration name of the secret name. It simply strips off the application name prefix from the secret's name and returns the name for loading, along with its value, into the app's configuration name-value pairs.
 
-If the sample application were accessing a key vault with `ConnectionString` values for multiple applications, the key vault secrets would be loaded, the string secret for `KeyVaultConfigProviderSample-ConnectionString` would be matched, and the application name `KeyVaultConfigProviderSample` (with the dash) would be stripped off to load `ConnectionString` with its value into the app's configuration.
+If you implemented this approach with the sample application, the key vault secrets would be loaded, the string secret for `KeyVaultConfigProviderSample-ConnectionString` would be matched, and the application name `KeyVaultConfigProviderSample` (with the dash) would be stripped off to load `ConnectionString` with its value into the app's configuration.
 
 You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault()`. Supplying a custom client allows you to share a single instance of the client between the configuration provider and other parts of your application.
 
