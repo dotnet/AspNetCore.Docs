@@ -2,7 +2,7 @@
 title: "Creating Inactive Users | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe Stagner walks through creating inactive users in the ASP.NET membership system, and then using an admin interface to activate the users one..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/16/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/creating-inactive-users
+msc.type: video
 ---
 Creating Inactive Users
 ====================

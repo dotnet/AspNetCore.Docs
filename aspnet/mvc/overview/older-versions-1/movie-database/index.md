@@ -2,7 +2,7 @@
 title: "Movie Database | Microsoft Docs"
 author: rick-anderson
 description: "How to build a Movie database application in 15 minutes."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/08/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/movie-database
+msc.type: chapter
 ---
 Movie Database
 ====================

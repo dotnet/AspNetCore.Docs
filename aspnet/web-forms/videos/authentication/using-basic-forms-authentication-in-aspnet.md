@@ -2,7 +2,7 @@
 title: "Using Basic Forms Authentication in ASP.NET | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner walks through the process to utilize basic forms based authentication programmatically with ASP.NET. It is suggested that viewers read this befor..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/using-basic-forms-authentication-in-aspnet
+msc.type: video
 ---
 Using Basic Forms Authentication in ASP.NET
 ====================

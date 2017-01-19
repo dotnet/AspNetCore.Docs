@@ -2,7 +2,7 @@
 title: "How Do I Make Custom Pages? | Microsoft Docs"
 author: shanselman
 description: "In this video, you learn how to make a custom page for some tables, while other pages use standard functionality."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/08/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-make-custom-pages
+msc.type: video
 ---
 How Do I Make Custom Pages?
 ====================

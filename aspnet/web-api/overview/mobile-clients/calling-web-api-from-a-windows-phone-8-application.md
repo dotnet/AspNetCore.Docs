@@ -2,7 +2,7 @@
 title: "Calling Web API from a Windows Phone 8 Application (C#) | Microsoft Docs"
 author: rmcmurray
 description: "Create a complete end-to-end scenario consisting of an ASP.NET Web API application that provides a catalog of books to a Windows Phone 8 application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/09/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/mobile-clients/calling-web-api-from-a-windows-phone-8-application
+msc.type: authoredcontent
 ---
 Calling Web API from a Windows Phone 8 Application (C#)
 ====================

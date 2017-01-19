@@ -2,7 +2,7 @@
 title: "Introduction to Debugging ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "Debugging is the process of finding and fixing errors in your code pages. This chapter shows you some tools and techniques you can use to debug and to analyz..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/testing-and-debugging/introduction-to-debugging
+msc.type: authoredcontent
 ---
 Introduction to Debugging ASP.NET Web Pages (Razor) Sites
 ====================

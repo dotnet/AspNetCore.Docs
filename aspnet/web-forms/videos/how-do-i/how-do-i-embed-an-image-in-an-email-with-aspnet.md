@@ -2,7 +2,7 @@
 title: "[How Do I:] Embed an Image in an Email with ASP.NET | Microsoft Docs"
 author: rick-anderson
 description: "Chris Pels shows how to embed an image in an email with ASP.NET. He creates a web form (with fields for To, From, Subject, and Body), uses the AlternateView..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/06/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-embed-an-image-in-an-email-with-aspnet
+msc.type: video
 ---
 [How Do I:] Embed an Image in an Email with ASP.NET
 ====================

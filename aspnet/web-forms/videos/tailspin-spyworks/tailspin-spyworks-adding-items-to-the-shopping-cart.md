@@ -2,7 +2,7 @@
 title: "Tailspin Spyworks - Adding Items to the Shopping Cart | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner builds the Add to Cart function for the Tailspin Spyworks sample Web Forms application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/29/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-adding-items-to-the-shopping-cart
+msc.type: video
 ---
 Tailspin Spyworks - Adding Items to the Shopping Cart
 ====================

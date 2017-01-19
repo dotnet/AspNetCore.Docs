@@ -2,7 +2,7 @@
 title: "jQuery Mobile 1.4.2 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/23/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-mobile/cdnjquerymobile142
+msc.type: content
 ---
 jQuery Mobile 1.4.2 on the Microsoft Ajax CDN
 ====================

@@ -2,7 +2,7 @@
 title: "Master Pages and Site Navigation (VB) | Microsoft Docs"
 author: rick-anderson
 description: "One common characteristic of user-friendly websites is that they have a consistent, site-wide page layout and navigation scheme. This tutorial looks at how y..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/31/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/introduction/master-pages-and-site-navigation-vb
+msc.type: authoredcontent
 ---
 Master Pages and Site Navigation (VB)
 ====================

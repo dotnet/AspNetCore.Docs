@@ -2,7 +2,7 @@
 title: "ASP.NET Web API Overview and Getting Started Videos | Microsoft Docs"
 author: rick-anderson
 description: "This is a series of videos to get you started with ASP.NET Web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/16/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started
+msc.type: chapter
 ---
 ASP.NET Web API Overview and Getting Started Videos
 ====================

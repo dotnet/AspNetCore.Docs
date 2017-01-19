@@ -2,7 +2,7 @@
 title: "Configuring ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/31/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/configuring-aspnet-web-api
+msc.type: authoredcontent
 ---
 Configuring ASP.NET Web API 2
 ====================

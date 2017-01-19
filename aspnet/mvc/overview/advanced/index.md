@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Advanced Topics | Microsoft Docs"
 author: rick-anderson
 description: "Advanced topics for programming ASP.NET MVC, including accessibility, extensibility, and internationalization."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/09/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/advanced
+msc.type: chapter
 ---
 ASP.NET MVC Advanced Topics
 ====================

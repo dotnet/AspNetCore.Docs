@@ -2,7 +2,7 @@
 title: "Examining the Edit Methods and Edit View | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demo..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/28/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/examining-the-edit-methods-and-edit-view
+msc.type: authoredcontent
 ---
 Examining the Edit Methods and Edit View
 ====================

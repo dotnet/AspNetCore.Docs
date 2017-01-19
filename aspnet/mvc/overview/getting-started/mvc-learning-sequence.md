@@ -2,7 +2,7 @@
 title: "MVC recommended tutorials and articles | Microsoft Docs"
 author: Rick-Anderson
 description: "This page contains links to ASP.NET MVC tutorials and a suggested sequence to follow them."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/22/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/mvc-learning-sequence
+msc.type: authoredcontent
 ---
 MVC recommended tutorials and articles
 ====================

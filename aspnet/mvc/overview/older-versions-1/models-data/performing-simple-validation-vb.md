@@ -2,7 +2,7 @@
 title: "Performing Simple Validation (VB) | Microsoft Docs"
 author: StephenWalther
 description: "Learn how to perform validation in an ASP.NET MVC application. In this tutorial, Stephen Walther introduces you to model state and the validation HTML helper..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/02/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/performing-simple-validation-vb
+msc.type: authoredcontent
 ---
 Performing Simple Validation (VB)
 ====================

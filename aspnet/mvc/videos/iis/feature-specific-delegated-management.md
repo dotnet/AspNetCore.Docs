@@ -2,7 +2,7 @@
 title: "Feature Specific Delegated Management | Microsoft Docs"
 author: JoeStagner
 description: "This video demonstrates how to work with remotely administering SPECFIC web site features with IIS7 remote / delegated administration."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/feature-specific-delegated-management
+msc.type: video
 ---
 Feature Specific Delegated Management
 ====================

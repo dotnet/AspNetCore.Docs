@@ -2,7 +2,7 @@
 title: "Getting Started with ASP.NET MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial series will teach you the basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express Service Pack 1, w..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/15/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4
+msc.type: chapter
 ---
 Getting Started with ASP.NET MVC 4
 ====================

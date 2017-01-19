@@ -2,7 +2,7 @@
 title: "Documentation on Older Versions of Web API | Microsoft Docs"
 author: rick-anderson
 description: "Documentation on older versions of Web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions
+msc.type: chapter
 ---
 Documentation on Older Versions of Web API
 ====================

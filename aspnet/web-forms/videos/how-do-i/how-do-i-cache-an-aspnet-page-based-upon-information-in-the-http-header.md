@@ -2,7 +2,7 @@
 title: "[How Do I:]  Cache an ASP.NET Page Based Upon Information in the HTTP Header | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to keep a page in the ASP.NET output cache based upon information in the page’s HTTP header. First, the potential HTTP hea..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/26/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-cache-an-aspnet-page-based-upon-information-in-the-http-header
+msc.type: video
 ---
 [How Do I:]  Cache an ASP.NET Page Based Upon Information in the HTTP Header
 ====================

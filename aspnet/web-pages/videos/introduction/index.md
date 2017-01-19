@@ -2,7 +2,7 @@
 title: "Introduction to Web Pages Videos | Microsoft Docs"
 author: rick-anderson
 description: "Which videos you can view to learn the basics about Web Pages and WebMatrix."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/18/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/introduction
+msc.type: chapter
 ---
 Introduction to Web Pages Videos
 ====================

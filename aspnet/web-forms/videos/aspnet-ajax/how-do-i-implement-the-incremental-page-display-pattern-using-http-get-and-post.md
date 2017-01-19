@@ -2,7 +2,7 @@
 title: "[How Do I:] Implement the Incremental Page Display Pattern using HTTP GET and POST? | Microsoft Docs"
 author: JoeStagner
 description: "This video takes another look at the AJAX Incremental Page Display Pattern in which the Web page is retrieved and displayed incrementally. In this video the..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/13/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-implement-the-incremental-page-display-pattern-using-http-get-and-post
+msc.type: video
 ---
 [How Do I:] Implement the Incremental Page Display Pattern using HTTP GET and POST?
 ====================

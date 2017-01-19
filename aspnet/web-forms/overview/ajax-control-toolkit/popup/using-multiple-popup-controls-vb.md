@@ -2,7 +2,7 @@
 title: "Using Multiple Popup Controls (VB) | Microsoft Docs"
 author: wenz
 description: "The PopupControl extender in the AJAX Control Toolkit offers an easy way to trigger a popup when any other control is activated. It is also possible to use m..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/02/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/popup/using-multiple-popup-controls-vb
+msc.type: authoredcontent
 ---
 Using Multiple Popup Controls (VB)
 ====================

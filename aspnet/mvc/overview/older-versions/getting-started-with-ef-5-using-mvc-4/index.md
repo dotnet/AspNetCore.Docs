@@ -2,7 +2,7 @@
 title: "Getting Started with EF 5 using MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "The basics of using Entity Framework 5 to display and edit data in an ASP.NET MVC 4 application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/26/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4
+msc.type: chapter
 ---
 Getting Started with EF 5 using MVC 4
 ====================

@@ -2,7 +2,7 @@
 title: "How to Create Table Specific Custom Forms in an ASP.NET Dynamic Data Application | Microsoft Docs"
 author: JoeStagner
 description: "Sometimes we need to deviate from the default UI in our ASP.NET Dynamic Data Application. In this video we'll see how we can do that, and how we can turn off..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/11/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-to-create-table-specific-custom-forms-in-an-aspnet-dynamic-data-application
+msc.type: video
 ---
 How to Create Table Specific Custom Forms in an ASP.NET Dynamic Data Application
 ====================

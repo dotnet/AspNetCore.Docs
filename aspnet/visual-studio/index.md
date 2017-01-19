@@ -2,7 +2,7 @@
 title: "Visual Studio | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/25/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio
+msc.type: categoryindex
 ---
 Visual Studio
 ====================

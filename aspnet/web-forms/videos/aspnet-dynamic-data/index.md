@@ -2,7 +2,7 @@
 title: "ASP.NET Dynamic Data | Microsoft Docs"
 author: rick-anderson
 description: "How to use ASP.NET Dynamic Data to create scaffolded applications that automatically know how to perform data access."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data
+msc.type: chapter
 ---
 ASP.NET Dynamic Data
 ====================

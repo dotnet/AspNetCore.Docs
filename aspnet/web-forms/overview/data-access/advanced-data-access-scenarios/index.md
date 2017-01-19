@@ -2,7 +2,7 @@
 title: "Advanced Data Access Scenarios | Microsoft Docs"
 author: rick-anderson
 description: "These tutorials cover how to work with stored procedures and computed columns, how to use joins with database tables, and how to encrypt data connection info..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios
+msc.type: chapter
 ---
 Advanced Data Access Scenarios
 ====================

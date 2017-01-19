@@ -2,7 +2,7 @@
 title: "SignalR Scaleout with Azure Service Bus | Microsoft Docs"
 author: MikeWasson
 description: "Software versions used in this topic Visual Studio 2013 .NET 4.5 SignalR version 2 Previous versions of this topic For the SignalR 1.x version of this topic,..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/scaleout-with-windows-azure-service-bus
+msc.type: authoredcontent
 ---
 SignalR Scaleout with Azure Service Bus
 ====================

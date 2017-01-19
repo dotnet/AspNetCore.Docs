@@ -2,7 +2,7 @@
 title: "Use ViewData and Implement ViewModel Classes | Microsoft Docs"
 author: microsoft
 description: "Step 6 shows how enable support for richer form editing scenarios, and also discusses two approaches that can be used to pass data from controllers to views:..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-viewdata-and-implement-viewmodel-classes
+msc.type: authoredcontent
 ---
 Use ViewData and Implement ViewModel Classes
 ====================
@@ -80,7 +81,7 @@ We can then update our Edit() action method to create the DinnerFormViewModel us
 
 We'll then update our view template so that it expects a "DinnerFormViewModel" instead of a "Dinner" object by changing the "inherits" attribute at the top of the edit.aspx page like so:
 
-[!code-unknown[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample-25186-6.unknown)]
+[!code-cshtml[Main](use-viewdata-and-implement-viewmodel-classes/samples/sample6.cshtml)]
 
 Once we do this, the intellisense of the "Model" property within our view template will be updated to reflect the object model of the DinnerFormViewModel type we are passing it:
 

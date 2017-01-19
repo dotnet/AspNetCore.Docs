@@ -2,7 +2,7 @@
 title: "Batch Deleting (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to delete multiple database records in a single operation. In the User Interface Layer we build upon an enhanced GridView created in an earlier tut..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/26/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-batched-data/batch-deleting-cs
+msc.type: authoredcontent
 ---
 Batch Deleting (C#)
 ====================

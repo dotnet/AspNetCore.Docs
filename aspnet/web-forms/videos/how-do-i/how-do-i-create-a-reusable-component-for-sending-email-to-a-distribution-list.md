@@ -2,7 +2,7 @@
 title: "[How Do I:] Create a Reusable Component for Sending Email to a Distribution List | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to create a component that can be used on multiple web pages and web sites that sends emails to a list of recipients. Firs..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/04/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-reusable-component-for-sending-email-to-a-distribution-list
+msc.type: video
 ---
 [How Do I:] Create a Reusable Component for Sending Email to a Distribution List
 ====================

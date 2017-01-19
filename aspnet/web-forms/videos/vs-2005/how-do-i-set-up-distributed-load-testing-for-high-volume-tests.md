@@ -2,7 +2,7 @@
 title: "[How Do I:] Set Up Distributed Load Testing for High Volume Tests? | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio Team System allows you to set up distibuted load testing by creating a test 'rig' that comprises a Controller on one remote machine and multipl..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/09/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-set-up-distributed-load-testing-for-high-volume-tests
+msc.type: video
 ---
 [How Do I:] Set Up Distributed Load Testing for High Volume Tests?
 ====================

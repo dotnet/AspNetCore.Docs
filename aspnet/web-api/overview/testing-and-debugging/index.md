@@ -2,7 +2,7 @@
 title: "Testing and Debugging ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "Testing and debugging ASP.NET Web API"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/12/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging
+msc.type: chapter
 ---
 Testing and Debugging ASP.NET Web API
 ====================

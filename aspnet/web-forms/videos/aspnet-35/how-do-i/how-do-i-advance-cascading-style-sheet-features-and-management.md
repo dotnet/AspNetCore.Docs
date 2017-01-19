@@ -2,7 +2,7 @@
 title: "[How Do I:] Advance Cascading Style Sheet Features and Management | Microsoft Docs"
 author: rick-anderson
 description: "In this video we will build upon the basic Cascading Style Sheet from a previous video. We will advance beyond the basics where we just created elements and..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/14/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-advance-cascading-style-sheet-features-and-management
+msc.type: video
 ---
 [How Do I:] Advance Cascading Style Sheet Features and Management
 ====================

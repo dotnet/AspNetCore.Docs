@@ -2,7 +2,7 @@
 title: "The Effects of Caching | Microsoft Docs"
 author: rick-anderson
 description: "Nearly every Web application today needs to access data from a database, but this common operation can have a real impact on the overall performance of the a..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/26/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/the-effects-of-caching
+msc.type: video
 ---
 The Effects of Caching
 ====================

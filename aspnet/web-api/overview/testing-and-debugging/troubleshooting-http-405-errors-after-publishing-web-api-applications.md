@@ -2,7 +2,7 @@
 title: "Troubleshooting HTTP 405 Errors after Publishing Web API 2 Applications | Microsoft Docs"
 author: rmcmurray
 description: "This tutorial describes how to troubleshoot HTTP 405 errors after publishing a Web API application to a production web server."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/01/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/troubleshooting-http-405-errors-after-publishing-web-api-applications
+msc.type: authoredcontent
 ---
 Troubleshooting HTTP 405 Errors after Publishing Web API 2 Applications
 ====================

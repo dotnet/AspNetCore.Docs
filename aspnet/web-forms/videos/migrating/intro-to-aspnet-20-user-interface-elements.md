@@ -2,7 +2,7 @@
 title: "[Intro to ASP.NET 2.0:] User Interface Elements | Microsoft Docs"
 author: microsoft
 description: "This webcast looks at the features of ASP.NET 2.0 that simplify the construction of user interfaces, including master pages, themes, and navigation controls."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/25/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-20-user-interface-elements
+msc.type: video
 ---
 [Intro to ASP.NET 2.0:] User Interface Elements
 ====================

@@ -2,7 +2,7 @@
 title: "ASP.NET MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "This document describes the release of ASP.NET MVC 4 Beta for Visual Studio 2010."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/09/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/mvc4-beta-release-notes
+msc.type: content
 ---
 ASP.NET MVC 4
 ====================

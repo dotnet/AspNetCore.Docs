@@ -2,7 +2,7 @@
 title: "ASP.NET Web Deployment using Visual Studio: Troubleshooting | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by usin..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/01/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/troubleshooting
+msc.type: authoredcontent
 ---
 ASP.NET Web Deployment using Visual Studio: Troubleshooting
 ====================
@@ -91,7 +92,7 @@ To use one-click publish to IIS on your local machine, you must be running Visua
 
 When you click the Visual Studio publish button to deploy an application, publishing fails and the **Output** window shows an error message similar to this:
 
-[!code-unknown[Main](troubleshooting/samples/sample-45355-3.unknown)]
+[!code-console[Main](troubleshooting/samples/sample3.cmd)]
 
 ### Possible Cause and Solution
 
@@ -193,7 +194,7 @@ If the database name you put in the Web.config file was ever used before on your
 
 You are using database deployment configured on the **Package/Publish SQL** tab, SQL scripts that run during deployment include Create User or Create Role commands, and script execution fails when those commands are executed. You might see more detailed messages, such as the following:
 
-[!code-unknown[Main](troubleshooting/samples/sample-45355-8.unknown)]
+[!code-console[Main](troubleshooting/samples/sample8.cmd)]
 
 If this error occurs when you have configured database deployment in the **Publish Web** wizard rather than the **Package/Publish SQL** tab, create a thread in the [Configuration and Deployment](https://forums.asp.net/26.aspx/1?Configuration+and+Deployment) forum, and the solution will be added to this troubleshooting page.
 
@@ -201,7 +202,7 @@ If this error occurs when you have configured database deployment in the **Publi
 
 The user account you are using to perform deployment does not have permission to create users or roles. For example, the hosting company might assign the db\_datareader, db\_datawriter, and db\_ddladmin roles to the user account that it sets up for you. These are sufficient for creating most database objects, but not for creating users or roles. One way to avoid the error is by excluding users and roles from database deployment. You can do this by editing the PreSource element for the database's automatically generated script so that it includes the following attributes:
 
-[!code-unknown[Main](troubleshooting/samples/sample-45355-9.unknown)]
+[!code-console[Main](troubleshooting/samples/sample9.cmd)]
 
 For information about how to edit the PreSource element in the project file, see [How to: Edit Deployment Settings in the Project File](https://msdn.microsoft.com/en-us/library/ff398069(v=vs.100).aspx). If the users or roles in your development database need to be in the destination database, contact your hosting provider for assistance.
 

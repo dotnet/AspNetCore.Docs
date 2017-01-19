@@ -2,7 +2,7 @@
 title: "Core | Microsoft Docs"
 author: rick-anderson
 description: "This video series explores core improvements in ASP.NET 4 like auto-start, clean configuration files, and HTML encoding."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/core
+msc.type: chapter
 ---
 Core
 ====================

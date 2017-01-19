@@ -2,7 +2,7 @@
 title: "Authentication | Microsoft Docs"
 author: rick-anderson
 description: "How to implement and manage security (authentication) in an ASP.NET application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication
+msc.type: chapter
 ---
 Authentication
 ====================

@@ -2,7 +2,7 @@
 title: "Adding and Responding to Buttons to a GridView (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll look at how to add custom buttons, both to a template and to the fields of a GridView or DetailsView control. In particular, we'll bui..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/13/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/custom-button-actions/adding-and-responding-to-buttons-to-a-gridview-vb
+msc.type: authoredcontent
 ---
 Adding and Responding to Buttons to a GridView (VB)
 ====================

@@ -2,7 +2,7 @@
 title: "Performance | Microsoft Docs"
 author: rick-anderson
 description: "How to cache content for faster performance and how to measure site traffic."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/08/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic
+msc.type: chapter
 ---
 Performance
 ====================

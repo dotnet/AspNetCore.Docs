@@ -2,7 +2,7 @@
 title: "Creating Readable URLs in ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "This article describes routing in an ASP.NET Web Pages (Razor) website, and how this lets you use URLs that are more readable and better for SEO. What you'll..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/17/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/routing/creating-readable-urls-in-aspnet-web-pages-sites
+msc.type: authoredcontent
 ---
 Creating Readable URLs in ASP.NET Web Pages (Razor) Sites
 ====================

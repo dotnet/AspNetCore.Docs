@@ -2,7 +2,7 @@
 title: "Understanding Action Filters (VB) | Microsoft Docs"
 author: microsoft
 description: "The goal of this tutorial is to explain action filters. An action filter is an attribute that you can apply to a controller action -- or an entire controller..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/16/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-vb
+msc.type: authoredcontent
 ---
 Understanding Action Filters (VB)
 ====================

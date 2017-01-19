@@ -2,7 +2,7 @@
 title: "ASP.NET Web Deployment using Visual Studio: Command Line Deployment | Microsoft Docs"
 author: tdykstra
 description: "This tutorial series shows you how to deploy (publish) an ASP.NET web application to Azure App Service Web Apps or to a third-party hosting provider, by usin..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/15/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/visual-studio-web-deployment/command-line-deployment
+msc.type: authoredcontent
 ---
 ASP.NET Web Deployment using Visual Studio: Command Line Deployment
 ====================

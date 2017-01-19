@@ -2,7 +2,7 @@
 title: "Backbone Template | Microsoft Docs"
 author: madskristensen
 description: "Backbone.js SPA Template"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/04/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/backbonejs-template
+msc.type: authoredcontent
 ---
 Backbone Template
 ====================

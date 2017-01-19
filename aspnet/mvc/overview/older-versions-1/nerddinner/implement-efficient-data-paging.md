@@ -2,7 +2,7 @@
 title: "Implement Efficient Data Paging | Microsoft Docs"
 author: microsoft
 description: "Step 8 shows how to add paging support to our /Dinners URL so that instead of displaying 1000s of dinners at once, we'll only display 10 upcoming dinners at..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/implement-efficient-data-paging
+msc.type: authoredcontent
 ---
 Implement Efficient Data Paging
 ====================

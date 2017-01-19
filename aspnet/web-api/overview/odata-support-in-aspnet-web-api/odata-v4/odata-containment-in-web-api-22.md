@@ -2,7 +2,7 @@
 title: "Containment in OData v4 Using Web API 2.2 | Microsoft Docs"
 author: rick-anderson
 description: "Traditionally, an entity could only be accessed if it were encapsulated inside an entity set. But OData v4 provides two additional options, Singleton and Con..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/27/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/odata-containment-in-web-api-22
+msc.type: authoredcontent
 ---
 Containment in OData v4 Using Web API 2.2
 ====================

@@ -2,7 +2,7 @@
 title: "Create a Movie Database Application in 15 Minutes with ASP.NET MVC (C#) | Microsoft Docs"
 author: StephenWalther
 description: "Stephen Walther builds an entire database-driven ASP.NET MVC application from start to finish. This tutorial is a great introduction for people who are new t..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/27/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/movie-database/create-a-movie-database-application-in-15-minutes-with-asp-net-mvc-cs
+msc.type: authoredcontent
 ---
 Create a Movie Database Application in 15 Minutes with ASP.NET MVC (C#)
 ====================

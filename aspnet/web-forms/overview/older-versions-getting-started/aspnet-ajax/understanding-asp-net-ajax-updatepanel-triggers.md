@@ -2,7 +2,7 @@
 title: "Understanding ASP.NET AJAX UpdatePanel Triggers | Microsoft Docs"
 author: scottcate
 description: "When working in the markup editor in Visual Studio, you may notice (from IntelliSense) that there are two child elements of an UpdatePanel control. One of wh..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/12/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-updatepanel-triggers
+msc.type: authoredcontent
 ---
 Understanding ASP.NET AJAX UpdatePanel Triggers
 ====================

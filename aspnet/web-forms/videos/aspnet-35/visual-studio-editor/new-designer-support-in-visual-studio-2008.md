@@ -2,7 +2,7 @@
 title: "New Designer Support in Visual Studio 2008 | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will demonstrate several of the new designer features in Visual Studio 2008."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/15/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor/new-designer-support-in-visual-studio-2008
+msc.type: video
 ---
 New Designer Support in Visual Studio 2008
 ====================

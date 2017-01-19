@@ -2,7 +2,7 @@
 title: "Enabling Cross-Origin Requests in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "Shows how to support Cross-Origin Resource Sharing (CORS) in ASP.NET Web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/15/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/enabling-cross-origin-requests-in-web-api
+msc.type: authoredcontent
 ---
 Enabling Cross-Origin Requests in ASP.NET Web API 2
 ====================

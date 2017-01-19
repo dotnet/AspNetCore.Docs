@@ -2,7 +2,7 @@
 title: "[How Do I:] Use the ASP.NET AJAX HoverMenu Extender? | Microsoft Docs"
 author: JoeStagner
 description: "Discover how to use the HoverMenu extender control to create a context-sensitive menu that appears whenever the user hovers the mouse over an element of a we..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/31/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-hovermenu-extender
+msc.type: video
 ---
 [How Do I:] Use the ASP.NET AJAX HoverMenu Extender?
 ====================

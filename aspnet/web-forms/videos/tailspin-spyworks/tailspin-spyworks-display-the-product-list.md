@@ -2,7 +2,7 @@
 title: "Tailspin Spyworks - Display the Product List | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner shows how to display the product list in the Tailspin Spyworks sample Web Forms application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/09/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-display-the-product-list
+msc.type: video
 ---
 Tailspin Spyworks - Display the Product List
 ====================

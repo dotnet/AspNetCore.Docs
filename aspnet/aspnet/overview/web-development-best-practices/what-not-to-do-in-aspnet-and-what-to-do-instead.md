@@ -2,7 +2,7 @@
 title: "What not to do in ASP.NET, and what to do instead | Microsoft Docs"
 author: tfitzmac
 description: "This topic describes several common mistakes people make within ASP.NET web projects. It provides recommendations for what you should do to avoid these commo..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/08/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/web-development-best-practices/what-not-to-do-in-aspnet-and-what-to-do-instead
+msc.type: authoredcontent
 ---
 What not to do in ASP.NET, and what to do instead
 ====================

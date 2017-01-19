@@ -2,7 +2,7 @@
 title: "Using SignalR Performance Counters in an Azure Web Role | Microsoft Docs"
 author: tfitzmac
 description: "Using SignalR Performance Counters in an Azure Web Role"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/12/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/performance/using-signalr-performance-counters-in-an-azure-web-role
+msc.type: authoredcontent
 ---
 Using SignalR Performance Counters in an Azure Web Role
 ====================

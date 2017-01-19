@@ -2,7 +2,7 @@
 title: "Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013 | Microsoft Docs"
 author: Erikre
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/03/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/creating-a-basic-web-forms-page
+msc.type: authoredcontent
 ---
 Creating a Basic ASP.NET 4.5 Web Forms Page in Visual Studio 2013
 ====================

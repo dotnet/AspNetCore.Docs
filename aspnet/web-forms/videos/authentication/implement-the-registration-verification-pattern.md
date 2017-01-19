@@ -2,7 +2,7 @@
 title: "Implement the Registration Verification Pattern | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner extends the registration process in an ASP.NET application by adding an email verification step."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/29/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/implement-the-registration-verification-pattern
+msc.type: video
 ---
 Implement the Registration Verification Pattern
 ====================

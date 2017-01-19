@@ -2,7 +2,7 @@
 title: "Tutorial: Server Broadcast with ASP.NET SignalR 1.x | Microsoft Docs"
 author: pfletcher
 description: "This tutorial shows how to create a web application that uses ASP.NET SignalR to provide server broadcast functionality. Server broadcast means that communic..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/10/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/tutorial-server-broadcast-with-aspnet-signalr
+msc.type: authoredcontent
 ---
 Tutorial: Server Broadcast with ASP.NET SignalR 1.x
 ====================

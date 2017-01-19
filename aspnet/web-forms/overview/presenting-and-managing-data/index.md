@@ -2,7 +2,7 @@
 title: "Working with Data in ASP.NET Web Forms | Microsoft Docs"
 author: rick-anderson
 description: "How to access data using controls and how to persist information between requests."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/08/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data
+msc.type: chapter
 ---
 Working with Data in ASP.NET Web Forms
 ====================

@@ -2,7 +2,7 @@
 title: "Part 6: ASP.NET Membership | Microsoft Docs"
 author: JoeStagner
 description: "This tutorial series details all of the steps taken to build the Tailspin Spyworks sample application. Part 6 adds ASP.NET Membership."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/21/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/tailspin-spyworks/tailspin-spyworks-part-6
+msc.type: authoredcontent
 ---
 Part 6: ASP.NET Membership
 ====================

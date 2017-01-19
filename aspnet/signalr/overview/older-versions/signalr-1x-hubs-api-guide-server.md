@@ -2,7 +2,7 @@
 title: "ASP.NET SignalR Hubs API Guide - Server (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "This document provides an introduction to programming the server side of the ASP.NET SignalR Hubs API for SignalR version 1.1, with code samples demonstratin..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/17/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/signalr-1x-hubs-api-guide-server
+msc.type: authoredcontent
 ---
 ASP.NET SignalR Hubs API Guide - Server (SignalR 1.x)
 ====================

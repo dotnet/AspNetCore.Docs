@@ -2,7 +2,7 @@
 title: "Routing and Action Selection in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/routing-and-action-selection
+msc.type: authoredcontent
 ---
 Routing and Action Selection in ASP.NET Web API
 ====================

@@ -2,7 +2,7 @@
 title: "ASP.NET MVC 4 Custom Action Filters | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC provides Action Filters for executing filtering logic either before or after an action method is called. Action Filters are custom attributes tha..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-custom-action-filters
+msc.type: authoredcontent
 ---
 ASP.NET MVC 4 Custom Action Filters
 ====================

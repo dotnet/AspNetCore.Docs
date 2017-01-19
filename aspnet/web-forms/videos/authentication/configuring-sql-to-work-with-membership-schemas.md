@@ -2,7 +2,7 @@
 title: "Configuring SQL To Work with Membership Schemas | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe Stagner demonstrates how to configure a SQL instance to work with a specific ASP Services Membership Profile; as well as configure the appl..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/04/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/configuring-sql-to-work-with-membership-schemas
+msc.type: video
 ---
 Configuring SQL To Work with Membership Schemas
 ====================

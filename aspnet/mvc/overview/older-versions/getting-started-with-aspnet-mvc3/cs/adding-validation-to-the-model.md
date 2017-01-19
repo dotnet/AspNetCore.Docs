@@ -2,7 +2,7 @@
 title: "Adding Validation to the Model (C#) | Microsoft Docs"
 author: Rick-Anderson
 description: "Creating a Controller"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/12/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/cs/adding-validation-to-the-model
+msc.type: authoredcontent
 ---
 Adding Validation to the Model (C#)
 ====================

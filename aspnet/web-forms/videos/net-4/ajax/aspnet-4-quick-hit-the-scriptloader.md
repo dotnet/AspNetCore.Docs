@@ -2,7 +2,7 @@
 title: "ASP.NET 4 "Quick Hit" - The ScriptLoader | Microsoft Docs"
 author: JoeStagner
 description: "In this video will learn about the ScriptLoader."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/16/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/ajax/aspnet-4-quick-hit-the-scriptloader
+msc.type: video
 ---
 ASP.NET 4 "Quick Hit" - The ScriptLoader
 ====================

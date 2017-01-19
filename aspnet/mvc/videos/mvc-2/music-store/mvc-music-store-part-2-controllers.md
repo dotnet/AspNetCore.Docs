@@ -2,7 +2,7 @@
 title: "MVC Music Store Part 2: Controllers | Microsoft Docs"
 author: jongalloway
 description: "Jon continues the MVC Music Store tutorial by creating some basic controller actions."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/22/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/music-store/mvc-music-store-part-2-controllers
+msc.type: video
 ---
 MVC Music Store Part 2: Controllers
 ====================

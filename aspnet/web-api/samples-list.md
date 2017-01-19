@@ -2,7 +2,7 @@
 title: "Web API Samples List | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/18/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/samples-list
+msc.type: content
 ---
 Web API Samples List
 ====================

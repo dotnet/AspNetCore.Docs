@@ -2,7 +2,7 @@
 title: "Validating User Credentials Against the Membership User Store (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will examine how to validate a user's credentials against the Membership user store using both programmatic means and the Login control...."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/18/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/validating-user-credentials-against-the-membership-user-store-cs
+msc.type: authoredcontent
 ---
 Validating User Credentials Against the Membership User Store (C#)
 ====================

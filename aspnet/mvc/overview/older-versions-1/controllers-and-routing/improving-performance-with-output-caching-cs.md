@@ -2,7 +2,7 @@
 title: "Improving Performance with Output Caching (C#) | Microsoft Docs"
 author: microsoft
 description: "In this tutorial, you learn how you can dramatically improve the performance of your ASP.NET MVC web applications by taking advantage of output caching. You..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/27/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-cs
+msc.type: authoredcontent
 ---
 Improving Performance with Output Caching (C#)
 ====================

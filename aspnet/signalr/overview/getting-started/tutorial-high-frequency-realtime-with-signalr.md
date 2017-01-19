@@ -2,7 +2,7 @@
 title: "Tutorial: High-Frequency Realtime with SignalR 2 | Microsoft Docs"
 author: pfletcher
 description: "This tutorial shows how to create a web application that uses ASP.NET SignalR to provide high-frequency messaging functionality. High-frequency messaging in..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/tutorial-high-frequency-realtime-with-signalr
+msc.type: authoredcontent
 ---
 Tutorial: High-Frequency Realtime with SignalR 2
 ====================

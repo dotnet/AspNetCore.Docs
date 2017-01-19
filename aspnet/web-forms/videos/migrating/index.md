@@ -2,7 +2,7 @@
 title: "Migrating | Microsoft Docs"
 author: rick-anderson
 description: "Migrating to ASP.NET"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating
+msc.type: chapter
 ---
 Migrating
 ====================

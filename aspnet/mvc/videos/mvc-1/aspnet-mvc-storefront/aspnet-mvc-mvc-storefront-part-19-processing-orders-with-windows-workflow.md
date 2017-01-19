@@ -2,7 +2,7 @@
 title: "ASP.NET MVC MVC Storefront Part 19: Processing Orders With Windows Workflow | Microsoft Docs"
 author: robconery
 description: "In this episode I introduce Windows Workflow and spike it to see how well it will work for various processes in the site."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/16/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-mvc-storefront-part-19-processing-orders-with-windows-workflow
+msc.type: video
 ---
 ASP.NET MVC MVC Storefront Part 19: Processing Orders With Windows Workflow
 ====================

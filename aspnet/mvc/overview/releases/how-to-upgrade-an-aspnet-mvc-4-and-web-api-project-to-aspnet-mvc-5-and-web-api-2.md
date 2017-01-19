@@ -2,7 +2,7 @@
 title: "How to Upgrade an ASP.NET MVC 4 and Web API Project to ASP.NET MVC 5 and Web API 2 | Microsoft Docs"
 author: Rick-Anderson
 description: "ASP.NET MVC 5 and Web API 2 bring a host of new features, including attribute routing, authentication filters, and much more. See http://www.asp.net/vnext fo..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/17/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/releases/how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2
+msc.type: authoredcontent
 ---
 How to Upgrade an ASP.NET MVC 4 and Web API Project to ASP.NET MVC 5 and Web API 2
 ====================
@@ -31,11 +32,11 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 1. Backup your project. This walkthrough will require you to make changes to your project file, package configuration, and web.config files.
 2. For upgrading from Web API to Web API 2, in global.asax, change:
 
-    [!code-unknown[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample-50580-1.unknown)]
+    [!code-csharp[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample1.cs)]
 
  to
 
-    [!code-unknown[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample-50580-2.unknown)]
+    [!code-csharp[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample2.cs)]
 3. Make sure all the packages that your projects use are compatible with MVC 5 and Web API 2. The following table shows the MVC 4 and Web API related packages than need to be changed. If you have a package that is dependent on one of the packages listed below, please contact the publishers to get the newer versions that are compatible with MVC 5 and Web API 2. If you have the source code for those packages, you should recompile them with the new assemblies of MVC 5 and Web API 2.   
 
     | **Package Id** | **Old version** | **New version** |

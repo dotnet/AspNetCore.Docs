@@ -2,7 +2,7 @@
 title: "5 Minute Introduction to ASP.NET MVC | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman presents a 5 minute introduction to ASP.NET MVC."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/12/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/5-minute-introduction-to-aspnet-mvc
+msc.type: video
 ---
 5 Minute Introduction to ASP.NET MVC
 ====================

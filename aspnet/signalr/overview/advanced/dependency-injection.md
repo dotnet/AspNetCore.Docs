@@ -2,7 +2,7 @@
 title: "Dependency Injection in SignalR | Microsoft Docs"
 author: MikeWasson
 description: "Software versions used in this topic Visual Studio 2013 .NET 4.5 SignalR version 2 Previous versions of this topic For information about earlier versions of..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/advanced/dependency-injection
+msc.type: authoredcontent
 ---
 Dependency Injection in SignalR
 ====================
@@ -79,7 +80,7 @@ Now SignalR will invoke this anonymous function whenever it needs to create a `C
 
 The previous code is fine for simple cases. But you still had to write this:
 
-[!code-unknown[Main](dependency-injection/samples/sample-51342-8.unknown)]
+[!code-csharp[Main](dependency-injection/samples/sample8.cs)]
 
 In a complex application with many dependencies, you might need to write a lot of this "wiring" code. This code can be hard to maintain, especially if dependencies are nested. It is also hard to unit test.
 
@@ -164,7 +165,7 @@ Create an instance of our custom dependency resolver:
 
 Create a binding for `IStockTicker` as follows:
 
-[!code-unknown[Main](dependency-injection/samples/sample-51342-17.unknown)]
+[!code-csharp[Main](dependency-injection/samples/sample17.cs)]
 
 This code is saying two things. First, whenever the application needs an `IStockTicker`, the kernel should create an instance of `StockTicker`. Second, the `StockTicker` class should be a created as a singleton object. Ninject will create one instance of the object, and return the same instance for each request.
 

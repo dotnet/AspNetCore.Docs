@@ -2,7 +2,7 @@
 title: "Add Custom Data to the Authentication Method | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner will continue the exploration of ASP.NET authentication by configuring the authentication method to add custom data to the authentication ticket..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/add-custom-data-to-the-authentication-method
+msc.type: video
 ---
 Add Custom Data to the Authentication Method
 ====================

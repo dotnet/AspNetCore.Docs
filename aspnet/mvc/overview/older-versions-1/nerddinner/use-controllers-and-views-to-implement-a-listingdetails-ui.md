@@ -2,7 +2,7 @@
 title: "Use Controllers and Views to Implement a Listing/Details UI | Microsoft Docs"
 author: microsoft
 description: "Step 4 shows how to add a Controller to the application that takes advantage of our model to provide users with a data listing/details navigation experience..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-controllers-and-views-to-implement-a-listingdetails-ui
+msc.type: authoredcontent
 ---
 Use Controllers and Views to Implement a Listing/Details UI
 ====================

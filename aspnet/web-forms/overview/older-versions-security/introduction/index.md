@@ -2,7 +2,7 @@
 title: "ASP.NET 3.5 - Introduction to Security | Microsoft Docs"
 author: rick-anderson
 description: "This series of tutorials explores techniques for authenticating users using a login form (forms authentication) and authorizing access to individual pages in..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/04/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction
+msc.type: chapter
 ---
 ASP.NET 3.5 - Introduction to Security
 ====================

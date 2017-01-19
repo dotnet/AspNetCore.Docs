@@ -2,7 +2,7 @@
 title: "Introduction | Microsoft Docs"
 author: rick-anderson
 description: "This introductory set of tutorials explains how to create a Data Access Layer (DAL), a Business Logic Layer (BLL), and a consistent look across your site."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/11/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/introduction
+msc.type: chapter
 ---
 Introduction
 ====================

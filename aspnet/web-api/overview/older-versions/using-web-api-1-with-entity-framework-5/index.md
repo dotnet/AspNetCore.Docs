@@ -2,7 +2,7 @@
 title: "Using ASP.NET Web API 1 with Entity Framework 5 | Microsoft Docs"
 author: rick-anderson
 description: "How to create a Web API 1 application that uses Entity Framework for database persistence."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/16/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5
+msc.type: chapter
 ---
 Using ASP.NET Web API 1 with Entity Framework 5
 ====================

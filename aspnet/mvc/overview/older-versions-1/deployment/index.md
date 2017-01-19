@@ -2,7 +2,7 @@
 title: "Deployment | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial you learn how to use ASP.NET MVC and routing with different versions of IIS."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/28/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/deployment
+msc.type: chapter
 ---
 Deployment
 ====================

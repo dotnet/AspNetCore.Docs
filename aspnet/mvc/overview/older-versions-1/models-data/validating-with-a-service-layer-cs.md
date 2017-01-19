@@ -2,7 +2,7 @@
 title: "Validating with a Service Layer (C#) | Microsoft Docs"
 author: StephenWalther
 description: "Learn how to move your validation logic out of your controller actions and into a separate service layer. In this tutorial, Stephen Walther explains how you..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/02/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validating-with-a-service-layer-cs
+msc.type: authoredcontent
 ---
 Validating with a Service Layer (C#)
 ====================

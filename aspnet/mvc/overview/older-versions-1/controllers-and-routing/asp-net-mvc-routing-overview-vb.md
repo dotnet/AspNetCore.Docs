@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Routing Overview (VB) | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther shows how the ASP.NET MVC framework maps browser requests to controller actions."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/19/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/asp-net-mvc-routing-overview-vb
+msc.type: authoredcontent
 ---
 ASP.NET MVC Routing Overview (VB)
 ====================

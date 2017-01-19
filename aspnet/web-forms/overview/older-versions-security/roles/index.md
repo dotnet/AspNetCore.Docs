@@ -2,7 +2,7 @@
 title: "ASP.NET 3.5 - Roles | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial series describes how to create and delete roles, how to assign users to roles, and how to authorize by role."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/roles
+msc.type: chapter
 ---
 ASP.NET 3.5 - Roles
 ====================

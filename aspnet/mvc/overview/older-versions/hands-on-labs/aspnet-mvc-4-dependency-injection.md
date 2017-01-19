@@ -2,7 +2,7 @@
 title: "ASP.NET MVC 4 Dependency Injection | Microsoft Docs"
 author: rick-anderson
 description: "Note: This Hands-on Lab assumes you have basic knowledge of ASP.NET MVC and ASP.NET MVC 4 filters . If you have not used ASP.NET MVC 4 filters before, we rec..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-dependency-injection
+msc.type: authoredcontent
 ---
 ASP.NET MVC 4 Dependency Injection
 ====================

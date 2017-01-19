@@ -2,7 +2,7 @@
 title: "Getting Started with Entity Framework 6 Code First using MVC 5 | Microsoft Docs"
 author: rick-anderson
 description: "The basics of using Entity Framework 6 to display and edit data in an ASP.NET MVC 5 application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc
+msc.type: chapter
 ---
 Getting Started with Entity Framework 6 Code First using MVC 5
 ====================

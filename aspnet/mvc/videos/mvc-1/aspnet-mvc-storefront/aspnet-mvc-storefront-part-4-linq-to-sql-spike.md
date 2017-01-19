@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Storefront Part 4: Linq To Sql Spike | Microsoft Docs"
 author: robconery
 description: "Rob creates a 'spike' - a bit of functionality to test a thought or inspiration - to make sure that Linq To Sql will work for my data access pattern."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/27/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-4-linq-to-sql-spike
+msc.type: video
 ---
 ASP.NET MVC Storefront Part 4: Linq To Sql Spike
 ====================

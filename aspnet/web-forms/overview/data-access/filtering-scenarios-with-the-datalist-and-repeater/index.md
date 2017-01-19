@@ -2,7 +2,7 @@
 title: "Filtering Scenarios with the DataList and Repeater | Microsoft Docs"
 author: rick-anderson
 description: "In these tutorials you see how to display master/detail reports using drop-down lists for the master records and a DataList control for the details."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/filtering-scenarios-with-the-datalist-and-repeater
+msc.type: chapter
 ---
 Filtering Scenarios with the DataList and Repeater
 ====================

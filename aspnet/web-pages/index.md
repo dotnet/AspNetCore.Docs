@@ -2,7 +2,7 @@
 title: "ASP.NET Web Pages | Microsoft Docs"
 author: rick-anderson
 description: "Download WebMatrix & learn how to quickly build web pages in a lightweight way to combine server code with HTML."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/18/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages
+msc.type: categoryindex
 ---
 ASP.NET Web Pages
 ====================

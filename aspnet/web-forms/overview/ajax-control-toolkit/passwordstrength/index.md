@@ -2,7 +2,7 @@
 title: "PasswordStrength | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to PasswordStrength control to check how strong a password is as a user creates it."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/passwordstrength
+msc.type: chapter
 ---
 PasswordStrength
 ====================

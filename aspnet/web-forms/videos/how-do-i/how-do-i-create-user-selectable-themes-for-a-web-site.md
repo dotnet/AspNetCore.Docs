@@ -2,7 +2,7 @@
 title: "[How Do I:] Create User Selectable Themes for a Web Site | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to create multiple themes for a web site and then allow the user to select which theme is applied to the site. See how..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/13/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-user-selectable-themes-for-a-web-site
+msc.type: video
 ---
 [How Do I:] Create User Selectable Themes for a Web Site
 ====================

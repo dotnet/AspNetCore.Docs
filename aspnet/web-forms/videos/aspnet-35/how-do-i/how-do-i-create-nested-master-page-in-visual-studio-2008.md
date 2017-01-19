@@ -2,7 +2,7 @@
 title: "[How Do I:] Create Nested Master Page in Visual Studio 2008 | Microsoft Docs"
 author: rick-anderson
 description: "Using Visual Studio 2008's improved Designer, I will demonstrate how to create a Nested Master Page. Nested Master Pages are useful when you build a hierarch..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/14/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-create-nested-master-page-in-visual-studio-2008
+msc.type: video
 ---
 [How Do I:] Create Nested Master Page in Visual Studio 2008
 ====================

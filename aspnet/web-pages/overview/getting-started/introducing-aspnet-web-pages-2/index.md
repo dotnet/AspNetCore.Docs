@@ -2,7 +2,7 @@
 title: "Introducing ASP.NET Web Pages | Microsoft Docs"
 author: rick-anderson
 description: "Introducing ASP.NET Web Pages 2"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/18/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2
+msc.type: chapter
 ---
 Introducing ASP.NET Web Pages
 ====================

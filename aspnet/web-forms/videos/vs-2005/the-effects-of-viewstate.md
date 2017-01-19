@@ -2,7 +2,7 @@
 title: "The Effects of ViewState | Microsoft Docs"
 author: rick-anderson
 description: "The ASP.NET framework provides the ViewState mechanism to automatically maintain application state by carrying data forward and backward between browser requ..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/26/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/the-effects-of-viewstate
+msc.type: video
 ---
 The Effects of ViewState
 ====================

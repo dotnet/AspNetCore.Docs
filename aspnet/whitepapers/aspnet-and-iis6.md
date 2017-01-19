@@ -2,7 +2,7 @@
 title: "Running ASP.NET 1.1 with IIS 6.0 | Microsoft Docs"
 author: rick-anderson
 description: "While Windows Server 2003 includes both IIS 6.0 and ASP.NET 1.1, these components are disabled by default. This whitepaper describes how to enable IIS 6.0 an..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/10/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-and-iis6
+msc.type: content
 ---
 Running ASP.NET 1.1 with IIS 6.0
 ====================

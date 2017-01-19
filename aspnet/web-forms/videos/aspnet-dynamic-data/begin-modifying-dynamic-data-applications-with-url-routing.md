@@ -2,7 +2,7 @@
 title: "Begin Modifying Dynamic Data Applications with URL Routing | Microsoft Docs"
 author: JoeStagner
 description: "This video introduces ASP.NET Dynamic Data URL routing and shows how to configure an application’s URL with routing options."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/begin-modifying-dynamic-data-applications-with-url-routing
+msc.type: video
 ---
 Begin Modifying Dynamic Data Applications with URL Routing
 ====================

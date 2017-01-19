@@ -2,7 +2,7 @@
 title: "Working with HTML Forms in ASP.NET Web Pages (Razor) Sites | Microsoft Docs"
 author: tfitzmac
 description: "A form is a section of an HTML document where you put user-input controls, like text boxes, check boxes, radio buttons, and pull-down lists. You use forms wh..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes/4-working-with-forms
+msc.type: authoredcontent
 ---
 Working with HTML Forms in ASP.NET Web Pages (Razor) Sites
 ====================

@@ -2,7 +2,7 @@
 title: "ASP.NET and Mobile | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman explains how to create mobile websites with ASP.NET."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/29/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/aspnet-and-mobile/aspnet-and-mobile
+msc.type: video
 ---
 ASP.NET and Mobile
 ====================

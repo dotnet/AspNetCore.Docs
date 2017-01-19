@@ -2,7 +2,7 @@
 title: "ASP.NET 4 "Quick Hit" - Imperative WebForms Routing | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn how to use an expression builder to do WebForms routing imperatively."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/05/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/routing/aspnet-4-quick-hit-imperative-webforms-routing
+msc.type: video
 ---
 ASP.NET 4 "Quick Hit" - Imperative WebForms Routing
 ====================

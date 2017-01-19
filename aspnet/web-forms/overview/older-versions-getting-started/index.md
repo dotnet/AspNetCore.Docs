@@ -2,7 +2,7 @@
 title: "Older Versions - Web Forms Getting Started | Microsoft Docs"
 author: rick-anderson
 description: "Documentation on ASP.NET Web Forms 4 and earlier versions."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/18/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started
+msc.type: chapter
 ---
 Older Versions - Web Forms Getting Started
 ====================

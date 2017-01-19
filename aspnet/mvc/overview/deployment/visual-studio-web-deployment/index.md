@@ -2,7 +2,7 @@
 title: "ASP.NET Web Deployment using Visual Studio | Microsoft Docs"
 author: rick-anderson
 description: "A 12-part tutorial series that shows how to deploy an ASP.NET web application to an Azure Website or a third-party hosting provider, by using Visual Studio 2..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/15/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/deployment/visual-studio-web-deployment
+msc.type: chapter
 ---
 ASP.NET Web Deployment using Visual Studio
 ====================

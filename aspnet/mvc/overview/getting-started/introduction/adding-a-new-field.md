@@ -2,7 +2,7 @@
 title: "Adding a New Field | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/17/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-a-new-field
+msc.type: authoredcontent
 ---
 Adding a New Field
 ====================
@@ -144,7 +145,7 @@ For this tutorial, we'll use Code First Migrations.
 
 Update the Seed method so that it provides a value for the new column. Open Migrations\Configuration.cs file and add a Rating field to each Movie object.
 
-[!code-unknown[Main](adding-a-new-field/samples/sample-47544-10.unknown?highlight=6)]
+[!code-csharp[Main](adding-a-new-field/samples/sample10.cs?highlight=6)]
 
 Build the solution, and then open the **Package Manager Console** window and enter the following command:
 

@@ -2,7 +2,7 @@
 title: "Using Page Inspector in Visual Studio 2012 | Microsoft Docs"
 author: rick-anderson
 description: "In this Hands-on Lab, you will discover a new tool to find and fix web page issues in Visual Studio - the Page Inspector. Page Inspector is a new tool that b..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/hands-on-labs/using-page-inspector-in-visual-studio-2012
+msc.type: authoredcontent
 ---
 Using Page Inspector in Visual Studio 2012
 ====================

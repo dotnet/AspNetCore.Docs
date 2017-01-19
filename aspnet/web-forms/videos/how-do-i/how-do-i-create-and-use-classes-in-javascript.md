@@ -2,7 +2,7 @@
 title: "How Do I: Create and Use Classes in JavaScript? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to create classes in JavaScript with functionality similar to other programming languages with object oriented capabilitie..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/08/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-and-use-classes-in-javascript
+msc.type: video
 ---
 How Do I: Create and Use Classes in JavaScript?
 ====================

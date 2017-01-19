@@ -2,7 +2,7 @@
 title: "Web API Routing | Microsoft Docs"
 author: rick-anderson
 description: "How ASP.NET Web API routes HTTP requests to controllers and actions."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/26/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions
+msc.type: chapter
 ---
 Web API Routing
 ====================

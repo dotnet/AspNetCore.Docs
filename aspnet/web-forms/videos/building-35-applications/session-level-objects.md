@@ -2,7 +2,7 @@
 title: "Session Level Objects | Microsoft Docs"
 author: JoeStagner
 description: "This video will introduce Session Level Events and Objects and compare their use with their Application and Page level equivalents."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/20/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/session-level-objects
+msc.type: video
 ---
 Session Level Objects
 ====================

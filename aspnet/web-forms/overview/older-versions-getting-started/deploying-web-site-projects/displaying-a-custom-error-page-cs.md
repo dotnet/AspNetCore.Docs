@@ -2,7 +2,7 @@
 title: "Displaying a Custom Error Page (C#) | Microsoft Docs"
 author: rick-anderson
 description: "What does the user see when a runtime error occurs in an ASP.NET web application? The answer depends on how the website's &lt;customErrors&gt; configuration...."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/09/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/displaying-a-custom-error-page-cs
+msc.type: authoredcontent
 ---
 Displaying a Custom Error Page (C#)
 ====================

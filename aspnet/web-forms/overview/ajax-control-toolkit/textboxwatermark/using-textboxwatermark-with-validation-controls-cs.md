@@ -2,7 +2,7 @@
 title: "Using TextBoxWatermark With Validation Controls (C#) | Microsoft Docs"
 author: wenz
 description: "The TextBoxWatermark control in the AJAX Control Toolkit extends a text box so that a text is displayed within the box. When a user clicks into the box, it i..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/02/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/textboxwatermark/using-textboxwatermark-with-validation-controls-cs
+msc.type: authoredcontent
 ---
 Using TextBoxWatermark With Validation Controls (C#)
 ====================

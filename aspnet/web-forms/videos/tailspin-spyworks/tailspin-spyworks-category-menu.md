@@ -2,7 +2,7 @@
 title: "Tailspin Spyworks - Category Menu | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner builds the category menu for the Tailspin Spyworks sample Web Forms application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/12/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-category-menu
+msc.type: video
 ---
 Tailspin Spyworks - Category Menu
 ====================

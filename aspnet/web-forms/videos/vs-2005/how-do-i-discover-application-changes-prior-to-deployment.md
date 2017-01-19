@@ -2,7 +2,7 @@
 title: "[How Do I:] Discover Application Changes Prior to Deployment? | Microsoft Docs"
 author: pjhacker
 description: "Learn how to use the Source Control Explorer from Visual Studio Team System to discover the changes that have been made to your Web application, and to ensur..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/25/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-discover-application-changes-prior-to-deployment
+msc.type: video
 ---
 [How Do I:] Discover Application Changes Prior to Deployment?
 ====================

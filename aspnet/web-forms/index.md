@@ -2,7 +2,7 @@
 title: "ASP.NET Web Forms | Microsoft Docs"
 author: rick-anderson
 description: "Download Visual Web Developer Express & learn how to quickly build web apps using easy-to-understand controls on ASP.NET Web Forms in a visual design environ..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/08/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms
+msc.type: categoryindex
 ---
 ASP.NET Web Forms
 ====================

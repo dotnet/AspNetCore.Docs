@@ -2,7 +2,7 @@
 title: "Introducing ASP.NET Web Pages - HTML Form Basics | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you the basics of how to create an input form and how to handle the user's input when you use ASP.NET Web Pages (Razor). And now that you..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/28/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/form-basics
+msc.type: authoredcontent
 ---
 Introducing ASP.NET Web Pages - HTML Form Basics
 ====================

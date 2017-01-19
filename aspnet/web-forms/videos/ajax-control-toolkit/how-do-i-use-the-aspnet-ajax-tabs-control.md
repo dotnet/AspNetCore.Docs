@@ -2,7 +2,7 @@
 title: "[How Do I:] Use the ASP.NET AJAX Tabs Control? | Microsoft Docs"
 author: JoeStagner
 description: "This video demonstrates the basics of the Tabs control from the ASP.NET AJAX Control Toolkit, with which you can create a set of tabs to organize content on..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/01/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-tabs-control
+msc.type: video
 ---
 [How Do I:] Use the ASP.NET AJAX Tabs Control?
 ====================

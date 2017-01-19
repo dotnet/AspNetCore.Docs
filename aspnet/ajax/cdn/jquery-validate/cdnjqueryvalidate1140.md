@@ -2,7 +2,7 @@
 title: "jQuery Validation 1.14.0 | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/26/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-validate/cdnjqueryvalidate1140
+msc.type: content
 ---
 jQuery Validation 1.14.0
 ====================

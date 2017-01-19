@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Storefront Part 17: Checkout With Jeff Atwood | Microsoft Docs"
 author: robconery
 description: "In this episode I ready up the checkout process and talk with Mr. CodingHorror himself, Jeff Atwood. We talk about all kinds of things but mostly discuss Ope..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/16/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-17-checkout-with-jeff-atwood
+msc.type: video
 ---
 ASP.NET MVC Storefront Part 17: Checkout With Jeff Atwood
 ====================

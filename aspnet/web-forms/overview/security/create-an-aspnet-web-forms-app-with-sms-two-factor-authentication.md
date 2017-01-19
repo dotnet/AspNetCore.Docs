@@ -2,7 +2,7 @@
 title: "Create an ASP.NET Web Forms app with SMS Two-Factor Authentication (C#) | Microsoft Docs"
 author: Erikre
 description: "This tutorial shows you how to build an ASP.NET Web Forms app with Two-Factor Authentication. This tutorial was designed to complement the tutorial titled Cr..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/09/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/security/create-an-aspnet-web-forms-app-with-sms-two-factor-authentication
+msc.type: authoredcontent
 ---
 Create an ASP.NET Web Forms app with SMS Two-Factor Authentication (C#)
 ====================

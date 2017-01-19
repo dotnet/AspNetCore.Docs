@@ -2,7 +2,7 @@
 title: "Custom MVC Template | Microsoft Docs"
 author: joeloff
 description: "Create a template as a VSIX extension."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/10/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/advanced/custom-mvc-templates
+msc.type: authoredcontent
 ---
 Custom MVC Template
 ====================

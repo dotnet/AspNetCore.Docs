@@ -2,7 +2,7 @@
 title: "Working with IIS7 Delegated Admin | Microsoft Docs"
 author: JoeStagner
 description: "This video introduces the exciting new remote management functionality built for the IIS7 manager. It illustrates both server and client configuration as wel..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/working-with-iis7-deligated-admin
+msc.type: video
 ---
 Working with IIS7 Delegated Admin
 ====================

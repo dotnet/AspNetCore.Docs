@@ -2,7 +2,7 @@
 title: "Control ID Naming in Content Pages (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Illustrates how ContentPlaceHolder controls serve as a naming container and therefore make programmatically working with a control difficult (via FindConrol)..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/control-id-naming-in-content-pages-vb
+msc.type: authoredcontent
 ---
 Control ID Naming in Content Pages (VB)
 ====================

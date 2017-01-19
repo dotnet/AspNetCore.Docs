@@ -2,7 +2,7 @@
 title: "Recovering and Changing Passwords (C#) | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET includes two Web controls for assisting with recovering and changing passwords. The PasswordRecovery control enables a visitor to recover his lost pa..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/01/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/admin/recovering-and-changing-passwords-cs
+msc.type: authoredcontent
 ---
 Recovering and Changing Passwords (C#)
 ====================

@@ -2,7 +2,7 @@
 title: "Exception Handling in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/12/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/error-handling/exception-handling
+msc.type: authoredcontent
 ---
 Exception Handling in ASP.NET Web API
 ====================

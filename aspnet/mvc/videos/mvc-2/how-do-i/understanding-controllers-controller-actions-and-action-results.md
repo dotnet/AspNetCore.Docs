@@ -2,7 +2,7 @@
 title: "Understanding Controllers, Controller Actions, and Action Results | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther introduces you to ASP.NET MVC controllers. You learn how to create new controllers and return different types of action res..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/20/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/understanding-controllers-controller-actions-and-action-results
+msc.type: video
 ---
 Understanding Controllers, Controller Actions, and Action Results
 ====================

@@ -2,7 +2,7 @@
 title: "Displaying Data in a Grid | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Displaying Data in a Grid tutorial"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/displaying-data-in-a-grid
+msc.type: video
 ---
 Displaying Data in a Grid
 ====================

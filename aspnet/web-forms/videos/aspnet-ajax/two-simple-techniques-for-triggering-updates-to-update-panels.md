@@ -2,7 +2,7 @@
 title: "Two Simple Techniques for Triggering Updates to Update Panels | Microsoft Docs"
 author: JoeStagner
 description: "In this video I will demonstrate two simple update techniques. First, using the selected index changed event from the drop down list control as an event trig..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/13/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/two-simple-techniques-for-triggering-updates-to-update-panels
+msc.type: video
 ---
 Two Simple Techniques for Triggering Updates to Update Panels
 ====================

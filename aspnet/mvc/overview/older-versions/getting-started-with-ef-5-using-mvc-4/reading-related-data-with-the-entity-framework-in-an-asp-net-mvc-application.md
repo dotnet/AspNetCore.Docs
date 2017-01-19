@@ -2,7 +2,7 @@
 title: "Reading Related Data with the Entity Framework in an ASP.NET MVC Application (5 of 10) | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 4 applications using the Entity Framework 5 Code First and Visual Studio..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/30/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application
+msc.type: authoredcontent
 ---
 Reading Related Data with the Entity Framework in an ASP.NET MVC Application (5 of 10)
 ====================
@@ -59,7 +60,7 @@ The database context class performs lazy loading by default. There are two ways 
 - For specific navigation properties, omit the `virtual` keyword when you declare the property.
 - For all navigation properties, set `LazyLoadingEnabled` to `false`. For example, you can put the following code in the constructor of your context class: 
 
-    [!code-unknown[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample-25074-1.unknown)]
+    [!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
 Lazy loading can mask code that causes performance problems. For example, code that doesn't specify eager or explicit loading but processes a high volume of entities and uses several navigation properties in each iteration might be very inefficient (because of many round trips to the database). An application that performs well in development using an on premise SQL server might have performance problems when moved to Azure SQL Database due to the increased latency and lazy loading. Profiling the database queries with a realistic test load will help you determine if lazy loading is appropriate. For more information see [Demystifying Entity Framework Strategies: Loading Related Data](https://msdn.microsoft.com/en-us/magazine/hh205756.aspx) and [Using the Entity Framework to Reduce Network Latency to SQL Azure](https://msdn.microsoft.com/en-us/magazine/gg309181.aspx).
 

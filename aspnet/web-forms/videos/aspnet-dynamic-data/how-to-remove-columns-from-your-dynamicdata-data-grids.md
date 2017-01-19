@@ -2,7 +2,7 @@
 title: "How to Remove Columns From Your DynamicData Data Grids | Microsoft Docs"
 author: JoeStagner
 description: "In this video you'll see how to take advantage of full column scaffolding but still exclude table columns that you don't want to appear in your user interfac..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/11/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-to-remove-columns-from-your-dynamicdata-data-grids
+msc.type: video
 ---
 How to Remove Columns From Your DynamicData Data Grids
 ====================

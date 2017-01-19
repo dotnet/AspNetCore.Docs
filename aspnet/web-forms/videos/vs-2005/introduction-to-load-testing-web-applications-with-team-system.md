@@ -2,7 +2,7 @@
 title: "Introduction to Load Testing Web Applications with Team System | Microsoft Docs"
 author: rick-anderson
 description: "In this video we see how you can load test your web applications using the load testing features of Visual Studio Team System."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/09/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/introduction-to-load-testing-web-applications-with-team-system
+msc.type: video
 ---
 Introduction to Load Testing Web Applications with Team System
 ====================

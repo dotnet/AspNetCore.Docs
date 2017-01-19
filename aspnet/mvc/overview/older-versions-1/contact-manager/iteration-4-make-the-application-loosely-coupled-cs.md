@@ -2,7 +2,7 @@
 title: "Iteration #4 – Make the application loosely coupled (C#) | Microsoft Docs"
 author: microsoft
 description: "In this third iteration, we take advantage of several software design patterns to make it easier to maintain and modify the Contact Manager application. For..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-cs
+msc.type: authoredcontent
 ---
 Iteration #4 – Make the application loosely coupled (C#)
 ====================
@@ -175,7 +176,7 @@ The Decorator pattern enables you to wrap an existing class in a new class in or
 
 If you take a close look at Listing 5 then you'll see that the ContactManager service layer uses the IValidationDictionary interface exclusively. The ContactManager service is not dependent on the ModelStateDictionary class. When the Contact controller creates the ContactManager service, the controller wraps its ModelState like this:
 
-[!code-unknown[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample-25238-9.unknown)]
+[!code-csharp[Main](iteration-4-make-the-application-loosely-coupled-cs/samples/sample9.cs)]
 
 ## Summary
 

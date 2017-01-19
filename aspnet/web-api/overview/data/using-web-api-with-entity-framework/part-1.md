@@ -2,7 +2,7 @@
 title: "Using Web API 2 with Entity Framework 6 | Microsoft Docs"
 author: MikeWasson
 description: "This tutorial will teach you the basics of creating a web application with an ASP.NET Web API back end. The tutorial uses Entity Framework 6 for the data lay..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/28/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-1
+msc.type: authoredcontent
 ---
 Using Web API 2 with Entity Framework 6
 ====================

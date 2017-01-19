@@ -2,7 +2,7 @@
 title: "How Do I? | Microsoft Docs"
 author: rick-anderson
 description: "How to perform a variety of common tasks."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i
+msc.type: chapter
 ---
 How Do I?
 ====================

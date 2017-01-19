@@ -2,7 +2,7 @@
 title: "Best practices for deploying passwords and other sensitive data to ASP.NET and Azure App Service | Microsoft Docs"
 author: Rick-Anderson
 description: "This tutorial shows how your code can securely store and access secure information. The most important point is you should never store passwords or other sen..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/21/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure
+msc.type: authoredcontent
 ---
 Best practices for deploying passwords and other sensitive data to ASP.NET and Azure App Service
 ====================

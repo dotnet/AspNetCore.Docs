@@ -2,7 +2,7 @@
 title: "Logging Error Details with ELMAH (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Error Logging Modules And Handlers (ELMAH) offers another approach to logging runtime errors in a production environment. ELMAH is a free, open source error..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/09/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/logging-error-details-with-elmah-vb
+msc.type: authoredcontent
 ---
 Logging Error Details with ELMAH (VB)
 ====================

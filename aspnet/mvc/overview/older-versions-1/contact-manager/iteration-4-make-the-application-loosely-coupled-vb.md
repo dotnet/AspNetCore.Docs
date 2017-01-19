@@ -2,7 +2,7 @@
 title: "Iteration #4 – Make the application loosely coupled (VB) | Microsoft Docs"
 author: microsoft
 description: "In this third iteration, we take advantage of several software design patterns to make it easier to maintain and modify the Contact Manager application. For..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-vb
+msc.type: authoredcontent
 ---
 Iteration #4 – Make the application loosely coupled (VB)
 ====================

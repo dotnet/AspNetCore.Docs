@@ -2,7 +2,7 @@
 title: "[How Do I:] Make use of Caching? | Microsoft Docs"
 author: microsoft
 description: "Watch a demonstration of Page Output Caching followed by an overview of the new Database Caching support for SQL Server 2000 and SQL Server 2005."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/16/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-make-use-of-caching
+msc.type: video
 ---
 [How Do I:] Make use of Caching?
 ====================

@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Facebook Birthday App | Microsoft Docs"
 author: kirthik
 description: "This tutorial will teach you how to build a Facebook app by using an MVC 5 NuGet package and Visual Studio 2013."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/30/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/aspnet-mvc-facebook-birthday-app
+msc.type: authoredcontent
 ---
 ASP.NET MVC Facebook Birthday App
 ====================

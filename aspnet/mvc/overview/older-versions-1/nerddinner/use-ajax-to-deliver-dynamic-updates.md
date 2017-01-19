@@ -2,7 +2,7 @@
 title: "Use AJAX to Deliver Dynamic Updates | Microsoft Docs"
 author: microsoft
 description: "Step 10 implements support for logged-in users to RSVP their interest in attending a dinner, using an Ajax-based approach integrated within the dinner detail..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-ajax-to-deliver-dynamic-updates
+msc.type: authoredcontent
 ---
 Use AJAX to Deliver Dynamic Updates
 ====================

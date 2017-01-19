@@ -2,7 +2,7 @@
 title: "SignalR Older Versions | Microsoft Docs"
 author: rick-anderson
 description: "Documentation that pertains to earlier versions of SignalR."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/19/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions
+msc.type: chapter
 ---
 SignalR Older Versions
 ====================

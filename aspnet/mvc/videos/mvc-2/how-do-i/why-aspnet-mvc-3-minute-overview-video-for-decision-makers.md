@@ -2,7 +2,7 @@
 title: "Why ASP.NET MVC? 3 minute overview video for decision makers | Microsoft Docs"
 author: robconery
 description: "A high-level overview of ASP.NET MVC for decision-makers who would like to know more about benefits of ASP.NET MVC."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/21/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/why-aspnet-mvc-3-minute-overview-video-for-decision-makers
+msc.type: video
 ---
 Why ASP.NET MVC? 3 minute overview video for decision makers
 ====================

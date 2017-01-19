@@ -2,7 +2,7 @@
 title: "ASP.NET AJAX: A demonstration of ASP.NET AJAX | Microsoft Docs"
 author: JoeStagner
 description: "See how easy it is to build from scratch a 'To Do List' management application using ASP.NET 2.0, and then enhance the user experience using the ASP.NET AJAX..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/24/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/aspnet-ajax-a-demonstration-of-aspnet-ajax
+msc.type: video
 ---
 ASP.NET AJAX: A demonstration of ASP.NET AJAX
 ====================

@@ -2,7 +2,7 @@
 title: "Creating a Connection String and Working with SQL Server LocalDB | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/17/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/creating-a-connection-string
+msc.type: authoredcontent
 ---
 Creating a Connection String and Working with SQL Server LocalDB
 ====================

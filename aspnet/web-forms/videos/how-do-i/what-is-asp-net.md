@@ -2,7 +2,7 @@
 title: "What is ASP.NET? | Microsoft Docs"
 author: shanselman
 description: "Microsoft's Scott Hanselman gives a brief overview of ASP.NET."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/what-is-asp-net
+msc.type: video
 ---
 What is ASP.NET?
 ====================

@@ -2,7 +2,7 @@
 title: "Examining  how  ASP.NET MVC scaffolds the DropDownList Helper | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/12/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper
+msc.type: authoredcontent
 ---
 Examining  how  ASP.NET MVC scaffolds the DropDownList Helper
 ====================

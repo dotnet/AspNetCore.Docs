@@ -2,7 +2,7 @@
 title: "Hot Towel template | Microsoft Docs"
 author: madskristensen
 description: "HotTowel template"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/09/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates/hottowel-template
+msc.type: authoredcontent
 ---
 Hot Towel template
 ====================

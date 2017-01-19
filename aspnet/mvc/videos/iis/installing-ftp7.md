@@ -2,7 +2,7 @@
 title: "Installing FTP7 | Microsoft Docs"
 author: JoeStagner
 description: "FTP7 is new and powerful. This video shows you how to get it up and running!"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/installing-ftp7
+msc.type: video
 ---
 Installing FTP7
 ====================

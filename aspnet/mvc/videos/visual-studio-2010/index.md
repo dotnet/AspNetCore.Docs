@@ -2,7 +2,7 @@
 title: "General VS 2010 Tips | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio 2010"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/visual-studio-2010
+msc.type: chapter
 ---
 General VS 2010 Tips
 ====================

@@ -2,7 +2,7 @@
 title: "Use Custom Principal Objects | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner demonstrates how to implement custom identity in principal objects in order to store user authentication data. For more information on this demo,..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/use-custom-principal-objects
+msc.type: video
 ---
 Use Custom Principal Objects
 ====================

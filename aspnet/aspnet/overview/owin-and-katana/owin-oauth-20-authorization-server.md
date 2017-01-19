@@ -2,7 +2,7 @@
 title: "OWIN OAuth 2.0 Authorization Server | Microsoft Docs"
 author: hongyes
 description: "This tutorial will guide you on how to implement an OAuth 2.0 Authorization Server using OWIN OAuth middleware. This is an advanced tutorial that only outlin..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/20/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-oauth-20-authorization-server
+msc.type: authoredcontent
 ---
 OWIN OAuth 2.0 Authorization Server
 ====================

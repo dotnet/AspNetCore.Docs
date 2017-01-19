@@ -2,7 +2,7 @@
 title: "ASP.NET 3.5 - Membership | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial series examines techniques for using the built-in membership (security) system to create user accounts and configure authorization rules."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership
+msc.type: chapter
 ---
 ASP.NET 3.5 - Membership
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I:] Cache Portions of an ASP.NET Page | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to cache one or more portions of an ASP.NET page by implementing the OutputCache for user controls on the page. First, an..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/12/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-cache-portions-of-an-aspnet-page
+msc.type: video
 ---
 [How Do I:] Cache Portions of an ASP.NET Page
 ====================

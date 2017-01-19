@@ -2,7 +2,7 @@
 title: "ASP.NET Web Pages (Razor) API Quick Reference | Microsoft Docs"
 author: tfitzmac
 description: "This page contains a list with brief examples of the most commonly used objects, properties, and methods for programming ASP.NET Web Pages with Razor syntax."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/api-reference/asp-net-web-pages-api-reference
+msc.type: authoredcontent
 ---
 ASP.NET Web Pages (Razor) API Quick Reference
 ====================

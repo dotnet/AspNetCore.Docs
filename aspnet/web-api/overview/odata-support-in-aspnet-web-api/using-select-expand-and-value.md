@@ -2,7 +2,7 @@
 title: "Using $select, $expand, and $value in ASP.NET Web API 2 OData | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/11/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/using-select-expand-and-value
+msc.type: authoredcontent
 ---
 Using $select, $expand, and $value in ASP.NET Web API 2 OData
 ====================

@@ -2,7 +2,7 @@
 title: "Use AJAX to Implement Mapping Scenarios | Microsoft Docs"
 author: microsoft
 description: "Step 11 shows how to integrate AJAX mapping support into our NerdDinner application, enabling users who are creating, editing or viewing dinners to see the l..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios
+msc.type: authoredcontent
 ---
 Use AJAX to Implement Mapping Scenarios
 ====================
@@ -64,7 +65,7 @@ All we need to-do is to open the \Views\Dinners\DinnerForm.ascx partial view and
 
 The DinnerForm partial above takes an object of type "DinnerFormViewModel" as its model type (because it needs both a Dinner object, as well as a SelectList to populate the dropdownlist of countries). Our Map partial just needs an object of type "Dinner" as its model type, and so when we render the map partial we are passing just the Dinner sub-property of DinnerFormViewModel to it:
 
-[!code-unknown[Main](use-ajax-to-implement-mapping-scenarios/samples/sample-25191-4.unknown)]
+[!code-aspx[Main](use-ajax-to-implement-mapping-scenarios/samples/sample4.aspx)]
 
 The JavaScript function we've added to the partial uses jQuery to attach a "blur" event to the "Address" HTML textbox. You've probably heard of "focus" events that fire when a user clicks or tabs into a textbox. The opposite is a "blur" event that fires when a user exits a textbox. The above event handler clears the latitude and longitude textbox values when this happens, and then plots the new address location on our map. A callback event handler that we defined within the map.js file will then update the longitude and latitude textboxes on our form using values returned by virtual earth based on the address we gave it.
 
@@ -150,7 +151,7 @@ The SearchController's SearchByLocation action method internally calls the FindB
 
 We are then using the Json() helper method on the Controller base class to return the sequence of dinners using a JSON-based wire format. JSON is a standard text format for representing simple data-structures. Below is an example of what a JSON-formatted list of two JsonDinner objects looks like when returned from our action method:
 
-[!code-unknown[Main](use-ajax-to-implement-mapping-scenarios/samples/sample-25191-11.unknown)]
+[!code-json[Main](use-ajax-to-implement-mapping-scenarios/samples/sample11.json)]
 
 ### Calling the JSON-based AJAX method using jQuery
 

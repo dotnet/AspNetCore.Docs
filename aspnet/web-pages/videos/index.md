@@ -2,7 +2,7 @@
 title: "Videos | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/18/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos
+msc.type: book
 ---
 Videos
 ====================

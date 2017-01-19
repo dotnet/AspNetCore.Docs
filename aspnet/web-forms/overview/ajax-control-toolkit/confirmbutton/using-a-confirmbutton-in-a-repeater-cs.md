@@ -2,7 +2,7 @@
 title: "Using a ConfirmButton In a Repeater (C#) | Microsoft Docs"
 author: wenz
 description: "The ConfirmButton extender in the AJAX Control Toolkit creates a Yes/No popup when the user clicks on a button (including LinkButton control). Only if Yes is..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/02/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/confirmbutton/using-a-confirmbutton-in-a-repeater-cs
+msc.type: authoredcontent
 ---
 Using a ConfirmButton In a Repeater (C#)
 ====================

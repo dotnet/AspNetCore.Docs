@@ -2,7 +2,7 @@
 title: "ASP.NET Web API | Microsoft Docs"
 author: shanselman
 description: "Debugging"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/videos/getting-started/aspnet-web-api
+msc.type: video
 ---
 ASP.NET Web API
 ====================

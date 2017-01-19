@@ -2,7 +2,7 @@
 title: "Collapsing and Expanding a Panel from JavaScript (C#) | Microsoft Docs"
 author: wenz
 description: "The CollapsiblePanel control in the ASP.NET AJAX Control Toolkit extends a panel and provides it with the capability to collapse its contents and expand it a..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/02/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/collapsiblepanel/collapsing-and-expanding-a-panel-from-javascript-cs
+msc.type: authoredcontent
 ---
 Collapsing and Expanding a Panel from JavaScript (C#)
 ====================

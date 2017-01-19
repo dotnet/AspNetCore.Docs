@@ -2,7 +2,7 @@
 title: "Paging and Sorting Report Data (VB) | Microsoft Docs"
 author: rick-anderson
 description: "Paging and sorting are two very common features when displaying data in an online application. In this tutorial we'll take a first look at adding sorting and..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/paging-and-sorting/paging-and-sorting-report-data-vb
+msc.type: authoredcontent
 ---
 Paging and Sorting Report Data (VB)
 ====================

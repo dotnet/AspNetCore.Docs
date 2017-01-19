@@ -2,7 +2,7 @@
 title: "Visual Studio 2010 "Quick Hit" - Code Optimized Profile | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn how to use the &quot;Web Development (Code Optimized)&quot; profile option in Visual Studio 2010 that hides the designer tab and..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/05/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/visual-studio-2010/visual-studio-2010-quick-hit-code-optimized-profile
+msc.type: video
 ---
 Visual Studio 2010 "Quick Hit" - Code Optimized Profile
 ====================

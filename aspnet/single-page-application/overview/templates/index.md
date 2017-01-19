@@ -2,7 +2,7 @@
 title: "Templates | Microsoft Docs"
 author: rick-anderson
 description: "Introduction to using Single Page Application templates"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/14/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/templates
+msc.type: chapter
 ---
 Templates
 ====================

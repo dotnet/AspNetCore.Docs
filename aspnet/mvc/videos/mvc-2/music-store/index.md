@@ -2,7 +2,7 @@
 title: "Music Store | Microsoft Docs"
 author: rick-anderson
 description: "Build the ASP.NET MVC Music Store sample application"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/28/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/music-store
+msc.type: chapter
 ---
 Music Store
 ====================

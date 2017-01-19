@@ -2,7 +2,7 @@
 title: "Application Lifecycle Management: From Development to Production | Microsoft Docs"
 author: jrjlee
 description: "This topic illustrates how a fictional company manages the deployment of an ASP.NET web application through test, staging, and production environments as par..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/04/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/application-lifecycle-management-from-development-to-production
+msc.type: authoredcontent
 ---
 Application Lifecycle Management: From Development to Production
 ====================

@@ -2,7 +2,7 @@
 title: "Formatting the DataList and Repeater Based Upon Data (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll step through examples of how we format the appearance of the DataList and Repeater controls, either by using formatting functions with..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/13/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/formatting-the-datalist-and-repeater-based-upon-data-cs
+msc.type: authoredcontent
 ---
 Formatting the DataList and Repeater Based Upon Data (C#)
 ====================

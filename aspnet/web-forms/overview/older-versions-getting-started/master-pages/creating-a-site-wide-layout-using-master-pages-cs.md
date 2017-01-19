@@ -2,7 +2,7 @@
 title: "Creating a Site-Wide Layout Using Master Pages (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial will show master page basics. Namely, what are master pages, how does one create a master page, what are content place holders, how does one cr..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/21/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/master-pages/creating-a-site-wide-layout-using-master-pages-cs
+msc.type: authoredcontent
 ---
 Creating a Site-Wide Layout Using Master Pages (C#)
 ====================

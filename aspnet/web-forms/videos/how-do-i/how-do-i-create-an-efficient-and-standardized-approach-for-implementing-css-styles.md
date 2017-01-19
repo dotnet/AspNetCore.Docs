@@ -2,7 +2,7 @@
 title: "How Do I: Create an Efficient and Standardized Approach for Implementing CSS Styles? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to organize and implement CSS styles that provide a standardized look and feel to a web site. In addition, the styles are..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/15/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-an-efficient-and-standardized-approach-for-implementing-css-styles
+msc.type: video
 ---
 How Do I: Create an Efficient and Standardized Approach for Implementing CSS Styles?
 ====================

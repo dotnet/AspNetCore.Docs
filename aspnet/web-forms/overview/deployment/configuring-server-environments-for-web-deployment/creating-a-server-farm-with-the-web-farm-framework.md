@@ -2,7 +2,7 @@
 title: "Creating a Server Farm with the Web Farm Framework | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to use the Web Farm Framework (WFF) 2.0 to create and configure a web server farm from a collection of servers."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/04/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-server-environments-for-web-deployment/creating-a-server-farm-with-the-web-farm-framework
+msc.type: authoredcontent
 ---
 Creating a Server Farm with the Web Farm Framework
 ====================

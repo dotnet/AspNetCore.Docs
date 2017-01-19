@@ -2,7 +2,7 @@
 title: "MVC Recommended Resources | Microsoft Docs"
 author: Rick-Anderson
 description: "This topic provides links to documentation resources about ASP.NET MVC 5. If you know a great blog post, stackoverflow thread or any other link that would be..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/recommended-resources-for-mvc
+msc.type: authoredcontent
 ---
 MVC Recommended Resources
 ====================

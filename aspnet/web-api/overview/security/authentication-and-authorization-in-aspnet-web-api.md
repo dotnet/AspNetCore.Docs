@@ -2,7 +2,7 @@
 title: "Authentication and Authorization in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: "Gives a general overview of authentication and authorization in ASP.NET Web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/27/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/authentication-and-authorization-in-aspnet-web-api
+msc.type: authoredcontent
 ---
 Authentication and Authorization in ASP.NET Web API
 ====================

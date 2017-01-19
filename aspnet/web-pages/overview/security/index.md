@@ -2,7 +2,7 @@
 title: "Security | Microsoft Docs"
 author: rick-anderson
 description: "How to add login capabilities to an ASP.NET Web Pages application, and how to help protect the application from bots."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/08/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/security
+msc.type: chapter
 ---
 Security
 ====================

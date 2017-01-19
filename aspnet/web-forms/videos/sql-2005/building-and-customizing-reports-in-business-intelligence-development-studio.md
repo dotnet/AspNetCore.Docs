@@ -2,7 +2,7 @@
 title: "Building and Customizing Reports in Business Intelligence Development Studio | Microsoft Docs"
 author: microsoft
 description: "Building on the previous lesson, we dive into building reports from scratch and modifying the reports that were created using the wizards and designers. We a..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/22/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/building-and-customizing-reports-in-business-intelligence-development-studio
+msc.type: video
 ---
 Building and Customizing Reports in Business Intelligence Development Studio
 ====================

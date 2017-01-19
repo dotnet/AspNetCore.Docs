@@ -2,7 +2,7 @@
 title: "Creating and Modifying a CSS File | Microsoft Docs"
 author: tmiranda
 description: "This video introduces the cascading style sheet (CSS) features of Visual Studio 2008. Visual Studio 2008's CSS features make it easy to create style sheets a..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/15/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-editor/creating-and-modifying-a-css-file
+msc.type: video
 ---
 Creating and Modifying a CSS File
 ====================

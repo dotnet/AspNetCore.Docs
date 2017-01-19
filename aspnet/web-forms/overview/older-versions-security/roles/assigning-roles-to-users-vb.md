@@ -2,7 +2,7 @@
 title: "Assigning Roles to Users (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will build two ASP.NET pages to assist with managing what users belong to what roles. The first page will include facilities to see what..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/24/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/roles/assigning-roles-to-users-vb
+msc.type: authoredcontent
 ---
 Assigning Roles to Users (VB)
 ====================

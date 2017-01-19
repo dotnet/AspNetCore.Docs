@@ -2,7 +2,7 @@
 title: "[How Do I:] Add Controls to an ASP.NET Web Page Programmatically | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to create an ASP.NET server control programmatically at runtime and add it to a page. First, learn the basic concept o..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/24/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-add-controls-to-an-aspnet-web-page-programmatically
+msc.type: video
 ---
 [How Do I:] Add Controls to an ASP.NET Web Page Programmatically
 ====================

@@ -2,7 +2,7 @@
 title: "Unit Testing SignalR Applications | Microsoft Docs"
 author: pfletcher
 description: "This article describes how to use the Unit Testing features of SignalR 2.0."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/testing-and-debugging/unit-testing-signalr-applications
+msc.type: authoredcontent
 ---
 Unit Testing SignalR Applications
 ====================

@@ -2,7 +2,7 @@
 title: "Custom Extraction Rules and Coded Web Tests | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio Team System makes it easy to test a Web application by recording a user's interaction with the application and then repeatedly replaying the re..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/26/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/custom-extraction-rules-and-coded-web-tests
+msc.type: video
 ---
 Custom Extraction Rules and Coded Web Tests
 ====================

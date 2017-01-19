@@ -2,7 +2,7 @@
 title: "Displaying Data in a Chart (Part 1) | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Displaying Data in a Chart tutorial (Part 1)"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/displaying-data-in-a-chart-part-1
+msc.type: video
 ---
 Displaying Data in a Chart (Part 1)
 ====================

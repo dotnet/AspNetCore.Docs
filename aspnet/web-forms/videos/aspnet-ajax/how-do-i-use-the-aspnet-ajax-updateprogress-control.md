@@ -2,7 +2,7 @@
 title: "[How Do I:] Use the ASP.NET AJAX UpdateProgress Control? | Microsoft Docs"
 author: JoeStagner
 description: "In an AJAX application there is often a noticeable pause between the time the browser makes a network request and the time the browser receives a response. T..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/20/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-updateprogress-control
+msc.type: video
 ---
 [How Do I:] Use the ASP.NET AJAX UpdateProgress Control?
 ====================

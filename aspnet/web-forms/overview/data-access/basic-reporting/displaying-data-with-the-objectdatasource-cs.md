@@ -2,7 +2,7 @@
 title: "Displaying Data With the ObjectDataSource (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial looks at the ObjectDataSource control Using this control you can bind data retrieved from the BLL created in the previous tutorial without havi..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/31/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting/displaying-data-with-the-objectdatasource-cs
+msc.type: authoredcontent
 ---
 Displaying Data With the ObjectDataSource (C#)
 ====================

@@ -2,7 +2,7 @@
 title: "Model Validation in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/20/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api
+msc.type: authoredcontent
 ---
 Model Validation in ASP.NET Web API
 ====================

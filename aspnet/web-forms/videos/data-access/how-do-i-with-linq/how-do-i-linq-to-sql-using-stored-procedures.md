@@ -2,7 +2,7 @@
 title: "[How Do I:] LINQ to SQL: Using Stored Procedures | Microsoft Docs"
 author: scottstanfield
 description: "Using existing stored procedures and functions is easy with LINQ. We simply drag the stored procedures onto the O/R mapping surface and call them from the ge..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/10/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-using-stored-procedures
+msc.type: video
 ---
 [How Do I:] LINQ to SQL: Using Stored Procedures
 ====================

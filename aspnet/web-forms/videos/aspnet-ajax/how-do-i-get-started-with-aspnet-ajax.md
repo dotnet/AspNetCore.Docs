@@ -2,7 +2,7 @@
 title: "[How Do I:] Get Started with ASP.NET AJAX? | Microsoft Docs"
 author: JoeStagner
 description: "Note that ASP.NET AJAX is included as part of .NET 3.5, so the installation part of this video is only relevant if you are using the .NET Framework Version 2..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/23/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-get-started-with-aspnet-ajax
+msc.type: video
 ---
 [How Do I:] Get Started with ASP.NET AJAX?
 ====================

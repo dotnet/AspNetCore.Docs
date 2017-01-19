@@ -2,7 +2,7 @@
 title: "Release Notes for ASP.NET and Web Tools 2013.1 for Visual Studio 2012 | Microsoft Docs"
 author: microsoft
 description: "This document describes the release of ASP.NET and Web Tools 2013.1 for Visual Studio 2012."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/13/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2012/aspnet-and-web-tools-20131-for-visual-studio-2012
+msc.type: authoredcontent
 ---
 Release Notes for ASP.NET and Web Tools 2013.1 for Visual Studio 2012
 ====================

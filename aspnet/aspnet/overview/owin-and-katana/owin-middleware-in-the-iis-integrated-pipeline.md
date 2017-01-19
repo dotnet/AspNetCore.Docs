@@ -2,7 +2,7 @@
 title: "OWIN Middleware in the IIS integrated pipeline | Microsoft Docs"
 author: Praburaj
 description: "This article shows how to run OWIN middleware Components (OMCs) in the IIS integrated pipeline, and how to set the pipeline event an OMC runs on. You should..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/07/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-middleware-in-the-iis-integrated-pipeline
+msc.type: authoredcontent
 ---
 OWIN Middleware in the IIS integrated pipeline
 ====================

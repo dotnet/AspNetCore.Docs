@@ -2,7 +2,7 @@
 title: "[How Do I:] Make HTML elements accessible from server side code | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to make standard HTML elements in an .aspx page accessible from server side code so they can be used in page processin..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/29/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-make-html-elements-accessible-from-server-side-code
+msc.type: video
 ---
 [How Do I:] Make HTML elements accessible from server side code
 ====================

@@ -2,7 +2,7 @@
 title: "ASP.NET Mobile Controls Tested Devices | Microsoft Docs"
 author: rick-anderson
 description: "The following devices and browsers have been tested with the Microsoft Mobile Internet Toolkit v1.0 and ASP.NET mobile controls. Microsoft Mobile Internet To..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/28/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /mobile/tested-devices
+msc.type: content
 ---
 ASP.NET Mobile Controls Tested Devices
 ====================

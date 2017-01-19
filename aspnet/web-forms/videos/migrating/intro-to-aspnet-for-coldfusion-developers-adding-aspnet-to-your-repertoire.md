@@ -2,7 +2,7 @@
 title: "Intro to ASP.NET for ColdFusion Developers: Adding ASP.NET to Your Repertoire | Microsoft Docs"
 author: microsoft
 description: "This sessions shows a simple yet real world code comparison between ColdFusion and ASP.NET."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/25/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire
+msc.type: video
 ---
 Intro to ASP.NET for ColdFusion Developers: Adding ASP.NET to Your Repertoire
 ====================

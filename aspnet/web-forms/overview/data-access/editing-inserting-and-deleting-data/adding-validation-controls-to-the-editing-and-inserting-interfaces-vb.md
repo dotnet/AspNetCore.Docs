@@ -2,7 +2,7 @@
 title: "Adding Validation Controls to the Editing and Inserting Interfaces (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how easy it is to add validation controls to the EditItemTemplate and InsertItemTemplate of a data Web control, to provide a more..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/17/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-vb
+msc.type: authoredcontent
 ---
 Adding Validation Controls to the Editing and Inserting Interfaces (VB)
 ====================

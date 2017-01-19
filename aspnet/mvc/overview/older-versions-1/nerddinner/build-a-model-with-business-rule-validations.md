@@ -2,7 +2,7 @@
 title: "Build a Model with Business Rule Validations | Microsoft Docs"
 author: microsoft
 description: "Step 3 shows how to create a model that we can use to both query and update the database for our NerdDinner application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/build-a-model-with-business-rule-validations
+msc.type: authoredcontent
 ---
 Build a Model with Business Rule Validations
 ====================
@@ -205,11 +206,11 @@ Now that we've added the above validation and business rule code, any time we tr
 
 Developers can write code like below to proactively determine if a Dinner object is valid, and retrieve a list of all violations in it without raising any exceptions:
 
-[!code-unknown[Main](build-a-model-with-business-rule-validations/samples/sample-25183-13.unknown)]
+[!code-csharp[Main](build-a-model-with-business-rule-validations/samples/sample13.cs)]
 
 If we attempt to save a Dinner in an invalid state, an exception will be raised when we call the Save() method on the DinnerRepository. This occurs because LINQ to SQL automatically calls our Dinner.OnValidate() partial method before it saves the Dinner's changes, and we added code to Dinner.OnValidate() to raise an exception if any rule violations exist in the Dinner. We can catch this exception and reactively retrieve a list of the violations to fix:
 
-[!code-unknown[Main](build-a-model-with-business-rule-validations/samples/sample-25183-14.unknown)]
+[!code-csharp[Main](build-a-model-with-business-rule-validations/samples/sample14.cs)]
 
 Because our validation and business rules are implemented within our model layer, and not within the UI layer, they will be applied and used across all scenarios within our application. We can later change or add business rules and have all code that works with our Dinner objects honor them.
 

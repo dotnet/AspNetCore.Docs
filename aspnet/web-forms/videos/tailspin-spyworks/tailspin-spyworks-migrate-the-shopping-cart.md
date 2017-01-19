@@ -2,7 +2,7 @@
 title: "Tailspin Spyworks - Migrate the Shopping Cart | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner shows how to convert the shopping cart of an anonymous user to an authenticated one before final check out for the Tailspin Spyworks sample Web F..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/29/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-migrate-the-shopping-cart
+msc.type: video
 ---
 Tailspin Spyworks - Migrate the Shopping Cart
 ====================

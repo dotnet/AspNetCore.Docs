@@ -2,7 +2,7 @@
 title: "ASP.NET vNext Videos: Model Binding Part 1 - Selecting Data | Microsoft Docs"
 author: DamianEdwards
 description: "In this video, Damian Edwards begins a look at model binding by demonstrating data selection."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/12/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-vnext-videos-model-binding-part-1-selecting-data
+msc.type: video
 ---
 ASP.NET vNext Videos: Model Binding Part 1 - Selecting Data
 ====================

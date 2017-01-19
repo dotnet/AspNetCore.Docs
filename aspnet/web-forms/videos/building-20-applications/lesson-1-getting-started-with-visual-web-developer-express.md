@@ -2,7 +2,7 @@
 title: "[Lesson 1:] Getting Started with Visual Web Developer Express | Microsoft Docs"
 author: microsoft
 description: "In this lesson, you will begin to get familiar with Visual Web Developer Express Edition, and look at the workflow involved in using the program to build dyn..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/08/2005
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-1-getting-started-with-visual-web-developer-express
+msc.type: video
 ---
 [Lesson 1:] Getting Started with Visual Web Developer Express
 ====================

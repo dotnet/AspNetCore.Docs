@@ -2,7 +2,7 @@
 title: "Part 5: Creating a Dynamic UI with Knockout.js | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/04/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-5
+msc.type: authoredcontent
 ---
 Part 5: Creating a Dynamic UI with Knockout.js
 ====================
@@ -51,11 +52,11 @@ First, define a view-model class:
 
 To populate the `products` array, make an AJAX request to the web API. Recall that we stored the base URI for the API in the view bag (see [Part 4](using-web-api-with-entity-framework-part-4.md) of the tutorial).
 
-[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample4.js?highlight=5)]
+[!code-cshtml[Main](using-web-api-with-entity-framework-part-5/samples/sample4.cshtml?highlight=5)]
 
 Next, add functions to the view-model to create, update, and delete products. These functions submit AJAX calls to the web API and use the results to update the view-model.
 
-[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample5.js?highlight=7)]
+[!code-cshtml[Main](using-web-api-with-entity-framework-part-5/samples/sample5.cshtml?highlight=7)]
 
 Now the most important part: When the DOM is fulled loaded, call the **ko.applyBindings** function and pass in a new instance of the `ProductsViewModel`:
 

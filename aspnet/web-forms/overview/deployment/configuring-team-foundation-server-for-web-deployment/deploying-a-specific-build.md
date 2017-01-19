@@ -2,7 +2,7 @@
 title: "Deploying a Specific Build | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to deploy web packages and database scripts from a specific previous build to a new destination, like a staging or production enviro..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/04/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build
+msc.type: authoredcontent
 ---
 Deploying a Specific Build
 ====================

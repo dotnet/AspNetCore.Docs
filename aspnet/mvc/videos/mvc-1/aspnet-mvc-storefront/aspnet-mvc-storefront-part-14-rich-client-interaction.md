@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Storefront Part 14: Rich Client Interaction | Microsoft Docs"
 author: robconery
 description: "Rich Client interaction specifically focused on AJAX. Rob Conery has documented each step in the development process on his blog ."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/10/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-14-rich-client-interaction
+msc.type: video
 ---
 ASP.NET MVC Storefront Part 14: Rich Client Interaction
 ====================

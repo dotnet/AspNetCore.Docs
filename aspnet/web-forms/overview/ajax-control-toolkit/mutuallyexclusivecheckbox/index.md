@@ -2,7 +2,7 @@
 title: "MutuallyExclusiveCheckbox | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the MutuallyExclusiveCheckbox control to create check boxes that work like radio buttons (mutually exclusive) but that can be..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/mutuallyexclusivecheckbox
+msc.type: chapter
 ---
 MutuallyExclusiveCheckbox
 ====================

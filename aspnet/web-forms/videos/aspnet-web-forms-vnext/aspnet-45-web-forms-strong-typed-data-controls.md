@@ -2,7 +2,7 @@
 title: "ASP.NET 4.5 Web Forms Strong Typed Data Controls | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman demonstrates the new ASP.NET 4.5 Web Forms Strong Typed Data Controls."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-web-forms-vnext/aspnet-45-web-forms-strong-typed-data-controls
+msc.type: video
 ---
 ASP.NET 4.5 Web Forms Strong Typed Data Controls
 ====================

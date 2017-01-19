@@ -2,7 +2,7 @@
 title: "ASP.NET Identity Features & API | Microsoft Docs"
 author: rick-anderson
 description: "Features & API"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/09/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/features-api
+msc.type: chapter
 ---
 ASP.NET Identity Features & API
 ====================

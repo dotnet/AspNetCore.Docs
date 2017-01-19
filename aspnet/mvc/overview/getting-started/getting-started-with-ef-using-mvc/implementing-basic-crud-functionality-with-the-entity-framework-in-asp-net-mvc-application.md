@@ -2,7 +2,7 @@
 title: "Implementing Basic CRUD Functionality with the Entity Framework in ASP.NET MVC Application | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application
+msc.type: authoredcontent
 ---
 Implementing Basic CRUD Functionality with the Entity Framework in ASP.NET MVC Application
 ====================
@@ -216,7 +217,7 @@ You'll add a `try-catch` block to the `HttpPost` `Delete` method to handle any e
     As noted, the `HttpGet` `Delete` method doesn't delete the data. Performing a delete operation in response to a GET request (or for that matter, performing any edit operation, create operation, or any other operation that changes data) creates a security risk. For more information, see [ASP.NET MVC Tip #46 — Don't use Delete Links because they create Security Holes](http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx) on Stephen Walther's blog.
 - In *Views\Student\Delete.cshtml*, add an error message between the `h2` heading and the `h3` heading, as shown in the following example:
 
-    [!code-html[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample14.html?highlight=2)]
+    [!code-cshtml[Main](implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application/samples/sample14.cshtml?highlight=2)]
 
     Run the page by selecting the **Students** tab and clicking a **Delete** hyperlink:
 

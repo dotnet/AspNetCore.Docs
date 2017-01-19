@@ -2,7 +2,7 @@
 title: "Tracing in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: "Shows how to enable tracing in ASP.NET Web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
+msc.type: authoredcontent
 ---
 Tracing in ASP.NET Web API 2
 ====================

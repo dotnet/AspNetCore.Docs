@@ -2,7 +2,7 @@
 title: "Code Editing ASP.NET Web Forms in Visual Studio 2013 | Microsoft Docs"
 author: Erikre
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/03/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/code-editing-in-web-forms-pages
+msc.type: authoredcontent
 ---
 Code Editing ASP.NET Web Forms in Visual Studio 2013
 ====================

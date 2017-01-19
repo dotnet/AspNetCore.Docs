@@ -2,7 +2,7 @@
 title: "Use Code First Migrations to Seed the Database | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/16/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework/part-3
+msc.type: authoredcontent
 ---
 Use Code First Migrations to Seed the Database
 ====================

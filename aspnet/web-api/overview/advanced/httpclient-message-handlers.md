@@ -2,7 +2,7 @@
 title: "HttpClient Message Handlers in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/01/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/httpclient-message-handlers
+msc.type: authoredcontent
 ---
 HttpClient Message Handlers in ASP.NET Web API
 ====================

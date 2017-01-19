@@ -2,7 +2,7 @@
 title: "Performance | Microsoft Docs"
 author: rick-anderson
 description: "How to cache site content for faster performance."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/08/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/performance-and-caching
+msc.type: chapter
 ---
 Performance
 ====================

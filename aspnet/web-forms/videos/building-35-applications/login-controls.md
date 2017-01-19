@@ -2,7 +2,7 @@
 title: "Login Controls | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe will introduce you to ASP.NET Membership by showing you how to use some of the Login Controls in ASP.NET."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/04/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/login-controls
+msc.type: video
 ---
 Login Controls
 ====================

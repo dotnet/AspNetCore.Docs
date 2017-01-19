@@ -2,7 +2,7 @@
 title: "An Introduction to URL Routing | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther demonstrates how browser requests get mapped to controller actions through URL Routing. You also learn how to create a cust..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/20/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/how-do-i/an-introduction-to-url-routing
+msc.type: video
 ---
 An Introduction to URL Routing
 ====================

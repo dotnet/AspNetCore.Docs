@@ -2,7 +2,7 @@
 title: "Begin Editing the Templates in ASP.NET Dynamic Data Applications | Microsoft Docs"
 author: JoeStagner
 description: "This video will explore the application structure of your generated ASP.NET Dynamic Data Application and get you started on editing the provided templates."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/begin-editing-the-templates-in-aspnet-dynamic-data-applications
+msc.type: video
 ---
 Begin Editing the Templates in ASP.NET Dynamic Data Applications
 ====================

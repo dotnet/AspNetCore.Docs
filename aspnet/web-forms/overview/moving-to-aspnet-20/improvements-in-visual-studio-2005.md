@@ -2,7 +2,7 @@
 title: "Improvements in Visual Studio 2005 | Microsoft Docs"
 author: microsoft
 description: "Visual Studio 2005 provides Web application developers with a long list of improvements and enhancements to Web projects."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2005
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/improvements-in-visual-studio-2005
+msc.type: authoredcontent
 ---
 Improvements in Visual Studio 2005
 ====================

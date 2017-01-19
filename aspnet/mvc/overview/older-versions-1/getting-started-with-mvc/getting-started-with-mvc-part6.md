@@ -2,7 +2,7 @@
 title: "Adding a Create Method and Create View | Microsoft Docs"
 author: shanselman
 description: "This is a beginner tutorial that introduces the basics of ASP.NET MVC. You’ll create a simple web application that reads and writes from a database."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/14/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part6
+msc.type: authoredcontent
 ---
 Adding a Create Method and Create View
 ====================

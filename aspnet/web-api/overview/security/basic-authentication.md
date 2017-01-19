@@ -2,7 +2,7 @@
 title: "Basic Authentication in ASP.NET Web API | Microsoft Docs"
 author: MikeWasson
 description: "Describes using Basic Authentication in ASP.NET Web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/02/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security/basic-authentication
+msc.type: authoredcontent
 ---
 Basic Authentication in ASP.NET Web API
 ====================

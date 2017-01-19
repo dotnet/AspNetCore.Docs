@@ -2,7 +2,7 @@
 title: "SignalR and the Real-Time Web | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman explains how to use ASP.NET SignalR to create real-time web applications."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/29/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/real-time-web-with-aspnet-signalr/signalr-and-the-real-time-web
+msc.type: video
 ---
 SignalR and the Real-Time Web
 ====================

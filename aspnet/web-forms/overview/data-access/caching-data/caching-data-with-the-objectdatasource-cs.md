@@ -2,7 +2,7 @@
 title: "Caching Data with the ObjectDataSource (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Caching can mean the difference between a slow and a fast Web application. This tutorial is the first of four that take a detailed look at caching in ASP.NET..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/30/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data/caching-data-with-the-objectdatasource-cs
+msc.type: authoredcontent
 ---
 Caching Data with the ObjectDataSource (C#)
 ====================

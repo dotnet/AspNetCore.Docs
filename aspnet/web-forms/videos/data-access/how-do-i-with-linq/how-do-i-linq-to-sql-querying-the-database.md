@@ -2,7 +2,7 @@
 title: "[How Do I:] LINQ to SQL: Querying the Database | Microsoft Docs"
 author: scottstanfield
 description: "This video shows how to query a database with LINQ, the underlying SQL with a query visualizer, databinding to ASP.NET controls and record paging."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/15/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-querying-the-database
+msc.type: video
 ---
 [How Do I:] LINQ to SQL: Querying the Database
 ====================

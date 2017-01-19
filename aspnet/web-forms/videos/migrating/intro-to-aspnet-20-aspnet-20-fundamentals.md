@@ -2,7 +2,7 @@
 title: "[Intro to ASP.NET 2.0:] ASP.NET 2.0 Fundamentals | Microsoft Docs"
 author: microsoft
 description: "Developers new to ASP.NET will want to attend this webcast designed to familiarize you with its essential features."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/25/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/migrating/intro-to-aspnet-20-aspnet-20-fundamentals
+msc.type: video
 ---
 [Intro to ASP.NET 2.0:] ASP.NET 2.0 Fundamentals
 ====================

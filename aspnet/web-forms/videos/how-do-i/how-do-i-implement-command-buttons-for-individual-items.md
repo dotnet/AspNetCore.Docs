@@ -2,7 +2,7 @@
 title: "[How Do I:] Implement Command Buttons for Individual Items | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to handle events associated with a button control in each item of a data-bound control like a ListView control. First,..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/24/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-command-buttons-for-individual-items
+msc.type: video
 ---
 [How Do I:] Implement Command Buttons for Individual Items
 ====================

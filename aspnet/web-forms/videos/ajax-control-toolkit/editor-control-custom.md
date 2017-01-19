@@ -2,7 +2,7 @@
 title: "Editor Control Custom | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe demonstrates how to create a new class, derived from the AJAX Control Toolkit’s Editor control and implementing a “simple” user."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/13/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/editor-control-custom
+msc.type: video
 ---
 Editor Control Custom
 ====================

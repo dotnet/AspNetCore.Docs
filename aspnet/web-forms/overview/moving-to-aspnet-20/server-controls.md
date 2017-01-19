@@ -2,7 +2,7 @@
 title: "Server Controls | Microsoft Docs"
 author: microsoft
 description: "ASP.NET 2.0 enhances server controls in many ways. In this module, we’ll cover some of the architectural changes to the way ASP.NET 2.0 and Visual Studio 200..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2005
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/server-controls
+msc.type: authoredcontent
 ---
 Server Controls
 ====================

@@ -2,7 +2,7 @@
 title: "Adding Validation Controls to the DataList's Editing Interface (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how easy it is to add validation controls to the DataList's EditItemTemplate in order to provide a more foolproof editing user int..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/30/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/adding-validation-controls-to-the-datalist-s-editing-interface-vb
+msc.type: authoredcontent
 ---
 Adding Validation Controls to the DataList's Editing Interface (VB)
 ====================

@@ -2,7 +2,7 @@
 title: "Creating User Accounts Programmatically | Microsoft Docs"
 author: JoeStagner
 description: "In this video, Joe Stagner demonstrates how to create a custom create user web form programmatically while not using the Create User wizard. For additional i..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/22/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/creating-user-accounts-programmatically
+msc.type: video
 ---
 Creating User Accounts Programmatically
 ====================

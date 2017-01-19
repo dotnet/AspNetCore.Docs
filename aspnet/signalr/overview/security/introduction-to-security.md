@@ -2,7 +2,7 @@
 title: "Introduction to SignalR Security | Microsoft Docs"
 author: pfletcher
 description: "Describes the security issues you must consider when developing a SignalR application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/security/introduction-to-security
+msc.type: authoredcontent
 ---
 Introduction to SignalR Security
 ====================

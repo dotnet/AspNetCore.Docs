@@ -2,7 +2,7 @@
 title: "Creating a Consistent Look (Part 2) | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Creating a Consistent Look tutorial (Part 2)"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/creating-a-consistent-look-part-2
+msc.type: video
 ---
 Creating a Consistent Look (Part 2)
 ====================

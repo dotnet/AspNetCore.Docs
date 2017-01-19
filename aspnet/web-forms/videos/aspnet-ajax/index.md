@@ -2,7 +2,7 @@
 title: "ASP.NET AJAX | Microsoft Docs"
 author: rick-anderson
 description: "Ways to work with ASP.NET AJAX to create highly responsive pages, even if you're not a JavaScript expert."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax
+msc.type: chapter
 ---
 ASP.NET AJAX
 ====================

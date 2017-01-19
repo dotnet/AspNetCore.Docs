@@ -2,7 +2,7 @@
 title: "OWIN and Katana | Microsoft Docs"
 author: rick-anderson
 description: "Katana is a flexible set of components for building and hosting Open Web Interface for .NET (OWIN)-based web applications."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/30/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana
+msc.type: chapter
 ---
 OWIN and Katana
 ====================

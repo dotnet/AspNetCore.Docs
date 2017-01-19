@@ -2,7 +2,7 @@
 title: "Caching Data | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial set explains caching, which can improve site performance, and how to apply caching to the Presentation Layer using the ObjectDataSource control..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/caching-data
+msc.type: chapter
 ---
 Caching Data
 ====================

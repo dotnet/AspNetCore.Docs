@@ -2,7 +2,7 @@
 title: "XSRF/CSRF Prevention in ASP.NET MVC and Web Pages | Microsoft Docs"
 author: Rick-Anderson
 description: "Cross-site request forgery (also known as XSRF or CSRF) is an attack against web-hosted applications whereby a malicious web site can influence the interacti..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/14/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages
+msc.type: authoredcontent
 ---
 XSRF/CSRF Prevention in ASP.NET MVC and Web Pages
 ====================

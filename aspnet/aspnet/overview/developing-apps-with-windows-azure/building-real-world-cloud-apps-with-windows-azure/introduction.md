@@ -2,7 +2,7 @@
 title: "Building Real-World Cloud Apps with Azure | Microsoft Docs"
 author: MikeWasson
 description: "This e-book walks you through a patterns-based approach to building real-world cloud solutions. The patterns apply to the development process as well as to a..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/12/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/introduction
+msc.type: authoredcontent
 ---
 Building Real-World Cloud Apps with Azure
 ====================

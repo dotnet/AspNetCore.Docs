@@ -2,7 +2,7 @@
 title: "Creating a Route Constraint (C#) | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther demonstrates how you can control how browser requests match routes by creating route constraints with regular expressions."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/16/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-a-route-constraint-cs
+msc.type: authoredcontent
 ---
 Creating a Route Constraint (C#)
 ====================
@@ -24,7 +25,7 @@ For example, imagine that you have defined the route in Listing 1 in your Global
 
 **Listing 1 - Global.asax.cs**
 
-[!code-unknown[Main](creating-a-route-constraint-cs/samples/sample-24920-1.unknown)]
+[!code-csharp[Main](creating-a-route-constraint-cs/samples/sample1.cs)]
 
 Listing 1 contains a route named Product. You can use the Product route to map browser requests to the ProductController contained in Listing 2.
 
@@ -56,7 +57,7 @@ What you really want to do is only match URLs that contain a proper integer prod
 
 **Listing 3 - Global.asax.cs**
 
-[!code-unknown[Main](creating-a-route-constraint-cs/samples/sample-24920-3.unknown)]
+[!code-csharp[Main](creating-a-route-constraint-cs/samples/sample3.cs)]
 
 The regular expression \d+ matches one or more integers. This constraint causes the Product route to match the following URLs:
 

@@ -2,7 +2,7 @@
 title: "What is Web Forms | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/21/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/what-is-web-forms
+msc.type: content
 ---
 What is Web Forms
 ====================

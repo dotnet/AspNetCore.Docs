@@ -2,7 +2,7 @@
 title: "[How Do I:] Working with Visual Studio 2008 .NET Framework | Microsoft Docs"
 author: rick-anderson
 description: "In this video I will show you how to use Visual Studio 2008 to work with various versions of the .NET framework. This is called multi-targeting. I will also..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/14/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-working-with-visual-studio-2008-net-framework
+msc.type: video
 ---
 [How Do I:] Working with Visual Studio 2008 .NET Framework
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I:] Use the ASP.NET AJAX History Control? | Microsoft Docs"
 author: scottgolightly
 description: "One problem faced by a typical AJAX application is that a partial page update is not added to the history of the Web browser. This means that the browser's B..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/21/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-history-control
+msc.type: video
 ---
 [How Do I:] Use the ASP.NET AJAX History Control?
 ====================

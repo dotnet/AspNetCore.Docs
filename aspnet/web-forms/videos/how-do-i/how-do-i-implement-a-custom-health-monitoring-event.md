@@ -2,7 +2,7 @@
 title: "[How Do I:] Implement a Custom Health Monitoring Event | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to create a custom health monitoring event that extends a standard health monitoring events in ASP.NET. The custom pro..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/17/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-a-custom-health-monitoring-event
+msc.type: video
 ---
 [How Do I:] Implement a Custom Health Monitoring Event
 ====================

@@ -2,7 +2,7 @@
 title: "Using SQL Server Management Studio | Microsoft Docs"
 author: microsoft
 description: "SQL Server Management Studio Express will typically be your main interface into SQL Server Express. This lesson demonstrates the essential techniques and ski..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/using-sql-server-management-studio
+msc.type: video
 ---
 Using SQL Server Management Studio
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I:] Choose Between Methods of AJAX Page Updates? | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe Stagner compares the two primary methods of performing AJAX-style page updates in an ASP.NET application. The first method is to use an Upd..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/09/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-choose-between-methods-of-ajax-page-updates
+msc.type: video
 ---
 [How Do I:] Choose Between Methods of AJAX Page Updates?
 ====================

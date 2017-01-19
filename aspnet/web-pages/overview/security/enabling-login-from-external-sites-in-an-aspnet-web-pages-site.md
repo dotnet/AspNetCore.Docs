@@ -2,7 +2,7 @@
 title: "Logging In Using External Sites in an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
 author: tfitzmac
 description: "This article explains how to log in to your ASP.NET Web Pages (Razor) site using Facebook, Google, Twitter, Yahoo, and other sites — that is, how to support..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/21/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/security/enabling-login-from-external-sites-in-an-aspnet-web-pages-site
+msc.type: authoredcontent
 ---
 Logging In Using External Sites in an ASP.NET Web Pages (Razor) Site
 ====================

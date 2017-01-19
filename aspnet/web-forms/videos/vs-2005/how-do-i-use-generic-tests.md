@@ -2,7 +2,7 @@
 title: "[How Do I:] Use Generic Tests? | Microsoft Docs"
 author: rick-anderson
 description: "A generic test is an existing program that is wrapped and made available as a test in Visual Studio Team System. In this video we see a demonstration of how..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-use-generic-tests
+msc.type: video
 ---
 [How Do I:] Use Generic Tests?
 ====================

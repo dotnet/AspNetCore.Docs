@@ -2,7 +2,7 @@
 title: "Introduction to ASP.NET Identity | Microsoft Docs"
 author: jongalloway
 description: "The ASP.NET membership system was introduced with ASP.NET 2.0 back in 2005, and since then there have been many changes in the ways web applications typicall..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/17/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/getting-started/introduction-to-aspnet-identity
+msc.type: authoredcontent
 ---
 Introduction to ASP.NET Identity
 ====================

@@ -2,7 +2,7 @@
 title: "Troubleshooting the Packaging Process | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how you can collect detailed information about the packaging process by using the EnablePackageProcessLoggingAndAssert property in the M..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/04/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/troubleshooting-the-packaging-process
+msc.type: authoredcontent
 ---
 Troubleshooting the Packaging Process
 ====================

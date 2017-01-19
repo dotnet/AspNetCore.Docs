@@ -2,7 +2,7 @@
 title: "Iteration #2 – Make the application look nice (C#) | Microsoft Docs"
 author: microsoft
 description: "In this iteration, we improve the appearance of the application by modifying the default ASP.NET MVC view master page and cascading style sheet."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-cs
+msc.type: authoredcontent
 ---
 Iteration #2 – Make the application look nice (C#)
 ====================

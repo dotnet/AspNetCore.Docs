@@ -2,7 +2,7 @@
 title: "Ajax Control Toolkit | Microsoft Docs"
 author: rick-anderson
 description: "How to create very responsive ASP.NET Web pages using the Ajax Control Toolkit."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit
+msc.type: chapter
 ---
 Ajax Control Toolkit
 ====================

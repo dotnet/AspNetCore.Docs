@@ -2,7 +2,7 @@
 title: "Global Error Handling in ASP.NET Web API 2 | Microsoft Docs"
 author: davidmatson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/03/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/error-handling/web-api-global-error-handling
+msc.type: authoredcontent
 ---
 Global Error Handling in ASP.NET Web API 2
 ====================

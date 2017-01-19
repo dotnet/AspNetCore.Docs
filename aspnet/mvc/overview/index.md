@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Guidance | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/23/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview
+msc.type: book
 ---
 ASP.NET MVC Guidance
 ====================

@@ -2,7 +2,7 @@
 title: "Adding a View | Microsoft Docs"
 author: Rick-Anderson
 description: "Note: An updated version of this tutorial is available here that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demo..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/28/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-a-view
+msc.type: authoredcontent
 ---
 Adding a View
 ====================
@@ -78,7 +79,7 @@ Change the site-title heading in the layout template from &quot;your logo here&q
 
 Replace the contents of the title element with the following markup:
 
-[!code-unknown[Main](adding-a-view/samples/sample-37148-5.unknown)]
+[!code-cshtml[Main](adding-a-view/samples/sample5.cshtml)]
 
 Run the application and notice that it now says &quot;MVC Movie &quot;. Click the **About** link, and you see how that page shows &quot;MVC Movie&quot;, too. We were able to make the change once in the layout template and have all pages on the site reflect the new title.
 

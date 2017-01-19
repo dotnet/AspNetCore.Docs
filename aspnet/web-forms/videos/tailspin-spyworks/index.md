@@ -2,7 +2,7 @@
 title: "Tailspin Spyworks | Microsoft Docs"
 author: rick-anderson
 description: "How to use new features in ASP.NET 4 to build an online store, including shopping, checkout, and administration."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks
+msc.type: chapter
 ---
 Tailspin Spyworks
 ====================

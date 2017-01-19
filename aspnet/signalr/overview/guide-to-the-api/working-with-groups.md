@@ -2,7 +2,7 @@
 title: "Working with Groups in SignalR | Microsoft Docs"
 author: pfletcher
 description: "This topic describes how to persist group membership information with the Hub API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/guide-to-the-api/working-with-groups
+msc.type: authoredcontent
 ---
 Working with Groups in SignalR
 ====================

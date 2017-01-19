@@ -2,7 +2,7 @@
 title: "Older Versions - MVC 1 and 2 | Microsoft Docs"
 author: rick-anderson
 description: "Resources for learning how to program MVC 1 and 2."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1
+msc.type: chapter
 ---
 Older Versions - MVC 1 and 2
 ====================

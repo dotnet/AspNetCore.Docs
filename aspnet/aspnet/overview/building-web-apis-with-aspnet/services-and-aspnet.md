@@ -2,7 +2,7 @@
 title: "Services and ASP.NET | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman explains how to create services with ASP.NET Web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/29/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/building-web-apis-with-aspnet/services-and-aspnet
+msc.type: video
 ---
 Services and ASP.NET
 ====================

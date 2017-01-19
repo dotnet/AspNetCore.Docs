@@ -2,7 +2,7 @@
 title: "Security, Authentication, and Authorization with ASP.NET MVC | Microsoft Docs"
 author: rick-anderson
 description: "How to make an ASP.NET site more secure, and how to implement authentication and authorization."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/10/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/security
+msc.type: chapter
 ---
 Security, Authentication, and Authorization with ASP.NET MVC
 ====================

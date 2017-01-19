@@ -2,7 +2,7 @@
 title: "Web Forms Video Training from Pluralsight | Microsoft Docs"
 author: rick-anderson
 description: "Web Forms Video Training from Pluralsight This ASP.NET Web Forms development course introduces you to several key technologies you need to know as a .NET dev..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/16/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/pluralsight
+msc.type: content
 ---
 Web Forms Video Training from Pluralsight
 ====================

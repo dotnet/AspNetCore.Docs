@@ -2,7 +2,7 @@
 title: "Building Real World Cloud Apps with Azure | Microsoft Docs"
 author: rick-anderson
 description: "Building Real World Cloud Apps with Azure"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure
+msc.type: chapter
 ---
 Building Real World Cloud Apps with Azure
 ====================

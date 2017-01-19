@@ -2,7 +2,7 @@
 title: "ASP.NET MVC For the Rest of Us: Part 3 | Microsoft Docs"
 author: JoeStagner
 description: "In this Video Microsoft's Joe Stagner rebuilds the 'Contact Us' feature for an ASP.NET MVC application using the Microsoft Entity Framework and a strongly ty..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/22/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-2/aspnet-mvc-for-the-rest-of-us/aspnet-mvc-for-the-rest-of-us-part-3
+msc.type: video
 ---
 ASP.NET MVC For the Rest of Us: Part 3
 ====================

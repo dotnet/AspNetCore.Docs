@@ -2,7 +2,7 @@
 title: "[Lesson 7:] Databinding to User Interface Controls | Microsoft Docs"
 author: microsoft
 description: "In this lesson, you will learn how to display data in your ASP.NET&#160;2.0 web applications through some of the new databound controls."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/29/2005
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-7-databinding-to-user-interface-controls
+msc.type: video
 ---
 [Lesson 7:] Databinding to User Interface Controls
 ====================

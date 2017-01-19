@@ -2,7 +2,7 @@
 title: "[How Do I:] Use a Visual Studio 2008 Web Deployment Project | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the Visual Studio 2008 Web Deployment add-on to create deployment projects with a finer degree of control over how..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/11/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-a-visual-studio-2008-web-deployment-project
+msc.type: video
 ---
 [How Do I:] Use a Visual Studio 2008 Web Deployment Project
 ====================

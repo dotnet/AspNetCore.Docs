@@ -2,7 +2,7 @@
 title: "Getting Started | Microsoft Docs"
 author: rick-anderson
 description: "This page describes how to download the Ajax Control Toolkit and how to add its controls to the Visual Studio or Visual Web Developer toolbox."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started
+msc.type: chapter
 ---
 Getting Started
 ====================

@@ -2,7 +2,7 @@
 title: "Web Development Best Practices | Microsoft Docs"
 author: rick-anderson
 description: "Web Development Best Practices"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/08/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/web-development-best-practices
+msc.type: chapter
 ---
 Web Development Best Practices
 ====================

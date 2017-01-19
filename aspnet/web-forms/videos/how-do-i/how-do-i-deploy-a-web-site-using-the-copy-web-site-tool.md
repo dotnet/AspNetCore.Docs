@@ -2,7 +2,7 @@
 title: "[How Do I:] Deploy a Web Site Using the Copy Web Site Tool | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to deploy a web site using the Copy Web Site Tool in Visual Studio. First see how to connect to a remote web site and..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/03/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-deploy-a-web-site-using-the-copy-web-site-tool
+msc.type: video
 ---
 [How Do I:] Deploy a Web Site Using the Copy Web Site Tool
 ====================

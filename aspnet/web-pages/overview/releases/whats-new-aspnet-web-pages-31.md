@@ -2,7 +2,7 @@
 title: "What's New in ASP.NET Web Pages 3.1 | Microsoft Docs"
 author: microsoft
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/20/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/releases/whats-new-aspnet-web-pages-31
+msc.type: authoredcontent
 ---
 What's New in ASP.NET Web Pages 3.1
 ====================

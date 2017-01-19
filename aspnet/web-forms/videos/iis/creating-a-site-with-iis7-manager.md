@@ -2,7 +2,7 @@
 title: "Creating a Site with IIS7 Manager | Microsoft Docs"
 author: JoeStagner
 description: "This video demonstrates the provisioning process for new web sites with IIS7."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/creating-a-site-with-iis7-manager
+msc.type: video
 ---
 Creating a Site with IIS7 Manager
 ====================

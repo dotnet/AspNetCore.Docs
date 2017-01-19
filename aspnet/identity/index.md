@@ -2,7 +2,7 @@
 title: "ASP.NET Identity | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/02/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity
+msc.type: categoryindex
 ---
 ASP.NET Identity
 ====================

@@ -2,7 +2,7 @@
 title: "Introduction to ASP.NET Web Programming Using the Razor Syntax | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Introduction to ASP.NET Web Programming Using the Razor Syntax tutorial"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax
+msc.type: video
 ---
 Introduction to ASP.NET Web Programming Using the Razor Syntax
 ====================

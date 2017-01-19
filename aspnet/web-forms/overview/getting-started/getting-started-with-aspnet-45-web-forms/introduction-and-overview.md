@@ -2,7 +2,7 @@
 title: "Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013 | Microsoft Docs"
 author: Erikre
 description: "This step-by-step tutorial series will teach you the basics of building an ASP.NET Web Forms application using ASP.NET 4.5 and Microsoft Visual Studio Expres..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/08/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/introduction-and-overview
+msc.type: authoredcontent
 ---
 Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013
 ====================

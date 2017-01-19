@@ -2,7 +2,7 @@
 title: "Sending HTML Form Data in ASP.NET Web API: Form-urlencoded Data | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/15/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/advanced/sending-html-form-data-part-1
+msc.type: authoredcontent
 ---
 Sending HTML Form Data in ASP.NET Web API: Form-urlencoded Data
 ====================

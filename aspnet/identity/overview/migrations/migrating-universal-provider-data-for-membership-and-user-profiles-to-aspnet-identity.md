@@ -2,7 +2,7 @@
 title: "Migrating Universal Provider Data for Membership and User Profiles to ASP.NET Identity (C#) | Microsoft Docs"
 author: rustd
 description: "This tutorial describes the steps that are necessary to migrate user and role data and user profile data created using Universal Providers of an existing app..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/13/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /identity/overview/migrations/migrating-universal-provider-data-for-membership-and-user-profiles-to-aspnet-identity
+msc.type: authoredcontent
 ---
 Migrating Universal Provider Data for Membership and User Profiles to ASP.NET Identity (C#)
 ====================

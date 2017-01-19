@@ -2,7 +2,7 @@
 title: "[How Do I:] Load Test a Web Application? | Microsoft Docs"
 author: rick-anderson
 description: "This video walks you through the process of recording a Web Test and then replaying it as a Load Test that simulates multiple users. We see how Visual Studio..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/01/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-load-test-a-web-application
+msc.type: video
 ---
 [How Do I:] Load Test a Web Application?
 ====================

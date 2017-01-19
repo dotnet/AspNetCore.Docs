@@ -2,7 +2,7 @@
 title: "ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "Download ASP.NET MVC 4 and build HTTP services that reach a broad range of clients."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/17/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api
+msc.type: categoryindex
 ---
 ASP.NET Web API
 ====================

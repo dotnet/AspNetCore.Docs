@@ -2,7 +2,7 @@
 title: "Bundling and Minifying Assets in an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
 author: microsoft
 description: "Bundling and minification are ways to make your site faster. Bundling lets you combine multiple JavaScript ( .js ) files or multiple cascading style sheet (..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/21/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic/bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site
+msc.type: authoredcontent
 ---
 Bundling and Minifying Assets in an ASP.NET Web Pages (Razor) Site
 ====================

@@ -2,7 +2,7 @@
 title: "Katana Samples | Microsoft Docs"
 author: microsoft
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/17/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/katana-samples
+msc.type: authoredcontent
 ---
 Katana Samples
 ====================

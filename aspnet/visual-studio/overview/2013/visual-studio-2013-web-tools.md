@@ -2,7 +2,7 @@
 title: "Hands On Lab: Visual Studio 2013 Web Tools | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio is an excellent development environment for .NET-based Windows and web projects. It includes a powerful text editor that can easily be used to..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/visual-studio-2013-web-tools
+msc.type: authoredcontent
 ---
 Hands On Lab: Visual Studio 2013 Web Tools
 ====================

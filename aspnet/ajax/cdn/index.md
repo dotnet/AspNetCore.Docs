@@ -2,7 +2,7 @@
 title: "Microsoft Ajax Content Delivery Network | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/21/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: 
+msc.type: content
 ---
 Microsoft Ajax Content Delivery Network
 ====================

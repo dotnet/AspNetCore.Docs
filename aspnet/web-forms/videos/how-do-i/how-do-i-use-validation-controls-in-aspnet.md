@@ -2,7 +2,7 @@
 title: "[How Do I:]  Use Validation Controls in ASP.NET? | Microsoft Docs"
 author: rick-anderson
 description: "In this video learn how to use the validation controls available in ASP.NET to implement validation on your web pages. All the major validation controls such..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/26/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-validation-controls-in-aspnet
+msc.type: video
 ---
 [How Do I:]  Use Validation Controls in ASP.NET?
 ====================

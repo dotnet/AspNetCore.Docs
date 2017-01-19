@@ -2,7 +2,7 @@
 title: "SignalR 1.x Hubs API Guide - JavaScript Client | Microsoft Docs"
 author: pfletcher
 description: "This document provides an introduction to using the Hubs API for SignalR version 1.1 in JavaScript clients, such as browsers and Windows Store (WinJS) applic..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/17/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/signalr-1x-hubs-api-guide-javascript-client
+msc.type: authoredcontent
 ---
 SignalR 1.x Hubs API Guide - JavaScript Client
 ====================

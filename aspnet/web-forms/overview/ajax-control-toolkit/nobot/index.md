@@ -2,7 +2,7 @@
 title: "NoBot | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to use the NoBot control, which provides an automated way to prevent bots from posting to a site."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/nobot
+msc.type: chapter
 ---
 NoBot
 ====================

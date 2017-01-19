@@ -2,7 +2,7 @@
 title: "[How Do I:] Configure an ASP.NET Web Site for a .NET Framework Version | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels will show how to configure an ASP.NET web site to use a specific version of ASP.NET/.NET Framework. First see how to identify what v..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/20/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-configure-an-aspnet-web-site-for-a-net-framework-version
+msc.type: video
 ---
 [How Do I:] Configure an ASP.NET Web Site for a .NET Framework Version
 ====================

@@ -2,7 +2,7 @@
 title: "Databinding the Slider Control (C#) | Microsoft Docs"
 author: wenz
 description: "The Slider control in the AJAX Control Toolkit provides a graphical slider that can be controlled using the mouse. It is possible to bind the current positio..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/02/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/slider/databinding-the-slider-control-cs
+msc.type: authoredcontent
 ---
 Databinding the Slider Control (C#)
 ====================

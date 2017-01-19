@@ -2,7 +2,7 @@
 title: "How To Dynamically Change CSS Using the ASP.NET AJAX UpdatePanel | Microsoft Docs"
 author: JoeStagner
 description: "This video illustrates how to dynamically modify the style of your page using CSS and the AJAX UpdatePanel."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/16/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-to-dynamically-change-css-using-the-aspnet-ajax-updatepanel
+msc.type: video
 ---
 How To Dynamically Change CSS Using the ASP.NET AJAX UpdatePanel
 ====================

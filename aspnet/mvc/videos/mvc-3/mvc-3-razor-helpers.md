@@ -2,7 +2,7 @@
 title: "MVC 3 - Razor Helpers | Microsoft Docs"
 author: jongalloway
 description: "In this video, you will learn how to use both extension methods and declarative @helper syntax in Razor views."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/23/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-3/mvc-3-razor-helpers
+msc.type: video
 ---
 MVC 3 - Razor Helpers
 ====================

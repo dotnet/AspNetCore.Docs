@@ -2,7 +2,7 @@
 title: "ASP.NET Web API: Deployment and Hosting | Microsoft Docs"
 author: rick-anderson
 description: "How to host your web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/26/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/hosting-aspnet-web-api
+msc.type: chapter
 ---
 ASP.NET Web API: Deployment and Hosting
 ====================

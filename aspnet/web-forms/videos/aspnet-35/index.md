@@ -2,7 +2,7 @@
 title: "ASP.NET 3.5 | Microsoft Docs"
 author: rick-anderson
 description: "How to build ASP.NET 3.5 applications, with an emphasis on new features."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35
+msc.type: chapter
 ---
 ASP.NET 3.5
 ====================

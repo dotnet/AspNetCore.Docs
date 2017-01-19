@@ -2,7 +2,7 @@
 title: "SignalR and Web Sockets | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman introduces SignalR and Web Sockets."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/videos/getting-started/signalr-and-web-sockets
+msc.type: video
 ---
 SignalR and Web Sockets
 ====================

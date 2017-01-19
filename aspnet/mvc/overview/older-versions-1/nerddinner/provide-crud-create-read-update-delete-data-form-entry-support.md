@@ -2,7 +2,7 @@
 title: "Provide CRUD (Create, Read, Update, Delete) Data Form Entry Support | Microsoft Docs"
 author: microsoft
 description: "Step 5 shows how to take our DinnersController class further by enable support for editing, creating and deleting Dinners with it as well."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/provide-crud-create-read-update-delete-data-form-entry-support
+msc.type: authoredcontent
 ---
 Provide CRUD (Create, Read, Update, Delete) Data Form Entry Support
 ====================
@@ -98,7 +99,7 @@ The Html.BeginForm() helper method is what output the HTML &lt;form&gt; element 
 
 Alternatively, if you find the "using" statement approach unnatural for a scenario like this, you can use a Html.BeginForm() and Html.EndForm() combination (which does the same thing):
 
-[!code-html[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample4.html)]
+[!code-aspx[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample4.aspx)]
 
 Calling Html.BeginForm() without any parameters will cause it to output a form element that does an HTTP-POST to the current request's URL. That is why our Edit view generates a *&lt;form action="/Dinners/Edit/1" method="post"&gt;* element. We could have alternatively passed explicit parameters to Html.BeginForm() if we wanted to post to a different URL.
 
@@ -384,7 +385,7 @@ By default, the UpdateModel() method will attempt to update all properties on th
 
 You can lock down the binding policy on a per-usage basis by providing an explicit "include list" of properties that can be updated. This can be done by passing an extra string array parameter to the UpdateModel() method like below:
 
-[!code-unknown[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample-25185-32.unknown)]
+[!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample32.cs)]
 
 Objects passed as action method parameters also support a [Bind] attribute that enables an "include list" of allowed properties to be specified like below:
 

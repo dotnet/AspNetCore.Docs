@@ -2,7 +2,7 @@
 title: "Using Script Combining to improve AJAX performance | Microsoft Docs"
 author: rick-anderson
 description: "Betrand Le Roy outlines how to improve the performance of an Ajax application using a new feature called Script Combining , utilizing a simple page with samp..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/08/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/using-script-combining-to-improve-ajax-performance
+msc.type: video
 ---
 Using Script Combining to improve AJAX performance
 ====================

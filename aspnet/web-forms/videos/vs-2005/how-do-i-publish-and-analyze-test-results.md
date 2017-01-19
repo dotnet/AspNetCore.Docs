@@ -2,7 +2,7 @@
 title: "[How Do I:] Publish and Analyze Test Results? | Microsoft Docs"
 author: rick-anderson
 description: "Visual Studio Team System enables you to chart changes in a project's code quality as the project progresses. This video provides instructions on how to publ..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-publish-and-analyze-test-results
+msc.type: video
 ---
 [How Do I:] Publish and Analyze Test Results?
 ====================

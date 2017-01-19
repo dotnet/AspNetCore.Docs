@@ -2,7 +2,7 @@
 title: "How Do I Enable Inline GridView Editing? | Microsoft Docs"
 author: shanselman
 description: "Now that you have created a site with Edit and Details views, how do you enable inline editing in a GridView control? This video shows you how, and also touc..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/08/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-enable-inline-gridview-editing
+msc.type: video
 ---
 How Do I Enable Inline GridView Editing?
 ====================

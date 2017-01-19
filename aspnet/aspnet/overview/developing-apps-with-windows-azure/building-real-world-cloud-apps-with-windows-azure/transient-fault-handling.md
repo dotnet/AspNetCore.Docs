@@ -2,7 +2,7 @@
 title: "Transient Fault Handling (Building Real-World Cloud Apps with Azure) | Microsoft Docs"
 author: MikeWasson
 description: "The Building Real World Cloud Apps with Azure e-book is based on a presentation developed by Scott Guthrie. It explains 13 patterns and practices that can he..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/03/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling
+msc.type: authoredcontent
 ---
 Transient Fault Handling (Building Real-World Cloud Apps with Azure)
 ====================

@@ -2,7 +2,7 @@
 title: "ASP.NET Web Pages (Razor) Troubleshooting Guide | Microsoft Docs"
 author: tfitzmac
 description: "This article describes issues that you might have when working with ASP.NET Web Pages (Razor) and some suggested solutions. Software versions ASP.NET Web Pag..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/testing-and-debugging/aspnet-web-pages-razor-troubleshooting-guide
+msc.type: authoredcontent
 ---
 ASP.NET Web Pages (Razor) Troubleshooting Guide
 ====================

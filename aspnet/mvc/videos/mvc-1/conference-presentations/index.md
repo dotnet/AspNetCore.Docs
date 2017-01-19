@@ -2,7 +2,7 @@
 title: "Talks | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 1 Talks"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/28/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/conference-presentations
+msc.type: chapter
 ---
 Talks
 ====================

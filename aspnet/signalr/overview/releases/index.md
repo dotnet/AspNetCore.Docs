@@ -2,7 +2,7 @@
 title: "SignalR Releases | Microsoft Docs"
 author: rick-anderson
 description: "Information about SignalR releases and how to upgrade from earlier to later releases."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/19/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/releases
+msc.type: chapter
 ---
 SignalR Releases
 ====================

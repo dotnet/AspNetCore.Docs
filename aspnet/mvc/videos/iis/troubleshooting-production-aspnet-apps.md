@@ -2,7 +2,7 @@
 title: "Troubleshooting Production ASP.NET Apps | Microsoft Docs"
 author: JoeStagner
 description: "This video provides you with a quick inventory of tools to troubleshoot your production ASP.NET applications."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/troubleshooting-production-aspnet-apps
+msc.type: video
 ---
 Troubleshooting Production ASP.NET Apps
 ====================

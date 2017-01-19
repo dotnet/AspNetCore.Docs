@@ -2,7 +2,7 @@
 title: "Using Page Inspector for Visual Studio 2012 in ASP.NET Web Forms | Microsoft Docs"
 author: rick-anderson
 description: "Page Inspector for Visual Studio 2012 is a web development tool with an integrated browser. Select any element in the integrated browser, and Page Inspector..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/getting-started/using-page-inspector-in-a-visual-studio-11-beta-web-forms-project
+msc.type: authoredcontent
 ---
 Using Page Inspector for Visual Studio 2012 in ASP.NET Web Forms
 ====================

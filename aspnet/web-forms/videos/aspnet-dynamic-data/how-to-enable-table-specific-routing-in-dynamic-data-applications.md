@@ -2,7 +2,7 @@
 title: "How to Enable Table Specific Routing in Dynamic Data Applications | Microsoft Docs"
 author: JoeStagner
 description: "In this video learn how to add custom workflow logic to your ASP.NET dynamic data application by using Routing to enable table-specific .aspx file usage."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-to-enable-table-specific-routing-in-dynamic-data-applications
+msc.type: video
 ---
 How to Enable Table Specific Routing in Dynamic Data Applications
 ====================

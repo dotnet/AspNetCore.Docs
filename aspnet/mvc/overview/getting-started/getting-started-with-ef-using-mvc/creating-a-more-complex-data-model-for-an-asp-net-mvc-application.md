@@ -2,7 +2,7 @@
 title: "Creating a More Complex Data Model for an ASP.NET MVC Application | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 5 applications using the Entity Framework 6 Code First and Visual Studio..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/07/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application
+msc.type: authoredcontent
 ---
 Creating a More Complex Data Model for an ASP.NET MVC Application
 ====================

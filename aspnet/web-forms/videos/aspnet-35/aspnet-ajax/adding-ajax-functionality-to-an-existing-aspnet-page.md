@@ -2,7 +2,7 @@
 title: "Adding AJAX Functionality to an Existing ASP.NET Page | Microsoft Docs"
 author: tmiranda
 description: "Using AJAX in ASP.NET pages can increase performance and improve the overall user experience of an application. It is not necessary to rewrite existing pages..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/15/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/aspnet-ajax/adding-ajax-functionality-to-an-existing-aspnet-page
+msc.type: video
 ---
 Adding AJAX Functionality to an Existing ASP.NET Page
 ====================

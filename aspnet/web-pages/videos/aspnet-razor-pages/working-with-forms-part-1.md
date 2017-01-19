@@ -2,7 +2,7 @@
 title: "Working with Forms (Part 1) | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Working with Forms tutorial (Part 1)"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/working-with-forms-part-1
+msc.type: video
 ---
 Working with Forms (Part 1)
 ====================

@@ -2,7 +2,7 @@
 title: "Connecting your Web Application to SQL Server 2005 Express Edition | Microsoft Docs"
 author: microsoft
 description: "SQL Server beginners will walkthrough the entire workflow of creating a database driven Web application and use visual tools to quickly create an administrat..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/20/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/connecting-your-web-application-to-sql-server-2005-express-edition
+msc.type: video
 ---
 Connecting your Web Application to SQL Server 2005 Express Edition
 ====================

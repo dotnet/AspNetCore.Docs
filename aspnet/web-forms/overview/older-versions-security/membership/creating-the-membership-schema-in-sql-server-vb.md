@@ -2,7 +2,7 @@
 title: "Creating the Membership Schema in SQL Server (VB) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial starts by examining techniques for adding the necessary schema to the database in order to use the SqlMembershipProvider. Following that, we wi..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/18/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/membership/creating-the-membership-schema-in-sql-server-vb
+msc.type: authoredcontent
 ---
 Creating the Membership Schema in SQL Server (VB)
 ====================

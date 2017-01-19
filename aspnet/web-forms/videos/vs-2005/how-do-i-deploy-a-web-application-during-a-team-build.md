@@ -2,7 +2,7 @@
 title: "[How Do I:] Deploy a Web Application during a Team Build? | Microsoft Docs"
 author: pjhacker
 description: "This video demonstrates how to create a new team build and how to deploy your Web application as part of the build process. We see that including the deploym..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/01/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-deploy-a-web-application-during-a-team-build
+msc.type: video
 ---
 [How Do I:] Deploy a Web Application during a Team Build?
 ====================

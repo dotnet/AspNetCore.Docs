@@ -2,7 +2,7 @@
 title: "Getting Started with ASP.NET MVC 3 (VB.NET) | Microsoft Docs"
 author: rick-anderson
 description: "The basics of building an ASP.NET MVC Web application using Microsoft Visual Web Developer 2010 Express using VB.NET."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/12/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-aspnet-mvc3/vb
+msc.type: chapter
 ---
 Getting Started with ASP.NET MVC 3 (VB.NET)
 ====================

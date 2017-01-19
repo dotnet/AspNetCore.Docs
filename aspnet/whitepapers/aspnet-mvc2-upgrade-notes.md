@@ -2,7 +2,7 @@
 title: "Upgrading an ASP.NET MVC 1.0 Application to ASP.NET MVC 2 | Microsoft Docs"
 author: rick-anderson
 description: "This document describes both how to upgrade manually and with a wizard an ASP.NET MVC 1.0 Application to ASP.NET MVC 2. This document is also available for d..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/08/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-mvc2-upgrade-notes
+msc.type: content
 ---
 Upgrading an ASP.NET MVC 1.0 Application to ASP.NET MVC 2
 ====================

@@ -2,7 +2,7 @@
 title: "ASP.NET Web Deployment - Recommended Resources | Microsoft Docs"
 author: rick-anderson
 description: "This topic provides links to documentation resources about how to deploy (publish) ASP.NET web applications to IIS by using Visual Studio 2010, Visual Web De..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/14/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-web-deployment-content-map
+msc.type: content
 ---
 ASP.NET Web Deployment - Recommended Resources
 ====================

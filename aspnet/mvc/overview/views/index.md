@@ -2,7 +2,7 @@
 title: "ASP.NET MVC UI, Layouts, and Themes | Microsoft Docs"
 author: rick-anderson
 description: "The Razor syntax and how to use it in views (the V in MVC) to display information."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/10/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/views
+msc.type: chapter
 ---
 ASP.NET MVC UI, Layouts, and Themes
 ====================

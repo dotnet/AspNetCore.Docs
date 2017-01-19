@@ -2,7 +2,7 @@
 title: "ASP.NET 4 - Continuing with Entity Framework 4 and Web Forms | Microsoft Docs"
 author: rick-anderson
 description: "How to build the Contoso U application as an n-tier application using the ObjectDataSource control and how to handle concurrency and maximize performance."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/continuing-with-ef
+msc.type: chapter
 ---
 ASP.NET 4 - Continuing with Entity Framework 4 and Web Forms
 ====================

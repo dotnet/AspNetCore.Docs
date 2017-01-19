@@ -2,7 +2,7 @@
 title: "Creating and Using Stored Procedures | Microsoft Docs"
 author: microsoft
 description: "This video expands on the topic of Stored Procedures which was introduced several lessons ago. In this video we explain the basic syntax to create and update..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/sql-2005/creating-and-using-stored-procedures
+msc.type: video
 ---
 Creating and Using Stored Procedures
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I:] Use MSBuild to Automate the ASP.NET Compiler and Merge Utilities | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to create an MSBuild project that orchestrates the execution of the aspnet_compiler and aspnet_merge utilities for an ASP...."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/07/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-use-msbuild-to-automate-the-aspnet-compiler-and-merge-utilities
+msc.type: video
 ---
 [How Do I:] Use MSBuild to Automate the ASP.NET Compiler and Merge Utilities
 ====================

@@ -2,7 +2,7 @@
 title: "UI, Layouts, and Themes | Microsoft Docs"
 author: rick-anderson
 description: "How to customize the site UI in an ASP.NET Web Pages application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/08/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/ui-layouts-and-themes
+msc.type: chapter
 ---
 UI, Layouts, and Themes
 ====================

@@ -2,7 +2,7 @@
 title: "ASP.NET Web API Releases | Microsoft Docs"
 author: rick-anderson
 description: "What's new in recent Web API releases."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/13/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/releases
+msc.type: chapter
 ---
 ASP.NET Web API Releases
 ====================

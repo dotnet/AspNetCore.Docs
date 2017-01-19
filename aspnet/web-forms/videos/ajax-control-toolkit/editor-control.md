@@ -2,7 +2,7 @@
 title: "Editor Control | Microsoft Docs"
 author: JoeStagner
 description: "This video will demonstrate how to use the new Editor WYSIWYG Editor control from the Microsoft AJAX Control Toolkit."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/13/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/editor-control
+msc.type: video
 ---
 Editor Control
 ====================

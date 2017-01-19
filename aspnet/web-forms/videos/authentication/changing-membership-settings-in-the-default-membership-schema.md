@@ -2,7 +2,7 @@
 title: "Changing Membership Settings in the Default Membership Schema | Microsoft Docs"
 author: JoeStagner
 description: "In this video Joe Stagner looks at how to change the default settings of the membership schema to conform to the specific needs of an custom application. For..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/04/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/changing-membership-settings-in-the-default-membership-schema
+msc.type: video
 ---
 Changing Membership Settings in the Default Membership Schema
 ====================

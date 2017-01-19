@@ -2,7 +2,7 @@
 title: "Database-Driven Site Maps | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial explains how to build a site map dynamically based on information in the database."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/database-driven-site-maps
+msc.type: chapter
 ---
 Database-Driven Site Maps
 ====================

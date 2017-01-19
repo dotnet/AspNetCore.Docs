@@ -2,7 +2,7 @@
 title: "Adding a Controller | Microsoft Docs"
 author: shanselman
 description: "An updated version if this tutorial is available here using Visual Studio 2013 . The new tutorial uses ASP.NET MVC 5, which provides many improvements over t..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/14/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc/getting-started-with-mvc-part2
+msc.type: authoredcontent
 ---
 Adding a Controller
 ====================

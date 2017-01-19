@@ -2,7 +2,7 @@
 title: "Visual Studio Designer | Microsoft Docs"
 author: rick-anderson
 description: "This video illustrates enhanced features in Visual Studio 2008 for working with master pages."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/visual-studio-designer
+msc.type: chapter
 ---
 Visual Studio Designer
 ====================

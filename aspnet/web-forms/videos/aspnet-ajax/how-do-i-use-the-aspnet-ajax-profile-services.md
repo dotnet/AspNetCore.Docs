@@ -2,7 +2,7 @@
 title: "[How Do I:] Use the ASP.NET AJAX Profile Services? | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET 2.0 introduced Profile properties with which you can store details for each user of your ASP.NET Web application. ASP.NET AJAX Profile Services allow..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/16/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-the-aspnet-ajax-profile-services
+msc.type: video
 ---
 [How Do I:] Use the ASP.NET AJAX Profile Services?
 ====================

@@ -2,7 +2,7 @@
 title: "Search | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/22/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/adding-search
+msc.type: authoredcontent
 ---
 Search
 ====================

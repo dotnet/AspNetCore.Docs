@@ -2,7 +2,7 @@
 title: "[How Do I:] Learn the Tips and Tricks of Experts? | Microsoft Docs"
 author: microsoft
 description: "View tips and tricks including encrypting sensitive information stored in the web.config file, posting content to a different page, simplifying complex URLs..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/16/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-learn-the-tips-and-tricks-of-experts
+msc.type: video
 ---
 [How Do I:] Learn the Tips and Tricks of Experts?
 ====================

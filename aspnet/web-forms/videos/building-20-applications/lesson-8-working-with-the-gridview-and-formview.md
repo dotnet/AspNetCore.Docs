@@ -2,7 +2,7 @@
 title: "[Lesson 8:] Working with the GridView and FormView | Microsoft Docs"
 author: microsoft
 description: "In this lesson, you will learn about the GridView and FormView controls and how you can use some of the features of these controls to make editing and displa..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/29/2005
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-8-working-with-the-gridview-and-formview
+msc.type: video
 ---
 [Lesson 8:] Working with the GridView and FormView
 ====================

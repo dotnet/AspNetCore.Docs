@@ -2,7 +2,7 @@
 title: "Customizing the DataList's Editing Interface (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we will create a richer editing interface for the DataList, one that includes DropDownLists and a CheckBox."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/30/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/editing-and-deleting-data-through-the-datalist/customizing-the-datalist-s-editing-interface-vb
+msc.type: authoredcontent
 ---
 Customizing the DataList's Editing Interface (VB)
 ====================

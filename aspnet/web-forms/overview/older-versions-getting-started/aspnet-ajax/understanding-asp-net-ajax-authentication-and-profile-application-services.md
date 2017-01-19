@@ -2,7 +2,7 @@
 title: "Understanding ASP.NET AJAX Authentication and Profile Application Services | Microsoft Docs"
 author: scottcate
 description: "The Authentication service allows users to provide credentials in order to receive an authentication cookie, and is the gateway service to allow custom user..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/14/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/aspnet-ajax/understanding-asp-net-ajax-authentication-and-profile-application-services
+msc.type: authoredcontent
 ---
 Understanding ASP.NET AJAX Authentication and Profile Application Services
 ====================

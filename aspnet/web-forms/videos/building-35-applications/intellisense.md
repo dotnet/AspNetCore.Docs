@@ -2,7 +2,7 @@
 title: "IntelliSense | Microsoft Docs"
 author: JoeStagner
 description: "IntelliSense is a valuable Visual Studio feature for both learning .NET programming as well as accelerating your coding efficiency. This video will introduce..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/09/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-35-applications/intellisense
+msc.type: video
 ---
 IntelliSense
 ====================

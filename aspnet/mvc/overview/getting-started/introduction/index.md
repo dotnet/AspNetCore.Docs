@@ -2,7 +2,7 @@
 title: "Getting Started with ASP.NET MVC 5 | Microsoft Docs"
 author: rick-anderson
 description: "Introduction to ASP.NET MVC 5"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction
+msc.type: chapter
 ---
 Getting Started with ASP.NET MVC 5
 ====================

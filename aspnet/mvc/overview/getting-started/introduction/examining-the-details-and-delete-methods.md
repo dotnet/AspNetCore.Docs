@@ -2,7 +2,7 @@
 title: "Examining the Details and Delete Methods | Microsoft Docs"
 author: Rick-Anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/26/2015
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/introduction/examining-the-details-and-delete-methods
+msc.type: authoredcontent
 ---
 Examining the Details and Delete Methods
 ====================

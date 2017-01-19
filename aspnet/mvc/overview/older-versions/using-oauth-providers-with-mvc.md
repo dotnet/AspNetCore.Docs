@@ -2,7 +2,7 @@
 title: "Using OAuth Providers with MVC 4 | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial shows you how to build an ASP.NET MVC 4 web application that enables users to log in with credentials from an external provider, such as Facebo..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/19/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/using-oauth-providers-with-mvc
+msc.type: authoredcontent
 ---
 Using OAuth Providers with MVC 4
 ====================
@@ -175,7 +176,7 @@ To retrieve the additional user data, open the **AccountController.cs** file in 
 
 This file contains the logic for logging, registering, and managing accounts. In particular, notice the methods called **ExternalLoginCallback** and **ExternalLoginConfirmation**. Within these methods, you can add code to customize external login operations for your application. The first line of the **ExternalLoginCallback** method contains:
 
-[!code-unknown[Main](using-oauth-providers-with-mvc/samples/sample-43322-7.unknown)]
+[!code-csharp[Main](using-oauth-providers-with-mvc/samples/sample7.cs)]
 
 Additional user data is passed back in the **ExtraData** property of the **AuthenticationResult** object that is returned from the **VerifyAuthentication** method. The Facebook client contains the following values in the **ExtraData** property:
 

@@ -2,7 +2,7 @@
 title: "Animation | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to create animations using the Animation control and animation framework."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/11/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/animation
+msc.type: chapter
 ---
 Animation
 ====================

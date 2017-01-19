@@ -2,7 +2,7 @@
 title: "Utilize the AJAX Rating Control in the ASP.NET Toolkit | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner demonstrates how to use the Rating Tool that ships with ASP.NET AJAX Toolkit."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/10/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/utilize-the-ajax-rating-control-in-the-aspnet-toolkit
+msc.type: video
 ---
 Utilize the AJAX Rating Control in the ASP.NET Toolkit
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I:] LINQ to SQL: Updating the Database | Microsoft Docs"
 author: scottstanfield
 description: "In this video I demonstrated how to create, update and delete records through LINQ, simple transactions, updates across relationships, and custom column and..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/15/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-updating-the-database
+msc.type: video
 ---
 [How Do I:] LINQ to SQL: Updating the Database
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I:] Enforce Coding Standards with Code Analysis? | Microsoft Docs"
 author: rick-anderson
 description: "With Visual Studio Team System you have fine control over the code analysis rules that apply to class library projects, web site projects, and source code co..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/09/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-enforce-coding-standards-with-code-analysis
+msc.type: video
 ---
 [How Do I:] Enforce Coding Standards with Code Analysis?
 ====================

@@ -2,7 +2,7 @@
 title: "Retrieving and displaying data with model binding and web forms | Microsoft Docs"
 author: tfitzmac
 description: "This tutorial series demonstrates basic aspects of using model binding with an ASP.NET Web Forms project. Model binding makes data interaction more straight-..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/27/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/presenting-and-managing-data/model-binding/retrieving-data
+msc.type: authoredcontent
 ---
 Retrieving and displaying data with model binding and web forms
 ====================

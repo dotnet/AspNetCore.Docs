@@ -2,7 +2,7 @@
 title: "How Do I with LINQ | Microsoft Docs"
 author: rick-anderson
 description: "This video series walks you through everything you need to know to become proficient in using LINQ as a web developer."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/24/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq
+msc.type: chapter
 ---
 How Do I with LINQ
 ====================

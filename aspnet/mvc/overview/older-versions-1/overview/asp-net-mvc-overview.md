@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Overview | Microsoft Docs"
 author: microsoft
 description: "Learn about the differences between ASP.NET MVC application and ASP.NET Web Forms applications. Learn how to decide when to build an ASP.NET MVC application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/27/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/overview/asp-net-mvc-overview
+msc.type: authoredcontent
 ---
 ASP.NET MVC Overview
 ====================

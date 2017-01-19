@@ -2,7 +2,7 @@
 title: "Customizing Database Deployments for Multiple Environments | Microsoft Docs"
 author: jrjlee
 description: "This topic describes how to tailor the properties of a database to specific target environments as part of the deployment process. Note: The topic assumes th..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/04/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment/customizing-database-deployments-for-multiple-environments
+msc.type: authoredcontent
 ---
 Customizing Database Deployments for Multiple Environments
 ====================

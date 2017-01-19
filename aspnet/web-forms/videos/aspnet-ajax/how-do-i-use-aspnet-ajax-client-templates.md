@@ -2,7 +2,7 @@
 title: "How Do I: Use ASP.NET AJAX Client Templates | Microsoft Docs"
 author: rick-anderson
 description: "There are two key steps involved in building AJAX interactions, calling services asynchronously and updating the page with the resulting data. ASP.NET AJAX h..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/18/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-ajax/how-do-i-use-aspnet-ajax-client-templates
+msc.type: video
 ---
 How Do I: Use ASP.NET AJAX Client Templates
 ====================

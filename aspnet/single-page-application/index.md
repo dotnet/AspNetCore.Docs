@@ -2,7 +2,7 @@
 title: "ASP.NET Single Page Application | Microsoft Docs"
 author: rick-anderson
 description: "Download ASP.NET Fall 2012 Update and have a better end-to-end experience for building applications with significant client-side interactions using JavaScrip..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application
+msc.type: categoryindex
 ---
 ASP.NET Single Page Application
 ====================

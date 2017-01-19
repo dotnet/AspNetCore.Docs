@@ -2,7 +2,7 @@
 title: "Creating a Controller (C#) | Microsoft Docs"
 author: StephenWalther
 description: "In this tutorial, Stephen Walther demonstrates how you can add a controller to an ASP.NET MVC application."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/02/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-a-controller-cs
+msc.type: authoredcontent
 ---
 Creating a Controller (C#)
 ====================

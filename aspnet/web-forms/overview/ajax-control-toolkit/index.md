@@ -2,7 +2,7 @@
 title: "Older Versions - Ajax Control Toolkit | Microsoft Docs"
 author: rick-anderson
 description: "How to get started with the Ajax Control Toolkit, and how to use some of the most popular controls. DevExpress maintains the free and open sourced Ajax Contr..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit
+msc.type: chapter
 ---
 Older Versions - Ajax Control Toolkit
 ====================

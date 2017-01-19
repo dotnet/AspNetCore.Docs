@@ -2,7 +2,7 @@
 title: "ASP.NET Razor Pages | Microsoft Docs"
 author: rick-anderson
 description: "Which videos you can view to drill down into Web Pages and WebMatrix."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/18/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages
+msc.type: chapter
 ---
 ASP.NET Razor Pages
 ====================

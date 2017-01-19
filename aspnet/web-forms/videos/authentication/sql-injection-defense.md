@@ -2,7 +2,7 @@
 title: "SQL Injection Defense | Microsoft Docs"
 author: JoeStagner
 description: "A SQL Injection vulnerability in your application can ruin your whole day. In this video, Microsoft’s Joe Stagner explains how SQL Injection attacks can happ..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/29/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/authentication/sql-injection-defense
+msc.type: video
 ---
 SQL Injection Defense
 ====================

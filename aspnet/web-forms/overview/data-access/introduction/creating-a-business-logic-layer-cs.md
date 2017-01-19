@@ -2,7 +2,7 @@
 title: "Creating a Business Logic Layer (C#) | Microsoft Docs"
 author: rick-anderson
 description: "In this tutorial we'll see how to centralize your business rules into a Business Logic Layer (BLL) that serves as an intermediary for data exchange between t..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/31/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/introduction/creating-a-business-logic-layer-cs
+msc.type: authoredcontent
 ---
 Creating a Business Logic Layer (C#)
 ====================

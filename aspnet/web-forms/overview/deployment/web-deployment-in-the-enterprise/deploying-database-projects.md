@@ -2,7 +2,7 @@
 title: "Deploying Database Projects | Microsoft Docs"
 author: jrjlee
 description: "Note: In lots of enterprise deployment scenarios, you need the ability to publish incremental updates to a deployed database. The alternative is to recreate..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/04/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-database-projects
+msc.type: authoredcontent
 ---
 Deploying Database Projects
 ====================

@@ -2,7 +2,7 @@
 title: "Create a REST API with Attribute Routing in ASP.NET Web API 2 | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/26/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/web-api-routing-and-actions/create-a-rest-api-with-attribute-routing
+msc.type: authoredcontent
 ---
 Create a REST API with Attribute Routing in ASP.NET Web API 2
 ====================

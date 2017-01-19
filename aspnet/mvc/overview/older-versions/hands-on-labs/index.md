@@ -2,7 +2,7 @@
 title: "ASP.NET MVC 4 Hands On Labs | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to develop with ASP.NET MVC with these Hands On Labs"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs
+msc.type: chapter
 ---
 ASP.NET MVC 4 Hands On Labs
 ====================

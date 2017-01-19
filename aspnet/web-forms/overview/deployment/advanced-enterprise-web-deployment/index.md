@@ -2,7 +2,7 @@
 title: "ASP.NET 4 - Enterprise Deployment Series 4 Advanced Topics | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial will show you how to perform various tasks that are required or desirable in a lot of enterprise deployment scenarios."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/16/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/advanced-enterprise-web-deployment
+msc.type: chapter
 ---
 ASP.NET 4 - Enterprise Deployment Series 4 Advanced Topics
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I:] Get Started with the ASP.NET AJAX Animation Extender Control? | Microsoft Docs"
 author: JoeStagner
 description: "This video introduces the Animation extender control from the ASP.NET AJAX Control Toolkit, which provides developers with a fully-extensible framework for a..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/27/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-get-started-with-the-aspnet-ajax-animation-extender-control
+msc.type: video
 ---
 [How Do I:] Get Started with the ASP.NET AJAX Animation Extender Control?
 ====================

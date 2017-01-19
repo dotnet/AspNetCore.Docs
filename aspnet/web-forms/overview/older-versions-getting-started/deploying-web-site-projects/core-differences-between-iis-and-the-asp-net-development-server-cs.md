@@ -2,7 +2,7 @@
 title: "Core Differences Between IIS and the ASP.NET Development Server (C#) | Microsoft Docs"
 author: rick-anderson
 description: "When testing an ASP.NET application locally, chances are you are using the ASP.NET Development Web Server. However, the production website is most likely pow..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/01/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-getting-started/deploying-web-site-projects/core-differences-between-iis-and-the-asp-net-development-server-cs
+msc.type: authoredcontent
 ---
 Core Differences Between IIS and the ASP.NET Development Server (C#)
 ====================

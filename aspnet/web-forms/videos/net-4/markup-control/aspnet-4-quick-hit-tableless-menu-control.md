@@ -2,7 +2,7 @@
 title: "ASP.NET 4 "Quick Hit" – Tableless Menu Control | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will see how the ASP.NET Menu control renders HTML using semantic markup consisting of an unordered list and list elements"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/16/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/markup-control/aspnet-4-quick-hit-tableless-menu-control
+msc.type: video
 ---
 ASP.NET 4 "Quick Hit" – Tableless Menu Control
 ====================

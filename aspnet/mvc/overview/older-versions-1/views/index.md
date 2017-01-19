@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Views | Microsoft Docs"
 author: rick-anderson
 description: "This set of tutorials provides a brief introduction to ASP.NET MVC views, view data, and HTML helpers."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/28/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views
+msc.type: chapter
 ---
 ASP.NET MVC Views
 ====================

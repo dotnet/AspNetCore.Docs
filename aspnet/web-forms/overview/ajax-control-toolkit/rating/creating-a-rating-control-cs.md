@@ -2,7 +2,7 @@
 title: "Creating a Rating Control (C#) | Microsoft Docs"
 author: wenz
 description: "Many websites, from e-commerce to community sites, offer their users to rate articles or items. This usually requires some coding effort, but we do have the..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/02/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/rating/creating-a-rating-control-cs
+msc.type: authoredcontent
 ---
 Creating a Rating Control (C#)
 ====================

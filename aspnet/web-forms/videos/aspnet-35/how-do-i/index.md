@@ -2,7 +2,7 @@
 title: "How Do I | Microsoft Docs"
 author: rick-anderson
 description: "This multi-part video series shows you how to take advantage of new features in ASP.NET 3.5 and Visual Studio 2008."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i
+msc.type: chapter
 ---
 How Do I
 ====================

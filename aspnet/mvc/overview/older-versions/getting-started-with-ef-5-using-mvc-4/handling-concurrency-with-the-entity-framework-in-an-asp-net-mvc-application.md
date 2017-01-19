@@ -2,7 +2,7 @@
 title: "Handling Concurrency with the Entity Framework in an ASP.NET MVC Application (7 of 10) | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 4 applications using the Entity Framework 5 Code First and Visual Studio..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/30/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
+msc.type: authoredcontent
 ---
 Handling Concurrency with the Entity Framework in an ASP.NET MVC Application (7 of 10)
 ====================
@@ -117,7 +118,7 @@ Next, the code adds a custom error message for each column that has database val
 
 A longer error message explains what happened and what to do about it:
 
-[!code-unknown[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample-25076-9.unknown)]
+[!code-csharp[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.cs)]
 
 Finally, the code sets the `RowVersion` value of the `Department` object to the new value retrieved from the database. This new `RowVersion` value will be stored in the hidden field when the Edit page is redisplayed, and the next time the user clicks **Save**, only concurrency errors that happen since the redisplay of the Edit page will be caught.
 
@@ -191,7 +192,7 @@ In *Views\Department\Delete.cshtml*, replace the scaffolded code with the follow
 
 This code adds an error message between the `h2` and `h3` headings:
 
-[!code-html[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.html)]
+[!code-cshtml[Main](handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample17.cshtml)]
 
 It replaces `LastName` with `FullName` in the `Administrator` field:
 

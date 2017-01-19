@@ -2,7 +2,7 @@
 title: "[How Do I:] Use Cascading Style Sheets for Web Page Layout? | Microsoft Docs"
 author: rick-anderson
 description: "In this video we learn how to use &amp;lt;div&amp;gt; elements in combination with cascading style sheets (CSS) to create robust and higher performance web p..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-cascading-style-sheets-for-web-page-layout
+msc.type: video
 ---
 [How Do I:] Use Cascading Style Sheets for Web Page Layout?
 ====================

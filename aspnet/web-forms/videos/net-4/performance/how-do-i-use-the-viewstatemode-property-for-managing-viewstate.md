@@ -2,7 +2,7 @@
 title: "How Do I: Use the ViewStateMode Property for Managing ViewState? | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the ViewStateMode property when designing ViewState for a web site in ASP.NET."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/17/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4/performance/how-do-i-use-the-viewstatemode-property-for-managing-viewstate
+msc.type: video
 ---
 How Do I: Use the ViewStateMode Property for Managing ViewState?
 ====================

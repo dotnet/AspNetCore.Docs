@@ -2,7 +2,7 @@
 title: "NerdDinner Wrap Up | Microsoft Docs"
 author: microsoft
 description: "This is the conclusion of the NerdDinner tutorial, and provides you with information on how to learn more."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/nerddinner-wrap-up
+msc.type: authoredcontent
 ---
 NerdDinner Wrap Up
 ====================

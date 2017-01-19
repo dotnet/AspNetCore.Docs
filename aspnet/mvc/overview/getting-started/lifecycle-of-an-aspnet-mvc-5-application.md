@@ -2,7 +2,7 @@
 title: "Lifecycle of an ASP.NET MVC 5 Application | Microsoft Docs"
 author: cephalin
 description: "Download a PDF document that charts the lifecycle of an ASP.NET MVC 5 application. This lifecycle document provides a high-level view of the MVC lifecycle an..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/28/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/getting-started/lifecycle-of-an-aspnet-mvc-5-application
+msc.type: authoredcontent
 ---
 Lifecycle of an ASP.NET MVC 5 Application
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I:] Create a Full-Featured Customer Login Portal? | Microsoft Docs"
 author: microsoft
 description: "Follow along through the creation of a fictitious customer portal to learn about master pages, themes, membership, roles, site navigation, user profiles, and..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/05/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-a-full-featured-customer-login-portal
+msc.type: video
 ---
 [How Do I:] Create a Full-Featured Customer Login Portal?
 ====================

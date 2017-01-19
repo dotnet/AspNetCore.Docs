@@ -2,7 +2,7 @@
 title: "WebMatrix Readme | Microsoft Docs"
 author: rick-anderson
 description: "WebMatrix and ASP.NET Web Pages (Razor) 1.0 Release Readme"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/06/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/readme
+msc.type: content
 ---
 WebMatrix Readme
 ====================

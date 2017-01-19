@@ -2,7 +2,7 @@
 title: "Part 5: Edit Forms and Templating | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 5 covers Edit Forms and Templating."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/21/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-5
+msc.type: authoredcontent
 ---
 Part 5: Edit Forms and Templating
 ====================
@@ -153,7 +154,7 @@ The model is validated with a simple call to ModelState.IsValid. We haven't adde
 
 If the form submission passes validation, it's time to save the values to the database. With Entity Framework, that just requires adding the model to the Albums collection and calling SaveChanges.
 
-[!code-unknown[Main](mvc-music-store-part-5/samples/sample-24896-10.unknown)]
+[!code-csharp[Main](mvc-music-store-part-5/samples/sample10.cs)]
 
 Entity Framework generates the appropriate SQL commands to persist the value. After saving the data, we redirect back to the list of Albums so we can see our update. This is done by returning RedirectToAction with the name of the controller action we want displayed. In this case, that's the Index method.
 

@@ -2,7 +2,7 @@
 title: "[How Do I:] Converting a .NET 2.0 Windows Forms Application to .NET 3.5 | Microsoft Docs"
 author: rick-anderson
 description: "Using the new multi-targeting feature of Visual Studio 2008, I will demonstrate upgrading a project from .NET 2.0 to .NET 3.5. In this video we will take a ...."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/14/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-35/how-do-i/how-do-i-converting-a-net-20-windows-forms-application-to-net-35
+msc.type: video
 ---
 [How Do I:] Converting a .NET 2.0 Windows Forms Application to .NET 3.5
 ====================

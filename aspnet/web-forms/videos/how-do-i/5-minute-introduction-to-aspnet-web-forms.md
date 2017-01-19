@@ -2,7 +2,7 @@
 title: "Intro to ASP.NET Web Forms | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman presents a 5 minute introduction to ASP.NET Web Forms."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/12/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/5-minute-introduction-to-aspnet-web-forms
+msc.type: video
 ---
 Intro to ASP.NET Web Forms
 ====================

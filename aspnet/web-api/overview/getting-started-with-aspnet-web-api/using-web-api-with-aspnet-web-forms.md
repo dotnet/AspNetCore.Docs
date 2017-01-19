@@ -2,7 +2,7 @@
 title: "Using Web API with ASP.NET Web Forms | Microsoft Docs"
 author: MikeWasson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/03/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/using-web-api-with-aspnet-web-forms
+msc.type: authoredcontent
 ---
 Using Web API with ASP.NET Web Forms
 ====================

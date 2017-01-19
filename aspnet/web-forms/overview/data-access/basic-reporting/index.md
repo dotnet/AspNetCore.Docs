@@ -2,7 +2,7 @@
 title: "Basic Reporting | Microsoft Docs"
 author: rick-anderson
 description: "This set of tutorials looks at how to use the ObjectDataSource control to work with data retrieved from the BLL, all without code."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/basic-reporting
+msc.type: chapter
 ---
 Basic Reporting
 ====================

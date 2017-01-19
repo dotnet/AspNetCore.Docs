@@ -2,7 +2,7 @@
 title: "Manipulating DropShadow Properties from Client Code (VB) | Microsoft Docs"
 author: wenz
 description: "The DropShadow control in the AJAX Control Toolkit extends a panel with a drop shadow. Properties of this extender can also be changed using client JavaScrip..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/02/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/dropshadow/manipulating-dropshadow-properties-from-client-code-vb
+msc.type: authoredcontent
 ---
 Manipulating DropShadow Properties from Client Code (VB)
 ====================

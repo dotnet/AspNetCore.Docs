@@ -2,7 +2,7 @@
 title: "ASP.NET 4 Breaking Changes | Microsoft Docs"
 author: rick-anderson
 description: "This document describes changes that have been made for the .NET Framework version 4 release that can potentially affect applications that were created using..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/10/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet4/breaking-changes
+msc.type: content
 ---
 ASP.NET 4 Breaking Changes
 ====================

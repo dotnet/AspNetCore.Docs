@@ -2,7 +2,7 @@
 title: "Using Web API 2 with Entity Framework 6 | Microsoft Docs"
 author: rick-anderson
 description: "How to create a Web API application that uses Entity Framework for database persistence."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/03/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/data/using-web-api-with-entity-framework
+msc.type: chapter
 ---
 Using Web API 2 with Entity Framework 6
 ====================

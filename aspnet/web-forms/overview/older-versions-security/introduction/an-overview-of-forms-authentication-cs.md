@@ -2,7 +2,7 @@
 title: "An Overview of Forms Authentication (C#) | Microsoft Docs"
 author: rick-anderson
 description: "Creating Custom Routes"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/14/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-cs
+msc.type: authoredcontent
 ---
 An Overview of Forms Authentication (C#)
 ====================

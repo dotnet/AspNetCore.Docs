@@ -2,7 +2,7 @@
 title: "[How Do I:] Use the PagingBulletedList Extender Control? | Microsoft Docs"
 author: JoeStagner
 description: "This video demonstrates the use of the PagingBulletedList extender control from the ASP.NET AJAX Control Toolkit. We learn how the PagingBulletedList extende..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/12/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-pagingbulletedlist-extender-control
+msc.type: video
 ---
 [How Do I:] Use the PagingBulletedList Extender Control?
 ====================

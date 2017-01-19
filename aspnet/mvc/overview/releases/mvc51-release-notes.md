@@ -2,7 +2,7 @@
 title: "What's New in ASP.NET MVC 5.1 | Microsoft Docs"
 author: microsoft
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/27/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/releases/mvc51-release-notes
+msc.type: authoredcontent
 ---
 What's New in ASP.NET MVC 5.1
 ====================

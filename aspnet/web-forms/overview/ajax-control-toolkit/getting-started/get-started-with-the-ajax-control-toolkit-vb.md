@@ -2,7 +2,7 @@
 title: "Get Started with the AJAX Control Toolkit (VB) | Microsoft Docs"
 author: microsoft
 description: "Learn all you need to know to get started using the AJAX Control Toolkit."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/12/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-the-ajax-control-toolkit-vb
+msc.type: authoredcontent
 ---
 Get Started with the AJAX Control Toolkit (VB)
 ====================

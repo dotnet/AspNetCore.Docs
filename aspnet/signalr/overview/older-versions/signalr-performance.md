@@ -2,7 +2,7 @@
 title: "SignalR Performance (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "SignalR Performance"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/03/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/signalr-performance
+msc.type: authoredcontent
 ---
 SignalR Performance (SignalR 1.x)
 ====================

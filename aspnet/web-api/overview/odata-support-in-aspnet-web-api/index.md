@@ -2,7 +2,7 @@
 title: "OData in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "How to create OData endpoints in Web API. OData is a data access protocol for the web. It provides a uniform way to query and manipulate data sets. Web API s..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/17/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api
+msc.type: chapter
 ---
 OData in ASP.NET Web API
 ====================

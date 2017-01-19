@@ -2,7 +2,7 @@
 title: "OWIN Startup Class Detection | Microsoft Docs"
 author: Praburaj
 description: "This tutorial shows how to configure which OWIN startup class is loaded. For more information on OWIN, see An Overview of Project Katana . This tutorial was..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/17/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/owin-startup-class-detection
+msc.type: authoredcontent
 ---
 OWIN Startup Class Detection
 ====================

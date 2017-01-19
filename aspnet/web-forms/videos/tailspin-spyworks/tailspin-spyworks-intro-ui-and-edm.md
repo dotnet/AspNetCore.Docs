@@ -2,7 +2,7 @@
 title: "Tailspin Spyworks - Intro UI and EDM | Microsoft Docs"
 author: JoeStagner
 description: "Joe Stagner kicks off the Tailspin Spyworks sample Web Forms application by implementing the default template."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/12/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/tailspin-spyworks/tailspin-spyworks-intro-ui-and-edm
+msc.type: video
 ---
 Tailspin Spyworks - Intro UI and EDM
 ====================

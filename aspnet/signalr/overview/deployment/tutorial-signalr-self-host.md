@@ -2,7 +2,7 @@
 title: "Tutorial: SignalR Self-Host | Microsoft Docs"
 author: pfletcher
 description: "This tutorial shows how to create a self-hosted SignalR 2 server, and how to connect to it with a JavaScript client. Software versions used in the tutorial V..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/deployment/tutorial-signalr-self-host
+msc.type: authoredcontent
 ---
 Tutorial: SignalR Self-Host
 ====================

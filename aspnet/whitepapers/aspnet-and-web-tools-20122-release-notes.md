@@ -2,7 +2,7 @@
 title: "ASP.NET and Web Tools 2012.2 Release Notes | Microsoft Docs"
 author: rick-anderson
 description: "Release notes for ASP.NET and Web Tools 2012.2."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/14/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /whitepapers/aspnet-and-web-tools-20122-release-notes
+msc.type: content
 ---
 ASP.NET and Web Tools 2012.2 Release Notes
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I]: Use the ASP.NET Cache Object to Cache Application Information | Microsoft Docs"
 author: rick-anderson
 description: "In this video Chris Pels shows how to use the ASP.NET Cache object to store application information. A sample page is created with a simple user interface an..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/26/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-use-the-aspnet-cache-object-to-cache-application-information
+msc.type: video
 ---
 [How Do I]: Use the ASP.NET Cache Object to Cache Application Information
 ====================

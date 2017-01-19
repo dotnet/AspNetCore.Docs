@@ -2,7 +2,7 @@
 title: "Sorting, Filtering, and Paging with the Entity Framework in an ASP.NET MVC Application (3 of 10) | Microsoft Docs"
 author: tdykstra
 description: "The Contoso University sample web application demonstrates how to create ASP.NET MVC 4 applications using the Entity Framework 5 Code First and Visual Studio..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/30/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
+msc.type: authoredcontent
 ---
 Sorting, Filtering, and Paging with the Entity Framework in an ASP.NET MVC Application (3 of 10)
 ====================
@@ -46,7 +47,7 @@ The first time the Index page is requested, there's no query string. The student
 
 The two `ViewBag` variables are used so that the view can configure the column heading hyperlinks with the appropriate query string values:
 
-[!code-unknown[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample-25072-2.unknown)]
+[!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample2.cs)]
 
 These are ternary statements. The first one specifies that if the `sortOrder` parameter is null or empty, `ViewBag.NameSortParm` should be set to "name\_desc"; otherwise, it should be set to an empty string. These two statements enable the view to set the column heading hyperlinks as follows:
 
@@ -140,7 +141,7 @@ The first time the page is displayed, or if the user hasn't clicked a paging or 
 
 `A ViewBag` property provides the view with the current sort order, because this must be included in the paging links in order to keep the sort order the same while paging:
 
-[!code-unknown[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample-25072-9.unknown)]
+[!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample9.cs)]
 
 Another property, `ViewBag.CurrentFilter`, provides the view with the current filter string. This value must be included in the paging links in order to maintain the filter settings during paging, and it must be restored to the text box when the page is redisplayed. If the search string is changed during paging, the page has to be reset to 1, because the new filter can result in different data to display. The search string is changed when a value is entered in the text box and the submit button is pressed. In that case, the `searchString` parameter is not null.
 

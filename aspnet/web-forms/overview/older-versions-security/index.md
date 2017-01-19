@@ -2,7 +2,7 @@
 title: "Older Versions - Security | Microsoft Docs"
 author: rick-anderson
 description: "Security, authentication, and authorization topics for ASP.NET 4 and earlier Web Forms applications."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/18/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/older-versions-security
+msc.type: chapter
 ---
 Older Versions - Security
 ====================

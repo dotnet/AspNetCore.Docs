@@ -2,7 +2,7 @@
 title: "ASP.NET MVC 4 Models and Data Access | Microsoft Docs"
 author: rick-anderson
 description: "Note: This Hands-on Lab assumes you have basic knowledge of ASP.NET MVC . If you have not used ASP.NET MVC before, we recommend you to go over ASP.NET MVC 4..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-models-and-data-access
+msc.type: authoredcontent
 ---
 ASP.NET MVC 4 Models and Data Access
 ====================

@@ -2,7 +2,7 @@
 title: "Security, Authentication, and Authorization in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "Security issues for Web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 12/11/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/security
+msc.type: chapter
 ---
 Security, Authentication, and Authorization in ASP.NET Web API
 ====================

@@ -2,7 +2,7 @@
 title: "Releases | Microsoft Docs"
 author: rick-anderson
 description: "What's new in recent MVC releases."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/09/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/releases
+msc.type: chapter
 ---
 Releases
 ====================

@@ -2,7 +2,7 @@
 title: "Including a File Upload Option When Adding a New Record (C#) | Microsoft Docs"
 author: rick-anderson
 description: "This tutorial shows how to create a Web interface that allows the user to both enter text data and upload binary files. To illustrate the options available t..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/27/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/working-with-binary-files/including-a-file-upload-option-when-adding-a-new-record-cs
+msc.type: authoredcontent
 ---
 Including a File Upload Option When Adding a New Record (C#)
 ====================

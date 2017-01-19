@@ -2,7 +2,7 @@
 title: "Building 2.0 Applications | Microsoft Docs"
 author: rick-anderson
 description: "Building ASP.NET 2.0 Applications"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/building-20-applications
+msc.type: chapter
 ---
 Building 2.0 Applications
 ====================

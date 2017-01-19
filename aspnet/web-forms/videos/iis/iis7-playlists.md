@@ -2,7 +2,7 @@
 title: "IIS7 Playlists | Microsoft Docs"
 author: JoeStagner
 description: "If you're hosting media files on your web site, play lists will let you define sequences for your media and optionally prevent users from skipping parts of t..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/10/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/iis/iis7-playlists
+msc.type: video
 ---
 IIS7 Playlists
 ====================

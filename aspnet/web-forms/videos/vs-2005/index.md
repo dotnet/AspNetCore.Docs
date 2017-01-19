@@ -2,7 +2,7 @@
 title: "Visual Studio 2005 | Microsoft Docs"
 author: rick-anderson
 description: "How to work with Visual Studio 2005, Team System, and add-ins to perform testing, deployment, and other tasks."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005
+msc.type: chapter
 ---
 Visual Studio 2005
 ====================

@@ -2,7 +2,7 @@
 title: "Supported Platforms | Microsoft Docs"
 author: pfletcher
 description: "This article describes what clients and servers are supported by SignalR."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/supported-platforms
+msc.type: authoredcontent
 ---
 Supported Platforms
 ====================

@@ -2,7 +2,7 @@
 title: "[How Do I:] Use the ASP.NET AJAX Slider Control? | Microsoft Docs"
 author: JoeStagner
 description: "The Slider control from the ASP.NET AJAX Control Toolkit provides a simple and elegant way for the user to select a numeric value. This video shows how to ad..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/13/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/ajax-control-toolkit/how-do-i-use-the-aspnet-ajax-slider-control
+msc.type: video
 ---
 [How Do I:] Use the ASP.NET AJAX Slider Control?
 ====================

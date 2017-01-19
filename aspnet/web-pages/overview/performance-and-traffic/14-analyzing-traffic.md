@@ -2,7 +2,7 @@
 title: "Tracking Visitor Information (Analytics) for an ASP.NET Web Pages (Razor) Site | Microsoft Docs"
 author: tfitzmac
 description: "After you've gotten your website going, you might want to analyze your website traffic."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/17/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/overview/performance-and-traffic/14-analyzing-traffic
+msc.type: authoredcontent
 ---
 Tracking Visitor Information (Analytics) for an ASP.NET Web Pages (Razor) Site
 ====================

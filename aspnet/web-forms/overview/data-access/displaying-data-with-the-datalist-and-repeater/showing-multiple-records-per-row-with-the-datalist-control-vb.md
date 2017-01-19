@@ -2,7 +2,7 @@
 title: "Showing Multiple Records per Row with the DataList Control (VB) | Microsoft Docs"
 author: rick-anderson
 description: "In this short tutorial we'll explore how to customize the DataList's layout through its RepeatColumns and RepeatDirection properties."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/13/2006
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/displaying-data-with-the-datalist-and-repeater/showing-multiple-records-per-row-with-the-datalist-control-vb
+msc.type: authoredcontent
 ---
 Showing Multiple Records per Row with the DataList Control (VB)
 ====================

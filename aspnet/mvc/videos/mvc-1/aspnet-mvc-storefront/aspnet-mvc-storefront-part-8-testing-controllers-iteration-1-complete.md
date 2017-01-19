@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Storefront Part 8: Testing Controllers, Iteration 1 Complete | Microsoft Docs"
 author: robconery
 description: "Rob finishes up the initial iteration of the site and work on Controller Tests as well."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/27/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/mvc-1/aspnet-mvc-storefront/aspnet-mvc-storefront-part-8-testing-controllers-iteration-1-complete
+msc.type: video
 ---
 ASP.NET MVC Storefront Part 8: Testing Controllers, Iteration 1 Complete
 ====================

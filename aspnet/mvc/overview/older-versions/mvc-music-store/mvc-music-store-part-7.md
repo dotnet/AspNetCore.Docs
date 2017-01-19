@@ -2,7 +2,7 @@
 title: "Part 7: Membership and Authorization | Microsoft Docs"
 author: jongalloway
 description: "This tutorial series details all of the steps taken to build the ASP.NET MVC Music Store sample application. Part 7 covers Membership and Authorization."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/13/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-7
+msc.type: authoredcontent
 ---
 Part 7: Membership and Authorization
 ====================

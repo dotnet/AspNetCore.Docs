@@ -2,7 +2,7 @@
 title: "How do I Change how my Fields render? | Microsoft Docs"
 author: shanselman
 description: "In this video you learn how to change the way that data fields are rendered. You will plug in third-party controls for some fields."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/08/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/how-do-i-change-how-my-fields-render
+msc.type: video
 ---
 How do I Change how my Fields render?
 ====================

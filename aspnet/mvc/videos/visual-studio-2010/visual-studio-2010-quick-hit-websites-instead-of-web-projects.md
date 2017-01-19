@@ -2,7 +2,7 @@
 title: "Visual Studio 2010 "Quick Hit" - Websites Instead of Web Projects | Microsoft Docs"
 author: JoeStagner
 description: "In this video you will learn about Visual Studio IDE Start Page changes which affect how you create or open Websites."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/11/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/visual-studio-2010/visual-studio-2010-quick-hit-websites-instead-of-web-projects
+msc.type: video
 ---
 Visual Studio 2010 "Quick Hit" - Websites Instead of Web Projects
 ====================

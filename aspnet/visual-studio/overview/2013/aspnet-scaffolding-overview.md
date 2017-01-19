@@ -2,7 +2,7 @@
 title: "ASP.NET Scaffolding in Visual Studio 2013 | Microsoft Docs"
 author: tfitzmac
 description: "ASP.NET Scaffolding is a new feature that is included in Visual Studio 2013."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 04/09/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /visual-studio/overview/2013/aspnet-scaffolding-overview
+msc.type: authoredcontent
 ---
 ASP.NET Scaffolding in Visual Studio 2013
 ====================

@@ -2,7 +2,7 @@
 title: "Protecting Connection Strings and Other Configuration Information (VB) | Microsoft Docs"
 author: rick-anderson
 description: "An ASP.NET application typically stores configuration information in a Web.config file. Some of this information is sensitive and warrants protection. By def..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/03/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/data-access/advanced-data-access-scenarios/protecting-connection-strings-and-other-configuration-information-vb
+msc.type: authoredcontent
 ---
 Protecting Connection Strings and Other Configuration Information (VB)
 ====================

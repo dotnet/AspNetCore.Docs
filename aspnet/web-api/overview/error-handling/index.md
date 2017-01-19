@@ -2,7 +2,7 @@
 title: "Error Handling in ASP.NET Web API | Microsoft Docs"
 author: rick-anderson
 description: "How to handle exceptions in ASP.NET Web API."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webapi
 ms.prod: .net-framework
 msc.legacyurl: /web-api/overview/error-handling
+msc.type: chapter
 ---
 Error Handling in ASP.NET Web API
 ====================

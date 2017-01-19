@@ -2,7 +2,7 @@
 title: "SignalR Deployment and Hosting | Microsoft Docs"
 author: rick-anderson
 description: "How to deploy and host SignalR applications."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/19/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/deployment
+msc.type: chapter
 ---
 SignalR Deployment and Hosting
 ====================

@@ -2,7 +2,7 @@
 title: "What's New in ASP.NET MVC 4 | Microsoft Docs"
 author: rick-anderson
 description: "ASP.NET MVC 4 is a framework for building scalable, standards-based web applications using well-established design patterns and the power of the ASP.NET and..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions/hands-on-labs/whats-new-in-aspnet-mvc-4
+msc.type: authoredcontent
 ---
 What's New in ASP.NET MVC 4
 ====================
@@ -219,7 +220,7 @@ ASP.NET MVC 4 facilitates the development of websites for mobile and tablet brow
 
     HTML
 
-    [!code-html[Main](whats-new-in-aspnet-mvc-4/samples/sample2.html)]
+    [!code-cshtml[Main](whats-new-in-aspnet-mvc-4/samples/sample2.cshtml)]
 
     ![The site after commenting the viewport meta tag](whats-new-in-aspnet-mvc-4/_static/image15.png "The site after commenting the viewport meta tag")
 
@@ -229,7 +230,7 @@ ASP.NET MVC 4 facilitates the development of websites for mobile and tablet brow
 
     HTML
 
-    [!code-html[Main](whats-new-in-aspnet-mvc-4/samples/sample3.html)]
+    [!code-cshtml[Main](whats-new-in-aspnet-mvc-4/samples/sample3.cshtml)]
 
 <a id="Task_3_-_Using_Adaptive_Rendering"></a>
 #### Task 3 - Using Adaptive Rendering

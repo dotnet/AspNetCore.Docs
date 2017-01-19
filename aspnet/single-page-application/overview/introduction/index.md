@@ -2,7 +2,7 @@
 title: "Introduction to ASP.NET Single Page Application | Microsoft Docs"
 author: rick-anderson
 description: "Learn About ASP.NET Single Page Application ASP.NET Single Page Application (SPA) helps you build applications that include significant client-side interacti..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/introduction
+msc.type: chapter
 ---
 Introduction to ASP.NET Single Page Application
 ====================

@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Performance | Microsoft Docs"
 author: rick-anderson
 description: "Resources for optimizing performance of ASP.NET MVC applications."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/09/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/performance
+msc.type: chapter
 ---
 ASP.NET MVC Performance
 ====================

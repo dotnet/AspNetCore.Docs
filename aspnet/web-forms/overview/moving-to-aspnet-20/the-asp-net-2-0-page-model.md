@@ -2,7 +2,7 @@
 title: "The ASP.NET 2.0 Page Model | Microsoft Docs"
 author: microsoft
 description: "In ASP.NET 1.x, developers had a choice between an inline code model and a code-behind code model. Code-behind could be implemented using either the Src attr..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/20/2005
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/the-asp-net-2-0-page-model
+msc.type: authoredcontent
 ---
 The ASP.NET 2.0 Page Model
 ====================

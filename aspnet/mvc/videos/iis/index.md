@@ -2,7 +2,7 @@
 title: "General IIS Tips | Microsoft Docs"
 author: rick-anderson
 description: "IIS"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/14/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis
+msc.type: chapter
 ---
 General IIS Tips
 ====================

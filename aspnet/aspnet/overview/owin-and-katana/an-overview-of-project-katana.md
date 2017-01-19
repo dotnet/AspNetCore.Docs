@@ -2,7 +2,7 @@
 title: "An Overview of Project Katana | Microsoft Docs"
 author: howarddierking
 description: "The ASP.NET Framework has been around for over ten years, and the platform has enabled the development of countless Web sites and services. As Web applicatio..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/30/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/owin-and-katana/an-overview-of-project-katana
+msc.type: authoredcontent
 ---
 An Overview of Project Katana
 ====================

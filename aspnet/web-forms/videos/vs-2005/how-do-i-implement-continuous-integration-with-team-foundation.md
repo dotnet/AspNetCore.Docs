@@ -2,7 +2,7 @@
 title: "[How Do I:] Implement Continuous Integration with Team Foundation? | Microsoft Docs"
 author: rick-anderson
 description: "There are a number of continuous integration tools that work on top of Team Foundation Server, and in this video we look at the free Norton TeamCI tool avail..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/01/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-implement-continuous-integration-with-team-foundation
+msc.type: video
 ---
 [How Do I:] Implement Continuous Integration with Team Foundation?
 ====================

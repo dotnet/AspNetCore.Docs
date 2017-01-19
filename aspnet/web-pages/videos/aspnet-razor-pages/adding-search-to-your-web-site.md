@@ -2,7 +2,7 @@
 title: "Adding Search to Your Web Site | Microsoft Docs"
 author: JoeStagner
 description: "Video accompaniment to the Adding Search to Your Web Site tutorial"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/25/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webpages
 ms.prod: .net-framework
 msc.legacyurl: /web-pages/videos/aspnet-razor-pages/adding-search-to-your-web-site
+msc.type: video
 ---
 Adding Search to Your Web Site
 ====================

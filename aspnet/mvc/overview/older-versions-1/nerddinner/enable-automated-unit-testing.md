@@ -2,7 +2,7 @@
 title: "Enable Automated Unit Testing | Microsoft Docs"
 author: microsoft
 description: "Step 12 shows how to develop a suite of automated unit tests that verify our NerdDinner functionality, and which will give us the confidence to make changes..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/27/2010
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/enable-automated-unit-testing
+msc.type: authoredcontent
 ---
 Enable Automated Unit Testing
 ====================

@@ -2,7 +2,7 @@
 title: "Tutorial: Getting Started with SignalR 2 and MVC 5 | Microsoft Docs"
 author: pfletcher
 description: "This tutorial shows how to use ASP.NET SignalR 2 to create a real-time chat application. You will add SignalR to an MVC 5 application and create a chat view..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/10/2014
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc
+msc.type: authoredcontent
 ---
 Tutorial: Getting Started with SignalR 2 and MVC 5
 ====================

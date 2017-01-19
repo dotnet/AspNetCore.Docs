@@ -2,7 +2,7 @@
 title: ".NET 4 | Microsoft Docs"
 author: rick-anderson
 description: "The new ASP.NET features and functionality available in the .NET Framework 4."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/05/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/net-4
+msc.type: chapter
 ---
 .NET 4
 ====================

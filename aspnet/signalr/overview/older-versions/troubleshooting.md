@@ -2,7 +2,7 @@
 title: "SignalR Troubleshooting (SignalR 1.x) | Microsoft Docs"
 author: pfletcher
 description: "This article describes common issues with developing SignalR applications."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/05/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-signalr
 ms.prod: .net-framework
 msc.legacyurl: /signalr/overview/older-versions/troubleshooting
+msc.type: authoredcontent
 ---
 SignalR Troubleshooting (SignalR 1.x)
 ====================

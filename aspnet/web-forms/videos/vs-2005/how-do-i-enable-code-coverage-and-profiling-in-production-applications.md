@@ -2,7 +2,7 @@
 title: "[How Do I:] Enable Code Coverage and Profiling in Production Applications? | Microsoft Docs"
 author: rick-anderson
 description: "Learn how to set up instrumentation for both code coverage and profiling in a deployed ASP.NET application, rather than an application running from within Vi..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/22/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/vs-2005/how-do-i-enable-code-coverage-and-profiling-in-production-applications
+msc.type: video
 ---
 [How Do I:] Enable Code Coverage and Profiling in Production Applications?
 ====================

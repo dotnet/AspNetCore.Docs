@@ -2,7 +2,7 @@
 title: "Async and Await | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman shows how to use Async and Await support in ASP.NET 4.5."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/15/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/web-development-best-practices/async-and-await
+msc.type: video
 ---
 Async and Await
 ====================

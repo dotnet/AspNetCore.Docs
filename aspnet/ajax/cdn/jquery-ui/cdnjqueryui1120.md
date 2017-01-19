@@ -2,7 +2,7 @@
 title: "jQuery UI 1.12.0 on the Microsoft Ajax CDN | Microsoft Docs"
 author: rick-anderson
 description: ""
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/19/2016
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /ajax/cdn/jquery-ui/cdnjqueryui1120
+msc.type: content
 ---
 jQuery UI 1.12.0 on the Microsoft Ajax CDN
 ====================

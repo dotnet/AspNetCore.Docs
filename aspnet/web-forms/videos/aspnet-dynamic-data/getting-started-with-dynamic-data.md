@@ -2,7 +2,7 @@
 title: "Getting Started with Dynamic Data | Microsoft Docs"
 author: JoeStagner
 description: "In this video we'll build an entire ASP.NET application with ASP.NET Dynamic Data using the Northwind Data by using Dynamic Data's code generating, scaffoldi..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/23/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/aspnet-dynamic-data/getting-started-with-dynamic-data
+msc.type: video
 ---
 Getting Started with Dynamic Data
 ====================

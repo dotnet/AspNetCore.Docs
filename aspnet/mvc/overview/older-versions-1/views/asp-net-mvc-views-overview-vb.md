@@ -2,7 +2,7 @@
 title: "ASP.NET MVC Views Overview (VB) | Microsoft Docs"
 author: StephenWalther
 description: "What is an ASP.NET MVC View and how does it differ from a HTML page? In this tutorial, Stephen Walther introduces you to Views and demonstrates how you can t..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/16/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/views/asp-net-mvc-views-overview-vb
+msc.type: authoredcontent
 ---
 ASP.NET MVC Views Overview (VB)
 ====================

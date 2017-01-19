@@ -2,7 +2,7 @@
 title: "Developing and Deploying In a Shared Hosting | Microsoft Docs"
 author: JoeStagner
 description: "This video introduces developing ASP.NET applications in a shared hosting environment by demonstrating &quot;Live Editing&quot; and &quot;Remote Publication&..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/09/2009
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/videos/iis/developing-and-deploying-in-a-shared-hosting
+msc.type: video
 ---
 Developing and Deploying In a Shared Hosting
 ====================

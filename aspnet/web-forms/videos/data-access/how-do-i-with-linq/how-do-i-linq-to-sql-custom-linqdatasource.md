@@ -2,7 +2,7 @@
 title: "[How Do I:] LINQ to SQL: Custom LinqDataSource | Microsoft Docs"
 author: scottstanfield
 description: "The LinqDataSource control can be customized declaritively, as shown in Part 5, or through code by handling the Selecting method."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/10/2008
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/data-access/how-do-i-with-linq/how-do-i-linq-to-sql-custom-linqdatasource
+msc.type: video
 ---
 [How Do I:] LINQ to SQL: Custom LinqDataSource
 ====================

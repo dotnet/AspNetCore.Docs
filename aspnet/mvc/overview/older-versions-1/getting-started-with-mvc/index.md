@@ -2,7 +2,7 @@
 title: "Getting Started With MVC | Microsoft Docs"
 author: rick-anderson
 description: "This is a beginner tutorial series that introduces ASP.NET MVC. You’ll create a simple web application that reads and writes from a database."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 11/08/2011
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-mvc
 ms.prod: .net-framework
 msc.legacyurl: /mvc/overview/older-versions-1/getting-started-with-mvc
+msc.type: chapter
 ---
 Getting Started With MVC
 ====================

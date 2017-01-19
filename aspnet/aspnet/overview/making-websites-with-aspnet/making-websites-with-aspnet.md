@@ -2,7 +2,7 @@
 title: "Making Websites with ASP.NET | Microsoft Docs"
 author: shanselman
 description: "Scott Hanselman explains One ASP.NET and gives an overview of how to make a website with ASP.NET. ASP.NET is great for building standards-based websites with..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 07/29/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /aspnet/overview/making-websites-with-aspnet/making-websites-with-aspnet
+msc.type: video
 ---
 Making Websites with ASP.NET
 ====================

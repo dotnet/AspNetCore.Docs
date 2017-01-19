@@ -2,7 +2,7 @@
 title: "[How Do I:] Implement an HttpModule? | Microsoft Docs"
 author: scottgolightly
 description: "In this video Scott Golightly shows how to implement a simple HttpModule that uses the BeginRequest and EndRequest events to store some data about the reques..."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/12/2007
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-implement-an-httpmodule
+msc.type: video
 ---
 [How Do I:] Implement an HttpModule?
 ====================

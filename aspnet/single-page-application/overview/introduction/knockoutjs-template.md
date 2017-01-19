@@ -2,7 +2,7 @@
 title: "Single Page Application: KnockoutJS template | Microsoft Docs"
 author: MikeWasson
 description: "Knockout template"
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 01/30/2013
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: 
 ms.prod: .net-framework
 msc.legacyurl: /single-page-application/overview/introduction/knockoutjs-template
+msc.type: authoredcontent
 ---
 Single Page Application: KnockoutJS template
 ====================

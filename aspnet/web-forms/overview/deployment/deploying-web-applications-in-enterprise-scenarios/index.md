@@ -2,7 +2,7 @@
 title: "ASP.NET 4 - Enterprise Deployment Introduction | Microsoft Docs"
 author: rick-anderson
 description: "This set of tutorials describes tools and techniques you can use to deploy web applications in various enterprise scenarios."
-ms.author: riande
+ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/16/2012
 ms.topic: article
@@ -10,6 +10,7 @@ ms.assetid:
 ms.technology: dotnet-webforms
 ms.prod: .net-framework
 msc.legacyurl: /web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios
+msc.type: chapter
 ---
 ASP.NET 4 - Enterprise Deployment Introduction
 ====================
