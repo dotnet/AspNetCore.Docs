@@ -171,7 +171,7 @@ For standalone IIS installations, you may use the [Data Protection Provision-Aut
 
 In web farm scenarios, an application can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys are not encrypted. You can deploy an x509 certificate to each machine to encrypt the key ring. See [Configuring Data Protection](../security/data-protection/configuration/overview.md#data-protection-configuring) for details.
 
->[!WARNING]
+> [!WARNING]
 > Data Protection is used by various ASP.NET middlewares, including those used in authentication. Even if you do not specifically call any Data Protection APIs from your own code you should configure Data Protection with the deployment script or in your own code. If you do not configure data protection when using IIS by default the keys will be held in memory and discarded when your application closes or restarts. This will then, for example, invalidate any cookies written by the cookie authentication and users will have to login again.
 
 ## Configuration of sub-applications
@@ -181,6 +181,42 @@ When adding applications to an IIS Site's root application, the root application
 ## Configuration of IIS via *web.config*
 
 IIS configuration is still influenced by the `<system.webServer>` section of *web.config* for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the server level to use dynamic compression, but you could disable that setting for an app with the `<urlCompression>` element in the app's *web.config* file. For more information, see the [configuration reference for `<system.webServer>`](https://www.iis.net/configreference/system.webserver) and the [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
+
+## Application Pools
+
+When hosting multiple websites on a single server, you should isolate the applications from each other by running each app in its own application pool. The IIS **Add Website** dialog defaults to this behavior. When you provide a **Site name**, the text is automatically transferred to the **Application pool** textbox. A new application pool will be created using the site name when you add the website.
+
+## Application Pool Identity
+
+An application pool identity account allows you to run an application under a unique account without having to create and manage domains or local accounts. On IIS 8.0+, the IIS Admin Worker Process (WAS) will create a virtual account with the name of the new application pool and run the application pool's worker processes under this account by default. In the IIS Management Console, under Advanced Settings for your application pool, ensure that the Identity is set to use **ApplicationPoolIdentity** as shown in the image below.
+
+![Application pool advanced settings dialog](iis/_static/apppool-identity.png)
+
+The IIS management process creates a secure identifier with the name of the application pool in the Windows Security System. Resources can be secured by using this identity; however, this identity is not a real user account and won't show up in the Windows User Management Console.
+
+If you need to grant the IIS worker process elevated access to your application, you will need to modify the Access Control List (ACL) for the directory containing your application.
+
+1. Open Windows Explorer and navigate to the directory.
+
+2. Right click on the directory and click **Properties**.
+
+3. Under the **Security** tab, click the **Edit** button and then the **Add** button.
+
+4. Click the **Locations** button and make sure you select your server.
+
+5. Enter **IIS AppPool\DefaultAppPool** in **Enter the object names to select** textbox.
+
+  ![Select users or groups dialog for the application folder](iis/_static/select-users-or-groups-1.png)
+
+6. Click the **Check Names** button and then click **OK**.
+
+  ![Select users or groups dialog for the application folder](iis/_static/select-users-or-groups-2.png)
+
+You can also do this via a command prompt using **ICACLS** tool:
+
+```console
+ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool" :F
+```
 
 ## Troubleshooting tips
 
