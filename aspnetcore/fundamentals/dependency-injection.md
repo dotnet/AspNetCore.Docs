@@ -51,21 +51,19 @@ Constructor injection requires that only one applicable constructor exist. Const
 
 Constructors can accept arguments that are not provided by dependency injection, but these must support default values. For example:
 
-```c#
+```csharp
 // throws InvalidOperationException: Unable to resolve service for type 'System.String'...
-public CharactersController(ICharacterRepository characterRepository, 
-							string title)
+public CharactersController(ICharacterRepository characterRepository, string title)
 {
     _characterRepository = characterRepository;
-	_title = title;
+    _title = title;
 }
 
 // runs without error
-public CharactersController(ICharacterRepository characterRepository, 
-							string title = "Characters")
+public CharactersController(ICharacterRepository characterRepository, string title = "Characters")
 {
     _characterRepository = characterRepository;
-	_title = title;
+    _title = title;
 }
 ```
 
@@ -92,7 +90,7 @@ The `ConfigureServices` method in the `Startup` class is responsible for definin
 
 Below is an example of how to add additional services to the container using a number of extension methods like `AddDbContext`, `AddIdentity`, and `AddMvc`.
 
-[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=5,8,12&range=39-56)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=5-6,8-10,12&range=39-56)]
 
 The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add*ServiceName* extension method to register all of the services required by that feature.
 
@@ -112,7 +110,7 @@ The `AddTransient` method is used to map abstract types to concrete services tha
 
 In the sample for this article, there is a simple controller that displays character names, called `CharactersController`. Its `Index` method displays the current list of characters that have been stored in the application, and initializes the collection with a handful of characters if none exist. Note that although this application uses Entity Framework Core and the `ApplicationDbContext` class for its persistence, none of that is apparent in the controller. Instead, the specific data access mechanism has been abstracted behind an interface, `ICharacterRepository`, which follows the [repository pattern](http://deviq.com/repository-pattern/). An instance of `ICharacterRepository` is requested via the constructor and assigned to a private field, which is then used to access characters as necessary.
 
-[!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Controllers/CharactersController.cs?highlight=3,5,6,7,8,14,21,23,24,25,26&range=8-36)]
+[!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Controllers/CharactersController.cs?highlight=3,5,6,7,8,14,21-27&range=8-36)]
 
 The `ICharacterRepository` defines the two methods the controller needs to work with `Character` instances.
 
@@ -163,7 +161,7 @@ Services can be registered with the container in several ways. We have already s
 
 To demonstrate the difference between these lifetime and registration options, consider a simple interface that represents one or more tasks as an *operation* with a unique identifier, `OperationId`. Depending on how we configure the lifetime for this service, the container will provide either the same or different instances of the service to the requesting class. To make it clear which lifetime is being requested, we will create one type per lifetime option:
 
-[!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Interfaces/IOperation.cs?highlight=5,7)]
+[!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Interfaces/IOperation.cs?highlight=5-8)]
 
 We implement these interfaces using a single class, `Operation`, that accepts a `Guid` in its constructor, or uses a new `Guid` if none is provided.
 
@@ -222,11 +220,11 @@ The built-in services container is meant to serve the basic needs of the framewo
 
 First, add the appropriate container package(s) to the dependencies property in `project.json`:
 
-```javascript
+```json
 "dependencies" : {
-     "Autofac": "4.0.0",
-     "Autofac.Extensions.DependencyInjection": "4.0.0"
-   },
+  "Autofac": "4.0.0",
+  "Autofac.Extensions.DependencyInjection": "4.0.0"
+},
 ```
 
 Next, configure the container in `ConfigureServices` and return an `IServiceProvider`:
@@ -236,15 +234,15 @@ Next, configure the container in `ConfigureServices` and return an `IServiceProv
 ```csharp
 public IServiceProvider ConfigureServices(IServiceCollection services)
 {
-  services.AddMvc();
-  // add other framework services
+    services.AddMvc();
+    // Add other framework services
 
-  // Add Autofac
-  var containerBuilder = new ContainerBuilder();
-  containerBuilder.RegisterModule<DefaultModule>();
-  containerBuilder.Populate(services);
-  var container = containerBuilder.Build();
-  return new AutofacServiceProvider(container);
+    // Add Autofac
+    var containerBuilder = new ContainerBuilder();
+    containerBuilder.RegisterModule<DefaultModule>();
+    containerBuilder.Populate(services);
+    var container = containerBuilder.Build();
+    return new AutofacServiceProvider(container);
 }
 ```
 
@@ -256,10 +254,10 @@ Finally, configure Autofac as normal in `DefaultModule`:
 ```csharp
 public class DefaultModule : Module
 {
-  protected override void Load(ContainerBuilder builder)
-  {
-    builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
-  }
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
+    }
 }
 ```
 
