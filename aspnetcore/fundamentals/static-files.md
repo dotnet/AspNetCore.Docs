@@ -1,7 +1,7 @@
 ---
 title: Working with Static Files | Microsoft Docs
 author: rick-anderson
-description: 
+description: Working with Static Files
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
@@ -39,7 +39,7 @@ In order for static files to be served, you must configure the [Middleware](midd
 
 `app.UseStaticFiles();` makes the files in `web root` (*wwwroot* by default) servable. Later I'll show how to make other directory contents servable with `UseStaticFiles`.
 
-You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
+You must include the NuGet package "Microsoft.AspNetCore.StaticFiles".
 
 > [!NOTE]
 > `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with `UseWebRoot`.
