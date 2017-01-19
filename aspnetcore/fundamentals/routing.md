@@ -1,4 +1,4 @@
-﻿---
+---
 title: Routing | Microsoft Docs
 author: ardalis
 description: 
@@ -188,9 +188,7 @@ For more details about the URL generation process, see [url-generation-reference
 
 ## Using Routing Middleware
 
-To use routing middleware, add it to the **dependencies** in *project.json*:
-
-`"Microsoft.AspNetCore.Routing": <current version>`
+Add the NuGet package "Microsoft.AspNetCore.Routing".
 
 Add routing to the service container in *Startup.cs*:
 
