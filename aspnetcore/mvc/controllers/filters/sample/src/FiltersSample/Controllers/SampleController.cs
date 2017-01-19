@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FiltersSample.Controllers
 {
+    #region snippet_AddHeader
     [AddHeader("Author", "Steve Smith @ardalis")]
     public class SampleController : Controller
     {
@@ -16,6 +17,7 @@ namespace FiltersSample.Controllers
         {
             return Content("Successful access to resource - header should be set.");
         }
+        #endregion
 
         [AddHeaderWithFactory]
         public IActionResult HeaderWithFactory()

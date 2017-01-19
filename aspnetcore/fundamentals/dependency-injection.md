@@ -38,11 +38,59 @@ ASP.NET Core includes a simple built-in container (represented by the `IServiceP
 > [!NOTE]
 > This article covers Dependency Injection as it applies to all ASP.NET applications. Dependency Injection within MVC controllers is covered in [Dependency Injection and Controllers](../mvc/controllers/dependency-injection.md).
 
+### Constructor Injection Behavior
+
+Constructor injection requires that the constructor in question be *public*. Otherwise, your app will throw an `InvalidOperationException`:
+
+> A suitable constructor for type 'YourType' could not be located. Ensure the type is concrete and services are registered for all parameters of a public constructor.
+
+
+Constructor injection requires that only one applicable constructor exist. Constructor overloads are supported, but only one overload can exist whose arguments can all be fulfilled by dependency injection. If more than one exists, your app will throw an `InvalidOperationException`:
+
+> Multiple constructors accepting all given argument types have been found in type 'YourType'. There should only be one applicable constructor.
+
+Constructors can accept arguments that are not provided by dependency injection, but these must support default values. For example:
+
+```csharp
+// throws InvalidOperationException: Unable to resolve service for type 'System.String'...
+public CharactersController(ICharacterRepository characterRepository, string title)
+{
+    _characterRepository = characterRepository;
+    _title = title;
+}
+
+// runs without error
+public CharactersController(ICharacterRepository characterRepository, string title = "Characters")
+{
+    _characterRepository = characterRepository;
+    _title = title;
+}
+```
+
 ## Using Framework-Provided Services
 
-The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has just a handful of services defined. Below is an example of how to add additional services to the container using a number of extension methods like `AddDbContext`, `AddIdentity`, and `AddMvc`.
+The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has the following services defined (depending on [how the host was configured](/fundamentals/hosting.md)):
 
-[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=5,8,12&range=39-56)]
+| Service Type | Lifetime |
+| ----- | ------- |
+| [Microsoft.AspNetCore.Hosting.IHostingEnvironment](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.ihostingenvironment) | Singleton |
+| [Microsoft.Extensions.Logging.ILoggerFactory](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.iloggerfactory) | Singleton |
+| [Microsoft.Extensions.Logging.ILogger&lt;T&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger) | Singleton |
+| [Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.builder.iapplicationbuilderfactory) | Transient |
+| [Microsoft.AspNetCore.Http.IHttpContextFactory](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.http.ihttpcontextfactory) | Transient |
+| [Microsoft.Extensions.Options.IOptions&lt;T&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.options.ioptions-1) | Singleton |
+| [System.Diagnostics.DiagnosticSource](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.diagnosticsource) | Singleton |
+| [System.Diagnostics.DiagnosticListener](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.diagnosticlistener) | Singleton |
+| [Microsoft.AspNetCore.Hosting.IStartupFilter](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.istartupfilter) | Transient |
+| [Microsoft.Extensions.ObjectPool.ObjectPoolProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.objectpool.objectpoolprovider) | Singleton |
+| [Microsoft.Extensions.Options.IConfigureOptions&lt;T&gt;](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.options.iconfigureoptions-1) | Transient |
+| [Microsoft.AspNetCore.Hosting.Server.IServer](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.server.iserver) | Singleton |
+| [Microsoft.AspNetCore.Hosting.IStartup](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.istartup) | Singleton |
+| [Microsoft.AspNetCore.Hosting.IApplicationLifetime](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.hosting.iapplicationlifetime) | Singleton |
+
+Below is an example of how to add additional services to the container using a number of extension methods like `AddDbContext`, `AddIdentity`, and `AddMvc`.
+
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=5-6,8-10,12&range=39-56)]
 
 The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add*ServiceName* extension method to register all of the services required by that feature.
 
@@ -62,7 +110,7 @@ The `AddTransient` method is used to map abstract types to concrete services tha
 
 In the sample for this article, there is a simple controller that displays character names, called `CharactersController`. Its `Index` method displays the current list of characters that have been stored in the application, and initializes the collection with a handful of characters if none exist. Note that although this application uses Entity Framework Core and the `ApplicationDbContext` class for its persistence, none of that is apparent in the controller. Instead, the specific data access mechanism has been abstracted behind an interface, `ICharacterRepository`, which follows the [repository pattern](http://deviq.com/repository-pattern/). An instance of `ICharacterRepository` is requested via the constructor and assigned to a private field, which is then used to access characters as necessary.
 
-[!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Controllers/CharactersController.cs?highlight=3,5,6,7,8,14,21,23,24,25,26&range=8-36)]
+[!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Controllers/CharactersController.cs?highlight=3,5,6,7,8,14,21-27&range=8-36)]
 
 The `ICharacterRepository` defines the two methods the controller needs to work with `Character` instances.
 
@@ -113,7 +161,7 @@ Services can be registered with the container in several ways. We have already s
 
 To demonstrate the difference between these lifetime and registration options, consider a simple interface that represents one or more tasks as an *operation* with a unique identifier, `OperationId`. Depending on how we configure the lifetime for this service, the container will provide either the same or different instances of the service to the requesting class. To make it clear which lifetime is being requested, we will create one type per lifetime option:
 
-[!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Interfaces/IOperation.cs?highlight=5,7)]
+[!code-csharp[Main](../fundamentals/dependency-injection/sample/DependencyInjectionSample/Interfaces/IOperation.cs?highlight=5-8)]
 
 We implement these interfaces using a single class, `Operation`, that accepts a `Guid` in its constructor, or uses a new `Guid` if none is provided.
 
@@ -172,12 +220,12 @@ The built-in services container is meant to serve the basic needs of the framewo
 
 First, add the appropriate container package(s) to the dependencies property in `project.json`:
 
-```javascript
+```json
 "dependencies" : {
-     "Autofac": "4.0.0",
-     "Autofac.Extensions.DependencyInjection": "4.0.0"
-   },
-   ```
+  "Autofac": "4.0.0",
+  "Autofac.Extensions.DependencyInjection": "4.0.0"
+},
+```
 
 Next, configure the container in `ConfigureServices` and return an `IServiceProvider`:
 
@@ -186,15 +234,15 @@ Next, configure the container in `ConfigureServices` and return an `IServiceProv
 ```csharp
 public IServiceProvider ConfigureServices(IServiceCollection services)
 {
-  services.AddMvc();
-  // add other framework services
+    services.AddMvc();
+    // Add other framework services
 
-  // Add Autofac
-  var containerBuilder = new ContainerBuilder();
-  containerBuilder.RegisterModule<DefaultModule>();
-  containerBuilder.Populate(services);
-  var container = containerBuilder.Build();
-  return new AutofacServiceProvider(container);
+    // Add Autofac
+    var containerBuilder = new ContainerBuilder();
+    containerBuilder.RegisterModule<DefaultModule>();
+    containerBuilder.Populate(services);
+    var container = containerBuilder.Build();
+    return new AutofacServiceProvider(container);
 }
 ```
 
@@ -206,10 +254,10 @@ Finally, configure Autofac as normal in `DefaultModule`:
 ```csharp
 public class DefaultModule : Module
 {
-  protected override void Load(ContainerBuilder builder)
-  {
-    builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
-  }
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
+    }
 }
 ```
 

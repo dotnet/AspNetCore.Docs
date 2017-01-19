@@ -5,14 +5,14 @@ description:
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 01/14/2017
 ms.topic: article
 ms.assetid: a89a8433-8b0e-4795-a73a-82114d27e233
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/razor
 ---
-# Razor Syntax Reference
+# Razor syntax
 
 By [Taylor Mullen](https://twitter.com/ntaylormullen) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -566,6 +566,20 @@ C# Razor keywords need to be double escaped with `@(@C# Razor Keyword)`, for exa
 
 * namespace
 * class
+
+## View compilation
+
+Razor views are compiled at runtime when the view is invoked. If you prefer to compile your Razor views and deploy them with your app make these changes to *project.json*:
+
+1. Add a reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Design" under the "dependencies" section.
+2. Add a reference to "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Tools" under the "tools" section.
+3. Add a postpublish script to invoke the view compiler:
+
+   ```
+     "scripts": {
+        "postpublish": [ "dotnet razor-precompile --configuration %publish:Configuration% --framework %publish:TargetFramework% --output-path %publish:OutputPath% %publish:ProjectPath%" ]
+     }
+```
 
 <a name=razor-customcompilationservice-label></a>
 

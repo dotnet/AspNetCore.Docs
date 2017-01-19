@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/testing
 ---
-# Testing Controller Logic
+# Testing controllers
 
 By [Steve Smith](http://ardalis.com)
 

@@ -1,11 +1,11 @@
-﻿---
+---
 title: Publishing to IIS | Microsoft Docs
-author: rick-anderson
-description: 
-keywords: ASP.NET Core,
+author: guardrex
+description:  Windows Server Internet Information Services (IIS) configuration and deployment of ASP.NET Core applications.
+keywords: ASP.NET Core, internet information services, iis, windows server, hosting bundle, asp.net core module, web deploy
 ms.author: riande
 manager: wpickett
-ms.date: 11/30/2016
+ms.date: 01/18/2017
 ms.topic: article
 ms.assetid: a4449ad3-5bad-410c-afa7-dc32d832b552
 ms.technology: aspnet
@@ -62,23 +62,24 @@ Proceed through the **Confirmation** step to install the web server role and ser
 
 For more information, see [ASP.NET Core Module overview](../fundamentals/servers/aspnet-core-module.md) and [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
 
+## Install Web Deploy when publishing with Visual Studio
+
+If you intend to deploy your applications with Web Deploy in Visual Studio, install the latest version of Web Deploy on the server. To install Web Deploy, you can use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or obtain an installer directly from the [Microsoft Download Center](https://www.microsoft.com/en-us/search/result.aspx?q=webdeploy&form=dlc). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
+
 ## Application configuration
 
 ### Enabling the *IISIntegration* components
 
 Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the *.UseIISIntegration()* extension method to *WebHostBuilder()*.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
-
 ```csharp
-
-   var host = new WebHostBuilder()
-     .UseKestrel()
-     .UseContentRoot(Directory.GetCurrentDirectory())
-     .UseIISIntegration()
-     .UseStartup<Startup>()
-     .Build();
-   ```
+var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseContentRoot(Directory.GetCurrentDirectory())
+    .UseIISIntegration()
+    .UseStartup<Startup>()
+    .Build();
+```
 
 Note that code calling *.UseIISIntegration()* does not affect code portability.
 
@@ -86,14 +87,11 @@ Note that code calling *.UseIISIntegration()* does not affect code portability.
 
 To configure *IISIntegration* service options, include a service configuration for *IISOptions* in *ConfigureServices*.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
-
 ```csharp
-
-   services.Configure<IISOptions>(options => {
-     ...
-   });
-   ```
+services.Configure<IISOptions>(options => {
+  ...
+});
+```
 
 | Option | Setting|
 | --- | --- | 
@@ -107,57 +105,63 @@ The *publish-iis* tool can be added to any .NET Core application and will config
 
 To include the *publish-iis* tool in your application, add entries to the *tools* and *scripts* sections of *project.json*.
 
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
+```json
+"tools": {
+  "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
+},
+"scripts": {
+  "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
+}
+```
 
-```none
-
-   "tools": {
-     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
-   },
-   "scripts": {
-     "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
-   }
-   ```
-
-## Deploy the application
+## Configure the website in IIS
 
 1. On the target IIS server, create a folder to contain the application's published folders and files, which are described in [Directory Structure](../hosting/directory-structure.md).
 
 2. Within the folder you created, create a *logs* folder to hold application logs (if you plan to enable logging). If you plan to deploy your application with a *logs* folder in the payload, you may skip this step.
 
-3. Deploy the application to the folder you created on the target IIS server. MSDeploy (Web Deploy) is the recommended mechanism for deployment, but you may use any of several methods to move the application to the server (for example, Xcopy, Robocopy, or PowerShell). Visual Studio users may use the [default Visual Studio web publish script](https://github.com/aspnet/vsweb-publish/blob/master/samples/default-publish.ps1). For information on using Web Deploy, see [Publishing to IIS with Web Deploy using Visual Studio](iis-with-msdeploy.md).
+3. In **IIS Manager**, create a new website. Provide a **Site name** and set the **Physical path** to the application's deployment folder that you created. Provide the **Binding** configuration and create the website.
 
->[!WARNING]
-> .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the *web.config* file must be present at the content root path (typically the app base path) of the deployed application, which is the website physical path provided to IIS. Sensitive files exist on the app's physical path, including subfolders, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these and other sensitive files. **Therefore, it is important that the *web.config* file is never accidently renamed or removed from the deployment.**
+4. Set the application pool to **No Managed Code**. ASP.NET Core runs in a separate process and manages the runtime.
 
-## Configure the website in IIS
-
-1. In **IIS Manager**, create a new website. Provide a **Site name** and set the **Physical path** to the application's deployment folder that you created. Provide the **Binding** configuration and create the website.
-
-2. Set the application pool to **No Managed Code**. ASP.NET Core runs in a separate process and manages the runtime.
-
-> [!NOTE]
-> If you change the default identity of the application pool from **ApplicationPoolIdentity**, verify the new identity has the required permissions to access the application's folder and database.
-
-Open the **Add Website** window.
+5. Open the **Add Website** window.
 
    ![Click Add Website from the Sites contextual menu.](iis/_static/add-website-context-menu-ws2016.png)
 
-Configure the website.
+6. Configure the website.
 
    ![Supply the Site name, physical path, and Host name in the Add Website step.](iis/_static/add-website-ws2016.png)
 
-In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
+7. In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
 
    ![Select Basic Settings from the contextual menu of the Application Pool.](iis/_static/apppools-basic-settings-ws2016.png)
 
-Set the **.NET CLR version** to **No Managed Code**.
+8. Set the **.NET CLR version** to **No Managed Code**.
 
    ![Set No Managed Code for the .NET CLR Version.](iis/_static/edit-apppool-ws2016.png)
+   
+> [!NOTE]
+> If you change the default identity of the application pool from **ApplicationPoolIdentity**, verify the new identity has the required permissions to access the application's folder and database.
 
-Browse the website.
+## Deploy the application
+Deploy the application to the folder you created on the target IIS server. Web Deploy is the recommended mechanism for deployment. Alternatives to Web Deploy are listed below.
 
-   ![The Microsoft Edge browser has loaded the IIS startup page.](iis/_static/browsewebsite.png)
+### Web Deploy with Visual Studio
+Create a [Publish Profile in Visual Studio](https://msdn.microsoft.com/en-us/library/dd465337(v=vs.110).aspx#Anchor_0) and click the **Publish** button to deploy your application. If your hosting provider supplies a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish Web** dialog.
+
+![Publish dialog page](iis/_static/pub-dialog.png)
+
+### Web Deploy outside of Visual Studio
+You can also use Web Deploy outside of Visual Studio from the command line. For more information, see [Web Deployment Tool](https://technet.microsoft.com/en-us/library/dd568996(WS.10).aspx).
+
+### Alternatives to Web Deploy
+If you don't wish to use Web Deploy or are not using Visual Studio, you may use any of several methods to move the application to the server, such as Xcopy, Robocopy, or PowerShell. Visual Studio users may use the [Publish Samples](https://github.com/aspnet/vsweb-publish/blob/master/samples/samples.md).
+
+## Browse the website
+![The Microsoft Edge browser has loaded the IIS startup page.](iis/_static/browsewebsite.png)
+   
+>[!WARNING]
+> .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the *web.config* file must be present at the content root path (typically the app base path) of the deployed application, which is the website physical path provided to IIS. Sensitive files exist on the app's physical path, including subfolders, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these and other sensitive files. **Therefore, it is important that the *web.config* file is never accidently renamed or removed from the deployment.**
 
 ## Create a Data Protection Registry Hive
 

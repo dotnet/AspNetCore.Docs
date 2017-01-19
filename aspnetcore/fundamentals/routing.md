@@ -1,4 +1,4 @@
-﻿---
+---
 title: Routing | Microsoft Docs
 author: ardalis
 description: 
@@ -188,9 +188,7 @@ For more details about the URL generation process, see [url-generation-reference
 
 ## Using Routing Middleware
 
-To use routing middleware, add it to the **dependencies** in *project.json*:
-
-`"Microsoft.AspNetCore.Routing": <current version>`
+Add the NuGet package "Microsoft.AspNetCore.Routing".
 
 Add routing to the service container in *Startup.cs*:
 
@@ -310,28 +308,35 @@ Route constraints execute when a `Route` has matched the syntax of the incoming 
 
 The following table demonstrates some route constraints and their expected behavior.
 
-| constraint | Example | Example Match | Notes |
+| constraint | Example | Example Matches | Notes |
 | --------   | ------- | ------------- | ----- |
-| `int` | {id:int} | 123 | Matches any integer |
-| `bool`  | {active:bool} | true | Matches `true` or `false` |
-| `datetime` | {dob:datetime} | 2016-01-01  | Matches a valid `DateTime` value (in the invariant culture - see options) |
-| `decimal` | {price:decimal} | 49.99 | Matches a valid `decimal` value |
-| `double`  | {weight:double} | 4.234 | Matches a valid `double` value |
-| `float`  | {weight:float} | 3.14 | Matches a valid `float` value |
-| `guid`  | {id:guid} | CD2C1638-1638-72D5-1638-DEADBEEF1638 | Matches a valid `Guid` value |
-| `long` | {ticks:long} | 123456789 | Matches a valid `long` value |
-| `minlength(value)` | {username:minlength(4)} | Rick | String must be at least 4 characters |
-| `maxlength(value)` | {filename:maxlength(8)} | somefile | String must be no more than 8 characters |
-| `length(min,max)` | {filename:length(8,16)} | *Somefile.txt* | String must be at least 8 and no more than 16 characters long |
-| `min(value)` | {age:min(18)} | 19 | Value must be at least 18 |
-| `max(value)` | {age:max(120)} |  91 | Value must be no more than 120 |
-| `range(min,max)` | {age:range(18,120)} | 91 | Value must be at least 18 but no more than 120 |
-| `alpha` | {name:alpha} | Rick | String must consist of alphabetical characters |
-| `regex(expression)` | {ssn:regex(^d{3}-d{2}-d{4}$)} | 123-45-6789 | String must match the regular expression |
-| `required`  | {name:required} | Rick |  Used to enforce that a non-parameter value is present during URL generation |
+| `int` | `{id:int}` | `123456789`, `-123456789`  | Matches any integer |
+| `bool`  | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (case-insensitive) |
+| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm`  | Matches a valid `DateTime` value (in the invariant culture - see warning) |
+| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value (in the invariant culture - see warning) |
+| `double`  | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value (in the invariant culture - see warning) |
+| `float`  | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value (in the invariant culture - see warning) |
+| `guid`  | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value |
+| `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value |
+| `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters |
+| `maxlength(value)` | `{filename:maxlength(8)}` | `Richard` | String must be no more than 8 characters |
+| `length(length)` | `{filename:length(12)}` | `somefile.txt` | String must be exactly 12 characters long |
+| `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | String must be at least 8 and no more than 16 characters long |
+| `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18 |
+| `max(value)` | `{age:max(120)}` |  `91` | Integer value must be no more than 120 |
+| `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 but no more than 120 |
+| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters (`a`-`z`, case-insensitive) |
+| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression (see tips about defining a regular expression) |
+| `required`  | `{name:required}` | `Rick` |  Used to enforce that a non-parameter value is present during URL generation |
 
 >[!WARNING]
 > Route constraints that verify the URL can be converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture - they assume the URL is non-localizable. The framework-provided route constraints do not modify the values stored in route values. All route values parsed from the URL will be stored as strings. For example, the [Float route constraint](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60) will attempt to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
+
+>[!TIP]
+> Regular expressions use delimiters and tokens similar to those used by Routing and the C# language, and so those tokens must be escaped. For example, to use the regular expression `^\d{3}-\d{2}-\d{4}$` in Routing, it needs to have the `\` characters typed in as `\\` in the C# source file to escape the `\` string escape character (unless using [verbatim string literals](https://msdn.microsoft.com/en-us/library/aa691090(v=vs.71).aspx)). The `{` and `}` characters need to be escaped by doubling them to escape the Routing parameter delimiter characters. The resulting regular expression is `^\\d{{3}}-\\d{{2}}-\\d{{4}}$`.
+
+>[!TIP]
+> Regular expressions used in routing will often start with the `^` character (match starting position of the string) and end with the `$` character (match ending position of the string) to ensure that the regular expression must match the entire route parameter value. Without the `^` and `$` characters the regular expression will match any sub-string within the string, which is often not desirable. For example, the regular expression `[a-z]{2}` will match the strings `hello` and `123abc456` because each contains a sequence of two lowercase characters somewhere in the string. However, the regular expression `^[a-z]{2}$` will match neither `hello` or `123abc456` because it matches only exactly a sequence of two lowercase characters, for example, `MZ`. Refer to [.NET Framework Regular Expressions](https://msdn.microsoft.com/en-us/library/hs600312(v=vs.110).aspx) for more information on regular expression syntax.
 
 >[!TIP]
 > To constrain a parameter to a known set of possible values, you can use a regular expression ( for example `{action:regex(list|get|create)}`. This would only match the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string "list|get|create" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.

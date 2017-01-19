@@ -18,7 +18,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015.
 
-The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This tutorial series explains how to build the Contoso University sample application from scratch. You can [download the completed application](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final).
+The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch. You can [download the completed application](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final).
 
 EF Core 1.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core 1.0, see [EF Core vs. EF6.x](https://ef.readthedocs.io/en/latest/efcore-vs-ef6/index.html).  If you choose EF 6.x, see [the previous version of this tutorial series](https://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
 
@@ -31,6 +31,9 @@ EF Core 1.0 is the latest version of EF but does not yet have all the features o
 ## Troubleshooting
 
 If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the completed project that you can download. For some common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](https://docs.asp.net/en/latest/data/ef-mvc/advanced.html#common-errors). If you don't find what you need there, you can post questions to the [ASP.NET Entity Framework forum](http://forums.asp.net/1227.aspx), the [Entity Framework forum](http://social.msdn.microsoft.com/forums/en-US/adodotnetentityframework/threads/), or StackOverflow.com for [ASP.NET Core](http://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](http://stackoverflow.com/questions/tagged/entity-framework-core).
+
+> [!TIP] 
+> This is a series of 10 tutorials, each of which builds on what is done in earlier tutorials.  Consider saving a copy of the project after each successful tutorial completion.  Then if you run into problems and need to start over, you can start from the previous tutorial instead of going back to the beginning of the whole series.
 
 ## The Contoso University Web Application
 
@@ -329,7 +332,7 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 
 Some things to be aware of when you are writing asynchronous code that uses the Entity Framework:
 
-* Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, and `SaveChangesAsync`.  It does not include, for example, statements that just change an `IQueryable`, such as `var students = *context.Students.Where(s => s.LastName = "Davolio")`.
+* Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, and `SaveChangesAsync`.  It does not include, for example, statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
 
 * An EF context is not thread safe: don't try to do multiple operations in parallel. When you call any async EF method, always use the `await` keyword.
 

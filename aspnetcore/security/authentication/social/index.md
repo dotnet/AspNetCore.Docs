@@ -45,7 +45,7 @@ Enabling users to sign in with their existing credentials is convenient for the 
 
 ## Enable SSL
 
-Some external authentication providers reject requests coming from origins that don't use the **https** protocol. This reflects the trend of major providers like [Google](https://security.googleblog.com/2014/08/https-as-ranking-signal_6.html) moving their public API services to https and discontinuing the use of unencrypted endpoints. We encourage you to follow this trend and enable SSL for your entire site.
+Some external authentication providers reject requests coming from origins that don't use the **https** protocol. This reflects the trend of major providers like [Google](https://security.googleblog.com/2014/08/https-as-ranking-signal_6.html) moving their public API services to https and discontinuing the use of unencrypted endpoints. We encourage you to follow this trend and enable SSL for your entire site. For Visual Studio 2017 RC1, see instructions below.
 
 * In **Solution Explorer**, right-click the project and select **Properties**.
 
@@ -56,6 +56,22 @@ Some external authentication providers reject requests coming from origins that 
 * Copy the SSL URL and paste it into the **App URL**:
 
 ![Debug tab of application properties](index/_static/ssl.png)
+
+Visual Studio 2017 RC1:
+
+Edit the *properties/launchsettings.json* file. Add an sslPort between 44300 and 44399:
+
+```
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:62183/",
+      "sslPort": 0
+    }
+  },
+```
 
 * Modify the `services.AddMvc();` code in `Startup.cs` under `ConfigureServices` to reject all requests that are not coming over *https*:
 

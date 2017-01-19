@@ -51,6 +51,9 @@ TPC and TPH inheritance patterns generally deliver better performance than TPT i
 
 This tutorial demonstrates how to implement TPH inheritance. TPH is the only inheritance pattern that the Entity Framework Core supports.  What you'll do is create a `Person` class, change the `Instructor` and `Student` classes to derive from `Person`, add the new class to the `DbContext`, and create a migration.
 
+> [!TIP] 
+> Consider saving a copy of the project before making the following changes.  Then if you run into problems and need to start over, it will be easier to start from the saved project instead of reversing steps done for this tutorial or going back to the beginning of the whole series.
+
 ## Create the Person class
 
 In the Models folder, create Person.cs and replace the template code with the following code:
