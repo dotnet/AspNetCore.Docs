@@ -81,7 +81,8 @@ Save and close the **Package/Publish Web** tab.
 
 > [!NOTE] 
 > 
-> [!IMPORTANT] Make sure that you don't have **Remove additional files at destination** selected in your publish profiles. If you select that option, the deployment process will delete the databases that you have in App\_Data in the deployed site, and it will delete the App\_Data folder itself.
+> [!IMPORTANT]
+> Make sure that you don't have **Remove additional files at destination** selected in your publish profiles. If you select that option, the deployment process will delete the databases that you have in App\_Data in the deployed site, and it will delete the App\_Data folder itself.
 
 
 ## Preventing User Access to the Production Site During Update

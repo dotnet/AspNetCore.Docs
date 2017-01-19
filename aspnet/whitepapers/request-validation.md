@@ -55,7 +55,8 @@ To disable request validation on a page you must set the `validateRequest` attri
 
 [!code-aspx[Main](request-validation/samples/sample1.aspx)]
 
-> [!CAUTION] When request validation is disabled, content can be submitted to a page; it is the responsibility of the page developer to ensure that content is properly encoded or processed.
+> [!CAUTION]
+> When request validation is disabled, content can be submitted to a page; it is the responsibility of the page developer to ensure that content is properly encoded or processed.
 
 ## Disabling request validation for your application
 
@@ -65,7 +66,8 @@ To disable request validation for your application, you must modify or create a 
 
 If you wish to disable request validation for all applications on your server, you can make this modification to your Machine.config file.
 
-> [!CAUTION] When request validation is disabled, content can be submitted to your application; it is the responsibility of the application developer to ensure that content is properly encoded or processed.
+> [!CAUTION]
+> When request validation is disabled, content can be submitted to your application; it is the responsibility of the application developer to ensure that content is properly encoded or processed.
 
 The code below is modified to turn off request validation:
 

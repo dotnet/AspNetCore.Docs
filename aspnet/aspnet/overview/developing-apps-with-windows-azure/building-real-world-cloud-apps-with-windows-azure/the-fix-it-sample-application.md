@@ -278,7 +278,8 @@ These instructions assume you have already downloaded and run the Fix It solutio
 
     These credentials expire after a period of time and you have to re-run the `Add-AzureAccount` cmdlet. As this e-book is being written, the time limit before credentials expire is 12 hours.
 5. If you have multiple subscriptions, use the Select-AzureSubscription cmdlet to specify the subscription you want to create the test environment in.
-6. Import a management certificate for the same Azure subscription by using the `Get-AzurePublishSettingsFile` and `Import-AzurePublishSettingsFile` cmdlets. The first of these cmdlets downloads a certificate file, and in the second one you specify the location of that file in order to import it. > [!IMPORTANT] Keep the downloaded file in a safe location or delete it when you're done with it, because it contains a certificate that can be used to manage your Azure services.
+6. Import a management certificate for the same Azure subscription by using the `Get-AzurePublishSettingsFile` and `Import-AzurePublishSettingsFile` cmdlets. The first of these cmdlets downloads a certificate file, and in the second one you specify the location of that file in order to import it. > [!IMPORTANT]
+ > Keep the downloaded file in a safe location or delete it when you're done with it, because it contains a certificate that can be used to manage your Azure services.
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample22.cmd)]
 
@@ -288,7 +289,8 @@ These instructions assume you have already downloaded and run the Fix It solutio
     [!code-console[Main](the-fix-it-sample-application/samples/sample23.cmd)]
 8. To allow Windows PowerShell to run these scripts, use the [Unblock-File](https://go.microsoft.com/fwlink/p/?linkid=294021) cmdlet. (The scripts are blocked because they were downloaded from the Internet.)
 
-    > [!WARNING] Security - Before running `Unblock-File` on any script or executable file, open the file in Notepad, examine the commands, and verify that they do not contain any malicious code.
+    > [!WARNING]
+    > Security - Before running `Unblock-File` on any script or executable file, open the file in Notepad, examine the commands, and verify that they do not contain any malicious code.
 
     For example, the following command runs the `Unblock-File` cmdlet on all scripts in the current directory.
 
