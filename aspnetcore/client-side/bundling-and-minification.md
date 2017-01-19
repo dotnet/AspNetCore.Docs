@@ -1,5 +1,5 @@
-﻿---
-title: Bundling and Minification | Microsoft Docs
+---
+title: Bundling and minification | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,12 +12,12 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/bundling-and-minification
 ---
-# Bundling and Minification
+# Bundling and minification
 
 >[!WARNING]
 > This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Erik Reitan](https://github.com/Erikre) and [Daniel Roth](https://github.com/danroth27)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Erik Reitan](https://github.com/Erikre), and [Daniel Roth](https://github.com/danroth27)
 
 Bundling and minification are two techniques you can use in ASP.NET to improve page load performance for your web application. Bundling combines multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller payloads. Used together, bundling and minification improves load time performance by reducing the number of requests to the server and reducing the size of the requested assets (such as CSS and JavaScript files).
 
@@ -76,16 +76,15 @@ After minification, the function is reduced to the following:
 
 ```javascript
 AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""))};
-   ```
+```
 
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
-|Original|Renamed|
-|--- |--- |
-|imageTagAndImageID|t|
-|imageContext|a|
-|imageElement|r|
-
+Original | Renamed
+--- | :---:
+imageTagAndImageID | t
+imageContext | a
+imageElement | r
 
 To minify your JavaScript files you can use the [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) plugin. For CSS you can use the [gulp-cssmin](https://www.npmjs.com/package/gulp-cssmin) plugin. Install these packages using npm as before:
 
@@ -106,19 +105,19 @@ You can run bundling and minification tasks from a command prompt using gulp (`g
 > [!NOTE]
 > The gulp tasks for bundling and minification do not general run when your project is built and must be run manually.
 
-## Impact of Bundling and Minification
+## Impact of bundling and minification
 
 The following table shows several important differences between listing all the assets individually and using bundling and minification on a simple web page:
 
-|Action|With B/M|Without B/M|Change|
-|--- |--- |--- |--- |
-|File Requests|7|18|157%|
-|KB Transferred|156|264.68|70%|
-|Load Time (MS)|885|2360|167%|
+Action | With B/M | Without B/M | Change
+--- | :---: | :---: | :---:
+File Requests |7 | 18 | 157%
+KB Transferred | 156 | 264.68 | 70%
+Load Time (MS) | 885 | 2360 | 167%
 
 The bytes sent had a significant reduction with bundling as browsers are fairly verbose with the HTTP headers that they apply on requests. The load time shows a big improvement, however this example was run locally. You will get greater gains in performance when using bundling and minification with assets transferred over a network.
 
-## Controlling Bundling and Minification
+## Controlling bundling and minification
 
 In general, you want to use the bundled and minified files of your app only in a production environment. During development, you want to use your original files so your app is easier to debug.
 
@@ -132,7 +131,7 @@ This environment tag will render the bundled and minified CSS files only when ru
 
 [!code-html[Main](../client-side/bundling-and-minification/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml?highlight=5&range=12-17)]
 
-## See Also
+## Additional resources
 
 * [Using Gulp](using-gulp.md)
 

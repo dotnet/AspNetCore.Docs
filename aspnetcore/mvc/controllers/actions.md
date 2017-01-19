@@ -50,7 +50,6 @@ Any public method on a controller type is an action. Parameters on actions are b
 > Action methods that accept parameters should verify the `ModelState.IsValid` property is true.
 
 Action methods should contain logic for mapping an incoming request to a business concern. Business concerns should typically be represented as services that your controller accesses through [dependency injection](dependency-injection.md). Actions then map the result of the business action to an application state.
-
 Actions can return anything, but frequently will return an instance of `IActionResult` (or `Task<IActionResult>` for async methods) that produces a response. The action method is responsible for choosing *what kind of response*; the action result *does the responding*.
 
 ### Controller Helper Methods
@@ -71,7 +70,7 @@ Return `Json` or similar to format an object in a specific manner. Example: `ret
 
 **Content negotiated response**
 
-Instead of returning an object directly, an action can return a content negotiated response (using `Ok`, `Created`, `CreatedAtRoute` or `CreatedAtAction`). Examples: `return Ok();` or `return CreatedAtRoute("routename",values,newobject");`
+Instead of returning an object directly, an action can return a content negotiated response (using `Ok`, `Created`, `CreatedAtRoute` or `CreatedAtAction`). Examples: `return Ok();` or `return CreatedAtRoute("routename",values,newobject);`
 
 **Redirect**
 
