@@ -17,7 +17,7 @@ By [Luke Latham](https://github.com/GuardRex) and [Andrew Stanton-Nurse](https:/
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/key-vault-configuration/sample)
 
-This document explains how to use the [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) configuration provider to load application configuration values from Azure Key Vault. Azure Key Vault is a cloud-based service that helps you safeguard cryptographic keys and secrets used by applications and services. Common scenarios include controlling access to sensitive configuration data and meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's) when storing configuration data.
+This document explains how to use the [Microsoft Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider to load application configuration values from Azure Key Vault. Azure Key Vault is a cloud-based service that helps you safeguard cryptographic keys and secrets used by applications and services. Common scenarios include controlling access to sensitive configuration data and meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's) when storing configuration data.
 
 ## Package
 To use the provider, add a reference to the `Microsoft.Extensions.Configuration.AzureKeyVault` package. The provider is available for projects that target .NET Framework 4.5.1 or .NET Standard 1.5 or higher.
@@ -80,7 +80,7 @@ You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVau
 ## Controlling access to the ClientSecret
 To maintain the `ClientSecret` outside of your project tree, you can use the [Secret Manager tool](xref:security/app-secrets), whereby you can associate app secrets with a specific project and share them across multiple projects. However, the Secret Manager tool does not encrypt the stored secrets and should not be treated as a trusted store.
 
-For environments that support certificates and when developing a .NET Framework app, you can authenticate to Azure Key Vault with an X.509 certificate, whose private key would be managed by the OS. For more information on this approach, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret) and use the `AddAzureKeyVault()` overload that accepts an `X509Certificate2`.
+For environments that support certificates and when developing a .NET Framework app, you can authenticate to Azure Key Vault with an X.509 certificate, whose private key would be managed by the OS. For more information on this approach, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret) and use the `AddAzureKeyVault()` overload that accepts an `X509Certificate2`.
 
 ```csharp
 var store = new X509Store(StoreLocation.CurrentUser);
@@ -98,7 +98,7 @@ Configuration = builder.Build();
 ```
 
 ## Creating key vault secrets and loading configuration values
-1. Create a key vault and set up Azure Active Directory (Azure AD) for the application following the guidance in [Get started with Azure Key Vault](https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/).
+1. Create a key vault and set up Azure Active Directory (Azure AD) for the application following the guidance in [Get started with Azure Key Vault](https://azure.microsoft.com/documentation/articles/key-vault-get-started/).
   * Add secrets to the key vault using the Azure PowerShell Module, the Azure Management API, or the Azure Portal. Secrets are uploaded as either *Manual* or *Certificate* secrets. *Certificate* secrets are certificates for use by applications and services but are not supported by the configuration provider. You should use the *Manual* option to create name-value pair secrets for use with the configuration provider.
     * Hierarchical values (configuration sections) use `--` (two dashes) as a separator.
     * For the sample application, create two *Manual* secrets with the following name-value pairs:
@@ -138,7 +138,7 @@ When the application fails to load configuration using the provider, an error me
 
 ## Additional resources
 * [Configuration](xref:fundamentals/configuration)
-* [Microsoft Azure: Key Vault](https://azure.microsoft.com/en-us/services/key-vault/)
-* [Microsoft Azure: Key Vault Documentation](https://docs.microsoft.com/en-us/azure/key-vault/)
-* [How to generate and transfer HSM-protected keys for Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-hsm-protected-keys)
-* [KeyVaultClient Class](https://msdn.microsoft.com/en-us/library/microsoft.azure.keyvault.keyvaultclient.aspx)
+* [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
+* [Microsoft Azure: Key Vault Documentation](https://docs.microsoft.com/azure/key-vault/)
+* [How to generate and transfer HSM-protected keys for Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-hsm-protected-keys)
+* [KeyVaultClient Class](https://msdn.microsoft.com/library/microsoft.azure.keyvault.keyvaultclient.aspx)
