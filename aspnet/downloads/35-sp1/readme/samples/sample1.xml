@@ -1,5 +1,0 @@
-<asp:ScriptReference name="MicrosoftAjax.js"/>
-<asp:ScriptReference name="MicrosoftAjaxWebForms.js"/>
-<asp:ScriptReference name="AjaxControlToolkit.Common.Common.js" assembly=" AjaxControlToolkit"/>
-<asp:ScriptReference name="AjaxControlToolkit.Common.DateTime.js" assembly=" AjaxControlToolkit"/>
-<asp:ScriptReference name="AjaxControlToolkit.Compat.Timer.Timer.js" assembly=" AjaxControlToolkit"/>

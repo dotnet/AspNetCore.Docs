@@ -1,2 +1,0 @@
-[MetadataType(typeof(ProductMetadata))]
-public partial class Product {}

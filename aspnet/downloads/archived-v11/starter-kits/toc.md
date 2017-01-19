@@ -1,6 +1,0 @@
-# [ASP.NET 1.1 Starter Kits](overview.md)
-# [Commerce Web Site](commerce.md)
-# [Reports Web Site](reports.md)
-# [Issue Tracker Web Site](issue-tracker.md)
-# [Community Web Site](community.md)
-# [Portal Web Site](portal.md)

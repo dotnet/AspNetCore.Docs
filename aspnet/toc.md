@@ -1,6 +1,5 @@
 # [Ajax](ajax/toc.md)
 # [ASP.NET](aspnet/toc.md)
-# [Downloads](downloads/toc.md)
 # [Entity Framework](entity-framework.md)
 # [Index](index.md)
 # [Identity](identity/toc.md)

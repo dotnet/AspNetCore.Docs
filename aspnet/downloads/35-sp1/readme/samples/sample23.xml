@@ -1,5 +1,0 @@
-<add name="UrlRoutingHandler"
-    preCondition="integratedMode"
-    verb="*"
-    path="UrlRouting.axd"
-    type="System.Web.Routing.UrlRoutingHandler, System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>

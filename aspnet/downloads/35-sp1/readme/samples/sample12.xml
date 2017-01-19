@@ -1,8 +1,0 @@
-<add assembly="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral,
-    PublicKeyToken=31BF3856AD364E35"/>
-<add assembly="System.Web.Routing, Version=3.5.0.0, Culture=neutral,
-    PublicKeyToken=31BF3856AD364E35"/>
-<add assembly="System.ComponentModel.DataAnnotations, Version=3.5.0.0,
-    Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
-<add assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral,
-    PublicKeyToken=31BF3856AD364E35"/>
