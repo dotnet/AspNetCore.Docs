@@ -39,7 +39,7 @@ When you modify the default settings created with the project, your changes are 
 
 launchSettings.json
 
-[!code-javascript[Main](../fundamentals/environments/sample/src/Environments/Properties/launchSettings.json?highlight=15,22)]
+[!code-json[Main](../fundamentals/environments/sample/src/Environments/Properties/launchSettings.json?highlight=15,22)]
 
 > [!NOTE]
 > Changes made to project profiles or to *launchSettings.json* directly may not take effect until the web server used is restarted (in particular, Kestrel must be restarted before it will detect changes made to its environment).
