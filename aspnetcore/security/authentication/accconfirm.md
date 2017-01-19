@@ -123,7 +123,7 @@ Add the dependency `Microsoft.Extensions.Options.ConfigurationExtensions` in the
 
 Add `AuthMessageSenderOptions` to the service container at the end of the `ConfigureServices` method in the *Startup.cs* file:
 
-[!code-csharp[Main](../../security/authentication/accconfirm/sample/WebApplication3/src/WebApplication3/Startup.cs?highlight=4&range=58-62)]
+[!code-csharp[Main](../../security/authentication/accconfirm/sample/WebApplication3/src/WebApplication3/Startup.cs?highlight=4&range=62-65)]
 
 ### Configure the `AuthMessageSender` class
 
