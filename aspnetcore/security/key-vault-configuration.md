@@ -71,7 +71,7 @@ builder.AddAzureKeyVault(
 Configuration = builder.Build();
 ```
 
-The `Load()` method is called by an algorithm in the provider that iterates through the secrets to find the one that matches the application name as a prefix to the secret's name. When a match is found with `Load()`, the algorithm uses the `GetKey()` method to return the configuration name of the secret name. It simply strips off the application name prefix from the secret's name and returns the name for loading, along with its value, into the app's configuration name-value pairs.
+The `Load()` method is called by an algorithm in the provider that iterates through the secrets to find the one that matches the application name as a prefix to the secret's name. When a match is found with `Load()`, the algorithm uses the `GetKey()` method to return the configuration name of the secret name. It simply strips off the application name prefix from the secret's name and returns the name for loading into the app's configuration name-value pairs.
 
 If you implemented this approach with the sample application, the key vault secrets would be loaded, the string secret for `KeyVaultConfigProviderSample-ConnectionString` would be matched, and the application name `KeyVaultConfigProviderSample` (with the dash) would be stripped off to load `ConnectionString` with its value into the app's configuration.
 
