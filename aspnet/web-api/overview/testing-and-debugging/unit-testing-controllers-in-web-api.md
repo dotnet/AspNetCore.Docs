@@ -68,7 +68,8 @@ Let's rewrite the test using the [Moq](https://github.com/Moq) framework.
 
 In this version, you don't need to set up any route data, because the mock **UrlHelper** returns a constant string.
 
-> [!NOTE] I used Moq, but the same idea applies to any mocking framework.
+> [!NOTE]
+> I used Moq, but the same idea applies to any mocking framework.
 
 
 ## Testing Actions that Return IHttpActionResult

@@ -20,7 +20,8 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > 
 > In this Hands-on Lab you will create a custom action filter attribute into MvcMusicStore solution to catch controller's requests and log the activity of a site into a database table. You will be able to add your logging filter by injection to any controller or action. Finally, you will see the log view that shows the list of visitors.
 > 
-> > [!NOTE] This Hands-on Lab assumes you have basic knowledge of **ASP.NET MVC**. If you have not used **ASP.NET MVC** before, we recommend you to go over **ASP.NET MVC 4 Fundamentals** Hands-on Lab.
+> > [!NOTE]
+> > This Hands-on Lab assumes you have basic knowledge of **ASP.NET MVC**. If you have not used **ASP.NET MVC** before, we recommend you to go over **ASP.NET MVC 4 Fundamentals** Hands-on Lab.
 
 
 <a id="Objectives"></a>
@@ -68,7 +69,8 @@ This Hands-On Lab is comprised by the following exercises:
 
 Estimated time to complete this lab: **30 minutes**.
 
-> [!NOTE] Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
+> [!NOTE]
+> Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
 
 
 <a id="Exercise1"></a>
@@ -80,7 +82,8 @@ In this exercise, you will learn how to create a custom action log filter by usi
 
 The filter will extend **ActionFilterAttributeClass** and override **OnActionExecuting** method to catch each request and then perform the logging actions. The context information about HTTP requests, executing methods, results and parameters will be provided by ASP.NET MVC **ActionExecutingContext** class **.**
 
-> [!NOTE] ASP.NET MVC 4 also has default filters providers you can use without creating a custom filter. ASP.NET MVC 4 provides the following types of filters:
+> [!NOTE]
+> ASP.NET MVC 4 also has default filters providers you can use without creating a custom filter. ASP.NET MVC 4 provides the following types of filters:
 > 
 > - **Authorization** filter, which makes security decisions about whether to execute an action method, such as performing authentication or validating properties of the request.
 > - **Action** filter, which wraps the action method execution. This filter can perform additional processing, such as providing extra data to the action method, inspecting the return value, or canceling execution of the action method
@@ -116,7 +119,8 @@ With this given structure, all the work will be focused on interrupting controll
 
 In this task you will create a custom filter attribute class that will contain the logging logic. For that purpose you will extend ASP.NET MVC **ActionFilterAttribute** Class and implement the interface **IActionFilter**.
 
-> [!NOTE] The **ActionFilterAttribute** is the base class for all the attribute filters. It provides the following methods to execute a specific logic after and before controller action's execution:
+> [!NOTE]
+> The **ActionFilterAttribute** is the base class for all the attribute filters. It provides the following methods to execute a specific logic after and before controller action's execution:
 > 
 > - **OnActionExecuting**(ActionExecutedContext filterContext): Just before the action method is called.
 > - **OnActionExecuted**(ActionExecutingContext filterContext): After the action method is called and before the result is executed (before view render).
@@ -132,7 +136,8 @@ In this task you will create a custom filter attribute class that will contain t
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
     > 
     > For more information, see this article: [http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages](http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages).
 2. Add a new C# class into the **Filters** folder and name it *CustomActionFilter.cs*. This folder will store all the custom filters.
@@ -182,7 +187,8 @@ It is also possible to intercept a specific controller method.
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample5.cs)]
 
-    > [!NOTE] When a filter is injected into a controller class, all its actions are also injected. If you would like to apply the filter only for a set of actions, you would have to inject **[CustomActionFilter]** to each one of them:
+    > [!NOTE]
+    > When a filter is injected into a controller class, all its actions are also injected. If you would like to apply the filter only for a set of actions, you would have to inject **[CustomActionFilter]** to each one of them:
     > 
     > C#
     > 
@@ -202,7 +208,8 @@ In this task, you will test that the logging filter is working. You will start t
 
     *Log tracker status before page activity*
 
-    > [!NOTE] By default, it will always show one item that is generated when retrieving the existing genres for the menu.
+    > [!NOTE]
+    > By default, it will always show one item that is generated when retrieving the existing genres for the menu.
     > 
     > For simplicity purposes we're cleaning up the **ActionLog** table each time the application runs so it will only show the logs of each particular task's verification.
     > 
@@ -246,7 +253,8 @@ In this task, you will create a new Custom Action Filter to inject into the Stor
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-        > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+        > [!NOTE]
+        > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
         > 
         > For more information, see this article: [http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages](http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages).
 2. Add a new C# class into the **Filters** folder and name it *MyNewCustomActionFilter.cs*
@@ -265,7 +273,8 @@ In this task, you will create a new Custom Action Filter to inject into the Stor
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample9.cs)]
 
-    > [!NOTE] This Custom Action Filter is almost the same than the one you created in the previous exercise. The main difference is that it has the *&quot;Logged By&quot;* attribute updated with this new class' name to identify wich filter registered the log.
+    > [!NOTE]
+    > This Custom Action Filter is almost the same than the one you created in the previous exercise. The main difference is that it has the *&quot;Logged By&quot;* attribute updated with this new class' name to identify wich filter registered the log.
 
 <a id="Ex2Task2"></a>
 
@@ -366,7 +375,8 @@ In this task, you will update the solution to register the new filter (**MyNewCu
 
     *Action log with global activity logged*
 
-> [!NOTE] Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
+> [!NOTE]
+> Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
 
 
 * * *
@@ -433,7 +443,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
 
 1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-    > [!NOTE] With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
+    > [!NOTE]
+    > With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
 
     ![Log on to Windows Azure portal](aspnet-mvc-4-custom-action-filters/_static/image17.png "Log on to Windows Azure portal")
 
@@ -445,7 +456,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Creating a new Web Site*
 3. Click **Compute** | **Web Site**. Then select **Quick Create** option. Provide an available URL for the new web site and click **Create Web Site**.
 
-    > [!NOTE] A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
+    > [!NOTE]
+    > A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
 
     ![Creating a new Web Site using Quick Create](aspnet-mvc-4-custom-action-filters/_static/image19.png "Creating a new Web Site using Quick Create")
 
@@ -467,7 +479,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Opening the Web Site management pages*
 7. In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link.
 
-    > [!NOTE] The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
+    > [!NOTE]
+    > The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
 
     ![Downloading the web site publish profile](aspnet-mvc-4-custom-action-filters/_static/image23.png "Downloading the web site publish profile")
 
@@ -518,7 +531,8 @@ If your application makes use of SQL Server databases you will need to create a 
     *Importing publish profile*
 3. Click **Validate Connection**. Once Validation is complete click **Next**.
 
-    > [!NOTE] Validation is complete once you see a green checkmark appear next to the Validate Connection button.
+    > [!NOTE]
+    > Validation is complete once you see a green checkmark appear next to the Validate Connection button.
 
     ![Validating connection](aspnet-mvc-4-custom-action-filters/_static/image31.png "Validating connection")
 

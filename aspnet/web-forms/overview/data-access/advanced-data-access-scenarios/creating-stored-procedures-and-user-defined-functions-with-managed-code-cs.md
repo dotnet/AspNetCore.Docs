@@ -31,7 +31,8 @@ Prior to Microsoft SQL Server 2005, stored procedures and UDFs could only be def
 
 In this tutorial we will examine how to create managed stored procedures and User-Defined Functions and how to integrate them into our Northwind database. Let s get started!
 
-> [!NOTE] Managed database objects offer some advantages over their SQL counterparts. Language richness and familiarity and the ability to reuse existing code and logic are the main advantages. But managed database objects are likely to be less efficient when working with sets of data that do not involve much procedural logic. For a more thorough discussion on the advantages of using managed code versus T-SQL, check out the [Advantages of Using Managed Code to Create Database Objects](https://msdn.microsoft.com/en-us/library/k2e1fb36(VS.80).aspx).
+> [!NOTE]
+> Managed database objects offer some advantages over their SQL counterparts. Language richness and familiarity and the ability to reuse existing code and logic are the main advantages. But managed database objects are likely to be less efficient when working with sets of data that do not involve much procedural logic. For a more thorough discussion on the advantages of using managed code versus T-SQL, check out the [Advantages of Using Managed Code to Create Database Objects](https://msdn.microsoft.com/en-us/library/k2e1fb36(VS.80).aspx).
 
 
 ## Step 1: Moving the Northwind Database Out of`App_Data`
@@ -60,7 +61,8 @@ We need to attach the Northwind database in the `DataFiles` folder (or wherever 
 **Figure 2**: Connect to the Appropriate Database Instance ([Click to view full-size image](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image4.png))
 
 
-> [!NOTE] When connecting to the SQL Server 2005 Express Edition instance through Management Studio the Attach Databases dialog box does not allow you to drill down into user profile directories, such as My Documents. Therefore, make sure to place the `NORTHWND.MDF` and `NORTHWND_log.LDF` files in a non-user profile directory.
+> [!NOTE]
+> When connecting to the SQL Server 2005 Express Edition instance through Management Studio the Attach Databases dialog box does not allow you to drill down into user profile directories, such as My Documents. Therefore, make sure to place the `NORTHWND.MDF` and `NORTHWND_log.LDF` files in a non-user profile directory.
 
 
 Click the OK button to attach the database. The Attach Databases dialog box will close and the Object Explorer should now list the just-attached database. Chances are the Northwind database has a name like `9FE54661B32FDD967F51D71D0D5145CC_LINE ARTICLES\DATATUTORIALS\VOLUME 3\CSHARP\73\ASPNET_DATA_TUTORIAL_75_CS\APP_DATA\NORTHWND.MDF`. Rename the database to Northwind by right-clicking on the database and choosing Rename.
@@ -75,7 +77,8 @@ Click the OK button to attach the database. The Attach Databases dialog box will
 
 To create managed stored procedures or UDFs in SQL Server 2005 we will write the stored procedure and UDF logic as C# code in a class. Once the code has been written, we will need to compile this class into an assembly (a `.dll` file), register the assembly with the SQL Server database, and then create a stored procedure or UDF object in the database that points to the corresponding method in the assembly. These steps can all be performed manually. We can create the code in any text editor, compile it from the command line using the C# compiler ([`csc.exe`](https://msdn.microsoft.com/en-us/library/ms379563(vs.80).aspx)), register it with the database using the [`CREATE ASSEMBLY`](https://msdn.microsoft.com/en-us/library/ms189524.aspx) command or from Management Studio, and add the stored procedure or UDF object through similar means. Fortunately, the Professional and Team Systems versions of Visual Studio include a SQL Server Project type that automates these tasks. In this tutorial we will walk through using the SQL Server Project type to create a managed stored procedure and UDF.
 
-> [!NOTE] If you are using Visual Web Developer or the Standard edition of Visual Studio, then you will have to use the manual approach instead. Step 13 provides detailed instructions for performing these steps manually. I encourage you to read Steps 2 through 12 before reading Step 13 since these steps include important SQL Server configuration instructions that must be applied regardless of what version of Visual Studio you are using.
+> [!NOTE]
+> If you are using Visual Web Developer or the Standard edition of Visual Studio, then you will have to use the manual approach instead. Step 13 provides detailed instructions for performing these steps manually. I encourage you to read Steps 2 through 12 before reading Step 13 since these steps include important SQL Server configuration instructions that must be applied regardless of what version of Visual Studio you are using.
 
 
 Start by opening Visual Studio. From the File menu, choose New Project to display the New Project dialog box (see Figure 4). Drill down to the Database project type and then, from the Templates listed on the right, choose to create a new SQL Server Project. I have chosen to name this project `ManagedDatabaseConstructs` and placed it within a Solution named `Tutorial75`.
@@ -119,7 +122,8 @@ The `NORTHWNDConnectionString` value in `Web.config` currently references the `N
 
 [!code-xml[Main](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/samples/sample1.xml)]
 
-> [!NOTE] As discussed in the [preceding tutorial](debugging-stored-procedures-cs.md), when debugging a SQL Server object from a client application, such as an ASP.NET website, we need to disable connection pooling. The connection string shown above disables connection pooling ( `Pooling=false` ). If you do not plan on debugging the managed stored procedures and UDFs from the ASP.NET website, enable connection pooling.
+> [!NOTE]
+> As discussed in the [preceding tutorial](debugging-stored-procedures-cs.md), when debugging a SQL Server object from a client application, such as an ASP.NET website, we need to disable connection pooling. The connection string shown above disables connection pooling ( `Pooling=false` ). If you do not plan on debugging the managed stored procedures and UDFs from the ASP.NET website, enable connection pooling.
 
 
 ## Step 3: Creating a Managed Stored Procedure
@@ -148,7 +152,8 @@ The following code creates a `SqlCommand` object and sets its `CommandText` to a
 
 All managed database objects have access to a [`SqlContext` object](https://msdn.microsoft.com/en-us/library/ms131108.aspx) that represents the context of the caller. The `SqlContext` provides access to a [`SqlPipe` object](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlpipe.aspx) via its [`Pipe` property](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlcontext.pipe.aspx). This `SqlPipe` object is used to ferry information between the SQL Server database and the calling application. As its name implies, the [`ExecuteAndSend` method](https://msdn.microsoft.com/en-us/library/microsoft.sqlserver.server.sqlpipe.executeandsend.aspx) executes a passed-in `SqlCommand` object and sends the results back to the client application.
 
-> [!NOTE] Managed database objects are best suited for stored procedures and UDFs that use procedural logic rather than set-based logic. Procedural logic involves working with sets of data on a row-by-row basis or working with scalar data. The `GetDiscontinuedProducts` method we just created, however, involves no procedural logic. Therefore, it would ideally be implemented as a T-SQL stored procedure. It is implemented as a managed stored procedure to demonstrate the steps necessary for creating and deploying managed stored procedures.
+> [!NOTE]
+> Managed database objects are best suited for stored procedures and UDFs that use procedural logic rather than set-based logic. Procedural logic involves working with sets of data on a row-by-row basis or working with scalar data. The `GetDiscontinuedProducts` method we just created, however, involves no procedural logic. Therefore, it would ideally be implemented as a T-SQL stored procedure. It is implemented as a managed stored procedure to demonstrate the steps necessary for creating and deploying managed stored procedures.
 
 
 ## Step 4: Deploying the Managed Stored Procedure
@@ -242,7 +247,8 @@ At this point we have added the `GetDiscontinuedProducts` and `GetProductsWithPr
 
 Open the `NorthwindWithSprocs` Typed DataSet in Visual Studio and start by adding a new method to the `ProductsTableAdapter` named `GetDiscontinuedProducts`. To add a new method to a TableAdapter, right-click on the TableAdapter s name in the Designer and choose the Add Query option from the context menu.
 
-> [!NOTE] Since we moved the Northwind database from the `App_Data` folder to the SQL Server 2005 Express Edition database instance, it is imperative that the corresponding connection string in Web.config be updated to reflect this change. In Step 2 we discussed updating the `NORTHWNDConnectionString` value in `Web.config`. If you forgot to make this update, then you will see the error message Failed to add query. Unable to find connection `NORTHWNDConnectionString` for object `Web.config` in a dialog box when attempting to add a new method to the TableAdapter. To resolve this error, click OK and then go to `Web.config` and update the `NORTHWNDConnectionString` value as discussed in Step 2. Then try re-adding the method to the TableAdapter. This time it should work without error.
+> [!NOTE]
+> Since we moved the Northwind database from the `App_Data` folder to the SQL Server 2005 Express Edition database instance, it is imperative that the corresponding connection string in Web.config be updated to reflect this change. In Step 2 we discussed updating the `NORTHWNDConnectionString` value in `Web.config`. If you forgot to make this update, then you will see the error message Failed to add query. Unable to find connection `NORTHWNDConnectionString` for object `Web.config` in a dialog box when attempting to add a new method to the TableAdapter. To resolve this error, click OK and then go to `Web.config` and update the `NORTHWNDConnectionString` value as discussed in Step 2. Then try re-adding the method to the TableAdapter. This time it should work without error.
 
 
 Adding a new method launches the TableAdapter Query Configuration wizard, which we have used many times in past tutorials. The first step asks us to specify how the TableAdapter should access the database: through an ad-hoc SQL statement or via a new or existing stored procedure. Since we have already created and registered the `GetDiscontinuedProducts` managed stored procedure with the database, choose the Use existing stored procedure option and hit Next.
@@ -372,7 +378,8 @@ I have added the `udf_GetProductsByCategoryID` UDF to the Northwind database; Fi
 **Figure 24**: The `ProductID`, `ProductName`, and `CategoryID` are Listed for Each Beverage ([Click to view full-size image](creating-stored-procedures-and-user-defined-functions-with-managed-code-cs/_static/image58.png))
 
 
-> [!NOTE] For more information on creating and using UDFs, check out [Intro to User-Defined Functions](http://www.sqlteam.com/item.asp?ItemID=1955). Also check out [Advantages and Drawbacks of User-Defined Functions](http://www.samspublishing.com/articles/article.asp?p=31724&amp;rl=1).
+> [!NOTE]
+> For more information on creating and using UDFs, check out [Intro to User-Defined Functions](http://www.sqlteam.com/item.asp?ItemID=1955). Also check out [Advantages and Drawbacks of User-Defined Functions](http://www.samspublishing.com/articles/article.asp?p=31724&amp;rl=1).
 
 
 ## Step 10: Creating a Managed UDF
@@ -401,7 +408,8 @@ Note that the UDF method s input parameters are of their corresponding SQL types
 
 The code starts by creating a `SqlMoney` instance named `inventoryValue` that is assigned a value of 0. The `Products` table allows for database `NULL` values in the `UnitsInPrice` and `UnitsInStock` columns. Therefore, we need to first check to see if these values contain `NULL` s, which we do through the `SqlMoney` object s [`IsNull` property](https://msdn.microsoft.com/en-us/library/system.data.sqltypes.sqlmoney.isnull.aspx). If both `UnitPrice` and `UnitsInStock` contain non-`NULL` values, then we compute the `inventoryValue` to be the product of the two. Then, if `Discontinued` is true, then we halve the value.
 
-> [!NOTE] The `SqlMoney` object only allows two `SqlMoney` instances to be multiplied together. It does not allow a `SqlMoney` instance to be multiplied by a literal floating-point number. Therefore, to halve `inventoryValue` we multiply it by a new `SqlMoney` instance that has the value 0.5.
+> [!NOTE]
+> The `SqlMoney` object only allows two `SqlMoney` instances to be multiplied together. It does not allow a `SqlMoney` instance to be multiplied by a literal floating-point number. Therefore, to halve `inventoryValue` we multiply it by a new `SqlMoney` instance that has the value 0.5.
 
 
 ## Step 11: Deploying the Managed UDF
@@ -491,7 +499,8 @@ If the folder containing `csc.exe` in not in the system s `PATH`, you will have 
 
 The `/t` flag specifies that the C# class file should be compiled into a DLL (rather than an executable). The `/out` flag specifies the name of the resulting assembly.
 
-> [!NOTE] Rather than compiling the `GetProductsWithPriceGreaterThan.cs` class file from the command line you could alternatively use [Visual C# Express Edition](https://msdn.microsoft.com/vstudio/express/visualcsharp/) or create a separate Class Library project in Visual Studio Standard Edition. S ren Jacob Lauritsen has kindly provided such a Visual C# Express Edition project with code for the `GetProductsWithPriceGreaterThan` stored procedure and the two managed stored procedures and UDF created in Steps 3, 5, and 10. S ren s project also includes the T-SQL commands needed to add the corresponding database objects.
+> [!NOTE]
+> Rather than compiling the `GetProductsWithPriceGreaterThan.cs` class file from the command line you could alternatively use [Visual C# Express Edition](https://msdn.microsoft.com/vstudio/express/visualcsharp/) or create a separate Class Library project in Visual Studio Standard Edition. S ren Jacob Lauritsen has kindly provided such a Visual C# Express Edition project with code for the `GetProductsWithPriceGreaterThan` stored procedure and the two managed stored procedures and UDF created in Steps 3, 5, and 10. S ren s project also includes the T-SQL commands needed to add the corresponding database objects.
 
 
 With the code compiled into an assembly, we are ready to register the assembly within the SQL Server 2005 database. This can be performed through T-SQL, using the command `CREATE ASSEMBLY`, or through SQL Server Management Studio. Let s focus on using Management Studio.

@@ -18,7 +18,8 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 This article describes how ASP.NET Web API routes an HTTP request to a particular action on a controller.
 
-> [!NOTE] For a high-level overview of routing, see [Routing in ASP.NET Web API](routing-in-aspnet-web-api.md).
+> [!NOTE]
+> For a high-level overview of routing, see [Routing in ASP.NET Web API](routing-in-aspnet-web-api.md).
 
 
 This article looks at the details of the routing process. If you create a Web API project and find that some requests don't get routed the way you expect, hopefully this article will help.
@@ -129,7 +130,8 @@ Before looking at the selection algorithm, we need to understand some things abo
 
 Simple types include all of the [.NET Framework primitive types](https://msdn.microsoft.com/en-us/library/system.type.isprimitive), plus **DateTime**, **Decimal**, **Guid**, **String**, and **TimeSpan**. For each action, at most one parameter can read the request body.
 
-> [!NOTE] It is possible to override the default binding rules. See [WebAPI Parameter binding under the hood](https://blogs.msdn.com/b/jmstall/archive/2012/05/11/webapi-parameter-binding-under-the-hood.aspx).
+> [!NOTE]
+> It is possible to override the default binding rules. See [WebAPI Parameter binding under the hood](https://blogs.msdn.com/b/jmstall/archive/2012/05/11/webapi-parameter-binding-under-the-hood.aspx).
 
 
 With that background, here is the action selection algorithm.

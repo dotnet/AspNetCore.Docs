@@ -18,7 +18,8 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
 > This article explains how to read, write, append, delete, and upload files in an ASP.NET Web Pages (Razor) site.
 > 
-> > [!NOTE] If you want to upload images and manipulate them (for example, flip or resize them), see [Working with Images in an ASP.NET Web Pages Site](https://go.microsoft.com/fwlink/?LinkId=202897).
+> > [!NOTE]
+> > If you want to upload images and manipulate them (for example, flip or resize them), see [Working with Images in an ASP.NET Web Pages Site](https://go.microsoft.com/fwlink/?LinkId=202897).
 > 
 > 
 > **What you'll learn:** 
@@ -75,7 +76,8 @@ If you want to store data in a text file, you can use the `File.WriteAllText` me
 
     The `WriteAllText` method of the `File` object writes the data to the file. This method takes two parameters: the name (with path) of the file to write to, and the actual data to write. Notice that the name of the first parameter has an `@` character as a prefix. This tells ASP.NET that you're providing a verbatim string literal, and that characters like "/" should not be interpreted in special ways. (For more information, see [Introduction to ASP.NET Web Programming Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkId=195205#ID_WorkingWithFileAndFolderPaths).)
 
-    > [!NOTE] In order for your code to save files in the *App\_Data* folder, the application needs read-write permissions for that folder. On your development computer this is not typically an issue. However, when you publish your site to a hosting provider's web server, you might need to explicitly set those permissions. If you run this code on a hosting provider's server and get errors, check with the hosting provider to find out how to set those permissions.
+    > [!NOTE]
+    > In order for your code to save files in the *App\_Data* folder, the application needs read-write permissions for that folder. On your development computer this is not typically an issue. However, when you publish your site to a hosting provider's web server, you might need to explicitly set those permissions. If you run this code on a hosting provider's server and get errors, check with the hosting provider to find out how to set those permissions.
 
 - Run the page in a browser. 
 

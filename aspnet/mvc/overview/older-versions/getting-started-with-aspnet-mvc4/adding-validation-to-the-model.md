@@ -16,7 +16,8 @@ Adding Validation to the Model
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-> > [!NOTE] An updated version of this tutorial is available [here](../../getting-started/introduction/getting-started.md) that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demonstrates more features.
+> > [!NOTE]
+> > An updated version of this tutorial is available [here](../../getting-started/introduction/getting-started.md) that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demonstrates more features.
 
 
 In this this section you'll add validation logic to the `Movie` model, and you'll ensure that the validation rules are enforced any time a user attempts to create or edit a movie using the application.
@@ -73,7 +74,8 @@ Click the **Create New** link to add a new movie. Fill out the form with some in
 
 ![8_validationErrors](adding-validation-to-the-model/_static/image1.png)
 
-> [!NOTE] to support jQuery validation for non-English locales that use a comma (&quot;,&quot;) for a decimal point, you must include*globalize.js* and your specific *cultures/globalize.cultures.js* file(from [https://github.com/jquery/globalize](https://github.com/jquery/globalize) ) and JavaScript to use `Globalize.parseFloat`. The following code shows the modifications to the Views\Movies\Edit.cshtml file to work with the &quot;fr-FR&quot; culture:
+> [!NOTE]
+> to support jQuery validation for non-English locales that use a comma (&quot;,&quot;) for a decimal point, you must include*globalize.js* and your specific *cultures/globalize.cultures.js* file(from [https://github.com/jquery/globalize](https://github.com/jquery/globalize) ) and JavaScript to use `Globalize.parseFloat`. The following code shows the modifications to the Views\Movies\Edit.cshtml file to work with the &quot;fr-FR&quot; culture:
 
 
 [!code-cshtml[Main](adding-validation-to-the-model/samples/sample6.cshtml)]

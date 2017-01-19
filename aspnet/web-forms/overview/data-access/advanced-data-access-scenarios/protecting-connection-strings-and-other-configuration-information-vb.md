@@ -44,7 +44,8 @@ Certain `Web.config` sections, however, contain sensitive information that may i
 
 In this tutorial we will look at techniques for protecting such sensitive configuration information. As we will see, the .NET Framework version 2.0 includes a protected configurations system that makes programmatically encrypting and decrypting selected configuration sections a breeze.
 
-> [!NOTE] This tutorial concludes with a look at Microsoft s recommendations for connecting to a database from an ASP.NET application. In addition to encrypting your connection strings, you can help harden your system by ensuring that you are connecting to the database in a secure fashion.
+> [!NOTE]
+> This tutorial concludes with a look at Microsoft s recommendations for connecting to a database from an ASP.NET application. In addition to encrypting your connection strings, you can help harden your system by ensuring that you are connecting to the database in a secure fashion.
 
 
 ## Step 1: Exploring ASP.NET 2.0 s Protected Configuration Options
@@ -62,7 +63,8 @@ The RSA and DPAPI providers use keys for their encryption and decryption routine
 
 In this tutorial our examples will use the DPAPI provider and machine-level keys. Specifically, we will look at encrypting the `<connectionStrings>` section in `Web.config`, although the protected configuration system can be used to encrypt most any `Web.config` section. For information on using user-level keys or using the RSA provider, consult the resources in the Further Readings section at the end of this tutorial.
 
-> [!NOTE] The `RSAProtectedConfigurationProvider` and `DPAPIProtectedConfigurationProvider` providers are registered in the `machine.config` file with the provider names `RsaProtectedConfigurationProvider` and `DataProtectionConfigurationProvider`, respectively. When encrypting or decrypting configuration information we will need to supply the appropriate provider name (`RsaProtectedConfigurationProvider` or `DataProtectionConfigurationProvider`) rather than the actual type name (`RSAProtectedConfigurationProvider` and `DPAPIProtectedConfigurationProvider`). You can find the `machine.config` file in the `$WINDOWS$\Microsoft.NET\Framework\version\CONFIG` folder.
+> [!NOTE]
+> The `RSAProtectedConfigurationProvider` and `DPAPIProtectedConfigurationProvider` providers are registered in the `machine.config` file with the provider names `RsaProtectedConfigurationProvider` and `DataProtectionConfigurationProvider`, respectively. When encrypting or decrypting configuration information we will need to supply the appropriate provider name (`RsaProtectedConfigurationProvider` or `DataProtectionConfigurationProvider`) rather than the actual type name (`RSAProtectedConfigurationProvider` and `DPAPIProtectedConfigurationProvider`). You can find the `machine.config` file in the `$WINDOWS$\Microsoft.NET\Framework\version\CONFIG` folder.
 
 
 ## Step 2: Programmatically Encrypting and Decrypting Configuration Sections
@@ -131,7 +133,8 @@ The encrypted `<connectionStrings>` section generated on my computer follows, al
 
 [!code-xml[Main](protecting-connection-strings-and-other-configuration-information-vb/samples/sample4.xml)]
 
-> [!NOTE] The `<connectionStrings>` element specifies the provider used to perform the encryption (`DataProtectionConfigurationProvider`). This information is used by the `UnprotectSection` method when the Decrypt Connection Strings button is clicked.
+> [!NOTE]
+> The `<connectionStrings>` element specifies the provider used to perform the encryption (`DataProtectionConfigurationProvider`). This information is used by the `UnprotectSection` method when the Decrypt Connection Strings button is clicked.
 
 
 When the connection string information is accessed from `Web.config` - either by code we write, from a SqlDataSource control, or the auto-generated code from the TableAdapters in our Typed DataSets - it is automatically decrypted. In short, we do not need to add any extra code or logic to decrypt the encrypted `<connectionString>` section. To demonstrate this, visit one of the earlier tutorials at this time, such as the Simple Display tutorial from the Basic Reporting section (`~/BasicReporting/SimpleDisplay.aspx`). As Figure 5 shows, the tutorial works exactly as we would expect it, indicating that the encrypted connection string information is being automatically decrypted by the ASP.NET page.
@@ -168,7 +171,8 @@ Similarly, the `aspnet_regiis.exe` command line tool can be used to decrypt conf
 
 [!code-console[Main](protecting-connection-strings-and-other-configuration-information-vb/samples/sample8.cmd)]
 
-> [!NOTE] Since we are using the DPAPI provider, which uses keys specific to the computer, you must run `aspnet_regiis.exe` from the same machine from which the web pages are being served. For example, if you run this command line program from your local development machine and then upload the encrypted Web.config file to the production server, the production server will not be able to decrypt the connection string information since it was encrypted using keys specific to your development machine. The RSA provider does not have this limitation as it is possible to export the RSA keys to another machine.
+> [!NOTE]
+> Since we are using the DPAPI provider, which uses keys specific to the computer, you must run `aspnet_regiis.exe` from the same machine from which the web pages are being served. For example, if you run this command line program from your local development machine and then upload the encrypted Web.config file to the production server, the production server will not be able to decrypt the connection string information since it was encrypted using keys specific to your development machine. The RSA provider does not have this limitation as it is possible to export the RSA keys to another machine.
 
 
 ## Understanding Database Authentication Options
@@ -192,7 +196,8 @@ The following example shows a connection string that uses SQL authentication. No
 
 Imagine that an attacker is able to view your application s `Web.config` file. If you use SQL authentication to connect to a database that is accessible over the Internet, the attacker can use this connection string to connect to your database through SQL Management Studio or from ASP.NET pages on their own website. To help mitigate this threat, encrypt the connection string information in `Web.config` using the protected configuration system.
 
-> [!NOTE] For more information on the different types of authentication available in SQL Server, see [Building Secure ASP.NET Applications: Authentication, Authorization, and Secure Communication](https://msdn.microsoft.com/en-us/library/aa302392.aspx). For further connection string examples illustrating the differences between Windows and SQL authentication syntax, refer to [ConnectionStrings.com](http://www.connectionstrings.com/).
+> [!NOTE]
+> For more information on the different types of authentication available in SQL Server, see [Building Secure ASP.NET Applications: Authentication, Authorization, and Secure Communication](https://msdn.microsoft.com/en-us/library/aa302392.aspx). For further connection string examples illustrating the differences between Windows and SQL authentication syntax, refer to [ConnectionStrings.com](http://www.connectionstrings.com/).
 
 
 ## Summary

@@ -37,7 +37,8 @@ The "by role" view is useful in circumstances where the visitor wants to know th
 
 We will start with creating the "by user" interface. This interface will consist of a drop-down list and a list of checkboxes. The drop-down list will be populated with the set of users in the system; the checkboxes will enumerate the roles. Selecting a user from the drop-down list will check those roles the user belongs to. The person visiting the page can then check or uncheck the checkboxes to add or remove the selected user from the corresponding roles.
 
-> [!NOTE] Using a drop-down list to list the user accounts is not an ideal choice for websites where there may be hundreds of user accounts. A drop-down list is designed to allow a user to pick one item from a relatively short list of options. It quickly becomes unwieldy as the number of list items grows. If you are building a website that will have potentially large numbers of user accounts, you may want to consider using an alternative user interface, such as a pageable GridView or a filterable interface that lists prompts the visitor to choose a letter and then only shows those users whose username starts with the selected letter.
+> [!NOTE]
+> Using a drop-down list to list the user accounts is not an ideal choice for websites where there may be hundreds of user accounts. A drop-down list is designed to allow a user to pick one item from a relatively short list of options. It quickly becomes unwieldy as the number of list items grows. If you are building a website that will have potentially large numbers of user accounts, you may want to consider using an alternative user interface, such as a pageable GridView or a filterable interface that lists prompts the visitor to choose a letter and then only shows those users whose username starts with the selected letter.
 
 
 ## Step 1: Building the "By User" User Interface
@@ -76,7 +77,8 @@ We are now ready to write the code to bind the set of user accounts to the DropD
 
 The `BindUsersToUserList` method retrieves all of the user accounts in the system via the [`Membership.GetAllUsers` method](https://msdn.microsoft.com/en-us/library/dy8swhya.aspx). This returns a [`MembershipUserCollection` object](https://msdn.microsoft.com/en-us/library/system.web.security.membershipusercollection.aspx), which is a collection of [`MembershipUser` instances](https://msdn.microsoft.com/en-us/library/system.web.security.membershipuser.aspx). This collection is then bound to the `UserList` DropDownList. The `MembershipUser` instances that makeup the collection contain a variety of properties, like `UserName`, `Email`, `CreationDate`, and `IsOnline`. In order to instruct the DropDownList to display the value of the `UserName` property, ensure that the `UserList` DropDownList's `DataTextField` and `DataValueField` properties have been set to "UserName".
 
-> [!NOTE] The `Membership.GetAllUsers` method has two overloads: one that accepts no input parameters and returns all of the users, and one that takes in integer values for the page index and page size, and returns only the specified subset of the users. When there are large amounts of user accounts being displayed in a pageable user interface element, the second overload can be used to more efficiently page through the users since it returns just the precise subset of user accounts rather than all of them.
+> [!NOTE]
+> The `Membership.GetAllUsers` method has two overloads: one that accepts no input parameters and returns all of the users, and one that takes in integer values for the page index and page size, and returns only the specified subset of the users. When there are large amounts of user accounts being displayed in a pageable user interface element, the second overload can be used to more efficiently page through the users since it returns just the precise subset of user accounts rather than all of them.
 
 
 The `BindRolesToList` method starts by calling the `Roles` class's [`GetAllRoles` method](https://msdn.microsoft.com/en-us/library/system.web.security.roles.getallroles.aspx), which returns a string array containing the roles in the system. This string array is then bound to the Repeater.
@@ -101,7 +103,8 @@ When the page is first loaded, or whenever the visitor selects a new user from t
 
 The above code starts by determining who the selected user is. It then uses the Roles class's [`GetRolesForUser(userName)` method](https://msdn.microsoft.com/en-us/library/system.web.security.roles.getrolesforuser.aspx) to return the specified user's set of roles as a string array. Next, the Repeater's items are enumerated and each item's `RoleCheckBox` CheckBox is programmatically referenced. The CheckBox is checked only if the role it corresponds to is contained within the `selectedUsersRoles` string array.
 
-> [!NOTE] The `selectedUserRoles.Contains<string>(...)` syntax will not compile if you are using ASP.NET version 2.0. The `Contains<string>` method is part of the [LINQ library](http://en.wikipedia.org/wiki/Language_Integrated_Query), which is new to ASP.NET 3.5. If you are still using ASP.NET version 2.0, use the [`Array.IndexOf<string>` method](https://msdn.microsoft.com/en-us/library/eha9t187.aspx) instead.
+> [!NOTE]
+> The `selectedUserRoles.Contains<string>(...)` syntax will not compile if you are using ASP.NET version 2.0. The `Contains<string>` method is part of the [LINQ library](http://en.wikipedia.org/wiki/Language_Integrated_Query), which is new to ASP.NET 3.5. If you are still using ASP.NET version 2.0, use the [`Array.IndexOf<string>` method](https://msdn.microsoft.com/en-us/library/eha9t187.aspx) instead.
 
 
 The `CheckRolesForSelectedUser` method needs to be called in two cases: when the page is first loaded and whenever the `UserList` DropDownList's selected index is changed. Therefore, call this method from the `Page_Load` event handler (after the calls to `BindUsersToUserList` and `BindRolesToList`). Also, create an event handler for the DropDownList's `SelectedIndexChanged` event and call this method from there.
@@ -204,7 +207,8 @@ When the "Remove" button is clicked a postback ensues and the GridView's `RowDel
 
 The code starts by determining the selected role name. It then programmatically references the `UserNameLabel` control from the row whose "Remove" button was clicked in order to determine the UserName of the user to remove. The user is then removed from the role via a call to the `Roles.RemoveUserFromRole` method. The `RolesUserList` GridView is then refreshed and a message is displayed via the `ActionStatus` Label control.
 
-> [!NOTE] The "Remove" button does not require any sort of confirmation from the user before removing the user from the role. I invite you to add some level of user confirmation. One of the easiest ways to confirm an action is through a client-side confirm dialog box. For more information on this technique, see [Adding Client-Side Confirmation When Deleting](https://asp.net/learn/data-access/tutorial-42-cs.aspx).
+> [!NOTE]
+> The "Remove" button does not require any sort of confirmation from the user before removing the user from the role. I invite you to add some level of user confirmation. One of the easiest ways to confirm an action is through a client-side confirm dialog box. For more information on this technique, see [Adding Client-Side Confirmation When Deleting](https://asp.net/learn/data-access/tutorial-42-cs.aspx).
 
 
 Figure 8 shows the page after user Tito has been removed from the Supervisors group.
@@ -231,7 +235,8 @@ Next, create a `Click` event handler for the `AddUserToRoleButton` and add the f
 
 The majority of the code in the `Click` event handler performs various validation checks. It ensures that the visitor supplied a username in the `UserNameToAddToRole` TextBox, that the user exists in the system, and that they don't already belong to the selected role. If any of these checks fails, an appropriate message is displayed in `ActionStatus` and the event handler is exited. If all of the checks pass, the user is added to the role via the `Roles.AddUserToRole` method. Following that, the TextBox's `Text` property is cleared out, the GridView is refreshed, and the `ActionStatus` Label displays a message indicating that the specified user was successfully added to the selected role.
 
-> [!NOTE] To ensure that the specified user does not already belong to the selected role, we use the [`Roles.IsUserInRole(userName, roleName)` method](https://msdn.microsoft.com/en-us/library/system.web.security.roles.isuserinrole.aspx), which returns a Boolean value indicating whether *userName* is a member of *roleName*. We will use this method again in the <a id="_msoanchor_2"></a>[next tutorial](role-based-authorization-cs.md) when we look at role-based authorization.
+> [!NOTE]
+> To ensure that the specified user does not already belong to the selected role, we use the [`Roles.IsUserInRole(userName, roleName)` method](https://msdn.microsoft.com/en-us/library/system.web.security.roles.isuserinrole.aspx), which returns a Boolean value indicating whether *userName* is a member of *roleName*. We will use this method again in the <a id="_msoanchor_2"></a>[next tutorial](role-based-authorization-cs.md) when we look at role-based authorization.
 
 
 Visit the page through a browser and select the Supervisors role from the `RoleList` DropDownList. Try entering an invalid username – you should see a message explaining that the user does not exist in the system.

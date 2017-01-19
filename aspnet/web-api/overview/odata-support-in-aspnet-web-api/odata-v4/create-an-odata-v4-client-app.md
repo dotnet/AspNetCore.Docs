@@ -22,7 +22,8 @@ Start a new instance of Visual Studio and create a new console application proje
 
 ![](create-an-odata-v4-client-app/_static/image1.png)
 
-> [!NOTE] You can also add the console app to the same Visual Studio solution that contains the OData service.
+> [!NOTE]
+> You can also add the console app to the same Visual Studio solution that contains the OData service.
 
 
 ## Install the OData Client Code Generator
@@ -37,7 +38,8 @@ Run the ProductService project from Visual Studio. By default, Visual Studio lau
 
 ![](create-an-odata-v4-client-app/_static/image4.png)
 
-> [!NOTE] If you put both projects in the same solution, make sure to run the ProductService project without debugging. In the next step, you will need to keep the service running while you modify the console application project.
+> [!NOTE]
+> If you put both projects in the same solution, make sure to run the ProductService project without debugging. In the next step, you will need to keep the service running while you modify the console application project.
 
 
 ## Generate the Service Proxy

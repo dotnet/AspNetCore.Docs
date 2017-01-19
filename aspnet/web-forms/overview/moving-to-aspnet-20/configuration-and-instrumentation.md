@@ -34,7 +34,8 @@ The following two configuration-management tools use the configuration API and a
 
 The ASP.NET configuration API comprises a set of ASP.NET management objects that you can use to configure Web sites and applications programmatically. Management objects are implemented as a .NET Framework class library. The configuration API programming model helps ensure code consistency and reliability by enforcing data types at compile time. To make it easier to manage application configurations, the configuration API allows you to view data that is merged from all points in the configuration hierarchy as a single collection, instead of viewing the data as separate collections from different configuration files. Additionally, the configuration API enables you to manipulate entire application configurations without directly editing the XML in the configuration files. Finally, the API simplifies configuration tasks by supporting administrative tools, such as the Web Site Administration Tool. The configuration API simplifies deployment by supporting the creation of configuration files on a computer and running configuration scripts across multiple computers.
 
-> [!NOTE] The configuration API does not support the creation of IIS applications.
+> [!NOTE]
+> The configuration API does not support the creation of IIS applications.
 
 
 ## Working with Local and Remote Configuration Settings
@@ -52,7 +53,8 @@ These methods will return a Configuration object, which in turn provides the req
 
 You use the GetSection or GetSectionGroup method to read configuration information. The user or process that reads must have Read permissions on all of the configuration files in the hierarchy.
 
-> [!NOTE] If you use a static GetSection method that takes a path parameter, the path parameter must refer to the application in which the code is running. Otherwise, the parameter is ignored and the configuration information for the currently running application is returned.
+> [!NOTE]
+> If you use a static GetSection method that takes a path parameter, the path parameter must refer to the application in which the code is running. Otherwise, the parameter is ignored and the configuration information for the currently running application is returned.
 
 
 ### Writing
@@ -90,7 +92,8 @@ The Configuration object represents does not represent a particular configuratio
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample1.cs)]
 
-> [!NOTE] Note that if the /ProductInfo path doesn't exist, the above code will return the default configuration as specified in the machine.config file.
+> [!NOTE]
+> Note that if the /ProductInfo path doesn't exist, the above code will return the default configuration as specified in the machine.config file.
 
 
 Once you have the Configuration object, you can then use the GetSection or GetSectionGroup method to drill into the configuration settings. The following example gets a reference to the impersonation settings for the above ProductInfo application:
@@ -191,7 +194,8 @@ You will need to add a rule to associate an eventMapping to the provider, and al
 
 You can also forward events to e-mail. Be careful about which event rules you map to your e-mail provider, as you can unintentionally send yourself a lot of information that may be better suited for SQL Server or the Event Log. There are two e-mail providers; SimpleMailWebEventProvider and TemplatedMailWebEventProvider. Each has the same configuration attributes, with the exception of the "template" and "detailedTemplateErrors" attributes, both of which are only available on the TemplatedMailWebEventProvider.
 
-> [!NOTE] Neither of these e-mail providers is configured for you. You'll need to add them to your Web.config file.
+> [!NOTE]
+> Neither of these e-mail providers is configured for you. You'll need to add them to your Web.config file.
 
 
 The main difference between these two e-mail providers is that SimpleMailWebEventProvider sends e-mails in a generic template that cannot be modified. The sample Web.config file adds this e-mail provider to the list of configured providers by using the following rule:
@@ -303,7 +307,8 @@ When you precompile a site in place, the following items apply:
 
 You can also recompile an application in place after adding new source files to it. The tool compiles only the new or changed files unless you include the **-c** option.
 
-> [!NOTE] Compilation of an application that contains a nested application does not compile the nested application. The nested application must be compiled separately.
+> [!NOTE]
+> Compilation of an application that contains a nested application does not compile the nested application. The nested application must be compiled separately.
 
 
 ### [Compiling an Application for Deployment](https://msdn.microsoft.com/en-us/library/ms229863.aspx)

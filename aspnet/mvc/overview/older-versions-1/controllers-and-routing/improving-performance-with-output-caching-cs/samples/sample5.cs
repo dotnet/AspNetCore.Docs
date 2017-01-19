@@ -28,6 +28,5 @@ namespace MvcApplication1.Controllers
             return View();
         }
 
-
     }
 }

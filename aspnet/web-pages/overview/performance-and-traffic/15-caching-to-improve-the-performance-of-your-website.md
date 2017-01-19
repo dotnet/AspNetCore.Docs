@@ -42,7 +42,8 @@ One way to improve the performance of your website in circumstances like this is
 
 In general, you cache information that doesn't change frequently. When you put information in the cache, it's stored in memory on the web server. You can specify how long it should be cached, from seconds to days. When the caching period expires, the information is automatically removed from the cache.
 
-> [!NOTE] Entries in the cache might be removed for reasons other than that they've expired. For example, the web server might temporarily run low on memory, and one way it can reclaim memory is by throwing entries out of the cache. As you'll see, even if you've put information into the cache, you have to check to be sure it's still there when you need it.
+> [!NOTE]
+> Entries in the cache might be removed for reasons other than that they've expired. For example, the web server might temporarily run low on memory, and one way it can reclaim memory is by throwing entries out of the cache. As you'll see, even if you've put information into the cache, you have to check to be sure it's still there when you need it.
 
 
 Imagine your website has a page that displays the current temperature and weather forecast. To get this type of information, you might send a request to an external service. Since this information doesn't change much (within a two-hour time period, for example) and since external calls require time and bandwidth, it's a good candidate for caching.

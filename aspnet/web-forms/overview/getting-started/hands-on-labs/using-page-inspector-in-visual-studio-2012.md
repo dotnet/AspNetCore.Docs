@@ -68,7 +68,8 @@ This hands-on lab includes the following exercises:
 1. [Exercise 1: Using Page Inspector in ASP.NET MVC Projects](#Exercise1)
 2. [Exercise 2: Using Page Inspector in WebForms Projects](#Exercise2)
 
-> [!NOTE] Each exercise is accompanied by a starting solution, located in the Begin folder of the exercise, that allows you to follow each exercise independently of the others. Inside the source code for an exercise, you will also find an End folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
+> [!NOTE]
+> Each exercise is accompanied by a starting solution, located in the Begin folder of the exercise, that allows you to follow each exercise independently of the others. Inside the source code for an exercise, you will also find an End folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
 
 Estimated time to complete this lab: **30 minutes**.
@@ -93,7 +94,8 @@ In this task, you will learn how to use the Page Inspector in the context of an 
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. In the Solution Explorer, locate **Index.cshtml** view under the **/Views/Home** project folder, right-click it and select **View in Page Inspector**.
 
     ![Selecting a file to preview in Page Inspector](using-page-inspector-in-visual-studio-2012/_static/image1.png "Selecting a file to preview in Page Inspector")
@@ -107,7 +109,8 @@ In this task, you will learn how to use the Page Inspector in the context of an 
 
     The Page Inspector tool is integrated in your Visual Studio environment. The inspector contains an embedded browser, together with a powerful HTML profiler. Notice that you do not have to run the solution to see how your pages look.
 
-    > [!NOTE] When the width of Page Inspector browser is less than the width of the opened page, you will not see the page properly. If that happens, adjust the width of the Page Inspector.
+    > [!NOTE]
+    > When the width of Page Inspector browser is less than the width of the opened page, you will not see the page properly. If that happens, adjust the width of the Page Inspector.
 4. Click the **Files** tab in Page Inspector.
 
     You will see all the source files that are composing the Index page. This feature helps to identify all the elements at a glance, especially when you are working with partial views and templates. Notice that you can also open each of the files if you click the links.
@@ -128,7 +131,8 @@ In this task, you will learn how to use the Page Inspector in the context of an 
 
     *Inspection mode in action*
 
-    > [!NOTE] Do not maximize the Page Inspector window or you will not be able to see the preview tab showing the source code. If you click the element in Page Inspector when it is maximized, the source code of the selection will appear but it will hide the Page Inspector window.
+    > [!NOTE]
+    > Do not maximize the Page Inspector window or you will not be able to see the preview tab showing the source code. If you click the element in Page Inspector when it is maximized, the source code of the selection will appear but it will hide the Page Inspector window.
 
     If you pay attention to the **Index.cshtml** file, you will notice that the portion of source code that generates the selected element is highlighted. This feature facilitates the editing of long source files, providing a direct and fast way to access the code.
 
@@ -146,7 +150,8 @@ In this task, you will learn how to use the Page Inspector in the context of an 
     *Selecting HTML element in the page*
 10. Click the **Toggle Inspection Mode** button to enable *Inspection Mode* and click the navigation bar. On the right of the HTML code, in the Styles pane, you will see a list with the CSS styles applied to the selected element.
 
-    > [!NOTE] Since the header is a part of the site layout, Page Inspector will also open \_Layout.cshtml file and highlight the segment of code affected.
+    > [!NOTE]
+    > Since the header is a part of the site layout, Page Inspector will also open \_Layout.cshtml file and highlight the segment of code affected.
 
     ![Discoveringstyles](using-page-inspector-in-visual-studio-2012/_static/image9.png)
 
@@ -158,7 +163,8 @@ In this task, you will learn how to use the Page Inspector in the context of an 
     *Selecting an element*
 12. In the Styles pane, locate the **background-image** item under the **.main-content** group. **Uncheck** the **background-image** and see what happens. You will notice that the browser will reflect the changes immediately and the circle is hidden.
 
-    > [!NOTE] The changes you apply on the Page Inspector Styles tab do not affect the original stylesheet. You can uncheck styles or change their values as many times as you want, but they will be restored after refreshing the page.
+    > [!NOTE]
+    > The changes you apply on the Page Inspector Styles tab do not affect the original stylesheet. You can uncheck styles or change their values as many times as you want, but they will be restored after refreshing the page.
 
     ![Enabling and disabling CSS styles](using-page-inspector-in-visual-studio-2012/_static/image11.png "Enabling and disabling CSS styles")
 
@@ -279,7 +285,8 @@ In this task, you will learn how to use the Page Inspector features in the conte
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. In the Solution Explorer, locate **Default.aspx** page, right-click it and select **View in Page Inspector**.
 
     ![Opening Default.aspx with Page Inspector](using-page-inspector-in-visual-studio-2012/_static/image24.png "Opening Default.aspx with Page Inspector")
@@ -293,7 +300,8 @@ In this task, you will learn how to use the Page Inspector features in the conte
 
     The Page Inspector tool is integrated in your Visual Studio environment. The inspector contains an embedded browser, together with a powerful HTML profiler that will show the selected code. Notice that you do not have to run the solution to see how your pages look.
 
-    > [!NOTE] When the width of Page Inspector browser is less than the width of the opened page, you will not see the page properly. If that happens, adjust the width of the Page Inspector.
+    > [!NOTE]
+    > When the width of Page Inspector browser is less than the width of the opened page, you will not see the page properly. If that happens, adjust the width of the Page Inspector.
 4. Click the **Files** tab in Page Inspector.
 
     You will see all the source files that are composing the rendered Default page. This is a useful feature to identify all the elements at a glance, especially when you are working with User Controls and Master Pages. Notice that you can also navigate to each of the files.
@@ -314,7 +322,8 @@ In this task, you will learn how to use the Page Inspector features in the conte
 
     *Inspection mode in action*
 
-    > [!NOTE] Do not maximize the Page Inspector window or you will not be able to see the preview tab showing the source code. If you click the element in Page Inspector when it is maximized, the source code of the selection will appear but it will hide the Page Inspector window.
+    > [!NOTE]
+    > Do not maximize the Page Inspector window or you will not be able to see the preview tab showing the source code. If you click the element in Page Inspector when it is maximized, the source code of the selection will appear but it will hide the Page Inspector window.
 
     If you pay attention to **Default.aspx** file, you will notice that the portion of source code that generates the selected element is highlighted. This feature facilitates the edition of long source files, providing a direct and fast way to access the code.
 
@@ -332,7 +341,8 @@ In this task, you will learn how to use the Page Inspector features in the conte
     *Selecting an HTML element in the page*
 10. Click the **Toggle Inspection Mode** button to enable *Inspection Mode* and click the navigation bar. On the right of the HTML code, in the Styles pane, you will see a list with the CSS styles applied to the selected element.
 
-    > [!NOTE] since the header is a part of the site layout, Page Inspector will also open Site.Master file and highlight the segment of code affected.
+    > [!NOTE]
+    > since the header is a part of the site layout, Page Inspector will also open Site.Master file and highlight the segment of code affected.
 
     ![DiscoveringstylesWebForms](using-page-inspector-in-visual-studio-2012/_static/image32.png "Discovering styles and source files of a selected element")
 
@@ -344,7 +354,8 @@ In this task, you will learn how to use the Page Inspector features in the conte
     *Selecting an element*
 12. In the Styles pane, locate the **background-image** item under the **.main-content** group. **Uncheck** the **background-image** and see what happens. You will notice that the browser will reflect the changes immediately and the circle is hidden.
 
-    > [!NOTE] The changes you apply on the Page Inspector Styles tab do not affect the original stylesheet. You can uncheck styles or change their values as many times as you want, but they will be restored after refreshing the page.
+    > [!NOTE]
+    > The changes you apply on the Page Inspector Styles tab do not affect the original stylesheet. You can uncheck styles or change their values as many times as you want, but they will be restored after refreshing the page.
 
     ![Enabling and disabling CSS styles2](using-page-inspector-in-visual-studio-2012/_static/image34.png "Enabling and disabling CSS styles")
 

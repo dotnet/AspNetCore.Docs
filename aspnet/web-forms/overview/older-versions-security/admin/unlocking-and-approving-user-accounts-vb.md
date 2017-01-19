@@ -35,7 +35,8 @@ In the <a id="Tutorial12"></a>[*Building an Interface to Select One User Account
 
 For this tutorial let's use two ASP.NET pages: `ManageUsers.aspx` and `UserInformation.aspx`. The idea here is that `ManageUsers.aspx` lists the user accounts in the system, while `UserInformation.aspx` enables the administrator to manage the approved and locked out statuses for a specific user. Our first order of business is to augment the GridView in `ManageUsers.aspx` to include a HyperLinkField, which renders as a column of links. We want each link to point to `UserInformation.aspx?user=UserName`, where *UserName* is the name of the user to edit.
 
-> [!NOTE] If you downloaded the code for the <a id="Tutorial13"></a>[*Recovering and Changing Passwords*](recovering-and-changing-passwords-vb.md) tutorial you may have noticed that the `ManageUsers.aspx` page already contains a set of "Manage" links and the `UserInformation.aspx` page provides an interface for changing the selected user's password. I decided not to replicate that functionality in the code associated with this tutorial because it worked by circumventing the Membership API and operating directly with the SQL Server database to change a user's password. This tutorial starts from scratch with the `UserInformation.aspx` page.
+> [!NOTE]
+> If you downloaded the code for the <a id="Tutorial13"></a>[*Recovering and Changing Passwords*](recovering-and-changing-passwords-vb.md) tutorial you may have noticed that the `ManageUsers.aspx` page already contains a set of "Manage" links and the `UserInformation.aspx` page provides an interface for changing the selected user's password. I decided not to replicate that functionality in the code associated with this tutorial because it worked by circumventing the Membership API and operating directly with the SQL Server database to change a user's password. This tutorial starts from scratch with the `UserInformation.aspx` page.
 
 
 ### Adding "Manage" Links to the`UserAccounts`GridView
@@ -123,7 +124,8 @@ The approved status is useful in scenarios where you want some action to be perf
 
 By default, the CreateUserWizard control approves new accounts. You can configure this behavior using the control's [`DisableCreatedUser` property](https://msdn.microsoft.com/en-gb/library/system.web.ui.webcontrols.createuserwizard.disablecreateduser.aspx). Set this property to `True` to not approve new user accounts.
 
-> [!NOTE] By default the CreateUserWizard control automatically logs on the new user account. This behavior is dictated by the control's [`LoginCreatedUser` property](https://msdn.microsoft.com/en-gb/library/system.web.ui.webcontrols.createuserwizard.logincreateduser.aspx). Because unapproved users cannot login to the site, when `DisableCreatedUser` is `True` the new user account is not logged into the site, regardless of the value of the `LoginCreatedUser` property.
+> [!NOTE]
+> By default the CreateUserWizard control automatically logs on the new user account. This behavior is dictated by the control's [`LoginCreatedUser` property](https://msdn.microsoft.com/en-gb/library/system.web.ui.webcontrols.createuserwizard.logincreateduser.aspx). Because unapproved users cannot login to the site, when `DisableCreatedUser` is `True` the new user account is not logged into the site, regardless of the value of the `LoginCreatedUser` property.
 
 
 If you are programmatically creating new user accounts via the `Membership.CreateUser` method, to create an unapproved user account use one of the overloads that accept the new user's `IsApproved` property value as an input parameter.
@@ -140,7 +142,8 @@ Next, we need to configure the CreateUserWizard control to send an email to the 
 
 To send an email from the CreateUserWizard control, configure its `MailDefinition` property appropriately. As discussed in the <a id="Tutorial13"></a>[previous tutorial](recovering-and-changing-passwords-vb.md) , the ChangePassword and PasswordRecovery controls include a [`MailDefinition` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.maildefinition.aspx) that works in the same manner as the CreateUserWizard control's.
 
-> [!NOTE] To use the `MailDefinition` property you need to specify mail delivery options in `Web.config`. For more information, refer to [Sending Email in ASP.NET](http://aspnet.4guysfromrolla.com/articles/072606-1.aspx).
+> [!NOTE]
+> To use the `MailDefinition` property you need to specify mail delivery options in `Web.config`. For more information, refer to [Sending Email in ASP.NET](http://aspnet.4guysfromrolla.com/articles/072606-1.aspx).
 
 
 Start by creating a new email template named `CreateUserWizard.txt` in the `EmailTemplates` folder. Use the following text for the template:
@@ -165,7 +168,8 @@ The net effect is that new users are unapproved, meaning that they cannot log in
 **Figure 6**: The New User Receives an Email with a Link to the Verification URL  ([Click to view full-size image](unlocking-and-approving-user-accounts-vb/_static/image18.png))
 
 
-> [!NOTE] The CreateUserWizard control's default CreateUserWizard step displays a message informing the user their account has been created and displays a Continue button. Clicking this takes the user to the URL specified by the control's `ContinueDestinationPageUrl` property. The CreateUserWizard in `EnhancedCreateUserWizard.aspx` is configured to send new users to the `~/Membership/AdditionalUserInfo.aspx`, which prompts the user for their hometown, homepage URL, and signature. Because this information can only be added by logged on users, it makes sense to update this property to send users back to the site's homepage (`~/Default.aspx`). Moreover, the `EnhancedCreateUserWizard.aspx` page or the CreateUserWizard step should be augmented to inform the user that they have been sent a verification email and their account won't be activated until they follow the instructions in this email. I leave these modifications as an exercise for the reader.
+> [!NOTE]
+> The CreateUserWizard control's default CreateUserWizard step displays a message informing the user their account has been created and displays a Continue button. Clicking this takes the user to the URL specified by the control's `ContinueDestinationPageUrl` property. The CreateUserWizard in `EnhancedCreateUserWizard.aspx` is configured to send new users to the `~/Membership/AdditionalUserInfo.aspx`, which prompts the user for their hometown, homepage URL, and signature. Because this information can only be added by logged on users, it makes sense to update this property to send users back to the site's homepage (`~/Default.aspx`). Moreover, the `EnhancedCreateUserWizard.aspx` page or the CreateUserWizard step should be augmented to inform the user that they have been sent a verification email and their account won't be activated until they follow the instructions in this email. I leave these modifications as an exercise for the reader.
 
 
 ### Creating the Verification Page

@@ -93,7 +93,8 @@ The MVC application that was created from the Visual Studio 2013 template contai
 
 In order for EntityFramework to connect to MySQL database, you need to install a MySQL provider. To do so, open the **Package Manager Console** and type &quot;**Install-Package MySql.Data.Entity -Pre**&quot;, and then press Enter.
 
-> [!NOTE] This is a pre-release version of the assembly, and as such it may contain bugs. You should not use a pre-release version of the provider in production.
+> [!NOTE]
+> This is a pre-release version of the assembly, and as such it may contain bugs. You should not use a pre-release version of the provider in production.
 
 
 [Click the following image to expand it.]  
@@ -104,7 +105,8 @@ In order for EntityFramework to connect to MySQL database, you need to install a
 
 In this section you will configure the Entity Framework to use the MySQL provider that you just installed, register the MySQL provider factory, and add your connection string from Azure.
 
-> [!NOTE] The following examples contain a specific assembly version for MySql.Data.dll. If the assembly version changes, you will need to modify the appropriate configuration settings with the correct version.
+> [!NOTE]
+> The following examples contain a specific assembly version for MySql.Data.dll. If the assembly version changes, you will need to modify the appropriate configuration settings with the correct version.
 
 
 1. Open the Web.config file for your project in Visual Studio 2013.
@@ -133,7 +135,8 @@ Entity Framework Code First uses a **MigrationHistory** table to keep track of m
 
 The MySQL provider that is featured in this tutorial does not currently support Entity Framework migrations, so you will need to use model initializers in order to connect to the database. Because this tutorial is using a MySQL instance on Azure, you will need need to create a custom Entity Framework initializer.
 
-> [!NOTE] This step is not required if you are connecting to a SQL Server instance on Azure or if you are using a database that is hosted on premises.
+> [!NOTE]
+> This step is not required if you are connecting to a SQL Server instance on Azure or if you are using a database that is hosted on premises.
 
 
 To create a custom Entity Framework initializer for MySQL, use the following steps:

@@ -29,7 +29,8 @@ When building AJAX-enabled web pages with the ASP.NET AJAX framework, you must a
 
 If your site uses master pages (as it should), you do not necessarily need to add a ScriptManager control to every single content page; rather, you can add a ScriptManager control to the master page. This tutorial shows how to add the ScriptManager control to the master page. It also looks at how to use the ScriptManagerProxy control to register custom scripts and script services in a specific content page.
 
-> [!NOTE] This tutorial does not explore designing or building AJAX-enabled web applications with the ASP.NET AJAX framework. For more information on using AJAX consult the [ASP.NET AJAX videos](../../../videos/aspnet-ajax/index.md) and [tutorials](../aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax.md), as well as those resources listed in the Further Reading section at the end of this tutorial.
+> [!NOTE]
+> This tutorial does not explore designing or building AJAX-enabled web applications with the ASP.NET AJAX framework. For more information on using AJAX consult the [ASP.NET AJAX videos](../../../videos/aspnet-ajax/index.md) and [tutorials](../aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax.md), as well as those resources listed in the Further Reading section at the end of this tutorial.
 
 
 ## Examining the Markup Emitted by the ScriptManager Control
@@ -43,7 +44,8 @@ The `<script src="url"></script>` tags instruct the browser to download and exec
 
 The external script references and inline script emitted by the ScriptManager are essential for a page that uses the ASP.NET AJAX framework, but is not needed for pages that do not use the framework. Therefore, you might reason that it is ideal to only add a ScriptManager to those pages that use the ASP.NET AJAX framework. And this is sufficient, but if you have many pages that use the framework you'll end up adding the ScriptManager control to all pages - a repetitive task, to say the least. Alternatively, you can add a ScriptManager to the master page, which then injects this necessary script into all content pages. With this approach, you do not need to remember to add a ScriptManager to a new page that uses the ASP.NET AJAX framework because it is already included by the master page. Step 1 walks through adding a ScriptManager to the master page.
 
-> [!NOTE] If you plan on including AJAX functionality within the user interface of your master page, then you have no choice in the matter - you must include the ScriptManager in the master page.
+> [!NOTE]
+> If you plan on including AJAX functionality within the user interface of your master page, then you have no choice in the matter - you must include the ScriptManager in the master page.
 
 
 One downside of adding the ScriptManager to the master page is that the above script is emitted in *every* page, regardless of whether its needed. This clearly leads to wasted bandwidth for those pages that have the ScriptManager included (via the master page) yet don't use any features of the ASP.NET AJAX framework. But just how much bandwidth is wasted?
@@ -53,7 +55,8 @@ One downside of adding the ScriptManager to the master page is that the above sc
 
 In the best case, then, when the script files are cached, the total cost is 1KB, which is negligible. In the worst case, however - which is when the script files have not yet been downloaded and the web server is not using any form of compression - the bandwidth hit is around 450KB, which can add anywhere from a second or two over a broadband connection to up to a minute for users over dial-up modems. The good news is that because the external script files are cached by the browser, this worst case scenario occurs infrequently.
 
-> [!NOTE] If you still feel uncomfortable placing the ScriptManager control in the master page, consider the Web Form (the `<form runat="server">` markup in the master page). Every ASP.NET page that uses the postback model must include precisely one Web Form. Adding a Web Form adds additional content: a number of hidden form fields, the `<form>` tag itself, and, if necessary, a JavaScript function for initiating a postback from script. This markup is unnecessary for pages that don't postback. This extraneous markup could be eliminated by removing the Web Form from the master page and manually adding it to each content page that needs one. However, the benefits of having the Web Form in the master page outweigh the disadvantages from having it added unnecessarily to certain content pages.
+> [!NOTE]
+> If you still feel uncomfortable placing the ScriptManager control in the master page, consider the Web Form (the `<form runat="server">` markup in the master page). Every ASP.NET page that uses the postback model must include precisely one Web Form. Adding a Web Form adds additional content: a number of hidden form fields, the `<form>` tag itself, and, if necessary, a JavaScript function for initiating a postback from script. This markup is unnecessary for pages that don't postback. This extraneous markup could be eliminated by removing the Web Form from the master page and manually adding it to each content page that needs one. However, the benefits of having the Web Form in the master page outweigh the disadvantages from having it added unnecessarily to certain content pages.
 
 
 ## Step 1: Adding a ScriptManager Control to the Master Page
@@ -169,7 +172,8 @@ Along with including the necessary script for the ASP.NET AJAX framework Client 
 
 To add ScriptManager-related customizations on a page-by-page basis use the ScriptManagerProxy control. You can add a ScriptManagerProxy to a content page and then register the custom JavaScript file, Web Service reference, or authentication, authorization, or profile service from the ScriptManagerProxy; this has the effect of registering these services for the particular content page.
 
-> [!NOTE] An ASP.NET page can only have no more than one ScriptManager control present. Therefore, you cannot add a ScriptManager control to a content page if the ScriptManager control is already defined in the master page. The sole purpose of the ScriptManagerProxy is to provide a way for developers to define the ScriptManager in the master page, but still have the ability to add ScriptManager customizations on a page-by-page basis.
+> [!NOTE]
+> An ASP.NET page can only have no more than one ScriptManager control present. Therefore, you cannot add a ScriptManager control to a content page if the ScriptManager control is already defined in the master page. The sole purpose of the ScriptManagerProxy is to provide a way for developers to define the ScriptManager in the master page, but still have the ability to add ScriptManager customizations on a page-by-page basis.
 
 
 To see the ScriptManagerProxy control in action, let's augment the UpdatePanel in `ShowRandomProduct.aspx` to include a button that uses client-side script to pause or resume the Timer control. The Timer control has three client-side methods that we can use to achieve this desired functionality:

@@ -117,7 +117,8 @@ Create an event handler for the Repeater s `ItemCommand` event and note the seco
 
 Since the selected category s `CategoryID` is passed in via the `CommandArgument` property, we can get the set of products associated with the selected category in the `ItemCommand` event handler. These products can then be bound to a BulletedList control in the `ItemTemplate` (which we ve yet to add). All that remains, then, is to add the BulletedList, reference it in the `ItemCommand` event handler, and bind to it the set of products for the selected category, which we'll tackle in Step 4.
 
-> [!NOTE] The DataList s `ItemCommand` event handler is passed an object of type [`DataListCommandEventArgs`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalistcommandeventargs.aspx), which offers the same four properties as the `RepeaterCommandEventArgs` class.
+> [!NOTE]
+> The DataList s `ItemCommand` event handler is passed an object of type [`DataListCommandEventArgs`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.datalistcommandeventargs.aspx), which offers the same four properties as the `RepeaterCommandEventArgs` class.
 
 
 ## Step 4: Displaying the Selected Category s Products in a Bulleted List
@@ -138,7 +139,8 @@ In previous tutorials that used the buttons within a DataList, such as [An Overv
 
 After completing the `ItemCommand` event handler, take a moment to test out this page in a browser. As Figure 7 shows, clicking the Show Products link causes a postback and displays the products for the selected category in a BulletedList. Furthermore, note that this product information remains, even if other categories Show Products links are clicked.
 
-> [!NOTE] If you want to modify the behavior of this report, such that the only one category s products are listed at a time, simply set the BulletedList control s `EnableViewState` property to `False`.
+> [!NOTE]
+> If you want to modify the behavior of this report, such that the only one category s products are listed at a time, simply set the BulletedList control s `EnableViewState` property to `False`.
 
 
 [![A BulletedList is used to Display the Products of the Selected Category](custom-buttons-in-the-datalist-and-repeater-vb/_static/image16.png)](custom-buttons-in-the-datalist-and-repeater-vb/_static/image15.png)

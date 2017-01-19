@@ -28,7 +28,8 @@ by [Microsoft](https://github.com/microsoft)
 > 
 > - The `Chart` helper.
 > 
-> > [!NOTE] The information in this article applies to ASP.NET Web Pages 1.0 and Web Pages 2.
+> > [!NOTE]
+> > The information in this article applies to ASP.NET Web Pages 1.0 and Web Pages 2.
 
 
 <a id="The_Chart_Helper"></a>

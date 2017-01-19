@@ -53,7 +53,8 @@ This section shows how to create an ASP.NET MVC 4 application, add the SignalR l
 
 1. 1. In Visual Studio create an ASP.NET MVC 4 application, name it SignalRChat, and click OK.
 
-        > [!NOTE] In VS 2010, select **.NET Framework 4** in the Framework version dropdown control. SignalR code runs on .NET Framework versions 4 and 4.5.
+        > [!NOTE]
+        > In VS 2010, select **.NET Framework 4** in the Framework version dropdown control. SignalR code runs on .NET Framework versions 4 and 4.5.
 
         ![Create mvc web](tutorial-getting-started-with-signalr-and-mvc-4/_static/image3.png)
     2. Select the Internet Application template, clear the option to **Create a unit test project**, and click OK.
@@ -68,7 +69,8 @@ This section shows how to create an ASP.NET MVC 4 application, add the SignalR l
     5. In **Solution Explorer**, right-click the project, select **Add | New Folder**, and add a new folder named **Hubs**.
     6. Right-click the **Hubs** folder, click **Add | Class**, and create a new C# class named **ChatHub.cs**. You will use this class as a SignalR server hub that sends messages to all clients.
 
-> [!NOTE] If you use Visual Studio 2012 and have installed the [ASP.NET and Web Tools 2012.2 update](../../../visual-studio/overview/2012/aspnet-and-web-tools-20122-release-notes-rtw.md#_Installation), you can use the new SignalR item template to create the hub class. To do that, right-click the **Hubs** folder, click **Add | New Item**, select **SignalR Hub Class (v1)**, and name the class **ChatHub.cs**.
+> [!NOTE]
+> If you use Visual Studio 2012 and have installed the [ASP.NET and Web Tools 2012.2 update](../../../visual-studio/overview/2012/aspnet-and-web-tools-20122-release-notes-rtw.md#_Installation), you can use the new SignalR item template to create the hub class. To do that, right-click the **Hubs** folder, click **Add | New Item**, select **SignalR Hub Class (v1)**, and name the class **ChatHub.cs**.
 
 
 1. Replace the code in the **ChatHub** class with the following code.
@@ -86,7 +88,8 @@ This section shows how to create an ASP.NET MVC 4 application, add the SignalR l
     ![Add a view](tutorial-getting-started-with-signalr-and-mvc-4/_static/image8.png)
 6. Edit the new view file named **Chat.cshtml**. After the &lt;h2&gt; tag, paste the following &lt;div&gt; section and `@section scripts` code block into the page. This script enables the page to send chat messages and display messages from the server. The complete code for the chat view appears in the following code block.
 
-    > [!IMPORTANT] When you add SignalR and other script libraries to your Visual Studio project, the Package Manager might install versions of the scripts that are more recent than the versions shown in this topic. Make sure that the script references in your code match the versions of the script libraries installed in your project.
+    > [!IMPORTANT]
+    > When you add SignalR and other script libraries to your Visual Studio project, the Package Manager might install versions of the scripts that are more recent than the versions shown in this topic. Make sure that the script references in your code match the versions of the script libraries installed in your project.
 
     [!code-cshtml[Main](tutorial-getting-started-with-signalr-and-mvc-4/samples/sample4.cshtml)]
 7. **Save All** for the project.
@@ -103,7 +106,8 @@ This section shows how to create an ASP.NET MVC 4 application, add the SignalR l
 4. Copy the URL from the address line of the browser and use it to open two more browser instances. In each browser instance, enter a unique user name.
 5. In each browser instance, add a comment and click **Send**. The comments should display in all browser instances.
 
-    > [!NOTE] This simple chat application does not maintain the discussion context on the server. The hub broadcasts comments to all current users. Users who join the chat later will see messages added from the time they join.
+    > [!NOTE]
+    > This simple chat application does not maintain the discussion context on the server. The hub broadcasts comments to all current users. Users who join the chat later will see messages added from the time they join.
 6. The following screen shot shows the chat application running in a browser.
 
     ![Chat browsers](tutorial-getting-started-with-signalr-and-mvc-4/_static/image11.png)
@@ -139,7 +143,8 @@ The following code declares a proxy for a hub.
 
 [!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc-4/samples/sample6.cs)]
 
-> [!NOTE] In jQuery the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in jQuery as **chatHub**. If you want to reference the `ChatHub` class in jQuery with conventional Pascal casing as you would in C#, edit the ChatHub.cs class file. Add a `using` statement to reference the `Microsoft.AspNet.SignalR.Hubs` namespace. Then add the `HubName` attribute to the `ChatHub` class, for example `[HubName("ChatHub")]`. Finally, update your jQuery reference to the `ChatHub` class.
+> [!NOTE]
+> In jQuery the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in jQuery as **chatHub**. If you want to reference the `ChatHub` class in jQuery with conventional Pascal casing as you would in C#, edit the ChatHub.cs class file. Add a `using` statement to reference the `Microsoft.AspNet.SignalR.Hubs` namespace. Then add the `HubName` attribute to the `ChatHub` class, for example `[HubName("ChatHub")]`. Finally, update your jQuery reference to the `ChatHub` class.
 
 
 The following code shows how to create a callback function in the script. The hub class on the server calls this function to push content updates to each client. The optional call to the `htmlEncode` function shows a way to HTML encode the message content before displaying it in the page, as a way to prevent script injection.
@@ -148,7 +153,8 @@ The following code shows how to create a callback function in the script. The hu
 
 The following code shows how to open a connection with the hub. The code starts the connection and then passes it a function to handle the click event on the **Send** button in the Chat page.
 
-> [!NOTE] This approach ensures that the connection is established before the event handler executes.
+> [!NOTE]
+> This approach ensures that the connection is established before the event handler executes.
 
 
 [!code-javascript[Main](tutorial-getting-started-with-signalr-and-mvc-4/samples/sample8.js)]

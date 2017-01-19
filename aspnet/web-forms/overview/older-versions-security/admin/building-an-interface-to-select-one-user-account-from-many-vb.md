@@ -124,7 +124,8 @@ Figure 5 shows the `ManageUsers.aspx` page when viewed through a browser.
 **Figure 5**: The Repeater Lists 27 Filtering LinkButtons ([Click to view full-size image](building-an-interface-to-select-one-user-account-from-many-vb/_static/image15.png))
 
 
-> [!NOTE] Usernames may start with any character, including numbers and punctuation. In order to view these accounts, the administrator will have to use the All LinkButton option. Alternatively, you could add a LinkButton to return all user accounts that start with a number. I leave this as an exercise for the reader.
+> [!NOTE]
+> Usernames may start with any character, including numbers and punctuation. In order to view these accounts, the administrator will have to use the All LinkButton option. Alternatively, you could add a LinkButton to return all user accounts that start with a number. I leave this as an exercise for the reader.
 
 
 Clicking any of the filtering LinkButtons causes a postback and raises the Repeater's `ItemCommand` event, but there's no change in the grid because we've yet to write any code to filter the results. The `Membership` class includes a [`FindUsersByName` method](https://technet.microsoft.com/en-us/library/system.web.security.membership.findusersbyname.aspx) that returns those user accounts whose username matches a specified search pattern. We can use this method to retrieve just those user accounts whose usernames start with the letter specified by the `CommandName` of the filtered LinkButton that was clicked.
@@ -164,7 +165,8 @@ The GridView control offers two types of paging:
 
 The performance difference between default and custom paging can be quite substantial when paging through thousands of records. Because we are building this interface assuming that there may be hundreds or thousands of user accounts, let's use custom paging.
 
-> [!NOTE] For a more thorough discussion on the differences between default and custom paging, as well as the challenges involved in implementing custom paging, refer to [Efficiently Paging Through Large Amounts of Data](https://asp.net/learn/data-access/tutorial-25-vb.aspx). For some analysis of the performance difference between default and custom paging, see [Custom Paging in ASP.NET with SQL Server 2005](http://aspnet.4guysfromrolla.com/articles/031506-1.aspx).
+> [!NOTE]
+> For a more thorough discussion on the differences between default and custom paging, as well as the challenges involved in implementing custom paging, refer to [Efficiently Paging Through Large Amounts of Data](https://asp.net/learn/data-access/tutorial-25-vb.aspx). For some analysis of the performance difference between default and custom paging, see [Custom Paging in ASP.NET with SQL Server 2005](http://aspnet.4guysfromrolla.com/articles/031506-1.aspx).
 
 
 To implement custom paging we first need some mechanism by which to retrieve the precise subset of records being displayed by the GridView. The good news is that the `Membership` class's `FindUsersByName` method has an overload that allows us to specify the page index and page size, and returns only those user accounts that fall within that range of records.
@@ -173,7 +175,8 @@ In particular, this overload has the following signature: [`FindUsersByName(user
 
 The *pageIndex* parameter specifies the page of user accounts to return; *pageSize* indicates how many records to display per page. The *totalRecords* parameter is a `ByRef` parameter that returns the number of total user accounts in the user store.
 
-> [!NOTE] The data returned by `FindUsersByName` is sorted by username; the sort criteria cannot be customized.
+> [!NOTE]
+> The data returned by `FindUsersByName` is sorted by username; the sort criteria cannot be customized.
 
 
 The GridView can be configured to utilize custom paging, but only when bound to an ObjectDataSource control. For the ObjectDataSource control to implement custom paging, it requires two methods: one that is passed a start row index and the maximum number of records to display, and returns the precise subset of records that fall within that span; and a method that returns the total number of records being paged through. The `FindUsersByName` overload accepts a page index and page size, and returns the total number of records through a `ByRef` parameter. So there is an interface mismatch here.

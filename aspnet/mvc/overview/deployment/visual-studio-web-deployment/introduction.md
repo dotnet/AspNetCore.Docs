@@ -128,7 +128,8 @@ If you're using Visual Studio 2010 SP1, install the following software:
 
 Depending on how many of the SDK dependencies you already have on your machine, installing the Azure SDK could take a long time, from several minutes to a half hour or more. You need the Azure SDK even if you plan to publish to a third-party hosting provider instead of to Azure, because the SDK includes the latest updates to Visual Studio web publish features.
 
-> [!NOTE] This tutorial was written with version 1.8.1 of the Azure SDK. Since then newer versions with additional features have been released. The tutorials have been updated to mention these features and link to resources that have more information about them.
+> [!NOTE]
+> This tutorial was written with version 1.8.1 of the Azure SDK. Since then newer versions with additional features have been released. The tutorials have been updated to mention these features and link to resources that have more information about them.
 
 
 The instructions and screen shots are based on Windows 8, but the tutorials explain differences for Windows 7.

@@ -117,7 +117,8 @@ In this section, we'll create a browser application that sends the location of t
 7. In **Solution Explorer**, right-click the page you just created and click **Set as Start Page**.
 8. Replace the default code in the HTML page with the following code snippet.
 
-    > [!NOTE] Verify that the script references below match the packages added to your project in the Scripts folder. In Visual Studio 2010, the version of JQuery and SignalR added to the project may not match the version numbers below.
+    > [!NOTE]
+    > Verify that the script references below match the packages added to your project in the Scripts folder. In Visual Studio 2010, the version of JQuery and SignalR added to the project may not match the version numbers below.
 
     [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample7.html)]
 

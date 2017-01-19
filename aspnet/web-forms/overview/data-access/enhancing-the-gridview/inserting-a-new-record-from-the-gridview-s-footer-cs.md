@@ -86,7 +86,8 @@ Note that the footer row has a dark red background color. This is due to the Dat
 
 [!code-css[Main](inserting-a-new-record-from-the-gridview-s-footer-cs/samples/sample2.css)]
 
-> [!NOTE] We ve explored using the GridView s footer row in previous tutorials. If needed, refer back to the [Displaying Summary Information in the GridView's Footer](../custom-formatting/displaying-summary-information-in-the-gridview-s-footer-cs.md) tutorial for a refresher.
+> [!NOTE]
+> We ve explored using the GridView s footer row in previous tutorials. If needed, refer back to the [Displaying Summary Information in the GridView's Footer](../custom-formatting/displaying-summary-information-in-the-gridview-s-footer-cs.md) tutorial for a refresher.
 
 
 After setting the `ShowFooter` property to `true`, take a moment to view the output in a browser. Currently the footer row doesn t contain any text or Web controls. In Step 3 we'll modify the footer for each GridView field so that it includes the appropriate inserting interface.
@@ -187,7 +188,8 @@ Once you ve included the Add button, test out the page in a browser. Note that w
 **Figure 12**: The Add Button s Postback is Short Circuited if There is Invalid Data in the Inserting Interface ([Click to view full-size image](inserting-a-new-record-from-the-gridview-s-footer-cs/_static/image22.png))
 
 
-> [!NOTE] The validation controls in the inserting interface were not assigned to a validation group. This works fine so long as the inserting interface is the only set of validation controls on the page. If, however, there are other validation controls on the page (such as validation controls in the grid s editing interface), the validation controls in the inserting interface and Add button s `ValidationGroup` properties should be assigned the same value so as to associate these controls with a particular validation group. See [Dissecting the Validation Controls in ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/112305-1.aspx) for more information on partitioning the validation controls and buttons on a page into validation groups.
+> [!NOTE]
+> The validation controls in the inserting interface were not assigned to a validation group. This works fine so long as the inserting interface is the only set of validation controls on the page. If, however, there are other validation controls on the page (such as validation controls in the grid s editing interface), the validation controls in the inserting interface and Add button s `ValidationGroup` properties should be assigned the same value so as to associate these controls with a particular validation group. See [Dissecting the Validation Controls in ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/112305-1.aspx) for more information on partitioning the validation controls and buttons on a page into validation groups.
 
 
 ## Step 5: Inserting a New Record Into the`Products`Table
@@ -201,7 +203,8 @@ Therefore, to respond to the user clicking the Add button, we need to create an 
 
 [!code-csharp[Main](inserting-a-new-record-from-the-gridview-s-footer-cs/samples/sample6.cs)]
 
-> [!NOTE] You may be wondering why the event handler bothers checking the `Page.IsValid` property. After all, won t the postback be suppressed if invalid data is provided in the inserting interface? This assumption is correct as long as the user has not disabled JavaScript or has taken steps to circumvent the client-side validation logic. In short, one should never rely strictly on client-side validation; a server-side check for validity should always be performed before working with the data.
+> [!NOTE]
+> You may be wondering why the event handler bothers checking the `Page.IsValid` property. After all, won t the postback be suppressed if invalid data is provided in the inserting interface? This assumption is correct as long as the user has not disabled JavaScript or has taken steps to circumvent the client-side validation logic. In short, one should never rely strictly on client-side validation; a server-side check for validity should always be performed before working with the data.
 
 
 In Step 1 we created the `ProductsDataSource` ObjectDataSource such that its `Insert()` method is mapped to the `ProductsBLL` class s `AddProduct` method. To insert the new record into the `Products` table, we can simply invoke the ObjectDataSource s `Insert()` method:

@@ -27,7 +27,8 @@ All of the tutorials we ve examined so far have worked exclusively with text dat
 
 Working with binary data adds a new set of challenges. We must decide how the binary data is stored in the application. The interface used for inserting new records has to be updated to allow the user to upload a file from their computer and extra steps must be taken to display or provide a means for downloading a record s associated binary data. In this tutorial and the next three we'll explore how to hurdle these challenges. At the end of these tutorials we'll have built a fully functional application that associates a picture and PDF brochure with each category. In this particular tutorial we'll look at different techniques for storing binary data and explore how to enable users to upload a file from their computer and have it saved on the web server s file system.
 
-> [!NOTE] Binary data that is part of an application s data model is sometimes referred to as a [BLOB](http://en.wikipedia.org/wiki/Binary_large_object), an acronym for Binary Large OBject. In these tutorials I have chosen to use the terminology binary data , although the term BLOB is synonymous.
+> [!NOTE]
+> Binary data that is part of an application s data model is sometimes referred to as a [BLOB](http://en.wikipedia.org/wiki/Binary_large_object), an acronym for Binary Large OBject. In these tutorials I have chosen to use the terminology binary data , although the term BLOB is synonymous.
 
 
 ## Step 1: Creating the Working with Binary Data Web Pages
@@ -91,7 +92,8 @@ Alternatively, binary data can be stored directly in a Microsoft SQL Server 2005
 
 The main advantage of storing binary data directly in the database is the tight coupling between the binary data and the database record. This greatly simplifies database administration tasks, like backups or moving the database to a different site or server. Also, deleting a record automatically deletes the corresponding binary data. There are also more subtle benefits of storing the binary data in the database. See [Storing Binary Files Directly in the Database Using ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/120606-1.aspx) for a more in-depth discussion.
 
-> [!NOTE] In Microsoft SQL Server 2000 and earlier versions, the `varbinary` data type had a maximum limit of 8,000 bytes. To store up to 2 GB of binary data the [`image` data type](https://msdn.microsoft.com/en-us/library/ms187993.aspx) needs to be used instead. With the addition of `MAX` in SQL Server 2005, however, the `image` data type has been deprecated. It s still supported for backwards compatibility, but Microsoft has announced that the `image` data type will be removed in a future version of SQL Server.
+> [!NOTE]
+> In Microsoft SQL Server 2000 and earlier versions, the `varbinary` data type had a maximum limit of 8,000 bytes. To store up to 2 GB of binary data the [`image` data type](https://msdn.microsoft.com/en-us/library/ms187993.aspx) needs to be used instead. With the addition of `MAX` in SQL Server 2005, however, the `image` data type has been deprecated. It s still supported for backwards compatibility, but Microsoft has announced that the `image` data type will be removed in a future version of SQL Server.
 
 
 If you are working with an older data model you may see the `image` data type. The Northwind database s `Categories` table has a `Picture` column that can be used to store the binary data of an image file for the category. Since the Northwind database has its roots in Microsoft Access and earlier versions of SQL Server, this column is of type `image`.
@@ -177,7 +179,8 @@ The last step is to choose the name for the new method. Use `FillCategoryWithBin
 **Figure 10**: Choose the Names for the TableAdapter s Methods ([Click to view full-size image](uploading-files-vb/_static/image16.png))
 
 
-> [!NOTE] After completing the Table Adapter Query Configuration Wizard you may see a dialog box informing you that the new command text returns data with schema different from the schema of the main query. In short, the wizard is noting that the TableAdapter s main query `GetCategories()` returns a different schema than the one we just created. But this is what we want, so you can disregard this message.
+> [!NOTE]
+> After completing the Table Adapter Query Configuration Wizard you may see a dialog box informing you that the new command text returns data with schema different from the schema of the main query. In short, the wizard is noting that the TableAdapter s main query `GetCategories()` returns a different schema than the one we just created. But this is what we want, so you can disregard this message.
 
 
 Also, keep in mind that if you are using ad-hoc SQL statements and use the wizard to change the TableAdapter s main query at some later point in time, it will modify the `GetCategoryWithBinaryDataByCategoryID` method s `SELECT` statement s column list to include just those columns from the main query (that is, it will remove the `Picture` column from the query). You will have to manually update the column list to return the `Picture` column, similar to what we did with the `GetCategoriesAndNumberOfProducts()` method earlier in this step.
@@ -226,7 +229,8 @@ On postback, the uploaded file can be saved to the file system or its binary dat
 
 The FileUpload control provides a variety of properties for working with the uploaded data. For instance, the [`HasFile` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.fileupload.hasfile.aspx) indicates whether a file was uploaded by the user, while the [`FileBytes` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.fileupload.filebytes.aspx) provides access to the uploaded binary data as an array of bytes. The `Click` event handler starts by ensuring that a file has been uploaded. If a file has been uploaded, the Label shows the name of the uploaded file, its size in bytes, and its content-type.
 
-> [!NOTE] To ensure that the user uploads a file you can check the `HasFile` property and display a warning if it s `False`, or you may use the [RequiredFieldValidator control](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/validation/default.aspx) instead.
+> [!NOTE]
+> To ensure that the user uploads a file you can check the `HasFile` property and display a warning if it s `False`, or you may use the [RequiredFieldValidator control](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/validation/default.aspx) instead.
 
 
 The FileUpload s `SaveAs(filePath)` saves the uploaded file to the specified *filePath*. *filePath* must be a *physical path* (`C:\Websites\Brochures\SomeFile.pdf`) rather than a *virtual* *path* (`/Brochures/SomeFile.pdf`). The [`Server.MapPath(virtPath)` method](https://msdn.microsoft.com/en-us/library/system.web.httpserverutility.mappath.aspx) takes a virtual path and returns its corresponding physical path. Here, the virtual path is `~/Brochures/fileName`, where *fileName* is the name of the uploaded file. See [Using Server.MapPath](http://www.4guysfromrolla.com/webtech/121799-1.shtml) for more information on virtual and physical paths and using `Server.MapPath`.

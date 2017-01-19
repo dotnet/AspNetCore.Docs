@@ -110,7 +110,8 @@ The value "allpages" tells the server to include the total count in the response
 
 [!code-json[Main](supporting-odata-query-options/samples/sample5.json?highlight=3)]
 
-> [!NOTE] Next-page links and inline count both require OData format. The reason is that OData defines special fields in the response body to hold the link and count.
+> [!NOTE]
+> Next-page links and inline count both require OData format. The reason is that OData defines special fields in the response body to hold the link and count.
 
 
 For non-OData formats, it is still possible to support next-page links and inline count, by wrapping the query results in a **PageResult&lt;T&gt;** object. However, it requires a bit more code. Here is an example:

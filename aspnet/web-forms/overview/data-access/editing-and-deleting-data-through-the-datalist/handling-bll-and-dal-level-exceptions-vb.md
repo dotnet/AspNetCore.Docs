@@ -29,7 +29,8 @@ As we saw in the [Handling BLL- and DAL-Level Exceptions in an ASP.NET Page](../
 
 Our DataList tutorials, however, aren t using the ObjectDataSource for updating and deleting data. Instead, we are working directly against the BLL. In order to detect exceptions originating from the BLL or DAL, we need to implement exception handling code within the code-behind of our ASP.NET page. In this tutorial, we'll see how to more tactfully handle exceptions raised during an editable DataList s updating workflow.
 
-> [!NOTE] In the *An Overview of Editing and Deleting Data in the DataList* tutorial we discussed different techniques for editing and deleting data from the DataList, Some techniques involved using an ObjectDataSource for updating and deleting. If you employ these techniques, you can handle exceptions from the BLL or DAL through the ObjectDataSource s `Updated` or `Deleted` event handlers.
+> [!NOTE]
+> In the *An Overview of Editing and Deleting Data in the DataList* tutorial we discussed different techniques for editing and deleting data from the DataList, Some techniques involved using an ObjectDataSource for updating and deleting. If you employ these techniques, you can handle exceptions from the BLL or DAL through the ObjectDataSource s `Updated` or `Deleted` event handlers.
 
 
 ## Step 1: Creating an Editable DataList
@@ -49,7 +50,8 @@ After these changes, your page s declarative markup should look similar to the f
 
 [!code-aspx[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample1.aspx)]
 
-> [!NOTE] For this tutorial the DataList s view state must be enabled.
+> [!NOTE]
+> For this tutorial the DataList s view state must be enabled.
 
 
 Take a moment to view our progress through a browser (see Figure 2).

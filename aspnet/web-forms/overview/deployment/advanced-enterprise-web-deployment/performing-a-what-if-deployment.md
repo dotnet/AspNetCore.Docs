@@ -45,7 +45,8 @@ If you&#x27;re using MSDeploy.exe directly, you can run a "what if" deployment b
 
 When you&#x27;re satisfied with the results of your "what if" deployment, you can remove the **–whatif** flag to run a live deployment.
 
-> [!NOTE] For more information on command-line options for MSDeploy.exe, see [Web Deploy Operation Settings](https://technet.microsoft.com/en-us/library/dd569089(WS.10).aspx).
+> [!NOTE]
+> For more information on command-line options for MSDeploy.exe, see [Web Deploy Operation Settings](https://technet.microsoft.com/en-us/library/dd569089(WS.10).aspx).
 
 
 If you&#x27;re using the *.deploy.cmd* file, you can run a "what if" deployment by including the **/t** flag (trial mode) flag instead of the **/y** flag ("yes," or update mode) in your command. For example, to evaluate what would happen if you deployed the ContactManager.Mvc.zip package by running the *.deploy.cmd* file, your command should resemble this:
@@ -60,7 +61,8 @@ When you&#x27;re satisfied with the results of your "trial mode" deployment, you
 [!code-console[Main](performing-a-what-if-deployment/samples/sample3.cmd)]
 
 
-> [!NOTE] For more information on command-line options for *.deploy.cmd* files, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx). If you run the *.deploy.cmd* file without specifying any flags, the command prompt will display a list of available flags.
+> [!NOTE]
+> For more information on command-line options for *.deploy.cmd* files, see [How to: Install a Deployment Package Using the deploy.cmd File](https://msdn.microsoft.com/en-us/library/ff356104.aspx). If you run the *.deploy.cmd* file without specifying any flags, the command prompt will display a list of available flags.
 
 
 ## Performing a "What If" Deployment for Databases
@@ -72,7 +74,8 @@ When you use VSDBCMD in **Deploy** mode, you can use the **/dd** (or **/DeployTo
 - If you specify **/dd+** or **/dd**, VSDBCMD will generate a deployment script and deploy the database.
 - If you specify **/dd-** or omit the switch, VSDBCMD will generate a deployment script only.
 
-> [!NOTE] If you&#x27;re deploying a .deploymanifest file rather than a .dbschema file, the behavior of the **/dd** switch is a lot more complicated. Essentially, VSDBCMD will ignore the value of the **/dd** switch if the .deploymanifest file includes a **DeployToDatabase** element with a value of **True**. [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md) describes this behavior in full.
+> [!NOTE]
+> If you&#x27;re deploying a .deploymanifest file rather than a .dbschema file, the behavior of the **/dd** switch is a lot more complicated. Essentially, VSDBCMD will ignore the value of the **/dd** switch if the .deploymanifest file includes a **DeployToDatabase** element with a value of **True**. [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md) describes this behavior in full.
 
 
 For example, to generate a deployment script for the **ContactManager** database without actually deploying the database, your VSDBCMD command should resemble this:

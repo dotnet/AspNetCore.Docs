@@ -27,7 +27,8 @@ Visual Studio provides a rich debugging experience. With a few keystrokes or cli
 
 In this tutorial we will look at stepping into stored procedures from the Server Explorer within Visual Studio as well as how to set breakpoints that are hit when the stored procedure is called from the running ASP.NET application.
 
-> [!NOTE] Unfortunately, stored procedures can only be stepped into and debugged through the Professional and Team Systems versions of Visual Studio. If you are using Visual Web Developer or the standard version of Visual Studio, you are welcome to read along as we walk through the steps necessary to debug stored procedures, but you will not be able to replicate these steps on your machine.
+> [!NOTE]
+> Unfortunately, stored procedures can only be stepped into and debugged through the Professional and Team Systems versions of Visual Studio. If you are using Visual Web Developer or the standard version of Visual Studio, you are welcome to read along as we walk through the steps necessary to debug stored procedures, but you will not be able to replicate these steps on your machine.
 
 
 ## SQL Server Debugging Concepts
@@ -70,7 +71,8 @@ After supplying the value for the `@CategoryID` parameter, the stored procedure 
 
 To step through the stored procedure one statement at a time, click the Step Over button in the Toolbar or hit the F10 key. The `Products_SelectByCategoryID` stored procedure contains a single `SELECT` statement, so hitting F10 will Step over the single statement and complete the execution of the stored procedure. After the stored procedure has completed, its output will appear in the Output window and the debugger will terminate.
 
-> [!NOTE] T-SQL debugging occurs at the statement level; you cannot Step into a `SELECT` statement.
+> [!NOTE]
+> T-SQL debugging occurs at the statement level; you cannot Step into a `SELECT` statement.
 
 
 ## Step 2: Configuring the Website for Application Debugging
@@ -92,7 +94,8 @@ To disabled connection pooling, update the `NORTHWNDConnectionString` in `Web.co
 
 [!code-xml[Main](debugging-stored-procedures-cs/samples/sample1.xml)]
 
-> [!NOTE] Once you have finished debugging SQL Server through the ASP.NET application be sure to reinstate connection pooling by removing the `Pooling` setting from the connection string (or by setting it to `Pooling=true` ).
+> [!NOTE]
+> Once you have finished debugging SQL Server through the ASP.NET application be sure to reinstate connection pooling by removing the `Pooling` setting from the connection string (or by setting it to `Pooling=true` ).
 
 
 At this point the ASP.NET application has been configured to allow Visual Studio to debug SQL Server database objects when invoked through the web application. All that remains now is to add a breakpoint to a stored procedure and start debugging!
@@ -143,7 +146,8 @@ As the Watch window in Figure 7 shows, the value of the `@CategoryID` parameter 
 **Figure 9**: The `@CategoryID` Parameter Reflects the Category Selected from the Web Page ([Click to view full-size image](debugging-stored-procedures-cs/_static/image23.png))
 
 
-> [!NOTE] If the breakpoint in the `Products_SelectByCategoryID` stored procedure is not hit when visiting the `ExistingSprocs.aspx` page, make sure that the SQL Server checkbox has been checked in the Debuggers section of the ASP.NET application s Properties Page, that connection pooling has been disabled, and that the database s Application Debugging option is enabled. If you re still having problems, restart Visual Studio and try again.
+> [!NOTE]
+> If the breakpoint in the `Products_SelectByCategoryID` stored procedure is not hit when visiting the `ExistingSprocs.aspx` page, make sure that the SQL Server checkbox has been checked in the Debuggers section of the ASP.NET application s Properties Page, that connection pooling has been disabled, and that the database s Application Debugging option is enabled. If you re still having problems, restart Visual Studio and try again.
 
 
 ## Debugging T-SQL Database Objects on Remote Instances
@@ -164,7 +168,8 @@ An example should help clarify things. Imagine that there is a Windows account n
 
 For a more detailed explanation on this process, see [William R. Vaughn](http://betav.com/BLOG/billva/) s *Hitchhiker s Guide to Visual Studio and SQL Server, Seventh Edition* as well as [How To: Set SQL Server Permissions for Debugging](https://msdn.microsoft.com/en-us/library/w1bhybwz(VS.80).aspx).
 
-> [!NOTE] If your development machine is running Windows XP Service Pack 2 you will need to configure the Internet Connection Firewall to allow remote debugging. [The How To: Enable SQL Server 2005 Debugging](https://msdn.microsoft.com/en-us/library/s0fk6z6e(VS.80).aspx) article notes that this involves two steps: (a) On the Visual Studio host machine, you must add `Devenv.exe` to the Exceptions list and open the TCP 135 port; and (b) On the remote (SQL) machine, you must open the TCP 135 port and add `sqlservr.exe` to the Exceptions list. If your domain policy requires network communication to be done through IPSec, you must open the UDP 4500 and UDP 500 ports.
+> [!NOTE]
+> If your development machine is running Windows XP Service Pack 2 you will need to configure the Internet Connection Firewall to allow remote debugging. [The How To: Enable SQL Server 2005 Debugging](https://msdn.microsoft.com/en-us/library/s0fk6z6e(VS.80).aspx) article notes that this involves two steps: (a) On the Visual Studio host machine, you must add `Devenv.exe` to the Exceptions list and open the TCP 135 port; and (b) On the remote (SQL) machine, you must open the TCP 135 port and add `sqlservr.exe` to the Exceptions list. If your domain policy requires network communication to be done through IPSec, you must open the UDP 4500 and UDP 500 ports.
 
 
 ## Summary

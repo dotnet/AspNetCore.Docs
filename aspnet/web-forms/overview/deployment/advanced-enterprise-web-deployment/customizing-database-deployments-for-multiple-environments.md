@@ -20,7 +20,8 @@ by [Jason Lee](https://github.com/jrjlee)
 
 > This topic describes how to tailor the properties of a database to specific target environments as part of the deployment process.
 > 
-> > [!NOTE] The topic assumes that you&#x27;re deploying a Visual Studio 2010 database project using MSBuild.exe and VSDBCMD.exe. For more information on why you might choose this approach, see [Web Deployment in the Enterprise](../web-deployment-in-the-enterprise/web-deployment-in-the-enterprise.md) and [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md).
+> > [!NOTE]
+> > The topic assumes that you&#x27;re deploying a Visual Studio 2010 database project using MSBuild.exe and VSDBCMD.exe. For more information on why you might choose this approach, see [Web Deployment in the Enterprise](../web-deployment-in-the-enterprise/web-deployment-in-the-enterprise.md) and [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md).
 > 
 > 
 > When you deploy a database project to multiple destinations, you&#x27;ll often want to customize the database deployment properties for each target environment. For example, in test environments you&#x27;d typically recreate the database on every deployment, whereas in staging or production environments you&#x27;d be a lot more likely to make incremental updates to preserve your data.
@@ -74,7 +75,8 @@ This table shows typical deployment settings for different destination environme
 | **Do not use ALTER ASSEMBLY statements to update CLR types** | False | False | False |
   
 
-> [!NOTE] For more information on database deployment properties and environment considerations, see [An Overview of Database Project Settings](https://msdn.microsoft.com/en-us/library/aa833291(v=VS.100).aspx), [How to: Configure Properties for Deployment Details](https://msdn.microsoft.com/en-us/library/dd172125.aspx), [Build and Deploy Database to an Isolated Development Environment](https://msdn.microsoft.com/en-us/library/dd193409.aspx), and [Build and Deploy Databases to a Staging or Production Environment](https://msdn.microsoft.com/en-us/library/dd193413.aspx).
+> [!NOTE]
+> For more information on database deployment properties and environment considerations, see [An Overview of Database Project Settings](https://msdn.microsoft.com/en-us/library/aa833291(v=VS.100).aspx), [How to: Configure Properties for Deployment Details](https://msdn.microsoft.com/en-us/library/dd172125.aspx), [Build and Deploy Database to an Isolated Development Environment](https://msdn.microsoft.com/en-us/library/dd193409.aspx), and [Build and Deploy Databases to a Staging or Production Environment](https://msdn.microsoft.com/en-us/library/dd193413.aspx).
 
 
 To support the deployment of a database project to multiple destinations, you should create a deployment configuration file for each target environment.
@@ -103,7 +105,8 @@ To specify a deployment configuration file in your VSDBCMD, use the **p:/Deploym
 [!code-console[Main](customizing-database-deployments-for-multiple-environments/samples/sample1.cmd)]
 
 
-> [!NOTE] Note that the build process may rename your .sqldeployment file when it copies the file to the output directory.
+> [!NOTE]
+> Note that the build process may rename your .sqldeployment file when it copies the file to the output directory.
 
 
 If you use SQL command variables in your pre-deployment or post-deployment SQL scripts, you can use a similar approach to associate an environment-specific .sqlcmdvars file with your deployment. In this case, you use the **p:/SqlCommandVariablesFile** switch to identify your .sqlcmdvars file.

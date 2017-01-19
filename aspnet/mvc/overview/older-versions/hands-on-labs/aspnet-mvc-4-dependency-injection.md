@@ -16,7 +16,8 @@ ASP.NET MVC 4 Dependency Injection
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)
 
-> [!NOTE] This Hands-on Lab assumes you have basic knowledge of **ASP.NET MVC** and **ASP.NET MVC 4 filters**. If you have not used **ASP.NET MVC 4 filters** before, we recommend you to go over **ASP.NET MVC Custom Action Filters** Hands-on Lab.
+> [!NOTE]
+> This Hands-on Lab assumes you have basic knowledge of **ASP.NET MVC** and **ASP.NET MVC 4 filters**. If you have not used **ASP.NET MVC 4 filters** before, we recommend you to go over **ASP.NET MVC Custom Action Filters** Hands-on Lab.
 > 
 > All sample code and snippets are included in the Web Camps Training Kit, available at [https://www.microsoft.com/en-us/download/29843](https://www.microsoft.com/en-us/download/29843).
 
@@ -49,7 +50,8 @@ The advantages of using Dependency Injection pattern and Inversion of Control ar
 - Improves code maintainability
 - Improves application testing
 
-> [!NOTE] Dependency Injection is sometimes compared with Abstract Factory Design Pattern, but there is a slight difference between both approaches. DI has a Framework working behind to solve dependencies by calling the factories and the registered services.
+> [!NOTE]
+> Dependency Injection is sometimes compared with Abstract Factory Design Pattern, but there is a slight difference between both approaches. DI has a Framework working behind to solve dependencies by calling the factories and the registered services.
 
 
 Now that you understand the Dependency Injection Pattern, you will learn throughout this lab how to apply it in ASP.NET MVC 4. You will start using Dependency Injection in the **Controllers** to include a database access service. Next, you will apply Dependency Injection to the **Views** to consume a service and show information. Finally, you will extend the DI to ASP.NET MVC 4 Filters, injecting a custom action filter in the solution.
@@ -61,7 +63,8 @@ In this Hands-on Lab, you will learn how to:
 - Use Dependency Injection inside an ASP.NET MVC View
 - Use Dependency Injection inside an ASP.NET MVC Action Filter
 
-> [!NOTE] This Lab is using Unity.Mvc3 NuGet Package for dependency resolution, but it is possible to adapt any Dependency Injection Framework to work with ASP.NET MVC 4.
+> [!NOTE]
+> This Lab is using Unity.Mvc3 NuGet Package for dependency resolution, but it is possible to adapt any Dependency Injection Framework to work with ASP.NET MVC 4.
 
 
 <a id="Prerequisites"></a>
@@ -97,7 +100,8 @@ This Hands-On Lab is comprised by the following exercises:
 2. [Exercise 2: Injecting a View](#Exercise2)
 3. [Exercise 3: Injecting Filters](#Exercise3)
 
-> [!NOTE] Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
+> [!NOTE]
+> Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
 
 
 Estimated time to complete this lab: **30 minutes**.
@@ -124,7 +128,8 @@ C#
 
 You will find below that the **StoreController** implementation has a dependency with **StoreService** inside the class constructor.
 
-> [!NOTE] The dependency introduced in this exercise is related to **Inversion of Control** (IoC).
+> [!NOTE]
+> The dependency introduced in this exercise is related to **Inversion of Control** (IoC).
 > 
 > The **StoreController** class constructor receives an **IStoreService** type parameter, which is essential to perform service calls from inside the class. However, **StoreController** does not implement the default constructor (with no parameters) that any controller must have to work with ASP.NET MVC.
 > 
@@ -135,7 +140,8 @@ C#
 
 [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample2.cs)]
 
-> [!NOTE] You will get an error when the class tries to create the StoreController without sending the service object, as there is no parameterless constructor declared.
+> [!NOTE]
+> You will get an error when the class tries to create the StoreController without sending the service object, as there is no parameterless constructor declared.
 
 
 <a id="Ex1Task1"></a>
@@ -153,7 +159,8 @@ When running the application, you will receive an exception, as the controller s
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Press **Ctrl + F5** to run the application without debugging. You will get the error message &quot;**No parameterless constructor defined for this object**&quot;:
 
     ![Error while running ASP.NET MVC Begin Application](aspnet-mvc-4-dependency-injection/_static/image3.png "Error while running ASP.NET MVC Begin Application")
@@ -170,7 +177,8 @@ In the following steps you will work on the Music Store Solution to inject the d
 
 In this task, you will include **Unity.Mvc3** NuGet Package to the solution.
 
-> [!NOTE] Unity.Mvc3 package was designed for ASP.NET MVC 3, but it is fully compatible with ASP.NET MVC 4.
+> [!NOTE]
+> Unity.Mvc3 package was designed for ASP.NET MVC 3, but it is fully compatible with ASP.NET MVC 4.
 > 
 > Unity is a lightweight, extensible dependency injection container with optional support for instance and type interception. It is a general-purpose container for use in any type of .NET application. It provides all the common features found in dependency injection mechanisms including: object creation, abstraction of requirements by specifying dependencies at runtime and flexibility, by deferring the component configuration to the container.
 
@@ -264,7 +272,8 @@ In this task, you will create a view that performs a service call to generate a 
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
     > 
     > For more information, see this article: [http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages](http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages).
 2. Include the **MessageService.cs** and the **IMessageService.cs** classes located in the **Source \Assets** folder in **/Services**. To do this, right-click **Services** folder and select **Add Existing Item**. Browse to the files' location and include them.
@@ -273,7 +282,8 @@ In this task, you will create a view that performs a service call to generate a 
 
     *Adding Message Service and Service Interface*
 
-    > [!NOTE] The **IMessageService** interface defines two properties implemented by the **MessageService** class. These properties -**Message** and **ImageUrl**- store the message and the URL of the image to be displayed.
+    > [!NOTE]
+    > The **IMessageService** interface defines two properties implemented by the **MessageService** class. These properties -**Message** and **ImageUrl**- store the message and the URL of the image to be displayed.
 3. Create the folder **/Pages** in the project's root folder, and then add the existing class **MyBasePage.cs** from **Source\Assets**. The base page you will inherit from has the following structure.
 
     ![Pages folder](aspnet-mvc-4-dependency-injection/_static/image9.png "Pages folder")
@@ -299,7 +309,8 @@ In this task, you will create a view that performs a service call to generate a 
 
 In the previous task, you injected a new dependency inside a view to perform a service call inside it. Now, you will resolve that dependency by implementing the ASP.NET MVC Dependency Injection interfaces **IViewPageActivator** and **IDependencyResolver**. You will include in the solution an implementation of **IDependencyResolver** that will deal with the service retrieval by using Unity. Then, you will include another custom implementation of **IViewPageActivator** interface that will solve the creation of the views.
 
-> [!NOTE] Since ASP.NET MVC 3, the implementation for Dependency Injection had simplified the interfaces to register services. **IDependencyResolver** and **IViewPageActivator** are part of ASP.NET MVC 3 features for Dependency Injection.
+> [!NOTE]
+> Since ASP.NET MVC 3, the implementation for Dependency Injection had simplified the interfaces to register services. **IDependencyResolver** and **IViewPageActivator** are part of ASP.NET MVC 3 features for Dependency Injection.
 > 
 > **- IDependencyResolver** interface replaces the previous IMvcServiceLocator. Implementers of IDependencyResolver must return an instance of the service or a service collection.
 > 
@@ -379,7 +390,8 @@ To inject **Browse** View, you will now register the custom dependency resolver 
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample17.cs)]
 
-    > [!NOTE] ASP.NET MVC provides a default dependency resolver class. To work with custom dependency resolvers as the one we have created for unity, this resolver has to be replaced.
+    > [!NOTE]
+    > ASP.NET MVC provides a default dependency resolver class. To work with custom dependency resolvers as the one we have created for unity, this resolver has to be replaced.
 
 <a id="Ex2Task4"></a>
 
@@ -416,7 +428,8 @@ In this task, you will include in the Music Store a custom action filter to trac
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
     > 
     > For more information, see this article: [http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages](http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages).
 2. Include **TraceActionFilter.cs** file from **/Sources/Assets** to **/Filters** folder.
@@ -425,7 +438,8 @@ In this task, you will include in the Music Store a custom action filter to trac
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample18.cs)]
 
-    > [!NOTE] This custom action filter performs ASP.NET tracing. You can check &quot;ASP.NET MVC 4 local and Dynamic Action Filters&quot; Lab for more reference.
+    > [!NOTE]
+    > This custom action filter performs ASP.NET tracing. You can check &quot;ASP.NET MVC 4 local and Dynamic Action Filters&quot; Lab for more reference.
 3. Add the empty class **FilterProvider.cs** to the project in the folder **/Filters.**
 4. Add the **System.Web.Mvc** and **Microsoft.Practices.Unity** namespaces in **FilterProvider.cs**.
 
@@ -447,7 +461,8 @@ In this task, you will include in the Music Store a custom action filter to trac
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample21.cs)]
 
-    > [!NOTE] The filter provider class constructor is not creating a **new** object inside. The container is passed as a parameter, and the dependency is solved by Unity.
+    > [!NOTE]
+    > The filter provider class constructor is not creating a **new** object inside. The container is passed as a parameter, and the dependency is solved by Unity.
 7. In the **FilterProvider** class, implement the method **GetFilters** from **IFilterProvider** interface.
 
     (Code Snippet - *ASP.NET Dependency Injection Lab - Ex03 - Filter Provider GetFilters*)

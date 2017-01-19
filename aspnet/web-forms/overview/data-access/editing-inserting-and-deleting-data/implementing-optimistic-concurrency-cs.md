@@ -43,7 +43,8 @@ There are three [concurrency control](http://en.wikipedia.org/wiki/Concurrency_c
 
 All of our tutorials thus far have used the default concurrency resolution strategy - namely, we've let the last write win. In this tutorial we'll examine how to implement optimistic concurrency control.
 
-> [!NOTE] We won't look at pessimistic concurrency examples in this tutorial series. Pessimistic concurrency is rarely used because such locks, if not properly relinquished, can prevent other users from updating data. For example, if a user locks a record for editing and then leaves for the day before unlocking it, no other user will be able to update that record until the original user returns and completes his update. Therefore, in situations where pessimistic concurrency is used, there's typically a timeout that, if reached, cancels the lock. Ticket sales websites, which lock a particular seating location for short period while the user completes the order process, is an example of pessimistic concurrency control.
+> [!NOTE]
+> We won't look at pessimistic concurrency examples in this tutorial series. Pessimistic concurrency is rarely used because such locks, if not properly relinquished, can prevent other users from updating data. For example, if a user locks a record for editing and then leaves for the day before unlocking it, no other user will be able to update that record until the original user returns and completes his update. Therefore, in situations where pessimistic concurrency is used, there's typically a timeout that, if reached, cancels the lock. Ticket sales websites, which lock a particular seating location for short period while the user completes the order process, is an example of pessimistic concurrency control.
 
 
 ## Step 1: Looking at How Optimistic Concurrency is Implemented
@@ -61,7 +62,8 @@ There are various approaches to implementing optimistic concurrency (see [Peter 
 
 [!code-sql[Main](implementing-optimistic-concurrency-cs/samples/sample1.sql)]
 
-> [!NOTE] This `UPDATE` statement has been simplified for readability. In practice, the `UnitPrice` check in the `WHERE` clause would be more involved since `UnitPrice` can contain `NULL` s and checking if `NULL = NULL` always returns False (instead you must use `IS NULL`).
+> [!NOTE]
+> This `UPDATE` statement has been simplified for readability. In practice, the `UnitPrice` check in the `WHERE` clause would be more involved since `UnitPrice` can contain `NULL` s and checking if `NULL = NULL` always returns False (instead you must use `IS NULL`).
 
 
 In addition to using a different underlying `UPDATE` statement, configuring a TableAdapter to use optimistic concurrency also modifies the signature of its DB direct methods. Recall from our first tutorial, [*Creating a Data Access Layer*](../introduction/creating-a-data-access-layer-cs.md), that DB direct methods were those that accepts a list of scalar values as input parameters (rather than a strongly-typed DataRow or DataTable instance). When using optimistic concurrency, the DB direct `Update()` and `Delete()` methods include input parameters for the original values as well. Moreover, the code in the BLL for using the batch update pattern (the `Update()` method overloads that accept DataRows and DataTables rather than scalar values) must be changed as well.
@@ -245,7 +247,8 @@ As you can see, the `DeleteParameters` collection contains a `Parameter` instanc
 
 For those previous tutorials that involved data modification, we'd remove the ObjectDataSource's `OldValuesParameterFormatString` property at this point, since this property indicates that the BLL method expects the old (or original) values to be passed in as well as the new values. Furthermore, this property value indicates the input parameter names for the original values. Since we are passing in the original values into the BLL, do *not* remove this property.
 
-> [!NOTE] The value of the `OldValuesParameterFormatString` property must map to the input parameter names in the BLL that expect the original values. Since we named these parameters `original_productName`, `original_supplierID`, and so on, you can leave the `OldValuesParameterFormatString` property value as `original_{0}`. If, however, the BLL methods' input parameters had names like `old_productName`, `old_supplierID`, and so on, you'd need to update the `OldValuesParameterFormatString` property to `old_{0}`.
+> [!NOTE]
+> The value of the `OldValuesParameterFormatString` property must map to the input parameter names in the BLL that expect the original values. Since we named these parameters `original_productName`, `original_supplierID`, and so on, you can leave the `OldValuesParameterFormatString` property value as `original_{0}`. If, however, the BLL methods' input parameters had names like `old_productName`, `old_supplierID`, and so on, you'd need to update the `OldValuesParameterFormatString` property to `old_{0}`.
 
 
 There's one final property setting that needs to be made in order for the ObjectDataSource to correctly pass the original values to the BLL methods. The ObjectDataSource has a [ConflictDetection property](https://msdn.microsoft.com/en-US/library/system.web.ui.webcontrols.objectdatasource.conflictdetection.aspx) that can be assigned to [one of two values](https://msdn.microsoft.com/en-US/library/system.web.ui.conflictoptions.aspx):
@@ -275,7 +278,8 @@ Since we've already examined how to accomplish these tasks in previous tutorials
 
 We're very close to having a fully-working example. However, there are a few subtleties that will creep up and cause us problems. Additionally, we still need some interface that alerts the user when a concurrency violation has occurred.
 
-> [!NOTE] In order for a data Web control to correctly pass the original values to the ObjectDataSource (which are then passed to the BLL), it's vital that the GridView's `EnableViewState` property is set to `true` (the default). If you disable view state, the original values are lost on postback.
+> [!NOTE]
+> In order for a data Web control to correctly pass the original values to the ObjectDataSource (which are then passed to the BLL), it's vital that the GridView's `EnableViewState` property is set to `true` (the default). If you disable view state, the original values are lost on postback.
 
 
 ## Passing the Correct Original Values to the ObjectDataSource
@@ -386,7 +390,8 @@ In the face of a `DBConcurrencyException` exception, this event handler displays
 **Figure 19**: A User s Updates are Lost in the Face of a Concurrency Violation ([Click to view full-size image](implementing-optimistic-concurrency-cs/_static/image55.png))
 
 
-> [!NOTE] Alternatively, rather than returning the GridView to the pre-editing state, we could leave the GridView in its editing state by setting the `KeepInEditMode` property of the passed-in `GridViewUpdatedEventArgs` object to true. If you take this approach, however, be certain to rebind the data to the GridView (by invoking its `DataBind()` method) so that the other user's values are loaded into the editing interface. The code available for download with this tutorial has these two lines of code in the `RowUpdated` event handler commented out; simply uncomment these lines of code to have the GridView remain in edit mode after a concurrency violation.
+> [!NOTE]
+> Alternatively, rather than returning the GridView to the pre-editing state, we could leave the GridView in its editing state by setting the `KeepInEditMode` property of the passed-in `GridViewUpdatedEventArgs` object to true. If you take this approach, however, be certain to rebind the data to the GridView (by invoking its `DataBind()` method) so that the other user's values are loaded into the editing interface. The code available for download with this tutorial has these two lines of code in the `RowUpdated` event handler commented out; simply uncomment these lines of code to have the GridView remain in edit mode after a concurrency violation.
 
 
 ## Responding to Concurrency Violations When Deleting

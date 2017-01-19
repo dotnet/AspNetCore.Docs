@@ -132,7 +132,8 @@ Once you've got a database with data in it, you can display the data in an ASP.N
 
     In the first code block, you open the *SmallBakery.sdf* file (database) that you created earlier. The `Database.Open` method assumes that the *.sdf* file is in your website's *App\_Data* folder. (Notice that you don't need to specify the *.sdf* extension &#8212; in fact, if you do, the `Open` method won't work.)
 
-    > [!NOTE] The *App\_Data* folder is a special folder in ASP.NET that's used to store data files. For more information, see [Connecting to a Database](#SB_ConnectingToADatabase) later in this article.
+    > [!NOTE]
+    > The *App\_Data* folder is a special folder in ASP.NET that's used to store data files. For more information, see [Connecting to a Database](#SB_ConnectingToADatabase) later in this article.
 
     You then make a request to query the database using the following SQL `Select` statement:
 
@@ -199,7 +200,8 @@ The page includes validation to make sure that the data that the user enters is 
 
     For the values to insert, you include parameter placeholders (`@0`, `@1`, `@2`).
 
-    > [!NOTE] As a security precaution, always pass values to a SQL statement using parameters, as you see in the preceding example. This gives you a chance to validate the user's data, plus it helps protect against attempts to send malicious commands to your database (sometimes referred to as SQL injection attacks).
+    > [!NOTE]
+    > As a security precaution, always pass values to a SQL statement using parameters, as you see in the preceding example. This gives you a chance to validate the user's data, plus it helps protect against attempts to send malicious commands to your database (sometimes referred to as SQL injection attacks).
 
     To execute the query, you use this statement, passing to it the variables that contain the values to substitute for the placeholders:
 

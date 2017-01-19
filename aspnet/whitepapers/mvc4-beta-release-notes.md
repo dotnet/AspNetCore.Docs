@@ -16,7 +16,8 @@ ASP.NET MVC 4
 ====================
 > This document describes the release of ASP.NET MVC 4 Beta for Visual Studio 2010.
 > 
-> > [!NOTE] This is not the most current release. The ASP.NET MVC 4 RC release notes are available [here](mvc4-release-notes.md).
+> > [!NOTE]
+> > This is not the most current release. The ASP.NET MVC 4 RC release notes are available [here](mvc4-release-notes.md).
 
 
 - [Installation Notes](#_Toc303253802)

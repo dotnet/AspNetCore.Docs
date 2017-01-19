@@ -142,7 +142,8 @@ When the user edits a product and clicks the Update button, a postback occurs an
 
 The code starts out by consulting the `Page.IsValid` property to ensure that all the validation controls on the page are valid. If `Page.IsValid` is `True`, the edited product s `ProductID` value is read from the `DataKeys` collection and the data entry Web controls in the `EditItemTemplate` are programmatically referenced. Next, the values from these Web controls are read into variables that are then passed into the appropriate `UpdateProduct` overload. After updating the data, the DataList is returned to its pre-editing state.
 
-> [!NOTE] I ve omitted the exception handling logic added in the [Handling BLL- and DAL-Level Exceptions](handling-bll-and-dal-level-exceptions-vb.md) tutorial in order to keep the code and this example focused. As an exercise, add this functionality after completing this tutorial.
+> [!NOTE]
+> I ve omitted the exception handling logic added in the [Handling BLL- and DAL-Level Exceptions](handling-bll-and-dal-level-exceptions-vb.md) tutorial in order to keep the code and this example focused. As an exercise, add this functionality after completing this tutorial.
 
 
 ## Step 6: Handling NULL CategoryID and SupplierID Values
@@ -156,7 +157,8 @@ After making these changes, the DropDownLists markup in the DataList s `EditItem
 
 [!code-aspx[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample5.aspx)]
 
-> [!NOTE] Static `ListItem` s can be added to a DropDownList through the Designer or directly through the declarative syntax. When adding a DropDownList item to represent a database `NULL` value, be sure to add the `ListItem` through the declarative syntax. If you use the `ListItem` Collection Editor in the Designer, the generated declarative syntax will omit the `Value` setting altogether when assigned a blank string, creating declarative markup like: `<asp:ListItem>(None)</asp:ListItem>`. While this may look harmless, the missing `Value` causes the DropDownList to use the `Text` property value in its place. That means that if this `NULL` `ListItem` is selected, the value (None) will be attempted to be assigned to the product data field (`CategoryID` or `SupplierID`, in this tutorial), which will result in an exception. By explicitly setting `Value=""`, a `NULL` value will be assigned to the product data field when the `NULL` `ListItem` is selected.
+> [!NOTE]
+> Static `ListItem` s can be added to a DropDownList through the Designer or directly through the declarative syntax. When adding a DropDownList item to represent a database `NULL` value, be sure to add the `ListItem` through the declarative syntax. If you use the `ListItem` Collection Editor in the Designer, the generated declarative syntax will omit the `Value` setting altogether when assigned a blank string, creating declarative markup like: `<asp:ListItem>(None)</asp:ListItem>`. While this may look harmless, the missing `Value` causes the DropDownList to use the `Text` property value in its place. That means that if this `NULL` `ListItem` is selected, the value (None) will be attempted to be assigned to the product data field (`CategoryID` or `SupplierID`, in this tutorial), which will result in an exception. By explicitly setting `Value=""`, a `NULL` value will be assigned to the product data field when the `NULL` `ListItem` is selected.
 
 
 Take a moment to view our progress through a browser. When editing a product, note that the `Categories` and `Suppliers` DropDownLists both have a (None) option at the start of the DropDownList.

@@ -64,7 +64,8 @@ The following exercise make up this Hands-On Lab:
 
 1. [Using ASP.NET MVC 4 Scaffolding with Entity Framework Migrations](#Exercise1)
 
-> [!NOTE] This exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercise. You can use this solution as a guide if you need additional help working through the exercise.
+> [!NOTE]
+> This exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercise. You can use this solution as a guide if you need additional help working through the exercise.
 
 
 Estimated time to complete this lab: **30 minutes**

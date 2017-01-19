@@ -44,7 +44,8 @@ Start by opening the `Suppliers` table definition by right-clicking on the `Supp
 
 Note that strings can be concatenated in SQL using the `+` operator. The `CASE` statement can be used like a conditional in a traditional programming language. In the above expression the `CASE` statement can be read as: If `ContactTitle` is not `NULL` then output the `ContactTitle` value concatenated with a comma, otherwise emit nothing. For more on the usefulness of the `CASE` statement, see [The Power of SQL `CASE` Statements](http://www.4guysfromrolla.com/webtech/102704-1.shtml).
 
-> [!NOTE] Instead of using a `CASE` statement here, we could have alternatively used `ISNULL(ContactTitle, '')`. [`ISNULL(checkExpression, replacementValue)`](https://msdn.microsoft.com/en-us/library/ms184325.aspx) returns *checkExpression* if it is non-NULL, otherwise it returns *replacementValue*. While either `ISNULL` or `CASE` will work in this instance, there are more intricate scenarios where the flexibility of the `CASE` statement cannot be matched by `ISNULL`.
+> [!NOTE]
+> Instead of using a `CASE` statement here, we could have alternatively used `ISNULL(ContactTitle, '')`. [`ISNULL(checkExpression, replacementValue)`](https://msdn.microsoft.com/en-us/library/ms184325.aspx) returns *checkExpression* if it is non-NULL, otherwise it returns *replacementValue*. While either `ISNULL` or `CASE` will work in this instance, there are more intricate scenarios where the flexibility of the `CASE` statement cannot be matched by `ISNULL`.
 
 
 After adding this computed column your screen should look like the screen shot in Figure 1.
@@ -64,7 +65,8 @@ Saving the table should refresh the Server Explorer, including the just-added co
 
 For more information on computed columns in Microsoft SQL Server, refer to the [technical documentation](https://msdn.microsoft.com/en-us/library/ms191250.aspx). Also check out the [How to: Specify Computed Columns](https://msdn.microsoft.com/en-us/library/ms188300.aspx) for a step-by-step walkthrough of creating computed columns.
 
-> [!NOTE] By default, computed columns are not physically stored in the table but are instead recalculated each time they are referenced in a query. By checking the Is Persisted checkbox, however, you can instruct SQL Server to physically store the computed column in the table. Doing so allows an index to be created on the computed column, which can improve the performance of queries that use the computed column value in their `WHERE` clauses. See [Creating Indexes on Computed Columns](https://msdn.microsoft.com/en-us/library/ms189292.aspx) for more information.
+> [!NOTE]
+> By default, computed columns are not physically stored in the table but are instead recalculated each time they are referenced in a query. By checking the Is Persisted checkbox, however, you can instruct SQL Server to physically store the computed column in the table. Doing so allows an index to be created on the computed column, which can improve the performance of queries that use the computed column value in their `WHERE` clauses. See [Creating Indexes on Computed Columns](https://msdn.microsoft.com/en-us/library/ms189292.aspx) for more information.
 
 
 ## Step 2: Viewing the Computed Column s Values
@@ -196,7 +198,8 @@ Create a new class file named `SuppliersBLLWithSprocs` in the `~/App_Code/BLL` f
 
 Like the other BLL classes, `SuppliersBLLWithSprocs` has a `Protected` `Adapter` property that returns an instance of the `SuppliersTableAdapter` class along with two `Public` methods: `GetSuppliers` and `UpdateSupplier`. The `GetSuppliers` method calls and returns the `SuppliersDataTable` returned by the corresponding `GetSupplier` method in the Data Access Layer. The `UpdateSupplier` method retrieves information about the particular supplier being updated via a call to the DAL s `GetSupplierBySupplierID(supplierID)` method. It then updates the `CategoryName`, `ContactName`, and `ContactTitle` properties and commits these changes to the database by calling the Data Access Layer s `Update` method, passing in the modified `SuppliersRow` object.
 
-> [!NOTE] Except for `SupplierID` and `CompanyName`, all columns in the Suppliers table allow `NULL` values. Therefore, if the passed-in `contactName` or `contactTitle` parameters are `Nothing` we need to set the corresponding `ContactName` and `ContactTitle` properties to a `NULL` database value using the `SetContactNameNull` and `SetContactTitleNull` methods, respectively.
+> [!NOTE]
+> Except for `SupplierID` and `CompanyName`, all columns in the Suppliers table allow `NULL` values. Therefore, if the passed-in `contactName` or `contactTitle` parameters are `Nothing` we need to set the corresponding `ContactName` and `ContactTitle` properties to a `NULL` database value using the `SetContactNameNull` and `SetContactTitleNull` methods, respectively.
 
 
 ## Step 7: Working with the Computed Column from the Presentation Layer
@@ -238,7 +241,8 @@ Clicking the Edit button for a particular supplier causes a postback and has tha
 
 Go ahead and update the value of one or more of the editable columns and click Update. Note how the `FullContactName` s value is automatically updated to reflect the change.
 
-> [!NOTE] The GridView currently uses BoundFields for the editable fields, resulting in the default editing interface. Since the `CompanyName` field is required, it should be converted into a TemplateField that includes a RequiredFieldValidator. I leave this as an exercise for the interested reader. Consult the [Adding Validation Controls to the Editing and Inserting Interfaces](../editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-vb.md) tutorial for step-by-step instructions on converting a BoundField to a TemplateField and adding validation controls.
+> [!NOTE]
+> The GridView currently uses BoundFields for the editable fields, resulting in the default editing interface. Since the `CompanyName` field is required, it should be converted into a TemplateField that includes a RequiredFieldValidator. I leave this as an exercise for the interested reader. Consult the [Adding Validation Controls to the Editing and Inserting Interfaces](../editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-vb.md) tutorial for step-by-step instructions on converting a BoundField to a TemplateField and adding validation controls.
 
 
 ## Summary

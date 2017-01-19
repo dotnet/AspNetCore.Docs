@@ -18,7 +18,8 @@ by [Hongye Sun](https://github.com/hongyes), [Praburaj Thiagarajan](https://gith
 
 > This tutorial will guide you on how to implement an OAuth 2.0 Authorization Server using OWIN OAuth middleware. This is an advanced tutorial that only outlines the steps to create an OWIN OAuth 2.0 Authorization Server. This is not a step by step tutorial. [Download the sample code](https://code.msdn.microsoft.com/OWIN-OAuth-20-Authorization-ba2b8783/file/114932/1/AuthorizationServer.zip).
 > 
-> > [!NOTE] This outline should not be intended to be used for creating a secure production app. This tutorial is intended to provide only an outline on how to implement an OAuth 2.0 Authorization Server using OWIN OAuth middleware.
+> > [!NOTE]
+> > This outline should not be intended to be used for creating a secure production app. This tutorial is intended to provide only an outline on how to implement an OAuth 2.0 Authorization Server using OWIN OAuth middleware.
 > 
 > 
 > ## Software versions
@@ -80,10 +81,12 @@ The `UseOAuthAuthorizationServer` extension method is to setup the authorization
 - `TokenEndpointPath`: The request path client applications directly communicate to obtain the access token. It must begin with a leading slash, like "/Token". If the client is issued a [client\_secret](http://tools.ietf.org/html/rfc6749#appendix-A.2), it must be provided to this endpoint.
 - `ApplicationCanDisplayErrors`: Set to `true` if the web application wants to generate a custom error page for the client validation errors on `/Authorize` endpoint. This is only needed for cases where the browser is not redirected back to the client application, for example, when the `client_id` or `redirect_uri` are incorrect. The `/Authorize` endpoint should expect to see the "oauth.Error", "oauth.ErrorDescription", and "oauth.ErrorUri" properties are added to the OWIN environment. 
 
-    > [!NOTE] If not true, the authorization server will return a default error page with the error details.
+    > [!NOTE]
+    > If not true, the authorization server will return a default error page with the error details.
 - `AllowInsecureHttp`: True to allow authorize and token requests to arrive on HTTP URI addresses, and to allow incoming `redirect_uri` authorize request parameters to have HTTP URI addresses. 
 
-    > [!WARNING] Security - This is for development only.
+    > [!WARNING]
+    > Security - This is for development only.
 - `Provider`: The object provided by the application to process events raised by the Authorization Server middleware. The application may implement the interface fully, or it may create an instance of `OAuthAuthorizationServerProvider` and assign delegates necessary for the OAuth flows this server supports.
 - `AuthorizationCodeProvider`: Produces a single-use authorization code to return to the client application. For the OAuth server to be secure the application **MUST** provide an instance for `AuthorizationCodeProvider` where the token produced by the `OnCreate/OnCreateAsync` event is considered valid for only one call to `OnReceive/OnReceiveAsync`.
 - `RefreshTokenProvider`: Produces a refresh token which may be used to produce a new access token when needed. If not provided the authorization server will not return refresh tokens from the `/Token` endpoint.
@@ -166,7 +169,8 @@ Here is the sample implementation for `Provider.GrantResourceOwnerCredentials`:
 
 [!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample7.cs)]
 
-> [!NOTE] The code above is intended to explain this section of the tutorial and should not be used in secure or production apps. It does not check the resource owners credentials. It assumes every credential is valid and creates a new identity for it. The new identity will be used to generate the access token and refresh token. Please replace the code with your own secure account management code.
+> [!NOTE]
+> The code above is intended to explain this section of the tutorial and should not be used in secure or production apps. It does not check the resource owners credentials. It assumes every credential is valid and creates a new identity for it. The new identity will be used to generate the access token and refresh token. Please replace the code with your own secure account management code.
 
 
 ### Client Credentials Grant
@@ -186,7 +190,8 @@ Here is the sample implementation for `Provider.GrantClientCredentials`:
 
 [!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample8.cs)]
 
-> [!NOTE] The code above is intended to explain this section of the tutorial and should not be used in secure or production apps. Please replace the code with your own secure client management code.
+> [!NOTE]
+> The code above is intended to explain this section of the tutorial and should not be used in secure or production apps. Please replace the code with your own secure client management code.
 
 
 ### Refresh Token
@@ -263,7 +268,8 @@ Here is the sample code of the `HomeController` of the client.
 
 [!code-xml[Main](owin-oauth-20-authorization-server/samples/sample17.xml?highlight=4-6)]
 
-> [!WARNING] Security - Never disable SSL in a production app. Your login credentials are now being sent in clear-text across the wire. The code above is just for local sample debugging and exploration.
+> [!WARNING]
+> Security - Never disable SSL in a production app. Your login credentials are now being sent in clear-text across the wire. The code above is just for local sample debugging and exploration.
 
 
 ### Implicit Grant Client
@@ -285,7 +291,8 @@ Here is the callback handling code in *SignIn.cshtml* file:
 
 [!code-html[Main](owin-oauth-20-authorization-server/samples/sample19.html)]
 
-> [!NOTE] A best practice is to move the JavaScript to an external file and not embed it with the Razor markup. To keep this sample simple, they have been combined.
+> [!NOTE]
+> A best practice is to move the JavaScript to an external file and not embed it with the Razor markup. To keep this sample simple, they have been combined.
 
 
 ### Resource Owner Password Credentials Grant Client

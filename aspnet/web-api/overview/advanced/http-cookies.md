@@ -75,7 +75,8 @@ A **CookieHeaderValue** contains a collection of **CookieState** instances. Each
 
 Many browsers limit how many cookies they will store&#8212;both the total number, and the number per domain. Therefore, it can be useful to put structured data into a single cookie, instead of setting multiple cookies.
 
-> [!NOTE] RFC 6265 does not define the structure of cookie data.
+> [!NOTE]
+> RFC 6265 does not define the structure of cookie data.
 
 
 Using the **CookieHeaderValue** class, you can pass a list of name-value pairs for the cookie data. These name-value pairs are encoded as URL-encoded form data in the Set-Cookie header:

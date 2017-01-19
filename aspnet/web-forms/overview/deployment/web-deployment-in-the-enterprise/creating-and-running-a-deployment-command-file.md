@@ -59,7 +59,8 @@ From here, it&#x27;s a simple step to move to a repeatable, single-step deployme
 [!code-console[Main](creating-and-running-a-deployment-command-file/samples/sample3.cmd)]
 
 
-> [!NOTE] The **/fl** switch instructs MSBuild to create a log file named *msbuild.log* in the working directory in which MSBuild.exe was invoked.
+> [!NOTE]
+> The **/fl** switch instructs MSBuild to create a log file named *msbuild.log* in the working directory in which MSBuild.exe was invoked.
 
 
 To deploy or redeploy the Contact Manager solution, all you need to do is run the *Publish-Dev.cmd* file. When you run the file, MSBuild will:
@@ -84,7 +85,8 @@ When you&#x27;ve created a command file for your target environment, you should 
     ![](creating-and-running-a-deployment-command-file/_static/image1.png)
 5. If this is the first time you&#x27;ve deployed the solution to this environment, you&#x27;ll need to add the test web server machine account to the **db\_datawriter** and **db\_datareader** roles on the **ContactManager** database. This procedure is described in [Configure a Database Server for Web Deploy Publishing](../configuring-server-environments-for-web-deployment/configuring-a-database-server-for-web-deploy-publishing.md).
 
-    > [!NOTE] You only need to assign these permissions when you create the database. By default, the build process will not recreate the database on every deployment&#x2014;instead, it will compare the existing database to the latest schema and make only the changes required. As a result, you should only need to map these database roles the first time you deploy the solution.
+    > [!NOTE]
+    > You only need to assign these permissions when you create the database. By default, the build process will not recreate the database on every deployment&#x2014;instead, it will compare the existing database to the latest schema and make only the changes required. As a result, you should only need to map these database roles the first time you deploy the solution.
 6. Open Internet Explorer and browse to the URL of the Contact Manager application (for example, `http://testweb1:85/ContactManager/`).
 7. Verify that the application works as expected and you're able to add contacts.
 
@@ -104,7 +106,8 @@ A command file to publish to a staging environment might contain this MSBuild co
 [!code-console[Main](creating-and-running-a-deployment-command-file/samples/sample5.cmd)]
 
 
-> [!NOTE] For guidance on how to customize the environment-specific project files for your own server environments, see [Configure Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).
+> [!NOTE]
+> For guidance on how to customize the environment-specific project files for your own server environments, see [Configure Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).
 
 
 You can also customize the build process for each environment by overriding properties or setting various other switches in your MSBuild command. For more information, see [MSBuild Command Line Reference](https://msdn.microsoft.com/en-us/library/ms164311.aspx).

@@ -32,7 +32,8 @@ Due to the ease of implementation just check a checkbox and you re done! default
 
 The challenge of custom paging is being able to write a query that returns the precise set of records needed for a particular page of data. Fortunately, Microsoft SQL Server 2005 provides a new keyword for ranking results, which enables us to write a query that can efficiently retrieve the proper subset of records. In this tutorial we'll see how to use this new SQL Server 2005 keyword to implement custom paging in a GridView control. While the user interface for custom paging is identical to that for default paging, stepping from one page to the next using custom paging can be several orders of magnitude faster than default paging.
 
-> [!NOTE] The exact performance gain exhibited by custom paging depends on the total number of records being paged through and the load being placed on the database server. At the end of this tutorial we'll look at some rough metrics that showcase the benefits in performance obtained through custom paging.
+> [!NOTE]
+> The exact performance gain exhibited by custom paging depends on the total number of records being paged through and the load being placed on the database server. At the end of this tutorial we'll look at some rough metrics that showcase the benefits in performance obtained through custom paging.
 
 
 ## Step 1: Understanding the Custom Paging Process
@@ -154,7 +155,8 @@ Extending this concept a bit further, we can utilize this approach to retrieve a
 
 [!code-html[Main](efficiently-paging-through-large-amounts-of-data-vb/samples/sample6.html)]
 
-> [!NOTE] As we will see later on in this tutorial, the *`StartRowIndex`* supplied by the ObjectDataSource is indexed starting at zero, whereas the `ROW_NUMBER()` value returned by SQL Server 2005 is indexed starting at 1. Therefore, the `WHERE` clause returns those records where `PriceRank` is strictly greater than *`StartRowIndex`* and less than or equal to *`StartRowIndex`* + *`MaximumRows`*.
+> [!NOTE]
+> As we will see later on in this tutorial, the *`StartRowIndex`* supplied by the ObjectDataSource is indexed starting at zero, whereas the `ROW_NUMBER()` value returned by SQL Server 2005 is indexed starting at 1. Therefore, the `WHERE` clause returns those records where `PriceRank` is strictly greater than *`StartRowIndex`* and less than or equal to *`StartRowIndex`* + *`MaximumRows`*.
 
 
 Now that we ve discussed how `ROW_NUMBER()` can be used to retrieve a particular page of data given the Start Row Index and Maximum Rows values, we now need to implement this logic as methods in the DAL and BLL.
@@ -292,7 +294,8 @@ After making these changes, visit this page through a browser. You should see 10
 **Figure 17**: The Data, Ordered by the Product s Name, is Paged Using Custom Paging ([Click to view full-size image](efficiently-paging-through-large-amounts-of-data-vb/_static/image21.png))
 
 
-> [!NOTE] With custom paging, the page count value returned by the ObjectDataSource�s `SelectCountMethod` is stored in the GridView�s view state. Other GridView variables the `PageIndex`, `EditIndex`, `SelectedIndex`, `DataKeys` collection, and so on are stored in *control state*, which is persisted regardless of the value of the GridView�s `EnableViewState` property. Since the `PageCount` value is persisted across postbacks using view state, when using a paging interface that includes a link to take you to the last page, it is imperative that the GridView�s view state be enabled. (If your paging interface does not include a direct link to the last page, then you may disable view state.)
+> [!NOTE]
+> With custom paging, the page count value returned by the ObjectDataSource�s `SelectCountMethod` is stored in the GridView�s view state. Other GridView variables the `PageIndex`, `EditIndex`, `SelectedIndex`, `DataKeys` collection, and so on are stored in *control state*, which is persisted regardless of the value of the GridView�s `EnableViewState` property. Since the `PageCount` value is persisted across postbacks using view state, when using a paging interface that includes a link to take you to the last page, it is imperative that the GridView�s view state be enabled. (If your paging interface does not include a direct link to the last page, then you may disable view state.)
 
 
 Clicking the last page link causes a postback and instructs the GridView to update its `PageIndex` property. If the last page link is clicked, the GridView assigns its `PageIndex` property to a value one less than its `PageCount` property. With view state disabled, the `PageCount` value is lost across postbacks and the `PageIndex` is assigned the maximum integer value instead. Next, the GridView attempts to determine the starting row index by multiplying the `PageSize` and `PageCount` properties. This results in an `OverflowException` since the product exceeds the maximum allowed integer size.

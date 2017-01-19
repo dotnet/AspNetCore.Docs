@@ -92,7 +92,8 @@ Here is an implementation of **IDependencyResolver** that wraps a Unity containe
 
 [!code-csharp[Main](dependency-injection/samples/sample8.cs)]
 
-> [!NOTE] If the **GetService** method cannot resolve a type, it should return **null**. If the **GetServices** method cannot resolve a type, it should return an empty collection object. Don't throw exceptions for unknown types.
+> [!NOTE]
+> If the **GetService** method cannot resolve a type, it should return **null**. If the **GetServices** method cannot resolve a type, it should return an empty collection object. Don't throw exceptions for unknown types.
 
 
 ## Configuring the Dependency Resolver

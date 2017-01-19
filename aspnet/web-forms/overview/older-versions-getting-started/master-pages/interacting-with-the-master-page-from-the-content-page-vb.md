@@ -39,7 +39,8 @@ Perhaps the most common example of content and master page interaction occurs wh
 
 When a user visits the page to add a new record, she sees the five most recently added records displayed in the master page. After filling in the values for the new record's columns, she submits the form. Assuming that the GridView in the master page has its `EnableViewState` property set to True (the default), its content is reloaded from view state and, consequently, the five same records are displayed even though a newer record was just added to the database. This may confuse the user.
 
-> [!NOTE] Even if you disable the GridView's view state so that it rebinds to its underlying data source on every postback, it still won't show the just-added record because the data is bound to the GridView earlier in the page lifecycle than when the new record is added to the database.
+> [!NOTE]
+> Even if you disable the GridView's view state so that it rebinds to its underlying data source on every postback, it still won't show the just-added record because the data is bound to the GridView earlier in the page lifecycle than when the new record is added to the database.
 
 
 To remedy this so that the just-added record is displayed in the master page's GridView on postback we need to instruct the GridView to rebind to its data source *after* the new record has been added to the database. This requires interaction between the content and master pages because the interface for adding the new record (and its event handlers) are in the content page but the GridView that needs to be refreshed is in the master page.
@@ -48,7 +49,8 @@ Because refreshing the master page's display from an event handler in the conten
 
 Step 1 walks through displaying the five most recently added products in a GridView in the master page. Step 2 creates a content page for adding new products. Step 3 looks at how to create public properties and methods in the master page, and Step 4 illustrates how to programmatically interface with these properties and methods from the content page.
 
-> [!NOTE] This tutorial does not delve into the specifics of working with data in ASP.NET. The steps for setting up the master page to display data and the content page for inserting data are complete, yet breezy. For a more in-depth look at displaying and inserting data and using the SqlDataSource and GridView controls, consult the resources in the Further Readings section at the end of this tutorial.
+> [!NOTE]
+> This tutorial does not delve into the specifics of working with data in ASP.NET. The steps for setting up the master page to display data and the content page for inserting data are complete, yet breezy. For a more in-depth look at displaying and inserting data and using the SqlDataSource and GridView controls, consult the resources in the Further Readings section at the end of this tutorial.
 
 
 ## Step 1: Displaying the Five Most Recently Added Products in the Master Page
@@ -102,7 +104,8 @@ With this GridView created and its SqlDataSource control configured, visit the w
 **Figure 04**: The GridView Displays the Five Most Recently Added Products ([Click to view full-size image](interacting-with-the-master-page-from-the-content-page-vb/_static/image12.png))
 
 
-> [!NOTE] Feel free to clean up the appearance of the GridView. Some suggestions include formatting the displayed `UnitPrice` value as a currency and using background colors and fonts to improve the grid's appearance.
+> [!NOTE]
+> Feel free to clean up the appearance of the GridView. Some suggestions include formatting the displayed `UnitPrice` value as a currency and using background colors and fonts to improve the grid's appearance.
 
 
 ## Step 2: Creating a Content Page to Add New Products
@@ -146,7 +149,8 @@ That's all there is to it! Let's test this page. Visit `AddProduct.aspx` through
 
 After typing in the name and price for your new product, click the Insert button. This causes the form to postback. On postback, the SqlDataSource control's `INSERT` statement is executed; its two parameters are populated with the user-entered values in the DetailsView's two TextBox controls. Unfortunately, there is no visual feedback that an insert has occurred. It would be nice to have a message displayed, confirming that a new record has been added. I leave this as an exercise for the reader. Also, after adding a new record from the DetailsView the GridView in the master page still shows the same five records as before; it does not include the just-added record. We'll examine how to remedy this in the upcoming steps.
 
-> [!NOTE] In addition to adding some form of visual feedback that the insert has succeeded, I'd encourage you to also update the DetailsView's inserting interface to include validation. Currently, there is no validation. If a user enters an invalid value for the `UnitPrice` field, such as "Too expensive," an exception will be thrown on postback when the system attempts to convert that string into a decimal. For more information on customizing the inserting interface, refer to the [*Customizing the Data Modification Interface* tutorial](https://asp.net/learn/data-access/tutorial-20-vb.aspx) from my [Working with Data tutorial series](../../data-access/index.md).
+> [!NOTE]
+> In addition to adding some form of visual feedback that the insert has succeeded, I'd encourage you to also update the DetailsView's inserting interface to include validation. Currently, there is no validation. If a user enters an invalid value for the `UnitPrice` field, such as "Too expensive," an exception will be thrown on postback when the system attempts to convert that string into a decimal. For more information on customizing the inserting interface, refer to the [*Customizing the Data Modification Interface* tutorial](https://asp.net/learn/data-access/tutorial-20-vb.aspx) from my [Working with Data tutorial series](../../data-access/index.md).
 
 
 ## Step 3: Creating Public Properties and Methods in the Master Page
@@ -165,7 +169,8 @@ When a new record is added to the `Products` table from a content page the `Rece
 
 With the `GridMessageText` property and `RefreshRecentProductsGrid` method in place, any content page can programmatically set or read the value of the `GridMessage` Label's `Text` property or rebind the data to the `RecentProducts` GridView. Step 4 examines how to access the master page's public properties and methods from a content page.
 
-> [!NOTE] Don't forget to mark the master page's properties and methods as `Public`. If you do not explicitly denote these properties and methods as `Public`, they will not be accessible from the content page.
+> [!NOTE]
+> Don't forget to mark the master page's properties and methods as `Public`. If you do not explicitly denote these properties and methods as `Public`, they will not be accessible from the content page.
 
 
 ## Step 4: Calling the Master Page's Public Members from a Content Page
@@ -196,7 +201,8 @@ Now that we have casted the loosely-typed `Page.Master` property to the Site typ
 **Figure 07**: IntelliSense Shows our Master Page's Public Properties and Methods ([Click to view full-size image](interacting-with-the-master-page-from-the-content-page-vb/_static/image21.png))
 
 
-> [!NOTE] If you named your master page file `MasterPage.master` then the master page's code-behind class name is `MasterPage`. This can lead to ambiguous code when casting from the type `System.Web.UI.MasterPage` to your `MasterPage` class. In short, you need to fully qualify the type you are casting to, which can be a little tricky when using the Web Site Project model. My suggestion would be to either make sure that when you create your master page you name it something other than `MasterPage.master` or, even better, create a strongly-typed reference to the master page.
+> [!NOTE]
+> If you named your master page file `MasterPage.master` then the master page's code-behind class name is `MasterPage`. This can lead to ambiguous code when casting from the type `System.Web.UI.MasterPage` to your `MasterPage` class. In short, you need to fully qualify the type you are casting to, which can be a little tricky when using the Web Site Project model. My suggestion would be to either make sure that when you create your master page you name it something other than `MasterPage.master` or, even better, create a strongly-typed reference to the master page.
 
 
 ### Creating a Strongly-Typed Reference with the`@MasterType`Directive
@@ -212,7 +218,8 @@ Use the [`@MasterType` directive](https://msdn.microsoft.com/en-us/library/ms228
 
 This directive instructs the ASP.NET engine to add a strongly-typed reference to the master page through a property named `Master`. With the `@MasterType` directive in place, we can call the `Site.master` master page's public properties and methods directly through the `Master` property without any casts.
 
-> [!NOTE] If you omit the `@MasterType` directive, the syntax `Page.Master` and `Master` return the same thing: a loosely-typed object to the page's master page. If you include the `@MasterType` directive then `Master` returns a strongly-typed reference to the specified master page. `Page.Master`, however, still returns a loosely-typed reference. For a more thorough look at why this is the case and how the `Master` property is constructed when the `@MasterType` directive is included, see [K. Scott Allen](http://odetocode.com/blogs/scott/default.aspx)'s blog entry [`@MasterType` in ASP.NET 2.0](http://odetocode.com/Blogs/scott/archive/2005/07/16/1944.aspx).
+> [!NOTE]
+> If you omit the `@MasterType` directive, the syntax `Page.Master` and `Master` return the same thing: a loosely-typed object to the page's master page. If you include the `@MasterType` directive then `Master` returns a strongly-typed reference to the specified master page. `Page.Master`, however, still returns a loosely-typed reference. For a more thorough look at why this is the case and how the `Master` property is constructed when the `@MasterType` directive is included, see [K. Scott Allen](http://odetocode.com/blogs/scott/default.aspx)'s blog entry [`@MasterType` in ASP.NET 2.0](http://odetocode.com/Blogs/scott/archive/2005/07/16/1944.aspx).
 
 
 ### Updating the Master Page After Adding a New Product

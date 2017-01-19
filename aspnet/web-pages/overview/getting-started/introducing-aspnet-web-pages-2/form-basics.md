@@ -271,7 +271,8 @@ Update the markup for the text box so that the `value` attribute gets its value 
 
 In this page, you could have also set the `value` attribute to the `searchTerm` variable, since that variable also contains the genre you entered. But using the `Request` object to set the `value` attribute as shown here is the standard way to accomplish this task. (Assuming you even want to do this &mdash; in some situations, you might want to render the page *without* values in the fields. It all depends on what's going on with your app.)
 
-> [!NOTE] You can't "remember" the value of a text box that's used for passwords. It would be a security hole to allow people to fill in a password field by using code.
+> [!NOTE]
+> You can't "remember" the value of a text box that's used for passwords. It would be a security hole to allow people to fill in a password field by using code.
 
 
 Run the page again, enter a genre, and click **Search Genre**. This time not only do you see the results of the search, but the text box remembers what you entered last time:

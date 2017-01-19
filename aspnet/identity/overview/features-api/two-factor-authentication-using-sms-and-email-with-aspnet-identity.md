@@ -36,7 +36,8 @@ This topic covers the following:
 
 In this section, you'll use NuGet to download a sample we will work with. Start by installing and running [Visual Studio Express 2013 for Web](https://go.microsoft.com/fwlink/?LinkId=299058) or [Visual Studio 2013](https://go.microsoft.com/fwlink/?LinkId=306566). Install Visual Studio [2013 Update 2](https://go.microsoft.com/fwlink/?LinkId=390521) or higher.
 
-> [!NOTE] Warning: You must install Visual Studio [2013 Update 2](https://go.microsoft.com/fwlink/?LinkId=390521) to complete this tutorial.
+> [!NOTE]
+> Warning: You must install Visual Studio [2013 Update 2](https://go.microsoft.com/fwlink/?LinkId=390521) to complete this tutorial.
 
 
 1. Create a new ***empty*** ASP.NET Web project.
@@ -51,7 +52,8 @@ In this section, you'll use NuGet to download a sample we will work with. Start 
 5. *Optional:*Remove the demo email link confirmation code from the sample (The `ViewBag.Link` code in the account controller. See the `DisplayEmail` and `ForgotPasswordConfirmation` action methods and razor views ).
 6. *Optional:*Remove the `ViewBag.Status` code from the Manage and Account controllers and from the *Views\Account\VerifyCode.cshtml* and *Views\Manage\VerifyPhoneNumber.cshtml*razor views. Alternatively, you can keep the `ViewBag.Status` display to test how this app works locally without having to hook up and send email and SMS messages.
 
-> [!NOTE] Warning: If you change any of the security settings in this sample, productions apps will need to undergo a security audit that explicitly calls out the changes made.
+> [!NOTE]
+> Warning: If you change any of the security settings in this sample, productions apps will need to undergo a security audit that explicitly calls out the changes made.
 
 
 <a id="SMS"></a>
@@ -103,7 +105,8 @@ This tutorial provides instructions for using either Twilio or ASPSMS but you ca
 
     [!code-csharp[Main](two-factor-authentication-using-sms-and-email-with-aspnet-identity/samples/sample1.cs)]
 
-    > [!WARNING] Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See Jon Atten's [ASP.NET MVC: Keep Private Settings Out of Source Control](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx).
+    > [!WARNING]
+    > Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See Jon Atten's [ASP.NET MVC: Keep Private Settings Out of Source Control](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx).
 6. **Implementation of data transfer to SMS provider**  
   
  Configure the     `SmsService`  class in the     *App\_Start\IdentityConfig.cs* file.  
@@ -203,7 +206,8 @@ Note the `SignInAsync` must be called because enable 2FA is a change to the secu
 
 You can add more 2FA providers such as QR code generators or you can write you own (See [Using Google Authenticator with ASP.NET Identity](http://www.beabigrockstar.com/blog/using-google-authenticator-asp-net-identity/)).
 
-> [!NOTE] The 2FA codes are generated using [Time-based One-time Password Algorithm](http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm) and codes are valid for six minutes. If you take more than six minutes to enter the code, you'll get an Invalid code error message.
+> [!NOTE]
+> The 2FA codes are generated using [Time-based One-time Password Algorithm](http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm) and codes are valid for six minutes. If you take more than six minutes to enter the code, you'll get an Invalid code error message.
 
 
 <a id="combine"></a>

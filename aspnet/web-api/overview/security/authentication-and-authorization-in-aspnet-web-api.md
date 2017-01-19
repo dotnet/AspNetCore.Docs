@@ -23,7 +23,8 @@ You've created a web API, but now you want to control access to it. In this seri
 
 The first article in the series gives a general overview of authentication and authorization in ASP.NET Web API. Other topics describe common authentication scenarios for Web API.
 
-> [!NOTE] Thanks to the people who reviewed this series and provided valuable feedback: Rick Anderson, Levi Broderick, Barry Dorrans, Tom Dykstra, Hongmei Ge, David Matson, Daniel Roth, Tim Teebken.
+> [!NOTE]
+> Thanks to the people who reviewed this series and provided valuable feedback: Rick Anderson, Levi Broderick, Barry Dorrans, Tom Dykstra, Hongmei Ge, David Matson, Daniel Roth, Tim Teebken.
 
 
 ## Authentication
@@ -95,7 +96,8 @@ In the previous examples, the filter allows any authenticated user to access the
 
 [!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample6.cs)]
 
-> [!NOTE] The **AuthorizeAttribute** filter for Web API controllers is located in the **System.Web.Http** namespace. There is a similar filter for MVC controllers in the **System.Web.Mvc** namespace, which is not compatible with Web API controllers.
+> [!NOTE]
+> The **AuthorizeAttribute** filter for Web API controllers is located in the **System.Web.Http** namespace. There is a similar filter for MVC controllers in the **System.Web.Mvc** namespace, which is not compatible with Web API controllers.
 
 
 ### Custom Authorization Filters

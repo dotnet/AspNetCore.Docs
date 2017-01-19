@@ -55,7 +55,8 @@ That's all there is to it!
 
 To test that the login page works as expected, attempt to login with one of the user accounts you created in the preceding tutorial. Or, if you have not yet created an account, go ahead and create one from the `~/Membership/CreatingUserAccounts.aspx` page.
 
-> [!NOTE] When the user enters her credentials and submits the login page form, the credentials, including her password, are transmitted over the Internet to the web server in *plain text*. That means any hacker sniffing the network traffic can see the username and password. To prevent this, it is essential to encrypt the network traffic by using [Secure Socket Layers (SSL)](http://en.wikipedia.org/wiki/Secure_Sockets_Layer). This will ensure that the credentials (as well as the entire page's HTML markup) are encrypted from the moment they leave the browser until they are received by the web server.
+> [!NOTE]
+> When the user enters her credentials and submits the login page form, the credentials, including her password, are transmitted over the Internet to the web server in *plain text*. That means any hacker sniffing the network traffic can see the username and password. To prevent this, it is essential to encrypt the network traffic by using [Secure Socket Layers (SSL)](http://en.wikipedia.org/wiki/Secure_Sockets_Layer). This will ensure that the credentials (as well as the entire page's HTML markup) are encrypted from the moment they leave the browser until they are received by the web server.
 
 
 ### How the Membership Framework Handles Invalid Login Attempts
@@ -71,7 +72,8 @@ If a user has been locked out, she cannot login until an administrator unlocks h
 
 Unfortunately, there is no built-in tool for unlocking a user account. In order to unlock an account, you can modify the database directly - change the `IsLockedOut` field in the `aspnet_Membership` table for the appropriate user account - or create a web-based interface that lists locked out accounts with options to unlock them. We will examine creating administrative interfaces for accomplishing common user account- and role-related tasks in a future tutorial.
 
-> [!NOTE] One downside of the `ValidateUser` method is that when the supplied credentials are invalid, it does not provide any explanation as to why. The credentials may be invalid because there is no matching username/password pair in the user store, or because the user has not yet been approved, or because the user has been locked out. In Step 4 we will see how to show a more detailed message to the user when their login attempt fails.
+> [!NOTE]
+> One downside of the `ValidateUser` method is that when the supplied credentials are invalid, it does not provide any explanation as to why. The credentials may be invalid because there is no matching username/password pair in the user store, or because the user has not yet been approved, or because the user has been locked out. In Step 4 we will see how to show a more detailed message to the user when their login attempt fails.
 
 
 ## Step 2: Collecting Credentials through the Login Web Control
@@ -86,7 +88,8 @@ Let's update `Login.aspx`, replacing the manually created interface and code wit
 **Figure 2**: Comment Out the Existing Declarative Markup and Source Code in `Login.aspx` ([Click to view full-size image](validating-user-credentials-against-the-membership-user-store-cs/_static/image6.png))
 
 
-> [!NOTE] The Comment out the selected lines icon is not available when viewing the declarative markup in Visual Studio 2005. If you are not using Visual Studio 2008 you will need to manually add the `<%--` and `--%>` delimiters.
+> [!NOTE]
+> The Comment out the selected lines icon is not available when viewing the declarative markup in Visual Studio 2005. If you are not using Visual Studio 2008 you will need to manually add the `<%--` and `--%>` delimiters.
 
 
 Next, drag a Login control from the Toolbox on to the page and set its `ID` property to `myLogin`. At this point your screen should look similar to Figure 3. Note that the Login control's default interface includes TextBox controls for the username and password, a Remember me next time CheckBox, and a Log In Button. There are also `RequiredFieldValidator` controls for the two TextBoxes.
@@ -130,7 +133,8 @@ The Remember me next time CheckBox's Text property can be set through the Login 
 
 The Login control offers two properties for adjusting the layout of its user interface controls. The [`TextLayout property`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.login.textlayout.aspx) indicates whether the Username: and Password: Labels appear to the left of their corresponding TextBoxes (the default), or above them. The [`Orientation property`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.login.orientation.aspx) indicates whether the username and password inputs are situated vertically (one above the other) or horizontally. I am going to leave these two properties set to their defaults, but I encourage you to try setting these two properties to their non-default values to see the resulting effect.
 
-> [!NOTE] In the next section, Configuring the Login Control's Layout, we will look at using templates to define the precise layout of the Layout control's user interface elements.
+> [!NOTE]
+> In the next section, Configuring the Login Control's Layout, we will look at using templates to define the precise layout of the Layout control's user interface elements.
 
 
 Wrap up the Login control's property settings by setting the [`CreateUserText`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.login.createusertext.aspx) and [`CreateUserUrl` properties](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.login.createuserurl.aspx) to Not registered yet? Create an account! and `~/Membership/CreatingUserAccounts.aspx`, respectively. This adds a hyperlink to the Login control's interface pointing to the page we created in the <a id="SKM6"></a>[preceding tutorial](creating-user-accounts-cs.md) . The Login control's [`HelpPageText`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.login.helppagetext.aspx) and [`HelpPageUrl` properties](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.login.helppageurl.aspx) and [`PasswordRecoveryText`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.login.passwordrecoverytext.aspx) and [`PasswordRecoveryUrl` properties](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.login.passwordrecoveryurl.aspx) work in the same manner, rendering links to a help page and a password recovery page.
@@ -162,7 +166,8 @@ Let's update the Login control so that it prompts users for their username, pass
 **Figure 6**: Convert the Login Control to a Template  ([Click to view full-size image](validating-user-credentials-against-the-membership-user-store-cs/_static/image18.png))
 
 
-> [!NOTE] To revert the Login control to its pre-template version, click the Reset link from the control's Smart Tag.
+> [!NOTE]
+> To revert the Login control to its pre-template version, click the Reset link from the control's Smart Tag.
 
 
 Converting the Login control to a template adds a `LayoutTemplate` to the control's declarative markup with HTML elements and Web controls defining the user interface. As Figure 7 shows, converting the control to a template removes a number of properties from the Properties window, such as `TitleText`, `CreateUserUrl`, and so forth, since these property values are ignored when using a template.
@@ -205,7 +210,8 @@ Figure 9 offers a flow chart of the authentication workflow.
 **Figure 9**: The Login Control's Authentication Workflow  ([Click to view full-size image](validating-user-credentials-against-the-membership-user-store-cs/_static/image27.png))
 
 
-> [!NOTE] If you are wondering when you would use the `FailureAction`'s `RedirectToLogin` page option, consider the following scenario. Right now our `Site.master` master page currently has the text, Hello, stranger displayed in the left column when visited by an anonymous user, but imagine that we wanted to replace that text with a Login control. This would allow an anonymous user to log in from any page on the site, instead of requiring them to visit the login page directly. However, if a user was unable to log in via the Login control rendered by the master page, it might make sense to redirect them to the login page (`Login.aspx`) because that page likely includes additional instructions, links, and other help - such as links to create a new account or retrieve a lost password - that were not added to the master page.
+> [!NOTE]
+> If you are wondering when you would use the `FailureAction`'s `RedirectToLogin` page option, consider the following scenario. Right now our `Site.master` master page currently has the text, Hello, stranger displayed in the left column when visited by an anonymous user, but imagine that we wanted to replace that text with a Login control. This would allow an anonymous user to log in from any page on the site, instead of requiring them to visit the login page directly. However, if a user was unable to log in via the Login control rendered by the master page, it might make sense to redirect them to the login page (`Login.aspx`) because that page likely includes additional instructions, links, and other help - such as links to create a new account or retrieve a lost password - that were not added to the master page.
 
 
 ### Creating the`Authenticate`Event Handler
@@ -243,7 +249,8 @@ With this code in place, attempt to log in as a valid user, entering the correct
 **Figure 10**: Tito Cannot Log In When Supplying an Incorrect Email Address  ([Click to view full-size image](validating-user-credentials-against-the-membership-user-store-cs/_static/image30.png))
 
 
-> [!NOTE] As discussed in the How the Membership Framework Handles Invalid Login Attempts section in Step 1, when the `Membership.ValidateUser` method is called and passed invalid credentials, it keeps track of the invalid login attempt and locks out the user if they exceed a certain threshold of invalid attempts within a specified time window. Since our custom authentication logic calls the `ValidateUser` method, an incorrect password for a valid username will increment the invalid login attempt counter, but this counter is not incremented in the case where the username and password are valid, but the email address is incorrect. Chances are, this behavior is suitable, since it's unlikely that a hacker will know the username and password, but have to use brute force techniques to determine the user's email address.
+> [!NOTE]
+> As discussed in the How the Membership Framework Handles Invalid Login Attempts section in Step 1, when the `Membership.ValidateUser` method is called and passed invalid credentials, it keeps track of the invalid login attempt and locks out the user if they exceed a certain threshold of invalid attempts within a specified time window. Since our custom authentication logic calls the `ValidateUser` method, an incorrect password for a valid username will increment the invalid login attempt counter, but this counter is not incremented in the case where the username and password are valid, but the email address is incorrect. Chances are, this behavior is suitable, since it's unlikely that a hacker will know the username and password, but have to use brute force techniques to determine the user's email address.
 
 
 ## Step 4: Improving the Login Control's Invalid Credentials Message

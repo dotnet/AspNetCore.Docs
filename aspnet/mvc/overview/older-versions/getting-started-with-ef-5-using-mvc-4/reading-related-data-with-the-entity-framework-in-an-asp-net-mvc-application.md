@@ -230,7 +230,8 @@ In the *Views\Instructor\Index.cshtml* file, after the closing `table` element (
 
 This code reads the `Courses` property of the view model to display a list of courses. It also provides a `Select` hyperlink that sends the ID of the selected course to the `Index` action method.
 
-> [!NOTE] The *.css* file is cached by browsers. If you don't see the changes when you run the application, do a hard refresh (hold down the CTRL key while clicking the **Refresh** button, or press CTRL+F5).
+> [!NOTE]
+> The *.css* file is cached by browsers. If you don't see the changes when you run the application, do a hard refresh (hold down the CTRL key while clicking the **Refresh** button, or press CTRL+F5).
 
 
 Run the page and select an instructor. Now you see a grid that displays courses assigned to the selected instructor, and for each course you see the name of the assigned department.

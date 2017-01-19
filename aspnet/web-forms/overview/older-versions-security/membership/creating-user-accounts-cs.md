@@ -206,7 +206,8 @@ After calling `CreateUser`, passing in `createStatus`, a `switch` statement is u
 **Figure 9**: The User Account is Not Created Because the Username is Already in Use  ([Click to view full-size image](creating-user-accounts-cs/_static/image27.png))
 
 
-> [!NOTE] You may be wondering how to determine success or failure when using one of the first two `CreateUser` method overloads, neither of which has a parameter of type `MembershipCreateStatus`. These first two overloads throw a [`MembershipCreateUserException` exception](https://msdn.microsoft.com/en-us/library/system.web.security.membershipcreateuserexception.aspx) in the face of a failure, which includes a [`StatusCode` property](https://msdn.microsoft.com/en-us/library/system.web.security.membershipcreateuserexception.statuscode.aspx) of type `MembershipCreateStatus`.
+> [!NOTE]
+> You may be wondering how to determine success or failure when using one of the first two `CreateUser` method overloads, neither of which has a parameter of type `MembershipCreateStatus`. These first two overloads throw a [`MembershipCreateUserException` exception](https://msdn.microsoft.com/en-us/library/system.web.security.membershipcreateuserexception.aspx) in the face of a failure, which includes a [`StatusCode` property](https://msdn.microsoft.com/en-us/library/system.web.security.membershipcreateuserexception.statuscode.aspx) of type `MembershipCreateStatus`.
 
 
 After creating a few user accounts, verify that the accounts have been created by listing the contents of the `aspnet_Users` and `aspnet_Membership` tables in the `SecurityTutorials.mdf` database. As Figure 10 shows, I have added two users via the `CreatingUserAccounts.aspx` page: Tito and Bruce.
@@ -219,7 +220,8 @@ After creating a few user accounts, verify that the accounts have been created b
 
 While the Membership user store now includes Bruce and Tito's account information, we have yet to implement functionality that allows for Bruce or Tito to log on to the site. Currently, `Login.aspx` validates the user's credentials against a hard-coded set of username/password pairs – it does *not* validate the supplied credentials against the Membership framework. For now seeing the new user accounts in the `aspnet_Users` and `aspnet_Membership` tables will have to suffice. In the next tutorial, *<a id="_msoanchor_9"></a>[Validating User Credentials Against the Membership User Store](validating-user-credentials-against-the-membership-user-store-cs.md)* , we will update the login page to validate against the Membership store.
 
-> [!NOTE] If you do not see any users in your `SecurityTutorials.mdf` database, it may be because your web application is using the default Membership provider, `AspNetSqlMembershipProvider`, which uses the `ASPNETDB.mdf` database as its user store. To determine if this is the problem, click the Refresh button in the Solution Explorer. If a database named `ASPNETDB.mdf` has been added to the `App_Data` folder, this is the problem. Return to Step 4 of the *<a id="_msoanchor_10"></a>[Creating the Membership Schema in SQL Server](creating-the-membership-schema-in-sql-server-cs.md)* tutorial for instructions on how to properly configure the Membership provider.
+> [!NOTE]
+> If you do not see any users in your `SecurityTutorials.mdf` database, it may be because your web application is using the default Membership provider, `AspNetSqlMembershipProvider`, which uses the `ASPNETDB.mdf` database as its user store. To determine if this is the problem, click the Refresh button in the Solution Explorer. If a database named `ASPNETDB.mdf` has been added to the `App_Data` folder, this is the problem. Return to Step 4 of the *<a id="_msoanchor_10"></a>[Creating the Membership Schema in SQL Server](creating-the-membership-schema-in-sql-server-cs.md)* tutorial for instructions on how to properly configure the Membership provider.
 
 
 In most create user account scenarios, the visitor is presented with some interface to enter their username, password, email, and other essential information, at which point a new account is created. In this step we looked at building such an interface by hand and then saw how to use the `Membership.CreateUser` method to programmatically add the new user account based on the user's inputs. Our code, however, just created the new user account. It did not perform any follow up actions, like logging in the user to the site under the just-created user account, or sending a confirmation email to the user. These additional steps would require additional code in the Button's `Click` event handler.
@@ -275,7 +277,8 @@ Next, enter appropriate values into the CreateUserWizard and click the "Create U
 **Figure 13**: A New User Account has Successfully Been Created  ([Click to view full-size image](creating-user-accounts-cs/_static/image39.png))
 
 
-> [!NOTE] As Figure 13 shows, the `CompleteWizardStep`'s interface includes a Continue button. However, at this point clicking it just performs a postback, leaving the visitor on the same page. In the "Customizing the CreateUserWizard's Appearance and Behavior Through Its Properties" section we will look at how you can have this button send the visitor to `Default.aspx` (or some other page).
+> [!NOTE]
+> As Figure 13 shows, the `CompleteWizardStep`'s interface includes a Continue button. However, at this point clicking it just performs a postback, leaving the visitor on the same page. In the "Customizing the CreateUserWizard's Appearance and Behavior Through Its Properties" section we will look at how you can have this button send the visitor to `Default.aspx` (or some other page).
 
 
 After creating a new user account, return to Visual Studio and examine the `aspnet_Users` and `aspnet_Membership` tables like we did in Figure 10 to verify that the account was successfully created.
@@ -306,7 +309,8 @@ Other behavior-related properties of note include `AutoGeneratePassword` and `Ma
 
 The [`MailDefinition` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.maildefinition.aspx) is useful if you want to send an email to the email address specified during the account creation process. The `MailDefinition` property includes a series of subproperties for defining information about the constructed email message. These subproperties include options like `Subject`, `Priority`, `IsBodyHtml`, `From`, `CC`, and `BodyFileName`. The [`BodyFileName` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.maildefinition.bodyfilename.aspx) points to a text or HTML file that contains the body for the email message. The body supports two pre-defined placeholders: `<%UserName%>` and `<%Password%>`. These placeholders, if present in the `BodyFileName` file, will be replaced with the just-created user's name and password.
 
-> [!NOTE] The `CreateUserWizard` control's `MailDefinition` property just specifies details about the email message that is sent when a new account is created. It does not include any details on how the email message is actually sent (that is, whether an SMTP server or mail drop directory is used, any authentication information, and so on). These low-level details need to be defined in the `<system.net>` section in `Web.config`. For more information on these configuration settings and on sending email from ASP.NET 2.0 in general, refer to the [FAQs at SystemNetMail.com](http://www.systemnetmail.com/) and my article, [Sending Email in ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/072606-1.aspx).
+> [!NOTE]
+> The `CreateUserWizard` control's `MailDefinition` property just specifies details about the email message that is sent when a new account is created. It does not include any details on how the email message is actually sent (that is, whether an SMTP server or mail drop directory is used, any authentication information, and so on). These low-level details need to be defined in the `<system.net>` section in `Web.config`. For more information on these configuration settings and on sending email from ASP.NET 2.0 in general, refer to the [FAQs at SystemNetMail.com](http://www.systemnetmail.com/) and my article, [Sending Email in ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/072606-1.aspx).
 
 
 ### Extending the CreateUserWizard's Behavior Using Event Handlers
@@ -335,7 +339,8 @@ Figure 15 shows a screen shot of `CreatingUserAccounts.aspx` when the user enter
 **Figure 15**: Usernames with Leading or Trailing Spaces are not Permitted  ([Click to view full-size image](creating-user-accounts-cs/_static/image45.png))
 
 
-> [!NOTE] We will see an example of using the CreateUserWizard control's `CreatedUser` event in the *<a id="_msoanchor_11"></a>[Storing Additional User Information](storing-additional-user-information-cs.md)* tutorial.
+> [!NOTE]
+> We will see an example of using the CreateUserWizard control's `CreatedUser` event in the *<a id="_msoanchor_11"></a>[Storing Additional User Information](storing-additional-user-information-cs.md)* tutorial.
 
 
 ## Summary

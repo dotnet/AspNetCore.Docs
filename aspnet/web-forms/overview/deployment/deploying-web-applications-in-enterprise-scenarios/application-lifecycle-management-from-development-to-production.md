@@ -22,7 +22,8 @@ by [Jason Lee](https://github.com/jrjlee)
 > 
 > The topic is designed to provide a high-level overview for a [series of tutorials](deploying-web-applications-in-enterprise-scenarios.md) on web deployment in the enterprise. Don&#x27;t worry if you&#x27;re not familiar with some of the concepts described here&#x2014;the tutorials that follow provide detailed information on all of these tasks and techniques.
 > 
-> > [!NOTE] Forthe sake of simplicity, this topic doesn&#x27;t discuss updating databases as part of the deployment process. However, making incremental updates to databases features is a requirement of many enterprise deployment scenarios, and you can find guidance on how to accomplish this later in this tutorial series. For more information, see [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md).
+> > [!NOTE]
+> > Forthe sake of simplicity, this topic doesn&#x27;t discuss updating databases as part of the deployment process. However, making incremental updates to databases features is a requirement of many enterprise deployment scenarios, and you can find guidance on how to accomplish this later in this tutorial series. For more information, see [Deploying Database Projects](../web-deployment-in-the-enterprise/deploying-database-projects.md).
 
 
 ## Overview
@@ -86,7 +87,8 @@ Matt Hink creates various custom MSBuild project files, using the split project 
 
 To run the deployment, a user executes the *Publish.proj* file using MSBuild or Team Build and specifies the location of the relevant environment-specific project file (*Env-Dev.proj* or *Env-Stage.proj*) as a command-line argument. The *Publish.proj* file then imports the environment-specific project file to create a complete set of publishing instructions for each target environment.
 
-> [!NOTE] The way these custom project files work is independent of the mechanism you use to invoke MSBuild. For example, you can use the MSBuild command line directly, as described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md). You can run the project files from a command file, as described in [Create and Run a Deployment Command File](../web-deployment-in-the-enterprise/creating-and-running-a-deployment-command-file.md). Alternatively, you can run the project files from a build definition in TFS, as described in [Creating a Build Definition that Supports Deployment](../configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment.md).  
+> [!NOTE]
+> The way these custom project files work is independent of the mechanism you use to invoke MSBuild. For example, you can use the MSBuild command line directly, as described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md). You can run the project files from a command file, as described in [Create and Run a Deployment Command File](../web-deployment-in-the-enterprise/creating-and-running-a-deployment-command-file.md). Alternatively, you can run the project files from a build definition in TFS, as described in [Creating a Build Definition that Supports Deployment](../configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment.md).  
 > In each case the end result is the same&#x2014;MSBuild executes the merged project file and deploys your solution to the target environment. This provides you with a great deal of flexibility in how you trigger your publishing process.
 
 
@@ -126,7 +128,8 @@ The **DeployToTest** build definition supplies these arguments to MSBuild:
 
 The **DeployOnBuild=true** and **DeployTarget=package** properties are used when Team Build builds the projects within the solution. When the project is a web application project, these properties instruct MSBuild to create a web deployment package for the project. The **TargetEnvPropsFile** property tells the *Publish.proj* file where to find the environment-specific project file to import.
 
-> [!NOTE] For a detailed walkthrough on how to create a build definition like this, see [Creating a Build Definition that Supports Deployment](../configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment.md).
+> [!NOTE]
+> For a detailed walkthrough on how to create a build definition like this, see [Creating a Build Definition that Supports Deployment](../configuring-team-foundation-server-for-web-deployment/creating-a-build-definition-that-supports-deployment.md).
 
 
 The *Publish.proj* file contains targets that build each project in the solution. However, it also includes conditional logic that skips these build targets if you&#x27;re executing the file in Team Build. This lets you take advantage of the additional build functionality that Team Build offers, like the ability to run unit tests. If the solution build or the unit tests fail, the *Publish.proj* file will not be executed and the application will not be deployed.
@@ -166,7 +169,8 @@ The **TargetEnvPropsFile** property tells the *Publish.proj* file where to find 
 
 ![](application-lifecycle-management-from-development-to-production/_static/image5.png)
 
-> [!NOTE] For more information on how to create a build definition like this, see [Deploy a Specific Build](../configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build.md).
+> [!NOTE]
+> For more information on how to create a build definition like this, see [Deploy a Specific Build](../configuring-team-foundation-server-for-web-deployment/deploying-a-specific-build.md).
 
 
 The **DeployToStaging-WhatIf** build definition contains the same deployment logic as the **DeployToStaging** build definition. However, it includes the additional argument **WhatIf=true**:
@@ -177,12 +181,14 @@ The **DeployToStaging-WhatIf** build definition contains the same deployment log
 
 Within the *Publish.proj* file, the **WhatIf** property indicates that all deployment resources should be published in "what if" mode. In other words, log files are generated as if the deployment had gone ahead, but nothing is actually changed in the destination environment. This lets you evaluate the impact of a proposed deployment&#x2014;in particular, what will get added, what will get updated, and what will get deleted&#x2014;before you actually make any changes.
 
-> [!NOTE] For more information on how to configure "what if" deployments, see [Performing a "What If" Deployment](../advanced-enterprise-web-deployment/performing-a-what-if-deployment.md).
+> [!NOTE]
+> For more information on how to configure "what if" deployments, see [Performing a "What If" Deployment](../advanced-enterprise-web-deployment/performing-a-what-if-deployment.md).
 
 
 Once you&#x27;ve deployed your application to the primary web server in the staging environment, the WFF will automatically synchronize the application across all the servers in the server farm.
 
-> [!NOTE] For more information on configuring the WFF to synchronize web servers, see [Create a Server Farm with the Web Farm Framework](../configuring-server-environments-for-web-deployment/creating-a-server-farm-with-the-web-farm-framework.md).
+> [!NOTE]
+> For more information on configuring the WFF to synchronize web servers, see [Create a Server Farm with the Web Farm Framework](../configuring-server-environments-for-web-deployment/creating-a-server-farm-with-the-web-farm-framework.md).
 
 
 ## Deployment to Production

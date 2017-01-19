@@ -34,7 +34,8 @@ The `Web.config` file includes an assortment of configuration information for an
 
 Database connections strings are a prime example of configuration information that differs based on the environment. When a web application communicates with a database server it must first establish a connection, and that is achieved through a [connection string](http://www.connectionstrings.com/Articles/Show/what-is-a-connection-string). While it is possible to hard-code the database connection string directly in the web pages or the code that connects to the database, it is best to place it `Web.config`'s [`<connectionStrings>` element](https://msdn.microsoft.com/en-us/library/bf7sd233.aspx) so that the connection string information is in a single, centralized location. Oftentimes a different database is used during development than is used in production; consequently, the connection string information must be unique for each environment.
 
-> [!NOTE] Future tutorials explore deploying data-driven applications, at which point we'll dive into the specifics of how database connection strings are stored in the configuration file.
+> [!NOTE]
+> Future tutorials explore deploying data-driven applications, at which point we'll dive into the specifics of how database connection strings are stored in the configuration file.
 
 
 The intended behavior of the development and production environments differs substantially. A web application in the development environment is being created, tested, and debugged by a small group of developers. In the production environment that same application is being visited by many different simultaneous users. ASP.NET includes a number of features that help developers in testing and debugging an application, but these features should be disabled for performance and security reasons when in the production environment. Let's look at a few such configuration settings.
@@ -64,7 +65,8 @@ What happens in the face of an unhandled exception depends on the `Web.config` f
 
 When developing and testing an application it helps to see details of any exception in the browser. However, showing exception details in an application on production is a potential security risk. Moreover, it's unflattering and makes your website look unprofessional. Ideally, in the event of an unhandled exception a web application in the development environment will show the exception's details while the same application in production will show a custom error page.
 
-> [!NOTE] The default `<customErrors>` section setting shows the exception details message only when the page is being visited through localhost, and shows the generic runtime error page otherwise. This isn't ideal, but it's assuring to know that the default behavior doesn't reveal exception details to non-local visitors. A future tutorial examines the `<customErrors>` section in more detail and shows how to have a custom error page shown when an error occurs in production.
+> [!NOTE]
+> The default `<customErrors>` section setting shows the exception details message only when the page is being visited through localhost, and shows the generic runtime error page otherwise. This isn't ideal, but it's assuring to know that the default behavior doesn't reveal exception details to non-local visitors. A future tutorial examines the `<customErrors>` section in more detail and shows how to have a custom error page shown when an error occurs in production.
 
 
 Another ASP.NET feature that is useful during development is tracing. Tracing, if enabled, records information about each incoming request and provides a special web page, `Trace.axd`, for viewing recent request details. You can turn on and configure tracing via the [`<trace>` element](https://msdn.microsoft.com/en-us/library/6915t83k.aspx) in `Web.config`.
@@ -103,7 +105,8 @@ To deploy the web application build the Web Deployment Project and then copy the
 
 To learn more about using the Web Deployment Project check out [this Web Deployment Projects article](https://msdn.microsoft.com/en-us/magazine/cc163448.aspx) from the April 2007 issue of [MSDN Magazine](https://msdn.microsoft.com/en-us/magazine/default.aspx), or consult the links in the Further Reading section at the end of this tutorial.
 
-> [!NOTE] You cannot use the Web Deployment Project with Visual Web Developer because the Web Deployment Project is implemented as a Visual Studio Add-In and the Visual Studio Express Editions (including Visual Web Developer) do not support Add-Ins.
+> [!NOTE]
+> You cannot use the Web Deployment Project with Visual Web Developer because the Web Deployment Project is implemented as a Visual Studio Add-In and the Visual Studio Express Editions (including Visual Web Developer) do not support Add-Ins.
 
 
 ## Summary

@@ -45,7 +45,8 @@ This HttpHandler replacement is made in order to allow JavaScript Object Notatio
 
 [!code-json[Main](understanding-asp-net-ajax-web-services/samples/sample2.json)]
 
-> *> [!NOTE] the operation name is defined as part of the URL to the web service; additionally, request messages are not always submitted via JSON. Web Services can utilize the ScriptMethod attribute with the UseHttpGet parameter set to true, which causes parameters to be passed via a the query string parameters.*
+> *> [!NOTE]
+> the operation name is defined as part of the URL to the web service; additionally, request messages are not always submitted via JSON. Web Services can utilize the ScriptMethod attribute with the UseHttpGet parameter set to true, which causes parameters to be passed via a the query string parameters.*
 
 
 **Listing 3. Web Service Response Message Serialized to JSON**
@@ -154,7 +155,8 @@ Adding a reference to the CustomersService.asmx through the ScriptManager contro
 
 [!code-html[Main](understanding-asp-net-ajax-web-services/samples/sample14.html)]
 
-> *> [!NOTE] If you'd like to see the actual JavaScript proxy code that is generated you can type the URL to the desired .NET Web Service into Internet Explorer's address box and append /js to the end of it.*
+> *> [!NOTE]
+> If you'd like to see the actual JavaScript proxy code that is generated you can type the URL to the desired .NET Web Service into Internet Explorer's address box and append /js to the end of it.*
 
 
 If debugging is enabled in web.config a debug version of the JavaScript proxy will be embedded in the page as shown next:

@@ -63,7 +63,8 @@ Figure 2 depicts this confusing workflow.
 
 The workflow illustrated in Figure 2 can quickly befuddle even the most computer savvy visitor. We will look at ways to prevent this confusing cycle in Step 2.
 
-> [!NOTE] ASP.NET uses two mechanisms to determine whether the current user can access a particular web page: URL authorization and file authorization. File authorization is implemented by the [`FileAuthorizationModule`](https://msdn.microsoft.com/en-us/library/system.web.security.fileauthorizationmodule.aspx), which determines authority by consulting the requested file(s) ACLs. File authorization is most commonly used with Windows authentication because ACLs are permissions that apply to Windows accounts. When using forms authentication, all operating system- and file system-level requests are executed by the same Windows account, regardless of the user visiting the site. Since this tutorial series focuses on forms authentication, we will not be discussing file authorization.
+> [!NOTE]
+> ASP.NET uses two mechanisms to determine whether the current user can access a particular web page: URL authorization and file authorization. File authorization is implemented by the [`FileAuthorizationModule`](https://msdn.microsoft.com/en-us/library/system.web.security.fileauthorizationmodule.aspx), which determines authority by consulting the requested file(s) ACLs. File authorization is most commonly used with Windows authentication because ACLs are permissions that apply to Windows accounts. When using forms authentication, all operating system- and file system-level requests are executed by the same Windows account, regardless of the user visiting the site. Since this tutorial series focuses on forms authentication, we will not be discussing file authorization.
 
 
 ### The Scope of URL Authorization
@@ -74,7 +75,8 @@ IIS 7, however, allows for integrated IIS and ASP.NET pipelines. With a few conf
 
 In a nutshell, in versions prior to IIS 7, URL authorization rules are only applied to resources handled by the ASP.NET runtime. But with IIS 7 it is possible to use IIS's native URL authorization feature or to integrate ASP.NET's `UrlAuthorizationModule` into IIS's HTTP pipeline, thereby extending this functionality to all requests.
 
-> [!NOTE] There are some subtle yet important differences in how ASP.NET's `UrlAuthorizationModule` and IIS 7's URL authorization feature process the authorization rules. This tutorial does not examine IIS 7's URL authorization functionality or the differences in how it parses authorization rules compared to the `UrlAuthorizationModule`. For more information on these topics, refer to the IIS 7 documentation on MSDN or at [www.iis.net](http://www.iis.net/).
+> [!NOTE]
+> There are some subtle yet important differences in how ASP.NET's `UrlAuthorizationModule` and IIS 7's URL authorization feature process the authorization rules. This tutorial does not examine IIS 7's URL authorization functionality or the differences in how it parses authorization rules compared to the `UrlAuthorizationModule`. For more information on these topics, refer to the IIS 7 documentation on MSDN or at [www.iis.net](http://www.iis.net/).
 
 
 ## Step 1: Defining URL Authorization Rules in`Web.config`
@@ -92,7 +94,8 @@ The following markup illustrates how to use the URL authorization rules to allow
 
 The `<allow>` element defines what users are permitted - Tito and Scott - while the `<deny>` element instructs that *all* users are denied.
 
-> [!NOTE] The `<allow>` and `<deny>` elements can also specify authorization rules for roles. We will examine role-based authorization in a future tutorial.
+> [!NOTE]
+> The `<allow>` and `<deny>` elements can also specify authorization rules for roles. We will examine role-based authorization in a future tutorial.
 
 
 The following setting grants access to anyone other than Sam (including anonymous visitors):
@@ -153,7 +156,8 @@ The `<authorization>` element in `<system.web>` defines the default URL authoriz
 
 To test out this authorization change, start by visiting the website as an anonymous user. If you attempt to visit any page in the `Membership` folder, such as `UserBasedAuthorization.aspx`, the `UrlAuthorizationModule` will deny the request and you will be redirected to the login page. After logging in as, say, Scott, you can visit any page in the `Membership` folder *except* for `CreatingUserAccounts.aspx`. Attempting to visit `CreatingUserAccounts.aspx` logged on as anyone but Tito will result in an unauthorized access attempt, redirecting you back to the login page.
 
-> [!NOTE] The `<location>` element must appear outside of the configuration's `<system.web>` element. You need to use a separate `<location>` element for each resource whose authorization settings you want to override.
+> [!NOTE]
+> The `<location>` element must appear outside of the configuration's `<system.web>` element. You need to use a separate `<location>` element for each resource whose authorization settings you want to override.
 
 
 ### A Look at How the`UrlAuthorizationModule`Uses the Authorization Rules to Grant or Deny Access
@@ -206,7 +210,8 @@ Such fine grain authorization rules can be implemented either declaratively or p
 
 Let's create a page that lists the files in a particular directory within a GridView. Along with listing each file's name, size, and other information, the GridView will include two columns of LinkButtons: one titled View and one titled Delete . If the View LinkButton is clicked, the contents of the selected file will be displayed; if the Delete LinkButton is clicked, the file will be deleted. Let's initially create this page such that its view and delete functionality is available to all users. In the Using the LoginView Control and Programmatically Limiting Functionality sections we will see how to enable or disable these features based on the user visiting the page.
 
-> [!NOTE] The ASP.NET page we are about to build uses a GridView control to display a list of files. Since this tutorial series focuses on forms authentication, authorization, user accounts, and roles, I do not want to spend too much time discussing the inner workings of the GridView control. While this tutorial provides specific step-by-step instructions for setting up this page, it does not delve into the details of why certain choices were made, or what effect particular properties have on the rendered output. For a thorough examination of the GridView control, consult my *[Working with Data in ASP.NET 2.0](../../data-access/index.md)* tutorial series.
+> [!NOTE]
+> The ASP.NET page we are about to build uses a GridView control to display a list of files. Since this tutorial series focuses on forms authentication, authorization, user accounts, and roles, I do not want to spend too much time discussing the inner workings of the GridView control. While this tutorial provides specific step-by-step instructions for setting up this page, it does not delve into the details of why certain choices were made, or what effect particular properties have on the rendered output. For a thorough examination of the GridView control, consult my *[Working with Data in ASP.NET 2.0](../../data-access/index.md)* tutorial series.
 
 
 Start by opening the `UserBasedAuthorization.aspx` file in the `Membership` folder and adding a GridView control to the page named `FilesGrid`. From the GridView's Smart Tag, click the Edit Columns link to launch the Fields dialog box. From here, uncheck the Auto-generate fields checkbox in the lower left corner. Next, add a Select button, a Delete button, and two BoundFields from the upper left corner (the Select and Delete buttons can be found under the CommandField type). Set the Select button's `SelectText` property to View and the first BoundField's `HeaderText` and `DataField` properties to Name . Set the second BoundField's `HeaderText` property to Size in Bytes , its `DataField` property to Length , its `DataFormatString` property to {0:N0} and its `HtmlEncode` property to False.
@@ -221,7 +226,8 @@ With the GridView's markup created, we're ready to write the code that will retr
 
 The above code uses the [`DirectoryInfo` class](https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.aspx) to obtain a list of the files in the application's root folder. The [`GetFiles()` method](https://msdn.microsoft.com/en-us/library/system.io.directoryinfo.getfiles.aspx) returns all of the files in the directory as an array of [`FileInfo` objects](https://msdn.microsoft.com/en-us/library/system.io.fileinfo.aspx), which is then bound to the GridView. The `FileInfo` object has an assortment of properties, such as `Name`, `Length`, and `IsReadOnly`, among others. As you can see from its declarative markup, the GridView displays just the `Name` and `Length` properties.
 
-> [!NOTE] The `DirectoryInfo` and `FileInfo` classes are found in the [`System.IO` namespace](https://msdn.microsoft.com/en-us/library/system.io.aspx). Therefore, you will either need to preface these class names with their namespace names or have the namespace imported into the class file (via `using System.IO`).
+> [!NOTE]
+> The `DirectoryInfo` and `FileInfo` classes are found in the [`System.IO` namespace](https://msdn.microsoft.com/en-us/library/system.io.aspx). Therefore, you will either need to preface these class names with their namespace names or have the namespace imported into the class file (via `using System.IO`).
 
 
 Take a moment to visit this page through a browser. It will display the list of files residing in the application's root directory. Clicking any of the View or Delete LinkButtons will cause a postback, but no action will occur because we've yet to create the necessary event handlers.
@@ -248,7 +254,8 @@ This code uses the GridView's `SelectedValue` property to determine the full fil
 **Figure 8**: The Selected File's Contents are Displayed in the TextBox  ([Click to view full-size image](user-based-authorization-cs/_static/image24.png))
 
 
-> [!NOTE] If you view the contents of a file that contains HTML markup, and then attempt to view or delete a file, you will receive an `HttpRequestValidationException` error. This occurs because on postback the TextBox's contents are sent back to the web server. By default, ASP.NET raises an `HttpRequestValidationException` error whenever potentially dangerous postback content, such as HTML markup, is detected. To disable this error from occurring, turn off request validation for the page by adding `ValidateRequest="false"` to the `@Page` directive. For more information on the benefits of request validation as well as what precautions you should take when disabling it, read [Request Validation - Preventing Script Attacks](https://asp.net/learn/whitepapers/request-validation/).
+> [!NOTE]
+> If you view the contents of a file that contains HTML markup, and then attempt to view or delete a file, you will receive an `HttpRequestValidationException` error. This occurs because on postback the TextBox's contents are sent back to the web server. By default, ASP.NET raises an `HttpRequestValidationException` error whenever potentially dangerous postback content, such as HTML markup, is detected. To disable this error from occurring, turn off request validation for the page by adding `ValidateRequest="false"` to the `@Page` directive. For more information on the benefits of request validation as well as what precautions you should take when disabling it, read [Request Validation - Preventing Script Attacks](https://asp.net/learn/whitepapers/request-validation/).
 
 
 Finally, add an event handler with the following code for the GridView's [`RowDeleting` event](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.gridview.rowdeleting.aspx):
@@ -361,7 +368,8 @@ If, somehow, a user other than Tito attempts to execute the `RowDeleting` event 
 **Figure 14**: If the Security Context is not Authorized to Execute the Method, a `SecurityException` is Thrown  ([Click to view full-size image](user-based-authorization-cs/_static/image42.png))
 
 
-> [!NOTE] To allow multiple security contexts to access a class or method, decorate the class or method with a `PrincipalPermission` attribute for each security context. That is, to allow both Tito and Bruce to execute the `RowDeleting` event handler, add *two* `PrincipalPermission` attributes:
+> [!NOTE]
+> To allow multiple security contexts to access a class or method, decorate the class or method with a `PrincipalPermission` attribute for each security context. That is, to allow both Tito and Bruce to execute the `RowDeleting` event handler, add *two* `PrincipalPermission` attributes:
 
 
 [!code-csharp[Main](user-based-authorization-cs/samples/sample23.cs)]

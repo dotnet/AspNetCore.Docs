@@ -31,7 +31,8 @@ Visual Studio 2005 removes the reliance on FrontPage Server Extensions for local
 
 For those developers who want to use FrontPage Server Extensions in their projects, the option is still available. However, based upon strong feedback from the ASP.NET developer community, it is not a requirement.
 
-> [!NOTE] FrontPage Server Extensions are still required for remote project creation, opening, etc.
+> [!NOTE]
+> FrontPage Server Extensions are still required for remote project creation, opening, etc.
 
 
 ## ASP.NET Development Server
@@ -71,7 +72,8 @@ Click here to view a video walkthrough of creating Web projects in Visual Studio
 
 As you saw in the video walkthrough, you can choose to create Web sites on the file system either on the local machine or on a remote location via a file share. Web sites that are created on the file system are browsed and debugged using the ASP.NET Development Server.
 
-> [!NOTE] The ASP.NET Development Server may cause some confusion for customers. If a Web project is created on the file system in IISs directory structure (i.e. c:\inetpub\wwwroot), the Web site will still be browsed via the ASP.NET Development Server when launched from within Visual Studio 2005. Therefore, any IIS configuration (i.e. authentication methods) is not applicable.
+> [!NOTE]
+> The ASP.NET Development Server may cause some confusion for customers. If a Web project is created on the file system in IISs directory structure (i.e. c:\inetpub\wwwroot), the Web site will still be browsed via the ASP.NET Development Server when launched from within Visual Studio 2005. Therefore, any IIS configuration (i.e. authentication methods) is not applicable.
 
 
 The default web project also removes a lot of the overhead by only includes a Default.aspx page, default.cs file, and an App\_Data folder. The web.config and special folders (i.e. app\_code) are added as they are needed. Your web project only includes the files and folders that you need.
@@ -82,7 +84,8 @@ HTTP projects can either be projects that are created on a local IIS Web site or
 
 The Local IIS option reads the site information from the metabase on the local machine and files are copied using the file system. The Remote Site option uses the FrontPage Server Extensions and the site information and files are copied using HTTP and FrontPage Server Extensions RPC calls.
 
-> [!NOTE] The vs###\_tmp.htm file and get\_aspx\_ver.aspx are no longer used to determine version information.
+> [!NOTE]
+> The vs###\_tmp.htm file and get\_aspx\_ver.aspx are no longer used to determine version information.
 
 
 The default HTTP option is Local IIS. This option reads the IIS Metabase to determine which sites are available and the location in which to create content. You can select a different folder or virtual directory by selecting it in the tree view. You can also create a new virtual directory, mark folders as applications, as well as delete existing virtual directories from this dialog box.
@@ -127,7 +130,8 @@ When creating an application on a remote site via SSL, if the SSL certificate do
 
 Visual Studio 2005 introduces the option to create Web sites via FTP. When you use this option, the IDE creates the files locally in the users temp folder and then uses FTP to move the files to the FTP location.
 
-> [!NOTE] The temp folder location is c:\Documents and Settings\&lt;User&gt;\Local Settings\Temp\VWDWebCache\&lt;Server&gt;\_&lt;application name&gt;
+> [!NOTE]
+> The temp folder location is c:\Documents and Settings\&lt;User&gt;\Local Settings\Temp\VWDWebCache\&lt;Server&gt;\_&lt;application name&gt;
 
 
 When using the FTP option, you will be presented with a Choose Location dialog. You enter the required FTP connection information into this dialog as shown below.
@@ -189,7 +193,8 @@ The following steps configure the FTP site so that a user has a location that on
 12. Right-click on Default.aspx in Solution Explorer and select **View in Browser**.
 13. In the Web Site URL Required dialog, enter `http://localhost/user1` for the URL and click **OK**.
 
-> [!NOTE] If you get a error indicating an inability to load the type \_Default, make sure that you are running ASP.NET 2.0 on your Web site and not an earlier version. You can do that from the ASP.NET tab in Internet Information Services.
+> [!NOTE]
+> If you get a error indicating an inability to load the type \_Default, make sure that you are running ASP.NET 2.0 on your Web site and not an earlier version. You can do that from the ASP.NET tab in Internet Information Services.
 
 
 ## Opening Web Projects
@@ -254,7 +259,8 @@ Working with Web applications in Visual Studio 2005 is noticeably faster than pr
 
 In Visual Studio 2002 and 2003, Web applications were compiled into one primary assembly residing in the /bin folder. In Visual Studio 2005, an App\_Code folder was added. Classes and other non-UI code are added to the App\_Code folder. When Visual Studio builds the project, all files in the App\_Code folder are compiled into a single App\_Code.dll file. The result of this change is that subsequent builds are much faster than in previous versions.
 
-> [!NOTE] The MSBuild command line utility can also be used to build ASP.NET Web applications. That tool will be covered in module 9.
+> [!NOTE]
+> The MSBuild command line utility can also be used to build ASP.NET Web applications. That tool will be covered in module 9.
 
 
 Another compilation enhancement is the new Build Page option on the Build menu. This feature allows a developer to rebuild only the current page (along with, of course, and dependencies) so that changes can be compiled more quickly. Because C# does not offer background compilation for purposes of updating IntelliSense, etc., they will benefit immensely from this feature because it will allow for IntelliSense to be updated quickly by simply rebuilding a single page.
@@ -291,7 +297,8 @@ Click here to see a video walkthrough of designer support for user controls.
 [Open Full-Screen Video](improvements-in-visual-studio-2005/_static/usercontrols1.wmv)
 
 
-> [!NOTE] When a user control is removed from a page, the @Register directive remains in the markup and should be removed manually in order to avoid parser errors if the user control is deleted from the Web site.
+> [!NOTE]
+> When a user control is removed from a page, the @Register directive remains in the markup and should be removed manually in order to avoid parser errors if the user control is deleted from the Web site.
 
 
 Another improvement in the Visual Studio compilation model is the Publish Web Site feature. Because the Publish feature precompiles the Web site, developers can enjoy the added performance of not having to compile anything on demand. It also precompiles all source code in the App\_Code folder into a DLL so that no source code has to be deployed.
@@ -302,7 +309,8 @@ Another improvement in the Visual Studio compilation model is the Publish Web Si
 **Figure 10**: The Publish Web Site Dialog
 
 
-> [!NOTE] The aspnet\_compile.exe utility can also be used to pre-compile an ASP.NET Web application. That tool will be covered in module 9.
+> [!NOTE]
+> The aspnet\_compile.exe utility can also be used to pre-compile an ASP.NET Web application. That tool will be covered in module 9.
 
 
 When you Publish a Web site, the precompiled files are stored in the Temporary ASP.NET Files folder as shown below. Files with a *.compiled* file extension are XML files that define dependencies for particular DLLs. Any Webform or user controls are compiled into random DLLs that begin with *App\_Web\_*.
@@ -313,7 +321,8 @@ The *Use fixed naming and single page assemblies* checkbox allows you to disable
 
 The *Enable strong naming on precompiled assemblies*checkbox allows you to strong-name your precompiled assemblies.
 
-> [!NOTE] In ASP.NET 1.x, strong-named assemblies had to be installed into the Global Assembly Cache (GAC). In ASP.NET 2.0, you are not required to install strong-named assemblies into the GAC.
+> [!NOTE]
+> In ASP.NET 1.x, strong-named assemblies had to be installed into the Global Assembly Cache (GAC). In ASP.NET 2.0, you are not required to install strong-named assemblies into the GAC.
 
 
 ![An ASP.NET Applications Pre-Compiled Files](improvements-in-visual-studio-2005/_static/image8.jpg)
@@ -321,7 +330,8 @@ The *Enable strong naming on precompiled assemblies*checkbox allows you to stron
 **Figure 11**: An ASP.NET Applications Pre-Compiled Files
 
 
-> [!NOTE] In the application above, there was no web.config file. If there had been, it would have been called *PrecompiledApp.config* after the Publish Web site process.
+> [!NOTE]
+> In the application above, there was no web.config file. If there had been, it would have been called *PrecompiledApp.config* after the Publish Web site process.
 
 
 ## Improvements in Deployment
@@ -332,7 +342,8 @@ The Copy Web Site dialog is split into a left frame and a right frame. The left 
 
 If you are copying a project to a remote Web site, that site must have the FrontPage Server Extensions installed on it. If it does not, you will need to connect using FTP. On the other hand, if you are copying a project to the local IIS instance, FrontPage Server Extensions are not required.
 
-> [!NOTE] If you try to create a new Web site on the local IIS instance and the FrontPage 2002 Server Extensions are installed, you will get an error message telling you that creating Web sites is not supported on a SharePoint server. In that case, you have the option of installing the FrontPage 2000 Server Extensions or removing the FrontPage Server Extensions.
+> [!NOTE]
+> If you try to create a new Web site on the local IIS instance and the FrontPage 2002 Server Extensions are installed, you will get an error message telling you that creating Web sites is not supported on a SharePoint server. In that case, you have the option of installing the FrontPage 2000 Server Extensions or removing the FrontPage Server Extensions.
 
 
 Click here for a video walkthrough of the Copy Web Site feature.
@@ -410,7 +421,8 @@ This lab requires you to have two machines, one running Visual Studio 2005 and t
 
 1. Open Visual Studio 2005 and create a new Web site on the remote server.
 
-> [!NOTE] You can create the Web site on a remote IIS instance or via FTP.
+> [!NOTE]
+> You can create the Web site on a remote IIS instance or via FTP.
 
 
 1. From the remote Web server, locate msvsmon.exe on the development machine using a UNC path and execute it.  
@@ -435,4 +447,5 @@ The ASP.NET Development Server can be launched via the command line by running t
 **Figure 14**
 
 
-> [!NOTE] The ASP.NET Development Server is not supported when launched explicitly via the command line.
+> [!NOTE]
+> The ASP.NET Development Server is not supported when launched explicitly via the command line.

@@ -509,7 +509,8 @@ In your Hub class, you can access this data in the `Clients.Caller` property. Th
 
 [!code-csharp[Main](signalr-1x-hubs-api-guide-server/samples/sample54.cs?highlight=3-4)]
 
-> [!NOTE] This mechanism for persisting state is not intended for large amounts of data, since everything you put in the `state` or `Clients.Caller` property is round-tripped with every method invocation. It's useful for smaller items such as user names or counters.
+> [!NOTE]
+> This mechanism for persisting state is not intended for large amounts of data, since everything you put in the `state` or `Clients.Caller` property is round-tripped with every method invocation. It's useful for smaller items such as user names or counters.
 
 
 <a id="handleErrors"></a>

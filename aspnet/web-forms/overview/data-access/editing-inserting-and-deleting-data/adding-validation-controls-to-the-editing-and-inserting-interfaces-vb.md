@@ -89,7 +89,8 @@ Since the GridView does not support the built-in inserting features of the Detai
 
 By clicking the "Convert this field into a TemplateField," Visual Studio has created a TemplateField whose templates mimic the user interface of the converted BoundField. You can verify this by visiting this page through a browser. You'll find that the appearance and behavior of the TemplateFields is identical to the experience when BoundFields were used instead.
 
-> [!NOTE] Feel free to customize the editing interfaces in the templates as needed. For example, we may want to have the TextBox in the `UnitPrice` TemplateFields rendered as a smaller textbox than the `ProductName` textbox. To accomplish this you can set the TextBox's `Columns` property to an appropriate value or provide an absolute width via the `Width` property. In the next tutorial we'll see how to completely customize the editing interface by replacing the TextBox with an alternate data entry Web control.
+> [!NOTE]
+> Feel free to customize the editing interfaces in the templates as needed. For example, we may want to have the TextBox in the `UnitPrice` TemplateFields rendered as a smaller textbox than the `ProductName` textbox. To accomplish this you can set the TextBox's `Columns` property to an appropriate value or provide an absolute width via the `Width` property. In the next tutorial we'll see how to completely customize the editing interface by replacing the TextBox with an alternate data entry Web control.
 
 
 ## Step 3: Adding the Validation Controls to the GridView's`EditItemTemplate` s
@@ -106,7 +107,8 @@ For more information on these five controls, check out the [Validation Controls 
 
 For our tutorial we'll need to use a RequiredFieldValidator in both the DetailsView and GridView's `ProductName` TemplateFields and a RequiredFieldValidator in the DetailsView's `UnitPrice` TemplateField. Furthermore, we'll need to add a CompareValidator to both controls' `UnitPrice` TemplateFields that ensures that the entered price has a value greater than or equal to 0 and is presented in a valid currency format.
 
-> [!NOTE] While ASP.NET 1.x had these same five validation controls, ASP.NET 2.0 has added a number of improvements, the main two being client-side script support for browsers other than Internet Explorer and the ability to partition validation controls on a page into validation groups. For more information on the new validation control features in 2.0, refer to [Dissecting the Validation Controls in ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/112305-1.aspx).
+> [!NOTE]
+> While ASP.NET 1.x had these same five validation controls, ASP.NET 2.0 has added a number of improvements, the main two being client-side script support for browsers other than Internet Explorer and the ability to partition validation controls on a page into validation groups. For more information on the new validation control features in 2.0, refer to [Dissecting the Validation Controls in ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/112305-1.aspx).
 
 
 Let's start by adding the necessary validation controls to the `EditItemTemplate` s in the GridView's TemplateFields. To accomplish this, click on the Edit Templates link from the GridView's smart tag to bring up the template editing interface. From here, you can select which template to edit from the drop-down list. Since we want to augment the editing interface, we need to add validation controls to the `ProductName` and `UnitPrice`'s `EditItemTemplate` s.
@@ -153,7 +155,8 @@ To indicate that the `UnitPrice` value must be greater than or equal to 0, set t
 
 After making these changes, open the page in a browser. If you attempt to omit the name or enter an invalid price value when editing a product, an asterisk appears next to the textbox. As Figure 8 shows, a price value that includes the currency symbol such as $19.95 is considered invalid. The CompareValidator's `Currency` `Type` allows for digit separators (such as commas or periods, depending on the culture settings) and a leading plus or minus sign, but does *not* permit a currency symbol. This behavior may perplex users as the editing interface currently renders the `UnitPrice` using the currency format.
 
-> [!NOTE] Recall that in the*Events Associated with Inserting, Updating, and Deleting* tutorial we set the BoundField's `DataFormatString` property to `{0:c}` in order to format it as a currency. Furthermore, we set the `ApplyFormatInEditMode` property to true, causing the GridView's editing interface to format the `UnitPrice` as a currency. When converting the BoundField into a TemplateField, Visual Studio noted these settings and formatted the TextBox's `Text` property as a currency using the databinding syntax `<%# Bind("UnitPrice", "{0:c}") %>`.
+> [!NOTE]
+> Recall that in the*Events Associated with Inserting, Updating, and Deleting* tutorial we set the BoundField's `DataFormatString` property to `{0:c}` in order to format it as a currency. Furthermore, we set the `ApplyFormatInEditMode` property to true, causing the GridView's editing interface to format the `UnitPrice` as a currency. When converting the BoundField into a TemplateField, Visual Studio noted these settings and formatted the TextBox's `Text` property as a currency using the databinding syntax `<%# Bind("UnitPrice", "{0:c}") %>`.
 
 
 [![An Asterisk Appears Next to the Textboxes with Invalid Input](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/_static/image23.png)](adding-validation-controls-to-the-editing-and-inserting-interfaces-vb/_static/image22.png)
@@ -182,7 +185,8 @@ Let's go with option #1 for this exercise. Currently the `UnitPrice` is formatte
 
 With this change, the formatted price in the editing interface includes commas as the group separator and a period as the decimal separator, but leaves off the currency symbol.
 
-> [!NOTE] The `UnitPrice` `EditItemTemplate` doesn't include a RequiredFieldValidator, allowing the postback to ensue and the updating logic to commence. However, the `RowUpdating` event handler copied over from the *Examining the Events Associated with Inserting, Updating, and Deleting* tutorial includes a programmatic check that ensures that the `UnitPrice` is provided. Feel free to remove this logic, leave it in as-is, or add a RequiredFieldValidator to the `UnitPrice` `EditItemTemplate`.
+> [!NOTE]
+> The `UnitPrice` `EditItemTemplate` doesn't include a RequiredFieldValidator, allowing the postback to ensue and the updating logic to commence. However, the `RowUpdating` event handler copied over from the *Examining the Events Associated with Inserting, Updating, and Deleting* tutorial includes a programmatic check that ensures that the `UnitPrice` is provided. Feel free to remove this logic, leave it in as-is, or add a RequiredFieldValidator to the `UnitPrice` `EditItemTemplate`.
 
 
 ## Step 4: Summarizing Data Entry Problems

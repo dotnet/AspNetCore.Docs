@@ -88,7 +88,8 @@ The above query uses SQL Server 2005 s new [`NTILE` function](https://msdn.micro
 
 Unfortunately, the Query Builder does not know how to parse the `OVER` keyword and will display an error when parsing the above query. Therefore, enter the above query directly in the textbox in the wizard without using the Query Builder.
 
-> [!NOTE] For more information on NTILE and SQL Server 2005 s other ranking functions, see [Returning Ranked Results with Microsoft SQL Server 2005](http://www.4guysfromrolla.com/webtech/010406-1.shtml) and the [Ranking Functions section](https://msdn.microsoft.com/en-us/library/ms189798.aspx) from the [SQL Server 2005 Books Online](https://msdn.microsoft.com/en-us/library/ms189798.aspx).
+> [!NOTE]
+> For more information on NTILE and SQL Server 2005 s other ranking functions, see [Returning Ranked Results with Microsoft SQL Server 2005](http://www.4guysfromrolla.com/webtech/010406-1.shtml) and the [Ranking Functions section](https://msdn.microsoft.com/en-us/library/ms189798.aspx) from the [SQL Server 2005 Books Online](https://msdn.microsoft.com/en-us/library/ms189798.aspx).
 
 
 After entering the `SELECT` query and clicking Next, the wizard asks us to provide a name for the stored procedure it will create. Name the new stored procedure `Products_SelectWithPriceQuartile` and click Next.
@@ -122,7 +123,8 @@ After completing the wizard, the TableAdapter should include the `FillWithPriceQ
 **Figure 8**: Ensure that the Database Contains the `Products_SelectWithPriceQuartile` Stored Procedure ([Click to view full-size image](adding-additional-datatable-columns-cs/_static/image22.png))
 
 
-> [!NOTE] One of the benefits of using stored procedures instead of ad-hoc SQL statements is that re-running the TableAdapter Configuration wizard will not modify the stored procedures column lists. Verify this by right-clicking on the TableAdapter, choosing the Configure option from the context-menu to start the wizard, and then clicking Finish to complete it. Next, go to the database and view the `Products_SelectWithPriceQuartile` stored procedure. Note that its column list has not been modified. Had we been using ad-hoc SQL statements, re-running the TableAdapter Configuration wizard would have reverted this query s column list to match the main query column list, thereby removing the NTILE statement from the query used by the `GetProductsWithPriceQuartile` method.
+> [!NOTE]
+> One of the benefits of using stored procedures instead of ad-hoc SQL statements is that re-running the TableAdapter Configuration wizard will not modify the stored procedures column lists. Verify this by right-clicking on the TableAdapter, choosing the Configure option from the context-menu to start the wizard, and then clicking Finish to complete it. Next, go to the database and view the `Products_SelectWithPriceQuartile` stored procedure. Note that its column list has not been modified. Had we been using ad-hoc SQL statements, re-running the TableAdapter Configuration wizard would have reverted this query s column list to match the main query column list, thereby removing the NTILE statement from the query used by the `GetProductsWithPriceQuartile` method.
 
 
 When the Data Access Layer s `GetProductsWithPriceQuartile` method is invoked, the TableAdapter executes the `Products_SelectWithPriceQuartile` stored procedure and adds a row to the `ProductsDataTable` for each returned record. The data fields returned by the stored procedure are mapped to the `ProductsDataTable` s columns. Since there is a `PriceQuartile` data field returned from the stored procedure, its value is assigned to the `ProductsDataTable` s `PriceQuartile` column.
@@ -177,7 +179,8 @@ Figure 11 shows this page when visited through a browser. Note that, initially, 
 **Figure 12**: The Products are Ordered by their Names ([Click to view full-size image](adding-additional-datatable-columns-cs/_static/image34.png))
 
 
-> [!NOTE] With a few lines of code we could augment the GridView so that it colored the product rows based on their `PriceQuartile` value. We might color those products in the first quartile a light green, those in the second quartile a light yellow, and so forth. I encourage you to take a moment to add this functionality. If you need a refresher on formatting a GridView, consult the [Custom Formatting Based Upon Data](../custom-formatting/custom-formatting-based-upon-data-cs.md) tutorial.
+> [!NOTE]
+> With a few lines of code we could augment the GridView so that it colored the product rows based on their `PriceQuartile` value. We might color those products in the first quartile a light green, those in the second quartile a light yellow, and so forth. I encourage you to take a moment to add this functionality. If you need a refresher on formatting a GridView, consult the [Custom Formatting Based Upon Data](../custom-formatting/custom-formatting-based-upon-data-cs.md) tutorial.
 
 
 ## An Alternative Approach - Creating Another TableAdapter

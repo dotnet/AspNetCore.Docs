@@ -109,7 +109,8 @@ aspnet\_regsql
 
 The ASP.NET SQL Server Setup Wizard enables you to select a SQL Server database on your network and install all of the database objects required by the ASP.NET application services. The database server is not required to be located on your local machine.
 
-> [!NOTE] If you don't want to use the ASP.NET SQL Server Setup Wizard, then you can find SQL scripts for adding the application services database objects in the following folder:
+> [!NOTE]
+> If you don't want to use the ASP.NET SQL Server Setup Wizard, then you can find SQL scripts for adding the application services database objects in the following folder:
 
 
 > C:\Windows\Microsoft.NET\Framework\v2.0.50727

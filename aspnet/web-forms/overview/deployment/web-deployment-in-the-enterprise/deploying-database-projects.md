@@ -18,7 +18,8 @@ by [Jason Lee](https://github.com/jrjlee)
 
 [Download PDF](https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/63/56/8130.DeployingWebAppsInEnterpriseScenarios.pdf)
 
-> [!NOTE] In lots of enterprise deployment scenarios, you need the ability to publish incremental updates to a deployed database. The alternative is to recreate the database on every deployment, which means you lose any data in the existing database. When you work with Visual Studio 2010, using VSDBCMD is the recommended approach to incremental database publishing. However, the next version of Visual Studio and the Web Publishing Pipeline (WPP) will include tooling that supports incremental publishing directly.
+> [!NOTE]
+> In lots of enterprise deployment scenarios, you need the ability to publish incremental updates to a deployed database. The alternative is to recreate the database on every deployment, which means you lose any data in the existing database. When you work with Visual Studio 2010, using VSDBCMD is the recommended approach to incremental database publishing. However, the next version of Visual Studio and the Web Publishing Pipeline (WPP) will include tooling that supports incremental publishing directly.
 
 
 If you open the Contact Manager sample solution in Visual Studio 2010, you&#x27;ll see that the database project includes a Properties folder that contains four files.
@@ -109,12 +110,14 @@ If you&#x27;re using a .deploymanifest file, the behavior is a lot more complica
 
 The value of this property is set according to the properties of the database project. If you set the **Deploy action** to **Create a deployment script (.sql)**, the value will be **False**. If you set the **Deploy action** to **Create a deployment script (.sql) and deploy to the database**, the value will be **True**.
 
-> [!NOTE] These settings are associated with a specific build configuration and platform. For example, if you configure settings for the **Debug** configuration and then publish using the **Release** configuration, your settings will not be used.
+> [!NOTE]
+> These settings are associated with a specific build configuration and platform. For example, if you configure settings for the **Debug** configuration and then publish using the **Release** configuration, your settings will not be used.
 
 
 ![](deploying-database-projects/_static/image3.png)
 
-> [!NOTE] In this scenario, the **Deploy action** should always be set to **Create a deployment script (.sql)**, because you don&#x27;t want Visual Studio 2010 to deploy your database. In other words, the **DeployToDatabase** property should always be **False**.
+> [!NOTE]
+> In this scenario, the **Deploy action** should always be set to **Create a deployment script (.sql)**, because you don&#x27;t want Visual Studio 2010 to deploy your database. In other words, the **DeployToDatabase** property should always be **False**.
 
 
 When a **DeployToDatabase** property is specified, the **/dd** switch will only override the property if the property value is **false**:

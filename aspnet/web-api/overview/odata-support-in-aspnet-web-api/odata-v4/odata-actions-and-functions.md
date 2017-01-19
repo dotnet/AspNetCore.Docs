@@ -47,7 +47,8 @@ An action (or function) can target a single entity or a collection. In OData ter
 
 Let's define an action to rate a product.
 
-> [!NOTE] This tutorial builds on the tutorial [Create an OData v4 Endpoint Using ASP.NET Web API 2](create-an-odata-v4-endpoint.md)
+> [!NOTE]
+> This tutorial builds on the tutorial [Create an OData v4 Endpoint Using ASP.NET Web API 2](create-an-odata-v4-endpoint.md)
 
 
 First, add a `ProductRating` model to represent the ratings.
@@ -70,7 +71,8 @@ This code also sets the namespace for the EDM. The namespace matters because the
 
 [!code-console[Main](odata-actions-and-functions/samples/sample4.cmd)]
 
-> [!NOTE] In a typical IIS configuration, the dot in this URL will cause IIS to return error 404. You can resolve this by adding the following section to your Web.Config file:
+> [!NOTE]
+> In a typical IIS configuration, the dot in this URL will cause IIS to return error 404. You can resolve this by adding the following section to your Web.Config file:
 
 [!code-xml[Main](odata-actions-and-functions/samples/sample5.xml)]
 

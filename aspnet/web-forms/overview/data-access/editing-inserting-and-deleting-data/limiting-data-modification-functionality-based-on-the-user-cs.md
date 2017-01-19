@@ -40,7 +40,8 @@ In this tutorial we'll examine how to dynamically adjust the data modification c
 
 Let s get started!
 
-> [!NOTE] ASP.NET 2.0 s membership system provides a standardized, extensible platform for creating, managing, and validating user accounts. Since an examination of the membership system is beyond the scope of these tutorials, this tutorial instead "fakes" membership by allowing anonymous visitors to choose whether they are from a particular supplier or from our company. For more on membership, refer to my [Examining ASP.NET 2.0 s Membership, Roles, and Profile](http://aspnet.4guysfromrolla.com/articles/120705-1.aspx) article series.
+> [!NOTE]
+> ASP.NET 2.0 s membership system provides a standardized, extensible platform for creating, managing, and validating user accounts. Since an examination of the membership system is beyond the scope of these tutorials, this tutorial instead "fakes" membership by allowing anonymous visitors to choose whether they are from a particular supplier or from our company. For more on membership, refer to my [Examining ASP.NET 2.0 s Membership, Roles, and Profile](http://aspnet.4guysfromrolla.com/articles/120705-1.aspx) article series.
 
 
 ## Step 1: Allowing the User to Specify their Access Rights
@@ -69,7 +70,8 @@ After completing the ObjectDataSource wizard, complete the steps by configuring 
 
 At this point, the DropDownList lists the company names of the suppliers in the database. However, we also need to include a "Show/Edit ALL Suppliers" option to the DropDownList. To accomplish this, set the `Suppliers` DropDownList s `AppendDataBoundItems` property to `true` and then add a `ListItem` whose `Text` property is "Show/Edit ALL Suppliers" and whose value is `-1`. This can be added directly through the declarative markup or through the Designer by going to the Properties window and clicking on the ellipses in the DropDownList s `Items` property.
 
-> [!NOTE] Refer back to the [*Master/Detail Filtering With a DropDownList*](../masterdetail/master-detail-filtering-with-a-dropdownlist-cs.md) tutorial for a more detailed discussion on adding a Select All item to a databound DropDownList.
+> [!NOTE]
+> Refer back to the [*Master/Detail Filtering With a DropDownList*](../masterdetail/master-detail-filtering-with-a-dropdownlist-cs.md) tutorial for a more detailed discussion on adding a Select All item to a databound DropDownList.
 
 
 After the `AppendDataBoundItems` property has been set and the `ListItem` added, the DropDownList s declarative markup should look like:
@@ -93,7 +95,8 @@ Let s use a DetailsView to show supplier information. For the user who can view 
 
 Add a DetailsView to the page beneath the `Suppliers` DropDownList, set its `ID` property to `SupplierDetails`, and bind it to the `AllSuppliersDataSource` ObjectDataSource created in the previous step. Next, check the Enable Paging and Enable Editing checkboxes from the DetailsView s smart tag.
 
-> [!NOTE] If you don t see an Enable Editing option in the DetailsView s smart tag it s because you did not map the ObjectDataSource s `Update()` method to the `SuppliersBLL` class s `UpdateSupplierAddress` method. Take a moment to go back and make this configuration change, after which the Enable Editing option should appear in the DetailsView s smart tag.
+> [!NOTE]
+> If you don t see an Enable Editing option in the DetailsView s smart tag it s because you did not map the ObjectDataSource s `Update()` method to the `SuppliersBLL` class s `UpdateSupplierAddress` method. Take a moment to go back and make this configuration change, after which the Enable Editing option should appear in the DetailsView s smart tag.
 
 
 Since the `SuppliersBLL` class s `UpdateSupplierAddress` method only accepts four parameters - `supplierID`, `address`, `city`, and `country` - modify the DetailsView s BoundFields so that the `CompanyName` and `Phone` BoundFields are read-only. Additionally, remove the `SupplierID` BoundField altogether. Finally, the `AllSuppliersDataSource` ObjectDataSource currently has its `OldValuesParameterFormatString` property set to `original_{0}`. Take a moment to remove this property setting from the declarative syntax altogether, or set it to the default value, `{0}`.
@@ -151,7 +154,8 @@ With this event handler in place, the DetailsView control now shows the selected
 **Figure 10**: Only the Selected Supplier s Information Can Be Viewed and Edited ([Click to view full-size image](limiting-data-modification-functionality-based-on-the-user-cs/_static/image30.png))
 
 
-> [!NOTE] For this tutorial, both the DropDownList and DetailsView control s `EnableViewState` must be set to `true` (the default) because the DropDownList s `SelectedIndex` and the DetailsView s `DataSourceID` property s changes must be remembered across postbacks.
+> [!NOTE]
+> For this tutorial, both the DropDownList and DetailsView control s `EnableViewState` must be set to `true` (the default) because the DropDownList s `SelectedIndex` and the DetailsView s `DataSourceID` property s changes must be remembered across postbacks.
 
 
 ## Step 4: Listing the Suppliers Products in an Editable GridView
@@ -192,7 +196,8 @@ With this configuration complete, our page now lists the products provided by th
 **Figure 13**: The Products Provided by the Selected Supplier are Displayed ([Click to view full-size image](limiting-data-modification-functionality-based-on-the-user-cs/_static/image39.png))
 
 
-> [!NOTE] With the addition of this editable GridView the `Suppliers` DropDownList s `SelectedIndexChanged` event handler should be updated to return the GridView to a read-only state. Otherwise, if a different supplier is selected while in the middle of editing product information, the corresponding index in the GridView for the new supplier will also be editable. To prevent this, simply set the GridView s `EditIndex` property to `-1` in the `SelectedIndexChanged` event handler.
+> [!NOTE]
+> With the addition of this editable GridView the `Suppliers` DropDownList s `SelectedIndexChanged` event handler should be updated to return the GridView to a read-only state. Otherwise, if a different supplier is selected while in the middle of editing product information, the corresponding index in the GridView for the new supplier will also be editable. To prevent this, simply set the GridView s `EditIndex` property to `-1` in the `SelectedIndexChanged` event handler.
 
 
 Also, recall that it is important that the GridView s view state be enabled (the default behavior). If you set the GridView s `EnableViewState` property to `false`, you run the risk of having concurrent users unintentionally deleting or editing records. See [WARNING: Concurrency Issue with ASP.NET 2.0 GridViews/DetailsView/FormViews that Support Editing and/or Deleting and Whose View State is Disabled](http://scottonwriting.net/sowblog/posts/10054.aspx) for more information.

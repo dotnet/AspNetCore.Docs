@@ -67,7 +67,8 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image8.png)  
 
-    > [!NOTE] You can optionally configure the Application ID URI that will be registered in Azure AD by clicking **More Options**. The App ID URI is the unique identifier for an application, which is registered in Azure AD and used by the application to identify itself when communicating with Azure AD. For more information about the App ID URI and other properties of registered applications, see [this topic](https://msdn.microsoft.com/en-us/library/azure/dn499820.aspx#BKMK_Registering). By clicking the checkbox below the App ID URI field, you can also choose to overwrite an existing registration in Azure AD that uses the same App ID URI.
+    > [!NOTE]
+    > You can optionally configure the Application ID URI that will be registered in Azure AD by clicking **More Options**. The App ID URI is the unique identifier for an application, which is registered in Azure AD and used by the application to identify itself when communicating with Azure AD. For more information about the App ID URI and other properties of registered applications, see [this topic](https://msdn.microsoft.com/en-us/library/azure/dn499820.aspx#BKMK_Registering). By clicking the checkbox below the App ID URI field, you can also choose to overwrite an existing registration in Azure AD that uses the same App ID URI.
 4. After clicking **OK**, a sign-in dialog will appear, and you'll need to sign in using a Global Administrator account (not the Microsoft account associated with your subscription). If you created a new Administrator account earlier, you'll be required to change the password and then sign in again using the new password.   
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image9.png)
@@ -76,7 +77,8 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image10.png)
 6. The **Configure Azure Website** dialog will appear, using an auto-generated site name and region. Also note the account you're currently signed into in the dialog. You want to make sure that this account is the one that your Azure subscription is attached to, typically a Microsoft account.
 
-    > [!NOTE] This project requires a database. You need to select one of your existing databases, or create a new one. A database is required because the project already uses a local database file to store a small amount of authentication configuration data. When you deploy the application to an Azure Website, this database isn't packaged with the deployment, so you need to choose one that's accessible in the cloud. Click **OK**.
+    > [!NOTE]
+    > This project requires a database. You need to select one of your existing databases, or create a new one. A database is required because the project already uses a local database file to store a small amount of authentication configuration data. When you deploy the application to an Azure Website, this database isn't packaged with the deployment, so you need to choose one that's accessible in the cloud. Click **OK**.
 
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image11.png)
 7. The project will be created, and your authentication options and web app options will be automatically configured with the project. Once this process has completed, run the project locally by pressing **^F5**. You will be required to sign in using your organizational account. Provide the username and password for the account you created earlier and click **Sign in**.   

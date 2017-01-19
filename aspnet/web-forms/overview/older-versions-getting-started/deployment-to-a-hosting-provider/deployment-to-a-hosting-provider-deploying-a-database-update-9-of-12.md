@@ -83,7 +83,8 @@ You can now deploy to production. The only difference is that you'll use *app\_o
 - In Visual Studio, choose the Production profile in the **Web One Click Publish** toolbar and click **Publish Web**.
 - Delete the *app\_offline.htm* file from the production site.
 
-> [!NOTE] While your application is in use in the production environment you should be implementing a backup plan. That is, you should be periodically copying the *School-Prod.sdf* and *aspnet-Prod.sdf* files from the production site to a secure storage location, and you should be keeping several generations of such backups. When you update the database, you should make a backup copy from immediately before the change. Then, if you make a mistake and don't discover it until after you have deployed it to production, you will still be able to recover the database to the state it was in before it became corrupted.
+> [!NOTE]
+> While your application is in use in the production environment you should be implementing a backup plan. That is, you should be periodically copying the *School-Prod.sdf* and *aspnet-Prod.sdf* files from the production site to a secure storage location, and you should be keeping several generations of such backups. When you update the database, you should make a backup copy from immediately before the change. Then, if you make a mistake and don't discover it until after you have deployed it to production, you will still be able to recover the database to the state it was in before it became corrupted.
 
 
 When Visual Studio opens the home page URL in the browser, the *app\_offline.htm* page is displayed. After you delete the *app\_offline.htm* file, you can browse to your home page again to verify that the update was successfully deployed.

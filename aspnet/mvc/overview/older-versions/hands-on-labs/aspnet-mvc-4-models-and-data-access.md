@@ -16,7 +16,8 @@ ASP.NET MVC 4 Models and Data Access
 ====================
 by [Web Camps Team](https://twitter.com/webcamps)
 
-> [!NOTE] This Hands-on Lab assumes you have basic knowledge of **ASP.NET MVC**. If you have not used **ASP.NET MVC** before, we recommend you to go over **ASP.NET MVC 4 Fundamentals** Hands-on Lab.
+> [!NOTE]
+> This Hands-on Lab assumes you have basic knowledge of **ASP.NET MVC**. If you have not used **ASP.NET MVC** before, we recommend you to go over **ASP.NET MVC 4 Fundamentals** Hands-on Lab.
 > 
 > This lab walks you through the enhancements and new features previously described by applying minor changes to a sample Web application provided in the Source folder.
 > 
@@ -43,7 +44,8 @@ In code first, model objects are defined with POCOs , &quot;Plain Old CLR Object
 
 The benefits of using this approach is that the Model remains independent from the persistence framework (in this case, Entity Framework), as the POCOs classes are not coupled with the mapping framework.
 
-> [!NOTE] This Lab is based on ASP.NET MVC 4 and a version of the Music Store sample application customized and minimized to fit only the features shown in this Hands-On Lab.
+> [!NOTE]
+> This Lab is based on ASP.NET MVC 4 and a version of the Music Store sample application customized and minimized to fit only the features shown in this Hands-On Lab.
 > 
 > If you wish to explore the whole **Music Store** tutorial application you can find it in [[http://mvcmusicstore.codeplex.com/](http://mvcmusicstore.codeplex.com/)](http://mvcmusicstore.codeplex.com/).
 
@@ -81,7 +83,8 @@ This Hands-on Lab is comprised by the following exercises:
 2. [Exercise 2: Creating a Database using Code First](#Exercise2)
 3. [Exercise 3: Querying the Database with Parameters](#Exercise3)
 
-> [!NOTE] Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
+> [!NOTE]
+> Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
 
 
 Estimated time to complete this lab: **35 minutes**.
@@ -106,7 +109,8 @@ In this task, you will add an already created database with the main tables of t
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Add **MvcMusicStore** database file. In this Hands-on Lab, you will use an already created database called **MvcMusicStore.mdf**. To do that, right-click **App\_Data** folder, point to **Add** and then click **Existing Item**. Browse to **\Source\Assets** and select the **MvcMusicStore.mdf** file.
 
     ![Adding an Existing Item](aspnet-mvc-4-models-and-data-access/_static/image2.png "Adding an Existing Item")
@@ -167,14 +171,16 @@ In this task, you will create a data model to interact with the database added i
 
     *Choosing the database objects*
 
-    > [!NOTE] If a Security Warning dialog is shown, click **OK** to run the template and generate the classes for the model entities.
+    > [!NOTE]
+    > If a Security Warning dialog is shown, click **OK** to run the template and generate the classes for the model entities.
 8. An entity diagram for the database will appear, while a separate class that maps each table to the database will be created. For example, the **Albums** table will be represented by an **Album** class, where each column in the table will map to a class property. This will allow you to query and work with objects that represent rows in the database.
 
     ![Entity diagram](aspnet-mvc-4-models-and-data-access/_static/image12.png "Entity diagram")
 
     *Entity diagram*
 
-> [!NOTE] The T4 templates (.tt) run code to generate the entities classes and will overwrite the existing classes with the same name. In this example, the classes &quot;Album&quot;, &quot;Genre&quot; and &quot;Artist&quot; were overwritten with the generated code.
+> [!NOTE]
+> The T4 templates (.tt) run code to generate the entities classes and will overwrite the existing classes with the same name. In this example, the classes &quot;Album&quot;, &quot;Genre&quot; and &quot;Artist&quot; were overwritten with the generated code.
 
 
 <a id="Ex1Task3"></a>
@@ -222,7 +228,8 @@ In this task, you will update the StoreController class so that, instead of usin
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample2.cs)]
 
-    > [!NOTE] You are using a capability of .NET called **LINQ** (language-integrated query) to write strongly-typed query expressions against these collections - which will execute code against the database and return objects that you can program against.
+    > [!NOTE]
+    > You are using a capability of .NET called **LINQ** (language-integrated query) to write strongly-typed query expressions against these collections - which will execute code against the database and return objects that you can program against.
     > 
     > For more information about LINQ, please visit the [msdn site](https://msdn.microsoft.com/en-us/library/bb397926&amp;#040;v=vs.110&amp;#041;.aspx).
 3. Update **Index** action method to retrieve all the genres.
@@ -268,7 +275,8 @@ In this exercise, you will learn how to use the Code First approach to create a 
 
 Once the model is generated, you will modify the StoreController to provide the View template with the data taken from the database, instead of using hardcoded values.
 
-> [!NOTE] If you have completed Exercise 1 and have already worked with the Database First approach, you will now learn how to get the same results with a different process. The tasks that are in common with Exercise 1 have been marked to make your reading easier. If you have not completed Exercise 1 but would like to learn the Code First approach, you can start from this exercise and get a full coverage of the topic.
+> [!NOTE]
+> If you have completed Exercise 1 and have already worked with the Database First approach, you will now learn how to get the same results with a different process. The tasks that are in common with Exercise 1 have been marked to make your reading easier. If you have not completed Exercise 1 but would like to learn the Code First approach, you can start from this exercise and get a full coverage of the topic.
 
 
 <a id="Ex2Task1"></a>
@@ -284,7 +292,8 @@ In this task, you will populate the database with sample data when it is intiall
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Add the **SampleData.cs** file to the **Models** folder. To do that, right-click **Models** folder, point to **Add** and then click **Existing Item**. Browse to **\Source\Assets** and select the **SampleData.cs** file.
 
     ![Sample data populate code](aspnet-mvc-4-models-and-data-access/_static/image18.png "Sample data populate code")
@@ -329,7 +338,8 @@ Now that you have already added a database to our project, you will write in the
 
 Now that you have already configured the connection to the database, you will link the model with the database tables. In this task, you will create a class that will be linked to the database with Code First. Remember that there is an existent POCO model class that should be modified.
 
-> [!NOTE] If you completed Exercise 1, you will note that this step was performed by a wizard. By doing Code First, you will manually create classes that will be linked to data entities.
+> [!NOTE]
+> If you completed Exercise 1, you will note that this step was performed by a wizard. By doing Code First, you will manually create classes that will be linked to data entities.
 
 
 1. Open the POCO model class **Genre** from **Models** project folder and include an ID. Use an int property with the name **GenreId**.
@@ -340,7 +350,8 @@ Now that you have already configured the connection to the database, you will li
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample8.cs)]
 
-    > [!NOTE] To work with Code First conventions, the class Genre must have a primary key property that will be automatically detected.
+    > [!NOTE]
+    > To work with Code First conventions, the class Genre must have a primary key property that will be automatically detected.
     > 
     > You can read more about Code First Conventions in this [msdn article](https://msdn.microsoft.com/en-us/library/hh161541&amp;#040;v=vs.103&amp;#041;.aspx).
 2. Now, open the POCO model class **Album** from **Models** project folder and include the foreign keys, create properties with the names **GenreId** and **ArtistId**. This class already have the **GenreId** for the primary key.
@@ -379,7 +390,8 @@ Now that you have already configured the connection to the database, you will li
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample12.cs)]
 
-    > [!NOTE] With Entity Framework **DbContext** and **DBSet** you will be able to query the POCO class Genre. By extending **OnModelCreating** method, you are specifying in the **code** how Genre will be mapped to a database table. You can find more information about DBContext and DBSet in this msdn article: [link](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext(v=vs.103).aspx)
+    > [!NOTE]
+    > With Entity Framework **DbContext** and **DBSet** you will be able to query the POCO class Genre. By extending **OnModelCreating** method, you are specifying in the **code** how Genre will be mapped to a database table. You can find more information about DBContext and DBSet in this msdn article: [link](https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext(v=vs.103).aspx)
 
 <a id="Ex2Task4"></a>
 
@@ -388,7 +400,8 @@ Now that you have already configured the connection to the database, you will li
 
 In this task, you will update the StoreController class so that, instead of using hardcoded data, it will retrieve it from the database.
 
-> [!NOTE] This task is in common with Exercise 1.
+> [!NOTE]
+> This task is in common with Exercise 1.
 > 
 > If you completed Exercise 1 you will note these steps are the same in both approaches (Database first or Code first). They are different in how the data is linked with the model, but the access to data entities is yet transparent from the controller.
 
@@ -408,7 +421,8 @@ In this task, you will update the StoreController class so that, instead of usin
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample14.cs)]
 
-    > [!NOTE] You are using a capability of .NET called **LINQ** (language-integrated query) to write strongly-typed query expressions against these collections - which will execute code against the database and return objects that you can program against.
+    > [!NOTE]
+    > You are using a capability of .NET called **LINQ** (language-integrated query) to write strongly-typed query expressions against these collections - which will execute code against the database and return objects that you can program against.
     > 
     > For more information about LINQ, please visit the [msdn site](https://msdn.microsoft.com/en-us/library/bb397926(v=vs.110).aspx).
 3. Update **Index** action method to retrieve all the genres.
@@ -452,7 +466,8 @@ In this task, you will check that the Store Index page will now display the Genr
 
 In this exercise, you will learn how to query the database using parameters, and how to use Query Result Shaping, a feature that reduces the number database accesses retrieving data in a more efficient way.
 
-> [!NOTE] For further information on Query Result Shaping, visit the following [msdn article](https://msdn.microsoft.com/en-us/library/bb896272&amp;#040;v=vs.100&amp;#041;.aspx).
+> [!NOTE]
+> For further information on Query Result Shaping, visit the following [msdn article](https://msdn.microsoft.com/en-us/library/bb896272&amp;#040;v=vs.100&amp;#041;.aspx).
 
 
 <a id="Ex3Task1"></a>
@@ -468,7 +483,8 @@ In this task, you will change the **StoreController** class to access the databa
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open the **StoreController** class to change the **Browse** action method. To do this, in the **Solution Explorer**, expand the **Controllers** folder and double-click **StoreController.cs**.
 3. Change the **Browse** action method to retrieve albums for a specific genre. To do this, replace the following code:
 
@@ -478,7 +494,8 @@ In this task, you will change the **StoreController** class to access the databa
 
     [!code-csharp[Main](aspnet-mvc-4-models-and-data-access/samples/sample17.cs)]
 
-    > [!NOTE] To populate a collection of the entity, you need to use the **Include** method to specify you want to retrieve the albums too. You can use the .**Single()** extension in LINQ because in this case only one genre is expected for an album. The **Single()** method takes a Lambda expression as a parameter, which in this case specifies a single Genre object such that its name matches the value defined.
+    > [!NOTE]
+    > To populate a collection of the entity, you need to use the **Include** method to specify you want to retrieve the albums too. You can use the .**Single()** extension in LINQ because in this case only one genre is expected for an album. The **Single()** method takes a Lambda expression as a parameter, which in this case specifies a single Genre object such that its name matches the value defined.
     > 
     > You will take advantage of a feature that allows you to indicate other related entities you want loaded as well when the Genre object is retrieved. This feature is called **Query Result Shaping**, and enables you to reduce the number of times needed to access the database to retrieve information. In this scenario, you will want to pre-fetch the Albums for the Genre you retrieve.
     > 
@@ -528,7 +545,8 @@ In this task, you will run the Application in a web browser and obtain album det
 
     *Browsing /Store/Details/51*
 
-> [!NOTE] Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
+> [!NOTE]
+> Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
 
 
 * * *
@@ -596,7 +614,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
 
 1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-    > [!NOTE] With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
+    > [!NOTE]
+    > With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
 
     ![Log on to Windows Azure portal](aspnet-mvc-4-models-and-data-access/_static/image31.png "Log on to Windows Azure portal")
 
@@ -608,7 +627,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Creating a new Web Site*
 3. Click **Compute** | **Web Site**. Then select **Quick Create** option. Provide an available URL for the new web site and click **Create Web Site**.
 
-    > [!NOTE] A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
+    > [!NOTE]
+    > A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
 
     ![Creating a new Web Site using Quick Create](aspnet-mvc-4-models-and-data-access/_static/image33.png "Creating a new Web Site using Quick Create")
 
@@ -630,7 +650,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Opening the Web Site management pages*
 7. In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link.
 
-    > [!NOTE] The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
+    > [!NOTE]
+    > The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
 
     ![Downloading the web site publish profile](aspnet-mvc-4-models-and-data-access/_static/image37.png "Downloading the web site publish profile")
 
@@ -681,7 +702,8 @@ If your application makes use of SQL Server databases you will need to create a 
     *Importing publish profile*
 3. Click **Validate Connection**. Once Validation is complete click **Next**.
 
-    > [!NOTE] Validation is complete once you see a green checkmark appear next to the Validate Connection button.
+    > [!NOTE]
+    > Validation is complete once you see a green checkmark appear next to the Validate Connection button.
 
     ![Validating connection](aspnet-mvc-4-models-and-data-access/_static/image45.png "Validating connection")
 

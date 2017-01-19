@@ -53,7 +53,8 @@ One of the major gripes that developers had with view state was the size that it
 
 In ASP.NET 2.0, control state solves that problem nicely via the introduction of control state. Control state contains the data that is absolutely necessary for the proper functionality of a control. Unlike view state, control state cannot be disabled. Therefore, it is important that the data being stored in control state is carefully controlled.
 
-> [!NOTE] Control state is persisted along with the view state in the \_\_VIEWSTATE hidden form field.
+> [!NOTE]
+> Control state is persisted along with the view state in the \_\_VIEWSTATE hidden form field.
 
 
 This video is a walkthrough of view state and control state.
@@ -107,7 +108,8 @@ If you choose, you can also configure ASP.NET to use the legacy configuration us
 
 In ASP.NET 1.x, the configuration file contained a &lt;browserCaps&gt; section that populated a HttpBrowserCapabilities object. This object allowed a developer to determine what device is making a particular request and render code appropriately. In ASP.NET 2.0, the model has improved and now uses the new ControlAdapter class. The ControlAdapter class overrides events in the control's lifecycle and controls the rendering of controls based upon the user agent's capabilities. The capabilities of a specific user agent are defined by a browser definition file (a file with a .browser file extension) stored in the c:\windows\microsoft.net\framework\v2.0.\*\*\*\*\CONFIG\Browsers folder.
 
-> [!NOTE] The ControlAdapter class is an abstract class.
+> [!NOTE]
+> The ControlAdapter class is an abstract class.
 
 
 Much like the &lt;browserCaps&gt; section in 1.x, the browser definition file uses a Regular Expression to parse the user agent string in order to identify the requesting browser. It them defines particular capabilities for that user agent. The ControlAdapter renders the control via the Render method. Therefore, if you override the Render method, you should not call Render on the base class. Doing so may cause rendering to occur twice, once for the adapter and once for the control itself.
@@ -196,7 +198,8 @@ It is fairly common to encounter ASP.NET developers struggling with attempting t
 | Finish | The final step, usually used to present a button to finish the wizard. |
 | Complete | Presents a message communicating success or failure. |
 
-> [!NOTE] The Wizard control keeps track of its state using ASP.NET control state. Therefore, the EnableViewState property can be set to false without any detriment.
+> [!NOTE]
+> The Wizard control keeps track of its state using ASP.NET control state. Therefore, the EnableViewState property can be set to false without any detriment.
 
 
 This video is a walkthrough of the Wizard control.

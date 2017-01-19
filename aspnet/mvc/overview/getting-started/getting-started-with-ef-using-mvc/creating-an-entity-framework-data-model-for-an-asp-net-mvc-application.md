@@ -133,7 +133,8 @@ There's a one-to-many relationship between `Student` and `Enrollment` entities, 
 
 In the following sections you'll create a class for each one of these entities.
 
-> [!NOTE] If you try to compile the project before you finish creating all of these entity classes, you'll get compiler errors.
+> [!NOTE]
+> If you try to compile the project before you finish creating all of these entity classes, you'll get compiler errors.
 
 
 ### The Student Entity
@@ -241,7 +242,8 @@ As an alternative to setting the initializer in the *Web.config* file is to do i
 The application is now set up so that when you access the database for the first time in a given run of the  
 application, the Entity Framework compares the database to the model (your `SchoolContext` and entity classes). If there's a difference, the application drops and re-creates the database.
 
-> [!NOTE] When you deploy an application to a production web server, you must remove or disable code that drops and re-creates the database. You'll do that in a later tutorial in this series.
+> [!NOTE]
+> When you deploy an application to a production web server, you must remove or disable code that drops and re-creates the database. You'll do that in a later tutorial in this series.
 
 
 ## Set up EF to use a SQL Server Express LocalDB database

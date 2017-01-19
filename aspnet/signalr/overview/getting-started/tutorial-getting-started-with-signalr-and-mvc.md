@@ -91,7 +91,8 @@ This section shows how to create an ASP.NET MVC 5 application, add the SignalR l
 
     ![Select No Authentication](tutorial-getting-started-with-signalr-and-mvc/_static/image4.png)
 
-    > [!NOTE] If you select a different authentication provider for your application, a `Startup.cs` class will be created for you; you will not need to create your own `Startup.cs` class in step 10 below.
+    > [!NOTE]
+    > If you select a different authentication provider for your application, a `Startup.cs` class will be created for you; you will not need to create your own `Startup.cs` class in step 10 below.
 4. Click **OK** in the **New ASP.NET Project** dialog.
 5. Open the **Tools | Library Package Manager | Package Manager Console** and run the following command. This step adds to the project a set of script files and assembly references that enable SignalR functionality.
 
@@ -118,7 +119,8 @@ This section shows how to create an ASP.NET MVC 5 application, add the SignalR l
     ![Add a view](tutorial-getting-started-with-signalr-and-mvc/_static/image7.png)
 14. Replace the contents of **Chat.cshtml** with the following code.
 
-    > [!IMPORTANT] When you add SignalR and other script libraries to your Visual Studio project, the Package Manager might install a version of the SignalR script file that is more recent than the version shown in this topic. Make sure that the script reference in your code matches the version of the script library installed in your project.
+    > [!IMPORTANT]
+    > When you add SignalR and other script libraries to your Visual Studio project, the Package Manager might install a version of the SignalR script file that is more recent than the version shown in this topic. Make sure that the script reference in your code matches the version of the script library installed in your project.
 
     [!code-cshtml[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample4.cshtml)]
 15. **Save All** for the project.
@@ -135,7 +137,8 @@ This section shows how to create an ASP.NET MVC 5 application, add the SignalR l
 4. Copy the URL from the address line of the browser and use it to open two more browser instances. In each browser instance, enter a unique user name.
 5. In each browser instance, add a comment and click **Send**. The comments should display in all browser instances.
 
-    > [!NOTE] This simple chat application does not maintain the discussion context on the server. The hub broadcasts comments to all current users. Users who join the chat later will see messages added from the time they join.
+    > [!NOTE]
+    > This simple chat application does not maintain the discussion context on the server. The hub broadcasts comments to all current users. Users who join the chat later will see messages added from the time they join.
 6. The following screen shot shows the chat application running in a browser.
 
     ![Chat browsers](tutorial-getting-started-with-signalr-and-mvc/_static/image9.png)
@@ -169,7 +172,8 @@ The following code declares a reference to a hub proxy.
 
 [!code-csharp[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample6.cs)]
 
-> [!NOTE] In JavaScript the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in JavaScript as **chatHub**. If you want to reference the `ChatHub` class in jQuery with conventional Pascal casing as you would in C#, edit the ChatHub.cs class file. Add a `using` statement to reference the `Microsoft.AspNet.SignalR.Hubs` namespace. Then add the `HubName` attribute to the `ChatHub` class, for example `[HubName("ChatHub")]`. Finally, update your jQuery reference to the `ChatHub` class.
+> [!NOTE]
+> In JavaScript the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in JavaScript as **chatHub**. If you want to reference the `ChatHub` class in jQuery with conventional Pascal casing as you would in C#, edit the ChatHub.cs class file. Add a `using` statement to reference the `Microsoft.AspNet.SignalR.Hubs` namespace. Then add the `HubName` attribute to the `ChatHub` class, for example `[HubName("ChatHub")]`. Finally, update your jQuery reference to the `ChatHub` class.
 
 
 The following code shows how to create a callback function in the script. The hub class on the server calls this function to push content updates to each client. The optional call to the `htmlEncode` function shows a way to HTML encode the message content before displaying it in the page, as a way to prevent script injection.
@@ -178,7 +182,8 @@ The following code shows how to create a callback function in the script. The hu
 
 The following code shows how to open a connection with the hub. The code starts the connection and then passes it a function to handle the click event on the **Send** button in the Chat page.
 
-> [!NOTE] This approach ensures that the connection is established before the event handler executes.
+> [!NOTE]
+> This approach ensures that the connection is established before the event handler executes.
 
 
 [!code-javascript[Main](tutorial-getting-started-with-signalr-and-mvc/samples/sample8.js)]

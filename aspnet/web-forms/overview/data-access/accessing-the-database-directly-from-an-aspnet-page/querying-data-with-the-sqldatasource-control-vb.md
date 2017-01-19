@@ -47,7 +47,8 @@ The SqlDataSource provides the same functionality, but operates against a relati
 **Figure 2**: The SqlDataSource Serves as a Proxy to the Database
 
 
-> [!NOTE] In this tutorial we'll focus on retrieving data from the database. In the [Inserting, Updating, and Deleteing Data with the SqlDataSource Control](inserting-updating-and-deleting-data-with-the-sqldatasource-vb.md) tutorial, we'll see how to configure the SqlDataSource to support inserting, updating, and deleting.
+> [!NOTE]
+> In this tutorial we'll focus on retrieving data from the database. In the [Inserting, Updating, and Deleteing Data with the SqlDataSource Control](inserting-updating-and-deleting-data-with-the-sqldatasource-vb.md) tutorial, we'll see how to configure the SqlDataSource to support inserting, updating, and deleting.
 
 
 ## The SqlDataSource and AccessDataSource Controls
@@ -115,7 +116,8 @@ The first wizard step prompts us for the database. The drop-down list includes t
 
 After choosing the database, the wizard asks for the query to return data. We can either specify the columns of a table or view to return or can enter a custom SQL statement or specify a stored procedure. You can toggle between this choice through the Specify a custom SQL statement or stored procedure and Specify columns from a table or view radio buttons.
 
-> [!NOTE] For this first example, let s use the Specify columns from a table or view option. We'll return to the wizard later in this tutorial and explore the Specify a custom SQL statement or stored procedure option.
+> [!NOTE]
+> For this first example, let s use the Specify columns from a table or view option. We'll return to the wizard later in this tutorial and explore the Specify a custom SQL statement or stored procedure option.
 
 
 Figure 8 shows the Configure the Select Statement screen when the Specify columns from a table or view radio button is selected. The drop-down list contains the set of tables and views in the Northwind database, with the selected table or view s columns displayed in the checkbox list below. For this example, let s return the `ProductID`, `ProductName`, and `UnitPrice` columns from the `Products` table. As Figure 8 shows, after making these selections the wizard shows the resulting SQL statement `SELECT [ProductID], [ProductName], [UnitPrice] FROM [Products]`.

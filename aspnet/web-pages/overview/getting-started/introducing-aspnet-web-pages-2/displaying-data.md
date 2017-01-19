@@ -91,7 +91,8 @@ In the **Name** box, enter "ID". Entering a value here activates all the control
 
 Tab to the **Data Type** list and choose **int**. This value specifies that the ID column will contain integer (number) data.
 
-> [!NOTE] We won't call it out any more here (much), but you can use standard Windows keyboard gestures to navigate in this grid. For example, you can tab between fields, you can just start typing in order to select an item in a list, and so on.
+> [!NOTE]
+> We won't call it out any more here (much), but you can use standard Windows keyboard gestures to navigate in this grid. For example, you can tab between fields, you can just start typing in order to select an item in a list, and so on.
 
 
 Tab past the **Default Value** box (that is, leave it blank). Tab to the **Is Primary Key** check box and select it. This option tells the database that the *ID* column will contain the data that identifies individual rows. (That is, each row will have a unique value in the ID column that you can use to find that row.)
@@ -170,7 +171,8 @@ To display data in a page, you're going to use the `WebGrid` helper. This helper
 
 To run the grid, you'll have to write a few lines of code. These few lines will serve as a kind of pattern for almost all of the data access that you do in this tutorial.
 
-> [!NOTE] You actually have many options for displaying data on a page; the `WebGrid` helper is just one. We chose it for this tutorial because it's the easiest way to display data and because it's reasonably flexible. In the next tutorial set, you'll see how to use a more "manual" way to work with data in the page, which gives you more direct control over how to display the data.
+> [!NOTE]
+> You actually have many options for displaying data on a page; the `WebGrid` helper is just one. We chose it for this tutorial because it's the easiest way to display data and because it's reasonably flexible. In the next tutorial set, you'll see how to use a more "manual" way to work with data in the page, which gives you more direct control over how to display the data.
 
 
 In the left pane in WebMatrix, click the **Files** workspace.

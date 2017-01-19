@@ -35,7 +35,8 @@ If you don't already have an Azure account, you can create a free trial account 
 
 ## Create a staging environment
 
-> [!NOTE] Since this tutorial was written, Azure App Service added a new feature to automate many of the processes around having staging and production environments. See [Set up staging environments for web apps in Azure App Service](https://azure.microsoft.com/en-us/documentation/articles/web-sites-staged-publishing/).
+> [!NOTE]
+> Since this tutorial was written, Azure App Service added a new feature to automate many of the processes around having staging and production environments. See [Set up staging environments for web apps in Azure App Service](https://azure.microsoft.com/en-us/documentation/articles/web-sites-staged-publishing/).
 
 
 As explained in the [Deploy to the Test Environment tutorial](deploying-to-iis.md), the most reliable test environment is a web site at the hosting provider that's just like the production web site. At many hosting providers you would have to weigh the benefits of this against significant additional cost, but in Azure you can create an additional free web app as your staging app. You also need a database, and the additional expense for that over the expense of your production database will be either none or minimal. In Azure you pay for the amount of database storage you use rather than for each database, and the amount of additional storage you'll use in staging will be minimal.
@@ -44,7 +45,8 @@ As explained in the [Deploy to the Test Environment tutorial](deploying-to-iis.m
 
 In this section of the tutorial you'll create a web app and database to use for the staging environment, and you'll deploy to staging and test there before creating and deploying to the production environment.
 
-> [!NOTE] The following steps show how to create a web app in Azure App Service by using the Azure management portal. In the latest version of the Azure SDK, you can also do this without leaving Visual Studio, by using Server Explorer. In Visual Studio 2013, you can also create a web app directly from the Publish dialog. For more information, see [Create an ASP.NET web app in Azure App Service.](https://www.windowsazure.com/en-us/develop/net/tutorials/get-started/)
+> [!NOTE]
+> The following steps show how to create a web app in Azure App Service by using the Azure management portal. In the latest version of the Azure SDK, you can also do this without leaving Visual Studio, by using Server Explorer. In Visual Studio 2013, you can also create a web app directly from the Publish dialog. For more information, see [Create an ASP.NET web app in Azure App Service.](https://www.windowsazure.com/en-us/develop/net/tutorials/get-started/)
 
 
 1. In the [Azure Management Portal](https://manage.windowsazure.com/), click **Websites**, and then click **New**.
@@ -90,7 +92,8 @@ In this section of the tutorial you'll create a web app and database to use for 
 
 Now that you have created a web app and database for the staging environment, you can deploy the project to it.
 
-> [!NOTE] These instructions show how to create a publish profile by downloading a *.publishsettings* file, which works not only for Azure but also for third-party hosting providers. The latest Azure SDK also enables you to connect directly to Azure from Visual Studio, and choose from a list of web apps that you have in your Azure account. In Visual Studio 2013, you can sign in to Azure from the **Web Publish** dialog or from the **Server Explorer** window. For more information, see [Create an ASP.NET web app in Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/get-started/).
+> [!NOTE]
+> These instructions show how to create a publish profile by downloading a *.publishsettings* file, which works not only for Azure but also for third-party hosting providers. The latest Azure SDK also enables you to connect directly to Azure from Visual Studio, and choose from a list of web apps that you have in your Azure account. In Visual Studio 2013, you can sign in to Azure from the **Web Publish** dialog or from the **Server Explorer** window. For more information, see [Create an ASP.NET web app in Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/get-started/).
 
 
 ### Download the .publishsettings file
@@ -109,7 +112,8 @@ Now that you have created a web app and database for the staging environment, yo
 
     > [!NOTE] 
     > 
-    > [!WARNING] Security - The *.publishsettings* file contains your credentials (unencoded) that are used to administer your Azure subscriptions and services. The security best practice for this file is to store it temporarily outside your source directories (for example in the Libraries\Documents folder), and then delete it once the import has completed. A malicious user who gains access to the *.publishsettings* file can edit, create, and delete your Azure services.
+    > [!WARNING]
+    > Security - The *.publishsettings* file contains your credentials (unencoded) that are used to administer your Azure subscriptions and services. The security best practice for this file is to store it temporarily outside your source directories (for example in the Libraries\Documents folder), and then delete it once the import has completed. A malicious user who gains access to the *.publishsettings* file can edit, create, and delete your Azure services.
 
 ### Create a publish profile
 
@@ -158,7 +162,8 @@ Now that you have created a web app and database for the staging environment, yo
 
 ### Configure a publish profile transform for the environment indicator
 
-> [!NOTE] This section shows how to set up a Web.config transform for the environment indicator. Because the indicator is in the `<appSettings>` element, you have another alternative for specifying the transformation when you're deploying to Azure App Service. For more information, see [Specifying Web.config settings in Azure](web-config-transformations.md).
+> [!NOTE]
+> This section shows how to set up a Web.config transform for the environment indicator. Because the indicator is in the `<appSettings>` element, you have another alternative for specifying the transformation when you're deploying to Azure App Service. For more information, see [Specifying Web.config settings in Azure](web-config-transformations.md).
 
 
 1. In **Solution Explorer**, expand **Properties**, and then expand **PublishProfiles**.
@@ -285,10 +290,12 @@ You have now successfully deployed and tested your web app and it is available p
 
 In the next tutorial, you'll update application code and deploy the change to the test, staging, and production environments.
 
-> [!NOTE] While your application is in use in the production environment you should be implementing a recovery plan. That is, you should be periodically backing up your databases from the production app to a secure storage location, and you should be keeping several generations of such backups. When you update the database, you should make a backup copy from immediately before the change. Then, if you make a mistake and don't discover it until after you have deployed it to production, you will still be able to recover the database to the state it was in before it became corrupted. For more information, see [Azure SQL Database Backup and Restore](https://msdn.microsoft.com/en-us/library/windowsazure/jj650016.aspx).
+> [!NOTE]
+> While your application is in use in the production environment you should be implementing a recovery plan. That is, you should be periodically backing up your databases from the production app to a secure storage location, and you should be keeping several generations of such backups. When you update the database, you should make a backup copy from immediately before the change. Then, if you make a mistake and don't discover it until after you have deployed it to production, you will still be able to recover the database to the state it was in before it became corrupted. For more information, see [Azure SQL Database Backup and Restore](https://msdn.microsoft.com/en-us/library/windowsazure/jj650016.aspx).
 
 
-> [!NOTE] In this tutorial the SQL Server edition that you are deploying to is Azure SQL Database. While the deployment process is similar to other editions of SQL Server, a real production application might require special code for Azure SQL Database in some scenarios. For more information, see [Working with Azure SQL Database](../../../../whitepapers/aspnet-data-access-content-map.md#ssdb) and [Choosing between SQL Server and Azure SQL Database](../../../../whitepapers/aspnet-data-access-content-map.md#ssdbchoosing).
+> [!NOTE]
+> In this tutorial the SQL Server edition that you are deploying to is Azure SQL Database. While the deployment process is similar to other editions of SQL Server, a real production application might require special code for Azure SQL Database in some scenarios. For more information, see [Working with Azure SQL Database](../../../../whitepapers/aspnet-data-access-content-map.md#ssdb) and [Choosing between SQL Server and Azure SQL Database](../../../../whitepapers/aspnet-data-access-content-map.md#ssdbchoosing).
 
 >[!div class="step-by-step"]
 [Previous](setting-folder-permissions.md)

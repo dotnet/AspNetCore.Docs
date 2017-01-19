@@ -73,7 +73,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 2. Right-click on **Setup.cmd** and select **Run as administrator** to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 3. If the User Account Control dialog is shown, confirm the action to proceed.
 
-> [!NOTE] Make sure you have checked all the dependencies for this lab before running the setup.
+> [!NOTE]
+> Make sure you have checked all the dependencies for this lab before running the setup.
 
 
 <a id="CodeSnippets"></a>
@@ -81,7 +82,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 
 Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio 2013 to avoid having to add it manually.
 
-> [!NOTE] Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
+> [!NOTE]
+> Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
 
 * * *
@@ -99,7 +101,8 @@ This hands-on lab includes the following exercises:
 
 Estimated time to complete this lab: **75 minutes**
 
-> [!NOTE] When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
+> [!NOTE]
+> When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 
 <a id="Exercise1"></a>
@@ -127,13 +130,16 @@ In this task, you will go through the steps of enabling **Entity Framework Code 
 
     *Enabling Migrations*
 
-    > [!NOTE] This command adds a **Migrations** folder to Geek Quiz project that contains a file called **Configuration.cs**. The **Configuration** class allows you to configure how Migrations behaves for your context.
+    > [!NOTE]
+    > This command adds a **Migrations** folder to Geek Quiz project that contains a file called **Configuration.cs**. The **Configuration** class allows you to configure how Migrations behaves for your context.
 5. With Migrations enabled, you need to update the **Configuration** class to populate the database with the initial data that **Geek Quiz** requires. Under **Migrations**, replace the **Configuration.cs** file with the one located in the **Source\Assets** folder of this lab.
 
-    > [!NOTE] Since **Migrations** will call the **Seed** method with every database update, you need to be sure that records are not duplicated in the database. The **AddOrUpdate** method will help to prevent duplicate data.
+    > [!NOTE]
+    > Since **Migrations** will call the **Seed** method with every database update, you need to be sure that records are not duplicated in the database. The **AddOrUpdate** method will help to prevent duplicate data.
 6. To add an initial migration, enter the following command and then press **Enter**.
 
-    > [!NOTE] Make sure that there is no database named &quot;GeekQuizProd&quot; in your LocalDB instance.
+    > [!NOTE]
+    > Make sure that there is no database named &quot;GeekQuizProd&quot; in your LocalDB instance.
 
     [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample2.ps1)]
 
@@ -189,7 +195,8 @@ In this task, you will use **Entity Framework Code First Migrations** to detect 
 
     *Add-Migration*
 
-    > [!NOTE] A Migration file is composed of two methods, **Up** and **Down**.
+    > [!NOTE]
+    > A Migration file is composed of two methods, **Up** and **Down**.
     > 
     > - The **Up** method will be used to specify what changes the current version of our application need to apply to the database.
     > - The **Down** is used to reverse the changes we have added to the **Up** method.
@@ -235,7 +242,8 @@ In this task, you will use **Entity Framework Code First Migrations** to detect 
 
 In this exercise, you will deploy the **Geek Quiz** application to the staging environment of your web app using Git source control. To do this, you will create the web app and provision the required components at the management portal, configure a **Git** repository and push the application source code from your local computer to the staging slot. You will also update your production database with the **Code First Migrations** you created in the previous exercise. You will then execute the application in this test environment to verify its operation. Once you are satisfied that it is working according to your expectations, you will promote the application to production.
 
-> [!NOTE] To enable staged publishing, the web app must be in **Standard mode**. Note that additional charges will be incurred if you change your web app to Standard mode. For more information about pricing, see [App Service Pricing](https://azure.microsoft.com/en-us/pricing/details/app-service/).
+> [!NOTE]
+> To enable staged publishing, the web app must be in **Standard mode**. Note that additional charges will be incurred if you change your web app to Standard mode. For more information about pricing, see [App Service Pricing](https://azure.microsoft.com/en-us/pricing/details/app-service/).
 
 
 <a id="Ex2Task1"></a>
@@ -275,14 +283,16 @@ In this task, you will create a web app in **Azure App Service** from the manage
 6. Click **Next** to continue.
 7. Select **Local Git repository** for the source control to use and click **Next**.
 
-    > [!NOTE] You may be prompted for the deployment credentials (a username and password).
+    > [!NOTE]
+    > You may be prompted for the deployment credentials (a username and password).
 
     ![Creating the Git Repository](maintainable-azure-websites-managing-change-and-scale/_static/image18.png)
 
     *Creating the Git repository*
 8. Wait until the new web app is created.
 
-    > [!NOTE] By default, Azure provides domains at *azurewebsites.net* but also gives you the possibility to set custom domains using the Azure management portal. However, you can only manage custom domains if you are using certain Azure App Service modes.
+    > [!NOTE]
+    > By default, Azure provides domains at *azurewebsites.net* but also gives you the possibility to set custom domains using the Azure management portal. However, you can only manage custom domains if you are using certain Azure App Service modes.
     > 
     > Azure App Service is available in Free, Shared, Basic, Standard, and Premium editions. In Free and Shared mode, all web apps run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. The maximum number of free apps may vary with your plan. In Standard mode, you choose which apps run on dedicated virtual machines that correspond to the standard Azure compute resources. You can find the web app mode configuration in the **Scale** menu of your web app.
     > 
@@ -361,7 +371,8 @@ In this task, you will enable staged publishing in your web app. Then, you will 
     *Opening the web app management pages*
 2. Navigate to the **Scale** page. Under the **general** section, select **Standard** for the configuration and click **Save** in the command bar.
 
-    > [!NOTE] To run all web apps in the current region and subscription in **Standard** mode, leave the **Select All** check box selected in the **Choose Sites** configuration. Otherwise, clear the **Select All** check box.
+    > [!NOTE]
+    > To run all web apps in the current region and subscription in **Standard** mode, leave the **Select All** check box selected in the **Choose Sites** configuration. Otherwise, clear the **Select All** check box.
 
     ![Upgrading the web app to Standard mode](maintainable-azure-websites-managing-change-and-scale/_static/image32.png "Upgrading the web app to Standard mode")
 
@@ -406,7 +417,8 @@ In this task, you will enable staged publishing in your web app. Then, you will 
 
     *Pushing to Azure*
 
-    > [!NOTE] When you deploy content to the FTP host or GIT repository of a web app, you must authenticate using the **deployment credentials** that you created from the web app's **Quick Start** or **Dashboard** management pages. If you do not know your deployment credentials you can easily reset them using the management portal. Open the web app **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all web apps associated with your subscription.
+    > [!NOTE]
+    > When you deploy content to the FTP host or GIT repository of a web app, you must authenticate using the **deployment credentials** that you created from the web app's **Quick Start** or **Dashboard** management pages. If you do not know your deployment credentials you can easily reset them using the management portal. Open the web app **Dashboard** page and click the **Reset your deployment credentials** link. Provide a new password and click **OK**. Deployment credentials are valid for use with all web apps associated with your subscription.
 10. In order to verify the web app was successfully pushed to Azure, go back to the management portal and click **Websites**.
 11. Locate your web app and expand the entry to display the staging site slot. Click its **Name** to go to the management page.
 12. Click **Deployments** to see the **deployment history**. Verify that there is an **Active Deployment** with your *&quot;Initial Commit&quot;*.
@@ -421,7 +433,8 @@ In this task, you will enable staged publishing in your web app. Then, you will 
     *Browse web app*
 14. If the application is successfully deployed, you will see the Geek Quiz login page.
 
-    > [!NOTE] The address URL of the deployed application contains the name of your web app followed by *-staging*.
+    > [!NOTE]
+    > The address URL of the deployed application contains the name of your web app followed by *-staging*.
 
     ![Application running in the staging environment](maintainable-azure-websites-managing-change-and-scale/_static/image42.png)
 
@@ -444,19 +457,22 @@ Now that you have verified that the web app is working correctly in the staging 
     *Swap to production*
 2. Click **Yes** in the confirmation dialog box to proceed with the swap operation. Azure will immediately swap the content of the production site with the content of the staging site.
 
-    > [!NOTE] Some settings from the staged version will automatically be copied to the production version (e.g. connection string overrides, handler mappings, etc.) but other settings will not change (e.g. DNS endpoints, SSL bindings, etc.).
+    > [!NOTE]
+    > Some settings from the staged version will automatically be copied to the production version (e.g. connection string overrides, handler mappings, etc.) but other settings will not change (e.g. DNS endpoints, SSL bindings, etc.).
 
     ![Confirming swap operation](maintainable-azure-websites-managing-change-and-scale/_static/image45.png)
 
     *Confirming swap operation*
 3. Once the swap is complete, select the production slot and click **Browse** in the command bar to open the production site. Notice the URL in the address bar.
 
-    > [!NOTE] You might need to refresh your browser to clear cache. In Internet Explorer, you can do this by pressing **CTRL+R**.
+    > [!NOTE]
+    > You might need to refresh your browser to clear cache. In Internet Explorer, you can do this by pressing **CTRL+R**.
 
     ![Web app running in the production environment](maintainable-azure-websites-managing-change-and-scale/_static/image46.png)
 4. In the **GitBash** console, update the remote URL for the local Git repository to target the production slot. To do this, run the following command replacing the placeholders with your deployment username and the name of your web app.
 
-    > [!NOTE] In the following exercises, you will push changes to the production site instead of staging just for the simplicity of the lab. In a real-world scenario, it is recommended to verify the changes in the staging environment before promoting to production.
+    > [!NOTE]
+    > In the following exercises, you will push changes to the production site instead of staging just for the simplicity of the lab. In a real-world scenario, it is recommended to verify the changes in the staging environment before promoting to production.
 
     [!code-console[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample13.cmd)]
 
@@ -549,7 +565,8 @@ You will now push the changes you made in the previous task to the repository, w
 16. Click any of the options. The flip animation will now take place and the result (*correct/incorrect*) will be displayed.
 17. (Optional) Switch to the **Git Bash** console and execute the following commands to revert to the previous commit.
 
-    > [!NOTE] These commands create a new commit that undoes all changes in the Git repository that were made in the bad commit. Azure will then redeploy the application using the new commit.
+    > [!NOTE]
+    > These commands create a new commit that undoes all changes in the Git repository that were made in the bad commit. Azure will then redeploy the application using the new commit.
 
     [!code-console[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample16.cmd)]
 
@@ -669,7 +686,8 @@ In this task, you will configure the **GeekQuiz** solution to consume the image 
 
     [!code-xml[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample17.xml)]
 
-    > [!NOTE] URL rewriting is the process of intercepting an incoming Web request and redirecting the request to a different resource. The URL rewriting rules tells the rewriting engine when a request needs to be redirected, and where should they be redirected. A rewriting rule is composed of two strings: the pattern to look for in the requested URL (usually, using regular expressions), and the string to replace the pattern with, if found. For more information, see [URL Rewriting in ASP.NET](https://msdn.microsoft.com/en-us/library/ms972974.aspx).
+    > [!NOTE]
+    > URL rewriting is the process of intercepting an incoming Web request and redirecting the request to a different resource. The URL rewriting rules tells the rewriting engine when a request needs to be redirected, and where should they be redirected. A rewriting rule is composed of two strings: the pattern to look for in the requested URL (usually, using regular expressions), and the string to replace the pattern with, if found. For more information, see [URL Rewriting in ASP.NET](https://msdn.microsoft.com/en-us/library/ms972974.aspx).
 3. Press **CTRL + S** to save the changes.
 4. Open a new **Git Bash** console to deploy the updated application to Azure App Service.
 5. Execute the following commands to push the changes to Azure. Update the *[YOUR-APPLICATION-PATH]* placeholder with the path to the **GeekQuiz** solution. You will be prompted for your deployment password.
@@ -705,7 +723,8 @@ In this task you will use **Internet Explorer** to browse the **Geek Quiz** appl
 <a id="Exercise5"></a>
 ### Exercise 5: Using Autoscale for Web Apps
 
-> [!NOTE] This exercise is optional, since it requires support for Web Load &amp; Performance Testing which is only available for **Visual Studio 2013 Ultimate Edition**. For more information on specific Visual Studio 2013 features, compare versions [here](https://www.microsoft.com/visualstudio/eng/products/compare).
+> [!NOTE]
+> This exercise is optional, since it requires support for Web Load &amp; Performance Testing which is only available for **Visual Studio 2013 Ultimate Edition**. For more information on specific Visual Studio 2013 features, compare versions [here](https://www.microsoft.com/visualstudio/eng/products/compare).
 
 
 **Azure App Service Web Apps** provides the Autoscale feature for web apps running in **Standard Mode**. Autoscale lets Azure automatically scale the instance count of your web app depending on the load. When Autoscale is enabled, Azure checks the CPU of your web app once every five minutes and adds instances as needed at that point in time. If the CPU usage is low, Azure will remove instances once every two hours to ensure that the performance of your web app is not degraded.
@@ -720,14 +739,16 @@ In this task you will use the Azure management portal to enable the Autoscale fe
 1. In the [Azure management portal](https://manage.windowsazure.com/), select **Websites** and click the web app you created in Exercise 2.
 2. Navigate to the **Scale** page. Under the **capacity** section, select **CPU** for the **Scale by Metric** configuration.
 
-    > [!NOTE] When scaling by CPU, Azure dynamically adjusts the number of instances that the app uses if the CPU usage changes.
+    > [!NOTE]
+    > When scaling by CPU, Azure dynamically adjusts the number of instances that the app uses if the CPU usage changes.
 
     ![Selecting to scale by CPU](maintainable-azure-websites-managing-change-and-scale/_static/image77.png "Selecting the CPU metric for auto scaling")
 
     *Selecting to scale by CPU*
 3. Change the **Target CPU** configuration to **20**-**40** percent.
 
-    > [!NOTE] This range represents the average CPU usage for your web app. Azure will add or remove instances to keep your web app in this range. The minimum and maximum number of instances used for scaling is specified in the **Instance Count** configuration. Azure will never go above or beyond that limit.
+    > [!NOTE]
+    > This range represents the average CPU usage for your web app. Azure will add or remove instances to keep your web app in this range. The minimum and maximum number of instances used for scaling is specified in the **Instance Count** configuration. Azure will never go above or beyond that limit.
     > 
     > The default **Target CPU** values are modified just for the purposes of this lab. By configuring the CPU range with small values, you are increasing the chances to trigger Autoscale when a moderate load is placed on the application.
 
@@ -842,7 +863,8 @@ Now that **Autoscale** has been configured, you will create a **Web Performance 
     *Setting the load test duration to 5 minutes*
 20. In **Solution Explorer**, double-click the **Local.settings** file to explore the test settings. By default, Visual Studio uses your local computer to run the tests.
 
-    > [!NOTE] Alternatively, you can configure your test project to run the load tests in the cloud using **Visual Studio Online (VSO)**. VSO provides a cloud-based load testing service that simulates a more realistic load, avoiding local environment constraints like CPU capacity, available memory and network bandwidth. For more information about using VSO to run load tests, see [this article](https://www.visualstudio.com/get-started/load-test-your-app-vs).
+    > [!NOTE]
+    > Alternatively, you can configure your test project to run the load tests in the cloud using **Visual Studio Online (VSO)**. VSO provides a cloud-based load testing service that simulates a more realistic load, avoiding local environment constraints like CPU capacity, available memory and network bandwidth. For more information about using VSO to run load tests, see [this article](https://www.visualstudio.com/get-started/load-test-your-app-vs).
 
     ![Test settings](maintainable-azure-websites-managing-change-and-scale/_static/image98.png)
 
@@ -863,7 +885,8 @@ You will now execute the load test you created in the previous task and see how 
     *Running the load test*
 3. Wait until the load test completes.
 
-    > [!NOTE] The load test simulates multiple users that send requests to the web app simultaneously. When the test is running, you can monitor the available counters to detect any errors, warnings or other information related to your load test run.
+    > [!NOTE]
+    > The load test simulates multiple users that send requests to the web app simultaneously. When the test is running, you can monitor the available counters to detect any errors, warnings or other information related to your load test run.
 
     ![Load test running](maintainable-azure-websites-managing-change-and-scale/_static/image101.png "Waiting until the load test completes")
 
@@ -874,7 +897,8 @@ You will now execute the load test you created in the previous task and see how 
 
     *New instance automatically deployed*
 
-    > [!NOTE] It may take several minutes for the changes to appear in the graph (press **CTRL + F5** periodically to refresh the page). If you do not see any changes, you can try the following:
+    > [!NOTE]
+    > It may take several minutes for the changes to appear in the graph (press **CTRL + F5** periodically to refresh the page). If you do not see any changes, you can try the following:
     > 
     > - Increase the duration of the load test (e.g. to **10 minutes**)
     > - Reduce the maximum and minimum values of the **Target CPU** range in the Autoscale configuration of your web app

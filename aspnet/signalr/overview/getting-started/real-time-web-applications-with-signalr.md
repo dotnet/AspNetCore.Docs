@@ -58,7 +58,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 2. Right-click **Setup.cmd** and select **Run as administrator** to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 3. If the User Account Control dialog box is shown, confirm the action to proceed.
 
-> [!NOTE] Make sure you have checked all the dependencies for this lab before running the setup.
+> [!NOTE]
+> Make sure you have checked all the dependencies for this lab before running the setup.
 
 
 <a id="CodeSnippets"></a>
@@ -66,7 +67,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 
 Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio 2013 to avoid having to add it manually.
 
-> [!NOTE] Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
+> [!NOTE]
+> Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
 
 * * *
@@ -81,7 +83,8 @@ This hands-on lab includes the following exercises:
 
 Estimated time to complete this lab: **60 minutes**
 
-> [!NOTE] When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
+> [!NOTE]
+> When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 
 <a id="Exercise1"></a>
@@ -151,7 +154,8 @@ In this task, you will add SignalR to the solution and send updates to the clien
 
     *SignalR package installation*
 
-    > [!NOTE] When installing **SignalR** NuGet packages version 2.0.2 from a brand new MVC 5 application, you will need to manually update **OWIN** packages to version 2.0.1 (or higher) before installing SignalR. To do this, you can execute the following script in the **Package Manager Console**:
+    > [!NOTE]
+    > When installing **SignalR** NuGet packages version 2.0.2 from a brand new MVC 5 application, you will need to manually update **OWIN** packages to version 2.0.1 (or higher) before installing SignalR. To do this, you can execute the following script in the **Package Manager Console**:
     > 
     > [!code-powershell[Main](real-time-web-applications-with-signalr/samples/sample2.ps1)]
     > 
@@ -193,7 +197,8 @@ In this task, you will add SignalR to the solution and send updates to the clien
 
     [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample6.cs)]
 
-    > [!NOTE] In the code above, you are using an arbitrary method name to call a function on the client (i.e.: *updateStatistics*). The method name that you specify is interpreted as a dynamic object, which means there is no IntelliSense or compile-time validation for it. The expression is evaluated at run time. When the method call executes, SignalR sends the method name and the parameter values to the client. If the client has a method that matches the name, that method is called and the parameter values are passed to it. If no matching method is found on the client, no error is raised. For more information, refer to [ASP.NET SignalR Hubs API Guide](../guide-to-the-api/hubs-api-guide-server.md).
+    > [!NOTE]
+    > In the code above, you are using an arbitrary method name to call a function on the client (i.e.: *updateStatistics*). The method name that you specify is interpreted as a dynamic object, which means there is no IntelliSense or compile-time validation for it. The expression is evaluated at run time. When the method call executes, SignalR sends the method name and the parameter values to the client. If the client has a method that matches the name, that method is called and the parameter values are passed to it. If no matching method is found on the client, no error is raised. For more information, refer to [ASP.NET SignalR Hubs API Guide](../guide-to-the-api/hubs-api-guide-server.md).
 11. Open the **TriviaController.cs** page inside the **Controllers** folder and add the following using directives.
 
     [!code-csharp[Main](real-time-web-applications-with-signalr/samples/sample7.cs)]
@@ -208,7 +213,8 @@ In this task, you will add SignalR to the solution and send updates to the clien
 
     [!code-cshtml[Main](real-time-web-applications-with-signalr/samples/sample9.cshtml)]
 
-    > [!NOTE] When you add SignalR and other script libraries to your Visual Studio project, the Package Manager might install a version of the SignalR script file that is more recent than the version shown in this topic. Make sure that the script reference in your code matches the version of the script library installed in your project.
+    > [!NOTE]
+    > When you add SignalR and other script libraries to your Visual Studio project, the Package Manager might install a version of the SignalR script file that is more recent than the version shown in this topic. Make sure that the script reference in your code matches the version of the script library installed in your project.
 14. Add the following highlighted code to connect the client to the SignalR hub and update the statistics data when a new message is received from the hub.
 
     (Code Snippet - *RealTimeSignalR - Ex1 - SignalRClientCode*)
@@ -224,7 +230,8 @@ In this task, you will run the solution to verify that the statistics view is up
 
 1. Press **F5** to run the solution.
 
-    > [!NOTE] If not already logged in to the application, log in with the user you created in Task 1.
+    > [!NOTE]
+    > If not already logged in to the application, log in with the user you created in Task 1.
 2. Open the **Statistics** page in a new window and put the **Home** page and **Statistics** page side-by-side as you did in Task 1.
 3. In the **Home** page, answer the question by clicking one of the options.
 
@@ -256,7 +263,8 @@ Each server instance connects to the backplane through the bus. When a message i
 
 For more information about how the SignalR backplane works, read this [article](../performance/scaleout-in-signalr.md).
 
-> [!NOTE] There are some scenarios where a backplane can become a bottleneck. Here are some typical SignalR scenarios:
+> [!NOTE]
+> There are some scenarios where a backplane can become a bottleneck. Here are some typical SignalR scenarios:
 > 
 > - [Server broadcast](tutorial-server-broadcast-with-signalr.md) (e.g., stock ticker): Backplanes work well for this scenario, because the server controls the rate at which messages are sent.
 > - [Client-to-client](tutorial-getting-started-with-signalr.md) (e.g., chat): In this scenario, the backplane might be a bottleneck if the number of messages scales with the number of clients; that is, if the rate of messages grows proportionally as more clients join.
@@ -321,7 +329,8 @@ In this task, you will create a database that will serve as a backplane for the 
 
     *Creating the SignalR database*
 
-    > [!NOTE] You can choose any name for the database.
+    > [!NOTE]
+    > You can choose any name for the database.
 6. To receive updates more efficiently from the backplane, it is recommended to enable Service Broker for the database. Service Broker provides native support for messaging and queuing in SQL Server. The backplane also works without Service Broker. Open a new query by right-clicking the database and select **New Query**.
 
     ![Opening a New Query](real-time-web-applications-with-signalr/_static/image24.png "Opening a New Query")
@@ -342,7 +351,8 @@ In this task, you will create a database that will serve as a backplane for the 
 
     *Enabling Service Broker*
 
-    > [!NOTE] If this query appears to deadlock, make sure there are no applications connected to the DB.
+    > [!NOTE]
+    > If this query appears to deadlock, make sure there are no applications connected to the DB.
 
 <a id="Ex2Task3"></a>
 #### Task 3 – Configuring the SignalR Application

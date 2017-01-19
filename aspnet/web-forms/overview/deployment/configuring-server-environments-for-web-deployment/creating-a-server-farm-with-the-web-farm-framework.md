@@ -58,7 +58,8 @@ The tasks and walkthroughs in this topic assume that you&#x27;re starting with c
 - The server is domain-joined.
 - The server has a static IP address.
 
-> [!NOTE] For more information on joining computers to a domain, see [Joining Computers to the Domain and Logging On](https://technet.microsoft.com/en-us/library/cc725618(v=WS.10).aspx). For more information on configuring static IP addresses, see [Configure a Static IP Address](https://technet.microsoft.com/en-us/library/cc754203(v=ws.10).aspx).
+> [!NOTE]
+> For more information on joining computers to a domain, see [Joining Computers to the Domain and Logging On](https://technet.microsoft.com/en-us/library/cc725618(v=WS.10).aspx). For more information on configuring static IP addresses, see [Configure a Static IP Address](https://technet.microsoft.com/en-us/library/cc754203(v=ws.10).aspx).
 
 
 ## Create the WFF Controller Server
@@ -130,7 +131,8 @@ The next step is to create the server farm in WFF. You can do this from IIS Mana
 
     ![](creating-a-server-farm-with-the-web-farm-framework/_static/image7.png)
 
-    > [!NOTE] You might have noticed that **Server is available for Load Balancing** is selected by default. WFF uses the IIS ARR module to implement load balancing and thereby distribute requests across the web servers in your server farm. In most scenarios, you&#x27;d only clear the **Server is available for Load Balancing** option if you wanted to use a third-party load balancing solution instead.
+    > [!NOTE]
+    > You might have noticed that **Server is available for Load Balancing** is selected by default. WFF uses the IIS ARR module to implement load balancing and thereby distribute requests across the web servers in your server farm. In most scenarios, you&#x27;d only clear the **Server is available for Load Balancing** option if you wanted to use a third-party load balancing solution instead.
 8. On the **Add Servers** page, type the FQDN of your first secondary server, and then click **Add**.
 
     ![](creating-a-server-farm-with-the-web-farm-framework/_static/image8.png)
@@ -163,7 +165,8 @@ You can manage basic application and platform provisioning settings from IIS Man
 
     ![](creating-a-server-farm-with-the-web-farm-framework/_static/image12.png)
 
-    > [!NOTE] Platform provisioning may take some time. The installer process runs in the background on the secondary servers in your server farm.
+    > [!NOTE]
+    > Platform provisioning may take some time. The installer process runs in the background on the secondary servers in your server farm.
 8. Once you've allowed sufficient time for the provisioning process to complete, you can verify that the products and components that you added to the primary server have now been replicated on the secondary servers. For example, you can log on to a secondary server and use the **Server Manager** window to verify that the web server role has been installed.
 
     ![](creating-a-server-farm-with-the-web-farm-framework/_static/image13.png)
@@ -177,7 +180,8 @@ When you create a web farm, you need to set up some form of load balancing to di
 
 WFF is designed to integrate closely with IIS ARR. To take advantage of this integration, you need to install the ARR module on the WFF controller server. You then direct all your web traffic to the controller server, typically by configuring Domain Name System (DNS) records. The controller server will then distribute incoming requests among the servers in your farm, based on server availability and various other criteria.
 
-> [!NOTE] You don&#x27;t have to use ARR with WFF; you can configure WFF to work with third-party load balancing solutions. For more information, see [Overview of the Web Farm Framework 2.0 for IIS 7](https://go.microsoft.com/?linkid=9805126).
+> [!NOTE]
+> You don&#x27;t have to use ARR with WFF; you can configure WFF to work with third-party load balancing solutions. For more information, see [Overview of the Web Farm Framework 2.0 for IIS 7](https://go.microsoft.com/?linkid=9805126).
 
 
 Load balancing using ARR is a complex topic, most of which is beyond the scope of this tutorial. However, you can use the next procedure to install the ARR module and get started with load balancing.
@@ -197,7 +201,8 @@ Load balancing using ARR is a complex topic, most of which is beyond the scope o
 7. In the **Server Farm** pane, double-click **Load Balance**.
 8. In the **Load Balance** pane, select a load balance algorithm (for example, **Least current request**).
 
-    > [!NOTE] For more information on load balancing algorithms and other configuration settings, see [Application Request Routing Module](https://go.microsoft.com/?linkid=9805130).
+    > [!NOTE]
+    > For more information on load balancing algorithms and other configuration settings, see [Application Request Routing Module](https://go.microsoft.com/?linkid=9805130).
 
     ![](creating-a-server-farm-with-the-web-farm-framework/_static/image17.png)
 9. In the **Actions** pane, click **Apply**.

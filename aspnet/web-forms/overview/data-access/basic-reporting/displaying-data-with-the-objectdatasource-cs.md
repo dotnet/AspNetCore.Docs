@@ -47,7 +47,8 @@ While the ObjectDataSource can be used to invoke methods for inserting, updating
 
 Start by opening the `SimpleDisplay.aspx` page in the `BasicReporting` folder, switch to Design view, and then drag an ObjectDataSource control from the Toolbox onto the page's design surface. The ObjectDataSource appears as a gray box on the design surface because it does not produce any markup; it simply accesses data by invoking a method from a specified object. The data returned by an ObjectDataSource can be displayed by a data Web control, such as the GridView, DetailsView, FormView, and so on.
 
-> [!NOTE] Alternatively, you may first add the data Web control to the page and then, from its smart tag, choose the &lt;New data source&gt; option from the drop-down list.
+> [!NOTE]
+> Alternatively, you may first add the data Web control to the page and then, from its smart tag, choose the &lt;New data source&gt; option from the drop-down list.
 
 
 To specify the ObjectDataSource's underlying object and how that object's methods map to the ObjectDataSource's, click on the Configure Data Source link from the ObjectDataSource's smart tag.

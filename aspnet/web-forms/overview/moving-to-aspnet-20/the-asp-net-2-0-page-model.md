@@ -41,12 +41,14 @@ A typical class definition in an ASP.NET 2.0 code-behind file might look like th
 
 [!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample2.cs)]
 
-> [!NOTE] C# and Visual Basic are the only managed languages that currently support partial classes. Therefore, developers using J# will not be able to use the code-behind model in ASP.NET 2.0.
+> [!NOTE]
+> C# and Visual Basic are the only managed languages that currently support partial classes. Therefore, developers using J# will not be able to use the code-behind model in ASP.NET 2.0.
 
 
 The new model enhances the code-behind model because developers will now have code files that contain only the code that they have created. It also provides for a true separation of code and content because there are no instance variable declarations in the code-behind file.
 
-> [!NOTE] Because the partial class for the ASPX page is where event binding takes place, Visual Basic developers can realize a slight performance increase by using the Handles keyword in code-behind to bind events. C# has no equivalent keyword.
+> [!NOTE]
+> Because the partial class for the ASPX page is where event binding takes place, Visual Basic developers can realize a slight performance increase by using the Handles keyword in code-behind to bind events. C# has no equivalent keyword.
 
 
 ## New @ Page Directive Attributes
@@ -425,7 +427,8 @@ The video below is a walkthrough of an asynchronous page request.
 [Open Full-Screen Video](the-asp-net-2-0-page-model/_static/async1.wmv)
 
 
-> [!NOTE] An async page does not render to the browser until the EndEventHandler has completed. No doubt but that some developers will think of async requests as being similar to async callbacks. It's important to realize that they are not. The benefit to asynchronous requests is that the first worker thread can be returned to the thread pool to service new requests, thereby reducing contention due to being IO bound, etc.
+> [!NOTE]
+> An async page does not render to the browser until the EndEventHandler has completed. No doubt but that some developers will think of async requests as being similar to async callbacks. It's important to realize that they are not. The benefit to asynchronous requests is that the first worker thread can be returned to the thread pool to service new requests, thereby reducing contention due to being IO bound, etc.
 
 
 ## Script Callbacks in ASP.NET 2.0
@@ -457,7 +460,8 @@ The arguments for the WebForm\_DoCallback client-side function are provided via 
 
 [!code-csharp[Main](the-asp-net-2-0-page-model/samples/sample12.cs)]
 
-> [!NOTE] In this case, cm is an instance of ClientScriptManager. The ClientScriptManager class will be covered later in this module.
+> [!NOTE]
+> In this case, cm is an instance of ClientScriptManager. The ClientScriptManager class will be covered later in this module.
 
 
 There are several overloaded versions of GetCallbackEventReference. In this case, the arguments are as follows:
@@ -527,7 +531,8 @@ Script callbacks in ASP.NET are supported in any browser that supports making XM
 
 Client scripts in ASP.NET 2.0 are managed via the use of the ClientScriptManager class. The ClientScriptManager class keeps track of client scripts using a type and a name. This prevents the same script from being programmatically inserted on a page more than once.
 
-> [!NOTE] After a script has been successfully registered on a page, any subsequent attempt to register the same script will simply result in the script not being registered a second time. No duplicate scripts are added and no exception occurs. To avoid unnecessary computation, there are methods that you can use to determine if a script is already registered so that you do not attempt to register it more than once.
+> [!NOTE]
+> After a script has been successfully registered on a page, any subsequent attempt to register the same script will simply result in the script not being registered a second time. No duplicate scripts are added and no exception occurs. To avoid unnecessary computation, there are methods that you can use to determine if a script is already registered so that you do not attempt to register it more than once.
 
 
 The methods of the ClientScriptManager should be familiar to all current ASP.NET developers:
@@ -568,7 +573,8 @@ This code produces the following code in the rendered page:
 
 [!code-html[Main](the-asp-net-2-0-page-model/samples/sample18.html)]
 
-> [!NOTE] The script block is rendered at the bottom of the page.
+> [!NOTE]
+> The script block is rendered at the bottom of the page.
 
 
 Use the IsClientScriptIncludeRegistered method to determine if a script has already been registered. This allows you to avoid an attempt to re-register a script.
@@ -577,7 +583,8 @@ Use the IsClientScriptIncludeRegistered method to determine if a script has alre
 
 The RegisterStartupScript method takes the same arguments as the RegisterClientScriptBlock method. A script registered with RegisterStartupScript executes after the page loads but before the OnLoad client-side event. In 1.X, scripts registered with RegisterStartupScript were placed just before the closing &lt;/form&gt; tag while scripts registered with RegisterClientScriptBlock were placed immediately after the opening &lt;form&gt; tag. In ASP.NET 2.0, both are placed immediately before the closing &lt;/form&gt; tag.
 
-> [!NOTE] If you register a function with RegisterStartupScript, that function will not execute until you explicitly call it in client-side code.
+> [!NOTE]
+> If you register a function with RegisterStartupScript, that function will not execute until you explicitly call it in client-side code.
 
 
 Use the IsStartupScriptRegistered method to determine if a script has already been registered and avoid an attempt to re-register a script.

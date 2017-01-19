@@ -29,7 +29,8 @@ Unfortunately, the DataList lacks the built-in editing and deleting capabilities
 
 In this tutorial we'll see how to create a DataList that supports editing and deleting of its underlying data. Future tutorials will examine more advanced editing and deleting scenarios, including input field validation, gracefully handling exceptions raised from the Data Access or Business Logic Layers, and so on.
 
-> [!NOTE] Like the DataList, the Repeater control lacks the out of the box functionality for inserting, updating, or deleting. While such functionality can be added, the DataList includes properties and events not found in the Repeater that simplify adding such capabilities. Therefore, this tutorial and future ones that look at editing and deleting will focus strictly on the DataList.
+> [!NOTE]
+> Like the DataList, the Repeater control lacks the out of the box functionality for inserting, updating, or deleting. While such functionality can be added, the DataList includes properties and events not found in the Repeater that simplify adding such capabilities. Therefore, this tutorial and future ones that look at editing and deleting will focus strictly on the DataList.
 
 
 ## Step 1: Creating the Editing and Deleting Tutorials Web Pages
@@ -123,7 +124,8 @@ The DataList, like the GridView, is not designed for inserting new data; therefo
 
 After configuring the ObjectDataSource, click Finish, returning to the Designer. As we ve seen in past examples, when completing the ObjectDataSource configuration, Visual Studio automatically creates an `ItemTemplate` for the DropDownList, displaying each of the data fields. Replace this `ItemTemplate` with one that displays only the product s name and price. Also, set the `RepeatColumns` property to 2.
 
-> [!NOTE] As discussed in the *Overview of Inserting, Updating, and Deleting Data* tutorial, when modifying data using the ObjectDataSource our architecture requires that we remove the `OldValuesParameterFormatString` property from the ObjectDataSource s declarative markup (or reset it to its default value, `{0}`). In this tutorial, however, we are using the ObjectDataSource only for retrieving data. Therefore, we do not need to modify the ObjectDataSource s `OldValuesParameterFormatString` property value (although it doesn t hurt to do so).
+> [!NOTE]
+> As discussed in the *Overview of Inserting, Updating, and Deleting Data* tutorial, when modifying data using the ObjectDataSource our architecture requires that we remove the `OldValuesParameterFormatString` property from the ObjectDataSource s declarative markup (or reset it to its default value, `{0}`). In this tutorial, however, we are using the ObjectDataSource only for retrieving data. Therefore, we do not need to modify the ObjectDataSource s `OldValuesParameterFormatString` property value (although it doesn t hurt to do so).
 
 
 After replacing the default DataList `ItemTemplate` with a customized one, the declarative markup on your page should look similar to the following:
@@ -139,7 +141,8 @@ Take a moment to view our progress through a browser. As Figure 7 shows, the Dat
 **Figure 7**: The Products Names and Prices are Displayed in a Two-Column DataList ([Click to view full-size image](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/_static/image17.png))
 
 
-> [!NOTE] The DataList has a number of properties that are required for the updating and deleting process, and these values are stored in view state. Therefore, when building a DataList that supports editing or deleting data, it is essential that the DataList s view state be enabled.  
+> [!NOTE]
+> The DataList has a number of properties that are required for the updating and deleting process, and these values are stored in view state. Therefore, when building a DataList that supports editing or deleting data, it is essential that the DataList s view state be enabled.  
 >   
 >  The astute reader may recall that we were able to disable view state when creating editable GridViews, DetailsViews, and FormViews. This is because ASP.NET 2.0 Web controls can include *control state*, which is state persisted across postbacks like view state, but deemed essential.
 
@@ -170,7 +173,8 @@ Next, type in Product name: and Price: and then drag two TextBox controls from t
 
 We need to bind the corresponding product data field values to the `Text` properties of the two TextBoxes. From the TextBoxes smart tags, click on the Edit DataBindings link and then associate the appropriate data field with the `Text` property, as shown in Figure 10.
 
-> [!NOTE] When binding the `UnitPrice` data field to the price TextBox s `Text` field, you may format it as a currency value (`{0:C}`), a general number (`{0:N}`), or leave it unformatted.
+> [!NOTE]
+> When binding the `UnitPrice` data field to the price TextBox s `Text` field, you may format it as a currency value (`{0:C}`), a general number (`{0:N}`), or leave it unformatted.
 
 
 ![Bind the ProductName and UnitPrice Data Fields to the Text Properties of the TextBoxes](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/_static/image24.png)
@@ -267,7 +271,8 @@ The following code implements the four steps:
 
 The event handler starts by reading in the edited product s `ProductID` from the `DataKeys` collection. Next, the two TextBoxes in the `EditItemTemplate` are referenced and their `Text` properties stored in local variables, `productNameValue` and `unitPriceValue`. We use the `Decimal.Parse()` method to read the value from the `UnitPrice` TextBox so that if the value entered has a currency symbol, it can still be correctly converted into a `Decimal` value.
 
-> [!NOTE] The values from the `ProductName` and `UnitPrice` TextBoxes are only assigned to the productNameValue and unitPriceValue variables if the TextBoxes Text properties have a value specified. Otherwise, a value of `Nothing` is used for the variables, which has the effect of updating the data with a database `NULL` value. That is, our code treats converts empty strings to database `NULL` values, which is the default behavior of the editing interface in the GridView, DetailsView, and FormView controls.
+> [!NOTE]
+> The values from the `ProductName` and `UnitPrice` TextBoxes are only assigned to the productNameValue and unitPriceValue variables if the TextBoxes Text properties have a value specified. Otherwise, a value of `Nothing` is used for the variables, which has the effect of updating the data with a database `NULL` value. That is, our code treats converts empty strings to database `NULL` values, which is the default behavior of the editing interface in the GridView, DetailsView, and FormView controls.
 
 
 After reading the values, the `ProductsBLL` class s `UpdateProduct` method is called, passing in the product s name, price, and `ProductID`. The event handler completes by returning the DataList to its pre-editing state using the exact same logic as in the `CancelCommand` event handler.

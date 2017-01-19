@@ -55,7 +55,8 @@ Here is a Web API controller that accepts an `Update` object via POST.
 
 [!code-csharp[Main](sending-html-form-data-part-1/samples/sample3.cs)]
 
-> [!NOTE] This controller uses [action-based routing](../web-api-routing-and-actions/routing-in-aspnet-web-api.md#routing_by_action_name), so the route template is &quot;api/{controller}/{action}/{id}&quot;. The client will post the data to &quot;/api/updates/complex&quot;.
+> [!NOTE]
+> This controller uses [action-based routing](../web-api-routing-and-actions/routing-in-aspnet-web-api.md#routing_by_action_name), so the route template is &quot;api/{controller}/{action}/{id}&quot;. The client will post the data to &quot;/api/updates/complex&quot;.
 
 
 Now let's write an HTML form for users to submit a status update.
@@ -92,7 +93,8 @@ When the request completes, the `.success()` or `.error()` handler displays an a
 
 In the previous sections, we sent a complex type, which Web API deserialized to an instance of a model class. You can also send simple types, such as a string.
 
-> [!NOTE] Before sending a simple type, consider wrapping the value in a complex type instead. This gives you the benefits of model validation on the server side, and makes it easier to extend your model if needed.
+> [!NOTE]
+> Before sending a simple type, consider wrapping the value in a complex type instead. This gives you the benefits of model validation on the server side, and makes it easier to extend your model if needed.
 
 
 The basic steps to send a simple type are the same, but there are two subtle differences. First, in the controller, you must decorate the parameter name with the **FromBody** attribute.
@@ -101,7 +103,8 @@ The basic steps to send a simple type are the same, but there are two subtle dif
 
 By default, Web API tries to get simple types from the request URI. The **FromBody** attribute tells Web API to read the value from the request body.
 
-> [!NOTE] Web API reads the response body at most once, so only one parameter of an action can come from the request body. If you need to get multiple values from the request body, define a complex type.
+> [!NOTE]
+> Web API reads the response body at most once, so only one parameter of an action can come from the request body. If you need to get multiple values from the request body, define a complex type.
 
 
 Second, the client needs to send the value with the following format:

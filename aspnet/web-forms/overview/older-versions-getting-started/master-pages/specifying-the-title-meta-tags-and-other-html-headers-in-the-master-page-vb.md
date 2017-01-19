@@ -49,7 +49,8 @@ In addition to the `<title>` element and `head` ContentPlaceHolder, the master p
 
 The web page's title is specified via the `<title>` element. It is important to set each page's title to an appropriate value. When visiting a page, its title is displayed in the browser's Title bar. Additionally, when bookmarking a page, browsers use the page's title as the suggested name for the bookmark. Also, many search engines show the page's title when displaying search results.
 
-> [!NOTE] By default, Visual Studio sets the `<title>` element in the master page to "Untitled Page". Similarly, new ASP.NET pages have their `<title>` set to "Untitled Page", too. Because it can be easy to forget to set the page's title to an appropriate value, there are many pages on the Internet with the title "Untitled Page". Searching Google for web pages with this title returns roughly 2,460,000 results. Even Microsoft is susceptible to publishing web pages with the title "Untitled Page". At the time of this writing, a Google search reported 236 such web pages in the Microsoft.com domain.
+> [!NOTE]
+> By default, Visual Studio sets the `<title>` element in the master page to "Untitled Page". Similarly, new ASP.NET pages have their `<title>` set to "Untitled Page", too. Because it can be easy to forget to set the page's title to an appropriate value, there are many pages on the Internet with the title "Untitled Page". Searching Google for web pages with this title returns roughly 2,460,000 results. Even Microsoft is susceptible to publishing web pages with the title "Untitled Page". At the time of this writing, a Google search reported 236 such web pages in the Microsoft.com domain.
 
 
 An ASP.NET page can specify its title in one of the following ways:
@@ -112,7 +113,8 @@ All ASP.NET web pages derive from the `Page` class in the System.Web.UI namespac
 
 In this step we create a base page that automatically sets the page's title to the ASP.NET page's filename if the title has not otherwise been explicitly set. Step 3 looks at setting the page's title based on the site map.
 
-> [!NOTE] A thorough examination of creating and using custom base page classes is beyond the scope of this tutorial series. For more information, read [Using a Custom Base Class for Your ASP.NET Pages' Code-Behind Classes](http://aspnet.4guysfromrolla.com/articles/041305-1.aspx).
+> [!NOTE]
+> A thorough examination of creating and using custom base page classes is beyond the scope of this tutorial series. For more information, read [Using a Custom Base Class for Your ASP.NET Pages' Code-Behind Classes](http://aspnet.4guysfromrolla.com/articles/041305-1.aspx).
 
 
 ### Creating the Base Page Class
@@ -125,7 +127,8 @@ Our first task is to create a base page class, which is a class that extends the
 **Figure 04**: Add an `App_Code` Folder and a Class Named `BasePage`
 
 
-> [!NOTE] Visual Studio supports two modes of project management: Web Site Projects and Web Application Projects. The `App_Code` folder is designed to be used with the Web Site Project model. If you are using the Web Application Project model, place the `BasePage.vb` class in a folder named something other than `App_Code`, such as `Classes`. For more information on this topic, refer to [Migrating a Web Site Project to a Web Application Project](http://webproject.scottgu.com/VisualBasic/Migration2/Migration2.aspx).
+> [!NOTE]
+> Visual Studio supports two modes of project management: Web Site Projects and Web Application Projects. The `App_Code` folder is designed to be used with the Web Site Project model. If you are using the Web Application Project model, place the `BasePage.vb` class in a folder named something other than `App_Code`, such as `Classes`. For more information on this topic, refer to [Migrating a Web Site Project to a Web Application Project](http://webproject.scottgu.com/VisualBasic/Migration2/Migration2.aspx).
 
 
 Because the custom base page serves as the base class for ASP.NET pages' code-behind classes, it needs to extend the `Page` class.
@@ -142,7 +145,8 @@ To accomplish this, override the `OnLoadComplete` method and enter the following
 
 The `OnLoadComplete` method starts by determining if the `Title` property has not yet been explicitly set. If the `Title` property is `Nothing`, an empty string, or has the value "Untitled Page", it is assigned to the filename of the requested ASP.NET page. The physical path to the requested ASP.NET page - `C:\MySites\Tutorial03\Login.aspx`, for example - is accessible via the `Request.PhysicalPath` property. The `Path.GetFileNameWithoutExtension` method is used to pull out just the filename portion, and this filename is then assigned to the `Page.Title` property.
 
-> [!NOTE] I invite you to enhance this logic to improve the format of the title. For example, if the page's filename is `Company-Products.aspx`, the above code will produce the title "Company-Products", but ideally the dash would be replaced with a space, as in "Company Products". Also, consider adding a space whenever there's a case change. That is, consider adding code that transforms the filename `OurBusinessHours.aspx` to a title of "Our Business Hours".
+> [!NOTE]
+> I invite you to enhance this logic to improve the format of the title. For example, if the page's filename is `Company-Products.aspx`, the above code will produce the title "Company-Products", but ideally the dash would be replaced with a space, as in "Company Products". Also, consider adding a space whenever there's a case change. That is, consider adding code that transforms the filename `OurBusinessHours.aspx` to a title of "Our Business Hours".
 
 
 ### Having the Content Pages Inherit the Base Page Class
@@ -173,7 +177,8 @@ ASP.NET offers a robust site map framework that enables page developers to defin
 
 The site map structure can also be accessed programmatically from an ASP.NET page's code-behind class. In this manner we can automatically set a page's title to the title of its corresponding node in the site map. Let's enhance the `BasePage` class created in Step 2 so that it offers this functionality. But first we need to create a site map for our site.
 
-> [!NOTE] This tutorial assumes the reader already is familiar with ASP.NET's site map features. For more information on using the site map, consult my multi-part article series, [Examining ASP.NET's Site Navigation](http://aspnet.4guysfromrolla.com/articles/111605-1.aspx).
+> [!NOTE]
+> This tutorial assumes the reader already is familiar with ASP.NET's site map features. For more information on using the site map, consult my multi-part article series, [Examining ASP.NET's Site Navigation](http://aspnet.4guysfromrolla.com/articles/111605-1.aspx).
 
 
 ### Creating the Site Map
@@ -207,7 +212,8 @@ We will update the site map structure in future tutorials as we add new examples
 
 Now that we have a site map defined, let's update the master page to include navigation Web controls. Specifically, let's add a ListView control to the left column in the Lessons section that renders an unordered list with a list item for each node defined in the site map.
 
-> [!NOTE] The ListView control is new to ASP.NET version 3.5. If you are using a prior version of ASP.NET, use the Repeater control instead. For more information on the ListView control, see [Using ASP.NET 3.5's ListView and DataPager Controls](http://aspnet.4guysfromrolla.com/articles/122607-1.aspx).
+> [!NOTE]
+> The ListView control is new to ASP.NET version 3.5. If you are using a prior version of ASP.NET, use the Repeater control instead. For more information on the ListView control, see [Using ASP.NET 3.5's ListView and DataPager Controls](http://aspnet.4guysfromrolla.com/articles/122607-1.aspx).
 
 
 Start by removing the existing unordered list markup from the Lessons section. Next, drag a ListView control from the Toolbox and drop it beneath the Lessons heading. The ListView is located in the Data section of the Toolbox, alongside the other view controls: the GridView, DetailsView, and FormView. Set the ListView's `ID` property to `LessonsList`.
@@ -310,7 +316,8 @@ Being able to programmatically add content to the `<head>` region is useful when
 
 The above code adds the `<meta>` keywords element to the `<head>` region, which provides a comma-delimited list of keywords that describe the page. Note that to add a `<meta>` tag you create an [`HtmlMeta`](https://msdn.microsoft.com/en-us/library/system.web.ui.htmlcontrols.htmlmeta.aspx) instance, set its `Name` and `Content` properties, and then add it to the `Header`'s `Controls` collection. Similarly, to programmatically add a `<link>` element, create an [`HtmlLink`](https://msdn.microsoft.com/en-us/library/system.web.ui.htmlcontrols.htmllink.aspx) object, set its properties, and then add it to the `Header`'s `Controls` collection.
 
-> [!NOTE] To add arbitrary markup, create a [`LiteralControl`](https://msdn.microsoft.com/en-us/library/system.web.ui.literalcontrol.aspx) instance, set its `Text` property, and then add it to the `Header`'s `Controls` collection.
+> [!NOTE]
+> To add arbitrary markup, create a [`LiteralControl`](https://msdn.microsoft.com/en-us/library/system.web.ui.literalcontrol.aspx) instance, set its `Text` property, and then add it to the `Header`'s `Controls` collection.
 
 
 ## Summary

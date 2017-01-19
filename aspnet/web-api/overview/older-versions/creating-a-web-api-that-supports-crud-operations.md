@@ -129,7 +129,8 @@ In the **Add Controller** wizard, name the controller &quot;ProductsController&q
 
 ![](creating-a-web-api-that-supports-crud-operations/_static/image7.png)
 
-> [!NOTE] It is not necessary to put your contollers into a folder named Controllers. The folder name is not important; it is simply a convenient way to organize your source files.
+> [!NOTE]
+> It is not necessary to put your contollers into a folder named Controllers. The folder name is not important; it is simply a convenient way to organize your source files.
 
 
 The **Add Controller** wizard will create a file named ProductsController.cs in the Controllers folder. If this file is not open already, double-click the file to open it. Add the following **using** statement:
@@ -140,7 +141,8 @@ Add a field that holds an **IProductRepository** instance.
 
 [!code-csharp[Main](creating-a-web-api-that-supports-crud-operations/samples/sample5.cs)]
 
-> [!NOTE] Calling `new ProductRepository()` in the controller is not the best design, because it ties the controller to a particular implementation of `IProductRepository`. For a better approach, see [Using the Web API Dependency Resolver](../advanced/dependency-injection.md).
+> [!NOTE]
+> Calling `new ProductRepository()` in the controller is not the best design, because it ties the controller to a particular implementation of `IProductRepository`. For a better approach, see [Using the Web API Dependency Resolver](../advanced/dependency-injection.md).
 
 
 ## Getting a Resource
@@ -197,7 +199,8 @@ Notice that the method return type is now **HttpResponseMessage**. By returning 
 
 The **CreateResponse** method creates an **HttpResponseMessage** and automatically writes a serialized representation of the Product object into the body fo the response message.
 
-> [!NOTE] This example does not validate the `Product`. For information about model validation, see [Model Validation in ASP.NET Web API](../formats-and-model-binding/model-validation-in-aspnet-web-api.md).
+> [!NOTE]
+> This example does not validate the `Product`. For information about model validation, see [Model Validation in ASP.NET Web API](../formats-and-model-binding/model-validation-in-aspnet-web-api.md).
 
 
 ## Updating a Resource

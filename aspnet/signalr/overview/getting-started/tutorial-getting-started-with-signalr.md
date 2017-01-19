@@ -53,7 +53,8 @@ by [Patrick Fletcher](https://github.com/pfletcher)
 
 This tutorial introduces SignalR development by showing how to build a simple browser-based chat application. You will add the SignalR library to an empty ASP.NET web application, create a hub class for sending messages to clients, and create an HTML page that lets users send and receive chat messages. For a similar tutorial that shows how to create a chat application in MVC 5 using an MVC view, see [Getting Started with SignalR 2 and MVC 5](tutorial-getting-started-with-signalr-and-mvc.md).
 
-> [!NOTE] This tutorial demonstrates how to create SignalR applications in version 2. For details on changes between SignalR 1.x and 2, see [Upgrading SignalR 1.x Projects](../releases/upgrading-signalr-1x-projects-to-20.md) and [Visual Studio 2013 Release Notes](../../../visual-studio/overview/2013/release-notes.md#TOC13).
+> [!NOTE]
+> This tutorial demonstrates how to create SignalR applications in version 2. For details on changes between SignalR 1.x and 2, see [Upgrading SignalR 1.x Projects](../releases/upgrading-signalr-1x-projects-to-20.md) and [Visual Studio 2013 Release Notes](../../../visual-studio/overview/2013/release-notes.md#TOC13).
 
 SignalR is an open-source .NET library for building web applications that require live user interaction or real-time data updates. Examples include social applications, multiuser games, business collaboration, and news, weather, or financial update applications. These are often called real-time applications.
 
@@ -97,20 +98,23 @@ The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Applic
     ![Create empty web](tutorial-getting-started-with-signalr/_static/image3.png)
 3. In **Solution Explorer**, right-click the project, select **Add | SignalR Hub Class (v2)**. Name the class **ChatHub.cs** and add it to the project. This step creates the **ChatHub** class and adds to the project a set of script files and assembly references that support SignalR.
 
-    > [!NOTE] You can also add SignalR to a project by opening the **Tools | Library Package Manager | Package Manager Console** and running a command:
+    > [!NOTE]
+    > You can also add SignalR to a project by opening the **Tools | Library Package Manager | Package Manager Console** and running a command:
 
     `install-package Microsoft.AspNet.SignalR`
 
     If you use the console to add SignalR, create the SignalR hub class as a separate step after you add SignalR.
 
-    > [!NOTE] If you are using Visual Studio 2012, the **SignalR Hub Class (v2)** template will not be available. You can add a plain **Class** called `ChatHub` instead.
+    > [!NOTE]
+    > If you are using Visual Studio 2012, the **SignalR Hub Class (v2)** template will not be available. You can add a plain **Class** called `ChatHub` instead.
 4. In **Solution Explorer**, expand the Scripts node. Script libraries for jQuery and SignalR are visible in the project.
 5. Replace the code in the new **ChatHub** class with the following code.
 
     [!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample1.cs)]
 6. In **Solution Explorer**, right-click the project, then click **Add | OWIN Startup Class**. Name the new class `Startup` and click OK.
 
-    > [!NOTE] If you are using Visual Studio 2012, the **OWIN Startup Class** template will not be available. You can add a plain **Class** called `Startup` instead.
+    > [!NOTE]
+    > If you are using Visual Studio 2012, the **OWIN Startup Class** template will not be available. You can add a plain **Class** called `Startup` instead.
 7. Change the contents of the new Startup class to the following.
 
     [!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample2.cs)]
@@ -118,7 +122,8 @@ The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Applic
 9. In **Solution Explorer**, right-click the HTML page you just created and click **Set as Start Page**.
 10. Replace the default code in the HTML page with the following code.
 
-    > [!NOTE] A later version of the SignalR scripts may be installed by the package manager. Verify that the script references below correspond to the versions of the script files in the project (they will be different if you added SignalR using NuGet rather than adding a hub.)
+    > [!NOTE]
+    > A later version of the SignalR scripts may be installed by the package manager. Verify that the script references below correspond to the versions of the script files in the project (they will be different if you added SignalR using NuGet rather than adding a hub.)
 
     [!code-html[Main](tutorial-getting-started-with-signalr/samples/sample3.html)]
 11. **Save All** for the project.
@@ -134,7 +139,8 @@ The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Applic
 3. Copy the URL from the address line of the browser and use it to open two more browser instances. In each browser instance, enter a unique user name.
 4. In each browser instance, add a comment and click **Send**. The comments should display in all browser instances.
 
-    > [!NOTE] This simple chat application does not maintain the discussion context on the server. The hub broadcasts comments to all current users. Users who join the chat later will see messages added from the time they join.
+    > [!NOTE]
+    > This simple chat application does not maintain the discussion context on the server. The hub broadcasts comments to all current users. Users who join the chat later will see messages added from the time they join.
 
     The following screen shot shows the chat application running in three browser instances, all of which are updated when one instance sends a message:
 
@@ -171,7 +177,8 @@ The following code declares a reference to a hub proxy.
 
 [!code-csharp[Main](tutorial-getting-started-with-signalr/samples/sample5.cs)]
 
-> [!NOTE] In JavaScript the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in JavaScript as **chatHub**.
+> [!NOTE]
+> In JavaScript the reference to the server class and its members is in camel case. The code sample references the C# **ChatHub** class in JavaScript as **chatHub**.
 
 
 The following code is how you create a callback function in the script. The hub class on the server calls this function to push content updates to each client. The two lines that HTML encode the content before displaying it are optional and show a simple way to prevent script injection.
@@ -180,7 +187,8 @@ The following code is how you create a callback function in the script. The hub 
 
 The following code shows how to open a connection with the hub. The code starts the connection and then passes it a function to handle the click event on the **Send** button in the HTML page.
 
-> [!NOTE] This approach ensures that the connection is established before the event handler executes.
+> [!NOTE]
+> This approach ensures that the connection is established before the event handler executes.
 
 
 [!code-javascript[Main](tutorial-getting-started-with-signalr/samples/sample7.js)]

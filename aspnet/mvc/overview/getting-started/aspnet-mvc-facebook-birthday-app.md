@@ -38,7 +38,8 @@ You'll implement a simple but fun and useful Facebook application that lists a p
 5. Click **ASP.NET Facebook Application**.
 6. Enter *SampleFacebookBirthdayApp* for the project name, and then click **OK**. 
 
-    > [!NOTE] You must use `SampleFacebookBirthdayApp` for the project name so you can copy files from the [download projec](https://code.msdn.microsoft.com/ASPNET-MVC-Facebook-4b4f06d2)t without having to change the namespace   
+    > [!NOTE]
+    > You must use `SampleFacebookBirthdayApp` for the project name so you can copy files from the [download projec](https://code.msdn.microsoft.com/ASPNET-MVC-Facebook-4b4f06d2)t without having to change the namespace   
     > ![](aspnet-mvc-facebook-birthday-app/_static/image3.png)
 7. Install the latest Microsoft.AspNet.Facebook Nuget package.
 
@@ -134,7 +135,8 @@ The model passed to this view is a `MyAppUser` object. The `<article class="intr
 
 This tutorial will show the steps for creating the birthday application by using files from the completed project that you can download by using the link at the top of the page. If you haven't already downloaded the project, download it now before continuing with the tutorial.
 
-> [!NOTE] If you just want to run the downloaded application without going through the following steps to build it in your own project, you have to configure the Facebook application settings as shown in the previous section, and configure the Shop Style API key as shown later in this tutorial. You may also need to enable NuGet package restore. To do this, click **Library Package Manager** from the **Tools** menu, and then click **Manage NuGet Packages for Solution**. In the **Manage NuGet Package** s dialog, click **Restore**. (If you have already enabled NuGet package restore, you won't see the yellow bar with the Restore button.)
+> [!NOTE]
+> If you just want to run the downloaded application without going through the following steps to build it in your own project, you have to configure the Facebook application settings as shown in the previous section, and configure the Shop Style API key as shown later in this tutorial. You may also need to enable NuGet package restore. To do this, click **Library Package Manager** from the **Tools** menu, and then click **Manage NuGet Packages for Solution**. In the **Manage NuGet Package** s dialog, click **Restore**. (If you have already enabled NuGet package restore, you won't see the yellow bar with the Restore button.)
 
 ![](aspnet-mvc-facebook-birthday-app/_static/image7.png)
 
@@ -193,7 +195,8 @@ The `MyAppUser` class determines what information is gathered from Facebook abou
     [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample16.cshtml)]
 
  For each of the application user's friends, this template displays a picture of the friend (if one is available) and provides a link to suggested gifts that you can purchase.
-9. > [!NOTE] Facebook changed the way their "user\_friends" permission works. It used to return all of users friends and now only returns friends that also have your application. Unless you have a Facebook friend who has also installed this app, you will have an empty panel of friends to buy presents for. You can create test Facebook accounts to test this feature.
+9. > [!NOTE]
+ > Facebook changed the way their "user\_friends" permission works. It used to return all of users friends and now only returns friends that also have your application. Unless you have a Facebook friend who has also installed this app, you will have an empty panel of friends to buy presents for. You can create test Facebook accounts to test this feature.
 
     ![](aspnet-mvc-facebook-birthday-app/_static/image12.jpg)
 
@@ -289,7 +292,8 @@ Next, you have to tell Facebook to use your Windows Azure URL instead of the loc
 6. Click **Save Changes** at the bottom of the page.  
     ![](aspnet-mvc-facebook-birthday-app/_static/image13.png)
 
-    > [!NOTE] These instructions explain how to set up the application to use the default azurewebsites.net domain. When you use SSL with a URL in this domain, you are using an SSL certificate that is shared by all URLs in the same domain. If you want to use your own SSL certificate and your own domain, see [Configuring a custom domain name for a Windows Azure web site](https://www.windowsazure.com/en-us/develop/net/common-tasks/custom-dns-web-site/) and [Configuring an SSL certificate for a Windows Azure web site](https://www.windowsazure.com/en-us/develop/net/common-tasks/enable-ssl-web-site/).
+    > [!NOTE]
+    > These instructions explain how to set up the application to use the default azurewebsites.net domain. When you use SSL with a URL in this domain, you are using an SSL certificate that is shared by all URLs in the same domain. If you want to use your own SSL certificate and your own domain, see [Configuring a custom domain name for a Windows Azure web site](https://www.windowsazure.com/en-us/develop/net/common-tasks/custom-dns-web-site/) and [Configuring an SSL certificate for a Windows Azure web site](https://www.windowsazure.com/en-us/develop/net/common-tasks/enable-ssl-web-site/).
 
 ## Deploy the Facebook Application project to the Windows Azure Web Site
 

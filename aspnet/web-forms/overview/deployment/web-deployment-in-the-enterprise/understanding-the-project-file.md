@@ -34,7 +34,8 @@ When you create and build solutions in Visual Studio, Visual Studio uses MSBuild
 
 MSBuild project files are based on the [MSBuild XML schema](https://msdn.microsoft.com/en-us/library/5dy88c2e.aspx), and as a result the build process is entirely open and transparent. In addition, you don&#x27;t need to install Visual Studio in order to use the MSBuild engine&#x2014;the MSBuild.exe executable is part of the .NET Framework, and you can run it from a command prompt. As a developer, you can craft your own MSBuild project files, using the MSBuild XML schema, to impose sophisticated and fine-grained control over how your projects are built and deployed. These custom project files work in exactly the same way as the project files that Visual Studio generates automatically.
 
-> [!NOTE] You can also use MSBuild project files with the Team Build service in Team Foundation Server (TFS). For example, you can use project files in continuous integration (CI) scenarios to automate deployment to a test environment when new code is checked in. For more information, see [Configuring Team Foundation Server for Automated Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md).
+> [!NOTE]
+> You can also use MSBuild project files with the Team Build service in Team Foundation Server (TFS). For example, you can use project files in continuous integration (CI) scenarios to automate deployment to a test environment when new code is checked in. For more information, see [Configuring Team Foundation Server for Automated Web Deployment](../configuring-team-foundation-server-for-web-deployment/configuring-team-foundation-server-for-web-deployment.md).
 
 
 ### Project File Naming Conventions
@@ -54,7 +55,8 @@ The underlying technology behind these capabilities is known as the Web Publishi
 
 The good news is that you can take advantage of the integration points that the WPP provides when you create custom project files for web projects. You can include deployment instructions in your project file, which allows you to build your projects, create web deployment packages, and install these packages on remote servers through a single project file and a single call to MSBuild. You can also call any other executables as part of your build process. For example, you can run the VSDBCMD.exe command-line tool to deploy a database from a schema file. Over the course of this topic, you&#x27;ll see how you can take advantage of these capabilities to meet the requirements of your enterprise deployment scenarios.
 
-> [!NOTE] For more information on how the web application deployment process works, see [ASP.NET Web Application Project Deployment Overview](https://msdn.microsoft.com/en-us/library/dd394698.aspx).
+> [!NOTE]
+> For more information on how the web application deployment process works, see [ASP.NET Web Application Project Deployment Overview](https://msdn.microsoft.com/en-us/library/dd394698.aspx).
 
 
 ## The Anatomy of a Project File
@@ -91,7 +93,8 @@ To retrieve a property value, you use the format **$(***PropertyName***)***.*For
 [!code-powershell[Main](understanding-the-project-file/samples/sample3.ps1)]
 
 
-> [!NOTE] You&#x27;ll see examples of how and when to use property values later in this topic.
+> [!NOTE]
+> You&#x27;ll see examples of how and when to use property values later in this topic.
 
 
 Embedding information as static properties in a project file is not always the ideal approach to managing the build process. In a lot of scenarios, you'll want to obtain the information from other sources or empower the user to provide the information from the command prompt. MSBuild allows you to specify any property value as a command-line parameter. For example, the user could provide a value for **ServerName** when he or she runs MSBuild.exe from the command line.
@@ -100,7 +103,8 @@ Embedding information as static properties in a project file is not always the i
 [!code-console[Main](understanding-the-project-file/samples/sample4.cmd)]
 
 
-> [!NOTE] For more information on the arguments and switches you can use with MSBuild.exe, see [MSBuild Command Line Reference](https://msdn.microsoft.com/en-us/library/ms164311.aspx).
+> [!NOTE]
+> For more information on the arguments and switches you can use with MSBuild.exe, see [MSBuild Command Line Reference](https://msdn.microsoft.com/en-us/library/ms164311.aspx).
 
 
 You can use the same property syntax to obtain the values of environment variables and built-in project properties. Lots of commonly used properties are defined for you, and you can use them in your project files by including the relevant parameter name. For example, to retrieve the current project platform&#x2014;for example, **x86** or **AnyCpu**&#x2014;you can include the **$(Platform)** property reference in your project file. For more information, see [Macros for Build Commands and Properties](https://msdn.microsoft.com/en-us/library/c02as0cs.aspx), [Common MSBuild Project Properties](https://msdn.microsoft.com/en-us/library/bb629394.aspx), and [Reserved Properties](https://msdn.microsoft.com/en-us/library/ms164309.aspx).
@@ -137,7 +141,8 @@ Item elements can also include [ItemMetadata](https://msdn.microsoft.com/en-us/l
 [!code-xml[Main](understanding-the-project-file/samples/sample8.xml)]
 
 
-> [!NOTE] In addition to user-created item metadata, all items are assigned various common metadata on creation. For more information, see [Well-known Item Metadata](https://msdn.microsoft.com/en-us/library/ms164313.aspx).
+> [!NOTE]
+> In addition to user-created item metadata, all items are assigned various common metadata on creation. For more information, see [Well-known Item Metadata](https://msdn.microsoft.com/en-us/library/ms164313.aspx).
 
 
 You can create **ItemGroup** elements within the root-level **Project** element or within specific **Target** elements. **ItemGroup** elements also support **Condition** attributes, which lets you tailor the inputs to the build process according to conditions like the project configuration or platform.
@@ -152,7 +157,8 @@ In the MSBuild schema, a [Task](https://msdn.microsoft.com/en-us/library/77f2hx1
 - The **Exec** task runs a specified program.
 - The **Message** task writes a message to a logger.
 
-> [!NOTE] For full details of the tasks that are available out of the box, see [MSBuild Task Reference](https://msdn.microsoft.com/en-us/library/7z253716.aspx). For more information on tasks, including how to create your own custom tasks, see [MSBuild Tasks](https://msdn.microsoft.com/en-us/library/ms171466.aspx).
+> [!NOTE]
+> For full details of the tasks that are available out of the box, see [MSBuild Task Reference](https://msdn.microsoft.com/en-us/library/7z253716.aspx). For more information on tasks, including how to create your own custom tasks, see [MSBuild Tasks](https://msdn.microsoft.com/en-us/library/ms171466.aspx).
 
 
 Tasks must always be contained within [Target](https://msdn.microsoft.com/en-us/library/t50z2hka.aspx) elements. A **Target** element is a set of one or more tasks that are executed sequentially, and a project file can contain multiple targets. When you want to run a task, or a set of tasks, you invoke the target that contains them. For example, suppose you have a simple project file that logs a message.
@@ -186,7 +192,8 @@ Generally speaking, when you create useful tasks and targets, you&#x27;ll need t
 - To use a property value, type **$(***PropertyName***)**, where *PropertyName* is the name of the **Property** element or the name of the parameter.
 - To use an item, type **@(***ItemName***)**, where *ItemName* is the name of the **Item** element.
 
-> [!NOTE] Remember that if you create multiple items with the same name, you're building a list. In contrast, if you create multiple properties with the same name, the last property value you provide will overwrite any previous properties with the same name&#x2014;a property can only contain a single value.
+> [!NOTE]
+> Remember that if you create multiple items with the same name, you're building a list. In contrast, if you create multiple properties with the same name, the last property value you provide will overwrite any previous properties with the same name&#x2014;a property can only contain a single value.
 
 
 For example, in the *Publish.proj* file in the sample solution, take a look at the **BuildProjects** target.
@@ -208,7 +215,8 @@ In this sample, you can observe these key points:
 
 You can also see that the **MSBuild** task invokes a target named **Build**. This is one of several built-in targets that are widely used in Visual Studio project files and are available to you in your custom project files, like **Build**, **Clean**, **Rebuild**, and **Publish**. You&#x27;ll learn more about using targets and tasks to control the build process, and about the **MSBuild** task in particular, later in this topic.
 
-> [!NOTE] For more information on targets, see [MSBuild Targets](https://msdn.microsoft.com/en-us/library/ms171462.aspx).
+> [!NOTE]
+> For more information on targets, see [MSBuild Targets](https://msdn.microsoft.com/en-us/library/ms171462.aspx).
 
 
 ## Splitting Project Files to Support Multiple Environments
@@ -238,7 +246,8 @@ This effectively merges the contents of the two files into a single project file
 
 Splitting your project files in this way is a good practice to follow. It allows developers to deploy to multiple environments by running a single command, while avoiding the duplication of universal build properties across multiple project files.
 
-> [!NOTE] For guidance on how to customize the environment-specific project files for your own server environments, see [Configuring Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).
+> [!NOTE]
+> For guidance on how to customize the environment-specific project files for your own server environments, see [Configuring Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).
 
 
 ## Conclusion

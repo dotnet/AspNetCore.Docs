@@ -54,12 +54,14 @@ The login page's responsibility is to determine if the user's credentials are va
 
 After logging in, the forms authentication ticket must be sent back to the web server on each request so that the user remains logged in as they browse the site. This is typically accomplished by placing the authentication ticket in the user's cookies collection. [Cookies](http://en.wikipedia.org/wiki/HTTP_cookie) are small text files that reside on the user's computer and are transmitted in the HTTP headers on each request to the website that created the cookie. Therefore, once the forms authentication ticket has been created and stored in the browser's cookies, each subsequent visit to that site sends the authentication ticket along with the request, thereby identifying the user.
 
-> [!NOTE] The demo web application used in each tutorial is available as a download. This downloadable application was created with Visual Web Developer 2008 targeted for the .NET Framework version 3.5. Since the application is targeted for .NET 3.5, its Web.config file includes additional, 3.5-specific configuration elements. Long story short, if you have yet to install .NET 3.5 on your computer then the downloadable web application will not work without first removing the 3.5-specific markup from Web.config.
+> [!NOTE]
+> The demo web application used in each tutorial is available as a download. This downloadable application was created with Visual Web Developer 2008 targeted for the .NET Framework version 3.5. Since the application is targeted for .NET 3.5, its Web.config file includes additional, 3.5-specific configuration elements. Long story short, if you have yet to install .NET 3.5 on your computer then the downloadable web application will not work without first removing the 3.5-specific markup from Web.config.
 
 
 One aspect of cookies is their expiration, which is the date and time at which the browser discards the cookie. When the forms authentication cookie expires, the user can no longer be authenticated and therefore become anonymous. When a user is visiting from a public terminal, chances are they want their authentication ticket to expire when they close their browser. When visiting from home, however, that same user might want the authentication ticket to be remembered across browser restarts so that they do not have to re-log in each time they visit the site. This decision is often made by the user in the form of a Remember me checkbox on the login page. In Step 3 we will examine how to implement a Remember me checkbox in the login page. The following tutorial addresses the authentication ticket timeout settings in detail.
 
-> [!NOTE] It is possible that the user agent used to log on to the website may not support cookies. In such a case, ASP.NET can use cookieless forms authentication tickets. In this mode, the authentication ticket is encoded into the URL. We will look at when cookieless authentication tickets are used and how they are created and managed in the next tutorial.
+> [!NOTE]
+> It is possible that the user agent used to log on to the website may not support cookies. In such a case, ASP.NET can use cookieless forms authentication tickets. In this mode, the authentication ticket is encoded into the URL. We will look at when cookieless authentication tickets are used and how they are created and managed in the next tutorial.
 
 
 ### The Scope of Forms Authentication
@@ -76,7 +78,8 @@ In order to reach the widest possible audience, the ASP.NET website we will be b
 
 Before we can configure forms authentication, we first need an ASP.NET website. Start by creating a new file system-based ASP.NET website. To accomplish this, launch Visual Web Developer and then go to the File menu and choose New Web Site, displaying the New Web Site dialog box. Choose the ASP.NET Web Site template, set the Location drop-down list to File System, choose a folder to place the web site, and set the language to VB. This will create a new web site with a Default.aspx ASP.NET page, an App\_Data folder, and a Web.config file.
 
-> [!NOTE] Visual Studio supports two modes of project management: Web Site Projects and Web Application Projects. Web Site Projects lack a project file, whereas Web Application Projects mimic the project architecture in Visual Studio .NET 2002/2003 - they include a project file and compile the project's source code into a single assembly, which is placed in the /bin folder. Visual Studio 2005 initially only supported Web Site Projects, although the Web Application Project model was reintroduced with Service Pack 1; Visual Studio 2008 offers both project models. The Visual Web Developer 2005 and 2008 editions, however, only support Web Site Projects. I will be using the Web Site Project model. If you are using a non-Express edition and want to use the [Web Application Project model](https://msdn.microsoft.com/en-us/library/aa730880(vs.80).aspx) instead, feel free to do so but be aware that there may be some discrepancies between what you see on your screen and the steps you must take versus the screen shots shown and instructions provided in these tutorials.
+> [!NOTE]
+> Visual Studio supports two modes of project management: Web Site Projects and Web Application Projects. Web Site Projects lack a project file, whereas Web Application Projects mimic the project architecture in Visual Studio .NET 2002/2003 - they include a project file and compile the project's source code into a single assembly, which is placed in the /bin folder. Visual Studio 2005 initially only supported Web Site Projects, although the Web Application Project model was reintroduced with Service Pack 1; Visual Studio 2008 offers both project models. The Visual Web Developer 2005 and 2008 editions, however, only support Web Site Projects. I will be using the Web Site Project model. If you are using a non-Express edition and want to use the [Web Application Project model](https://msdn.microsoft.com/en-us/library/aa730880(vs.80).aspx) instead, feel free to do so but be aware that there may be some discrepancies between what you see on your screen and the steps you must take versus the screen shots shown and instructions provided in these tutorials.
 
 
 [![Create a New File System-Based Web Site](an-overview-of-forms-authentication-vb/_static/image5.png)](an-overview-of-forms-authentication-vb/_static/image4.png)
@@ -125,7 +128,8 @@ Next, right-click on the project name in the Solution Explorer and choose to add
 **Figure 06**: Use the Site.master Master Page([Click to view full-size image](an-overview-of-forms-authentication-vb/_static/image18.png))
 
 
-> [!NOTE] If you are using the Web Application Project Model the Add New Item dialog box does not include a Select master page checkbox. Instead, you need to add an item of type Web Content Form. After choosing the Web Content Form option and clicking Add, Visual Studio will display the same Select a Master dialog box shown in Figure 6.
+> [!NOTE]
+> If you are using the Web Application Project Model the Add New Item dialog box does not include a Select master page checkbox. Instead, you need to add an item of type Web Content Form. After choosing the Web Content Form option and clicking Add, Visual Studio will display the same Select a Master dialog box shown in Figure 6.
 
 
 The new Default.aspx page's declarative markup includes just a @Page directive specifying the path to the master page file and a Content control for the master page's MainContent ContentPlaceHolder.
@@ -134,7 +138,8 @@ The new Default.aspx page's declarative markup includes just a @Page directive s
 
 For now, leave Default.aspx empty. We will return to it later in this tutorial to add content.
 
-> [!NOTE] Our master page includes a section for a menu or some other navigation interface. We will create such an interface in a future tutorial.
+> [!NOTE]
+> Our master page includes a section for a menu or some other navigation interface. We will create such an interface in a future tutorial.
 
 
 ## Step 2: Enabling Forms Authentication
@@ -160,7 +165,8 @@ Next, locate the &lt;authentication&gt; element and update it to use forms authe
 
 [!code-xml[Main](an-overview-of-forms-authentication-vb/samples/sample3.xml)]
 
-> [!NOTE] Since Web.config is an XML file, casing is important. Make sure that you set the mode attribute to Forms, with a capital F . If you use a different casing, such as forms , you'll receive a configuration error when visiting the site through a browser.
+> [!NOTE]
+> Since Web.config is an XML file, casing is important. Make sure that you set the mode attribute to Forms, with a capital F . If you use a different casing, such as forms , you'll receive a configuration error when visiting the site through a browser.
 
 
 The &lt;authentication&gt; element may optionally include a &lt;forms&gt; child element that contains forms authentication-specific settings. For now, let's just use the default forms authentication settings. We will explore the &lt;forms&gt; child element in more detail in the next tutorial.
@@ -257,7 +263,8 @@ When the user enters her credentials and submits the login page form, the creden
 
 Unless your website contains sensitive information, you will only need to use SSL on the login page and on other pages where the user's password would otherwise be sent over the wire in plain text. You do not need to worry about securing the forms authentication ticket since, by default, it is both encrypted and digitally signed (to prevent tampering). A more thorough discussion on forms authentication ticket security is presented in the following tutorial.
 
-> [!NOTE] Many financial and medical websites are configured to use SSL on *all* pages accessible to authenticated users. If you are building such a website you can configure the forms authentication system so that the forms authentication ticket is only transmitted over a secure connection. We will look at the various forms authentication configuration options in the next tutorial, *[Forms Authentication Configuration and Advanced Topics](../membership/creating-the-membership-schema-in-sql-server-vb.md)*.
+> [!NOTE]
+> Many financial and medical websites are configured to use SSL on *all* pages accessible to authenticated users. If you are building such a website you can configure the forms authentication system so that the forms authentication ticket is only transmitted over a secure connection. We will look at the various forms authentication configuration options in the next tutorial, *[Forms Authentication Configuration and Advanced Topics](../membership/creating-the-membership-schema-in-sql-server-vb.md)*.
 
 
 ## Step 4: Detecting Authenticated Visitors and Determining Their Identity
@@ -331,7 +338,8 @@ The [LoginView control](https://msdn.microsoft.com/en-us/library/system.web.ui.w
 
 Let's add the LoginView control to our site's master page, Site.master. Rather than adding just the LoginView control, though, let's add both a new ContentPlaceHolder control and then put the LoginView control within that new ContentPlaceHolder. The rationale for this decision will become apparent shortly.
 
-> [!NOTE] In addition to the AnonymousTemplate and LoggedInTemplate, the LoginView control can include role-specific templates. Role-specific templates show markup only to those users that belong to a specified role. We will examine the role-based features of the LoginView control in a future tutorial.
+> [!NOTE]
+> In addition to the AnonymousTemplate and LoggedInTemplate, the LoginView control can include role-specific templates. Role-specific templates show markup only to those users that belong to a specified role. We will examine the role-based features of the LoginView control in a future tutorial.
 
 
 Start by adding a ContentPlaceHolder named LoginContent into the master page within the navigation &lt;div&gt; element. You can simply drag a ContentPlaceHolder control from the Toolbox onto the Source view, placing the resulting markup right above the TODO: Menu will go here text.
@@ -378,7 +386,8 @@ Because we added the LoginView to the master page, it can appear in every page o
 
 To override the default markup for the LoginContent ContentPlaceHolder, simply right-click on the region in the Designer and choose the Create Custom Content option from the context menu. (When using Visual Studio 2008 the ContentPlaceHolder includes a smart tag that, when selected, offers the same option.) This adds a new Content control to the page's markup and thereby allows us to define custom content for this page. You could add a custom message here, such as Please log in , but let's just leave this blank.
 
-> [!NOTE] In Visual Studio 2005, creating custom content creates an empty Content control in the ASP.NET page. In Visual Studio 2008, however, creating custom content copies the master page's default content into the newly created Content control. If you are using Visual Studio 2008, then, after creating the new Content control make sure to clear out the content copied over from the master page.
+> [!NOTE]
+> In Visual Studio 2005, creating custom content creates an empty Content control in the ASP.NET page. In Visual Studio 2008, however, creating custom content copies the master page's default content into the newly created Content control. If you are using Visual Studio 2008, then, after creating the new Content control make sure to clear out the content copied over from the master page.
 
 
 Figure 17 shows the Login.aspx page when visited from a browser after making this change. Note that there is no Hello, stranger or Welcome back, *username* message in the left navigation &lt;div&gt; as there is when visiting Default.aspx.
@@ -425,7 +434,8 @@ Figure 18 shows Default.aspx when Jisun visits. Note that the left column displa
 **Figure 19**: Logout.aspx Shows Welcome, stranger Along with a Login LinkButton([Click to view full-size image](an-overview-of-forms-authentication-vb/_static/image57.png))
 
 
-> [!NOTE] I encourage you to customize the Logout.aspx page to hide the master page's LoginContent ContentPlaceHolder (like we did for Login.aspx in Step 4). The reason is because the Login LinkButton rendered by the LoginStatus control (the one beneath Hello, stranger ) sends the user to the login page passing the current URL in the ReturnUrl querystring parameter. In short, if a user who has logged out clicks this LoginStatus's Login LinkButton, and then logs in, they will be redirected back to Logout.aspx, which could easily confuse the user.
+> [!NOTE]
+> I encourage you to customize the Logout.aspx page to hide the master page's LoginContent ContentPlaceHolder (like we did for Login.aspx in Step 4). The reason is because the Login LinkButton rendered by the LoginStatus control (the one beneath Hello, stranger ) sends the user to the login page passing the current URL in the ReturnUrl querystring parameter. In short, if a user who has logged out clicks this LoginStatus's Login LinkButton, and then logs in, they will be redirected back to Logout.aspx, which could easily confuse the user.
 
 
 ## Summary

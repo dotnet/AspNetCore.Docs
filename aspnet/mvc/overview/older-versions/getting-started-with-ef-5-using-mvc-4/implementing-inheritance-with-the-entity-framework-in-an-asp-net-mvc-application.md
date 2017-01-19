@@ -93,7 +93,8 @@ This change isn't required; it just changes the name of the InstructorID column 
 
 Next you need to change `InstructorID` to `PersonID` and `StudentID` to `PersonID` throughout the project ***except*** in the time-stamped migrations files in the *Migrations* folder. To do that you'll find and open only the files that need to be changed, then perform a global change on the opened files. The only file in the *Migrations* folder you should change is *Migrations\Configuration.cs.*
 
-1. > [!IMPORTANT] Begin by closing all the open files in Visual Studio.
+1. > [!IMPORTANT]
+ > Begin by closing all the open files in Visual Studio.
 2. Click **Find and Replace -- Find all Files** in the **Edit** menu, and then search for all files in the project that contain `InstructorID`.  
   
     ![](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image1.png)
@@ -132,7 +133,8 @@ Open *Migrations\&lt;timestamp&gt;\_Inheritance.cs* and replace the `Up` method 
 
 Run the `update-database` command again.
 
-> [!NOTE] It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can continue with the tutorial by changing the connection string in the *Web.config* file or deleting the database. The simplest approach is to rename the database in the *Web.config* file. For example, change the database name to CU\_test as shown in the following example:
+> [!NOTE]
+> It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can continue with the tutorial by changing the connection string in the *Web.config* file or deleting the database. The simplest approach is to rename the database in the *Web.config* file. For example, change the database name to CU\_test as shown in the following example:
 > 
 > [!code-xml[Main](implementing-inheritance-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample8.xml?highlight=1-2)]
 > 

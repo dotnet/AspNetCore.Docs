@@ -47,7 +47,8 @@ This section provides an example of how to let users log in from external sites 
 - For the sites that use an OAuth provider (Facebook, Twitter, and Microsoft), you create an application on the external site. This gives you application keys that you'll need in order to invoke the login feature for those sites.
 - For sites that use an OpenID provider (Google), you do not have to create an application. For all of these sites, you must have an account in order to log in and to create developer applications.
 
-    > [!NOTE] Microsoft applications only accept a live URL for a working website, so you cannot use a local website URL for testing logins.
+    > [!NOTE]
+    > Microsoft applications only accept a live URL for a working website, so you cannot use a local website URL for testing logins.
 - Edit a few files in your website in order to specify the appropriate authentication provider and to submit a login to the site you want to use.
 
 This article provides separate instructions for the following tasks:
@@ -88,7 +89,8 @@ This article provides separate instructions for the following tasks:
 3. In the section **Select how your app will integrate with Facebook**, choose the **Website** section.
 4. Fill in the **Site URL** field with the URL of your site (for example, `http://www.example.com`). The **Domain** field is optional; you can use this to provide authentication for an entire domain (such as *example.com*). 
 
-    > [!NOTE] If you are running a site on your local computer with a URL like `http://localhost:12345` (where the number is a local port number), you can add this value to the **Site URL** field for testing your site. However, any time the port number of your local site changes, you will need to update the **Site URL** field of your application.
+    > [!NOTE]
+    > If you are running a site on your local computer with a URL like `http://localhost:12345` (where the number is a local port number), you can add this value to the **Site URL** field for testing your site. However, any time the port number of your local site changes, you will need to update the **Site URL** field of your application.
 5. Choose the **Save Changes** button.
 6. Choose the **Apps** tab again, and then view the start page for your application.
 7. Copy the **App ID** and **App Secret** values for your application and paste them into a temporary text file. You will pass these values to the Facebook provider in your website code.
@@ -129,7 +131,8 @@ Now you make changes to two pages in your website so that users will able to log
 3. On the **Create an Application** form, fill in the **Name** and **Description** fields.
 4. In the **WebSite** field, enter the URL of your site (for example, `http://www.example.com`). 
 
-    > [!NOTE] If you're testing your site locally (using a URL like `http://localhost:12345`), Twitter might not accept the URL. However, you might be able to use the local loopback IP address (for example `http://127.0.0.1:12345`). This simplifies the process of testing your application locally. However, every time the port number of your local site changes, you'll need to update the **WebSite** field of your application.
+    > [!NOTE]
+    > If you're testing your site locally (using a URL like `http://localhost:12345`), Twitter might not accept the URL. However, you might be able to use the local loopback IP address (for example `http://127.0.0.1:12345`). This simplifies the process of testing your application locally. However, every time the port number of your local site changes, you'll need to update the **WebSite** field of your application.
 5. In the **Callback URL** field, enter a URL for the page in your website that you want users to return to after logging into Twitter. For example, to send users to the home page of the Starter Site (which will recognize their logged-in status), enter the same URL that you entered in the **WebSite** field.
 6. Accept the terms and choose the **Create your Twitter application** button.
 7. On the **My Applications** landing page, choose the application you created.

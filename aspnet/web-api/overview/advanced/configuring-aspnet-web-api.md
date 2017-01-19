@@ -79,7 +79,8 @@ The tutorial [Use OWIN to Self-Host ASP.NET Web API 2](../hosting-aspnet-web-api
 
 The **HttpConfiguration.Services** collection contains a set of global services that Web API uses to perform various tasks, such as controller selection and content negotiation.
 
-> [!NOTE] The **Services** collection is not a general-purpose mechanism for service discovery or dependency injection. It only stores service types that are known to the Web API framework.
+> [!NOTE]
+> The **Services** collection is not a general-purpose mechanism for service discovery or dependency injection. It only stores service types that are known to the Web API framework.
 
 
 The **Services** collection is initialized with a default set of services, and you can provide your own custom implementations. Some services support multiple instances, while others can have only one instance. (However, you can also provide services at the controller level; see [Per-Controller Configuration](#percontrollerconfig).

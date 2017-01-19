@@ -91,7 +91,8 @@ To enable bundling and minification, set the `debug` value to "false". You can o
 
 [!code-csharp[Main](bundling-and-minification/samples/sample4.cs?highlight=7)]
 
-> [!NOTE] Unless `EnableOptimizations` is `true` or the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file is set to `false`, files will not be bundled or minified. Additionally, the .min version of files will not be used, the full debug versions will be selected. `EnableOptimizations` overrides the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file
+> [!NOTE]
+> Unless `EnableOptimizations` is `true` or the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file is set to `false`, files will not be bundled or minified. Additionally, the .min version of files will not be used, the full debug versions will be selected. `EnableOptimizations` overrides the debug attribute in the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)  in the *Web.config* file
 
 
 ## Using Bundling and Minification with ASP.NET Web Forms and Web Pages

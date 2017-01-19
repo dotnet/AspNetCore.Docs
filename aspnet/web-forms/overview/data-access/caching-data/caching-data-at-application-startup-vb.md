@@ -29,7 +29,8 @@ The two previous tutorials looked at caching data in the Presentation and Cachin
 
 Another flavor of proactive loading, and the type we'll be exploring in this tutorial, is loading data into the cache at application startup. This approach is especially useful for caching static data, such as the records in database lookup tables.
 
-> [!NOTE] For a more in-depth look at the differences between proactive and reactive loading, as well as lists of pros, cons, and implementation recommendations, refer to the [Managing the Contents of a Cache](https://msdn.microsoft.com/en-us/library/ms978503.aspx) section of the [Caching Architecture Guide for .NET Framework Applications](https://msdn.microsoft.com/en-us/library/ms978498.aspx).
+> [!NOTE]
+> For a more in-depth look at the differences between proactive and reactive loading, as well as lists of pros, cons, and implementation recommendations, refer to the [Managing the Contents of a Cache](https://msdn.microsoft.com/en-us/library/ms978503.aspx) section of the [Caching Architecture Guide for .NET Framework Applications](https://msdn.microsoft.com/en-us/library/ms978498.aspx).
 
 
 ## Step 1: Determining What Data to Cache at Application Startup
@@ -101,7 +102,8 @@ Likewise, the data cache can be used as a cache store, as the following code sho
 
 To add an item to the data cache with no time-based expiry, use the `System.Web.Caching.Cache.NoAbsoluteExpiration` and `System.Web.Caching.Cache.NoSlidingExpiration` values as input parameters. This particular overload of the data cache s `Insert` method was selected so that we could specify the *priority* of the cache item. The priority is used to determine what items to scavenge from the cache when available memory runs low. Here we use the priority `NotRemovable`, which ensures that this cache item won t be scavenged.
 
-> [!NOTE] This tutorial s download implements the `StaticCache` class using the static member variable approach. The code for the application state and data cache techniques is available in the comments in the class file.
+> [!NOTE]
+> This tutorial s download implements the `StaticCache` class using the static member variable approach. The code for the application state and data cache techniques is available in the comments in the class file.
 
 
 ## Step 4: Executing Code at Application Startup
@@ -110,7 +112,8 @@ To execute code when a web application first starts, we need to create a special
 
 Add the `Global.asax` file to your web application s root directory by right-clicking on the website project name in Visual Studio s Solution Explorer and choosing Add New Item. From the Add New Item dialog box, select the Global Application Class item type and then click the Add button.
 
-> [!NOTE] If you already have a `Global.asax` file in your project, the Global Application Class item type will not be listed in the Add New Item dialog box.
+> [!NOTE]
+> If you already have a `Global.asax` file in your project, the Global Application Class item type will not be listed in the Add New Item dialog box.
 
 
 [![Add the Global.asax File to Your Web Application s Root Directory](caching-data-at-application-startup-vb/_static/image4.png)](caching-data-at-application-startup-vb/_static/image3.png)
@@ -141,7 +144,8 @@ That s all there is to it! At application startup, the `LoadStaticCache()` metho
 **Figure 4**: Use a Breakpoint to Verify that the `Application_Start` Event Handler is Being Executed ([Click to view full-size image](caching-data-at-application-startup-vb/_static/image8.png))
 
 
-> [!NOTE] If you do not hit the `Application_Start` breakpoint when you first start debugging, it is because your application has already started. Force the application to restart by modifying your `Global.asax` or `Web.config` files and then try again. You can simply add (or remove) a blank line at the end of one of these files to quickly restart the application.
+> [!NOTE]
+> If you do not hit the `Application_Start` breakpoint when you first start debugging, it is because your application has already started. Force the application to restart by modifying your `Global.asax` or `Web.config` files and then try again. You can simply add (or remove) a blank line at the end of one of these files to quickly restart the application.
 
 
 ## Step 5: Displaying the Cached Data

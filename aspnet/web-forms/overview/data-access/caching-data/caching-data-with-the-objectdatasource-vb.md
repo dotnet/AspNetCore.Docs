@@ -107,7 +107,8 @@ Furthermore, at the completion of the wizard Visual Studio adds a field to the G
 
 Make the GridView editable by checking the Enable Editing checkbox in the GridView s smart tag. Also check the Enable Paging and Enable Sorting checkboxes.
 
-> [!NOTE] Need a review of how to customize the GridView s editing interface? If so, refer back to the [Customizing the Data Modification Interface](../editing-inserting-and-deleting-data/customizing-the-data-modification-interface-vb.md) tutorial.
+> [!NOTE]
+> Need a review of how to customize the GridView s editing interface? If so, refer back to the [Customizing the Data Modification Interface](../editing-inserting-and-deleting-data/customizing-the-data-modification-interface-vb.md) tutorial.
 
 
 [![Enable GridView Support for Editing, Sorting, and Paging](caching-data-with-the-objectdatasource-vb/_static/image13.png)](caching-data-with-the-objectdatasource-vb/_static/image12.png)
@@ -185,7 +186,8 @@ Save your changes and revisit this page in a browser. The Selecting event fired 
 
 After 30 seconds, the data will be evicted from the cache. The data will also be evicted from the cache if the ObjectDataSource s `Insert`, `Update`, or `Delete` methods are invoked. Consequently, after 30 seconds have passed or the Update button has been clicked, sorting, paging, or clicking the Edit or Cancel buttons will cause the ObjectDataSource to get its data from its underlying object, displaying the Selecting event fired text when the `Selecting` event fires. These returned results are placed back into the data cache.
 
-> [!NOTE] If you see the Selecting event fired text frequently, even when you expect the ObjectDataSource to be working with cached data, it may be due to memory constraints. If there is not enough free memory, the data added to the cache by the ObjectDataSource may have been scavenged. If the ObjectDataSource doesn t appear to be correctly caching the data or only caches the data sporadically, close some applications to free memory and try again.
+> [!NOTE]
+> If you see the Selecting event fired text frequently, even when you expect the ObjectDataSource to be working with cached data, it may be due to memory constraints. If there is not enough free memory, the data added to the cache by the ObjectDataSource may have been scavenged. If the ObjectDataSource doesn t appear to be correctly caching the data or only caches the data sporadically, close some applications to free memory and try again.
 
 
 Figure 12 illustrates the ObjectDataSource s caching workflow. When the Selecting event fired text appears on your screen, it is because the data was not in the cache and had to be retrieved from the underlying object. When this text is missing, however, it s because the data was available from the cache. When the data is returned from the cache there s no call to the underlying object and, therefore, no database query executed.

@@ -46,7 +46,8 @@ You can also install ASP.NET and Web Tools 2012.2 manually. You must have Visual
 4. If you see the menu item &quot;About Microsoft Visual Studio 2012 for Web&quot; then download [Web Developer Tools 2012.2 - Visual Studio Express 2012 for Web](https://go.microsoft.com/fwlink/?LinkID=282228). Otherwise download [Web Developer Tools 2012.2 - Visual Studio 2012](https://go.microsoft.com/fwlink/?LinkID=282228).
 5. When prompted click Run. You can also save the file to run it later.
 
-> [!NOTE] ASP.NET and Web Tools 2012.2 release does not include SQL Server Data Tools. SQL Server and Windows Azure SQL Databases provides a richer set of database tooling including offline project-backed development, schema comparison and enhanced database deployment capabilities. For more information or to install SQL Server Data Tools visit [https://go.microsoft.com/fwlink/?LinkID=237127](https://go.microsoft.com/fwlink/?LinkID=237127).
+> [!NOTE]
+> ASP.NET and Web Tools 2012.2 release does not include SQL Server Data Tools. SQL Server and Windows Azure SQL Databases provides a richer set of database tooling including offline project-backed development, schema comparison and enhanced database deployment capabilities. For more information or to install SQL Server Data Tools visit [https://go.microsoft.com/fwlink/?LinkID=237127](https://go.microsoft.com/fwlink/?LinkID=237127).
 
 <a id="_Documentation"></a>
 ## Documentation

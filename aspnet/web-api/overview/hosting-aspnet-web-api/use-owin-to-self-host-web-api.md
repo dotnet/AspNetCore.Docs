@@ -27,7 +27,8 @@ by [Kanchan Mehrotra](https://twitter.com/kanchanmeh)
 > - Web API 2
 
 
-> [!NOTE] You can find the complete source code for this tutorial at [aspnet.codeplex.com](https://aspnet.codeplex.com/SourceControl/latest#Samples/WebApi/OwinSelfhostSample/ReadMe.txt).
+> [!NOTE]
+> You can find the complete source code for this tutorial at [aspnet.codeplex.com](https://aspnet.codeplex.com/SourceControl/latest#Samples/WebApi/OwinSelfhostSample/ReadMe.txt).
 
 
 ## Create a Console Application

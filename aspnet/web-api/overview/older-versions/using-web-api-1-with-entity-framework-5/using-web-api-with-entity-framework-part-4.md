@@ -46,7 +46,8 @@ In Solution Explorer, expand the Views folder and then expand the Shared folder.
 
 [!code-cshtml[Main](using-web-api-with-entity-framework-part-4/samples/sample3.cshtml)]
 
-> [!NOTE] In the sample project, I made a few other cosmetic changes, such as replacing the string "Your logo here". These don't affect the functionality of the application. You can download the project and compare the files.
+> [!NOTE]
+> In the sample project, I made a few other cosmetic changes, such as replacing the string "Your logo here". These don't affect the functionality of the application. You can download the project and compare the files.
 
 
 Run the application and click the "Admin" link that appears at the top of the home page. The Admin page should look like the following:
@@ -73,7 +74,8 @@ Open the AdminController.cs file and add the **Authorize** attribute to the enti
 
 [!code-csharp[Main](using-web-api-with-entity-framework-part-4/samples/sample6.cs)]
 
-> [!NOTE] MVC and Web API both define **Authorize** attributes, in different namespaces. MVC uses **System.Web.Mvc.AuthorizeAttribute**, while Web API uses **System.Web.Http.AuthorizeAttribute**.
+> [!NOTE]
+> MVC and Web API both define **Authorize** attributes, in different namespaces. MVC uses **System.Web.Mvc.AuthorizeAttribute**, while Web API uses **System.Web.Http.AuthorizeAttribute**.
 
 
 Now only administrators can view the Admin page. Also, if you send an HTTP request to the Admin controller, the request must contain an authentication cookie. If not, the server sends an HTTP 401 (Unauthorized) response. You can see this in Fiddler by sending a GET request to `http://localhost:*port*/api/admin`.

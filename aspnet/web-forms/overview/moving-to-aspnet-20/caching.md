@@ -57,7 +57,8 @@ Note that the key of the item that acts as the cache key must be the same as the
 
 SQL Server 7 and 2000 use the polling-based model for SQL cache dependencies. The polling-based model uses a trigger on a database table that is triggered when data in the table change. That trigger updates a **changeId** field in the notification table that ASP.NET checks periodically. If the **changeId** field has been updated, ASP.NET knows that the data have changed and it invalidates the cached data.
 
-> [!NOTE] SQL Server 2005 can also use the polling-based model, but because the polling-based model is not the most efficient model, it is advisable to use a query-based model (discussed later) with SQL Server 2005.
+> [!NOTE]
+> SQL Server 2005 can also use the polling-based model, but because the polling-based model is not the most efficient model, it is advisable to use a query-based model (discussed later) with SQL Server 2005.
 
 
 In order for a SQL cache dependency using the polling-based model to work correctly, the tables must have notifications enabled. This can be accomplished programmatically using the SqlCacheDependencyAdmin class or by using the aspnet\_regsql.exe utility.
@@ -77,7 +78,8 @@ The following is an explanation of the command line switches used in the above c
 | -et | Specifies that we are enabling a database table for SQL cache dependency. |
 | -t *table\_name* | Specifies the name of the database table to enable for SQL cache dependency. |
 
-> [!NOTE] There are other switches available for aspnet\_regsql.exe. For a complete list, run aspnet\_regsql.exe -? from a command line.
+> [!NOTE]
+> There are other switches available for aspnet\_regsql.exe. For a complete list, run aspnet\_regsql.exe -? from a command line.
 
 
 When this command runs the following changes are made to the SQL Server database:
@@ -154,7 +156,8 @@ You can also specify that all of your data sources be enabled for SQL cache depe
 
 [!code-aspx[Main](caching/samples/sample13.aspx)]
 
-> [!NOTE] For more information on query notifications in SQL Server 2005, see the SQL Server Books Online.
+> [!NOTE]
+> For more information on query notifications in SQL Server 2005, see the SQL Server Books Online.
 
 
 Another method of configuring a query-based SQL cache dependency is to do so programmatically using the SqlCacheDependency class. The following code sample illustrates how this is accomplished.

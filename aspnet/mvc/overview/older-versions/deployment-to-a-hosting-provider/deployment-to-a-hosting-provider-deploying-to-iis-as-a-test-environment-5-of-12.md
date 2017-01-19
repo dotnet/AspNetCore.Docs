@@ -51,7 +51,8 @@ In the application Web.config file, add a **trust** element in the **system.web*
 
 The application will now run in medium trust in IIS even on your local computer. This setting enables you to catch as early as possible any attempts by application code to do something that would fail in production.
 
-> [!NOTE] If you are using Entity Framework Code First Migrations, make sure that you have version 5.0 or later installed. In Entity Framework version 4.3, Migrations requires full trust in order to update the database schema.
+> [!NOTE]
+> If you are using Entity Framework Code First Migrations, make sure that you have version 5.0 or later installed. In Entity Framework version 4.3, Migrations requires full trust in order to update the database schema.
 
 
 ## Installing IIS and Web Deploy

@@ -102,7 +102,8 @@ This tutorial demonstrates how to create an Azure Web Role application that uses
     [!code-csharp[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample11.cs?highlight=11)]
 - Test your application in the Windows Azure Emulator by pressing **F5**.
 
-    > [!NOTE] If you encounter a **FileLoadException** at **MapSignalR()**, change the binding redirects in Web.Config to the following:
+    > [!NOTE]
+    > If you encounter a **FileLoadException** at **MapSignalR()**, change the binding redirects in Web.Config to the following:
 
     [!code-xml[Main](using-signalr-performance-counters-in-an-azure-web-role/samples/sample12.xml?highlight=3,7)]
 - To test your application in the cloud, deploy the application to your Azure subscription. For details on how to deploy an application to Azure, see [How to Create and Deploy a Cloud Service](https://www.windowsazure.com/en-us/documentation/articles/cloud-services-how-to-create-deploy/). To monitor performance counters in Azure, you can connect to the role instance using Server Manager and Remote Desktop Connection, and run Peformance Monitor in the role instance. For details on how to enable Remote Desktop Connection on an Azure role during deployment, see [Using Remote Desktop with Windows Azure Roles](https://msdn.microsoft.com/en-us/library/windowsazure/gg443832.aspx).

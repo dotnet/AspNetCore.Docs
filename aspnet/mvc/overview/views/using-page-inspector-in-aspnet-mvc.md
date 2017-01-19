@@ -42,7 +42,8 @@ by Tim Ammann
 
 - [Visual Studio 2012](https://www.microsoft.com/visualstudio/11/en-us) or [Visual Studio Express 2012 for Web](https://www.microsoft.com/visualstudio/11/en-us/downloads#express-web).
 
-> [!NOTE] To get the latest version of Page Inspector, use [Web Platform Installer](https://go.microsoft.com/fwlink/?LinkId=255386) to install the Windows Azure SDK for .NET 2.0.
+> [!NOTE]
+> To get the latest version of Page Inspector, use [Web Platform Installer](https://go.microsoft.com/fwlink/?LinkId=255386) to install the Windows Azure SDK for .NET 2.0.
 
 
 Page Inspector is bundled with Microsoft Web Developer Tools. The latest version is 1.3. To check which version you have, run Visual Studio and select **About Microsoft Visual Studio** from the **Help** menu.
@@ -172,7 +173,8 @@ The **Styles** window makes it easy to test and preview CSS changes before you c
 <a id="css_auto_sync"></a>
 ## CSS Auto Sync
 
-> [!NOTE] This feature requires version 1.3 of Page Inspector.
+> [!NOTE]
+> This feature requires version 1.3 of Page Inspector.
 
 
 The CSS Auto-Sync feature allows you to edit a CSS file directly, and see the changes immediately in the Page Inspector browser.
@@ -231,7 +233,8 @@ In modern web applications, elements in the page are often generated dynamically
 
 With version 1.3, Page Inspector can now map items that were dynamically added to the page back to the corresponding JavaScript code. To demonstrate this feature, we'll use the [Single Page Application (SPA) template](../../../single-page-application/overview/introduction/knockoutjs-template.md).
 
-> [!NOTE] The SPA template requires the [ASP.NET and Web Tools 2012.2](https://go.microsoft.com/fwlink/?LinkId=282650) update.
+> [!NOTE]
+> The SPA template requires the [ASP.NET and Web Tools 2012.2](https://go.microsoft.com/fwlink/?LinkId=282650) update.
 
 
 In Visual Studio, choose **File** &gt; **New Project**. On the left, expand **Visual C#**, select **Web**, and then select **ASP.NET MVC4 Web Application**. Click **OK**.

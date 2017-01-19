@@ -48,7 +48,8 @@ With the polling approach the database must be setup to contain the infrastructu
 
 [!code-console[Main](using-sql-cache-dependencies-cs/samples/sample1.cmd)]
 
-> [!NOTE] To execute these commands the specified database login must be in the [`db_securityadmin`](https://msdn.microsoft.com/en-us/library/ms188685.aspx) and [`db_ddladmin`](https://msdn.microsoft.com/en-us/library/ms190667.aspx) roles. To examine the T-SQL sent to the database by the `aspnet_regsql.exe` command line program, refer to [this blog entry](http://scottonwriting.net/sowblog/posts/10709.aspx).
+> [!NOTE]
+> To execute these commands the specified database login must be in the [`db_securityadmin`](https://msdn.microsoft.com/en-us/library/ms188685.aspx) and [`db_ddladmin`](https://msdn.microsoft.com/en-us/library/ms190667.aspx) roles. To examine the T-SQL sent to the database by the `aspnet_regsql.exe` command line program, refer to [this blog entry](http://scottonwriting.net/sowblog/posts/10709.aspx).
 
 
 For example, to add the infrastructure for polling to a Microsoft SQL Server database named `pubs` on a database server named `ScottsServer` using Windows Authentication, navigate to the appropriate directory and, from the command line, enter:
@@ -126,7 +127,8 @@ Once a SQL cache dependency has been established, the polling system will connec
 
 The `pollTime` setting introduces a tradeoff between performance and data staleness. A small `pollTime` value increases the number of requests to the database, but more quickly evicts stale data from the cache. A larger `pollTime` value reduces the number of database requests, but increases the delay between when the backend data changes and when the related cache items are evicted. Fortunately, the database request is executing a simple stored procedure that s returning just a few rows from a simple, lightweight table. But do experiment with different `pollTime` values to find an ideal balance between database access and data staleness for your application. The smallest `pollTime` value allowed is 500.
 
-> [!NOTE] The above example provides a single `pollTime` value in the `<sqlCacheDependency>` element, but you can optionally specify the `pollTime` value in the `<add>` element. This is useful if you have multiple databases specified and want to customize the polling frequency per database.
+> [!NOTE]
+> The above example provides a single `pollTime` value in the `<sqlCacheDependency>` element, but you can optionally specify the `pollTime` value in the `<add>` element. This is useful if you have multiple databases specified and want to customize the polling frequency per database.
 
 
 ## Step 5: Declaratively Working with SQL Cache Dependencies
@@ -185,7 +187,8 @@ As we saw in the [Caching Data with the ObjectDataSource](caching-data-with-the-
 
 Where *databaseName* is the name of the database as specified in the `name` attribute of the `<add>` element in `Web.config`, and *tableName* is the name of the database table. For example, to create an ObjectDataSource that caches data indefinitely based on a SQL cache dependency against the Northwind s `Products` table, set the ObjectDataSource s `EnableCaching` property to `true` and its `SqlCacheDependency` property to NorthwindDB:Products .
 
-> [!NOTE] You can use a SQL cache dependency *and* a time-based expiry by setting `EnableCaching` to `true`, `CacheDuration` to the time interval, and `SqlCacheDependency` to the database and table name(s). The ObjectDataSource will evict its data when the time-based expiry is reached or when the polling system notes that the underlying database data has changed, whichever happens first.
+> [!NOTE]
+> You can use a SQL cache dependency *and* a time-based expiry by setting `EnableCaching` to `true`, `CacheDuration` to the time interval, and `SqlCacheDependency` to the database and table name(s). The ObjectDataSource will evict its data when the time-based expiry is reached or when the polling system notes that the underlying database data has changed, whichever happens first.
 
 
 The GridView in `SqlCacheDependencies.aspx` displays data from two tables - `Products` and `Categories` (the product s `CategoryName` field is retrieved via a `JOIN` on `Categories`). Therefore, we want to specify two SQL cache dependencies: NorthwindDB:Products;NorthwindDB:Categories .
@@ -263,7 +266,8 @@ After paging through a few pages of the GridView, open a second browser window a
 
 In this scenario you will see one of two things: either the breakpoint will be hit, indicating that the cached data was evicted due to the change in the database; or, the breakpoint will not be hit, meaning that `SqlCacheDependencies.aspx` is now showing stale data. If the breakpoint is not hit, it is likely because the polling service has not yet fired since the data was changed. Remember that the polling service is checking for changes to the `Products` table every `pollTime` milliseconds, so there is a delay between when the underlying data is updated and when the cached data is evicted.
 
-> [!NOTE] This delay is more likely to appear when editing one of the products through the GridView in `SqlCacheDependencies.aspx`. In the [Caching Data in the Architecture](caching-data-in-the-architecture-cs.md) tutorial we added the `MasterCacheKeyArray` cache dependency to ensure that the data being edited through the `ProductsCL` class s `UpdateProduct` method was evicted from the cache. However, we replaced this cache dependency when modifying the `AddCacheItem` method earlier in this step and therefore the `ProductsCL` class will continue to show the cached data until the polling system notes the change to the `Products` table. We'll see how to reintroduce the `MasterCacheKeyArray` cache dependency in Step 7.
+> [!NOTE]
+> This delay is more likely to appear when editing one of the products through the GridView in `SqlCacheDependencies.aspx`. In the [Caching Data in the Architecture](caching-data-in-the-architecture-cs.md) tutorial we added the `MasterCacheKeyArray` cache dependency to ensure that the data being edited through the `ProductsCL` class s `UpdateProduct` method was evicted from the cache. However, we replaced this cache dependency when modifying the `AddCacheItem` method earlier in this step and therefore the `ProductsCL` class will continue to show the cached data until the polling system notes the change to the `Products` table. We'll see how to reintroduce the `MasterCacheKeyArray` cache dependency in Step 7.
 
 
 ## Step 7: Associating Multiple Dependencies with a Cached Item
@@ -281,7 +285,8 @@ The following shows the updated code for the `ProductsCL` class s `AddCacheItem`
 
 Test this new code out. Now changes to the `Products`, `Categories`, or `Suppliers` tables cause the cached data to be evicted. Moreover, the `ProductsCL` class s `UpdateProduct` method, which is called when editing a product through the GridView, evicts the `MasterCacheKeyArray` cache dependency, which causes the cached `ProductsDataTable` to be evicted and the data to be re-retrieved on the next request.
 
-> [!NOTE] SQL cache dependencies can also be used with [output caching](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/caching/output.aspx). For a demonstration of this functionality, see: [Using ASP.NET Output Caching with SQL Server](https://msdn.microsoft.com/en-us/library/e3w8402y(VS.80).aspx).
+> [!NOTE]
+> SQL cache dependencies can also be used with [output caching](https://quickstarts.asp.net/QuickStartv20/aspnet/doc/caching/output.aspx). For a demonstration of this functionality, see: [Using ASP.NET Output Caching with SQL Server](https://msdn.microsoft.com/en-us/library/e3w8402y(VS.80).aspx).
 
 
 ## Summary

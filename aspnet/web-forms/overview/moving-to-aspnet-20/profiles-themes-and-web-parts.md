@@ -135,7 +135,8 @@ The location where themes are stored differs based upon their scope. Themes that
 
 A theme that is specific to a particular application is stored in an App\_Themes\&lt;Theme\_Name&gt; directory in the root of the Web site.
 
-> [!NOTE] A skin file should only modify server control properties that affect appearance.
+> [!NOTE]
+> A skin file should only modify server control properties that affect appearance.
 
 A global theme is a theme that can be applied to any application or Web site running on the Web server. These themes are stored by default in the ASP.NETClientfiles\Themes directory that is inside of the v2.x.xxxxx directory. Alternatively, you can move the theme files into the aspnet\_client/system\_web/[version]/Themes/[theme\_name] folder in the root of your Web site.
 
@@ -210,7 +211,8 @@ It is necessary to apply the theme in the PreInit method due to the page lifecyc
 
 In this exercise, you will apply an ASP.NET theme to a Web site.
 
-> [!IMPORTANT] If you are using Microsoft Word to enter information into a skin file, make sure that you are not replacing regular quotes with smart quotes. Smart quotes will cause problems with skin files.
+> [!IMPORTANT]
+> If you are using Microsoft Word to enter information into a skin file, make sure that you are not replacing regular quotes with smart quotes. Smart quotes will cause problems with skin files.
 
 1. Create a new ASP.NET Web site.
 2. Right-click on the project in Solution Explorer and choose Add New Item.
@@ -321,7 +323,8 @@ In this lab, you will create a Web part page that will persist information via A
 
 In this part of the walkthrough, you create a page that uses Web Parts controls to show static content. The first step in working with Web Parts is to create a page with two required structural elements. First, a Web parts page needs a WebPartManager control to track and coordinate all Web Parts controls. Second, a Web Parts page needs one or more zones, which are composite controls that contain WebPart or other server controls and occupy a specified region of a page.
 
-> [!NOTE] You do not need to do anything to enable Web Parts personalization; it is enabled by default for the Web Parts control set. When you first run a Web Parts page on a site, ASP.NET sets up a default personalization provider to store user personalization settings. For more information about personalization, see Web Parts Personalization Overview.
+> [!NOTE]
+> You do not need to do anything to enable Web Parts personalization; it is enabled by default for the Web Parts control set. When you first run a Web Parts page on a site, ASP.NET sets up a default personalization provider to store user personalization settings. For more information about personalization, see Web Parts Personalization Overview.
 
 
 ### To create a page for containing Web Parts controls
@@ -366,7 +369,8 @@ Next, create a user control that can also be added to the page as a Web Parts co
 
 1. Add a new Web user control to your site to serve as a search control. Deselect the option to **Place source code in a separate file**. Add it in the same directory as the WebPartsDemo.aspx page, and name it SearchUserControl.ascx.   
   
-    > [!NOTE] The user control for this walkthrough does not implement actual search functionality; it is used only to demonstrate Web Parts features.
+    > [!NOTE]
+    > The user control for this walkthrough does not implement actual search functionality; it is used only to demonstrate Web Parts features.
 2. Switch to **Design** view. From the **Standard** tab of the Toolbox, drag a TextBox control onto the page.
 3. Place the insertion point after the text box you just added, and press ENTER to add a new line.
 4. Drag a Button control onto the page on the new line below the text box you just added.

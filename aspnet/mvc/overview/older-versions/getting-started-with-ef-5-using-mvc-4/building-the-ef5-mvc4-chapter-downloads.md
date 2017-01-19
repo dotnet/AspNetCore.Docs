@@ -41,7 +41,8 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
   
     ![](building-the-ef5-mvc4-chapter-downloads/_static/image4.png)  
 
-    > [!NOTE] If you get the following error:  
+    > [!NOTE]
+    > If you get the following error:  
     >   
     >  *The term 'Update-Database' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.*  
     > Exit and restart Visual Studio.

@@ -64,13 +64,15 @@ These URLs have different origins than the previous two:
 - `https://example.com/foo.html` - Different scheme
 - `http://www.example.com/foo.html` - Different subdomain
 
-> [!NOTE] Internet Explorer does not consider the port when comparing origins.
+> [!NOTE]
+> Internet Explorer does not consider the port when comparing origins.
 
 
 <a id="create-webapi-project"></a>
 ## Create the WebService Project
 
-> [!NOTE] This section assumes you already know how to create Web API projects. If not, see [Getting Started with ASP.NET Web API](../getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md).
+> [!NOTE]
+> This section assumes you already know how to create Web API projects. If not, see [Getting Started with ASP.NET Web API](../getting-started-with-aspnet-web-api/tutorial-your-first-web-api.md).
 
 
 Start Visual Studio and create a new **ASP.NET Web Application** project. Select the **Empty** project template. Under "Add folders and core references for", select the **Web API** checkbox. Optionally, select the "Host in Cloud" option to deploy the app to Mircosoft Azure. Microsoft offers free web hosting for up to 10 websites in a [free Azure trial account](https://www.windowsazure.com/en-us/pricing/free-trial/?WT.mc_id=A443DD604).
@@ -102,7 +104,8 @@ Clicking the "Try It" button submits an AJAX request to the WebService app, usin
 
 ![](enabling-cross-origin-requests-in-web-api/_static/image7.png)
 
-> [!NOTE] If you watch the HTTP traffic in a tool like [Fiddler](http://www.telerik.com/fiddler), you will see that the browser does send the GET request, and the request succeeds, but the AJAX call returns an error. It's important to understand that same-origin policy does not prevent the browser from *sending* the request. Instead, it prevents the application from seeing the *response*.
+> [!NOTE]
+> If you watch the HTTP traffic in a tool like [Fiddler](http://www.telerik.com/fiddler), you will see that the browser does send the GET request, and the request succeeds, but the AJAX call returns an error. It's important to understand that same-origin policy does not prevent the browser from *sending* the request. Instead, it prevents the application from seeing the *response*.
 
 
 ![](enabling-cross-origin-requests-in-web-api/_static/image8.png)

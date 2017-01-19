@@ -125,7 +125,8 @@ After completing the wizard, Visual Studio automatically creates an `ItemTemplat
 
 Figure 8 shows a screen shot when viewing this page through a browser.
 
-> [!NOTE] In addition to the FormView, I've also added a HyperLink control above the FormView that will take the user back to the list of categories (`CategoryListMaster.aspx`). Feel free to place this link elsewhere or to omit it altogether.
+> [!NOTE]
+> In addition to the FormView, I've also added a HyperLink control above the FormView that will take the user back to the list of categories (`CategoryListMaster.aspx`). Feel free to place this link elsewhere or to omit it altogether.
 
 
 [![Category Information is Now Displayed at the Top of the Page](master-detail-filtering-acess-two-pages-datalist-cs/_static/image23.png)](master-detail-filtering-acess-two-pages-datalist-cs/_static/image22.png)

@@ -20,7 +20,8 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 > 
 > This walkthrough will guide you with the steps required to upgrade your application to the latest version.  
 > 
-> > [!NOTE] Please see [ASP.NET and Web Tools for Visual Studio 2013 Release Notes](../../../visual-studio/overview/2013/release-notes.md) for information on breaking changes from MVC 4 and Web API to the next version.
+> > [!NOTE]
+> > Please see [ASP.NET and Web Tools for Visual Studio 2013 Release Notes](../../../visual-studio/overview/2013/release-notes.md) for information on breaking changes from MVC 4 and Web API to the next version.
 > 
 >   
 > 
@@ -63,7 +64,8 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
     | Microsoft.AspNet.WebPages.Administration | <o:p> </o:p> | Removed |
     | Microsoft-Web-Helpers | <o:p> </o:p> | Microsoft.AspNet.WebHelpers |
 
-    > [!NOTE] Microsoft-Web-Helpers has been replaced with Microsoft.AspNet.WebHelpers. You should remove the old package first, and then install the newer package.   
+    > [!NOTE]
+    > Microsoft-Web-Helpers has been replaced with Microsoft.AspNet.WebHelpers. You should remove the old package first, and then install the newer package.   
     >   
     > There is no cross version compatibility among major ASP.NET packages. For example, MVC 5 is compatible with only Razor 3, and not Razor 2.
 4. Open your project in Visual Studio 2013.

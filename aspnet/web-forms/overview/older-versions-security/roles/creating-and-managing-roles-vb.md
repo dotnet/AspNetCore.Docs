@@ -101,7 +101,8 @@ The above markup defines the `SecurityTutorialsSqlRoleProvider` as the default p
 
 With this configuration markup in place, we are ready to start using role functionality within our application.
 
-> [!NOTE] The above configuration markup illustrates using the `<roleManager>` element's `enabled` and `defaultProvider` attributes. There are a number of other attributes that affect how the Roles framework associates role information on a user-by-user basis. We will examine these settings in the <a id="_msoanchor_8"></a>[*Role-Based Authorization*](role-based-authorization-vb.md) tutorial.
+> [!NOTE]
+> The above configuration markup illustrates using the `<roleManager>` element's `enabled` and `defaultProvider` attributes. There are a number of other attributes that affect how the Roles framework associates role information on a user-by-user basis. We will examine these settings in the <a id="_msoanchor_8"></a>[*Role-Based Authorization*](role-based-authorization-vb.md) tutorial.
 
 
 ## Step 3: Examining the Roles API
@@ -114,7 +115,8 @@ In the next tutorial we will examine how to associate users with roles. The `Rol
 
 In the <a id="_msoanchor_9"></a>[*Role-Based Authorization*](role-based-authorization-vb.md) tutorial we will look at ways to programmatically show or hide functionality based on the currently logged in user's role. To accomplish this, we can use the Role class's [`FindUsersInRole`](https://msdn.microsoft.com/en-us/library/system.web.security.roles.findusersinrole.aspx), [`GetRolesForUser`](https://msdn.microsoft.com/en-us/library/system.web.security.roles.getrolesforuser.aspx), [`GetUsersInRole`](https://msdn.microsoft.com/en-us/library/system.web.security.roles.getusersinrole.aspx), or [`IsUserInRole`](https://msdn.microsoft.com/en-us/library/system.web.security.roles.isuserinrole.aspx) methods.
 
-> [!NOTE] Keep in mind that any time one of these methods is invoked, the `Roles` class delegates the call to the configured provider. In our case, this means that the call is being sent to the `SqlRoleProvider`. The `SqlRoleProvider` then performs the appropriate database operation based on the invoked method. For example, the code `Roles.CreateRole("Administrators")` results in the `SqlRoleProvider` executing the `aspnet_Roles_CreateRole` stored procedure, which inserts a new record into the `aspnet_Roles` table named Administrators .
+> [!NOTE]
+> Keep in mind that any time one of these methods is invoked, the `Roles` class delegates the call to the configured provider. In our case, this means that the call is being sent to the `SqlRoleProvider`. The `SqlRoleProvider` then performs the appropriate database operation based on the invoked method. For example, the code `Roles.CreateRole("Administrators")` results in the `SqlRoleProvider` executing the `aspnet_Roles_CreateRole` stored procedure, which inserts a new record into the `aspnet_Roles` table named Administrators .
 
 
 The remainder of this tutorial looks at using the `Roles` class's `CreateRole`, `GetAllRoles`, and `DeleteRole` methods to manage the roles in the system.
@@ -123,7 +125,8 @@ The remainder of this tutorial looks at using the `Roles` class's `CreateRole`, 
 
 Roles offer a way to arbitrarily group users, and most commonly this grouping is used for a more convenient way to apply authorization rules. But in order to use roles as an authorization mechanism we first need to define what roles exist in the application. Unfortunately, ASP.NET does not include a CreateRoleWizard control. In order to add new roles we need to create a suitable user interface and invoke the Roles API ourselves. The good news is that this is very easy to accomplish.
 
-> [!NOTE] While there is no CreateRoleWizard Web control, there is the [ASP.NET Web Site Administration Tool](https://msdn.microsoft.com/en-us/library/ms228053.aspx), which is a local ASP.NET application designed to assist with viewing and managing your web application's configuration. However, I am not a big fan of the ASP.NET Web Site Administration Tool for two reasons. First, it is a bit buggy and the user experience leaves a lot to be desired. Second, the ASP.NET Web Site Administration Tool is designed to only work locally, meaning that you will have to build your own role management web pages if you need to manage roles on a live site remotely. For these two reasons, this tutorial and the next will focus on building the necessary role management tools in a web page rather than relying on the ASP.NET Web Site Administration Tool.
+> [!NOTE]
+> While there is no CreateRoleWizard Web control, there is the [ASP.NET Web Site Administration Tool](https://msdn.microsoft.com/en-us/library/ms228053.aspx), which is a local ASP.NET application designed to assist with viewing and managing your web application's configuration. However, I am not a big fan of the ASP.NET Web Site Administration Tool for two reasons. First, it is a bit buggy and the user experience leaves a lot to be desired. Second, the ASP.NET Web Site Administration Tool is designed to only work locally, meaning that you will have to build your own role management web pages if you need to manage roles on a live site remotely. For these two reasons, this tutorial and the next will focus on building the necessary role management tools in a web page rather than relying on the ASP.NET Web Site Administration Tool.
 
 
 Open the `ManageRoles.aspx` page in the `Roles` folder and add a TextBox and a Button Web control to the page. Set the TextBox control's `ID` property to `RoleName` and the Button's `ID` and `Text` properties to `CreateRoleButton` and Create Role , respectively. At this point, your page's declarative markup should look similar to the following:
@@ -136,7 +139,8 @@ Next, double-click the `CreateRoleButton` Button control in the Designer to crea
 
 The above code starts by assigning the trimmed role name entered in the `RoleName` TextBox to the `newRoleName` variable. Next, the `Roles` class's `RoleExists` method is called to determine if the role `newRoleName` already exists in the system. If the role does not exist, it is created via a call to the `CreateRole` method. If the `CreateRole` method is passed a role name that already exists in the system, a `ProviderException` exception is thrown. This is why the code first checks to ensure that the role does not already exist in the system before calling `CreateRole`. The `Click` event handler concludes by clearing out the `RoleName` TextBox's `Text` property.
 
-> [!NOTE] You may be wondering what will happen if the user doesn't enter any value into the `RoleName` TextBox. If the value passed into the `CreateRole` method is `Nothing` or an empty string, an exception is raised. Likewise, if the role name contains a comma an exception is raised. Consequently, the page should contain validation controls to ensure that the user enters a role and that it does not contain any commas. I leave as an exercise for the reader.
+> [!NOTE]
+> You may be wondering what will happen if the user doesn't enter any value into the `RoleName` TextBox. If the value passed into the `CreateRole` method is `Nothing` or an empty string, an exception is raised. Likewise, if the role name contains a comma an exception is raised. Consequently, the page should contain validation controls to ensure that the user enters a role and that it does not contain any commas. I leave as an exercise for the reader.
 
 
 Let's create a role named Administrators . Visit the `ManageRoles.aspx` page through a browser, type in Administrators into the textbox (see Figure 3), and then click the Create Role button.
@@ -185,7 +189,8 @@ Regardless of what approach you use, the GridView's resulting declarative markup
 
 [!code-aspx[Main](creating-and-managing-roles-vb/samples/sample10.aspx)]
 
-> [!NOTE] The array's contents are displayed using the databinding syntax `<%# Container.DataItem %>`. A thorough description of why this syntax is used when displaying the contents of an array bound to the GridView is beyond the scope of this tutorial. For more information on this matter, refer to [Binding a Scalar Array to a Data Web Control](http://aspnet.4guysfromrolla.com/articles/082504-1.aspx).
+> [!NOTE]
+> The array's contents are displayed using the databinding syntax `<%# Container.DataItem %>`. A thorough description of why this syntax is used when displaying the contents of an array bound to the GridView is beyond the scope of this tutorial. For more information on this matter, refer to [Binding a Scalar Array to a Data Web Control](http://aspnet.4guysfromrolla.com/articles/082504-1.aspx).
 
 
 Currently, the `RoleList` GridView is only bound to the list of roles when the page is first visited. We need to refresh the grid whenever a new role is added. To accomplish this, update the `CreateRoleButton` Button's `Click` event handler so that it calls the `DisplayRolesInGrid` method if a new role is created.
@@ -227,7 +232,8 @@ Next, create an event handler for the GridView's `RowDeleting` event. This is th
 
 The code starts by programmatically referencing the `RoleNameLabel` Web control in the row whose Delete Role button was clicked. The `Roles.DeleteRole` method is then invoked, passing in the `Text` of the `RoleNameLabel` and `False`, thereby deleting the role regardless of whether there are any users associated with the role. Finally, the `RoleList` GridView is refreshed so that the just-deleted role no longer appears in the grid.
 
-> [!NOTE] The Delete Role button does not require any sort of confirmation from the user before deleting the role. One of the easiest ways to confirm an action is through a client-side confirm dialog box. For more information on this technique, see [Adding Client-Side Confirmation When Deleting](https://asp.net/learn/data-access/tutorial-42-vb.aspx).
+> [!NOTE]
+> The Delete Role button does not require any sort of confirmation from the user before deleting the role. One of the easiest ways to confirm an action is through a client-side confirm dialog box. For more information on this technique, see [Adding Client-Side Confirmation When Deleting](https://asp.net/learn/data-access/tutorial-42-vb.aspx).
 
 
 ## Summary

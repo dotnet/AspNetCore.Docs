@@ -97,7 +97,8 @@ That's all there is to it! After completing the wizard Visual Studio adds two Bo
 **Figure 05**: Each Product and its Price is Listed in the GridView  ([Click to view full-size image](interacting-with-the-content-page-from-the-master-page-cs/_static/image15.png))
 
 
-> [!NOTE] Feel free to clean up the appearance of the GridView. Some suggestions include formatting the displayed UnitPrice value as a currency and using background colors and fonts to improve the grid's appearance. For more information on displaying and formatting data in ASP.NET, refer to my [Working with Data tutorial series](../../data-access/index.md).
+> [!NOTE]
+> Feel free to clean up the appearance of the GridView. Some suggestions include formatting the displayed UnitPrice value as a currency and using background colors and fonts to improve the grid's appearance. For more information on displaying and formatting data in ASP.NET, refer to my [Working with Data tutorial series](../../data-access/index.md).
 
 
 ## Step 2: Adding a Double Prices Button to the Master Page
@@ -150,7 +151,8 @@ A class subscribes to an event by creating an *event handler*, which is a method
 
 The second parameter passed to an event handler can include additional information about the event. While the base `EventArgs` class does not pass along any information, the .NET Framework includes a number of classes that extend `EventArgs` and encompass additional properties. For example, a `CommandEventArgs` instance is passed to event handlers that respond to the `Command` event, and includes two informational properties: `CommandArgument` and `CommandName`.
 
-> [!NOTE] For more information on creating, raising, and handling events, see [Events and Delegates](https://msdn.microsoft.com/en-us/library/17sde2xt.aspx) and [Event Delegates in Simple English](http://www.codeproject.com/KB/cs/eventdelegates.aspx).
+> [!NOTE]
+> For more information on creating, raising, and handling events, see [Events and Delegates](https://msdn.microsoft.com/en-us/library/17sde2xt.aspx) and [Event Delegates in Simple English](http://www.codeproject.com/KB/cs/eventdelegates.aspx).
 
 
 To define an event use the following syntax:

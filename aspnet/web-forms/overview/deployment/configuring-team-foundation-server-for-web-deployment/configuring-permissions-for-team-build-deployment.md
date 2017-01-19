@@ -31,7 +31,8 @@ When you install the Team Foundation Server (TFS) 2010 build service, you specif
 
 Any deployment tasks that require Windows authentication, and that you plan to automate using Team Build, will run using the build service identity. As such, you&#x27;ll need to grant the build service identity any required permissions on your web servers and your database servers.
 
-> [!NOTE] The Network Service account uses the machine account to authenticate to other computers. Machine accounts take the form *[domain name]\[machine name]***$**&#x2014;for example, **FABRIKAM\TFSBUILD$**. As such, if your build service runs using the Network Service identity, you should grant any required permissions to the machine account identity for your build server.
+> [!NOTE]
+> The Network Service account uses the machine account to authenticate to other computers. Machine accounts take the form *[domain name]\[machine name]***$**&#x2014;for example, **FABRIKAM\TFSBUILD$**. As such, if your build service runs using the Network Service identity, you should grant any required permissions to the machine account identity for your build server.
 
 
 ## Configuring Web Server Permissions

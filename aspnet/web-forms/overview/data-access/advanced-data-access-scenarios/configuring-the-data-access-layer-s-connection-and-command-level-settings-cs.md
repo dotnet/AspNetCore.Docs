@@ -78,7 +78,8 @@ The connection information should remain encapsulated within the TableAdapter an
 
 Let s extend the `ProductsTableAdapter` in the `Northwind` DataSet to include a `ConnectionString` property that can be used by the Business Logic Layer to read or change the connection string used by the TableAdapter.
 
-> [!NOTE] A *connection string* is a string that specifies database connection information, such as the provider to use, the location of the database, authentication credentials, and other database-related settings. For a list of connection string patterns used by a variety of data stores and providers, see [ConnectionStrings.com](http://www.connectionstrings.com/).
+> [!NOTE]
+> A *connection string* is a string that specifies database connection information, such as the provider to use, the location of the database, authentication credentials, and other database-related settings. For a list of connection string patterns used by a variety of data stores and providers, see [ConnectionStrings.com](http://www.connectionstrings.com/).
 
 
 As discussed in the [Creating a Data Access Layer](../introduction/creating-a-data-access-layer-cs.md) tutorial, the Typed DataSet s auto-generated classes can be extended through the use of partial classes. First, create a new subfolder in the project named `ConnectionAndCommandSettings` underneath the `~/App_Code/DAL` folder.
@@ -148,7 +149,8 @@ To allow the `CommandTimeout` property to be adjusted by the BLL, add the follow
 
 This method could be invoked from the BLL or Presentation Layer to set the command timeout for all commands issues by that TableAdapter instance.
 
-> [!NOTE] The `Adapter` and `CommandCollection` properties are marked as `private`, meaning they can only be accessed from code within the TableAdapter. Unlike the `Connection` property, these access modifiers are not configurable. Therefore, if you need to expose command-level properties to other layers in the architecture you must use the partial class approach discussed above to provide a `public` method or property that reads or writes to the `private` command objects.
+> [!NOTE]
+> The `Adapter` and `CommandCollection` properties are marked as `private`, meaning they can only be accessed from code within the TableAdapter. Unlike the `Connection` property, these access modifiers are not configurable. Therefore, if you need to expose command-level properties to other layers in the architecture you must use the partial class approach discussed above to provide a `public` method or property that reads or writes to the `private` command objects.
 
 
 ## Summary

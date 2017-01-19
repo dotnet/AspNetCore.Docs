@@ -88,7 +88,8 @@ Next, you need to give the user permission to create new team sites in the Share
     ![](creating-a-team-project-in-tfs/_static/image6.png)
 3. Open Internet Explorer, and then go to the URL you noted in step 2.
 
-    > [!NOTE] If you&#x27;re not logged on to Windows as the user who created the team project collection, you&#x27;ll need to sign in to SharePoint as this user in order to continue.
+    > [!NOTE]
+    > If you&#x27;re not logged on to Windows as the user who created the team project collection, you&#x27;ll need to sign in to SharePoint as this user in order to continue.
 4. On the **Site Actions** menu, click **Site Settings**.
 
     ![](creating-a-team-project-in-tfs/_static/image7.png)
@@ -100,7 +101,8 @@ Next, you need to give the user permission to create new team sites in the Share
 
     ![](creating-a-team-project-in-tfs/_static/image9.png)
 
-    > [!NOTE] You may receive an **HTTP 404 Not Found** error due to a double HTTP encoding bug. If this occurs, replace the URL with this:   
+    > [!NOTE]
+    > You may receive an **HTTP 404 Not Found** error due to a double HTTP encoding bug. If this occurs, replace the URL with this:   
     > [*site collection URL*]/\_layouts/permsetup.aspx  
     > For example:  
     > http://tfs/sites/Fabrikam%20Web%20Projects/\_layouts/permsetup.aspx
@@ -126,11 +128,13 @@ The next procedure describes how to create a new team project in TFS 2010.
 
 1. On the **Start** menu, point to **All Programs**, click **Microsoft Visual Studio 2010**, right-click **Microsoft Visual Studio 2010**, and then click **Run as administrator**.
 
-    > [!NOTE] If you don&#x27;t run Visual Studio 2010 as an administrator, the New Team Project Wizard will fail on the last step.
+    > [!NOTE]
+    > If you don&#x27;t run Visual Studio 2010 as an administrator, the New Team Project Wizard will fail on the last step.
 2. If the **User Account Control** dialog box appears, click **Yes**.
 3. In Visual Studio, on the **Team** menu, click **Connect to Team Foundation Server**.
 
-    > [!NOTE] If you have already configured a connection to a TFS server, you can omit steps 4-7.
+    > [!NOTE]
+    > If you have already configured a connection to a TFS server, you can omit steps 4-7.
 4. In the **Connection to Team Project** dialog box, click **Servers**.
 5. In the **Add/Remove Team Foundation Server** dialog box, click **Add**.
 6. In the **Add Team Foundation Server** dialog box, provide the details of your TFS instance, and then click **OK**.
@@ -145,12 +149,14 @@ The next procedure describes how to create a new team project in TFS 2010.
     ![](creating-a-team-project-in-tfs/_static/image13.png)
 10. In the **New Team Project** dialog box, provide a name and a description for the team project, and then click **Next**.
 
-    > [!NOTE] If your team project includes spaces, you may face some issues when you come to use the Internet Information Services (IIS) Web Deployment Tool (Web Deploy) to deploy packages from the output path. Spaces in the path can make it a lot more difficult to run Web Deploy commands.
+    > [!NOTE]
+    > If your team project includes spaces, you may face some issues when you come to use the Internet Information Services (IIS) Web Deployment Tool (Web Deploy) to deploy packages from the output path. Spaces in the path can make it a lot more difficult to run Web Deploy commands.
 
     ![](creating-a-team-project-in-tfs/_static/image14.png)
 11. On the **Select a Process Template** page, select the process template that you want to use to manage the development process, and then click **Next**.
 
-    > [!NOTE] For more information on process templates for TFS, see [Process Templates and Tools](https://msdn.microsoft.com/en-us/vstudio/aa718795).
+    > [!NOTE]
+    > For more information on process templates for TFS, see [Process Templates and Tools](https://msdn.microsoft.com/en-us/vstudio/aa718795).
 12. On the **Team Site Settings** page, leave the default settings unchanged, and then click **Next**.
 13. This setting creates, or identifies, a SharePoint team site that is associated with the TFS team project. Your development team can use this site to manage documentation, participate in discussion threads, create wiki pages, and perform various other tasks that are not related to code. For more information, see [Interactions Between SharePoint Products and Team Foundation Server](https://msdn.microsoft.com/en-us/library/ms253177.aspx).
 14. On the **Specify Source Control Settings** page, leave the default settings unchanged, and then click **Next**.

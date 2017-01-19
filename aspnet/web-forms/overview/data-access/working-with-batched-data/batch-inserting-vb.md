@@ -89,7 +89,8 @@ Start by dragging a Panel from the Toolbox onto the Designer, placing it beneath
 
 Next, we need to create the inserting interface that was shown back in Figure 1. This interface can be created through a variety of HTML techniques, but we will use a fairly straightforward one: a four-column, seven-row table.
 
-> [!NOTE] When entering markup for HTML `<table>` elements, I prefer to use the Source view. While Visual Studio does have tools for adding `<table>` elements through the Designer, the Designer seems all too willing to inject unasked for `style` settings into the markup. Once I have created the `<table>` markup, I usually return to the Designer to add the Web controls and set their properties. When creating tables with pre-determined columns and rows I prefer using static HTML rather than the [Table Web control](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.table.aspx) because any Web controls placed within a Table Web control can only be accessed using the `FindControl("controlID")` pattern. I do, however, use Table Web controls for dynamically-sized tables (ones whose rows or columns are based on some database or user-specified criteria), since the Table Web control can be constructed programmatically.
+> [!NOTE]
+> When entering markup for HTML `<table>` elements, I prefer to use the Source view. While Visual Studio does have tools for adding `<table>` elements through the Designer, the Designer seems all too willing to inject unasked for `style` settings into the markup. Once I have created the `<table>` markup, I usually return to the Designer to add the Web controls and set their properties. When creating tables with pre-determined columns and rows I prefer using static HTML rather than the [Table Web control](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.table.aspx) because any Web controls placed within a Table Web control can only be accessed using the `FindControl("controlID")` pattern. I do, however, use Table Web controls for dynamically-sized tables (ones whose rows or columns are based on some database or user-specified criteria), since the Table Web control can be constructed programmatically.
 
 
 Enter the following markup within the `<asp:Panel>` tags of the `InsertingInterface` Panel:
@@ -142,7 +143,8 @@ We now need to create the TextBoxes to collect the name and price for each new p
 
 Add a CompareValidator after each of the unit price TextBoxes, setting the `ControlToValidate` property to the appropriate `ID`. Also set the `Operator` property to `GreaterThanEqual`, `ValueToCompare` to 0 , and `Type` to `Currency`. These settings instruct the CompareValidator to ensure that the price, if entered, is a valid currency value that is greater than or equal to zero. Set the `Text` property to \* , and `ErrorMessage` to The price must be greater than or equal to zero. Also, please omit any currency symbols.
 
-> [!NOTE] The inserting interface does not include any RequiredFieldValidator controls, even though the `ProductName` field in the `Products` database table does not allow `NULL` values. This is because we want to let the user enter up to five products. For example, if the user were to provide the product name and unit price for the first three rows, leaving the last two rows blank, we d just add three new products to the system. Since `ProductName` is required, however, we will need to programmatically check to ensure that if a unit price is entered that a corresponding product name value is provided. We'll tackle this check in Step 4.
+> [!NOTE]
+> The inserting interface does not include any RequiredFieldValidator controls, even though the `ProductName` field in the `Products` database table does not allow `NULL` values. This is because we want to let the user enter up to five products. For example, if the user were to provide the product name and unit price for the first three rows, leaving the last two rows blank, we d just add three new products to the system. Since `ProductName` is required, however, we will need to programmatically check to ensure that if a unit price is entered that a corresponding product name value is provided. We'll tackle this check in Step 4.
 
 
 When validating the user s input, the CompareValidator reports invalid data if the value contains a currency symbol. Add a $ in front of each of the unit price TextBoxes to serve as a visual cue that instructs the user to omit the currency symbol when entering the price.
@@ -189,7 +191,8 @@ This code simply hides the `DisplayInterface` Panel and shows the `InsertingInte
 
 Next, create event handlers for the Add Products from Shipment and Cancel Button controls in the inserting interface. When either of these Buttons is clicked, we need to revert back to the display interface. Create `Click` event handlers for both Button controls so that they call `ReturnToDisplayInterface`, a method we will add momentarily. In addition to hiding the `InsertingInterface` Panel and showing the `DisplayInterface` Panel, the `ReturnToDisplayInterface` method needs to return the Web controls to their pre-editing state. This involves setting the DropDownLists `SelectedIndex` properties to 0 and clearing out the `Text` properties of the TextBox controls.
 
-> [!NOTE] Consider what might happen if we didn t return the controls to their pre-editing state before returning to the display interface. A user might click the Process Product Shipment button, enter the products from the shipment, and then click Add Products from Shipment . This would add the products and return the user to the display interface. At this point the user might want to add another shipment. Upon clicking the Process Product Shipment button they would return to the inserting interface but the DropDownList selections and TextBox values would still be populated with their previous values.
+> [!NOTE]
+> Consider what might happen if we didn t return the controls to their pre-editing state before returning to the display interface. A user might click the Process Product Shipment button, enter the products from the shipment, and then click Add Products from Shipment . This would add the products and return the user to the display interface. At this point the user might want to add another shipment. Upon clicking the Process Product Shipment button they would return to the inserting interface but the DropDownList selections and TextBox values would still be populated with their previous values.
 
 
 [!code-vb[Main](batch-inserting-vb/samples/sample5.vb)]
@@ -198,7 +201,8 @@ Both `Click` event handlers simply call the `ReturnToDisplayInterface` method, a
 
 Take a moment to test out this page in a browser. When first visiting the page you should see the display interface as was shown in Figure 5. Click the Process Product Shipment button. The page will postback and you should now see the inserting interface as shown in Figure 12. Clicking either the Add Products from Shipment or Cancel buttons returns you to the display interface.
 
-> [!NOTE] While viewing the inserting interface, take a moment to test out the CompareValidators on the unit price TextBoxes. You should see a client-side messagebox warning when clicking the Add Products from Shipment button with invalid currency values or prices with a value less than zero.
+> [!NOTE]
+> While viewing the inserting interface, take a moment to test out the CompareValidators on the unit price TextBoxes. You should see a client-side messagebox warning when clicking the Add Products from Shipment button with invalid currency values or prices with a value less than zero.
 
 
 [![The Inserting Interface is Displayed After Clicking the Process Product Shipment Button](batch-inserting-vb/_static/image35.png)](batch-inserting-vb/_static/image34.png)
@@ -245,7 +249,8 @@ Figure s 13, 14, and 15 show the inserting and display interfaces in action. In 
 **Figure 15**: The New Products Can Be Found in the Last Page of the GridView ([Click to view full-size image](batch-inserting-vb/_static/image45.png))
 
 
-> [!NOTE] The batch inserting logic used in this tutorial wraps the inserts within the scope of transaction. To verify this, purposefully introduce a database-level error. For example, rather than assigning the new `ProductsRow` instance s `CategoryID` property to the selected value in the `Categories` DropDownList, assign it to a value like `i * 5`. Here `i` is the loop indexer and has values ranging from 1 to 5. Therefore, when adding two or more products in batch insert the first product will have a valid `CategoryID` value (5), but subsequent products will have `CategoryID` values that do not match up to `CategoryID` values in the `Categories` table. The net effect is that while the first `INSERT` will succeed, subsequent ones will fail with a foreign key constraint violation. Since the batch insert is atomic, the first `INSERT` will be rolled back, returning the database to its state before the batch insert process began.
+> [!NOTE]
+> The batch inserting logic used in this tutorial wraps the inserts within the scope of transaction. To verify this, purposefully introduce a database-level error. For example, rather than assigning the new `ProductsRow` instance s `CategoryID` property to the selected value in the `Categories` DropDownList, assign it to a value like `i * 5`. Here `i` is the loop indexer and has values ranging from 1 to 5. Therefore, when adding two or more products in batch insert the first product will have a valid `CategoryID` value (5), but subsequent products will have `CategoryID` values that do not match up to `CategoryID` values in the `Categories` table. The net effect is that while the first `INSERT` will succeed, subsequent ones will fail with a foreign key constraint violation. Since the batch insert is atomic, the first `INSERT` will be rolled back, returning the database to its state before the batch insert process began.
 
 
 ## Summary

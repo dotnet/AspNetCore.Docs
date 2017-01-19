@@ -26,7 +26,8 @@ by [Jason Lee](https://github.com/jrjlee)
 > - Deploy enterprise-scale web applications to different server environments with varying requirements and restrictions.
 > - Deploy changes to web applications that are running in different server environments.
 > 
-> > [!NOTE] While these tutorials describe the use of TFS as a CI server, the guidance is easily adapted to any CI server. You don&#x27;t need a detailed knowledge of TFS to understand and leverage the tutorials.
+> > [!NOTE]
+> > While these tutorials describe the use of TFS as a CI server, the guidance is easily adapted to any CI server. You don&#x27;t need a detailed knowledge of TFS to understand and leverage the tutorials.
 > 
 > 
 > For an Italian translation of these tutorials, visit [http://www.lucamorelli.it](http://www.lucamorelli.it).

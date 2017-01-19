@@ -179,7 +179,8 @@ With the `DiscontinueAllProductsForSupplier(supplierID)` method created in the D
 
 This method simply calls down to the `DiscontinueAllProductsForSupplier(supplierID)` method in the DAL, passing along the provided *`supplierID`* parameter value. If there were any business rules that only allowed a supplier s products to be discontinued under certain circumstances, those rules should be implemented here, in the BLL.
 
-> [!NOTE] Unlike the `UpdateProduct` overloads in the `ProductsBLL` class, the `DiscontinueAllProductsForSupplier(supplierID)` method signature does not include the `DataObjectMethodAttribute` attribute (`<System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, Boolean)>`). This precludes the `DiscontinueAllProductsForSupplier(supplierID)` method from the ObjectDataSource s Configure Data Source wizard s drop-down list in the UPDATE tab. I ve omitted this attribute because we'll be calling the `DiscontinueAllProductsForSupplier(supplierID)` method directly from an event handler in our ASP.NET page.
+> [!NOTE]
+> Unlike the `UpdateProduct` overloads in the `ProductsBLL` class, the `DiscontinueAllProductsForSupplier(supplierID)` method signature does not include the `DataObjectMethodAttribute` attribute (`<System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, Boolean)>`). This precludes the `DiscontinueAllProductsForSupplier(supplierID)` method from the ObjectDataSource s Configure Data Source wizard s drop-down list in the UPDATE tab. I ve omitted this attribute because we'll be calling the `DiscontinueAllProductsForSupplier(supplierID)` method directly from an event handler in our ASP.NET page.
 
 
 ## Step 5: Adding a Discontinue All Products Button to the FormView
@@ -290,7 +291,8 @@ Figure 20 shows the page when viewing the products provided by Grandma Kelly's H
 **Figure 21**: The Prices for the First and Third Product Have Been Updated via the Price +10% and Price -10% Buttons ([Click to view full-size image](adding-and-responding-to-buttons-to-a-gridview-vb/_static/image55.png))
 
 
-> [!NOTE] The GridView (and DetailsView) can also have Buttons, LinkButtons, or ImageButtons added to their TemplateFields. As with the BoundField, these Buttons, when clicked, will induce a postback, raising the GridView s `RowCommand` event. When adding buttons in a TemplateField, however, the Button s `CommandArgument` is not automatically set to the index of the row as it is when using ButtonFields. If you need to determine the row index of the button that was clicked within the `RowCommand` event handler, you'll need to manually set the Button s `CommandArgument` property in its declarative syntax within the TemplateField, using code like:  
+> [!NOTE]
+> The GridView (and DetailsView) can also have Buttons, LinkButtons, or ImageButtons added to their TemplateFields. As with the BoundField, these Buttons, when clicked, will induce a postback, raising the GridView s `RowCommand` event. When adding buttons in a TemplateField, however, the Button s `CommandArgument` is not automatically set to the index of the row as it is when using ButtonFields. If you need to determine the row index of the button that was clicked within the `RowCommand` event handler, you'll need to manually set the Button s `CommandArgument` property in its declarative syntax within the TemplateField, using code like:  
 > `<asp:Button runat="server" ... CommandArgument='<%# CType(Container, GridViewRow).RowIndex %>' />`.
 
 

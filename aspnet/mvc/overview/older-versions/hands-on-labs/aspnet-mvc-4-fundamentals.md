@@ -22,7 +22,8 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > 
 > If you wish to explore the ASP.NET MVC 3 version of the tutorial application, you can find it in [[http://mvcmusicstore.codeplex.com/](http://mvcmusicstore.codeplex.com/)](http://mvcmusicstore.codeplex.com/).
 > 
-> > [!NOTE] This Hands-On Lab assumes that the developer has experience in Web development technologies, such as HTML and JavaScript.
+> > [!NOTE]
+> > This Hands-On Lab assumes that the developer has experience in Web development technologies, such as HTML and JavaScript.
 > 
 > 
 > All sample code and snippets are included in the Web Camps Training Kit, available at [https://www.microsoft.com/en-us/download/29843](https://www.microsoft.com/en-us/download/29843).
@@ -101,7 +102,8 @@ This Hands-On Lab is comprised by the following exercises:
 6. [Exercise 6: Using parameters in View](#Exercise6)
 7. [Exercise 7: A lap around ASP.NET MVC 4 New Template](#Exercise7)
 
-> [!NOTE] Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
+> [!NOTE]
+> Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
 
 
 Estimated time to complete this lab: **60 minutes**.
@@ -150,11 +152,13 @@ In this task, you will examine the solution structure to understand the elements
 
     1. **Controllers**. This folder will contain the controller classes. In an MVC based application, controllers are responsible for handling end user interaction, manipulating the model, and ultimately choosing a view to render the UI.
 
-        > [!NOTE] The MVC framework requires the names of all controllers to end with &quot;Controller&quot;-for example, HomeController, LoginController, or ProductController.
+        > [!NOTE]
+        > The MVC framework requires the names of all controllers to end with &quot;Controller&quot;-for example, HomeController, LoginController, or ProductController.
     2. **Models**. This folder is provided for classes that represent the application model for the MVC Web application. This usually includes code that defines objects and the logic for interacting with the data store. Typically, the actual model objects will be in separate class libraries. However, when you create a new application, you might include classes and then move them into separate class libraries at a later point in the development cycle.
     3. **Views**. This folder is the recommended location for views, the components responsible for displaying the application's user interface. Views use .aspx, .ascx, .cshtml and .master files, in addition to any other files that are related to rendering views. Views folder contains a folder for each controller; the folder is named with the controller-name prefix. For example, if you have a controller named **HomeController**, the Views folder will contain a folder named Home. By default, when the ASP.NET MVC framework loads a view, it looks for an .aspx file with the requested view name in the Views\controllerName folder (**Views[ControllerName][Action].aspx**) or (**Views[ControllerName][Action].cshtml**) for Razor Views.
 
-    > [!NOTE] In addition to the folders listed previously, an MVC Web application uses the **Global.asax** file to set global URL routing defaults, and it uses the **Web.config** file to configure the application.
+    > [!NOTE]
+    > In addition to the folders listed previously, an MVC Web application uses the **Global.asax** file to set global URL routing defaults, and it uses the **Web.config** file to configure the application.
 
 <a id="Ex1Task3"></a>
 
@@ -198,7 +202,8 @@ In this task, you will try out the Application in a web browser.
 
     *Application running in a web browser*
 
-    > [!NOTE] The local IIS Web Server will run the website on a random free port number. In the figure above, the site is running at `http://localhost:50103/`, so it's using port 50103. Your port number may vary.
+    > [!NOTE]
+    > The local IIS Web Server will run the website on a random free port number. In the figure above, the site is running at `http://localhost:50103/`, so it's using port 50103. Your port number may vary.
 2. Close the browser.
 
 <a id="Exercise2"></a>
@@ -228,7 +233,8 @@ In this task, you will add a new Controller.
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 3. Add the new controller. To do this, right-click the **Controllers** folder within the Solution Explorer, select **Add** and then the **Controller** command. Change the **Controller Name** to *StoreController*, and click **Add**.
 
     ![Add Controller Dialog](aspnet-mvc-4-fundamentals/_static/image8.png "Add Controller Dialog")
@@ -297,7 +303,8 @@ In this task, you will use the **querystring** to send parameters to the **Brows
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 3. Open **StoreController** class. To do this, in the **Solution Explorer**, expand the **Controllers** folder and double-click **StoreController.cs**.
 4. Change the **Browse** method, adding a string parameter to request for a specific genre. ASP.NET MVC will automatically pass any querystring or form post parameters named **genre** to this action method when invoked. To do this, replace the **Browse** method with the following code:
 
@@ -307,7 +314,8 @@ In this task, you will use the **querystring** to send parameters to the **Brows
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample4.cs)]
 
-    > [!NOTE] You are using the **HttpUtility.HtmlEncode** utility method to prevents users from injecting Javascript into the View with a link like **/Store/Browse?Genre=&lt;script&gt;window.location='[http://hackersite.com](http://hackersite.com)'&lt;/script&gt;**.
+    > [!NOTE]
+    > You are using the **HttpUtility.HtmlEncode** utility method to prevents users from injecting Javascript into the View with a link like **/Store/Browse?Genre=&lt;script&gt;window.location='[http://hackersite.com](http://hackersite.com)'&lt;/script&gt;**.
     > 
     > For further explanation, please visit [this msdn article](https://msdn.microsoft.com/en-us/library/a2a4yykt(v=VS.80).aspx).
 
@@ -378,7 +386,8 @@ The file **~/Views/Shared/\_layout.cshtml** allows you to setup a template for c
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 3. The file **\_layout.cshtml** contains the HTML container layout for all pages on the site. It includes the **&lt;html&gt;** element for the HTML response, as well as the **&lt;head&gt;** and **&lt;body&gt;** elements. **@RenderBody()** within the HTML body identify regions that view templates will be able to fill in with dynamic content.
 
     HTML(C#)
@@ -395,7 +404,8 @@ The file **~/Views/Shared/\_layout.cshtml** allows you to setup a template for c
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample8.cshtml)]
 
-    > [!NOTE] Did you know? Visual Studio 2012 has snippets that make it easy to add commonly used code in HTML, code files and more! Try it out by typing **&lt;div&gt;** and pressing **TAB** twice to insert a complete **div** tag.
+    > [!NOTE]
+    > Did you know? Visual Studio 2012 has snippets that make it easy to add commonly used code in HTML, code files and more! Try it out by typing **&lt;div&gt;** and pressing **TAB** twice to insert a complete **div** tag.
 
 <a id="Ex4Task2"></a>
 
@@ -443,7 +453,8 @@ In this task, you will add a View template to generate the HTML response that wi
 
     *Home Index view created*
 
-    > [!NOTE] name and location of the **Index.cshtml** file is relevant and follows the default ASP.NET MVC naming conventions.
+    > [!NOTE]
+    > name and location of the **Index.cshtml** file is relevant and follows the default ASP.NET MVC naming conventions.
     > 
     > The folder \Views\**Home** matches the controller name (**Home** Controller). The View template name (**Index**), matches the controller action method which will be displaying the View.
     > 
@@ -495,7 +506,8 @@ In this task, you will create a ViewModel class that will implement the Store ge
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 3. Create a **ViewModels** folder to hold the ViewModel. To do this, right-click the top-level **MvcMusicStore** project, select **Add** and then **New Folder**.
 
     ![Adding a new folder](aspnet-mvc-4-fundamentals/_static/image17.png "Adding a new folder")
@@ -533,7 +545,8 @@ In this task, you will add those 2 properties to the **StoreIndexViewModel** cla
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample11.cs)]
 
-    > [!NOTE] The **{ get; set; }** notation makes use of C#'s auto-implemented properties feature. It provides the benefits of a property without requiring us to declare a backing field.
+    > [!NOTE]
+    > The **{ get; set; }** notation makes use of C#'s auto-implemented properties feature. It provides the benefits of a property without requiring us to declare a backing field.
 
 <a id="Ex5Task3"></a>
 
@@ -558,7 +571,8 @@ In this task, you will update the **StoreController** to use the **StoreIndexVie
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample12.cs)]
 3. Change the **StoreController**'s **Index** action method so that it creates and populates a **StoreIndexViewModel** object and then passes it off to a View template to generate an HTML response with it.
 
-    > [!NOTE] In Lab &quot;ASP.NET MVC Models and Data Access&quot; you will write code that retrieves the list of store genres from a database. In the following code, you will create a **List** of dummy data genres that will populate the **StoreIndexViewModel**.
+    > [!NOTE]
+    > In Lab &quot;ASP.NET MVC Models and Data Access&quot; you will write code that retrieves the list of store genres from a database. In the following code, you will create a **List** of dummy data genres that will populate the **StoreIndexViewModel**.
     > 
     > After creating and setting up the **StoreIndexViewModel** object, it will be passed as an argument to the **View** method. This indicates that the View template will use that object to generate an HTML response with it.
 4. Replace the **Index** method with the following code:
@@ -569,7 +583,8 @@ In this task, you will update the **StoreController** to use the **StoreIndexVie
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample13.cs)]
 
-    > [!NOTE] If you're unfamiliar with C#, you may assume that using **var** means that the **viewModel** variable is late-bound. That's not correct - the C# compiler is using type-inference based on what you assign to the variable to determine that **viewModel** is of type **StoreIndexViewModel**. Also, by compiling the local **viewModel** variable as a **StoreIndexViewModel** type you get compile-time checking and Visual Studio code-editor support.
+    > [!NOTE]
+    > If you're unfamiliar with C#, you may assume that using **var** means that the **viewModel** variable is late-bound. That's not correct - the C# compiler is using type-inference based on what you assign to the variable to determine that **viewModel** is of type **StoreIndexViewModel**. Also, by compiling the local **viewModel** variable as a **StoreIndexViewModel** type you get compile-time checking and Visual Studio code-editor support.
 
 <a id="Ex5Task4"></a>
 
@@ -603,7 +618,8 @@ In this task, you will create a View template that will use a StoreIndexViewMode
 
 In this task, you will update the View template created in the last task to retrieve the number of genres and their names within the page.
 
-> [!NOTE] You will use @ syntax (often referred to as &quot;code nuggets&quot;) to execute code within the View template.
+> [!NOTE]
+> You will use @ syntax (often referred to as &quot;code nuggets&quot;) to execute code within the View template.
 
 
 1. In the **Index.cshtml** file, within the **Store** folder, replace its code with the following:
@@ -612,7 +628,8 @@ In this task, you will update the View template created in the last task to retr
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample14.cshtml)]
 
-    > [!NOTE] As soon as you finish typing the period after the word **Model**, Visual Studio's Intellisense will show a list of possible properties and methods to choose from.
+    > [!NOTE]
+    > As soon as you finish typing the period after the word **Model**, Visual Studio's Intellisense will show a list of possible properties and methods to choose from.
     > 
     > ![](aspnet-mvc-4-fundamentals/_static/image25.png)
     > 
@@ -654,7 +671,8 @@ Unlike ViewModels, which are created just to pass information from the Controlle
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 3. Add a **Genre** Model class. To do this, right-click the **Models** folder in the **Solution Explorer**, select **Add** and then the **New Item** option. Under **Code**, choose the **Class** item and name the file *Genre.cs*, then click **Add**.
 
     ![Adding a class](aspnet-mvc-4-fundamentals/_static/image27.png "Adding a class")
@@ -703,7 +721,8 @@ A **StoreBrowseViewModel** will be used in this task to show the Albums that mat
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample19.cs)]
 
-    > [!NOTE] What is **List&lt;Album&gt;** ?: This definition is using the **List&lt;T&gt;** type, where **T** constrains the type to which elements of this **List** belong to, in this case **Album** (or any of its descendants).
+    > [!NOTE]
+    > What is **List&lt;Album&gt;** ?: This definition is using the **List&lt;T&gt;** type, where **T** constrains the type to which elements of this **List** belong to, in this case **Album** (or any of its descendants).
     > 
     > This ability to design classes and methods that defer the specification of one or more types until the class or method is declared and instantiated by client code is a feature of the C# language called **Generics**.
     > 
@@ -819,7 +838,8 @@ In this task, you will add a link in the Store View to have a link in every Genr
 
     [!code-cshtml[Main](aspnet-mvc-4-fundamentals/samples/sample25.cshtml)]
 
-    > [!NOTE] another approach would be linking directly to the page, with a code like the following:
+    > [!NOTE]
+    > another approach would be linking directly to the page, with a code like the following:
     > 
     > &lt;a href=&quot;/Store/Browse?genre=@genreName&quot;&gt;@genreName&lt;/a&gt;
     > 
@@ -860,7 +880,8 @@ You will now use the ViewBag dynamic collection to pass a list of &quot;**Starre
 
     [!code-csharp[Main](aspnet-mvc-4-fundamentals/samples/sample26.cs)]
 
-    > [!NOTE] You could also use the syntax **ViewBag[&quot;Starred&quot;]** to access the properties.
+    > [!NOTE]
+    > You could also use the syntax **ViewBag[&quot;Starred&quot;]** to access the properties.
 2. The star icon **&quot;starred.png&quot;** is included in the **Source\Assets\Images** folder of this lab. In order to add it to the application, drag their content from a **Windows Explorer** window into the **Solution Explorer** in Visual Web Developer Express, as shown below:
 
     ![Adding star image to the solution](aspnet-mvc-4-fundamentals/_static/image34.png "Adding star image to the solution")
@@ -910,7 +931,8 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 project
 
     *Creating a new ASP.NET MVC 4 Internet Application*
 
-    > [!NOTE] Razor syntax has been introduced in ASP.NET MVC 3. Its goal is to minimize the number of characters and keystrokes required in a file, enabling a fast and fluid coding workflow. Razor leverages existing C#/VB (or other) language skills and delivers a template markup syntax that enables an awesome HTML construction workflow.
+    > [!NOTE]
+    > Razor syntax has been introduced in ASP.NET MVC 3. Its goal is to minimize the number of characters and keystrokes required in a file, enabling a fast and fluid coding workflow. Razor leverages existing C#/VB (or other) language skills and delivers a template markup syntax that enables an awesome HTML construction workflow.
 4. Press **F5** to run the solution and see the renewed template. You can check out the following features:
 
     1. **Modern-style templates**
@@ -946,13 +968,16 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 project
         1. **jQuery**: jQuery simplifies HTML document traversing, event handling, animating, and Ajax interactions.
         2. **jQuery UI**: This library provides abstractions for low-level interaction and animation, advanced effects and themeable widgets, built on top of the jQuery JavaScript Library.
 
-            > [!NOTE] You can learn about jQuery and jQuery UI in [[http://docs.jquery.com/](http://docs.jquery.com/)](http://docs.jquery.com/).
+            > [!NOTE]
+            > You can learn about jQuery and jQuery UI in [[http://docs.jquery.com/](http://docs.jquery.com/)](http://docs.jquery.com/).
         3. **KnockoutJS**: The ASP.NET MVC 4 default template now includes **KnockoutJS**, a JavaScript MVVM framework that lets you create rich and highly responsive web applications using JavaScript and HTML. Like in ASP.NET MVC 3, jQuery and jQuery UI libraries are also included in ASP.NET MVC 4.
 
-            > [!NOTE] You can get more information about KnockOutJS library in this link: [http://learn.knockoutjs.com/](http://learn.knockoutjs.com/).
+            > [!NOTE]
+            > You can get more information about KnockOutJS library in this link: [http://learn.knockoutjs.com/](http://learn.knockoutjs.com/).
         4. **Modernizr**: This library runs automatically, making your site compatible with older browsers when using HTML5 and CSS3 technologies.
 
-            > [!NOTE] You can get more information about Modernizr library in this link: [http://www.modernizr.com/](http://www.modernizr.com/).
+            > [!NOTE]
+            > You can get more information about Modernizr library in this link: [http://www.modernizr.com/](http://www.modernizr.com/).
     3. **SimpleMembership included in the solution**
 
         SimpleMembership has been designed as a replacement for the previous ASP.NET Role and Membership provider system. It has many new features that make it easier for the developer to secure web pages in a more flexible way.
@@ -963,9 +988,11 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 project
 
         *SimpleMembership Included in the solution*
 
-        > [!NOTE] Find more information about [OAuthWebSecurity](https://msdn.microsoft.com/en-us/library/jj158393(v=vs.111).aspx) in MSDN.
+        > [!NOTE]
+        > Find more information about [OAuthWebSecurity](https://msdn.microsoft.com/en-us/library/jj158393(v=vs.111).aspx) in MSDN.
 
-> [!NOTE] Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
+> [!NOTE]
+> Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
 
 
 * * *
@@ -1037,7 +1064,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
 
 1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-    > [!NOTE] With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
+    > [!NOTE]
+    > With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
 
     ![Log on to Windows Azure portal](aspnet-mvc-4-fundamentals/_static/image48.png "Log on to Windows Azure portal")
 
@@ -1049,7 +1077,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Creating a new Web Site*
 3. Click **Compute** | **Web Site**. Then select **Quick Create** option. Provide an available URL for the new web site and click **Create Web Site**.
 
-    > [!NOTE] A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
+    > [!NOTE]
+    > A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
 
     ![Creating a new Web Site using Quick Create](aspnet-mvc-4-fundamentals/_static/image50.png "Creating a new Web Site using Quick Create")
 
@@ -1071,7 +1100,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Opening the Web Site management pages*
 7. In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link.
 
-    > [!NOTE] The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
+    > [!NOTE]
+    > The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
 
     ![Downloading the web site publish profile](aspnet-mvc-4-fundamentals/_static/image54.png "Downloading the web site publish profile")
 
@@ -1122,7 +1152,8 @@ If your application makes use of SQL Server databases you will need to create a 
     *Importing publish profile*
 3. Click **Validate Connection**. Once Validation is complete click **Next**.
 
-    > [!NOTE] Validation is complete once you see a green checkmark appear next to the Validate Connection button.
+    > [!NOTE]
+    > Validation is complete once you see a green checkmark appear next to the Validate Connection button.
 
     ![Validating connection](aspnet-mvc-4-fundamentals/_static/image62.png "Validating connection")
 

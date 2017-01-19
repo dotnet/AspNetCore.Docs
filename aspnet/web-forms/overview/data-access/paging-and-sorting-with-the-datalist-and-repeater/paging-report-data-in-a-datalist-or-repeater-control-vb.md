@@ -27,7 +27,8 @@ Paging and sorting are two very common features when displaying data in an onlin
 
 Unfortunately, neither the DataList nor Repeater offer automatic paging or sorting support. In this tutorial we'll examine how to add paging support to the DataList or Repeater. We must manually create the paging interface, display the appropriate page of records, and remember the page being visited across postbacks. While this does take more time and code than with the GridView, DetailsView, or FormView, the DataList and Repeater allow for much more flexible paging and data display interfaces.
 
-> [!NOTE] This tutorial focuses exclusively on paging. In the next tutorial we'll turn our attention to adding sorting capabilities.
+> [!NOTE]
+> This tutorial focuses exclusively on paging. In the next tutorial we'll turn our attention to adding sorting capabilities.
 
 
 ## Step 1: Adding the Paging and Sorting Tutorial Web Pages
@@ -138,7 +139,8 @@ After making these changes, the DataList and ObjectDataSource s markup should lo
 
 [!code-aspx[Main](paging-report-data-in-a-datalist-or-repeater-control-vb/samples/sample3.aspx)]
 
-> [!NOTE] Since we are not performing any update or delete functionality in this tutorial, you may disable the DataList s view state to reduce the rendered page size.
+> [!NOTE]
+> Since we are not performing any update or delete functionality in this tutorial, you may disable the DataList s view state to reduce the rendered page size.
 
 
 When initially visiting this page through a browser, neither the `pageIndex` nor `pageSize` querystring parameters are provided. Hence, the default values of 0 and 4 are used. As Figure 8 shows, this results in a DataList that displays the first four products.
@@ -243,7 +245,8 @@ Figure 10 shows `Paging.aspx` when first visited. Since the querystring is empty
 **Figure 11**: The Second Page of Data is Displayed ([Click to view full-size image](paging-report-data-in-a-datalist-or-repeater-control-vb/_static/image27.png))
 
 
-> [!NOTE] The paging interface can be further enhanced by allowing the user to specify how many pages to view per page. For example, a DropDownList could be added listing page size options like 5, 10, 25, 50, and All. Upon selecting a page size, the user would need to be redirected back to `Paging.aspx?pageIndex=0&pageSize=selectedPageSize`. I leave implementing this enhancement as an exercise for the reader.
+> [!NOTE]
+> The paging interface can be further enhanced by allowing the user to specify how many pages to view per page. For example, a DropDownList could be added listing page size options like 5, 10, 25, 50, and All. Upon selecting a page size, the user would need to be redirected back to `Paging.aspx?pageIndex=0&pageSize=selectedPageSize`. I leave implementing this enhancement as an exercise for the reader.
 
 
 ## Using Custom Paging

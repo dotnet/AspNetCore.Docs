@@ -40,7 +40,8 @@ This diagram shows two custom handlers inserted into the pipeline:
 
 ![](http-message-handlers/_static/image2.png)
 
-> [!NOTE] On the client side, HttpClient also uses message handlers. For more information, see [HttpClient Message Handlers](httpclient-message-handlers.md).
+> [!NOTE]
+> On the client side, HttpClient also uses message handlers. For more information, see [HttpClient Message Handlers](httpclient-message-handlers.md).
 
 
 ## Custom Message Handlers
@@ -60,7 +61,8 @@ Here is a trivial example:
 
 [!code-csharp[Main](http-message-handlers/samples/sample2.cs)]
 
-> [!NOTE] The call to `base.SendAsync` is asynchronous. If the handler does any work after this call, use the **await** keyword, as shown.
+> [!NOTE]
+> The call to `base.SendAsync` is asynchronous. If the handler does any work after this call, use the **await** keyword, as shown.
 
 
 A delegating handler can also skip the inner handler and directly create the response:
@@ -123,7 +125,8 @@ This handler looks for the API key in the URI query string. (For this example, w
 
 If the request does not have a valid key, the handler creates a response message with status 403, Forbidden. In this case, the handler does not call `base.SendAsync`, so the inner handler never receives the request, nor does the controller. Therefore, the controller can assume that all incoming requests have a valid API key.
 
-> [!NOTE] If the API key applies only to certain controller actions, consider using an action filter instead of a message handler. Action filters run after URI routing is performed.
+> [!NOTE]
+> If the API key applies only to certain controller actions, consider using an action filter instead of a message handler. Action filters run after URI routing is performed.
 
 
 ## Per-Route Message Handlers

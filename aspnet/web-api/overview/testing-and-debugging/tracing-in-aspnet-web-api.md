@@ -44,7 +44,8 @@ In the Package Manager Console window, type the following commands.
 
 The first command installs the latest Web API tracing package. It also updates the core Web API packages. The second command updates the WebApi.WebHost package to the latest version.
 
-> [!NOTE] If you want to target a specific version of Web API, use the -Version flag when you install the tracing package.
+> [!NOTE]
+> If you want to target a specific version of Web API, use the -Version flag when you install the tracing package.
 
 
 Open the file WebApiConfig.cs in the App\_Start folder. Add the following code to the **Register** method.

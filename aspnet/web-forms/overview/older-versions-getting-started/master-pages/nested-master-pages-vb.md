@@ -37,14 +37,16 @@ It's possible to create such customized layouts by using *nested master pages*. 
 
 This tutorial starts by highlighting the benefits of nested master pages. It then shows how to create and use nested master pages.
 
-> [!NOTE] Nested master pages have been possible since version 2.0 of the .NET Framework. However, Visual Studio 2005 did not include design-time support for nested master pages. The good news is that Visual Studio 2008 offers a rich design-time experience for nested master pages. If you are interested in using nested master pages but are still using Visual Studio 2005, check out [Scott Guthrie](https://weblogs.asp.net/scottgu/)'s blog entry, [Tips for Nested Master Pages in VS 2005 Design-Time](https://weblogs.asp.net/scottgu/archive/2005/11/11/430382.aspx).
+> [!NOTE]
+> Nested master pages have been possible since version 2.0 of the .NET Framework. However, Visual Studio 2005 did not include design-time support for nested master pages. The good news is that Visual Studio 2008 offers a rich design-time experience for nested master pages. If you are interested in using nested master pages but are still using Visual Studio 2005, check out [Scott Guthrie](https://weblogs.asp.net/scottgu/)'s blog entry, [Tips for Nested Master Pages in VS 2005 Design-Time](https://weblogs.asp.net/scottgu/archive/2005/11/11/430382.aspx).
 
 
 ## The Benefits of Nested Master Pages
 
 Many websites have an overarching site design as well as more customized designs specific to certain types of pages. For instance, in our demo web application we have created a rudimentary Administration section (the pages in the `~/Admin` folder). Currently the web pages in the `~/Admin` folder use the same master page as those pages not in the administration section (namely, `Site.master` or `Alternate.master`, depending on the user's selection).
 
-> [!NOTE] For now, pretend that our site has just one master page, `Site.master`. We'll address using nested master pages with two (or more) master pages starting with "Using a Nested Master Page for the Administration Section" later in this tutorial.
+> [!NOTE]
+> For now, pretend that our site has just one master page, `Site.master`. We'll address using nested master pages with two (or more) master pages starting with "Using a Nested Master Page for the Administration Section" later in this tutorial.
 
 
 Imagine that we were asked to customize the layout of the Administration pages to include additional information or links that would not otherwise be present in other pages in the site. There are four techniques to implement this requirement:
@@ -92,7 +94,8 @@ Let's add a new nested master page to the `NestedMasterPages` folder named `Simp
 
 Next, click the Add button. This will display the same Select a Master Page dialog box you see when binding a content page to a master page (see Figure 3). Choose the `Simple.master` master page in the `NestedMasterPages` folder and click OK.
 
-> [!NOTE] If you created your ASP.NET website using the Web Application Project model instead of the Web Site Project model you will not see the "Select master page" checkbox in the Add New Item dialog box shown in Figure 2. To create a nested master page when using the Web Application Project model you must choose the Nested Master Page template (instead of the Master Page template). After selecting the Nested Master Page template and clicking Add, the same Select a Master Page dialog box shown in Figure 3 will appear.
+> [!NOTE]
+> If you created your ASP.NET website using the Web Application Project model instead of the Web Site Project model you will not see the "Select master page" checkbox in the Add New Item dialog box shown in Figure 2. To create a nested master page when using the Web Application Project model you must choose the Nested Master Page template (instead of the Master Page template). After selecting the Nested Master Page template and clicking Add, the same Select a Master Page dialog box shown in Figure 3 will appear.
 
 
 [![Check the &quot;Select master page&quot; Checkbox to Add a Nested Master Page](nested-master-pages-vb/_static/image5.png)](nested-master-pages-vb/_static/image4.png)
@@ -129,7 +132,8 @@ What we need to do is update the nested master page (`SimpleNested.master`) to i
 
 Update the `SimpleNested.master` master page to include a ContentPlaceHolder in its two Content controls. Give the ContentPlaceHolder controls the same name as the ContentPlaceHolder control their Content control refers to. That is, add a ContentPlaceHolder control named `MainContent` to the Content control in `SimpleNested.master` that references the `MainContent` ContentPlaceHolder in `Simple.master`. Do the same thing in the Content control that references the `head` ContentPlaceHolder.
 
-> [!NOTE] While I recommend naming the ContentPlaceHolder controls in the nested master page the same as the ContentPlaceHolders in the top-level master page, this naming symmetry is not required. You can give the ContentPlaceHolder controls in your nested master page any name you like. However, I find it easier to remember what ContentPlaceHolders correspond with what regions of the page if my top-level master page and nested master pages use the same names.
+> [!NOTE]
+> While I recommend naming the ContentPlaceHolder controls in the nested master page the same as the ContentPlaceHolders in the top-level master page, this naming symmetry is not required. You can give the ContentPlaceHolder controls in your nested master page any name you like. However, I find it easier to remember what ContentPlaceHolders correspond with what regions of the page if my top-level master page and nested master pages use the same names.
 
 
 After making these additions your `SimpleNested.master` master page's declarative markup should look similar to the following:

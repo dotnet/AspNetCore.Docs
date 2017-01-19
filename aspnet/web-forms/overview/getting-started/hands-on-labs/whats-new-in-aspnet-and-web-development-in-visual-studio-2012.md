@@ -140,7 +140,8 @@ In this task, you will discover the new CSS Color Picker integrated into Visual 
 
     *Color picker Opacity*
 
-    > [!NOTE] The RGBA (Red, Green, Blue, Alpha) color definition in CSS3 enables you to define the color opacity value for a single item. Unlike **opacity -** a similar CSS attribute **-** RGBA colors are also compatible with the latest browsers.
+    > [!NOTE]
+    > The RGBA (Red, Green, Blue, Alpha) color definition in CSS3 enables you to define the color opacity value for a single item. Unlike **opacity -** a similar CSS attribute **-** RGBA colors are also compatible with the latest browsers.
 
 <a id="Ex1Task3"></a>
 
@@ -174,7 +175,8 @@ In this task, you will learn how to use cross-browser compatible CSS3 snippets i
 
     *Rounded corners with shadow*
 
-    > [!NOTE] At this moment, the shadow attribute is inserted with the corresponding prefix (moz, webkit, o) to support Mozilla and Webkit (Chrome, Safari, Konkeror) browsers.
+    > [!NOTE]
+    > At this moment, the shadow attribute is inserted with the corresponding prefix (moz, webkit, o) to support Mozilla and Webkit (Chrome, Safari, Konkeror) browsers.
 7. Create a new class **div.images ul li img:hover** below the **div.images ul li img** class definition and place the cursor inside the brackets **.**
 
     CSS
@@ -191,7 +193,8 @@ In this task, you will learn how to use cross-browser compatible CSS3 snippets i
 
     *Transform snippet rotating an image*
 
-    > [!NOTE] If you are using Internet Explorer 10 and cannot see the shadows, make sure the document mode is set to IE10 standards. Press **F12** to open Internet Explorer developer tools and click **Document Mode** to change to IE10 standards.
+    > [!NOTE]
+    > If you are using Internet Explorer 10 and cannot see the shadows, make sure the document mode is set to IE10 standards. Press **F12** to open Internet Explorer developer tools and click **Document Mode** to change to IE10 standards.
 
     ![about-us](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image21.png)
 
@@ -282,14 +285,16 @@ Visual Studio now includes several HTML5 code snippets. In this task, you will u
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample6.aspx)]
 
-    > [!NOTE] You will need to add the audio file to the solution.
+    > [!NOTE]
+    > You will need to add the audio file to the solution.
 4. Press **F5** to run the site and play the audio.
 
     ![Running the audio control](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image29.png "Running the audio control")
 
     *Running the audio control*
 
-    > [!NOTE] You can also try more snippets included in Visual Studio, such as video, figure, etc.
+    > [!NOTE]
+    > You can also try more snippets included in Visual Studio, such as video, figure, etc.
 5. Now, try to insert a control in some part of the page. For example, try to insert a **GridView** control, but instead of typing **&lt;Gri,** start typing **&lt;GV**. Notice that the IntelliSense list shows the **asp:GridView** control.
 
     IntelliSense in the HTML Editor now provides title-casing search, as well as partial matching (retrieving all elements that contains the term).
@@ -324,7 +329,8 @@ Another improvement in the HTML Editor is the Smart Tags feature. Smart tags mak
 
 One of the best practices in HTML is indenting the nested elements to keep the code readable. In Visual Studio 2012, you will notice that the editor automatically indents the elements while you are writing the code.
 
-> [!NOTE] In previous version of Visual Studio, smart indentation was available in the XML editor but not in the HTML editor.
+> [!NOTE]
+> In previous version of Visual Studio, smart indentation was available in the XML editor but not in the HTML editor.
 
 
 1. Make sure that the Indenting configuration on the HTML Editor is set to Smart Indentation. To do that, select the **Tools | Options** menu option and then select the **Text Editor | HTML | Tabs** page in the left pane of the screen. Select the Smart indentation option.
@@ -402,7 +408,8 @@ This task will introduce you to some of the new JavaScript editor features, whic
 
     [!code-html[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample7.html)]
 
-    > [!NOTE] Ensure the DOCTYPE is set to XHTML5 before proceeding with the next steps.
+    > [!NOTE]
+    > Ensure the DOCTYPE is set to XHTML5 before proceeding with the next steps.
 5. Edit the code and notice that IntelliSense for JavaScript includes HTML5 features, like local storage, and their inner methods.
 
     ![HTML5 JavaScript features in JavaScript](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image39.png "HTML5 JavaScript features in JavaScript")
@@ -426,7 +433,8 @@ This task will introduce you to some of the new JavaScript editor features, whic
 
 In this task, you will discover the new JavaScript validation for the ECMAScript5 standard. This feature will help you to write compliant JavaScript code, while preventing scripting issues before site deployment.
 
-> [!NOTE] Visual Studio 2010 implemented ECMAStript3 compliance, while Visual Studio 2012 provides ECMAScript5 compliance.
+> [!NOTE]
+> Visual Studio 2010 implemented ECMAStript3 compliance, while Visual Studio 2012 provides ECMAScript5 compliance.
 
 
 1. Open **ECMA5script5.js** located under the **Scripts\custom** project folder. You will now test validation for ECMAScript5 standard.
@@ -490,7 +498,8 @@ In this task, you will explore Visual Studio features for XML documentation in J
 
     *Navigating to jQuery definitions*
 
-> [!NOTE] Make sure that GotoDefinition.js has no syntax errors before saving the file.
+> [!NOTE]
+> Make sure that GotoDefinition.js has no syntax errors before saving the file.
 
 
 <a id="Exercise4"></a>
@@ -556,7 +565,8 @@ In this task, you will learn how to enable and reference the bundled and minifie
 
     [!code-aspx[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample12.aspx)]
 
-    > [!NOTE] This code is for demo purposes. Ideally, you will reference the bundles in the Site.Master file. In this sample code, you will find that some of the bundled files are also being referenced by the Site.Master file, making this last reference redundant.
+    > [!NOTE]
+    > This code is for demo purposes. Ideally, you will reference the bundles in the Site.Master file. In this sample code, you will find that some of the bundled files are also being referenced by the Site.Master file, making this last reference redundant.
 6. Notice that the links are using the bundling conventions in the **href** attribute to get all the CSS or JS files from the Styles and Scripts\custom folder respectively.
 
     You can use the path **Scripts/custom/JS** as shown below to bundle and minify all the JS files inside a **Scripts/custom** folder. This is the default behavior with the default bundles.
@@ -687,7 +697,8 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     *Dynamic JS files bundle*
 
-> [!NOTE] Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
+> [!NOTE]
+> Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
 
 
 <a id="Summary"></a>
@@ -751,7 +762,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
 
 1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-    > [!NOTE] With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
+    > [!NOTE]
+    > With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
 
     ![Log on to Windows Azure portal](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image64.png "Log on to Windows Azure portal")
 
@@ -763,7 +775,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Creating a new Web Site*
 3. Click **Compute** | **Web Site**. Then select **Quick Create** option. Provide an available URL for the new web site and click **Create Web Site**.
 
-    > [!NOTE] A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
+    > [!NOTE]
+    > A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
 
     ![Creating a new Web Site using Quick Create](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image66.png "Creating a new Web Site using Quick Create")
 
@@ -785,7 +798,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Opening the Web Site management pages*
 7. In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link.
 
-    > [!NOTE] The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
+    > [!NOTE]
+    > The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
 
     ![Downloading the web site publish profile](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image70.png "Downloading the web site publish profile")
 
@@ -836,7 +850,8 @@ If your application makes use of SQL Server databases you will need to create a 
     *Importing publish profile*
 3. Click **Validate Connection**. Once Validation is complete click **Next**.
 
-    > [!NOTE] Validation is complete once you see a green checkmark appear next to the Validate Connection button.
+    > [!NOTE]
+    > Validation is complete once you see a green checkmark appear next to the Validate Connection button.
 
     ![Validating connection](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image78.png "Validating connection")
 

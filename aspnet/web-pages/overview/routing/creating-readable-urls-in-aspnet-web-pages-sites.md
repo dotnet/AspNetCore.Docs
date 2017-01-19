@@ -69,7 +69,8 @@ If the search found no exact matches for *.cshtml* files in their specified fold
 1. */a/b/c/default.cshtml* (no path information).
 2. */a/b/c/index.cshtml* (no path information).
 
-> [!NOTE] To be clear, requests for specific pages (that is, requests that include the *.cshtml* filename extension) work just like you'd expect. A request like `http://www.contoso.com/a/b.cshtml` will run the page *b.cshtml* just fine.
+> [!NOTE]
+> To be clear, requests for specific pages (that is, requests that include the *.cshtml* filename extension) work just like you'd expect. A request like `http://www.contoso.com/a/b.cshtml` will run the page *b.cshtml* just fine.
 
 
 Inside a page, you can get the path information via the page's `UrlData` property, which is a dictionary. Imagine that you have a file named *ViewCustomers.cshtml* and your site gets this request:
@@ -80,7 +81,8 @@ As described in the rules above, the request will go to your page. Inside the pa
 
 [!code-html[Main](creating-readable-urls-in-aspnet-web-pages-sites/samples/sample1.html)]
 
-> [!NOTE] Because routing doesn't involve complete file names, there can be ambiguity if you have pages that have the same name but different file-name extensions (for example, *MyPage.cshtml* and *MyPage.html*). In order to avoid problems with routing, it's best to make sure that you don't have pages in your site whose names differ only in their extension.
+> [!NOTE]
+> Because routing doesn't involve complete file names, there can be ambiguity if you have pages that have the same name but different file-name extensions (for example, *MyPage.cshtml* and *MyPage.html*). In order to avoid problems with routing, it's best to make sure that you don't have pages in your site whose names differ only in their extension.
 
 
 <a id="Additional_Resources"></a>

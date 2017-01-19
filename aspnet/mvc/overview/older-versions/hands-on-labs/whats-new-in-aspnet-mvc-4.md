@@ -79,7 +79,8 @@ This hands-on lab includes the following exercises:
 3. [Adding Support for Mobile Devices](#Exercise3)
 4. [Using Asynchronous Controllers](#Exercise4)
 
-> [!NOTE] Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
+> [!NOTE]
+> Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
 
 
 Estimated time to complete this lab: **60 minutes**.
@@ -97,7 +98,8 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 Project
 1. Open **Visual Studio**.
 2. Select the **File | New | Project** menu command. In the **New Project** dialog, select the **Visual C# | Web** template on the left pane tree, and choose **ASP.NET MVC 4 Web Application.** Name the project **PhotoGallery**, select a location (or leave the default) and click **OK**.
 
-    > [!NOTE] You will later customize the PhotoGallery ASP.NET MVC 4 solution you are now creating.
+    > [!NOTE]
+    > You will later customize the PhotoGallery ASP.NET MVC 4 solution you are now creating.
 
     ![Creating a new project](whats-new-in-aspnet-mvc-4/_static/image1.png "Creating a new project")
 
@@ -108,7 +110,8 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 Project
 
     *Creating a new ASP.NET MVC 4 Internet Application*
 
-    > [!NOTE] Razor syntax has been introduced in ASP.NET MVC 3. Its goal is to minimize the number of characters and keystrokes required in a file, enabling a fast and fluid coding workflow. Razor leverages existing C# / VB (or other) language skills and delivers a template markup syntax that enables an awesome HTML construction workflow.
+    > [!NOTE]
+    > Razor syntax has been introduced in ASP.NET MVC 3. Its goal is to minimize the number of characters and keystrokes required in a file, enabling a fast and fluid coding workflow. Razor leverages existing C# / VB (or other) language skills and delivers a template markup syntax that enables an awesome HTML construction workflow.
 4. Press **F5** to run the solution and see the renewed templates. You can check out the following features:
 
     **Modern-style templates**
@@ -139,7 +142,8 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 Project
 
     *jQuery Validation*
 
-    > [!NOTE] Notice the two log in sections, in the first section you can log in using a registerd account from the site and in the second section you can altenativelly log in using another authentication service like google (disabled by default).
+    > [!NOTE]
+    > Notice the two log in sections, in the first section you can log in using a registerd account from the site and in the second section you can altenativelly log in using another authentication service like google (disabled by default).
 5. Close the browser to stop the debugger and return to Visual Studio.
 6. Open the file **AuthConfig.cs** located under the **App\_Start** folder.
 7. Remove the comment from the last line to register Google client for *OAuth* authentication.
@@ -148,7 +152,8 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 Project
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample1.cs)]
 
-    > [!NOTE] Notice you can easily enable authentication using any OpenID or OAuth service like Facebook, Twitter, Microsoft, etc.
+    > [!NOTE]
+    > Notice you can easily enable authentication using any OpenID or OAuth service like Facebook, Twitter, Microsoft, etc.
 8. Press **F5** to run the solution and navigate to the login page.
 9. Select **Google** service to log in.
 
@@ -180,7 +185,8 @@ In this exercise, you will explore the enhancements in the ASP.NET MVC 4 Project
 
         The ASP.NET MVC 4 default template now includes KnockoutJS, a JavaScript MVVM framework that lets you create rich and highly responsive web applications using JavaScript and HTML. Like in MVC3, jQuery and jQuery UI libraries are also included in ASP.NET MVC 4.
 
-        > [!NOTE] You can get more information about KnockOutJS library in this link: [[http://learn.knockoutjs.com/](http://learn.knockoutjs.com/)](http://learn.knockoutjs.com/). Additionally, you can learn about jQuery and jQuery UI in [[http://docs.jquery.com/](http://docs.jquery.com/)](http://docs.jquery.com/).
+        > [!NOTE]
+        > You can get more information about KnockOutJS library in this link: [[http://learn.knockoutjs.com/](http://learn.knockoutjs.com/)](http://learn.knockoutjs.com/). Additionally, you can learn about jQuery and jQuery UI in [[http://docs.jquery.com/](http://docs.jquery.com/)](http://docs.jquery.com/).
 
 <a id="Task_2_-_Exploring_the_Mobile_Application_Template"></a>
 #### Task 2 - Exploring the Mobile Application Template
@@ -243,7 +249,8 @@ The flexibility provided by the adaptive rendering technique enables any customi
 
 By using the adaptive rendering technique, your site will be **displayed properly, regardless of the browser.** However, you should consider if the bandwidth extra load is a concern.
 
-> [!NOTE] The basic format of a media query is: @media \[Scope: all | handheld | print | projection | screen\] ([property:value] and ... [property:value])
+> [!NOTE]
+> The basic format of a media query is: @media \[Scope: all | handheld | print | projection | screen\] ([property:value] and ... [property:value])
 
 
 Examples of media queries: &gt;**@media all and (max-width: 1000px) and (min-width: 700px) {}:** For all the resolutions between 700px and 1000px.
@@ -386,7 +393,8 @@ One of the key updates in ASP.NET MVC 4 is the support for mobile development. I
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open the **Package Manager Console** by clicking the **Tools** &gt; **Library Package Manager** &gt; **Package Manager Console** menu option.
 
     ![Opening the NuGet Package Manager Console](whats-new-in-aspnet-mvc-4/_static/image22.png "Opening the NuGet Package Manager Console")
@@ -396,7 +404,8 @@ One of the key updates in ASP.NET MVC 4 is the support for mobile development. I
 
     jQuery Mobile is an open source library for building touch-optimized web UI. The jQuery.Mobile.MVC NuGet package includes helpers to use jQuery Mobile with an ASP.NET MVC 4 application.
 
-    > [!NOTE] By running the following command, you will be downloading the jQuery.Mobile.MVC library from Nuget.
+    > [!NOTE]
+    > By running the following command, you will be downloading the jQuery.Mobile.MVC library from Nuget.
 
     PM
 
@@ -424,7 +433,8 @@ One of the key updates in ASP.NET MVC 4 is the support for mobile development. I
 
     Notice the message at the top of the phone, showing the link that switches to the Desktop view. Additionally, the **\_Layout.Mobile.cshtml** layout that was created by the package you have installed is including a different layout in the application.
 
-    > [!NOTE] So far, there is no link to get back to mobile view. It will be included in later versions.
+    > [!NOTE]
+    > So far, there is no link to get back to mobile view. It will be included in later versions.
 
     ![Mobile view of the Photo Gallery Home page](whats-new-in-aspnet-mvc-4/_static/image24.png "Mobile view of the Photo Gallery Home page")
 
@@ -592,7 +602,8 @@ In this task, you will create a customized layout for iPhone devices, and you wi
 
     After this code runs, when an iPhone browser generates a request, your application will use the **Views\Shared\\_Layout.iPhone.cshtml** layout you will create in the next steps.
 
-    > [!NOTE] This way of testing the request for iPhone has been simplified for demo purposes and might not work as expected for every iPhone user agent string (for example test is case sensitive).
+    > [!NOTE]
+    > This way of testing the request for iPhone has been simplified for demo purposes and might not work as expected for every iPhone user agent string (for example test is case sensitive).
 4. Create a copy of the **\_Layout.Mobile.cshtml** file in the **Views\Shared** folder and rename the copy to &quot;**\_Layout.iPhone.csthml**&quot;.
 5. Open **\_Layout.iPhone.csthml** you created in the previous step.
 6. Find the div element with the data-role attribute set to **page** and change the **data-theme** attribute to &quot;**a**&quot;.
@@ -631,7 +642,8 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open the **HomeController.cs** class from the **Controllers** folder.
 3. Add the following using statement.
 
@@ -649,7 +661,8 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample20.cs)]
 
-    > [!NOTE] The **async** keyword is one of the new keywords the .NET Framework 4.5 provides; it tells the compiler that this method contains asynchronous code. A **Task** object represents an asynchronous operation that may complete at some point in the future.
+    > [!NOTE]
+    > The **async** keyword is one of the new keywords the .NET Framework 4.5 provides; it tells the compiler that this method contains asynchronous code. A **Task** object represents an asynchronous operation that may complete at some point in the future.
 6. Replace the **client.GetAsync()** call with the full async version using await keyword as shown below.
 
     (Code Snippet - *ASP.NET MVC 4 Lab - Ex04 - GetAsync*)
@@ -658,7 +671,8 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
 
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample21.cs)]
 
-    > [!NOTE] In the previous version, you were using the **Result** property from the **Task** object to block the thread until the result is returned (sync version).
+    > [!NOTE]
+    > In the previous version, you were using the **Result** property from the **Task** object to block the thread until the result is returned (sync version).
     > 
     > Adding the **await** keyword tells the compiler to asynchronously wait for the task returned from the method call. This means that the rest of the code will be executed as a callback only after the awaited method completes. Another thing to notice is that you do not need to change your try-catch block in order to make this work: the exceptions that happen in background or in foreground will still be caught without any extra work using a handler provided by the framework.
 7. Change the code to continue with the asynchronous implementation by replacing the lines with the new code as shown below
@@ -670,7 +684,8 @@ This exercise explains the basics of asynchronous operation in ASP.NET MVC 4. If
     [!code-csharp[Main](whats-new-in-aspnet-mvc-4/samples/sample22.cs)]
 8. Run the application. You will notice no major changes, but your code will not block a thread from the thread pool making a better usage of the server resources and improving performance.
 
-    > [!NOTE] You can learn more about the new asynchronous programming features in the lab &quot;**Asynchronous Programming in .NET 4.5 with C# and Visual Basic**&quot; included in the Visual Studio Training Kit.
+    > [!NOTE]
+    > You can learn more about the new asynchronous programming features in the lab &quot;**Asynchronous Programming in .NET 4.5 with C# and Visual Basic**&quot; included in the Visual Studio Training Kit.
 
 <a id="Task_2_-_Handling_Time-Outs_with_Cancellation_Tokens"></a>
 #### Task 2 - Handling Time-Outs with Cancellation Tokens
@@ -728,7 +743,8 @@ Asynchronous action methods that return Task instances can also support time-out
 
     *Time-out exception handled*
 
-> [!NOTE] Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix D: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixD).
+> [!NOTE]
+> Additionally, you can deploy this application to Windows Azure Web Sites following [Appendix D: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixD).
 
 
 <a id="Summary"></a>
@@ -936,7 +952,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
 
 1. Go to the [Windows Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-    > [!NOTE] With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
+    > [!NOTE]
+    > With Windows Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
 
     ![Log on to Windows Azure portal](whats-new-in-aspnet-mvc-4/_static/image61.png "Log on to Windows Azure portal")
 
@@ -948,7 +965,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Creating a new Web Site*
 3. Click **Compute** | **Web Site**. Then select **Quick Create** option. Provide an available URL for the new web site and click **Create Web Site**.
 
-    > [!NOTE] A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
+    > [!NOTE]
+    > A Windows Azure Web Site is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Windows Azure Web Site from outside the portal. It does not include steps for setting up a database.
 
     ![Creating a new Web Site using Quick Create](whats-new-in-aspnet-mvc-4/_static/image63.png "Creating a new Web Site using Quick Create")
 
@@ -970,7 +988,8 @@ This appendix will show you how to create a new web site from the Windows Azure 
     *Opening the Web Site management pages*
 7. In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link.
 
-    > [!NOTE] The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
+    > [!NOTE]
+    > The *publish profile* contains all of the information required to publish a web application to a Windows Azure website for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Windows Azure websites.
 
     ![Downloading the web site publish profile](whats-new-in-aspnet-mvc-4/_static/image67.png "Downloading the web site publish profile")
 
@@ -1021,7 +1040,8 @@ If your application makes use of SQL Server databases you will need to create a 
     *Importing publish profile*
 3. Click **Validate Connection**. Once Validation is complete click **Next**.
 
-    > [!NOTE] Validation is complete once you see a green checkmark appear next to the Validate Connection button.
+    > [!NOTE]
+    > Validation is complete once you see a green checkmark appear next to the Validate Connection button.
 
     ![Validating connection](whats-new-in-aspnet-mvc-4/_static/image75.png "Validating connection")
 

@@ -18,7 +18,8 @@ WebMatrix Readme
 
 ## Contents
 
-> [!NOTE] This readme applies to the 1.0 release of WebMatrix.
+> [!NOTE]
+> This readme applies to the 1.0 release of WebMatrix.
 
 
 - [Overview](#Overview)
@@ -189,7 +190,8 @@ This section of the document describes new features, changes, and known issues w
 
 > If you are working in Visual Studio (not WebMatrix) and use the *\_admin* functionality to start the package manager, Visual Studio takes the application offline and posts the *app\_offline.htm* into the website root, which disrupts your ability to use the package manager.
 > 
-> [!NOTE] Although you would most typically see this behavior when using the web-based package manager interface, the same behavior occurs if you add, remove, or modify any files in the *App\_Data* folder.
+> [!NOTE]
+> Although you would most typically see this behavior when using the web-based package manager interface, the same behavior occurs if you add, remove, or modify any files in the *App\_Data* folder.
 > 
 > **Workaround**   
 > To work with packages in Visual Studio, use the NuGet extension instead of the web-based package manager. For information, see the [NuGet documentation](http://nuget.codeplex.com/documentation?title=Getting%20Started). If you are working with other files in the *App\_Data* folder, consider keeping the files elsewhere to avoid this issue. If that's not practical, delete the *app\_offline.htm* file manually or wait until the site comes back online automatically (by default, after 30 seconds).
@@ -285,7 +287,8 @@ This section of the document describes new features, changes, and known issues w
 
 ### WebMatrix
 
-> [!NOTE] For information about installation issues for WebMatrix, see [WebMatrix Installation Issues](#Known_Issues_Installation) earlier in this document.
+> [!NOTE]
+> For information about installation issues for WebMatrix, see [WebMatrix Installation Issues](#Known_Issues_Installation) earlier in this document.
 
 
 This section of the document describes known issues for the WebMatrix development environment.

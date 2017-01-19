@@ -121,7 +121,8 @@ The following image shows the original column name as it was before you applied 
 
 You can also make database mapping changes using the [Fluent API](https://msdn.microsoft.com/en-us/data/jj591617), as you'll see later in this tutorial.
 
-> [!NOTE] If you try to compile before you finish creating all of the entity classes in the following sections, you might get compiler errors.
+> [!NOTE]
+> If you try to compile before you finish creating all of the entity classes in the following sections, you might get compiler errors.
 
 
 ## Complete Changes to the Student Entity
@@ -263,7 +264,8 @@ The foreign key and navigation properties reflect the following relationships:
 
     [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample23.cs)]
 
- > [!NOTE] By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when you try to add a migration. For example, if you didn't define the `Department.InstructorID` property as nullable, you'd get the following exception message: "The referential relationship will result in a cyclical reference that's not allowed." If your business rules required `InstructorID` property to be non-nullable, you would have to use the following fluent API statement to disable cascade delete on the relationship: 
+ > [!NOTE]
+ > By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. This can result in circular cascade delete rules, which will cause an exception when you try to add a migration. For example, if you didn't define the `Department.InstructorID` property as nullable, you'd get the following exception message: "The referential relationship will result in a cyclical reference that's not allowed." If your business rules required `InstructorID` property to be non-nullable, you would have to use the following fluent API statement to disable cascade delete on the relationship: 
 
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample24.cs)]
 
@@ -375,7 +377,8 @@ After you have finished editing the &lt;*timestamp&gt;\_ComplexDataModel.cs* fil
 
 [!code-powershell[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample35.ps1)]
 
-> [!NOTE] It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can either change the database name in the connection string or delete the database. The simplest approach is to rename the database in *Web.config* file. The following example shows the name changed to CU\_Test:
+> [!NOTE]
+> It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can either change the database name in the connection string or delete the database. The simplest approach is to rename the database in *Web.config* file. The following example shows the name changed to CU\_Test:
 > 
 > [!code-xml[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample36.xml?highlight=1)]
 > 

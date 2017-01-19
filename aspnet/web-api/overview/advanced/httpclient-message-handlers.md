@@ -26,7 +26,8 @@ On the client side, the **HttpClient** class uses a message handler to process r
 
 ![](httpclient-message-handlers/_static/image2.png)
 
-> [!NOTE] ASP.NET Web API also uses message handlers on the server side. For more information, see [HTTP Message Handlers](http-message-handlers.md).
+> [!NOTE]
+> ASP.NET Web API also uses message handlers on the server side. For more information, see [HTTP Message Handlers](http-message-handlers.md).
 
 
 ## Custom Message Handlers

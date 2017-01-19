@@ -54,7 +54,8 @@ The following steps outline the data binding process for the DataList control.
 
 When binding data to the Repeater control, it progresses through the exact same sequence of steps. The only difference is that instead of `DataListItem` instances being created, the Repeater uses [`RepeaterItem`](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.repeateritem(VS.80).aspx)s.
 
-> [!NOTE] The astute reader may have noticed a slight anomaly between the sequence of steps that transpire when the DataList and Repeater are bound to data versus when the GridView is bound to data. At the tail end of the data binding process, the GridView raises the `DataBound` event; however, neither the DataList nor Repeater control have such an event. This is because the DataList and Repeater controls were created back in the ASP.NET 1.x timeframe, before the pre- and post-level event handler pattern had become common.
+> [!NOTE]
+> The astute reader may have noticed a slight anomaly between the sequence of steps that transpire when the DataList and Repeater are bound to data versus when the GridView is bound to data. At the tail end of the data binding process, the GridView raises the `DataBound` event; however, neither the DataList nor Repeater control have such an event. This is because the DataList and Repeater controls were created back in the ASP.NET 1.x timeframe, before the pre- and post-level event handler pattern had become common.
 
 
 Like with the GridView, one option for formatting based on the data is to create an event handler for the `ItemDataBound` event. This event handler would inspect the data that had just been bound to the `DataListItem` or `RepeaterItem` and affect the formatting of the control as needed.
@@ -118,7 +119,8 @@ With the `ItemDataBound` event handler completed, revisit the `Formatting.aspx` 
 **Figure 2**: Those Products Less than $20.00 are Highlighted ([Click to view full-size image](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image6.png))
 
 
-> [!NOTE] Since the DataList is rendered as an HTML `<table>`, its `DataListItem` instances have style-related properties that can be set to apply a specific style to the entire item. For example, if we wanted to highlight the *entire* item yellow when its price was less than $20.00, we could have replaced the code that referenced the Labels and set their `CssClass` properties with the following line of code: `e.Item.CssClass = "AffordablePriceEmphasis"` (see Figure 3).
+> [!NOTE]
+> Since the DataList is rendered as an HTML `<table>`, its `DataListItem` instances have style-related properties that can be set to apply a specific style to the entire item. For example, if we wanted to highlight the *entire* item yellow when its price was less than $20.00, we could have replaced the code that referenced the Labels and set their `CssClass` properties with the following line of code: `e.Item.CssClass = "AffordablePriceEmphasis"` (see Figure 3).
 
 
 The `RepeaterItem` s that make up the Repeater control, however, don t offer such style-level properties. Therefore, applying custom formatting to the Repeater requires the application of style properties to the Web controls within the Repeater s templates, just like we did in Figure 2.

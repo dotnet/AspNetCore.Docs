@@ -23,7 +23,8 @@ Requests to an ASP.NET MVC-based Web application first pass through the **UrlRou
 
 From the selected **Route** object, the **UrlRoutingModule** object obtains the **IRouteHandler** object that is associated with the **Route** object. Typically, in an MVC application, this will be an instance of **MvcRouteHandler**. The **IRouteHandler** instance creates an **IHttpHandler** object and passes it the **IHttpContext** object. By default, the **IHttpHandler** instance for MVC is the **MvcHandler** object. The **MvcHandler** object then selects the controller that will ultimately handle the request.
 
-> [!NOTE] When an ASP.NET MVC Web application runs in IIS 7.0, no file name extension is required for MVC projects. However, in IIS 6.0, the handler requires that you map the .mvc file name extension to the ASP.NET ISAPI DLL.
+> [!NOTE]
+> When an ASP.NET MVC Web application runs in IIS 7.0, no file name extension is required for MVC projects. However, in IIS 6.0, the handler requires that you map the .mvc file name extension to the ASP.NET ISAPI DLL.
 
 
 The module and handler are the entry points to the ASP.NET MVC framework. They perform the following actions:

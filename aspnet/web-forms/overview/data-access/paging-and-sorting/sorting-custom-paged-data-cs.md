@@ -25,7 +25,8 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
 Compared to default paging, custom paging can improve the performance of paging through data by several orders of magnitude, making custom paging the de facto paging implementation choice when paging through large amounts of data. Implementing custom paging is more involved than implementing default paging, however, especially when adding sorting to the mix. In this tutorial we'll extend the example from the preceding one to include support for sorting *and* custom paging.
 
-> [!NOTE] Since this tutorial builds upon the preceding one, before beginning take a moment to copy the declarative syntax within the `<asp:Content>` element from the preceding tutorial s web page (`EfficientPaging.aspx`) and paste it between the `<asp:Content>` element in the `SortParameter.aspx` page. Refer back to Step 1 of the [Adding Validation Controls to the Editing and Inserting Interfaces](../editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-cs.md) tutorial for a more detailed discussion on replicating the functionality of one ASP.NET page to another.
+> [!NOTE]
+> Since this tutorial builds upon the preceding one, before beginning take a moment to copy the declarative syntax within the `<asp:Content>` element from the preceding tutorial s web page (`EfficientPaging.aspx`) and paste it between the `<asp:Content>` element in the `SortParameter.aspx` page. Refer back to Step 1 of the [Adding Validation Controls to the Editing and Inserting Interfaces](../editing-inserting-and-deleting-data/adding-validation-controls-to-the-editing-and-inserting-interfaces-cs.md) tutorial for a more detailed discussion on replicating the functionality of one ASP.NET page to another.
 
 
 ## Step 1: Reexamining the Custom Paging Technique
@@ -72,7 +73,8 @@ Take a moment to test this stored procedure with different values for the `@sort
 **Figure 2**: The Stored Procedure s Results are Shown in the Output Window ([Click to view full-size image](sorting-custom-paged-data-cs/_static/image4.png))
 
 
-> [!NOTE] When ranking the results by the specified `ORDER BY` column in the `OVER` clause, SQL Server must sort the results. This is a quick operation if there is a clustered index over the column(s) the results are being ordered by or if there is a covering index, but can be more costly otherwise. To improve performance for sufficiently large queries, consider adding a non-clustered index for the column by which the results are ordered by. Refer to [Ranking Functions and Performance in SQL Server 2005](http://www.sql-server-performance.com/ak_ranking_functions.asp) for more details.
+> [!NOTE]
+> When ranking the results by the specified `ORDER BY` column in the `OVER` clause, SQL Server must sort the results. This is a quick operation if there is a clustered index over the column(s) the results are being ordered by or if there is a covering index, but can be more costly otherwise. To improve performance for sufficiently large queries, consider adding a non-clustered index for the column by which the results are ordered by. Refer to [Ranking Functions and Performance in SQL Server 2005](http://www.sql-server-performance.com/ak_ranking_functions.asp) for more details.
 
 
 ## Step 2: Augmenting the Data Access and Business Logic Layers
@@ -125,7 +127,8 @@ After making these two changes, the ObjectDataSource s declarative syntax should
 
 [!code-aspx[Main](sorting-custom-paged-data-cs/samples/sample5.aspx)]
 
-> [!NOTE] As with the preceding tutorial, ensure that the ObjectDataSource does *not* include the sortExpression, startRowIndex, or maximumRows input parameters in its SelectParameters collection.
+> [!NOTE]
+> As with the preceding tutorial, ensure that the ObjectDataSource does *not* include the sortExpression, startRowIndex, or maximumRows input parameters in its SelectParameters collection.
 
 
 To enable sorting in the GridView, simply check the Enable Sorting checkbox in the GridView s smart tag, which sets the GridView s `AllowSorting` property to `true` and causing the header text for each column to be rendered as a LinkButton. When the end user clicks on one of the header LinkButtons, a postback ensues and the following steps transpire:

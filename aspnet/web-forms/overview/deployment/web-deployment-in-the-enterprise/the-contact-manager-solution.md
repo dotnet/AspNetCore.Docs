@@ -40,7 +40,8 @@ At a conceptual level, the components of the solution fit together like this:
 
 ![](the-contact-manager-solution/_static/image2.png)
 
-> [!NOTE] While the ASP.NET MVC 3 web application uses the ASP.NET membership provider, all the pages within the web application allow anonymous access. This is clearly not a realistic configuration. However, the solution is set up in this way to make it easier for you to deploy and test the solution without configuring user accounts and roles.
+> [!NOTE]
+> While the ASP.NET MVC 3 web application uses the ASP.NET membership provider, all the pages within the web application allow anonymous access. This is clearly not a realistic configuration. However, the solution is set up in this way to make it easier for you to deploy and test the solution without configuring user accounts and roles.
 
 
 ## Deployment Challenges

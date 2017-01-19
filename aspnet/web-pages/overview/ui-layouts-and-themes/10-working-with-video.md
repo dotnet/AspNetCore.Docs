@@ -82,7 +82,8 @@ The `MediaPlayer` player of the `Video` helper lets you play Windows Media video
 
 The `Silverlight` player of the `Video` helper lets you play Windows Media Video (*.wmv* files), Windows Media Audio (*.wma* files), and MP3 (*.mp3* files). You must set the path parameter to point to a Silverlight-based application package (*.xap* file). You also must set the width and height parameters. All other parameters are optional. When you use the Silverlight player for video, if you set only the required parameters, the Silverlight player displays the video without a background color.
 
-> [!NOTE] In case you don't already know Silverlight: the *.xap* file is a compressed file that contains layout instructions in a *.xaml* file, managed code in assemblies, and optional resources. You can create a *.xap* file in Visual Studio as a Silverlight application project.
+> [!NOTE]
+> In case you don't already know Silverlight: the *.xap* file is a compressed file that contains layout instructions in a *.xaml* file, managed code in assemblies, and optional resources. You can create a *.xap* file in Visual Studio as a Silverlight application project.
 
 
 The `Silverlight` video player uses both the settings that you provide for the player and the settings that are provided in the *.xap* file.

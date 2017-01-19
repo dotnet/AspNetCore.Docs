@@ -355,7 +355,8 @@ The **Configure Authentication** dialog gives you several options for Azure Acti
 
 If you want to try one of the Azure AD options but don't have an account yet, [click here to sign up for a Azure AD account](https://go.microsoft.com/fwlink/?LinkId=309942).
 
-> [!NOTE] If you choose one of the Azure AD options, your project requires a database and you have to sign in to a global administrator account for your Azure AD tenant. Enter the name and password for an organizational account (for example, admin@contoso.onmicrosoft.com) that has administrative permissions for your Azure AD tenant.
+> [!NOTE]
+> If you choose one of the Azure AD options, your project requires a database and you have to sign in to a global administrator account for your Azure AD tenant. Enter the name and password for an organizational account (for example, admin@contoso.onmicrosoft.com) that has administrative permissions for your Azure AD tenant.
 > 
 > **Don't enter credentials for a Microsoft account (for example, contoso@hotmail.com) in the sign-in dialog box.**
 

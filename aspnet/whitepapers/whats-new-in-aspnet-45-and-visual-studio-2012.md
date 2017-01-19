@@ -534,7 +534,8 @@ Until Visual Studio 2012 Release Candidate, opening an existing project in a new
 
 Many customers have told us that this was not the right approach. In Visual Studio 11 Beta, we now support sharing projects and solutions with Visual Studio 2010 SP1. This means that if you open a 2010 project in Visual Studio 2012 Release Candidate, you will still be able to open the project in Visual Studio 2010 SP1.
 
-> [!NOTE] A few types of projects cannot be shared between Visual Studio 2010 SP1 and Visual Studio 2012 Release Candidate. These include some older projects (such as ASP.NET MVC 2 projects) or projects for special purposes (such as Setup projects).
+> [!NOTE]
+> A few types of projects cannot be shared between Visual Studio 2010 SP1 and Visual Studio 2012 Release Candidate. These include some older projects (such as ASP.NET MVC 2 projects) or projects for special purposes (such as Setup projects).
 
 When you open a Visual Studio 2010 SP1 Web project for the first time in Visual Studio 11 Beta, the following properties are added to the project file:
 
@@ -552,7 +553,8 @@ The VSToolsPath property is used to determine the correct .targets file to impor
 
 There are also some changes related to Import elements. These changes are required in order to support compatibility between both versions of Visual Studio.
 
-> [!NOTE] If a project is being shared between Visual Studio 2010 SP1 and Visual Studio 11 Beta on two different computers, and if the project includes a local database in the App\_Data folder, you must make sure that the version of SQL Server used by the database is installed on both computers.
+> [!NOTE]
+> If a project is being shared between Visual Studio 2010 SP1 and Visual Studio 11 Beta on two different computers, and if the project includes a local database in the App\_Data folder, you must make sure that the version of SQL Server used by the database is installed on both computers.
 
 <a id="Configuration_Changes_In_ASPNET45_Website_Templates"></a>
 ### Configuration Changes in ASP.NET 4.5 Website Templates

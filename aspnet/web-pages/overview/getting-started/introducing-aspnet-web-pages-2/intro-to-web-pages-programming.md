@@ -55,7 +55,8 @@ Click **OK**.
 
 Copy the following into the file, completely replacing what's there already.
 
-> [!NOTE] When you copy code or markup from the examples into a page, the indentation and alignment might not be the same as in the tutorial. Indentation and alignment don't affect how the code runs, though.
+> [!NOTE]
+> When you copy code or markup from the examples into a page, the indentation and alignment might not be the same as in the tutorial. Indentation and alignment don't affect how the code runs, though.
 
 
 [!code-cshtml[Main](intro-to-web-pages-programming/samples/sample1.cshtml)]
@@ -160,7 +161,8 @@ Here are a few examples of conditions you can test in an if statement:
 
 You can test variables against values or against expressions by using a *logical operator* or *comparison operator*: equal to (==), greater than (&gt;), less than (&lt;), greater than or equal to (&gt;=), and less than or equal to (&lt;=). The != operator means not equal to — for example, if(a != 0) means *if* *a**is not equal to 0*.
 
-> [!NOTE] Make sure you notice that the comparison operator for equals to (==) is not the same as =. The = operator is used only to assign values (var a=2). If you mix these operators up, you'll either get an error or you'll get some strange results.
+> [!NOTE]
+> Make sure you notice that the comparison operator for equals to (==) is not the same as =. The = operator is used only to assign values (var a=2). If you mix these operators up, you'll either get an error or you'll get some strange results.
 
 
 To test whether something is true, the complete syntax is if(IsDone == true). But you can also use the shortcut if(IsDone). If there's no comparison operator, ASP.NET assumes that you're testing for true.

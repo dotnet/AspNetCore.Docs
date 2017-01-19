@@ -98,7 +98,8 @@ The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Applic
     ![Create empty web](tutorial-high-frequency-realtime-with-signalr/_static/image3.png)
 3. In **Solution Explorer**, right-click the project, select **Add | SignalR Hub Class (v2)**. Name the class **MoveShapeHub.cs** and add it to the project. This step creates the **MoveShapeHub** class and adds to the project a set of script files and assembly references that support SignalR.
 
-    > [!NOTE] You can also add SignalR to a project by clicking **Tools | Library Package Manager | Package Manager Console** and running a command:
+    > [!NOTE]
+    > You can also add SignalR to a project by clicking **Tools | Library Package Manager | Package Manager Console** and running a command:
 
     `install-package Microsoft.AspNet.SignalR` . 
 
@@ -144,7 +145,8 @@ In this section, we'll create a browser application that sends the location of t
 2. In **Solution Explorer**, right-click the page you just created and click **Set as Start Page**.
 3. Replace the default code in the HTML page with the following code snippet.
 
-    > [!NOTE] Verify that the script references below match the packages added to your project in the Scripts folder.
+    > [!NOTE]
+    > Verify that the script references below match the packages added to your project in the Scripts folder.
 
     [!code-html[Main](tutorial-high-frequency-realtime-with-signalr/samples/sample3.html)]
 

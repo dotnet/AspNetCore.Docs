@@ -71,8 +71,8 @@ ASP.NET MVC
         - [Preventing Open Redirection Attacks (C#)](overview/security/preventing-open-redirection-attacks.md)
     - [Performance](overview/performance/index.md)
 
-        - [Profile and debug your ASP.NET MVC app with Glimpse](overview/performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse.md)
         - [Using Asynchronous Methods in ASP.NET MVC 4](overview/performance/using-asynchronous-methods-in-aspnet-mvc-4.md)
+        - [Profile and debug your ASP.NET MVC app with Glimpse](overview/performance/profile-and-debug-your-aspnet-mvc-app-with-glimpse.md)
         - [Bundling and Minification](overview/performance/bundling-and-minification.md)
         - [MVC Recommended Resources](overview/performance/recommended-resources-for-mvc.md)
     - [Deployment](overview/deployment/index.md)

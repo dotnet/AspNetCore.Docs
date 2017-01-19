@@ -53,7 +53,8 @@ Table 1 summarizes the properties that can be customized through the &lt;forms&g
 
 In ASP.NET 2.0 and beyond, the default forms authentication values are hard-coded in the FormsAuthenticationConfiguration class in the .NET Framework. Any modifications must be applied on an application-by-application basis in the Web.config file. This differs from ASP.NET 1.x, where the default forms authentication values were stored in the machine.config file (and could therefore be modified via editing machine.config). While on the topic of ASP.NET 1.x, it is worthwhile to mention that a number of the forms authentication system settings have different default values in ASP.NET 2.0 and beyond than in ASP.NET 1.x. If you are migrating your application from an ASP.NET 1.x environment, it is important to be aware of these differences. Consult [the &lt;forms&gt; element technical documentation](https://msdn.microsoft.com/en-us/library/1d3t3c61.aspx) for a list of the differences.
 
-> [!NOTE] Several forms authentication settings, such as the timeout, domain, and path, specify details for the resulting forms authentication ticket cookie. For more information on cookies, how they work, and their various properties, read [this Cookies tutorial](http://www.quirksmode.org/js/cookies.html).
+> [!NOTE]
+> Several forms authentication settings, such as the timeout, domain, and path, specify details for the resulting forms authentication ticket cookie. For more information on cookies, how they work, and their various properties, read [this Cookies tutorial](http://www.quirksmode.org/js/cookies.html).
 
 
 ### Specifying the Ticket's Timeout Value
@@ -64,14 +65,16 @@ The forms authentication ticket not only includes the user's identity, but also 
 
 One such bit of information included in the ticket is an *expiry*, which is the date and time the ticket is no longer valid. Each time the FormsAuthenticationModule inspects an authentication ticket, it ensures that the ticket's expiry has not yet passed. If it has, it disregards the ticket and identifies the user as being anonymous. This safeguard helps protect against replay attacks. Without an expiry, if a hacker was able to get her hands on a user's valid authentication ticket - perhaps by gaining physical access to their computer and rooting through their cookies - they could send a request to the server with this stolen authentication ticket and gain entry. While the expiry doesn't prevent this scenario, it does limit the window during which such an attack can succeed.
 
-> [!NOTE] Step 3 details additional techniques used by the forms authentication system to protect the authentication ticket.
+> [!NOTE]
+> Step 3 details additional techniques used by the forms authentication system to protect the authentication ticket.
 
 
 When creating the authentication ticket, the forms authentication system determines its expiry by consulting the timeout setting. As noted in Table 1, the timeout setting defaults to 30 minutes, meaning that when the forms authentication ticket is created its expiry is set to a date and time 30 minutes in the future.
 
 The expiry defines an absolute time in the future when the forms authentication ticket expires. But usually developers want to implement a sliding expiry, one that is reset every time the user revisits the site. This behavior is determined by the slidingExpiration settings. If set to true (the default), each time the FormsAuthenticationModule authenticates a user, it updates the ticket's expiry. If set to false, the expiry is not updated on each request, thereby causing the ticket to expire exactly timeout number of minutes past when the ticket was first created.
 
-> [!NOTE] The expiry stored in the authentication ticket is an absolute date and time value, like August 2, 2008 11:34 AM. Moreover, the date and time are relative to the web server's local time. This design decision can have some interesting side effects around Daylight Saving Time (DST), which is when clocks in the United States are moved ahead one hour (assuming the web server is hosted in a locale where Daylight Saving Time is observed). Consider what would happen for an ASP.NET website with a 30 minute expiry near the time that DST begins (which is at 2:00 AM). Imagine a visitor signs on to the site on March 11, 2008 at 1:55 AM. This would generate a forms authentication ticket that expires at March 11, 2008 at 2:25 AM (30 minutes in the future). However, once 2:00 AM rolls around, the clock jumps to 3:00 AM because of DST. When the user loads a new page six minutes after signing in (at 3:01 AM), the FormsAuthenticationModule notes that the ticket has expired and redirects the user to the login page. For a more thorough discussion on this and other authentication ticket timeout oddities, as well as workarounds, pick up a copy of Stefan Schackow's *Professional ASP.NET 2.0 Security, Membership, and Role Management* (ISBN: 978-0-7645-9698-8).
+> [!NOTE]
+> The expiry stored in the authentication ticket is an absolute date and time value, like August 2, 2008 11:34 AM. Moreover, the date and time are relative to the web server's local time. This design decision can have some interesting side effects around Daylight Saving Time (DST), which is when clocks in the United States are moved ahead one hour (assuming the web server is hosted in a locale where Daylight Saving Time is observed). Consider what would happen for an ASP.NET website with a 30 minute expiry near the time that DST begins (which is at 2:00 AM). Imagine a visitor signs on to the site on March 11, 2008 at 1:55 AM. This would generate a forms authentication ticket that expires at March 11, 2008 at 2:25 AM (30 minutes in the future). However, once 2:00 AM rolls around, the clock jumps to 3:00 AM because of DST. When the user loads a new page six minutes after signing in (at 3:01 AM), the FormsAuthenticationModule notes that the ticket has expired and redirects the user to the login page. For a more thorough discussion on this and other authentication ticket timeout oddities, as well as workarounds, pick up a copy of Stefan Schackow's *Professional ASP.NET 2.0 Security, Membership, and Role Management* (ISBN: 978-0-7645-9698-8).
 
 
 Figure 1 illustrates the workflow when slidingExpiration is set to false and timeout is set to 30. Note that the authentication ticket generated at login contains the expiration date, and this value is not updated on subsequent requests. If the FormsAuthenticationModule finds that the ticket has expired, it discards it and treats the request as anonymous.
@@ -92,7 +95,8 @@ Figure 2 shows the workflow when slidingExpiration is set to true and timeout is
 
 When using cookie-based authentication tickets (the default), this discussion becomes a little more confusing because cookies can also have their own expiries specified. A cookie's expiry (or lack thereof) instructs the browser when the cookie should be destroyed. If the cookie lacks an expiry, it is destroyed when the browser shuts down. If an expiry is present, however, the cookie remains stored on the user's computer until the date and time specified in the expiry has passed. When a cookie is destroyed by the browser, it is no longer sent to the web server. Therefore, the destruction of a cookie is analogous to the user logging out of the site.
 
-> [!NOTE] Of course, a user may proactively remove any cookies stored on their computer. In Internet Explorer 7, you would go to Tools, Options, and click the Delete button in the Browsing history section. From there, click the Delete cookies button.
+> [!NOTE]
+> Of course, a user may proactively remove any cookies stored on their computer. In Internet Explorer 7, you would go to Tools, Options, and click the Delete button in the Browsing history section. From there, click the Delete cookies button.
 
 
 The forms authentication system creates session-based or expiry-based cookies depending on the value passed in to the *persistCookie* parameter. Recall that the FormsAuthentication class's GetAuthCookie, SetAuthCookie, and RedirectFromLoginPage methods take in two input parameters: *username* and *persistCookie*. The login page we created in the preceding tutorial included a Remember me CheckBox, which determined whether a persistent cookie was created. Persistent cookies are expiry-based; non-persistent cookies are session-based.
@@ -126,7 +130,8 @@ The cookie policy used by the forms authentication system depends on the cookiel
 
 The AutoDetect and UseDeviceProfile settings rely on a *device profile* in ascertaining whether to use cookie-based or cookieless authentication tickets. ASP.NET maintains a database of various devices and their capabilities, such as whether they support cookies, what version of JavaScript they support, and so on. Each time a device requests a web page from a web server it sends along a *user-agent* HTTP header that identifies the device type. ASP.NET automatically matches the supplied user-agent string with the corresponding profile specified in its database.
 
-> [!NOTE] This database of device capabilities is stored in a number of XML files that adhere to the [Browser Definition File schema](https://msdn.microsoft.com/en-us/library/ms228122.aspx). The default device profile files are located in %WINDIR%\Microsoft.Net\Framework\v2.0.50727\CONFIG\Browsers. You can also add custom files to your application's App\_Browsers folder. For more information, see [How To: Detect Browser Types in ASP.NET Web Pages](https://msdn.microsoft.com/en-us/library/3yekbd5b.aspx).
+> [!NOTE]
+> This database of device capabilities is stored in a number of XML files that adhere to the [Browser Definition File schema](https://msdn.microsoft.com/en-us/library/ms228122.aspx). The default device profile files are located in %WINDIR%\Microsoft.Net\Framework\v2.0.50727\CONFIG\Browsers. You can also add custom files to your application's App\_Browsers folder. For more information, see [How To: Detect Browser Types in ASP.NET Web Pages](https://msdn.microsoft.com/en-us/library/3yekbd5b.aspx).
 
 
 Because the default setting is UseDeviceProfile, cookieless forms authentication tickets will be used when the site is visited by a device whose profile reports that it does not support cookies.
@@ -157,7 +162,8 @@ Save the changes to Default.aspx and then visit it through a browser. Log on to 
 
 The URL SomePage.aspx in the link was automatically converted into a URL that included the authentication ticket - we didn't have to write a lick of code! The form authentication ticket will automatically be embedded in the URL for any hyperlinks that do not start with http:// or / . It doesn't matter if the hyperlink appears in a call to Response.Redirect, in a HyperLink control, or in an anchor HTML element (i.e., &lt;a href="..."&gt;...&lt;/a&gt;). As long as the URL isn't something like http://www.someserver.com/SomePage.aspx or /SomePage.aspx , the forms authentication ticket will be embedded for us.
 
-> [!NOTE] Cookieless forms authentication tickets adhere to the same timeout policies as cookie-based authentication tickets. However, cookieless authentication tickets are more prone to replay attacks since the authentication ticket is embedded directly in the URL. Imagine a user who visits a website, logs in, and then pastes the URL in an email to a colleague. If the colleague clicks on that link before the expiry is reached, they will be logged in as the user who sent the email!
+> [!NOTE]
+> Cookieless forms authentication tickets adhere to the same timeout policies as cookie-based authentication tickets. However, cookieless authentication tickets are more prone to replay attacks since the authentication ticket is embedded directly in the URL. Imagine a user who visits a website, logs in, and then pastes the URL in an email to a colleague. If the colleague clicks on that link before the expiry is reached, they will be logged in as the user who sent the email!
 
 
 ## Step 3: Securing the Authentication Ticket
@@ -213,7 +219,8 @@ While neither of the above scenarios applies to our sample application, we can s
 
 For more information check out [How To: Configure MachineKey in ASP.NET 2.0](https://msdn.microsoft.com/en-us/library/ms998288.aspx).
 
-> [!NOTE] The decryptionKey and validationKey values were taken from [Steve Gibson](http://www.grc.com/stevegibson.htm)'s [Perfect Passwords web page](https://www.grc.com/passwords.htm), which generates 64 random hexadecimal characters on each page visit. To lessen the likelihood of these keys making their way into your production applications, you are encouraged to replace the above keys with randomly generated ones from the Perfect Passwords page.
+> [!NOTE]
+> The decryptionKey and validationKey values were taken from [Steve Gibson](http://www.grc.com/stevegibson.htm)'s [Perfect Passwords web page](https://www.grc.com/passwords.htm), which generates 64 random hexadecimal characters on each page visit. To lessen the likelihood of these keys making their way into your production applications, you are encouraged to replace the above keys with randomly generated ones from the Perfect Passwords page.
 
 
 ## Step 4: Storing Additional User Data in the Ticket
@@ -274,7 +281,8 @@ Finally, authCookie is added to the Response.Cookies collection and the GetRedir
 
 All of this code is needed because the UserData property is read-only and the FormsAuthentication class does not provide any methods for specifying UserData information in its GetAuthCookie, SetAuthCookie, or RedirectFromLoginPage methods.
 
-> [!NOTE] The code we just examined stores user-specific information in a cookies-based authentication ticket. The classes responsible for serializing the forms authentication ticket to the URL are internal to the .NET Framework. Long story short, you cannot store user data in a cookieless forms authentication ticket.
+> [!NOTE]
+> The code we just examined stores user-specific information in a cookies-based authentication ticket. The classes responsible for serializing the forms authentication ticket to the URL are internal to the .NET Framework. Long story short, you cannot store user data in a cookieless forms authentication ticket.
 
 
 ### Accessing the UserData Information
@@ -295,7 +303,8 @@ Figure 5 shows a screenshot of this display in action. Logging in as Scott displ
 **Figure 05**: The Currently Logged On User's Company and Title are Displayed ([Click to view full-size image](forms-authentication-configuration-and-advanced-topics-vb/_static/image15.png))
 
 
-> [!NOTE] The authentication ticket's UserData property serves as a cache for the user store. Like any cache, it needs to be updated when the underlying data is modified. For example, if there is a web page from which users can update their profile, the fields cached in the UserData property must be refreshed to reflect the changes made by the user.
+> [!NOTE]
+> The authentication ticket's UserData property serves as a cache for the user store. Like any cache, it needs to be updated when the underlying data is modified. For example, if there is a web page from which users can update their profile, the fields cached in the UserData property must be refreshed to reflect the changes made by the user.
 
 
 ## Step 5: Using a Custom Principal
@@ -306,7 +315,8 @@ The principal object has two responsibilities: to indicate what roles the user b
 
 The GenericPrincipal class meets the needs for most forms based authentication scenarios where roles are not used. For those situations where the default role handling is insufficient or when you need to associate a custom IIdentity object with the user, you can create a custom IPrincipal object during the authentication workflow and assign it to the HttpContext.User property.
 
-> [!NOTE] As we will see in future tutorials, when ASP.NET's Roles framework is enabled it creates a custom principal object of type [RolePrincipal](https://msdn.microsoft.com/en-us/library/system.web.security.roleprincipal.aspx) and overwrites the forms authentication-created GenericPrincipal object. It does this in order to customize the principal's IsInRole method to interface with the Roles framework's API.
+> [!NOTE]
+> As we will see in future tutorials, when ASP.NET's Roles framework is enabled it creates a custom principal object of type [RolePrincipal](https://msdn.microsoft.com/en-us/library/system.web.security.roleprincipal.aspx) and overwrites the forms authentication-created GenericPrincipal object. It does this in order to customize the principal's IsInRole method to interface with the Roles framework's API.
 
 
 Since we have not concerned ourselves with roles yet, the only reason we would have for creating a custom principal at this juncture would be to associate a custom IIdentity object to the principal. In Step 4 we looked at storing additional user information in the authentication ticket's UserData property, in particular the user's company name and their title. However, the UserData information is only accessible through the authentication ticket and only then as a serialized string, meaning that anytime we want to view the user information stored in the ticket we need to parse the UserData property.
@@ -317,7 +327,8 @@ We can improve the developer experience by creating a class that implements IIde
 
 For this tutorial, let's create the custom principal and identity objects in the App\_Code folder. Start by adding an App\_Code folder to your project - right-click on the project name in Solution Explorer, select the Add ASP.NET Folder option, and choose App\_Code. The App\_Code folder is a special ASP.NET folder that holds class files specific to the website.
 
-> [!NOTE] The App\_Code folder should only be used when managing your project through the Website Project Model. If you are using the [Web Application Project Model](https://msdn.microsoft.com/en-us/asp.net/Aa336618.aspx), create a standard folder and add the classes to that. For example, you could add a new folder named Classes, and place your code there.
+> [!NOTE]
+> The App\_Code folder should only be used when managing your project through the Website Project Model. If you are using the [Web Application Project Model](https://msdn.microsoft.com/en-us/asp.net/Aa336618.aspx), create a standard folder and add the classes to that. For example, you could add a new folder named Classes, and place your code there.
 
 
 Next, add two new class files to the App\_Code folder, one named CustomIdentity.vb and one named CustomPrincipal.vb.

@@ -26,7 +26,8 @@ by [Microsoft](https://github.com/microsoft)
 > 
 > - The `ReCaptcha` helper.
 > 
-> > [!NOTE] The information in this article applies to ASP.NET Web Pages 1.0 and Web Pages 2.
+> > [!NOTE]
+> > The information in this article applies to ASP.NET Web Pages 1.0 and Web Pages 2.
 
 
 ## About CAPTCHAs
@@ -58,7 +59,8 @@ In ASP.NET pages, you can use the `ReCaptcha` helper to render a CAPTCHA test th
     ![](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/_static/image1.png)
 10. Enter the words for the test. If you pass the ReCaptcha test, you see a message to that effect. Otherwise you see an error message and the ReCaptcha control is redisplayed.
 
-> [!NOTE] If your computer is on a domain that uses proxy server, you might need to configure the `defaultproxy` element of the *Web.config* file. The following example shows a *Web.config* file with the `defaultproxy` element configured to enable the ReCaptcha service to work.
+> [!NOTE]
+> If your computer is on a domain that uses proxy server, you might need to configure the `defaultproxy` element of the *Web.config* file. The following example shows a *Web.config* file with the `defaultproxy` element configured to enable the ReCaptcha service to work.
 > 
 > [!code-xml[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample3.xml)]
 

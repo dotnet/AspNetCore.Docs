@@ -41,7 +41,8 @@ The error page developers are most familiar with is the Exception Details YSOD. 
 
 **Figure 1** shows the Exception Details YSOD page. Note the URL in the browser's address window: `http://localhost:62275/Genre.aspx?ID=foo`. Recall that the `Genre.aspx` page lists the book reviews in a particular genre. It requires that `GenreId` value (a `uniqueidentifier`) be passed through the querystring; for example, the appropriate URL to view the fiction reviews is `Genre.aspx?ID=7683ab5d-4589-4f03-a139-1c26044d0146`. If a non-`uniqueidentifier` value is passed in through the querystring (such as "foo") an exception is thrown.
 
-> [!NOTE] To reproduce this error in the demo web application available for download you can either visit `Genre.aspx?ID=foo` directly or click the "Generate a Runtime Error" link in `Default.aspx`.
+> [!NOTE]
+> To reproduce this error in the demo web application available for download you can either visit `Genre.aspx?ID=foo` directly or click the "Generate a Runtime Error" link in `Default.aspx`.
 
 
 Note the exception information presented in **Figure 1**. The exception message, "Conversion failed when converting from a character string to uniqueidentifier" is present at the top of the page. The type of the exception, `System.Data.SqlClient.SqlException`, is listed, as well. There's also the stack trace.
@@ -55,7 +56,8 @@ The other type of YSOD is the Runtime Error YSOD, and is shown in **Figure 2**. 
 
 By default, the Runtime Error YSOD is shown to users visiting remotely (through http://www.yoursite.com), as evidenced by the URL in the browser's Address bar in **Figure 2**: `http://httpruntime.web703.discountasp.net/Genre.aspx?ID=foo`. The two different YSOD screens exist because developers are interested in knowing the error details, but such information should not be shown on a live site as it may reveal potential security vulnerabilities or other sensitive information to anyone who visits your site.
 
-> [!NOTE] If you are following along and are using DiscountASP.NET as your web host, you may notice that the Runtime Error YSOD does not display when visiting the live site. This is because DiscountASP.NET has their servers configured to show the Exception Details YSOD by default. The good news is that you can override this default behavior by adding a `<customErrors>` section to your `Web.config` file. The "Configuring Which Error Page is Displayed" section examines the `<customErrors>` section in detail.
+> [!NOTE]
+> If you are following along and are using DiscountASP.NET as your web host, you may notice that the Runtime Error YSOD does not display when visiting the live site. This is because DiscountASP.NET has their servers configured to show the Exception Details YSOD by default. The good news is that you can override this default behavior by adding a `<customErrors>` section to your `Web.config` file. The "Configuring Which Error Page is Displayed" section examines the `<customErrors>` section in detail.
 
 
 [![](displaying-a-custom-error-page-vb/_static/image5.png)](displaying-a-custom-error-page-vb/_static/image4.png)
@@ -131,7 +133,8 @@ By default, all types of errors cause the same custom error page to be displayed
 
 With this change in place, whenever a user visiting remotely requests an ASP.NET resource that does not exist, they will be redirected to the `404.aspx` custom error page instead of `Oops.aspx`. As **Figure 7** illustrates, the `404.aspx` page can include a more specific message than the general custom error page.
 
-> [!NOTE] Check out [404 Error Pages, One More Time](http://www.smashingmagazine.com/2009/01/29/404-error-pages-one-more-time/) for guidance on creating effective 404 error pages.
+> [!NOTE]
+> Check out [404 Error Pages, One More Time](http://www.smashingmagazine.com/2009/01/29/404-error-pages-one-more-time/) for guidance on creating effective 404 error pages.
 
 
 [![](displaying-a-custom-error-page-vb/_static/image19.png)](displaying-a-custom-error-page-vb/_static/image18.png)**Figure 7**: The Custom 404 Error Page Displays a More Targeted Message Than `Oops.aspx`  
@@ -139,7 +142,8 @@ With this change in place, whenever a user visiting remotely requests an ASP.NET
 
 Because you know that the `404.aspx` page is only reached when the user makes a request for a page that was not found, you can enhance this custom error page to include functionality to help the user address this specific type of error. For example, you could build a database table that maps known bad URLs to good URLs, and then have the `404.aspx` custom error page run a query against that table and suggest pages the user may be trying to reach.
 
-> [!NOTE] The custom error page is only displayed when a request is made to a resource handled by the ASP.NET engine. As we discussed in the [Core Differences Between IIS and the ASP.NET Development Server](core-differences-between-iis-and-the-asp-net-development-server-vb.md) tutorial , the web server may handle certain requests itself. By default, the IIS web server processes requests for static content like images and HTML files without invoking the ASP.NET engine. Consequently, if the user requests a non-existent image file they will get back IIS's default 404 error message rather than ASP.NET's configured error page.
+> [!NOTE]
+> The custom error page is only displayed when a request is made to a resource handled by the ASP.NET engine. As we discussed in the [Core Differences Between IIS and the ASP.NET Development Server](core-differences-between-iis-and-the-asp-net-development-server-vb.md) tutorial , the web server may handle certain requests itself. By default, the IIS web server processes requests for static content like images and HTML files without invoking the ASP.NET engine. Consequently, if the user requests a non-existent image file they will get back IIS's default 404 error message rather than ASP.NET's configured error page.
 
 
 ## Summary

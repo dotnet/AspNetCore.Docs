@@ -80,7 +80,8 @@ To enable Service Broker, use the following SQL query:
 
 [!code-sql[Main](scaleout-with-sql-server/samples/sample3.sql)]
 
-> [!NOTE] If this query appears to deadlock, make sure there are no applications connected to the DB.
+> [!NOTE]
+> If this query appears to deadlock, make sure there are no applications connected to the DB.
 
 
 If you have enabled tracing, the traces will also show whether Service Broker is enabled.

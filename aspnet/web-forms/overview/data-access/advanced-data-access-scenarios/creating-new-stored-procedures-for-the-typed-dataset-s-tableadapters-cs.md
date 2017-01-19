@@ -29,14 +29,16 @@ The SQL commands executed by the TableAdapters can be either ad-hoc SQL statemen
 
 When defining a TableAdapter or adding new methods, the TableAdapter s wizard makes it just as easy to create new stored procedures or use existing stored procedures as it does to use ad-hoc SQL statements. In this tutorial we'll examine how to have the TableAdapter s wizard auto-generate stored procedures. In the next tutorial we will look at how to configure the TableAdapter s methods to use existing or manually-created stored procedures.
 
-> [!NOTE] See Rob Howard's blog entry [Don't Use Stored Procedures Yet?](http://grokable.com/2003/11/dont-use-stored-procedures-yet-must-be-suffering-from-nihs-not-invented-here-syndrome/) and [Frans Bouma](https://weblogs.asp.net/fbouma/) s blog entry [Stored Procedures are Bad, M Kay?](https://weblogs.asp.net/fbouma/archive/2003/11/18/38178.aspx) for a lively debate on the pros and cons of stored procedures and ad-hoc SQL.
+> [!NOTE]
+> See Rob Howard's blog entry [Don't Use Stored Procedures Yet?](http://grokable.com/2003/11/dont-use-stored-procedures-yet-must-be-suffering-from-nihs-not-invented-here-syndrome/) and [Frans Bouma](https://weblogs.asp.net/fbouma/) s blog entry [Stored Procedures are Bad, M Kay?](https://weblogs.asp.net/fbouma/archive/2003/11/18/38178.aspx) for a lively debate on the pros and cons of stored procedures and ad-hoc SQL.
 
 
 ## Stored Procedure Basics
 
 Functions are a construct common to all programming languages. A function is a collection of statements that are executed when the function is called. Functions can accept input parameters and may optionally return a value. *[Stored procedures](http://en.wikipedia.org/wiki/Stored_procedure)* are database constructs that share many similarities with functions in programming languages. A stored procedure is made up of a set of T-SQL statements that are executed when the stored procedure is called. A stored procedure may accept zero to many input parameters and can return scalar values, output parameters, or, most commonly, result sets from `SELECT` queries.
 
-> [!NOTE] Stored procedures are oftentimes referred to as sprocs or SPs .
+> [!NOTE]
+> Stored procedures are oftentimes referred to as sprocs or SPs .
 
 
 Stored procedures are created using the [`CREATE PROCEDURE`](https://msdn.microsoft.com/en-us/library/aa258259(SQL.80).aspx) T-SQL statement. For example, the following T-SQL script creates a stored procedure named `GetProductsByCategoryID` that takes in a single parameter named `@CategoryID` and returns the `ProductID`, `ProductName`, `UnitPrice`, and `Discontinued` fields of those columns in the `Products` table that have a matching `CategoryID` value:
@@ -49,7 +51,8 @@ Once this stored procedure has been created, it can be called using the followin
 
 [!code-sql[Main](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/samples/sample2.sql)]
 
-> [!NOTE] In the next tutorial we will examine creating stored procedures through the Visual Studio IDE. For this tutorial, however, we are going to let the TableAdapter wizard automatically generate the stored procedures for us.
+> [!NOTE]
+> In the next tutorial we will examine creating stored procedures through the Visual Studio IDE. For this tutorial, however, we are going to let the TableAdapter wizard automatically generate the stored procedures for us.
 
 
 In addition to simply returning data, stored procedures are often used to perform multiple database commands within the scope of a single transaction. A stored procedure named `DeleteCategory`, for example, might take in a `@CategoryID` parameter and perform two `DELETE` statements: first, one to delete the related products and a second one deleting the specified category. Multiple statements within a stored procedure are *not* automatically wrapped within a transaction. Additional T-SQL commands need to be issued to ensure the stored procedure s multiple commands are treated as an atomic operation. We'll see how to wrap a stored procedure s commands within the scope of a transaction in the subsequent tutorial.
@@ -133,7 +136,8 @@ Use the following `SELECT` query for this TableAdapter:
 **Figure 6**: Enter the `SELECT` Query ([Click to view full-size image](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/_static/image14.png))
 
 
-> [!NOTE] The query above differs slightly from the main query of the `ProductsTableAdapter` in the `Northwind` Typed DataSet. Recall that the `ProductsTableAdapter` in the `Northwind` Typed DataSet includes two correlated subqueries to bring back the category name and company name for each product s category and supplier. In the upcoming [Updating the TableAdapter to Use JOINs](updating-the-tableadapter-to-use-joins-cs.md) tutorial we will look at adding this related data to this TableAdapter.
+> [!NOTE]
+> The query above differs slightly from the main query of the `ProductsTableAdapter` in the `Northwind` Typed DataSet. Recall that the `ProductsTableAdapter` in the `Northwind` Typed DataSet includes two correlated subqueries to bring back the category name and company name for each product s category and supplier. In the upcoming [Updating the TableAdapter to Use JOINs](updating-the-tableadapter-to-use-joins-cs.md) tutorial we will look at adding this related data to this TableAdapter.
 
 
 Take a moment to click the Advanced Options button. From here we can specify whether the wizard should also generate insert, update, and delete statements for the TableAdapter, whether to use optimistic concurrency, and whether the data table should be refreshed after inserts and updates. The Generate Insert, Update and Delete statements option is checked by default. Leave it checked. For this tutorial, leave the Use optimistic concurrency options unchecked.
@@ -146,7 +150,8 @@ When having the stored procedures automatically created by the TableAdapter wiza
 **Figure 7**: Leave the Generate Insert, Update and Delete statements Option Checked
 
 
-> [!NOTE] If the Use optimistic concurrency option is checked, the wizard will add additional conditions to the `WHERE` clause that prevent data from being updated if there were changes in other fields. Refer back to the [Implementing Optimistic Concurrency](../editing-inserting-and-deleting-data/implementing-optimistic-concurrency-cs.md) tutorial for more information on using the TableAdapter s built-in optimistic concurrency control feature.
+> [!NOTE]
+> If the Use optimistic concurrency option is checked, the wizard will add additional conditions to the `WHERE` clause that prevent data from being updated if there were changes in other fields. Refer back to the [Implementing Optimistic Concurrency](../editing-inserting-and-deleting-data/implementing-optimistic-concurrency-cs.md) tutorial for more information on using the TableAdapter s built-in optimistic concurrency control feature.
 
 
 After entering the `SELECT` query and confirming that the Generate Insert, Update and Delete statements option is checked, click Next. This next screen, shown in Figure 8, prompts for the names of the stored procedures the wizard will create for selecting, inserting, updating, and deleting data. Change these stored procedures names to `Products_Select`, `Products_Insert`, `Products_Update`, and `Products_Delete`.
@@ -191,7 +196,8 @@ The TableAdapter wizard used in Step 2 automatically created the stored procedur
 **Figure 12**: The Four Stored Procedures Created in Step 2 Can Be Found in the Database s Stored Procedures Folder
 
 
-> [!NOTE] If you do not see the Server Explorer, go to the View menu and choose the Server Explorer option. If you do not see the product-related stored procedures added from Step 2, try right-clicking on the Stored Procedures folder and choosing Refresh.
+> [!NOTE]
+> If you do not see the Server Explorer, go to the View menu and choose the Server Explorer option. If you do not see the product-related stored procedures added from Step 2, try right-clicking on the Stored Procedures folder and choosing Refresh.
 
 
 To view or modify a stored procedure, double-click its name in the Server Explorer or, alternatively, right-click on the stored procedure and choose Open. Figure 13 shows the `Products_Delete` stored procedure, when opened.

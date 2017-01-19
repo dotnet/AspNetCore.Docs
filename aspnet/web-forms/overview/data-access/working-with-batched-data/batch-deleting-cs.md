@@ -89,7 +89,8 @@ Figure 4 shows the GridView after a number of rows have been selected for deleti
 **Figure 5**: The Deleted Products `ProductID` Values are Listed Beneath the GridView ([Click to view full-size image](batch-deleting-cs/_static/image10.png))
 
 
-> [!NOTE] To test the `DeleteProductsWithTransaction` method s atomicity, manually add an entry for a product in the `Order Details` table and then attempt to delete that product (along with others). You will receive a foreign key constraint violation when attempting to delete the product with an associated order, but note how the other selected products deletions are rolled back.
+> [!NOTE]
+> To test the `DeleteProductsWithTransaction` method s atomicity, manually add an entry for a product in the `Order Details` table and then attempt to delete that product (along with others). You will receive a foreign key constraint violation when attempting to delete the product with an associated order, but note how the other selected products deletions are rolled back.
 
 
 ## Summary

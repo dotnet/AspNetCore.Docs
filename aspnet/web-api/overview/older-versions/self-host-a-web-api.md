@@ -72,7 +72,8 @@ After NuGet Package Manager is installed, add the Web API Self-Host package to y
 5. Select the ASP.NET Web API Self Host package and click **Install**.
 6. After the package installs, click **Close** to close the dialog.
 
-> [!NOTE] Make sure to install the package named Microsoft.AspNet.WebApi.SelfHost, not AspNetWebApi.SelfHost.
+> [!NOTE]
+> Make sure to install the package named Microsoft.AspNet.WebApi.SelfHost, not AspNetWebApi.SelfHost.
 
 
 ![](self-host-a-web-api/_static/image4.png)

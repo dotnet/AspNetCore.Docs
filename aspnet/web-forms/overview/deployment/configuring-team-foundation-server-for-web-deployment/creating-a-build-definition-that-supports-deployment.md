@@ -35,7 +35,8 @@ A build definition is the mechanism that controls how and when builds occur for 
 - The amount of time that each build should be retained.
 - Various other parameters of the build process.
 
-> [!NOTE] For more information on build definitions, see [Define Your Build Process](https://msdn.microsoft.com/en-us/library/ms181715.aspx).
+> [!NOTE]
+> For more information on build definitions, see [Define Your Build Process](https://msdn.microsoft.com/en-us/library/ms181715.aspx).
 
 
 This topic will show you how to create a build definition that uses CI, so that a build is triggered when a developer checks in new content. If the build succeeds, the build service runs a custom project file to deploy the solution to a test environment.
@@ -54,7 +55,8 @@ The [Contact Manager](../web-deployment-in-the-enterprise/the-contact-manager-so
 
 The next section explains how to implement this process by creating a new build definition.
 
-> [!NOTE] This procedure&#x2014;in which a single automated process builds, tests, and deploys a solution&#x2014;is likely to be most suited to deployment to test environments. For staging and production environments you&#x27;re a lot more likely to want to deploy content from a previous build that you&#x27;ve already verified and validated in a test environment. This approach is described in the next topic, [Deploying a Specific Build](deploying-a-specific-build.md).
+> [!NOTE]
+> This procedure&#x2014;in which a single automated process builds, tests, and deploys a solution&#x2014;is likely to be most suited to deployment to test environments. For staging and production environments you&#x27;re a lot more likely to want to deploy content from a previous build that you&#x27;ve already verified and validated in a test environment. This approach is described in the next topic, [Deploying a Specific Build](deploying-a-specific-build.md).
 
 
 ### Who Performs This Procedure?
@@ -76,7 +78,8 @@ The next procedure describes how to create a build definition that CI triggers. 
 
     ![](creating-a-build-definition-that-supports-deployment/_static/image3.png)
 
-    > [!NOTE] This drop location stores several builds, depending on the retention policy you configure. When you want to publish deployment artifacts from a specific build to a staging or production environment, this is where you&#x27;ll find them.
+    > [!NOTE]
+    > This drop location stores several builds, depending on the retention policy you configure. When you want to publish deployment artifacts from a specific build to a staging or production environment, this is where you&#x27;ll find them.
 5. On the **Process** tab, in the **Build process file** dropdown list, leave **DefaultTemplate.xaml** selected. This is one of the default build process templates that get added to all new team projects.
 6. In the **Build process parameters** table, click in the **Items to Build** row, and then click the **ellipsis** button.
 
@@ -134,7 +137,8 @@ From here, you can troubleshoot failed builds. If you double-click an individual
 
 You can use this information to troubleshoot failed builds and address any problems before you attempt another build.
 
-> [!NOTE] Builds that execute deployment logic are likely to fail until you have granted the build server any permissions required in the destination environment. For more information, see [Configuring Permissions for Team Build Deployment](configuring-permissions-for-team-build-deployment.md).
+> [!NOTE]
+> Builds that execute deployment logic are likely to fail until you have granted the build server any permissions required in the destination environment. For more information, see [Configuring Permissions for Team Build Deployment](configuring-permissions-for-team-build-deployment.md).
 
 
 ## Monitor the Build Process

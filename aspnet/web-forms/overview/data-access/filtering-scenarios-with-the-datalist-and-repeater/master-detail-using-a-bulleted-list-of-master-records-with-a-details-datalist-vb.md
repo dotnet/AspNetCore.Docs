@@ -87,7 +87,8 @@ Each item in the `Categories` Repeater needs to be clickable and, when clicked, 
 
 Alternatively, we can make each category a LinkButton, which is the approach we'll use for this tutorial. The LinkButton renders in the user s browser as a hyperlink but, when clicked, induces a postback; on postback, the DataList s ObjectDataSource needs to be refreshed to display those products belonging to the selected category. For this tutorial, using a hyperlink makes more sense than using a LinkButton; however, there may be other scenarios where using a LinkButton is more advantageous. While the hyperlink approach would be ideal for this example, let s instead explore using the LinkButton. As we'll see, using a LinkButton introduces some challenges that would not otherwise arise with a hyperlink. Therefore, using a LinkButton in this tutorial will highlight these challenges and help provide solutions for those scenarios where we may want to use a LinkButton instead of a hyperlink.
 
-> [!NOTE] You are encouraged to repeat this tutorial using a HyperLink control or `<a>` element in lieu of the LinkButton.
+> [!NOTE]
+> You are encouraged to repeat this tutorial using a HyperLink control or `<a>` element in lieu of the LinkButton.
 
 
 The following markup shows the declarative syntax for the Repeater and the ObjectDataSource. Note that the Repeater s templates render a bulleted list with each item as a LinkButton:
@@ -95,7 +96,8 @@ The following markup shows the declarative syntax for the Repeater and the Objec
 
 [!code-aspx[Main](master-detail-using-a-bulleted-list-of-master-records-with-a-details-datalist-vb/samples/sample4.aspx)]
 
-> [!NOTE] For this tutorial the Repeater must have its view state enabled (note the omission of the `EnableViewState="False"` from the Repeater s declarative syntax). In step 3 we'll be creating an event handler for the Repeater s `ItemCommand` event in which we'll be updating the DataList s ObjectDataSource s `SelectParameters` collection. The Repeater s `ItemCommand`, however, won t fire if view state is disabled. See [A Stumper of an ASP.NET Question](http://scottonwriting.net/sowblog/posts/1263.aspx) and [its solution](http://scottonwriting.net/sowBlog/posts/1268.aspx) for more information on why view state must be enabled for a Repeater s `ItemCommand` event to fire.
+> [!NOTE]
+> For this tutorial the Repeater must have its view state enabled (note the omission of the `EnableViewState="False"` from the Repeater s declarative syntax). In step 3 we'll be creating an event handler for the Repeater s `ItemCommand` event in which we'll be updating the DataList s ObjectDataSource s `SelectParameters` collection. The Repeater s `ItemCommand`, however, won t fire if view state is disabled. See [A Stumper of an ASP.NET Question](http://scottonwriting.net/sowblog/posts/1263.aspx) and [its solution](http://scottonwriting.net/sowBlog/posts/1268.aspx) for more information on why view state must be enabled for a Repeater s `ItemCommand` event to fire.
 
 
 The LinkButton with the `ID` property value of `ViewCategory` does not have its `Text` property set. If we had just wanted to display the category name, we would have set the Text property declaratively, through databinding syntax, like so:
@@ -110,7 +112,8 @@ However, we want to show both the category s name *and* the number of products b
 
 We start out by ensuring that we re working with a data item (one whose `ItemType` is `Item` or `AlternatingItem`) and then reference the `CategoriesRow` instance that has just been bound to the current `RepeaterItem`. Next, we determine the number of products for this category by creating an instance of the `ProductsBLL` class, calling its `GetCategoriesByProductID(categoryID)` method, and determining the number of records returned using the `Count` property. Finally, the `ViewCategory` LinkButton in the ItemTemplate is references and its `Text` property is set to *CategoryName* (*NumberOfProductsInCategory*) , where *NumberOfProductsInCategory* is formatted as a number with zero decimal places.
 
-> [!NOTE] Alternatively, we could have added a *formatting function* to the ASP.NET page s code-behind class that accepts a category s `CategoryName` and `CategoryID` values and returns the `CategoryName` concatenated with the number of products in the category (as determined by calling the `GetCategoriesByProductID(categoryID)` method). The results of such a formatting function could be declaratively assigned to the LinkButton s Text property replacing the need for the `ItemDataBound` event handler. Refer to the [Using TemplateFields in the GridView Control](../custom-formatting/using-templatefields-in-the-gridview-control-vb.md) or [Formatting the DataList and Repeater Based Upon Data](../displaying-data-with-the-datalist-and-repeater/formatting-the-datalist-and-repeater-based-upon-data-vb.md) tutorials for more information on using formatting functions.
+> [!NOTE]
+> Alternatively, we could have added a *formatting function* to the ASP.NET page s code-behind class that accepts a category s `CategoryName` and `CategoryID` values and returns the `CategoryName` concatenated with the number of products in the category (as determined by calling the `GetCategoriesByProductID(categoryID)` method). The results of such a formatting function could be declaratively assigned to the LinkButton s Text property replacing the need for the `ItemDataBound` event handler. Refer to the [Using TemplateFields in the GridView Control](../custom-formatting/using-templatefields-in-the-gridview-control-vb.md) or [Formatting the DataList and Repeater Based Upon Data](../displaying-data-with-the-datalist-and-repeater/formatting-the-datalist-and-repeater-based-upon-data-vb.md) tutorials for more information on using formatting functions.
 
 
 After adding this event handler, take a moment to test the page through a browser. Note how each category is listed in a bulleted list, displaying the category s name and the number of products associated with the category (see Figure 4).
@@ -203,7 +206,8 @@ At this point we have the `Categories` Repeater displaying the list of categorie
 
 One challenge facing us is how to have the DataList display just those products for the selected category. In the [Master/Detail Using a Selectable Master GridView with a Details DetailsView](../masterdetail/master-detail-using-a-selectable-master-gridview-with-a-details-detailview-vb.md) tutorial we saw how to build a GridView whose rows could be selected, with the selected row s details being displayed in a DetailsView on the same page. The GridView s ObjectDataSource returned information about all products using the `ProductsBLL` s `GetProducts()` method while the DetailsView s ObjectDataSource retrieved information about the selected product using the `GetProductsByProductID(productID)` method. The *`productID`* parameter value was provided declaratively by associating it with the value of the GridView s `SelectedValue` property. Unfortunately, the Repeater does not have a `SelectedValue` property and cannot serve as a parameter source.
 
-> [!NOTE] This is one of those challenges that appear when using the LinkButton in a Repeater. Had we used a hyperlink to pass in the `CategoryID` through the querystring instead, we could use that QueryString field as the source for the parameter s value.
+> [!NOTE]
+> This is one of those challenges that appear when using the LinkButton in a Repeater. Had we used a hyperlink to pass in the `CategoryID` through the querystring instead, we could use that QueryString field as the source for the parameter s value.
 
 
 Before we worry about the lack of a `SelectedValue` property for the Repeater, though, let s first bind the DataList to an ObjectDataSource and specify its `ItemTemplate`.

@@ -33,7 +33,8 @@ by [Microsoft](https://github.com/microsoft)
 >     - [Rendering Pages for Mobile Devices](#mobile)
 > - [Additional Resources](#resources)
 > 
-> > [!NOTE] This topic assumes that you are using WebMatrix to work with your ASP.NET Web Pages 2 code. However, as with Web Pages 1, you can also create Web Pages 2 websites using Visual Studio, which gives you enhanced IntelliSense capabilities and debugging. To work with Web Pages in Visual Studio, you must first install Visual Studio 2010 SP1, Visual Web Developer Express 2010 SP1, or Visual Studio 11 Beta. Then install the ASP.NET MVC 4 Beta, which includes templates and tools for creating ASP.NET MVC 4 and Web Pages 2 applications in Visual Studio.
+> > [!NOTE]
+> > This topic assumes that you are using WebMatrix to work with your ASP.NET Web Pages 2 code. However, as with Web Pages 1, you can also create Web Pages 2 websites using Visual Studio, which gives you enhanced IntelliSense capabilities and debugging. To work with Web Pages in Visual Studio, you must first install Visual Studio 2010 SP1, Visual Web Developer Express 2010 SP1, or Visual Studio 11 Beta. Then install the ASP.NET MVC 4 Beta, which includes templates and tools for creating ASP.NET MVC 4 and Web Pages 2 applications in Visual Studio.
 > 
 > 
 > *Last update: 18 June 2012*
@@ -48,7 +49,8 @@ To install Web Pages, you can use the Microsoft Web Platform Installer, which is
 
     [https://go.microsoft.com/fwlink/?LinkId=226883](https://go.microsoft.com/fwlink/?LinkId=226883)
 
-    > [!NOTE] If you already have WebMatrix 1 installed, this installation updates it to WebMatrix 2 Beta. You can run websites that were created using version 1 or 2 on the same computer. For more information, see the section on [Running Web Pages Applications Side by Side](#sidebyside).
+    > [!NOTE]
+    > If you already have WebMatrix 1 installed, this installation updates it to WebMatrix 2 Beta. You can run websites that were created using version 1 or 2 on the same computer. For more information, see the section on [Running Web Pages Applications Side by Side](#sidebyside).
 2. Choose **Install Now**. 
 
     If you use Internet Explorer, go to the next step. If you use a different browser like Mozilla Firefox or Google Chrome, you are prompted to save the *Webmatrix.exe* file to your computer. Save the file and then click it to launch the installer.
@@ -191,7 +193,8 @@ You can register a script with the assets manager by doing this:
 - In the code that needs to reference the script, call the `Assets.AddScript` method.
 - In a *\_SiteLayout* page, call the `Assets.GetScripts` method to render the `<script>` tags. 
 
-    > [!NOTE] Put calls to `Assets.GetScripts` as the very last item in the `<body>` element of the *\_SiteLayout* page. This helps the page load faster and can help avoid script errors.
+    > [!NOTE]
+    > Put calls to `Assets.GetScripts` as the very last item in the `<body>` element of the *\_SiteLayout* page. This helps the page load faster and can help avoid script errors.
 
 The following example shows how the assets manager works. The code contains the following items:
 
@@ -252,7 +255,8 @@ This section provides an example of how to let users log in from external sites 
 
 - For the sites that use an OAuth provider (Facebook, Twitter, and Windows Live), create an application on the external site. This gives you application keys that you'll need in order to invoke the login feature for those sites. For sites that use an OpenID provider (Google, Yahoo), you do not have to create an application. For all of these sites, you must have an account in order to log in and to create developer applications. 
 
-    > [!NOTE] Windows Live applications only accept a live URL for a working website, so you cannot use a local website URL for testing logins.
+    > [!NOTE]
+    > Windows Live applications only accept a live URL for a working website, so you cannot use a local website URL for testing logins.
 - Edit a few files in your website in order to specify the appropriate authentication provider and to submit a login to the site you want to use.
 
 **To enable Google and Yahoo logins**:
@@ -297,7 +301,8 @@ Now you can test Google and Yahoo logins.
 3. In the section **Select how your app will integrate with Facebook**, choose the **Website** section.
 4. Fill in the **Site URL** field with the URL of your site (for example, [`http://www.example.com`](http://www.example.com)). The **Domain** field is optional; you can use this to provide authentication for an entire domain (such as *example.com*). 
 
-    > [!NOTE] If you are running a site on your local computer with a URL like `http://localhost:12345` (where the number is a local port number), you can add this value to the **Site URL** field for testing your site. However, any time the port number of your local site changes, you will need to update the **Site URL** field of your application.
+    > [!NOTE]
+    > If you are running a site on your local computer with a URL like `http://localhost:12345` (where the number is a local port number), you can add this value to the **Site URL** field for testing your site. However, any time the port number of your local site changes, you will need to update the **Site URL** field of your application.
 5. Choose the **Save Changes** button.
 6. Choose the **Apps** tab again, and then view the start page for your application.
 7. Copy the **App ID** and **App Secret** values for your application and paste them into a temporary text file. You will pass these values to the Facebook provider in your website code.
@@ -342,7 +347,8 @@ Now you can test the Facebook login.
 3. On the **Create an Application** form, fill in the **Name** and **Description** fields.
 4. In the **WebSite** field, enter the URL of your site (for example, [`http://www.example.com`](http://www.example.com)). 
 
-    > [!NOTE] If you're testing your site locally (using a URL like `http://localhost:12345`), Twitter might not accept the URL. However, you might be able to use the local loopback IP address (for example `http://127.0.0.1:12345`). This simplifies the process of testing your application locally. However, every time the port number of your local site changes, you'll need to update the **WebSite** field of your application.
+    > [!NOTE]
+    > If you're testing your site locally (using a URL like `http://localhost:12345`), Twitter might not accept the URL. However, you might be able to use the local loopback IP address (for example `http://127.0.0.1:12345`). This simplifies the process of testing your application locally. However, every time the port number of your local site changes, you'll need to update the **WebSite** field of your application.
 5. In the **Callback URL** field, enter a URL for the page in your website that you want users to return to after logging into Twitter. For example, to send users to the home page of the Starter Site (which will recognize their logged-in status), enter the same URL that you entered in the **WebSite** field.
 6. Accept the terms and choose the **Create your Twitter application** button.
 7. On the **My Applications** landing page, choose the application you created.
@@ -457,7 +463,8 @@ To build and run the code sample:
 3. Run a desktop browser and browse to *Page1.cshtml*.
 4. Run a mobile browser (or a mobile device emulator) and browse to *Page1.cshtml*. Notice that this time Web Pages renders the mobile version of the page. 
 
-    > [!NOTE] To test mobile pages, you can use a mobile device simulator that runs on a desktop computer. This tool lets you test web pages as they would look on mobile devices (that is, typically with a much smaller display area). One example of a simulator is the [User Agent Switcher add-on](http://addons.mozilla.org/en-us/firefox/addon/user-agent-switcher/) for Mozilla Firefox, which lets you emulate various mobile browsers from a desktop version of Firefox.
+    > [!NOTE]
+    > To test mobile pages, you can use a mobile device simulator that runs on a desktop computer. This tool lets you test web pages as they would look on mobile devices (that is, typically with a much smaller display area). One example of a simulator is the [User Agent Switcher add-on](http://addons.mozilla.org/en-us/firefox/addon/user-agent-switcher/) for Mozilla Firefox, which lets you emulate various mobile browsers from a desktop version of Firefox.
 
 *Page1.cshtml*
 
@@ -480,7 +487,8 @@ To build and run the code sample:
 
 ### ASP.NET Web Pages 1 Resources
 
-> [!NOTE] Most Web Pages 1 programming and API resources still apply to Web Pages 2.
+> [!NOTE]
+> Most Web Pages 1 programming and API resources still apply to Web Pages 2.
 
 - [Introduction to ASP.NET Web Pages Programming](https://go.microsoft.com/fwlink/?LinkId=202890)
 

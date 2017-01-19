@@ -45,7 +45,8 @@ In the **New ASP.NET Project** dialog, select the **Empty** template. Under &quo
 
 ![](tutorial-your-first-web-api/_static/image3.png)
 
-> [!NOTE] You can also create a Web API project using the &quot;Web API&quot; template. The Web API template uses ASP.NET MVC to provide API help pages. I'm using the Empty template for this tutorial because I want to show Web API without MVC. In general, you don't need to know ASP.NET MVC to use Web API.
+> [!NOTE]
+> You can also create a Web API project using the &quot;Web API&quot; template. The Web API template uses ASP.NET MVC to provide API help pages. I'm using the Empty template for this tutorial because I want to show Web API without MVC. In general, you don't need to know ASP.NET MVC to use Web API.
 
 
 ## Adding a Model
@@ -66,7 +67,8 @@ Name the class &quot;Product&quot;. Add the following properties to the `Product
 
 In Web API, a *controller* is an object that handles HTTP requests. We'll add a controller that can return either a list of products or a single product specified by ID.
 
-> [!NOTE] If you have used ASP.NET MVC, you are already familiar with controllers. Web API controllers are similar to MVC controllers, but inherit the **ApiController** class instead of the **Controller** class.
+> [!NOTE]
+> If you have used ASP.NET MVC, you are already familiar with controllers. Web API controllers are similar to MVC controllers, but inherit the **ApiController** class instead of the **Controller** class.
 
 In **Solution Explorer**, right-click the Controllers folder. Select **Add** and then select **Controller**.
 
@@ -84,7 +86,8 @@ The scaffolding creates a file named ProductsController.cs in the Controllers fo
 
 ![](tutorial-your-first-web-api/_static/image8.png)
 
-> [!NOTE] You don't need to put your contollers into a folder named Controllers. The folder name is just a convenient way to organize your source files.
+> [!NOTE]
+> You don't need to put your contollers into a folder named Controllers. The folder name is just a convenient way to organize your source files.
 
 
 If this file is not open already, double-click the file to open it. Replace the code in this file with the following:

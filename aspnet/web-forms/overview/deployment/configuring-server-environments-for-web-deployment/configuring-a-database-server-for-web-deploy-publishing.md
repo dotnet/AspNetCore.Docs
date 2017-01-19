@@ -41,7 +41,8 @@ This topic will show you how to perform each of these procedures. The tasks and 
 
 The SQL Server instance only needs to include the **Database Engine Services** role, which is included automatically in any SQL Server installation. However, for ease of configuration and maintenance, we recommend that you include the **Management Tools – Basic** and **Management Tools – Complete** server roles.
 
-> [!NOTE] For more information on joining computers to a domain, see [Joining Computers to the Domain and Logging On](https://technet.microsoft.com/en-us/library/cc725618(v=WS.10).aspx). For more information on configuring static IP addresses, see [Configure a Static IP Address](https://technet.microsoft.com/en-us/library/cc754203(v=ws.10).aspx). For more information on installing SQL Server, see [Installing SQL Server 2008 R2](https://technet.microsoft.com/en-us/library/bb500395.aspx).
+> [!NOTE]
+> For more information on joining computers to a domain, see [Joining Computers to the Domain and Logging On](https://technet.microsoft.com/en-us/library/cc725618(v=WS.10).aspx). For more information on configuring static IP addresses, see [Configure a Static IP Address](https://technet.microsoft.com/en-us/library/cc754203(v=ws.10).aspx). For more information on installing SQL Server, see [Installing SQL Server 2008 R2](https://technet.microsoft.com/en-us/library/bb500395.aspx).
 
 
 ## Enable Remote Access to SQL Server
@@ -58,7 +59,8 @@ To enable SQL Server to communicate over TCP/IP, use SQL Server Configuration Ma
 1. On the **Start** menu, point to **All Programs**, click **Microsoft SQL Server 2008 R2**, click **Configuration Tools**, and then click **SQL Server Configuration Manager**.
 2. In the tree view pane, expand **SQL Server Network Configuration**, and then click **Protocols for MSSQLSERVER**.
 
-    > [!NOTE] If you have installed multiple instances of SQL Server, you&#x27;ll see a **Protocols for***[instance name]* item for each instance. You need to configure network settings on an instance-by-instance basis.
+    > [!NOTE]
+    > If you have installed multiple instances of SQL Server, you&#x27;ll see a **Protocols for***[instance name]* item for each instance. You need to configure network settings on an instance-by-instance basis.
 3. In the details pane, right-click the **TCP/IP** row, and then click **Enable**.
 
     ![](configuring-a-database-server-for-web-deploy-publishing/_static/image1.png)
@@ -93,7 +95,8 @@ Assuming that you&#x27;re using a default instance of SQL Server, you need to co
 | Outbound | 1433 | Any | TCP |
   
 
-> [!NOTE] Technically, a client computer will use a randomly assigned TCP port between 1024 and 5000 to communicate with SQL Server, and you can restrict your firewall rules accordingly. For more information on SQL Server ports and firewalls, see [TCP/IP port numbers required to communicate to SQL over a firewall](https://go.microsoft.com/?linkid=9805125) and [How to: Configure a Server to Listen on a Specific TCP Port (SQL Server Configuration Manager)](https://msdn.microsoft.com/en-us/library/ms177440.aspx).
+> [!NOTE]
+> Technically, a client computer will use a randomly assigned TCP port between 1024 and 5000 to communicate with SQL Server, and you can restrict your firewall rules accordingly. For more information on SQL Server ports and firewalls, see [TCP/IP port numbers required to communicate to SQL over a firewall](https://go.microsoft.com/?linkid=9805125) and [How to: Configure a Server to Listen on a Specific TCP Port (SQL Server Configuration Manager)](https://msdn.microsoft.com/en-us/library/ms177440.aspx).
 
 
 In most Windows Server environments, you'll likely have to configure Windows Firewall on the database server. By default, Windows Firewall allows all outbound traffic unless a rule specifically prohibits it. To enable your web server to reach your database, you need to configure an inbound rule that allows TCP traffic on the port number that the SQL Server instance uses. If you&#x27;re using a default instance of SQL Server, you can use the next procedure to configure this rule.
@@ -128,7 +131,8 @@ When you deploy a web application to Internet Information Services (IIS), the ap
 
 If your web application is running on a server farm, rather than a single server, you&#x27;ll need to repeat these procedures for every web server in the server farm.
 
-> [!NOTE] For more information on application pool identities and accessing network resources, see [Application Pool Identities](https://go.microsoft.com/?linkid=9805123).
+> [!NOTE]
+> For more information on application pool identities and accessing network resources, see [Application Pool Identities](https://go.microsoft.com/?linkid=9805123).
 
 
 You can approach these tasks in various ways. To create the login, you can either:
@@ -172,14 +176,16 @@ For more information on automating the creation of logins and database role mapp
 
 While manually mapping database roles is often more than adequate for test environments, it&#x27;s less desirable for automated or one-click deployments to staging or production environments. You can find more information on automating this kind of task using post-deployment scripts in [Deploying Database Role Memberships to Test Environments](../advanced-enterprise-web-deployment/deploying-database-role-memberships-to-test-environments.md).
 
-> [!NOTE] For more information on server projects and database projects, see [Visual Studio 2010 SQL Server Database Projects](https://msdn.microsoft.com/en-us/library/ff678491.aspx).
+> [!NOTE]
+> For more information on server projects and database projects, see [Visual Studio 2010 SQL Server Database Projects](https://msdn.microsoft.com/en-us/library/ff678491.aspx).
 
 
 ## Configure Permissions for the Deployment Account
 
 If the account that you'll use to run the deployment is not a SQL Server administrator, you&#x27;ll also need to create a login for this account. In order to create the database, the account must be a member of the **dbcreator** server role or have equivalent permissions.
 
-> [!NOTE] When you use Web Deploy or VSDBCMD to deploy a database, you can use Windows credentials or SQL Server credentials (if your SQL Server instance is configured to support mixed mode authentication). The next procedure assumes that you want to use Windows credentials, but there&#x27;s nothing stopping you from specifying a SQL Server user name and password in your connection string when you configure the deployment.
+> [!NOTE]
+> When you use Web Deploy or VSDBCMD to deploy a database, you can use Windows credentials or SQL Server credentials (if your SQL Server instance is configured to support mixed mode authentication). The next procedure assumes that you want to use Windows credentials, but there&#x27;s nothing stopping you from specifying a SQL Server user name and password in your connection string when you configure the deployment.
 
 
 **To set up permissions for the deployment account**

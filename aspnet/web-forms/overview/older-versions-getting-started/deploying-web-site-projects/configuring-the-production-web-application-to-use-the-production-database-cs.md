@@ -81,7 +81,8 @@ Note that the connection string in the `<connectionStrings>` element is named th
 
 Unless you have a more formalized deployment workflow, either manually modify the `Web.config` file to use the production database connection string before deploying (remembering to revert it back to using the development database connection string afterwards) or maintain a separate `Web.config` file with the production environment configuration information that gets uploaded to the production environment as part of the deployment process.
 
-> [!NOTE] If you accidentally deploy a `Web.config` file that contains the development database connection string then there will be an error when the application on production attempts to connect to the database. This error manifests as a `SqlException` with a message reporting that the server was not found or was not accessible.
+> [!NOTE]
+> If you accidentally deploy a `Web.config` file that contains the development database connection string then there will be an error when the application on production attempts to connect to the database. This error manifests as a `SqlException` with a message reporting that the server was not found or was not accessible.
 
 
 Once the site has been deployed to production, visit the production site through your browser. You should see and enjoy the same user experience as when running the data-driven application locally. Of course when you visit the website on production the site is powered by the production database server, whereas visiting the website in the development environment uses the database in development. Figure 3 shows the *Teach Yourself ASP.NET 3.5 in 24 Hours* review page from the website in the production environment (note the URL in the browser s Address bar).
@@ -106,7 +107,8 @@ Similarly, the databaseConnectionStrings.production.config file should contain j
 
 Make a copy of the databaseConnectionStrings.dev.config file and name it databaseConnectionStrings.config.
 
-> [!NOTE] You can name the configuration file something other than databaseConnectionStrings.config, if you d like, such as `connectionStrings.config` or `dbInfo.config`. However, be sure to name the file with a `.config` extension as `.config` files are, by default, not served by the ASP.NET engine. If you name the file something else, like `connectionStrings.txt`, a user could point their browser to [www.yoursite.com/ConfigSettings/connectionStrings.txt](http://www.yoursite.com/ConfigSettings/connectionStrings.txt) and view the contents of the file!
+> [!NOTE]
+> You can name the configuration file something other than databaseConnectionStrings.config, if you d like, such as `connectionStrings.config` or `dbInfo.config`. However, be sure to name the file with a `.config` extension as `.config` files are, by default, not served by the ASP.NET engine. If you name the file something else, like `connectionStrings.txt`, a user could point their browser to [www.yoursite.com/ConfigSettings/connectionStrings.txt](http://www.yoursite.com/ConfigSettings/connectionStrings.txt) and view the contents of the file!
 
 
 At this point the `ConfigSections` folder should contain three files (see Figure 4). The databaseConnectionStrings.dev.config and databaseConnectionStrings.production.config files contain the connection strings for the development and production environments, respectively. The databaseConnectionStrings.config file contains the connection string information that will be used by the web application at runtime. Consequently, the databaseConnectionStrings.config file should be identical to the databaseConnectionStrings.dev.config file in the development environment, whereas on production the databaseConnectionStrings.config file should be identical to databaseConnectionStrings.production.config.
@@ -125,7 +127,8 @@ The `configSource` attribute specifies a physical path relative to the `Web.conf
 
 With this modification, the development and production environments contain the same `Web.config` file. Now the only difference is the databaseConnectionStrings.config file. Copy the databaseConnectionStrings.production.config file to production and rename it to databaseConnectionStrings.config. If, in the future, there are changes to the production database connection string you will need to make them to the databaseConnectionStrings.production.config file and then upload that file to production, renaming it databaseConnectionStrings.config.
 
-> [!NOTE] You may specify the information for any `Web.config` element in a separate file and use the `configSource` attribute to reference that file from within `Web.config`.
+> [!NOTE]
+> You may specify the information for any `Web.config` element in a separate file and use the `configSource` attribute to reference that file from within `Web.config`.
 
 
 ## Summary

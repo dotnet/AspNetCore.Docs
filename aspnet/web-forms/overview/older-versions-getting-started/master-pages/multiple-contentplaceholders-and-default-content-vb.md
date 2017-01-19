@@ -107,7 +107,8 @@ To implement this design, you could create a ContentPlaceHolder control in the u
 
 A better solution is to define the username and password textboxes as the ContentPlaceHolder's default content. By doing so, we only need to override this default content in those few pages that do not display the username and password textboxes (the login page, for instance). To illustrate specifying default content for a ContentPlaceHolder control, let's implement the scenario just discussed.
 
-> [!NOTE] The remainder of this tutorial updates our website to include a login interface in the left column for all pages but the login page. However, this tutorial does not examine how to configure the website to support user accounts. For more information on this topic, refer to my [Forms Authentication, Authorization, User Accounts and Roles](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md) tutorials.
+> [!NOTE]
+> The remainder of this tutorial updates our website to include a login interface in the left column for all pages but the login page. However, this tutorial does not examine how to configure the website to support user accounts. For more information on this topic, refer to my [Forms Authentication, Authorization, User Accounts and Roles](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md) tutorials.
 
 
 ### Adding a ContentPlaceHolder and Specifying Its Default Content

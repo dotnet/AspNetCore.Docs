@@ -86,7 +86,8 @@ Next, open the code for the `ValuesController` API controller, which is defined 
 
 [!code-csharp[Main](creating-api-help-pages/samples/sample4.cs)]
 
-> [!NOTE] Tip: If you position the caret on the line above the method and type three forward slashes, Visual Studio automatically inserts the XML elements. Then you can fill in the blanks.
+> [!NOTE]
+> Tip: If you position the caret on the line above the method and type three forward slashes, Visual Studio automatically inserts the XML elements. Then you can fill in the blanks.
 
 
 Now build and run the application again, and navigate to the help pages. The documentation strings should appear in the API table.

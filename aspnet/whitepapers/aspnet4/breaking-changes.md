@@ -106,7 +106,8 @@ If your application contains custom browser definitions that inherit from one of
 
 - The browser or gateway element with ID 'IE2' cannot be found.
 
-> [!NOTE] The **HttpBrowserCapabilities** object (which is exposed by the page's **Request.Browser** property) is driven by the browser definitions files. Therefore, the information returned by accessing a property of this object in ASP.NET 4 might be different than the information returned in an earlier version of ASP.NET.
+> [!NOTE]
+> The **HttpBrowserCapabilities** object (which is exposed by the page's **Request.Browser** property) is driven by the browser definitions files. Therefore, the information returned by accessing a property of this object in ASP.NET 4 might be different than the information returned in an earlier version of ASP.NET.
 
 
 You can revert to the old browser definition files by copying the browser definition files from the following folder:
@@ -223,7 +224,8 @@ If you run both 32-bit and 64-bit Web applications on a 64-bit computer, you mus
 
 When you put the **configSections** element in the root `Web.config` file, paste the section immediately after the **configuration** element. The following example shows what the top portion of the root `Web.config` file should look like when you have finished moving the elements.
 
-> [!NOTE] In the following example, lines have been wrapped for readability.
+> [!NOTE]
+> In the following example, lines have been wrapped for readability.
 
 
 [!code-xml[Main](breaking-changes/samples/sample8.xml)]
@@ -309,7 +311,8 @@ If it is not practical to remap the Web site to ASP.NET 2.0 or to change the loc
 3. Save the registry value and close the registry editor.
 4. Run the **iisreset** command-line tool, which causes IIS to read the new registry value.
 
-> [!NOTE] Setting **EnableExtensionlessUrls** to 1 enables extensionless URL behavior. This is the default setting if no value is specified.
+> [!NOTE]
+> Setting **EnableExtensionlessUrls** to 1 enables extensionless URL behavior. This is the default setting if no value is specified.
 
 
 <a id="0.1__Toc252995494"></a><a id="0.1__Toc255587643"></a><a id="0.1__Toc256770154"></a><a id="0.1__Toc245724862"></a>
@@ -365,7 +368,8 @@ When you revert to the legacy CAS model, the following old CAS behaviors are ena
 
 One scenario cannot be reverted in the .NET Framework 4: non-Web partial-trust applications can no longer call certain APIs in System.Web.dll and System.Web.Extensions.dll. In previous versions of the .NET Framework, it was possible for non-Web partial-trust applications to be explicitly granted **AspNetHostingPermission** permissions. These applications could then use **System.Web.HttpUtility**, types in the **System.Web.ClientServices.\*** namespaces, and types related to membership, roles, and profiles. Calling these types from non-Web partial trust applications is no longer supported in the .NET Framework 4.
 
-> [!NOTE] The **HtmlEncode** and **HtmlDecode** functionality of the **System.Web.HttpUtility** class was moved to the new .NET Framework 4 **System.Net.WebUtility** class. If that was the only ASP.NET functionality that was being used, modify the application's code to use the new **WebUtility** class instead.
+> [!NOTE]
+> The **HtmlEncode** and **HtmlDecode** functionality of the **System.Web.HttpUtility** class was moved to the new .NET Framework 4 **System.Net.WebUtility** class. If that was the only ASP.NET functionality that was being used, modify the application's code to use the new **WebUtility** class instead.
 
 
 The following is a high-level summary of the changes to the default CAS implementation in ASP.NET 4:

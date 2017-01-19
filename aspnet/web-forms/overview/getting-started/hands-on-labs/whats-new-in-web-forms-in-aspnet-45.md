@@ -81,7 +81,8 @@ This hands-on lab includes the following exercises:
 2. [Exercise 2: Data Validation](#Exercise2)
 3. [Exercise 3: Asynchronous Page Processing in ASP.NET Web Forms](#Exercise3)
 
-> [!NOTE] Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
+> [!NOTE]
+> Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
 
 
 Estimated time to complete this lab: **60 minutes**.
@@ -104,7 +105,8 @@ In this task, you will discover the new strongly-typed bindings available in ASP
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open the **Customers.aspx** page. Place an unnumbered list in the main control and include a repeater control inside for listing each customer. Set the repeater name to **customersRepeater** as shown in the following code.
 
     In previous versions of Web Forms, when using data-binding to emit the value of a member on an object you're data-binding to, you would use a data-binding expression, along with a call to the Eval method, passing in the name of the member as a string.
@@ -137,7 +139,8 @@ In this task, you will discover the new strongly-typed bindings available in ASP
 
     *Listing the customers with a repeater*
 
-    > [!NOTE] In Visual Studio 2012, IIS Express is the default Web development server.
+    > [!NOTE]
+    > In Visual Studio 2012, IIS Express is the default Web development server.
 7. Close the browser and go back to Visual Studio.
 8. Now replace the implementation to use strongly typed bindings. Open the **Customers.aspx** page and use the new **ItemType** attribute in the repeater to set the **Customer** type as the binding type.
 
@@ -158,7 +161,8 @@ In this task, you will discover the new strongly-typed bindings available in ASP
 
     The &quot;**:** &quot; used in the expression will automatically HTML-encode the output to avoid security issues (for example, cross-site scripting attacks). This notation was available since .NET 4 for response writing, but now is also available in data-binding expressions.
 
-    > [!NOTE] The Item member works for one-way binding. If you want to perform two-way binding use the **BindItem** member.
+    > [!NOTE]
+    > The Item member works for one-way binding. If you want to perform two-way binding use the **BindItem** member.
 
     ![IntelliSense support in strongly-typed binding](whats-new-in-web-forms-in-aspnet-45/_static/image2.png "IntelliSense support in strongly-typed binding")
 
@@ -209,7 +213,8 @@ To learn about this, you will use a GridView to list the product categories usin
 
     [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample10.cs)]
 
-    > [!NOTE] In previous versions of ASP.NET Web Forms, enabling sorting and paging using your own repository logic within an Object Data Source context, required to write your own custom code and receive all the necessary parameters. Now, as the data-binding methods can return IQueryable and this represents a query still to be executed, ASP.NET can take care of modifying the query to add the proper sorting and paging parameters.
+    > [!NOTE]
+    > In previous versions of ASP.NET Web Forms, enabling sorting and paging using your own repository logic within an Object Data Source context, required to write your own custom code and receive all the necessary parameters. Now, as the data-binding methods can return IQueryable and this represents a query still to be executed, ASP.NET can take care of modifying the query to add the proper sorting and paging parameters.
 6. Press **F5** to start debugging the site and go to the Products page. You should see that the GridView is populated with the categories returned by the GetCategories method.
 
     ![Populating a GridView using model binding](whats-new-in-web-forms-in-aspnet-45/_static/image4.png "Populating a GridView using model binding")
@@ -263,7 +268,8 @@ In this task, you will update the GridView to filter its results by the amount o
 
     Alternatively, the attribute provides an overloaded constructor that enables you to specify the control from where to get the value.
 
-    > [!NOTE] One goal of the data-binding features is to reduce the amount of code that needs to be written for page interaction. Apart from the [Control] value provider, you can use other model-binding providers in your method parameters. Some of them are listed in the task introduction.
+    > [!NOTE]
+    > One goal of the data-binding features is to reduce the amount of code that needs to be written for page interaction. Apart from the [Control] value provider, you can use other model-binding providers in your method parameters. Some of them are listed in the task introduction.
 6. Press **F5** to start debugging the site and go to the Products page. Select a number of products in the drop-down list and notice how the GridView is now updated.
 
     ![Filtering the GridView with a drop-down list value](whats-new-in-web-forms-in-aspnet-45/_static/image5.png "Filtering the GridView with a drop-down list value")
@@ -294,7 +300,8 @@ In this task, you will add a second, child GridView to show the products within 
 
     [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample17.cs)]
 
-    > [!NOTE] This approach makes it easier to unit test these methods. On a unit test context, where Web Forms is not executing, the [Control] attribute will not perform any specific action.
+    > [!NOTE]
+    > This approach makes it easier to unit test these methods. On a unit test context, where Web Forms is not executing, the [Control] attribute will not perform any specific action.
 4. Open the **Products.aspx** page and locate the products GridView. Update the products GridView to show a link for editing the selected product.
 
     HTML
@@ -308,7 +315,8 @@ In this task, you will add a second, child GridView to show the products within 
 
     [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample19.cs)]
 
-    > [!NOTE] Notice that the **[QueryString]** attribute is used to fill the method parameter from a productId parameter in the query string.
+    > [!NOTE]
+    > Notice that the **[QueryString]** attribute is used to fill the method parameter from a productId parameter in the query string.
 6. Press **F5** to start debugging the site and go to the Products page. Select any category from the categories GridView and notice that the products GridView is updated.
 
     ![Showing products from the selected category](whats-new-in-web-forms-in-aspnet-45/_static/image6.png "Showing products from the selected category")
@@ -322,7 +330,8 @@ In this task, you will add a second, child GridView to show the products within 
 
     *Viewing the product details*
 
-    > [!NOTE] The ability to type an HTML description will be implemented in the next exercise.
+    > [!NOTE]
+    > The ability to type an HTML description will be implemented in the next exercise.
 
 <a id="Task_5_-_Using_Model_Binding_for_Update_Operations"></a>
 #### Task 5 - Using Model Binding for Update Operations
@@ -348,7 +357,8 @@ You will update the categories GridView to let the user update categories.
 
     The new **TryUpdateModel** method in the Page class is responsible of populating the model object using the values from the controls in the page. In this case, it will replace the updated values from the current GridView row being edited into the **category** object.
 
-    > [!NOTE] The next exercise will explain the usage of the ModelState.IsValid for validating the data entered by the user when editing the object.
+    > [!NOTE]
+    > The next exercise will explain the usage of the ModelState.IsValid for validating the data entered by the user when editing the object.
 3. Run the site and go to the Products page. Edit a category. Type a new name and then click **Update** to persist the changes.
 
     ![Editing categories](whats-new-in-web-forms-in-aspnet-45/_static/image8.png "Editing categories")
@@ -375,7 +385,8 @@ In this section, you will enable unobtrusive validation in ASP.NET to compare th
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Press **F5** to start the web application. Go to the Customers page and click the **Add a New Customer** link.
 3. Right-click on the browser page, and select **View Source** option to open the HTML code generated by the application.
 
@@ -394,7 +405,8 @@ In this section, you will enable unobtrusive validation in ASP.NET to compare th
 
     [!code-xml[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample22.xml)]
 
-    > [!NOTE] You can also set this property in the &quot;**Page\_Load**&quot; event in case you want to enable Unobtrusive Validation only for some pages.
+    > [!NOTE]
+    > You can also set this property in the &quot;**Page\_Load**&quot; event in case you want to enable Unobtrusive Validation only for some pages.
 7. Open **CustomerDetails.aspx** and press **F5** to start the Web application.
 8. Press the F12 key to open the IE developer tools. Once the developer tools is open, select the script tab. Select **CustomerDetails.aspx** from the menu and take note that the scripts required to run jQuery on the page have been loaded into the browser from the local site.
 
@@ -413,7 +425,8 @@ In this section, you will enable unobtrusive validation in ASP.NET to compare th
 
     *Unobtrusive validation code*
 
-    > [!NOTE] In this example, you saw how a validation summary with Data annotations was simplified to only a few HTML and JavaScript lines. Previously, without unobtrusive validation, the more validation controls you add, the bigger your JavaScript validation code will grow.
+    > [!NOTE]
+    > In this example, you saw how a validation summary with Data annotations was simplified to only a few HTML and JavaScript lines. Previously, without unobtrusive validation, the more validation controls you add, the bigger your JavaScript validation code will grow.
 
 <a id="Task_2_-_Validating_the_Model_with_Data_Annotations"></a>
 #### Task 2 - Validating the Model with Data Annotations
@@ -446,7 +459,8 @@ ASP.NET 4.5 introduces data annotations validation for Web Forms. Instead of hav
 
     [!code-aspx[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample24.aspx)]
 
-    > [!NOTE] One advantage of using data annotations is that validation logic is not duplicated in your application pages. You define it once in the model, and use it across all the application pages that manipulate data.
+    > [!NOTE]
+    > One advantage of using data annotations is that validation logic is not duplicated in your application pages. You define it once in the model, and use it across all the application pages that manipulate data.
 4. Open **CustomerDetails.aspx** code-behind and locate the SaveCustomer method. This method is called when inserting a new customer and receives the Customer parameter from the FormView control values. When the mapping between the page controls and the parameter object occurrs, ASP.NET will execute the model validation against all the data annotation attributes and fill the ModelState dictionary with the errors encountered, if any.
 
     The ModelState.IsValid will only return true if all the fields on your model are valid after performing the validation.
@@ -497,7 +511,8 @@ In this task, you will add code to properly handle database exceptions and show 
 
     [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample27.cs)]
 
-    > [!NOTE] Ideally, you would have to identify the cause of the DbUpdateException and check if the root cause is the violation of a unique key constraint.
+    > [!NOTE]
+    > Ideally, you would have to identify the cause of the DbUpdateException and check if the root cause is the violation of a unique key constraint.
 3. Open **Products.aspx** and add a **ValidationSummary** control below the categories GridView to show the list of model errors.
 
     HTML
@@ -541,7 +556,8 @@ The request validation feature in ASP.NET provides a certain level of default pr
 
     *Request validation disabled for the product description*
 
-    > [!NOTE] In a production application, you should sanitize the HTML code entered by the user to make sure only safe HTML tags are entered (for example, there are no &lt;script&gt; tags). To do this, you can use [Microsoft Web Protection Library](http://wpl.codeplex.com/).
+    > [!NOTE]
+    > In a production application, you should sanitize the HTML code entered by the user to make sure only safe HTML tags are entered (for example, there are no &lt;script&gt; tags). To do this, you can use [Microsoft Web Protection Library](http://wpl.codeplex.com/).
 7. Edit the product again. Type HTML code in the Name field and click **Save**. Notice that Request Validation is only disabled for the Description field and the rest of the fields re still validated against the potentially dangerous content.
 
     ![Request validation enabled in the rest of the fields](whats-new-in-web-forms-in-aspnet-45/_static/image21.png "Request validation enabled in the rest of the fields")
@@ -577,7 +593,8 @@ In this task, you will update the product details page to allow the user to spec
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open the **ProductDetails.aspx** page source and add a field in the FormView's ItemTemplate to show the product image.
 
     HTML
@@ -649,7 +666,8 @@ Time-consuming operations on your web site are great candidates for asynchronous
 
     [!code-csharp[Main](whats-new-in-web-forms-in-aspnet-45/samples/sample38.cs)]
 
-    The RegisterAsyncTask registers a new page asynchronous task to be executed in a different thread. It receives a lambda expression with the Task (t) to be executed. The **await** keyword in the **DownloadFileTaskAsync** method converts the remainder of the method into a callback that is invoked asynchronously after the **DownloadFileTaskAsync** method has completed. ASP.NET will resume the execution of the method by automatically maintaining all the HTTP request original values. The new asynchronous programming model in .NET 4.5 enables you to write asynchronous code that looks very much like synchronous code, and let the compiler handle the complications of callback functions or continuation code. > [!NOTE] RegisterAsyncTask and PageAsyncTask were already available since .NET 2.0. The await keyword is new from the .NET 4.5 asynchronous programming model and can be used together with the new TaskAsync methods from the .NET WebClient object.
+    The RegisterAsyncTask registers a new page asynchronous task to be executed in a different thread. It receives a lambda expression with the Task (t) to be executed. The **await** keyword in the **DownloadFileTaskAsync** method converts the remainder of the method into a callback that is invoked asynchronously after the **DownloadFileTaskAsync** method has completed. ASP.NET will resume the execution of the method by automatically maintaining all the HTTP request original values. The new asynchronous programming model in .NET 4.5 enables you to write asynchronous code that looks very much like synchronous code, and let the compiler handle the complications of callback functions or continuation code. > [!NOTE]
+ > RegisterAsyncTask and PageAsyncTask were already available since .NET 2.0. The await keyword is new from the .NET 4.5 asynchronous programming model and can be used together with the new TaskAsync methods from the .NET WebClient object.
 5. Add code to display the threads on which the code started and finished executing. To do this, update the **UpdateProductImage** method with the following code.
 
     (Code Snippet - *Web Forms Lab - Ex03 - Show threads*)
@@ -668,7 +686,8 @@ Time-consuming operations on your web site are great candidates for asynchronous
 
     *Downloading an image asynchronously*
 
-> [!NOTE] Additionally, you can deploy this application to Azure following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
+> [!NOTE]
+> Additionally, you can deploy this application to Azure following [Appendix B: Publishing an ASP.NET MVC 4 Application using Web Deploy](#AppendixB).
 
 
 * * *
@@ -736,7 +755,8 @@ This appendix will show you how to create a new web site from the Azure Portal a
 
 1. Go to the [Azure Management Portal](https://manage.windowsazure.com/) and sign in using the Microsoft credentials associated with your subscription.
 
-    > [!NOTE] With Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
+    > [!NOTE]
+    > With Azure you can host 10 ASP.NET Web Sites for free and then scale as your traffic grows. You can sign up [here](http://aka.ms/aspnet-hol-azure).
 
     ![Log on to Windows Azure portal](whats-new-in-web-forms-in-aspnet-45/_static/image30.png "Log on to Windows Azure portal")
 
@@ -748,7 +768,8 @@ This appendix will show you how to create a new web site from the Azure Portal a
     *Creating a new Web Site*
 3. Click **Compute** | **Web Site**. Then select **Quick Create** option. Provide an available URL for the new web site and click **Create Web Site**.
 
-    > [!NOTE] Azure is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Azure from outside the portal. It does not include steps for setting up a database.
+    > [!NOTE]
+    > Azure is the host for a web application running in the cloud that you can control and manage. The Quick Create option allows you to deploy a completed web application to the Azure from outside the portal. It does not include steps for setting up a database.
 
     ![Creating a new Web Site using Quick Create](whats-new-in-web-forms-in-aspnet-45/_static/image32.png "Creating a new Web Site using Quick Create")
 
@@ -770,7 +791,8 @@ This appendix will show you how to create a new web site from the Azure Portal a
     *Opening the Web Site management pages*
 7. In the **Dashboard** page, under the **quick glance** section, click the **Download publish profile** link.
 
-    > [!NOTE] The *publish profile* contains all of the information required to publish a web application to Azure for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Azure.
+    > [!NOTE]
+    > The *publish profile* contains all of the information required to publish a web application to Azure for each enabled publication method. The publish profile contains the URLs, user credentials and database strings required to connect to and authenticate against each of the endpoints for which a publication method is enabled. **Microsoft WebMatrix 2**, **Microsoft Visual Studio Express for Web** and **Microsoft Visual Studio 2012** support reading publish profiles to automate configuration of these programs for publishing web applications to Azure.
 
     ![Downloading the web site publish profile](whats-new-in-web-forms-in-aspnet-45/_static/image36.png "Downloading the web site publish profile")
 
@@ -821,7 +843,8 @@ If your application makes use of SQL Server databases you will need to create a 
     *Importing publish profile*
 3. Click **Validate Connection**. Once Validation is complete click **Next**.
 
-    > [!NOTE] Validation is complete once you see a green checkmark appear next to the Validate Connection button.
+    > [!NOTE]
+    > Validation is complete once you see a green checkmark appear next to the Validate Connection button.
 
     ![Validating connection](whats-new-in-web-forms-in-aspnet-45/_static/image44.png "Validating connection")
 

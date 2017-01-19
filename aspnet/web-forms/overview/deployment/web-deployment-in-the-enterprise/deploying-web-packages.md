@@ -66,7 +66,8 @@ You must specify either a **/T** flag or a **/Y** flag, to indicate whether you 
 | **/L** | Indicates that the package should be deployed to the local IIS Express instance. |
 | **/G** | Specifies that the package is deployed using the [tempAgent provider setting](https://technet.microsoft.com/en-us/library/ee517345(WS.10).aspx). If you omit the **/G** flag, the value defaults to **false**. |
 
-> [!NOTE] Every time the build process creates a web package, it also creates a file named *[project name].deploy-readme.txt* that explains these deployment options.
+> [!NOTE]
+> Every time the build process creates a web package, it also creates a file named *[project name].deploy-readme.txt* that explains these deployment options.
 
 
 In addition to these flags, you can specify Web Deploy operation settings as additional *.deploy.cmd* parameters. Any additional settings you specify are simply passed through to the underlying MSDeploy.exe command. For more information on these settings, see [Web Deploy Operation Settings](https://technet.microsoft.com/en-us/library/dd569089(WS.10).aspx).
@@ -152,7 +153,8 @@ In the Contact Manager sample solution, take a look at the **PublishWebPackages*
 [!code-xml[Main](deploying-web-packages/samples/sample8.xml)]
 
 
-> [!NOTE] For a broader overview of the project file model in the sample solution, and an introduction to custom project files in general, see [Understanding the Project File](understanding-the-project-file.md) and [Understanding the Build Process](understanding-the-build-process.md).
+> [!NOTE]
+> For a broader overview of the project file model in the sample solution, and an introduction to custom project files in general, see [Understanding the Project File](understanding-the-project-file.md) and [Understanding the Build Process](understanding-the-build-process.md).
 
 
 ## Endpoint Considerations
@@ -185,7 +187,8 @@ You can target any of these endpoints using either the *.deploy.cmd* file or MSD
 
 This is because the non-administrator user doesn&#x27;t have server-level access to IIS; he or she only has access to a specific IIS website. At the time of writing, due to a bug in the Web Publishing Pipeline (WPP), you can&#x27;t run the *.deploy.cmd* file using an endpoint address that includes a query string. In this scenario, you need to deploy your web package by using MSDeploy.exe directly.
 
-> [!NOTE] For more information on the Web Deploy Remote Agent service and the Web Deploy Handler, see [Choosing the Right Approach to Web Deployment](../configuring-server-environments-for-web-deployment/choosing-the-right-approach-to-web-deployment.md). For guidance on how to configure your environment-specific project files to deploy to these endpoints, see [Configure Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).
+> [!NOTE]
+> For more information on the Web Deploy Remote Agent service and the Web Deploy Handler, see [Choosing the Right Approach to Web Deployment](../configuring-server-environments-for-web-deployment/choosing-the-right-approach-to-web-deployment.md). For guidance on how to configure your environment-specific project files to deploy to these endpoints, see [Configure Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).
 
 
 ## Authentication Considerations

@@ -55,7 +55,8 @@ ASP.NET Web Pages includes several analytics helpers (`Analytics.GetGoogleHtml`,
 
 In this procedure, you'll create a layout page that uses the `GetGoogleHtml` helper. If you already have an account with one of the other analytics providers, you can use that account instead and make slight adjustments as needed.
 
-> [!NOTE] When you create an analytics account, you register the URL of the site that you want to be tracking. If you're testing everything on your local computer, you won't be tracking actual traffic (the only traffic is you), so you won't be able to record and view site statistics. But this procedure shows how you add an analytics helper to a page. When you publish your site, the live site will send information to your analytics provider.
+> [!NOTE]
+> When you create an analytics account, you register the URL of the site that you want to be tracking. If you're testing everything on your local computer, you won't be tracking actual traffic (the only traffic is you), so you won't be able to record and view site statistics. But this procedure shows how you add an analytics helper to a page. When you publish your site, the live site will send information to your analytics provider.
 
 
 1. Add the ASP.NET Web Helpers Library to your website as described in [Installing Helpers in an ASP.NET Web Pages Site](https://go.microsoft.com/fwlink/?LinkId=252372), if you haven't already added it.
@@ -64,7 +65,8 @@ In this procedure, you'll create a layout page that uses the `GetGoogleHtml` hel
 
     [!code-cshtml[Main](14-analyzing-traffic/samples/sample1.cshtml)]
 
-    > [!NOTE] You must place the call to the `Analytics` helper in the body of your web page (before the `</body>` tag). Otherwise, the browser will not run the script.
+    > [!NOTE]
+    > You must place the call to the `Analytics` helper in the body of your web page (before the `</body>` tag). Otherwise, the browser will not run the script.
 
     If you're using a different analytics provider, use one of the following helpers instead:
 

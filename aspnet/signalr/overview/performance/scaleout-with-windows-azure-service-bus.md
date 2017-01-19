@@ -60,7 +60,8 @@ Create a new Service Bus namespace, as described in [How to Use Service Bus Topi
 
 ![](scaleout-with-windows-azure-service-bus/_static/image3.png)
 
-> [!NOTE] Make sure to select the same region for the cloud service and the Service Bus namespace.
+> [!NOTE]
+> Make sure to select the same region for the cloud service and the Service Bus namespace.
 
 
 ## Create the Visual Studio Project

@@ -44,7 +44,8 @@ Also, when adding new pages to the project, be sure to update the site map file,
 
 [!code-xml[Main](master-detail-filtering-across-two-pages-cs/samples/sample1.xml)]
 
-> [!NOTE] You can help automate the process of updating the site map file when adding new ASP.NET pages using [K. Scott Allen](http://odetocode.com/Blogs/scott/)'s free Visual Studio [Site Map Macro](http://odetocode.com/Blogs/scott/archive/2005/11/29/2537.aspx).
+> [!NOTE]
+> You can help automate the process of updating the site map file when adding new ASP.NET pages using [K. Scott Allen](http://odetocode.com/Blogs/scott/)'s free Visual Studio [Site Map Macro](http://odetocode.com/Blogs/scott/archive/2005/11/29/2537.aspx).
 
 
 ## Step 2: Displaying the Supplier List in`SupplierListMaster.aspx`

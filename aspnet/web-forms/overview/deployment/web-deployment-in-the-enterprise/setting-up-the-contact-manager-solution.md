@@ -64,7 +64,8 @@ The remainder of this section provides more guidance on how to complete each of 
 
     ![](setting-up-the-contact-manager-solution/_static/image1.png)
 
-> [!NOTE] For more information on the aspnet\_regsql utility, see [ASP.NET SQL Server Registration Tool (Aspnet\_regsql.exe)](https://msdn.microsoft.com/en-us/library/ms229862(v=vs.100).aspx).
+> [!NOTE]
+> For more information on the aspnet\_regsql utility, see [ASP.NET SQL Server Registration Tool (Aspnet\_regsql.exe)](https://msdn.microsoft.com/en-us/library/ms229862(v=vs.100).aspx).
 
 
 The next step is to make sure that the connection strings in the Contact Manager solution point to your local instance of SQL Server Express.
@@ -74,7 +75,8 @@ The next step is to make sure that the connection strings in the Contact Manager
 1. Open the Contact Manager solution in Visual Studio 2010.
 2. In the **Solution Explorer** window, expand the **ContactManager.Mvc** project, and then double-click the **Web.config** node.
 
-    > [!NOTE] The ContactManager.Mvc project includes two *web.config* files. You need to edit the project-level file.
+    > [!NOTE]
+    > The ContactManager.Mvc project includes two *web.config* files. You need to edit the project-level file.
 
     ![](setting-up-the-contact-manager-solution/_static/image2.png)
 3. In the **connectionStrings** element, verify that the connection string named **ApplicationServices** points to your local ASP.NET application services database.
@@ -90,7 +92,8 @@ The next step is to make sure that the connection strings in the Contact Manager
 
 You should now be ready to run the Contact Manager solution on your local machine.
 
-> [!NOTE] If you follow these steps without first creating an application services database, ASP.NET will create the database the first time you attempt to create a user. However, manually creating the database gives you a lot more control over the application services feature set you want to support.
+> [!NOTE]
+> If you follow these steps without first creating an application services database, ASP.NET will create the database the first time you attempt to create a user. However, manually creating the database gives you a lot more control over the application services feature set you want to support.
 
 
 **To run the Contact Manager solution**

@@ -60,7 +60,8 @@ The following diagram shows how the *\_AppStart.cshtml* page works. When a reque
 
     This code stores a value in the `AppState` dictionary, which is automatically available to all pages in the site. Notice that the *\_AppStart.cshtml* file does not have any markup in it. The page will run the code and then redirect to the page that was originally requested.
 
-    > [!NOTE] Be careful when you put code in the *\_AppStart.cshtml* file. If any errors occur in code in the *\_AppStart.cshtml* file, the website won't start.
+    > [!NOTE]
+    > Be careful when you put code in the *\_AppStart.cshtml* file. If any errors occur in code in the *\_AppStart.cshtml* file, the website won't start.
 3. In the root folder, create a new page named *AppName.cshtml*.
 4. Replace the default markup and code with the following: 
 

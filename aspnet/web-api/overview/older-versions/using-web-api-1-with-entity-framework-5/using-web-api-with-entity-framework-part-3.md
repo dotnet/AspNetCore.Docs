@@ -30,7 +30,8 @@ In the **Add Controller** dialog, name the controller `AdminController`. Under *
 
 ![](using-web-api-with-entity-framework-part-3/_static/image2.png)
 
-> [!NOTE] If the **Model class** drop-down does not show any model classes, make sure you compiled the project. Entity Framework uses reflection, so it needs the compiled assembly.
+> [!NOTE]
+> If the **Model class** drop-down does not show any model classes, make sure you compiled the project. Entity Framework uses reflection, so it needs the compiled assembly.
 
 
 Selecting "&lt;New Data Context&gt;" will open the **New Data Context** dialog. Name the data context `ProductStore.Models.OrdersContext`.

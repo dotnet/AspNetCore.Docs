@@ -94,7 +94,8 @@ In this case, you don&#x27;t want the build definition to actually build anythin
 
     ![](deploying-a-specific-build/_static/image6.png)
 
-    > [!NOTE] You&#x27;ll need to override the **OutputRoot** value every time you queue a build. This is covered in the next procedure.
+    > [!NOTE]
+    > You&#x27;ll need to override the **OutputRoot** value every time you queue a build. This is covered in the next procedure.
 13. Click **Save**.
 
 When you trigger a build, you need to update the **OutputRoot** property to point to the build you want to deploy.
@@ -111,7 +112,8 @@ When you trigger a build, you need to update the **OutputRoot** property to poin
 
     ![](deploying-a-specific-build/_static/image8.png)
 
-    > [!NOTE] Be sure to include a trailing slash at the end of the path to your build folder.
+    > [!NOTE]
+    > Be sure to include a trailing slash at the end of the path to your build folder.
 4. Click **Queue**.
 
 When you queue the build, the project file will deploy the database scripts and web packages from the build drop folder you specified in the **OutputRoot** property.

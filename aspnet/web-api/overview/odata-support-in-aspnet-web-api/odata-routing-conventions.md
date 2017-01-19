@@ -47,7 +47,8 @@ For routing, the important part is the resource path. The resource path is divid
 
 So this path picks out the supplier of product 1.
 
-> [!NOTE] OData path segments do not always correspond to URI segments. For example, "1" is considered a path segment.
+> [!NOTE]
+> OData path segments do not always correspond to URI segments. For example, "1" is considered a path segment.
 
 
 **Controller Names.** The controller name is always derived from the entity set at the root of the resource path. For example, if the resource path is `/Products(1)/Supplier`, Web API looks for a controller named `ProductsController`.

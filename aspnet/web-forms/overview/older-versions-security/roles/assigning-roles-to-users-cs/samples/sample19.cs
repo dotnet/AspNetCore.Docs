@@ -10,7 +10,6 @@ protected void AddUserToRoleButton_Click(object sender, EventArgs e)
 { 
      ... Code removed for brevity ... 
 
-
      // Refresh the "by user" interface 
      CheckRolesForSelectedUser(); 
 }

@@ -58,7 +58,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 2. Right-click **Setup.cmd** and select **Run as administrator** to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 3. If the User Account Control dialog box is shown, confirm the action to proceed.
 
-> [!NOTE] Make sure you have checked all the dependencies for this lab before running the setup.
+> [!NOTE]
+> Make sure you have checked all the dependencies for this lab before running the setup.
 
 
 <a id="CodeSnippets"></a>
@@ -66,7 +67,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 
 Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio 2013 to avoid having to add it manually.
 
-> [!NOTE] Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
+> [!NOTE]
+> Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
 
 * * *
@@ -79,7 +81,8 @@ This hands-on lab includes the following exercises:
 1. [Working with Browser Link and Web Essentials](#Exercise1)
 2. [Taking Advantage of Code Snippets and IntelliSense](#Exercise2)
 
-> [!NOTE] When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
+> [!NOTE]
+> When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 
 <a id="Exercise1"></a>
@@ -114,7 +117,8 @@ In this task, you will configure your web application to run in multiple browser
 
     *Google Chrome and Internet Explorer as default browsers*
 
-    > [!NOTE] After configuring the default browsers, the **Multiple Browsers** option is selected in the browser menu.
+    > [!NOTE]
+    > After configuring the default browsers, the **Multiple Browsers** option is selected in the browser menu.
     > 
     > ![Multiple browsers](visual-studio-2013-web-tools/_static/image4.png "Multiple browsers")
 6. Press **CTRL** + **F5** to run the application without debugging.
@@ -143,7 +147,8 @@ In this exercise, you will use the Zen Coding feature provided by Web Essentials
 
     *Expanded HTML*
 
-    > [!NOTE] To learn more about Zen Coding syntax, see the following [article](http://www.johnpapa.net/zen-coding-in-visual-studio-2012/).
+    > [!NOTE]
+    > To learn more about Zen Coding syntax, see the following [article](http://www.johnpapa.net/zen-coding-in-visual-studio-2012/).
 5. Click the **Refresh linked browsers** button to update both browsers.
 
     ![Refresh linked browsers](visual-studio-2013-web-tools/_static/image7.png "Refresh linked browsers")
@@ -168,7 +173,8 @@ In this exercise, you will use the Zen Coding feature provided by Web Essentials
 
     *Lorem Ipsum autogenerated*
 
-    > [!NOTE] As part of Zen Coding, you can now generate Lorem Ipsum code directly in the HTML editor. Simply type **lorem** and hit **TAB** and a 30 word Lorem Ipsum text will be inserted. E.g. *lorem10* inserts 10 Lorem Ipsum words.
+    > [!NOTE]
+    > As part of Zen Coding, you can now generate Lorem Ipsum code directly in the HTML editor. Simply type **lorem** and hit **TAB** and a 30 word Lorem Ipsum text will be inserted. E.g. *lorem10* inserts 10 Lorem Ipsum words.
 10. You will add a logo at the top of the question by using another new feature in Web Essentials called **Lorem Pixel generator**. Add the following code as the first child element of the **div** element with **container** as **class** value, and press **TAB**.
 
     [!code-unknown[Main](visual-studio-2013-web-tools/samples/sample-58742-3.unknown)]
@@ -178,7 +184,8 @@ In this exercise, you will use the Zen Coding feature provided by Web Essentials
 
     *Lorem Pixel autogenerated*
 
-    > [!NOTE] As part of Zen Coding, you can also generate Lorem Pixel code directly in the HTML editor. Simply type **pix-200x200-animals** and hit **TAB** and an **img** tag with a 200x200 image of an animal will be inserted. For more information, refer to [Lorem Pixel](http://www.lorempixel.com).
+    > [!NOTE]
+    > As part of Zen Coding, you can also generate Lorem Pixel code directly in the HTML editor. Simply type **pix-200x200-animals** and hit **TAB** and an **img** tag with a 200x200 image of an animal will be inserted. For more information, refer to [Lorem Pixel](http://www.lorempixel.com).
 12. Click the **Refresh linked browsers** button to update both browsers.
 
     ![Internet Explorer - Autogenerated image and text](visual-studio-2013-web-tools/_static/image12.png "Internet Explorer - Autogenerated image and text")
@@ -189,7 +196,8 @@ In this exercise, you will use the Zen Coding feature provided by Web Essentials
 
     *Google Chrome - Autogenerated image and text*
 
-    > [!NOTE] Because the image is selected randomly when adding the code snippet, the image shown in the browsers may differ.
+    > [!NOTE]
+    > Because the image is selected randomly when adding the code snippet, the image shown in the browsers may differ.
 13. Do not close the browsers. You will use them in the next task.
 
 <a id="Ex1Task3"></a>
@@ -369,12 +377,14 @@ HTML5 introduced more than 25 new semantic tags. Visual Studio already had Intel
 
     [!code-html[Main](visual-studio-2013-web-tools/samples/sample6.html)]
 
-    > [!NOTE] By pressing the **TAB** key twice, the code snippet is inserted. The audio snippet shows the standard usage of the *audio* tag, with two source files for improved support.
+    > [!NOTE]
+    > By pressing the **TAB** key twice, the code snippet is inserted. The audio snippet shows the standard usage of the *audio* tag, with two source files for improved support.
 3. Delete the second line and update the source of the first line with the following link to the WebCampsTV Katana show: [http://media.ch9.ms/ch9/11d8/604b8163-fad3-4f12-9607-b404201211d8/KatanaProject.mp3](http://media.ch9.ms/ch9/11d8/604b8163-fad3-4f12-9607-b404201211d8/KatanaProject.mp3). The resulting code is shown below.
 
     [!code-html[Main](visual-studio-2013-web-tools/samples/sample7.html)]
 
-    > [!NOTE] The source file *KatanaProject.mp3* is used as an example. You can use another source if you prefer.
+    > [!NOTE]
+    > The source file *KatanaProject.mp3* is used as an example. You can use another source if you prefer.
 4. Press **CTRL** + **S** to save the file.
 5. Press **CTRL** + **F5** to start the application.
 6. Notice that an audio player was added to the application.
@@ -413,7 +423,8 @@ With Web Essentials 2013, style sheets and HTML pages produce a list of IDs and 
 
     *Save As window*
 
-    > [!NOTE] The **init.js** file is created and the content of the script is moved to the file.
+    > [!NOTE]
+    > The **init.js** file is created and the content of the script is moved to the file.
     > 
     > ![Init.js file created with the content included](visual-studio-2013-web-tools/_static/image41.png "Init.js file created with the content included")
     > 
@@ -438,7 +449,8 @@ With Web Essentials 2013, style sheets and HTML pages produce a list of IDs and 
 
     *Showing IntelliSense for the getElementsByClassName function*
 
-    > [!NOTE] Notice that IntelliSense shows the classes defined in the project style sheets.
+    > [!NOTE]
+    > Notice that IntelliSense shows the classes defined in the project style sheets.
 11. Replace the line that you have created with the following code.
 
     [!code-javascript[Main](visual-studio-2013-web-tools/samples/sample11.js)]
@@ -463,7 +475,8 @@ With Web Essentials 2013, style sheets and HTML pages produce a list of IDs and 
 
     *Enabling automatic minification warning*
 
-    > [!NOTE] The **init.min.js** is created and is added as a dependency of the **init.js** file.
+    > [!NOTE]
+    > The **init.min.js** is created and is added as a dependency of the **init.js** file.
     > 
     > ![Init.min.js file created](visual-studio-2013-web-tools/_static/image49.png "Init.min.js file created")
     > 

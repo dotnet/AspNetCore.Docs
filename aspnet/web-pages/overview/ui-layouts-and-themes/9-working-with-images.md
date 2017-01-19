@@ -109,7 +109,8 @@ The previous example showed you how to display an image dynamically, but it work
 
     You then create a new unique file name by adding a GUID to the original name. (For more about GUIDs, see [About GUIDs](#SB_AboutGUIDs) later in this article.) Then you construct a complete path that you can use to save the image. The save path is made up of the new file name, the folder (images), and the current website location.
 
-    > [!NOTE] In order for your code to save files in the *images* folder, the application needs read-write permissions for that folder. On your development computer this is not typically an issue. However, when you publish your site to a hosting provider's web server, you might need to explicitly set those permissions. If you run this code on a hosting provider's server and get errors, check with the hosting provider to find out how to set those permissions.
+    > [!NOTE]
+    > In order for your code to save files in the *images* folder, the application needs read-write permissions for that folder. On your development computer this is not typically an issue. However, when you publish your site to a hosting provider's web server, you might need to explicitly set those permissions. If you run this code on a hosting provider's server and get errors, check with the hosting provider to find out how to set those permissions.
 
     Finally, you pass the save path to the `Save` method of the `WebImage` helper. This stores the uploaded image under its new name. The save method looks like this: `photo.Save(@"~\" + imagePath)`. The complete path is appended to `@"~\"`, which is the current website location. (For information about the `~` operator, see [Introduction to ASP.NET Web Programming Using the Razor Syntax](https://go.microsoft.com/fwlink/?LinkId=202890#ID_WorkingWithFileAndFolderPaths).)
 

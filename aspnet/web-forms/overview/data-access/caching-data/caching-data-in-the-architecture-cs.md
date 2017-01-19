@@ -80,7 +80,8 @@ Be sure to use the above pattern when accessing data from the cache. The followi
 
 The difference in this second, incorrect code snippet is that rather than storing a reference to the cached item in a local variable, the data cache is accessed directly in the conditional statement *and* in the `return`. Imagine that when this code is reached, `Cache["key"]` is non-`null`, but before the `return` statement is reached, the system evicts *key* from the cache. In this rare case, the code will return a `null` value rather than an object of the expected type.
 
-> [!NOTE] The data cache is thread-safe, so you don t need to synchronize thread access for simple reads or writes. However, if you need to perform multiple operations on data in the cache that need to be atomic, you are responsible for implementing a lock or some other mechanism to ensure thread safety. See [Synchronizing Access to the ASP.NET Cache](http://www.ddj.com/184406369) for more information.
+> [!NOTE]
+> The data cache is thread-safe, so you don t need to synchronize thread access for simple reads or writes. However, if you need to perform multiple operations on data in the cache that need to be atomic, you are responsible for implementing a lock or some other mechanism to ensure thread safety. See [Synchronizing Access to the ASP.NET Cache](http://www.ddj.com/184406369) for more information.
 
 
 An item can be programmatically evicted from the data cache using the [`Remove` method](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.remove.aspx) like so:
@@ -110,7 +111,8 @@ The `GetCacheItem(key)` and `AddCacheItem(key, value)` methods interface with th
 
 From an ASP.NET page s code-behind class, the data cache can be accessed using the `Page` class s [`Cache` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.cache.aspx), and allows for syntax like `Cache["key"] = value`, as discussed in Step 2. From a class within the architecture, the data cache can be accessed using either `HttpRuntime.Cache` or `HttpContext.Current.Cache`. [Peter Johnson](https://weblogs.asp.net/pjohnson/default.aspx)'s blog entry [HttpRuntime.Cache vs. HttpContext.Current.Cache](https://weblogs.asp.net/pjohnson/httpruntime-cache-vs-httpcontext-current-cache) notes the slight performance advantage in using `HttpRuntime` instead of `HttpContext.Current`; consequently, `ProductsCL` uses `HttpRuntime`.
 
-> [!NOTE] If your architecture is implemented using Class Library projects then you will need to add a reference to the `System.Web` assembly in order to use the [HttpRuntime](https://msdn.microsoft.com/en-us/library/system.web.httpruntime.aspx) and [HttpContext](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.aspx) classes.
+> [!NOTE]
+> If your architecture is implemented using Class Library projects then you will need to add a reference to the `System.Web` assembly in order to use the [HttpRuntime](https://msdn.microsoft.com/en-us/library/system.web.httpruntime.aspx) and [HttpContext](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.aspx) classes.
 
 
 If the item is not found in the cache, the `ProductsCL` class s methods get the data from the BLL and add it to the cache using the `AddCacheItem(key, value)` method. To add *value* to the cache we could use the following code, which uses a 60 second time expiry:
@@ -120,7 +122,8 @@ If the item is not found in the cache, the `ProductsCL` class s methods get the 
 
 `DateTime.Now.AddSeconds(CacheDuration)` specifies the time-based expiry 60 seconds in the future while [`System.Web.Caching.Cache.NoSlidingExpiration`](https://msdn.microsoft.com/en-us/library/system.web.caching.cache.noslidingexpiration(vs.80).aspx) indicates that there s no sliding expiration. While this `Insert` method overload has input parameters for both an absolute and sliding expiry, you can only provide one of the two. If you attempt to specify both an absolute time and a time span, the `Insert` method will throw an `ArgumentException` exception.
 
-> [!NOTE] This implementation of the `AddCacheItem(key, value)` method currently has some shortcomings. We'll address and overcome these issues in Step 4.
+> [!NOTE]
+> This implementation of the `AddCacheItem(key, value)` method currently has some shortcomings. We'll address and overcome these issues in Step 4.
 
 
 ## Step 4: Invalidating the Cache When the Data is Modified Through the Architecture
@@ -175,7 +178,8 @@ In the preceding tutorial we defined a GridView to include fields for the `Produ
 
 At this point we have a page that uses the Caching Layer. To see the cache in action, set breakpoints in the `ProductsCL` class s `GetProducts()` and `UpdateProduct` methods. Visit the page in a browser and step through the code when sorting and paging in order to see the data pulled from the cache. Then update a record and note that the cache is invalidated and, consequently, it is retrieved from the BLL when the data is rebound to the GridView.
 
-> [!NOTE] The Caching Layer provided in the download accompanying this article is not complete. It contains only one class, `ProductsCL`, which only sports a handful of methods. Moreover, only a single ASP.NET page uses the CL (`~/Caching/FromTheArchitecture.aspx`) all others still reference the BLL directly. If you plan on using a CL in your application, all calls from the Presentation Layer should go to the CL, which would require that the CL s classes and methods covered those classes and methods in the BLL currently used by the Presentation Layer.
+> [!NOTE]
+> The Caching Layer provided in the download accompanying this article is not complete. It contains only one class, `ProductsCL`, which only sports a handful of methods. Moreover, only a single ASP.NET page uses the CL (`~/Caching/FromTheArchitecture.aspx`) all others still reference the BLL directly. If you plan on using a CL in your application, all calls from the Presentation Layer should go to the CL, which would require that the CL s classes and methods covered those classes and methods in the BLL currently used by the Presentation Layer.
 
 
 ## Summary

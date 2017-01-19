@@ -127,7 +127,8 @@ This will bring up the DataBindings dialog box. From here you can select the pro
 **Figure 8**: Bind the `Text` Property to the `LastName` Data Field ([Click to view full-size image](using-templatefields-in-the-gridview-control-cs/_static/image24.png))
 
 
-> [!NOTE] The DataBindings dialog box allows you to indicate whether to perform two-way databinding. If you leave this unchecked, the databinding syntax `<%# Eval("LastName")%>` will be used instead of `<%# Bind("LastName")%>`. Either approach is fine for this tutorial. Two-way databinding becomes important when inserting and editing data. For simply displaying data, however, either approach will work equally well. We'll discuss two-way databinding in detail in future tutorials.
+> [!NOTE]
+> The DataBindings dialog box allows you to indicate whether to perform two-way databinding. If you leave this unchecked, the databinding syntax `<%# Eval("LastName")%>` will be used instead of `<%# Bind("LastName")%>`. Either approach is fine for this tutorial. Two-way databinding becomes important when inserting and editing data. For simply displaying data, however, either approach will work equally well. We'll discuss two-way databinding in detail in future tutorials.
 
 
 Take a moment to view this page through a browser. As you can see, the GridView still includes four columns; however, the `FirstName` column now lists *both* the `FirstName` and `LastName` data field values.
@@ -181,7 +182,8 @@ From the Calendar control's smart tag, choose Edit DataBindings. Next, bind both
 **Figure 13**: Bind the `SelectedDate` and `VisibleDate` Properties to the `HiredDate` Data Field ([Click to view full-size image](using-templatefields-in-the-gridview-control-cs/_static/image39.png))
 
 
-> [!NOTE] The Calendar control's selected date need not necessarily be visible. For example, a Calendar may have August 1<sup>st</sup>, 1999 as the selected date, but be showing the current month and year. The selected date and visible date are specified by the Calendar control's `SelectedDate` and `VisibleDate` properties. Since we want to both select the employee's `HiredDate` and make sure that it's shown we need to bind both of these properties to the `HireDate` data field.
+> [!NOTE]
+> The Calendar control's selected date need not necessarily be visible. For example, a Calendar may have August 1<sup>st</sup>, 1999 as the selected date, but be showing the current month and year. The selected date and visible date are specified by the Calendar control's `SelectedDate` and `VisibleDate` properties. Since we want to both select the employee's `HiredDate` and make sure that it's shown we need to bind both of these properties to the `HireDate` data field.
 
 
 When viewing the page in a browser, the calendar now shows the month of the employee's hired date and selects that particular date.
@@ -192,7 +194,8 @@ When viewing the page in a browser, the calendar now shows the month of the empl
 **Figure 14**: The Employee's `HiredDate` is Shown in the Calendar Control ([Click to view full-size image](using-templatefields-in-the-gridview-control-cs/_static/image42.png))
 
 
-> [!NOTE] Contrary to all the examples we've seen thus far, for this tutorial we did *not* set `EnableViewState` property to `false` for this GridView. The reason for this decision is because clicking the dates of the Calendar control causes a postback, setting the Calendar's selected date to the date just clicked. If the GridView's view state is disabled, however, on each postback the GridView's data is rebound to its underlying data source, which causes the Calendar's selected date to be set *back* to the employee's `HireDate`, overwriting the date chosen by the user.
+> [!NOTE]
+> Contrary to all the examples we've seen thus far, for this tutorial we did *not* set `EnableViewState` property to `false` for this GridView. The reason for this decision is because clicking the dates of the Calendar control causes a postback, setting the Calendar's selected date to the date just clicked. If the GridView's view state is disabled, however, on each postback the GridView's data is rebound to its underlying data source, which causes the Calendar's selected date to be set *back* to the employee's `HireDate`, overwriting the date chosen by the user.
 
 
 For this tutorial this is a moot discussion since the user is not able to update the employee's `HireDate`. It would probably be best to configure the Calendar control so that its dates are not selectable. Regardless, this tutorial shows that in some circumstances view state must be enabled in order to provide certain functionality.
@@ -232,7 +235,8 @@ Set this new TemplateField's `HeaderText` property to "Days on the Job" and its 
 
 `Container.DataItem` returns a `DataRowView` object corresponding to the `DataSource` record bound to the `GridViewRow`. Its `Row` property returns the strongly-typed `Northwind.EmployeesRow`, which is passed to the `DisplayDaysOnJob` method. This databinding syntax can appear directly in the `ItemTemplate` (as shown in the declarative syntax below) or can be assigned to the `Text` property of a Label Web control.
 
-> [!NOTE] Alternatively, instead of passing in an `EmployeesRow` instance, we could just pass in the `HireDate` value using `<%# DisplayDaysOnJob(Eval("HireDate")) %>`. However, the `Eval` method returns an `object`, so we'd have to change our `DisplayDaysOnJob` method signature to accept an input parameter of type `object`, instead. We can't blindly cast the `Eval("HireDate")` call to a `DateTime` because the `HireDate` column in the `Employees` table can contain `NULL` values. Therefore, we'd need to accept an `object` as the input parameter for the `DisplayDaysOnJob` method, check to see if it had a database `NULL` value (which can be accomplished using `Convert.IsDBNull(objectToCheck)`), and then proceed accordingly.
+> [!NOTE]
+> Alternatively, instead of passing in an `EmployeesRow` instance, we could just pass in the `HireDate` value using `<%# DisplayDaysOnJob(Eval("HireDate")) %>`. However, the `Eval` method returns an `object`, so we'd have to change our `DisplayDaysOnJob` method signature to accept an input parameter of type `object`, instead. We can't blindly cast the `Eval("HireDate")` call to a `DateTime` because the `HireDate` column in the `Employees` table can contain `NULL` values. Therefore, we'd need to accept an `object` as the input parameter for the `DisplayDaysOnJob` method, check to see if it had a database `NULL` value (which can be accomplished using `Convert.IsDBNull(objectToCheck)`), and then proceed accordingly.
 
 
 Due to these subtleties, I've opted to pass in the entire `EmployeesRow` instance. In the next tutorial we'll see a more fitting example for using the `Eval("columnName")` syntax for passing an input parameter into a formatting method.

@@ -97,7 +97,8 @@ Figure 1 shows a screen shot of the Book Reviews website when viewed through a b
 
 This application does not use a database; each review is implemented as a separate web page in the application. This tutorial (and the next several tutorials) walk through deploying a web application that does not have a database. However, in a future tutorial we will enhance this application to store reviews, reader comments, and other information within a database, and will explore what steps need to be performed to correctly deploy a data-driven web application.
 
-> [!NOTE] These tutorials focus on hosting ASP.NET applications with a web host provider and do not explore ancillary topics like ASP.NET's site map system or using a base Page class. For more information on these technologies, and for more background on other topics covered throughout the tutorial, refer to the Further Reading section at the end of each tutorial.
+> [!NOTE]
+> These tutorials focus on hosting ASP.NET applications with a web host provider and do not explore ancillary topics like ASP.NET's site map system or using a base Page class. For more information on these technologies, and for more background on other topics covered throughout the tutorial, refer to the Further Reading section at the end of each tutorial.
 
 
 This tutorial's download has two copies of the web application, each implemented as a different Visual Studio project type: BookReviewsWAP, a Web Application Project, and BookReviewsWSP, a Web Site Project. Both projects were created with Visual Web Developer 2008 SP1 and use ASP.NET 3.5 SP1. To work with these projects start by unzipping the contents to your Desktop. To open the Web Application Project (BookReviewsWAP), navigate to the `BookReviewsWAP` folder and double-click the Solution file, `BookReviewsWAP.sln`. To open the Web Site Project (BookReviewsWSP), launch Visual Studio and then, from the File menu, choose the Open Web Site option, browse to the `BookReviewsWSP` folder on your Desktop, and click OK.
@@ -117,7 +118,8 @@ Figure 2 shows the files that make up the Book Reviews Web Application Project.
 **Figure 2**: The Solution Explorer lists the files that comprise the Web Application Project
 
 
-> [!NOTE] As Figure 2 shows, the ASP.NET pages' code-behind files are not displayed in the Solution Explorer for a Visual Basic Web Application Project. To view the code-behind class for a page, right-click on the page in Solution Explorer and choose View Code.
+> [!NOTE]
+> As Figure 2 shows, the ASP.NET pages' code-behind files are not displayed in the Solution Explorer for a Visual Basic Web Application Project. To view the code-behind class for a page, right-click on the page in Solution Explorer and choose View Code.
 
 
 To deploy an ASP.NET application developed using the Web Application Project model start by building the application so as to explicitly compile the most recent source code into an assembly. Next, copy the following files to the production environment:
@@ -127,7 +129,8 @@ To deploy an ASP.NET application developed using the Web Application Project mod
 
 You do not need to copy the ASP.NET pages' source code files to the production environment, nor do you need to copy the `BasePage.vb` class file.
 
-> [!NOTE] As Figure 2 shows, the `BasePage` class is implemented as a class file in the project, placed in folder named `HelperClasses`. When the project is compiled the code in the `BasePage.vb` file is compiled along with the ASP.NET pages' code-behind classes into the single assembly, `BookReviewsWAP.dll`. ASP.NET has a special folder named `App_Code` that is designed to hold class files for Web Site Projects. The code in the `App_Code` folder is automatically compiled and therefore should not be used with Web Application Projects. Instead, you should place your application's class files in a normal folder named `HelperClasses`, or `Classes`, or something similar. Alternatively, you can place class files in a separate Class Library project.
+> [!NOTE]
+> As Figure 2 shows, the `BasePage` class is implemented as a class file in the project, placed in folder named `HelperClasses`. When the project is compiled the code in the `BasePage.vb` file is compiled along with the ASP.NET pages' code-behind classes into the single assembly, `BookReviewsWAP.dll`. ASP.NET has a special folder named `App_Code` that is designed to hold class files for Web Site Projects. The code in the `App_Code` folder is automatically compiled and therefore should not be used with Web Application Projects. Instead, you should place your application's class files in a normal folder named `HelperClasses`, or `Classes`, or something similar. Alternatively, you can place class files in a separate Class Library project.
 
 
 In addition to copying the ASP.NET-related markup files and the assembly in the `Bin` folder, you also need to copy the client-side support files - the images and CSS files - as well as the other server-side support files, `Web.config` and `Web.sitemap`. These client- and server-side support files need to be copied to the production environment regardless of whether you use explicit or automatic compilation.
@@ -150,7 +153,8 @@ Deploying a Web Site Project involves copying all of the ASP.NET-related files t
 
 In addition to copying the ASP.NET markup and source code files, you also need to copy the client-side support files - the images and CSS files - as well as the other server-side support files, `Web.config` and `Web.sitemap`.
 
-> [!NOTE] Web Site Projects can also use explicit compilation. A future tutorial will examine how to explicitly compile a Web Site Project.
+> [!NOTE]
+> Web Site Projects can also use explicit compilation. A future tutorial will examine how to explicitly compile a Web Site Project.
 
 
 ## Summary

@@ -556,7 +556,8 @@ The following authentication components are available.
 
 This release also includes the `Microsoft.Owin.Cors` package, which contains middleware for processing cross-origin HTTP requests.
 
-> [!NOTE] Support for JWT signing has been removed in the final version of Visual Studio 2013.
+> [!NOTE]
+> Support for JWT signing has been removed in the final version of Visual Studio 2013.
 
 <a id="ef6"></a>
 ## Entity Framework 6
@@ -570,7 +571,8 @@ ASP.NET Razor 3 includes the following new features:
 
 - Support for Tab editing. Preivously, the **Format Document** command, auto indenting, and auto formatting in Visual Studio did not work correctly when using the **Keep Tabs** option. This change corrects Visual Studio formatting for Razor code for tab formatting.
 - Support for URL Rewrite rules when generating links.
-- Removal of security transparent attribute. > [!NOTE] This is a breaking change, and makes Razor 3 incompatible with MVC4 and earlier, while Razor 2 is incompatible with MVC5 or assemblies compiled against MVC5.
+- Removal of security transparent attribute. > [!NOTE]
+ > This is a breaking change, and makes Razor 3 incompatible with MVC4 and earlier, while Razor 2 is incompatible with MVC5 or assemblies compiled against MVC5.
 
 Razor 3 issues fixed in Visual Studio 2013 from pre-release versions can be found [here](https://aspnetwebstack.codeplex.com/workitem/list/advanced?keyword=&status=Resolved%7cClosed&type=All&priority=All&release=All%7cv5.0%2bPreview%7cv5.0%2bRC%7cv5.0%2bRTM&assignedTo=All&component=Web%2bPages%252fRazor&reasonClosed=Fixed&sortField=LastUpdatedDate&sortDirection=Descending&page=0).
 

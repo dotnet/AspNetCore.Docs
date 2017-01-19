@@ -125,7 +125,8 @@ There's a one-to-many relationship between `Student` and `Enrollment` entities, 
 
 In the following sections you'll create a class for each one of these entities.
 
-> [!NOTE] If you try to compile the project before you finish creating all of these entity classes, you'll get compiler errors.
+> [!NOTE]
+> If you try to compile the project before you finish creating all of these entity classes, you'll get compiler errors.
 
 
 ### The Student Entity

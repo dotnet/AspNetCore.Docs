@@ -18,7 +18,8 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 This article describes how ASP.NET Web API routes HTTP requests to controllers.
 
-> [!NOTE] If you are familiar with ASP.NET MVC, Web API routing is very similar to MVC routing. The main difference is that Web API uses the HTTP method, not the URI path, to select the action. You can also use MVC-style routing in Web API. This article does not assume any knowledge of ASP.NET MVC.
+> [!NOTE]
+> If you are familiar with ASP.NET MVC, Web API routing is very similar to MVC routing. The main difference is that Web API uses the HTTP method, not the URI path, to select the action. You can also use MVC-style routing in Web API. This article does not assume any knowledge of ASP.NET MVC.
 
 
 ## Routing Tables
@@ -49,7 +50,8 @@ However, the following URI does not match, because it lacks the &quot;api&quot; 
 
 - /contacts/1
 
-> [!NOTE] The reason for using "api" in the route is to avoid collisions with ASP.NET MVC routing. That way, you can have &quot;/contacts&quot; go to an MVC controller, and &quot;/api/contacts&quot; go to a Web API controller. Of course, if you don't like this convention, you can change the default route table.
+> [!NOTE]
+> The reason for using "api" in the route is to avoid collisions with ASP.NET MVC routing. That way, you can have &quot;/contacts&quot; go to an MVC controller, and &quot;/api/contacts&quot; go to a Web API controller. Of course, if you don't like this convention, you can change the default route table.
 
 Once a matching route is found, Web API selects the controller and the action:
 

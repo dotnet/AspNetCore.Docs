@@ -56,7 +56,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 2. Right-click on **Setup.cmd** and select **Run as administrator** to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 3. If the User Account Control dialog box is shown, confirm the action to proceed.
 
-> [!NOTE] Make sure you have checked all the dependencies for this lab before running the setup.
+> [!NOTE]
+> Make sure you have checked all the dependencies for this lab before running the setup.
 
 
 <a id="CodeSnippets"></a>
@@ -64,7 +65,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 
 Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio 2013 to avoid having to add it manually.
 
-> [!NOTE] Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
+> [!NOTE]
+> Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
 
 * * *
@@ -80,7 +82,8 @@ This hands-on lab includes the following exercises:
 
 Estimated time to complete this lab: **60 minutes**
 
-> [!NOTE] When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
+> [!NOTE]
+> When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 
 <a id="Exercise1"></a>
@@ -125,7 +128,8 @@ In this task you will start creating a new Web site in Visual Studio based on th
 
     *Exploring the Default.aspx page*
 
-    > [!NOTE] The **Page** directive at the top of the file defines the attributes of the Web Forms page. For example, the **MasterPageFile** attribute specifies the path to the master page -in this case, the *Site.Master* page- and the **Inherits** attribute defines the code-behind class for the page to inherit. This class is located in the file determined by the **CodeBehind** attribute.
+    > [!NOTE]
+    > The **Page** directive at the top of the file defines the attributes of the Web Forms page. For example, the **MasterPageFile** attribute specifies the path to the master page -in this case, the *Site.Master* page- and the **Inherits** attribute defines the code-behind class for the page to inherit. This class is located in the file determined by the **CodeBehind** attribute.
     > 
     > The **asp:Content** control holds the actual content of the page (text, markup and controls) and is mapped to a **asp:ContentPlaceHolder** control on the master page. In this case, the page content will be rendered inside the *MainContent* control defined in the *Site.Master* page.
 6. Expand the **App\_Start** folder and notice the **WebApiConfig.cs** file. Visual Studio included that file in the generated solution because you included Web API when configuring your project with the One ASP.NET template.
@@ -150,7 +154,8 @@ In this task you will run the generated solution, explore the app and some of it
 
     *Friendly URLs*
 
-    > [!NOTE] As you can see, the URL changes to **/contact**. Starting from **ASP.NET 4**, URL routing capabilities were added to Web Forms, so you can write URLs like *[http://www.mysite.com/products/software](http://www.mysite.com/products/software)* instead of *[http://www.mysite.com/products.aspx?category=software](http://www.mysite.com/products.aspx?category=software)*. For more information refer to [URL Routing](../../../web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/url-routing.md).
+    > [!NOTE]
+    > As you can see, the URL changes to **/contact**. Starting from **ASP.NET 4**, URL routing capabilities were added to Web Forms, so you can write URLs like *[http://www.mysite.com/products/software](http://www.mysite.com/products/software)* instead of *[http://www.mysite.com/products.aspx?category=software](http://www.mysite.com/products.aspx?category=software)*. For more information refer to [URL Routing](../../../web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/url-routing.md).
 3. You will now explore the authentication flow integrated into the application. To do this, click **Register** in the upper-right corner of the page.
 
     ![Registering a new user](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/_static/image8.png)
@@ -179,7 +184,8 @@ Entity Framework (EF) is an object-relational mapper (ORM) that enables you to c
 
 The Entity Framework Code First modeling workflow allows you to use your own domain classes to represent the model that EF relies on when performing querying, change-tracking and updating functions. Using the Code First development workflow, you do not need to begin your application by creating a database or specifying a schema. Instead, you can write standard .NET classes that define the most appropriate domain model objects for your application, and Entity Framework will create the database for you.
 
-> [!NOTE] You can learn more about Entity Framework [here](../../../entity-framework.md).
+> [!NOTE]
+> You can learn more about Entity Framework [here](../../../entity-framework.md).
 
 
 <a id="Ex2Task1"></a>
@@ -244,7 +250,8 @@ Now that the **Person** model is created, you will use ASP.NET MVC scaffolding w
 
     [!code-csharp[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample4.cs)]
 
-    > [!NOTE] By selecting the **Use async controller actions** check box from the scaffolding options in the previous steps, Visual Studio generates asynchronous action methods for all actions that involve access to the Person data context. It is recommended that you use asynchronous action methods for long-running, non-CPU bound requests to avoid blocking the Web server from performing work while the request is being processed.
+    > [!NOTE]
+    > By selecting the **Use async controller actions** check box from the scaffolding options in the previous steps, Visual Studio generates asynchronous action methods for all actions that involve access to the Person data context. It is recommended that you use asynchronous action methods for long-running, non-CPU bound requests to avoid blocking the Web server from performing work while the request is being processed.
 
 <a id="Ex2Task3"></a>
 #### Task 3 – Running the Solution
@@ -289,7 +296,8 @@ In this task you will create a new **Web API Controller** that will expose the p
 
 1. If not already opened, open **Visual Studio Express 2013 for Web** and open the **MyHybridSite.sln** solution located in the **Source/Ex3-WebAPI/Begin** folder. Alternatively, you can continue with the solution that you obtained in the previous exercise.
 
-    > [!NOTE] If you start with the Begin solution from Exercise 3, press **CTRL + SHIFT + B** to build the solution.
+    > [!NOTE]
+    > If you start with the Begin solution from Exercise 3, press **CTRL + SHIFT + B** to build the solution.
 2. In **Solution Explorer**, right-click the **Controllers** folder of the **MyHybridSite** project and select **Add | New Scaffolded Item...**.
 
     ![Creating a new scaffolded Controller](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/_static/image23.png)
@@ -317,14 +325,16 @@ In this task you will create a new **Web API Controller** that will expose the p
 
     [!code-csharp[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample6.cs)]
 
-    > [!NOTE] By default, Web API is configured to catch the queries to the */api* path to avoid collisions with MVC controllers. If you need to change this setting, refer to [Routing in ASP.NET Web API](../../../web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api.md).
+    > [!NOTE]
+    > By default, Web API is configured to catch the queries to the */api* path to avoid collisions with MVC controllers. If you need to change this setting, refer to [Routing in ASP.NET Web API](../../../web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api.md).
 
 <a id="Ex3Task2"></a>
 #### Task 2 – Running the Solution
 
 In this task you will use the Internet Explorer **F12 developer tools** to inspect the full response from the Web API controller. You will see how you can capture network traffic to get more insight into your application data.
 
-> [!NOTE] Make sure that **Internet Explorer** is selected in the **Start** button located on the Visual Studio toolbar.
+> [!NOTE]
+> Make sure that **Internet Explorer** is selected in the **Start** button located on the Visual Studio toolbar.
 > 
 > ![Internet Explorer option](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/_static/image27.png)
 > 
@@ -333,7 +343,8 @@ In this task you will use the Internet Explorer **F12 developer tools** to inspe
 
 1. Press **F5** to run the solution.
 
-    > [!NOTE] In order to follow this task correctly, your application needs to have data. If your database is empty, you can go back to Task 3 in Exercise 2 and follow the steps on how to create a new person using the MVC views.
+    > [!NOTE]
+    > In order to follow this task correctly, your application needs to have data. If your database is empty, you can go back to Task 3 in Exercise 2 and follow the steps on how to create a new person using the MVC views.
 2. In the browser, press **F12** to open the **Developer Tools** panel. Press **CTRL** + **4** or click the **Network** icon, and then click the green arrow button to begin capturing network traffic.
 
     ![Initiating Web API network capture](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/_static/image28.png "Initiating Web API network capture")
@@ -345,7 +356,8 @@ In this task you will use the Internet Explorer **F12 developer tools** to inspe
 
     *Retrieving person data through Web API*
 
-    > [!NOTE] Once the download finishes, you will be prompted to make an action with the downloaded file. Leave the dialog box open in order to be able to watch the response content through the Developers Tool window.
+    > [!NOTE]
+    > Once the download finishes, you will be prompted to make an action with the downloaded file. Leave the dialog box open in order to be able to watch the response content through the Developers Tool window.
 4. Now you will inspect the body of the response. To do this, click the **Details** tab and then click **Response body**. You can check that the downloaded data is a list of objects with the properties **Id**, **Name** and **Age** that correspond to the **Person** class.
 
     ![Viewing Web API Response Body](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/_static/image30.png "Viewing Web API Response Body")
@@ -362,7 +374,8 @@ When you create a Web API, it is useful to create a help page so that other deve
 
     [!code-powershell[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample7.ps1)]
 
-    > [!NOTE] The **Microsoft.AspNet.WebApi.HelpPage** package installs the necessary assemblies and adds MVC Views for the help pages under the **Areas/HelpPage** folder.
+    > [!NOTE]
+    > The **Microsoft.AspNet.WebApi.HelpPage** package installs the necessary assemblies and adds MVC Views for the help pages under the **Areas/HelpPage** folder.
 
     ![HelpPage Area](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/_static/image31.png "HelpPage Area")
 
@@ -384,7 +397,8 @@ When you create a Web API, it is useful to create a help page so that other deve
 7. Open the **ApiPersonController.cs** file from the **Controllers** folder.
 8. Enter a new line between the *GetPeople* method signature and the *// GET api/ApiPerson* comment, and then type three forward slashes.
 
-    > [!NOTE] Visual Studio automatically inserts the XML elements which define the method documentation.
+    > [!NOTE]
+    > Visual Studio automatically inserts the XML elements which define the method documentation.
 9. Add a summary text and the return value for the *GetPeople* method. It should look like the following.
 
     [!code-csharp[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample9.cs)]
@@ -395,7 +409,8 @@ When you create a Web API, it is useful to create a help page so that other deve
 
     *ASP.NET Web API Help Page*
 
-    > [!NOTE] The main content of the page is a table of APIs, grouped by controller. The table entries are generated dynamically, using the **IApiExplorer** interface. If you add or update an API controller, the table will be automatically updated the next time you build the application.
+    > [!NOTE]
+    > The main content of the page is a table of APIs, grouped by controller. The table entries are generated dynamically, using the **IApiExplorer** interface. If you add or update an API controller, the table will be automatically updated the next time you build the application.
     > 
     > The **API** column lists the HTTP method and relative URI. The **Description** column contains information that has been extracted from the method's documentation.
 12. Note that the description you added above the method definition is displayed in the description column.

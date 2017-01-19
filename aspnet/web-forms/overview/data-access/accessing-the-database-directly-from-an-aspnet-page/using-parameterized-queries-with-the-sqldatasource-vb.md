@@ -37,7 +37,8 @@ Typically, the values used in a `WHERE` clause are determine by some external so
 
 The SqlDataSource supports parameterized queries, both for `SELECT` statements and `INSERT`, `UPDATE`, and `DELETE` statements. Moreover, the parameter values can be automatically pulled from a variety of sources the querystring, session state, controls on the page, and so on or can be assigned programmatically. In this tutorial, we'll see how to define parameterized queries as well as how to specify the parameter values both declaratively and programmatically.
 
-> [!NOTE] In the previous tutorial we compared the ObjectDataSource which has been our tool of choice over the first 46 tutorials with the SqlDataSource, noting their conceptual similarities. These similarities also extend to parameters. The ObjectDataSource s parameters mapped to the input parameters for the methods in the Business Logic Layer. With the SqlDataSource, the parameters are defined directly within the SQL query. Both controls have collections of parameters for their `Select()`, `Insert()`, `Update()`, and `Delete()` methods, and both can have these parameter values populated from pre-defined sources (querystring values, session variables, and so on) or assigned programmatically.
+> [!NOTE]
+> In the previous tutorial we compared the ObjectDataSource which has been our tool of choice over the first 46 tutorials with the SqlDataSource, noting their conceptual similarities. These similarities also extend to parameters. The ObjectDataSource s parameters mapped to the input parameters for the methods in the Business Logic Layer. With the SqlDataSource, the parameters are defined directly within the SQL query. Both controls have collections of parameters for their `Select()`, `Insert()`, `Update()`, and `Delete()` methods, and both can have these parameter values populated from pre-defined sources (querystring values, session variables, and so on) or assigned programmatically.
 
 
 ## Creating a Parameterized Query
@@ -77,7 +78,8 @@ After adding the parameter, click OK to return to the Configure Data Source wiza
 
 [!code-sql[Main](using-parameterized-queries-with-the-sqldatasource-vb/samples/sample3.sql)]
 
-> [!NOTE] If you specify multiple conditions in the `WHERE` clause from the Add `WHERE` Clause dialog box, the wizard joins them with the `AND` operator. If you need to include an `OR` in the `WHERE` clause (such as `WHERE UnitPrice <= @UnitPrice OR Discontinued = 1`) then you have to build the `SELECT` statement through the custom SQL statement screen.
+> [!NOTE]
+> If you specify multiple conditions in the `WHERE` clause from the Add `WHERE` Clause dialog box, the wizard joins them with the `AND` operator. If you need to include an `OR` in the `WHERE` clause (such as `WHERE UnitPrice <= @UnitPrice OR Discontinued = 1`) then you have to build the `SELECT` statement through the custom SQL statement screen.
 
 
 Complete configuring the SqlDataSource (click Next, then Finish) and then inspect the SqlDataSource s declarative markup. The markup now includes a `<SelectParameters>` collection, which spells out the sources for the parameters in the `SelectCommand`.
@@ -246,14 +248,16 @@ The following code illustrates how to retrieve the records from the `RandomCateg
 **Figure 13**: The Randomly Selected Category s Name is Displayed ([Click to view full-size image](using-parameterized-queries-with-the-sqldatasource-vb/_static/image26.png))
 
 
-> [!NOTE] If the SqlDataSource control s `DataSourceMode` property had been set to `DataReader`, the return value from the `Select()` method would have needed to be cast to `IDataReader`. To read the `CategoryName` column value from the first row, we d use code like:
+> [!NOTE]
+> If the SqlDataSource control s `DataSourceMode` property had been set to `DataReader`, the return value from the `Select()` method would have needed to be cast to `IDataReader`. To read the `CategoryName` column value from the first row, we d use code like:
 
 
 [!code-vb[Main](using-parameterized-queries-with-the-sqldatasource-vb/samples/sample12.vb)]
 
 With the SqlDataSource randomly selecting a category, we re ready to add the GridView that lists the category s products.
 
-> [!NOTE] Rather than using a Label Web control to display the category s name, we could have added a FormView or DetailsView to the page, binding it to the SqlDataSource. Using the Label, however, allowed us to explore how to programmatically invoke the SqlDataSource s `Select()` statement and work with its resulting data in code.
+> [!NOTE]
+> Rather than using a Label Web control to display the category s name, we could have added a FormView or DetailsView to the page, binding it to the SqlDataSource. Using the Label, however, allowed us to explore how to programmatically invoke the SqlDataSource s `Select()` statement and work with its resulting data in code.
 
 
 ## Step 5: Assigning Parameter Values Programmatically

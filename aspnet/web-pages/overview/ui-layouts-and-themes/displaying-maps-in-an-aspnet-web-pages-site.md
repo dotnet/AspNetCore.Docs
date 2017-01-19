@@ -80,7 +80,8 @@ The following example shows how to create a page that renders a map based on an 
 
     - The `<script>` element in the `<head>` element. In the example, the `<script>` element references the *jquery-1.6.4.min.j*s file, which is a minified (compressed) version of the jQuery library, version 1.6.4. Note that the reference assumes that the *.js* file is in the *Scripts* folder of your site. 
 
-        > [!NOTE] If you're using a different version of the jQuery library, just make sure that you're pointing to that version correctly.
+        > [!NOTE]
+        > If you're using a different version of the jQuery library, just make sure that you're pointing to that version correctly.
     - The call to the `@Maps.GetGoogleHtml` in the body of the page. To map an address, you must pass an address string. The methods for the other map engines work in a similar way (`@Maps.GetYahooHtml`, `@Maps.GetMapQuestHtml`).
 - Run the page and enter an address. The page displays a map, based on Google Maps, that shows the location that you specified.
 

@@ -37,7 +37,8 @@ The format of a multipart MIME message is easiest to understand by looking at an
 
 This message is divided into two *parts*, one for each form control. Part boundaries are indicated by the lines that start with dashes.
 
-> [!NOTE] The part boundary includes a random component (&quot;41184676334&quot;) to ensure that the boundary string does not accidentally appear inside a message part.
+> [!NOTE]
+> The part boundary includes a random component (&quot;41184676334&quot;) to ensure that the boundary string does not accidentally appear inside a message part.
 
 
 Each message part contains one or more headers, followed by the part contents.

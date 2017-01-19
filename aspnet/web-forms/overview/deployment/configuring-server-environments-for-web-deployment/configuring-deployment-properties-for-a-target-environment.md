@@ -53,7 +53,8 @@ To deploy the Contact Manager solution to your own target environment, you can e
     ![](configuring-deployment-properties-for-a-target-environment/_static/image1.png)
 3. Replace the property values in the *Env-Dev.proj* file with the correct values for your own test environment.
 
-    > [!NOTE] The table that follows this procedure provides more information on each of these properties.
+    > [!NOTE]
+    > The table that follows this procedure provides more information on each of these properties.
 4. Save your work, and then close the *Env-Dev.proj* file.
 
 ## Choosing the Right Deployment Properties

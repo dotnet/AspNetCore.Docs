@@ -96,7 +96,8 @@ The following procedure describes how to create the site and configure it.
 
     ![security-membership-2](16-adding-security-and-membership/_static/image1.png)
 
-    > [!NOTE] If you see an error that tells you that a property must be an instance of `ExtendedMembershipProvider`, the site might not be configured to use the ASP.NET Web Pages membership system (SimpleMembership). This can sometimes occur if a hosting provider's server is configured differently than your local server. To fix this, add the following element to the site's *Web.config* file:
+    > [!NOTE]
+    > If you see an error that tells you that a property must be an instance of `ExtendedMembershipProvider`, the site might not be configured to use the ASP.NET Web Pages membership system (SimpleMembership). This can sometimes occur if a hosting provider's server is configured differently than your local server. To fix this, add the following element to the site's *Web.config* file:
     > 
     > [!code-xml[Main](16-adding-security-and-membership/samples/sample2.xml)]
     > 
@@ -119,7 +120,8 @@ The following procedure describes how to create the site and configure it.
 
     ![security-membership-6](16-adding-security-and-membership/_static/image5.png)
 
-    > [!NOTE] By default, ASP.NET web pages send credentials to the server in clear text (as human-readable text). A production site should use secure HTTP (https://, also known as the *secure sockets layer* or SSL) to encrypt sensitive information that's exchanged with the server. You can required email messages to be sent using SSL by setting `WebMail.EnableSsl=true` as in the previous example. For more information about SSL, see [Securing Web Communications: Certificates, SSL, and https://](https://go.microsoft.com/fwlink/?LinkId=208660).
+    > [!NOTE]
+    > By default, ASP.NET web pages send credentials to the server in clear text (as human-readable text). A production site should use secure HTTP (https://, also known as the *secure sockets layer* or SSL) to encrypt sensitive information that's exchanged with the server. You can required email messages to be sent using SSL by setting `WebMail.EnableSsl=true` as in the previous example. For more information about SSL, see [Securing Web Communications: Certificates, SSL, and https://](https://go.microsoft.com/fwlink/?LinkId=208660).
 
 ## Additional Membership Functionality in the Site
 

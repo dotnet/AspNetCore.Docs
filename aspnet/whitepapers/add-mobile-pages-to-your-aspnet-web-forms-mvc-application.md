@@ -153,7 +153,8 @@ Assuming you already have a Web Forms application designed for desktop browsers,
 
 Your mobile pages can share common static resources (such as images, JavaScript, or CSS files) with your regular pages if you wish. Since your "Mobile" folder will *not* be marked as a separate application when hosted in IIS (it's just a simple subfolder of Web Forms pages), it will also share all the same configuration, Session data, and other infrastructure as your desktop pages.
 
-> [!NOTE] Since this approach usually involves some duplication of code (mobile pages are likely to share some similarities with desktop pages), it's important to factor out any common business logic or data access code into a shared underlying layer or service. Otherwise, you'll double the effort of creating and maintaining your application.
+> [!NOTE]
+> Since this approach usually involves some duplication of code (mobile pages are likely to share some similarities with desktop pages), it's important to factor out any common business logic or data access code into a shared underlying layer or service. Otherwise, you'll double the effort of creating and maintaining your application.
 
 
 #### Redirecting mobile visitors to your mobile pages
@@ -304,7 +305,8 @@ The following element added to the fiftyOne section of the web.config file will 
 
 For more details, see [51degrees.mobi Foundation documentation](http://51degrees.codeplex.com/documentation).
 
-> [!NOTE] You *can* use 51Degrees.mobi Foundation's redirection feature on ASP.NET MVC applications, but you will need to define your redirection configuration in terms of plain URLs, not in terms of routing parameters or by putting MVC filters on actions. This is because (at the time of writing) 51Degrees.mobi Foundation does not recognize filters or routing.
+> [!NOTE]
+> You *can* use 51Degrees.mobi Foundation's redirection feature on ASP.NET MVC applications, but you will need to define your redirection configuration in terms of plain URLs, not in terms of routing parameters or by putting MVC filters on actions. This is because (at the time of writing) 51Degrees.mobi Foundation does not recognize filters or routing.
 
 
 ### Disabling Transcoders and Proxy Servers

@@ -74,7 +74,8 @@ In order to display the price in a bold, italic font for those products whose `U
 **Figure 3**: Create an Event Handler for the `DataBound` Event
 
 
-> [!NOTE] You can also create an event handler from the ASP.NET page's code portion. There you'll find two drop-down lists at the top of the page. Select the object from the left drop-down list and the event you want to create a handler for from the right drop-down list and Visual Studio will automatically create the appropriate event handler.
+> [!NOTE]
+> You can also create an event handler from the ASP.NET page's code portion. There you'll find two drop-down lists at the top of the page. Select the object from the left drop-down list and the event you want to create a handler for from the right drop-down list and Visual Studio will automatically create the appropriate event handler.
 
 
 Doing so will automatically create the event handler and take you to the code portion where it has been added. At this point you will see:
@@ -89,7 +90,8 @@ The following code illustrates how to determine whether the `UnitPrice` value bo
 
 [!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample3.vb)]
 
-> [!NOTE] Since `UnitPrice` can have a `NULL` value in the database, we first check to make sure that we're not dealing with a `NULL` value before accessing the `ProductsRow`'s `UnitPrice` property. This check is important because if we attempt to access the `UnitPrice` property when it has a `NULL` value the `ProductsRow` object will throw a [StrongTypingException exception](https://msdn.microsoft.com/en-us/library/system.data.strongtypingexception.aspx).
+> [!NOTE]
+> Since `UnitPrice` can have a `NULL` value in the database, we first check to make sure that we're not dealing with a `NULL` value before accessing the `ProductsRow`'s `UnitPrice` property. This check is important because if we attempt to access the `UnitPrice` property when it has a `NULL` value the `ProductsRow` object will throw a [StrongTypingException exception](https://msdn.microsoft.com/en-us/library/system.data.strongtypingexception.aspx).
 
 
 ## Step 3: Formatting the UnitPrice Value in the DetailsView
@@ -184,7 +186,8 @@ Once we have a programmatic reference to the Web control, we can modify its styl
 
 [!code-vb[Main](custom-formatting-based-upon-data-vb/samples/sample12.vb)]
 
-> [!NOTE] The syntax for formatting a template programmatically accessing the Web control using `FindControl("controlID")` and then setting its style-related properties can also be used when using [TemplateFields](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.templatefield(VS.80).aspx) in the DetailsView or GridView controls. We'll examine TemplateFields in our next tutorial.
+> [!NOTE]
+> The syntax for formatting a template programmatically accessing the Web control using `FindControl("controlID")` and then setting its style-related properties can also be used when using [TemplateFields](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.templatefield(VS.80).aspx) in the DetailsView or GridView controls. We'll examine TemplateFields in our next tutorial.
 
 
 Figures 7 shows the FormView when viewing a product whose `UnitsInStock` value is greater than 10, while the product in Figure 8 has its value less than 10.

@@ -60,7 +60,8 @@ This topic will show you how to perform each of these procedures. The tasks and 
 - The server is domain-joined.
 - The server has a static IP address.
 
-> [!NOTE] For more information on joining computers to a domain, see [Joining Computers to the Domain and Logging On](https://technet.microsoft.com/en-us/library/cc725618(v=WS.10).aspx). For more information on configuring static IP addresses, see [Configure a Static IP Address](https://technet.microsoft.com/en-us/library/cc754203(v=ws.10).aspx).
+> [!NOTE]
+> For more information on joining computers to a domain, see [Joining Computers to the Domain and Logging On](https://technet.microsoft.com/en-us/library/cc725618(v=WS.10).aspx). For more information on configuring static IP addresses, see [Configure a Static IP Address](https://technet.microsoft.com/en-us/library/cc754203(v=ws.10).aspx).
 
 
 ## Install Products and Components
@@ -76,7 +77,8 @@ In this case, you need to install these things:
 - **.NET Framework 4.0**. This is required to run applications that were built on this version of the .NET Framework.
 - **ASP.NET MVC 3**. This installs the assemblies you need to run MVC 3 applications.
 
-> [!NOTE] This walkthrough describes the use of the Web Platform Installer to install and configure various components. Although you don&#x27;t have to use the Web Platform Installer, it simplifies the installation process by automatically detecting dependencies and ensuring that you always get the latest product versions. For more information, see [Microsoft Web Platform Installer 3.0](https://go.microsoft.com/?linkid=9805118).
+> [!NOTE]
+> This walkthrough describes the use of the Web Platform Installer to install and configure various components. Although you don&#x27;t have to use the Web Platform Installer, it simplifies the installation process by automatically detecting dependencies and ensuring that you always get the latest product versions. For more information, see [Microsoft Web Platform Installer 3.0](https://go.microsoft.com/?linkid=9805118).
 
 
 **To install the required products and components**
@@ -84,12 +86,14 @@ In this case, you need to install these things:
 1. Download and install the [Web Platform Installer](https://go.microsoft.com/?linkid=9805118).
 2. When installation is complete, the Web Platform Installer will launch automatically.
 
-    > [!NOTE] You can now launch the Web Platform Installer at any time from the **Start** menu. To do this, on the **Start** menu, click **All Programs**, and then click **Microsoft Web Platform Installer**.
+    > [!NOTE]
+    > You can now launch the Web Platform Installer at any time from the **Start** menu. To do this, on the **Start** menu, click **All Programs**, and then click **Microsoft Web Platform Installer**.
 3. At the top of the **Web Platform Installer 3.0** window, click **Products**.
 4. On the left side of the window, in the navigation pane, click **Frameworks**.
 5. In the **Microsoft .NET Framework 4** row, if the .NET Framework is not already installed, click **Add**.
 
-    > [!NOTE] You may have already installed the .NET Framework 4.0 through Windows Update. If a product or component is already installed, the Web Platform Installer will indicate this by replacing the **Add** button with the text **Installed**.
+    > [!NOTE]
+    > You may have already installed the .NET Framework 4.0 through Windows Update. If a product or component is already installed, the Web Platform Installer will indicate this by replacing the **Add** button with the text **Installed**.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image1.png)
 6. In the **ASP.NET MVC 3 (Visual Studio 2010)** row, click **Add**.
@@ -148,13 +152,15 @@ Now that you&#x27;ve installed everything you need, the next step is to configur
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image6.png)
 7. In the center pane, select **Enable remote connections**.
 
-    > [!NOTE] If the Web Management Service is already running, you&#x27;ll need to stop it first.
+    > [!NOTE]
+    > If the Web Management Service is already running, you&#x27;ll need to stop it first.
 8. In the **Actions** pane, click **Start** to start the Web Management Service.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image7.png)
 9. If you're prompted to save your settings, click **Yes**.
 
-    > [!NOTE] You may also want to configure the service to start automatically. To do this, open the Services console, right-click **Web Management Service**, and then click **Properties**. In the **Startup type** dropdown list, select **Automatic**, and then click **OK**.
+    > [!NOTE]
+    > You may also want to configure the service to start automatically. To do this, open the Services console, right-click **Web Management Service**, and then click **Properties**. In the **Startup type** dropdown list, select **Automatic**, and then click **OK**.
 10. In the **Connections** pane, click the server node again to return to the top-level settings.
 11. In the center pane, under **Management**, double-click **Management Service Delegation**.
 
@@ -191,12 +197,14 @@ Although there&#x27;s nothing stopping you from deploying content to the default
 6. In the **Physical path** box, type (or browse to) the path to your local folder (for example, **C:\DemoSite**).
 7. In the **Port** box, type the port number on which you want to host the website (for example, **85**).
 
-    > [!NOTE] The standard port numbers are 80 for HTTP and 443 for HTTPS. However, if you host this website on port 80, you'll need to stop the default website before you can access your site.
+    > [!NOTE]
+    > The standard port numbers are 80 for HTTP and 443 for HTTPS. However, if you host this website on port 80, you'll need to stop the default website before you can access your site.
 8. Leave the **Host name** box blank, unless you want to configure a Domain Name System (DNS) record for the website, and then click **OK**.
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image11.png)
 
-    > [!NOTE] In a production environment, you'll likely want to host your website on port 80 and configure a host header, together with matching DNS records. For more information on configuring host headers in IIS 7, see [Configure a Host Header for a Web Site (IIS 7)](https://technet.microsoft.com/en-us/library/cc753195(WS.10).aspx). For more information on the DNS Server role in Windows Server 2008 R2, see [DNS Server Overview](https://technet.microsoft.com/en-gb/library/cc770392.aspx) and [DNS Server](https://technet.microsoft.com/en-us/windowsserver/dd448607).
+    > [!NOTE]
+    > In a production environment, you'll likely want to host your website on port 80 and configure a host header, together with matching DNS records. For more information on configuring host headers in IIS 7, see [Configure a Host Header for a Web Site (IIS 7)](https://technet.microsoft.com/en-us/library/cc753195(WS.10).aspx). For more information on the DNS Server role in Windows Server 2008 R2, see [DNS Server Overview](https://technet.microsoft.com/en-gb/library/cc770392.aspx) and [DNS Server](https://technet.microsoft.com/en-us/windowsserver/dd448607).
 9. In the **Actions** pane, under **Edit Site**, click **Bindings**.
 10. In the **Site Bindings** dialog box, click **Add**.
 
@@ -206,7 +214,8 @@ Although there&#x27;s nothing stopping you from deploying content to the default
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image13.png)
 
-    > [!NOTE] The first site binding allows you to access the site locally using the IP address and port or `http://localhost:85`. The second site binding allows you to access the site from other computers on the domain using the machine name (for example, http://stageweb1:85).
+    > [!NOTE]
+    > The first site binding allows you to access the site locally using the IP address and port or `http://localhost:85`. The second site binding allows you to access the site from other computers on the domain using the machine name (for example, http://stageweb1:85).
 13. In the **Site Bindings** dialog box, click **Close**.
 14. In the **Connections** pane, click **Application Pools**.
 15. In the **Application Pools** pane, right-click the name of your application pool, and then click **Basic Settings**. By default, the name of your application pool will match the name of your website (for example, **DemoSite**).
@@ -214,7 +223,8 @@ Although there&#x27;s nothing stopping you from deploying content to the default
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image14.png)
 
-    > [!NOTE] The sample solution requires .NET Framework 4.0. This is not a requirement for Web Deploy in general.
+    > [!NOTE]
+    > The sample solution requires .NET Framework 4.0. This is not a requirement for Web Deploy in general.
 
 In order for your website to serve content, the application pool identity must have read permissions on the local folder that stores the content. In IIS 7.5, application pools run with a unique application pool identity by default (in contrast to previous versions of IIS, where application pools would typically run using the Network Service account). The application pool identity is not a real user account and does not show up on any lists of users or groups&#x2014;instead, it&#x27;s created dynamically when the application pool is started. Each application pool identity is added to the local **IIS\_IUSRS** security group as a hidden item.
 
@@ -225,7 +235,8 @@ To grant permissions to an application pool identity on a file or folder, you ha
 
 The most common approach is to assign permissions to the local **IIS\_IUSRS** group, because this approach lets you change application pools without reconfiguring file system permissions. The next procedure uses this group-based approach.
 
-> [!NOTE] For more information on application pool identities in IIS 7.5, see [Application Pool Identities](https://go.microsoft.com/?linkid=9805123).
+> [!NOTE]
+> For more information on application pool identities in IIS 7.5, see [Application Pool Identities](https://go.microsoft.com/?linkid=9805123).
 
 
 **To configure folder permissions for an IIS website**
@@ -257,7 +268,8 @@ As a final task, you must grant the appropriate permissions to the non-administr
 
     ![](configuring-a-web-server-for-web-deploy-publishing-web-deploy-handler/_static/image19.png)
 
-    > [!NOTE] This operation performs two key functions in one step. First, it grants the user permission to modify the website remotely through the Web Management Service, according to the delegation rules you examined in the previous section. Second, it grants the user full control of the source folder for the website, which allows the user to add, modify, and set permissions on the website content.
+    > [!NOTE]
+    > This operation performs two key functions in one step. First, it grants the user permission to modify the website remotely through the Web Management Service, according to the delegation rules you examined in the previous section. Second, it grants the user full control of the source folder for the website, which allows the user to add, modify, and set permissions on the website content.
 5. In the **Configure Web Deploy Publishing** dialog box, click **Close**.
 
 ## Configure Firewall Exceptions

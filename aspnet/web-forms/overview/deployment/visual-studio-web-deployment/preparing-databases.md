@@ -78,10 +78,12 @@ Open the application *Web.config* file and remove or comment out the `add` eleme
 
 [!code-xml[Main](preparing-databases/samples/sample2.xml)]
 
-> [!NOTE] Another way to specify an initializer class is do it by calling `Database.SetInitializer` in the `Application_Start` method in the *Global.asax* file. If you are enabling Migrations in a project that uses that method to specify the initializer, remove that line of code.
+> [!NOTE]
+> Another way to specify an initializer class is do it by calling `Database.SetInitializer` in the `Application_Start` method in the *Global.asax* file. If you are enabling Migrations in a project that uses that method to specify the initializer, remove that line of code.
 
 
-> [!NOTE] If you are using Visual Studio 2013, add the following steps between steps 2 and 3: (a) In PMC enter "update-package entityframework -version 6.1.1" to get the current version of EF. Then (b) build the project to get a list of build errors, and fix them. Delete using statements for namespaces that no longer exist, right-click and click Resolve to add using statements where they're needed, and change occurrences of System.Data.EntityState to System.Data.Entity.EntityState.
+> [!NOTE]
+> If you are using Visual Studio 2013, add the following steps between steps 2 and 3: (a) In PMC enter "update-package entityframework -version 6.1.1" to get the current version of EF. Then (b) build the project to get a list of build errors, and fix them. Delete using statements for namespaces that no longer exist, right-click and click Resolve to add using statements where they're needed, and change occurrences of System.Data.EntityState to System.Data.Entity.EntityState.
 
 
 ### Enable Code First Migrations
@@ -124,7 +126,8 @@ Since the `Seed` method runs after every migration, there is data already in the
 
 The project is now ready to deploy the *ContosoUniversity* database. After you deploy the application, the first time you run it and navigate to a page that accesses the database, Code First will create the database and run this `Seed` method.
 
-> [!NOTE] Adding code to the `Seed` method is one of many ways that you can insert fixed data into the database. An alternative is to add code to the `Up` and `Down` methods of each migration class. The `Up` and `Down` methods contain code that implements database changes. You'll see examples of them in the [Deploying a Database Update](deploying-a-database-update.md) tutorial.
+> [!NOTE]
+> Adding code to the `Seed` method is one of many ways that you can insert fixed data into the database. An alternative is to add code to the `Up` and `Down` methods of each migration class. The `Up` and `Down` methods contain code that implements database changes. You'll see examples of them in the [Deploying a Database Update](deploying-a-database-update.md) tutorial.
 > 
 > You can also write code that executes SQL statements by using the `Sql` method. For example, if you were adding a Budget column to the Department table and wanted to initialize all department budgets to $1,000.00 as part of a migration, you could add the folllowing line of code to the `Up` method for that migration:
 > 
@@ -153,14 +156,16 @@ User and role information is in the *aspnet-ContosoUniversity* database that is 
 
 This database is not managed by Entity Framework Code First, so you can't use Migrations to deploy it. You'll use the dbDacFx provider to deploy the database schema, and you'll configure the publish profile to run a script that will insert initial data into database tables.
 
-> [!NOTE] A new ASP.NET membership system (now named ASP.NET Identity) was introduced with Visual Studio 2013. The new system enables you to keep both application and membership tables in the same database, and you can use Code First Migrations to deploy both. The sample application uses the earlier ASP.NET membership system, which can't be deployed by using Code First Migrations. The procedures for deploying this membership database apply also to any other scenario in which your application needs to deploy a SQL Server database that isn't created by Entity Framework Code First.
+> [!NOTE]
+> A new ASP.NET membership system (now named ASP.NET Identity) was introduced with Visual Studio 2013. The new system enables you to keep both application and membership tables in the same database, and you can use Code First Migrations to deploy both. The sample application uses the earlier ASP.NET membership system, which can't be deployed by using Code First Migrations. The procedures for deploying this membership database apply also to any other scenario in which your application needs to deploy a SQL Server database that isn't created by Entity Framework Code First.
 
 
 Here too, you typically don't want the same data in production that you have in development. When you deploy a site for the first time, it is common to exclude most or all of the user accounts you create for testing. Therefore, the downloaded project has two membership databases: *aspnet-ContosoUniversity.mdf* with development users and *aspnet-ContosoUniversity-Prod.mdf* with production users. For this tutorial the user names are the same in both databases: *admin* and *nonadmin*. Both users have the password *devpwd* in the development database and *prodpwd* in the production database.
 
 You'll deploy the development users to the test environment and the production users to staging and production. To do that you'll create two SQL scripts in this tutorial, one for development and one for production, and in later tutorials you'll configure the publish process to run them.
 
-> [!NOTE] The membership database stores a hash of account passwords. In order to deploy accounts from one machine to another, you must make sure that hashing routines don't generate different hashes on the destination server than they do on the source computer. They will generate the same hashes when you use the ASP.NET Universal Providers, as long as you don't change the default algorithm. The default algorithm is HMACSHA256 and is specified in the **validation** attribute of the **[machineKey](https://msdn.microsoft.com/en-us/library/system.web.configuration.machinekeysection.aspx)** element in the Web.config file.
+> [!NOTE]
+> The membership database stores a hash of account passwords. In order to deploy accounts from one machine to another, you must make sure that hashing routines don't generate different hashes on the destination server than they do on the source computer. They will generate the same hashes when you use the ASP.NET Universal Providers, as long as you don't change the default algorithm. The default algorithm is HMACSHA256 and is specified in the **validation** attribute of the **[machineKey](https://msdn.microsoft.com/en-us/library/system.web.configuration.machinekeysection.aspx)** element in the Web.config file.
 
 
 You can create data deployment scripts manually, by using SQL Server Management Studio (SSMS), or by using a third-party tool. This remainder of this tutorial will show you how to do it in SSMS, but if you don't want to install and use SSMS you can get the scripts from the completed version of the project and skip to the section where you store them in the solution folder.

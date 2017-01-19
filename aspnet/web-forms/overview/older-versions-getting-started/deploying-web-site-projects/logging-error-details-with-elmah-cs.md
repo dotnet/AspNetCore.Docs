@@ -31,7 +31,8 @@ An alternative to the health monitoring system is Error Logging Modules And Hand
 
 This tutorial walks through the steps involved in adding ELMAH to an ASP.NET application. Let's get started!
 
-> [!NOTE] The health monitoring system and ELMAH both have their own sets of pros and cons. I encourage you to try both systems and decide what one best suits your needs.
+> [!NOTE]
+> The health monitoring system and ELMAH both have their own sets of pros and cons. I encourage you to try both systems and decide what one best suits your needs.
 
 
 ## Adding ELMAH to an ASP.NET Web Application
@@ -49,12 +50,14 @@ Let's walk through each of these four steps, one at a time.
 
 ELMAH 1.0 BETA 3 (Build 10617), the most recent version at the time of writing, is included in the download available with this tutorial. Alternatively, you may visit the [ELMAH website](https://code.google.com/p/elmah/) to get the most recent version or to download the source code. Extract the ELMAH download to a folder on your desktop and locate the ELMAH assembly file (`Elmah.dll`).
 
-> [!NOTE] The `Elmah.dll` file is located in the download's `Bin` folder, which has subfolders for different .NET Framework versions and for Release and Debug builds. Use the Release build for the appropriate framework version. For instance, if you are building an ASP.NET 3.5 web application, copy the `Elmah.dll` file from the `Bin\net-3.5\Release` folder.
+> [!NOTE]
+> The `Elmah.dll` file is located in the download's `Bin` folder, which has subfolders for different .NET Framework versions and for Release and Debug builds. Use the Release build for the appropriate framework version. For instance, if you are building an ASP.NET 3.5 web application, copy the `Elmah.dll` file from the `Bin\net-3.5\Release` folder.
 
 
 Next, open Visual Studio and add the assembly to your project by right-clicking on the website name in the Solution Explorer and choosing Add Reference from the context menu. This brings up the Add Reference dialog box. Navigate to the Browse tab and choose the `Elmah.dll` file. This action adds the `Elmah.dll` file to the web application's `Bin` folder.
 
-> [!NOTE] The Web Application Project (WAP) type does not show the `Bin` folder in the Solution Explorer. Instead, it lists these items under the References folder.
+> [!NOTE]
+> The Web Application Project (WAP) type does not show the `Bin` folder in the Solution Explorer. Instead, it lists these items under the References folder.
 
 
 The `Elmah.dll` assembly includes the classes used by the ELMAH system. These classes fall into one of three categories:
@@ -91,7 +94,8 @@ ELMAH looks for its configuration options in the website's `Web.config` file in 
 
 [!code-xml[Main](logging-error-details-with-elmah-cs/samples/sample3.xml)]
 
-> [!NOTE] If you are configuring ELMAH for an ASP.NET 1.x application then remove the `requirePermission="false"` attribute from the `<section>` elements above.
+> [!NOTE]
+> If you are configuring ELMAH for an ASP.NET 1.x application then remove the `requirePermission="false"` attribute from the `<section>` elements above.
 
 
 The above syntax registers the custom `<elmah>` section and its subsections: `<security>`, `<errorLog>`, `<errorMail>`, and `<errorFilter>`.
@@ -104,7 +108,8 @@ The `<security>` section's `allowRemoteAccess` attribute indicates whether remot
 
 The `<errorLog>` section defines the error log source, which dictates where the error details are recorded; it is similar to the `<providers>` section in the health monitoring system. The above syntax specifies the `SqlErrorLog` class as the error log source, which logs the errors to a Microsoft SQL Server database specified by the `connectionStringName` attribute value.
 
-> [!NOTE] ELMAH ships with additional error log providers that can be used to log errors to an XML file, a Microsoft Access database, an Oracle database, and other data stores. Refer to the sample `Web.config` file that is included with the ELMAH download for information on how to use these alternate error log providers.
+> [!NOTE]
+> ELMAH ships with additional error log providers that can be used to log errors to an XML file, a Microsoft Access database, an Oracle database, and other data stores. Refer to the sample `Web.config` file that is included with the ELMAH download for information on how to use these alternate error log providers.
 
 
 ### Step 4: Creating the Error Log Source Infrastructure
@@ -127,7 +132,8 @@ At this point we have added ELMAH to the web application, registered the `ErrorL
 
 ELMAH doesn't affect what content is shown to the user when an unhandled exception occurs; it just logs its details. This error log is accessible from the web page `elmah.axd` from the root of your website, such as `http://localhost/BookReviews/elmah.axd`. (This file does not physically exist in your project, but when a request comes in for `elmah.axd` the runtime dispatches it to the `ErrorLogPageFactory` HTTP Handler, which generates the markup sent back to the browser.)
 
-> [!NOTE] You can also use the `elmah.axd` page to instruct ELMAH to generate a test error. Visiting `elmah.axd/test` (as in, `http://localhost/BookReviews/elmah.axd/test`) causes ELMAH to throw an exception of type `Elmah.TestException`, which has the error message: " This is a test exception that can be safely ignored."
+> [!NOTE]
+> You can also use the `elmah.axd` page to instruct ELMAH to generate a test error. Visiting `elmah.axd/test` (as in, `http://localhost/BookReviews/elmah.axd/test`) causes ELMAH to throw an exception of type `Elmah.TestException`, which has the error message: " This is a test exception that can be safely ignored."
 
 
 **Figure 3** shows the error log when visiting `elmah.axd` from the development environment.
@@ -172,7 +178,8 @@ The following configuration permits only users in the Admin role to access the e
 
 [!code-xml[Main](logging-error-details-with-elmah-cs/samples/sample5.xml)]
 
-> [!NOTE] The Admin role and the three users in the system - Scott, Jisun, and Alice - were added in the [*Configuring a Website That Uses Application Services* tutorial](configuring-a-website-that-uses-application-services-cs.md). Users Scott and Jisun are members of the Admin role. For more information on authentication and authorization, refer to my [Website Security Tutorials](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md).
+> [!NOTE]
+> The Admin role and the three users in the system - Scott, Jisun, and Alice - were added in the [*Configuring a Website That Uses Application Services* tutorial](configuring-a-website-that-uses-application-services-cs.md). Users Scott and Jisun are members of the Admin role. For more information on authentication and authorization, refer to my [Website Security Tutorials](../../older-versions-security/introduction/security-basics-and-asp-net-support-cs.md).
 
 
 The error log on the production environment can now be viewed by remote users; refer back to **Figures 3**, **4**, and **5** for screen shots of the error log web page. However, if an anonymous or non-Admin user attempts to view the error log page they are automatically redirected to the login page (`Login.aspx`), as **Figure 7** shows.
@@ -217,7 +224,8 @@ The following markup instructs ELMAH to not log 404 errors.
 
 [!code-xml[Main](logging-error-details-with-elmah-cs/samples/sample9.xml)]
 
-> [!NOTE] Don't forget, in order to use error filtering you must register the `ErrorFilterModule` HTTP Module.
+> [!NOTE]
+> Don't forget, in order to use error filtering you must register the `ErrorFilterModule` HTTP Module.
 
 
 The `<equal>` element inside the `<test>` section is referred to as an assertion. If the assertion evaluates to true then the error is filtered from ELMAH's log. There are other assertions available, including: `<greater>`, `<greater-or-equal>`, `<not-equal>`, `<lesser>`, `<lesser-or-equal>`, and so on. You can also combine assertions using the `<and>` and `<or>` Boolean operators. What's more, you can even include a simple JavaScript expression as an assertion, or write your own assertions in C# or Visual Basic.

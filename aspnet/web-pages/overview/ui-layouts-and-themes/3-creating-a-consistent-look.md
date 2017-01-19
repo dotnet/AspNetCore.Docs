@@ -59,7 +59,8 @@ In this procedure, you'll create a page that references two content blocks (a he
     [!code-html[Main](3-creating-a-consistent-look/samples/sample1.html)]
 3. In the root folder, create a folder named *Shared*.
 
-    > [!NOTE] It's common practice to store files that are shared among web pages in a folder named *Shared*.
+    > [!NOTE]
+    > It's common practice to store files that are shared among web pages in a folder named *Shared*.
 4. In the *Shared* folder, create a file named *\_Header.cshtml*.
 5. Replace any existing content with the following:
 
@@ -119,7 +120,8 @@ The following procedure shows how to create a layout page and link content pages
 
     You can repeat step 6 to create additional content pages that can then share the same layout page.
 
-    > [!NOTE] You can set up your site so that you can automatically use the same layout page for all the content pages in a folder. For details, see [Customizing Site-Wide Behavior for ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkId=202906).
+    > [!NOTE]
+    > You can set up your site so that you can automatically use the same layout page for all the content pages in a folder. For details, see [Customizing Site-Wide Behavior for ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkId=202906).
 
 ## Designing Layout Pages That Have Multiple Content Sections
 

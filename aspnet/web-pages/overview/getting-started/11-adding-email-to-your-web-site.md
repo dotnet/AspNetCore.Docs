@@ -52,7 +52,8 @@ In this procedure, you create two pages. The first page has a form that lets use
 
 ![[image]](11-adding-email-to-your-web-site/_static/image1.jpg)
 
-> [!NOTE] To keep this example simple, the code initializes the `WebMail` helper right in the page where you use it. However, for real websites, it's a better idea to put initialization code like this in a global file, so that you initialize the `WebMail` helper for all files in your website. For more information, see [Customizing Site-Wide Behavior for ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkId=202906#Setting_Values_For_Helpers).
+> [!NOTE]
+> To keep this example simple, the code initializes the `WebMail` helper right in the page where you use it. However, for real websites, it's a better idea to put initialization code like this in a global file, so that you initialize the `WebMail` helper for all files in your website. For more information, see [Customizing Site-Wide Behavior for ASP.NET Web Pages](https://go.microsoft.com/fwlink/?LinkId=202906#Setting_Values_For_Helpers).
 
 
 1. Create a new website.

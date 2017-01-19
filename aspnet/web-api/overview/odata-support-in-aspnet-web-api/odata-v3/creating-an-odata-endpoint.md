@@ -72,7 +72,8 @@ In the **Add New** Item dialog, name the class &quot;Product&quot;.
 
 ![](creating-an-odata-endpoint/_static/image4.png)
 
-> [!NOTE] By convention, model classes are placed in the Models folder. You don't have to follow this convention in your own projects, but we'll use it for this tutorial.
+> [!NOTE]
+> By convention, model classes are placed in the Models folder. You don't have to follow this convention in your own projects, but we'll use it for this tutorial.
 
 
 In the Product.cs file, add the following class definition:

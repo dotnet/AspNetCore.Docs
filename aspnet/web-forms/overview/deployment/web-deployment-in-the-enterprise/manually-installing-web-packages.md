@@ -39,7 +39,8 @@ You&#x27;ll need to complete these high-level tasks to import a web deployment p
 
 This topic will show you how to perform these procedures. The tasks and walkthroughs in this topic assume that you&#x27;re already familiar with the concepts behind web packages, Web Deploy, and the WPP. For more information, see [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md).
 
-> [!NOTE] This topic is best used in conjunction with [Configure a Web Server for Web Deploy Publishing (Offline Deployment)](../configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md), which explains how to install the required components and prepare an IIS website for package import.
+> [!NOTE]
+> This topic is best used in conjunction with [Configure a Web Server for Web Deploy Publishing (Offline Deployment)](../configuring-server-environments-for-web-deployment/configuring-a-web-server-for-web-deploy-publishing-offline-deployment.md), which explains how to install the required components and prepare an IIS website for package import.
 
 
 ## Create a Web Deployment Package
@@ -93,7 +94,8 @@ For more information on configuring an IIS web server to support web deployment 
 
     ![](manually-installing-web-packages/_static/image4.png)
 
-    > [!NOTE] In a lot of cases, you may not want to import everything that comes with a web deployment package. For example, you may not want to allow Web Deploy to replace the associated database.  
+    > [!NOTE]
+    > In a lot of cases, you may not want to import everything that comes with a web deployment package. For example, you may not want to allow Web Deploy to replace the associated database.  
     > The **Grant permissions** entries set permissions on the destination file system to ensure that the application pool identity can access the physical folder that stores the website content. In addition, the anonymous authentication user is granted read permission to the folder to let the application serve Multipurpose Internet Mail Extensions (MIME) type files. If you prefer, you can remove these entries and configure permissions manually.
 4. On the **Enter Application Package Information** page, provide the requested information.
 
@@ -105,7 +107,8 @@ For more information on configuring an IIS web server to support web deployment 
     3. The first **Connection String** setting is the connection string that Web Deploy should use to deploy the database associated with the application (in this case an ASP.NET membership database). This setting corresponds to the setting on the **Package/Publish SQL** tab in Visual Studio.
     4. The second **Connection String** setting is the connection string that your application will actually use to communicate with the database when it&#x27;s up and running. This corresponds to a connection string entry in the *web.config* file.
 
-        > [!NOTE] For more information on where these parameters come from, see [Configuring Parameters for Web Package Deployment](configuring-parameters-for-web-package-deployment.md).
+        > [!NOTE]
+        > For more information on where these parameters come from, see [Configuring Parameters for Web Package Deployment](configuring-parameters-for-web-package-deployment.md).
 6. Click **Next**.
 7. If this is not the first time you&#x27;ve deployed the application to this website, you&#x27;ll be prompted to specify whether you want to delete all existing content prior to installation. Choose the option that&#x27;s appropriate for your requirements, and then click **Next**.
 

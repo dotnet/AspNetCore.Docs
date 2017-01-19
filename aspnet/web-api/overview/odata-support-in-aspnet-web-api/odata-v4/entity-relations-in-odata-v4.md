@@ -37,7 +37,8 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 ## Add a Supplier Entity
 
-> [!NOTE] The tutorial builds on the tutorial [Create an OData v4 Endpoint Using ASP.NET Web API 2](create-an-odata-v4-endpoint.md).
+> [!NOTE]
+> The tutorial builds on the tutorial [Create an OData v4 Endpoint Using ASP.NET Web API 2](create-an-odata-v4-endpoint.md).
 
 
 First, we need a related entity. Add a class named `Supplier` in the Models folder.

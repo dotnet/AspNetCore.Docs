@@ -16,7 +16,8 @@ Accessing Your Model's Data from a Controller
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-> > [!NOTE] An updated version of this tutorial is available [here](../../getting-started/introduction/getting-started.md) that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demonstrates more features.
+> > [!NOTE]
+> > An updated version of this tutorial is available [here](../../getting-started/introduction/getting-started.md) that uses ASP.NET MVC 5 and Visual Studio 2013. It's more secure, much simpler to follow and demonstrates more features.
 
 
 In this section, you'll create a new `MoviesController` class and write code that retrieves the movie data and displays it in the browser using a view template.
@@ -113,10 +114,12 @@ Double-click *Movies.mdf* to open **DATABASE EXPLORER**, then expand the **Table
 
 ![DB_explorer](accessing-your-models-data-from-a-controller/_static/image7.png "DB_explorer")
 
-> [!NOTE] If the database explorer doesn't appear, from the **TOOLS** menu, select **Connect to Database**, then cancel the **Choose Data Source** dialog. This will force open the database explorer.
+> [!NOTE]
+> If the database explorer doesn't appear, from the **TOOLS** menu, select **Connect to Database**, then cancel the **Choose Data Source** dialog. This will force open the database explorer.
 
 
-> [!NOTE] If you are using VWD or Visual Studio 2010 and get an error similar to any of the following following:
+> [!NOTE]
+> If you are using VWD or Visual Studio 2010 and get an error similar to any of the following following:
 > 
 > - The database 'C:\Webs\MVC4\MVCMOVIE\MVCMOVIE\APP\_DATA\MOVIES.MDF' cannot be opened because it is version 706. This server supports version 655 and earlier. A downgrade path is not supported.
 > - &quot;InvalidOperation Exception was unhandled by user code&quot; The supplied SqlConnection does not specify an initial catalog.

@@ -80,7 +80,8 @@ Ideally, you&#x27;d run any required Transact-SQL scripts as part of a post-depl
 [!code-console[Main](deploying-database-role-memberships-to-test-environments/samples/sample2.cmd)]
 
 
-> [!NOTE] For more information on sqlcmd command-line options, see [sqlcmd Utility](https://msdn.microsoft.com/en-us/library/ms162773.aspx).
+> [!NOTE]
+> For more information on sqlcmd command-line options, see [sqlcmd Utility](https://msdn.microsoft.com/en-us/library/ms162773.aspx).
 
 
 Before you embed this command in an MSBuild target, you need to consider under what conditions you want the script to run:

@@ -167,7 +167,8 @@ Here is an **HttpParameterBinding** that gets the ETag from the desired header a
 
 The **ExecuteBindingAsync** method does the binding. Within this method, add the bound parameter value to the **ActionArgument** dictionary in the **HttpActionContext**.
 
-> [!NOTE] If your **ExecuteBindingAsync** method reads the body of the request message, override the **WillReadBody** property to return true. The request body might be an unbuffered stream that can only be read once, so Web API enforces a rule that at most one binding can read the message body.
+> [!NOTE]
+> If your **ExecuteBindingAsync** method reads the body of the request message, override the **WillReadBody** property to return true. The request body might be an unbuffered stream that can only be read once, so Web API enforces a rule that at most one binding can read the message body.
 
 
 To apply a custom **HttpParameterBinding**, you can define an attribute that derives from **ParameterBindingAttribute**. For `ETagParameterBinding`, we'll define two attributes, one for `if-match` headers and one for `if-none-match` headers. Both derive from an abstract base class.

@@ -58,7 +58,8 @@ Prior to ASP.NET version 2.0, page developers often placed common markup in [Use
 
 The shortcomings of using User Controls were addressed in ASP.NET version 2.0 and Visual Studio 2005 with the introduction of *master pages*. A master page is a special type of ASP.NET page that defines both the site-wide markup and the *regions* where associated *content pages* define their custom markup. As we will see in Step 1, these regions are defined by ContentPlaceHolder controls. The ContentPlaceHolder control simply denotes a position in the master page's control hierarchy where custom content can be injected by a content page.
 
-> [!NOTE] The core concepts and functionality of master pages has not changed since ASP.NET version 2.0. However, Visual Studio 2008 offers design-time support for nested master pages, a feature that was lacking in Visual Studio 2005. We will look at using nested master pages in a future tutorial.
+> [!NOTE]
+> The core concepts and functionality of master pages has not changed since ASP.NET version 2.0. However, Visual Studio 2008 offers design-time support for nested master pages, a feature that was lacking in Visual Studio 2005. We will look at using nested master pages in a future tutorial.
 
 
 Figure 2 shows what the master page for www.asp.net might look like. Note that the master page defines the common site-wide layout - the markup at the top, bottom, and right of every page - as well as a ContentPlaceHolder in the middle-left, where the unique content for each individual web page is located.
@@ -79,14 +80,16 @@ Once a master page has been defined it can be bound to new ASP.NET pages through
 
 Now that we have discussed how master pages work, let's take a look at creating a master page and associated content pages using Visual Web Developer.
 
-> [!NOTE] In order to reach the widest possible audience, the ASP.NET website we build throughout this tutorial series will be created using ASP.NET 3.5 with Microsoft's free version of Visual Studio 2008, [Visual Web Developer 2008](https://www.microsoft.com/express/vwd/). If you have not yet upgraded to ASP.NET 3.5, don't worry - the concepts discussed in these tutorials work equally well with ASP.NET 2.0 and Visual Studio 2005. However, some demo applications may use features new to the .NET Framework version 3.5; when 3.5-specific features are used, I include a note that discusses how to implement similar functionality in version 2.0. Do keep in mind that the demo applications available for download from each tutorial target the .NET Framework version 3.5, which results in a `Web.config` file that includes 3.5-specific configuration elements. Long story short, if you have yet to install .NET 3.5 on your computer then the downloadable web application will not work without first removing the 3.5-specific markup from `Web.config`. See [Dissecting ASP.NET Version 3.5's `Web.config` File](http://www.4guysfromrolla.com/articles/121207-1.aspx) for more information on this topic.
+> [!NOTE]
+> In order to reach the widest possible audience, the ASP.NET website we build throughout this tutorial series will be created using ASP.NET 3.5 with Microsoft's free version of Visual Studio 2008, [Visual Web Developer 2008](https://www.microsoft.com/express/vwd/). If you have not yet upgraded to ASP.NET 3.5, don't worry - the concepts discussed in these tutorials work equally well with ASP.NET 2.0 and Visual Studio 2005. However, some demo applications may use features new to the .NET Framework version 3.5; when 3.5-specific features are used, I include a note that discusses how to implement similar functionality in version 2.0. Do keep in mind that the demo applications available for download from each tutorial target the .NET Framework version 3.5, which results in a `Web.config` file that includes 3.5-specific configuration elements. Long story short, if you have yet to install .NET 3.5 on your computer then the downloadable web application will not work without first removing the 3.5-specific markup from `Web.config`. See [Dissecting ASP.NET Version 3.5's `Web.config` File](http://www.4guysfromrolla.com/articles/121207-1.aspx) for more information on this topic.
 
 
 ## Step 1: Creating a Master Page
 
 Before we can explore creating and using master and content pages, we first need an ASP.NET website. Start by creating a new file system-based ASP.NET website. To accomplish this, launch Visual Web Developer and then go to the File menu and choose New Web Site, displaying the New Web Site dialog box (see Figure 4). Choose the ASP.NET Web Site template, set the Location drop-down list to File System, choose a folder to place the web site, and set the language to Visual Basic. This will create a new web site with a `Default.aspx` ASP.NET page, an `App_Data` folder, and a `Web.config` file.
 
-> [!NOTE] Visual Studio supports two modes of project management: Web Site Projects and Web Application Projects. Web Site Projects lack a project file, whereas Web Application Projects mimic the project architecture in Visual Studio .NET 2002/2003 - they include a project file and compile the project's source code into a single assembly, which is placed in the `/bin` folder. Visual Studio 2005 initially only supported Web Site Projects, although the Web Application Project model was reintroduced with Service Pack 1; Visual Studio 2008 offers both project models. The Visual Web Developer 2005 and 2008 editions, however, only support Web Site Projects. I use the Web Site Project model for my demos in this tutorial series. If you are using a non-Express edition and want to use the [Web Application Project model](https://msdn.microsoft.com/en-us/library/aa730880(vs.80).aspx) instead, feel free to do so but be aware that there may be some discrepancies between what you see on your screen and the steps you must take versus the screen shots shown and instructions provided in these tutorials.
+> [!NOTE]
+> Visual Studio supports two modes of project management: Web Site Projects and Web Application Projects. Web Site Projects lack a project file, whereas Web Application Projects mimic the project architecture in Visual Studio .NET 2002/2003 - they include a project file and compile the project's source code into a single assembly, which is placed in the `/bin` folder. Visual Studio 2005 initially only supported Web Site Projects, although the Web Application Project model was reintroduced with Service Pack 1; Visual Studio 2008 offers both project models. The Visual Web Developer 2005 and 2008 editions, however, only support Web Site Projects. I use the Web Site Project model for my demos in this tutorial series. If you are using a non-Express edition and want to use the [Web Application Project model](https://msdn.microsoft.com/en-us/library/aa730880(vs.80).aspx) instead, feel free to do so but be aware that there may be some discrepancies between what you see on your screen and the steps you must take versus the screen shots shown and instructions provided in these tutorials.
 
 
 [![Create a New File System-Based Web Site](creating-a-site-wide-layout-using-master-pages-vb/_static/image9.png)](creating-a-site-wide-layout-using-master-pages-vb/_static/image8.png)
@@ -117,7 +120,8 @@ The `DOCTYPE` and the page's declarative markup appears beneath the `@Master` di
 
 This default master page declarative markup serves as a starting point for designing your own master pages. Feel free to edit the HTML or to add additional Web controls or ContentPlaceHolders to the master page.
 
-> [!NOTE] When designing a master page make sure that the master page contains a Web Form and that at least one ContentPlaceHolder control appears within this Web Form.
+> [!NOTE]
+> When designing a master page make sure that the master page contains a Web Form and that at least one ContentPlaceHolder control appears within this Web Form.
 
 
 ### Creating a Simple Site Layout
@@ -142,7 +146,8 @@ The formatting and layout rules for these assorted `<div>` elements is spelled o
 
 If you are following along at your computer, you will need to download this tutorial's accompanying code and add the `Styles.css` file to your project. Similarly, you will also need to create a folder named `Images` and copy the "Powered by Microsoft ASP.NET" icon from the downloaded demo website to your project.
 
-> [!NOTE] A discussion of CSS and web page formatting is beyond the scope of this article. For more on CSS, check out the [CSS Tutorials](http://www.w3schools.com/css/default.asp) at [W3Schools.com](http://www.w3schools.com/). I also encourage you to download this tutorial's accompanying code and play with the CSS settings in `Styles.css` to see the effects of different formatting rules.
+> [!NOTE]
+> A discussion of CSS and web page formatting is beyond the scope of this article. For more on CSS, check out the [CSS Tutorials](http://www.w3schools.com/css/default.asp) at [W3Schools.com](http://www.w3schools.com/). I also encourage you to download this tutorial's accompanying code and play with the CSS settings in `Styles.css` to see the effects of different formatting rules.
 
 
 ### Creating a Master Page Using an Existing Design Template
@@ -151,7 +156,8 @@ Over the years I've built a number of ASP.NET web applications for small- to med
 
 Fortunately, there are innumerous websites that offer free HTML design templates - Google returned more than six million results for the search term "free website templates." One of my favorite ones is [OpenDesigns.org](http://opendesigns.org/). Once you find a website template you like, add the CSS files and images to your website project and integrate the template's HTML into your master page.
 
-> [!NOTE] Microsoft also offers a number of [free ASP.NET Design Start Kit Templates](https://msdn.microsoft.com/en-us/asp.net/aa336613.aspx) that integrate into the New Web Site dialog box in Visual Studio.
+> [!NOTE]
+> Microsoft also offers a number of [free ASP.NET Design Start Kit Templates](https://msdn.microsoft.com/en-us/asp.net/aa336613.aspx) that integrate into the New Web Site dialog box in Visual Studio.
 
 
 ## Step 2: Creating Associated Content Pages
@@ -160,7 +166,8 @@ With the master page created, we are ready to start creating ASP.NET pages that 
 
 Let's add a new ASP.NET page to the project and bind it to the `Site.master` master page. Right-click on the project name in Solution Explorer and choose the Add New Item option. Select the Web Form template, enter the name `About.aspx`, and then check the "Select master page" checkbox as shown in Figure 7. Doing so will display the Select a Master Page dialog box (see Figure 8) from where you can choose the master page to use.
 
-> [!NOTE] If you created your ASP.NET website using the Web Application Project model instead of the Web Site Project model you will not see the "Select master page" checkbox in the Add New Item dialog box shown in Figure 7. To create a content page when using the Web Application Project model you must choose the Web Content Form template instead of the Web Form template. After selecting the Web Content Form template and clicking Add, the same Select a Master Page dialog box shown in Figure 8 will appear.
+> [!NOTE]
+> If you created your ASP.NET website using the Web Application Project model instead of the Web Site Project model you will not see the "Select master page" checkbox in the Add New Item dialog box shown in Figure 7. To create a content page when using the Web Application Project model you must choose the Web Content Form template instead of the Web Form template. After selecting the Web Content Form template and clicking Add, the same Select a Master Page dialog box shown in Figure 8 will appear.
 
 
 [![Add a New Content Page](creating-a-site-wide-layout-using-master-pages-vb/_static/image18.png)](creating-a-site-wide-layout-using-master-pages-vb/_static/image17.png)
@@ -177,7 +184,8 @@ As the following declarative markup shows, a new content page contains a `@Page`
 
 [!code-aspx[Main](creating-a-site-wide-layout-using-master-pages-vb/samples/sample4.aspx)]
 
-> [!NOTE] In the "Creating a Simple Site Layout" section in Step 1 I renamed `ContentPlaceHolder1` to `MainContent`. If you did not rename this ContentPlaceHolder control's `ID` in the same way, your content page's declarative markup will differ slightly from the markup shown above. Namely, the second Content control's `ContentPlaceHolderID` will reflect the `ID` of the corresponding ContentPlaceHolder control in your master page.
+> [!NOTE]
+> In the "Creating a Simple Site Layout" section in Step 1 I renamed `ContentPlaceHolder1` to `MainContent`. If you did not rename this ContentPlaceHolder control's `ID` in the same way, your content page's declarative markup will differ slightly from the markup shown above. Namely, the second Content control's `ContentPlaceHolderID` will reflect the `ID` of the corresponding ContentPlaceHolder control in your master page.
 
 
 When rendering a content page, the ASP.NET engine must fuse the page's Content controls with its master page's ContentPlaceHolder controls. The ASP.NET engine determines the content page's master page from the `@Page` directive's `MasterPageFile` attribute. As the above markup shows, this content page is bound to `~/Site.master`.
@@ -218,7 +226,8 @@ For step-by-step instructions on this process along with screen shots, check out
 
 Because it is much easier to create new content pages than it is to convert existing ASP.NET pages into content pages, I recommend that whenever you create a new ASP.NET website add a master page to the site. Bind all new ASP.NET pages to this master page. Don't worry if the initial master page is very simple or plain; you can update the master page later.
 
-> [!NOTE] When creating a new ASP.NET application, Visual Web Developer adds a `Default.aspx` page that isn't bound to a master page. If you want to practice converting an existing ASP.NET page into a content page, go ahead and do so with `Default.aspx`. Alternatively, you can delete `Default.aspx` and then re-add it, but this time checking the "Select master page" checkbox.
+> [!NOTE]
+> When creating a new ASP.NET application, Visual Web Developer adds a `Default.aspx` page that isn't bound to a master page. If you want to practice converting an existing ASP.NET page into a content page, go ahead and do so with `Default.aspx`. Alternatively, you can delete `Default.aspx` and then re-add it, but this time checking the "Select master page" checkbox.
 
 
 ## Step 3: Updating the Master Page's Markup
@@ -241,7 +250,8 @@ The above code sets the Label's `Text` property to the current date and time for
 **Figure 11**: The Changes to the Master Page are Reflected When Viewing the a Content Page  ([Click to view full-size image](creating-a-site-wide-layout-using-master-pages-vb/_static/image31.png))
 
 
-> [!NOTE] As this example illustrates, master pages may contain server-side Web controls, code, and event handlers.
+> [!NOTE]
+> As this example illustrates, master pages may contain server-side Web controls, code, and event handlers.
 
 
 ## Summary

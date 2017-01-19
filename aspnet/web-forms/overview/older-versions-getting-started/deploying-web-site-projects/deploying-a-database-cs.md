@@ -108,7 +108,8 @@ Right-click on the database name and choose the "Publish to provider" option fro
 
 The second screen in the wizard lists the databases accessible to the Database Publishing Wizard and lets you choose whether to script all objects in the selected database or to pick which objects to script. Select the appropriate database and leave the "Script all objects in the selected database" option checked.
 
-> [!NOTE] If you get the error "There are no objects in database *databaseName* of the types scriptable by this wizard" when clicking Next in the screen shown in Figure 6, make sure that the path to your database file is not overly long. As noted in [this discussion item](http://www.codeplex.com/sqlhost/Thread/View.aspx?ThreadId=11014) on the Database Publishing Wizard project page, this error can arise if the path to the database file is too long.
+> [!NOTE]
+> If you get the error "There are no objects in database *databaseName* of the types scriptable by this wizard" when clicking Next in the screen shown in Figure 6, make sure that the path to your database file is not overly long. As noted in [this discussion item](http://www.codeplex.com/sqlhost/Thread/View.aspx?ThreadId=11014) on the Database Publishing Wizard project page, this error can arise if the path to the database file is too long.
 
 
 [![The Database Publishing Wizard Splash Screen](deploying-a-database-cs/_static/image17.jpg)](deploying-a-database-cs/_static/image16.jpg) 

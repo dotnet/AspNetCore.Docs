@@ -82,7 +82,8 @@ For example, the DataReader and the DataSet (by default) are loosely-typed objec
 
 To return strongly-typed objects, developers can either create their own custom business objects or use Typed DataSets. A business object is implemented by the developer as a class whose properties typically reflect the columns of the underlying database table the business object represents. A Typed DataSet is a class generated for you by Visual Studio based on a database schema and whose members are strongly-typed according to this schema. The Typed DataSet itself consists of classes that extend the ADO.NET DataSet, DataTable, and DataRow classes. In addition to strongly-typed DataTables, Typed DataSets now also include TableAdapters, which are classes with methods for populating the DataSet's DataTables and propagating modifications within the DataTables back to the database.
 
-> [!NOTE] For more information on the advantages and disadvantages of using Typed DataSets versus custom business objects, refer to [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/en-us/library/ms978496.aspx).
+> [!NOTE]
+> For more information on the advantages and disadvantages of using Typed DataSets versus custom business objects, refer to [Designing Data Tier Components and Passing Data Through Tiers](https://msdn.microsoft.com/en-us/library/ms978496.aspx).
 
 
 We'll use strongly-typed DataSets for these tutorials' architecture. Figure 3 illustrates the workflow between the different layers of an application that uses Typed DataSets.

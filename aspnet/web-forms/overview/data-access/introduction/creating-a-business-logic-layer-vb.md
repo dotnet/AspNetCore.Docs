@@ -51,7 +51,8 @@ Next, create the four BLL class files in the `BLL` subfolder. To accomplish this
 
 Next, let's add methods to each of the classes to simply wrap the methods defined for the TableAdapters from the first tutorial. For now, these methods will just call directly into the DAL; we'll return later to add any needed business logic.
 
-> [!NOTE] If you are using Visual Studio Standard Edition or above (that is, you're *not* using Visual Web Developer), you can optionally design your classes visually using the [Class Designer](https://msdn.microsoft.com/library/default.asp?url=/library/en-us/dv_vstechart/html/clssdsgnr.asp). Refer to the [Class Designer Blog](https://blogs.msdn.com/classdesigner/default.aspx) for more information on this new feature in Visual Studio.
+> [!NOTE]
+> If you are using Visual Studio Standard Edition or above (that is, you're *not* using Visual Web Developer), you can optionally design your classes visually using the [Class Designer](https://msdn.microsoft.com/library/default.asp?url=/library/en-us/dv_vstechart/html/clssdsgnr.asp). Refer to the [Class Designer Blog](https://blogs.msdn.com/classdesigner/default.aspx) for more information on this new feature in Visual Studio.
 
 
 For the `ProductsBLL` class we need to add a total of seven methods:

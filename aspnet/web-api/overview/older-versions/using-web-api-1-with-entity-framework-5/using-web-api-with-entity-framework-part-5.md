@@ -86,7 +86,7 @@ This binding calls the `create` function on the view-model to create a new produ
 
 Here is the complete code for the Admin view:
 
-[!code-javascript[Main](using-web-api-with-entity-framework-part-5/samples/sample10.js)]
+[!code-cshtml[Main](using-web-api-with-entity-framework-part-5/samples/sample10.cshtml)]
 
 Run the application, log in with the Administrator account, and click the "Admin" link. You should see the list of products, and be able to create, update, or delete products.
 

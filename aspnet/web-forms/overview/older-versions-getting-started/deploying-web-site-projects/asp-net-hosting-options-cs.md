@@ -72,7 +72,8 @@ Web hosting companies typically offer shared hosting plans and dedicated hosting
 
 Two important considerations when choosing a web host provider are customer service and quality of service. If you have a question or a configuration problem, how long does it take from submitting your problem to the web host's helpdesk until you get a response? How reliable are the company's services? Do they frequently have database outages? How often does their e-mail server go offline? You can always ask a company to provide details about their uptime and inquire about their customer service policy, but a more surefire way is to solicit the feedback of current and past customers, which you can do through online forums, newsgroups, and e-mail listservs.
 
-> [!NOTE] Some web hosting companies focus their business on a particular technology stack, such as .NET or [LAMP](http://en.wikipedia.org/wiki/LAMP_stack) (**L** inux, **A** pache, **M** ySQL, and **P** HP), so make sure that the company you select hosts ASP.NET applications. Also check to ensure that they support the version of ASP.NET you are using to build your application. And if you are building a data-driven application, make sure that the web host offers the same database server and version that you are using.
+> [!NOTE]
+> Some web hosting companies focus their business on a particular technology stack, such as .NET or [LAMP](http://en.wikipedia.org/wiki/LAMP_stack) (**L** inux, **A** pache, **M** ySQL, and **P** HP), so make sure that the company you select hosts ASP.NET applications. Also check to ensure that they support the version of ASP.NET you are using to build your application. And if you are building a data-driven application, make sure that the web host offers the same database server and version that you are using.
 
 
 ## Summary

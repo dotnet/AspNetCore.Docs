@@ -92,7 +92,8 @@ At this point the GridView's read-only behavior is complete. When viewing the da
 **Figure 4**: The GridView's Read-Only Interface is Complete ([Click to view full-size image](customizing-the-data-modification-interface-vb/_static/image12.png))
 
 
-> [!NOTE] As discussed in [An Overview of Inserting, Updating, and Deleting Data tutorial](an-overview-of-inserting-updating-and-deleting-data-cs.md), it is vitally important that the GridView s view state be enabled (the default behavior). If you set the GridView s `EnableViewState` property to `false`, you run the risk of having concurrent users unintentionally deleting or editing records. See [WARNING: Concurrency Issue with ASP.NET 2.0 GridViews/DetailsView/FormViews that Support Editing and/or Deleting and Whose View State is Disabled](http://scottonwriting.net/sowblog/posts/10054.aspx) for more information.
+> [!NOTE]
+> As discussed in [An Overview of Inserting, Updating, and Deleting Data tutorial](an-overview-of-inserting-updating-and-deleting-data-cs.md), it is vitally important that the GridView s view state be enabled (the default behavior). If you set the GridView s `EnableViewState` property to `false`, you run the risk of having concurrent users unintentionally deleting or editing records. See [WARNING: Concurrency Issue with ASP.NET 2.0 GridViews/DetailsView/FormViews that Support Editing and/or Deleting and Whose View State is Disabled](http://scottonwriting.net/sowblog/posts/10054.aspx) for more information.
 
 
 ## Step 3: Using a DropDownList for the Category and Supplier Editing Interfaces
@@ -154,7 +155,8 @@ After making these changes the declarative markup for the `EditItemTemplate` in 
 
 [!code-aspx[Main](customizing-the-data-modification-interface-vb/samples/sample5.aspx)]
 
-> [!NOTE] The DropDownList in the `EditItemTemplate` must have its view state enabled. We will soon add databinding syntax to the DropDownList's declarative syntax and databinding commands like `Eval()` and `Bind()` can only appear in controls whose view state is enabled.
+> [!NOTE]
+> The DropDownList in the `EditItemTemplate` must have its view state enabled. We will soon add databinding syntax to the DropDownList's declarative syntax and databinding commands like `Eval()` and `Bind()` can only appear in controls whose view state is enabled.
 
 
 Repeat these steps to add a DropDownList named `Suppliers` to the `SupplierName` TemplateField's `EditItemTemplate`. This will involve adding a DropDownList to the `EditItemTemplate` and creating another ObjectDataSource. The `Suppliers` DropDownList's ObjectDataSource, however, should be configured to invoke the `SuppliersBLL` class's `GetSuppliers()` method. Additionally, configure the `Suppliers` DropDownList to display the `CompanyName` field and use the `SupplierID` field as the value for its `ListItem` s.
@@ -205,7 +207,8 @@ Start by setting both DropDownLists' `AppendDataBoundItems` property to `True`. 
 
 I've chosen to use "(None)" as the Text value for this `ListItem`, but you can change it to also be a blank string if you'd like.
 
-> [!NOTE] As we saw in the *Master/Detail Filtering With a DropDownList* tutorial, `ListItem` s can be added to a DropDownList through the Designer by clicking on the DropDownList's `Items` property in the Properties window (which will display the `ListItem` Collection Editor). However, be sure to add the `NULL` `ListItem` for this tutorial through the declarative syntax. If you use the `ListItem` Collection Editor, the generated declarative syntax will omit the `Value` setting altogether when assigned a blank string, creating declarative markup like: `<asp:ListItem>(None)</asp:ListItem>`. While this may look harmless, the missing Value causes the DropDownList to use the `Text` property value in its place. That means that if this `NULL` `ListItem` is selected, the value "(None)" will be attempted to be assigned to the `CategoryID`, which will result in an exception. By explicitly setting `Value=""`, a `NULL` value will be assigned to `CategoryID` when the `NULL` `ListItem` is selected.
+> [!NOTE]
+> As we saw in the *Master/Detail Filtering With a DropDownList* tutorial, `ListItem` s can be added to a DropDownList through the Designer by clicking on the DropDownList's `Items` property in the Properties window (which will display the `ListItem` Collection Editor). However, be sure to add the `NULL` `ListItem` for this tutorial through the declarative syntax. If you use the `ListItem` Collection Editor, the generated declarative syntax will omit the `Value` setting altogether when assigned a blank string, creating declarative markup like: `<asp:ListItem>(None)</asp:ListItem>`. While this may look harmless, the missing Value causes the DropDownList to use the `Text` property value in its place. That means that if this `NULL` `ListItem` is selected, the value "(None)" will be attempted to be assigned to the `CategoryID`, which will result in an exception. By explicitly setting `Value=""`, a `NULL` value will be assigned to `CategoryID` when the `NULL` `ListItem` is selected.
 
 
 Repeat these steps for the Suppliers DropDownList.
@@ -249,7 +252,8 @@ With these changes, the `Discontinued` column has been transformed from a list o
 **Figure 14**: The Discontinued CheckBoxes Have Been Replaced by Radio Button Pairs ([Click to view full-size image](customizing-the-data-modification-interface-vb/_static/image42.png))
 
 
-> [!NOTE] Since the `Discontinued` column in the `Products` database cannot have `NULL` values, we do not need to worry about capturing `NULL` information in the interface. If, however, `Discontinued` column could contain `NULL` values we'd want to add a third radio button to the list with its `Value` set to an empty string (`Value=""`), just like with the category and supplier DropDownLists.
+> [!NOTE]
+> Since the `Discontinued` column in the `Products` database cannot have `NULL` values, we do not need to worry about capturing `NULL` information in the interface. If, however, `Discontinued` column could contain `NULL` values we'd want to add a third radio button to the list with its `Value` set to an empty string (`Value=""`), just like with the category and supplier DropDownLists.
 
 
 ## Summary

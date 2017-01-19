@@ -59,7 +59,8 @@ Next, add a column named `Subject` of type `nvarchar(50)` and a column named `Bo
 
 All that remains is to add a column that associates a user account with each guestbook comment. One option would be to add a column named `UserName` of type `nvarchar(256)`. This is a suitable choice when using a Membership provider other than the `SqlMembershipProvider`. But when using the `SqlMembershipProvider`, as we are in this tutorial series, the `UserName` column in the `aspnet_Users` table is not guaranteed to be unique. The `aspnet_Users` table's primary key is `UserId` and is of type `uniqueidentifier`. Therefore, the `GuestbookComments` table needs a column named `UserId` of type `uniqueidentifier` (disallowing `NULL` values). Go ahead and add this column.
 
-> [!NOTE] As we discussed in the [*Creating the Membership Schema in SQL Server*](creating-the-membership-schema-in-sql-server-vb.md) tutorial, the Membership framework is designed to enable multiple web applications with different user accounts to share the same user store. It does this by partitioning user accounts into different applications. And while each username is guaranteed to be unique within an application, the same username may be used in different applications using the same user store. There is a composite `UNIQUE` constraint in the `aspnet_Users` table on the `UserName` and `ApplicationId` fields, but not one on just the `UserName` field. Consequently, it is possible for the aspnet\_Users table to have two (or more) records with the same `UserName` value. There is, however, a `UNIQUE` constraint on the `aspnet_Users` table's `UserId` field (since it is the primary key). A `UNIQUE` constraint is important because without it we cannot establish a foreign key constraint between the `GuestbookComments` and `aspnet_Users` tables.
+> [!NOTE]
+> As we discussed in the [*Creating the Membership Schema in SQL Server*](creating-the-membership-schema-in-sql-server-vb.md) tutorial, the Membership framework is designed to enable multiple web applications with different user accounts to share the same user store. It does this by partitioning user accounts into different applications. And while each username is guaranteed to be unique within an application, the same username may be used in different applications using the same user store. There is a composite `UNIQUE` constraint in the `aspnet_Users` table on the `UserName` and `ApplicationId` fields, but not one on just the `UserName` field. Consequently, it is possible for the aspnet\_Users table to have two (or more) records with the same `UserName` value. There is, however, a `UNIQUE` constraint on the `aspnet_Users` table's `UserId` field (since it is the primary key). A `UNIQUE` constraint is important because without it we cannot establish a foreign key constraint between the `GuestbookComments` and `aspnet_Users` tables.
 
 
 After adding the `UserId` column, save the table by clicking on the Save icon in the Toolbar. Name the new table `GuestbookComments`.
@@ -174,7 +175,8 @@ We need to programmatically set the SqlDataSource control's `UserId` parameter t
 
 The above code starts by obtaining a reference to the currently logged on user by calling the `Membership` class's `GetUser` method. This returns a `MembershipUser` object, whose `ProviderUserKey` property contains the `UserId`. The `UserId` value is then assigned to the SqlDataSource's `@UserId` parameter.
 
-> [!NOTE] The `Membership.GetUser()` method returns information about the currently logged on user. If an anonymous user is visiting the page, it will return a value of `Nothing`. In such a case, this will lead to a `NullReferenceException` on the following line of code when attempting to read the `ProviderUserKey` property. Of course, we don't have to worry about `Membership.GetUser()` returning Nothing in the `AdditionalUserInfo.aspx` page because we configured URL authorization in a previous tutorial so that only authenticated users could access the ASP.NET resources in this folder. If you need to access information about the currently logged on user in a page where anonymous access is permitted, make sure to check that the `MembershipUser` object returned from the `GetUser()` method is not Nothing before referencing its properties.
+> [!NOTE]
+> The `Membership.GetUser()` method returns information about the currently logged on user. If an anonymous user is visiting the page, it will return a value of `Nothing`. In such a case, this will lead to a `NullReferenceException` on the following line of code when attempting to read the `ProviderUserKey` property. Of course, we don't have to worry about `Membership.GetUser()` returning Nothing in the `AdditionalUserInfo.aspx` page because we configured URL authorization in a previous tutorial so that only authenticated users could access the ASP.NET resources in this folder. If you need to access information about the currently logged on user in a page where anonymous access is permitted, make sure to check that the `MembershipUser` object returned from the `GetUser()` method is not Nothing before referencing its properties.
 
 
 If you visit the `AdditionalUserInfo.aspx` page through a browser you will see a blank page because we have yet to add any rows to the `UserProfiles` table. In Step 6 we will look at how to customize the CreateUserWizard control to automatically add a new row to the `UserProfiles` table when a new user account is created. For now, however, we will need to manually create a record in the table.
@@ -203,7 +205,8 @@ Return to the `AdditionalUserInfo.aspx page`, logged in as Bruce. As Figure 13 s
 **Figure 13**: The Currently Visiting User is Shown His Settings  ([Click to view full-size image](storing-additional-user-information-vb/_static/image39.png))
 
 
-> [!NOTE] Go ahead and manually add records in the `UserProfiles` table for each Membership user. In Step 6 we will look at how to customize the CreateUserWizard control to automatically add a new row to the `UserProfiles` table when a new user account is created.
+> [!NOTE]
+> Go ahead and manually add records in the `UserProfiles` table for each Membership user. In Step 6 we will look at how to customize the CreateUserWizard control to automatically add a new row to the `UserProfiles` table when a new user account is created.
 
 
 ## Step 3: Allowing the User to Edit His Home Town, Homepage, and Signature
@@ -256,7 +259,8 @@ Return to the `AdditionalUserInfo.aspx` page through a browser and update the da
 **Figure 16**: A Short Message is Displayed When the Settings are Updated  ([Click to view full-size image](storing-additional-user-information-vb/_static/image48.png))
 
 
-> [!NOTE] The DetailsView control's editing interface leaves a lot to be desired. It uses standard-sized textboxes, but the Signature field should probably be a multi-line textbox. A RegularExpressionValidator should be used to ensure that the homepage URL, if entered, starts with "http://" or "https://". Moreover, since the DetailsView control has its `DefaultMode` property set to `Edit`, the Cancel button does not do anything. It should either be removed or, when clicked, redirect the user to some other page (such as `~/Default.aspx`). I leave these enhancements as an exercise for the reader.
+> [!NOTE]
+> The DetailsView control's editing interface leaves a lot to be desired. It uses standard-sized textboxes, but the Signature field should probably be a multi-line textbox. A RegularExpressionValidator should be used to ensure that the homepage URL, if entered, starts with "http://" or "https://". Moreover, since the DetailsView control has its `DefaultMode` property set to `Edit`, the Cancel button does not do anything. It should either be removed or, when clicked, redirect the user to some other page (such as `~/Default.aspx`). I leave these enhancements as an exercise for the reader.
 
 
 ### Adding a Link to the`AdditionalUserInfo.aspx`Page in the Master Page
@@ -283,7 +287,8 @@ After crafting the user interface your page's declarative markup should look som
 
 With the user interface complete, our next task is to insert a new record into the `GuestbookComments` table when the `PostCommentButton` is clicked. This can be accomplished in a number of ways: we can write ADO.NET code in the Button's `Click` event handler; we can add a SqlDataSource control to the page, configure its `InsertCommand`, and then call its `Insert` method from the `Click` event handler; or we could build a middle tier that was responsible for inserting new guestbook comments, and invoke this functionality from the `Click` event handler. Since we looked at using a SqlDataSource in Step 3, let's use ADO.NET code here.
 
-> [!NOTE] The ADO.NET classes used to programmatically access data from a Microsoft SQL Server database are located in the `System.Data.SqlClient` namespace. You may need to import this namespace into your page's code-behind class (i.e., `Imports System.Data.SqlClient`).
+> [!NOTE]
+> The ADO.NET classes used to programmatically access data from a Microsoft SQL Server database are located in the `System.Data.SqlClient` namespace. You may need to import this namespace into your page's code-behind class (i.e., `Imports System.Data.SqlClient`).
 
 
 Create an event handler for the `PostCommentButton`'s `Click` event and add the following code:
@@ -306,14 +311,16 @@ Figure 17 shows the contents of the `GuestbookComments` table after two comments
 **Figure 17**: You Can See the Guestbook Comments in the `GuestbookComments` Table  ([Click to view full-size image](storing-additional-user-information-vb/_static/image51.png))
 
 
-> [!NOTE] If a user attempts to insert a guestbook comment that contains potentially dangerous markup – such as HTML – ASP.NET will throw an `HttpRequestValidationException`. To learn more about this exception, why it's thrown, and how to permit users to submit potentially dangerous values, consult the [Request Validation Whitepaper](../../../../whitepapers/request-validation.md).
+> [!NOTE]
+> If a user attempts to insert a guestbook comment that contains potentially dangerous markup – such as HTML – ASP.NET will throw an `HttpRequestValidationException`. To learn more about this exception, why it's thrown, and how to permit users to submit potentially dangerous values, consult the [Request Validation Whitepaper](../../../../whitepapers/request-validation.md).
 
 
 ## Step 5: Listing the Existing Guestbook Comments
 
 In addition to leaving comments, a user visiting the `Guestbook.aspx` page should also be able to view the guestbook's existing comments. To accomplish this, add a ListView control named `CommentList` to the bottom of the page.
 
-> [!NOTE] The ListView control is new to ASP.NET version 3.5. It is designed to display a list of items in a very customizable and flexible layout, yet still offer built-in editing, inserting, deleting, paging, and sorting functionality like the GridView. If you are using ASP.NET 2.0, you will need to use the DataList or Repeater control instead. For more information on using the ListView, see [Scott Guthrie](https://weblogs.asp.net/scottgu/)'s blog entry, [The asp:ListView Control](https://weblogs.asp.net/scottgu/archive/2007/08/10/the-asp-listview-control-part-1-building-a-product-listing-page-with-clean-css-ui.aspx), and my article, [Displaying Data with the ListView Control](http://aspnet.4guysfromrolla.com/articles/122607-1.aspx).
+> [!NOTE]
+> The ListView control is new to ASP.NET version 3.5. It is designed to display a list of items in a very customizable and flexible layout, yet still offer built-in editing, inserting, deleting, paging, and sorting functionality like the GridView. If you are using ASP.NET 2.0, you will need to use the DataList or Repeater control instead. For more information on using the ListView, see [Scott Guthrie](https://weblogs.asp.net/scottgu/)'s blog entry, [The asp:ListView Control](https://weblogs.asp.net/scottgu/archive/2007/08/10/the-asp-listview-control-part-1-building-a-product-listing-page-with-clean-css-ui.aspx), and my article, [Displaying Data with the ListView Control](http://aspnet.4guysfromrolla.com/articles/122607-1.aspx).
 
 
 Open the ListView's Smart Tag and, from the Choose Data Source drop-down list, bind the control to a new data source. As we saw in Step 2, this will launch the Data Source Configuration Wizard. Select the Database icon, name the resulting SqlDataSource `CommentsDataSource`, and click OK. Next, select the `SecurityTutorialsConnectionString` connection string from the drop-down list and click Next.
@@ -357,7 +364,8 @@ Try adding a new comment to the guestbook. Upon clicking the `PostCommentButton`
 
 The tutorial website downloadable from this tutorial illustrates both techniques. The ListView control's `EnableViewState` property to `False` and the code needed to programmatically rebind the data to the ListView is present in the `Click` event handler, but is commented out.
 
-> [!NOTE] Currently the `AdditionalUserInfo.aspx` page allows the user to view and edit their home town, homepage, and signature settings. It might be nice to update `AdditionalUserInfo.aspx` to display the logged in user's guestbook comments. That is, in addition to examining and modifying her information, a user can visit the `AdditionalUserInfo.aspx` page to see what guestbook comments she's made in the past. I leave this as an exercise for the interested reader.
+> [!NOTE]
+> Currently the `AdditionalUserInfo.aspx` page allows the user to view and edit their home town, homepage, and signature settings. It might be nice to update `AdditionalUserInfo.aspx` to display the logged in user's guestbook comments. That is, in addition to examining and modifying her information, a user can visit the `AdditionalUserInfo.aspx` page to see what guestbook comments she's made in the past. I leave this as an exercise for the interested reader.
 
 
 ## Step 6: Customizing the CreateUserWizard Control to Include an Interface for the Home Town, Homepage, and Signature
@@ -458,7 +466,8 @@ Click OK to close the `WizardStep` Collection Editor dialog. The new `WizardStep
 
 Note the new `<asp:WizardStep>` element. We need to add the user interface to collect the new user's home town, homepage, and signature here. You can enter this content in the declarative syntax or through the Designer. To use the Designer, select the "Your Settings" step from the drop-down list in the Smart Tag to see the step in the Designer.
 
-> [!NOTE] Selecting a step through the Smart Tag's drop-down list updates the CreateUserWizard control's [`ActiveStepIndex` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.activestepindex.aspx), which specifies the index of the starting step. Therefore, if you use this drop-down list to edit the "Your Settings" step in the Designer, be sure to set it back to "Sign Up for Your New Account" so that this step is shown when users first visit the `EnhancedCreateUserWizard.aspx` page.
+> [!NOTE]
+> Selecting a step through the Smart Tag's drop-down list updates the CreateUserWizard control's [`ActiveStepIndex` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.activestepindex.aspx), which specifies the index of the starting step. Therefore, if you use this drop-down list to edit the "Your Settings" step in the Designer, be sure to set it back to "Sign Up for Your New Account" so that this step is shown when users first visit the `EnhancedCreateUserWizard.aspx` page.
 
 
 Create a user interface within the "Your Settings" step that contains three TextBox controls named `HomeTown`, `HomepageUrl`, and `Signature`. After constructing this interface, the CreateUserWizard's declarative markup should look similar to the following:
@@ -479,7 +488,8 @@ In such a case, we need to programmatically reference the TextBox controls withi
 
 With this event handler in place, visit the `EnhancedCreateUserWizard.aspx` page through a browser and create a new user account specifying values for the home town, homepage, and signature. After creating the new account you should be redirected to the `AdditionalUserInfo.aspx` page, where the just-entered home town, homepage, and signature information is displayed.
 
-> [!NOTE] Our website currently has two pages from which a visitor can create a new account: `CreatingUserAccounts.aspx` and `EnhancedCreateUserWizard.aspx`. The website's sitemap and login page point to the `CreatingUserAccounts.aspx` page, but the `CreatingUserAccounts.aspx` page does not prompt the user for their home town, homepage, and signature information and does not add a corresponding row to `UserProfiles`. Therefore, either update the `CreatingUserAccounts.aspx` page so that it offers this functionality or update the sitemap and login page to reference `EnhancedCreateUserWizard.aspx` instead of `CreatingUserAccounts.aspx`. If you choose the latter option, be sure to update the `Membership` folder's `Web.config` file so as to allow anonymous users access to the `EnhancedCreateUserWizard.aspx` page.
+> [!NOTE]
+> Our website currently has two pages from which a visitor can create a new account: `CreatingUserAccounts.aspx` and `EnhancedCreateUserWizard.aspx`. The website's sitemap and login page point to the `CreatingUserAccounts.aspx` page, but the `CreatingUserAccounts.aspx` page does not prompt the user for their home town, homepage, and signature information and does not add a corresponding row to `UserProfiles`. Therefore, either update the `CreatingUserAccounts.aspx` page so that it offers this functionality or update the sitemap and login page to reference `EnhancedCreateUserWizard.aspx` instead of `CreatingUserAccounts.aspx`. If you choose the latter option, be sure to update the `Membership` folder's `Web.config` file so as to allow anonymous users access to the `EnhancedCreateUserWizard.aspx` page.
 
 
 ## Summary

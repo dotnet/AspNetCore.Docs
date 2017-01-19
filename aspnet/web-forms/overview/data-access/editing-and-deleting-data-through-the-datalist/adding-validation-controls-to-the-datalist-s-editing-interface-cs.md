@@ -75,7 +75,8 @@ For more information on these five controls refer back to the [Adding Validation
 
 For our tutorial we'll need to use a RequiredFieldValidator to ensure that a value for the product name has been supplied and a CompareValidator to ensure that the entered price has a value greater than or equal to 0 and is presented in a valid currency format.
 
-> [!NOTE] While ASP.NET 1.x had these same five validation controls, ASP.NET 2.0 has added a number of improvements, the main two being client-side script support for browsers in addition to Internet Explorer and the ability to partition validation controls on a page into validation groups. For more information on the new validation control features in 2.0, refer to [Dissecting the Validation Controls in ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/112305-1.aspx).
+> [!NOTE]
+> While ASP.NET 1.x had these same five validation controls, ASP.NET 2.0 has added a number of improvements, the main two being client-side script support for browsers in addition to Internet Explorer and the ability to partition validation controls on a page into validation groups. For more information on the new validation control features in 2.0, refer to [Dissecting the Validation Controls in ASP.NET 2.0](http://aspnet.4guysfromrolla.com/articles/112305-1.aspx).
 
 
 Let s start by adding the necessary validation controls to the DataList s `EditItemTemplate`. This task can be performed through the Designer by clicking on the Edit Templates link from the DataList s smart tag, or through the declarative syntax. Let s step through the process using the Edit Templates option from the Design view. After choosing to edit the DataList s `EditItemTemplate`, add a RequiredFieldValidator by dragging it from the Toolbox into the template editing interface, placing it after the `ProductName` TextBox.
@@ -127,7 +128,8 @@ Let s go with option 1 for this tutorial. Currently the `UnitPrice` is formatted
 
 With this change, the formatted price in the editing interface includes commas as the group separator and a period as the decimal separator, but leaves off the currency symbol.
 
-> [!NOTE] When removing the currency format from the editable interface, I find it helpful to put the currency symbol as text outside the TextBox. This serves as a hint to the user that they do not need to provide the currency symbol.
+> [!NOTE]
+> When removing the currency format from the editable interface, I find it helpful to put the currency symbol as text outside the TextBox. This serves as a hint to the user that they do not need to provide the currency symbol.
 
 
 ## Fixing the Cancel Button
@@ -153,7 +155,8 @@ Add the following code to the start of the `UpdateCommand` event handler, immedi
 
 With this addition, the product will attempt to be updated only if the submitted data is valid. Most users won t be able to postback invalid data due to the validation controls client-side scripts, but users whose browsers don t support JavaScript or that have JavaScript support disabled, can bypass the client-side checks and submit invalid data.
 
-> [!NOTE] The astute reader will recall that when updating data with the GridView, we didn t need to explicitly check the `Page.IsValid` property in our page s code-behind class. This is because the GridView consults the `Page.IsValid` property for us and only proceeds with the update only if it returns a value of `True`.
+> [!NOTE]
+> The astute reader will recall that when updating data with the GridView, we didn t need to explicitly check the `Page.IsValid` property in our page s code-behind class. This is because the GridView consults the `Page.IsValid` property for us and only proceeds with the update only if it returns a value of `True`.
 
 
 ## Step 3: Summarizing Data Entry Problems

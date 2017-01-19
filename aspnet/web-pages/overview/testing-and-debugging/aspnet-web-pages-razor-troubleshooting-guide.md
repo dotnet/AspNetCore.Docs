@@ -145,7 +145,8 @@ Substitute the appropriate values for `your-SMTP-server-name`, and so on. Some o
 
     This error might indicate that the value of the `To` or `From` properties are not recognized as email addresses. (ASP.NET cannot check that the email address is valid, only that it's in the correct format, like *name@domain.com*.)
 
-> [!NOTE] Remove the markup that displays the error (`@errorMessage`) before you publish the page to a live site. It's not a good idea to let users see error messages that you get from a server.
+> [!NOTE]
+> Remove the markup that displays the error (`@errorMessage`) before you publish the page to a live site. It's not a good idea to let users see error messages that you get from a server.
 
 
 <a id="AdditionalResources"></a>

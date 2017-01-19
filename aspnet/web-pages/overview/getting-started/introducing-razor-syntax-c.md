@@ -38,7 +38,8 @@ by [Tom FitzMacken](https://github.com/tfitzmac)
 
 This section lists a few tips that you absolutely need to know as you start writing ASP.NET server code using the Razor syntax.
 
-> [!NOTE] The Razor syntax is based on the C# programming language, and that's the language that's used most often with ASP.NET Web Pages. However, the Razor syntax also supports the Visual Basic language, and everything you see you can also do in Visual Basic. For details, see the appendix [Visual Basic Language and Syntax](https://go.microsoft.com/fwlink/?LinkId=202908).
+> [!NOTE]
+> The Razor syntax is based on the C# programming language, and that's the language that's used most often with ASP.NET Web Pages. However, the Razor syntax also supports the Visual Basic language, and everything you see you can also do in Visual Basic. For details, see the appendix [Visual Basic Language and Syntax](https://go.microsoft.com/fwlink/?LinkId=202908).
 
 
 You can find more details about most of these programming techniques later in the article.
@@ -109,7 +110,8 @@ Here's the result of using both of these examples in a page:
 
 ![Razor-Img4](introducing-razor-syntax-c/_static/image4.jpg)
 
-> [!NOTE] Notice that the `@` character is used both to mark verbatim string literals in C# and to mark code in ASP.NET pages.
+> [!NOTE]
+> Notice that the `@` character is used both to mark verbatim string literals in C# and to mark code in ASP.NET pages.
 
 
 ### 6. Code is case sensitive
@@ -120,7 +122,8 @@ In C#, keywords (like `var`, `true`, and `if`) and variable names are case sensi
 
 If you declare a variable as `var lastName = "Smith";` and if you try to reference that variable in your page as `@LastName`, an error results because `LastName` won't be recognized.
 
-> [!NOTE] In Visual Basic, keywords and variables are *not* case sensitive.
+> [!NOTE]
+> In Visual Basic, keywords and variables are *not* case sensitive.
 
 
 ### 7. Much of your coding involves objects
@@ -239,7 +242,8 @@ In server code blocks, you often want to output text or markup (or both) to the 
 
     The first example repeats the previous example but uses a single pair of `<text>` tags to enclose the text to render. In the second example, the `<text>` and `</text>` tags enclose three lines, all of which have some uncontained text and unmatched HTML tags (`<br />`), along with server code and matched HTML tags. Again, you could also precede each line individually with the `@:` operator; either way works.
 
-    > [!NOTE] When you output text as shown in this section &#8212; using an HTML element, the `@:` operator, or the `<text>` element &#8212; ASP.NET doesn't HTML-encode the output. (As noted earlier, ASP.NET does encode the output of server code expressions and server code blocks that are preceded by `@`, except in the special cases noted in this section.)
+    > [!NOTE]
+    > When you output text as shown in this section &#8212; using an HTML element, the `@:` operator, or the `<text>` element &#8212; ASP.NET doesn't HTML-encode the output. (As noted earlier, ASP.NET does encode the output of server code expressions and server code blocks that are preceded by `@`, except in the special cases noted in this section.)
 
 ### Whitespace
 
@@ -569,7 +573,8 @@ In programming terms, these situations are called *exceptions*. If your code enc
 
 In situations where your code might encounter exceptions, and in order to avoid error messages of this type, you can use `try/catch` statements. In the `try` statement, you run the code that you're checking. In one or more `catch` statements, you can look for specific errors (specific types of exceptions) that might have occurred. You can include as many `catch` statements as you need to look for errors that you are anticipating.
 
-> [!NOTE] We recommend that you avoid using the `Response.Redirect` method in `try/catch` statements, because it can cause an exception in your page.
+> [!NOTE]
+> We recommend that you avoid using the `Response.Redirect` method in `try/catch` statements, because it can cause an exception in your page.
 
 
 The following example shows a page that creates a text file on the first request and then displays a button that lets the user open the file. The example deliberately uses a bad file name so that it will cause an exception. The code includes `catch` statements for two possible exceptions: `FileNotFoundException`, which occurs if the file name is bad, and `DirectoryNotFoundException`, which occurs if ASP.NET can't even find the folder. (You can uncomment a statement in the example in order to see how it runs when everything works properly.)

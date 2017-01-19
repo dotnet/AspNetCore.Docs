@@ -64,7 +64,8 @@ The first task you need to complete is to add an *App\_offline* file to your web
 
 The next step is to modify your deployment logic to copy the file to the destination server at the start of the deployment process and remove it at the end.
 
-> [!NOTE] The next procedure assumes that you&#x27;re using a custom MSBuild project file to control your deployment process, as described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md). If you&#x27;re deploying direct from Visual Studio, you&#x27;ll need to use a different approach. Sayed Ibrahim Hashimi describes one such approach in [How to Take Your Web App Offline During Publishing](http://sedodream.com/2012/01/08/HowToTakeYourWebAppOfflineDuringPublishing.aspx).
+> [!NOTE]
+> The next procedure assumes that you&#x27;re using a custom MSBuild project file to control your deployment process, as described in [Understanding the Project File](../web-deployment-in-the-enterprise/understanding-the-project-file.md). If you&#x27;re deploying direct from Visual Studio, you&#x27;ll need to use a different approach. Sayed Ibrahim Hashimi describes one such approach in [How to Take Your Web App Offline During Publishing](http://sedodream.com/2012/01/08/HowToTakeYourWebAppOfflineDuringPublishing.aspx).
 
 
 To deploy an *App\_offline* file to a destination IIS website, you need to invoke MSDeploy.exe using the [Web Deploy **contentPath** provider](https://technet.microsoft.com/en-us/library/dd569034(WS.10).aspx). The **contentPath** provider supports both physical directory paths and IIS website or application paths, which makes it the ideal choice for synchronizing a file between a Visual Studio project folder and an IIS web application. To deploy the file, your MSDeploy command should resemble this:
@@ -117,7 +118,8 @@ The Web Publishing Pipeline (WPP) uses an item list named **FilesForPackagingFro
 
 1. Create a custom project file named *[project name].wpp.targets* in the same folder as your project file.
 
-    > [!NOTE] The *.wpp.targets* file needs to go in the same folder as your web application project file&#x2014;for example, *ContactManager.Mvc.csproj*&#x2014;rather than in the same folder as any custom project files you use to control the build and deployment process.
+    > [!NOTE]
+    > The *.wpp.targets* file needs to go in the same folder as your web application project file&#x2014;for example, *ContactManager.Mvc.csproj*&#x2014;rather than in the same folder as any custom project files you use to control the build and deployment process.
 2. In the *.wpp.targets* file, create a new MSBuild target that executes *before* the **CopyAllFilesToSingleFolderForPackage** target. This is the WPP target that builds a list of things to include in the package.
 3. In the new target, create an **ItemGroup** element.
 4. In the **ItemGroup** element, add a **FilesForPackagingFromProject** item and specify the *App\_offline.htm* file.
@@ -144,7 +146,8 @@ The next procedure shows you how to add this *.wpp.targets* file to a web applic
 
     ![](taking-web-applications-offline-with-web-deploy/_static/image4.png)
 
-    > [!NOTE] If you add a new item to the root node of a project, the file is created in the same folder as the project file. You can verify this by opening the folder in Windows Explorer.
+    > [!NOTE]
+    > If you add a new item to the root node of a project, the file is created in the same folder as the project file. You can verify this by opening the folder in Windows Explorer.
 5. In the file, add the MSBuild markup described previously.
 
     [!code-xml[Main](taking-web-applications-offline-with-web-deploy/samples/sample9.xml)]
@@ -152,7 +155,8 @@ The next procedure shows you how to add this *.wpp.targets* file to a web applic
 
 The next time you build and package your web application project, the WPP will automatically detect the *.wpp.targets* file. The *App\_offline-template.htm* file will be included in the resulting web deployment package as *App\_offline.htm*.
 
-> [!NOTE] If your deployment fails, the *App\_offline.htm* file will remain in place and your application will remain offline. This is typically the desired behavior. To bring your application back online, you can delete the *App\_offline.htm* file from your web server. Alternatively, if you correct any errors and run a successful deployment, the *App\_offline.htm* file will be removed.
+> [!NOTE]
+> If your deployment fails, the *App\_offline.htm* file will remain in place and your application will remain offline. This is typically the desired behavior. To bring your application back online, you can delete the *App\_offline.htm* file from your web server. Alternatively, if you correct any errors and run a successful deployment, the *App\_offline.htm* file will be removed.
 
 
 ## Conclusion

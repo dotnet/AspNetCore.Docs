@@ -23,7 +23,8 @@ by [Tom Dykstra](https://github.com/tdykstra)
 
 In the previous tutorial you created an MVC application that stores and displays data using the Entity Framework and SQL Server LocalDB. In this tutorial you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views.
 
-> [!NOTE] It's a common practice to implement the repository pattern in order to create an abstraction layer between your controller and the data access layer. To keep these tutorials simple and focused on teaching how to use the Entity Framework itself, they don't use repositories. For information about how to implement repositories, see the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
+> [!NOTE]
+> It's a common practice to implement the repository pattern in order to create an abstraction layer between your controller and the data access layer. To keep these tutorials simple and focused on teaching how to use the Entity Framework itself, they don't use repositories. For information about how to implement repositories, see the [ASP.NET Data Access Content Map](../../../../whitepapers/aspnet-data-access-content-map.md).
 
 
 In this tutorial, you'll create the following web pages:
@@ -103,7 +104,8 @@ The key value is passed to the method as the `id` parameter and comes from *rout
 
     > [!NOTE] 
     > 
-    > [!WARNING] Security - The `ValidateAntiForgeryToken` attribute helps prevent [cross-site request forgery](../../security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.md) attacks. It requires a corresponding `Html.AntiForgeryToken()` statement in the view, which you'll see later.
+    > [!WARNING]
+    > Security - The `ValidateAntiForgeryToken` attribute helps prevent [cross-site request forgery](../../security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages.md) attacks. It requires a corresponding `Html.AntiForgeryToken()` statement in the view, which you'll see later.
     > 
     > The `Bind` attribute is one way to protect against *over-posting* in create scenarios. For example, suppose the `Student` entity includes a `Secret` property that you don't want this web page to set.
     > 

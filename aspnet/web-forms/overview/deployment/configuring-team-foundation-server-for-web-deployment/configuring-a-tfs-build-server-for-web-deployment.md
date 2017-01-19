@@ -80,13 +80,15 @@ The best way to install common web platform components is to use the [Web Platfo
         ![](configuring-a-tfs-build-server-for-web-deployment/_static/image1.png)
 2. When the installation of Visual Studio 2010 is complete, download and install [Visual Studio 2010 Service Pack 1](https://go.microsoft.com/?linkid=9805133) (if it&#x27;s not already included in your installation media).
 
-    > [!NOTE] Visual Studio 2010 Service Pack 1 resolves a bug that can prevent MSBuild from locating the MSDeploy executable.
+    > [!NOTE]
+    > Visual Studio 2010 Service Pack 1 resolves a bug that can prevent MSBuild from locating the MSDeploy executable.
 3. Download and launch the [Web Platform Installer](https://go.microsoft.com/?linkid=9805118).
 4. At the top of the **Web Platform Installer 3.0** window, click **Products**.
 5. On the left side of the window, in the navigation pane, click **Frameworks**.
 6. In the **Microsoft .NET Framework 4** row, if the .NET Framework is not already installed, click **Add**.
 
-    > [!NOTE] You may have already installed the .NET Framework 4.0 through Windows Update. If a product or component is already installed, the Web Platform Installer will indicate this by replacing the **Add** button with the text **Installed**.
+    > [!NOTE]
+    > You may have already installed the .NET Framework 4.0 through Windows Update. If a product or component is already installed, the Web Platform Installer will indicate this by replacing the **Add** button with the text **Installed**.
 
     ![](configuring-a-tfs-build-server-for-web-deployment/_static/image2.png)
 7. In the **ASP.NET MVC 3 (Visual Studio 2010)** row, click **Add**.
@@ -96,7 +98,8 @@ The best way to install common web platform components is to use the [Web Platfo
 11. Review the license terms, and if you consent to the terms, click **I Accept**.
 12. When the installation is complete, click **Finish**, and then close the **Web Platform Installer 3.0** window.
 
-> [!NOTE] If your deployment process includes the use of tools like VSDBCMD.exe or SQLCMD.exe, you&#x27;ll need to ensure that these are installed on your build server. VSDBCMD.exe is a Visual Studio tool and is typically added to the server when you install Team Foundation Build. SQLCMD.exe is a SQL Server tool. You can download a stand-alone version of SQLCMD.exe from the [Microsoft SQL Server 2008 R2 Feature Pack](https://go.microsoft.com/?linkid=9805134) page.
+> [!NOTE]
+> If your deployment process includes the use of tools like VSDBCMD.exe or SQLCMD.exe, you&#x27;ll need to ensure that these are installed on your build server. VSDBCMD.exe is a Visual Studio tool and is typically added to the server when you install Team Foundation Build. SQLCMD.exe is a SQL Server tool. You can download a stand-alone version of SQLCMD.exe from the [Microsoft SQL Server 2008 R2 Feature Pack](https://go.microsoft.com/?linkid=9805134) page.
 
 
 ## Conclusion

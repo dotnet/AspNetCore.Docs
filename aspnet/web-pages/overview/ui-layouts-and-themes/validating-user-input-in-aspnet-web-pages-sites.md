@@ -108,7 +108,8 @@ By default, user input is validated after users submit the page — that is, the
 
 You can add support to perform validation in client script. In that case, the validation is performed as users work in the browser. For example, suppose you specify that a value should be an integer. If a user enters a non-integer value, the error is reported as soon as the user leaves the entry field. Users get immediate feedback, which is convenient for them. Client-based validation can also reduce the number of times that the user has to submit the form to correct multiple errors.
 
-> [!NOTE] Even if you use client-side validation, validation is always also performed in server code. Performing validation in server code is a security measure, in case users bypass client-based validation.
+> [!NOTE]
+> Even if you use client-side validation, validation is always also performed in server code. Performing validation in server code is a security measure, in case users bypass client-based validation.
 
 
 1. Register the following JavaScript libraries in the page:  
@@ -152,7 +153,8 @@ If you include this style block in the example pages from earlier in the article
 
 ![Validation errors that use CSS style classes](validating-user-input-in-aspnet-web-pages-sites/_static/image3.png)
 
-> [!NOTE] If you're not using client validation in ASP.NET Web Pages 2, the CSS classes for the `<input>` elements (`input-validation-error` and `input-validation-valid` don't have any effect.
+> [!NOTE]
+> If you're not using client validation in ASP.NET Web Pages 2, the CSS classes for the `<input>` elements (`input-validation-error` and `input-validation-valid` don't have any effect.
 
 
 ### Static and Dynamic Error Display

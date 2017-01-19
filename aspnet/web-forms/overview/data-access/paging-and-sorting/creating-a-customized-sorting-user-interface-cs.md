@@ -104,7 +104,8 @@ To add separator rows between each sorting group, we can directly manipulate thi
 
 For this tutorial, we'll use this latter approach to customize the sorting user experience.
 
-> [!NOTE] The code I m presenting in this tutorial is based on the example provided in [Teemu Keiski](http://aspadvice.com/blogs/joteke/default.aspx) s blog entry, [Playing a Bit with GridView Sort Grouping](http://aspadvice.com/blogs/joteke/archive/2006/02/11/15130.aspx).
+> [!NOTE]
+> The code I m presenting in this tutorial is based on the example provided in [Teemu Keiski](http://aspadvice.com/blogs/joteke/default.aspx) s blog entry, [Playing a Bit with GridView Sort Grouping](http://aspadvice.com/blogs/joteke/archive/2006/02/11/15130.aspx).
 
 
 ## Step 3: Adding the Separator Rows to the GridView s Control Hierarchy
@@ -118,7 +119,8 @@ When the `Page` class s original `Render` method is invoked `base.Render(writer)
 
 To inject the sort group headers we first need to ensure that the user has requested that the data be sorted. By default, the GridView s contents are not sorted, and therefore we don t need to enter any group sorting headers.
 
-> [!NOTE] If you want the GridView to be sorted by a particular column when the page is first loaded, call the GridView s `Sort` method on the first page visit (but not on subsequent postbacks). To accomplish this, add this call in the `Page_Load` event handler within an `if (!Page.IsPostBack)` conditional. Refer back to the [Paging and Sorting Report Data](paging-and-sorting-report-data-cs.md) tutorial information for more on the `Sort` method.
+> [!NOTE]
+> If you want the GridView to be sorted by a particular column when the page is first loaded, call the GridView s `Sort` method on the first page visit (but not on subsequent postbacks). To accomplish this, add this call in the `Page_Load` event handler within an `if (!Page.IsPostBack)` conditional. Refer back to the [Paging and Sorting Report Data](paging-and-sorting-report-data-cs.md) tutorial information for more on the `Sort` method.
 
 
 Assuming that the data has been sorted, our next task is to determine what column the data was sorted by and then to scan the rows looking for differences in that column s values. The following code ensures that the data has been sorted and finds the column by which the data has been sorted:
@@ -135,7 +137,8 @@ With the index of the column by which the data is sorted, the final step is to e
 
 This code starts by programmatically referencing the `Table` object found at the root of the GridView s control hierarchy and creating a string variable named `lastValue`. `lastValue` is used to compare the current row s sorted column value with the previous row s value. Next, the GridView s `Rows` collection is enumerated and for each row the value of the sorted column is stored in the `currentValue` variable.
 
-> [!NOTE] To determine the value of the particular row s sorted column I use the cell s `Text` property. This works well for BoundFields, but will not work as desired for TemplateFields, CheckBoxFields, and so on. We'll look at how to account for alternate GridView fields shortly.
+> [!NOTE]
+> To determine the value of the particular row s sorted column I use the cell s `Text` property. This works well for BoundFields, but will not work as desired for TemplateFields, CheckBoxFields, and so on. We'll look at how to account for alternate GridView fields shortly.
 
 
 The `currentValue` and `lastValue` variables are then compared. If they differ we need to add a new separator row to the control hierarchy. This is accomplished by determining the index of the `GridViewRow` in the `Table` object s `Rows` collection, creating new `GridViewRow` and `TableCell` instances, and then adding the `TableCell` and `GridViewRow` to the control hierarchy.
@@ -177,7 +180,8 @@ With the above code addition, the sort group headers are now present when sortin
 **Figure 7**: The Sort Group Headers are Now Present When Sorting a CheckBoxField ([Click to view full-size image](creating-a-customized-sorting-user-interface-cs/_static/image19.png))
 
 
-> [!NOTE] If you have products with `NULL` database values for the `CategoryID`, `SupplierID`, or `UnitPrice` fields, those values will appear as empty strings in the GridView by default, meaning the separator row s text for those products with `NULL` values will read like Category: (that is, there s no name after Category: like with Category: Beverages ). If you want a value displayed here you can either set the BoundFields [`NullDisplayText` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.boundfield.nulldisplaytext.aspx) to the text you want displayed or you can add a conditional statement in the Render method when assigning the `currentValue` to the separator row s `Text` property.
+> [!NOTE]
+> If you have products with `NULL` database values for the `CategoryID`, `SupplierID`, or `UnitPrice` fields, those values will appear as empty strings in the GridView by default, meaning the separator row s text for those products with `NULL` values will read like Category: (that is, there s no name after Category: like with Category: Beverages ). If you want a value displayed here you can either set the BoundFields [`NullDisplayText` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.boundfield.nulldisplaytext.aspx) to the text you want displayed or you can add a conditional statement in the Render method when assigning the `currentValue` to the separator row s `Text` property.
 
 
 ## Summary

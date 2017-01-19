@@ -72,7 +72,8 @@ Take a moment to create an editing interface that displays the supplier s name a
 
 [!code-aspx[Main](performing-batch-updates-cs/samples/sample1.aspx)]
 
-> [!NOTE] As with the preceding tutorial, the DataList in this tutorial must have its view state enabled.
+> [!NOTE]
+> As with the preceding tutorial, the DataList in this tutorial must have its view state enabled.
 
 
 In the `ItemTemplate` I m using two new CSS classes, `SupplierPropertyLabel` and `SupplierPropertyValue`, which have been added to the `Styles.css` class and configured to use the same style settings as the `ProductPropertyLabel` and `ProductPropertyValue` CSS classes.
@@ -116,7 +117,8 @@ The collection of `DataListItem` instances that makeup the DataList can be acces
 
 When the user clicks one of the Update All buttons, the `UpdateAllSupplierAddresses` method iterates through each `DataListItem` in the `Suppliers` DataList and calls the `SuppliersBLL` class s `UpdateSupplierAddress` method, passing in the corresponding values. A non-entered value for address, city, or country passes is a value of `Nothing` to `UpdateSupplierAddress` (rather than a blank string), which results in a database `NULL` for the underlying record s fields.
 
-> [!NOTE] As an enhancement, you may want to add a status Label Web control to the page that provides some confirmation message after the batch update is performed.
+> [!NOTE]
+> As an enhancement, you may want to add a status Label Web control to the page that provides some confirmation message after the batch update is performed.
 
 
 ## Updating Only Those Addresses That Have Been Modified
@@ -143,7 +145,8 @@ With this added code, the DAL s `Update` method sends an `UPDATE` statement to t
 
 Alternatively, we could keep track of whether there are any differences between the passed-in address fields and the database data and, if there are none, simply bypass the call to the DAL s `Update` method. This approach works well if you re using the DB direct method, since the DB direct method isn t passed a `SuppliersRow` instance whose `RowState` can be checked to determine whether a database call is actually needed.
 
-> [!NOTE] Each time the `UpdateSupplierAddress` method is invoked, a call is made to the database to retrieve information about the updated record. Then, if there are any changes in data, another call to the database is made to update the table row. This workflow could be optimized by creating an `UpdateSupplierAddress` method overload that accepts an `EmployeesDataTable` instance that has *all* of the changes from the `BatchUpdate.aspx` page. Then, it could make one call to the database to get all of the records from the `Suppliers` table. The two resultsets could then be enumerated and only those records where changes have occurred could be updated.
+> [!NOTE]
+> Each time the `UpdateSupplierAddress` method is invoked, a call is made to the database to retrieve information about the updated record. Then, if there are any changes in data, another call to the database is made to update the table row. This workflow could be optimized by creating an `UpdateSupplierAddress` method overload that accepts an `EmployeesDataTable` instance that has *all* of the changes from the `BatchUpdate.aspx` page. Then, it could make one call to the database to get all of the records from the `Suppliers` table. The two resultsets could then be enumerated and only those records where changes have occurred could be updated.
 
 
 ## Summary

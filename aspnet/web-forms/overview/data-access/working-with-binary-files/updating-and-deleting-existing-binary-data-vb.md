@@ -96,7 +96,8 @@ For now, set the UPDATE tab s drop-down list to (None) , but leave the DELETE ta
 **Figure 4**: Configure the ObjectDataSource to Use the `DeleteCategory` Method ([Click to view full-size image](updating-and-deleting-existing-binary-data-vb/_static/image12.png))
 
 
-> [!NOTE] Upon completing the wizard, Visual Studio may ask if you want to Refresh Fields and Keys, which will regenerate the data Web controls fields. Choose No, because choosing Yes will overwrite any field customizations you may have made.
+> [!NOTE]
+> Upon completing the wizard, Visual Studio may ask if you want to Refresh Fields and Keys, which will regenerate the data Web controls fields. Choose No, because choosing Yes will overwrite any field customizations you may have made.
 
 
 The ObjectDataSource will now include a value for its `DeleteMethod` property as well as a `DeleteParameter`. Recall that when using the wizard to specify the methods, Visual Studio sets the ObjectDataSource s `OldValuesParameterFormatString` property to `original_{0}`, which causes problems with the update and delete method invocations. Therefore, either clear out this property altogether or reset it to the default, `{0}`. If you need to refresh your memory on this ObjectDataSource property, see the [An Overview of Inserting, Updating, and Deleting Data](../editing-inserting-and-deleting-data/an-overview-of-inserting-updating-and-deleting-data-vb.md) tutorial.
@@ -150,7 +151,8 @@ The GridView s [`RowDeleting` event](https://msdn.microsoft.com/en-us/library/sy
 
 In the `RowDeleting` event handler, the `CategoryID` of the row being deleted is grabbed from the GridView s `DataKeys` collection, which can be accessed in this event handler through the `e.Keys` collection. Next, the `CategoriesBLL` class s `GetCategoryByCategoryID(categoryID)` is invoked to return information about the record being deleted. If the returned `CategoriesDataRow` object has a non-`NULL``BrochurePath` value then it is stored in the page variable `deletedCategorysPdfPath` so that the file can be deleted in the `RowDeleted` event handler.
 
-> [!NOTE] Rather than retrieving the `BrochurePath` details for the `Categories` record being deleted in the `RowDeleting` event handler, we could have alternatively added the `BrochurePath` to the GridView s `DataKeyNames` property and accessed the record s value through the `e.Keys` collection. Doing so would slightly increase the GridView s view state size, but would reduce the amount of code needed and save a trip to the database.
+> [!NOTE]
+> Rather than retrieving the `BrochurePath` details for the `Categories` record being deleted in the `RowDeleting` event handler, we could have alternatively added the `BrochurePath` to the GridView s `DataKeyNames` property and accessed the record s value through the `e.Keys` collection. Doing so would slightly increase the GridView s view state size, but would reduce the amount of code needed and save a trip to the database.
 
 
 After the ObjectDataSource s underlying delete command has been invoked, the GridView s `RowDeleted` event handler fires. If there were no exceptions in deleting the data and there is a value for `deletedCategorysPdfPath`, then the PDF is deleted from the file system. Note that this extra code is not needed to clean up the category s binary data associated with its picture. That s because the picture data is stored directly in the database, so deleting the `Categories` row also deletes that category s picture data.
@@ -340,7 +342,8 @@ After editing a category and uploading the JPG image, the image will not render 
 
 [!code-vb[Main](updating-and-deleting-existing-binary-data-vb/samples/sample13.vb)]
 
-> [!NOTE] The `UpdatingAndDeleting.aspx` page s inserting and editing interfaces could use a bit more work. The `CategoryName` and `Description` BoundFields in the DetailsView and GridView should be converted into TemplateFields. Since `CategoryName` does not allow `NULL` values, a RequiredFieldValidator should be added. And the `Description` TextBox should probably be converted into a multi-line TextBox. I leave these finishing touches as an exercise for you.
+> [!NOTE]
+> The `UpdatingAndDeleting.aspx` page s inserting and editing interfaces could use a bit more work. The `CategoryName` and `Description` BoundFields in the DetailsView and GridView should be converted into TemplateFields. Since `CategoryName` does not allow `NULL` values, a RequiredFieldValidator should be added. And the `Description` TextBox should probably be converted into a multi-line TextBox. I leave these finishing touches as an exercise for you.
 
 
 ## Summary

@@ -41,7 +41,8 @@ A master page can contain any number of ContentPlaceHolder controls (or none at 
 
 [!code-aspx[Main](master-pages/samples/sample1.aspx)]
 
-> [!NOTE] You will often hear people describe master pages as being a base class for other pages. Thats actually not true. The relationship between master pages and content pages is not one of inheritance.
+> [!NOTE]
+> You will often hear people describe master pages as being a base class for other pages. Thats actually not true. The relationship between master pages and content pages is not one of inheritance.
 
 
 **Figure 1** shows a master page and an associated content page as they appear in Visual Studio 2005. You can see the ContentPlaceHolder control in the master page and the corresponding Content control in the content page. Notice that the master pages content that is outside of the ContentPlaceHolder is visible but grayed out in the content page. Only the content inside of the ContentPlaceHolder can be supplanted by the content page. All other content that comes from the master page is immutable.
@@ -176,7 +177,8 @@ In a nested master scenario, this would be the parent master. Another master pag
 
 Note that in this scenario, the child master is also a content page for the parent master. All of the child master's content appears inside of a Content control that gets its content from the parent's ContentPlaceHolder control.
 
-> [!NOTE] Designer support is not available for nested master pages. When you are developing using nested masters, you will need to use source view.
+> [!NOTE]
+> Designer support is not available for nested master pages. When you are developing using nested masters, you will need to use source view.
 
 
 This video shows a walkthrough of using nested master pages.

@@ -27,7 +27,8 @@ In the [preceding tutorial](creating-new-stored-procedures-for-the-typed-dataset
 
 In this tutorial we will look at how to configure the TableAdapter to use existing stored procedures. Since the Northwind database only has a small set of built-in stored procedures, we will also look at the steps needed to manually add new stored procedures to the database through the Visual Studio environment. Let s get started!
 
-> [!NOTE] In the [Wrapping Database Modifications within a Transaction](../working-with-batched-data/wrapping-database-modifications-within-a-transaction-cs.md) tutorial we added methods to the TableAdapter to support transactions (`BeginTransaction`, `CommitTransaction`, and so on). Alternatively, transactions can be managed entirely within a stored procedure, which requires no modifications to the Data Access Layer code. In this tutorial we'll explore the T-SQL commands used to execute a stored procedure s statements within the scope of a transaction.
+> [!NOTE]
+> In the [Wrapping Database Modifications within a Transaction](../working-with-batched-data/wrapping-database-modifications-within-a-transaction-cs.md) tutorial we added methods to the TableAdapter to support transactions (`BeginTransaction`, `CommitTransaction`, and so on). Alternatively, transactions can be managed entirely within a stored procedure, which requires no modifications to the Data Access Layer code. In this tutorial we'll explore the T-SQL commands used to execute a stored procedure s statements within the scope of a transaction.
 
 
 ## Step 1: Adding Stored Procedures to the Northwind Database
@@ -97,7 +98,8 @@ All that remains is to indicate what method patterns to use followed by the name
 **Figure 6**: Name the Methods `FillByCategoryID` and `GetProductsByCategoryID` ([Click to view full-size image](using-existing-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/_static/image18.png))
 
 
-> [!NOTE] The TableAdapter methods we just created, `FillByCategoryID` and `GetProductsByCategoryID`, expect an input parameter of type `int`. This input parameter value is passed into the stored procedure via its `@CategoryID` parameter. If you modify the `Products_SelectByCategory` stored procedure s parameters, you'll need to also update the parameters for these TableAdapter methods. As discussed in the [previous tutorial](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md), this can be done in one of two ways: by manually adding or removing parameters from the parameters collection or by rerunning the TableAdapter wizard.
+> [!NOTE]
+> The TableAdapter methods we just created, `FillByCategoryID` and `GetProductsByCategoryID`, expect an input parameter of type `int`. This input parameter value is passed into the stored procedure via its `@CategoryID` parameter. If you modify the `Products_SelectByCategory` stored procedure s parameters, you'll need to also update the parameters for these TableAdapter methods. As discussed in the [previous tutorial](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs.md), this can be done in one of two ways: by manually adding or removing parameters from the parameters collection or by rerunning the TableAdapter wizard.
 
 
 ## Step 3: Adding a`GetProductsByCategoryID(categoryID)`Method to the BLL
@@ -113,7 +115,8 @@ This BLL method simply returns the `ProductsDataTable` returned from the `Produc
 
 To test the newly added `Products_SelectByCategoryID` stored procedure and the corresponding DAL and BLL methods, let s create an ASP.NET page that contains a DropDownList and a GridView. The DropDownList will list all of the categories in the database while the GridView will display the products belonging to the selected category.
 
-> [!NOTE] We ve created master/detail interfaces using DropDownLists in previous tutorials. For a more in-depth look at implementing such a master/detail report, refer to the [Master/Detail Filtering With a DropDownList](../masterdetail/master-detail-filtering-with-a-dropdownlist-cs.md) tutorial.
+> [!NOTE]
+> We ve created master/detail interfaces using DropDownLists in previous tutorials. For a more in-depth look at implementing such a master/detail report, refer to the [Master/Detail Filtering With a DropDownList](../masterdetail/master-detail-filtering-with-a-dropdownlist-cs.md) tutorial.
 
 
 Open the `ExistingSprocs.aspx` page in the `AdvancedDAL` folder and drag a DropDownList from the Toolbox onto the Designer. Set the DropDownList s `ID` property to `Categories` and its `AutoPostBack` property to `true`. Next, from its smart tag, bind the DropDownList to a new ObjectDataSource named `CategoriesDataSource`. Configure the ObjectDataSource so that it retrieves its data from the `CategoriesBLL` class s `GetCategories` method. Set the drop-down lists in the UPDATE, INSERT, and DELETE tabs to (None) .
@@ -193,7 +196,8 @@ The template starts by defining a `TRY...CATCH` block, a construct new to SQL Se
 
 If there are no errors executing the SQL statements that makeup the transaction, the `COMMIT TRANSACTION` statement commits the changes and completes the transaction. If, however, one of the statements results in an error, the `ROLLBACK TRANSACTION` in the `CATCH` block returns the database to its state prior to the start of the transaction. The stored procedure also raises an error using the [RAISERROR command](https://msdn.microsoft.com/en-us/library/ms178592.aspx), which causes a `SqlException` to be raised in the application.
 
-> [!NOTE] Since the `TRY...CATCH` block is new to SQL Server 2005, the above template will not work if you are using older versions of Microsoft SQL Server. If you are not using SQL Server 2005, consult [Managing Transactions in SQL Server Stored Procedures](http://www.4guysfromrolla.com/webtech/080305-1.shtml) for a template that will work with other versions of SQL Server.
+> [!NOTE]
+> Since the `TRY...CATCH` block is new to SQL Server 2005, the above template will not work if you are using older versions of Microsoft SQL Server. If you are not using SQL Server 2005, consult [Managing Transactions in SQL Server Stored Procedures](http://www.4guysfromrolla.com/webtech/080305-1.shtml) for a template that will work with other versions of SQL Server.
 
 
 Let s look at a concrete example. A foreign key constraint exists between the `Categories` and `Products` tables, meaning that each `CategoryID` field in the `Products` table must map to a `CategoryID` value in the `Categories` table. Any action that would violate this constraint, such as attempting to delete a category that has associated products, results in a foreign key constraint violation. To verify this, revisit the Updating and Deleting Existing Binary Data example in the Working with Binary Data section (`~/BinaryData/UpdatingAndDeleting.aspx`). This page lists each category in the system along with Edit and Delete buttons (see Figure 13), but if you attempt to delete a category that has associated products - such as Beverages - the delete fails due to a foreign key constraint violation (see Figure 14).
@@ -229,7 +233,8 @@ Take a moment to add the `Categories_Delete` stored procedure to the Northwind d
 
 While we ve added the `Categories_Delete` stored procedure to the database, the DAL is currently configured to use ad-hoc SQL statements to perform the delete. We need to update the `CategoriesTableAdapter` and instruct it to use the `Categories_Delete` stored procedure instead.
 
-> [!NOTE] Earlier in this tutorial we were working with the `NorthwindWithSprocs` DataSet. But that DataSet only has a single entity, `ProductsDataTable`, and we need to work with categories. Therefore, for the remainder of this tutorial when I talk about the Data Access Layer I m referring to the `Northwind` DataSet, the one that we first created in the [Creating a Data Access Layer](../introduction/creating-a-data-access-layer-cs.md) tutorial.
+> [!NOTE]
+> Earlier in this tutorial we were working with the `NorthwindWithSprocs` DataSet. But that DataSet only has a single entity, `ProductsDataTable`, and we need to work with categories. Therefore, for the remainder of this tutorial when I talk about the Data Access Layer I m referring to the `Northwind` DataSet, the one that we first created in the [Creating a Data Access Layer](../introduction/creating-a-data-access-layer-cs.md) tutorial.
 
 
 Open the Northwind DataSet, select the `CategoriesTableAdapter`, and go to the Properties window. The Properties window lists the `InsertCommand`, `UpdateCommand`, `DeleteCommand`, and `SelectCommand` used by the TableAdapter, as well as its name and connection information. Expand the `DeleteCommand` property to see its details. As Figure 15 shows, the `DeleteCommand` s `ComamndType` property is set to Text, which instructs it to send the text in the `CommandText` property as an ad-hoc SQL query.
@@ -250,7 +255,8 @@ To change these settings, select the (DeleteCommand) text in the Properties wind
 
 Once the DAL has been updated, deleting a category will automatically delete all of its associated products and do so under the umbrella of a transaction. To verify this, return to the Updating and Deleting Existing Binary Data page and click the Delete button for one of the categories. With one single click of the mouse, the category and all of its associated products will be deleted.
 
-> [!NOTE] Before testing the `Categories_Delete` stored procedure, which will delete a number of products along with the selected category, it might be prudent to make a backup copy of your database. If you are using the `NORTHWND.MDF` database in `App_Data`, simply close Visual Studio and copy the MDF and LDF files in `App_Data` to some other folder. After testing the functionality, you can restore the database by closing Visual Studio and replacing the current MDF and LDF files in `App_Data` with the backup copies.
+> [!NOTE]
+> Before testing the `Categories_Delete` stored procedure, which will delete a number of products along with the selected category, it might be prudent to make a backup copy of your database. If you are using the `NORTHWND.MDF` database in `App_Data`, simply close Visual Studio and copy the MDF and LDF files in `App_Data` to some other folder. After testing the functionality, you can restore the database by closing Visual Studio and replacing the current MDF and LDF files in `App_Data` with the backup copies.
 
 
 ## Summary

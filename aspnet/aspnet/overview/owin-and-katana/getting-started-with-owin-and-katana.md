@@ -54,7 +54,8 @@ Add the following code to the `Startup1.Configuration` method:
 
 This code adds a simple piece of middleware to the OWIN pipeline, implemented as a function that receives a **Microsoft.Owin.IOwinContext** instance. When the server receives an HTTP request, the OWIN pipeline invokes the middleware. The middleware sets the content type for the response and writes the response body.
 
-> [!NOTE] The OWIN Startup class template is available in Visual Studio 2013. If you are using Visual Studio 2012, just add a new empty class named `Startup1`, and paste in the following code:
+> [!NOTE]
+> The OWIN Startup class template is available in Visual Studio 2013. If you are using Visual Studio 2012, just add a new empty class named `Startup1`, and paste in the following code:
 
 
 [!code-csharp[Main](getting-started-with-owin-and-katana/samples/sample2.cs)]

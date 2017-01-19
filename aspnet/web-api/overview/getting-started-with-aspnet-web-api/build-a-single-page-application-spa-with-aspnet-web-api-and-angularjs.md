@@ -56,7 +56,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 2. Right-click on **Setup.cmd** and select **Run as administrator** to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.
 3. If the User Account Control dialog box is shown, confirm the action to proceed.
 
-> [!NOTE] Make sure you have checked all the dependencies for this lab before running the setup.
+> [!NOTE]
+> Make sure you have checked all the dependencies for this lab before running the setup.
 
 
 <a id="CodeSnippets"></a>
@@ -64,7 +65,8 @@ In order to run the exercises in this hands-on lab, you will need to set up your
 
 Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio 2013 to avoid having to add it manually.
 
-> [!NOTE] Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
+> [!NOTE]
+> Each exercise is accompanied by a starting solution located in the **Begin** folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an **End** folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.
 
 
 * * *
@@ -79,7 +81,8 @@ This hands-on lab includes the following exercises:
 
 Estimated time to complete this lab: **60 minutes**
 
-> [!NOTE] When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
+> [!NOTE]
+> When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.
 
 
 <a id="Exercise1"></a>
@@ -120,7 +123,8 @@ In this task you will start creating a new ASP.NET MVC project with support for 
 
     *Adding the model assets*
 
-    > [!NOTE] By adding these files, you are adding the data model, the Entity Framework's database context and the database initializer for the Geek Quiz application.
+    > [!NOTE]
+    > By adding these files, you are adding the data model, the Entity Framework's database context and the database initializer for the Geek Quiz application.
     > 
     > **Entity Framework (EF)** is an object-relational mapper (ORM) that enables you to create data access applications by programming with a conceptual application model instead of programming directly using a relational storage schema. You can learn more about Entity Framework [here](../../../entity-framework.md).
     > 
@@ -141,7 +145,8 @@ In this task you will start creating a new ASP.NET MVC project with support for 
 
     [!code-csharp[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample3.cs)]
 
-    > [!NOTE] The **Authorize** filter checks to see if the user is authenticated. If the user is not authenticated, it returns HTTP status code 401 (Unauthorized) without invoking the action. You can apply the filter globally, at the controller level, or at the level of individual actions.
+    > [!NOTE]
+    > The **Authorize** filter checks to see if the user is authenticated. If the user is not authenticated, it returns HTTP status code 401 (Unauthorized) without invoking the action. You can apply the filter globally, at the controller level, or at the level of individual actions.
 9. You will now customize the layout of the web pages and the branding. To do this, open the **\_Layout.cshtml** file inside the **Views | Shared** folder and update the content of the **&lt;title&gt;** element by replacing *My ASP.NET Application* with *Geek Quiz*.
 
     [!code-cshtml[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample4.cshtml)]
@@ -170,7 +175,8 @@ You will use the ASP.NET Scaffolding tools provided by Visual Studio to create t
 
     [!code-csharp[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample8.cs)]
 
-    > [!NOTE] The **CamelCasePropertyNamesContractResolver** automatically converts property names to *camel* case, which is the general convention for property names in JavaScript.
+    > [!NOTE]
+    > The **CamelCasePropertyNamesContractResolver** automatically converts property names to *camel* case, which is the general convention for property names in JavaScript.
 4. In **Solution Explorer**, right-click the **Controllers** folder of the **GeekQuiz** project and select **Add | New Scaffolded Item...**.
 
     ![Creating a new scaffolded item](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/_static/image6.png "Creating a new scaffolded item")
@@ -201,7 +207,8 @@ You will use the ASP.NET Scaffolding tools provided by Visual Studio to create t
 
     [!code-csharp[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample10.cs)]
 
-    > [!NOTE] The **Dispose** method of **TriviaController** invokes the **Dispose** method of the **TriviaContext** instance, which ensures that all the resources used by the context object are released when the **TriviaContext** instance is disposed or garbage-collected. This includes closing all database connections opened by Entity Framework.
+    > [!NOTE]
+    > The **Dispose** method of **TriviaController** invokes the **Dispose** method of the **TriviaContext** instance, which ensures that all the resources used by the context object are released when the **TriviaContext** instance is disposed or garbage-collected. This includes closing all database connections opened by Entity Framework.
 9. Add the following helper method at the end of the **TriviaController** class. This method retrieves the following quiz question from the database to be answered by the specified user.
 
     (Code Snippet - *AspNetWebApiSpa - Ex1 - TriviaControllerNextQuestion*)
@@ -231,14 +238,16 @@ You will use the ASP.NET Scaffolding tools provided by Visual Studio to create t
 
 In this task you will verify that the Web API service you built in the previous task is working as expected. You will use the Internet Explorer **F12 Developer Tools** to capture the network traffic and inspect the full response from the Web API service.
 
-> [!NOTE] Make sure that **Internet Explorer** is selected in the **Start** button located on the Visual Studio toolbar.
+> [!NOTE]
+> Make sure that **Internet Explorer** is selected in the **Start** button located on the Visual Studio toolbar.
 > 
 > ![Internet Explorer option](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/_static/image9.png)
 
 
 1. Press **F5** to run the solution. The **Log in** page should appear in the browser.
 
-    > [!NOTE] When the application starts, the default MVC route is triggered, which by default is mapped to the **Index** action of the **HomeController** class. Since **HomeController** is restricted to authenticated users (remember that you decorated that class with the **Authorize** attribute in Exercise 1) and there is no user authenticated yet, the application redirects the original request to the log in page.
+    > [!NOTE]
+    > When the application starts, the default MVC route is triggered, which by default is mapped to the **Index** action of the **HomeController** class. Since **HomeController** is restricted to authenticated users (remember that you decorated that class with the **Authorize** attribute in Exercise 1) and there is no user authenticated yet, the application redirects the original request to the log in page.
 
     ![Running the solution](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/_static/image10.png "Running the solution")
 
@@ -269,7 +278,8 @@ In this task you will verify that the Web API service you built in the previous 
 
     *Retrieving the next question data through Web API*
 
-    > [!NOTE] Once the download finishes, you will be prompted to make an action with the downloaded file. Leave the dialog box open in order to be able to watch the response content through the Developers Tool window.
+    > [!NOTE]
+    > Once the download finishes, you will be prompted to make an action with the downloaded file. Leave the dialog box open in order to be able to watch the response content through the Developers Tool window.
 7. Now you will inspect the body of the response. To do this, click the **Details** tab and then click **Response body**. You can check that the downloaded data is an object with the properties **options** (which is a list of **TriviaOption** objects), **id** and **title** that correspond to the **TriviaQuestion** class.
 
     ![Viewing the Web API Response Body](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/_static/image16.png "Viewing the Web API Response Body")
@@ -289,7 +299,8 @@ In this task you will use **AngularJS** to implement the client side of the Geek
 
 You will start by installing AngularJS from Visual Studio's Package Manager Console. Then, you will create the controller to provide the behavior of the Geek Quiz app and the view to render the quiz questions and answers using the AngularJS template engine.
 
-> [!NOTE] For more information about AngularJS, refer to [[http://angularjs.org/](http://angularjs.org/)](http://angularjs.org/).
+> [!NOTE]
+> For more information about AngularJS, refer to [[http://angularjs.org/](http://angularjs.org/)](http://angularjs.org/).
 
 
 1. Open **Visual Studio Express 2013 for Web** and open the **GeekQuiz.sln** solution located in the **Source/Ex2-CreatingASPAInterface/Begin** folder. Alternatively, you can continue with the solution that you obtained in the previous exercise.
@@ -313,7 +324,8 @@ You will start by installing AngularJS from Visual Studio's Package Manager Cons
 
     [!code-javascript[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample17.js)]
 
-    > [!NOTE] The constructor function of the **QuizCtrl** controller expects an injectable parameter named **$scope**. The initial state of the scope should be set up in the constructor function by attaching properties to the **$scope** object. The properties contain the **view model**, and will be accessible to the template when the controller is registered.
+    > [!NOTE]
+    > The constructor function of the **QuizCtrl** controller expects an injectable parameter named **$scope**. The initial state of the scope should be set up in the constructor function by attaching properties to the **$scope** object. The properties contain the **view model**, and will be accessible to the template when the controller is registered.
     > 
     > The **QuizCtrl** controller is defined inside a module named **QuizApp**. Modules are units of work that let you break your application into separate components. The main advantages of using modules is that the code is easier to understand and facilitates unit testing, reusability and maintainability.
 7. You will now add behavior to the scope in order to react to events triggered from the view. Add the following code at the end of the **QuizCtrl** controller to define the **nextQuestion** function in the **$scope** object.
@@ -322,14 +334,16 @@ You will start by installing AngularJS from Visual Studio's Package Manager Cons
 
     [!code-javascript[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample18.js)]
 
-    > [!NOTE] This function retrieves the next question from the **Trivia** Web API created in the previous exercise and attaches the question data to the **$scope** object.
+    > [!NOTE]
+    > This function retrieves the next question from the **Trivia** Web API created in the previous exercise and attaches the question data to the **$scope** object.
 8. Insert the following code at the end of the **QuizCtrl** controller to define the **sendAnswer** function in the **$scope** object.
 
     (Code Snippet - *AspNetWebApiSpa - Ex2 - AngularQuizControllerSendAnswer*)
 
     [!code-javascript[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample19.js)]
 
-    > [!NOTE] This function sends the answer selected by the user to the **Trivia** Web API and stores the result –i.e. if the answer is correct or not– in the **$scope** object.
+    > [!NOTE]
+    > This function sends the answer selected by the user to the **Trivia** Web API and stores the result –i.e. if the answer is correct or not– in the **$scope** object.
     > 
     > The **nextQuestion** and **sendAnswer** functions from above use the AngularJS **$http** object to abstract the communication with the Web API via the XMLHttpRequest JavaScript object from the browser. AngularJS supports another service that brings a higher level of abstraction to perform CRUD operations against a resource through RESTful APIs. The AngularJS **$resource** object has action methods which provide high-level behaviors without the need to interact with the **$http** object. Consider using the **$resource** object in scenarios that requires the CRUD model (fore information, see the [$resource documentation](https://docs.angularjs.org/api/ngResource/service/$resource)).
 9. The next step is to create the AngularJS template that defines the view for the quiz. To do this, open the **Index.cshtml** file inside the **Views | Home** folder and replace the content with the following code.
@@ -338,7 +352,8 @@ You will start by installing AngularJS from Visual Studio's Package Manager Cons
 
     [!code-cshtml[Main](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/samples/sample20.cshtml)]
 
-    > [!NOTE] The AngularJS template is a declarative specification that uses information from the model and the controller to transform static markup into the dynamic view that the user sees in the browser. The following are examples of AngularJS elements and element attributes that can be used in a template:
+    > [!NOTE]
+    > The AngularJS template is a declarative specification that uses information from the model and the controller to transform static markup into the dynamic view that the user sees in the browser. The following are examples of AngularJS elements and element attributes that can be used in a template:
     > 
     > - The **ng-app** directive tells AngularJS the DOM element that represents the root element of the application.
     > - The **ng-controller** directive attaches a controller to the DOM at the point where the directive is declared.
@@ -358,7 +373,8 @@ In this task you will execute the solution using the new user interface you buil
 1. Press **F5** to run the solution.
 2. Register a new user account. To do this, follow the registration steps described in Exercise 1, Task 3.
 
-    > [!NOTE] If you are using the solution from the previous exercise, you can log in with the user account you created before.
+    > [!NOTE]
+    > If you are using the solution from the previous exercise, you can log in with the user account you created before.
 3. The **Home** page should appear, showing the first question of the quiz. Answer the question by clicking one of the options. This will trigger the **sendAnswer** function defined earlier, which sends the selected option to the **Trivia** Web API.
 
     ![Answering a question](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs/_static/image19.png "Answering a question")

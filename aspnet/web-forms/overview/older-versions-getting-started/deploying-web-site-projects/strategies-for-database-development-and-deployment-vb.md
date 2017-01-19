@@ -65,7 +65,8 @@ The primary benefit of documenting the database changes in prose is simplicity. 
 
 Maintaining your change log in prose is, admittedly, not very sophisticated and won t work well with certain projects, such as ones that are large in scope, have frequent changes to the data model, or involve multiple developers. But I have seen this approach work quite well in small, one-man projects that have only occasional changes to the data model and where the solo developer does not have a strong background in the SQL syntax for creating and altering database objects.
 
-> [!NOTE] While the information in the change log is, technically, only needed until deploy-time, I recommend keeping a history of changes. But rather than maintaining a single, ever growing change log file, consider having a different change log file for each database version. Typically you will want to version the database each time it is deployed. By maintaining a log of change logs you can, starting from the baseline, recreate any database version by executing the change log scripts starting from version 1 and continuing until you reach the version you need to recreate.
+> [!NOTE]
+> While the information in the change log is, technically, only needed until deploy-time, I recommend keeping a history of changes. But rather than maintaining a single, ever growing change log file, consider having a different change log file for each database version. Typically you will want to version the database each time it is deployed. By maintaining a log of change logs you can, starting from the baseline, recreate any database version by executing the change log scripts starting from version 1 and continuing until you reach the version you need to recreate.
 
 
 ## Recording the SQL Change Statements
@@ -88,7 +89,8 @@ A database comparison tool compares the schema or data of two databases and disp
 
 There are a variety of third-party database comparison tools offered by many different vendors. One such example is [<u>SQL Compare</u>](http://www.red-gate.com/products/SQL_Compare/), by [<u>Red Gate Software</u>](http://www.red-gate.com/). Let s walk through the process of using SQL Compare to compare and synchronize the development and production databases schemas.
 
-> [!NOTE] At the time of this writing the current version of SQL Compare was version 7.1, with the Standard Edition costing $395. You can follow along by downloading a free 14-day trial.
+> [!NOTE]
+> At the time of this writing the current version of SQL Compare was version 7.1, with the Standard Edition costing $395. You can follow along by downloading a free 14-day trial.
 
 
 When SQL Compare starts the Comparison Projects dialog box opens, showing the saved SQL Compare projects. Create a new project. This launches the Project Configuration wizard, which prompts for information about the databases to compare (see Figure 1). Enter the information for the development and production environment databases.
@@ -99,14 +101,16 @@ When SQL Compare starts the Comparison Projects dialog box opens, showing the sa
 **Figure 1**: Compare the Development and Production Databases ([Click to view full-size image](strategies-for-database-development-and-deployment-vb/_static/image3.jpg))
 
 
-> [!NOTE] If your development environment database is a SQL Express Edition database file in the `App_Data` folder of your website you will need to register the database in the SQL Server Express database server in order to select it from the dialog box shown in Figure 1. The easiest way to accomplish this is to open SQL Server Management Studio (SSMS), connect to the SQL Server Express database server, and attach the database. If you do not have SSMS installed on your computer you can download and install the free [<u>SQL Server 2008 Management Studio Basic version</u>](https://www.microsoft.com/downloads/details.aspx?FamilyId=7522A683-4CB2-454E-B908-E805E9BD4E28&amp;displaylang=en).
+> [!NOTE]
+> If your development environment database is a SQL Express Edition database file in the `App_Data` folder of your website you will need to register the database in the SQL Server Express database server in order to select it from the dialog box shown in Figure 1. The easiest way to accomplish this is to open SQL Server Management Studio (SSMS), connect to the SQL Server Express database server, and attach the database. If you do not have SSMS installed on your computer you can download and install the free [<u>SQL Server 2008 Management Studio Basic version</u>](https://www.microsoft.com/downloads/details.aspx?FamilyId=7522A683-4CB2-454E-B908-E805E9BD4E28&amp;displaylang=en).
 
 
 In addition to selecting the databases to compare, you can also specify a variety of comparison settings from the Options tab. One option you may want to turn on is the "Ignore constraint and index names." Recall that in the preceding tutorial we added the application services database objects to the development and production databases. If you used the `aspnet_regsql.exe` tool to create these objects on the production database then you will find that the primary key and unique constraint names differ between the development and production databases. Consequently, SQL Compare will flag all of the application services tables as differing. You can either leave the "Ignore constraint and index names" unchecked and synchronize the constraint names, or instruct SQL Compare to ignore these differences.
 
 After selecting the databases to compare (and reviewing the comparison options), click the Compare Now button to begin the comparison. Over the next several seconds, SQL Compare examines the schemas of the two databases and generates a report of how they differ. I ve purposefully made some modifications to the development database to show how such discrepancies are noted in the SQL Compare interface. As Figure 2 shows, I ve added a `BirthDate` column to the `Authors` table, removed the `ISBN` column from the `Books` table, and added a new table, `Ratings`, which is meant to let users visiting the site rate the reviewed books.
 
-> [!NOTE] The data model changes made in this tutorial were done to illustrate using a database comparison tool. You will not find these changes in the database in future tutorials.
+> [!NOTE]
+> The data model changes made in this tutorial were done to illustrate using a database comparison tool. You will not find these changes in the database in future tutorials.
 
 
 [![SQL Compare Lists the Differences Between the Development and Production Databases](strategies-for-database-development-and-deployment-vb/_static/image5.jpg)](strategies-for-database-development-and-deployment-vb/_static/image4.jpg)
@@ -128,7 +132,8 @@ After reviewing the differences and selecting which objects you want to synchron
 
 Database comparison tools like Red Gate Software s SQL Compare make applying the changes to the development database schema to the production database as easy as point and click.
 
-> [!NOTE] SQL Compare compares and synchronizes two databases *schemas*. Unfortunately, it does not compare and synchronize the data within two databases tables. Red Gate Software does offer a product named [<u>SQL Data Compare</u>](http://www.red-gate.com/products/SQL_Data_Compare/) that compares and synchronizes the data between two databases, but it is a separate product from SQL Compare and costs another $395.
+> [!NOTE]
+> SQL Compare compares and synchronizes two databases *schemas*. Unfortunately, it does not compare and synchronize the data within two databases tables. Red Gate Software does offer a product named [<u>SQL Data Compare</u>](http://www.red-gate.com/products/SQL_Data_Compare/) that compares and synchronizes the data between two databases, but it is a separate product from SQL Compare and costs another $395.
 
 
 ## Taking the Application Offline During Deployment

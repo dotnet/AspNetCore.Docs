@@ -122,7 +122,8 @@ To publish an application using Windows Azure Authentication to an Azure Web Sit
     ![](windows-azure-authentication/_static/image7.jpg)
 8. Once your application has been successfully published, a browser will open to the published web site.
 
-    > [!NOTE] It may take up to five minutes (typically must less) for your application to be fully provisioned with Windows Azure Active Directory after enabling Windows Azure Authentication for the target host. When you first run your application if you receive error ACS50001: Relying party with name ‘[realm]' was not found, then wait a few minutes and try running the application again.
+    > [!NOTE]
+    > It may take up to five minutes (typically must less) for your application to be fully provisioned with Windows Azure Active Directory after enabling Windows Azure Authentication for the target host. When you first run your application if you receive error ACS50001: Relying party with name ‘[realm]' was not found, then wait a few minutes and try running the application again.
 9. When prompted, log in as a user in your directory:
 
     ![](windows-azure-authentication/_static/image8.jpg)

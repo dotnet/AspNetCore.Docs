@@ -42,7 +42,8 @@ When you choose **Only files needed to run this application**, the WPP will try 
 - All the build outputs for the project.
 - Any files marked with a build action of **Content**.
 
-> [!NOTE] The logic that determines which files to include is contained in this file:   
+> [!NOTE]
+> The logic that determines which files to include is contained in this file:   
 > *%PROGRAMFILES%\MSBuild\Microsoft\VisualStudio\v10.0\Web\ Microsoft.Web.Publishing.OnlyFilesToRunTheApp.targets*
 
 
@@ -66,7 +67,8 @@ Although you could manipulate your project files to exclude specific files and f
 
 1. Create a custom project file named *[project name].wpp.targets* in the same folder as your project file.
 
-    > [!NOTE] The *.wpp.targets* file needs to go in the same folder as your web application project file&#x2014;for example, *ContactManager.Mvc.csproj*&#x2014;rather than in the same folder as any custom project files you use to control the build and deployment process.
+    > [!NOTE]
+    > The *.wpp.targets* file needs to go in the same folder as your web application project file&#x2014;for example, *ContactManager.Mvc.csproj*&#x2014;rather than in the same folder as any custom project files you use to control the build and deployment process.
 2. In the *.wpp.targets* file, add an **ItemGroup** element.
 3. In the **ItemGroup** element, add **ExcludeFromPackageFolders** and **ExcludeFromPackageFiles** items to exclude specific files and folders as required.
 
@@ -91,7 +93,8 @@ The next procedure shows you how to add a *.wpp.targets* file to a web applicati
 
     ![](excluding-files-and-folders-from-deployment/_static/image3.png)
 
-    > [!NOTE] If you add a new item to the root node of a project, the file is created in the same folder as the project file. You can verify this by opening the folder in Windows Explorer.
+    > [!NOTE]
+    > If you add a new item to the root node of a project, the file is created in the same folder as the project file. You can verify this by opening the folder in Windows Explorer.
 5. In the file, add a **Project** element and an **ItemGroup** element:
 
     [!code-xml[Main](excluding-files-and-folders-from-deployment/samples/sample2.xml)]

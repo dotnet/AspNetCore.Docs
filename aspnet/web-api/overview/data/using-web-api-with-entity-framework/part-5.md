@@ -45,7 +45,8 @@ Finally, modify the `PostBook` method to return a DTO.
 
 [!code-csharp[Main](part-5/samples/sample4.cs)]
 
-> [!NOTE] In this tutorial, we're converting to DTOs manually in code. Another option is to use a library like [AutoMapper](http://automapper.org/) that handles the conversion automatically.
+> [!NOTE]
+> In this tutorial, we're converting to DTOs manually in code. Another option is to use a library like [AutoMapper](http://automapper.org/) that handles the conversion automatically.
 
 >[!div class="step-by-step"]
 [Previous](part-4.md)

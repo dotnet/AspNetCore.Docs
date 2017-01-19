@@ -29,7 +29,8 @@ In this tutorial, we will write an client application that consumes the followin
 | Update a product | PUT | /api/products/*id* |
 | Delete a product | DELETE | /api/products/*id* |
 
-> [!NOTE] To learn how to implement this API on the server, using ASP.NET Web API, see [Creating a Web API that Supports CRUD Operations](../older-versions/creating-a-web-api-that-supports-crud-operations.md).
+> [!NOTE]
+> To learn how to implement this API on the server, using ASP.NET Web API, see [Creating a Web API that Supports CRUD Operations](../older-versions/creating-a-web-api-that-supports-crud-operations.md).
 
 
 For simplicity, the client application in this tutorial is a Windows console application. **HttpClient** is also supported for Windows Phone and Windows Store apps. For more information, see [Writing Web API Client Code for Multiple Platforms Using Portable Libraries](https://blogs.msdn.com/b/webdev/archive/2013/07/19/writing-web-api-client-code-for-multiple-platforms-using-portable-libraries.aspx)

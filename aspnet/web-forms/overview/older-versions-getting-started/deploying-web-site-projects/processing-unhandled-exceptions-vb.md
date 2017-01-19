@@ -29,7 +29,8 @@ Using a human-friendly custom error page that matches the look and feel of the s
 
 This tutorial shows how to access the details of an unhandled exception so that they can be logged and a developer notified. The two tutorials following this one explore error logging libraries that, after a bit of configuration, will automatically notify developers of runtime errors and log their details.
 
-> [!NOTE] The information examined in this tutorial is most useful if you need to process unhandled exceptions in some unique or customized manner. In cases where you only need to log the exception and notify a developer, using an error logging library is the way to go. The next two tutorials provide an overview of two such libraries.
+> [!NOTE]
+> The information examined in this tutorial is most useful if you need to process unhandled exceptions in some unique or customized manner. In cases where you only need to log the exception and notify a developer, using an error logging library is the way to go. The next two tutorials provide an overview of two such libraries.
 
 
 ## Executing Code When The`Error`Event Is Raised
@@ -49,7 +50,8 @@ The contents and structure of the `Global.asax` file created by Visual Studio di
 
 The `Global.asax` file created in a WAP by Visual Studio's Global Application Class template includes event handlers named `Application_BeginRequest`, `Application_AuthenticateRequest`, and `Application_Error`, which are event handlers for the `HttpApplication` events `BeginRequest`, `AuthenticateRequest`, and `Error`, respectively. There are also event handlers named `Application_Start`, `Session_Start`, `Application_End`, and `Session_End`, which are event handlers that fire when the web application starts, when a new session starts, when the application ends, and when a session ends, respectively. The `Global.asax` file created in a WSP by Visual Studio contains just the `Application_Error`, `Application_Start`, `Session_Start`, `Application_End`, and `Session_End` event handlers.
 
-> [!NOTE] When deploying the ASP.NET application you need to copy the `Global.asax` file to the production environment. The `Global.asax.vb` file, which is created in the WAP, does not need to be copied to production because this code is compiled into the project's assembly.
+> [!NOTE]
+> When deploying the ASP.NET application you need to copy the `Global.asax` file to the production environment. The `Global.asax.vb` file, which is created in the WAP, does not need to be copied to production because this code is compiled into the project's assembly.
 
 
 The event handlers created by Visual Studio's Global Application Class template are not exhaustive. You can add an event handler for any `HttpApplication` event by naming the event handler `Application_EventName`. For example, you could add the following code to the `Global.asax` file to create an event handler for the [`AuthorizeRequest` event](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authorizerequest.aspx):
@@ -83,7 +85,8 @@ When an unhandled exception occurs in the production environment it is important
 
 The .NET Framework classes in the [`System.Net.Mail` namespace](https://msdn.microsoft.com/en-us/library/system.net.mail.aspx) make it easy to send an email. The [`MailMessage` class](https://msdn.microsoft.com/en-us/library/system.net.mail.mailmessage.aspx) represents an e-mail message and has properties like `To`, `From`, `Subject`, `Body`, and `Attachments`. The `SmtpClass` is used to send a `MailMessage` object using a specified SMTP server; the SMTP server settings can be specified programmatically or declaratively in the [`<system.net>` element](https://msdn.microsoft.com/en-us/library/6484zdc1.aspx) in the `Web.config file`. For more information on sending e-mail messages in an ASP.NET application check out my article, [Sending Email in ASP.NET](http://aspnet.4guysfromrolla.com/articles/072606-1.aspx), and the [System.Net.Mail FAQ](http://systemnetmail.com/).
 
-> [!NOTE] The `<system.net>` element contains the SMTP server settings used by the `SmtpClient` class when sending an e-mail. Your web hosting company likely has an SMTP server that you can use to send e-mail from your application. Consult your web host's support section for information on the SMTP server settings you should use in your web application.
+> [!NOTE]
+> The `<system.net>` element contains the SMTP server settings used by the `SmtpClient` class when sending an e-mail. Your web hosting company likely has an SMTP server that you can use to send e-mail from your application. Consult your web host's support section for information on the SMTP server settings you should use in your web application.
 
 
 Add the following code to the `Application_Error` event handler to send a developer an e-mail when an error occurs:
@@ -96,7 +99,8 @@ Next, a `MailMessage` object named `mm` is created. The e-mail body is HTML form
 
 The final step is to send the `MailMessage`. This is done by creating a new `SmtpClient` method and calling its `Send` method.
 
-> [!NOTE] Before using this code in your web application you'll want to change the values in the `ToAddress` and `FromAddress` constants from support@example.com to whatever e-mail address the error notification e-mail should be sent to and originate from. You'll also need to specify SMTP server settings in the `<system.net>` section in `Web.config`. Consult your web host provider to determine the SMTP server settings to use.
+> [!NOTE]
+> Before using this code in your web application you'll want to change the values in the `ToAddress` and `FromAddress` constants from support@example.com to whatever e-mail address the error notification e-mail should be sent to and originate from. You'll also need to specify SMTP server settings in the `<system.net>` section in `Web.config`. Consult your web host provider to determine the SMTP server settings to use.
 
 
 With this code in place anytime there's an error the developer is sent an e-mail message that summarizes the error and includes the YSOD. In the preceding tutorial we demonstrated a runtime error by visiting Genre.aspx and passing in an invalid `ID` value through the querystring, like `Genre.aspx?ID=foo`. Visiting the page with the `Global.asax` file in place produces the same user experience as in the preceding tutorial - in the development environment you'll continue to see the Exception Details Yellow Screen of Death, while in the production environment you'll see the custom error page. In addition to this existing behavior, the developer is sent an e-mail.

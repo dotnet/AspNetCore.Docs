@@ -100,7 +100,8 @@ The events are logged in the Application log, and are available through the Even
 
 ![Event Viewer showing SignalR logs](enabling-signalr-tracing/_static/image1.png)
 
-> [!NOTE] When using the event log, set the **TraceLevel** to **Error** to keep the number of messages manageable.
+> [!NOTE]
+> When using the event log, set the **TraceLevel** to **Error** to keep the number of messages manageable.
 
 <a id="net_client"></a>
 ## Enabling tracing in the .NET client (Windows Desktop apps)

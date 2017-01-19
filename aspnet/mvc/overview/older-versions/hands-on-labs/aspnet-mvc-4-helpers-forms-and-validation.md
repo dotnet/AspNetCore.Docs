@@ -24,7 +24,8 @@ by [Web Camps Team](https://twitter.com/webcamps)
 > 
 > Lastly, you will let users delete an album and also you will prevent them from entering wrong data by validating their input.
 > 
-> > [!NOTE] This Hands-on Lab assumes you have basic knowledge of **ASP.NET MVC**. If you have not used **ASP.NET MVC** before, we recommend you to go over **ASP.NET MVC Fundamentals** Hands-on Lab.
+> > [!NOTE]
+> > This Hands-on Lab assumes you have basic knowledge of **ASP.NET MVC**. If you have not used **ASP.NET MVC** before, we recommend you to go over **ASP.NET MVC Fundamentals** Hands-on Lab.
 > 
 > 
 > This lab walks you through the enhancements and new features previously described by applying minor changes to a sample Web application provided in the Source folder.
@@ -85,7 +86,8 @@ The following exercises make up this Hands-On Lab:
 6. [Adding Validation](#Exercise6)
 7. [Using Unobtrusive jQuery at Client Side](#Exercise7)
 
-> [!NOTE] Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
+> [!NOTE]
+> Each exercise is accompanied by an **End** folder containing the resulting solution you should obtain after completing the exercises. You can use this solution as a guide if you need additional help working through the exercises.
 
 
 Estimated time to complete this lab: **60 minutes**
@@ -110,7 +112,8 @@ In this task, you will create a new controller called **StoreManagerController**
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Add a new controller. To do this, right-click the **Controllers** folder within the Solution Explorer, select **Add** and then the **Controller** command. Change the **Controller** **Name** to **StoreManagerController** and make sure the option **MVC controller with empty read/write actions** is selected. Click **Add**.
 
     ![Add controller dialog](aspnet-mvc-4-helpers-forms-and-validation/_static/image1.png "Add controller dialog")
@@ -176,7 +179,8 @@ In this task, you will create the Index View template to display the list of alb
 
 In this task, you will adjust the simple View template created with ASP.NET MVC scaffolding feature to have it display the fields you want.
 
-> [!NOTE] The **scaffolding** support within ASP.NET MVC generates a simple View template which lists all fields in the Album model. **Scaffolding** provides a quick way to get started on a strongly typed view: rather than having to write the View template manually, scaffolding quickly generates a default template and then you can modify the generated code.
+> [!NOTE]
+> The **scaffolding** support within ASP.NET MVC generates a simple View template which lists all fields in the Album model. **Scaffolding** provides a quick way to get started on a strongly typed view: rather than having to write the View template manually, scaffolding quickly generates a default template and then you can modify the generated code.
 
 
 1. Review the code created. The generated list of fields will be part of the following HTML table that **Scaffolding** is using for displaying tabular data.
@@ -229,7 +233,8 @@ In the following figure, you can see how the format is modified because of the l
 
 In this task, you will add a new method **Truncate** to the **HTML** object exposed within ASP.NET MVC Views. To do this, you will implement an **extension method** to the built-in **System.Web.Mvc.HtmlHelper** class provided by ASP.NET MVC.
 
-> [!NOTE] To read more about **Extension Methods**, please visit this msdn article. [https://msdn.microsoft.com/en-us/library/bb383977.aspx](https://msdn.microsoft.com/en-us/library/bb383977.aspx).
+> [!NOTE]
+> To read more about **Extension Methods**, please visit this msdn article. [https://msdn.microsoft.com/en-us/library/bb383977.aspx](https://msdn.microsoft.com/en-us/library/bb383977.aspx).
 
 
 1. Open the **Begin** solution located at **Source/Ex2-AddingAnHTMLHelper/Begin/** folder. Otherwise, you might continue using the **End** solution obtained by completing the previous exercise.
@@ -238,7 +243,8 @@ In this task, you will add a new method **Truncate** to the **HTML** object expo
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open StoreManager's Index View. To do this, in the Solution Explorer expand the **Views** folder, then the **StoreManager** and open the **Index.cshtml** file.
 3. Add the following code below the **@model** directive to define the **Truncate** helper method.
 
@@ -298,7 +304,8 @@ In this task, you will implement the HTTP-GET version of the Edit action method 
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open the **StoreManagerController** class. To do this, expand the **Controllers** folder and double-click **StoreManagerController.cs**.
 3. Replace the **HTTP-GET Edit** action method with the following code to retrieve the appropriate **Album** as well as the **Genres** and **Artists** lists.
 
@@ -308,7 +315,8 @@ In this task, you will implement the HTTP-GET version of the Edit action method 
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample9.cs)]
 
-    > [!NOTE] You are using **System.Web.Mvc** **SelectList** for Artists and Genres instead of the **System.Collections.Generic** List.
+    > [!NOTE]
+    > You are using **System.Web.Mvc** **SelectList** for Artists and Genres instead of the **System.Collections.Generic** List.
     > 
     > **SelectList** is a cleaner way to populate HTML dropdowns and manage things like current selection. Instantiating and later setting up these ViewModel objects in the controller action will make the Edit form scenario cleaner.
 
@@ -353,7 +361,8 @@ In this task, you will add drop-downs to the View template created in the last t
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample10.cs)]
 
-    > [!NOTE] An **Html.DropDownList** helper has been added to render drop-downs for choosing Artists and Genres. The parameters passed to **Html.DropDownList** are:
+    > [!NOTE]
+    > An **Html.DropDownList** helper has been added to render drop-downs for choosing Artists and Genres. The parameters passed to **Html.DropDownList** are:
     > 
     > 1. The name of the form field (**&quot;ArtistId&quot;**).
     > 2. The **SelectList** of values for the drop-down.
@@ -388,7 +397,8 @@ Now that the Edit View displays as expected, you need to implement the HTTP-POST
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample11.cs)]
 
-    > [!NOTE] This method will be executed when the user clicks the **Save** button of the View and performs an HTTP-POST of the form values back to the server to persist them in the database. The decorator **[HttpPost]** indicates that the method should be used for those HTTP-POST scenarios. The method takes an **Album** object. ASP.NET MVC will automatically create the Album object from the posted &lt;form&gt; values.
+    > [!NOTE]
+    > This method will be executed when the user clicks the **Save** button of the View and performs an HTTP-POST of the form values back to the server to persist them in the database. The decorator **[HttpPost]** indicates that the method should be used for those HTTP-POST scenarios. The method takes an **Album** object. ASP.NET MVC will automatically create the Album object from the posted &lt;form&gt; values.
     > 
     > The method will perform these steps:
     > 
@@ -437,7 +447,8 @@ In this task, you will implement the HTTP-GET version of the Create action metho
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open **StoreManagerController** class. To do this, expand the **Controllers** folder and double-click **StoreManagerController.cs**.
 3. Replace the **Create** action method code with the following:
 
@@ -496,7 +507,8 @@ In this task, you will implement the HTTP-POST version of the Create action meth
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample14.cs)]
 
-    > [!NOTE] The Create action is pretty similar to the previous Edit action method but instead of setting the object as modified, it is being added to the context.
+    > [!NOTE]
+    > The Create action is pretty similar to the previous Edit action method but instead of setting the object as modified, it is being added to the context.
 
 <a id="Ex4Task5"></a>
 
@@ -540,7 +552,8 @@ In this task, you will implement the HTTP-GET version of the Delete action metho
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open **StoreManagerController** class. To do this, expand the **Controllers** folder and double-click **StoreManagerController.cs**.
 3. The Delete controller action is exactly the same as the previous Store Details controller action: it queries the **album** object from the database using the **id** provided in the URL and returns the appropriate **View**. To do this, replace the HTTP-GET **Delete** action method code with the following:
 
@@ -636,11 +649,13 @@ This is a little more complex in cases like this application where the Entity Da
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Open the **Album.cs** from the **Models** folder.
 3. Replace **Album.cs** content with the highlighted code, so that it looks like the following:
 
-    > [!NOTE] The line **[DisplayFormat(ConvertEmptyStringToNull=false)]** indicates that empty strings from the model won't be converted to null when the data field is updated in the data source. This setting will avoid an exception when the Entity Framework assigns null values to the model before Data Annotation validates the fields.
+    > [!NOTE]
+    > The line **[DisplayFormat(ConvertEmptyStringToNull=false)]** indicates that empty strings from the model won't be converted to null when the data field is updated in the data source. This setting will avoid an exception when the Entity Framework assigns null values to the model before Data Annotation validates the fields.
 
     (Code Snippet - *ASP.NET MVC 4 Helpers and Forms and Validation - Ex6 Album metadata partial class*)
 
@@ -648,7 +663,8 @@ This is a little more complex in cases like this application where the Entity Da
 
     [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample19.cs)]
 
-    > [!NOTE] This **Album** partial class has a **MetadataType** attribute which points to the **AlbumMetaData** class for the Data Annotations. These are some of the Data Annotation attributes you are using to annotate the Album model:
+    > [!NOTE]
+    > This **Album** partial class has a **MetadataType** attribute which points to the **AlbumMetaData** class for the Data Annotations. These are some of the Data Annotation attributes you are using to annotate the Album model:
     > 
     > - Required - Indicates that the property is a required field
     > - DisplayName - Defines the text to be used on form fields and validation messages
@@ -684,7 +700,8 @@ In this task, you will test that the Create and Edit pages validate fields, usin
 
 In this exercise, you will learn how to enable MVC 4 Unobtrusive jQuery validation at client side.
 
-> [!NOTE] The Unobtrusive jQuery uses data-ajax prefix JavaScript to invoke action methods on the server rather than intrusively emitting inline client scripts.
+> [!NOTE]
+> The Unobtrusive jQuery uses data-ajax prefix JavaScript to invoke action methods on the server rather than intrusively emitting inline client scripts.
 
 
 <a id="Ex7Task1"></a>
@@ -700,7 +717,8 @@ In this task, you will run the application before including jQuery in order to c
     2. In the **Manage NuGet Packages** dialog, click **Restore** in order to download missing packages.
     3. Finally, build the solution by clicking **Build** | **Build Solution**.
 
-    > [!NOTE] One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
+    > [!NOTE]
+    > One of the advantages of using NuGet is that you don't have to ship all the libraries in your project, reducing the project size. With NuGet Power Tools, by specifying the package versions in the Packages.config file, you will be able to download all the required libraries the first time you run the project. This is why you will have to run these steps after you open an existing solution from this lab.
 2. Press **F5** to run the application.
 3. The project starts in the Home page. Browse **/StoreManager/Create** and click **Create** without filling the form to verify that you get validation messages:
 
@@ -726,7 +744,8 @@ In this task, you will enable jQuery **unobtrusive client validation** from **We
 
     [!code-xml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample21.xml)]
 
-    > [!NOTE] You can also enable client validation by code at Global.asax.cs to get the same results:
+    > [!NOTE]
+    > You can also enable client validation by code at Global.asax.cs to get the same results:
     > 
     > **HtmlHelper.ClientValidationEnabled = true;**
     > 
@@ -738,7 +757,8 @@ In this task, you will enable jQuery **unobtrusive client validation** from **We
 
     [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample22.cshtml)]
 
-    > [!NOTE] All these jQuery libraries are included in MVC 4 new projects. You can find more libraries in the **/Scripts** folder of you project.
+    > [!NOTE]
+    > All these jQuery libraries are included in MVC 4 new projects. You can find more libraries in the **/Scripts** folder of you project.
     > 
     > In order to make this validation libraries work, you need to add a reference to the jQuery framework library. Since this reference is already added in the **\_Layout.cshtml** file, you do not need to add it in this particular view.
 
@@ -761,7 +781,8 @@ In this task, you will test that the **StoreManager** create view template perfo
 
     [!code-html[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample23.html)]
 
-    > [!NOTE] For each client validation rule, Unobtrusive jQuery adds an attribute with data-val-*rulename*=&quot;*message*&quot;. Below is a list of tags that Unobtrusive jQuery inserts into the html input field to perform client validation:
+    > [!NOTE]
+    > For each client validation rule, Unobtrusive jQuery adds an attribute with data-val-*rulename*=&quot;*message*&quot;. Below is a list of tags that Unobtrusive jQuery inserts into the html input field to perform client validation:
     > 
     > - Data-val
     > - Data-val-number
