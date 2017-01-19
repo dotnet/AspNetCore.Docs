@@ -71,7 +71,7 @@ From the Browser Link toolbar control, you can:
 - Enable or disable CSS Auto-Sync
 
 > [!NOTE]
-> Some Visual Studio plug-ins, most notably Web Essentials for Visual Studio 2015, offer extended functionality for Browser Link, but the additional features don't work with ASP.NET Core projects.
+> Some Visual Studio plug-ins, most notably *Web Extension Pack 2015* and *Web Extension Pack 2017*, offer extended functionality for Browser Link, but some of the additional features don't work with ASP.NET Core projects.
 
 ## Refresh the web application in several browsers at once
 
