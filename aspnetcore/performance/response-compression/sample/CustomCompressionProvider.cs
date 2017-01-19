@@ -9,7 +9,7 @@ namespace ResponseCompressionSample
     #region snippet1
     public class CustomCompressionProvider : ICompressionProvider
     {
-        public string EncodingName => "custom";
+        public string EncodingName => "mycustomcompression";
         public bool SupportsFlush => true;
 
         public Stream CreateStream(Stream outputStream)
