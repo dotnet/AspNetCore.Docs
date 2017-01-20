@@ -131,17 +131,17 @@ When compressing responses based on the `Accept-Encoding` header, there are pote
 
 [!code-csharp[Main](response-compression/sample/Startup.cs?name=snippet1)]
 
+## Middlware issue when behind an Nginx reverse-proxy
+
+When a request is proxied by Nginx, the `Accept-Encoding` header is removed. This prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for nginx (BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
+
 ## Working with IIS dynamic compression
 If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an application, you can do so with an addition to your *web.config* file. Either leave the module in place and deactivate it for dynamic compression or remove the module from the application.
 
 To merely deactivate dynamic compression module, add a `<urlCompression>` element to your *web.config* file. There is no need to include an attribute and value for `doStaticCompression="false"`, since the IIS Static Compression Module doesn't work with ASP.NET Core applications in a reverse-proxy setup.
-```xml
-<configuration>
-  <system.webServer>
-    <urlCompression doDynamicCompression="false"/>
-  </system.webServer>
-</configuration>
-```
+
+[!code-xml[Main](response-compression/sample/web.config?highlight=8)]
+
 If you opt to remove the module via *web.config*, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the IIS area. Click on the **DynamicCompressionModule** in the list. In the **Action** panel on the right, click **Unlock**. At this point, you will be able to add the section shown below to your *web.config* file to remove the module from the application. Doing this won't affect your use of the module in other applications on the server.
 ```xml
 <configuration>
