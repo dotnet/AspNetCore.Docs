@@ -101,7 +101,8 @@
 
 # [Working with Data](data/index.md)
 ## [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](data/ef-mvc/index.md)
-## [ASP.NET Core tutorials on the Entity Framework Core docs site](https://docs.microsoft.com/en-us/ef/core/)
+## [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db)
+## [ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db)
 ## [Getting Started with ASP.NET Core and Entity Framework 6](data/entity-framework-6.md)
 ## [Azure Storage](data/azure-storage/index.md)
 ### [Adding Azure Storage by using Visual Studio Connected Services](https://azure.microsoft.com/documentation/articles/vs-azure-tools-connected-services-storage)

@@ -33,7 +33,8 @@ The following step-by-step guides for developing ASP.NET Core applications are a
 
 ## Working with data
 * [Getting started with ASP.NET Core and Entity Framework Core using Visual Studio](../data/ef-mvc/index.md)
-* [ASP.NET Core tutorials on the Entity Framework Core docs site](https://docs.microsoft.com/en-us/ef/core/)
+* [ASP.NET Core with EF Core - new database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/new-db) (Entity Framework Core documentation site)
+* [ASP.NET Core with EF Core - existing database](https://docs.microsoft.com/ef/core/get-started/aspnetcore/existing-db) (Entity Framework Core documentation site)
 
 ## Authentication and authorization
 * [Enabling authentication using Facebook, Google and other external providers](../security/authentication/social/index.md)
