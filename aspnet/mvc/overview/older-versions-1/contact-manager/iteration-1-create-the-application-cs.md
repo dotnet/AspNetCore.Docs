@@ -61,7 +61,7 @@ In this iteration, we complete the following steps:
 
 In ASP.NET MVC applications, you must have either Visual Studio 2008 or Visual Web Developer 2008 installed on your computer (Visual Web Developer is a free version of Visual Studio that does not include all of the advanced features of Visual Studio). You can download either the trial version of Visual Studio 2008 or Visual Web Developer from the following address:
 
-[https://www.asp.net/downloads/essential/](../../../../downloads/essential.md)
+[https://www.asp.net/downloads/essential/](https://www.asp.net/downloads/essential)
 
 > [!NOTE] 
 > 
@@ -78,7 +78,7 @@ In this tutorial, we use the Microsoft Entity Framework to access a database. Th
 
 As an alternative to performing each of these downloads one by one, you can take advantage of the Web Platform Installer (Web PI). You can download the Web PI from the following address:
 
-[https://www.asp.net/downloads/essential/](../../../../downloads/essential.md)
+[https://www.asp.net/downloads/essential/](https://www.asp.net/downloads/essential)
 
 ## ASP.NET MVC Project
 

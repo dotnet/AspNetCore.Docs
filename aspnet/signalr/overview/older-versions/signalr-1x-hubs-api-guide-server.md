@@ -477,7 +477,7 @@ To get information about the client, use the `Context` property of the Hub class
     The value of `transportMethod` will be "webSockets", "serverSentEvents", "foreverFrame" or "longPolling". Note that if you check this value in the `OnConnected` event handler method, in some scenarios you might initially get a transport value that is not the final negotiated transport method for the connection. In that case the method will throw an exception and will be called again later when the final transport method is established.
 - Cookies.
 
-    [!code-unknown[Main](signalr-1x-hubs-api-guide-server/samples/sample-47052-49.unknown?highlight=1)]
+    [!code-csharp[Main](signalr-1x-hubs-api-guide-server/samples/sample49.cs?highlight=1)]
 
     You can also get cookies from `Context.RequestCookies`.
 - User information.
