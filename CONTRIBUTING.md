@@ -49,7 +49,6 @@ To render a portion of a file as a snippet by using line numbers:
 ```
 [!code-csharp[Main](configuration/sample/Program.cs?range=1-10,20,30,40-50]
 [!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
-[!code-javascript[Main](configuration/sample/Project.json?range=1-10,20,30,40-50]
 ```
 
 For C# snippets, you can reference a [C# region](https://msdn.microsoft.com/en-us/library/9a1ybwek.aspx). Whenever possible, use regions rather than line numbers, because line numbers in a code file tend to change and get out of sync with line number references in Markdown. C# regions can be nested, and if you reference the outer region, the inner `#region` and `#endregion` directives are not rendered in a snippet. 
