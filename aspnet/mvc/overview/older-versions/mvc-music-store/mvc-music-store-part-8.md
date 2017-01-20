@@ -130,7 +130,7 @@ Since the remove scenario is being handled by an Ajax callback within the Index 
 
 In order to test this out, we need to be able to add items to our shopping cart. We'll update our **Store Details** view to include an "Add to cart" button. While we're at it, we can include some of the Album additional information which we've added since we last updated this view: Genre, Artist, Price, and Album Art. The updated Store Details view code appears as shown below.
 
-[!code-csharp[Main](mvc-music-store-part-8/samples/sample10.cs)]
+[!code-cshtml[Main](mvc-music-store-part-8/samples/sample10.cshtml)]
 
 Now we can click through the store and test adding and removing Albums to and from our shopping cart. Run the application and browse to the Store Index.
 

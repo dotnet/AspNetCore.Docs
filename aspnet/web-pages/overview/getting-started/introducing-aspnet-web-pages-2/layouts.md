@@ -208,19 +208,19 @@ The combination of layout pages and *.css* files is powerful. As you'll see in t
 
 ## Complete Listing for Movie Page (Updated to Use a Layout Page)
 
-[!code-csharp[Main](layouts/samples/sample14.cs)]
+[!code-cshtml[Main](layouts/samples/sample14.cshtml)]
 
 ## Complete Page Listing for Add Movie Page (Updated for Layout)
 
-[!code-csharp[Main](layouts/samples/sample15.cs)]
+[!code-cshtml[Main](layouts/samples/sample15.cshtml)]
 
 ## Complete Page Listing for Delete Movie Page (Updated for Layout)
 
-[!code-csharp[Main](layouts/samples/sample16.cs)]
+[!code-cshtml[Main](layouts/samples/sample16.cshtml)]
 
 ## Complete Page Listing for Edit Movie Page (Updated for Layout)
 
-[!code-csharp[Main](layouts/samples/sample17.cs)]
+[!code-cshtml[Main](layouts/samples/sample17.cshtml)]
 
 ## Coming Up Next
 

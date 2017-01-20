@@ -45,7 +45,7 @@ To add the Twitter Helper, first, add a folder named **App\_Code** to your proje
 
 Replace the default code in Twitter.cshtml with the following code.
 
-[!code-csharp[Main](twitter-helper/samples/sample1.cs)]
+[!code-cshtml[Main](twitter-helper/samples/sample1.cshtml)]
 
 ## Call Twitter methods from your web pages
 

@@ -70,7 +70,7 @@ In the `Create` , `HttpPost Edit`, and `DeleteConfirmed` methods, it is the `Sav
 
 Open *Views\Department\Index.cshtml*, and replace the template code with the following code:
 
-[!code-csharp[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs?highlight=3,5,20-22,36-38)]
+[!code-cshtml[Main](async-and-stored-procedures-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cshtml?highlight=3,5,20-22,36-38)]
 
 This code changes the title from Index to Departments, moves the Administrator name to the right, and provides the full name of the administrator.
 

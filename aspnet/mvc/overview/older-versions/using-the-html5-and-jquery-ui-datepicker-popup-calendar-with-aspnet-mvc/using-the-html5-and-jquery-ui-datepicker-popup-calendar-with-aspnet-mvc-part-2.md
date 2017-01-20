@@ -129,7 +129,7 @@ Return to the `UIHint` attribute in the *Movie.cs* file and comment it out so th
 
 As mentioned earlier, you can also apply a template in a view, which lets you apply the template to an individual instance of some data. Open the *Views\Movies\Details.cshtml* view. Add `"LoudDateTime"` as the second parameter of the [Html.DisplayFor](https://msdn.microsoft.com/en-us/library/ee407420.aspx) call for the `ReleaseDate` field. The completed code looks like this:
 
-[!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample9.cs)]
+[!code-cshtml[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-2/samples/sample9.cshtml)]
 
 This specifies that the `LoudDateTime` template should be used to display the model property, regardless of what attributes are applied to the model.
 

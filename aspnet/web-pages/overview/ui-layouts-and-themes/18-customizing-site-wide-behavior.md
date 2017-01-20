@@ -201,7 +201,7 @@ You can also use the *\_PageStart.cshtml* file to restrict access to all the fil
 5. Create a new page in the *AuthenticatedContent* folder named *Page.cshtml*.
 6. Replace the default markup with the following:  
 
-    [!code-csharp[Main](18-customizing-site-wide-behavior/samples/sample17.cs)]
+    [!code-cshtml[Main](18-customizing-site-wide-behavior/samples/sample17.cshtml)]
 7. Run *Page.cshtml* in a browser. The code redirects you to a login page. You must register before logging in. After you've registered and logged in, you can navigate to the page and view its contents.
 
 <a id="Additional_Resources"></a>

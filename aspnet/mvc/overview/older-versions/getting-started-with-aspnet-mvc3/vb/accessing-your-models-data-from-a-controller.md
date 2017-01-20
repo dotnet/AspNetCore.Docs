@@ -93,7 +93,7 @@ By including a `@ModelType` statement at the top of the view template file, you 
 
 This `@ModelType` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.vbhtml* template, the code loops through the movies by doing a `foreach` statement over the strongly typed `Model` object:
 
-[!code-vb[Main](accessing-your-models-data-from-a-controller/samples/sample5.vb)]
+[!code-vbhtml[Main](accessing-your-models-data-from-a-controller/samples/sample5.vbhtml)]
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each `item` object in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code and full IntelliSense support in the code editor:
 

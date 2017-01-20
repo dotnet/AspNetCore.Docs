@@ -322,7 +322,7 @@ The next step is to create an ASP.NET MVC controller and views in your applicati
 
     The *Student\Index.cshtml* view displays this list in a table:
 
-    [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample18.cs)]
+    [!code-cshtml[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample18.cshtml)]
 - Press CTRL+F5 to run the project.
 
     Click the **Students** tab to see the test data that the `Seed` method inserted.

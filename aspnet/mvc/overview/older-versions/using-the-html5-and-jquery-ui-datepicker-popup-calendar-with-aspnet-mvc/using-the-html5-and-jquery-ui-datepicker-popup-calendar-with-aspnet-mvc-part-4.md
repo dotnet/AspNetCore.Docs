@@ -45,7 +45,7 @@ Click **Add**. The *Views\Shared\EditorTemplates\Date.cshtml* template is create
 
 Add the following code to the *Views\Shared\EditorTemplates\Date.cshtml* template.
 
-[!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample2.cs)]
+[!code-cshtml[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample2.cshtml)]
 
 The first line declares the model to be a `DateTime` type. Although you don't need to declare the model type in edit and display templates, it's a best practice so that you get compile-time checking of the model being passed to the view. (Another benefit is that you then get IntelliSense for the model in the view in Visual Studio.) If the model type is not declared, ASP.NET MVC considers it a [dynamic](https://msdn.microsoft.com/en-us/library/dd264741.aspx) type and there's no compile-time type checking. If you declare the model to be a `DateTime` type, it becomes strongly typed.
 
@@ -65,7 +65,7 @@ In your browser, view the source of the page. (For example, right-click the page
 
 Return to the *Views\Shared\EditorTemplates\Date.cshtml*template and remove the &quot;Using Date Template&quot; markup. Now the completed template looks like this:
 
-[!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample4.cs)]
+[!code-cshtml[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample4.cshtml)]
 
 ### Adding a jQuery UI Datepicker Popup Calendar using NuGet
 
@@ -159,7 +159,7 @@ The code returns an empty string when the model is **null**.
 
 Change the code in the *Views\Shared\EditorTemplates\Date.cshtml* file to the following:
 
-[!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample11.cs)]
+[!code-cshtml[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample11.cshtml)]
 
 When this code runs, if the model is not null, the model's `DateTime` value is used. If the model is null, the current date is used instead.
 

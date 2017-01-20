@@ -51,7 +51,7 @@ When a user navigates to the base address for your web site, the default page fo
 
 Currently, your site uses **Default.cshtml** as the default page. This page is fine for your default page, but in this tutorial you have not added any content to that page so it would display a blank page. Open Default.cshtml and replace the content with the following code.
 
-[!code-csharp[Main](publishing/samples/sample1.cs)]
+[!code-cshtml[Main](publishing/samples/sample1.cshtml)]
 
 Now your site is ready for publication. First, you will see how to deploy the site to Azure, and then how to deploy it to a web hosting company. Either option works for your web site, and you only need to follow one of the deployment options.
 

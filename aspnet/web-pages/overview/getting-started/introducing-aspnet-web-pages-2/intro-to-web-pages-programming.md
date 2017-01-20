@@ -343,7 +343,7 @@ The next tutorial introduces you to working with a database. In that tutorial, y
 
 ## Complete Listing for TestRazorPart2 Page
 
-[!code-csharp[Main](intro-to-web-pages-programming/samples/sample17.cs)]
+[!code-cshtml[Main](intro-to-web-pages-programming/samples/sample17.cshtml)]
 
 ## Complete Listing for GravatarTest Page
 

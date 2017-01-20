@@ -75,7 +75,7 @@ The **IEnumerable&lt;SelectListItem &gt;** created above is added to the [ViewBa
 
 Open the *Views\Home\SelectCategory.cshtml*file and examine the markup.
 
-[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample3.cs)]
+[!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample3.cshtml)]
 
 On the third line, we set the layout to Views/Shared/\_Simple\_Layout.cshtml, which is a simplified version of the standard layout file. We do this to keep the display and rendered HTML simple.
 
@@ -143,7 +143,7 @@ The `GetCountries` method creates a list of countries, then passes it to the `Mu
 
 In the example above, the `MultiSelectCountry` method passes a `null` value for the selected countries, so no countries are selected when the UI is displayed. The following code shows the Razor markup used to render the `MultiSelectCountry` view.
 
-[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample10.cs)]
+[!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample10.cshtml)]
 
 The HTML helper [ListBox](https://msdn.microsoft.com/en-us/library/dd470200.aspx) method used above take two parameters, the name of the property to model bind and the [MultiSelectList](https://msdn.microsoft.com/en-us/library/system.web.mvc.multiselectlist.aspx) containing the select options and values. The `ViewBag.YouSelected` code above is used to display the values of the countries you selected when you submit the form. Examine the HTTP POST overload of the `MultiSelectCountry` method.
 
@@ -205,7 +205,7 @@ The wrapped set returned from the above call then applies the chosen method (`.c
 
 The following code shows the completed *Views\Home\MultiSelectCountry.cshtml* view file.
 
-[!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample16.cs)]
+[!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample16.cshtml)]
 
 Run the application and navigate to the `MultiSelectCountry` view. Try adding and deleting countries. The sample download provided also contains a `MultiCountryVM` method and view that implements the MultiSelectCountry functionality using a view model instead of a **ViewBag**.
 

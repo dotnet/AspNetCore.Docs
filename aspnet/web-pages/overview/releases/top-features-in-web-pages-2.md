@@ -161,7 +161,7 @@ The following example shows a page that validates user input on a form. To run a
 3. Run the page in a browser. Enter valid and invalid values to see the effects on validation. For example, leave a required field blank or enter a letter in the **Credits** field.
 
 
-[!code-csharp[Main](top-features-in-web-pages-2/samples/sample7.cs)]
+[!code-cshtml[Main](top-features-in-web-pages-2/samples/sample7.cshtml)]
 
 Here is the page when a user submits valid input:
 

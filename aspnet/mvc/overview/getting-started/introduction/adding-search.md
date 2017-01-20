@@ -67,7 +67,7 @@ However, you can't expect users to modify the URL every time they want to search
 
 Open the *Views\Movies\Index.cshtml*file, and just after `@Html.ActionLink("Create New", "Create")`, add the form markup highlighted below:
 
-[!code-csharp[Main](adding-search/samples/sample8.cs?highlight=12-15)]
+[!code-cshtml[Main](adding-search/samples/sample8.cshtml?highlight=12-15)]
 
 The `Html.BeginForm` helper creates an opening `<form>` tag. The `Html.BeginForm` helper causes the form to post to itself when the user submits the form by clicking the **Filter** button.
 
@@ -91,7 +91,7 @@ However, even if you add this `HttpPost` version of the `Index` method, there's 
 
 The solution is to use an overload of `BeginForm` that specifies that the POST request should add the search information to the URL and that it should be routed to the `HttpGet` version of the `Index` method. Replace the existing parameterless `BeginForm` method with the following markup:
 
-[!code-csharp[Main](adding-search/samples/sample10.cs)]
+[!code-cshtml[Main](adding-search/samples/sample10.cshtml)]
 
 ![BeginFormPost_SM](adding-search/_static/image6.png)
 
@@ -125,7 +125,7 @@ As stated previously, the query is not run on the data base until the movie list
 
 Add an `Html.DropDownList` helper to the *Views\Movies\Index.cshtml* file, just before the `TextBox` helper. The completed markup is shown below:
 
-[!code-csharp[Main](adding-search/samples/sample14.cs?highlight=11)]
+[!code-cshtml[Main](adding-search/samples/sample14.cshtml?highlight=11)]
 
 In the following code:
 

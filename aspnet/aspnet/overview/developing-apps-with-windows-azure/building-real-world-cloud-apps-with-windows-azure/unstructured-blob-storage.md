@@ -119,7 +119,7 @@ The Fix It application displays the uploaded image file when it displays details
 
 To display the image, all the MVC view has to do is include the `PhotoUrl` value in the HTML sent to the browser. The web server and the database are not using cycles to display the image, they are only serving up a few bytes to the image URL. In the following Razor code, `Model` refers to an instance of the `FixItTask` entity class.
 
-[!code-csharp[Main](unstructured-blob-storage/samples/sample12.cs?highlight=11)]
+[!code-cshtml[Main](unstructured-blob-storage/samples/sample12.cshtml?highlight=11)]
 
 If you look at the HTML of the page that displays, you see the URL pointing directly to the image in blob storage, something like this:
 

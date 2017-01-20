@@ -58,7 +58,7 @@ If you want to store data in a text file, you can use the `File.WriteAllText` me
 2. At the root of your website, create a new file named *UserData.cshtml*.
 3. Replace the existing content with the following: 
 
-    [!code-csharp[Main](working-with-files/samples/sample1.cs)]
+    [!code-cshtml[Main](working-with-files/samples/sample1.cshtml)]
 
     The HTML markup creates the form with the three text boxes. In the code, you use the `IsPost` property to determine whether the page has been submitted before you start processing.
 
@@ -98,7 +98,7 @@ In the previous example, you used `WriteAllText` to create a text file that's go
 1. In the website, make a copy of the *UserData.cshtml* file and name the copy *UserDataMultiple.cshtml*.
 2. Replace the code block before the opening `<!DOCTYPE html>` tag with the following code block: 
 
-    [!code-csharp[Main](working-with-files/samples/sample3.cs)]
+    [!code-cshtml[Main](working-with-files/samples/sample3.cshtml)]
 
     This code has one change in it from the previous example. Instead of using `WriteAllText`, it uses `the AppendAllText` method. The methods are similar, except that `AppendAllText` adds the data to the end of the file. As with `WriteAllText`, `AppendAllText` creates the file if it doesn't already exist.
 3. Run the page in a browser.
@@ -158,7 +158,7 @@ To delete files from your website, you can use the `File.Delete` method. This pr
 3. In the root of the website, create a new file named *FileDelete.cshtml*.
 4. Replace the existing content with the following: 
 
-    [!code-csharp[Main](working-with-files/samples/sample6.cs)]
+    [!code-cshtml[Main](working-with-files/samples/sample6.cshtml)]
 
     This page contains a form where users can enter the name of an image file. They don't enter the *.jpg* file-name extension; by restricting the file name like this, you help prevents users from deleting arbitrary files on your site.
 
@@ -180,7 +180,7 @@ The `FileUpload` helper lets users upload files to your website. The procedure b
 3. In the root, create a new file named *FileUpload.cshtml*.
 4. Replace the existing content in the page with the following: 
 
-    [!code-csharp[Main](working-with-files/samples/sample7.cs)]
+    [!code-cshtml[Main](working-with-files/samples/sample7.cshtml)]
 
     The body portion of the page uses the `FileUpload` helper to create the upload box and buttons that you're probably familiar with:
 
@@ -226,7 +226,7 @@ In the previous example, you let users upload one file. But you can use the `Fil
 2. Create a new page named *FileUploadMultiple.cshtml*.
 3. Replace the existing content in the page with the following:  
 
-    [!code-csharp[Main](working-with-files/samples/sample9.cs)]
+    [!code-cshtml[Main](working-with-files/samples/sample9.cshtml)]
 
     In this example, the `FileUpload` helper in the body of the page is configured to let users upload two files by default. Because `allowMoreFilesToBeAdded` is set to `true`, the helper renders a link that lets user add more upload boxes:
 

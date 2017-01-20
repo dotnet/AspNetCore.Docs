@@ -551,7 +551,7 @@ By default, the property name that the attribute is applied to is sent to the ac
 
 New overloads have been added for the *LabelFor* and *LabelForModel* methods that let you specify the label text. The following example shows how to use these overloads.
 
-[!code-csharp[Main](mvc3-release-notes/samples/sample18.cs)]
+[!code-cshtml[Main](mvc3-release-notes/samples/sample18.cshtml)]
 
 <a id="_Toc276711791"></a>
 ### Child Action Output Caching

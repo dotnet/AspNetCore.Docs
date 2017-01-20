@@ -53,7 +53,7 @@ In ASP.NET pages, you can use the `ReCaptcha` helper to render a CAPTCHA test th
 7. In the root folder of a website, create new page named *Recaptcha.cshtml*.
 8. Replace the existing content with the following: 
 
-    [!code-csharp[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample2.cs)]
+    [!code-cshtml[Main](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/samples/sample2.cshtml)]
 9. Run the *Recaptcha.cshtml* page in a browser. If the `PrivateKey` value is valid, the page displays the ReCaptcha control and a button. If you had not set the keys globally in *\_AppStart.html*, the page would display an error. 
 
     ![](using-a-catpcha-to-prevent-automated-programs-bots-from-using-your-aspnet-web-site/_static/image1.png)

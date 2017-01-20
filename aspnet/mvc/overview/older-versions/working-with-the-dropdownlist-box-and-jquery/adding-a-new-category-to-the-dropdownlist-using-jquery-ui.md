@@ -42,7 +42,7 @@ The `_ChooseGenre` partial view will contain all the logic to hook up the JavaSc
 
 In Solution Explorer, right click the *Views\StoreManager* folder and select **Add**, then **View**. In the **View name** input, enter `_ChooseGenre` then select **Add**. Replace the markup in the *Views\StoreManager\\_ChooseGenre.cshtml* file with the following:
 
-[!code-csharp[Main](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/samples/sample2.cs)]
+[!code-cshtml[Main](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/samples/sample2.cshtml)]
 
 The first line declares that we are passing in an `Album` as our model, exactly the same model statement found in the Create view. The next few lines are the **Label** helper markup. The next line is the **DropDownList** helper call, exactly the same as in the original Create view. The next line adds a link with the name `Add New Genre`, and styles it like a button. The line containing `ValidationMessageFor` is copied directly from the Create view. The following lines:
 
@@ -82,7 +82,7 @@ The second line uses the ID `genreDialog` to create a dialog box on the div tag 
 
 The `var createGenreForm` is selected from the `createGenreForm` ID. The `createGenreForm` ID was set in the following code found in the *Views\Genre\\_CreateGenre.cshtml* file.
 
-[!code-csharp[Main](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/samples/sample7.cs)]
+[!code-cshtml[Main](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/samples/sample7.cshtml)]
 
 The [Html.BeginForm](https://msdn.microsoft.com/en-us/library/dd492714.aspx) helper overload used in the *Views\Genre\\_CreateGenre.cshtml* file generates HTML with an action attribute containing the URL to submit the form. You can see this by displaying the create album page in a browser and selecting show source in the browser. The following markup shows the generated HTML containing the form tag.
 

@@ -103,11 +103,11 @@ Now that you've updated the `Model` class, you also need to update the *\Views\M
 
 Open the*\Views\Movies\Index.cshtml* file and add a `<th>Rating</th>` column heading just after the **Price** column. Then add a `<td>` column near the end of the template to render the `@item.Rating` value. Below is what the updated *Index.cshtml* view template looks like:
 
-[!code-csharp[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample5.cs?highlight=26-28,46-48)]
+[!code-cshtml[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample5.cshtml?highlight=26-28,46-48)]
 
 Next, open the *\Views\Movies\Create.cshtml* file and add the following markup near the end of the form. This renders a text box so that you can specify a rating when a new movie is created.
 
-[!code-csharp[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample6.cs)]
+[!code-cshtml[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample6.cshtml)]
 
 You've now updated the application code to support the new `Rating` property.
 

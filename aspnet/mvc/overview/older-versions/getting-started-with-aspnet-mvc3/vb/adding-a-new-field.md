@@ -45,7 +45,7 @@ Now that you've updated the `Model` class, you also need to update the *\Views\M
 
 Open the*\Views\Movies\Index.vbhtml* file and add a `<th>Rating</th>` column heading just after the **Price** column. Then add a `<td>` column near the end of the template to render the `@item.Rating` value. Below is what the updated *Index.vbhtml* view template looks like:
 
-[!code-vb[Main](adding-a-new-field/samples/sample3.vb)]
+[!code-vbhtml[Main](adding-a-new-field/samples/sample3.vbhtml)]
 
 Next, open the *\Views\Movies\Create.vbhtml* file and add the following markup near the end of the form. This renders a text box so that you can specify a rating when a new movie is created.
 

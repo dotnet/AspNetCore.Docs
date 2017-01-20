@@ -187,17 +187,17 @@ In this task, you will adjust the simple View template created with ASP.NET MVC 
 
     HTML
 
-    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample4.cs)]
+    [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample4.cshtml)]
 2. Replace the **&lt;table&gt;** code with the following code to display only the **Genre**, **Artist**, **Album Title**, and **Price** fields. This deletes the **AlbumId** and **Album Art URL** columns. Also, it changes GenreId and ArtistId columns to display their linked class properties of **Artist.Name** and **Genre.Name**, and removes the **Details** link.
 
     HTML
 
-    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample5.cs)]
+    [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample5.cshtml)]
 3. Change the following descriptions.
 
     HTML
 
-    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample6.cs)]
+    [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample6.cshtml)]
 
 <a id="Ex1Task5"></a>
 
@@ -250,7 +250,7 @@ In this task, you will add a new method **Truncate** to the **HTML** object expo
 
     C#
 
-    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample7.cs)]
+    [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample7.cshtml)]
 
 <a id="Ex2Task2"></a>
 
@@ -264,7 +264,7 @@ In this task, you will use the **Truncate** method to truncate the text in the V
 
     HTML
 
-    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample8.cs)]
+    [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample8.cshtml)]
 
 <a id="Ex2Task3"></a>
 
@@ -359,7 +359,7 @@ In this task, you will add drop-downs to the View template created in the last t
 
     HTML
 
-    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample10.cs)]
+    [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample10.cshtml)]
 
     > [!NOTE]
     > An **Html.DropDownList** helper has been added to render drop-downs for choosing Artists and Genres. The parameters passed to **Html.DropDownList** are:
@@ -475,7 +475,7 @@ In this task, you will add the Create View template that will display a new (emp
 
     HTML
 
-    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample13.cs)]
+    [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample13.cshtml)]
 
 <a id="Ex4Task3"></a>
 
@@ -572,7 +572,7 @@ In this task, you will implement the HTTP-GET version of the Delete action metho
 
     HTML
 
-    [!code-csharp[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample16.cs)]
+    [!code-cshtml[Main](aspnet-mvc-4-helpers-forms-and-validation/samples/sample16.cshtml)]
 
 <a id="Ex05Task2"></a>
 

@@ -124,7 +124,7 @@ This view will make use of two of the techniques we looked at while building the
 
 We'll start by updating the form code to use Html.EditorForModel(), followed by an additional textbox for the Promo Code. The complete code for the AddressAndPayment view is shown below.
 
-[!code-csharp[Main](mvc-music-store-part-9/samples/sample10.cs)]
+[!code-cshtml[Main](mvc-music-store-part-9/samples/sample10.cshtml)]
 
 ## Defining validation rules for the Order
 

@@ -244,7 +244,7 @@ Open the *Controllers\AccountController.cs* file and add code for birth date and
 
 Add birth date and home town to the *Views\Account\ExternalLoginConfirmation.cshtml* file:
 
-[!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample7.cs?highlight=27-40)]
+[!code-cshtml[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample7.cshtml?highlight=27-40)]
 
 Delete the membership database so you can again register your Facebook account with your application and verify you can add the new birth date and home town profile information.
 

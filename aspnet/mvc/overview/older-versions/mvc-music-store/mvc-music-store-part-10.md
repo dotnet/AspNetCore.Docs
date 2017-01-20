@@ -71,7 +71,7 @@ Right-click on the GenreMenu controller action and create a partial view named G
 
 Update the view code for the GenreMenu partial view to display the items using an unordered list as follows.
 
-[!code-csharp[Main](mvc-music-store-part-10/samples/sample5.cs)]
+[!code-cshtml[Main](mvc-music-store-part-10/samples/sample5.cshtml)]
 
 ## Updating Site Layout to display our Partial Views
 

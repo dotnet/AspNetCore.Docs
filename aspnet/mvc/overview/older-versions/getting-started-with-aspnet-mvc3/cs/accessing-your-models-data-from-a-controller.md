@@ -98,11 +98,11 @@ Notice how the code creates a [`List`](https://msdn.microsoft.com/en-us/library/
 
 By including a `@model` statement at the top of the view template file, you can specify the type of object that the view expects. When you created the movie controller, Visual Web Developer automatically included the following `@model` statement at the top of the *Index.cshtml* file:
 
-[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample4.cs)]
+[!code-cshtml[Main](accessing-your-models-data-from-a-controller/samples/sample4.cshtml)]
 
 This `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.cshtml* template, the code loops through the movies by doing a `foreach` statement over the strongly typed `Model` object:
 
-[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample5.cs)]
+[!code-cshtml[Main](accessing-your-models-data-from-a-controller/samples/sample5.cshtml)]
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each `item` object in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code and full IntelliSense support in the code editor:
 

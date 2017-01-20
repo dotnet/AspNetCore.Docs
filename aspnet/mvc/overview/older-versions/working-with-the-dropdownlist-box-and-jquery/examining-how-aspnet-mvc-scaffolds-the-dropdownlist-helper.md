@@ -22,7 +22,7 @@ In **Solution Explorer**, right-click the *Controllers* folder and then select *
 
 Edit the *StoreManager\Index.cshtml* view and remove `AlbumArtUrl`. Removing `AlbumArtUrl` will make the presentation more readable. The completed code is shown below.
 
-[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample1.cs)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample1.cshtml)]
 
 Open the *Controllers\StoreManagerController.cs* file and find the `Index` method. Add the `OrderBy` clause so the albums will be sorted by price. The complete code is shown below.
 
@@ -32,11 +32,11 @@ Sorting by price will make it easier to test changes to the database. When you a
 
 Open the *StoreManager\Edit.cshtml* file. Add the following line just after the legend tag.
 
-[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample3.cs)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample3.cshtml)]
 
 The following code shows the context of this change:
 
-[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample4.cs)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample4.cshtml)]
 
 The `AlbumId` is required to make changes to an album record.
 
@@ -144,11 +144,11 @@ The names Genres and Artists are better names for the categories, as they contai
 
 Change the **DropDownList** call in the create and edit views to use the new **SelectList** names. The new markup for the edit view is shown below:
 
-[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample17.cs)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample17.cshtml)]
 
 The Create view requires an empty string to prevent the first item in the SelectList from being displayed.
 
-[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample18.cs)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample18.cshtml)]
 
 Create a new album and edit an album to verify the changes work. Test the edit code by selecting an album with a genre other than Rock.
 
@@ -180,7 +180,7 @@ Right click `EditVM` and select **Add View**. Use the options shown below.
 
 Select **Add**, then replace the contents of the *Views\StoreManager\EditVM.cshtml* file with the following:
 
-[!code-csharp[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample22.cs)]
+[!code-cshtml[Main](examining-how-aspnet-mvc-scaffolds-the-dropdownlist-helper/samples/sample22.cshtml)]
 
 The `EditVM` markup is very similar to the original `Edit` markup with the following exceptions.
 

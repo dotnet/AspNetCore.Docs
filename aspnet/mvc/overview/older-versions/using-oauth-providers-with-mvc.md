@@ -208,7 +208,7 @@ The additional user data that you retrieve from the provider will be displayed i
 
 In the **Views**/**Account** folder, open **ExternalLoginConfirmation.cshtml**. Below the existing field for user name, add fields for FullName, Link, and PictureLink.
 
-[!code-csharp[Main](using-oauth-providers-with-mvc/samples/sample11.cs)]
+[!code-cshtml[Main](using-oauth-providers-with-mvc/samples/sample11.cshtml)]
 
 You are now almost ready to run the application and register a new user with the additional information saved. You must have an account that is not already registered with the site. You can either use a different test account, or delete the rows in the **UserProfile** and **webpages\_OAuthMembership** tables for the account you wish to reuse. By deleting those rows, you will ensure that the account is registered again.
 

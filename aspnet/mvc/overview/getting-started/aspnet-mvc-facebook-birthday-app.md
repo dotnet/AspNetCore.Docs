@@ -184,7 +184,7 @@ The `MyAppUser` class determines what information is gathered from Facebook abou
     [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample14.cs)]
 6. Delete the *Views\Home\Index.cshtml* file and replace it with the same file from the downloaded project. The new `Index` view is shown here:
 
-    [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample15.cs)]
+    [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample15.cshtml)]
 
  The view displays the user's picture (if available), then displays each of the user's friends by using a    *Friends.cshtml* display template, which you will create next.
 7. Add a *DisplayTemplates* folder to the *Views\Home* folder.
@@ -245,7 +245,7 @@ Most of the action methods in the home controller are asynchronous. Asynchronous
  The         `RecommendationEngine`  class uses a simple selection and search algorithm in order to keep the code easy to follow and understand; you can plug in a more sophisticated selection engine if you prefer.
 - Add the *Search.cshtml, RecommendGifts.cshtml*, and *About.cshtml*files from the *Views\Home* folder in the downloaded project to your project's *Views\Home* folder. The `Search` view displays the list of friends that is returned by the `Search` action method:
 
-    [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample22.cs)]
+    [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample22.cshtml)]
 
  The     `RecommendGifts`  view displays the list of products that is returned by the     `RecommendGifts`  action method: 
 

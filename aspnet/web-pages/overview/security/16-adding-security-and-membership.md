@@ -144,7 +144,7 @@ In this procedure, you'll create a folder that will contain pages that are avail
 3. Inside the *Members* folder, create a new page and named it *MembersInformation.cshtml*.
 4. Replace the existing content with the following code and markup:
 
-    [!code-csharp[Main](16-adding-security-and-membership/samples/sample3.cs)]
+    [!code-cshtml[Main](16-adding-security-and-membership/samples/sample3.cshtml)]
 
     This code tests the `IsAuthenticated` property of the `WebSecurity` object, which returns `true` if the user has logged in. If the user is not logged in, the code calls `Response.Redirect` to send the user to the *Login.cshtml* page in the *Account* folder.
 

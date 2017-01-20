@@ -193,7 +193,7 @@ The following procedure shows how to pass data from a content page to a layout p
 
 1. In the root folder, create a file named *Content3.cshtml* and replace any existing content with the following:
 
-    [!code-csharp[Main](3-creating-a-consistent-look/samples/sample16.cs)]
+    [!code-cshtml[Main](3-creating-a-consistent-look/samples/sample16.cshtml)]
 
     The code stores two pieces of data in the `PageData` property &#8212; the title of the web page and true or false to specify whether to display a list.
 

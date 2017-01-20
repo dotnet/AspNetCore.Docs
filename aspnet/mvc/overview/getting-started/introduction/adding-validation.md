@@ -112,7 +112,7 @@ The following image shows how to disable JavaScript in the Chrome browser.
 
 Below is the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
-[!code-csharp[Main](adding-validation/samples/sample6.cs?highlight=16-17)]
+[!code-cshtml[Main](adding-validation/samples/sample6.cshtml?highlight=16-17)]
 
 Notice how the code uses an `Html.EditorFor` helper to output the `<input>` element for each `Movie` property. Next to this helper is a call to the `Html.ValidationMessageFor` helper method. These two helper methods work with the model object that's passed by the controller to the view (in this case, a `Movie` object). They automatically look for validation attributes specified on the model and display error messages as appropriate.
 

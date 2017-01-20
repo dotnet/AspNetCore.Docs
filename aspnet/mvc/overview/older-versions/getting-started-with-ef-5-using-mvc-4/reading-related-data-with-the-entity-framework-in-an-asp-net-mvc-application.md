@@ -80,7 +80,7 @@ The automatic scaffolding has specified eager loading for the `Department` navig
 
 Open *Views\Course\Index.cshtml* and replace the existing code with the following code. The changes are highlighted:
 
-[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cs?highlight=4,15,18,28-30)]
+[!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cshtml?highlight=4,15,18,28-30)]
 
 You've made the following changes to the scaffolded code:
 
@@ -91,7 +91,7 @@ You've made the following changes to the scaffolded code:
 
 Notice that for the last column, the scaffolded code displays the `Name` property of the `Department` entity that's loaded into the `Department` navigation property:
 
-[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs)]
+[!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cshtml)]
 
 Run the page (select the **Courses** tab on the Contoso University home page) to see the list with department names.
 
@@ -204,7 +204,7 @@ Next, if a course was selected, the selected course is retrieved from the list o
 
 In *Views\Instructor\Index.cshtml*, replace the existing code with the following code. The changes are highlighted:
 
-[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.cs?highlight=1,4,18,22-27,29,43-48)]
+[!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample18.cshtml?highlight=1,4,18,22-27,29,43-48)]
 
 You've made the following changes to the existing code:
 
@@ -240,7 +240,7 @@ Run the page and select an instructor. Now you see a grid that displays courses 
 
 After the code block you just added, add the following code. This displays a list of the students who are enrolled in a course when that course is selected.
 
-[!code-csharp[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample22.cs)]
+[!code-cshtml[Main](reading-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample22.cshtml)]
 
 This code reads the `Enrollments` property of the view model in order to display a list of students enrolled in the course.
 

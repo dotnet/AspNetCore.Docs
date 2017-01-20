@@ -55,7 +55,7 @@ Notice the second `Edit` action method is preceded by the `HttpPost` attribute. 
 
 The `HttpGet` `Edit` method takes the movie ID parameter, looks up the movie using the Entity Framework `Find` method, and returns the selected movie to the Edit view. When the scaffolding system created the Edit view, it examined the `Movie` class and created code to render `<label>` and `<input>` elements for each property of the class. The following example shows the Edit view that was generated:
 
-[!code-vb[Main](examining-the-edit-methods-and-edit-view/samples/sample4.vb)]
+[!code-vbhtml[Main](examining-the-edit-methods-and-edit-view/samples/sample4.vbhtml)]
 
 Notice how the view template has a `@ModelType MvcMovie.Models.Movie` statement at the top of the file — this specifies that the view expects the model for the view template to be of type `Movie`.
 
@@ -128,7 +128,7 @@ Now you can implement the `SearchIndex` view that will display the form to the u
 
 When you click the **Add** button, the *Views\Movies\SearchIndex.vbhtml* view template is created. Because you selected **List** in the **Scaffold template** list, Visual Web Developer automatically generated (scaffolded) some default content in the view. The scaffolding created an HTML form. It examined the `Movie` class and created code to render `<label>` elements for each property of the class. The listing below shows the Create view that was generated:
 
-[!code-vb[Main](examining-the-edit-methods-and-edit-view/samples/sample10.vb)]
+[!code-vbhtml[Main](examining-the-edit-methods-and-edit-view/samples/sample10.vbhtml)]
 
 Run the application and navigate to */Movies/SearchIndex*. Append a query string such as `?searchString=ghost` to the URL. The filtered movies are displayed.
 
@@ -150,7 +150,7 @@ However, you can't expect users to modify the URL every time they want to search
 
 Open the *Views\Movies\SearchIndex.vbhtml*file, and just after `@Html.ActionLink("Create New", "Create")`, add the following:
 
-[!code-vb[Main](examining-the-edit-methods-and-edit-view/samples/sample13.vb)]
+[!code-vbhtml[Main](examining-the-edit-methods-and-edit-view/samples/sample13.vbhtml)]
 
 The `Html.BeginForm` helper creates an opening `<form>` tag. The `Html.BeginForm` helper causes the form to post to itself when the user submits the form by clicking the **Filter** button.
 
@@ -188,7 +188,7 @@ The following code shows how to check the `movieGenre` parameter. If it's not em
 
 Add an `Html.DropDownList` helper to the *Views\Movies\SearchIndex.vbhtml* file, just before the `TextBox` helper. The completed markup is shown below:
 
-[!code-vb[Main](examining-the-edit-methods-and-edit-view/samples/sample18.vb)]
+[!code-vbhtml[Main](examining-the-edit-methods-and-edit-view/samples/sample18.vbhtml)]
 
 Run the application and browse to */Movies/SearchIndex*. Try a search by genre, by movie name, and by both criteria.
 

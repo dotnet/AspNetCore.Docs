@@ -110,7 +110,7 @@ In *CourseController.cs*, right-click one of the `UpdateCourseCredits` methods, 
 
 In *Views\Course\UpdateCourseCredits.cshtml*, replace the template code with the following code:
 
-[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample5.cs)]
+[!code-cshtml[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample5.cshtml)]
 
 Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:50205/Course/UpdateCourseCredits`). Enter a number in the text box:
 
@@ -171,7 +171,7 @@ For the `Get` method of the `Course` repository, the code specifies a filter exp
 
 In *Views\Course\Index.cshtml*, immediately before the opening `table` tag, add the following code to create the drop-down list and a submit button:
 
-[!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample9.cs)]
+[!code-cshtml[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample9.cshtml)]
 
 With the breakpoint still set, run the Course Index page. Continue through the first times that the code hits a breakpoint, so that the page is displayed in the browser. Select a department from the drop-down list and click **Filter**:
 

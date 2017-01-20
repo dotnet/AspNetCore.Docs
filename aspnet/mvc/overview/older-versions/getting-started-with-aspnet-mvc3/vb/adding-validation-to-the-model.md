@@ -85,7 +85,7 @@ The first action method displays the initial Create form. The second handles the
 
 Below is the *Create.vbhtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
-[!code-vb[Main](adding-validation-to-the-model/samples/sample6.vb)]
+[!code-vbhtml[Main](adding-validation-to-the-model/samples/sample6.vbhtml)]
 
 Notice how the code uses an `Html.EditorFor` helper to output the `<input>` element for each `Movie` property. Next to this helper is a call to the `Html.ValidationMessageFor` helper method. These two helper methods work with the model object that's passed by the controller to the view (in this case, a `Movie` object). They automatically look for validation attributes specified on the model and display error messages as appropriate.
 

@@ -127,7 +127,7 @@ If there is an error sending email, you might see a standard ASP.NET error messa
 
 You can also debug problems with sending email by using a `try-catch` block, as in the following example. When you use a `try-catch` block, ASP.NET does not display its standard error messages. Instead, you can capture the error in the `catch` portion of the block.
 
-[!code-csharp[Main](aspnet-web-pages-razor-troubleshooting-guide/samples/sample3.cs)]
+[!code-cshtml[Main](aspnet-web-pages-razor-troubleshooting-guide/samples/sample3.cshtml)]
 
 Substitute the appropriate values for `your-SMTP-server-name`, and so on. Some of the error messages you might see this way include the following:
 

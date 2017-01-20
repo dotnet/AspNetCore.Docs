@@ -68,7 +68,7 @@ Tutorials and other information about ASP.NET MVC 5.1 RTM are available from the
 
 The following code shows these APIs.
 
-[!code-csharp[Main](mvc51-release-notes/samples/sample2.cs)]
+[!code-cshtml[Main](mvc51-release-notes/samples/sample2.cshtml)]
 
 You can see a complete example [here](https://aspnet.codeplex.com/SourceControl/latest#Samples/MVC/EnumSample/).
 
@@ -80,7 +80,7 @@ We now allow passing in HTML attributes in [EditorFor](https://msdn.microsoft.co
 
 For example:
 
-[!code-csharp[Main](mvc51-release-notes/samples/sample3.cs)]
+[!code-cshtml[Main](mvc51-release-notes/samples/sample3.cshtml)]
 
 <a id="Unobtrusive"></a>
 

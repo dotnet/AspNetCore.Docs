@@ -199,13 +199,13 @@ Right-click in the Store Index action method and select Add View as before, sele
 
 First we'll change the @model declaration to indicate that the view will be expecting several Genre objects rather than just one. Change the first line of /Store/Index.cshtml to read as follows:
 
-[!code-csharp[Main](mvc-music-store-part-3/samples/sample17.cs)]
+[!code-cshtml[Main](mvc-music-store-part-3/samples/sample17.cshtml)]
 
 This tells the Razor view engine that it will be working with a model object that can hold several Genre objects. We're using an IEnumerable&lt;Genre&gt; rather than a List&lt;Genre&gt; since it's more generic, allowing us to change our model type later to any object type that supports the IEnumerable interface.
 
 Next, we'll loop through the Genre objects in the model as shown in the completed view code below.
 
-[!code-csharp[Main](mvc-music-store-part-3/samples/sample18.cs)]
+[!code-cshtml[Main](mvc-music-store-part-3/samples/sample18.cshtml)]
 
 Notice that we have full IntelliSense support as we enter this code, so that when we type "@Model." we see all methods and properties supported by an IEnumerable of type Genre.
 

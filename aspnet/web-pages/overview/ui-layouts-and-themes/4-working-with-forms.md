@@ -59,7 +59,7 @@ To process the form, you add code that reads the submitted field values and does
 
 1. At the top of the *Form.cshtml* file, enter the following code:
 
-    [!code-csharp[Main](4-working-with-forms/samples/sample2.cs)]
+    [!code-cshtml[Main](4-working-with-forms/samples/sample2.cshtml)]
 
     When the user first requests the page, only the empty form is displayed. The user (which will be you) fills in the form and then clicks **Submit**. This submits (posts) the user input to the server. By default, the request goes to the same page (namely, *Form.cshtml*).
 
@@ -96,7 +96,7 @@ This procedure shows how to validate all three form fields to make sure the user
 
 1. In the *Form.cshtml* file, replace the first block of code with the following code: 
 
-    [!code-csharp[Main](4-working-with-forms/samples/sample3.cs)]
+    [!code-cshtml[Main](4-working-with-forms/samples/sample3.cshtml)]
 
     To validate user input, you use the `Validation` helper. You register required fields by calling `Validation.RequireField`. You register other types of validation by calling `Validation.Add` and specifying the field to validate and the type of validation to perform.
 

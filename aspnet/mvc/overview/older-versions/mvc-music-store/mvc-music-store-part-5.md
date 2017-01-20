@@ -47,11 +47,11 @@ It's important to remember that, while this code was generated for us, it's stan
 
 So, let's start with a quick edit to the StoreManager Index view (/Views/StoreManager/Index.cshtml). This view will display a table which lists the Albums in our store with Edit / Details / Delete links, and includes the Album's public properties. We'll remove the AlbumArtUrl field, as it's not very useful in this display. In &lt;table&gt; section of the view code, remove the &lt;th&gt; and &lt;td&gt; elements surrounding AlbumArtUrl references, as indicated by the highlighted lines below:
 
-[!code-csharp[Main](mvc-music-store-part-5/samples/sample1.cs)]
+[!code-cshtml[Main](mvc-music-store-part-5/samples/sample1.cshtml)]
 
 The modified view code will appear as follows:
 
-[!code-csharp[Main](mvc-music-store-part-5/samples/sample2.cs)]
+[!code-cshtml[Main](mvc-music-store-part-5/samples/sample2.cshtml)]
 
 ## A first look at the Store Manager
 
@@ -208,7 +208,7 @@ We display a form that's strongly typed to an Album type, using the Delete view 
 
 The Delete template shows all the fields for the model, but we can simplify that down quite a bit. Change the view code in /Views/StoreManager/Delete.cshtml to the following.
 
-[!code-csharp[Main](mvc-music-store-part-5/samples/sample14.cs)]
+[!code-cshtml[Main](mvc-music-store-part-5/samples/sample14.cshtml)]
 
 This displays a simplified Delete confirmation.
 
@@ -250,7 +250,7 @@ This helper method takes a string and a maximum length to allow. If the text sup
 
 Now we can use our Truncate helper to ensure that both the Album Title and Artist Name properties are less than 25 characters. The complete view code using our new Truncate helper appears below.
 
-[!code-csharp[Main](mvc-music-store-part-5/samples/sample17.cs)]
+[!code-cshtml[Main](mvc-music-store-part-5/samples/sample17.cshtml)]
 
 Now when we browse the /StoreManager/ URL, the albums and titles are kept below our maximum lengths.
 

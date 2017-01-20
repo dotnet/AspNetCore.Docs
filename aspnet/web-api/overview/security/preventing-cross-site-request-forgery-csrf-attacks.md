@@ -57,7 +57,7 @@ You should require anti-forgery tokens for any nonsafe methods (POST, PUT, DELET
 
 To add the anti-forgery tokens to a Razor page, use the **HtmlHelper.AntiForgeryToken** helper method:
 
-[!code-csharp[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample3.cs)]
+[!code-cshtml[Main](preventing-cross-site-request-forgery-csrf-attacks/samples/sample3.cshtml)]
 
 This method adds the hidden form field and also sets the cookie token.
 

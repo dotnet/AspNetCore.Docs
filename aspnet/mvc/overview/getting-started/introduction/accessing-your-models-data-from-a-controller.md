@@ -95,7 +95,7 @@ If a `Movie` is found, an instance of the `Movie` model is passed to the `Detail
 
 Examine the contents of the *Views\Movies\Details.cshtml* file:
 
-[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample5.cs?highlight=1-2)]
+[!code-cshtml[Main](accessing-your-models-data-from-a-controller/samples/sample5.cshtml?highlight=1-2)]
 
 By including a `@model` statement at the top of the view template file, you can specify the type of object that the view expects. When you created the movie controller, Visual Studio automatically included the following `@model` statement at the top of the *Details.cshtml* file:
 
@@ -109,11 +109,11 @@ Examine the *Index.cshtml* view template and the `Index` method in the *MoviesCo
 
 When you created the movie controller, Visual Studio automatically included the following `@model` statement at the top of the *Index.cshtml* file:
 
-[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample8.cs)]
+[!code-cshtml[Main](accessing-your-models-data-from-a-controller/samples/sample8.cshtml)]
 
 This `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.cshtml* template, the code loops through the movies by doing a `foreach` statement over the strongly typed `Model` object:
 
-[!code-csharp[Main](accessing-your-models-data-from-a-controller/samples/sample9.cs?highlight=1,4,7,10,13,16,19-21)]
+[!code-cshtml[Main](accessing-your-models-data-from-a-controller/samples/sample9.cshtml?highlight=1,4,7,10,13,16,19-21)]
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each `item` object in the loop is typed as `Movie`. Among other benefits, this means that you get compile-time checking of the code and full IntelliSense support in the code editor:
 

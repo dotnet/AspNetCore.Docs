@@ -270,7 +270,7 @@ When `RequireConsistentDisplayMode` is set to `true`, the mobile layout (*\_Layo
 
 You can disable consistent display mode in a view by setting `RequireConsistentDisplayMode` to `false` in the view file. The following markup in the *Views\Home\AllSpeakers.cshtml* file sets `RequireConsistentDisplayMode` to `false`:
 
-[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample18.cs)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample18.cshtml)]
 
 ## Creating a Mobile Speakers View
 
@@ -280,7 +280,7 @@ Copy *AllSpeakers.cshtml* to *AllSpeakers.Mobile.cshtml*. Open the *AllSpeakers.
 
 In the `<ul>` tag, add the `data-role` attribute and set its value to `listview`. Like other [`data-*` attributes](http://html5doctor.com/html5-custom-data-attributes/), `data-role="listview"` makes the large list items easier to tap. This is what the completed markup looks like:
 
-[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample19.cs)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample19.cshtml)]
 
 Refresh the mobile browser. The updated view looks like this:
 
@@ -326,7 +326,7 @@ The image below shows what the **Date** page looks like with the `data-role` att
 
 [![p3_dates1](aspnet-mvc-4-mobile-features/_static/image43.png)](aspnet-mvc-4-mobile-features/_static/image42.png)Replace the contents of the *Views\Home\AllDates.Mobile.cshtml* file with the following code:
 
-[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample23.cs)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample23.cshtml)]
 
 This code groups all sessions by days. It creates a list divider for each new day, and it lists all the sessions for each day under a divider. Here's what it looks like when this code runs:
 
@@ -346,7 +346,7 @@ Tap the **Scott Hanselman** link.
 
 As you can see, the display is difficult to read on a mobile browser. The date column is hard to read and the tags column is out of the view. To fix this, copy *Views\Home\SessionsTable.cshtml* to *Views\Home\SessionsTable.Mobile.cshtml*, and then replace the contents of the file with the following code:
 
-[!code-csharp[Main](aspnet-mvc-4-mobile-features/samples/sample24.cs)]
+[!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample24.cshtml)]
 
 The code removes the room and tags columns, and formats the title, speaker, and date vertically, so that all this information is readable on a mobile browser. The image below reflects the code changes.
 

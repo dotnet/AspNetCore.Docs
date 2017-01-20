@@ -95,7 +95,7 @@ In ASP.NET Web Pages 2, you can use the `Validator` helper to test user input. T
 
 The following example shows a page that illustrates these steps.
 
-[!code-csharp[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample2.cs)]
+[!code-cshtml[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample2.cshtml)]
 
 To see how validation works, run this page and deliberately make mistakes. For example, here's what the page looks like if you forget to enter a course name, if you enter an , and if you enter an invalid date:
 
@@ -121,7 +121,7 @@ You can add support to perform validation in client script. In that case, the va
 
 The following page shows how to add client validation features to the example shown earlier.
 
-[!code-csharp[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample4.cs?highlight=35-39,51,61,71)]
+[!code-cshtml[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample4.cshtml?highlight=35-39,51,61,71)]
 
 Not all validation checks run on the client. In particular, data-type validation (integer, date, and so on) don't run on the client. The following checks work on both the client and server:
 
