@@ -11,8 +11,8 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-*",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Swashbuckle": "6.0.0-beta902",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0-*"
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0-*",
+    "Swashbuckle.AspNetCore": "1.0.0-rc1"
   },
   "frameworks": {
     "net451": { },
