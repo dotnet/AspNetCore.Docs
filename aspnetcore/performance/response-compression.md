@@ -20,7 +20,7 @@ By [Luke Latham](https://github.com/GuardRex)
 
 This document introduces response compression and explains how to use ASP.NET Core Response Compression Middleware. A response compression sample application demonstrates the middleware and response compression concepts.
 
-You can explore the features of the Response Compression Middleware with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample). The sample illustrates the compression of application responses using GZip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
+You can explore the features of the Response Compression Middleware with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample). The sample illustrates the compression of application responses using Gzip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
 
 ## Response Compression
 The time it takes to send content over a network, especially the Internet and to low bandwidth mobile devices, is often the largest share of the total time it takes to satisfy a client's request. The transmission time frequently exceeds the processing time taken on the client and the server. If you can reduce response payload sizes and thus send less data to clients, you can usually increase the responsiveness of your application, sometimes dramatically. One way to reduce payload sizes is to compress an application's responses. When you cannot use a server-based compression technology, you can use ASP.NET Core Response Compression Middleware to compress responses.
@@ -121,7 +121,7 @@ Using the sample application, the client would submit a request with the `Accept
 
 Submit a request to the sample application with the `Accept-Encoding: mycustomcompression` header and observe the response headers. The `Vary` and `Content-Encoding` headers are present on the response. The response body (not shown) isn't compressed by the sample, as there is no compression implementation in the `CustomCompressionProvider` class of the sample. However, the sample shows where you would implement such a compression algorithm.
 
-![Fiddler window showing result of a request with the Accept-Encoding header and a value of custom. The Vary and Content-Encoding headers are added to the response.](response-compression/_static/request-custom-compression.png)
+![Fiddler window showing result of a request with the Accept-Encoding header and a value of mycustomcompression. The Vary and Content-Encoding headers are added to the response.](response-compression/_static/request-custom-compression.png)
 
 ## Compression with secure protocol
 Compressed responses over secure connections can be controlled with the `EnableForHttps` option, which is disabled by default. Using compression with dynamically generated pages can lead to security problems such as the [CRIME](https://en.wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://en.wikipedia.org/wiki/BREACH_(security_exploit)) attacks.
