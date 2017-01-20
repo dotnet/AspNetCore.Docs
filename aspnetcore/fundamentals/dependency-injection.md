@@ -220,6 +220,8 @@ The built-in services container is meant to serve the basic needs of the framewo
 
 First, install the appropriate container package(s):
 
+* `Autofac`
+* `Autofac.Extensions.DependencyInjection`
 
 Next, configure the container in `ConfigureServices` and return an `IServiceProvider`:
 

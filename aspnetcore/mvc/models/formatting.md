@@ -103,7 +103,7 @@ If your application needs to support additional formats beyond the default of JS
 
 ### Adding XML Format Support
 
-To add support for XML formatting, install the "Microsoft.AspNetCore.Mvc.Formatters.Xml" NuGet package.
+To add support for XML formatting, install the `Microsoft.AspNetCore.Mvc.Formatters.Xml` NuGet package.
 
 Add the XmlSerializerFormatters to MVC's configuration in *Startup.cs*:
 
