@@ -18,9 +18,7 @@ By [Luke Latham](https://github.com/GuardRex)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample)
 
-This document introduces response compression and explains how to use ASP.NET Core Response Compression Middleware. A response compression sample application demonstrates the middleware and response compression concepts.
-
-You can explore the features of the Response Compression Middleware with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample). The sample illustrates the compression of application responses using Gzip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
+This document introduces response compression and explains how to use ASP.NET Core Response Compression Middleware. You can explore the features of the Response Compression Middleware with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample). The sample illustrates the compression of application responses using Gzip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
 
 ## Response Compression
 The time it takes to send content over a network, especially the Internet and to low bandwidth mobile devices, is often the largest share of the total time it takes to satisfy a client's request. The transmission time frequently exceeds the processing time taken on the client and the server. If you can reduce response payload sizes and thus send less data to clients, you can usually increase the responsiveness of your application, sometimes dramatically. One way to reduce payload sizes is to compress an application's responses. When you cannot use a server-based compression technology, you can use ASP.NET Core Response Compression Middleware to compress responses.
@@ -35,7 +33,7 @@ When a client can process compressed content, the client must inform the server 
 `compress` | No | UNIX "compress" data format
 `deflate` |  No | "deflate" compressed data inside the "zlib" data format 
 `exi` | No | W3C Efficient XML Interchange
-`gzip` | Yes (default) | GZip file format
+`gzip` | Yes (default) | Gzip file format
 `identity` | Yes | "No encoding" identifier: The response must not be encoded.
 `pack200-gzip` | No | Network Transfer Format for Java Archives
 `*` | Yes | Any available content encoding not explicitly requested
@@ -46,7 +44,7 @@ The middleware will allow you to add additional compression providers for custom
 
 The middleware is capable of reacting to quality value (qvalue, `q`) weighting when sent by the client to prioritize compression schemes. For more information, see [RFC 7231: Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4).
 
-Most compression algorithms are subject to a tradeoff between compression speed and the effectiveness of the compression. *Effectiveness* in this context refers to the size of the output after compression. The smallest size is achieved by the most *optimal* compression. The GZip compression provider defaults to the fastest compression level, which might not produce the most efficient compression. If the most efficient compression is desired, the middleware can be configured for optimal compression.
+Most compression algorithms are subject to a tradeoff between compression speed and the effectiveness of the compression. *Effectiveness* in this context refers to the size of the output after compression. The smallest size is achieved by the most *optimal* compression. The Gzip compression provider defaults to the fastest compression level, which might not produce the most efficient compression. If the most efficient compression is desired, the middleware can be configured for optimal compression.
 
 The headers involved in requesting, sending, caching, and receiving compressed content are described below.
 
@@ -66,7 +64,7 @@ Use Response Compression Middleware when you're unable to use the [Dynamic Compr
 To include the middleware in your project, add a reference to the `Microsoft.AspNetCore.ResponseCompression` package. The middleware is available for projects that target .NET Framework 4.5.1 or .NET Standard 1.3 or higher.
 
 ## Configuration
-If you plan to implement the middleware with default GZip compression and for default MIME types, you can add the middleware to your service collection and processing pipeline. No additional configuration is required. 
+If you plan to implement the middleware with default Gzip compression and for default MIME types, you can add the middleware to your service collection and processing pipeline. No additional configuration is required. 
 
 [!code-csharp[Main](response-compression/sample/StartupBasic.cs?name=snippet1&highlight=3,8)]
 
@@ -83,7 +81,7 @@ Submit a request to the sample application with the `Accept-Encoding: gzip` head
 
 ## Providers
 ### GzipCompressionProvider
-Use the `GzipCompressionProvider` to compress responses with GZip. This is the default compression provider if none are specified. You can set the compression level with the `GzipCompressionProviderOptions`. The default is `CompressionLevel.Fastest`.
+Use the `GzipCompressionProvider` to compress responses with Gzip. This is the default compression provider if none are specified. You can set the compression level with the `GzipCompressionProviderOptions`. The default is `CompressionLevel.Fastest`.
 
 Compression Level | Description
 --- | ---
