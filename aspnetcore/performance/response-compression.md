@@ -54,7 +54,7 @@ Header | Role
 --- | ---
 `Accept-Encoding` | Sent by the client to the server to indicate which types of content encoding are acceptable.
 `Content-Encoding` | Sent from the server to the client to indicate the encoding of the content in the payload.
-`Content-Length` | When compression occurs, the the `Content-Length` header is removed, since the body content changes when the response is compressed.
+`Content-Length` | When compression occurs, the `Content-Length` header is removed, since the body content changes when the response is compressed.
 `Content-MD5` | When compression occurs, the `Content-MD5` header is removed, since the body content has changed and the hash is no longer valid.
 `Content-Type` | Specifies the MIME type of the content. Each response should have a content-type. The middleware will check this value to determine if the response should be compressed. The middleware includes a set of [default MIME types](#mime-types) that it will encode, but you can replace or add MIME types.
 `Vary` | When sent by the server with a value of `Accept-Encoding` to clients and proxies, it indicates that they should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses will be cached separately.
