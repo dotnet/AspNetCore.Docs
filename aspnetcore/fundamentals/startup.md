@@ -22,7 +22,7 @@ The `Startup` class configures the request pipeline that handles all requests ma
 
 ASP.NET Core apps require a `Startup` class. By convention, the `Startup` class is named "Startup". You specify the startup class name in the `Main` programs [WebHostBuilderExtensions](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderextensions) [`UseStartup<TStartup>`](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) method.
 
-You can define separate `Startup` classes for different environments, and the appropriate one will be selected at runtime. Learn more in [Working with multiple environments](environments.md#startup-conventions).
+You can define separate `Startup` classes for different environments, and the appropriate one will be selected at runtime. If you specify `startupAssembly` in the WebHost configuration or options, hosting will load that startup assembly and search for a `Startup` or `Startup[Environment]` type. See [FindStartupType](https://github.com/aspnet/Hosting/blob/dev/src/Microsoft.AspNetCore.Hosting/Internal/StartupLoader.cs) in `StartupLoader` and [Working with multiple environments](environments.md#startup-conventions). `UseStartup<TStartup>` is the recommended approach.
 
 The `Startup` class constructor can accept dependencies that are provided through [dependency injection](dependency-injection.md). You can use `IHostingEnvironment` to set up [configuration](configuration.md) sources and `ILoggerFactory` to set up [logging](logging.md) providers. 
 
