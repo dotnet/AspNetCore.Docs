@@ -20,7 +20,8 @@ by [Mike Wasson](https://github.com/MikeWasson)
 
 This tutorial shows how to upload files to a web API. It also describes how to process multipart MIME data.
 
-> [!NOTE] [Download the completed project](https://code.msdn.microsoft.com/ASPNET-Web-API-File-Upload-a8c0fb0d).
+> [!NOTE]
+> [Download the completed project](https://code.msdn.microsoft.com/ASPNET-Web-API-File-Upload-a8c0fb0d).
 
 
 Here is an example of an HTML form for uploading a file:

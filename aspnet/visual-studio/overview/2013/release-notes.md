@@ -535,9 +535,11 @@ In addition, the `Microsoft.Owin.Host.SystemWeb` package now enables middleware 
 
 Although you can write OWIN components using only the function and type definitions from the OWIN specification, the new `Microsoft.Owin` package provides a more user-friendly set of abstractions. This package combines several earlier packages (e.g., `Owin.Extensions`, `Owin.Types`) into a single, well-structured object model that can then be easily used by other OWIN components. In fact, the majority of Microsoft OWIN components now use this package.
 
-> [!NOTE] [OWIN](http://www.owin.org) applications cannot run in IIS classic mode; they must be run in integrated mode.
+> [!NOTE]
+> [OWIN](http://www.owin.org) applications cannot run in IIS classic mode; they must be run in integrated mode.
 
-> [!NOTE] [OWIN](http://www.owin.org) applications must be run in full trust.
+> [!NOTE]
+> [OWIN](http://www.owin.org) applications must be run in full trust.
 
 This release also includes the Microsoft.Owin.Diagnostics package, which includes middleware to validate a running OWIN application, plus error-page middleware to help investigate failures.
 

@@ -453,7 +453,8 @@ You would typically use the @ Implements directive when using inline ASP.NET cod
 
 As mentioned previously, the XMLHttp call is encapsulated in the WebResource.axd handler. When your page is rendered, ASP.NET will add a call to WebForm\_DoCallback, a client script that is provided by WebResource.axd. The WebForm\_DoCallback function replaces the \_\_doPostBack function for a callback. Remember that \_\_doPostBack programmatically submits the form on the page. In a callback scenario, you want to prevent a postback, so \_\_doPostBack will not suffice.
 
-> [!NOTE] \_\_doPostBack is still rendered to the page in a client script callback scenario. However, it's not used for the callback.
+> [!NOTE]
+> \_\_doPostBack is still rendered to the page in a client script callback scenario. However, it's not used for the callback.
 
 
 The arguments for the WebForm\_DoCallback client-side function are provided via the server-side function GetCallbackEventReference which would normally be called in Page\_Load. A typical call to GetCallbackEventReference might look like this:

@@ -25,7 +25,8 @@ This article shows how to post form-urlencoded data to a Web API controller.
 - [Sending Form Data via AJAX](#sending_form_data_via_ajax)
 - [Sending Simple Types](#sending_simple_types)
 
-> [!NOTE] [Download the completed project](https://code.msdn.microsoft.com/ASPNET-Web-API-Sending-a6f9d007).
+> [!NOTE]
+> [Download the completed project](https://code.msdn.microsoft.com/ASPNET-Web-API-Sending-a6f9d007).
 
 
 <a id="overview_of_html_forms"></a>

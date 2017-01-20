@@ -680,7 +680,8 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     *CoffeeScript files*
 
-    > [!NOTE] [CofeeScript](https://github.com/jashkenas/coffeescript/) provides a simpler syntax for writing JavaScript code, enhancing JavaScript's brevity and readability, as well as adding other features like array comprehension and pattern matching.
+    > [!NOTE]
+    > [CofeeScript](https://github.com/jashkenas/coffeescript/) provides a simpler syntax for writing JavaScript code, enhancing JavaScript's brevity and readability, as well as adding other features like array comprehension and pattern matching.
 9. Open the **Optimization.aspx** file and locate the bundle links.
 
     Notice that the link to **Dynamic JS Bundle** is referencing the **Scripts/bundle** folder by using the **/Coffee** suffix you configured for the dynamic folder bundle.

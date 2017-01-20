@@ -79,7 +79,8 @@ Before you test this page, there's one final piece of configuration to tend to: 
 
 The mail delivery configuration is specified through the [`<system.net>` element](https://msdn.microsoft.com/en-us/library/6484zdc1.aspx)'s [`<mailSettings>` element](https://msdn.microsoft.com/en-us/library/w355a94k.aspx). Use the [`<smtp>` element](https://msdn.microsoft.com/en-us/library/ms164240.aspx) to indicate the delivery method and the default From address. The following markup configures mail settings to use a network SMTP server named `smtp.example.com` on port 25 and with username/password credentials of username and password.
 
-> [!NOTE] `<system.net>` is a child element of the root `<configuration>` element and a sibling of `<system.web>`. Therefore, do not put the `<system.net>` element within the `<system.web>` element; instead, put it at the same level.
+> [!NOTE]
+> `<system.net>` is a child element of the root `<configuration>` element and a sibling of `<system.web>`. Therefore, do not put the `<system.net>` element within the `<system.web>` element; instead, put it at the same level.
 
 
 [!code-xml[Main](recovering-and-changing-passwords-vb/samples/sample1.xml)]
