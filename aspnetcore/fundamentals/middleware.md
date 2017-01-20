@@ -128,7 +128,7 @@ ASP.NET ships with the following middleware components:
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. |
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. |
 | Response Caching | Provides support for caching responses. |
-| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. |
+| Response Compression | Provides support for compressing responses. |
 | [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. |
