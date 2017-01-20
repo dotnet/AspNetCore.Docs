@@ -147,7 +147,8 @@ In this task, you will go through the steps of enabling **Entity Framework Code 
 
     *Adding base schema migration*
 
-    > [!NOTE] **Add-Migration** will scaffold the next migration based on changes you have made to your model since the last migration was created. In this case, as it is the first migration of the project, it will add the scripts to create all the tables defined in the **TriviaContext** class.
+    > [!NOTE]
+    > **Add-Migration** will scaffold the next migration based on changes you have made to your model since the last migration was created. In this case, as it is the first migration of the project, it will add the scripts to create all the tables defined in the **TriviaContext** class.
 7. Execute the migration to update the database by running the following command. For this command you will specify the **Verbose** flag to view the SQL statements being applied to the target database.
 
     [!code-powershell[Main](maintainable-azure-websites-managing-change-and-scale/samples/sample3.ps1)]
@@ -156,7 +157,8 @@ In this task, you will go through the steps of enabling **Entity Framework Code 
 
     *Creating initial database*
 
-    > [!NOTE] **Update-Database** will apply any pending migrations to the database. In this case, it will create the database using the connection string defined in your web.config file.
+    > [!NOTE]
+    > **Update-Database** will apply any pending migrations to the database. In this case, it will create the database using the connection string defined in your web.config file.
 8. Go to **View** menu and open **SQL Server Object Explorer**.
 
     ![Open in SQL Server Object Explorer](maintainable-azure-websites-managing-change-and-scale/_static/image4.png "Open in SQL Server Object Explorer")

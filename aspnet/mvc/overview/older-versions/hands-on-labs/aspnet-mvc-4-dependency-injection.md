@@ -332,14 +332,16 @@ In the previous task, you injected a new dependency inside a view to perform a s
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample12.cs)]
 
-    > [!NOTE] **CustomViewPageActivator** is responsible for managing the creation of a view by using a Unity container.
+    > [!NOTE]
+    > **CustomViewPageActivator** is responsible for managing the creation of a view by using a Unity container.
 3. Include **UnityDependencyResolver.cs** file from **/Sources/Assets** to **/Factories** folder. To do that, right-click the **/Factories** folder, select **Add | Existing Item** and then select **UnityDependencyResolver.cs** file.
 
     C#
 
     [!code-csharp[Main](aspnet-mvc-4-dependency-injection/samples/sample13.cs)]
 
-    > [!NOTE] **UnityDependencyResolver** class is a custom DependencyResolver for Unity. When a service cannot be found inside the Unity container, the base resolver is invocated.
+    > [!NOTE]
+    > **UnityDependencyResolver** class is a custom DependencyResolver for Unity. When a service cannot be found inside the Unity container, the base resolver is invocated.
 
 In the following task both implementations will be registered to let the model know the location of the services and the views.
 

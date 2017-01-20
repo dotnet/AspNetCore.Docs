@@ -573,7 +573,8 @@ The request validation feature in ASP.NET provides a certain level of default pr
 
     *Request.Unvalidated object*
 
-    > [!NOTE] **Please use the HttpRequest.Unvalidated property with caution!** Make sure you carefully perform custom validation on the raw request data to ensure that dangerous text is not round-tripped and rendered back to unsuspecting customers!
+    > [!NOTE]
+    > **Please use the HttpRequest.Unvalidated property with caution!** Make sure you carefully perform custom validation on the raw request data to ensure that dangerous text is not round-tripped and rendered back to unsuspecting customers!
 
 <a id="Exercise3"></a>
 

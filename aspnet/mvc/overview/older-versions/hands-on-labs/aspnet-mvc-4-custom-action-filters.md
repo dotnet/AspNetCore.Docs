@@ -161,7 +161,8 @@ In this task you will create a custom filter attribute class that will contain t
 
     [!code-csharp[Main](aspnet-mvc-4-custom-action-filters/samples/sample3.cs)]
 
-    > [!NOTE] **OnActionExecuting** method is using **Entity Framework** to add a new ActionLog register. It creates and fills a new entity instance with the context information from **filterContext**.
+    > [!NOTE]
+    > **OnActionExecuting** method is using **Entity Framework** to add a new ActionLog register. It creates and fills a new entity instance with the context information from **filterContext**.
     > 
     > You can read more about **ControllerContext** class at [msdn](https://msdn.microsoft.com/en-us/library/system.web.mvc.controllercontext.aspx).
 

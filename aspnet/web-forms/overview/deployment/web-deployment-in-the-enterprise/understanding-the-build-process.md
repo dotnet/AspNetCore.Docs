@@ -192,7 +192,8 @@ This is an example of *target batching*. In MSBuild project files, batching is a
 - Split the items in **DbPublishPackages** into batches of items that contain the same **Identity** metadata value.
 - Execute the target once per batch.
 
-> [!NOTE] **Identity** is one of the [built-in metadata values](https://msdn.microsoft.com/en-us/library/ms164313.aspx) that is assigned to every item on creation. It refers to the value of the **Include** attribute in the **Item** element&#x2014;in other words, the path and filename of the item.
+> [!NOTE]
+> **Identity** is one of the [built-in metadata values](https://msdn.microsoft.com/en-us/library/ms164313.aspx) that is assigned to every item on creation. It refers to the value of the **Include** attribute in the **Item** element&#x2014;in other words, the path and filename of the item.
 
 
 In this case, because there should never be more than one item with the same path and filename, we&#x27;re essentially working with batch sizes of one. The target is executed once for every database package.

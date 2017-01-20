@@ -41,7 +41,8 @@ To accomplish this, you need to tell the Microsoft Build Engine (MSBuild) where 
 
 In the [sample solution](../web-deployment-in-the-enterprise/the-contact-manager-solution.md), the *Publish.proj* file declares a property named **OutputRoot**. As the name suggests, this is the root folder that contains everything that the build process generates. In the *Publish.proj* file, you can see that the **OutputRoot** property refers to the root location for all deployment resources.
 
-> [!NOTE] **OutputRoot** is a commonly used property name. Visual C# and Visual Basic project files also declare this property to store the root location for all build outputs.
+> [!NOTE]
+> **OutputRoot** is a commonly used property name. Visual C# and Visual Basic project files also declare this property to store the root location for all build outputs.
 
 
 [!code-xml[Main](deploying-a-specific-build/samples/sample1.xml)]

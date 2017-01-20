@@ -188,7 +188,8 @@ You will use the ASP.NET Scaffolding tools provided by Visual Studio to create t
 
     *Selecting the Web API 2 Controller Empty template*
 
-    > [!NOTE] **ASP.NET Scaffolding** is a code generation framework for ASP.NET Web applications. Visual Studio 2013 includes pre-installed code generators for MVC and Web API projects. You should use scaffolding in your project when you want to quickly add code that interacts with data models in order to reduce the amount of time required to develop standard data operations.
+    > [!NOTE]
+    > **ASP.NET Scaffolding** is a code generation framework for ASP.NET Web applications. Visual Studio 2013 includes pre-installed code generators for MVC and Web API projects. You should use scaffolding in your project when you want to quickly add code that interacts with data models in order to reduce the amount of time required to develop standard data operations.
     > 
     > The scaffolding process also ensures that all the required dependencies are installed in the project. For example, if you start with an empty ASP.NET project and then use scaffolding to add a Web API controller, the required Web API NuGet packages and references are added to your project automatically.
 6. In the **Add Controller** dialog box, type *TriviaController* in the **Controller name** text box and click **Add**.
