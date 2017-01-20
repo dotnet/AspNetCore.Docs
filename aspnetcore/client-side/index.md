@@ -23,4 +23,5 @@ ms.prod: aspnet-core
 - [Bundling and minification](bundling-and-minification.md)
 - [🔧 Working with a Content Delivery Network (CDN)](cdn.md)
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/asp-net-core.html)
-- [Building projects with Yeoman](yeoman.md)
+- [Building Projects with Yeoman](yeoman.md)
+- [Using Browser Link](using-browserlink.md)
