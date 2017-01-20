@@ -77,7 +77,7 @@ Sections:
 
 Prerequisites:
 
-- Visual Studio 2013. If you do not have Visual Studio, see [ASP.NET Downloads](../../../downloads/index.md) to get the free Visual Studio 2013 Express Development Tool.
+- Visual Studio 2013. If you do not have Visual Studio, see [ASP.NET Downloads](https://www.asp.net/downloads) to get the free Visual Studio 2013 Express Development Tool.
 
 This section shows how to create an ASP.NET MVC 5 application, add the SignalR library, and create the chat application.
 

@@ -86,7 +86,7 @@ This section shows how to use Visual Studio 2013 and SignalR version 2 to create
 
 Prerequisites:
 
-- Visual Studio 2013. If you do not have Visual Studio, see [ASP.NET Downloads](../../../downloads/index.md) to get the free Visual Studio 2013 Express Development Tool.
+- Visual Studio 2013. If you do not have Visual Studio, see [ASP.NET Downloads](https://www.asp.net/downloads) to get the free Visual Studio 2013 Express Development Tool.
 
 The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Application and add the SignalR library:
 

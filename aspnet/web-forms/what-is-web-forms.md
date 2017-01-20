@@ -14,7 +14,7 @@ msc.type: content
 ---
 What is Web Forms
 ====================
-ASP.NET Web Forms is a part of the ASP.NET web application framework and is included with [Visual Studio](../downloads/index.md). It is one of the four programming models you can use to create ASP.NET web applications, the others are ASP.NET MVC, ASP.NET Web Pages, and ASP.NET Single Page Applications.
+ASP.NET Web Forms is a part of the ASP.NET web application framework and is included with [Visual Studio](https://www.asp.net/downloads). It is one of the four programming models you can use to create ASP.NET web applications, the others are ASP.NET MVC, ASP.NET Web Pages, and ASP.NET Single Page Applications.
 
 Web Forms are pages that your users request using their browser. These pages can be written using a combination of HTML, client-script, server controls, and server code. When users request a page, it is compiled and executed on the server by the framework, and then the framework generates the HTML markup that the browser can render. An ASP.NET Web Forms page presents information to the user in any browser or client device.
 

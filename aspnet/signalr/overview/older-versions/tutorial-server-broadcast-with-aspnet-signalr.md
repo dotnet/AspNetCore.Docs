@@ -55,7 +55,7 @@ This tutorial contains the following sections:
 
 ## Prerequisites
 
-Before you start, make sure that you have Visual Studio 2012 or 2010 SP1 installed on your computer. If you don't have Visual Studio, see [ASP.NET Downloads](../../../downloads/index.md) to get the free Visual Studio 2012 Express for Web.
+Before you start, make sure that you have Visual Studio 2012 or 2010 SP1 installed on your computer. If you don't have Visual Studio, see [ASP.NET Downloads](https://www.asp.net/downloads) to get the free Visual Studio 2012 Express for Web.
 
 If you have Visual Studio 2010, make sure that [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) is installed.
 

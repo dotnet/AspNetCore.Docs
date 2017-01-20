@@ -32,7 +32,7 @@ In order to illustrate how you can use the Microsoft Entity Framework with ASP.N
 
 This tutorial assumes that you have Visual Studio 2008 or Visual Web Developer 2008 with Service Pack 1. You need Service Pack 1 in order to use the Entity Framework. You can download Visual Studio 2008 Service Pack 1 or Visual Web Developer with Service Pack 1 from the following address:
 
-> [https://www.asp.net/downloads/](../../../../downloads/index.md)
+> [https://www.asp.net/downloads/](https://www.asp.net/downloads)
 
 
 ## Creating the Movie Sample Database

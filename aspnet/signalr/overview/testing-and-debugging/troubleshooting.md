@@ -353,7 +353,7 @@ This section contains issues with Internet Information Services.
 
 SignalR is supported on IIS 7.0 and 7.5, but support for extensionless URLs must be added. To add support for extensionless URLs, see [https://support.microsoft.com/kb/980368](https://support.microsoft.com/kb/980368)
 
-SignalR requires ASP.NET to be installed on the server (ASP.NET is not installed on IIS by default). To install ASP.NET, see [ASP.NET Downloads](../../../downloads/index.md).
+SignalR requires ASP.NET to be installed on the server (ASP.NET is not installed on IIS by default). To install ASP.NET, see [ASP.NET Downloads](https://www.asp.net/downloads).
 
 <a id="azure"></a>
 

@@ -49,7 +49,7 @@ by [Microsoft](https://github.com/microsoft)
 <a id="TOC1"></a>
 ## Installation Notes
 
-ASP.NET and Web Tools for Visual Studio 2013 are bundled in the main installer and can be downloaded [here](../../../downloads/index.md).
+ASP.NET and Web Tools for Visual Studio 2013 are bundled in the main installer and can be downloaded [here](https://www.asp.net/downloads).
 
 <a id="TOC2"></a>
 ## Documentation

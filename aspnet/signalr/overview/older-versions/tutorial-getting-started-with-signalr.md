@@ -55,7 +55,7 @@ This section shows how to create an empty ASP.NET web application, add SignalR, 
 
 Prerequisites:
 
-- Visual Studio 2010 SP1 or 2012. If you do not have Visual Studio, see [ASP.NET Downloads](../../../downloads/index.md) to get the free Visual Studio 2012 Express Development Tool.
+- Visual Studio 2010 SP1 or 2012. If you do not have Visual Studio, see [ASP.NET Downloads](https://www.asp.net/downloads) to get the free Visual Studio 2012 Express Development Tool.
 - [Microsoft ASP.NET and Web Tools 2012.2](https://go.microsoft.com/fwlink/?LinkId=279941). For Visual Studio 2012, this installer adds new ASP.NET features including SignalR templates to Visual Studio. For Visual Studio 2010 SP1, an installer is not available but you can complete the tutorial by installing the SignalR NuGet package as described in the setup steps.
 
 The following steps use Visual Studio 2012 to create an ASP.NET Empty Web Application and add the SignalR library:
