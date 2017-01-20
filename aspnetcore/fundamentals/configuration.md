@@ -111,7 +111,7 @@ In the following code, a second `IConfigureOptions<TOptions>` service is added t
 
 You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered.
 
-Each call to `Configure<TOptions>]` adds an `IConfigureOptions<TOptions>` service to the service container. In the example above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate in the highlighted code above. 
+Each call to `Configure<TOptions>` adds an `IConfigureOptions<TOptions>` service to the service container. In the example above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate in the highlighted code above. 
 
 When more than one configuration service is enabled, the last configuration source specified “wins”. With the code above, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
 

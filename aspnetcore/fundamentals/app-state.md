@@ -86,7 +86,7 @@ Caching provides a means of efficiently storing and retrieving data. It provides
 
 The `Microsoft.AspNetCore.Session` package provides middleware for managing session state. Enabling the session middleware requires the following in `Startup`:
 
-- Add any of the [IDistributedCache](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implimentation is used as a backing store for session.
+- Add any of the [IDistributedCache](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implementation is used as a backing store for session.
 - Call [AddSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions#Microsoft_Extensions_DependencyInjection_SessionServiceCollectionExtensions_AddSession_Microsoft_Extensions_DependencyInjection_IServiceCollection_), which requires NuGet package "Microsoft.AspNetCore.Session".
 - Call [UseSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.sessionmiddlewareextensions#methods_).
 
@@ -104,7 +104,7 @@ Attempting to create a new `Session` (that is, no session cookie has been create
 
 The default session provider in ASP.NET Core will only load the session record from the underlying [IDistributedCache](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.distributed.idistributedcache) store asynchronously if the [ISession.LoadAsync](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.isession#Microsoft_AspNetCore_Http_ISession_LoadAsync) method is explicitly called **before** calling the `TryGetValue`, `Set` or `Remove` methods. Failure to call `LoadAsync` first will result in the underlying session record being loaded synchronously, which could potentially impact the ability of the app to scale.
 
-If applications wish to enforce this pattern, they could wrap the [DistributedSessionStore[(https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.session.distributedsessionstore) and [DistributedSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.session.distributedsession) implementations with versions that throw if the `LoadAsync` method has not been called before calling `TryGetValue`, `Set` or `Remove`, and register the wrapped versions in the services container.
+If applications wish to enforce this pattern, they could wrap the [DistributedSessionStore](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.session.distributedsessionstore) and [DistributedSession](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.session.distributedsession) implementations with versions that throw if the `LoadAsync` method has not been called before calling `TryGetValue`, `Set` or `Remove`, and register the wrapped versions in the services container.
 
 ### Implementation Details
 
