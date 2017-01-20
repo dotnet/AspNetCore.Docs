@@ -142,7 +142,7 @@ In the *Models* folder, create *Enrollment.cs* and replace the existing code wit
 
 [!code-csharp[Main](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
 
-The `EnrollmentID` property will be the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a later tutorial, you'll see how using ID without classname makes it easier to implement inheritance in the data model.
+The `EnrollmentID` property will be the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a [later tutorial](inheritance.md), you'll see how using ID without classname makes it easier to implement inheritance in the data model.
 
 The `Grade` property is an `enum`. The question mark after the `Grade` type declaration indicates that the `Grade` property is nullable. A grade that's null is different from a zero grade -- null means a grade isn't known or hasn't been assigned yet.
 
@@ -162,7 +162,7 @@ In the *Models* folder, create *Course.cs* and replace the existing code with th
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
-We'll say more about the `DatabaseGenerated` attribute in a later tutorial in this series. Basically, this attribute lets you enter the primary key for the course rather than having the database generate it.
+We'll say more about the `DatabaseGenerated` attribute in a [later tutorial](complex-data-model.md) in this series. Basically, this attribute lets you enter the primary key for the course rather than having the database generate it.
 
 ## Create the Database Context
 
@@ -202,7 +202,7 @@ The connection string specifies a SQL Server LocalDB database. LocalDB is a ligh
 
 The Entity Framework will create an empty database for you.  In this section, you write a method that is called after the database is created in order to populate it with test data.
 
-Here you'll use the `EnsureCreated` method to automatically create the database. In a later tutorial you'll see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
+Here you'll use the `EnsureCreated` method to automatically create the database. In a [later tutorial](migrations.md) you'll see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
 
 In the *Data* folder, create a new class file named *DbInitializer.cs* and replace the template code with the following code, which causes a database to be created when needed and loads test data into the new database.
 
@@ -308,7 +308,7 @@ The amount of code you had to write in order for the Entity Framework to be able
 
 * A property is interpreted as a foreign key property if it's named *<navigation property name><primary key property name>* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named simply *<primary key property name>* (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
 
-Conventional behavior can be overridden. For example, you can explicitly specify table names, as you saw earlier in this tutorial. And you can set column names and set any property as primary key or foreign key, as you'll see in a later tutorial in this series.
+Conventional behavior can be overridden. For example, you can explicitly specify table names, as you saw earlier in this tutorial. And you can set column names and set any property as primary key or foreign key, as you'll see in a [later tutorial](complex-data-model.md) in this series.
 
 ## Asynchronous code
 
