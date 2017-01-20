@@ -55,9 +55,6 @@ The `static file module` provides no authorization checks. Any files served by i
 
 A request that is handled by the static file module will short circuit the pipeline. (see [Working with Static Files](static-files.md).) If the request is not handled by the static file module, it's passed on to the `Identity module`, which performs authentication. If the request is not authenticated, the pipeline is short circuited. If the request does not fail authentication, the last stage of this pipeline is called, which is the MVC framework.
 
-> [!NOTE]
-> The order in which you add middleware components is generally the order in which they take effect on the request, and then in reverse for the response. This can be critical to your app’s security, performance and functionality. In the code above, the `static file middleware` is called early in the pipeline so it can handle requests and short circuit without going through unnecessary components. The authentication middleware is added to the pipeline before anything that handles requests that need to be authenticated. Exception handling must be registered before other middleware components in order to catch exceptions thrown by those components.
-
 The simplest possible ASP.NET application sets up a single request delegate that handles all requests. In this case, there isn't really a request "pipeline", so much as a single anonymous function that is called in response to every HTTP request.
 
 [!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?start=23&end=26)]
@@ -79,6 +76,32 @@ You chain multiple request delegates together; the `next` parameter represents t
 In the above example, the call to `await next.Invoke()` will call into the next delegate `await context.Response.WriteAsync("Hello from " + _environment);`. The client will receive the expected response ("Hello from LogInline"), and the server's console output includes both the before and after messages:
 
 ![Command window console output](middleware/_static/console-loginline.png)
+
+## Middleware ordering
+
+The order in which you add middleware components is generally the order in which they take effect on the request, and then in reverse for the response. This can be critical to your app’s security, performance, and functionality. In the code above where the Static File Middleware was used with authentication middleware, the Static File Middleware is called early in the pipeline so it can handle requests and short circuit without going through unnecessary components. The authentication middleware is added to the pipeline before anything that handles requests for secure resources. Exception handling must be registered before other middleware components in order to catch exceptions thrown by those components.
+
+The following example demonstrates a middleware arrangement where requests for static files are fully handled by the Static File Middleware before Response Compression Middleware could ever see the request. Static files cannot be compressed with this ordering of the middleware, but the MVC output downstream of the Response Compression Middleware can be compressed.
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    app.UseStaticFiles();
+    app.UseResponseCompression();
+    app.UseMvcWithDefaultRoute();
+}
+```
+
+If you intend to use the Response Compression Middleware to compress your static files, position the Response Compression Middleware earlier in the request processing pipeline. The following example demonstrates the middleware arrangement that would result in compression of your static files.
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    app.UseResponseCompression();
+    app.UseStaticFiles();
+    app.UseMvcWithDefaultRoute();
+}
+```
 
 <a name=middleware-run-map-use></a>
 
@@ -127,7 +150,7 @@ ASP.NET ships with the following middleware components:
 | ----- | ------- |
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. |
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. |
-| Response Caching | Provides support for caching responses. |
+| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. |
 | Response Compression | Provides support for compressing responses. |
 | [Routing](xref:fundamentals/routing) | Defines and constrains request routes. |
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. |
