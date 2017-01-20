@@ -63,15 +63,15 @@ Browse to `http://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs 
 
 ![](adding-a-controller/_static/image6.png)
 
-Let's modify the example slightly so that we can pass some parameter information in from the URL to the controller (for example,&#160; */HelloWorld/Welcome?name=Scott&amp;numtimes=4*). Change your `Welcome` method to include two parameters as shown below. Note that we've used the VB optional parameter feature to indicate that the `numTimes` parameter should default to 1 if no value is passed for that parameter.
+Let's modify the example slightly so that we can pass some parameter information in from the URL to the controller (for example, */HelloWorld/Welcome?name=Scott&amp;numtimes=4*). Change your `Welcome` method to include two parameters as shown below. Note that we've used the VB optional parameter feature to indicate that the `numTimes` parameter should default to 1 if no value is passed for that parameter.
 
 [!code-vb[Main](adding-a-controller/samples/sample2.vb)]
 
-Run your application and browse to `http://localhost:xxxx/HelloWorld/Welcome?name=Scott&numtimes=4`**.** You can try different values for&#160; `name` and `numtimes`. The system automatically maps the named parameters from your query string in the address bar to parameters in your method.
+Run your application and browse to `http://localhost:xxxx/HelloWorld/Welcome?name=Scott&numtimes=4`**.** You can try different values for `name` and `numtimes`. The system automatically maps the named parameters from your query string in the address bar to parameters in your method.
 
 ![](adding-a-controller/_static/image7.png)
 
-In both these examples the controller has been doing the VC&#160; portion of MVC — that is the view and controller work. The controller is returning HTML directly. Ordinarily we don't want controllers returning HTML directly, since that becomes very cumbersome to code. Instead we'll typically use a separate view template file to help generate the HTML response. Let's look at how we can do this.
+In both these examples the controller has been doing the VC portion of MVC — that is the view and controller work. The controller is returning HTML directly. Ordinarily we don't want controllers returning HTML directly, since that becomes very cumbersome to code. Instead we'll typically use a separate view template file to help generate the HTML response. Let's look at how we can do this.
 
 >[!div class="step-by-step"]
 [Previous](intro-to-aspnet-mvc-3.md)

@@ -16,7 +16,7 @@ msc.type: video
 ====================
 by [Microsoft](https://github.com/microsoft)
 
-In this lesson, you will learn how to display data in your ASP.NET&#160;2.0 web applications through some of the new databound controls.
+In this lesson, you will learn how to display data in your ASP.NET2.0 web applications through some of the new databound controls.
 
 [&#9654; Watch video (22 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-7-databinding-to-user-interface-controls)
 

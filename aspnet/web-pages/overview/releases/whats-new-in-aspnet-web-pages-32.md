@@ -49,7 +49,7 @@ Below is a table demonstrating the results of analyzing a [perfview](https://cha
 | Total request (count) | 26,986 | 32,591 | <font style="background-color: #4bacc6">20.80%</font> |
 | Trace duration (seconds) | 196.20 | 198.60 | 1.20% |
 | Request/second | 137.53 | 164.10 | <font style="background-color: #4bacc6">19.30%</font> |
-| &#160;CPU Load | 68.80% | 68.50% | &#160; -0.40% |
+| CPU Load | 68.80% | 68.50% |  -0.40% |
 | GC CPU Samples | 124,323 | 17,543 | <font style="background-color: #4bacc6">-85.90%</font> |
 | Total allocations (count) | 55,357,146 | 57,222,949 | 3.40% |
 | Total GC Pause (samples) | 15,091 | 8,515 | <font style="background-color: #4bacc6">-43.60%</font> |

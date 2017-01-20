@@ -76,7 +76,7 @@ Let's update the application so that Code First automatically drops and re-creat
 
 > [!NOTE] 
 > 
-> **Warning**&#160;&#160; You should enable this approach of automatically dropping and re-creating the database only when you're using a development or test database, and *never* on a production database that contains real data. Using it on a production server can lead to data loss.
+> **Warning** You should enable this approach of automatically dropping and re-creating the database only when you're using a development or test database, and *never* on a production database that contains real data. Using it on a production server can lead to data loss.
 
 
 In **Solution Explorer**, right click the *Models* folder, select **Add**, and then select **Class**.

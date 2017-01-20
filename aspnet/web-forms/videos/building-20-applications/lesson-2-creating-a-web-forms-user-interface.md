@@ -16,7 +16,7 @@ msc.type: video
 ====================
 by [Microsoft](https://github.com/microsoft)
 
-In this lesson, you will explore the various ASP.NET&#160;2.0 server controls available in Visual Web Developer Express Edition. In addition, you will begin to get familiar with the windows in Visual Web Developer.
+In this lesson, you will explore the various ASP.NET2.0 server controls available in Visual Web Developer Express Edition. In addition, you will begin to get familiar with the windows in Visual Web Developer.
 
 [&#9654; Watch video (49 minutes)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-2-creating-a-web-forms-user-interface)
 

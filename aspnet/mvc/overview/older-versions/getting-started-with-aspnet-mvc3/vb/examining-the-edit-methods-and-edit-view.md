@@ -79,7 +79,7 @@ If the posted values aren't valid, they are redisplayed in the form. The `Html.V
 
 [![abcNotValid](examining-the-edit-methods-and-edit-view/_static/image7.png)](examining-the-edit-methods-and-edit-view/_static/image6.png)
 
-> **Note about locales**&#160;&#160; If you normally work with a locale other than English, see [Supporting ASP.NET MVC 3 Validation with Non-English Locales.](https://msdn.microsoft.com/en-us/library/gg674880(VS.98).aspx)
+> **Note about locales** If you normally work with a locale other than English, see [Supporting ASP.NET MVC 3 Validation with Non-English Locales.](https://msdn.microsoft.com/en-us/library/gg674880(VS.98).aspx)
 
 
 ## Making the Edit Method More Robust
@@ -117,7 +117,7 @@ The query is defined at this point, but hasn't yet been run against the data sto
 If the `searchString` parameter contains a string, the movies query is modified to filter on the value of the search string, using the following code:
 
 If Not String.IsNullOrEmpty(searchString) Then   
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; movies = movies.Where(Function(s) s.Title.Contains(searchString))   
+ movies = movies.Where(Function(s) s.Title.Contains(searchString))   
  End If
 
 LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where` or `OrderBy`. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the [`ToList`](https://msdn.microsoft.com/en-us/library/bb342261.aspx) method is called. In the `SearchIndex` sample, the query is executed in the SearchIndex view. For more information about deferred query execution, see [Query Execution](https://msdn.microsoft.com/en-us/library/bb738633.aspx).
