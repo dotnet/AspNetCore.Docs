@@ -86,7 +86,7 @@ New-NetFirewallRule -Name "AspNet5 IIS" -DisplayName "Allow HTTP on TCP/8000" -P
 
 ## Installing IIS
 
-Add the `NanoServerPackage` provider from the PowerShell gallery. Once the provider is installed and imported, you can install Windows packages.
+Add the `NanoServerPackage` provider from the PowerShell Gallery. Once the provider is installed and imported, you can install Windows packages.
 
 Run the following commands in the PowerShell session that was created earlier:
 
