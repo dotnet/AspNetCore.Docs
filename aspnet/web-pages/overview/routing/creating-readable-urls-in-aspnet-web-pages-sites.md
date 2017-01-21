@@ -38,11 +38,13 @@ The URLs for the pages in your site can have an impact on how well the site work
 
 ASP.NET lets you create meaningful URLs that describe user actions instead of just pointing to a file on the server. Consider these URLs for a fictional blog:
 
-`http://www.contoso.com/Blog/blog.cshtml?categories=hardwarehttp://www.contoso.com//Blog/blog.cshtml?startdate=2009-11-01&enddate=2009-11-30`
+- `http://www.contoso.com/Blog/blog.cshtml?categories=hardware`
+- `http://www.contoso.com//Blog/blog.cshtml?startdate=2009-11-01&enddate=2009-11-30`
 
 Compare those URLs to the following ones:
 
-`http://www.contoso.com/Blog/categories/hardware/http://www.contoso.com/Blog/2009/November`
+- `http://www.contoso.com/Blog/categories/hardware/`
+- `http://www.contoso.com/Blog/2009/November`
 
 In the first pair, a user would have to know that the blog is displayed using the *blog.cshtml* page, and would then have to construct a query string that gets the right category or date range. The second set of examples is much easier to comprehend and create.
 
@@ -87,6 +89,5 @@ As described in the rules above, the request will go to your page. Inside the pa
 
 <a id="Additional_Resources"></a>
 ## Additional Resources
-
 
 [WebMatrix - URLs, UrlData and Routing for SEO](http://www.mikesdotnetting.com/Article/165/WebMatrix-URLs-UrlData-and-Routing-for-SEO). This blog entry by Mike Brind provides some additional details on how routing works in ASP.NET Web Pages.

@@ -49,7 +49,8 @@ Before you add any content to source control, you need to connect to a team proj
 1. On your developer workstation, open Visual Studio 2010.
 2. In Visual Studio, on the **Team** menu, click **Connect to Team Foundation Server**.
 
-    > [!NOTE]If you have already configured a connection to a TFS server, you can omit steps 3-6.
+    > [!NOTE]
+    > If you have already configured a connection to a TFS server, you can omit steps 3-6.
 3. In the **Connection to Team Project** dialog box, click **Servers**.
 4. In the **Add/Remove Team Foundation Server** dialog box, click **Add**.
 5. In the **Add Team Foundation Server** dialog box, provide the details of your TFS instance, and then click **OK**.
@@ -82,18 +83,21 @@ To add projects and solutions to source control, you first need to move them to 
 
 1. On your developer workstation, move your projects and solutions to an appropriate location within the mapped folder structure for the team project.
 
-    > [!NOTE]Many organizations will have a preferred approach to how projects and solutions should be organized in source control. For guidance on how to structure folders, see [How To: Structure Your Source Control Folders in Team Foundation Server](https://msdn.microsoft.com/en-us/library/bb668992.aspx).
+    > [!NOTE]
+    > Many organizations will have a preferred approach to how projects and solutions should be organized in source control. For guidance on how to structure folders, see [How To: Structure Your Source Control Folders in Team Foundation Server](https://msdn.microsoft.com/en-us/library/bb668992.aspx).
 2. Open the solution in Visual Studio 2010.
 3. In the **Solution Explorer** window, right-click the solution, and then click **Add Solution to Source Control**.
 
     ![](adding-content-to-source-control/_static/image7.png)
 
-    > [!NOTE]In some cases, depending on how your organization likes to structure content in TFS, you may need to add projects to source control individually to provide more fine-grained control over how your source code is organized.
+    > [!NOTE]
+    > In some cases, depending on how your organization likes to structure content in TFS, you may need to add projects to source control individually to provide more fine-grained control over how your source code is organized.
 4. Verify that the **Source Control Explorer** tab displays the content you&#x27;ve added within the server folder structure for the team project.
 
     ![](adding-content-to-source-control/_static/image8.png)
 
-    > [!NOTE]The **Source Control Explorer** tab displays your content with no further prompting because you added your solution to a mapped folder on the local file system. If your solution was in an unmapped location, you&#x27;d be prompted to specify folder locations in both TFS and your local file system.
+    > [!NOTE]
+    > The **Source Control Explorer** tab displays your content with no further prompting because you added your solution to a mapped folder on the local file system. If your solution was in an unmapped location, you&#x27;d be prompted to specify folder locations in both TFS and your local file system.
 5. On the **Source Control Explorer** tab, in the **Folders** pane, right-click the team project (for example, **ContactManager**), and then click **Check In Pending Changes**.
 6. In the **Check In – Source Files** dialog box, type a comment, and then click **Check In**.
 
@@ -107,7 +111,8 @@ When you add a project or solution to source control, any files and folders with
 
 For example, the folder structure for the Contact Manager sample solution includes a folder named packages. This contains the assembly and various supporting resources for the ADO.NET Entity Framework 4.1. The packages folder is not part of the Contact Manager solution, but the solution will not build successfully without it. To enable Team Build to build the solution, you need to add the packages folder to source control.
 
-> [!NOTE]The inclusion of a packages folder is typical of what happens when you add the Entity Framework, or similar resources, to your solution using the NuGet extension for Visual Studio 2010.
+> [!NOTE]
+> The inclusion of a packages folder is typical of what happens when you add the Entity Framework, or similar resources, to your solution using the NuGet extension for Visual Studio 2010.
 
 
 **To add non-project content to source control**

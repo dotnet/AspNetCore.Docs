@@ -1,1 +1,0 @@
-The path is not valid. Check the directory for the database. [Path = c:\inetpub\wwwroot\App_Data\DatabaseName.sdf ]

@@ -3,7 +3,6 @@
 # [MVC 4 Hands On Labs](hands-on-labs/toc.md)
 # [ASP.NET MVC 4 Mobile Features](aspnet-mvc-4-mobile-features.md)
 # [Using OAuth Providers with MVC 4](using-oauth-providers-with-mvc.md)
-# [ASP.NET Web Deployment with SQL Server Compact using Visual Studio](deployment-to-a-hosting-provider/toc.md)
 # [Getting Started with ASP.NET MVC3](getting-started-with-aspnet-mvc3/toc.md)
 # [Creating a MVC 3 Application with Razor and Unobtrusive JavaScript](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript.md)
 # [MVC 3 Music Store](mvc-music-store/toc.md)

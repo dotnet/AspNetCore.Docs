@@ -1,5 +1,0 @@
-<configuration>
-  <system.web>
-    <customErrors mode="off"/>
-  </system.web>
-</configuration>

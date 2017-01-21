@@ -16,7 +16,7 @@ ASP.NET Web Deployment - Recommended Resources
 ====================
 > This topic provides links to documentation resources about how to deploy (publish) ASP.NET web applications to IIS by using Visual Studio 2010, Visual Web Developer 2010, and later versions.
 > 
-> If you know a great blog post, [stackoverflow](http://stackoverflow.com) thread, or any other link that would be useful, [send us an email](&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#115;p&#110;&#101;&#116;&#117;&#101;&#64;&#109;&#105;c&#114;&#111;&#115;o&#102;&#116;&#46;&#99;&#111;&#109;&#63;&#115;ubj&#101;&#99;&#116;&#61;Deployment Content Map.md) with the link.
+> If you know a great blog post, [stackoverflow](http://stackoverflow.com) thread, or any other link that would be useful, [send us an email](mailto:aspnetue@microsoft.com?subject=Deployment Content Map) with the link.
 > 
 > > [!NOTE] 
 > > 
@@ -71,7 +71,7 @@ This topic contains the following sections:
 ## Deploying a web application from Visual Studio
 
 - [How to Deploy a Windows Azure Web Site](https://www.windowsazure.com/en-us/documentation/articles/web-sites-deploy/). Explains options and provides links to resources for deploying web projects to Windows Azure Web Sites. Includes a section about deploying from Visual Studio.
-- [ASP.NET Web Deployment using Visual Studio](../mvc/overview/deployment/visual-studio-web-deployment/introduction.md). 12-part tutorial series, shows how to deploy web applications with SQL Server databases. For database deployment uses both the dbDacFx provider and Entity Framework Code First Migrations. Also includes information about [Web.config file transformations](../mvc/overview/deployment/visual-studio-web-deployment/web-config-transformations.md), [deploying individual files](../mvc/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md), [command-line deployment](../mvc/overview/deployment/visual-studio-web-deployment/command-line-deployment.md), and [how to customize the Visual Studio web publish pipeline by editing .pubxml files](../mvc/overview/deployment/visual-studio-web-deployment/deploying-extra-files.md). Applies to all ASP.NET web projects, including Web Forms, MVC, and Web API.)
+- [ASP.NET Web Deployment using Visual Studio](../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). 12-part tutorial series, shows how to deploy web applications with SQL Server databases. For database deployment uses both the dbDacFx provider and Entity Framework Code First Migrations. Also includes information about [Web.config file transformations](../web-forms/overview/deployment/visual-studio-web-deployment/web-config-transformations.md), [deploying individual files](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md), [command-line deployment](../web-forms/overview/deployment/visual-studio-web-deployment/command-line-deployment.md), and [how to customize the Visual Studio web publish pipeline by editing .pubxml files](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-files.md). Applies to all ASP.NET web projects, including Web Forms, MVC, and Web API.)
 - [How to: Deploy a Web Project Using One-Click Publish in Visual Studio](https://msdn.microsoft.com/en-us/library/dd465337.aspx) (Reference information for the Visual Studio Web Publish wizard.)
 - [Deploying an ASP.NET Web Application with SQL Server Compact using Visual Studio](../web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.md). This is an earlier version of **ASP.NET Web Deployment using Visual Studio** listed at the top of this section. Mainly useful now for information about how to deploy SQL Server Compact databases and how to migrate from SQL Server Compact to a full edition of SQL Server.
 - [.NET Multi-Tier Application Using Storage Tables, Queues, and Blobs](https://www.windowsazure.com/en-us/develop/net/tutorials/multi-tier-web-site/1-overview/) (Microsoft Azure site). 5-part tutorial series, shows how to create an MVC project and deploy it to a Windows Azure Cloud Service.
@@ -109,7 +109,7 @@ See also [Making sure an application is off-line during deployment](aspnet-web-d
 
 ## Using Web.config transformations to change settings in the destination Web.config file or app.config file during deployment
 
-- [Web.config File Transformations](../mvc/overview/deployment/visual-studio-web-deployment/web-config-transformations.md).
+- [Web.config File Transformations](../web-forms/overview/deployment/visual-studio-web-deployment/web-config-transformations.md).
 - [Web.config Transformation Syntax for Web Project Deployment Using Visual Studio](https://msdn.microsoft.com/en-us/library/dd465326.aspx) (MSDN).
 - [Web Tools 2012.2 - web.config transforms](https://www.youtube.com/watch?v=HdPK8mxpKEI) (YouTube video by Sayed Hashimi). Shows how to set up and preview Web.config transforms.
 - [How do I disable Web.config transformation?](https://msdn.microsoft.com/en-us/library/ee942158.aspx#disable_web_config_transformation) (MSDN).
@@ -136,7 +136,7 @@ See also [Making sure an application is off-line during deployment](aspnet-web-d
 
 ## Making sure an application is off-line during deployment
 
-- [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](../mvc/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). See the section **Take the application offline during deployment.**
+- [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). See the section **Take the application offline during deployment.**
 - [Taking an Application Offline before Publishing](http://www.iis.net/learn/publish/deploying-application-packages/taking-an-application-offline-before-publishing) (IIS.net site). Explains a feature built into Web Deploy 3.0 that automates handling of an app\_offline.htm file. This feature does not work with custom app\_offline.htm files.
 - [How to take your web app offline during publishing](http://sedodream.com/2012/01/08/HowToTakeYourWebAppOfflineDuringPublishing.aspx) (Sayed Hashimi's blog). How to automate the process of using a custom app\_offline.htm file.
 - [Web publishing updates for app offline and usechecksum](https://blogs.msdn.com/b/webdev/archive/2013/10/30/web-publishing-updates-for-app-offline-and-usechecksum.aspx) (Microsoft Web Development blog). Another option for automating use of app\_offline.htm file.
@@ -149,7 +149,7 @@ See also [Making sure an application is off-line during deployment](aspnet-web-d
 ## Deploying a database or changes to a database as part of web application deployment
 
 - [Configuring Database Deployment in Visual Studio](https://msdn.microsoft.com/en-us/library/dd394698.aspx#dbdeployment) (MSDN). Overview of options for deploying a database with a web project.
-- [ASP.NET Web Deployment using Visual Studio](../mvc/overview/deployment/visual-studio-web-deployment/introduction.md). 12-part tutorial series, shows database deployment by using dbDacFx provider and Entity Framework Code First Migrations.
+- [ASP.NET Web Deployment using Visual Studio](../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). 12-part tutorial series, shows database deployment by using dbDacFx provider and Entity Framework Code First Migrations.
 - [How to: Deploy a Web Project Using One-Click Publish in Visual Studio](https://msdn.microsoft.com/en-us/library/dd465337.aspx) (MSDN).
 - [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). A long tutorial that builds and deploys an application that uses a single SQL Server database both for membership and application data.
 - [Deploying an ASP.NET Web Application with SQL Server Compact using Visual Studio](../web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.md). 12-part tutorial series, shows how to deploy SQL Server Compact databases and how to migrate from SQL Server Compact to a full edition of SQL Server.
@@ -179,7 +179,7 @@ See also [Deploying a web application by creating and installing a web deploymen
 
 - [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). A long tutorial that builds and deploys an application that uses a single SQL Server database both for membership and application data.
 - [ASP.NET Identity](https://asp.net/identity/). Resources for ASP.NET Identity.
-- [ASP.NET Web Deployment using Visual Studio](../mvc/overview/deployment/visual-studio-web-deployment/introduction.md). 12-part tutorial series, shows how to deploy an ASP.NET membership database.
+- [ASP.NET Web Deployment using Visual Studio](../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). 12-part tutorial series, shows how to deploy an ASP.NET membership database.
 - [Configuring a Website that Uses Application Services](../web-forms/overview/older-versions-getting-started/deploying-web-site-projects/configuring-a-website-that-uses-application-services-cs.md). For web site projects but is also relevant for web application projects.
 - [Users and Roles On The Production Website](../web-forms/overview/older-versions-getting-started/deploying-web-site-projects/users-and-roles-on-the-production-website-cs.md). For web site projects but is also relevant for web application projects.
 
@@ -208,7 +208,7 @@ See also [Deploying a web application by creating and installing a web deploymen
 
 ## Automating common deployment tasks that are not automated out of the box
 
-- [ASP.NET Web Deployment using Visual Studio: Deploying Extra Files](../mvc/overview/deployment/visual-studio-web-deployment/deploying-extra-files.md).
+- [ASP.NET Web Deployment using Visual Studio: Deploying Extra Files](../web-forms/overview/deployment/visual-studio-web-deployment/deploying-extra-files.md).
 - [Setting Folder Permissions on Web Publish](http://sedodream.com/2011/11/08/SettingFolderPermissionsOnWebPublish.aspx) (Sayed Hashimi's blog).
 - [How to extend the targets file to include registry settings for a web project package](https://blogs.msdn.com/webdevtools/archive/2010/02/09/how-to-extend-target-file-to-include-registry-settings-for-web-project-package.aspx) (Web Development Tools blog).
 - [Extending XML (Web.config) transformation](http://sedodream.com/2010/09/09/ExtendingXMLWebconfigConfigTransformation.aspx) (Sayed Hashimi's blog). Shows how to create custom XDT transforms.
@@ -241,7 +241,7 @@ See also [Deploying a web application by creating and installing a web deploymen
 ## Troubleshooting deployment problems
 
 - [Troubleshooting Windows Azure Web Sites in Visual Studio](https://www.windowsazure.com/en-us/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/) (Microsoft Azure site).
-- [ASP.NET Web Deployment using Visual Studio: Troubleshooting](../mvc/overview/deployment/visual-studio-web-deployment/troubleshooting.md).
+- [ASP.NET Web Deployment using Visual Studio: Troubleshooting](../web-forms/overview/deployment/visual-studio-web-deployment/troubleshooting.md).
 - [Troubleshooting Common Problems With Web Deploy](https://www.iis.net/learn/publish/troubleshooting-web-deploy/troubleshooting-common-problems-with-web-deploy).
 - [Web Deploy Error Codes](https://www.iis.net/learn/publish/troubleshooting-web-deploy/web-deploy-error-codes) (IIS.net site).
 - [Web Deployment FAQ for Visual Studio and ASP.NET](https://msdn.microsoft.com/en-us/library/ee942158.aspx) (MSDN).

@@ -180,8 +180,6 @@ Then add a new detail cell immediately following the office location detail cell
 
 [!code-cshtml[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample21.cshtml?highlight=19,50-57)]
 
-[!code-unknown[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample-25075-22.unknown)]
-
 Run the **Instructor Index** page to see the courses assigned to each instructor:
 
 ![Instructor_index_page](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image8.png)
@@ -199,7 +197,7 @@ Change some course assignments and click **Save**. The changes you make are refl
 
 Change the code in the HttpPost Delete method so the office assignment record (if any) is deleted when the instructor is deleted:
 
-[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample23.cs?highlight=6,10)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample22.cs?highlight=6,10)]
 
 
 If you try to delete an instructor who is assigned to a department as administrator, you'll get a referential integrity error. See [the current version of this tutorial](../../getting-started/getting-started-with-ef-using-mvc/updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application.md) for additional code that will automatically remove the instructor from any department where the instructor is assigned as an administrator.

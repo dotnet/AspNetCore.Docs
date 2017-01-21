@@ -27,7 +27,6 @@ SignalR Older Versions
 - [Understanding and Handling Connection Lifetime Events in SignalR](handling-connection-lifetime-events.md)
 - [Working with Groups in SignalR 1.x](working-with-groups.md)
 - [Mapping SignalR Users to Connections in SignalR 1.x](mapping-users-to-connections.md)
-- [Upgrading SignalR 1.x Projects to version 2](upgrading-signalr-1x-projects-to-20.md)
 - [Introduction to SignalR Security (SignalR 1.x)](introduction-to-security.md)
 - [Authentication and Authorization for SignalR Hubs (SignalR 1.x)](hub-authorization.md)
 - [Authentication and Authorization for SignalR Persistent Connections (SignalR 1.x)](persistent-connection-authorization.md)

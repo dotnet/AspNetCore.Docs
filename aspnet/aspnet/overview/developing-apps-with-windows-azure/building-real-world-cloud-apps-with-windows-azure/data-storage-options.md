@@ -280,7 +280,7 @@ Choosing between SQL Server and SQL Database:
 Using Entity Framework and SQL Database in an ASP.NET Web app
 
 - [Getting Started with EF 6 using MVC 5](../../../../mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md). Nine-part tutorial series that walks you through building an MVC app that uses EF and deploys the database to Azure and SQL Database.
-- [ASP.NET Web Deployment using Visual Studio](../../../../mvc/overview/deployment/visual-studio-web-deployment/introduction.md). Twelve-part tutorial series that goes into more depth about how to deploy a database by using EF Code First.
+- [ASP.NET Web Deployment using Visual Studio](../../../../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md). Twelve-part tutorial series that goes into more depth about how to deploy a database by using EF Code First.
 - [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to an Azure Web Site](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/). Step-by-step tutorial that walks you through creating a web app that uses authentication, stores application tables in the membership database, modifies the database schema, and deploys the app to Azure.
 - [ASP.NET Data Access Content Map](https://go.microsoft.com/fwlink/p/?LinkId=282414). Links to resources for working with EF and SQL Database.
 

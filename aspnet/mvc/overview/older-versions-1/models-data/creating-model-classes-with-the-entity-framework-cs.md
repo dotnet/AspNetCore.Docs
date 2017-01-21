@@ -62,7 +62,12 @@ In order to use the Entity Framework, you need to create an Entity Data Model. Y
 
 Follow these steps:
 
-1. Right-click the Models folder in the Solution Explorer window and select the menu option **Add, New Item**. - In the **Add New Item** dialog, select the Data category (see Figure 1). - Select the **ADO.NET Entity Data Model** template, give the Entity Data Model the name MoviesDBModel.edmx, and click the **Add** button. Clicking the **Add** button launches the Data Model Wizard. - In the **Choose Model Contents** step, choose the **Generate from a database** option and click the **Next** button (see Figure 2). - In the **Choose Your Data Connection** step, select the MoviesDB.mdf database connection, enter the entities connection settings name MoviesDBEntities, and click the **Next** button (see Figure 3). - In the **Choose Your Database Objects** step, select the Movie database table and click the **Finish** button (see Figure 4).
+1. Right-click the Models folder in the Solution Explorer window and select the menu option **Add, New Item**.
+2. In the **Add New Item** dialog, select the Data category (see Figure 1).
+3. Select the **ADO.NET Entity Data Model** template, give the Entity Data Model the name MoviesDBModel.edmx, and click the **Add** button. Clicking the **Add** button launches the Data Model Wizard.
+4. In the **Choose Model Contents** step, choose the **Generate from a database** option and click the **Next** button (see Figure 2).
+5. In the **Choose Your Data Connection** step, select the MoviesDB.mdf database connection, enter the entities connection settings name MoviesDBEntities, and click the **Next** button (see Figure 3).
+6. In the **Choose Your Database Objects** step, select the Movie database table and click the **Finish** button (see Figure 4).
 
 After you complete these steps, the ADO.NET Entity Data Model Designer (Entity Designer) opens.
 

@@ -1,1 +1,0 @@
-msbuild C:\ContosoUniversity\ContosoUniversity.sln /p:DeployOnBuild=true /p:PublishProfile=Production /p:Password=hdNSWsbuqnwKafwlo7J5uqnwKafwlfNPt1DSqnwKafwlfNPt1DSpKHuYgCco7J5 /p:AllowUntrustedCertificate=true

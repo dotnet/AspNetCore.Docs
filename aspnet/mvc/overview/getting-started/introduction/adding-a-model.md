@@ -44,9 +44,15 @@ In order to be able to reference `DbContext` and `DbSet`, you need to add the fo
 
 [!code-csharp[Main](adding-a-model/samples/sample3.cs)]
 
-You can do this by manually adding the using statement, or you can right click on the red squiggly lines and click **Resolve**, and then click **using** **System****.****Data****.****Entity**.
+You can do this by manually adding the using statement, or you can right click on the red squiggly lines and click `using System.Data.Entity;`
 
-![](adding-a-model/_static/image2.png)Note: Several unused `using` statements have been removed. You can do this by right clicking in the file, click **Organize Usings**, and then click **Remove Unused Usings.**![](adding-a-model/_static/image3.png)We've finally added a model (the M in MVC). In the next section you'll work with the database connection string.
+![](adding-a-model/_static/image2.png)
+
+Note: Several unused `using` statements have been removed. You can do this by right clicking in the file, click **Organize Usings**, and then click **Remove Unused Usings.**
+
+![](adding-a-model/_static/image3.png)
+
+We've finally added a model (the M in MVC). In the next section you'll work with the database connection string.
 
 >[!div class="step-by-step"]
 [Previous](adding-a-view.md)

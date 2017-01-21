@@ -56,7 +56,7 @@ The home page is implemented using ASP.NET MVC. At the top of the page, there is
 
 ![](part-3/_static/image4.png)
 
-The API enables CRUD operations on the database. The following table summarizes the API.
+The API enables CRUD operations on the database. The following summarizes the API.
 
 | Authors |
 | --- |
@@ -65,7 +65,9 @@ The API enables CRUD operations on the database. The following table summarizes 
 | POST /api/authors | Create a new author. |
 | PUT /api/authors/{id} | Update an existing author. |
 | DELETE /api/authors/{id} | Delete an author. |
+
 | Books |
+| --- |
 | GET /api/books | Get all books. |
 | GET /api/books/{id} | Get a book by ID. |
 | POST /api/books | Create a new book. |

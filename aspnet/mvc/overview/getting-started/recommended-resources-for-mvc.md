@@ -16,7 +16,7 @@ MVC Recommended Resources
 ====================
 by [Rick Anderson](https://github.com/Rick-Anderson)
 
-> This topic provides links to documentation resources about ASP.NET MVC 5. If you know a great blog post, [stackoverflow](http://stackoverflow.com/) thread or any other link that would be useful, send [me](&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#115;p&#110;&#101;&#116;&#117;&#101;&#64;&#109;&#105;c&#114;&#111;&#115;o&#102;&#116;&#46;&#99;&#111;&#109;&#63;&#115;ubj&#101;&#99;&#116;&#61;Great ASP.NET MVC link.md) an email with the link. The links provided here are updated periodically. You can find older (but in many cases still relevant) ASP.NET MVC links on the [MSDN content map](https://msdn.microsoft.com/en-us/library/gg416514(v=vs.108).aspx).
+> This topic provides links to documentation resources about ASP.NET MVC 5. If you know a great blog post, [stackoverflow](http://stackoverflow.com/) thread or any other link that would be useful, send [me](mailto:aspnetue@microsoft.com?subject=Great ASP.NET MVC link) an email with the link. The links provided here are updated periodically. You can find older (but in many cases still relevant) ASP.NET MVC links on the [MSDN content map](https://msdn.microsoft.com/en-us/library/gg416514(v=vs.108).aspx).
 > 
 > A good place to get your questions answered or to find solutions to problems is in the [ASP.NET MVC forum](https://forums.asp.net/1146.aspx/1?MVC) or on [stackoverflow](http://stackoverflow.com/questions/tagged/mvc+asp.net-mvc).
 
@@ -443,7 +443,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Skinny controller in ASP.NET MVC 4](https://weblogs.asp.net/thangchung/archive/2012/06/28/skinny-controller-in-asp-net-mvc-4.aspx)
 - [Dynamic Menus in ASP.NET MVC 4 using EF Code First and jQuery](http://www.dotnetcurry.com/ShowArticle.aspx?ID=811)
 - [Making ASP.NET GridView Responsive With jQuery FooTable](http://techbrij.com/asp-net-gridview-responsive-jquery-footable)
-- [Web Deployment using Visual Studio](../deployment/visual-studio-web-deployment/introduction.md)
+- [Web Deployment using Visual Studio](../../../web-forms/overview/deployment/visual-studio-web-deployment/introduction.md)
 - [Custom Templates, Data Annotations and UI Hints in ASP.NET MVC](http://www.devcurry.com/2013/04/custom-templates-in-aspnet-mvc.html)
 
 <a id="posts"></a>

@@ -1,17 +1,17 @@
-[HttpPost]
-[ValidateAntiForgeryToken]
-public ActionResult Delete(int id)
+public ActionResult Delete(int? id, bool? saveChangesError=false)
 {
-    try
+    if (id == null)
     {
-        Student student = db.Students.Find(id);
-        db.Students.Remove(student);
-        db.SaveChanges();
+        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
     }
-    catch (DataException/* dex */)
+    if (saveChangesError.GetValueOrDefault())
     {
-        //Log the error (uncomment dex variable name and add a line here to write a log.
-        return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+        ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
     }
-    return RedirectToAction("Index");
+    Student student = db.Students.Find(id);
+    if (student == null)
+    {
+        return HttpNotFound();
+    }
+    return View(student);
 }

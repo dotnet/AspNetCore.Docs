@@ -1,3 +1,0 @@
-<system.web>
-  <compilation xdt:Transform="RemoveAttributes(debug)" />
-</system.web>

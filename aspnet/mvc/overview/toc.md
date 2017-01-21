@@ -2,7 +2,6 @@
 # [UI, Layouts, and Themes](views/toc.md)
 # [Security, Authentication, and Authorization](security/toc.md)
 # [Performance](performance/toc.md)
-# [Deployment](deployment/toc.md)
 # [Internationalization and Advanced Topics](advanced/toc.md)
 # [Releases](releases/toc.md)
 # [Older Versions - MVC 3 and 4](older-versions/toc.md)

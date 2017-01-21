@@ -18,7 +18,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 > This topic provides links to documentation resources about how to use ASP.NET Identity.
 > 
-> If you know a great blog post, [stackoverflow](http://stackoverflow.com) thread, or any other link that would be useful, [send us an email](&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#115;p&#110;&#101;&#116;&#117;&#101;&#64;&#109;&#105;c&#114;&#111;&#115;o&#102;&#116;&#46;&#99;&#111;&#109;&#63;&#115;ubj&#101;&#99;&#116;&#61;Identity recommended resources.md) with the link or just leave a message at the bottom of this page.
+> If you know a great blog post, [stackoverflow](http://stackoverflow.com) thread, or any other link that would be useful, [send us an email](mailto:aspnetue@microsoft.com?subject=Identity recommended resources) with the link or just leave a message at the bottom of this page.
 
 
 - [Getting Started with ASP.NET Identity](#gettingstarted)

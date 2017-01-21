@@ -79,7 +79,7 @@ Follow the same procedure to create a new SQL Server Express School database nam
 
 When the application runs in IIS on your development computer, the application accesses the database by using the default application pool's credentials. However, by default, the application pool identity does not have permission to open the databases. So you have to run a script to grant that permission. In this section you create the script that you'll run later to make sure that the application can open the databases when it runs in IIS.
 
-In the solution's *SolutionFiles* folder that you created in the [Deploying to the Production Environment](../../../../mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12.md) tutorial, create a new SQL file named *Grant.sql*. Copy the following SQL commands into the file, and then save and close the file:
+In the solution's *SolutionFiles* folder that you created in the [Deploying to the Production Environment](deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12.md) tutorial, create a new SQL file named *Grant.sql*. Copy the following SQL commands into the file, and then save and close the file:
 
 [!code-sql[Main](deployment-to-a-hosting-provider-migrating-to-sql-server-10-of-12/samples/sample1.sql)]
 
@@ -369,7 +369,7 @@ Close the **Publish Web** wizard to save your changes.
 
 In a real application in which the database was being updated in production, you would do two additional steps now before you publish:
 
-1. Upload *app\_offline.htm*, as shown in the [Deploying to the Production Environment](../../../../mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12.md) tutorial.
+1. Upload *app\_offline.htm*, as shown in the [Deploying to the Production Environment](deployment-to-a-hosting-provider-deploying-to-the-production-environment-7-of-12.md) tutorial.
 2. Use the **File Manager** feature of the Cytanium control panel to copy the *aspnet-Prod.sdf* and *School-Prod.sdf* files from the production site to the *App\_Data* folder of the ContosoUniversity project. This ensures that the data you're deploying to the new SQL Server database includes the latest updates made by your production website.
 
 In the **Web One Click Publish** toolbar, make sure that the **Production** profile is selected, and then click **Publish**.

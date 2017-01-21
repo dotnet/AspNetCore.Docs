@@ -2,5 +2,3 @@
 # [ASP.NET MVC 3](mvc-3/toc.md)
 # [ASP.NET MVC 2](mvc-2/toc.md)
 # [ASP.NET MVC 1](mvc-1/toc.md)
-# [General VS 2010 Tips](visual-studio-2010/toc.md)
-# [General IIS Tips](iis/toc.md)

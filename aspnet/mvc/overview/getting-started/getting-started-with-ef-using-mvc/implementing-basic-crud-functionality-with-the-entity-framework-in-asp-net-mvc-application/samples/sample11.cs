@@ -1,17 +1,26 @@
-public ActionResult Delete(int? id, bool? saveChangesError=false)
+[HttpPost, ActionName("Edit")]
+[ValidateAntiForgeryToken]
+public ActionResult EditPost(int? id)
 {
     if (id == null)
     {
         return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
     }
-    if (saveChangesError.GetValueOrDefault())
+    var studentToUpdate = db.Students.Find(id);
+    if (TryUpdateModel(studentToUpdate, "",
+       new string[] { "LastName", "FirstMidName", "EnrollmentDate" }))
     {
-        ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
+        try
+        {
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+        catch (DataException /* dex */)
+        {
+            //Log the error (uncomment dex variable name and add a line here to write a log.
+            ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+        }
     }
-    Student student = db.Students.Find(id);
-    if (student == null)
-    {
-        return HttpNotFound();
-    }
-    return View(student);
+    return View(studentToUpdate);
 }

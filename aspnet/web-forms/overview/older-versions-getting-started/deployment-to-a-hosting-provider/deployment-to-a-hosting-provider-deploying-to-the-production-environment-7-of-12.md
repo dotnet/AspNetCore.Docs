@@ -216,7 +216,7 @@ You have now successfully deployed and tested your site and it is available publ
 
 ## Creating a More Reliable Test Environment
 
-As explained in the [Deploying to the Test Environment](../../../../mvc/overview/older-versions/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md) tutorial, the most reliable test environment would be a second account at the hosting provider that's just like the production account. This would be more expensive than using local IIS as your test environment, since you would have to sign up for a second hosting account. But if it prevents production site errors or outages, you might decide that it's worth the cost.
+As explained in the [Deploying to the Test Environment](deployment-to-a-hosting-provider-deploying-to-iis-as-a-test-environment-5-of-12.md) tutorial, the most reliable test environment would be a second account at the hosting provider that's just like the production account. This would be more expensive than using local IIS as your test environment, since you would have to sign up for a second hosting account. But if it prevents production site errors or outages, you might decide that it's worth the cost.
 
 Most of the process for creating and deploying to a test account is similar to what you've already done to deploy to production:
 

@@ -158,7 +158,7 @@ Update the Login method to resend the password when if the user account has not 
 <a id="combine"></a>
 ## Combine social and local login accounts
 
-You can combine local and social accounts by clicking on your email link. In the following sequence &quot;RickAndMSFT@gmail.com&quot; is first created as a local login, but you can create the account as a social log in first, then add a local login.
+You can combine local and social accounts by clicking on your email link. In the following sequence **RickAndMSFT@gmail.com** is first created as a local login, but you can create the account as a social log in first, then add a local login.
 
 ![](create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset/_static/image5.png)
 
