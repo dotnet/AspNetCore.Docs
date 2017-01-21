@@ -218,7 +218,7 @@ Example of how a web.config might look like if `dotnet.exe` was **not** on the p
    ```
 
 Run the following commands in the remote session to create a new site in IIS for the published app on a different port than the default website. You also need to open that port to access the web.
-This script uses the `DefaultAppPool` for simplicity. For more considerations on running under an application pool, see [Application Pools](../hosting/apppool.md#apppool).
+This script uses the `DefaultAppPool` for simplicity. For more considerations on running under an application pool, see [Application Pools](../publishing/iis.md).
 
 <!-- literal_block {"ids": [], "classes": ["code", "powershell"], "xml:space": "preserve"} -->
 
