@@ -97,7 +97,6 @@ namespace MiddlewareSample
         public void ConfigureMapping(IApplicationBuilder app)
         {
             app.Map("/maptest", HandleMapTest);
-
         }
         #endregion
 
