@@ -54,8 +54,7 @@ namespace MiddlewareSample
         #endregion
 
         #region snippet6
-        public void ConfigureLogMiddleware(IApplicationBuilder app,
-            ILoggerFactory loggerfactory)
+        public void ConfigureLogMiddleware(IApplicationBuilder app, ILoggerFactory loggerfactory)
         {
             loggerfactory.AddConsole(minLevel: LogLevel.Information);
 
