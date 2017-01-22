@@ -54,15 +54,20 @@ A request that is handled by the static file module will short circuit the pipel
 
 The simplest possible ASP.NET application sets up a single request delegate that handles all requests. In this case, there isn't really a request "pipeline" so much as a single anonymous function that is called in response to every HTTP request.
 
-[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?start=23&end=26)]
+```csharp
+app.Run(async context =>
+{
+    ...
+});
+```
 
-The first `App.Run` delegate terminates the pipeline. In the following example, only the first delegate ("Hello, World!") will run.
+The first `App.Run` delegate terminates the pipeline. In the following example, only the first delegate ("Hello, World!") will run:
 
-[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=5&start=21&end=32)]
+[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?name=snippet1&highlight=5)]
 
 You chain multiple request delegates together; the `next` parameter represents the next delegate in the pipeline. You can terminate (short-circuit) the pipeline by *not* calling the *next* parameter. You can typically perform actions both before and after the next delegate, as this example demonstrates:
 
-[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=5,8,14&start=34&end=49)]
+[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?name=snippet2&highlight=5,8,14)]
 
 >[!WARNING]
 > Avoid modifying `HttpResponse` after invoking next, as one of the next components in the pipeline may have written to the response, causing it to be sent to the client.
@@ -106,21 +111,21 @@ public void Configure(IApplicationBuilder app)
 
 You configure the HTTP pipeline using `Run`, `Map`,  and `Use`. The `Run` method short circuits the pipeline (that is, it will not call a `next` request delegate). Thus, `Run` should only be called at the end of your pipeline. `Run` is a convention, and some middleware components may expose their own Run[Middleware] methods that should only run at the end of the pipeline. The following two middleware are equivalent as the `Use` version doesn't use the `next` parameter:
 
-[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=3,11&start=65&end=79)]
+[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?name=snippet3&highlight=3,11)]
 
 > [!NOTE]
 > The `IApplicationBuilder` interface exposes a single `Use` method; so technically, they're not all *extension* methods.
 
 We've already seen several examples of how to build a request pipeline with `Use`. `Map*` extensions are used as a convention for branching the pipeline. The current implementation supports branching based on the request's path or using a predicate. The `Map` extension method is used to match request delegates based on a request's path. `Map` simply accepts a path and a function that configures a separate middleware pipeline. In the following example, any request with the base path of `/maptest` will be handled by the pipeline configured in the `HandleMapTest` method:
 
-[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=11&start=81&end=93)]
+[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?name=snippet4&highlight=11)]
 
 > [!NOTE]
 > When `Map` is used, the matched path segment(s) are removed from `HttpRequest.Path` and appended to `HttpRequest.PathBase` for each request.
 
 In addition to path-based mapping, the `MapWhen` method supports predicate-based middleware branching, allowing separate pipelines to be constructed in a very flexible fashion. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a simple predicate is used to detect the presence of a query string variable `branch`:
 
-[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=5,11,12,13&start=95&end=113)]
+[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?name=snippet5&highlight=5,11-13)]
 
 Using the configuration shown above, any request that includes a query string value for `branch` will use the pipeline defined in the `HandleBranch` method (in this case, a response of "Branch used."). All other requests (that do not define a query string value for `branch`) will be handled by the delegate defined on line 17.
 
@@ -168,11 +173,11 @@ Middleware should follow the [Explicit Dependencies Principle](http://deviq.com/
 
 RequestLoggerExtensions.cs
 
-[!code-csharp[Main](../fundamentals/middleware/sample/src/MiddlewareSample/RequestLoggerExtensions.cs?highlight=5&start=5&end=11)]
+[!code-csharp[Main](../fundamentals/middleware/sample/src/MiddlewareSample/RequestLoggerExtensions.cs?name=snippet1&highlight=5)]
 
-Using the extension method and associated middleware class, the `Configure` method becomes very simple and readable.
+Using the extension method and associated middleware class, the `Configure` method becomes very simple and readable:
 
-[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=6&start=51&end=62)]
+[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?name=snippet6&highlight=5)]
 
 Although `RequestLoggerMiddleware` requires an `ILoggerFactory` parameter in its constructor, neither the `Startup` class nor the `UseRequestLogger` extension method need to explicitly supply it. Instead, it is automatically provided through dependency injection performed within `UseMiddleware<T>`.
 
