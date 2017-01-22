@@ -78,7 +78,7 @@ After running the above commands, you should be able to access this share by vis
 
 ## Open port in the firewall
 
-Run the following commands in the remote session to open up a port in the firewall to let IIS listen for TCP traffic on port 80/tcp.
+Run the following commands in the remote session to open up a port in the firewall to let IIS listen for TCP traffic on port TCP/8000.
 
 ```PowerShell
 New-NetFirewallRule -Name "AspNet5 IIS" -DisplayName "Allow HTTP on TCP/8000" -Protocol TCP -LocalPort 8000 -Action Allow -Enabled True
