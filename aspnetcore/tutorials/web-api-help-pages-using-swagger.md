@@ -329,7 +329,7 @@ The following CSS provides a simple sample of a custom header title to the page.
 
 *custom.css file*
 
-[!code-css[Main](web-api-help-pages-using-swagger/sample/src/TodoApi/wwwroot/swagger/ui/custom.css)]
+[!code-css[Main](web-api-help-pages-using-swagger/sample/src/TodoApi/wwwroot/swagger/custom.css)]
 
 *index.html body*
 
