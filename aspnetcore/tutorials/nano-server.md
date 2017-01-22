@@ -200,4 +200,4 @@ New-NetFirewallRule -Name "AspNetCore Port 81 IIS" -DisplayName "Allow HTTP on T
 
 ## Running the application
 
-The published web app is accessible in a browser at `http://192.168.1.10:8000`. If you have set up logging as described in [Log creation and redirection](xref:hosting/aspnet-core-module#log-creation-and-redirection), you can view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.
+The published web app is accessible in a browser at `http://192.168.1.10:8000`. If you've set up logging as described in [Log creation and redirection](xref:hosting/aspnet-core-module#log-creation-and-redirection), you can view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.
