@@ -48,7 +48,7 @@ Now you're able to manage it using PowerShell remoting, which is the only way to
 Open an elevated PowerShell window to add your remote Nano Server instance to your `TrustedHosts` list.
 
 ```PowerShell
-$nanoServerIpAddress = "10.83.181.14"
+$nanoServerIpAddress = "192.168.1.10"
 Set-Item WSMan:\localhost\Client\TrustedHosts "$nanoServerIpAddress" -Concatenate -Force
 ```
 
