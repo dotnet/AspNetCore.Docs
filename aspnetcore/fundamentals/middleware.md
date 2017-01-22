@@ -165,13 +165,13 @@ The [CodeLabs middleware tutorial](https://github.com/Microsoft-Build-2016/CodeL
 
 For more complex request handling functionality, the ASP.NET team recommends implementing the middleware in its own class and exposing an `IApplicationBuilder` extension method that can be called from the `Configure` method. The simple logging middleware shown in the previous example can be converted into a middleware class that takes in the next `RequestDelegate` in its constructor and supports an `Invoke` method as shown:
 
-RequestLoggerMiddleware.cs
+*RequestLoggerMiddleware.cs*
 
 [!code-csharp[Main](../fundamentals/middleware/sample/src/MiddlewareSample/RequestLoggerMiddleware.cs?highlight=12,18)]
 
 Middleware should follow the [Explicit Dependencies Principle](http://deviq.com/explicit-dependencies-principle/) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*. See *Per-request dependencies* below if you need to share services with middleware within a request. Use the `UseMiddleware<T>` extension to inject services directly into their constructors (shown in the example below).
 
-RequestLoggerExtensions.cs
+*RequestLoggerExtensions.cs*
 
 [!code-csharp[Main](../fundamentals/middleware/sample/src/MiddlewareSample/RequestLoggerExtensions.cs?name=snippet1&highlight=5)]
 
