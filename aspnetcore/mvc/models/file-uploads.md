@@ -62,7 +62,7 @@ public interface IFormFile
 ```
 
 > [!WARNING]
-> Don't rely on or trust the `FileName` property without validation.
+> Don't rely on or trust the `FileName` property without validation. The `FileName` property should only be used for display purposes.
 
 When uploading files using model binding and the `IFormFile` interface, the action method can accept either a single `IFormFile` or an `IEnumerable<IFormFile>` (or `List<IFormFile>`) representing several files. The following example loops through one or more uploaded files, saves them to the local file system, and returns the total number and size of files uploaded.
 
