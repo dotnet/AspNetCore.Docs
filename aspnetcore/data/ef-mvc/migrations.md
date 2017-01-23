@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core MVC and EF Core - Migrations - 4 of 10 | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - Migrations - 4 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
