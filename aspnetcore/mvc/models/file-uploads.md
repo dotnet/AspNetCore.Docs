@@ -102,19 +102,19 @@ Copy the `IFormFile` to a stream and save it to the byte array:
 [ValidateAntiForgeryToken]
 public async Task<IActionResult> Register(RegisterViewModel model)
 {
-  ViewData["ReturnUrl"] = returnUrl;
-  if  (ModelState.IsValid)
-  {
-      var user = new ApplicationUser {
-        UserName = model.Email,
-        Email = model.Email
-      };
-      using (var memoryStream = new MemoryStream())
-      {
-          await model.AvatarImage.CopyToAsync(memoryStream);
-          user.AvatarImage = memoryStream.ToArray();
-      }
-  // additional logic omitted
+    ViewData["ReturnUrl"] = returnUrl;
+    if  (ModelState.IsValid)
+    {
+        var user = new ApplicationUser {
+          UserName = model.Email,
+          Email = model.Email
+        };
+        using (var memoryStream = new MemoryStream())
+        {
+            await model.AvatarImage.CopyToAsync(memoryStream);
+            user.AvatarImage = memoryStream.ToArray();
+        }
+    // additional logic omitted
 }
 ```
 
@@ -172,7 +172,7 @@ HTTP 404.13 - Not Found
 The request filtering module is configured to deny a request that exceeds the request content length.
 ```
 
-The default setting is `30000000`, which is approxmiately 28.6MB. The value can be customized by editing *web.config*:
+The default setting is `30000000`, which is approximately 28.6MB. The value can be customized by editing *web.config*:
 
 ```xml
 <system.webServer>
@@ -185,7 +185,7 @@ The default setting is `30000000`, which is approxmiately 28.6MB. The value can 
 </system.webServer>
 ```
 
-This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more infomration, see [Request Limits \<requestLimits\>](https://www.iis.net/configreference/system.webserver/security/requestfiltering/requestlimits).
+This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more information, see [Request Limits \<requestLimits\>](https://www.iis.net/configreference/system.webserver/security/requestfiltering/requestlimits).
 
 ### Null Reference Exception with IFormFile
 
