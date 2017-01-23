@@ -1,5 +1,5 @@
 ---
-title: Reading related data - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
+title: ASP.NET Core MVC and EF Core - Read Related Data - 6 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
