@@ -1,5 +1,5 @@
 ---
-title: Purpose Strings | Microsoft Docs
+title: Purpose Strings in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
 ---
-# Purpose hierarchy and multi-tenancy
+# Purpose hierarchy and multi-tenancy in ASP.NET Core
 
 Since an IDataProtector is also implicitly an IDataProtectionProvider, purposes can be chained together. In this sense provider.CreateProtector([ "purpose1", "purpose2" ]) is equivalent to provider.CreateProtector("purpose1").CreateProtector("purpose2").
 

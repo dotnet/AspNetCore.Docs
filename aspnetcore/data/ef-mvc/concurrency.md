@@ -1,5 +1,5 @@
 ---
-title: Handling concurrency conflicts - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - Concurrency - 8 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,

@@ -1,5 +1,5 @@
 ---
-title: Data Protection | Microsoft Docs
+title: Data Protection in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/index
 ---
-# Data Protection
+# Data Protection in ASP.NET Core: Consumer APIs, configuration, extensibility APIs and implementation
 
 * [Introduction to Data Protection](introduction.md)
 

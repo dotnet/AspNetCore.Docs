@@ -1,5 +1,5 @@
 ---
-title: Compatibility | Microsoft Docs
+title: Compatibility in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/compatibility/index
 ---
-# Compatibility
+# Compatibility in ASP.NET Core
 
 * [Sharing cookies between applications](cookie-sharing.md)
 

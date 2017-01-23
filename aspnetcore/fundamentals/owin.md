@@ -22,21 +22,9 @@ ASP.NET Core supports the Open Web Interface for .NET (OWIN). OWIN allows web ap
 
 ## Running OWIN middleware in the ASP.NET pipeline
 
-ASP.NET Core's OWIN support is deployed as part of the `Microsoft.AspNetCore.Owin` package. You can import OWIN support into your project by adding this package as a dependency in your *project.json* file:
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [4], "linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript", "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/owin/sample/src/OwinSample/project.json"} -->
-
-```javascript
-"dependencies": {
-  "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
-  "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
-  "Microsoft.AspNetCore.Owin": "1.0.0"
-},
-```
+ASP.NET Core's OWIN support is deployed as part of the `Microsoft.AspNetCore.Owin` package. You can import OWIN support into your project by installing this package.
 
 OWIN middleware conforms to the [OWIN specification](http://owin.org/spec/spec/owin-1.0.0.html), which requires a `Func<IDictionary<string, object>, Task>` interface, and specific keys be set (such as `owin.ResponseBody`). The following simple OWIN middleware displays "Hello World":
-
-<!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/owin/sample/src/OwinSample/Startup.cs"} -->
 
 ```csharp
 public Task OwinHello(IDictionary<string, object> environment)

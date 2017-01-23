@@ -218,18 +218,12 @@ With regards to data access specifically, you can inject the `DbContext` into yo
 
 The built-in services container is meant to serve the basic needs of the framework and most consumer applications built on it. However, developers can replace the built-in container with their preferred container. The `ConfigureServices` method typically returns `void`, but if its signature is changed to return `IServiceProvider`, a different container can be configured and returned. There are many IOC containers available for .NET. In this example, the [Autofac](http://autofac.org/) package is used.
 
-First, add the appropriate container package(s) to the dependencies property in `project.json`:
+First, install the appropriate container package(s):
 
-```json
-"dependencies" : {
-  "Autofac": "4.0.0",
-  "Autofac.Extensions.DependencyInjection": "4.0.0"
-},
-```
+* `Autofac`
+* `Autofac.Extensions.DependencyInjection`
 
 Next, configure the container in `ConfigureServices` and return an `IServiceProvider`:
-
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [1, 11]}} -->
 
 ```csharp
 public IServiceProvider ConfigureServices(IServiceCollection services)
