@@ -12,7 +12,8 @@ namespace FileUploadSample.Filters
         {
             var antiforgery = context.HttpContext.RequestServices.GetService<IAntiforgery>();
 
-            // We can send the request token as a JavaScript-readable cookie, and Angular will use it by default.
+            // We can send the request token as a JavaScript-readable cookie, 
+            // and Angular will use it by default.
             var tokens = antiforgery.GetAndStoreTokens(context.HttpContext);
             context.HttpContext.Response.Cookies.Append(
                 "XSRF-TOKEN",
