@@ -14,7 +14,7 @@ msc.type: chapter
 ---
 ASP.NET Web Deployment using Visual Studio
 ====================
-> This tutorial series shows how to make an ASP.NET web application that uses SQL Server (not SQL Server Compact) available over the internet by deploying it to a Windows Azure Web Site or a third-party hosting provider. Requires Visual Studio 2012 and the ASP.NET and Web Tools 2012.2 Update, or Visual Studio 2010. For information specific to SQL Server Compact, see [ASP.NET Web Deployment with SQL Server Compact using Visual Studio](../web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.md).
+> This tutorial series shows how to make an ASP.NET web application that uses SQL Server (not SQL Server Compact) available over the internet by deploying it to a Windows Azure Web Site or a third-party hosting provider. Requires Visual Studio 2012 and the ASP.NET and Web Tools 2012.2 Update, or Visual Studio 2010. For information specific to SQL Server Compact, see [ASP.NET Web Deployment with SQL Server Compact using Visual Studio](../../older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.md).
 
 
 - [Introduction](introduction.md)
