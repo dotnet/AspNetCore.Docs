@@ -1,5 +1,0 @@
-# [Tracing in Web API 2](tracing-in-aspnet-web-api.md)
-# [Unit Testing Web API 2](unit-testing-with-aspnet-web-api.md)
-# [Unit Testing Controllers in ASP.NET Web API 2](unit-testing-controllers-in-web-api.md)
-# [Mocking Entity Framework when Unit Testing Web API 2](mocking-entity-framework-when-unit-testing-aspnet-web-api-2.md)
-# [Troubleshooting HTTP 405 Errors after Publishing Web API 2 Applications](troubleshooting-http-405-errors-after-publishing-web-api-applications.md)

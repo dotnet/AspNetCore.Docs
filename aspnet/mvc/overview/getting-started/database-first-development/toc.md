@@ -1,7 +1,0 @@
-# [Getting Started with Entity Framework 6 Database First using MVC 5](setting-up-database.md)
-# [Creating the Web Application and Data Models](creating-the-web-application.md)
-# [Generating Views](generating-views.md)
-# [Changing the Database](changing-the-database.md)
-# [Customizing a View](customizing-a-view.md)
-# [Enhancing Data Validation](enhancing-data-validation.md)
-# [Publish to Azure](publish-to-azure.md)

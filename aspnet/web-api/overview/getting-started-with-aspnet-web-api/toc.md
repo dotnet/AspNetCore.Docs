@@ -1,5 +1,0 @@
-# [Getting Started with Web API 2 (C#)](tutorial-your-first-web-api.md)
-# [Action Results in Web API 2](action-results.md)
-# [Using Web API with ASP.NET Web Forms](using-web-api-with-aspnet-web-forms.md)
-# [Creating Web API Help Pages](creating-api-help-pages.md)
-# [Hands On Lab: Build a Single Page Application (SPA) with ASP.NET Web API and Angular.js](build-a-single-page-application-spa-with-aspnet-web-api-and-angularjs.md)

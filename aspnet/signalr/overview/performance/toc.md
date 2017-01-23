@@ -1,7 +1,0 @@
-# [SignalR Performance](signalr-performance.md)
-# [Introduction to Scaleout in SignalR](scaleout-in-signalr.md)
-# [SignalR Scaleout with Azure Service Bus](scaleout-with-windows-azure-service-bus.md)
-# [SignalR Scaleout with Redis](scaleout-with-redis.md)
-# [SignalR Scaleout with SQL Server](scaleout-with-sql-server.md)
-# [SignalR Connection Density Testing with Crank](signalr-connection-density-testing-with-crank.md)
-# [Using SignalR Performance Counters in an Azure Web Role](using-signalr-performance-counters-in-an-azure-web-role.md)

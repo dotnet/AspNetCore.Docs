@@ -1,8 +1,0 @@
-# [Create an OData v4 Endpoint](create-an-odata-v4-endpoint.md)
-# [Create an OData v4 Client App (C#)](create-an-odata-v4-client-app.md)
-# [Entity Relations in OData v4](entity-relations-in-odata-v4.md)
-# [Actions and Functions in OData v4](odata-actions-and-functions.md)
-# [Containment in OData v4](odata-containment-in-web-api-22.md)
-# [Create a Singleton in OData v4](using-a-singleton-in-an-odata-endpoint-in-web-api-22.md)
-# [Open Types in OData v4](use-open-types-in-odata-v4.md)
-# [Complex Type Inheritance in OData v4](complex-type-inheritance-in-odata-v4.md)

@@ -1,6 +1,0 @@
-# [Dynamically Populating a Control (C#)](dynamically-populating-a-control-cs.md)
-# [Dynamically Populating a Control Using JavaScript Code (C#)](dynamically-populating-a-control-using-javascript-code-cs.md)
-# [Using DynamicPopulate with a User Control And JavaScript (C#)](using-dynamicpopulate-with-a-user-control-and-javascript-cs.md)
-# [Dynamically Populating a Control (VB)](dynamically-populating-a-control-vb.md)
-# [Dynamically Populating a Control Using JavaScript Code (VB)](dynamically-populating-a-control-using-javascript-code-vb.md)
-# [Using DynamicPopulate with a User Control And JavaScript (VB)](using-dynamicpopulate-with-a-user-control-and-javascript-vb.md)

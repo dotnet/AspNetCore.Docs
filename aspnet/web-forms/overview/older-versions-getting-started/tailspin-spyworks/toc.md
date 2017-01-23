@@ -1,8 +1,0 @@
-# [Part 1: File-> New Project](tailspin-spyworks-part-1.md)
-# [Part 2: Data Access Layer](tailspin-spyworks-part-2.md)
-# [Part 3: Layout and Category Menu](tailspin-spyworks-part-3.md)
-# [Part 4: Listing Products](tailspin-spyworks-part-4.md)
-# [Part 5: Business Logic](tailspin-spyworks-part-5.md)
-# [Part 6: ASP.NET Membership](tailspin-spyworks-part-6.md)
-# [Part 7: Adding Features](tailspin-spyworks-part-7.md)
-# [Part 8: Final Pages, Exception Handling, and Conclusion](tailspin-spyworks-part-8.md)

@@ -1,6 +1,0 @@
-# [Retrieving and Displaying Data](retrieving-data.md)
-# [Updating, Deleting, and Creating Data](updating-deleting-and-creating-data.md)
-# [Sorting, Paging, and Filtering Data](sorting-paging-and-filtering-data.md)
-# [Integrating JQuery UI Datepicker](integrating-jquery-ui.md)
-# [Using Query String Values to Filter Data](using-query-string-values-to-retrieve-data.md)
-# [Adding Business Logic Layer](adding-business-logic-layer.md)

@@ -1,8 +1,0 @@
-# [Getting Started](getting-started/toc.md)
-# [UI, Layouts, and Themes](views/toc.md)
-# [Security, Authentication, and Authorization](security/toc.md)
-# [Performance](performance/toc.md)
-# [Internationalization and Advanced Topics](advanced/toc.md)
-# [Releases](releases/toc.md)
-# [Older Versions - MVC 3 and 4](older-versions/toc.md)
-# [Older Versions - MVC 1 and 2](older-versions-1/toc.md)

@@ -15,20 +15,17 @@ namespace MvcApplication1.Controllers
             return View();
         }
 
-        
         [Authorize]
         public ActionResult CompanySecrets()
         {
             return View();
         }
 
-
         [Authorize(Users="Stephen")]
         public ActionResult StephenSecrets()
         {
             return View();
         }
-
 
         [Authorize(Roles = "Administrators")]
         public ActionResult AdministratorSecrets()

@@ -1,8 +1,0 @@
-# [Launching a Modal Popup Window from Server Code (C#)](launching-a-modal-popup-window-from-server-code-cs.md)
-# [Using ModalPopup with a Repeater Control (C#)](using-modalpopup-with-a-repeater-control-cs.md)
-# [Handling Postbacks from a ModalPopup (C#)](handling-postbacks-from-a-modalpopup-cs.md)
-# [Positioning a ModalPopup (C#)](positioning-a-modalpopup-cs.md)
-# [Launching a Modal Popup Window from Server Code (VB)](launching-a-modal-popup-window-from-server-code-vb.md)
-# [Using ModalPopup with a Repeater Control (VB)](using-modalpopup-with-a-repeater-control-vb.md)
-# [Handling Postbacks from a ModalPopup (VB)](handling-postbacks-from-a-modalpopup-vb.md)
-# [Positioning a ModalPopup (VB)](positioning-a-modalpopup-vb.md)

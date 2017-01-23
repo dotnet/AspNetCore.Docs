@@ -1,7 +1,0 @@
-# [ASP.NET Web API](aspnet-web-api.md)
-# [ASP.NET Web API, Part 1: Your First Web API](your-first-web-api.md)
-# [ASP.NET Web API, Part 2: Getting Data](getting-data.md)
-# [ASP.NET Web API, Part 3: Delete and Update](delete-and-update.md)
-# [ASP.NET Web API, Part 4: Paging and Querying](paging-and-querying.md)
-# [ASP.NET Web API, Part 5: Custom Validation](custom-validation.md)
-# [ASP.NET Web API, Part 6: Authorization](authorization.md)

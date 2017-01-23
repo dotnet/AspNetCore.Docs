@@ -1,6 +1,0 @@
-# [Creating and Managing Roles (C#)](creating-and-managing-roles-cs.md)
-# [Assigning Roles to Users (C#)](assigning-roles-to-users-cs.md)
-# [Role-Based Authorization (C#)](role-based-authorization-cs.md)
-# [Creating and Managing Roles (VB)](creating-and-managing-roles-vb.md)
-# [Assigning Roles to Users (VB)](assigning-roles-to-users-vb.md)
-# [Role-Based Authorization (VB)](role-based-authorization-vb.md)

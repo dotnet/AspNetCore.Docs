@@ -1,8 +1,0 @@
-# [Configuring Web API 2](configuring-aspnet-web-api.md)
-# [Dependency Injection in Web API 2](dependency-injection.md)
-# [Calling a Web API From a .NET Client (C#)](calling-a-web-api-from-a-net-client.md)
-# [HTTP Message Handlers in Web API](http-message-handlers.md)
-# [HttpClient Message Handlers in Web API](httpclient-message-handlers.md)
-# [Sending HTML Form Data in Web API: Form-urlencoded Data](sending-html-form-data-part-1.md)
-# [Sending HTML Form Data in Web API: File Upload and Multipart MIME](sending-html-form-data-part-2.md)
-# [HTTP Cookies in ASP.NET Web API](http-cookies.md)

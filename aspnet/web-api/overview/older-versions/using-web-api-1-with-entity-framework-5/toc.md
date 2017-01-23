@@ -1,7 +1,0 @@
-# [Overview and Creating the Project](using-web-api-with-entity-framework-part-1.md)
-# [Creating the Domain Models](using-web-api-with-entity-framework-part-2.md)
-# [Creating an Admin Controller](using-web-api-with-entity-framework-part-3.md)
-# [Adding an Admin View](using-web-api-with-entity-framework-part-4.md)
-# [Creating a Dynamic UI with Knockout.js](using-web-api-with-entity-framework-part-5.md)
-# [Creating Product and Order Controllers](using-web-api-with-entity-framework-part-6.md)
-# [Creating the Main Page](using-web-api-with-entity-framework-part-7.md)

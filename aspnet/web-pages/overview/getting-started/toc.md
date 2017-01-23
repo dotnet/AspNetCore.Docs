@@ -1,7 +1,0 @@
-# [Program ASP.NET Web Pages in Visual Studio](program-asp-net-web-pages-in-visual-studio.md)
-# [Intro to ASP.NET Web Programming Razor Syntax](introducing-razor-syntax-c.md)
-# [ASP.NET Web Pages Visual Basic](introducing-razor-syntax-vb.md)
-# [ASP.NET Web Pages (Razor) FAQ](aspnet-web-pages-razor-faq.md)
-# [Sending Email from Your Site](11-adding-email-to-your-web-site.md)
-# [Adding Social Networking to Your Website](13-adding-social-networking-to-your-web-site.md)
-# [Introducing ASP.NET Web Pages](introducing-aspnet-web-pages-2/toc.md)

@@ -1,8 +1,0 @@
-# [Paging and Sorting Report Data (C#)](paging-and-sorting-report-data-cs.md)
-# [Efficiently Paging Through Large Amounts of Data (C#)](efficiently-paging-through-large-amounts-of-data-cs.md)
-# [Sorting Custom Paged Data (C#)](sorting-custom-paged-data-cs.md)
-# [Creating a Customized Sorting User Interface (C#)](creating-a-customized-sorting-user-interface-cs.md)
-# [Paging and Sorting Report Data (VB)](paging-and-sorting-report-data-vb.md)
-# [Efficiently Paging Through Large Amounts of Data (VB)](efficiently-paging-through-large-amounts-of-data-vb.md)
-# [Sorting Custom Paged Data (VB)](sorting-custom-paged-data-vb.md)
-# [Creating a Customized Sorting User Interface (VB)](creating-a-customized-sorting-user-interface-vb.md)

@@ -1,6 +1,0 @@
-# [Using Multiple Popup Controls (C#)](using-multiple-popup-controls-cs.md)
-# [Handling Postbacks from A Popup Control With an UpdatePanel (C#)](handling-postbacks-from-a-popup-control-with-an-updatepanel-cs.md)
-# [Handling Postbacks from A Popup Control Without an UpdatePanel (C#)](handling-postbacks-from-a-popup-control-without-an-updatepanel-cs.md)
-# [Using Multiple Popup Controls (VB)](using-multiple-popup-controls-vb.md)
-# [Handling Postbacks from A Popup Control With an UpdatePanel (VB)](handling-postbacks-from-a-popup-control-with-an-updatepanel-vb.md)
-# [Handling Postbacks from A Popup Control Without an UpdatePanel (VB)](handling-postbacks-from-a-popup-control-without-an-updatepanel-vb.md)

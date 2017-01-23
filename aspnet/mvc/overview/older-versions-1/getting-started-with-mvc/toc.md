@@ -1,8 +1,0 @@
-# [Intro to ASP.NET MVC](getting-started-with-mvc-part1.md)
-# [Adding a Controller](getting-started-with-mvc-part2.md)
-# [Adding a View](getting-started-with-mvc-part3.md)
-# [Creating a Database](getting-started-with-mvc-part4.md)
-# [Accessing your Model's Data from a Controller](getting-started-with-mvc-part5.md)
-# [Adding a Create Method and Create View](getting-started-with-mvc-part6.md)
-# [Adding Validation to the Model](getting-started-with-mvc-part7.md)
-# [Adding a Column to the Model](getting-started-with-mvc-part8.md)

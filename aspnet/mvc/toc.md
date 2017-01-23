@@ -1,6 +1,0 @@
-# [Guidance](overview/toc.md)
-# [Videos](videos/toc.md)
-# [ASP.NET MVC 5](mvc5.md)
-# [ASP.NET MVC 4](mvc4.md)
-# [ASP.NET MVC 3](mvc3.md)
-# [MVC Video Training from Pluralsight](pluralsight.md)

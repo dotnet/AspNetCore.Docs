@@ -1,5 +1,0 @@
-# [Getting Started with ASP.NET 4.5 Web Forms and Visual Studio 2013](getting-started-with-aspnet-45-web-forms/toc.md)
-# [Creating a Basic Web Forms Page in Visual Studio 2013](creating-a-basic-web-forms-page.md)
-# [Code Editing ASP.NET Web Forms in Visual Studio 2013](code-editing-in-web-forms-pages.md)
-# [Using Page Inspector for Visual Studio 2012 in ASP.NET Web Forms](using-page-inspector-in-a-visual-studio-11-beta-web-forms-project.md)
-# [Visual Studio 2012 Hands On Labs](hands-on-labs/toc.md)

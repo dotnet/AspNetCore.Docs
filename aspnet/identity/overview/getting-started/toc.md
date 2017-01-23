@@ -1,5 +1,0 @@
-# [Introduction to ASP.NET Identity](introduction-to-aspnet-identity.md)
-# [ASP.NET Identity Recommended Resources](aspnet-identity-recommended-resources.md)
-# [Adding ASP.NET Identity to an Empty or Existing Web Forms Project](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project.md)
-# [Developing ASP.NET Apps with Azure Active Directory](developing-aspnet-apps-with-windows-azure-active-directory.md)
-# [ASP.NET Identity: Using MySQL Storage with an EntityFramework MySQL Provider (C#)](aspnet-identity-using-mysql-storage-with-an-entityframework-mysql-provider.md)

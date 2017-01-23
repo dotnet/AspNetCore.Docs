@@ -11,7 +11,6 @@ Public Class HomeController
         Return View()
     End Function
 
-
     <Authorize(Users:="redmond\swalther")> _
     Function StephenSecrets()
         Return View()

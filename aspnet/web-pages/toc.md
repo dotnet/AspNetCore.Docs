@@ -1,5 +1,0 @@
-# [Guidance](overview/toc.md)
-# [Videos](videos/toc.md)
-# [WebMatrix and Web Pages Video Training from Pluralsight](pluralsight.md)
-# [WebMatrix Readme](readme/toc.md)
-# [WebMatrix Content Guide](content-guide.md)

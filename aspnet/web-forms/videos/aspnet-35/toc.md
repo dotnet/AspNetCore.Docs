@@ -1,5 +1,0 @@
-# [How Do I](how-do-i/toc.md)
-# [ASP.NET Ajax](aspnet-ajax/toc.md)
-# [Data Controls](data-controls/toc.md)
-# [Visual Studio Designer](visual-studio-designer/toc.md)
-# [Visual Studio Editor](visual-studio-editor/toc.md)
