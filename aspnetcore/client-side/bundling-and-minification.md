@@ -1,5 +1,5 @@
 ---
-title: Bundling and minification | Microsoft Docs
+title: Bundling and minification in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/bundling-and-minification
 ---
-# Bundling and minification
+# Bundling and minification in ASP.NET Core
 
 >[!WARNING]
 > This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
