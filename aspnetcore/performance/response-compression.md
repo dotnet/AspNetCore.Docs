@@ -61,7 +61,7 @@ Header | Role
 You can explore the features of the Response Compression Middleware with the [sample application](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/sample). The sample illustrates the compression of application responses using Gzip and custom compression providers. It also shows you how to add a MIME type to the default list of MIME types for compression.
 
 ## Package
-To include the middleware in your project, add a reference to the `Microsoft.AspNetCore.ResponseCompression` package. The middleware depends on .NET Framework 4.5.1 or .NET Standard 1.3 or higher. This feature is available for apps that target ASP.NET Core 1.1.0 or higher.
+To include the middleware in your project, add a reference to the [`Microsoft.AspNetCore.ResponseCompression`](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCompression/) package. The middleware depends on .NET Framework 4.5.1 or .NET Standard 1.3 or higher. This feature is available for apps that target ASP.NET Core 1.1.0 or higher.
 
 ## Configuration
 The following highlighted code shows how to enable the Response Compression Middleware with the with the default Gzip compression and for default MIME types.
