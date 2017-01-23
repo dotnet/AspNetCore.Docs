@@ -201,7 +201,8 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
 
     ![download .publishsettings file](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image15.png)
 
-    **Security Note**: The *publishsettings* file contains your credentials (unencoded) that are used to administer your Azure subscriptions and services. The security best practice for this file is to store it temporarily outside your source directories (for example in the*Downloads* folder), and then delete it once the import has completed. A malicious user who gains access to the `.publishsettings` file can edit, create, and delete your Azure services.
+    > [!WARNING]
+    > Security - The *publishsettings* file contains your credentials (unencoded) that are used to administer your Azure subscriptions and services. The security best practice for this file is to store it temporarily outside your source directories (for example in the*Downloads* folder), and then delete it once the import has completed. A malicious user who gains access to the `.publishsettings` file can edit, create, and delete your Azure services.
 
     e. In the **Import Azure Subscriptions** dialog box, click **Browse** and navigate to the *.publishsettings* file.
 
