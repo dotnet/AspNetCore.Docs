@@ -93,7 +93,7 @@ The `UseOAuthAuthorizationServer` extension method is to setup the authorization
 
 ## Account Management
 
-OAuth doesn't care where or how you manage your user account information. It's [ASP.NET Identity](../authentication-and-identity.md) which is responsible for it. In this tutorial, we will simplify the account management code and just make sure that user can login using OWIN cookie middleware. Here is the simplified sample code for the `AccountController`:
+OAuth doesn't care where or how you manage your user account information. It's [ASP.NET Identity](../../../identity/index.md) which is responsible for it. In this tutorial, we will simplify the account management code and just make sure that user can login using OWIN cookie middleware. Here is the simplified sample code for the `AccountController`:
 
 [!code-csharp[Main](owin-oauth-20-authorization-server/samples/sample3.cs)]
 

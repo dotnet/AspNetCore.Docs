@@ -313,7 +313,6 @@ See also [Optimizing Entity Framework performance](#optimizingef) earlier in thi
 
 - [ASP.NET Data Access FAQ](https://msdn.microsoft.com/en-us/library/jj653753.aspx) (MSDN).
 - [ASP.NET Web Forms Tutorials - Data](../web-forms/overview/data-access/index.md). Most of these tutorials are relatively old; make sure you read  [ASP.NET Data Access Options](https://msdn.microsoft.com/en-us/library/ms178359.aspx) and [Data Storage Options (Building Real-World Cloud Apps with Windows Azure)](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/data-storage-options.md) first so that you don't get too far into a data access method that isn't right for your scenario.
-- [ASP.NET MVC Overview - Data](../mvc/overview/models-data.md).
 - [ASP.NET MVC Content Map](../mvc/overview/getting-started/recommended-resources-for-mvc.md).
 - [ASP.NET Web Pages Tutorials - Data](../web-pages/overview/data/index.md).
 - [Accessing Data in Visual Studio](https://msdn.microsoft.com/en-us/library/wzabh8c4.aspx) (MSDN). Provides a list of links similar to this content map but with a focus on Visual Studio rather than ASP.NET.

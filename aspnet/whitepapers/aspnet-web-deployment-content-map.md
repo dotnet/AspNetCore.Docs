@@ -154,7 +154,7 @@ See also [Making sure an application is off-line during deployment](aspnet-web-d
 - [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). A long tutorial that builds and deploys an application that uses a single SQL Server database both for membership and application data.
 - [Deploying an ASP.NET Web Application with SQL Server Compact using Visual Studio](../web-forms/overview/older-versions-getting-started/deployment-to-a-hosting-provider/deployment-to-a-hosting-provider-introduction-1-of-12.md). 12-part tutorial series, shows how to deploy SQL Server Compact databases and how to migrate from SQL Server Compact to a full edition of SQL Server.
 
-See also [Deploying a web application by creating and installing a web deployment package](aspnet-web-deployment-content-map.md#package) and [Deploying a web application using a continuous integration (CI) process](aspnet-web-deployment-content-map.md#ci) earlier in this page.
+See also [Deploying a web application by creating and installing a web deployment package](aspnet-web-deployment-content-map.md#package) and  Deploying a web application using a continuous integration (CI) process earlier in this page.
 
 
 <a id="databaseseparate"></a>
