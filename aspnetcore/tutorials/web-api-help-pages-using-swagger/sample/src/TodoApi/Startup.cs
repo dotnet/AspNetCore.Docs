@@ -5,8 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TodoApi.Models;
-using Swashbuckle.Swagger.Model;
 using Microsoft.Extensions.PlatformAbstractions;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace TodoApi
 {
@@ -25,13 +25,10 @@ namespace TodoApi
             // Add our repository type.
             services.AddSingleton<ITodoRepository, TodoRepository>();
 
-            // Inject an implementation of ISwaggerProvider with defaulted settings applied.
-            services.AddSwaggerGen();
-
-            // Add the detail information for the API.
-            services.ConfigureSwaggerGen(options =>
+	        // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
             {
-                options.SingleApiVersion(new Info
+                c.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
                     Title = "ToDo API",
@@ -41,12 +38,10 @@ namespace TodoApi
                     License = new License { Name = "Use under LICX", Url = "http://url.com" }
                 });
 
-                //Determine base path for the application.
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-
                 //Set the comments path for the swagger json and ui.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var xmlPath = Path.Combine(basePath, "TodoApi.xml"); 
-                options.IncludeXmlComments(xmlPath);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
@@ -60,9 +55,11 @@ namespace TodoApi
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
-            // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
-            app.UseSwaggerUi();
-            
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint
+            app.UseSwaggerUi(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
         }
         #endregion
 
