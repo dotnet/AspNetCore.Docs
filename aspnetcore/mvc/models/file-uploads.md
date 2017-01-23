@@ -16,7 +16,7 @@ uid: mvc/models/file-uploads
 
 By [Steve Smith](http://ardalis.com)
 
-ASP.NET MVC actions support uploading of one or more files, using simple model binding for smaller files or streaming for larger files.
+ASP.NET MVC actions support uploading of one or more files using simple model binding for smaller files or streaming for larger files.
 
 [View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/file-uploads/sample)
 
@@ -44,7 +44,7 @@ In order to support file uploads, HTML forms must specify an `enctype` of `multi
 
 ![File upload form](file-uploads/_static/upload-form.png)
 
-The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using the [IFormFile](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/IFormFile/index.html.md#Microsoft.AspNetCore.Http.IFormFile.md) interface. `IFormFile` has the following structure:
+The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using the [IFormFile](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.http.iformfile) interface. `IFormFile` has the following structure:
 
 ```csharp
 public interface IFormFile
@@ -149,7 +149,7 @@ Angular automatically passes an antiforgery token in a request header named `X-X
 
 [!code-csharp[Main](file-uploads/sample/FileUploadSample/Startup.cs?name=snippet1)]
 
-The `DisableFormValueModelBinding` attribute is used to disable model binding for the `Upload` action method:
+The `DisableFormValueModelBinding` attribute, shown below, is used to disable model binding for the `Upload` action method.
 
 [!code-csharp[Main](file-uploads/sample/FileUploadSample/Filters/DisableFormValueModelBindingAttribute.cs?name=snippet1)]
 
@@ -161,7 +161,7 @@ The complete `Upload` method is shown below:
 
 ## Troubleshooting
 
-Below are some common problems encountered when working with uploading files, and their possible solutions.
+Below are some common problems encountered when working with uploading files and their possible solutions.
 
 ### Unexpected Not Found error with IIS
 
