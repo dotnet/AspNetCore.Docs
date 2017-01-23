@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/index
 ---
-# Data Protection in ASP.NET Core: Consumer APIs, configuration, Extensibility APIs and Implementation
+# Data Protection in ASP.NET Core: Consumer APIs, configuration, extensibility APIs and implementation
 
 * [Introduction to Data Protection](introduction.md)
 
