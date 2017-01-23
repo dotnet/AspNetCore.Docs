@@ -115,6 +115,7 @@ public async Task<IActionResult> Register(RegisterViewModel model)
             user.AvatarImage = memoryStream.ToArray();
         }
     // additional logic omitted
+    // Don't rely on or trust the `FileName` property without validation.
 }
 ```
 
