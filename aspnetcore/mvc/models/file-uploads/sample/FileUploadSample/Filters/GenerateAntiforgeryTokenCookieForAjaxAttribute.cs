@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FileUploadSample.Filters
 {
+    #region snippet1
     public class GenerateAntiforgeryTokenCookieForAjaxAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuted(ActionExecutedContext context)
@@ -19,4 +20,5 @@ namespace FileUploadSample.Filters
                 new CookieOptions() { HttpOnly = false });
         }
     }
+    #endregion
 }
