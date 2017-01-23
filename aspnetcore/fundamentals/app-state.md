@@ -1,5 +1,5 @@
 ---
-title: Session and application state | Microsoft Docs
+title: Session and application state in ASP.NET Core  | Microsoft Docs
 author: rick-anderson
 description: Approaches to preserving application and user (session) state between requests.
 keywords: ASP.NET Core, Application state, session state, querystring, post
@@ -13,7 +13,7 @@ ms.prod: aspnet-core
 uid: fundamentals/app-state
 ---
 
-# Session and application state
+# Session and application state in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](http://ardalis.com)
 
