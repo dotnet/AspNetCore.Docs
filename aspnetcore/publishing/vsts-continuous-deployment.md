@@ -1,5 +1,5 @@
 ---
-title: Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment | Microsoft Docs
+title: Publish an ASP.NET Core app to Azure using VSTS | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
