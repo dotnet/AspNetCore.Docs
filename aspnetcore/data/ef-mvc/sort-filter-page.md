@@ -1,5 +1,5 @@
 ---
-title: Sorting, filtering, paging, and grouping - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
+title: ASP.NET Core MVC and EF Core - Sort, Filter, Paging - 3 of 10 | Microsoft Docs
 author: tdykstra
 author: tdykstra
 description: 
