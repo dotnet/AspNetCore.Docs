@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: hosting/directory-structure
 ---
-# Directory Structure
+# Directory structure
 
 <a name=directory-structure></a>
 

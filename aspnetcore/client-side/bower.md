@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/bower
 ---
-# Manage Client-Side Packages with Bower
+# Manage client-side packages with Bower
 
 <a name=bower-index></a>
 

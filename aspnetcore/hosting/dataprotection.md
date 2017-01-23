@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: hosting/dataprotection
 ---
-# Data Protection
+# Data protection
 
 <a name=dataprotection></a>
 

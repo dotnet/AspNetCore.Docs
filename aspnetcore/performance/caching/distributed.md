@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: performance/caching/distributed
 ---
-# Working with a Distributed Cache
+# Working with a distributed cache
 
 By [Steve Smith](http://ardalis.com)
 

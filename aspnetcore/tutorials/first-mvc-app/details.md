@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/details
 ---
-# Examining the Details and Delete methods
+# Examining the details and delete methods
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

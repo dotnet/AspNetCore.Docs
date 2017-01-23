@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/accconfirm
 ---
-# Account Confirmation and Password Recovery
+# Account confirmation and password recovery
 
 >[!WARNING]
 > This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
