@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/environments
 ---
-# Working with Multiple Environments
+# Working with multiple environments
 
 By [Steve Smith](http://ardalis.com)
 

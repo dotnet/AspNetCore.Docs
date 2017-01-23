@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/validation
 ---
-# Adding Validation
+# Adding validation
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/entity-framework-6
 ---
-# Getting Started with ASP.NET Core and Entity Framework 6
+# Getting started with ASP.NET Core and Entity Framework 6
 
 By [Paweł Grudzień](https://github.com/pgrudzien12), [Damien Pontifex](https://github.com/DamienPontifex), and [Tom Dykstra](https://github.com/tdykstra)
 
