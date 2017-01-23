@@ -1,5 +1,5 @@
 ---
-title: Controllers, Actions, and Action Results | Microsoft Docs
+title: Handling requests with controllers in ASP.NET MVC Core | Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core,

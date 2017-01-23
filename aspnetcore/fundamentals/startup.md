@@ -1,5 +1,5 @@
 ---
-title: Application Startup | Microsoft Docs
+title: Application Startup in ASP.NET Core | Microsoft Docs
 author: ardalis
 description: Explains the Startup class in ASP.NET Core.
 keywords: ASP.NET Core, Startup, Configure method, ConfigureServices method
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/startup
 ---
-# Application Startup
+# Application Startup in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra/)
 
