@@ -400,6 +400,7 @@ This section of the document describes new features, changes, and known issues w
 >   
 > [Microsoft Visual C++ 2008 Service Pack 1 Redistributable Package ATL Security Update](https://go.microsoft.com/fwlink/?LinkId=194827)
 > 
+> [!NOTE]
 > Note that installing the .NET Framework 2.0, 3.0, or 4 does *not* install the Visual C++ 2008 Runtime Libraries SP1.
 
 

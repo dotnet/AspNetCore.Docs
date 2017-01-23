@@ -69,6 +69,7 @@ Add a static **HttpClient** property to the `Program` class.
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/samples/sample4.cs)]
 
+> [!NOTE]
 > **HttpClient** is intended to be instantiated once and re-used throughout the life of an application. Especially in server applications, creating a new **HttpClient** instance for every request will exhaust the number of sockets available under heavy loads. This will result in **SocketException** errors.
 
 

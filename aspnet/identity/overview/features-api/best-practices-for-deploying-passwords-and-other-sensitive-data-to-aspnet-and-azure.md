@@ -68,6 +68,7 @@ You can use the `configSource` attribute to replace the entire `<connectionStrin
 > Security - Unlike the *AppSettingsSecrets.config* file, the external connection strings file must be in the same directory as the root *web.config* file, so you'll have to take precautions to ensure you don't check it into your source repository.
 
 
+> [!NOTE]
 > **Security Warning on secrets file:** A best practice is to not use production secrets in test and development. Using production passwords in test or development leaks those secrets.
 
 

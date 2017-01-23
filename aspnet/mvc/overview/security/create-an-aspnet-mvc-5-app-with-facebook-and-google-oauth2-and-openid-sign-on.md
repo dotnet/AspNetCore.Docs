@@ -186,6 +186,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 
     ![Basic application details page](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image28.png)
 
+    > [!NOTE]
     > Note that you will only be able to authenticate using the email alias you have registered. Other users and test accounts will not be able to register. You can grant other Facebook accounts access to the application on the Facebook **Developer Roles** tab.
 10. In Visual Studio, open *App\_Start\Startup.Auth.cs*.
 11. Copy and paste the **AppId** and **App Secret** into the `UseFacebookAuthentication` method. The **AppId** and **App Secret** values shown below are samples and will not work.

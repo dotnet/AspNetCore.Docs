@@ -242,6 +242,7 @@ The following exercise demonstrates how to data bind a DropDownList control usin
 
     [!code-aspx[Main](data-source-controls/samples/sample9.aspx)]
 
+    > [!NOTE]
     > Note that there are two update parameters (ProductName and ProductID) added in this code. These parameters are mapped to the Text property of the txtProductName TextBox and the SelectedValue property of the ddlProducts DropDownList.
 10. Switch to Design view and double-click on the Button control to add an event handler.
 11. Add the following code to the btnUpdate\_Click code: 
