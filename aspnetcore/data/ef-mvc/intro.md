@@ -1,5 +1,5 @@
 ---
-title: Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio | Microsoft Docs
+title: ASP.NET Core MVC with Entity Framework Core - Tutorial 1 of 10 | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,
