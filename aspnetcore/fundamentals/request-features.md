@@ -1,5 +1,5 @@
 ---
-title: Request Features | Microsoft Docs
+title: Request Features in ASP.NET Core | Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/request-features
 ---
-# Request Features
+# Request Features in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 
