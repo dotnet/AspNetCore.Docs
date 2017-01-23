@@ -1,5 +1,5 @@
 ---
-title: File Providers | Microsoft Docs
+title: File Providers in ASP.NET Core | Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/file-providers
 ---
-# File Providers
+# File Providers in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com)
 

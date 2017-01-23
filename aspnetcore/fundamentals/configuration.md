@@ -1,5 +1,5 @@
 ---
-title: Configuration | Microsoft Docs
+title: Configuration in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: Demonstrates the configuration API
 keywords: ASP.NET Core, configuration, JSON
@@ -14,7 +14,7 @@ uid: fundamentals/configuration
 ---
 <a name=fundamentals-configuration></a>
 
-  # Configuration
+  # Configuration in ASP.NET Core
 
 [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](http://ardalis.com), [Daniel Roth](https://github.com/danroth27)
 
