@@ -1,5 +1,5 @@
 ---
-title: Working with Static Files | Microsoft Docs
+title: Working with static files in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: Working with Static Files
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/static-files
 ---
-# Working with Static Files
+# Working with static files in ASP.NET Core
 
 <a name=fundamentals-static-files></a>
 
