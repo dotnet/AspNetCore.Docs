@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core MVC and EF Core - Sort, Filter, Paging - 3 of 10 | Microsoft Docs
+title: ASP.NET Core MVC with EF Core - Sort, Filter, Paging - 3 of 10 | Microsoft Docs
 author: tdykstra
 author: tdykstra
 description: 
