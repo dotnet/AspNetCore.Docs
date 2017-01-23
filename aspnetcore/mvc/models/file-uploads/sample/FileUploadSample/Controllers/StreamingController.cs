@@ -37,9 +37,12 @@ namespace FileUploadSample.Controllers
         }
 
         #region snippet1
-        // 1. Disable the form value model binding here to take control of handling potentially large files.
-        // 2. Typically antiforgery tokens are sent in request body, but since we do not want to read the request body
-        //    early, the tokens are made to be sent via headers. The antiforgery token filter first looks for tokens
+        // 1. Disable the form value model binding here to take control of handling 
+        //    potentially large files.
+        // 2. Typically antiforgery tokens are sent in request body, but since we 
+        //    do not want to read the request body
+        //    early, the tokens are made to be sent via headers. The antiforgery 
+        //    token filter first looks for tokens
         //    in the request header and then falls back to reading the body.
         [HttpPost]
         [DisableFormValueModelBinding]
@@ -51,7 +54,8 @@ namespace FileUploadSample.Controllers
                 return BadRequest($"Expected a multipart request, but got {Request.ContentType}");
             }
 
-            // Used to accumulate all the form url encoded key value pairs in the request.
+            // Used to accumulate all the form url encoded key value pairs in the 
+            // request.
             var formAccumulator = new KeyValueAccumulator();
             string targetFilePath = null;
 
@@ -84,8 +88,8 @@ namespace FileUploadSample.Controllers
                         //
                         // value
 
-                        // Do not limit the key name length here because the multipart headers length
-                        // limit is already in effect.
+                        // Do not limit the key name length here because the 
+                        // multipart headers length limit is already in effect.
                         var key = HeaderUtilities.RemoveQuotes(contentDisposition.Name);
                         var encoding = GetEncoding(section);
                         using (var streamReader = new StreamReader(
@@ -148,7 +152,8 @@ namespace FileUploadSample.Controllers
         {
             MediaTypeHeaderValue mediaType;
             var hasMediaTypeHeader = MediaTypeHeaderValue.TryParse(section.ContentType, out mediaType);
-            // UTF-7 is insecure and should not be honored. UTF-8 will succeed for most cases.
+            // UTF-7 is insecure and should not be honored. UTF-8 will succeed in 
+            // most cases.
             if (!hasMediaTypeHeader || Encoding.UTF7.Equals(mediaType.Encoding))
             {
                 return Encoding.UTF8;
