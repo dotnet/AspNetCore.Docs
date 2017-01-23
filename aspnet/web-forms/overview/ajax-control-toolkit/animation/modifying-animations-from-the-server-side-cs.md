@@ -45,11 +45,11 @@ The rest of the code runs on the server-side and does not use markup; instead, i
 
 However, the Control Toolkit currently does not provide an API access to create the individual animations. It is however possible to set the `AnimationExtender`'s Animations property to a string containing the XML markup used when assigning the animations declaratively. In order to create the XML which must not contain the `<Animations>` element you could use the .NET Framework's XML support or, as in the following code, just provide the string:
 
-[!code-unknown[Main](modifying-animations-from-the-server-side-cs/samples/sample-24792-5.unknown)]
+[!code-css[Main](modifying-animations-from-the-server-side-cs/samples/sample5.css)]
 
 Finally, add the `AnimationExtender` control to the current page, within the `<form runat="server">` element, making sure that the animation is included and runs:
 
-[!code-unknown[Main](modifying-animations-from-the-server-side-cs/samples/sample-24792-6.unknown)]
+[!code-html[Main](modifying-animations-from-the-server-side-cs/samples/sample6.html)]
 
 
 [![The animation is created using server-side C#/VB code](modifying-animations-from-the-server-side-cs/_static/image2.png)](modifying-animations-from-the-server-side-cs/_static/image1.png)

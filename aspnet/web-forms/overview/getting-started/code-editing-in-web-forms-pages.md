@@ -95,7 +95,7 @@ The code editor in Visual Studio helps you to avoid errors as you write code, an
 You are using the event handler only as a place to write some code.
 2. Inside the handler, type the following line that contains an error and press **ENTER**:
 
-    [!code-unknown[Main](code-editing-in-web-forms-pages/samples/sample-54653-1.unknown)]
+    [!code-csharp[Main](code-editing-in-web-forms-pages/samples/sample1.cs)]
 
  When you press     **ENTER** , the code editor places green and red underlines (commonly call &quot;squiggly&quot; lines) under areas of the code that have issues. A green underline indicates a warning. A red underline indicates an error that you must fix. 
 
@@ -134,7 +134,7 @@ In this part of the walkthrough, you will write some simple code, and then extra
  The code creates an     **ArrayList** object, uses a loop to load it with values, and then uses another loop to display the contents of the     **ArrayList** object.
 4. Press **CTRL+F5** to run the page, and then click the **button** to make sure that you see the following output:   
 
-    [!code-unknown[Main](code-editing-in-web-forms-pages/samples/sample-54653-3.unknown)]
+    [!code-html[Main](code-editing-in-web-forms-pages/samples/sample3.html)]
 5. Return to the code editor, and then select the following lines in the event handler.   
 
     [!code-html[Main](code-editing-in-web-forms-pages/samples/sample4.html)]
@@ -159,7 +159,7 @@ When you work with variables, as well as objects, you might want to rename them 
 
 1. In the **Click** event handler, locate the following line:
 
-    [!code-unknown[Main](code-editing-in-web-forms-pages/samples/sample-54653-6.unknown)]
+    [!code-csharp[Main](code-editing-in-web-forms-pages/samples/sample6.cs)]
 2. Right-click the variable name `alist`, choose **Refactor**, and then choose **Rename**.
 
     The **Rename** dialog box appears.

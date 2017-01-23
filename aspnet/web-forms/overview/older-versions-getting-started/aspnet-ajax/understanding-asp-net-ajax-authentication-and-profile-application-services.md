@@ -195,7 +195,7 @@ Once the AJAX Profiling Service is configured, it will be immediately available 
 
 The properties field exposes all configured profile data as child properties that can be referenced by the dot-operator-name convention. Properties that are children of property groups are referred to as GroupName.PropertyName. In the example profile configuration presented above, to get the state of the user, you could use the following identifier:
 
-[!code-unknown[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample-24878-8.unknown)]
+[!code-csharp[Main](understanding-asp-net-ajax-authentication-and-profile-application-services/samples/sample8.cs)]
 
 *load method:*
 

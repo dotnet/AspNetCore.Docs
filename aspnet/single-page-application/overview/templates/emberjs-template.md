@@ -82,7 +82,7 @@ The models are defined in the Scripts/app/models folder. There are two model fil
 
 Models can define relationships to other models:
 
-[!code-unknown[Main](emberjs-template/samples/sample-43840-2.unknown)]
+[!code-css[Main](emberjs-template/samples/sample2.css)]
 
 Models can have computed properties that bind to other properties:
 

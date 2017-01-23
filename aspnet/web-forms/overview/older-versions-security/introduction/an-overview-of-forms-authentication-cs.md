@@ -310,7 +310,7 @@ When using forms authentication, a [FormsIdentity object](https://msdn.microsoft
 
 The important point to take away here is that the *username* parameter specified in the FormsAuthentication.GetAuthCookie(*username*, *persistCookie*), FormsAuthentication.SetAuthCookie(*username*, *persistCookie*), and FormsAuthentication.RedirectFromLoginPage(*username*, *persistCookie*) methods is the same value returned by User.Identity.Name. Moreover, the authentication ticket created by these methods is available by casting User.Identity to a FormsIdentity object and then accessing the Ticket property:
 
-[!code-unknown[Main](an-overview-of-forms-authentication-cs/samples/sample-25121-8.unknown)]
+[!code-csharp[Main](an-overview-of-forms-authentication-cs/samples/sample8.cs)]
 
 Let's provide a more personalized message in Default.aspx. Update the Page\_Load event handler so that the WelcomeBackMessage Label's Text property is assigned the string "Welcome back, *username*!"
 

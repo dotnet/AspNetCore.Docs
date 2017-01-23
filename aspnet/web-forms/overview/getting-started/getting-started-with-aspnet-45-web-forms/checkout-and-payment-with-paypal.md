@@ -154,7 +154,7 @@ The following steps will allow you to add a Google authentication provider.
 1. Open the *App\_Start\Startup.Auth.cs* file.
 2. Remove the comment characters from the `app.UseGoogleAuthentication()` method so that the method appears as follows: 
 
-    [!code-unknown[Main](checkout-and-payment-with-paypal/samples/sample-42864-5.unknown)]
+    [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample5.cs)]
 3. Navigate to the [Google Developers Console](https://console.developers.google.com/). You will also need to sign-in with your Google developer email account (gmail.com). If you do not have a Google account, select the **Create an account** link.   
  Next, you'll see the     **Google Developers Console** .   
     ![Google Developers Console](checkout-and-payment-with-paypal/_static/image8.png)
@@ -172,7 +172,7 @@ The following steps will allow you to add a Google authentication provider.
  This URL is the origin for your application. For this sample, you will only enter the localhost test URL. However, you can enter multiple URLs to account for localhost and production.
 9. Set the **Authorized Redirect URI** to the following: 
 
-    [!code-unknown[Main](checkout-and-payment-with-paypal/samples/sample-42864-6.unknown)]
+    [!code-html[Main](checkout-and-payment-with-paypal/samples/sample6.html)]
 
  This value is the URI that ASP.NET OAuth users to communicate with the google OAuth server. Remember the SSL URL you used above (    `https://localhost:44300/` unless you've created other SSL projects).
 10. Click the **Create Client ID** button.
@@ -319,7 +319,7 @@ The `ShortcutExpressCheckout` method collects the test purchase information and 
 
 Notice that the return and cancel URLs that are specified in the **ShortcutExpressCheckout** method use a port number.
 
-[!code-unknown[Main](checkout-and-payment-with-paypal/samples/sample-42864-14.unknown)]
+[!code-html[Main](checkout-and-payment-with-paypal/samples/sample14.html)]
 
 When Visual Web Developer runs a web project using SSL, commonly the port 44300 is used for the web server. As shown above, the port number is 44300. When you run the application, you could see a different port number. Your port number needs to be correctly set in the code so that you can successful run the Wingtip Toys sample application at the end of this tutorial. The next section of this tutorial explains how to retrieve the local host port number and update the PayPal class.
 
@@ -332,7 +332,7 @@ The Wingtip Toys sample application purchases products by navigating to the PayP
 3. Retrieve the port number from the **Project Url** box.
 4. If needed, update the `returnURL` and `cancelURL` in the PayPal class (`NVPAPICaller`) in the *PayPalFunctions.cs* file to use the port number of your web application:   
 
-    [!code-unknown[Main](checkout-and-payment-with-paypal/samples/sample-42864-15.unknown?highlight=1-2)]
+    [!code-html[Main](checkout-and-payment-with-paypal/samples/sample15.html?highlight=1-2)]
 
 Now the code that you added will match the expected port for your local Web application. PayPal will be able to return to the correct URL on your local machine.
 

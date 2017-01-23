@@ -194,7 +194,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > To disable automatic request validation, call the `Request.Unvalidated` method, passing it the name of the field or other post object that you want to bypass request validation for. You can use this method to bypass validation for any items in the `Form`, `QueryString`, `Cookies`, and `ServerVariables` collections. The following examples show how to use the `Unvalidated` method:
 > 
-> [!code-unknown[Main](beta3/samples/sample-38457-4.unknown)]
+> [!code-csharp[Main](beta3/samples/sample4.cs)]
 
 
 <a id="Issues"></a>
@@ -364,7 +364,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > ***C#***
 > 
-> [!code-unknown[Main](beta3/samples/sample-38457-11.unknown)]
+> [!code-csharp[Main](beta3/samples/sample11.cs)]
 > 
 > ***Visual Basic***
 > 
@@ -374,7 +374,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > ***C#***
 > 
-> [!code-unknown[Main](beta3/samples/sample-38457-13.unknown)]
+> [!code-csharp[Main](beta3/samples/sample13.cs)]
 > 
 > ***Visual Basic***
 > 
@@ -384,7 +384,7 @@ This section of the document describes new features, changes, and known issues w
 > 
 > ***C#***
 > 
-> [!code-unknown[Main](beta3/samples/sample-38457-15.unknown)]
+> [!code-csharp[Main](beta3/samples/sample15.cs)]
 > 
 > ***Visual Basic***
 > 

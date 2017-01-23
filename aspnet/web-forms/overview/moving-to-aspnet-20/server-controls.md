@@ -25,23 +25,23 @@ ASP.NET 2.0 enhances server controls in many ways. In this module, we'll cover s
 
 The primary change in view state in ASP.NET 2.0 is a dramatic reduction in size. Consider a page with only a Calendar control on it. Here is the view state in ASP.NET 1.1.
 
-[!code-unknown[Main](server-controls/samples/sample-25170-1.unknown)]
+[!code-css[Main](server-controls/samples/sample1.css)]
 
 Now here's the view state on an identical page in ASP.NET 2.0.
 
-[!code-unknown[Main](server-controls/samples/sample-25170-2.unknown)]
+[!code-css[Main](server-controls/samples/sample2.css)]
 
 That's a pretty significant change, and considering that view state is carried back and forth over the wire, this change can give developers a significant performance increase. The reduction in size of view state is largely due to the way that we handle it internally. Remember that view state is a Base64 encoded string. To better understand the change in view state in ASP.NET 2.0, let's have a look at the decoded values from the examples above.
 
 Here is the 1.1 view state decoded:
 
-[!code-unknown[Main](server-controls/samples/sample-25170-3.unknown)]
+[!code-css[Main](server-controls/samples/sample3.css)]
 
 This may look a bit like gibberish, but there is a pattern here. In ASP.NET 1.x, we used single characters to identify data-types and delimited values using the &lt;&gt; characters. The "t" in the view state sample above represents a Triplet. The Triplet contains a pair of ArrayLists (the "l" represents an ArrayList.) One of those ArrayLists contains an Int32 ("i") with a value of 1 and the other contains another Triplet. The Triplet contains a pair of ArrayLists, etc. The important thing to remember is that we use Triplets that contain pairs, we identify the data-types via a letter, and we use the &lt; and &gt; characters as delimiters.
 
 In ASP.NET 2.0, the decoded view state looks a bit different.
 
-[!code-unknown[Main](server-controls/samples/sample-25170-4.unknown)]
+[!code-powershell[Main](server-controls/samples/sample4.ps1)]
 
 You should notice a huge change in the appearance of the decoded view state. This change has several architectural underpinnings. View state in ASP.NET 1.x used the LosFormatter to serialize data. In 2.0, we use the new ObjectStateFormatter class. This class was specifically designed to aid in the serialization and deserialization of view state and control state. (Control state will be covered in the next section.) There are many benefits gained by changing the method by which serialization and deserialization take place. One of the most dramatic is the fact that unlike the LosFormatter which uses a TextWriter, the ObjectStateFormatter uses a BinaryWriter. This allows ASP.NET 2.0 to store view state a series of bytes instead of strings. Take, for example, an integer. In ASP.NET 1.1, an integer required 4 bytes of view state. In ASP.NET 2.0, that same integer only requires 1 byte. Other enhancements were made to decrease the amount of view state that is stored. DateTime values, for example, are now stored using a TickCount instead of a string.
 
@@ -118,7 +118,7 @@ Much like the &lt;browserCaps&gt; section in 1.x, the browser definition file us
 
 You can develop your own custom adapter by inheriting from ControlAdapter. Additionally, you can inherit from the abstract class PageAdapter in cases where an adapter is needed for a page. Mapping of controls to your custom adapter is accomplished via the &lt;controlAdapters&gt; element in the browser definition file. For example, the following XML from a browser definition file maps the Menu control to the MenuAdapter class:
 
-[!code-unknown[Main](server-controls/samples/sample-25170-10.unknown)]
+[!code-html[Main](server-controls/samples/sample10.html)]
 
 Using this model, it becomes quite easy for a control developer to target a particular device or browser. It's also quite simple for a developer to have complete control over how pages render on every device.
 

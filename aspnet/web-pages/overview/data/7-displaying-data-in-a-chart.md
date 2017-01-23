@@ -86,11 +86,11 @@ If the information you want to chart is in a database, you can run a database qu
 
     As an alternative to using the `DataBindTable` method, you can use the `AddSeries` method of the `Chart` helper. The `AddSeries` method lets you set the `xValue` and `yValues` parameters. For example, instead of using the `DataBindTable` method like this:
 
-    [!code-unknown[Main](7-displaying-data-in-a-chart/samples/sample-38937-3.unknown)]
+    [!code-css[Main](7-displaying-data-in-a-chart/samples/sample3.css)]
 
     You can use the `AddSeries` method like this:
 
-    [!code-unknown[Main](7-displaying-data-in-a-chart/samples/sample-38937-4.unknown)]
+    [!code-html[Main](7-displaying-data-in-a-chart/samples/sample4.html)]
 
     Both render the same results. The `AddSeries` method is more flexible because you can specify the chart type and data more explicitly, but the `DataBindTable` method is easier to use if you don't need the extra flexibility.
 5. Run the page in a browser. 

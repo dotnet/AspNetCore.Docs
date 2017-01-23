@@ -170,12 +170,12 @@ In the event handler cast the FormView's `DataItem` property to a `ProductsRow` 
 The final step is to format the displayed `UnitsInStock` value in a red font if the value is 10 or less. To accomplish this we need to programmatically access the `UnitsInStockLabel` control in the `ItemTemplate` and set its style properties so that its text is displayed in red. To access a Web control in a template, use the `FindControl("controlID")` method like this:
 
 
-[!code-unknown[Main](custom-formatting-based-upon-data-cs/samples/sample-24994-10.unknown)]
+[!code-csharp[Main](custom-formatting-based-upon-data-cs/samples/sample10.cs)]
 
 For our example we want to access a Label control whose `ID` value is `UnitsInStockLabel`, so we'd use:
 
 
-[!code-unknown[Main](custom-formatting-based-upon-data-cs/samples/sample-24994-11.unknown)]
+[!code-csharp[Main](custom-formatting-based-upon-data-cs/samples/sample11.cs)]
 
 Once we have a programmatic reference to the Web control, we can modify its style-related properties as needed. As with the earlier example, I've created a CSS class in `Styles.css` named `LowUnitsInStockEmphasis`. To apply this style to the Label Web control, set its `CssClass` property accordingly.
 
@@ -288,7 +288,7 @@ The last step is to programmatically highlight the entire `GridViewRow` if the `
 Instead of `GridViewID.Rows[index]`, we can reference the current `GridViewRow` instance in the `RowDataBound` event handler using `e.Row`. That is, in order to highlight the current `GridViewRow` instance from the `RowDataBound` event handler we would use:
 
 
-[!code-unknown[Main](custom-formatting-based-upon-data-cs/samples/sample-24994-17.unknown)]
+[!code-csharp[Main](custom-formatting-based-upon-data-cs/samples/sample17.cs)]
 
 Rather than set the `GridViewRow`'s `BackColor` property directly, let's stick with using CSS classes. I've created a CSS class named `AffordablePriceEmphasis` that sets the background color to yellow. The completed `RowDataBound` event handler follows:
 

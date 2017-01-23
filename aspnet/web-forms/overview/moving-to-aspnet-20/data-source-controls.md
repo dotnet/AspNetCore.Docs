@@ -247,7 +247,7 @@ The following exercise demonstrates how to data bind a DropDownList control usin
 10. Switch to Design view and double-click on the Button control to add an event handler.
 11. Add the following code to the btnUpdate\_Click code: 
 
-    [!code-unknown[Main](data-source-controls/samples/sample-25172-10.unknown)]
+    [!code-csharp[Main](data-source-controls/samples/sample10.cs)]
 12. Right-click on Default.aspx and choose to view it in the browser. Click Yes when prompted to save all changes.
 13. ASP.NET 2.0 partial classes allow for compilation at runtime. It is not necessary to build an application in order to see code changes take effect.
 14. Select a product from the DropDownList.

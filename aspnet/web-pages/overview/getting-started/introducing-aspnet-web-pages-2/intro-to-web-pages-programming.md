@@ -315,7 +315,7 @@ This feature is known as *IntelliSense*. It helps you code by providing context-
 
 Press G on the keyboard, and you see that IntelliSense finds the GetHtml method. Press Tab. IntelliSense inserts the selected method (GetHtml) for you. Type an open parenthesis, and notice that the closing parenthesis is automatically added. Type your email address in quotation marks between the two parenthesis. If you have a Gravatar account, your profile picture will be returned. If you do not have a Gravatar account, a default image is returned. When you're done, the line looks like this:
 
-[!code-unknown[Main](intro-to-web-pages-programming/samples/sample-38464-14.unknown)]
+[!code-css[Main](intro-to-web-pages-programming/samples/sample14.css)]
 
 Now view the page in a browser. Either your picture or the default image is displayed, depending on whether you have a Gravatar account.
 
@@ -325,7 +325,7 @@ To get an idea of what the helper is doing for you, view the source of the page 
 
 The GetHtml method also enables you to customize the image by providing other parameters. The following code shows how to request an image has a width and height of 40 pixels, and uses a specified default image named **wavatar** if the specified account does not exist.
 
-[!code-unknown[Main](intro-to-web-pages-programming/samples/sample-38464-15.unknown)]
+[!code-javascript[Main](intro-to-web-pages-programming/samples/sample15.js)]
 
 This code produces something like the following result (the default image will randomly vary).
 

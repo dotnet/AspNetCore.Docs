@@ -112,7 +112,7 @@ There might be extraordinary circumstances that make this base URL not usable fo
 
 **Server code that specifies the URL**
 
-[!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-2.unknown?highlight=1)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample2.cs?highlight=1)]
 
 **JavaScript client code that specifies the URL (with the generated proxy)**
 
@@ -329,44 +329,44 @@ The Clients property returns a [HubConnectionContext](https://msdn.microsoft.com
 
 - All connected clients.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-28.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample28.cs)]
 - Only the calling client.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-29.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample29.cs)]
 - All clients except the calling client.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-30.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample30.cs)]
 - A specific client identified by connection ID.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-31.unknown)]
+    [!code-css[Main](hubs-api-guide-server/samples/sample31.css)]
 
     This example calls `addContosoChatMessageToPage` on the calling client and has the same effect as using `Clients.Caller`.
 - All connected clients except the specified clients, identified by connection ID.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-32.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample32.cs)]
 - All connected clients in a specified group.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-33.unknown)]
+    [!code-css[Main](hubs-api-guide-server/samples/sample33.css)]
 - All connected clients in a specified group except the specified clients, identified by connection ID.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-34.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample34.cs)]
 - All connected clients in a specified group except the calling client.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-35.unknown)]
+    [!code-css[Main](hubs-api-guide-server/samples/sample35.css)]
 - A specific user, identified by userId.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-36.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample36.cs)]
 
     By default, this is `IPrincipal.Identity.Name`, but this can be changed by [registering an implementation of IUserIdProvider with the global host](mapping-users-to-connections.md).
 - All clients and groups in a list of connection IDs.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-37.unknown)]
+    [!code-css[Main](hubs-api-guide-server/samples/sample37.css)]
 - A list of groups.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-38.unknown)]
+    [!code-css[Main](hubs-api-guide-server/samples/sample38.css)]
 - A user by name.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-39.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample39.cs)]
 - A list of user names (introduced in SignalR 2.1).
 
     [!code-csharp[Main](hubs-api-guide-server/samples/sample40.cs)]
@@ -492,17 +492,17 @@ To get information about the client, use the `Context` property of the Hub class
 
 - The connection ID of the calling client.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-48.unknown?highlight=1)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample48.cs?highlight=1)]
 
     The connection ID is a GUID that is assigned by SignalR (you can't specify the value in your own code). There is one connection ID for each connection, and the same connection ID is used by all Hubs if you have multiple Hubs in your application.
 - HTTP header data.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-49.unknown?highlight=1)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample49.cs?highlight=1)]
 
     You can also get HTTP headers from `Context.Headers`. The reason for multiple references to the same thing is that `Context.Headers` was created first, the `Context.Request` property was added later, and `Context.Headers` was retained for backward compatibility.
 - Query string data.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-50.unknown?highlight=1)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample50.cs?highlight=1)]
 
     You can also get query string data from `Context.QueryString`.
 
@@ -514,7 +514,7 @@ To get information about the client, use the `Context` property of the Hub class
 
     You can find the transport method used for the connection in the query string data, along with some other values used internally by SignalR:
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-52.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample52.cs)]
 
     The value of `transportMethod` will be "webSockets", "serverSentEvents", "foreverFrame" or "longPolling". Note that if you check this value in the `OnConnected` event handler method, in some scenarios you might initially get a transport value that is not the final negotiated transport method for the connection. In that case the method will throw an exception and will be called again later when the final transport method is established.
 - Cookies.
@@ -524,10 +524,10 @@ To get information about the client, use the `Context` property of the Hub class
     You can also get cookies from `Context.RequestCookies`.
 - User information.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-54.unknown?highlight=1)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample54.cs?highlight=1)]
 - The HttpContext object for the request :
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-55.unknown?highlight=1)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample55.cs?highlight=1)]
 
     Use this method instead of getting `HttpContext.Current` to get the `HttpContext` object for the SignalR connection.
 
@@ -541,11 +541,11 @@ Creating or updating data in the `state` object and the `Clients.Caller` propert
 
 The following example shows JavaScript client code that stores state for transmission to the server with every method call.
 
-[!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-56.unknown?highlight=1-2)]
+[!code-javascript[Main](hubs-api-guide-server/samples/sample56.js?highlight=1-2)]
 
 The following example shows the equivalent code in a .NET client.
 
-[!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-57.unknown?highlight=1-2)]
+[!code-csharp[Main](hubs-api-guide-server/samples/sample57.cs?highlight=1-2)]
 
 In your Hub class, you can access this data in the `Clients.Caller` property. The following example shows code that retrieves the state referred to in the previous example.
 
@@ -625,19 +625,19 @@ You can specify which clients will receive the RPC, but you have fewer options t
 
 - All connected clients.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-68.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample68.cs)]
 - A specific client identified by connection ID.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-69.unknown)]
+    [!code-css[Main](hubs-api-guide-server/samples/sample69.css)]
 - All connected clients except the specified clients, identified by connection ID.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-70.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample70.cs)]
 - All connected clients in a specified group.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-71.unknown)]
+    [!code-css[Main](hubs-api-guide-server/samples/sample71.css)]
 - All connected clients in a specified group except specified clients, identified by connection ID.
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-72.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample72.cs)]
 
 If you are calling into your non-Hub class from methods in your Hub class, you can pass in the current connection ID and use that with `Clients.Client`, `Clients.AllExcept`, or `Clients.Group` to simulate `Clients.Caller`, `Clients.Others`, or `Clients.OthersInGroup`. In the following example, the `MoveShapeHub` class passes the connection ID to the `Broadcaster` class so that the `Broadcaster` class can simulate `Clients.Others`.
 
@@ -651,10 +651,10 @@ For managing groups you have the same options as you do in a Hub class.
 
 - Add a client to a group
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-74.unknown)]
+    [!code-csharp[Main](hubs-api-guide-server/samples/sample74.cs)]
 - Remove a client from a group
 
-    [!code-unknown[Main](hubs-api-guide-server/samples/sample-51345-75.unknown)]
+    [!code-css[Main](hubs-api-guide-server/samples/sample75.css)]
 
 <a id="hubpipeline"></a>
 

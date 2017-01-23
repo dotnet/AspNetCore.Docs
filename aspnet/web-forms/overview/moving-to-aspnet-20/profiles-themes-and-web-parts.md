@@ -49,7 +49,7 @@ The following configuration configures a FirstName and LastName property for two
 
 It is then possible to set properties on a particular group as follows:
 
-[!code-unknown[Main](profiles-themes-and-web-parts/samples/sample-25177-5.unknown)]
+[!code-csharp[Main](profiles-themes-and-web-parts/samples/sample5.cs)]
 
 ## Storing Complex Objects
 
@@ -59,7 +59,7 @@ So far, the examples we've covered have stored simple data types in a profile. I
 
 In this case, the type is PurchaseInvoice. The PurchaseInvoice class needs to be marked as serializable and can contain any number of properties. For example, if PurchaseInvoice has a property called **NumItemsPurchased**, you can refer to that property in code as follows:
 
-[!code-unknown[Main](profiles-themes-and-web-parts/samples/sample-25177-7.unknown)]
+[!code-css[Main](profiles-themes-and-web-parts/samples/sample7.css)]
 
 ## Profile Inheritance
 
@@ -203,7 +203,7 @@ To apply a theme programmatically, you must specify the **Theme** property for t
 
 To apply a theme programmatically, use the following syntax:
 
-[!code-unknown[Main](profiles-themes-and-web-parts/samples/sample-25177-15.unknown)]
+[!code-csharp[Main](profiles-themes-and-web-parts/samples/sample15.cs)]
 
 It is necessary to apply the theme in the PreInit method due to the page lifecycle. If you apply it after that point, the pages theme will have already been applied by the runtime and a change at that point is too late in the lifecycle. If you apply a theme that doesn't exist, an **HttpException** occurs. When a theme is applied programmatically, a build warning will occur if any server controls have a SkinID property specified. This warning is intended to inform you that no theme is declaratively applied and it can be ignored.
 
@@ -264,7 +264,7 @@ A global theme can be overridden by applying a theme by the same name in the App
 
 The StyleSheetTheme property is overridable and can be overridden in code as follows:
 
-[!code-unknown[Main](profiles-themes-and-web-parts/samples/sample-25177-20.unknown)]
+[!code-csharp[Main](profiles-themes-and-web-parts/samples/sample20.cs)]
 
 ## Web Parts
 

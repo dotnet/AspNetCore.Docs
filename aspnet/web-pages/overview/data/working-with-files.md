@@ -64,7 +64,7 @@ If you want to store data in a text file, you can use the `File.WriteAllText` me
 
     The first task is to get the user input and assign it to variables. The code then concatenates the values of the separate variables into one comma-delimited string, which is then stored in a different variable. Notice that the comma separator is a string contained in quotation marks (","), because you're literally embedding a comma into the big string that you're creating. At the end of the data that you concatenate together, you add `Environment.NewLine`. This adds a line break (a newline character). What you're creating with all this concatenation is a string that looks like this:
 
-    [!code-unknown[Main](working-with-files/samples/sample-38938-2.unknown)]
+    [!code-css[Main](working-with-files/samples/sample2.css)]
 
     (With an invisible line break at the end.)
 
@@ -123,7 +123,7 @@ This procedure shows you how to read and display the data that you created in th
 
     The code starts by reading the file that you created in the previous example into a variable named `userData`, using this method call:
 
-    [!code-unknown[Main](working-with-files/samples/sample-38938-5.unknown)]
+    [!code-css[Main](working-with-files/samples/sample5.css)]
 
     The code to do this is inside an `if` statement. When you want to read a file, it's a good idea to use the `File.Exists` method to determine first whether the file is available. The code also checks whether the file is empty.
 
@@ -196,7 +196,7 @@ The `FileUpload` helper lets users upload files to your website. The procedure b
 
     You don't want all that path information, though, because that's the path on the user's computer, not for your server. You just want the actual file name (*Sample.txt*). You can strip out just the file from a path by using the `Path.GetFileName` method, like this:
 
-    [!code-unknown[Main](working-with-files/samples/sample-38938-8.unknown)]
+    [!code-csharp[Main](working-with-files/samples/sample8.cs)]
 
     The `Path` object is a utility that has a number of methods like this that you can use to strip paths, combine paths, and so on.
 
@@ -236,7 +236,7 @@ In the previous example, you let users upload one file. But you can use the `Fil
 
     With this number in hand, you can loop through `Request.Files`, fetch each file in turn, and save it. When you want to loop a known number of times through a collection, you can use a `for` loop, like this:
 
-    [!code-unknown[Main](working-with-files/samples/sample-38938-10.unknown)]
+    [!code-csharp[Main](working-with-files/samples/sample10.cs)]
 
     The variable `i` is just a temporary counter that will go from zero to whatever upper limit you set. In this case, the upper limit is the number of files. But because the counter starts at zero, as is typical for counting scenarios in ASP.NET, the upper limit is actually one less than the file count. (If three files are uploaded, the count is zero to 2.)
 

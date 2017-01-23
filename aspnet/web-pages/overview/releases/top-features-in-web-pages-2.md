@@ -130,7 +130,7 @@ To use the new validation features, do the following:
 
 In the page's code, register an element to be validated by using methods of the `Validation` helper: `Validation.RequireField`, `Validation.RequireFields` (to register multiple elements to be required), or `Validation.Add`. The `Add` method lets you specify other types of validation checks, like data-type checking, comparing entries in different fields, string-length checks, and patterns (using regular expressions). Here are some examples:
 
-[!code-unknown[Main](top-features-in-web-pages-2/samples/sample-24965-2.unknown)]
+[!code-html[Main](top-features-in-web-pages-2/samples/sample2.html)]
 
 To display a field-specific error, call `Html.ValidationMessage` in the markup for each element being validated:
 
@@ -263,7 +263,7 @@ This section provides an example of how to let users log in from external sites 
 
 1. In your website, edit the *\_AppStart.cshtml* page and add the following two lines of code in the Razor code block after the call to the `WebSecurity.InitializeDatabaseConnection` method. This code enables both the Google and Yahoo OpenID providers. 
 
-    [!code-unknown[Main](top-features-in-web-pages-2/samples/sample-24965-12.unknown)]
+    [!code-css[Main](top-features-in-web-pages-2/samples/sample12.css)]
 2. In the *~/Account/Login.cshtml* page, remove the comments from the following `<fieldset>` block of markup near the end of the page. To uncomment the code, remove the `@*` characters that precede and follow the `<fieldset>` block. The resulting code block looks like this:
 
     [!code-html[Main](top-features-in-web-pages-2/samples/sample13.html)]
@@ -312,7 +312,7 @@ Now you make changes to two pages in your website so that users will able to log
 
 1. In your website, edit the *\_AppStart.cshtml* page and uncomment the code for the Facebook OAuth provider. The uncommented code block looks like the following: 
 
-    [!code-unknown[Main](top-features-in-web-pages-2/samples/sample-24965-15.unknown)]
+    [!code-xml[Main](top-features-in-web-pages-2/samples/sample15.xml)]
 2. Copy the **App ID** value from the Facebook application as the value of the `consumerKey` parameter (inside the quotation marks).
 3. Copy **App Secret** value from the Facebook application as the `consumerSecret` parameter value.
 4. Save and close the file.
@@ -360,7 +360,7 @@ Now you make changes to two pages in your website so that users will be able to 
 
 1. In your website, edit the *\_AppStart.cshtml* page and uncomment the code for the Twitter OAuth provider. The uncommented code block looks like this: 
 
-    [!code-unknown[Main](top-features-in-web-pages-2/samples/sample-24965-17.unknown)]
+    [!code-csharp[Main](top-features-in-web-pages-2/samples/sample17.cs)]
 2. Copy the **Consumer Key** value from the Twitter application as the value of the `consumerKey` parameter (inside the quotation marks).
 3. Copy the **Consumer Secret** value from the Twitter application as the value of the `consumerSecret` parameter.
 4. Save and close the file.

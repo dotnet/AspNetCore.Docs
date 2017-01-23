@@ -183,7 +183,7 @@ Now, visit this page through a browser. Since we ve yet to implement any caching
 As we saw in the [Caching Data with the ObjectDataSource](caching-data-with-the-objectdatasource-cs.md) tutorial, setting the `EnableCaching` property to `true` causes the ObjectDataSource to cache its data for the duration specified by its `CacheDuration` property. The ObjectDataSource also has a [`SqlCacheDependency` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.objectdatasource.sqlcachedependency.aspx), which adds one or more SQL cache dependencies to the cached data using the pattern:
 
 
-[!code-unknown[Main](using-sql-cache-dependencies-cs/samples/sample-24978-9.unknown)]
+[!code-css[Main](using-sql-cache-dependencies-cs/samples/sample9.css)]
 
 Where *databaseName* is the name of the database as specified in the `name` attribute of the `<add>` element in `Web.config`, and *tableName* is the name of the database table. For example, to create an ObjectDataSource that caches data indefinitely based on a SQL cache dependency against the Northwind s `Products` table, set the ObjectDataSource s `EnableCaching` property to `true` and its `SqlCacheDependency` property to NorthwindDB:Products .
 

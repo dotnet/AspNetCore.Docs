@@ -45,7 +45,7 @@ This page contains reference information for the following:
 
 Contains data that can be shared by any pages in the application. You can use the dynamic `App` property to access the same data, as in the following example:
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-1.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample1.html)]
 
 ### `AsBool(), AsBool(true|false)`
 
@@ -57,25 +57,25 @@ Converts a string value to a Boolean value (true/false). Returns false or the sp
 
 Converts a string value to date/time. Returns `DateTime.MinValue` or the specified value if the string does not represent a date/time.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-3.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample3.cs)]
 
 ### `AsDecimal(), AsDecimal(value)`
 
 Converts a string value to a decimal value. Returns 0.0 or the specified value if the string does not represent a decimal value.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-4.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample4.cs)]
 
 ### `AsFloat(), AsFloat(value)`
 
 Converts a string value to a float. Returns 0.0 or the specified value if the string does not represent a decimal value.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-5.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample5.cs)]
 
 ### `AsInt(), AsInt(value)`
 
 Converts a string value to an integer. Returns 0 or the specified value if the string does not represent an integer.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-6.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample6.cs)]
 
 ### `Href(path [, param1 [, param2]])`
 
@@ -111,32 +111,32 @@ Returns true if the request is a POST. (Initial requests are usually a GET.)
 
 Specifies the path of a layout page to apply to this page.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-12.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample12.html)]
 
 ### `PageData[key], PageData[index],Page`
 
 Contains data shared between the page, layout pages, and partial pages in the current request. You can use the dynamic `Page` property to access the same data, as in the following example:
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-13.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample13.html)]
 
 ### `RenderBody()`
 
 (Layout pages) Renders the content of a content page that is not in any named sections.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-14.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample14.cs)]
 
 ### `RenderPage(path, values)`  
 `RenderPage(path[,param1 [, param2]])`
 
 Renders a content page using the specified path and optional extra data. You can get the values of the extra parameters from `PageData` by position (example 1) or key (example 2).
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-15.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample15.js)]
 
 ### `RenderSection(sectionName [, required = true|false])`
 
 (Layout pages) Renders a content section that has a name. Set *required* to false to make a section optional.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-16.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample16.js)]
 
 ### `Request.Cookies[key]`
 
@@ -148,7 +148,7 @@ Gets or sets the value of an HTTP cookie.
 
 Gets the files that were uploaded in the current request.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-18.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample18.js)]
 
 ### `Request.Form[key]`
 
@@ -179,31 +179,31 @@ Adds an HTTP server header to the response.
 
 Caches the page output for a specified time. Optionally set *sliding* to reset the timeout on each page access and *varyByParams* to cache different versions of the page for each different query string in the page request.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-23.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample23.js)]
 
 ### `Response.Redirect(path)`
 
 Redirects the browser request to a new location.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-24.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample24.js)]
 
 ### `Response.SetStatus(httpStatusCode)`
 
 Sets the HTTP status code sent to the browser.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-25.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample25.cs)]
 
 ### `Response.WriteBinary(data [, mimetype])`
 
 Writes the contents of *data* to the response with an optional MIME type.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-26.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample26.js)]
 
 ### `Response.WriteFile(file)`
 
 Writes the contents of a file to the response.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-27.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample27.cs)]
 
 ### `@section(sectionName) {content }`
 
@@ -245,7 +245,7 @@ Encodes text to put in a URL.
 
 Gets or sets a value that exists until the user closes the browser.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-34.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample34.css)]
 
 ### `ToString()`
 
@@ -276,7 +276,7 @@ Confirms an account using the account confirmation token.
 
 Creates a new user account with the specified user name and password. To require a confirmation token, pass true for *requireConfirmationToken.*
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-39.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample39.cs)]
 
 ### `WebSecurity.CurrentUserId`
 
@@ -331,32 +331,32 @@ Logs the user in by setting an authentication token in the cookie.
 
 Logs the user out by removing the authentication token cookie.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-48.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample48.css)]
 
 ### `WebSecurity.RequireAuthenticatedUser()`
 
 If the user is not authenticated, sets the HTTP status to 401 (Unauthorized).
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-49.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample49.css)]
 
 ### `WebSecurity.RequireRoles(roles)`
 
 If the current user is not a member of one of the specified roles, sets the HTTP status to 401 (Unauthorized).
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-50.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample50.html)]
 
 ### `WebSecurity.RequireUser(userId)`  
 `WebSecurity.RequireUser(userName)`
 
 If the current user is not the user specified by *username*, sets the HTTP status to 401 (Unauthorized).
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-51.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample51.css)]
 
 ### `WebSecurity.ResetPassword(passwordResetToken,newPassword)`
 
 If the password reset token is valid, changes the user's password to the new password.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-52.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample52.css)]
 
 <a id="Data"></a>
 ## Data
@@ -411,25 +411,25 @@ Executes *SQLstatement* (with optional parameters) and returns a single value.
 
 Renders the Google Analytics JavaScript code for the specified ID.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-60.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample60.js)]
 
 ### `Analytics.GetStatCounterHtml(project,security)`
 
 Renders the StatCounter Analytics JavaScript code for the specified project.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-61.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample61.css)]
 
 ### `Analytics.GetYahooHtml(account)`
 
 Renders the Yahoo Analytics JavaScript code for the specified account.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-62.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample62.js)]
 
 ### `Bing.SearchBox([boxWidth])`
 
 Passes a search to Bing. To specify the site to search and a title for the search box, you can set the `Bing.SiteUrl` and `Bing.SiteTitle` properties. Normally you set these properties in the *\_AppStart* page.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-63.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample63.html)]
 
 [!code-cshtml[Main](asp-net-web-pages-api-reference/samples/sample64.cshtml)]
 
@@ -458,34 +458,34 @@ Adds a series of values to the chart.
 
 Returns a hash for the specified data. The default algorithm is `sha256`.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-68.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample68.html)]
 
 ### `Facebook.LikeButton(href [, buttonLayout] [, showFaces] [, width] [, height]`   
  `[, action] [, font] [, colorScheme] [, refLabel])`
 
 Lets Facebook users make a connection to pages.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-69.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample69.js)]
 
 ### `FileUpload.GetHtml([initialNumberOfFiles] [, allowMoreFilesToBeAdded]`  
  `[, includeFormTag] [, addText] [, uploadText])`
 
 Renders UI for uploading files.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-70.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample70.html)]
 
 ### `GamerCard.GetHtml(gamerTag)`
 
 Renders the specified Xbox gamer tag.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-71.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample71.js)]
 
 ### `Gravatar.GetHtml(email [, imageSize] [, defaultImage] [, rating]`  
  `[, imageExtension] [, attributes])`
 
 Renders the Gravatar image for the specified email address.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-72.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample72.css)]
 
 ### `Json.Encode(object)`
 
@@ -504,19 +504,19 @@ Converts a JSON-encoded input string to a data object that you can iterate over 
 
 Renders social networking links using the specified title and optional URL.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-75.unknown)]
+[!code-xml[Main](asp-net-web-pages-api-reference/samples/sample75.xml)]
 
 ### `ModelStateDictionary.AddError(key, errorMessage)`
 
 Associates an error message with a form field. Use the `ModelState` helper to access this member.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-76.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample76.cs)]
 
 ### `ModelStateDictionary.AddFormError(errorMessage)`
 
 Associates an error message with a form. Use the `ModelState` helper to access this member.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-77.unknown)]
+[!code-powershell[Main](asp-net-web-pages-api-reference/samples/sample77.ps1)]
 
 ### `ModelStateDictionary.IsValid`
 
@@ -528,20 +528,20 @@ Returns true if there are no validation errors. Use the `ModelState` helper to a
 
 Renders the properties and values of an object and any child objects.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-79.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample79.css)]
 
 ### `Recaptcha.GetHtml([, publicKey] [, theme] [, language] [, tabIndex])`
 
 Renders the reCAPTCHA verification test.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-80.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample80.css)]
 
 ### `ReCaptcha.PublicKey`  
  `ReCaptcha.PrivateKey`
 
 Sets public and private keys for the reCAPTCHA service. Normally you set these properties in the *\_AppStart* page.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-81.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample81.css)]
 
 ### `ReCaptcha.Validate([, privateKey])`
 
@@ -559,13 +559,13 @@ Renders status information about ASP.NET Web Pages.
 
 Renders a Twitter stream for the specified user.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-84.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample84.js)]
 
 ### `Twitter.Search(searchQuery)`
 
 Renders a Twitter stream for the specified search text.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-85.unknown)]
+[!code-xml[Main](asp-net-web-pages-api-reference/samples/sample85.xml)]
 
 ### `Video.Flash(filename [, width, height])`
 
@@ -595,13 +595,13 @@ Returns the object specified by *key*, or null if the object is not found.
 
 Removes the object specified by *key* from the cache.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-90.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample90.cs)]
 
 ### `WebCache.Set(key, value [, minutesToCache] [, slidingExpiration])`
 
 Puts *value* into the cache under the name specified by *key*.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-91.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample91.html)]
 
 ### `WebGrid(data)`
 
@@ -613,13 +613,13 @@ Creates a new `WebGrid` object using data from a query.
 
 Renders markup to display data in an HTML table.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-93.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample93.html)]
 
 ### `WebGrid.Pager()`
 
 Renders a pager for the `WebGrid` object.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-94.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample94.html)]
 
 ### `WebImage(path)`
 
@@ -631,20 +631,20 @@ Loads an image from the specified path.
 
 Adds the specified image as a watermark.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-96.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample96.cs)]
 
 ### `WebImage.AddTextWatermark(text)`
 
 Adds the specified text to the image.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-97.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample97.cs)]
 
 ### `WebImage.FlipHorizontal()`  
 `WebImage.FlipVertical()`
 
 Flips the image horizontally or vertically.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-98.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample98.css)]
 
 ### `WebImage.GetImageFromRequest()`
 
@@ -656,45 +656,45 @@ Loads an image when an image is posted to a page during a file upload.
 
 Resizes an the image.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-100.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample100.css)]
 
 ### `WebImage.RotateLeft()`  
 `WebImage.RotateRight()`
 
 Rotates the image to the left or the right.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-101.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample101.css)]
 
 ### `WebImage.Save(path [, imageFormat])`
 
 Saves the image to the specified path.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-102.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample102.js)]
 
 ### `WebMail.Password`
 
 Sets the password for the SMTP server. Normally you set this property in the *\_AppStart* page.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-103.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample103.cs)]
 
 ### `WebMail.Send(to, subject, body [, from] [, cc] [, filesToAttach] [, isBodyHtml]`  
  `[, additionalHeaders])`
 
 Sends an email message.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-104.unknown)]
+[!code-css[Main](asp-net-web-pages-api-reference/samples/sample104.css)]
 
 ### `WebMail.SmtpServer`
 
 Sets the SMTP server name. Normally you set this property in the*\_AppStart* page.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-105.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample105.html)]
 
 ### `WebMail.UserName`
 
 Sets the user name for the SMTP server. Normally you should set this property in the *\_AppStart* page.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-106.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample106.html)]
 
 <a id="Validation"></a>
 ## Validation
@@ -715,7 +715,7 @@ Sets the user name for the SMTP server. Normally you should set this property in
 
 (v2) Registers a user input element for the specified type of validation.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-109.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample109.js)]
 
 ### `Validation.ClassFor(field)`
 
@@ -739,13 +739,13 @@ Sets the user name for the SMTP server. Normally you should set this property in
 
 (v2) Specifies that users must provide a value for the user input element.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-113.unknown)]
+[!code-csharp[Main](asp-net-web-pages-api-reference/samples/sample113.cs)]
 
 ### `Validation.RequireFields(field1[, field12, field3, ...])`
 
 (v2) Specifies that users must provide values for each of the user input elements. This method does not let you specify a custom error message.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-114.unknown)]
+[!code-html[Main](asp-net-web-pages-api-reference/samples/sample114.html)]
 
 ### `Validator.DateTime ([error message])`  
 `Validator.Decimal([error message])`  
@@ -760,4 +760,4 @@ Sets the user name for the SMTP server. Normally you should set this property in
 
 (v2) Specifies a validation test when you use the `Validation.Add` method.
 
-[!code-unknown[Main](asp-net-web-pages-api-reference/samples/sample-38949-115.unknown)]
+[!code-javascript[Main](asp-net-web-pages-api-reference/samples/sample115.js)]

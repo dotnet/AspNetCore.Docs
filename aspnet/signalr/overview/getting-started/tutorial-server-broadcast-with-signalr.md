@@ -243,7 +243,7 @@ You have now completed setting up the server code. In the next section you'll se
 
     When the server changes a stock's price, it calls the updateStockPrice on connected clients. The function is added to the client property of the stockTicker proxy in order to make it available to calls from the server.
 
-    [!code-unknown[Main](tutorial-server-broadcast-with-signalr/samples/sample-51339-18.unknown)]
+    [!code-javascript[Main](tutorial-server-broadcast-with-signalr/samples/sample18.js)]
 
     The updateStockPrice function formats a stock object received from the server into a table row the same way as in the init function. However, instead of appending the row to the table, it finds the stock's current row in the table and replaces that row with the new one.
 

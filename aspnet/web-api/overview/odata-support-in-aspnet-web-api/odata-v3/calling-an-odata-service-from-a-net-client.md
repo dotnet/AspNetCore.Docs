@@ -202,7 +202,7 @@ The update is performed when you call **SaveChanges**. By default, WCF sends an 
 
 If you want to replace the entire entity (PUT semantics), specify the **ReplaceOnUpdate** option. This causes WCF to send an HTTP PUT request.
 
-[!code-unknown[Main](calling-an-odata-service-from-a-net-client/samples/sample-51864-22.unknown)]
+[!code-csharp[Main](calling-an-odata-service-from-a-net-client/samples/sample22.cs)]
 
 ## Delete an Entity
 

@@ -186,7 +186,7 @@ The page includes validation to make sure that the data that the user enters is 
 
     To validate that the user entered a value for each required column, you register each `<input>` element that you want to validate:
 
-    [!code-unknown[Main](5-working-with-data/samples/sample-38935-4.unknown)]
+    [!code-csharp[Main](5-working-with-data/samples/sample4.cs)]
 
     The `Validation` helper checks that there is a value in each of the fields that you've registered. You can test whether all the fields passed validation by checking `Validation.IsValid()`, which you typically do before you process the information you get from the user:
 
@@ -205,11 +205,11 @@ The page includes validation to make sure that the data that the user enters is 
 
     To execute the query, you use this statement, passing to it the variables that contain the values to substitute for the placeholders:
 
-    [!code-unknown[Main](5-working-with-data/samples/sample-38935-7.unknown)]
+    [!code-csharp[Main](5-working-with-data/samples/sample7.cs)]
 
     After the `Insert Into` statement has executed, you send the user to the page that lists the products using this line:
 
-    [!code-unknown[Main](5-working-with-data/samples/sample-38935-8.unknown)]
+    [!code-javascript[Main](5-working-with-data/samples/sample8.js)]
 
     If validation didn't succeed, you skip the insert. Instead, you have a helper in the page that can display the accumulated error messages (if any):
 
@@ -297,7 +297,7 @@ After data has been entered into a table, you might need to update it. This proc
 
     When you call the `db.Execute` method, you pass the variables that contain the values in the order that corresponds to the parameters in the SQL statement:
 
-    [!code-unknown[Main](5-working-with-data/samples/sample-38935-20.unknown)]
+    [!code-csharp[Main](5-working-with-data/samples/sample20.cs)]
 
     After the `Update` statement has been executed, you call the following method in order to redirect the user back to the edit page:
 

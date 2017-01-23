@@ -90,7 +90,7 @@ The `Start` method executes asynchronously. To make sure that subsequent lines o
 
 [!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample2.cs?highlight=1)]
 
-[!code-unknown[Main](signalr-1x-hubs-api-guide-net-client/samples/sample-47182-3.unknown?highlight=1)]
+[!code-css[Main](signalr-1x-hubs-api-guide-net-client/samples/sample3.css?highlight=1)]
 
 The `HubConnection` class is thread-safe.
 
@@ -267,7 +267,7 @@ To remove a handler, call its `Dispose` method.
 
 **Client code to remove the handler**
 
-[!code-unknown[Main](signalr-1x-hubs-api-guide-net-client/samples/sample-47182-23.unknown?highlight=1)]
+[!code-css[Main](signalr-1x-hubs-api-guide-net-client/samples/sample23.css?highlight=1)]
 
 <a id="callserver"></a>
 
@@ -283,7 +283,7 @@ If the server method has no return value, use the non-generic overload of the `I
 
 **Client code calling a method that has no return value**
 
-[!code-unknown[Main](signalr-1x-hubs-api-guide-net-client/samples/sample-47182-25.unknown?highlight=1)]
+[!code-csharp[Main](signalr-1x-hubs-api-guide-net-client/samples/sample25.cs?highlight=1)]
 
 If the server method has a return value, specify the return type as the generic type of the `Invoke` method.
 

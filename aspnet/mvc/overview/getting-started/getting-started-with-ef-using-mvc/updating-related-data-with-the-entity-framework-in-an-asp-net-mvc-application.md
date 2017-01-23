@@ -239,7 +239,7 @@ The HttpPost Create method adds each selected course to the Courses navigation p
 
 Notice that in order to be able to add courses to the `Courses` navigation property you have to initialize the property as an empty collection:
 
-[!code-unknown[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample-51662-26.unknown)]
+[!code-csharp[Main](updating-related-data-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample26.cs)]
 
 As an alternative to doing this in controller code, you could do it in the Instructor model by changing the property getter to automatically create the collection if it doesn't exist, as shown in the following example:
 

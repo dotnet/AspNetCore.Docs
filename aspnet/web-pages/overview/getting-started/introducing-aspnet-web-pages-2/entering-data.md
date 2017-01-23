@@ -99,7 +99,7 @@ The columns that you're inserting into are already listed in the command — `(T
 
 Still inside the `if` block, add the following line after the `db.Execute` line:
 
-[!code-unknown[Main](entering-data/samples/sample-38467-4.unknown)]
+[!code-css[Main](entering-data/samples/sample4.css)]
 
 After the new movie has been inserted into the database, this line jumps you (redirects) to the *Movies* page so you can see the movie you just entered. The `~` operator means "root of the website." (The `~` operator works only in ASP.NET pages, not in HTML generally.)
 
@@ -166,7 +166,7 @@ To validate the user's input, you'll do the following:
 
 In the code block in the *AddMovie* page, right up at the top before the variable declarations, add the following code:
 
-[!code-unknown[Main](entering-data/samples/sample-38467-7.unknown)]
+[!code-csharp[Main](entering-data/samples/sample7.cs)]
 
 You call `Validation.RequireField` once for each field (`<input>` element) where you want to require an entry. You can also add a custom error message for each call, like you see here. (We varied the messages just to show that you can put anything you like there.)
 

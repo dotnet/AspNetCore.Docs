@@ -87,7 +87,7 @@ The other thing to note is that at the bottom, we've copied the style rules that
 
 Now you can update the existing files in your site to use the new layout. Open the *Movies.cshtml* file. At the top, as the first line of code, add the following:
 
-[!code-unknown[Main](layouts/samples/sample-38470-3.unknown)]
+[!code-csharp[Main](layouts/samples/sample3.cs)]
 
 The page now starts out this way:
 
@@ -145,7 +145,7 @@ The `Page` object is available on all *.cshtml* pages and is for this purpose, n
 
 Open the*\_Layout.cshtml* page. Change the `<title>` element so that it looks like this markup:
 
-[!code-unknown[Main](layouts/samples/sample-38470-9.unknown)]
+[!code-html[Main](layouts/samples/sample9.html)]
 
 This code renders whatever is in the `Page.Title` property right at that location in the page.
 
@@ -180,7 +180,7 @@ Now you can finish the remaining pages in your site so that they use the new lay
 
 Add the line of code that links to the layout page:
 
-[!code-unknown[Main](layouts/samples/sample-38470-11.unknown)]
+[!code-csharp[Main](layouts/samples/sample11.cs)]
 
 Add a line to set the title of the page:
 

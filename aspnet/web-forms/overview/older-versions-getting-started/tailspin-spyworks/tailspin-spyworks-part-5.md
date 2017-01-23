@@ -169,7 +169,7 @@ In our MyShoppingCart.aspx.cs file we can use this structure in our Update Butto
 
 Note with particular interest this line of code:
 
-[!code-unknown[Main](tailspin-spyworks-part-5/samples/sample-25228-18.unknown)]
+[!code-javascript[Main](tailspin-spyworks-part-5/samples/sample18.js)]
 
 GetValues() is a special helper function that we will implement in MyShoppingCart.aspx.cs as follows.
 

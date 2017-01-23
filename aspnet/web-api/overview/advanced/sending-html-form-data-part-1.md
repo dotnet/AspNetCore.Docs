@@ -110,7 +110,7 @@ By default, Web API tries to get simple types from the request URI. The **FromBo
 
 Second, the client needs to send the value with the following format:
 
-[!code-unknown[Main](sending-html-form-data-part-1/samples/sample-39134-8.unknown)]
+[!code-xml[Main](sending-html-form-data-part-1/samples/sample8.xml)]
 
 Specifically, the name portion of the name/value pair must be empty for a simple type. Not all browsers support this for HTML forms, but you create this format in script as follows:
 

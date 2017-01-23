@@ -66,7 +66,7 @@ The way the grid is configured, the **Edit** column is leftmost in the grid and 
 
 The new column shows a link (`<a>` element) whose text says "Delete". The target of the link (its `href` attribute) is code that ultimately resolves to something like this URL, with the `id` value different for each movie:
 
-[!code-unknown[Main](deleting-data/samples/sample-38469-3.unknown)]
+[!code-css[Main](deleting-data/samples/sample3.css)]
 
 This link will invoke a page named *DeleteMovie* and pass it the ID of the movie you've selected.
 

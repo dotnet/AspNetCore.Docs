@@ -153,7 +153,7 @@ Typically, an implementation of **IODataRoutingConvention** does the following:
 
 Let's look at a specific example. The built-in routing conventions do not support indexing into a navigation collection. In other words, there is no convention for URIs like the following:
 
-[!code-unknown[Main](odata-routing-conventions/samples/sample-48216-3.unknown)]
+[!code-javascript[Main](odata-routing-conventions/samples/sample3.js)]
 
 Here is a custom routing convention to handle this type of query.
 

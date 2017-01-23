@@ -166,11 +166,11 @@ However, you can override this behavior for a named section by declaring the sec
     ![Screenshot that shows the error that occurs if you run a page that calls RenderSection method but the corresponding section is not provided.](3-creating-a-consistent-look/_static/image7.jpg)
 3. In the *Shared* folder, open the *\_Layout2.cshtml* page and replace this line:
 
-    [!code-unknown[Main](3-creating-a-consistent-look/samples/sample-38933-13.unknown)]
+    [!code-javascript[Main](3-creating-a-consistent-look/samples/sample13.js)]
 
     with the following code:
 
-    [!code-unknown[Main](3-creating-a-consistent-look/samples/sample-38933-14.unknown)]
+    [!code-javascript[Main](3-creating-a-consistent-look/samples/sample14.js)]
 
     As an alternative, you could replace the previous line of code with the following code block, which produces the same results:
 

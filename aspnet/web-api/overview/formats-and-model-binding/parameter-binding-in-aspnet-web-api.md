@@ -25,7 +25,7 @@ By default, Web API uses the following rules to bind parameters:
 
 For example, here is a typical Web API controller method:
 
-[!code-unknown[Main](parameter-binding-in-aspnet-web-api/samples/sample-47784-1.unknown)]
+[!code-csharp[Main](parameter-binding-in-aspnet-web-api/samples/sample1.cs)]
 
 The *id* parameter is a &quot;simple&quot; type, so Web API tries to get the value from the request URI. The *item* parameter is a complex type, so Web API uses a media-type formatter to read the value from the request body.
 

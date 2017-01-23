@@ -232,7 +232,7 @@ Now only dates in the form &quot;yyyy-mm-dd&quot; will match. Notice that we don
 
 You can also support a slash separator (`/api/books/date/yyyy/mm/dd`) by adding another **[Route]** attribute with a different regex.
 
-[!code-unknown[Main](create-a-rest-api-with-attribute-routing/samples/sample-47564-20.unknown)]
+[!code-html[Main](create-a-rest-api-with-attribute-routing/samples/sample20.html)]
 
 There is a subtle but important detail here. The second route template has a wildcard character (\*) at the start of the {pubdate} parameter:
 

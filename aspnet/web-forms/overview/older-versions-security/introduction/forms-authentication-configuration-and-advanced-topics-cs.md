@@ -277,7 +277,7 @@ authCookie.Value = FormsAuthentication.Encrypt(newTicket);
 
 Finally, authCookie is added to the Response.Cookies collection and the GetRedirectUrl method is called to determine the appropriate page to send the user.
 
-[!code-unknown[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample-25125-7.unknown)]
+[!code-csharp[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample7.cs)]
 
 All of this code is needed because the UserData property is read-only and the FormsAuthentication class does not provide any methods for specifying UserData information in its GetAuthCookie, SetAuthCookie, or RedirectFromLoginPage methods.
 
@@ -391,7 +391,7 @@ Whenever a request arrives and is dispatched to the ASP.NET engine, the Applicat
 
 Return to the Page\_Load event handler in Default.aspx, where in Step 4 we wrote code to retrieve the form authentication ticket and parse the UserData property in order to display the user's company name and title. With the CustomPrincipal and CustomIdentity objects in use now, there's no need to parse the values out of the ticket's UserData property. Instead, simply get a reference to the CustomIdentity object and use its CompanyName and Title properties:
 
-[!code-unknown[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample-25125-12.unknown)]
+[!code-csharp[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample12.cs)]
 
 ## Summary
 

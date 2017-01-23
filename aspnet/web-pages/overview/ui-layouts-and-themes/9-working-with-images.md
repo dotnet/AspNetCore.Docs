@@ -105,7 +105,7 @@ The previous example showed you how to display an image dynamically, but it work
 
     You don't want all that path information, though &#8212; you just want the actual file name (*SamplePhoto1.jpg*). You can strip out just the file from a path by using the `Path.GetFileName` method, like this:
 
-    [!code-unknown[Main](9-working-with-images/samples/sample-38939-4.unknown)]
+    [!code-csharp[Main](9-working-with-images/samples/sample4.cs)]
 
     You then create a new unique file name by adding a GUID to the original name. (For more about GUIDs, see [About GUIDs](#SB_AboutGUIDs) later in this article.) Then you construct a complete path that you can use to save the image. The save path is made up of the new file name, the folder (images), and the current website location.
 
@@ -168,7 +168,7 @@ The `WebImage` helper also lets you flip and rotate images. This procedure shows
 
     The code uses the `WebImage` helper to get an image from the server. You create the path to the image using the same technique you used in earlier examples for saving images, and you pass that path when you create an image using `WebImage`:
 
-    [!code-unknown[Main](9-working-with-images/samples/sample-38939-7.unknown)]
+    [!code-javascript[Main](9-working-with-images/samples/sample7.js)]
 
     If an image is found, you construct a new path and file name, like you did in earlier examples. To flip the image, you call the `FlipVertical` method, and then you save the image again.
 

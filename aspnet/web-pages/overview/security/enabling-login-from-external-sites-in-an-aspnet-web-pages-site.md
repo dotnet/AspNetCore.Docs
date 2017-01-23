@@ -63,7 +63,7 @@ This article provides separate instructions for the following tasks:
 1. Create or open an ASP.NET Web Pages site that's based on the WebMatrix Starter Site template.
 2. Open the *\_AppStart.cshtml* page and uncomment the following line of code. 
 
-    [!code-unknown[Main](enabling-login-from-external-sites-in-an-aspnet-web-pages-site/samples/sample-38623-1.unknown)]
+    [!code-css[Main](enabling-login-from-external-sites-in-an-aspnet-web-pages-site/samples/sample1.css)]
 
 ### Testing Google login
 
@@ -101,7 +101,7 @@ Now you make changes to two pages in your website so that users will able to log
 1. Create or open an ASP.NET Web Pages site that's based on the WebMatrix Starter Site template.
 2. Open the *\_AppStart.cshtml* page and uncomment the code for the Facebook OAuth provider. The uncommented code block looks like the following: 
 
-    [!code-unknown[Main](enabling-login-from-external-sites-in-an-aspnet-web-pages-site/samples/sample-38623-2.unknown)]
+    [!code-csharp[Main](enabling-login-from-external-sites-in-an-aspnet-web-pages-site/samples/sample2.cs)]
 3. Copy the **App ID** value from the Facebook application as the value of the `appId` parameter (inside the quotation marks).
 4. Copy **App Secret** value from the Facebook application as the `appSecret` parameter value.
 5. Save and close the file.
@@ -145,7 +145,7 @@ Now you make changes to two pages in your website so that users will be able to 
 1. Create or open an ASP.NET Web Pages site that's based on the WebMatrix Starter Site template.
 2. Open the *\_AppStart.cshtml* page and uncomment the code for the Twitter OAuth provider. The uncommented code block looks like this: 
 
-    [!code-unknown[Main](enabling-login-from-external-sites-in-an-aspnet-web-pages-site/samples/sample-38623-3.unknown)]
+    [!code-csharp[Main](enabling-login-from-external-sites-in-an-aspnet-web-pages-site/samples/sample3.cs)]
 3. Copy the **Consumer Key** value from the Twitter application as the value of the `consumerKey` parameter (inside the quotation marks).
 4. Copy the **Consumer Secret** value from the Twitter application as the value of the `consumerSecret` parameter.
 5. Save and close the file.

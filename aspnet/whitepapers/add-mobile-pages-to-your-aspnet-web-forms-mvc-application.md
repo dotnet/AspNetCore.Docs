@@ -277,7 +277,7 @@ To avoid this problem, add logic to your desktop "log on" action so that it redi
 
 If you're using the [OutputCache] filter, you must force the cache entry to vary by device type. For example, write:
 
-[!code-unknown[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample-36243-13.unknown)]
+[!code-javascript[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample13.js)]
 
 Then, add the following method to your Global.asax.cs file:
 
@@ -320,7 +320,7 @@ Since most web pages were designed for large desktop-sized screens and fast fixe
 
 But if you've taken the effort to produce a mobile-optimized version of your site, you probably don't want the network operator to interfere with it any further. You can add the following line to the Page\_Load event in any ASP.NET Web Form:
 
-[!code-unknown[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample-36243-16.unknown)]
+[!code-csharp[Main](add-mobile-pages-to-your-aspnet-web-forms-mvc-application/samples/sample16.cs)]
 
 Or, for an ASP.NET MVC controller, you could add the following method override so that it applies to all actions on that controller:
 

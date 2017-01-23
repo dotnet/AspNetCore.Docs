@@ -67,7 +67,7 @@ Notice that **AddCookies** takes an array of **CookieHeaderValue** instances.
 
 To extract the cookies from a client request, call the **GetCookies** method:
 
-[!code-unknown[Main](http-cookies/samples/sample-43086-7.unknown)]
+[!code-csharp[Main](http-cookies/samples/sample7.cs)]
 
 A **CookieHeaderValue** contains a collection of **CookieState** instances. Each **CookieState** represents one cookie. Use the indexer method to get a **CookieState** by name, as shown.
 
@@ -89,7 +89,7 @@ The previous code produces the following Set-Cookie header:
 
 The **CookieState** class provides an indexer method to read the sub-values from a cookie in the request message:
 
-[!code-unknown[Main](http-cookies/samples/sample-43086-10.unknown)]
+[!code-csharp[Main](http-cookies/samples/sample10.cs)]
 
 ## Example: Set and Retrieve Cookies in a Message Handler
 

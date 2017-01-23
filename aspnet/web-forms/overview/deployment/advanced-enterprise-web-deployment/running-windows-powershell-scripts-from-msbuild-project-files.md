@@ -59,7 +59,7 @@ The tasks in this topic use a sample Windows PowerShell script named **LogDeploy
 The **LogDeploy.ps1** script accepts two parameters. The first parameter represents the full path to the log file to which you want to add an entry, and the second parameter represents the deployment destination that you want to record in the log file. When you run the script, it adds a line to the log file in this format:
 
 
-[!code-unknown[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample-38186-2.unknown)]
+[!code-html[Main](running-windows-powershell-scripts-from-msbuild-project-files/samples/sample2.html)]
 
 
 To make the **LogDeploy.ps1** script available to MSBuild, you need to:

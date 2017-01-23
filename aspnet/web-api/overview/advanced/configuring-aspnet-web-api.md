@@ -119,11 +119,11 @@ Multiple-Instance Services
 
 To add a custom implementation to a multi-instance service, call **Add** or **Insert** on the **Services** collection:
 
-[!code-unknown[Main](configuring-aspnet-web-api/samples/sample-42873-5.unknown)]
+[!code-csharp[Main](configuring-aspnet-web-api/samples/sample5.cs)]
 
 To replace a single-instance service with a custom implementation, call **Replace** on the **Services** collection:
 
-[!code-unknown[Main](configuring-aspnet-web-api/samples/sample-42873-6.unknown)]
+[!code-csharp[Main](configuring-aspnet-web-api/samples/sample6.cs)]
 
 <a id="percontrollerconfig"></a>
 ## Per-Controller Configuration

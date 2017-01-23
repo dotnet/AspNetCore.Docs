@@ -69,13 +69,13 @@ You can send messages to all of the members of a group or only specified members
 
 - **All** connected clients in a specified group. 
 
-    [!code-unknown[Main](working-with-groups/samples/sample-47810-4.unknown)]
+    [!code-css[Main](working-with-groups/samples/sample4.css)]
 - All connected clients in a specified group **except the specified clients**, identified by connection ID. 
 
-    [!code-unknown[Main](working-with-groups/samples/sample-47810-5.unknown)]
+    [!code-csharp[Main](working-with-groups/samples/sample5.cs)]
 - All connected clients in a specified group **except the calling client**. 
 
-    [!code-unknown[Main](working-with-groups/samples/sample-47810-6.unknown)]
+    [!code-css[Main](working-with-groups/samples/sample6.css)]
 
 <a id="storedatabase"></a>
 

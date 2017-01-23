@@ -46,7 +46,7 @@ The EntityDataSoure selects records from the Orders table filtered on the UserNa
 
 Note also these parameters in the HyperlinkField of the GridView:
 
-[!code-unknown[Main](tailspin-spyworks-part-7/samples/sample-25230-2.unknown)]
+[!code-xml[Main](tailspin-spyworks-part-7/samples/sample2.xml)]
 
 These specify the link to the Order details view for each product specifying the OrderID field as a QueryString parameter to the OrderDetails.aspx page.
 

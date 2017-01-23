@@ -181,7 +181,7 @@ In this task, you will learn how to use cross-browser compatible CSS3 snippets i
 
     CSS
 
-    [!code-unknown[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample-45259-3.unknown)]
+    [!code-css[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample3.css)]
 8. Type **transform** and press the **TAB** key twice in order to insert the transform snippet. Then, enter **rotate(-15deg)** to change the rotation angle value when images are hovered.
 
     CSS
@@ -441,7 +441,7 @@ In this task, you will discover the new JavaScript validation for the ECMAScript
 
     JavaScript
 
-    [!code-unknown[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample-45259-8.unknown)]
+    [!code-html[Main](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/samples/sample8.html)]
 
     You can check out the &quot; **use strict** &quot; direction in the first line of the file, which enables ECMAScript5 **strict mode**. This mode consists in a subset of the language that clarifies ambiguities from the past edition, and adds some new features, such as getters and setters, library support for JSON, and more complete reflection on object properties.
 2. Open the **Error List** if not already opened (**View** menu | **Error List**). Notice the **function** declaration is underlined. This is because in ECMA5 standard functions cannot be nested inside language structures. In the error list below you will see the warning details.

@@ -270,7 +270,7 @@ To start, you can specify that you want to display only certain columns. By defa
 
 In the *Movies.cshtml* file, replace the `@grid.GetHtml()` markup that you just added with the following:
 
-[!code-unknown[Main](displaying-data/samples/sample-38465-4.unknown)]
+[!code-css[Main](displaying-data/samples/sample4.css)]
 
 To tell the helper which columns to display, you include a `columns` parameter for the `GetHtml` method and pass in a collection of columns. In the collection, you specify each column to include. You specify an individual column to display by including a `grid.Column` object, and pass in the name of the data column you want. (These columns must be included in the SQL query results — the `WebGrid` helper cannot display columns that were not returned by the query.)
 
@@ -292,7 +292,7 @@ Now you can get the `WebGrid` helper to use these style classes. The helper has 
 
 Change the `grid.GetHtml` markup so that it now looks like this code:
 
-[!code-unknown[Main](displaying-data/samples/sample-38465-6.unknown)]
+[!code-css[Main](displaying-data/samples/sample6.css)]
 
 What's new here is that you've added `tableStyle`, `headerStyle`, and `alternatingRowStyle` parameters to the `GetHtml` method. These parameters have been set to the names of the CSS styles that you added a moment ago.
 

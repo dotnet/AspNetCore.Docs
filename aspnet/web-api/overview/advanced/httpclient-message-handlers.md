@@ -55,6 +55,6 @@ The call to `base.SendAsync` is asynchronous. If the handler does any work after
 
 To add custom handlers to **HttpClient**, use the **HttpClientFactory.Create** method:
 
-[!code-unknown[Main](httpclient-message-handlers/samples/sample-43130-4.unknown)]
+[!code-csharp[Main](httpclient-message-handlers/samples/sample4.cs)]
 
 Message handlers are called in the order that you pass them into the **Create** method. Because handlers are nested, the response message travels in the other direction. That is, the last handler is the first to get the response message.

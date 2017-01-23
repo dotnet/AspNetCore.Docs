@@ -382,7 +382,7 @@ When you create a Web API, it is useful to create a help page so that other deve
     *HelpPage Area*
 3. By default, the help pages have placeholder strings for documentation. You can use XML documentation comments to create the documentation. To enable this feature, open the **HelpPageConfig.cs** file located in the **Areas/HelpPage/App\_Start** folder and uncomment the following line:
 
-    [!code-unknown[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample-58778-8.unknown)]
+    [!code-javascript[Main](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/samples/sample8.js)]
 4. In **Solution Explorer**, right-click the project **MyHybridSite**, select **Properties** and click the **Build** tab.
 
     ![Build tab](one-aspnet-integrating-aspnet-web-forms-mvc-and-web-api/_static/image32.png "Build section")

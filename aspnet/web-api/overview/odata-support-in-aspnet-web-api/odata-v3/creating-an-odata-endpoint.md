@@ -142,7 +142,7 @@ The string "Products" defines the name of the entity set. The name of the contro
 
 The **MapODataRoute** method adds a route for the OData endpoint.
 
-[!code-unknown[Main](creating-an-odata-endpoint/samples/sample-51293-4.unknown)]
+[!code-csharp[Main](creating-an-odata-endpoint/samples/sample4.cs)]
 
 The first parameter is a friendly name for the route. Clients of your service do not see this name. The second parameter is the URI prefix for the endpoint. Given this code, the URI for the Products entity set is http://*hostname*/odata/Products. Your application can have more than one OData endpoint. For each endpoint, call **MapODataRoute** and provide a unique route name and a unique URI prefix.
 

@@ -292,7 +292,7 @@ Three parameters are passed including the condition to evaluate, the message to 
 The final function to cover is Sys.Debug.fail. When you want to force code to fail on a particular line in a script you can add a Sys.Debug.fail call rather than the debugger statement typically used in JavaScript applications. The Sys.Debug.fail function accepts a single string parameter that represents the reason for the failure as shown next:
 
 
-[!code-unknown[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample-24881-10.unknown)]
+[!code-css[Main](understanding-asp-net-ajax-debugging-capabilities/samples/sample10.css)]
 
 
 [![A Sys.Debug.assert failure message.](understanding-asp-net-ajax-debugging-capabilities/_static/image35.png)](understanding-asp-net-ajax-debugging-capabilities/_static/image34.png)

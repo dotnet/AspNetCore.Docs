@@ -425,13 +425,13 @@ For information about issues that involve installing SQL Server Compact as part 
 > 
 > 1. Add the following elements to the `SecurityClasses` section in *Web\_MediumTrust.config* file:
 > 
->     [!code-unknown[Main](overview/samples/sample-38456-6.unknown)]
+>     [!code-html[Main](overview/samples/sample6.html)]
 > 2. Create a new permission set in the *Web\_MediumTrust.config* file with the following required permissions:
 > 
->     [!code-unknown[Main](overview/samples/sample-38456-7.unknown)]
+>     [!code-html[Main](overview/samples/sample7.html)]
 > 3. Apply the permission set to SQL Server Compact by putting the following elements in the *Web\_MediumTrust.config* file:
 > 
->     [!code-unknown[Main](overview/samples/sample-38456-8.unknown)]
+>     [!code-html[Main](overview/samples/sample8.html)]
 
 
 #### Issue: Gallery and PhpBB web applications display a "Service is unavailable" error after publishing

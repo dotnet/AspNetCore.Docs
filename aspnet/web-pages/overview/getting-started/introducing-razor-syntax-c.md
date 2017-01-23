@@ -289,7 +289,7 @@ In C#, single-line comments are preceded by the `//` characters, and multi-line 
 
 For markup, as you probably know, you can create an HTML comment:
 
-[!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-23.unknown)]
+[!code-xml[Main](introducing-razor-syntax-c/samples/sample23.xml)]
 
 HTML comments start with `<!--` characters and end with `-->`. You can use HTML comments to surround not only text, but also any HTML markup that you may want to keep in the page but don't want to render. This HTML comment will hide the entire content of the tags and the text they contain:
 
@@ -344,7 +344,7 @@ The following table lists some common conversion and test methods for variables.
 | `AsFloat(), IsFloat()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a floating-point number. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample30.cs)] |
 | `AsDecimal(), IsDecimal()` | Converts a string that has a decimal value like &quot;1.3&quot; or &quot;7.439&quot; to a decimal number. (In ASP.NET, a decimal number is more precise than a floating-point number.) | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample31.cs)] |
 | `AsDateTime(), IsDateTime()` | Converts a string that represents a date and time value to the ASP.NET `DateTime` type. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample32.cs)] |
-| `ToString()` | Converts any other data type to a string. | [!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-33.unknown)] |
+| `ToString()` | Converts any other data type to a string. | [!code-javascript[Main](introducing-razor-syntax-c/samples/sample33.js)] |
 
 ## Operators
 
@@ -352,15 +352,15 @@ An operator is a keyword or character that tells ASP.NET what kind of command to
 
 | **Operator** | **Description** | **Examples** |
 | --- | --- | --- |
-| `+` `-` `*` `/` | Math operators used in numerical expressions. | [!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-34.unknown)] |
+| `+` `-` `*` `/` | Math operators used in numerical expressions. | [!code-css[Main](introducing-razor-syntax-c/samples/sample34.css)] |
 | `=` | Assignment. Assigns the value on the right side of a statement to the object on the left side. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample35.cs)] |
 | `==` | Equality. Returns `true` if the values are equal. (Notice the distinction between the `=` operator and the `==` operator.) | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample36.cs)] |
 | `!=` | Inequality. Returns `true` if the values are not equal. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample37.cs)] |
 | `< > <= >=` | Less-than, greater-than, less-than-or-equal, and greater-than-or-equal. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample38.cs)] |
 | `+` | Concatenation, which is used to join strings. ASP.NET knows the difference between this operator and the addition operator based on the data type of the expression. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample39.cs)] |
-| `+=` `-=` | The increment and decrement operators, which add and subtract 1 (respectively) from a variable. | [!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-40.unknown)] |
+| `+=` `-=` | The increment and decrement operators, which add and subtract 1 (respectively) from a variable. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample40.cs)] |
 | `.` | Dot. Used to distinguish objects and their properties and methods. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample41.cs)] |
-| `()` | Parentheses. Used to group expressions and to pass parameters to methods. | [!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-42.unknown)] |
+| `()` | Parentheses. Used to group expressions and to pass parameters to methods. | [!code-javascript[Main](introducing-razor-syntax-c/samples/sample42.js)] |
 | `[]` | Brackets. Used for accessing values in arrays or collections. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample43.cs)] |
 | `!` | Not. Reverses a `true` value to `false` and vice versa. Typically used as a shorthand way to test for `false` (that is, for not `true`). | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample44.cs)] |
 | `&&` `||` | Logical AND and OR, which are used to link conditions together. | [!code-csharp[Main](introducing-razor-syntax-c/samples/sample45.cs)] |
@@ -527,7 +527,7 @@ To create a dictionary, you use the `new` keyword to indicate that you're creati
 
 To add items to the dictionary, you can call the `Add` method of the dictionary variable (`myScores` in this case), and then specify a key and a value. Alternatively, you can use square brackets to indicate the key and do a simple assignment, as in the following example:
 
-[!code-unknown[Main](introducing-razor-syntax-c/samples/sample-38932-62.unknown)]
+[!code-css[Main](introducing-razor-syntax-c/samples/sample62.css)]
 
 To get a value from the dictionary, you specify the key in brackets:
 

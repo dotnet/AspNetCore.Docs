@@ -74,11 +74,11 @@ This builds the Redis binaries in the `src` directory.
 
 By default, Redis does not require a password. To set a password, edit the `redis.conf` file, which is located in the root directory of the source code. (Make a backup copy of the file before you edit it!) Add the following directive to `redis.conf`:
 
-[!code-unknown[Main](scaleout-with-redis/samples/sample-47247-3.unknown)]
+[!code-powershell[Main](scaleout-with-redis/samples/sample3.ps1)]
 
 Now start the Redis server:
 
-[!code-unknown[Main](scaleout-with-redis/samples/sample-47247-4.unknown)]
+[!code-css[Main](scaleout-with-redis/samples/sample4.css)]
 
 ![](scaleout-with-redis/_static/image4.png)
 
@@ -106,7 +106,7 @@ Next, open the Global.asax file. Add the following code to the **Application\_St
 
 For example:
 
-[!code-unknown[Main](scaleout-with-redis/samples/sample-47247-7.unknown)]
+[!code-csharp[Main](scaleout-with-redis/samples/sample7.cs)]
 
 ## Deploy and Run the Application
 
@@ -138,6 +138,6 @@ If you deploy the application to two servers, you can open each instance in a se
 
 If you're curious to see the messages that are sent to Redis, you can use the **redis-cli** client, which installs with Redis.
 
-[!code-unknown[Main](scaleout-with-redis/samples/sample-47247-8.unknown)]
+[!code-xml[Main](scaleout-with-redis/samples/sample8.xml)]
 
 ![](scaleout-with-redis/_static/image9.png)

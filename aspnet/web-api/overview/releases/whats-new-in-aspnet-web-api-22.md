@@ -144,7 +144,7 @@ The recommended way to resolve this issue is to replace all instances of **Query
 
 An alternative workaround is to use the following code in your Web API configuration:
 
-[!code-unknown[Main](whats-new-in-aspnet-web-api-22/samples/sample-57883-4.unknown)]
+[!code-csharp[Main](whats-new-in-aspnet-web-api-22/samples/sample4.cs)]
 
 ### Attribute Routing
 

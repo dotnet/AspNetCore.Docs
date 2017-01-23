@@ -68,7 +68,7 @@ The new column is this one:
 
 The point of this column is to show a link (`<a>` element) whose text says "Edit". What we're after is to create a link that looks like the following when the page runs, with the `id` value different for each movie:
 
-[!code-unknown[Main](updating-data/samples/sample-38468-3.unknown)]
+[!code-css[Main](updating-data/samples/sample3.css)]
 
 This link will invoke a page named *EditMovie*, and it will pass the query string `?id=7` to that page.
 
@@ -82,7 +82,7 @@ The expression `"~/EditMovie?id=@item.ID` combines the hard-coded part of the ta
 
 The result is that this part of the markup in the column simply produces something like the following markup at run time:
 
-[!code-unknown[Main](updating-data/samples/sample-38468-5.unknown)]
+[!code-xml[Main](updating-data/samples/sample5.xml)]
 
 Naturally, the actual value of `id` will be different for each row.
 
@@ -120,7 +120,7 @@ The column consists *only* of the markup that renders the link, plus some inform
 > 
 > and
 > 
-> [!code-unknown[Main](updating-data/samples/sample-38468-9.unknown)]
+> [!code-css[Main](updating-data/samples/sample9.css)]
 > 
 > Named parameters are handy for a couple of situations, especially when a method takes many parameters. One is when you want to pass only one or two parameters, but the values you want to pass are not among the first positions in the parameter list. Another situation is when you want to make your code more readable by passing the parameters in the order that makes the most sense to you.
 > 
@@ -242,7 +242,7 @@ So what should you do? The first fix is to make sure that not only is an ID pass
 
 You've added a second condition to the `IsEmpty` test, linked with `&&` (logical AND):
 
-[!code-unknown[Main](updating-data/samples/sample-38468-15.unknown)]
+[!code-csharp[Main](updating-data/samples/sample15.cs)]
 
 You might remember from the [Introduction to ASP.NET Web Pages Programming](../introducing-razor-syntax-c.md) tutorial that methods like `AsBool` an `AsInt` convert a character string to some other data type. The `IsInt` method (and others, like `IsBool` and `IsDateTime`) are similar. However, they test only whether you *can* convert the string, without actually performing the conversion. So here you're essentially saying *If the query string value can be converted to an integer ...*.
 

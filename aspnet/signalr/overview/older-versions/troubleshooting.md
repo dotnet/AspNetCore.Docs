@@ -124,7 +124,7 @@ A connection in a .NET client application that uses Domain security may fail if 
 
 **C# client code that implements connection credentials**
 
-[!code-unknown[Main](troubleshooting/samples/sample-47337-9.unknown)]
+[!code-csharp[Main](troubleshooting/samples/sample9.cs)]
 
 <a id="other"></a>
 
@@ -199,7 +199,7 @@ This error may occur when the incorrect overload of `Hub.On` is used. If the met
 
 **Method defined on the client (without generated proxy)**
 
-[!code-unknown[Main](troubleshooting/samples/sample-47337-12.unknown?highlight=1)]
+[!code-html[Main](troubleshooting/samples/sample12.html?highlight=1)]
 
 ### Connection ID is inconsistent or connection breaks between page loads
 
@@ -233,7 +233,7 @@ jQuery Mobile's `initializePage` function forces the scripts in each page to be 
 
 Messages are delayed when using server sent events on Silverlight. To force long polling to be used instead, use the following when starting the connection:
 
-[!code-unknown[Main](troubleshooting/samples/sample-47337-13.unknown)]
+[!code-css[Main](troubleshooting/samples/sample13.css)]
 
 ### "Permission Denied" using Forever Frame protocol
 
