@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/apache-proxy
 ---
-# Using Apache Web Server as a reverse proxy
+# Using Apache web server as a reverse proxy
 
 By [Shayne Boyer](https://www.github.com/spboyer)
 

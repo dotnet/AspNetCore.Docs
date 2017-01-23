@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: hosting/aspnet-core-module
 ---
-# ASP.NET Core Module Configuration Reference
+# ASP.NET Core Module configuration reference
 
 By [Luke Latham](https://github.com/GuardRex), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
