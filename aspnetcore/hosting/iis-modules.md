@@ -16,7 +16,7 @@ uid: hosting/iis-modules
 
 By [Luke Latham](https://github.com/GuardRex)
 
-ASP.NET Core applications are hosted by IIS in a reverse-proxy configuration. Some of the native IIS modules and all of the IIS managed modules are not available to process requests for ASP.NET Core apps. In most cases, ASP.NET Core offers an alternative approach to replace the features of unavailable IIS modules.
+ASP.NET Core applications are hosted by IIS in a reverse-proxy configuration. Some of the native IIS modules and all of the IIS managed modules are not available to process requests for ASP.NET Core apps. In many cases, ASP.NET Core offers an alternative to the features of IIS native and managed modules.
 
 ## IIS Manager application changes
 When using IIS modules with .NET applications, keep in mind that when you interact with the IIS Manager to configure settings that you're directly changing the *web.config* file of the app. If you later deploy a *web.config* with the app, any changes you made in the IIS Manager on the server will be overwritten by the settings in the deployed *web.config* file. After you've made changes to an app's *web.config* on the server, mirror those changes in your project's *web.config* immediately.
@@ -34,7 +34,7 @@ To disable a module without removing it from the application, many modules offer
 </configuration>
 ```
 
-If you opt to remove the module with a setting in *web.config*, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the **IIS** area. Click on the module you wish to remove in the list. In the **Action** panel on the right, click **Unlock**. At this point, you will be able to add a `<modules>` section to your *web.config* file with a `<remove>` element to remove the module from the application. Doing this won't affect your use of the module with other apps on the server.
+If you opt to remove the module with a setting in *web.config*, you must unlock it first. Click on the IIS server in the IIS Manager **Connections** sidebar. Open the **Modules** in the **IIS** area. Click on the module you wish to remove in the list. In the **Actions** sidebar on the right, click **Unlock**. At this point, you will be able to add a `<modules>` section to your *web.config* file with a `<remove>` element to remove the module from the application. Doing this won't affect your use of the module with other apps on the server.
 
 ```xml
 <configuration> 
@@ -44,6 +44,16 @@ If you opt to remove the module with a setting in *web.config*, you must unlock 
     </modules> 
   </system.webServer> 
 </configuration>
+```
+
+You can also remove an IIS module with *Appcmd.exe*. Provide the `MODULE_NAME` and `APPLICATION_NAME` in the command shown below. The example shows how to remove the `DynamicCompressionModule` from the Default Web Site.
+
+```console
+Appcmd.exe delete module MODULE_NAME /app.name:APPLICATION_NAME
+```
+
+```console
+%windir%\system32\inetsrv\appcmd.exe delete module DynamicCompressionModule /app.name:"Default Web Site"
 ```
 
 ## Native Modules
