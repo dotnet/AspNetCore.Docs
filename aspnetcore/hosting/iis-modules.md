@@ -59,7 +59,7 @@ Module | .NET Core Active | ASP.NET Core Option
 **Default Document**<br>`DefaultDocumentModule` | No | [Default Files Middleware](xref:fundamentals/static-files#serving-a-default-document)
 **Digest Authentication**<br>`DigestAuthenticationModule` | Yes | 
 **Directory Browsing**<br>`DirectoryListingModule` | No | [Directory Browsing Middleware](xref:fundamentals/static-files#enabling-directory-browsing)
-**Dynamic Compression**<br>`DynamicCompressionModule` | Yes | [Response Compression Middleware](xref:fundamentals/response-compression)
+**Dynamic Compression**<br>`DynamicCompressionModule` | Yes | [Response Compression Middleware](xref:performance/response-compression)
 **Tracing**<br>`FailedRequestsTracingModule` | Yes | [ASP.NET Core Logging](xref:fundamentals/logging#the-tracesource-provider)
 **File Caching**<br>`FileCacheModule` | No | [Response Caching Middleware](xref:performance/caching/middleware)
 **HTTP Caching**<br>`HttpCacheModule` | No | [Response Caching Middleware](xref:performance/caching/middleware)
@@ -95,7 +95,7 @@ OutputCache | No | [Response Caching Middleware](xref:performance/caching/middle
 Profile | No | 
 RoleManager | No | 
 ScriptModule-4.0 | No | 
-Session | No | [Session Middleware](xref:fundamentals/app-state#installing-and-configuring-session)
+Session | No | [Session Middleware](xref:fundamentals/app-state)
 UrlAuthorization | No | 
 UrlMappingsModule | No | [URL Rewriting Middleware](xref:fundamentals/url-rewriting)
 UrlRoutingModule-4.0 | No | [ASP.NET Core  Identity](xref:security/authentication/identity)
