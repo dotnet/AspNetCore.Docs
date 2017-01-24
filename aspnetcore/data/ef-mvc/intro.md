@@ -20,7 +20,7 @@ The Contoso University sample web application demonstrates how to create ASP.NET
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch. You can [download the completed application](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final).
 
-EF Core 1.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core 1.0, see [EF Core vs. EF6.x](https://ef.readthedocs.io/en/latest/efcore-vs-ef6/index.html).  If you choose EF 6.x, see [the previous version of this tutorial series](https://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
+EF Core 1.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core 1.0, see [EF Core vs. EF6.x](https://docs.microsoft.com/ef/efcore-and-ef6/). If you choose EF 6.x, see [the previous version of this tutorial series](https://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
 
 ## Prerequisites
 
@@ -102,7 +102,7 @@ Because you used the **Individual User Accounts** option when you created the pr
 
 If you want to add EF Core support to a new project that you create without the **Individual User Accounts** option, install the following NuGet packages:
 
-* The package for the database provider you want to target. To use SQL Server, the package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). For a list of available providers see [Database Providers](https://docs.efproject.net/en/latest/providers/index.html).
+* The package for the database provider you want to target. To use SQL Server, the package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). For a list of available providers see [Database Providers](https://docs.microsoft.com/ef/core/providers/).
 
 * The package for the EF command-line tools:   [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools/1.0.0-preview2-final). This package is a preview release, so to install it you have to enable preview release installation. After installing the package, you also have to add a reference to it in the `tools` collection in the *project.json* file.
 
