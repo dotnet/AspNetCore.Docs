@@ -324,7 +324,7 @@ loggerFactory.AddDebug()
 <a id="eventsource"></a>
 ### The EventSource provider
 
-The [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) provider package does event tracing. On Windows it uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803). The provider is cross-platform but there are no event collection and display tools yet for Linux or macOS. 
+For apps that target ASP.NET Core 1.1.0 or higher, the [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) provider package can implement event tracing. On Windows, it uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803). The provider is cross-platform, but there are no event collection and display tools yet for Linux or macOS. 
 
 ```csharp
 loggerFactory.AddEventSourceLogger()
