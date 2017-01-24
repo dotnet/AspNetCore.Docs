@@ -40,7 +40,7 @@ If you opt to remove the module with a setting in *web.config*, you must unlock 
 <configuration> 
   <system.webServer> 
     <modules> 
-      <remove name="{Module Name}" /> 
+      <remove name="MODULE_NAME" /> 
     </modules> 
   </system.webServer> 
 </configuration>
