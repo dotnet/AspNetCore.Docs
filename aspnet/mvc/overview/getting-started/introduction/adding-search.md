@@ -45,7 +45,7 @@ Run the application and navigate to */Movies/Index*. Append a query string such 
 
 ![SearchQryStr](adding-search/_static/image1.png)
 
-If you change the signature of the `Index` method to have a parameter named `id`, the `id` parameter will match the `{id}` placeholder for the default routes set in the*App\_Start\RouteConfig.cs* file.
+If you change the signature of the `Index` method to have a parameter named `id`, the `id` parameter will match the `{id}` placeholder for the default routes set in the *App\_Start\RouteConfig.cs* file.
 
 [!code-json[Main](adding-search/samples/sample4.json)]
 
@@ -65,7 +65,7 @@ However, you can't expect users to modify the URL every time they want to search
 
 [!code-csharp[Main](adding-search/samples/sample7.cs)]
 
-Open the *Views\Movies\Index.cshtml*file, and just after `@Html.ActionLink("Create New", "Create")`, add the form markup highlighted below:
+Open the *Views\Movies\Index.cshtml* file, and just after `@Html.ActionLink("Create New", "Create")`, add the form markup highlighted below:
 
 [!code-cshtml[Main](adding-search/samples/sample8.cshtml?highlight=12-15)]
 

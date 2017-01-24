@@ -137,7 +137,7 @@ In the *Models* folder, create *Student.cs* and replace the existing code with t
 
 [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample4.cs)]
 
-The `StudentID` property will become the primary key column of the database table that corresponds to this class. By default, the Entity Framework interprets a property that's named `ID` or *classname*`ID` as the primary key.
+The `StudentID` property will become the primary key column of the database table that corresponds to this class. By default, the Entity Framework interprets a property that's named `ID` or *classname* `ID` as the primary key.
 
 The `Enrollments` property is a *navigation property*. Navigation properties hold other entities that are related to this entity. In this case, the `Enrollments` property of a `Student` entity will hold all of the `Enrollment` entities that are related to that `Student` entity. In other words, if a given `Student` row in the database has two related `Enrollment` rows (rows that contain that student's primary key value in their `StudentID` foreign key column), that `Student` entity's `Enrollments` navigation property will contain those two `Enrollment` entities.
 
@@ -163,7 +163,7 @@ The `CourseID` property is a foreign key, and the corresponding navigation prope
 
 ![Course_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image9.png)
 
-In the *Models* folder, create*Course.cs*, replacing the existing code with the following code:
+In the *Models* folder, create *Course.cs*, replacing the existing code with the following code:
 
 [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample6.cs)]
 
@@ -335,7 +335,7 @@ The amount of code you had to write in order for the Entity Framework to be able
 
 - The pluralized forms of entity class names are used as table names.
 - Entity property names are used for column names.
-- Entity properties that are named `ID` or *classname*`ID` are recognized as primary key properties.
+- Entity properties that are named `ID` or *classname* `ID` are recognized as primary key properties.
 
 You've seen that conventions can be overridden (for example, you specified that table names shouldn't be pluralized), and you'll learn more about conventions and how to override them in the [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) tutorial later in this series. For more information, see [Code First Conventions](https://msdn.microsoft.com/en-us/data/jj679962).
 

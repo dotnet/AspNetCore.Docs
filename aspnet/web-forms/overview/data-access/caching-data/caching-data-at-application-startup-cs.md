@@ -18,7 +18,7 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
 [Download PDF](caching-data-at-application-startup-cs/_static/datatutorial60cs1.pdf)
 
-> In any Web application some data will be frequently used and some data will be infrequently used. We can improve the performance of our ASP.NET application by loading in advance the frequently-used data, a technique known as . This tutorial demonstrates one approach to proactive loading, which is to load data into the cache at application startup.
+> In any Web application some data will be frequently used and some data will be infrequently used. We can improve the performance of our ASP.NET application by loading in advance the frequently-used data, a technique known as. This tutorial demonstrates one approach to proactive loading, which is to load data into the cache at application startup.
 
 
 ## Introduction

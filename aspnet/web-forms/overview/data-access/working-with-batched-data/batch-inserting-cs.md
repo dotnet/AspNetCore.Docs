@@ -39,7 +39,7 @@ In this tutorial we will create a page that implements the batch inserting inter
 
 ## Step 1: Creating the Display Interface
 
-This tutorial will consist of a single page that is divided into two regions: a display region and an inserting region. The display interface, which we'll create in this step, shows the products in a GridView and includes a button titled Process Product Shipment . When this button is clicked, the display interface is replaced with the inserting interface, which is shown in Figure 1. The display interface returns after the Add Products from Shipment or Cancel buttons are clicked. We'll create the inserting interface in Step 2.
+This tutorial will consist of a single page that is divided into two regions: a display region and an inserting region. The display interface, which we'll create in this step, shows the products in a GridView and includes a button titled Process Product Shipment. When this button is clicked, the display interface is replaced with the inserting interface, which is shown in Figure 1. The display interface returns after the Add Products from Shipment or Cancel buttons are clicked. We'll create the inserting interface in Step 2.
 
 When creating a page that has two interfaces, only one of which is visible at a time, each interface typically is placed within a [Panel Web control](http://www.w3schools.com/aspnet/control_panel.asp), which serves as a container for other controls. Therefore, our page will have two Panel controls one for each interface.
 
@@ -51,7 +51,7 @@ Start by opening the `BatchInsert.aspx` page in the `BatchData` folder and drag 
 **Figure 2**: Drag a Panel from the Toolbox onto the Designer ([Click to view full-size image](batch-inserting-cs/_static/image6.png))
 
 
-Next, drag a Button and GridView control into the Panel. Set the Button s `ID` property to `ProcessShipment` and its `Text` property to Process Product Shipment . Set the GridView s `ID` property to `ProductsGrid` and, from its smart tag, bind it to a new ObjectDataSource named `ProductsDataSource`. Configure the ObjectDataSource to pull its data from the `ProductsBLL` class s `GetProducts` method. Since this GridView is used only to display data, set the drop-down lists in the UPDATE, INSERT, and DELETE tabs to (None) . Click Finish to complete the Configure Data Source wizard.
+Next, drag a Button and GridView control into the Panel. Set the Button s `ID` property to `ProcessShipment` and its `Text` property to Process Product Shipment. Set the GridView s `ID` property to `ProductsGrid` and, from its smart tag, bind it to a new ObjectDataSource named `ProductsDataSource`. Configure the ObjectDataSource to pull its data from the `ProductsBLL` class s `GetProducts` method. Since this GridView is used only to display data, set the drop-down lists in the UPDATE, INSERT, and DELETE tabs to (None). Click Finish to complete the Configure Data Source wizard.
 
 
 [![Display the Data Returned from the ProductsBLL Class s GetProducts Method](batch-inserting-cs/_static/image8.png)](batch-inserting-cs/_static/image7.png)
@@ -113,7 +113,7 @@ With this markup entered, return to the Design view. This `<table>` should show 
 
 We re now ready to add the Web controls to the inserting interface. Drag two DropDownLists from the Toolbox into the appropriate cells in the table one for the supplier and one for the category.
 
-Set the supplier DropDownList s `ID` property to `Suppliers` and bind it to a new ObjectDataSource named `SuppliersDataSource`. Configure the new ObjectDataSource to retrieve its data from the `SuppliersBLL` class s `GetSuppliers` method and set the UPDATE tab s drop-down list to (None) . Click Finish to complete the wizard.
+Set the supplier DropDownList s `ID` property to `Suppliers` and bind it to a new ObjectDataSource named `SuppliersDataSource`. Configure the new ObjectDataSource to retrieve its data from the `SuppliersBLL` class s `GetSuppliers` method and set the UPDATE tab s drop-down list to (None). Click Finish to complete the wizard.
 
 
 [![Configure the ObjectDataSource to Use the SuppliersBLL Class s GetSuppliers Method](batch-inserting-cs/_static/image20.png)](batch-inserting-cs/_static/image19.png)
@@ -141,7 +141,7 @@ After these two DropDownLists have been added and bound to appropriately configu
 
 We now need to create the TextBoxes to collect the name and price for each new product. Drag a TextBox control from the Toolbox onto the Designer for each of the five product name and price rows. Set the `ID` properties of the TextBoxes to `ProductName1`, `UnitPrice1`, `ProductName2`, `UnitPrice2`, `ProductName3`, `UnitPrice3`, and so on.
 
-Add a CompareValidator after each of the unit price TextBoxes, setting the `ControlToValidate` property to the appropriate `ID`. Also set the `Operator` property to `GreaterThanEqual`, `ValueToCompare` to 0 , and `Type` to `Currency`. These settings instruct the CompareValidator to ensure that the price, if entered, is a valid currency value that is greater than or equal to zero. Set the `Text` property to \* , and `ErrorMessage` to The price must be greater than or equal to zero. Also, please omit any currency symbols.
+Add a CompareValidator after each of the unit price TextBoxes, setting the `ControlToValidate` property to the appropriate `ID`. Also set the `Operator` property to `GreaterThanEqual`, `ValueToCompare` to 0, and `Type` to `Currency`. These settings instruct the CompareValidator to ensure that the price, if entered, is a valid currency value that is greater than or equal to zero. Set the `Text` property to \*, and `ErrorMessage` to The price must be greater than or equal to zero. Also, please omit any currency symbols.
 
 > [!NOTE]
 > The inserting interface does not include any RequiredFieldValidator controls, even though the `ProductName` field in the `Products` database table does not allow `NULL` values. This is because we want to let the user enter up to five products. For example, if the user were to provide the product name and unit price for the first three rows, leaving the last two rows blank, we d just add three new products to the system. Since `ProductName` is required, however, we will need to programmatically check to ensure that if a unit price is entered that a corresponding product name value is provided. We'll tackle this check in Step 4.
@@ -159,11 +159,11 @@ At this point, your screen should look similar to Figure 10.
 **Figure 10**: The Inserting Interface Now Includes TextBoxes for the Products Names and Prices ([Click to view full-size image](batch-inserting-cs/_static/image30.png))
 
 
-Next we need to add the Add Products from Shipment and Cancel buttons to the footer row. Drag two Button controls from the Toolbox into the footer of the inserting interface, setting the Buttons `ID` properties to `AddProducts` and `CancelButton` and `Text` properties to Add Products from Shipment and Cancel , respectively. In addition, set the `CancelButton` control s `CausesValidation` property to `false`.
+Next we need to add the Add Products from Shipment and Cancel buttons to the footer row. Drag two Button controls from the Toolbox into the footer of the inserting interface, setting the Buttons `ID` properties to `AddProducts` and `CancelButton` and `Text` properties to Add Products from Shipment and Cancel, respectively. In addition, set the `CancelButton` control s `CausesValidation` property to `false`.
 
 Finally, we need to add a Label Web control that will display status messages for the two interfaces. For example, when a user successfully adds a new shipment of products, we want to return to the display interface and display a confirmation message. If, however, the user provides a price for a new product but leaves off the product name, we need to display a warning message since the `ProductName` field is required. Since we need this message to display for both interfaces, place it at the top of the page outside of the Panels.
 
-Drag a Label Web control from the Toolbox to the top of the page in the Designer. Set the `ID` property to `StatusLabel`, clear out the `Text` property, and set the `Visible` and `EnableViewState` properties to `false`. As we have seen in previous tutorials, setting the `EnableViewState` property to `false` allows us to programmatically change the Label s property values and have them automatically revert back to their defaults on the subsequent postback. This simplifies the code for showing a status message in response to some user action that disappears on the subsequent postback. Finally, set the `StatusLabel` control s `CssClass` property to Warning , which is the name of a CSS class defined in `Styles.css` that displays text in a large, italic, bold, red font.
+Drag a Label Web control from the Toolbox to the top of the page in the Designer. Set the `ID` property to `StatusLabel`, clear out the `Text` property, and set the `Visible` and `EnableViewState` properties to `false`. As we have seen in previous tutorials, setting the `EnableViewState` property to `false` allows us to programmatically change the Label s property values and have them automatically revert back to their defaults on the subsequent postback. This simplifies the code for showing a status message in response to some user action that disappears on the subsequent postback. Finally, set the `StatusLabel` control s `CssClass` property to Warning, which is the name of a CSS class defined in `Styles.css` that displays text in a large, italic, bold, red font.
 
 Figure 11 shows the Visual Studio Designer after the Label has been added and configured.
 
@@ -192,7 +192,7 @@ This code simply hides the `DisplayInterface` Panel and shows the `InsertingInte
 Next, create event handlers for the Add Products from Shipment and Cancel Button controls in the inserting interface. When either of these Buttons is clicked, we need to revert back to the display interface. Create `Click` event handlers for both Button controls so that they call `ReturnToDisplayInterface`, a method we will add momentarily. In addition to hiding the `InsertingInterface` Panel and showing the `DisplayInterface` Panel, the `ReturnToDisplayInterface` method needs to return the Web controls to their pre-editing state. This involves setting the DropDownLists `SelectedIndex` properties to 0 and clearing out the `Text` properties of the TextBox controls.
 
 > [!NOTE]
-> Consider what might happen if we didn t return the controls to their pre-editing state before returning to the display interface. A user might click the Process Product Shipment button, enter the products from the shipment, and then click Add Products from Shipment . This would add the products and return the user to the display interface. At this point the user might want to add another shipment. Upon clicking the Process Product Shipment button they would return to the inserting interface but the DropDownList selections and TextBox values would still be populated with their previous values.
+> Consider what might happen if we didn t return the controls to their pre-editing state before returning to the display interface. A user might click the Process Product Shipment button, enter the products from the shipment, and then click Add Products from Shipment. This would add the products and return the user to the display interface. At this point the user might want to add another shipment. Upon clicking the Process Product Shipment button they would return to the inserting interface but the DropDownList selections and TextBox values would still be populated with their previous values.
 
 
 [!code-csharp[Main](batch-inserting-cs/samples/sample5.cs)]

@@ -38,7 +38,7 @@ Click **Add**. Visual Studio Express creates the following files and folders:
 
 - *A MoviesController.cs* file in the project's *Controllers* folder.
 - A *Movies* folder in the project's *Views* folder.
-- *Create.cshtml, Delete.cshtml, Details.cshtml, Edit.cshtml*, and *Index.cshtml* in the new *Views\Movies*folder.
+- *Create.cshtml, Delete.cshtml, Details.cshtml, Edit.cshtml*, and *Index.cshtml* in the new *Views\Movies* folder.
 
 ASP.NET MVC 4 automatically created the CRUD (create, read, update, and delete) action methods and views for you (the automatic creation of CRUD action methods and views is known as scaffolding). You now have a fully functional web application that lets you create, list, edit, and delete movie entries.
 

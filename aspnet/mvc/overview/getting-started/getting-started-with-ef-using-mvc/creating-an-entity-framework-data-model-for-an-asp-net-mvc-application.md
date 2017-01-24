@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with Entity Framework 6 Code First using MVC 5 | Microsoft Docs"
 author: tdykstra
-description: "A newer version of this tutorial series is available: Get started with ASP.NET Core and Entity Framework Core using Visual Studio 2015 . The Contoso Universi..."
+description: "A newer version of this tutorial series is available: Get started with ASP.NET Core and Entity Framework Core using Visual Studio 2015. The Contoso Universi..."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 10/22/2015
@@ -145,7 +145,7 @@ In the *Models* folder, create a class file named *Student.cs* and replace the t
 
 [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample3.cs)]
 
-The `ID` property will become the primary key column of the database table that corresponds to this class. By default, the Entity Framework interprets a property that's named `ID` or *classname*`ID` as the primary key.
+The `ID` property will become the primary key column of the database table that corresponds to this class. By default, the Entity Framework interprets a property that's named `ID` or *classname* `ID` as the primary key.
 
 The `Enrollments` property is a *navigation property*. Navigation properties hold other entities that are related to this entity. In this case, the `Enrollments` property of a `Student` entity will hold all of the `Enrollment` entities that are related to that `Student` entity. In other words, if a given `Student` row in the database has two related `Enrollment` rows (rows that contain that student's primary key value in their `StudentID` foreign key column), that `Student` entity's `Enrollments` navigation property will contain those two `Enrollment` entities.
 
@@ -161,7 +161,7 @@ In the *Models* folder, create *Enrollment.cs* and replace the existing code wit
 
 [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample4.cs)]
 
-The `EnrollmentID` property will be the primary key; this entity uses the *classname*`ID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a later tutorial, you'll see how using `ID` without `classname` makes it easier to implement inheritance in the data model.
+The `EnrollmentID` property will be the primary key; this entity uses the *classname* `ID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a later tutorial, you'll see how using `ID` without `classname` makes it easier to implement inheritance in the data model.
 
 The `Grade` property is an [enum](https://msdn.microsoft.com/en-us/data/hh859576.aspx). The question mark after the `Grade` type declaration indicates that the `Grade` property is [nullable](https://msdn.microsoft.com/en-us/library/2cf62fcy.aspx). A grade that's null is different from a zero grade — null means a grade isn't known or hasn't been assigned yet.
 
@@ -175,7 +175,7 @@ Entity Framework interprets a property as a foreign key property if it's named *
 
 ![Course_entity](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image11.png)
 
-In the *Models* folder, create*Course.cs*, replacing the template code with the following code:
+In the *Models* folder, create *Course.cs*, replacing the template code with the following code:
 
 [!code-csharp[Main](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/samples/sample5.cs)]
 
@@ -315,7 +315,7 @@ You can use either **Server Explorer** or **SQL Server Object Explorer** (SSOX) 
     ![Student table](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application/_static/image17.png)
 4. Close the **Server Explorer** connection.
 
-The *ContosoUniversity1.mdf*and *.ldf*database files are in the `C:\Users\<yourusername>` folder.
+The *ContosoUniversity1.mdf* and *.ldf* database files are in the `C:\Users\<yourusername>` folder.
 
 Because you're using the `DropCreateDatabaseIfModelChanges` initializer, you could now make a change to the `Student` class, run the application again, and the database would automatically be re-created to match your change. For example, if you add an `EmailAddress` property to the `Student` class, run the Students page again, and then look at the table again, you will see a new `EmailAddress` column.
 
@@ -325,7 +325,7 @@ The amount of code you had to write in order for the Entity Framework to be able
 
 - The pluralized forms of entity class names are used as table names.
 - Entity property names are used for column names.
-- Entity properties that are named `ID` or *classname*`ID` are recognized as primary key properties.
+- Entity properties that are named `ID` or *classname* `ID` are recognized as primary key properties.
 - A property is interpreted as a foreign key property if it's named *&lt;navigation property name&gt;&lt;primary key property name&gt;* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named the same simply &lt;primary key property name&gt; (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
 
 You've seen that conventions can be overridden. For example, you specified that table names shouldn't be pluralized, and you'll see later how to explicitly mark a property as a foreign key property. You'll learn more about conventions and how to override them in the [Creating a More Complex Data Model](creating-a-more-complex-data-model-for-an-asp-net-mvc-application.md) tutorial later in this series. For more information about conventions, see [Code First Conventions](https://msdn.microsoft.com/en-us/data/jj679962).

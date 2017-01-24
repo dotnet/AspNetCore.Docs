@@ -122,7 +122,7 @@ For more information, download the ASP.NET Browser Definition Files release from
 
 ## System.Web.Mobile.dll Removed from Root Web Configuration File
 
-In previous versions of ASP.NET, a reference to the System.Web.Mobile.dll assembly was included in the root `Web.config` file in the **assemblies** section under . In order to improve performance, the reference to this assembly was removed.
+In previous versions of ASP.NET, a reference to the System.Web.Mobile.dll assembly was included in the root `Web.config` file in the **assemblies** section under. In order to improve performance, the reference to this assembly was removed.
 
 The System.Web.Mobile.dll assembly is included in ASP.NET 4, but it is deprecated. If you want to use types from the System.Web.Mobile.dll assembly, add a reference to this assembly to either the root `Web.config` file or to an application `Web.config` file. For example, if you want to use any of the (deprecated) ASP.NET mobile controls, you must add a reference to the System.Web.Mobile.dll assembly to the `Web.config` file.
 

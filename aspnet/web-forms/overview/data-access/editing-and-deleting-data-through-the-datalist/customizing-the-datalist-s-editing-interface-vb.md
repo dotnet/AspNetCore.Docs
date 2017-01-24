@@ -49,7 +49,7 @@ Before we can create the DataList s editable interface, we first need to build t
 **Figure 2**: Set the UPDATE, INSERT, and DELETE Tabs Drop-Down Lists to (None) ([Click to view full-size image](customizing-the-datalist-s-editing-interface-vb/_static/image6.png))
 
 
-After configuring the ObjectDataSource, Visual Studio will create a default `ItemTemplate` for the DataList that lists the name and value for each of the data fields returned. Modify the `ItemTemplate` so that the template lists the product name in an `<h4>` element along with the category name, supplier name, price, and discontinued status. Moreover, add an Edit button, making sure that its `CommandName` property is set to Edit . The declarative markup for my `ItemTemplate` follows:
+After configuring the ObjectDataSource, Visual Studio will create a default `ItemTemplate` for the DataList that lists the name and value for each of the data fields returned. Modify the `ItemTemplate` so that the template lists the product name in an `<h4>` element along with the category name, supplier name, price, and discontinued status. Moreover, add an Edit button, making sure that its `CommandName` property is set to Edit. The declarative markup for my `ItemTemplate` follows:
 
 
 [!code-aspx[Main](customizing-the-datalist-s-editing-interface-vb/samples/sample1.aspx)]
@@ -91,7 +91,7 @@ Repeat this series of steps to create a DropDownList for the suppliers. Set the 
 
 After adding the two DropDownLists, add a CheckBox for the discontinued state and a TextBox for the product s name. Set the `ID` s for the CheckBox and TextBox to `Discontinued` and `ProductName`, respectively. Add a RequiredFieldValidator to ensure that the user provides a value for the product s name.
 
-Lastly, add the Update and Cancel buttons. Remember that for these two buttons it is imperative that their `CommandName` properties are set to Update and Cancel , respectively.
+Lastly, add the Update and Cancel buttons. Remember that for these two buttons it is imperative that their `CommandName` properties are set to Update and Cancel, respectively.
 
 Feel free to lay out the editing interface however you like. I ve opted to use the same four-column `<table>` layout from the read-only interface, as the following declarative syntax and screen shot illustrates:
 

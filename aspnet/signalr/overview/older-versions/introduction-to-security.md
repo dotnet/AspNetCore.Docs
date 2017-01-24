@@ -109,7 +109,7 @@ SignalR takes the following steps to prevent a malicious site from creating vali
 - **Pass connection token in query string, not cookie**  
  SignalR passes the connection token as a query string value, instead of as a cookie. By not storing the connection token as a cookie, the connection token is not inadvertently forwarded by the browser when malicious code is encountered. Also, the connection token is not persisted beyond the current connection. Therefore, a malicious user cannot make a request under another user's authentication credentials.
 - **Verify connection token**  
- As described in the     [Connection token](#connectiontoken) section, the server knows which connection id is associated with each authenticated user. The server does not process any request from a connection id that does not match the user name. It is unlikely a malicious user could guess a valid request because the malicious user would have to know the user name and the current randomly-generated connection id. That connection id becomes invalid as soon as the connection is ended. Anonymous users should not have access to any sensitive information.
+ As described in the [Connection token](#connectiontoken) section, the server knows which connection id is associated with each authenticated user. The server does not process any request from a connection id that does not match the user name. It is unlikely a malicious user could guess a valid request because the malicious user would have to know the user name and the current randomly-generated connection id. That connection id becomes invalid as soon as the connection is ended. Anonymous users should not have access to any sensitive information.
 
 <a id="recommendations"></a>
 

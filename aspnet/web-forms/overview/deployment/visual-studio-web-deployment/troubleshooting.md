@@ -126,7 +126,7 @@ Format of the initialization string does not conform to specification starting a
 
 ### Possible Cause and Solution
 
-Open the *Web.config* file in the deployed site and check to see whether the connection string values begin with $(ReplacableToken\_ , as in the following example:
+Open the *Web.config* file in the deployed site and check to see whether the connection string values begin with $(ReplacableToken\_, as in the following example:
 
 [!code-xml[Main](troubleshooting/samples/sample5.xml)]
 

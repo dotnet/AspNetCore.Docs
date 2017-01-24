@@ -227,7 +227,7 @@ Start by creating a new file in the `EmailTemplates` folder named `ChangePasswor
 
 [!code-html[Main](recovering-and-changing-passwords-vb/samples/sample4.html)]
 
-Next, set the ChangePassword control's `MailDefinition` property's `BodyFileName`, `IsBodyHtml`, and `Subject` properties to ~/EmailTemplates/ChangePassword.htm , True, and Your password has changed! , respectively.
+Next, set the ChangePassword control's `MailDefinition` property's `BodyFileName`, `IsBodyHtml`, and `Subject` properties to ~/EmailTemplates/ChangePassword.htm, True, and Your password has changed!, respectively.
 
 After making these changes, revisit the page and change your password again. This time, the ChangePassword control sends a customized, HTML-formatted email to the user's email address on file (see Figure 8).
 
@@ -265,7 +265,7 @@ I went ahead and implemented the third approach, writing code that bypasses the 
 > By working directly with the database, the encapsulation provided by the Membership framework is shattered. This decision ties us to the `SqlMembershipProvider`, making our code less portable. Furthermore, this code may not work as expected in future versions of ASP.NET if the Membership schema changes. This approach is a workaround and, like most workarounds, is not an example of best practices.
 
 
-The code has some unattractive bits and is quite lengthy. Therefore, I don't want to clutter this tutorial with an in-depth examination of it. If you are interested in learning more, download the code for this tutorial and visit the `~/Administration/ManageUsers.aspx` page. This page, which we created in the <a id="_msoanchor_5"></a>[preceding tutorial](building-an-interface-to-select-one-user-account-from-many-vb.md) , lists each user. I've updated the GridView to include a link to the `UserInformation.aspx` page, passing the selected user's username through the querystring. The `UserInformation.aspx` page displays information about the selected user and TextBoxes for changing their password (see Figure 9).
+The code has some unattractive bits and is quite lengthy. Therefore, I don't want to clutter this tutorial with an in-depth examination of it. If you are interested in learning more, download the code for this tutorial and visit the `~/Administration/ManageUsers.aspx` page. This page, which we created in the <a id="_msoanchor_5"></a>[preceding tutorial](building-an-interface-to-select-one-user-account-from-many-vb.md), lists each user. I've updated the GridView to include a link to the `UserInformation.aspx` page, passing the selected user's username through the querystring. The `UserInformation.aspx` page displays information about the selected user and TextBoxes for changing their password (see Figure 9).
 
 After entering the new password, confirming it in the second TextBox, and clicking the Update User Button, a postback ensues and the `aspnet_Membership_SetPassword` stored procedure is invoked, updating the user's password. I encourage those readers interested in this functionality to become more familiar with the code and try extending the functionality to include sending an email to the user whose password was changed.
 

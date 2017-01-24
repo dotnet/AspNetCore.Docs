@@ -41,7 +41,7 @@ Create a new web page using the **Web Form using Master Page** template, and nam
 
 [![Image23](the-entity-framework-and-aspnet-getting-started-part-2/_static/image8.png)](the-entity-framework-and-aspnet-getting-started-part-2/_static/image7.png)
 
-Specify *Site.Master*as the master page. All of the pages you create for these tutorials will use this master page.
+Specify *Site.Master* as the master page. All of the pages you create for these tutorials will use this master page.
 
 [![Image24](the-entity-framework-and-aspnet-getting-started-part-2/_static/image10.png)](the-entity-framework-and-aspnet-getting-started-part-2/_static/image9.png)
 

@@ -64,7 +64,7 @@ Before we worry about creating a GridView where are rows are editable, let s sta
 **Figure 3**: Retrieve the Product Data Using the `GetProducts` Method ([Click to view full-size image](batch-updating-cs/_static/image6.png))
 
 
-Like the GridView, the ObjectDataSource s modification features are designed to work on a per-row basis. In order to update a set of records, we'll need to write a bit of code in the ASP.NET page s code-behind class that batches the data and passes it to the BLL. Therefore, set the drop-down lists in the ObjectDataSource s UPDATE, INSERT, and DELETE tabs to (None) . Click Finish to complete the wizard.
+Like the GridView, the ObjectDataSource s modification features are designed to work on a per-row basis. In order to update a set of records, we'll need to write a bit of code in the ASP.NET page s code-behind class that batches the data and passes it to the BLL. Therefore, set the drop-down lists in the ObjectDataSource s UPDATE, INSERT, and DELETE tabs to (None). Click Finish to complete the wizard.
 
 
 [![Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None)](batch-updating-cs/_static/image4.gif)](batch-updating-cs/_static/image7.png)
@@ -77,7 +77,7 @@ After completing the Configure Data Source wizard, the ObjectDataSource s declar
 
 [!code-aspx[Main](batch-updating-cs/samples/sample1.aspx)]
 
-Completing the Configure Data Source wizard also causes Visual Studio to create BoundFields and a CheckBoxField for the product data fields in the GridView. For this tutorial, let s only allow the user to view and edit the product s name, category, price, and discontinued status. Remove all but the `ProductName`, `CategoryName`, `UnitPrice`, and `Discontinued` fields and rename the `HeaderText` properties of the first three fields to Product , Category , and Price , respectively. Lastly, check the Enable Paging and Enable Sorting checkboxes in the GridView s smart tag.
+Completing the Configure Data Source wizard also causes Visual Studio to create BoundFields and a CheckBoxField for the product data fields in the GridView. For this tutorial, let s only allow the user to view and edit the product s name, category, price, and discontinued status. Remove all but the `ProductName`, `CategoryName`, `UnitPrice`, and `Discontinued` fields and rename the `HeaderText` properties of the first three fields to Product, Category, and Price, respectively. Lastly, check the Enable Paging and Enable Sorting checkboxes in the GridView s smart tag.
 
 At this point the GridView has three BoundFields (`ProductName`, `CategoryName`, and `UnitPrice`) and a CheckBoxField (`Discontinued`). We need to convert these four fields into TemplateFields and then move the editing interface from the TemplateField s `EditItemTemplate` to its `ItemTemplate`.
 
@@ -101,7 +101,7 @@ Creating the `ProductName`, `UnitPrice`, and `Discontinued` editing interfaces a
 
 Let s start with the `ProductName` TemplateField. Click on the Edit Templates link from the GridView s smart tag and drill down to the `ProductName` TemplateField s `EditItemTemplate`. Select the TextBox, copy it to the clipboard, and then paste it to the `ProductName` TemplateField s `ItemTemplate`. Change the TextBox s `ID` property to `ProductName`.
 
-Next, add a RequiredFieldValidator to the `ItemTemplate` to ensure that the user provides a value for each product s name. Set the `ControlToValidate` property to ProductName , the `ErrorMessage` property to You must provide the product's name. and the `Text` property to \* . After making these additions to the `ItemTemplate`, your screen should look similar to Figure 6.
+Next, add a RequiredFieldValidator to the `ItemTemplate` to ensure that the user provides a value for each product s name. Set the `ControlToValidate` property to ProductName, the `ErrorMessage` property to You must provide the product's name. and the `Text` property to \*. After making these additions to the `ItemTemplate`, your screen should look similar to Figure 6.
 
 
 [![The ProductName TemplateField Now Includes a TextBox and a RequiredFieldValidator](batch-updating-cs/_static/image6.gif)](batch-updating-cs/_static/image9.png)
@@ -111,7 +111,7 @@ Next, add a RequiredFieldValidator to the `ItemTemplate` to ensure that the user
 
 For the `UnitPrice` editing interface, start by copying the TextBox from the `EditItemTemplate` to the `ItemTemplate`. Next, place a $ in front of the TextBox and set its `ID` property to UnitPrice and its `Columns` property to 8 .
 
-Also add a CompareValidator to the `UnitPrice` s `ItemTemplate` to ensure that the value entered by the user is a valid currency value greater than or equal to $0.00. Set the validator s `ControlToValidate` property to UnitPrice , its `ErrorMessage` property to You must enter a valid currency value. Please omit any currency symbols. , its `Text` property to \* , its `Type` property to `Currency`, its `Operator` property to `GreaterThanEqual`, and its `ValueToCompare` property to 0 .
+Also add a CompareValidator to the `UnitPrice` s `ItemTemplate` to ensure that the value entered by the user is a valid currency value greater than or equal to $0.00. Set the validator s `ControlToValidate` property to UnitPrice, its `ErrorMessage` property to You must enter a valid currency value. Please omit any currency symbols., its `Text` property to \*, its `Type` property to `Currency`, its `Operator` property to `GreaterThanEqual`, and its `ValueToCompare` property to 0 .
 
 
 [![Add a CompareValidator to Ensure the Price Entered is a Non-Negative Currency Value](batch-updating-cs/_static/image7.gif)](batch-updating-cs/_static/image11.png)
@@ -142,7 +142,7 @@ Drag a DropDownList from the Toolbox onto the `CategoryName` TemplateField s `It
 **Figure 9**: Retrieve the Category Data Using the `GetCategories` Method ([Click to view full-size image](batch-updating-cs/_static/image16.png))
 
 
-Since this ObjectDataSource is used merely to retrieve data, set the drop-down lists in the UPDATE and DELETE tabs to (None) . Click Finish to complete the wizard.
+Since this ObjectDataSource is used merely to retrieve data, set the drop-down lists in the UPDATE and DELETE tabs to (None). Click Finish to complete the wizard.
 
 
 [![Set the Drop-Down Lists in the UPDATE and DELETE Tabs to (None)](batch-updating-cs/_static/image10.gif)](batch-updating-cs/_static/image17.png)
@@ -253,7 +253,7 @@ To complete this tutorial, we need to have the `BatchUpdate` method invoked when
 
 First a call is made to `BatchUpdate`. Next, the `ClientScript property` is used to inject JavaScript that will display a messagebox that reads The products have been updated.
 
-Take a minute to test out this code. Visit `BatchUpdate.aspx` through a browser, edit a number of rows, and click one of the Update Products buttons. Assuming there are no input validation errors, you should see a messagebox that reads The products have been updated. To verify the atomicity of the update, consider adding a random `CHECK` constraint, like one that disallows `UnitPrice` values of 1234.56 . Then from `BatchUpdate.aspx`, edit a number of records, making sure to set one of the product s `UnitPrice` value to the forbidden value ( 1234.56 ). This should result in an error when clicking Update Products with the other changes during that batch operation rolled back to their original values.
+Take a minute to test out this code. Visit `BatchUpdate.aspx` through a browser, edit a number of rows, and click one of the Update Products buttons. Assuming there are no input validation errors, you should see a messagebox that reads The products have been updated. To verify the atomicity of the update, consider adding a random `CHECK` constraint, like one that disallows `UnitPrice` values of 1234.56. Then from `BatchUpdate.aspx`, edit a number of records, making sure to set one of the product s `UnitPrice` value to the forbidden value ( 1234.56 ). This should result in an error when clicking Update Products with the other changes during that batch operation rolled back to their original values.
 
 ## An Alternative`BatchUpdate`Method
 

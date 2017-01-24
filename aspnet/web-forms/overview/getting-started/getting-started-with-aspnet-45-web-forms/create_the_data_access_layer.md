@@ -62,7 +62,7 @@ In this tutorial, you'll start out by adding simple entity classes representing 
 
     ![Create the Data Access Layer - New Item Menu](create_the_data_access_layer/_static/image1.png)
 
- The     **Add New Item** dialog box is displayed.
+ The **Add New Item** dialog box is displayed.
 2. Under **Visual C#** from the **Installed** pane on the left, select **Code**. 
 
     ![Create the Data Access Layer - New Item Menu](create_the_data_access_layer/_static/image2.png)
@@ -89,8 +89,8 @@ To start using the classes for data access, you must define a context class. As 
 This procedure adds a new C# context class to the *Models* folder.
 
 1. Right-click the *Models* folder and then select **Add** -&gt; **New Item**.   
- The     **Add New Item** dialog box is displayed.
-2. Select **Class** from the middle pane, name it *ProductContext.cs*and click **Add**.
+ The **Add New Item** dialog box is displayed.
+2. Select **Class** from the middle pane, name it *ProductContext.cs* and click **Add**.
 3. Replace the default code contained in the class with the following code:   
 
     [!code-csharp[Main](create_the_data_access_layer/samples/sample3.cs)]
@@ -161,7 +161,7 @@ When the application is run for the first time, it will build the database at th
 To make sure that all the classes and changes to your Web application work, you should build the application.
 
 1. From the **Debug** menu, select **Build WingtipToys**.  
- The     **Output** window is displayed, and if all went well, you see a     *succeeded* message.  
+ The **Output** window is displayed, and if all went well, you see a *succeeded* message.  
 
     ![Create the Data Access Layer - Output Windows](create_the_data_access_layer/_static/image4.png)
 

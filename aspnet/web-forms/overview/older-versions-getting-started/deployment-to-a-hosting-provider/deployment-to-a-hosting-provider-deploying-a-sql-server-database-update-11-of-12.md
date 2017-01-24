@@ -81,7 +81,7 @@ In the connection string box for **SchoolContext**, enter the same value that yo
 
 Select **Execute Code First Migrations (runs on application start)**. (In your version of Visual Studio, the check box might be labeled **Apply Code First Migrations**.)
 
-In the connection string box for **DefaultConnection**, enter the same value that you used in the *Web.Test.config*transformation file in the previous tutorial:
+In the connection string box for **DefaultConnection**, enter the same value that you used in the *Web.Test.config* transformation file in the previous tutorial:
 
 [!code-console[Main](deployment-to-a-hosting-provider-deploying-a-sql-server-database-update-11-of-12/samples/sample6.cmd)]
 

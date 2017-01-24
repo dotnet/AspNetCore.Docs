@@ -101,7 +101,7 @@ You will now create the *Checkout* folder and the pages in it that the customer 
 By adding a new *Web.config* file to the *Checkout* folder, you will be able to restrict access to all the pages contained in the folder.
 
 1. Right-click the *Checkout* folder and select **Add** -&gt; **New Item**.  
- The     **Add New Item** dialog box is displayed.
+ The **Add New Item** dialog box is displayed.
 2. Select the **Visual C#** -&gt; **Web** templates group on the left. Then, from the middle pane, select **Web Configuration File**, accept the default name of *Web.config*, and then select **Add**.
 3. Replace the existing XML content in the *Web.config* file with the following:  
 
@@ -120,7 +120,7 @@ It's important to note that ASP.NET configuration follows a hierarchy, where eac
 1. In **Solution Explorer**, click the **WingtipToys** project, then press **F4** to display the **Properties** window.
 2. Change **SSL Enabled** to `true`.
 3. Copy the **SSL URL** so you can use it later.   
- The SSL URL will be     `https://localhost:44300/` unless you've previously created SSL Web Sites (as shown below).   
+ The SSL URL will be `https://localhost:44300/` unless you've previously created SSL Web Sites (as shown below).   
     ![Project Properties](checkout-and-payment-with-paypal/_static/image4.png)
 4. In **Solution Explorer**, right click the **WingtipToys** project and click **Properties**.
 5. In the left tab, click **Web**.
@@ -156,7 +156,7 @@ The following steps will allow you to add a Google authentication provider.
 
     [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample5.cs)]
 3. Navigate to the [Google Developers Console](https://console.developers.google.com/). You will also need to sign-in with your Google developer email account (gmail.com). If you do not have a Google account, select the **Create an account** link.   
- Next, you'll see the     **Google Developers Console** .   
+ Next, you'll see the **Google Developers Console**.   
     ![Google Developers Console](checkout-and-payment-with-paypal/_static/image8.png)
 4. Click the **Create Project** button and enter a project name and ID (you can use the default values). Then, click the **agreement checkbox** and the **Create** button.  
 
@@ -165,7 +165,7 @@ The following steps will allow you to add a Google authentication provider.
  In a few seconds the new project will be created and your browser will display the new projects page.
 5. In the left tab, click **APIs &amp; auth**, and then click **Credentials**.
 6. Click the **Create New Client ID** under **OAuth**.   
- The     **Create Client ID** dialog will be displayed.   
+ The **Create Client ID** dialog will be displayed.   
     ![Google - Create Client ID](checkout-and-payment-with-paypal/_static/image10.png)
 7. In the **Create Client ID** dialog, keep the default **Web application** for the application type.
 8. Set the **Authorized JavaScript Origins** to the SSL URL you used earlier in this tutorial (`https://localhost:44300/` unless you've created other SSL projects).   
@@ -180,8 +180,8 @@ The following steps will allow you to add a Google authentication provider.
 12. Click the **APIs** menu item, scroll down and click the **off** button next to **Google+ API**.   
  Accepting this option will enable the Google+ API.
 13. You must also update the **Microsoft.Owin** NuGet package to version 3.0.0.   
- From the     **Tools** menu, select     **NuGet Package Manager** and then select     **Manage NuGet Packages for Solution** .  
- From the     **Manage NuGet Packages** window, find and update the     **Microsoft.Owin** package to version 3.0.0.
+ From the **Tools** menu, select **NuGet Package Manager** and then select **Manage NuGet Packages for Solution**.  
+ From the **Manage NuGet Packages** window, find and update the **Microsoft.Owin** package to version 3.0.0.
 14. In Visual Studio, update the `UseGoogleAuthentication` method of the *Startup.Auth.cs* page by copying and pasting the **Client ID** and **Client Secret** into the method. The **Client ID** and **Client Secret** values shown below are samples and will not work. 
 
     [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample7.cs?highlight=64-65)]
@@ -210,7 +210,7 @@ For now, you can ignore the warning that there is no definition for the `Migrate
 
 The *Login.aspx.cs* code-behind file supports a LogIn method. By inspecting the Login.aspx page, you'll see that this page includes a "Log in" button that when click triggers the `LogIn` handler on the code-behind.
 
-When the `Login` method on the *Login.aspx.cs*is called, a new instance of the shopping cart named `usersShoppingCart` is created. The ID of the shopping cart (a GUID) is retrieved and set to the `cartId` variable. Then, the `MigrateCart` method is called, passing both the `cartId` and the name of the logged-in user to this method. When the shopping cart is migrated, the GUID used to identify the anonymous shopping cart is replaced with the user name.
+When the `Login` method on the *Login.aspx.cs* is called, a new instance of the shopping cart named `usersShoppingCart` is created. The ID of the shopping cart (a GUID) is retrieved and set to the `cartId` variable. Then, the `MigrateCart` method is called, passing both the `cartId` and the name of the logged-in user to this method. When the shopping cart is migrated, the GUID used to identify the anonymous shopping cart is replaced with the user name.
 
 In addition to modifying the *Login.aspx.cs* code-behind file to migrate the shopping cart when the user logs in, you must also modify the *Register.aspx.cs code-behind file* to migrate the shopping cart when the user creates a new account and logs in.
 
@@ -226,7 +226,7 @@ Notice that the code you used in the `CreateUser_Click` event handler is very si
 
 Now that you have the log-in and registration process updated, you can add the code to migrate the shopping cart using the `MigrateCart` method.
 
-1. In **Solution Explorer**, find the *Logic* folder and open the *ShoppingCartActions.cs*class file.
+1. In **Solution Explorer**, find the *Logic* folder and open the *ShoppingCartActions.cs* class file.
 2. Add the code highlighted in yellow to the existing code in the *ShoppingCartActions.cs* file, so that the code in the *ShoppingCartActions.cs* file appears as follows:   
 
     [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample10.cs?highlight=215-224)]
@@ -256,7 +256,7 @@ To use the PayPal testing environment, you must create and verify a developer te
 2. If you don't have a PayPal developer account, create a new account by clicking **Sign Up**and following the sign up steps. If you have an existing PayPal developer account, sign in by clicking **Log In**. You will need your PayPal developer account to test the Wingtip Toys sample application later in this tutorial.
 3. If you have just signed up for your PayPal developer account, you may need to verify your PayPal developer account with PayPal. You can verify your account by following the steps that PayPal sent to your email account. Once you have verified your PayPal developer account, log back into the PayPal developer testing site.
 4. After you are logged in to the PayPal developer site with your PayPal developer account you need to create a PayPal buyer test account if you don't already have one. To create a buyer test account, on the PayPal site click the **Applications** tab and then click **Sandbox accounts**.   
- The     **Sandbox test accounts** page is shown.   
+ The **Sandbox test accounts** page is shown.   
 
     > [!NOTE] 
     > 
@@ -272,11 +272,11 @@ To use the PayPal testing environment, you must create and verify a developer te
 
     ![Checkout and Payment with PayPal - Sandbox test accounts](checkout-and-payment-with-paypal/_static/image16.png)
 7. Create the buyer test account by clicking the **Create Account** button.  
- The     **Sandbox Test accounts** page is displayed. 
+ The **Sandbox Test accounts** page is displayed. 
 
     ![Checkout and Payment with PayPal - PaylPal Accounts](checkout-and-payment-with-paypal/_static/image17.png)
 8. On the **Sandbox test accounts** page, click the **facilitator** email account.  
-    **Profile** and     **Notification** options appear.
+    **Profile** and **Notification** options appear.
 9. Select the **Profile** option, then click **API credentials** to view your API credentials for the merchant test account.
 10. Copy the TEST API credentials to notepad.
 
@@ -287,7 +287,7 @@ You will need your displayed Classic TEST API credentials (Username, Password, a
 You will place the majority of the PayPal code into a single class. This class contains the methods used to communicate with PayPal. Also, you will add your PayPal credentials to this class.
 
 1. In the Wingtip Toys sample application within Visual Studio, right-click the **Logic** folder and then select **Add** -&gt; **New Item**.   
- The     **Add New Item** dialog box is displayed.
+ The **Add New Item** dialog box is displayed.
 2. Under **Visual C#** from the **Installed** pane on the left, select **Code**.
 3. From the middle pane, select **Class**. Name this new class **PayPalFunctions.cs**.
 4. Click **Add**.  
@@ -353,7 +353,7 @@ Now that the primary PayPal functions have been added to the sample application,
     [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample18.cs?highlight=18)]
 6. Save your changes to both the *ShoppingCart.aspx* file and the *ShoppingCart.aspx.cs* file.
 7. From the menu, select **Debug**-&gt;**Build WingtipToys**.  
- The project will be rebuilt with the newly added     **ImageButton** control.
+ The project will be rebuilt with the newly added **ImageButton** control.
 
 ### Send Purchase Details to PayPal
 
@@ -375,7 +375,7 @@ After returning from PayPal, the *CheckoutReview.aspx* page of the Wingtip Toys 
 2. Replace the existing markup with the following:   
 
     [!code-aspx[Main](checkout-and-payment-with-paypal/samples/sample20.aspx)]
-3. Open the code-behind page named *CheckoutReview.aspx.cs*and replace the existing code with the following:   
+3. Open the code-behind page named *CheckoutReview.aspx.cs* and replace the existing code with the following:   
 
     [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample21.cs)]
 
@@ -402,7 +402,7 @@ The **DetailsView** control is used to display the order details that have been 
 2. Replace the existing markup with the following:   
 
     [!code-aspx[Main](checkout-and-payment-with-paypal/samples/sample22.aspx)]
-3. Open the code-behind page named *CheckoutComplete.aspx.cs*and replace the existing code with the following:   
+3. Open the code-behind page named *CheckoutComplete.aspx.cs* and replace the existing code with the following:   
 
     [!code-csharp[Main](checkout-and-payment-with-paypal/samples/sample23.cs)]
 
@@ -410,7 +410,7 @@ When the *CheckoutComplete.aspx* page is loaded, the `DoCheckoutPayment` method 
 
 ### Handle Cancel Purchase
 
-If the user decides to cancel the purchase, they will be directed to the *CheckoutCancel.aspx*page where they will see that their order has been cancelled.
+If the user decides to cancel the purchase, they will be directed to the *CheckoutCancel.aspx* page where they will see that their order has been cancelled.
 
 1. Open the page named *CheckoutCancel.aspx* in the *Checkout* folder.
 2. Replace the existing markup with the following:   
@@ -435,9 +435,9 @@ Run the application to see how to purchase products. Note that you will be runni
 1. Make sure all your files are saved in Visual Studio.
 2. Open a Web browser and navigate to [https://developer.paypal.com](https://developer.paypal.com/).
 3. Login with your PayPal developer account that you created earlier in this tutorial.  
- For PayPal's developer sandbox, you need to be logged in at     [https://developer.paypal.com](https://developer.paypal.com/) to test express checkout. This only applies to PayPal's sandbox testing, not to PayPal's live environment.
+ For PayPal's developer sandbox, you need to be logged in at [https://developer.paypal.com](https://developer.paypal.com/) to test express checkout. This only applies to PayPal's sandbox testing, not to PayPal's live environment.
 4. In Visual Studio, press **F5** to run the Wingtip Toys sample application.  
- After the database rebuilds, the browser will open and show the     *Default.aspx* page.
+ After the database rebuilds, the browser will open and show the *Default.aspx* page.
 5. Add three different products to the shopping cart by selecting the product category, such as "Cars" and then clicking **Add to Cart** next to each product.  
  The shopping cart will display the product you have selected.
 6. Click the **PayPal** button to checkout. 
@@ -446,7 +446,7 @@ Run the application to see how to purchase products. Note that you will be runni
 
  Checking out will require that you have a user account for the Wingtip Toys sample application.
 7. Click the **Google** link on the right of the page to log in with an existing gmail.com email account.  
- If you do not have a gmail.com account, you can create one for testing purposes at     [www.gmail.com](https://www.gmail.com/) . You can also use a standard local account by clicking "Register". 
+ If you do not have a gmail.com account, you can create one for testing purposes at [www.gmail.com](https://www.gmail.com/). You can also use a standard local account by clicking "Register". 
 
     ![Checkout and Payment with PayPal - Log in](checkout-and-payment-with-paypal/_static/image21.png)
 8. Sign in with your gmail account and password. 
@@ -482,12 +482,12 @@ You can inspect the data contained in the *Wingtiptoys.mdf* database file by usi
 1. Close the browser window if it is still open.
 2. In Visual Studio, select the **Show All Files** icon at the top of **Solution Explorer** to allow you to expand the **App\_Data** folder.
 3. Expand the **App\_Data** folder.  
- You may need to select the     **Show All Files** icon for the folder.
+ You may need to select the **Show All Files** icon for the folder.
 4. Right-click the *Wingtiptoys.mdf* database file and select **Open**.  
     **Server Explorer** is displayed.
 5. Expand the **Tables** folder.
 6. Right-click the **Orders**table and select **Show Table Data**.  
- The     **Orders** table is displayed.
+ The **Orders** table is displayed.
 7. Review the **PaymentTransactionID** column to confirm successful transactions. 
 
     ![Checkout and Payment with PayPal - Review Database](checkout-and-payment-with-paypal/_static/image29.png)

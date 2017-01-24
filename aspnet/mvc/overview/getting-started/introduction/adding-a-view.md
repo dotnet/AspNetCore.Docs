@@ -26,7 +26,7 @@ Currently the `Index` method returns a string with a message that is hard-coded 
 
 The `Index` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as [action methods](http://rachelappel.com/asp.net-mvc-actionresults-explained)), such as the `Index` method above, generally return an [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult.aspx) (or a class derived from [ActionResult](https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult.aspx)), not primitive types like string.
 
-Right click the *Views\HelloWorld*folder and click **Add**, then click **MVC 5 View Page with (Layout Razor)**.
+Right click the *Views\HelloWorld* folder and click **Add**, then click **MVC 5 View Page with (Layout Razor)**.
   
 ![](adding-a-view/_static/image1.png)   
   
@@ -48,11 +48,11 @@ Add the following highlighed markup.
 
 [!code-cshtml[Main](adding-a-view/samples/sample2.cshtml?highlight=4-11)]
 
-Right click the*Index.cshtml*file and select **View in Browser**.
+Right click the *Index.cshtml* file and select **View in Browser**.
 
 ![PI](adding-a-view/_static/image5.png)
 
-You can also right click the*Index.cshtml*file and select **View in Page Inspector.** See the [Page Inspector tutorial](../../views/using-page-inspector-in-aspnet-mvc.md) for more information.
+You can also right click the *Index.cshtml* file and select **View in Page Inspector.** See the [Page Inspector tutorial](../../views/using-page-inspector-in-aspnet-mvc.md) for more information.
 
 Alternatively, run the application and browse to the `HelloWorld` controller (`http://localhost:xxxx/HelloWorld`). The `Index` method in your controller didn't do much work; it simply ran the statement `return View()`, which specified that the method should use a view template file to render a response to the browser. Because you didn't explicitly specify the name of the view template file to use, ASP.NET MVC defaulted to using the *Index.cshtml* view file in the *\Views\HelloWorld* folder. The image below shows the string &quot;Hello from our View Template!&quot; hard-coded in the view.
 
@@ -80,7 +80,7 @@ When we first created the *Views\HelloWorld\Index.cshtml* file, it contained the
 
 [!code-cshtml[Main](adding-a-view/samples/sample4.cshtml)]
 
-The Razor code above is explicted setting the layout page. Examine the *Views\\_ViewStart.cshtml* file, it contains the exact same Razor markup. The*[Views\\_ViewStart.cshtml](https://weblogs.asp.net/scottgu/archive/2010/10/22/asp-net-mvc-3-layouts.aspx)* file defines the common layout that all views will use, therefore you can comment out or remove that code from the *Views\HelloWorld\Index.cshtml* file.
+The Razor code above is explicted setting the layout page. Examine the *Views\\_ViewStart.cshtml* file, it contains the exact same Razor markup. The *[Views\\_ViewStart.cshtml](https://weblogs.asp.net/scottgu/archive/2010/10/22/asp-net-mvc-3-layouts.aspx)* file defines the common layout that all views will use, therefore you can comment out or remove that code from the *Views\HelloWorld\Index.cshtml* file.
 
 [!code-cshtml[Main](adding-a-view/samples/sample5.cshtml?highlight=1-3)]
 
@@ -118,7 +118,7 @@ Return to the *HelloWorldController.cs* file and change the `Welcome` method to 
 
 [!code-csharp[Main](adding-a-view/samples/sample8.cs)]
 
-Now the `ViewBag` object contains data that will be passed to the view automatically. Next, you need a Welcome view template! In the **Build** menu, select **Build Solution** (or Ctrl+Shift+B) to make sure the project is compiled. Right click the *Views\HelloWorld*folder and click **Add**, then click **MVC 5 View Page with (Layout Razor)**.
+Now the `ViewBag` object contains data that will be passed to the view automatically. Next, you need a Welcome view template! In the **Build** menu, select **Build Solution** (or Ctrl+Shift+B) to make sure the project is compiled. Right click the *Views\HelloWorld* folder and click **Add**, then click **MVC 5 View Page with (Layout Razor)**.
   
 ![](adding-a-view/_static/image10.png)   
   

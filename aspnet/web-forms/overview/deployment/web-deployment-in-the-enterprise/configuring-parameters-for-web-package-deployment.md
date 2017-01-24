@@ -61,10 +61,10 @@ The WPP also parameterizes these properties in the deployment package it generat
 In more complex deployment scenarios, you'll often want to parameterize additional properties before you deploy your project. Generally speaking, you should parameterize any properties and settings that will vary between destination environments. These can include:
 
 - Service endpoints in the *web.config* file.
-- Application settings in the *web.config*file.
+- Application settings in the *web.config* file.
 - Any other declarative properties that you want to prompt users to specify.
 
-The easiest way to parameterize these properties is to add a *parameters.xml* file to the root folder of your web application project. For example, in the Contact Manager solution, the ContactManager.Mvc project includes a *parameters.xml*file in the root folder.
+The easiest way to parameterize these properties is to add a *parameters.xml* file to the root folder of your web application project. For example, in the Contact Manager solution, the ContactManager.Mvc project includes a *parameters.xml* file in the root folder.
 
 ![](configuring-parameters-for-web-package-deployment/_static/image1.png)
 
@@ -104,7 +104,7 @@ First, the parameter values of interest are defined as properties in the environ
 > For guidance on how to customize the environment-specific project files for your own server environments, see [Configure Deployment Properties for a Target Environment](../configuring-server-environments-for-web-deployment/configuring-deployment-properties-for-a-target-environment.md).
 
 
-Next, the *Publish.proj*file imports these properties. Because each *SetParameters.xml* file is associated with a *.deploy.cmd* file, and we ultimately want the project file to invoke each *.deploy.cmd* file, the project file creates an MSBuild *item* for each *.deploy.cmd* file and defines the properties of interest as *item metadata*.
+Next, the *Publish.proj* file imports these properties. Because each *SetParameters.xml* file is associated with a *.deploy.cmd* file, and we ultimately want the project file to invoke each *.deploy.cmd* file, the project file creates an MSBuild *item* for each *.deploy.cmd* file and defines the properties of interest as *item metadata*.
 
 
 [!code-xml[Main](configuring-parameters-for-web-package-deployment/samples/sample5.xml)]
@@ -132,13 +132,13 @@ You'll notice that each **XmlPoke** task specifies four attribute values:
 
 ## Conclusion
 
-This topic described the role of the *SetParameters.xm*l file and explained how it's generated when you build a web application project. It explained how you can parameterize additional settings by adding a *parameters.xml* file to your project. It also described how you can modify the *SetParameters.xml* file as part of a larger, automated build process, by using the **XmlPoke** task in your project files.
+This topic described the role of the *SetParameters.xml* file and explained how it's generated when you build a web application project. It explained how you can parameterize additional settings by adding a *parameters.xml* file to your project. It also described how you can modify the *SetParameters.xml* file as part of a larger, automated build process, by using the **XmlPoke** task in your project files.
 
 The next topic, [Deploying Web Packages](deploying-web-packages.md), describes how you can deploy a web package either by running the *.deploy.cmd* file or by using MSDeploy.exe commands directly. In both cases, you can specify your *SetParameters.xml* file as a deployment parameter.
 
 ## Further Reading
 
-For information on how to create web packages, see [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md). For guidance on how to actually deploy a web package, see [Deploying Web Packages](deploying-web-packages.md). For a step-by-step walkthrough on how to create a *parameters.xml*file, see [How to: Use Parameters to Configure Deployment Settings When a Package is Installed](https://msdn.microsoft.com/en-us/library/ff398068.aspx).
+For information on how to create web packages, see [Building and Packaging Web Application Projects](building-and-packaging-web-application-projects.md). For guidance on how to actually deploy a web package, see [Deploying Web Packages](deploying-web-packages.md). For a step-by-step walkthrough on how to create a *parameters.xml* file, see [How to: Use Parameters to Configure Deployment Settings When a Package is Installed](https://msdn.microsoft.com/en-us/library/ff398068.aspx).
 
 For more general information on parameterization in Web Deploy, see [Web Deploy Parameterization in Action](https://go.microsoft.com/?linkid=9805119) (blog post).
 

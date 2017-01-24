@@ -62,7 +62,7 @@ We will publish initial implementations of these URLs by adding two public "acti
 
 [!code-csharp[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample1.cs)]
 
-We'll then run the NerdDinner application and use our browser to invoke them. Typing in the *"/Dinners/"* URL will cause our*Index()* method to run, and it will send back the following response:
+We'll then run the NerdDinner application and use our browser to invoke them. Typing in the *"/Dinners/"* URL will cause our *Index()* method to run, and it will send back the following response:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image4.png)
 

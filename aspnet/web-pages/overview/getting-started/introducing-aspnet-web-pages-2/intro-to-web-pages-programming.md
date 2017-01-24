@@ -247,7 +247,7 @@ In case you're not entirely sure of what you've just done, here's a summary.
 - The message variable is initialized to a default string ("This is the first time ...").
 - If the page request is the result of a submit (post), the value of message is changed to "Now you've submitted ..."
 - The showMessage variable is initialized to false.
-- If the query string contains ?show=true , the showMessage variable is set to true.
+- If the query string contains ?show=true, the showMessage variable is set to true.
 - In the markup, if showMessage is true, a &lt;p&gt; element is rendered that shows the value of message. (If showMessage is false, nothing is rendered at that point in the markup.)
 - In the markup, if the request is a post, a &lt;p&gt; element is rendered that displays the date and time.
 

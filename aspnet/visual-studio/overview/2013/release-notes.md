@@ -692,19 +692,11 @@ Workaround:
 
     1. Add the WebApiConfig class to your project.
 
-        **C#**
-
         [!code-csharp[Main](release-notes/samples/sample25.cs)]
-
-        **Visual Basic**
 
         [!code-vb[Main](release-notes/samples/sample26.vb)]
     2. Configure WebApiConfig.Register in the Application\_Start method in Global.asax as follows:
 
-        **C#**
-
         [!code-csharp[Main](release-notes/samples/sample27.cs)]
-
-        **Visual Basic**
 
         [!code-vb[Main](release-notes/samples/sample28.vb)]

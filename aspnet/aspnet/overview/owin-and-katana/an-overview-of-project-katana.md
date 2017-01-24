@@ -127,7 +127,7 @@ From the command line, we can then navigate to the project root folder and simpl
 
 ## Katana Architecture
 
- The Katana component architecture divides an application into four logical layers, as depicted below: *host, server, middleware,*and*application*. The component architecture is factored in such a way that implementations of these layers can be easily substituted, in many cases, without requiring recompilation of the application.   
+ The Katana component architecture divides an application into four logical layers, as depicted below: *host, server, middleware,* and *application*. The component architecture is factored in such a way that implementations of these layers can be easily substituted, in many cases, without requiring recompilation of the application.   
 
 ![](an-overview-of-project-katana/_static/image3.png)
 

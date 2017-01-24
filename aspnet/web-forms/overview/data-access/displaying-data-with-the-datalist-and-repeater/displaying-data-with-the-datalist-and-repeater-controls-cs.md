@@ -276,7 +276,7 @@ For our example, let s have the category columns alternate background colors, li
 
 [!code-aspx[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample9.aspx)]
 
-Let s also add a header row to the output with the text Product Categories . Since we don t know how many columns our resulting `<table>` will be comprised of, the simplest way to generate a header row that is guaranteed to span all columns is to use *two*`<table>` s. The first `<table>` will contain two rows the header row and a row that will contain the second, single-row `<table>` that has a column for each category in the system. That is, we want to emit the following markup:
+Let s also add a header row to the output with the text Product Categories. Since we don t know how many columns our resulting `<table>` will be comprised of, the simplest way to generate a header row that is guaranteed to span all columns is to use *two* `<table>` s. The first `<table>` will contain two rows the header row and a row that will contain the second, single-row `<table>` that has a column for each category in the system. That is, we want to emit the following markup:
 
 
 [!code-html[Main](displaying-data-with-the-datalist-and-repeater-controls-cs/samples/sample10.html)]

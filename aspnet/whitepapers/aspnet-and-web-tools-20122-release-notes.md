@@ -272,7 +272,7 @@ With JQuery 1.9/Knockout 2.2.1 update, when running default MVC SPA project, new
 To workaround reference [http://knockoutjs.com/documentation/hasfocus-binding.html](http://knockoutjs.com/documentation/hasfocus-binding.html), and make similar fix to the following sample code:
 
 File todo.model.js  
- function todolist(data) , add following:  
+ function todolist(data), add following:  
  **self.isSelected = ko.observable(false);**
 
 function todoList.prototype.addTodo, add the following blacked text:  

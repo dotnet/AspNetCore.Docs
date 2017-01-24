@@ -277,7 +277,7 @@ Some external authentication providers do not support testing your application b
 
         <kbd>appcmd.exe set config -section:system.applicationHost/sites /+&quot;[name='WebApplication1'].bindings.[protocol='http',bindingInformation='*:80:www.wingtiptoys.com']&quot; /commit:apphost</kbd>
 
- Where         **WebApplication1** is the name of your project and         **bindingInformation** contains the port number and FQDN that you want to use for your testing.
+ Where **WebApplication1** is the name of your project and **bindingInformation** contains the port number and FQDN that you want to use for your testing.
 
 <a id="OBTAIN"></a>
 ### How to Obtain your Application Settings for Microsoft Authentication

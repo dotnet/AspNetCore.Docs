@@ -126,7 +126,7 @@ You use view data to pass data from a controller to a view. Think of view data l
 
 [!code-vb[Main](asp-net-mvc-views-overview-vb/samples/sample6.vb)]
 
-The controller ViewData property represents a collection of name and value pairs. In Listing 6, the Index() method adds an item to the view data collection named message with the value Hello World! . When the view is returned by the Index() method, the view data is passed to the view automatically.
+The controller ViewData property represents a collection of name and value pairs. In Listing 6, the Index() method adds an item to the view data collection named message with the value Hello World!. When the view is returned by the Index() method, the view data is passed to the view automatically.
 
 The view in Listing 7 retrieves the message from the view data and renders the message to the browser.
 

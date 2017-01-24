@@ -32,7 +32,7 @@ In the database tool (Database Explorer, Server Explorer or SQL Server Object Ex
 
 ![](adding-a-new-field-to-the-movie-model-and-table/_static/image1.png)
 
-Navigate back to Solution Explorer. Right click on the *Movies.mdf*file and select **Delete** to remove the movies database.
+Navigate back to Solution Explorer. Right click on the *Movies.mdf* file and select **Delete** to remove the movies database.
 
 ![](adding-a-new-field-to-the-movie-model-and-table/_static/image2.png)
 
@@ -50,7 +50,7 @@ The **Enable-Migrations** command (shown above) creates a *Configuration.cs* fil
 
 ![](adding-a-new-field-to-the-movie-model-and-table/_static/image5.png)
 
-Visual Studio opens the*Configuration.cs* file. Replace the `Seed` method in the *Configuration.cs* file with the following code:
+Visual Studio opens the *Configuration.cs* file. Replace the `Seed` method in the *Configuration.cs* file with the following code:
 
 [!code-csharp[Main](adding-a-new-field-to-the-movie-model-and-table/samples/sample1.cs)]
 
@@ -81,7 +81,7 @@ In the **Package Manager Console**, enter the command "update-database" to creat
 
 ![](adding-a-new-field-to-the-movie-model-and-table/_static/image8.png)
 
-If you get an error that indicates a table already exists and can't be created, it is probably because you ran the application after you deleted the database and before you executed `update-database`. In that case, delete the *Movies.mdf*file again and retry the `update-database` command. If you still get an error, delete the migrations folder and contents then start with the instructions at the top of this page (that is delete the *Movies.mdf* file then proceed to Enable-Migrations).
+If you get an error that indicates a table already exists and can't be created, it is probably because you ran the application after you deleted the database and before you executed `update-database`. In that case, delete the *Movies.mdf* file again and retry the `update-database` command. If you still get an error, delete the migrations folder and contents then start with the instructions at the top of this page (that is delete the *Movies.mdf* file then proceed to Enable-Migrations).
 
 Run the application and navigate to the */Movies* URL. The seed data is displayed.
 

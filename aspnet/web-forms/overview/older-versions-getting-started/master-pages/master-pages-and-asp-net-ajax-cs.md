@@ -23,7 +23,7 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
 ## Introduction
 
-Over the past several years, more and more developers have been building [AJAX](http://en.wikipedia.org/wiki/Ajax_(programming))-enabled web applications. An AJAX-enabled website uses a number of related web technologies to offer a more responsive user experience. Creating AJAX-enabled ASP.NET applications is amazingly easy thanks to Microsoft's [ASP.NET AJAX framework](../../../../ajax/overview.md). ASP.NET AJAX is built into ASP.NET 3.5 and Visual Studio 2008; it is also available as a separate download for ASP.NET 2.0 applications.
+Over the past several years, more and more developers have been building [AJAX](http://en.wikipedia.org/wiki/Ajax_(programming))-enabled web applications. An AJAX-enabled website uses a number of related web technologies to offer a more responsive user experience. Creating AJAX-enabled ASP.NET applications is amazingly easy thanks to Microsoft's [ASP.NET AJAX framework](../../../../ajax/index.md). ASP.NET AJAX is built into ASP.NET 3.5 and Visual Studio 2008; it is also available as a separate download for ASP.NET 2.0 applications.
 
 When building AJAX-enabled web pages with the ASP.NET AJAX framework, you must add precisely one [ScriptManager control](https://msdn.microsoft.com/en-us/library/bb398863.aspx) to each and every page that uses the framework. As its name implies, the ScriptManager manages the client-side script used in AJAX-enabled web pages. At a minimum, the ScriptManager emits HTML that instructs the browser to download the JavaScript files that makeup the ASP.NET AJAX Client Library. It can also be used to register custom JavaScript files, script-enabled web services, and custom application service functionality.
 
@@ -249,7 +249,7 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [ASP.NET AJAX Framework](../../../../ajax/overview.md)
+- [ASP.NET AJAX Framework](../../../../ajax/index.md)
 - [ASP.NET AJAX Tutorials](../aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax.md)
 - [ASP.NET AJAX Videos](../../../videos/aspnet-ajax/index.md)
 - [Building Interactive User Interface with Microsoft ASP.NET AJAX](http://aspnet.4guysfromrolla.com/articles/101007-1.aspx)

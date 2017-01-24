@@ -319,7 +319,7 @@ If you leave the *Allow this precompiled site to be updatable* checkbox checked,
 
 The *Use fixed naming and single page assemblies* checkbox allows you to disable batch compilation so that each page is compiled into a fixed-named assembly. Leaving this box unchecked allows you to take advantage of batch compilation.
 
-The *Enable strong naming on precompiled assemblies*checkbox allows you to strong-name your precompiled assemblies.
+The *Enable strong naming on precompiled assemblies* checkbox allows you to strong-name your precompiled assemblies.
 
 > [!NOTE]
 > In ASP.NET 1.x, strong-named assemblies had to be installed into the Global Assembly Cache (GAC). In ASP.NET 2.0, you are not required to install strong-named assemblies into the GAC.
@@ -370,7 +370,7 @@ The addition of the ASP.NET Development Server allows non-administrators to easi
 
 ## Debug is False by Default
 
-In ASP.NET 1.x, the *debug* attribute in the*compilation* element of the web.config file was set to *true* by default. It has always been recommended that developers set this attribute to *false* before deploying an application to production, but because most developers don't fully understand the consequences of leaving the debug attribute set to true, they simply left it as-is.
+In ASP.NET 1.x, the *debug* attribute in the *compilation* element of the web.config file was set to *true* by default. It has always been recommended that developers set this attribute to *false* before deploying an application to production, but because most developers don't fully understand the consequences of leaving the debug attribute set to true, they simply left it as-is.
 
 The most severe problem with having the debug attribute set to true is that it disables ASP.NETs batch compilation model. Therefore, each page is compiled into a separate DLL. If a Web application consists of thousands of pages (not unheard of by any means), that means several thousand small DLLs will be created by that application. While these DLLs are small in size, they are not loaded into any particular location in memory. Therefore, they cause fragmentation in system memory and can contribute to OutOfMemoryException occurrences.
 

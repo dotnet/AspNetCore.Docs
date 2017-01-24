@@ -71,7 +71,7 @@ Similarly, the `<asp:PostBackTrigger>` element can be used to trigger a partial 
 
 [!code-csharp[Main](understanding-asp-net-ajax-updatepanel-triggers/samples/sample2.cs)]
 
-1. Press F5 to build and run the project. Note that, when you click Update Both Panels , both labels change text; however, when you click Update This Panel, only Label1 updates.
+1. Press F5 to build and run the project. Note that, when you click Update Both Panels, both labels change text; however, when you click Update This Panel, only Label1 updates.
 
 
 [![](understanding-asp-net-ajax-updatepanel-triggers/_static/image2.png)](understanding-asp-net-ajax-updatepanel-triggers/_static/image1.png)

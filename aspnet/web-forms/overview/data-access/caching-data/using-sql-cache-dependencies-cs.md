@@ -99,7 +99,7 @@ This will add the database to the Databases folder. The database name might be t
 
 ## Step 3: Adding the Polling Infrastructure to the Northwind Database
 
-Now that we have attached the `NORTHWND.MDF` database from the `App_Data` folder, we re ready to add the polling infrastructure. Assuming that you ve renamed the database to DataTutorials , run the following four commands:
+Now that we have attached the `NORTHWND.MDF` database from the `App_Data` folder, we re ready to add the polling infrastructure. Assuming that you ve renamed the database to DataTutorials, run the following four commands:
 
 
 [!code-console[Main](using-sql-cache-dependencies-cs/samples/sample5.cmd)]
@@ -172,7 +172,7 @@ Next, create an event handler for the ObjectDataSource s `Selecting` event and i
 
 Recall that the ObjectDataSource s `Selecting` event fires only when retrieving data from its underlying object. If the ObjectDataSource accesses the data from its own cache, this event is not fired.
 
-Now, visit this page through a browser. Since we ve yet to implement any caching, each time you page, sort, or edit the grid the page should display the text, �Selecting event fired , as Figure 8 shows.
+Now, visit this page through a browser. Since we ve yet to implement any caching, each time you page, sort, or edit the grid the page should display the text, �Selecting event fired, as Figure 8 shows.
 
 
 [![The ObjectDataSource s Selecting Event Fires Each Time the GridView is Paged, Edited, or Sorted](using-sql-cache-dependencies-cs/_static/image8.gif)](using-sql-cache-dependencies-cs/_static/image9.png)

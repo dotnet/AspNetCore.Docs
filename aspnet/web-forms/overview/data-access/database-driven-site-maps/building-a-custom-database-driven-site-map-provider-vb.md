@@ -132,9 +132,9 @@ The final step in the Configure Data Source wizard prompts for a parameter sourc
 **Figure 9**: Use the `CategoryID` Querystring Field for the *categoryID* Parameter ([Click to view full-size image](building-a-custom-database-driven-site-map-provider-vb/_static/image12.png))
 
 
-After completing the wizard, Visual Studio will add corresponding BoundFields and a CheckBoxField to the GridView for the product data fields. Remove all but the `ProductName`, `UnitPrice`, and `SupplierName` BoundFields. Customize these three BoundFields `HeaderText` properties to read Product , Price , and Supplier , respectively. Format the `UnitPrice` BoundField as a currency.
+After completing the wizard, Visual Studio will add corresponding BoundFields and a CheckBoxField to the GridView for the product data fields. Remove all but the `ProductName`, `UnitPrice`, and `SupplierName` BoundFields. Customize these three BoundFields `HeaderText` properties to read Product, Price, and Supplier, respectively. Format the `UnitPrice` BoundField as a currency.
 
-Next, add a HyperLinkField and move it to the left-most position. Set its `Text` property to View Details , its `DataNavigateUrlFields` property to `ProductID`, and its `DataNavigateUrlFormatString` property to `~/SiteMapProvider/ProductDetails.aspx?ProductID={0}`.
+Next, add a HyperLinkField and move it to the left-most position. Set its `Text` property to View Details, its `DataNavigateUrlFields` property to `ProductID`, and its `DataNavigateUrlFormatString` property to `~/SiteMapProvider/ProductDetails.aspx?ProductID={0}`.
 
 
 ![Add a View Details HyperLinkField that Points to ProductDetails.aspx](building-a-custom-database-driven-site-map-provider-vb/_static/image10.gif)
@@ -165,7 +165,7 @@ The final page, `ProductDetails.aspx`, displays the selected products details. O
 **Figure 12**: Configure the ObjectDataSource to Use the `GetProductByProductID(productID)` Method ([Click to view full-size image](building-a-custom-database-driven-site-map-provider-vb/_static/image16.png))
 
 
-The last step of the Configure Data Source wizard prompts for the source of the *productID* parameter. Since this data comes through the querystring field `ProductID`, set the drop-down list to QueryString and the QueryStringField textbox to ProductID . Finally, click the Finish button to complete the wizard.
+The last step of the Configure Data Source wizard prompts for the source of the *productID* parameter. Since this data comes through the querystring field `ProductID`, set the drop-down list to QueryString and the QueryStringField textbox to ProductID. Finally, click the Finish button to complete the wizard.
 
 
 [![Configure the productID Parameter to Pull its Value from the ProductID Querystring Field](building-a-custom-database-driven-site-map-provider-vb/_static/image13.gif)](building-a-custom-database-driven-site-map-provider-vb/_static/image17.png)
@@ -284,7 +284,7 @@ With the custom site map provider created and registered in `Web.config`, we re 
 
 The SiteMapPath control displays a breadcrumb, indicating the current page s location within the site map. We added a SiteMapPath to the top of the master page back in the *Master Pages and Site Navigation* tutorial.
 
-Take a moment to view this page through a browser. The SiteMapPath added in Figure 16 uses the default site map provider, pulling its data from `Web.sitemap`. Therefore, the breadcrumb shows Home &gt; Customizing the Site Map , just like the breadcrumb in the upper-right corner.
+Take a moment to view this page through a browser. The SiteMapPath added in Figure 16 uses the default site map provider, pulling its data from `Web.sitemap`. Therefore, the breadcrumb shows Home &gt; Customizing the Site Map, just like the breadcrumb in the upper-right corner.
 
 
 [![The Breadcrumb Uses the Default Site Map Provider](building-a-custom-database-driven-site-map-provider-vb/_static/image22.gif)](building-a-custom-database-driven-site-map-provider-vb/_static/image21.gif)
@@ -292,7 +292,7 @@ Take a moment to view this page through a browser. The SiteMapPath added in Figu
 **Figure 17**: The Breadcrumb Uses the Default Site Map Provider ([Click to view full-size image](building-a-custom-database-driven-site-map-provider-vb/_static/image23.gif))
 
 
-To have the SiteMapPath added in Figure 16 use the custom site map provider we created in Step 6, set its [`SiteMapProvider` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sitemappath.sitemapprovider.aspx) to Northwind , the name we assigned to the `NorthwindSiteMapProvider` in `Web.config`. Unfortunately, the Designer continues to use the default site map provider, but if you visit the page through a browser after making this property change you'll see that the breadcrumb now uses the custom site map provider.
+To have the SiteMapPath added in Figure 16 use the custom site map provider we created in Step 6, set its [`SiteMapProvider` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.sitemappath.sitemapprovider.aspx) to Northwind, the name we assigned to the `NorthwindSiteMapProvider` in `Web.config`. Unfortunately, the Designer continues to use the default site map provider, but if you visit the page through a browser after making this property change you'll see that the breadcrumb now uses the custom site map provider.
 
 
 [![The Breadcrumb Now Uses the Custom Site Map Provider NorthwindSiteMapProvider](building-a-custom-database-driven-site-map-provider-vb/_static/image25.gif)](building-a-custom-database-driven-site-map-provider-vb/_static/image24.gif)
@@ -300,7 +300,7 @@ To have the SiteMapPath added in Figure 16 use the custom site map provider we c
 **Figure 18**: The Breadcrumb Now Uses the Custom Site Map Provider `NorthwindSiteMapProvider` ([Click to view full-size image](building-a-custom-database-driven-site-map-provider-vb/_static/image26.gif))
 
 
-The SiteMapPath control displays a more functional user interface in the `ProductsByCategory.aspx` and `ProductDetails.aspx` pages. Add a SiteMapPath to these pages, setting the `SiteMapProvider` property in both to Northwind . From `Default.aspx` click on the View Products link for Beverages, and then on the View Details link for Chai Tea. As Figure 19 shows, the breadcrumb includes the current site map section ( Chai Tea ) and its ancestors: Beverages and All Categories .
+The SiteMapPath control displays a more functional user interface in the `ProductsByCategory.aspx` and `ProductDetails.aspx` pages. Add a SiteMapPath to these pages, setting the `SiteMapProvider` property in both to Northwind. From `Default.aspx` click on the View Products link for Beverages, and then on the View Details link for Chai Tea. As Figure 19 shows, the breadcrumb includes the current site map section ( Chai Tea ) and its ancestors: Beverages and All Categories .
 
 
 [![The Breadcrumb Now Uses the Custom Site Map Provider NorthwindSiteMapProvider](building-a-custom-database-driven-site-map-provider-vb/_static/image27.gif)](building-a-custom-database-driven-site-map-provider-vb/_static/image21.png)
@@ -326,7 +326,7 @@ Since the `AspNetXmlSiteMapProvider` is the default provider for our application
 
 [!code-vb[Main](building-a-custom-database-driven-site-map-provider-vb/samples/sample9.vb)]
 
-Where *name* is the name of the custom site map provider ( Northwind , for our web application).
+Where *name* is the name of the custom site map provider ( Northwind, for our web application).
 
 To access a member specific to a site map provider, use `SiteMap.Providers["name"]` to retrieve the provider instance and then cast it to the appropriate type. For example, to display the `NorthwindSiteMapProvider` s `CachedDate` property in an ASP.NET page, use the following code:
 

@@ -39,7 +39,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Mobile](#mobile)
 - [Single Page Application (SPA)](#spa)
 - [Twitter, Facebook](#fb)
-- [Unit Testing , TDD, Repository Pattern and Unit of Work](#tdd)
+- [Unit Testing, TDD, Repository Pattern and Unit of Work](#tdd)
 - [Best Practices](#best)
 - [Deployment](#deploy)
 - [Rich text Editors for MVC](#RTE)
@@ -253,7 +253,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Pluralsight video showing how to work with JavaScript and Ajax](http://www.pluralsight-training.net/microsoft/players/PSODPlayer?author=scott-allen&amp;name=mvc3-building-ajax&amp;mode=live&amp;clip=0&amp;course=aspdotnet-mvc3-intro)
 - [Cascading DropDownList in ASP.Net MVC](https://blogs.msdn.com/b/rickandy/archive/2012/01/09/cascasding-dropdownlist-in-asp-net-mvc.aspx?CommentPosted=true#commentmessage)
 - [CascadingDropDown jQuery Plugin for ASP.NET MVC](https://weblogs.asp.net/rajbk/Contents/Item/Display/31)
-- [MVC , JsonResult , DateTime and TimeZone](http://msprogrammer.serviciipeweb.ro/2013/03/10/mvc-jsonresult-datetime-and-timezone/)
+- [MVC, JsonResult, DateTime and TimeZone](http://msprogrammer.serviciipeweb.ro/2013/03/10/mvc-jsonresult-datetime-and-timezone/)
 - [MVC- Custom Validation - required DropDownList](http://codeblockdrive.blogspot.in/2012/12/mvc-custom-validation-required.html)
 - [Client Side Progress Bar in ASP.NET MVC using jQuery UI, WebAPI and JsRender](http://www.devcurry.com/2012/10/responsive-aspnet-mvc-ui-using-webapi.html)
 - [ASP.NET MVC Ajax using jQuery – Quick Start sample](http://evolpin.wordpress.com/2011/03/15/asp-net-mvc-ajax-using-jquery-quick-start-sample/)
@@ -342,7 +342,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 <a id="tdd"></a>
 
-## Unit Testing , TDD, Repository Pattern and Unit of Work
+## Unit Testing, TDD, Repository Pattern and Unit of Work
 
 - [Repository Pattern and Unit of Work with Entity Framework in ASP.NET MVC](http://www.codeproject.com/Articles/688929/Repository-Pattern-and-Unit-of)
 - [Creating Unit Testable Applications in ASP.NET MVC - A Beginner's Tutorial](http://www.codeproject.com/Articles/579035/Creating-Unit-Testable-Applications-in-ASP-NET-MVC)

@@ -149,7 +149,7 @@ There are a variety of ways we can access posted form parameters within our HTTP
 
 The above approach is a little verbose, though, especially once we add error handling logic.
 
-A better approach for this scenario is to leverage the built-in *UpdateModel()* helper method on the Controller base class . It supports updating the properties of an object we pass it using the incoming form parameters. It uses reflection to determine the property names on the object, and then automatically converts and assigns values to them based on the input values submitted by the client.
+A better approach for this scenario is to leverage the built-in *UpdateModel()* helper method on the Controller base class. It supports updating the properties of an object we pass it using the incoming form parameters. It uses reflection to determine the property names on the object, and then automatically converts and assigns values to them based on the input values submitted by the client.
 
 We could use the UpdateModel() method to simplify our HTTP-POST Edit Action using this code:
 
@@ -325,7 +325,7 @@ Let's now add "Delete" support to our DinnersController.
 
 #### The HTTP-GET Delete Action Method
 
-We'll begin by implementing the HTTP GET behavior of our delete action method. This method will get called when someone visits the */Dinners/Delete/[id]* URL . Below is the implementation:
+We'll begin by implementing the HTTP GET behavior of our delete action method. This method will get called when someone visits the */Dinners/Delete/[id]* URL. Below is the implementation:
 
 [!code-csharp[Main](provide-crud-create-read-update-delete-data-form-entry-support/samples/sample28.cs)]
 

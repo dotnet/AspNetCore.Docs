@@ -97,7 +97,7 @@ The following example shows a page that illustrates these steps.
 
 [!code-cshtml[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample2.cshtml)]
 
-To see how validation works, run this page and deliberately make mistakes. For example, here's what the page looks like if you forget to enter a course name, if you enter an , and if you enter an invalid date:
+To see how validation works, run this page and deliberately make mistakes. For example, here's what the page looks like if you forget to enter a course name, if you enter an, and if you enter an invalid date:
 
 ![Validation errors in the rendered page](validating-user-input-in-aspnet-web-pages-sites/_static/image2.png)
 
@@ -116,7 +116,7 @@ You can add support to perform validation in client script. In that case, the va
 
     [!code-html[Main](validating-user-input-in-aspnet-web-pages-sites/samples/sample3.html)]
 
- Two of the libraries are loadable from a content delivery network (CDN), so you don't necessarily have to have them on your computer or server. However, you must have a local copy of     *jquery.validate.unobtrusive.js* . If you are not already working with a WebMatrix template (like     **Starter Site** ) that includes the library, create a Web Pages site that's based on     **Starter Site** . Then copy the     *.js* file to your current site.
+ Two of the libraries are loadable from a content delivery network (CDN), so you don't necessarily have to have them on your computer or server. However, you must have a local copy of *jquery.validate.unobtrusive.js*. If you are not already working with a WebMatrix template (like **Starter Site** ) that includes the library, create a Web Pages site that's based on **Starter Site**. Then copy the *.js* file to your current site.
 2. In markup, for each element that you're validating, add a call to `Validation.For(field)`. This method emits attributes that are used by client-side validation. (Rather than emitting actual JavaScript code, the method emits attributes like `data-val-...`. These attributes support unobtrusive client validation that uses jQuery to do the work.)
 
 The following page shows how to add client validation features to the example shown earlier.

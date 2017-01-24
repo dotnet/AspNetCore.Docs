@@ -75,16 +75,16 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
  This package is typically added when upgrading from MVC 3 to MVC 4. To remove it, run the following command in the PMC:  
         `Uninstall-Package -Id Microsoft.AspNet.WebPages.Administration`
     2. `Microsoft-Web-Helpers`   
- This package has been rebranded as         `Microsoft.AspNet.WebHelpers` . To remove it, run the following command in the PMC:  
+ This package has been rebranded as `Microsoft.AspNet.WebHelpers`. To remove it, run the following command in the PMC:  
         `Uninstall-Package -Id Microsoft-Web-Helpers`
     3. `Microsoft.AspNet.Mvc.FixedDisplayMode`  
  This package contains a work around for a bug in MVC 4 that has been fixed in MVC 5. To remove it, run the following command in the PMC:  
         `Uninstall-Package -Id Microsoft.AspNet.Mvc.FixedDisplayModes`
 6. Upgrade all the ASP.NET NuGet packages using the PMC. In the PMC, run the following command:  
     `Update-Package`  
- The     `Update-Package` command without any parameters will update every package. You can update packages individually by using the ID argument. For more information about the update command, run     `get-help update-package` .
+ The `Update-Package` command without any parameters will update every package. You can update packages individually by using the ID argument. For more information about the update command, run     `get-help update-package` .
 
-## Update the Application*web.config*File
+## Update the Application *web.config* File
 
 Be sure to make these changes in the app *web.config* file, not the *web.config* file in the *Views* folder.
 
@@ -101,11 +101,11 @@ Locate the `<runtime>/<assemblyBinding>` section, and make the following changes
 
     [!code-xml[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample5.xml?highlight=2)]
 
-## Update the*web.config*files under the Views folder
+## Update the *web.config* files under the Views folder
 
 If your application is using areas, you will also need to update each *web.config* file in the *Views* sub-folder of each Area folder.
 
-1. Update all elements that contain "System.Web.Mvc" from version "4.0.0.0" to version"5.0.0.0".  
+1. Update all elements that contain "System.Web.Mvc" from version "4.0.0.0" to version "5.0.0.0".  
 
     [!code-xml[Main](how-to-upgrade-an-aspnet-mvc-4-and-web-api-project-to-aspnet-mvc-5-and-web-api-2/samples/sample6.xml?highlight=2)]
 

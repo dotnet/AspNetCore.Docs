@@ -62,7 +62,7 @@ Enter an artist, title and price, then select the **Create** button. If you ente
 
 ![](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/_static/image6.png)
 
-Try creating a new genre with only one letter. The following code in the *Models\Genre.cs*file sets the minimum and maximum length of the genre name.
+Try creating a new genre with only one letter. The following code in the *Models\Genre.cs* file sets the minimum and maximum length of the genre name.
 
 [!code-csharp[Main](adding-a-new-category-to-the-dropdownlist-using-jquery-ui/samples/sample4.cs)]
 

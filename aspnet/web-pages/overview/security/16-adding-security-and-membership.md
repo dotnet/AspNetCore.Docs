@@ -150,7 +150,7 @@ In this procedure, you'll create a folder that will contain pages that are avail
 
     The URL of the redirection includes a `returnUrl` query string value that uses `Request.Url.LocalPath` to set the path of the current page. If you set the `returnUrl` value in the query string like this (and if the return URL is a local path), the login page will return users to this page after they log in.
 
-    The code also sets *\_SiteLayout.cshtml*page as its layout page. (For more about layout pages, see [Creating a Consistent Layout in ASP.NET Web Pages Sites](https://go.microsoft.com/fwlink/?LinkId=202891).)
+    The code also sets *\_SiteLayout.cshtml* page as its layout page. (For more about layout pages, see [Creating a Consistent Layout in ASP.NET Web Pages Sites](https://go.microsoft.com/fwlink/?LinkId=202891).)
 5. Run the site. If you're still logged in, click the **Logout** button at the top of the page.
 6. In the browser, request the page */Members/MembersInformation*. For example, the URL might look like this:
 

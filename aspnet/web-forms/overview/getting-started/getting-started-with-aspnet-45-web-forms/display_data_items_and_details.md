@@ -100,13 +100,13 @@ The sources of values for these methods are referred to as *value providers* (su
 Run the application now to see how you can view all of the products or just a set of products limited by category.
 
 1. In the **Solution Explorer**, right-click the *Default.aspx* page and select **View in Browser**.  
- The browser will open and show the     *Default.aspx* page.
+ The browser will open and show the *Default.aspx* page.
 2. Select **Cars** from the product category navigation menu.  
- The     *ProductList.aspx* page is displayed showing only products included in the "Cars" category. Later in this tutorial, you will display product details.  
+ The *ProductList.aspx* page is displayed showing only products included in the "Cars" category. Later in this tutorial, you will display product details.  
 
     ![Display Data Items and Details - Cars](display_data_items_and_details/_static/image2.png)
 3. Select **Products** from the navigation menu at the top.  
- Again, the     *ProductList.aspx* page is displayed, however this time it shows the entire list of products.   
+ Again, the *ProductList.aspx* page is displayed, however this time it shows the entire list of products.   
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image3.png)
 4. Close the browser and return to Visual Studio.
@@ -125,7 +125,7 @@ This code uses a **FormView** control to display details about an individual pro
 To connect the above markup to the database, you must add additional code to the *ProductDetails.aspx* code.
 
 1. In **Solution Explorer**, right-click *ProductDetails.aspx* and then click **View Code**.  
- The     *ProductDetails.aspx.cs* file will be displayed.
+ The *ProductDetails.aspx.cs* file will be displayed.
 2. Replace the existing code with the following code:   
 
     [!code-csharp[Main](display_data_items_and_details/samples/sample6.cs)]
@@ -137,11 +137,11 @@ This code checks for a "`productID`" query-string value. If a valid query-string
 Now you can run the application to see an individual product displayed based on the id of the product.
 
 1. Press **F5** while in Visual Studio to run the application.  
- The browser will open and show the     *Default.aspx* page.
+ The browser will open and show the *Default.aspx* page.
 2. Select "Boats" from the category navigation menu.  
- The     *ProductList.aspx* page is displayed.
+ The *ProductList.aspx* page is displayed.
 3. Select the "Paper Boat" product from the product list.  
- The     *ProductDetails.aspx* page is displayed.   
+ The *ProductDetails.aspx* page is displayed.   
 
     ![Display Data Items and Details - Products](display_data_items_and_details/_static/image4.png)
 4. Close the browser.

@@ -61,7 +61,7 @@ Download the conference-listing application for the starter project using the fo
 
 ![p1_unBlock](aspnet-mvc-4-mobile-features/_static/image4.png)
 
-Right-click the *MvcMobile.zip* file and select **Extract All** to unzip the file. In Visual Studio, open the *MvcMobile.sln*file.
+Right-click the *MvcMobile.zip* file and select **Extract All** to unzip the file. In Visual Studio, open the *MvcMobile.sln* file.
 
 Press CTRL+F5 to run the application, which will display it in your desktop browser. Start your mobile browser emulator, copy the URL for the conference application into the emulator, and then click the **Browse by tag** link. If you are using the Windows Phone Emulator, click in the URL bar and press the Pause key to get keyboard access. The image below shows the *AllTags* view (from choosing **Browse by tag**).
 
@@ -97,7 +97,7 @@ Open the *Views\Shared\\_Layout.cshtml* file in the editor and comment out the v
 
 [!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample3.cshtml)]
 
-Open the *MvcMobile\Content\Site.css*file in the editor and change the maximum width in the media query to zero pixels. This will prevent the CSS rules from being used in mobile browsers. The following line shows the modified media query:
+Open the *MvcMobile\Content\Site.css* file in the editor and change the maximum width in the media query to zero pixels. This will prevent the CSS rules from being used in mobile browsers. The following line shows the modified media query:
 
 [!code-css[Main](aspnet-mvc-4-mobile-features/samples/sample4.css)]
 
@@ -177,9 +177,9 @@ In this section you'll install the *jQuery.Mobile.MVC* NuGet package, which inst
 
 To start, delete the *Shared\\_Layout.Mobile.cshtml* and *Shared\\_Layout.iPhone.cshtml* files that you created earlier.
 
-Rename *Views\Home\AllTags.Mobile.cshtml* and *Views\Home\AllTags.iPhone.cshtml* files to *Views\Home\AllTags.iPhone.cshtml.hide*and*Views\Home\AllTags.Mobile.cshtml.hide*. Because the files no longer have a *.cshtml* extension, they won't be used by the ASP.NET MVC runtime to render the *AllTags* view.
+Rename *Views\Home\AllTags.Mobile.cshtml* and *Views\Home\AllTags.iPhone.cshtml* files to *Views\Home\AllTags.iPhone.cshtml.hide* and *Views\Home\AllTags.Mobile.cshtml.hide*. Because the files no longer have a *.cshtml* extension, they won't be used by the ASP.NET MVC runtime to render the *AllTags* view.
 
-Install the *jQuery.Mobile.MVC*NuGet package by doing this:
+Install the *jQuery.Mobile.MVC* NuGet package by doing this:
 
 1. From the **Tools** menu, select **Package Manager Console**, and then select **Library Package Manager**.
 
@@ -300,7 +300,7 @@ As you type each letter in the search box, jQuery Mobile filters the displayed l
 
 ## Improving the Tags List
 
-Like the default *Speakers* view, the*Tags* view is readable, but the links are small and difficult to tap on a mobile device. In this section, you'll fix the *Tags* view the same way you fixed the *Speakers* view.
+Like the default *Speakers* view, the *Tags* view is readable, but the links are small and difficult to tap on a mobile device. In this section, you'll fix the *Tags* view the same way you fixed the *Speakers* view.
 
 Remove the &quot;hide&quot; suffix to the the *Views\Home\AllTags.Mobile.cshtml.hide* file so the name is *Views\Home\AllTags.Mobile.cshtml*. Open the renamed file and remove the `<h2>` element.
 

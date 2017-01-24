@@ -40,8 +40,8 @@ This tutorial contains four sections:
 
 1. [Setting up the default page](#defaultpage)
 2. Publishing (choose one of the following)  
- a.     [Publishing Your Site to Microsoft Azure](#azure)  
- b.     [Publishing Your Site to a Web Hosting Company](#host)
+ a. [Publishing Your Site to Microsoft Azure](#azure)  
+ b. [Publishing Your Site to a Web Hosting Company](#host)
 3. [Updating the Live Site: Republishing](#update)
 
 <a id="defaultpage"></a>

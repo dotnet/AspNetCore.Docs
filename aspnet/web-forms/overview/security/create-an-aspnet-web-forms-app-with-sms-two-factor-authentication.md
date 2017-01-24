@@ -57,13 +57,13 @@ This tutorial uses Twilio, but you can use any SMS provider.
 2. From the **Dashboard** tab of your Twilio account, copy the **Account SID** and **Auth Token.** You will add them to your app later.
 3. From the **Numbers** tab, copy your Twilio **phone number** as well.
 4. Make the Twilio **Account SID**, **Auth Token** and **phone number** available to the app. To keep things simple you will store these values in the *web.config* file. When you deploy to Azure, you can store the values securely in the **appSettings** section on the web site configure tab. Also, when adding the phone number, only use numbers.   
- Notice that you can also add SendGrid credentials. SendGrid is an email notification service. For details about how to enable SendGrid, see the 'Hook Up SendGrid' section of the tutorial titled     [Create a Secure ASP.NET Web Forms App with user registration, email confirmation and password reset.](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset.md)
+ Notice that you can also add SendGrid credentials. SendGrid is an email notification service. For details about how to enable SendGrid, see the 'Hook Up SendGrid' section of the tutorial titled [Create a Secure ASP.NET Web Forms App with user registration, email confirmation and password reset.](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset.md)
 
     [!code-xml[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample1.xml?highlight=2,6-10)]
 
     > [!WARNING]
     > Security - Never store sensitive data in your source code. In this example, the account and credentials are stored in the **appSettings** section of the *Web.config* file. On Azure, you can securely store these values on the **[Configure](https://blogs.msdn.com/b/webdev/archive/2014/06/04/queuebackgroundworkitem-to-reliably-schedule-and-run-long-background-process-in-asp-net.aspx)** tab in the Azure portal. For related information, see Rick Anderson's topic titled [Best practices for deploying passwords and other sensitive data to ASP.NET and Azure](https://go.microsoft.com/fwlink/?LinkId=513141).
-5. Configure the `SmsService` class in the *App\_Start\IdentityConfig.cs*file by making the following changes highlighted in yellow: 
+5. Configure the `SmsService` class in the *App\_Start\IdentityConfig.cs* file by making the following changes highlighted in yellow: 
 
     [!code-csharp[Main](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/samples/sample2.cs?highlight=5-17)]
 6. Add the following `using` statements to the beginning of the *IdentityConfig.cs* file: 
@@ -88,7 +88,7 @@ This tutorial uses Twilio, but you can use any SMS provider.
     ![](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/_static/image3.png)
 14. Add the phone number where you (as the user) would like to receive SMS messages (text messages) and click the **Submit** button.   
     ![](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/_static/image4.png)  
- At this point, the app will use the credentials from the     *Web.config* to contact Twilio. A SMS message (text message) will be sent to the phone associated with the user account. You can verify that the Twilio message was sent by viewing the Twilio dashboard.
+ At this point, the app will use the credentials from the *Web.config* to contact Twilio. A SMS message (text message) will be sent to the phone associated with the user account. You can verify that the Twilio message was sent by viewing the Twilio dashboard.
 15. In a few seconds, the phone associated with the user account will get a text message containing the verification code. Enter the verification code and press **Submit**.  
      ![](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/_static/image5.png)
 
@@ -100,7 +100,7 @@ At this point, you have enabled two-factor authentication for your app. For a us
 1. As a user of your app you can enable two-factor authentication for your specific account by clicking on the user ID (email alias) in the navigation bar to display the **Manage Account** page.Then, click on the **Enable** link to enable two-factor authentication for the account.![](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/_static/image6.png)
 2. Log off, then log back in. If you've enabled email, you can select either SMS or email for two-factor authentication. If you haven't enabled email, see the tutorial titled [Create a Secure ASP.NET Web Forms App with User Registration, Email Confirmation and Password Reset](#SG).![](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/_static/image7.png)
 3. The Two-Factor Authentication page is displayed where you can enter the code (from SMS or email).![](create-an-aspnet-web-forms-app-with-sms-two-factor-authentication/_static/image8.png)  
- Clicking on the     **Remember this browser** check box will exempt you from needing to use two-factor authentication to log in when using the browser and device where you checked the box. As long as malicious users can't gain access to your device, enabling two-factor authentication and clicking on the     **Remember this browser** will provide you with convenient one step password access, while still retaining strong two-factor authentication protection for all access from non-trusted devices. You can do this on any private device you regularly use.
+ Clicking on the **Remember this browser** check box will exempt you from needing to use two-factor authentication to log in when using the browser and device where you checked the box. As long as malicious users can't gain access to your device, enabling two-factor authentication and clicking on the **Remember this browser** will provide you with convenient one step password access, while still retaining strong two-factor authentication protection for all access from non-trusted devices. You can do this on any private device you regularly use.
 
 <a id="addRes"></a>
 ## Additional Resources

@@ -78,7 +78,7 @@ The following example shows how to create a page that renders a map based on an 
 
     Notice the following features of the page:
 
-    - The `<script>` element in the `<head>` element. In the example, the `<script>` element references the *jquery-1.6.4.min.j*s file, which is a minified (compressed) version of the jQuery library, version 1.6.4. Note that the reference assumes that the *.js* file is in the *Scripts* folder of your site. 
+    - The `<script>` element in the `<head>` element. In the example, the `<script>` element references the *jquery-1.6.4.min.js* file, which is a minified (compressed) version of the jQuery library, version 1.6.4. Note that the reference assumes that the *.js* file is in the *Scripts* folder of your site. 
 
         > [!NOTE]
         > If you're using a different version of the jQuery library, just make sure that you're pointing to that version correctly.

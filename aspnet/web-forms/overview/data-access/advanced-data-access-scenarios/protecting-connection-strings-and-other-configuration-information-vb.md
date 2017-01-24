@@ -188,7 +188,7 @@ These tutorials have used Windows authentication. You can tell what authenticati
 
 `Data Source=.\SQLEXPRESS; AttachDbFilename=|DataDirectory|\NORTHWND.MDF; Integrated Security=True; User Instance=True`
 
-The Integrated Security=True and lack of a username and password indicate that Windows authentication is being used. In some connection strings the term Trusted Connection=Yes or Integrated Security=SSPI is used instead of Integrated Security=True , but all three indicate the use of Windows authentication.
+The Integrated Security=True and lack of a username and password indicate that Windows authentication is being used. In some connection strings the term Trusted Connection=Yes or Integrated Security=SSPI is used instead of Integrated Security=True, but all three indicate the use of Windows authentication.
 
 The following example shows a connection string that uses SQL authentication. Note the credentials embedded within the connection string:
 

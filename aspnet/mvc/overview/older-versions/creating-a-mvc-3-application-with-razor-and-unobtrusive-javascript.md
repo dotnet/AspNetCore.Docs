@@ -82,7 +82,7 @@ Build the application so that the user model will be available to the scaffoldin
 
 The next step is to add an action method and view to display the users.
 
-Delete the existing *Views\Home\Index*file. You will create a new *Index*file to display the users.
+Delete the existing *Views\Home\Index* file. You will create a new *Index* file to display the users.
 
 In the `HomeController` class, replace the contents of the `Index` method with the following code:
 
@@ -96,7 +96,7 @@ Select the **Create a strongly-typed view** option. For **View data class**, sel
 
 ![Add Index View](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/_static/image8.png)
 
-The new view automatically scaffolds the user data that's passed to the `Index` view. Examine the newly generated *Views\Home\Index*file. The **Create New**, **Edit**, **Details**, and **Delete** links don't work, but the rest of the page is functional. Run the page. You see a list of users.
+The new view automatically scaffolds the user data that's passed to the `Index` view. Examine the newly generated *Views\Home\Index* file. The **Create New**, **Edit**, **Details**, and **Delete** links don't work, but the rest of the page is functional. Run the page. You see a list of users.
 
 ![Index Page](creating-a-mvc-3-application-with-razor-and-unobtrusive-javascript/_static/image9.png)
 

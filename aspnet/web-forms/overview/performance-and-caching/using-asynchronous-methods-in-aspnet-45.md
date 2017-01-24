@@ -1,7 +1,7 @@
 ---
 title: "Using Asynchronous Methods in ASP.NET 4.5 | Microsoft Docs"
 author: Rick-Anderson
-description: "This tutorial will teach you the basics of building an asynchronous ASP.NET Web Forms application using Visual Studio Express 2012 for Web , which is a free..."
+description: "This tutorial will teach you the basics of building an asynchronous ASP.NET Web Forms application using Visual Studio Express 2012 for Web, which is a free..."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 06/06/2012
@@ -77,7 +77,7 @@ Few applications require all methods to be asynchronous. Often, converting a few
 You can download the sample application from [https://github.com/RickAndMSFT/Async-ASP.NET](https://github.com/RickAndMSFT/Async-ASP.NET) on the [GitHub](https://github.com/) site. The repository consists of three projects:
 
 - *WebAppAsync*: The ASP.NET Web Forms project that consumes the Web API **WebAPIpwg** service. Most of the code for this tutorial is from the this project.
-- *WebAPIpgw*: The ASP.NET MVC 4 Web API project that implements the `Products, Gizmos and Widgets` controllers. It provides the data for the *WebAppAsync*project and the *Mvc4Async*project.
+- *WebAPIpgw*: The ASP.NET MVC 4 Web API project that implements the `Products, Gizmos and Widgets` controllers. It provides the data for the *WebAppAsync* project and the *Mvc4Async* project.
 - *Mvc4Async*: The ASP.NET MVC 4 project that contains the code used in another tutorial. It makes Web API calls to the **WebAPIpwg** service.
 
 ## <a id="GizmosSynch"></a>  The Gizmos Synchronous Page
@@ -99,7 +99,7 @@ The following image shows the gizmos page from the sample project.
 
 The sample uses the new [async](https://msdn.microsoft.com/en-us/library/hh156513(VS.110).aspx) and [await](https://msdn.microsoft.com/en-us/library/hh156528(VS.110).aspx) keywords (available in .NET 4.5 and Visual Studio 2012) to let the compiler be responsible for maintaining the complicated transformations necessary for asynchronous programming. The compiler lets you write code using the C#'s synchronous control flow constructs and the compiler automatically applies the transformations necessary to use callbacks in order to avoid blocking threads.
 
-ASP.NET asynchronous pages must include the [Page](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) directive with the `Async` attribute set to "true". The following code shows the [Page](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) directive with the `Async` attribute set to "true" for the *GizmosAsync.aspx*page.
+ASP.NET asynchronous pages must include the [Page](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) directive with the `Async` attribute set to "true". The following code shows the [Page](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) directive with the `Async` attribute set to "true" for the *GizmosAsync.aspx* page.
 
 [!code-aspx[Main](using-asynchronous-methods-in-aspnet-45/samples/sample3.aspx?highlight=1)]
 
@@ -153,7 +153,7 @@ The downside to async void events is that developers no longer has full control 
 
 ## <a id="Parallel"></a>  Performing Multiple Operations in Parallel
 
-Asynchronous Methods have a significant advantage over synchronous methods when an action must perform several independent operations. In the sample provided, the synchronous page *PWG.aspx*(for Products, Widgets and Gizmos) displays the results of three web service calls to get a list of products, widgets, and gizmos. The [ASP.NET Web API](../../../web-api/index.md) project that provides these services uses [Task.Delay](https://msdn.microsoft.com/en-us/library/hh139096(VS.110).aspx) to simulate latency or slow network calls. When the delay is set to 500 milliseconds, the asynchronous *PWGasync.aspx* page takes a little over 500 milliseconds to complete while the synchronous `PWG` version takes over 1,500 milliseconds. The synchronous *PWG.aspx*page is shown in the following code.
+Asynchronous Methods have a significant advantage over synchronous methods when an action must perform several independent operations. In the sample provided, the synchronous page *PWG.aspx*(for Products, Widgets and Gizmos) displays the results of three web service calls to get a list of products, widgets, and gizmos. The [ASP.NET Web API](../../../web-api/index.md) project that provides these services uses [Task.Delay](https://msdn.microsoft.com/en-us/library/hh139096(VS.110).aspx) to simulate latency or slow network calls. When the delay is set to 500 milliseconds, the asynchronous *PWGasync.aspx* page takes a little over 500 milliseconds to complete while the synchronous `PWG` version takes over 1,500 milliseconds. The synchronous *PWG.aspx* page is shown in the following code.
 
 [!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample9.cs)]
 
@@ -167,7 +167,7 @@ The following image shows the view returned from the asynchronous *PWGasync.aspx
 
 ## <a id="CancelToken"></a>  Using a Cancellation Token
 
-Asynchronous Methods returning `Task`are cancelable, that is they take a [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken(VS.110).aspx) parameter when one is provided with the `AsyncTimeout` attribute of the [Page](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) directive. The following code shows the*GizmosCancelAsync.aspx* page with a timeout of on second.
+Asynchronous Methods returning `Task`are cancelable, that is they take a [CancellationToken](https://msdn.microsoft.com/en-us/library/system.threading.cancellationtoken(VS.110).aspx) parameter when one is provided with the `AsyncTimeout` attribute of the [Page](https://msdn.microsoft.com/en-us/library/ydy4x04a.aspx) directive. The following code shows the *GizmosCancelAsync.aspx* page with a timeout of on second.
 
 [!code-aspx[Main](using-asynchronous-methods-in-aspnet-45/samples/sample11.aspx?highlight=1)]
 
@@ -175,7 +175,7 @@ The following code shows the *GizmosCancelAsync.aspx.cs* file.
 
 [!code-csharp[Main](using-asynchronous-methods-in-aspnet-45/samples/sample12.cs?highlight=6,9)]
 
-In the sample application provided, selecting the *GizmosCancelAsync* link calls the*GizmosCancelAsync.aspx* page and demonstrates the cancelation (by timing out) of the asynchronous call. Because the delay time is within a random range, you might need to refresh the page a couple times to get the time out error message.
+In the sample application provided, selecting the *GizmosCancelAsync* link calls the *GizmosCancelAsync.aspx* page and demonstrates the cancelation (by timing out) of the asynchronous call. Because the delay time is within a random range, you might need to refresh the page a couple times to get the time out error message.
 
 ## <a id="ServerConfig"></a>  Server Configuration for High Concurrency/High Latency Web Service Calls
 
@@ -198,7 +198,7 @@ To realize the benefits of an asynchronous web application, you might need to ma
         - [.NET Versioning and Multi-Targeting - .NET 4.5 is an in-place upgrade to .NET 4.0](http://www.hanselman.com/blog/NETVersioningAndMultiTargetingNET45IsAnInplaceUpgradeToNET40.aspx)
         - [How to set an IIS Application or AppPool to use ASP.NET 3.5 rather than 2.0](http://www.hanselman.com/blog/HowToSetAnIISApplicationOrAppPoolToUseASPNET35RatherThan20.aspx)
         - [.NET Framework Versions and Dependencies](https://msdn.microsoft.com/en-us/library/bb822049(VS.110).aspx)
-- If your application is using web services or System.NET to communicate with a backend over HTTP you may need to increase the [connectionManagement/maxconnection](https://msdn.microsoft.com/en-us/library/fb6y0fyc(VS.110).aspx) element. For ASP.NET applications, this is limited by the autoConfig feature to 12 times the number of CPUs . That means that on a quad-proc, you can have at most 12 \* 4 = 48 concurrent connections to an IP end point. Because this is tied to [autoConfig](https://msdn.microsoft.com/en-us/library/7w2sway1(VS.110).aspx), the easiest way to increase `maxconnection` in an ASP.NET application is to set [System.Net.ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.defaultconnectionlimit(VS.110).aspx) programmatically in the from `Application_Start` method in the *global.asax* file. See the sample download for an example.
+- If your application is using web services or System.NET to communicate with a backend over HTTP you may need to increase the [connectionManagement/maxconnection](https://msdn.microsoft.com/en-us/library/fb6y0fyc(VS.110).aspx) element. For ASP.NET applications, this is limited by the autoConfig feature to 12 times the number of CPUs. That means that on a quad-proc, you can have at most 12 \* 4 = 48 concurrent connections to an IP end point. Because this is tied to [autoConfig](https://msdn.microsoft.com/en-us/library/7w2sway1(VS.110).aspx), the easiest way to increase `maxconnection` in an ASP.NET application is to set [System.Net.ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.defaultconnectionlimit(VS.110).aspx) programmatically in the from `Application_Start` method in the *global.asax* file. See the sample download for an example.
 - In .NET 4.5, the default of 5000 for [MaxConcurrentRequestsPerCPU](https://blogs.msdn.com/tmarq/archive/2007/07/21/asp-net-thread-usage-on-iis-7-0-and-6-0.aspx) should be fine.
 
 ## Contributors

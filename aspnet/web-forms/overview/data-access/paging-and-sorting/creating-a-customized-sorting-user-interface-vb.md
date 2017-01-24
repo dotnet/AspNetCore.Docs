@@ -170,7 +170,7 @@ To handle field types other than BoundFields, we need to augment the code where 
 
 [!code-vb[Main](creating-a-customized-sorting-user-interface-vb/samples/sample6.vb)]
 
-This code examines the sorted column `TableCell` for the current row to determine if there are any controls in the `Controls` collection. If there are, and the first control is a CheckBox, the `currentValue` variable is set to Yes or No , depending on the CheckBox s `Checked` property. Otherwise, the value is taken from the `TableCell` s `Text` property. This logic can be replicated to handle sorting for any TemplateFields that may exist in the GridView.
+This code examines the sorted column `TableCell` for the current row to determine if there are any controls in the `Controls` collection. If there are, and the first control is a CheckBox, the `currentValue` variable is set to Yes or No, depending on the CheckBox s `Checked` property. Otherwise, the value is taken from the `TableCell` s `Text` property. This logic can be replicated to handle sorting for any TemplateFields that may exist in the GridView.
 
 With the above code addition, the sort group headers are now present when sorting by the Discontinued CheckBoxField (see Figure 7).
 

@@ -159,7 +159,7 @@ Once the SqlDataSource has been configured, it can be bound to a data Web contro
 
 Once you ve selected the SqlDataSource control from the drop-down list in the GridView s smart tag, Visual Studio will automatically add a BoundField or CheckBoxField to the GridView for each of the columns returned by the data source control. Since the SqlDataSource returns three database columns `ProductID`, `ProductName`, and `UnitPrice` there are three fields in the GridView.
 
-Take a moment to configure the GridView s three BoundFields. Change the `ProductName` field s `HeaderText` property to Product Name and the `UnitPrice` field s to Price . Also format the `UnitPrice` field as a currency. After making these modifications, your GridView s declarative markup should look similar to the following:
+Take a moment to configure the GridView s three BoundFields. Change the `ProductName` field s `HeaderText` property to Product Name and the `UnitPrice` field s to Price. Also format the `UnitPrice` field as a currency. After making these modifications, your GridView s declarative markup should look similar to the following:
 
 
 [!code-aspx[Main](querying-data-with-the-sqldatasource-control-vb/samples/sample3.aspx)]

@@ -63,7 +63,7 @@ In your browser, view the source of the page. (For example, right-click the page
 
 [!code-html[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample3.html)]
 
-Return to the *Views\Shared\EditorTemplates\Date.cshtml*template and remove the &quot;Using Date Template&quot; markup. Now the completed template looks like this:
+Return to the *Views\Shared\EditorTemplates\Date.cshtml* template and remove the &quot;Using Date Template&quot; markup. Now the completed template looks like this:
 
 [!code-cshtml[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample4.cshtml)]
 
@@ -96,7 +96,7 @@ NuGet adds these debug versions and minified versions of jQuery UI Core and the 
 - *jquery.ui.datepicker.js*
 - *jquery.ui.datepicker.min.js*
 
-Note: The debug versions (the files without the *.min.js*extension) are useful for debugging, but in a production site, you'd include only the minified versions.
+Note: The debug versions (the files without the *.min.js* extension) are useful for debugging, but in a production site, you'd include only the minified versions.
 
 To actually use the jQuery date picker, you need to create a jQuery script that will hook up the calendar widget to the edit template. In **Solution Explorer**, right-click the *Scripts* folder and select **Add**, then **New Item**, and then **JScript File**. Name the file *DatePickerReady.js*.
 
@@ -104,7 +104,7 @@ Add the following code to the *DatePickerReady.js* file:
 
 [!code-javascript[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample5.js)]
 
-If you're not familiar with jQuery, here's a brief explanation of what this does: the first line is the &quot;jQuery ready&quot; function, which is called when all the DOM elements in a page have loaded. The second line selects all DOM elements that have the class name `datefield`, then invokes the `datepicker` function for each of them. (Remember that you added the `datefield` class to the *Views\Shared\EditorTemplates\Date.cshtml*template earlier in the tutorial.)
+If you're not familiar with jQuery, here's a brief explanation of what this does: the first line is the &quot;jQuery ready&quot; function, which is called when all the DOM elements in a page have loaded. The second line selects all DOM elements that have the class name `datefield`, then invokes the `datepicker` function for each of them. (Remember that you added the `datefield` class to the *Views\Shared\EditorTemplates\Date.cshtml* template earlier in the tutorial.)
 
 Next, open the *Views\Shared\\_Layout.cshtml* file. You need to add references to the following files, which are all required so that you can use the date picker:
 
@@ -133,11 +133,11 @@ Like most jQuery controls, the datepicker lets you customize it extensively. For
 
 ### Supporting the HTML5 Date Input Control
 
-As more browsers support HTML5, you'll want to use the native HTML5 input , such as the `date` input element, and not use the jQuery UI calendar. You can add logic to your application to automatically use HTML5 controls if the browser supports them. To do this, replace the contents of the *DatePickerReady.j*s file with the following:
+As more browsers support HTML5, you'll want to use the native HTML5 input, such as the `date` input element, and not use the jQuery UI calendar. You can add logic to your application to automatically use HTML5 controls if the browser supports them. To do this, replace the contents of the *DatePickerReady.js* file with the following:
 
 [!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/samples/sample8.cs)]
 
-The first line of this script uses Modernizr to verify that HTML5 date input is supported. If it's not supported, the jQuery UI date picker is hooked up instead. ([Modernizr](http://www.modernizr.com/docs/) is an open-source JavaScript library that detects the availability of native implementations of HTML5 and CSS3 . Modernizr is included in any new ASP.NET MVC projects that you create.)
+The first line of this script uses Modernizr to verify that HTML5 date input is supported. If it's not supported, the jQuery UI date picker is hooked up instead. ([Modernizr](http://www.modernizr.com/docs/) is an open-source JavaScript library that detects the availability of native implementations of HTML5 and CSS3. Modernizr is included in any new ASP.NET MVC projects that you create.)
 
 After you've made this change, you can test it by using a browser that supports HTML5, such as Opera 11. Run the application using an HTML5-compatible browser and edit a movie entry. The HTML5 date control is used instead of the jQuery UI popup calendar:
 

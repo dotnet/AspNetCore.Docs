@@ -1,7 +1,7 @@
 ---
 title: "Account Confirmation and Password Recovery with ASP.NET Identity (C#) | Microsoft Docs"
 author: HaoK
-description: "Before doing this tutorial you should first complete Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset . This tutorial..."
+description: "Before doing this tutorial you should first complete Create a secure ASP.NET MVC 5 web app with log in, email confirmation and password reset. This tutorial..."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 03/26/2015
@@ -121,7 +121,7 @@ Generic arguments on `IUser` enable you to derive a class using different types 
 
 ### ApplicationUser
 
-`ApplicationUser` (`public class ApplicationUserManager : UserManager<ApplicationUser>`) is defined in *Models\IdentityModels.cs*as:
+`ApplicationUser` (`public class ApplicationUserManager : UserManager<ApplicationUser>`) is defined in *Models\IdentityModels.cs* as:
 
 [!code-csharp[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample2.cs?highlight=8-9)]
 
@@ -146,7 +146,7 @@ In this section, you'll use NuGet to download a more complete sample we will wor
 
     [!code-console[Main](account-confirmation-and-password-recovery-with-aspnet-identity/samples/sample4.cmd)]
 
- In this tutorial, we'll use     [SendGrid](http://sendgrid.com/) to send email. The     `Identity.Samples` package installs the code we will be working with.
+ In this tutorial, we'll use [SendGrid](http://sendgrid.com/) to send email. The `Identity.Samples` package installs the code we will be working with.
 3. Set the [project to use SSL](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md).
 4. Test local account creation by running the app, clicking on the **Register** link, and posting the registration form.
 5. Click the demo email link, which simulates email confirmation.

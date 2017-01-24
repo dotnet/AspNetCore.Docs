@@ -88,7 +88,7 @@ The next example shows how to dynamically apply the CSS class.
 
 Recommendation: Stop using page and control callbacks, and instead use any of the following: AJAX, UpdatePanel, MVC action methods, Web API, or SignalR.
 
-In earlier versions of ASP.NET, Page and Control callback methods enabled you to update part of the web page without refreshing an entire page. You can now accomplish partial-page updates through [AJAX](../../../ajax/overview.md), [UpdatePanel](https://msdn.microsoft.com/en-US/library/bb386454.aspx), [MVC](../../../mvc/index.md), [Web API](../../../web-api/index.md) or [SignalR](../../../signalr/index.md). You should stop using callback methods because they can cause issues with friendly URLs and routing. By default, controls do not enable callback methods, but if you enabled this feature in a control, you should disable it.
+In earlier versions of ASP.NET, Page and Control callback methods enabled you to update part of the web page without refreshing an entire page. You can now accomplish partial-page updates through [AJAX](../../../ajax/index.md), [UpdatePanel](https://msdn.microsoft.com/en-US/library/bb386454.aspx), [MVC](../../../mvc/index.md), [Web API](../../../web-api/index.md) or [SignalR](../../../signalr/index.md). You should stop using callback methods because they can cause issues with friendly URLs and routing. By default, controls do not enable callback methods, but if you enabled this feature in a control, you should disable it.
 
 <a id="browsercap"></a>
 

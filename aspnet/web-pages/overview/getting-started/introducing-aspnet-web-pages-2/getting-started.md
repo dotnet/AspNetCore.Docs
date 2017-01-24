@@ -1,7 +1,7 @@
 ---
 title: "Introducing ASP.NET Web Pages - Getting Started | Microsoft Docs"
 author: tfitzmac
-description: "WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use Visual Studio or Visual Studio Code . This guidance an..."
+description: "WebMatrix is no longer recommended as an integrated development environment for ASP.NET Web Pages. Use Visual Studio or Visual Studio Code. This guidance an..."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/28/2015

@@ -159,7 +159,7 @@ Your mobile pages can share common static resources (such as images, JavaScript,
 
 #### Redirecting mobile visitors to your mobile pages
 
-It's often convenient to redirect mobile visitors to the mobile pages only on the *first*request in their browsing session (and not on every request in their session), because:
+It's often convenient to redirect mobile visitors to the mobile pages only on the *first* request in their browsing session (and not on every request in their session), because:
 
 - You can then easily allow mobile visitors to access your desktop pages if they wish – just put a link on your master page that goes to "Desktop version". The visitor won't be redirected back to a mobile page, because it's no longer the first request in their session.
 - It avoids the risk of interfering with requests for any dynamic resources shared between desktop and mobile parts of your site (e.g., if you have a common Web Form that both desktop and mobile parts of your site display in an IFRAME, or certain Ajax handlers)
@@ -316,7 +316,7 @@ Mobile network operators have two broad objectives in their approach to the mobi
 1. Provide as much relevant content as possible
 2. Maximize the number of customers who can share the limited radio network bandwidth
 
-Since most web pages were designed for large desktop-sized screens and fast fixed-line broadband connections, many operators use *transcoders*or *proxy servers* that dynamically alter web content. They may modify your HTML markup or CSS to suit smaller screens (especially for "feature phones" that lack the processing power to handle complex layouts), and they may recompress your images (significantly reducing their quality) to improve page delivery speeds.
+Since most web pages were designed for large desktop-sized screens and fast fixed-line broadband connections, many operators use *transcoders* or *proxy servers* that dynamically alter web content. They may modify your HTML markup or CSS to suit smaller screens (especially for "feature phones" that lack the processing power to handle complex layouts), and they may recompress your images (significantly reducing their quality) to improve page delivery speeds.
 
 But if you've taken the effort to produce a mobile-optimized version of your site, you probably don't want the network operator to interfere with it any further. You can add the following line to the Page\_Load event in any ASP.NET Web Form:
 

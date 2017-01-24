@@ -79,7 +79,7 @@ Right out of the box, the Facebook template provides boilerplate code to help yo
     ![](aspnet-mvc-facebook-birthday-app/_static/image7.jpg)
 - Click on **Settings** and enter a value in **Namespace**. Copy **Secure Canvas URL** value to **Canvas URL** and click on **Save Changes**.  
     ![](aspnet-mvc-facebook-birthday-app/_static/image8.jpg)
-- In Visual Studio, open the app *Web.config*file that is located in the root folder of your project.
+- In Visual Studio, open the app *Web.config* file that is located in the root folder of your project.
 - Copy and paste the **AppId, App Secret**, and **Namespace** values into the corresponding key elements in the `appSettings` collection in the *Web.config* file: 
 
     [!code-xml[Main](aspnet-mvc-facebook-birthday-app/samples/sample1.xml?highlight=7-9)]
@@ -150,8 +150,8 @@ You'll begin by installing the Bootstrap NuGet package. [Bootstrap](http://getbo
 2. In the left tab of the **Manage NuGet Packages** dialog box, click **Online**.
 3. In the search box at the top right, enter **bootstrap**, and then press **Enter**.
 4. Install the Bootstrap package. The Bootstrap NuGet package installs the following files:  
- •     *bootstrap-responsive.css* and     *bootstrap.css* (and the minified versions).  
- •     *bootstrap.js* (and the minified version).
+ • *bootstrap-responsive.css* and *bootstrap.css* (and the minified versions).  
+ • *bootstrap.js* (and the minified version).
 5. Add the Bootstrap CSS and JavaScript files to the *App\_Start\BundleConfig.cs* file. The completed *BundleConfig.cs* file looks like this: 
 
     [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample10.cs?highlight=13,15)]
@@ -164,7 +164,7 @@ You'll begin by installing the Bootstrap NuGet package. [Bootstrap](http://getbo
 
     [!code-css[Main](aspnet-mvc-facebook-birthday-app/samples/sample12.css?highlight=4)]
 
- This change prevents the     `h1` and     `h2`  headings from overlapping.
+ This change prevents the `h1` and `h2`  headings from overlapping.
 8. Run the app and you'll see the new navigation bar and the new title text.   
     ![](aspnet-mvc-facebook-birthday-app/_static/image9.png)
 
@@ -187,11 +187,11 @@ The `MyAppUser` class determines what information is gathered from Facebook abou
 
     [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample15.cshtml)]
 
- The view displays the user's picture (if available), then displays each of the user's friends by using a    *Friends.cshtml* display template, which you will create next.
+ The view displays the user's picture (if available), then displays each of the user's friends by using a *Friends.cshtml* display template, which you will create next.
 7. Add a *DisplayTemplates* folder to the *Views\Home* folder.
 8. Copy the *Views\Home\DisplayTemplates\Friends.cshtml* file from the downloaded project to your project.   
   
- The Friends template displays the     `MyAppUserFriend`  model and is used in the     `Index`  view and the     `Search`  view. The     *Friends.cshtml* display template is shown here: 
+ The Friends template displays the `MyAppUserFriend` model and is used in the `Index`  view and the `Search`  view. The *Friends.cshtml* display template is shown here: 
 
     [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample16.cshtml)]
 
@@ -215,8 +215,8 @@ The `RecommendGifts` method is called when the user clicks **Buy him a present**
   
 Most of the action methods in the home controller are asynchronous. Asynchronous methods can make your web server more efficient when apps make web service calls (like the Facebook API calls in this application). For more information about using asynchronous methods in ASP.NET MVC, see my [Using Asynchronous Methods in ASP.NET MVC](../performance/using-asynchronous-methods-in-aspnet-mvc-4.md) tutorial.
   
-- Add the *SearchResultModel.cs*files from the *Models* folder of the downloaded project to your *Models* folder.   
- The classes in the     *SearchResultModel.cs* file contain the information that is returned by the Shop style API:  
+- Add the *SearchResultModel.cs* files from the *Models* folder of the downloaded project to your *Models* folder.   
+ The classes in the *SearchResultModel.cs* file contain the information that is returned by the Shop style API:  
 
     [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample18.cs)]
 
@@ -234,26 +234,26 @@ Most of the action methods in the home controller are asynchronous. Asynchronous
 
         [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample20.cs)]
 
- The         `ReadAsAsync<SearchResult>` method gets the JSON response from the Shop style API and uses it to populate a         `SearchResult`  object. You'll set up the key you need in order to call this API in the next section of the tutorial.
+ The `ReadAsAsync<SearchResult>` method gets the JSON response from the Shop style API and uses it to populate a `SearchResult` object. You'll set up the key you need in order to call this API in the next section of the tutorial.
     - The `RecommendationEngine` helper uses the `ShoppingSearchClient` helper to get a list of suggested birthday gifts for a selected friend: 
 
         [!code-csharp[Main](aspnet-mvc-facebook-birthday-app/samples/sample21.cs)]
 
- The         `MenCategoies`  and         `WomenCategoies`  list specifies a list of popular product categories to filter based on selected friend's gender.  
+ The `MenCategoies` and `WomenCategoies` list specifies a list of popular product categories to filter based on selected friend's gender.  
   
- The         `RecommendProductAsync` method takes a         `MyAppUserFriend`  parameter. Based on gender, it picks         `MenCategoies`  or         `WomenCategoies` . It searches for products in all the categories and randomly picks one each in each category. Then it returns the list.  
+ The `RecommendProductAsync` method takes a `MyAppUserFriend`  parameter. Based on gender, it picks `MenCategoies` or `WomenCategoies`. It searches for products in all the categories and randomly picks one each in each category. Then it returns the list.  
   
- The         `RecommendationEngine`  class uses a simple selection and search algorithm in order to keep the code easy to follow and understand; you can plug in a more sophisticated selection engine if you prefer.
-- Add the *Search.cshtml, RecommendGifts.cshtml*, and *About.cshtml*files from the *Views\Home* folder in the downloaded project to your project's *Views\Home* folder. The `Search` view displays the list of friends that is returned by the `Search` action method:
+ The `RecommendationEngine` class uses a simple selection and search algorithm in order to keep the code easy to follow and understand; you can plug in a more sophisticated selection engine if you prefer.
+- Add the *Search.cshtml, RecommendGifts.cshtml*, and *About.cshtml* files from the *Views\Home* folder in the downloaded project to your project's *Views\Home* folder. The `Search` view displays the list of friends that is returned by the `Search` action method:
 
     [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample22.cshtml)]
 
- The     `RecommendGifts`  view displays the list of products that is returned by the     `RecommendGifts`  action method: 
+ The `RecommendGifts`  view displays the list of products that is returned by the `RecommendGifts` action method: 
 
     [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample23.cshtml)]
   
  The CSS classes in this code are defined in the Bootstrap CSS files.   
- The     `About`  view credits the author of the application: 
+ The `About` view credits the author of the application: 
 
     [!code-cshtml[Main](aspnet-mvc-facebook-birthday-app/samples/sample24.cshtml)]
 

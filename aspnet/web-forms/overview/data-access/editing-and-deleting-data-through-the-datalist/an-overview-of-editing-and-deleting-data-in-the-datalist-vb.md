@@ -192,7 +192,7 @@ Finally, we need to add Update and Cancel buttons to the `EditItemTemplate`. As 
 
 Keep in mind that these events are raised *in addition to* the `ItemCommand` event.
 
-Add to the `EditItemTemplate` two Button Web controls, one whose `CommandName` is set to Update and the other s set to Cancel . After adding these two Button Web controls the Designer should look similar to the following:
+Add to the `EditItemTemplate` two Button Web controls, one whose `CommandName` is set to Update and the other s set to Cancel. After adding these two Button Web controls the Designer should look similar to the following:
 
 
 [![Add Update and Cancel Buttons to the EditItemTemplate](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/_static/image26.png)](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/_static/image25.png)
@@ -305,9 +305,9 @@ The steps for adding delete capabilities to a DataList are similar to those for 
 
 Let s start by adding a Delete button to the `ItemTemplate`.
 
-When clicked, a Button whose `CommandName` is Edit , Update , or Cancel raises the DataList s `ItemCommand` event along with an additional event (for example, when using Edit the `EditCommand` event is raised as well). Similarly, any Button, LinkButton, or ImageButton in the DataList whose `CommandName` property is set to Delete causes the `DeleteCommand` event to fire (along with `ItemCommand`).
+When clicked, a Button whose `CommandName` is Edit, Update, or Cancel raises the DataList s `ItemCommand` event along with an additional event (for example, when using Edit the `EditCommand` event is raised as well). Similarly, any Button, LinkButton, or ImageButton in the DataList whose `CommandName` property is set to Delete causes the `DeleteCommand` event to fire (along with `ItemCommand`).
 
-Add a Delete button next to the Edit button in the `ItemTemplate`, setting its `CommandName` property to Delete . After adding this Button control your DataList s `ItemTemplate` declarative syntax should look like:
+Add a Delete button next to the Edit button in the `ItemTemplate`, setting its `CommandName` property to Delete. After adding this Button control your DataList s `ItemTemplate` declarative syntax should look like:
 
 
 [!code-aspx[Main](an-overview-of-editing-and-deleting-data-in-the-datalist-vb/samples/sample7.aspx)]

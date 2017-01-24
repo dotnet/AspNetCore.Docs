@@ -110,7 +110,7 @@ Since the time that ASP.NET 1.0 was released, output caching has enabled develop
 
 ASP.NET 4 adds an extensibility point to output caching that enables you to configure one or more custom output-cache providers. Output-cache providers can use any storage mechanism to persist HTML content. This makes it possible to create custom output-cache providers for diverse persistence mechanisms, which can include local or remote disks, cloud storage, and distributed cache engines.
 
-You create a custom output-cache provider as a class that derives from the new *System.Web.Caching.OutputCacheProvider* type. You can then configure the provider in the `Web.config` file by using the new *providers* subsection of the *outputCache*element, as shown in the following example:
+You create a custom output-cache provider as a class that derives from the new *System.Web.Caching.OutputCacheProvider* type. You can then configure the provider in the `Web.config` file by using the new *providers* subsection of the *outputCache* element, as shown in the following example:
 
 [!code-xml[Main](overview/samples/sample2.xml)]
 
@@ -132,7 +132,7 @@ With the addition of output-cache provider extensibility to ASP.NET 4, you can n
 
 Some Web applications need to load large amounts of data or perform expensive initialization processing before serving the first request. In earlier versions of ASP.NET, for these situations you had to devise custom approaches to "wake up" an ASP.NET application and then run initialization code during the *Application\_Load* method in the `Global.asax` file.
 
-A new scalability feature named *auto-star*t that directly addresses this scenario is available when ASP.NET 4 runs on IIS 7.5 on Windows Server 2008 R2. The auto-start feature provides a controlled approach for starting up an application pool, initializing an ASP.NET application, and then accepting HTTP requests.
+A new scalability feature named *auto-start* that directly addresses this scenario is available when ASP.NET 4 runs on IIS 7.5 on Windows Server 2008 R2. The auto-start feature provides a controlled approach for starting up an application pool, initializing an ASP.NET application, and then accepting HTTP requests.
 
 > [!NOTE] 
 > 
@@ -211,7 +211,7 @@ By default, the *requestPathInvalidChars* attribute defines eight characters as 
 
 ASP.NET request validation searches incoming HTTP request data for strings that are commonly used in cross-site scripting (XSS) attacks. If potential XSS strings are found, request validation flags the suspect string and returns an error. The built-in request validation returns an error only when it finds the most common strings used in XSS attacks. Previous attempts to make the XSS validation more aggressive resulted in too many false positives. However, customers might want request validation that is more aggressive, or conversely might want to intentionally relax XSS checks for specific pages or for specific types of requests.
 
-In ASP.NET 4, the request validation feature has been made extensible so that you can use custom request-validation logic. To extend request validation, you create a class that derives from the new *System.Web.Util.RequestValidator*type, and you configure the application (in the *httpRuntime* section of the `Web.config` file) to use the custom type. The following example shows how to configure a custom request-validation class:
+In ASP.NET 4, the request validation feature has been made extensible so that you can use custom request-validation logic. To extend request validation, you create a class that derives from the new *System.Web.Util.RequestValidator* type, and you configure the application (in the *httpRuntime* section of the `Web.config` file) to use the custom type. The following example shows how to configure a custom request-validation class:
 
 [!code-xml[Main](overview/samples/sample12.xml)]
 
@@ -230,7 +230,7 @@ Since its first release, ASP.NET has included a powerful in-memory object cache 
 To make caching available for all applications, the .NET Framework 4 introduces a new assembly, a new namespace, some base types, and a concrete caching implementation. The new `System.Runtime.Caching.dll` assembly contains a new caching API in the *System.Runtime.Caching* namespace. The namespace contains two core sets of classes:
 
 - Abstract types that provide the foundation for building any type of custom cache implementation.
-- A concrete in-memory object cache implementation (the *System.Runtime.Caching.MemoryCache*class).
+- A concrete in-memory object cache implementation (the *System.Runtime.Caching.MemoryCache* class).
 
 The new *MemoryCache* class is modeled closely on the ASP.NET cache, and it shares much of the internal cache engine logic with ASP.NET. Although the public caching APIs in *System.Runtime.Caching* have been updated to support development of custom caches, if you have used the ASP.NET *Cache* object, you will find familiar concepts in the new APIs.
 
@@ -253,7 +253,7 @@ You can create a custom encoder by deriving from the new *System.Web.Util.HttpEn
 
 [!code-xml[Main](overview/samples/sample15.xml)]
 
-After a custom encoder has been configured, ASP.NET automatically calls the custom encoding implementation whenever public encoding methods of the *System.Web.HttpUtility* or *System.Web.HttpServerUtility* classes are called. This lets one part of a Web development team create a custom encoder that implements aggressive character encoding, while the rest of the Web development team continues to use the public ASP.NET encoding APIs. By centrally configuring a custom encoder in the *httpRuntime*element, you are guaranteed that all text-encoding calls from the public ASP.NET encoding APIs are routed through the custom encoder.
+After a custom encoder has been configured, ASP.NET automatically calls the custom encoding implementation whenever public encoding methods of the *System.Web.HttpUtility* or *System.Web.HttpServerUtility* classes are called. This lets one part of a Web development team create a custom encoder that implements aggressive character encoding, while the rest of the Web development team continues to use the public ASP.NET encoding APIs. By centrally configuring a custom encoder in the *httpRuntime* element, you are guaranteed that all text-encoding calls from the public ASP.NET encoding APIs are routed through the custom encoder.
 
 <a id="0.2__Toc253429248"></a><a id="0.2__Toc243304622"></a>
 
@@ -569,7 +569,7 @@ ASP.NET 4 introduces the *MapPageRoute* method. The following example is equival
 
 The code in the example maps the route to a physical page (in the first route, to `~/search.aspx`). The first route definition also specifies that the parameter named searchterm should be extracted from the URL and passed to the page.
 
-The *MapPageRoute*method supports the following method overloads:
+The *MapPageRoute* method supports the following method overloads:
 
 - *MapPageRoute(string routeName, string routeUrl, string physicalFile, bool checkPhysicalUrlAccess)*
 - *MapPageRoute(string routeName, string routeUrl, string physicalFile, bool checkPhysicalUrlAccess, RouteValueDictionary defaults)*
@@ -929,7 +929,7 @@ The value for *controlRenderingCompatibility* is a string, which allows potentia
 
 - "3.5". This setting indicates legacy rendering and markup. Markup rendered by controls is 100% backward compatible, and the setting of the *xhtmlConformance* property is honored.
 - "4.0". If the property has this setting, ASP.NET Web server controls do the following:
-- The*xhtmlConformance* property is always treated as "Strict". As a result, controls render XHTML 1.0 Strict markup.
+- The *xhtmlConformance* property is always treated as "Strict". As a result, controls render XHTML 1.0 Strict markup.
 - Disabling non-input controls no longer renders invalid styles.
 - *div* elements around hidden fields are now styled so they do not interfere with user-created CSS rules.
 - Menu controls render markup that is semantically correct and compliant with accessibility guidelines.
@@ -952,7 +952,7 @@ The *Label* control would render the following HTML:
 
 [!code-html[Main](overview/samples/sample72.html)]
 
-In ASP.NET 4, you can set the *controlRenderingCompatabilityVersion* to "4.0". In that case, only controls that render *input* elements will render a *disabled* attribute when the control's *Enabled* property is set to *false*. Controls that do not render HTML *input* elements instead render a *class*attribute that references a CSS class that you can use to define a disabled look for the control. For example, the *Label* control shown in the earlier example would generate the following markup:
+In ASP.NET 4, you can set the *controlRenderingCompatabilityVersion* to "4.0". In that case, only controls that render *input* elements will render a *disabled* attribute when the control's *Enabled* property is set to *false*. Controls that do not render HTML *input* elements instead render a *class* attribute that references a CSS class that you can use to define a disabled look for the control. For example, the *Label* control shown in the earlier example would generate the following markup:
 
 [!code-html[Main](overview/samples/sample73.html)]
 
@@ -1084,7 +1084,7 @@ The control renders HTML similar to the following:
 
 [!code-html[Main](overview/samples/sample88.html)]
 
-In ASP.NET 3.5 SP1, although you can change the template contents, you still have limited control over the output of the *Wizard* control. In ASP.NET 4, you can create a *LayoutTemplate* template and insert *PlaceHolder* controls (using reserved names) to specify how you want the*Wizard control*to render. The following example shows this:
+In ASP.NET 3.5 SP1, although you can change the template contents, you still have limited control over the output of the *Wizard* control. In ASP.NET 4, you can create a *LayoutTemplate* template and insert *PlaceHolder* controls (using reserved names) to specify how you want the *Wizard control* to render. The following example shows this:
 
 [!code-aspx[Main](overview/samples/sample89.aspx)]
 
@@ -1358,7 +1358,7 @@ The following Web sites provide additional information about ASP.NET 4 and Visua
 - [ASP.NET 4](https://msdn.microsoft.com/en-us/library/ee532866%28VS.100%29.aspx) — The official documentation for ASP.NET 4 on the MSDN Web site.
 - [https://www.asp.net/](https://www.asp.net/) — The ASP.NET team's own Web site.
 - [https://www.asp.net/dynamicdata/](https://msdn.microsoft.com/en-us/library/cc488545.aspx) and [ASP.NET Dynamic Data Content Map](https://msdn.microsoft.com/en-us/library/cc488545%28VS.100%29.aspx) — Online resources on the ASP.NET team site and in the official documentation for ASP.NET Dynamic Data.
-- [https://www.asp.net/ajax/](../../ajax/overview.md) — The main Web resource for ASP.NET Ajax development.
+- [https://www.asp.net/ajax/](../../ajax/index.md) — The main Web resource for ASP.NET Ajax development.
 - [https://blogs.msdn.com/webdevtools/](https://blogs.msdn.com/webdevtools/) — The Visual Web Developer Team blog, which includes information about features in Visual Studio 2010.
 - [http://www.codeplex.com/aspnet](http://www.codeplex.com/aspnet) — The main Web resource for preview releases of ASP.NET.
 

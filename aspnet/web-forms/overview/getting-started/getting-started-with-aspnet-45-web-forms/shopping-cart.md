@@ -120,7 +120,7 @@ The `GetCartItems` method returns a list of shopping cart items for the user. La
 
 ### Creating the Add-To-Cart Functionality
 
-As mentioned earlier, you will create a processing page named *AddToCart.aspx*that will be used to add new products to the shopping cart of the user. This page will call the `AddToCart` method in the `ShoppingCart` class that you just created. The *AddToCart.aspx* page will expect that a product `ID` is passed to it. This product `ID` will be used when calling the `AddToCart` method in the `ShoppingCart` class.
+As mentioned earlier, you will create a processing page named *AddToCart.aspx* that will be used to add new products to the shopping cart of the user. This page will call the `AddToCart` method in the `ShoppingCart` class that you just created. The *AddToCart.aspx* page will expect that a product `ID` is passed to it. This product `ID` will be used when calling the `AddToCart` method in the `ShoppingCart` class.
 
 > [!NOTE] 
 > 
@@ -130,7 +130,7 @@ As mentioned earlier, you will create a processing page named *AddToCart.aspx*th
 #### To create the Add-To-Cart functionality:
 
 1. In **Solution Explorer**, right-click the **WingtipToys**project, click **Add** -&gt; **New Item**.  
- The     **Add New Item** dialog box is displayed.
+ The **Add New Item** dialog box is displayed.
 2. Add a standard new page (Web Form) to the application named *AddToCart.aspx*. 
 
     ![Shopping Cart - Add Web Form](shopping-cart/_static/image4.png)
@@ -148,7 +148,7 @@ As previously mentioned, a user `ID` is used to identify the products that are a
 The *ShoppingCart.aspx* page will display the products that the user has added to their shopping cart. It will also provide the ability to add, remove and update items in the shopping cart.
 
 1. In **Solution Explorer**, right-click **WingtipToys**, click **Add** -&gt; **New Item**.  
- The     **Add New Item** dialog box is displayed.
+ The **Add New Item** dialog box is displayed.
 2. Add a new page (Web Form) that includes a master page by selecting **Web Form using Master Page**. Name the new page *ShoppingCart.aspx*.
 3. Select **Site.Master** to attach the master page to the newly created *.aspx* page.
 4. In the *ShoppingCart.aspx* page, replace the existing markup with the following markup:   
@@ -184,18 +184,18 @@ Now, you'll add an **Add to Cart** link to both the *ProductList.aspx* page and 
 Run the application to see how you add products to the shopping cart.
 
 1. Press **F5** to run the application.  
- After the project recreates the database, the browser will open and show the     *Default.aspx* page.
+ After the project recreates the database, the browser will open and show the *Default.aspx* page.
 2. Select **Cars** from the category navigation menu.  
- The     *ProductList.aspx* page is displayed showing only products included in the "Cars" category. 
+ The *ProductList.aspx* page is displayed showing only products included in the "Cars" category. 
 
     ![Shopping Cart - Cars](shopping-cart/_static/image5.png)
 3. Click the **Add to Cart** link next to the first product listed (the convertible car).   
- The     *ShoppingCart.aspx* page is displayed, showing the selection in your shopping cart. 
+ The *ShoppingCart.aspx* page is displayed, showing the selection in your shopping cart. 
 
     ![Shopping Cart - Cart](shopping-cart/_static/image6.png)
 4. View additional products by selecting **Planes** from the category navigation menu.
 5. Click the **Add to Cart** link next to the first product listed.  
- The     *ShoppingCart.aspx* page is displayed with the additional item.
+ The *ShoppingCart.aspx* page is displayed with the additional item.
 6. Close the browser.
 
 ### Calculating and Displaying the Order Total
@@ -230,14 +230,14 @@ When the *ShoppingCart.aspx* page loads, it loads the shopping cart object and t
 Run the application now to see how you can not only add a product to the shopping cart, but you can see the shopping cart total.
 
 1. Press **F5** to run the application.  
- The browser will open and show the     *Default.aspx* page.
+ The browser will open and show the *Default.aspx* page.
 2. Select **Cars** from the category navigation menu.
 3. Click the **Add To Cart** link next to the first product.   
- The     *ShoppingCart.aspx* page is displayed with the order total. 
+ The *ShoppingCart.aspx* page is displayed with the order total. 
 
     ![Shopping Cart - Cart Total](shopping-cart/_static/image7.png)
 4. Add some other products (for example, a plane) to the cart.
-5. The *ShoppingCart.aspx*page is displayed with an updated total for all the products you've added. 
+5. The *ShoppingCart.aspx* page is displayed with an updated total for all the products you've added. 
 
     ![Shopping Cart - Multiple Products](shopping-cart/_static/image8.png)
 6. Stop the running app by closing the browser window.
@@ -281,7 +281,7 @@ In the next tutorial, you will use the `EmptyCart` method to clear the shopping 
 
 To allow the user to view the total number of items in the shopping cart, you will add a counter to the *Site.Master* page. This counter will also act as a link to the shopping cart.
 
-1. In **Solution Explorer**, open the *Site.Master*page.
+1. In **Solution Explorer**, open the *Site.Master* page.
 2. Modify the markup by adding the shopping cart counter link as shown in yellow to the navigation section so it appears as follows:  
 
     [!code-html[Main](shopping-cart/samples/sample13.html?highlight=6)]
@@ -296,10 +296,10 @@ Before the page is rendered as HTML, the `Page_PreRender` event is raised. In th
 You can run the application now to see how you can add, delete, and update items in the shopping cart. The shopping cart total will reflect the total cost of all items in the shopping cart.
 
 1. Press **F5** to run the application.  
- The browser opens and shows the     *Default.aspx* page.
+ The browser opens and shows the *Default.aspx* page.
 2. Select **Cars** from the category navigation menu.
 3. Click the **Add To Cart** link next to the first product.   
- The     *ShoppingCart.aspx* page is displayed with the order total.
+ The *ShoppingCart.aspx* page is displayed with the order total.
 4. Select **Planes** from the category navigation menu.
 5. Click the **Add To Cart** link next to the first product.
 6. Set the quantity of the first item in the shopping cart to 3 and select the **Remove Item** check box of the second item.<a id="a"></a>

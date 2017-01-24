@@ -98,7 +98,7 @@ In the above code, the try block contains the code that needs to be guarded agai
 Before adding error handling to the Wingtip Toys sample application, you will add error logging support by adding an `ExceptionUtility` class to the *Logic* folder. By doing this, each time the application handles an error, the error details will be added to the error log file.
 
 1. Right-click the *Logic* folder and then select **Add** -&gt; **New Item**.   
- The     **Add New Item** dialog box is displayed.
+ The **Add New Item** dialog box is displayed.
 2. Select the **Visual C#** -&gt; **Code** templates group on the left. Then, select **Class**from the middle list and name it **ExceptionUtility.cs**.
 3. Choose **Add**. The new class file is displayed.
 4. Replace the existing code with the following:  
@@ -112,7 +112,7 @@ When an exception occurs, the exception can be written to an exception log file 
 In the Wingtip Toys sample application, one page will be used to display errors. The error page is designed to show a secure error message to users of the site. However, if the user is a developer making an HTTP request that is being served locally on the machine where the code lives, additional error details will be displayed on the error page.
 
 1. Right-click the project name (**Wingtip Toys**) in **Solution Explorer** and select **Add** -&gt; **New Item**.   
- The     **Add New Item** dialog box is displayed.
+ The **Add New Item** dialog box is displayed.
 2. Select the **Visual C#** -&gt; **Web** templates group on the left. From the middle list, select **Web Form with Master Page**,and name it **ErrorPage.aspx**.
 3. Click **Add**.
 4. Select the *Site.Master* file as the master page, and then choose **OK**.
@@ -146,7 +146,7 @@ The `customErrors` section specifies the mode, which is set to "On". It also spe
 You can run the application now to see the updated routes.
 
 1. Press **F5** to run the Wingtip Toys sample application.  
- The browser opens and shows the     *Default.aspx* page.
+ The browser opens and shows the *Default.aspx* page.
 2. Enter the following URL into the browser (be sure to use **your** port number):  
     `https://localhost:44300/NoPage.aspx`
 3. Review the *ErrorPage.aspx* displayed in the browser. 
@@ -160,7 +160,7 @@ When you request the *NoPage.aspx* page, which does not exist, the error page wi
 To verify how your application will function when an error occurs, you can deliberately create error conditions in ASP.NET. In the Wingtip Toys sample application, you will throw a test exception when the default page loads to see what happens.
 
 1. Open the code-behind of the *Default.aspx* page in Visual Studio.   
- The     *Default.aspx.cs* code-behind page will be displayed.
+ The *Default.aspx.cs* code-behind page will be displayed.
 2. In the `Page_Load` handler, add code so that the handler appears as follows:   
 
     [!code-csharp[Main](aspnet-error-handling/samples/sample9.cs?highlight=3-4)]
@@ -199,7 +199,7 @@ When an error occurs in the application, the `Application_Error` handler is call
 You can run the application to see the additional error details provided by handling the exception at the application level.
 
 1. Press **CTRL+F5** to run the Wingtip Toys sample application.  
- The application throws the     `InvalidOperationException` .
+ The application throws the `InvalidOperationException` .
 2. Review the *ErrorPage.aspx* displayed in the browser. 
 
     ![ASP.NET Error Handling - Application Level Error](aspnet-error-handling/_static/image3.png)
@@ -220,7 +220,7 @@ When an error occurs on the page, the `Page_Error` event handler is called. In t
 You can run the application now to see the updated routes.
 
 1. Press **CTRL+F5** to run the Wingtip Toys sample application.  
- The application throws the     `InvalidOperationException` .
+ The application throws the `InvalidOperationException` .
 2. Review the *ErrorPage.aspx* displayed in the browser. 
 
     ![ASP.NET Error Handling - Page Level Error](aspnet-error-handling/_static/image4.png)
@@ -251,7 +251,7 @@ The above code calls the `LogException` method that is contained in the `Excepti
 As mentioned previously, you can use the error log to determine which errors in your application should be fixed first. Of course, only errors that have been trapped and written to the error log will be recorded.
 
 1. In **Solution Explorer**, find and open the *ErrorLog.txt* file in the *App\_Data* folder.   
- You may need to select the "    **Show All Files** " option or the "    **Refresh** " option from the top of     **Solution Explorer** to see the     *ErrorLog.txt* file.
+ You may need to select the "**Show All Files**" option or the "**Refresh**" option from the top of **Solution Explorer** to see the *ErrorLog.txt* file.
 2. Review the error log displayed in Visual Studio: 
 
     ![ASP.NET Error Handling - ErrorLog.txt](aspnet-error-handling/_static/image5.png)
@@ -350,11 +350,11 @@ I would like to thank the following people who made significant contributions to
 ## Community Contributions
 
 - Graham Mendick ([@grahammendick](http://twitter.com/grahammendick))  
- Visual Studio 2012 related code sample on MSDN:     [Navigation Wingtip Toys](https://code.msdn.microsoft.com/Navigation-Wingtip-Toys-5f0daba2)
+ Visual Studio 2012 related code sample on MSDN: [Navigation Wingtip Toys](https://code.msdn.microsoft.com/Navigation-Wingtip-Toys-5f0daba2)
 - James Chaney ([jchaney@agvance.net](mailto:jchaney@agvance.net))  
- Visual Studio 2012 related code sample on MSDN:     [ASP.NET 4.5 Web Forms Tutorial Series in Visual Basic](https://code.msdn.microsoft.com/ASPNET-45-Web-Forms-f37f0f63)
+ Visual Studio 2012 related code sample on MSDN: [ASP.NET 4.5 Web Forms Tutorial Series in Visual Basic](https://code.msdn.microsoft.com/ASPNET-45-Web-Forms-f37f0f63)
 - Andrielle Azevedo - Microsoft Technical Audience Contributor (twitter: @driazevedo)  
- Visual Studio 2012 translation:     [Iniciando com ASP.NET Web Forms 4.5 - Parte 1 - Introdução e Visão Geral](https://andrielleazevedo.wordpress.com/2013/01/24/iniciando-com-asp-net-web-forms-4-5-introducao-e-visao-geral/)
+ Visual Studio 2012 translation: [Iniciando com ASP.NET Web Forms 4.5 - Parte 1 - Introdução e Visão Geral](https://andrielleazevedo.wordpress.com/2013/01/24/iniciando-com-asp-net-web-forms-4-5-introducao-e-visao-geral/)
 
 >[!div class="step-by-step"]
 [Previous](url-routing.md)

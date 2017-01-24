@@ -72,7 +72,7 @@ When you are dropping and re-creating the database for every data model change, 
 
 For this tutorial, you'll be using Migrations for deployment, but your `Seed` method will insert test data anyway in order to make it easier to see how application functionality works without having to manually insert a lot of data.
 
-1. Replace the contents of the *Configuration.cs*file with the following code, which will load test data into the new database. 
+1. Replace the contents of the *Configuration.cs* file with the following code, which will load test data into the new database. 
 
     [!code-csharp[Main](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs)]
 
@@ -151,7 +151,7 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
 
     ![Create with Database link in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image5.png)
 
- The     **New Web Site - Custom Create** wizard opens.
+ The **New Web Site - Custom Create** wizard opens.
 3. In the **New Web Site** step of the wizard, enter a string in the **URL** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the suffix that you see next to the text box. The illustration shows "ConU", but that URL is probably taken so you will have to choose a different one.
 
     ![Create with Database link in Management Portal](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image6.png)
@@ -171,7 +171,7 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
   
     ![Database Settings step of New Web Site - Create with Database wizard](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image9.png)  
   
- The Management Portal returns to the Web Sites page, and the     **Status** column shows that the site is being created. After a while (typically less than a minute), the     **Status** column shows that the site was successfully created. In the navigation bar at the left, the number of sites you have in your account appears next to the     **Web Sites** icon, and the number of databases appears next to the     **SQL Databases** icon.
+ The Management Portal returns to the Web Sites page, and the **Status** column shows that the site is being created. After a while (typically less than a minute), the **Status** column shows that the site was successfully created. In the navigation bar at the left, the number of sites you have in your account appears next to the **Web Sites** icon, and the number of databases appears next to the **SQL Databases** icon.
 
 ### Deploy the application to Azure
 
@@ -202,7 +202,7 @@ You'll deploy the database to Azure SQL Database. SQL Database is a cloud-based 
     ![download .publishsettings file](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image15.png)
 
     > [!WARNING]
-    > Security - The *publishsettings* file contains your credentials (unencoded) that are used to administer your Azure subscriptions and services. The security best practice for this file is to store it temporarily outside your source directories (for example in the*Downloads* folder), and then delete it once the import has completed. A malicious user who gains access to the `.publishsettings` file can edit, create, and delete your Azure services.
+    > Security - The *publishsettings* file contains your credentials (unencoded) that are used to administer your Azure subscriptions and services. The security best practice for this file is to store it temporarily outside your source directories (for example in the *Downloads* folder), and then delete it once the import has completed. A malicious user who gains access to the `.publishsettings` file can edit, create, and delete your Azure services.
 
     e. In the **Import Azure Subscriptions** dialog box, click **Browse** and navigate to the *.publishsettings* file.
 
@@ -253,7 +253,7 @@ The deployment process also created a new connection string *(SchoolContext\_Dat
 
 ![Database_Publish connection string](migrations-and-deployment-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image26.png)
 
-You can find the deployed version of the Web.config file on your own computer in*ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. You can access the deployed *Web.config* file itself by using FTP. For instructions, see [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Follow the instructions that start with "To use an FTP tool, you need three things: the FTP URL, the user name, and the password."
+You can find the deployed version of the Web.config file on your own computer in *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. You can access the deployed *Web.config* file itself by using FTP. For instructions, see [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Follow the instructions that start with "To use an FTP tool, you need three things: the FTP URL, the user name, and the password."
 
 > [!NOTE]
 > The web app doesn't implement security, so anyone who finds the URL can change the data. For instructions on how to secure the web site, see [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to Azure](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). You can prevent other people from using the site by using the Azure Management Portal or **Server Explorer** in Visual Studio to stop the site.

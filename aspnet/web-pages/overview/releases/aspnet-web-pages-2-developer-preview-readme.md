@@ -56,15 +56,15 @@ ASP.NET Web Pages 2 requires the .NET Framework 4. It also works with the .NET F
     [!code-cshtml[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample1.cshtml)]
 
     This code previously would resolve to Images/Logo.jpg, which would be incorrect for an Ajax request to that page. It will now resolve to the root of the (/MySite/Images/Logo.jpg).
-- **The HttpContext.RedirectLocal method has changed** . This method now accepts only URLs that are relative to the current application. Fully qualified URLs are rejected.
-- **The ModelState.IsValid method now requires you to call Validate first** . If you are converting your application to use the new input validation methods and are calling the *ModelState.IsValid* method, you must now call *Validation.Validate* beforehand. For example, you must now follow this pattern: 
+- **The HttpContext.RedirectLocal method has changed**. This method now accepts only URLs that are relative to the current application. Fully qualified URLs are rejected.
+- **The ModelState.IsValid method now requires you to call Validate first**. If you are converting your application to use the new input validation methods and are calling the *ModelState.IsValid* method, you must now call *Validation.Validate* beforehand. For example, you must now follow this pattern: 
 
     [!code-csharp[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample2.cs)]
 
- However, we recommend that if you use the new input validation methods, don't use     *ModelState.IsValid* . Instead, structure your code like this: 
+ However, we recommend that if you use the new input validation methods, don't use *ModelState.IsValid*. Instead, structure your code like this: 
 
     [!code-csharp[Main](aspnet-web-pages-2-developer-preview-readme/samples/sample3.cs)]
-- **On Internet Explorer 7 and Internet Explorer 8, client-side validation does not work** . Client-side validation does not work due to incompatibilities with jQuery 1.6.2, which is included with the default project template. (Server-side validation works.).
+- **On Internet Explorer 7 and Internet Explorer 8, client-side validation does not work**. Client-side validation does not work due to incompatibilities with jQuery 1.6.2, which is included with the default project template. (Server-side validation works.).
 
 #### <a id="_Toc303701289"></a>  Disclaimer
 

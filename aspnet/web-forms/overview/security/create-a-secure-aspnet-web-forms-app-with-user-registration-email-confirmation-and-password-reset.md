@@ -44,7 +44,7 @@ Start by installing and running [Visual Studio Express 2013 for Web](https://go.
 
 1. Create a new project (**File** -&gt; **New Project**) and select the **ASP.NET Web Application** template and the latest .NET Framework version from the **New Project** dialog box.
 2. From the **New ASP.NET Project** dialog box, select the **Web Forms** template. Leave the default authentication as **Individual User Accounts**. If you'd like to host the app in Azure, leave the **Host in the cloud** check box checked.   
- Then, click     **OK** to create the new project.  
+ Then, click **OK** to create the new project.  
     ![New ASP.NET Project dialog box](create-a-secure-aspnet-web-forms-app-with-user-registration-email-confirmation-and-password-reset/_static/image1.png)
 3. Enable Secure Sockets Layer (SSL) for the project. Follow the steps available in the **Enable SSL for the Project** section of the [Getting Started with Web Forms tutorial series](../getting-started/getting-started-with-aspnet-45-web-forms/checkout-and-payment-with-paypal.md).
 4. Run the app, click the **Register** link and register a new user. At this point, the only validation on the email is based on the [[EmailAddress]](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx) attribute to ensure the email address is well-formed. You will modify the code to add email confirmation. Close the browser window.
@@ -140,9 +140,9 @@ Although you have confirmed the email account, at this point you would not need 
 4. Run the app by pressing **F5.** After the page is displayed, click the **Log in** link.
 5. Click the **Forgot your password?** link to display the **Forgot Password** page.
 6. Enter your email address and click the **Submit** button to send an email to your address which will allow you to reset your password.   
- Check your email account and click on the link to display the     **Reset Password** page.
+ Check your email account and click on the link to display the **Reset Password** page.
 7. On the **Reset Password** page, enter your email, password, and confirmed password. Then, press the **Reset** button.  
- When you successfully reset your password, the     **Password Changed** page will be displayed. Now you can log in with your new password.
+ When you successfully reset your password, the **Password Changed** page will be displayed. Now you can log in with your new password.
 
 <a id="rsend"></a>
 ## Resend Email Confirmation Link

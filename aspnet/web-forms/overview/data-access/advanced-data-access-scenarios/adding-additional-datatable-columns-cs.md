@@ -159,7 +159,7 @@ With the BLL addition complete we re ready to create an ASP.NET page that shows 
 
 After completing the Configure Data Source wizard, Visual Studio will automatically add a BoundField or CheckBoxField to the GridView for each of the data fields returned by the method. One of these data fields is `PriceQuartile`, which is the column we added to the `ProductsDataTable` in Step 1.
 
-Edit the GridView s fields, removing all but the `ProductName`, `UnitPrice`, and `PriceQuartile` BoundFields. Configure the `UnitPrice` BoundField to format its value as a currency and have the `UnitPrice` and `PriceQuartile` BoundFields right- and center-aligned, respectively. Finally, update the remaining BoundFields `HeaderText` properties to Product , Price , and Price Quartile , respectively. Also, check the Enable Sorting checkbox from the GridView s smart tag.
+Edit the GridView s fields, removing all but the `ProductName`, `UnitPrice`, and `PriceQuartile` BoundFields. Configure the `UnitPrice` BoundField to format its value as a currency and have the `UnitPrice` and `PriceQuartile` BoundFields right- and center-aligned, respectively. Finally, update the remaining BoundFields `HeaderText` properties to Product, Price, and Price Quartile, respectively. Also, check the Enable Sorting checkbox from the GridView s smart tag.
 
 After these modifications, the GridView and ObjectDataSource s declarative markup should look like the following:
 

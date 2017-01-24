@@ -271,7 +271,7 @@ Windows Azure SQL Database is a cloud-based relational database service that is 
 
     ![Create with Database link in Management Portal](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image12.png)
 
- The     **New Web Site - Custom Create** wizard opens.
+ The **New Web Site - Custom Create** wizard opens.
 3. In the **New Web Site** step of the wizard, enter a string in the **URL** box to use as the unique URL for your application. The complete URL will consist of what you enter here plus the suffix that you see next to the text box. The illustration shows "ConU", but that URL is probably taken so you will have to choose a different one.
 
     ![Create with Database link in Management Portal](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
@@ -295,7 +295,7 @@ Windows Azure SQL Database is a cloud-based relational database service that is 
   
     ![Database Settings step of New Web Site - Create with Database wizard](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image17.png)  
   
- The Management Portal returns to the Web Sites page, and the     **Status** column shows that the site is being created. After a while (typically less than a minute), the     **Status** column shows that the site was successfully created. In the navigation bar at the left, the number of sites you have in your account appears next to the     **Web Sites** icon, and the number of databases appears next to the     **SQL Databases** icon.
+ The Management Portal returns to the Web Sites page, and the **Status** column shows that the site is being created. After a while (typically less than a minute), the **Status** column shows that the site was successfully created. In the navigation bar at the left, the number of sites you have in your account appears next to the **Web Sites** icon, and the number of databases appears next to the **SQL Databases** icon.
 
 ## Deploy the application to Windows Azure
 
@@ -320,7 +320,7 @@ Windows Azure SQL Database is a cloud-based relational database service that is 
     ![download .publishsettings file](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image22.png)
 
     > [!WARNING]
-    > Security - The *publishsettings* file contains your credentials (unencoded) that are used to administer your Windows Azure subscriptions and services. The security best practice for this file is to store it temporarily outside your source directories (for example in the*Libraries\Documents* folder), and then delete it once the import has completed. A malicious user who gains access to the `.publishsettings` file can edit, create, and delete your Windows Azure services.
+    > Security - The *publishsettings* file contains your credentials (unencoded) that are used to administer your Windows Azure subscriptions and services. The security best practice for this file is to store it temporarily outside your source directories (for example in the *Libraries\Documents* folder), and then delete it once the import has completed. A malicious user who gains access to the `.publishsettings` file can edit, create, and delete your Windows Azure services.
 
     d. In the **Import Windows Azure Subscriptions** dialog box, click **Browse** and navigate to the *.publishsettings* file.
 
@@ -371,7 +371,7 @@ The deployment process also created a new connection string *(SchoolContext\_Dat
 
 The *DefaultConnection* connection string is for the membership database (which we are not using in this tutorial). The *SchoolContext* connection string is for the ContosoUniversity database.
 
-You can find the deployed version of the Web.config file on your own computer in*ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. You can access the deployed *Web.config* file itself by using FTP. For instructions, see [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Follow the instructions that start with "To use an FTP tool, you need three things: the FTP URL, the user name, and the password."
+You can find the deployed version of the Web.config file on your own computer in *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*. You can access the deployed *Web.config* file itself by using FTP. For instructions, see [ASP.NET Web Deployment using Visual Studio: Deploying a Code Update](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md). Follow the instructions that start with "To use an FTP tool, you need three things: the FTP URL, the user name, and the password."
 
 > [!NOTE]
 > The web app doesn't implement security, so anyone who finds the URL can change the data. For instructions on how to secure the web site, see [Deploy a Secure ASP.NET MVC app with Membership, OAuth, and SQL Database to a Windows Azure Web Site](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/). You can prevent other people from using the site by using the Windows Azure Management Portal or **Server Explorer** in Visual Studio to stop the site.

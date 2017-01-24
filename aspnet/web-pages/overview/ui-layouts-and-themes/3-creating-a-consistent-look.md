@@ -114,7 +114,7 @@ The following procedure shows how to create a layout page and link content pages
     [!code-cshtml[Main](3-creating-a-consistent-look/samples/sample9.cshtml)]
 
     This is a page that will use a layout page. The code block at the top of the page indicates which layout page to use to format this content.
-7. Run *Content1.cshtml*in a browser. The rendered page uses the format and style sheet defined in *\_Layout1.cshtml* and the text (content) defined in *Content1.cshtml*.
+7. Run *Content1.cshtml* in a browser. The rendered page uses the format and style sheet defined in *\_Layout1.cshtml* and the text (content) defined in *Content1.cshtml*.
 
     ![[image]](3-creating-a-consistent-look/_static/image4.jpg)
 

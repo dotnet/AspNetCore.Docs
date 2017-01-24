@@ -150,11 +150,11 @@ However, you can't expect users to modify the URL every time they want to search
 
 [!code-csharp[Main](examining-the-edit-methods-and-edit-view/samples/sample13.cs)]
 
-Open the *Views\Movies\SearchIndex.cshtml*file, and just after `@Html.ActionLink("Create New", "Create")`, add the following:
+Open the *Views\Movies\SearchIndex.cshtml* file, and just after `@Html.ActionLink("Create New", "Create")`, add the following:
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample14.cshtml)]
 
-The following example shows a portion of the *Views\Movies\SearchIndex.cshtml*file with the added filtering markup.
+The following example shows a portion of the *Views\Movies\SearchIndex.cshtml* file with the added filtering markup.
 
 [!code-cshtml[Main](examining-the-edit-methods-and-edit-view/samples/sample15.cshtml)]
 

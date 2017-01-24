@@ -150,7 +150,7 @@ Start by going to the Server Explorer, drilling down into the Northwind database
 
 [!code-sql[Main](updating-the-tableadapter-to-use-joins-cs/samples/sample5.sql)]
 
-After updating the `SELECT` statement, save the changes by going to the File menu and choosing Save `Employees_Select` . Alternatively, you can click the Save icon in the toolbar or hit Ctrl+S. After saving your changes, right-click on the `Employees_Select` stored procedure in the Server Explorer and choose Execute. This will run the stored procedure and show its results in the Output window (see Figure 9).
+After updating the `SELECT` statement, save the changes by going to the File menu and choosing Save `Employees_Select`. Alternatively, you can click the Save icon in the toolbar or hit Ctrl+S. After saving your changes, right-click on the `Employees_Select` stored procedure in the Server Explorer and choose Execute. This will run the stored procedure and show its results in the Output window (see Figure 9).
 
 
 [![The Stored Procedures Results are Displayed in the Output Window](updating-the-tableadapter-to-use-joins-cs/_static/image22.png)](updating-the-tableadapter-to-use-joins-cs/_static/image21.png)
@@ -211,7 +211,7 @@ Configure the ObjectDataSource to use the `EmployeesBLLWithSprocs` class and, fr
 **Figure 13**: Have the ObjectDataSource Use the `GetEmployees` and `DeleteEmployee` Methods ([Click to view full-size image](updating-the-tableadapter-to-use-joins-cs/_static/image35.png))
 
 
-Visual Studio will add a BoundField to the GridView for each of the `EmployeesDataTable` s columns. Remove all of these BoundFields except for `Title`, `LastName`, `FirstName`, `ManagerFirstName`, and `ManagerLastName` and rename the `HeaderText` properties for the last four BoundFields to Last Name , First Name , Manager s First Name , and Manager s Last Name , respectively.
+Visual Studio will add a BoundField to the GridView for each of the `EmployeesDataTable` s columns. Remove all of these BoundFields except for `Title`, `LastName`, `FirstName`, `ManagerFirstName`, and `ManagerLastName` and rename the `HeaderText` properties for the last four BoundFields to Last Name, First Name, Manager s First Name, and Manager s Last Name, respectively.
 
 To allow users to delete employees from this page we need to do two things. First, instruct the GridView to provide deleting capabilities by checking the Enable Deleting option from its smart tag. Second, change the ObjectDataSource s `OldValuesParameterFormatString` property from the value set by the ObjectDataSource wizard (`original_{0}`) to its default value (`{0}`). After making these changes, your GridView and ObjectDataSource s declarative markup should look similar to the following:
 

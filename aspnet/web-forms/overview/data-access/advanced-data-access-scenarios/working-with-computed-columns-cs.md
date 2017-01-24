@@ -35,7 +35,7 @@ Let s get started!
 
 ## Step 1: Adding a Computed Column to the`Suppliers`Table
 
-The Northwind database does not have any computed columns so we will need to add one ourselves. For this tutorial let s add a computed column to the `Suppliers` table called `FullContactName` that returns the contact s name, title, and the company they work for in the following format: `ContactName` (`ContactTitle`, `CompanyName`) . This computed column might be used in reports when displaying information about suppliers.
+The Northwind database does not have any computed columns so we will need to add one ourselves. For this tutorial let s add a computed column to the `Suppliers` table called `FullContactName` that returns the contact s name, title, and the company they work for in the following format: `ContactName` (`ContactTitle`, `CompanyName`). This computed column might be used in reports when displaying information about suppliers.
 
 Start by opening the `Suppliers` table definition by right-clicking on the `Suppliers` table in the Server Explorer and choosing Open Table Definition from the context-menu. This will display the columns of the table and their properties, such as their data type, whether they allow `NULL` s, and so forth. To add a computed column, start by typing in the name of the column into the table definition. Next, enter its expression into the (Formula) textbox under the Computed Column Specification section in the Column Properties window (see Figure 1). Name the computed column `FullContactName` and use the following expression:
 
@@ -214,9 +214,9 @@ With the computed column added to the `Suppliers` table and the DAL and BLL upda
 
 There are only two methods defined in the `SuppliersBLLWithSprocs` class: `GetSuppliers` and `UpdateSupplier`. Ensure that these two methods are specified in the SELECT and UPDATE tabs, respectively, and click Finish to complete the configuration of the ObjectDataSource.
 
-Upon completion of the Data Source Configuration wizard, Visual Studio will add a BoundField for each of the data fields returned. Remove the `SupplierID` BoundField and change the `HeaderText` properties of the `CompanyName`, `ContactName`, `ContactTitle`, and `FullContactName` BoundFields to Company , Contact Name , Title , and Full Contact Name , respectively. From the smart tag, check the Enable Editing checkbox to turn on the GridView s built-in editing capabilities.
+Upon completion of the Data Source Configuration wizard, Visual Studio will add a BoundField for each of the data fields returned. Remove the `SupplierID` BoundField and change the `HeaderText` properties of the `CompanyName`, `ContactName`, `ContactTitle`, and `FullContactName` BoundFields to Company, Contact Name, Title, and Full Contact Name, respectively. From the smart tag, check the Enable Editing checkbox to turn on the GridView s built-in editing capabilities.
 
-In addition to adding BoundFields to the GridView, completion of the Data Source Wizard also causes Visual Studio to set the ObjectDataSource s `OldValuesParameterFormatString` property to original\_{0} . Revert this setting back to its default value, {0} .
+In addition to adding BoundFields to the GridView, completion of the Data Source Wizard also causes Visual Studio to set the ObjectDataSource s `OldValuesParameterFormatString` property to original\_{0}. Revert this setting back to its default value, {0} .
 
 After making these edits to the GridView and ObjectDataSource, their declarative markup should look similar to the following:
 

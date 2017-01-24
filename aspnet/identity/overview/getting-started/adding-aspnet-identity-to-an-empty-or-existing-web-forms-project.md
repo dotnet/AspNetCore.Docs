@@ -34,7 +34,7 @@ by [Raquel Soares De Almeida](https://github.com/raquelsa)
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image2.png)  
   
- Notice the     **Change Authentication** button is disabled and no authentication support is provided in this template. The Web Forms, MVC and Web API templates allow you to select the authentication approach. For more information, see     [Overview of Authentication](../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#auth) .
+ Notice the **Change Authentication** button is disabled and no authentication support is provided in this template. The Web Forms, MVC and Web API templates allow you to select the authentication approach. For more information, see [Overview of Authentication](../../../visual-studio/overview/2013/creating-web-projects-in-visual-studio.md#auth) .
 
 ## Adding Identity Packages to your App
 
@@ -55,7 +55,7 @@ Note that this package will install the dependency packages: EntityFramework and
     [!code-aspx[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample1.aspx?highlight=9,12-40)]
 
     > [!NOTE]
-    > This is just a simplified version of the*Register.aspx*file that is created when you create a new ASP.NET Web Forms project. The markup above adds form fields and a button to register a new user.
+    > This is just a simplified version of the *Register.aspx* file that is created when you create a new ASP.NET Web Forms project. The markup above adds form fields and a button to register a new user.
 4. Open the *Register.aspx.cs* file and replace the contents of the file with the following code:
 
     [!code-csharp[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample2.cs)]
@@ -130,7 +130,7 @@ At this point we have only added support for creating users. Now, we are going t
 2. In **Solution Explorer**, right-click your project click **Add**, and then **Web Form**. Name the web form **Login**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image12.png)
-3. Replace the contents of the*Login.aspx* file with the following code:  
+3. Replace the contents of the *Login.aspx* file with the following code:  
 
     [!code-aspx[Main](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/samples/sample6.aspx)]
 4. Replace the contents of the *Login.aspx.cs* file with the following:  
@@ -140,22 +140,22 @@ At this point we have only added support for creating users. Now, we are going t
     > [!NOTE] 
     > 
     > - The `Page_Load` now checks for the status of current user and takes action based on its `Context.User.Identity.IsAuthenticated` status.  
-    >     **Display Logged in User Name** : The Microsoft ASP.NET Identity Framework has added extension methods on     [System.Security.Principal.IIdentity](https://msdn.microsoft.com/en-us/library/system.security.principal.iidentity.aspx) that allows you to get the     `UserName`  and     `UserId`  for the logged in User. These extension methods are defined in the     `Microsoft.AspNet.Identity.Core` assembly. These extension methods are the replacement for     [HttpContext.User.Identity.Name](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.user.aspx) .
+    >     **Display Logged in User Name** : The Microsoft ASP.NET Identity Framework has added extension methods on [System.Security.Principal.IIdentity](https://msdn.microsoft.com/en-us/library/system.security.principal.iidentity.aspx) that allows you to get the `UserName` and `UserId`  for the logged in User. These extension methods are defined in the `Microsoft.AspNet.Identity.Core` assembly. These extension methods are the replacement for [HttpContext.User.Identity.Name](https://msdn.microsoft.com/en-us/library/system.web.httpcontext.user.aspx) .
     > - SignIn method:   
-    >     `This`  method replaces the previous     `CreateUser_Click` method in this sample and now signs in the user after successfully creating the user.   
-    >  The Microsoft OWIN Framework has added extension methods on     `System.Web.HttpContext` that allows you to get a reference to an     `IOwinContext` . These extension methods are defined in     `Microsoft.Owin.Host.SystemWeb` assembly. The     `OwinContext`  class exposes an     `IAuthenticationManager`  property that represents the Authentication middleware functionality available on the current request.  
-    >  You can sign in the user by using the     `AuthenticationManager`  from OWIN and calling     `SignIn`  and passing in the     `ClaimsIdentity`  as shown above.   
-    >  Because ASP.NET Identity and OWIN Cookie Authentication are claims-based system, the framework requires the app to generate a     `ClaimsIdentity` for the user.   
-    >  The     `ClaimsIdentity`  has information about all the claims for the user, such as what roles the user belongs to. You can also add more claims for the user at this stage  
-    >  This code will sign in the user and generate a cookie as well. This call is analogous to     [FormAuthentication.SetAuthCookie](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthentication.setauthcookie.aspx) used by the     [FormsAuthentication](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationmodule.aspx) module.
+    >     `This` method replaces the previous `CreateUser_Click` method in this sample and now signs in the user after successfully creating the user.   
+    >  The Microsoft OWIN Framework has added extension methods on `System.Web.HttpContext` that allows you to get a reference to an `IOwinContext`. These extension methods are defined in `Microsoft.Owin.Host.SystemWeb` assembly. The `OwinContext` class exposes an `IAuthenticationManager` property that represents the Authentication middleware functionality available on the current request.  
+    >  You can sign in the user by using the `AuthenticationManager` from OWIN and calling `SignIn`  and passing in the `ClaimsIdentity`  as shown above.   
+    >  Because ASP.NET Identity and OWIN Cookie Authentication are claims-based system, the framework requires the app to generate a `ClaimsIdentity` for the user.   
+    >  The `ClaimsIdentity` has information about all the claims for the user, such as what roles the user belongs to. You can also add more claims for the user at this stage  
+    >  This code will sign in the user and generate a cookie as well. This call is analogous to [FormAuthentication.SetAuthCookie](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthentication.setauthcookie.aspx) used by the [FormsAuthentication](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationmodule.aspx) module.
     > - `SignOut` method:   
-    >  Gets a reference to the     `AuthenticationManager`  from OWIN and calls     `SignOut` . This is analogous to     [FormsAuthentication.SignOut](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthentication.signout.aspx) method used by the     [FormsAuthentication](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationmodule.aspx) module.
+    >  Gets a reference to the `AuthenticationManager` from OWIN and calls `SignOut`. This is analogous to [FormsAuthentication.SignOut](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthentication.signout.aspx) method used by the [FormsAuthentication](https://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationmodule.aspx) module.
 5. Press **Ctrl + F5** to build and run the web application. Enter a new user name and password and then click on **Register**.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image13.png)  
  Note: At this point, the new user is created and logged in.
 6. Click on **Log out** button.You will be redirected to the Log in form.
 7. Enter an invalid user name or password and Click on **Log in** button.   
- The     `UserManager.Find`  method will return null and the error message: "    *Invalid user name or password* " will be displayed.  
+ The `UserManager.Find`  method will return null and the error message: " *Invalid user name or password* " will be displayed.  
   
     ![](adding-aspnet-identity-to-an-empty-or-existing-web-forms-project/_static/image14.png)

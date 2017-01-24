@@ -249,7 +249,7 @@ Happy Programming!
 
 For more information on the topics discussed in this tutorial, refer to the following resources:
 
-- [ASP.NET AJAX Framework](../../../../ajax/overview.md)
+- [ASP.NET AJAX Framework](../../../../ajax/index.md)
 - [ASP.NET AJAX Tutorials](../aspnet-ajax/understanding-partial-page-updates-with-asp-net-ajax.md)
 - [ASP.NET AJAX Videos](../../../videos/aspnet-ajax/index.md)
 - [Building Interactive User Interface with Microsoft ASP.NET AJAX](http://aspnet.4guysfromrolla.com/articles/101007-1.aspx)

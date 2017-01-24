@@ -237,11 +237,7 @@ The cursor is positioned to added code for this event handler.
     ![IntelliSense in Code view](creating-a-basic-web-forms-page/_static/image12.png "IntelliSense in Code view")
 4. Finish the **Click** event handler for the button so that it reads as shown in the following code example.
 
-**C#**
-
     [!code-csharp[Main](creating-a-basic-web-forms-page/samples/sample1.cs?highlight=3)]
-
-**VB**
 
     [!code-vb[Main](creating-a-basic-web-forms-page/samples/sample2.vb?highlight=2)]
 5. Switch back to viewing the **Source** view of your HTML markup by right-clicking *FirstWebPage.aspx* in the **Solution Explorer** and selecting **View Markup**.

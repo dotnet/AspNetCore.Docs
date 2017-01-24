@@ -232,7 +232,7 @@ In this section you'll add birth date and home town to the user data during regi
 
 ![reg with home town and Bday](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/_static/image35.png)
 
-Open the *Models\IdentityModels.cs*file and add birth date and home town properties:
+Open the *Models\IdentityModels.cs* file and add birth date and home town properties:
 
 [!code-csharp[Main](create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on/samples/sample4.cs?highlight=3-4)]
 
@@ -279,7 +279,7 @@ The `HomeTown` and `BirthDate` fields are shown below.
 <a id="off"></a>
 ## Logging off your App and Logging in With Another Account
 
-If you log on to your app with Facebook, , and then log out and try to log in again with a different Facebook account (using the same browser), you will be immediately logged in to the previous Facebook account you used. In order to use another account, you need to navigate to Facebook and log out at Facebook. The same rule applies to any other 3rd party authentication provider. Alternatively, you can log in with another account by using a different browser.
+If you log on to your app with Facebook,, and then log out and try to log in again with a different Facebook account (using the same browser), you will be immediately logged in to the previous Facebook account you used. In order to use another account, you need to navigate to Facebook and log out at Facebook. The same rule applies to any other 3rd party authentication provider. Alternatively, you can log in with another account by using a different browser.
 
 ## Next Steps
 

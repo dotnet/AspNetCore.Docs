@@ -65,7 +65,7 @@ Change the select list to Drama and hit the **Submit** button. The URL in the br
 
 ![](using-the-dropdownlist-helper-with-aspnet-mvc/_static/image5.png)
 
-Open the *Controllers\HomeController.cs*file and examine the `SelectCategory` method.
+Open the *Controllers\HomeController.cs* file and examine the `SelectCategory` method.
 
 [!code-csharp[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample2.cs)]
 
@@ -73,13 +73,13 @@ The [DropDownList](https://msdn.microsoft.com/en-us/library/dd492738.aspx) helpe
 
 The **IEnumerable&lt;SelectListItem &gt;** created above is added to the [ViewBag](https://blogs.msdn.com/b/rickandy/archive/2011/01/28/dynamic-v-strongly-typed-views.aspx) with the name MovieType. This is how we pass the **IEnumerable&lt;SelectListItem &gt;** implicitly to the [DropDownList](https://msdn.microsoft.com/en-us/library/dd492738.aspx) helper shown below.
 
-Open the *Views\Home\SelectCategory.cshtml*file and examine the markup.
+Open the *Views\Home\SelectCategory.cshtml* file and examine the markup.
 
 [!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample3.cshtml)]
 
 On the third line, we set the layout to Views/Shared/\_Simple\_Layout.cshtml, which is a simplified version of the standard layout file. We do this to keep the display and rendered HTML simple.
 
-In this sample we are not changing the state of the application, so we will submit the data using an **HTTP GET**, not **HTTP POST** . See the W3C section [Quick Checklist for Choosing HTTP GET or POST](http://www.w3.org/2001/tag/doc/whenToUseGet.html#checklist). Because we are not changing the application and posting the form, we use the [Html.BeginForm](https://msdn.microsoft.com/en-us/library/dd460344.aspx) overload that allows us to specify the action method, controller and form method (**HTTP POST** or **HTTP GET**). Typically views contain the [Html.BeginForm](https://msdn.microsoft.com/en-us/library/dd505244.aspx) overload that takes no parameters. The no parameter version defaults to posting the form data to the POST version of the same action method and controller.
+In this sample we are not changing the state of the application, so we will submit the data using an **HTTP GET**, not **HTTP POST**. See the W3C section [Quick Checklist for Choosing HTTP GET or POST](http://www.w3.org/2001/tag/doc/whenToUseGet.html#checklist). Because we are not changing the application and posting the form, we use the [Html.BeginForm](https://msdn.microsoft.com/en-us/library/dd460344.aspx) overload that allows us to specify the action method, controller and form method (**HTTP POST** or **HTTP GET**). Typically views contain the [Html.BeginForm](https://msdn.microsoft.com/en-us/library/dd505244.aspx) overload that takes no parameters. The no parameter version defaults to posting the form data to the POST version of the same action method and controller.
 
 The following line
 
@@ -183,13 +183,13 @@ The Chosen plugin is included in the starter and completed sample projects that 
 
 ### Hooking up the Chosen Plugin to the MultiSelectCountry View.
 
-Open the *Views\Home\MultiSelectCountry.cshtml*file and add an `htmlAttributes` parameter to the `Html.ListBox` . The parameter you will add contains a class name for the select list(`@class = "chzn-select"`). The completed code is shown below:
+Open the *Views\Home\MultiSelectCountry.cshtml* file and add an `htmlAttributes` parameter to the `Html.ListBox`. The parameter you will add contains a class name for the select list(`@class = "chzn-select"`). The completed code is shown below:
 
 [!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample12.cshtml)]
 
 In the code above, we are adding the HTML attribute and attribute value `class = "chzn-select"`. The @ character preceding class has nothing to do with the Razor view engine. `class` is a [C# keyword](https://msdn.microsoft.com/en-us/library/x53a06bb.aspx). C# keywords cannot be used as identifiers unless they include @ as a prefix. In the example above, `@class` is a valid identifier but **class** is not because **class** is a keyword.
 
-Add references to the *Chosen/chosen.jquery.js* and *Chosen/chosen.css*files. The *Chosen/chosen.jquery.js* and implements the functionally of the Chosen plugin. The *Chosen/chosen.css* file provides the styling. Add these references to the bottom of the *Views\Home\MultiSelectCountry.cshtml*file. The following code shows how to reference the Chosen plugin.
+Add references to the *Chosen/chosen.jquery.js* and *Chosen/chosen.css* files. The *Chosen/chosen.jquery.js* and implements the functionally of the Chosen plugin. The *Chosen/chosen.css* file provides the styling. Add these references to the bottom of the *Views\Home\MultiSelectCountry.cshtml* file. The following code shows how to reference the Chosen plugin.
 
 [!code-cshtml[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample13.cshtml)]
 
@@ -201,7 +201,7 @@ The following line is the syntax to call the jQuery ready function, which select
 
 [!code-powershell[Main](using-the-dropdownlist-helper-with-aspnet-mvc/samples/sample15.ps1)]
 
-The wrapped set returned from the above call then applies the chosen method (`.chosen();`) , which hooks up the Chosen plugin.
+The wrapped set returned from the above call then applies the chosen method (`.chosen();`), which hooks up the Chosen plugin.
 
 The following code shows the completed *Views\Home\MultiSelectCountry.cshtml* view file.
 

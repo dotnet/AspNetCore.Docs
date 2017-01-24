@@ -23,7 +23,7 @@ by [Scott Mitchell](https://twitter.com/ScottOnWriting)
 
 ## Introduction
 
-In the [Overview of Editing and Deleting Data in the DataList](an-overview-of-editing-and-deleting-data-in-the-datalist-cs.md) tutorial, we created a DataList that offered simple editing and deleting capabilities. While fully functional, it was hardly user-friendly, as any error that occurred during the editing or deleting process resulted in an unhandled exception. For example, omitting the product s name or, when editing a product, entering a price value of Very affordable! , throws an exception. Since this exception is not caught in code, it bubbles up to the ASP.NET runtime, which then displays the exception s details in the web page.
+In the [Overview of Editing and Deleting Data in the DataList](an-overview-of-editing-and-deleting-data-in-the-datalist-cs.md) tutorial, we created a DataList that offered simple editing and deleting capabilities. While fully functional, it was hardly user-friendly, as any error that occurred during the editing or deleting process resulted in an unhandled exception. For example, omitting the product s name or, when editing a product, entering a price value of Very affordable!, throws an exception. Since this exception is not caught in code, it bubbles up to the ASP.NET runtime, which then displays the exception s details in the web page.
 
 As we saw in the [Handling BLL- and DAL-Level Exceptions in an ASP.NET Page](../editing-inserting-and-deleting-data/handling-bll-and-dal-level-exceptions-in-an-asp-net-page-cs.md) tutorial, if an exception is raised from the depths of the Business Logic or Data Access Layers, the exception details are returned to the ObjectDataSource and then to the GridView. We saw how to gracefully handle these exceptions by creating `Updated` or `RowUpdated` event handlers for the ObjectDataSource or GridView, checking for an exception, and then indicating that the exception was handled.
 
@@ -45,7 +45,7 @@ Before we worry about handling exceptions that occur during the updating workflo
 
 After completing the ObjectDataSource wizard, Visual Studio will automatically create an `ItemTemplate` for the DataList. Replace this with an `ItemTemplate` that displays each product s name and price and includes an Edit button. Next, create an `EditItemTemplate` with a TextBox Web control for name and price and Update and Cancel buttons. Finally, set the DataList s `RepeatColumns` property to 2.
 
-After these changes, your page s declarative markup should look similar to the following. Double-check to make certain that the Edit, Cancel, and Update buttons have their `CommandName` properties set to Edit , Cancel , and Update , respectively.
+After these changes, your page s declarative markup should look similar to the following. Double-check to make certain that the Edit, Cancel, and Update buttons have their `CommandName` properties set to Edit, Cancel, and Update, respectively.
 
 
 [!code-aspx[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample1.aspx)]
@@ -74,7 +74,7 @@ For now, let s just use the exact same code from the `UpdateCommand` event handl
 
 [!code-vb[Main](handling-bll-and-dal-level-exceptions-vb/samples/sample3.vb)]
 
-In the face of invalid input which can be in the form of an improperly formatted unit price, an illegal unit price value like -$5.00 , or the omission of the product s name an exception will be raised. Since the `UpdateCommand` event handler does not include any exception handling code at this point, the exception will bubble up to the ASP.NET runtime, where it will be displayed to the end user (see Figure 3).
+In the face of invalid input which can be in the form of an improperly formatted unit price, an illegal unit price value like -$5.00, or the omission of the product s name an exception will be raised. Since the `UpdateCommand` event handler does not include any exception handling code at this point, the exception will bubble up to the ASP.NET runtime, where it will be displayed to the end user (see Figure 3).
 
 
 ![When an Unhandled Exception Occurs, the End User Sees an Error Page](handling-bll-and-dal-level-exceptions-vb/_static/image7.png)
@@ -84,7 +84,7 @@ In the face of invalid input which can be in the form of an improperly formatted
 
 ## Step 2: Gracefully Handling Exceptions in the UpdateCommand Event Handler
 
-During the updating workflow, exceptions can occur in the `UpdateCommand` event handler, the BLL, or the DAL. For example, if a user enters a price of Too expensive , the `Decimal.Parse` statement in the `UpdateCommand` event handler will throw a `FormatException` exception. If the user omits the product s name or if the price has a negative value, the DAL will raise an exception.
+During the updating workflow, exceptions can occur in the `UpdateCommand` event handler, the BLL, or the DAL. For example, if a user enters a price of Too expensive, the `Decimal.Parse` statement in the `UpdateCommand` event handler will throw a `FormatException` exception. If the user omits the product s name or if the price has a negative value, the DAL will raise an exception.
 
 When an exception occurs, we want to display an informative message within the page itself. Add a Label Web control to the page whose `ID` is set to `ExceptionDetails`. Configure the Label s text to display in a red, extra-large, bold and italic font by assigning its `CssClass` property to the `Warning` CSS class, which is defined in the `Styles.css` file.
 

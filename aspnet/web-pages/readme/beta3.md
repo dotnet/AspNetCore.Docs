@@ -347,7 +347,7 @@ This section of the document describes new features, changes, and known issues w
 
 #### Issue: Database and WebGrid helpers do not work in Medium Trust in Visual Basic
 
-> If you are using Visual Basic (creating *.vbhtm*l files), the `Database` and `WebGrid` helpers will not work if the application is set to use Medium Trust.
+> If you are using Visual Basic (creating *.vbhtml* files), the `Database` and `WebGrid` helpers will not work if the application is set to use Medium Trust.
 > 
 > **Workaround**  
 > Temporarily set the application to use Full Trust.
@@ -361,33 +361,21 @@ This section of the document describes new features, changes, and known issues w
 > 
 > **Workaround**  
 > Use the `Encryption Mode` property of the `SqlCeConnection` class to encrypt SQL Server Compact 4.0 database files. The following example shows how to create an encrypted SQL Server Compact 4.0 database using the `Encryption Mode` property:
-> 
-> ***C#***
-> 
+>  
 > [!code-csharp[Main](beta3/samples/sample11.cs)]
-> 
-> ***Visual Basic***
-> 
+>  
 > [!code-vb[Main](beta3/samples/sample12.vb)]
 > 
 > To change the encryption mode of an existing SQL Server Compact 4.0 database, do the following:
-> 
-> ***C#***
-> 
+>  
 > [!code-csharp[Main](beta3/samples/sample13.cs)]
-> 
-> ***Visual Basic***
-> 
+>  
 > [!code-vb[Main](beta3/samples/sample14.vb)]
 > 
 > To encrypt an unencrypted SQL Server Compact 4.0 database, do the following:
-> 
-> ***C#***
-> 
+>  
 > [!code-csharp[Main](beta3/samples/sample15.cs)]
-> 
-> ***Visual Basic***
-> 
+>  
 > [!code-vb[Main](beta3/samples/sample16.vb)]
 
 
@@ -543,12 +531,8 @@ This section of the document describes new features, changes, and known issues w
 > **Workaround**  
 > Explicitly set the data type for parameters such as `SqlDbType` or `DbType`. This is critical in the case of BLOB data types (`image` and `ntext`). Use code like the following:
 > 
-> ***C#***
-> 
 > [!code-sql[Main](beta3/samples/sample20.sql)]
-> 
-> ***Visual Basic***
-> 
+>  
 > [!code-vb[Main](beta3/samples/sample21.vb)]
 
 

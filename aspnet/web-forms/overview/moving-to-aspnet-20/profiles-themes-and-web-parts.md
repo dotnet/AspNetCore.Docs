@@ -335,7 +335,7 @@ In this part of the walkthrough, you create a page that uses Web Parts controls 
 4. Place the insertion point before the **&lt;div&gt;** tags on the design surface, and press ENTER to add a new line. Position the insertion point before the new line character, click the **Block Format** drop-down list control on the menu, and select the **Heading 1** option. In the heading, add the text **Web Parts Demonstration Page**.
 5. From the **WebParts** tab of the Toolbox, drag a **WebPartManager** control onto the page, positioning it just after the new line character and before the **&lt;div&gt;** tags.   
   
- The     **WebPartManager** control does not render any output, so it appears as a grey box on the designer surface.
+ The **WebPartManager** control does not render any output, so it appears as a grey box on the designer surface.
 6. Position the insertion point within the **&lt;div&gt;** tags.
 7. In the **Layout** menu, click **Insert Table**, and create a new table that has one row and three columns. Click the **Cell Properties** button, select **top** from the **Vertical align** drop-down list, click **OK**, and click **OK** again to create the table.
 8. Drag a WebPartZone control into the left table column. Right-click the **WebPartZone** control, choose **Properties**, and set the following properties:   
@@ -459,7 +459,7 @@ You can now test the capability to edit pages and change layout.
  Each control on the page is now displayed with a downward arrow in its title bar, which contains the verbs drop-down menu.
 4. Click the arrow to display the verbs menu on the **My Links** control. Click the **Edit** verb.   
   
- The     **EditorZone** control appears, displaying the EditorPart controls you added.
+ The **EditorZone** control appears, displaying the EditorPart controls you added.
 5. In the **Appearance** section of the edit control, change the **Title** to My Favorites, use the **Chrome Type** drop-down list to select **Title Only**, and then click **Apply**. The following screen shot shows the page in edit mode.
 
 ### Web Parts Demo page in Edit mode
@@ -498,7 +498,7 @@ You can also allow users to add Web Parts controls to their page at run time. To
 7. Switch to **Source** view. Inspect the source code of the **&lt;asp:catalogzone&gt;** element. Notice that the **DeclarativeCatalogPart** control contains a **&lt;webpartstemplate&gt;** element with the two enclosed server controls that you will be able to add to your page from the catalog.
 8. Add a **Title** property to each of the controls you added to the catalog, using the string value shown for each title in the code example below. Even though the title is not a property you can normally set on these two server controls at design time, when a user adds these controls to a **WebPartZone** zone from the catalog at run time, they are each wrapped with a **GenericWebPart** control. This enables them to act as Web Parts controls, so they will be able to display titles.   
   
- The code for the two controls contained in the     **DeclarativeCatalogPart** control should look as follows. 
+ The code for the two controls contained in the **DeclarativeCatalogPart** control should look as follows. 
 
     [!code-aspx[Main](profiles-themes-and-web-parts/samples/sample26.aspx)]
 9. Save the page.
@@ -510,7 +510,7 @@ You can now test the catalog.
 1. Load the page in a browser.
 2. Click the **Display Mode** drop-down menu, and select **Catalog**.   
   
- The catalog titled     **Add Web Parts** is displayed.
+ The catalog titled **Add Web Parts** is displayed.
 3. Drag the **My Favorites** control from the Main zone back to the top of the Sidebar zone, and drop it there.
 4. In the **Add Web Parts** catalog, select both check boxes, and then select **Main** from the drop-down list that contains the available zones.
 5. Click **Add** in the catalog. The controls are added to the Main zone. If you want, you can add multiple instances of controls from the catalog to your page.   

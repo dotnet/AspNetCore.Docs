@@ -127,7 +127,7 @@ Some new Razor features include the following:
 - `@* *@` comment syntax.
 - The ability to specify defaults (such as `layoutpage`) once for an entire site.
 - The `Html.Raw` method for displaying text without HTML-encoding it.
-- Support for sharing code among multiple views (*\_viewstart.cshtml*or *\_viewstart.vbhtml* files).
+- Support for sharing code among multiple views (*\_viewstart.cshtml* or *\_viewstart.vbhtml* files).
 
 Razor also includes  new HTML helpers, such as the following:
 

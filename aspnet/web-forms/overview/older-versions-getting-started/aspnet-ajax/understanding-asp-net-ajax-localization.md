@@ -100,7 +100,7 @@ For those unfamiliar with JavaScript Regex syntax, text within single forward sl
 [!code-aspx[Main](understanding-asp-net-ajax-localization/samples/sample4.aspx)]
 
 1. Press F5. If prompted, enable debugging. When the page is loaded, press the Delete button. Note that you are prompted in English (unless your computer is set to prefer Spanish-language resources by default) for confirmation.
-2. Close the browser window and return to default.aspx. In the @Page header directive, replace auto for Culture and UICulture with es-ES . Press F5 again to launch the web application in the browser again. This time, note that you are prompted to delete the file in Spanish:
+2. Close the browser window and return to default.aspx. In the @Page header directive, replace auto for Culture and UICulture with es-ES. Press F5 again to launch the web application in the browser again. This time, note that you are prompted to delete the file in Spanish:
 
 
 [![](understanding-asp-net-ajax-localization/_static/image2.png)](understanding-asp-net-ajax-localization/_static/image1.png)

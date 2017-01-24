@@ -94,7 +94,7 @@ An alternative is to follow the instructions at [Creating the School Sample Data
 
 `%PROGRAMFILES%\Microsoft SQL Server\MSSQL10.SQLEXPRESS\MSSQL\DATA`
 
-(This location of the *.mdf*file assumes you're using SQL Server 2008 Express.)
+(This location of the *.mdf* file assumes you're using SQL Server 2008 Express.)
 
 If you create the database from a script, perform the following steps to create a database diagram:
 

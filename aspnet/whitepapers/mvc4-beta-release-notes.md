@@ -276,7 +276,7 @@ ASP.NET MVC 4 Beta supports the September 2011 1.5 release of the Windows Azure 
     [!code-xml[Main](mvc4-beta-release-notes/samples/sample12.xml)]
 - **The "Add Controller" item template in Visual Basic projects generates an incorrect namespace when invoked****from inside an area.** When you add a controller to an area in an ASP.NET MVC project that uses Visual Basic, the item template inserts the wrong namespace into the controller. The result is a "file not found" error when you navigate to any action in the controller.  
   
- The generated namespace omits everything after the root namespace. For example, the namespace generated is     *RootNamespace* but should be     *RootNamespace.Areas.AreaName.Controllers* .
+ The generated namespace omits everything after the root namespace. For example, the namespace generated is *RootNamespace* but should be *RootNamespace.Areas.AreaName.Controllers* .
 - **Breaking changes in the Razor View Engine.** As part of a rewrite of the Razor parser, the following types were removed from *System.Web.Mvc.Razor*: 
 
     - *ModelSpan*

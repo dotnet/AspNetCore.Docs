@@ -65,7 +65,7 @@ Start by dragging a GridView from the Toolbox onto the Designer of the `DisplayO
 **Figure 4**: Retrieve the List of Categories Using the `GetCategories()` Method ([Click to view full-size image](displaying-binary-data-in-the-data-web-controls-vb/_static/image8.png))
 
 
-After completing the Configure Data Source wizard, Visual Studio will automatically add a BoundField to the `Categories` GridView for the `CategoryID`, `CategoryName`, `Description`, `NumberOfProducts`, and `BrochurePath` `DataColumn` s. Go ahead and remove the `NumberOfProducts` BoundField since the `GetCategories()` method s query does not retrieve this information. Also remove the `CategoryID` BoundField and rename the `CategoryName` and `BrochurePath` BoundFields `HeaderText` properties to Category and Brochure , respectively. After making these changes, your GridView and ObjectDataSource s declarative markup should look like the following:
+After completing the Configure Data Source wizard, Visual Studio will automatically add a BoundField to the `Categories` GridView for the `CategoryID`, `CategoryName`, `Description`, `NumberOfProducts`, and `BrochurePath` `DataColumn` s. Go ahead and remove the `NumberOfProducts` BoundField since the `GetCategories()` method s query does not retrieve this information. Also remove the `CategoryID` BoundField and rename the `CategoryName` and `BrochurePath` BoundFields `HeaderText` properties to Category and Brochure, respectively. After making these changes, your GridView and ObjectDataSource s declarative markup should look like the following:
 
 
 [!code-aspx[Main](displaying-binary-data-in-the-data-web-controls-vb/samples/sample1.aspx)]
@@ -78,7 +78,7 @@ View this page through a browser (see Figure 5). Each of the eight categories is
 **Figure 5**: Each Category s Name, Description, and `BrochurePath` Value is Listed ([Click to view full-size image](displaying-binary-data-in-the-data-web-controls-vb/_static/image10.png))
 
 
-Rather than displaying the text of the `BrochurePath` column, we want to create a link to the brochure. To accomplish this, remove the `BrochurePath` BoundField and replace it with a HyperLinkField. Set the new HyperLinkField s `HeaderText` property to Brochure , its `Text` property to View Brochure , and its `DataNavigateUrlFields` property to `BrochurePath`.
+Rather than displaying the text of the `BrochurePath` column, we want to create a link to the brochure. To accomplish this, remove the `BrochurePath` BoundField and replace it with a HyperLinkField. Set the new HyperLinkField s `HeaderText` property to Brochure, its `Text` property to View Brochure, and its `DataNavigateUrlFields` property to `BrochurePath`.
 
 
 ![Add a HyperLinkField for BrochurePath](displaying-binary-data-in-the-data-web-controls-vb/_static/image6.gif)
@@ -101,7 +101,7 @@ This will add a column of links to the GridView, as Figure 7 shows. Clicking a V
 
 ## Hiding the View Brochure Text for Categories Without a Brochure
 
-As Figure 7 shows, the `BrochurePath` HyperLinkField displays its `Text` property value ( View Brochure ) for all records, regardless of whether there s a non-`NULL` value for `BrochurePath`. Of course, if `BrochurePath` is `NULL`, then the link is displayed as text only, as is the case with the Seafood category (refer back to Figure 7). Rather than displaying the text View Brochure , it might be nice to have those categories without a `BrochurePath` value display some alternate text, like No Brochure Available.
+As Figure 7 shows, the `BrochurePath` HyperLinkField displays its `Text` property value ( View Brochure ) for all records, regardless of whether there s a non-`NULL` value for `BrochurePath`. Of course, if `BrochurePath` is `NULL`, then the link is displayed as text only, as is the case with the Seafood category (refer back to Figure 7). Rather than displaying the text View Brochure, it might be nice to have those categories without a `BrochurePath` value display some alternate text, like No Brochure Available.
 
 In order to provide this behavior, we need to use a TemplateField whose content is generated via a call to a page method that emits the appropriate output based on the `BrochurePath` value. We first explored this formatting technique back in the [Using TemplateFields in the GridView Control](../custom-formatting/using-templatefields-in-the-gridview-control-vb.md) tutorial.
 
@@ -170,7 +170,7 @@ With this page created, a particular category s picture can be viewed by visitin
 **Figure 11**: The Beverages Category s Picture is Displayed ([Click to view full-size image](displaying-binary-data-in-the-data-web-controls-vb/_static/image18.png))
 
 
-If, when visiting `DisplayCategoryPicture.aspx?CategoryID=categoryID`, you get an exception that reads Unable to cast object of type 'System.DBNull' to type 'System.Byte[]' , there are two things that may be causing this. First, the `Categories` table s `Picture` column does allow `NULL` values. The `DisplayCategoryPicture.aspx` page, however, assumes there is a non-`NULL` value present. The `Picture` property of the `CategoriesDataTable` cannot be directly accessed if it has a `NULL` value. If you do want to allow `NULL` values for the `Picture` column, you d want to include the following condition:
+If, when visiting `DisplayCategoryPicture.aspx?CategoryID=categoryID`, you get an exception that reads Unable to cast object of type 'System.DBNull' to type 'System.Byte[]', there are two things that may be causing this. First, the `Categories` table s `Picture` column does allow `NULL` values. The `DisplayCategoryPicture.aspx` page, however, assumes there is a non-`NULL` value present. The `Picture` property of the `CategoriesDataTable` cannot be directly accessed if it has a `NULL` value. If you do want to allow `NULL` values for the `Picture` column, you d want to include the following condition:
 
 
 [!code-vb[Main](displaying-binary-data-in-the-data-web-controls-vb/samples/sample7.vb)]

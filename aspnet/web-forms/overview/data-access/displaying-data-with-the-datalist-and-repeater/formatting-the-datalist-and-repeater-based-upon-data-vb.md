@@ -135,7 +135,7 @@ The `RepeaterItem` s that make up the Repeater control, however, don t offer suc
 
 In the *Using TemplateFields in the GridView Control* tutorial we saw how to use a formatting function within a GridView TemplateField to apply custom formatting based upon the data bound to the GridView s rows. A formatting function is a method that can be invoked from a template and returns the HTML to be emitted in its place. Formatting functions can reside in the ASP.NET page s code-behind class or can be centralized into class files in the `App_Code` folder or in a separate Class Library project. Moving the formatting function out of the ASP.NET page s code-behind class is ideal if you plan on using the same formatting function in multiple ASP.NET pages or in other ASP.NET web applications.
 
-To demonstrate formatting functions, let s have the product information include the text [DISCONTINUED] next to the product s name if it s discontinued. Also, let s have the price highlighted yellow if it s less than $20.00 (as we did in the `ItemDataBound` event handler example); if the price is $20.00 or higher, let s not display the actual price, but instead the text, Please call for a price quote . Figure 4 shows a screen shot of the products listing with these formatting rules applied.
+To demonstrate formatting functions, let s have the product information include the text [DISCONTINUED] next to the product s name if it s discontinued. Also, let s have the price highlighted yellow if it s less than $20.00 (as we did in the `ItemDataBound` event handler example); if the price is $20.00 or higher, let s not display the actual price, but instead the text, Please call for a price quote. Figure 4 shows a screen shot of the products listing with these formatting rules applied.
 
 
 [![For Expensive Products, the Price is Replaced with the Text, Please call for a price quote](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image11.png)](formatting-the-datalist-and-repeater-based-upon-data-vb/_static/image10.png)
@@ -145,7 +145,7 @@ To demonstrate formatting functions, let s have the product information include 
 
 ## Step 1: Create the Formatting Functions
 
-For this example we need two formatting functions, one that displays the product name along with the text [DISCONTINUED] , if needed, and another that displays either a highlighted price if it s less than $20.00, or the text, Please call for a price quote otherwise. Let s create these functions in the ASP.NET page s code-behind class and name them `DisplayProductNameAndDiscontinuedStatus` and `DisplayPrice`. Both methods need to return the HTML to render as a string and both need to be marked `Protected` (or `Public`) in order to be invoked from the ASP.NET page s declarative syntax portion. The code for these two methods follows:
+For this example we need two formatting functions, one that displays the product name along with the text [DISCONTINUED], if needed, and another that displays either a highlighted price if it s less than $20.00, or the text, Please call for a price quote otherwise. Let s create these functions in the ASP.NET page s code-behind class and name them `DisplayProductNameAndDiscontinuedStatus` and `DisplayPrice`. Both methods need to return the HTML to render as a string and both need to be marked `Protected` (or `Public`) in order to be invoked from the ASP.NET page s declarative syntax portion. The code for these two methods follows:
 
 
 [!code-vb[Main](formatting-the-datalist-and-repeater-based-upon-data-vb/samples/sample3.vb)]

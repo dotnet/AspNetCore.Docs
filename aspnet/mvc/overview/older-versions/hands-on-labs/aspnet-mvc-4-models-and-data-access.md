@@ -1,7 +1,7 @@
 ---
 title: "ASP.NET MVC 4 Models and Data Access | Microsoft Docs"
 author: rick-anderson
-description: "Note: This Hands-on Lab assumes you have basic knowledge of ASP.NET MVC . If you have not used ASP.NET MVC before, we recommend you to go over ASP.NET MVC 4..."
+description: "Note: This Hands-on Lab assumes you have basic knowledge of ASP.NET MVC. If you have not used ASP.NET MVC before, we recommend you to go over ASP.NET MVC 4..."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 02/18/2013
@@ -40,7 +40,7 @@ After generating the Model, you will make the proper adjustments in the StoreCon
 
 The Code First approach allows us to define the model from the code without generating classes that are generally coupled with the framework.
 
-In code first, model objects are defined with POCOs , &quot;Plain Old CLR Objects&quot;. POCOs are simple plain classes that have no inheritance and do not implement interfaces. We can automatically generate the database from them, or we can use an existing database and generate the class mapping from the code.
+In code first, model objects are defined with POCOs, &quot;Plain Old CLR Objects&quot;. POCOs are simple plain classes that have no inheritance and do not implement interfaces. We can automatically generate the database from them, or we can use an existing database and generate the class mapping from the code.
 
 The benefits of using this approach is that the Model remains independent from the persistence framework (in this case, Entity Framework), as the POCOs classes are not coupled with the mapping framework.
 

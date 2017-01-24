@@ -175,12 +175,12 @@ Start by opening the `Transactions.aspx` page in the `BatchData` folder and drag
 **Figure 6**: Set the Drop-Down Lists in the UPDATE, INSERT, and DELETE Tabs to (None) ([Click to view full-size image](wrapping-database-modifications-within-a-transaction-vb/_static/image6.png))
 
 
-After completing the Configure Data Source wizard, Visual Studio will create BoundFields and a CheckBoxField for the product data fields. Remove all of these fields except for `ProductID`, `ProductName`, `CategoryID`, and `CategoryName` and rename the `ProductName` and `CategoryName` BoundFields `HeaderText` properties to Product and Category , respectively. From the smart tag, check the Enable Paging option. After making these modifications, the GridView and ObjectDataSource s declarative markup should look like the following:
+After completing the Configure Data Source wizard, Visual Studio will create BoundFields and a CheckBoxField for the product data fields. Remove all of these fields except for `ProductID`, `ProductName`, `CategoryID`, and `CategoryName` and rename the `ProductName` and `CategoryName` BoundFields `HeaderText` properties to Product and Category, respectively. From the smart tag, check the Enable Paging option. After making these modifications, the GridView and ObjectDataSource s declarative markup should look like the following:
 
 
 [!code-aspx[Main](wrapping-database-modifications-within-a-transaction-vb/samples/sample7.aspx)]
 
-Next, add three Button Web controls above the GridView. Set the first Button s Text property to Refresh Grid , the second s to Modify Categories (WITH TRANSACTION) , and the third one s to Modify Categories (WITHOUT TRANSACTION) .
+Next, add three Button Web controls above the GridView. Set the first Button s Text property to Refresh Grid, the second s to Modify Categories (WITH TRANSACTION), and the third one s to Modify Categories (WITHOUT TRANSACTION) .
 
 
 [!code-aspx[Main](wrapping-database-modifications-within-a-transaction-vb/samples/sample8.aspx)]

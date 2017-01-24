@@ -1,7 +1,7 @@
 ---
 title: "Using the ColorPicker Control Extender (C#) | Microsoft Docs"
 author: microsoft
-description: "ColorPicker is an ASP.NET AJAX extender that provides client-side color-picking functionality with UI in a popup control . It can be attached to any ASP.NET..."
+description: "ColorPicker is an ASP.NET AJAX extender that provides client-side color-picking functionality with UI in a popup control. It can be attached to any ASP.NET..."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 05/12/2009
@@ -16,7 +16,7 @@ Using the ColorPicker Control Extender (C#)
 ====================
 by [Microsoft](https://github.com/microsoft)
 
-> ColorPicker is an ASP.NET AJAX extender that provides client-side color-picking functionality with UI in a popup control . It can be attached to any ASP.NET TextBox control. It.
+> ColorPicker is an ASP.NET AJAX extender that provides client-side color-picking functionality with UI in a popup control. It can be attached to any ASP.NET TextBox control. It.
 
 
 The goal of this tutorial is to explain how you can use the AJAX Control Toolkit ColorPicker control extender. The ColorPicker control extender displays a popup dialog that enables you to select a color. The ColorPicker is useful whenever you want to provide an intuitive user interface for a user to pick a color.

@@ -1,7 +1,7 @@
 ---
 title: "Developing ASP.NET Apps with Azure Active Directory | Microsoft Docs"
 author: Rick-Anderson
-description: "Microsoft ASP.NET tools for Azure Active Directory makes it simple to enable authentication for web applications hosted on Azure . You can use Azure Authenti..."
+description: "Microsoft ASP.NET tools for Azure Active Directory makes it simple to enable authentication for web applications hosted on Azure. You can use Azure Authenti..."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 08/14/2014
@@ -59,7 +59,7 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image6.png)
 3. On the **Change Authentication** dialog, select **Organizational Accounts**. These options can be used to automatically register your application with Azure AD as well as automatically configure your application to integrate with Azure AD. You don't have to use the **Change Authentication** dialog to register and configure your application, but it makes it much easier. If you are using Visual Studio 2012 for example, you can still manually register the application in the Azure Management Portal and update its configuration to integrate with Azure AD.  
- In the drop-down menus, select     **Cloud - Single Organization** and     **Single Sign On, Read directory data** . Enter the domain for your Azure AD directory, for example (in the images below)     *aricka0yahoo.onmicrosoft.com* , and then click     **OK** . You can get the domain name from the Domains tab for the Default Directory on the azure portal (see the next image down).   
+ In the drop-down menus, select **Cloud - Single Organization** and **Single Sign On, Read directory data**. Enter the domain for your Azure AD directory, for example (in the images below) *aricka0yahoo.onmicrosoft.com*, and then click **OK**. You can get the domain name from the Domains tab for the Default Directory on the azure portal (see the next image down).   
   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image7.png)  
   
@@ -92,7 +92,7 @@ The following steps use [Visual Studio Express 2013 for Web](https://www.microso
  Value cannot be null or empty. Parameter name: linkText   
     ![](developing-aspnet-apps-with-windows-azure-active-directory/_static/image14.png)  
   
- see the     [debug](#dbg) section at the end of the tutorial.
+ see the [debug](#dbg) section at the end of the tutorial.
 
 ## Basics of the Graph API
 

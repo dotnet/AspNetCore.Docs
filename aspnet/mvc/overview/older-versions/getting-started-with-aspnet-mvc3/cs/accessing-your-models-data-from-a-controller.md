@@ -52,7 +52,7 @@ Click **Add**. Visual Web Developer creates the following files and folders:
 
 - *A MoviesController.cs* file in the project's *Controllers* folder.
 - A *Movies* folder in the project's *Views* folder.
-- *Create.cshtml, Delete.cshtml, Details.cshtml, Edit.cshtml*, and *Index.cshtml* in the new *Views\Movies*folder.
+- *Create.cshtml, Delete.cshtml, Details.cshtml, Edit.cshtml*, and *Index.cshtml* in the new *Views\Movies* folder.
 
 [![NewMovieControllerScreenShot](accessing-your-models-data-from-a-controller/_static/image4.png "NewMovieControllerScreenShot")](accessing-your-models-data-from-a-controller/_static/image3.png)
 

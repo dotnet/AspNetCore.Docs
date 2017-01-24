@@ -1,7 +1,7 @@
 ---
 title: "Complex Type Inheritance in OData v4 with ASP.NET Web API | Microsoft Docs"
 author: microsoft
-description: "According to the OData v4 specification , a complex type can inherit from another complex type. (A complex type is a structured type without a key.) Web API..."
+description: "According to the OData v4 specification, a complex type can inherit from another complex type. (A complex type is a structured type without a key.) Web API..."
 ms.author: aspnetcontent
 manager: wpickett
 ms.date: 09/16/2014

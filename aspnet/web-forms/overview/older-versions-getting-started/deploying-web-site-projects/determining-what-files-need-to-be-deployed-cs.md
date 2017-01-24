@@ -37,7 +37,7 @@ Consider an ASP.NET page named Clock.aspx that contains a Label control whose Te
 
 In order for the ASP.NET engine to service a request for this page, the page's code portion (the `WebPage.aspx.cs` file) must first be compiled. This compilation can happen explicitly or automatically.
 
-If the compilation happens explicitly then the entire application's source code is compiled into one or more assemblies (`.dll` files) located in the application's `Bin` directory. If the compilation happens automatically then the resulting auto-generated assembly is, by default, placed in the `Temporary ASP.NET` Files folder, which can be found at `%WINDOWS%\Microsoft.NET\Framework\`*&lt;version&gt;* , although this location is configurable via the [`<compilation>` element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx) in `Web.config`. With explicit compilation you must take some action to compile the ASP.NET application's code into an assembly, and this step occurs prior to deployment. With automatic compilation the compilation process occurs on the web server when the resource is first accessed.
+If the compilation happens explicitly then the entire application's source code is compiled into one or more assemblies (`.dll` files) located in the application's `Bin` directory. If the compilation happens automatically then the resulting auto-generated assembly is, by default, placed in the `Temporary ASP.NET` Files folder, which can be found at `%WINDOWS%\Microsoft.NET\Framework\`*&lt;version&gt;*, although this location is configurable via the [`<compilation>` element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx) in `Web.config`. With explicit compilation you must take some action to compile the ASP.NET application's code into an assembly, and this step occurs prior to deployment. With automatic compilation the compilation process occurs on the web server when the resource is first accessed.
 
 Regardless of what compilation model you use, the markup portion of all ASP.NET pages (the `WebPage.aspx` files) need to be copied to the production environment. With explicit compilation you need to copy up the assemblies in the `Bin` folder, but you do not need to copy up the ASP.NET pages' code portions (the `WebPage.aspx.cs` files). With automatic compilation you need to copy up the code portion files so that the code is present and can be compiled automatically when the page is visited. The markup portion of each ASP.NET web page includes a `@Page` directive with attributes that indicate whether the page's associated code was already explicitly compiled or whether it needs to be automatically compiled. As a result, the production environment can work with either compilation model seamlessly and you do not need to apply any special configuration settings to indicate that explicit or automatic compilation is used.
 
@@ -80,7 +80,7 @@ The download for this tutorial includes an ASP.NET application called Book Revie
         - ~`/Fiction/Blaze.aspx` - a review of the Richard Bachman novel *Blaze*.
     - ~/`Tech/Default.aspx` - a page listing the technology books that have been reviewed. 
 
-        - ~/`Tech/CYOW.aspx`- a review of*Create Your Own Website*.
+        - ~/`Tech/CYOW.aspx`- a review of *Create Your Own Website*.
         - ~/`Tech/TYASP35.aspx` - a review of *Teach Yourself ASP.NET 3.5 in 24 Hours*.
 - Three different CSS files in the Styles folder.
 - Four image files - a Powered by ASP.NET logo and images of the covers of the three reviewed books - all located in the `Images` folder.
@@ -159,7 +159,7 @@ Deploying an ASP.NET application entails copying the necessary files from the de
 
 The Web Application Project model uses explicit compilation and compiles the project's code into a single assembly in the `Bin` folder. When deploying the application, the markup portion of the ASP.NET pages and the contents of the `Bin` folder must be pushed up to the production environment; the source code in the application - the code files and code-behind classes, for example - do not need to be copied to the production environment.
 
-The Web Site Project model uses automatic compilation by default, although it is possible to explicitly compile a Web Site Project, as we will see in future tutorials. Deploying an ASP.NET application that uses automatic compilation requires that the markup portion *and*source code must be copied to the production environment. The code is automatically compiled on the production environment when it is requested for the first time.
+The Web Site Project model uses automatic compilation by default, although it is possible to explicitly compile a Web Site Project, as we will see in future tutorials. Deploying an ASP.NET application that uses automatic compilation requires that the markup portion *and* source code must be copied to the production environment. The code is automatically compiled on the production environment when it is requested for the first time.
 
 Now that we have examined what files need to be synced between the development and production environments we are ready to deploy the Book Reviews application to a web host provider.
 

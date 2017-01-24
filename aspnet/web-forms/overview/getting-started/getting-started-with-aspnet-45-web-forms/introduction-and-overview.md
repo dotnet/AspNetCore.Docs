@@ -177,8 +177,7 @@ The download is a *.zip* file. To see the completed project that this tutorial s
 
 Rename the ***C#*** folder to ***WingtipToys***.
 
-> [!NOTE] 
-> 
+> [!NOTE]
 > If you already have a folder named *WingtipToys* in your Projects folder, temporarily rename that existing folder before renaming the *C#* folder to *WingtipToys*.
 
 

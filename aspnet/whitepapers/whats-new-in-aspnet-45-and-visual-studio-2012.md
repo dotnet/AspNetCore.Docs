@@ -122,7 +122,7 @@ If the buffered response is large (for example, streaming a large file to a clie
 ASP.NET 4.5 adds support for performing flushes asynchronously using the *BeginFlush* and *EndFlush* methods of the *HttpResponse* class. Using these methods, you can create asynchronous modules and asynchronous handlers that incrementally send data to a client without tying up operating-system threads. In between *BeginFlush* and *EndFlush* calls, ASP.NET releases the current thread. This substantially reduces the total number of active threads that are needed in order to support long-running HTTP downloads.
 
 <a id="_Toc318097376"></a>
-### Support for*await*and*Task*-Based Asynchronous Modules and Handlers
+### Support for *await* and *Task* - Based Asynchronous Modules and Handlers
 
 The .NET Framework 4 introduced an asynchronous programming concept referred to as a *task*. Tasks are represented by the *Task* type and related types in the *System.Threading.Tasks* namespace. The .NET Framework 4.5 builds on this with compiler enhancements that make working with *Task* objects simple. In the .NET Framework 4.5, the compilers support two new keywords: *await* and *async*. The *await* keyword is syntactical shorthand for indicating that a piece of code should asynchronously wait on some other piece of code. The *async* keyword represents a hint that you can use to mark methods as task-based asynchronous methods.
 

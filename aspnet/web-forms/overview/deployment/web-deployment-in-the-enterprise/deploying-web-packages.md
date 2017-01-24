@@ -35,7 +35,7 @@ by [Jason Lee](https://github.com/jrjlee)
 > - You've modified the *SetParameters.xml* file to provide the right parameter values for your target environment, as described in [Configuring Parameters for Web Package Deployment](configuring-parameters-for-web-package-deployment.md).
 
 
-Running the [*project name*]*.deploy.cmd* file is the simplest way to deploy a web package. In particular, using the *.deploy.cmd*file offers these advantages over using MSDeploy.exe directly:
+Running the [*project name*]*.deploy.cmd* file is the simplest way to deploy a web package. In particular, using the *.deploy.cmd* file offers these advantages over using MSDeploy.exe directly:
 
 - You don't need to specify the location of the web deployment package&#x2014;the *.deploy.cmd* file already knows where it is.
 - You don't need to specify the location of the *SetParameters.xml* file&#x2014;the *.deploy.cmd* file already knows where it is.
@@ -193,7 +193,7 @@ This is because the non-administrator user doesn't have server-level access to I
 
 ## Authentication Considerations
 
-Regardless of whether you deploy your web package by running the *.deploy.cmd*file or by using MSDeploy.exe directly, you need to specify an authentication type. Web Deploy accepts two possible values: **NTLM** or **Basic**. If you specify basic authentication, you also need to provide a user name and password. There are various factors you need to be aware of when you select an authentication type:
+Regardless of whether you deploy your web package by running the *.deploy.cmd* file or by using MSDeploy.exe directly, you need to specify an authentication type. Web Deploy accepts two possible values: **NTLM** or **Basic**. If you specify basic authentication, you also need to provide a user name and password. There are various factors you need to be aware of when you select an authentication type:
 
 - If you're deploying to the Web Deploy Remote Agent service, you must use NTLM authentication. The remote agent service doesn't accept basic authentication credentials.
 - If you're deploying to the Web Deploy Handler, you can use either NTLM or basic authentication. The default setting is basic authentication. Although basic authentication relies on user names and passwords being transmitted in plain text, your credentials are protected as the Web Deploy Handler always uses SSL encryption.

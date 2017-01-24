@@ -54,7 +54,7 @@ The complete *MvcMovie\Views\HelloWorld\Index.cshtml* file is shown below.
 
 [!code-cshtml[Main](adding-a-view/samples/sample3.cshtml?highlight=7-8)]
 
-If you are using Visual Studio 2012, in solution explorer, right click the*Index.cshtml*file and select **View in Page Inspector**.
+If you are using Visual Studio 2012, in solution explorer, right click the *Index.cshtml* file and select **View in Page Inspector**.
 
 ![PI](adding-a-view/_static/image5.png)
 

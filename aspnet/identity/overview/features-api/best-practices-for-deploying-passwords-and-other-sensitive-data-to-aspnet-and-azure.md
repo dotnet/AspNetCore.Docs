@@ -48,7 +48,7 @@ The markup in the external file (*AppSettingsSecrets.config* in this sample), is
 The ASP.NET runtime merges the contents of the external file with the markup in &lt;appSettings&gt; element. The runtime ignores the file attribute if the specified file cannot be found.
 
 > [!WARNING]
-> Security - Do not add your *secrets .config*file to your project or check it into source control. By default, Visual Studio sets the `Build Action` to `Content`, which means the file is deployed. For more information see [Why don't all of the files in my project folder get deployed?](https://msdn.microsoft.com/en-us/library/ee942158(v=vs.110).aspx#can_i_exclude_specific_files_or_folders_from_deployment) Although you can use any extension for the *secrets .config*file, it's best to keep it *.config*, as config files are not served by IIS. Notice also that the *AppSettingsSecrets.config* file is two directory levels up from the *web.config*file, so it's completely out of the solution directory. By moving the file out of the solution directory, &quot;git add \*&quot; won't add it to your repository.
+> Security - Do not add your *secrets .config* file to your project or check it into source control. By default, Visual Studio sets the `Build Action` to `Content`, which means the file is deployed. For more information see [Why don't all of the files in my project folder get deployed?](https://msdn.microsoft.com/en-us/library/ee942158(v=vs.110).aspx#can_i_exclude_specific_files_or_folders_from_deployment) Although you can use any extension for the *secrets .config* file, it's best to keep it *.config*, as config files are not served by IIS. Notice also that the *AppSettingsSecrets.config* file is two directory levels up from the *web.config* file, so it's completely out of the solution directory. By moving the file out of the solution directory, &quot;git add \*&quot; won't add it to your repository.
 
 
 <a id="con"></a>
@@ -88,7 +88,7 @@ When you deploy your web app to Azure, the *AppSettingsSecrets.config* file won'
 2. Click **Browse &gt; Web Apps**, then click the name of your web app.
 3. Click **All settings &gt; Application settings**.
 
-The **app settings** and **connection string** values override the same settings in the *web.config*file. In our example, we did not deploy these settings to Azure, but if these keys were in the *web.config*file, the settings shown on the portal would take precedence.
+The **app settings** and **connection string** values override the same settings in the *web.config* file. In our example, we did not deploy these settings to Azure, but if these keys were in the *web.config* file, the settings shown on the portal would take precedence.
 
 A best practice is to follow a [DevOps workflow](../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything.md) and use [Azure PowerShell](https://azure.microsoft.com/en-us/documentation/articles/install-configure-powershell/) (or another framework such as [Chef](http://www.opscode.com/chef/) or [Puppet](http://puppetlabs.com/puppet/what-is-puppet)) to automate setting these values in Azure. The following PowerShell script uses [Export-CliXml](http://www.powershellcookbook.com/recipe/PukO/securely-store-credentials-on-disk)to export the encrypted secrets to disk:
 

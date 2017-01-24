@@ -166,7 +166,7 @@ Next, locate the &lt;authentication&gt; element and update it to use forms authe
 [!code-xml[Main](an-overview-of-forms-authentication-vb/samples/sample3.xml)]
 
 > [!NOTE]
-> Since Web.config is an XML file, casing is important. Make sure that you set the mode attribute to Forms, with a capital F . If you use a different casing, such as forms , you'll receive a configuration error when visiting the site through a browser.
+> Since Web.config is an XML file, casing is important. Make sure that you set the mode attribute to Forms, with a capital F. If you use a different casing, such as forms, you'll receive a configuration error when visiting the site through a browser.
 
 
 The &lt;authentication&gt; element may optionally include a &lt;forms&gt; child element that contains forms authentication-specific settings. For now, let's just use the default forms authentication settings. We will explore the &lt;forms&gt; child element in more detail in the next tutorial.
@@ -195,7 +195,7 @@ Let's get started with the first task. Add a new ASP.NET page to the site's root
 
 The typical login page interface consists of two textboxes - one for the user's name, one for their password - and a button to submit the form. Websites oftentimes include a Remember me checkbox that, if checked, persists the resulting authentication ticket across browser restarts.
 
-Add two TextBoxes to Login.aspx and set their ID properties to UserName and Password, respectively. Also set Password's TextMode property to Password. Next, add a CheckBox control, setting its ID property to RememberMe and its Text property to Remember Me . Following that, add a Button named LoginButton whose Text property is set to Login . And finally, add a Label Web control and set its ID property to InvalidCredentialsMessage, its Text property to Your username or password is invalid. Please try again. , its ForeColor property to Red, and its Visible property to False.
+Add two TextBoxes to Login.aspx and set their ID properties to UserName and Password, respectively. Also set Password's TextMode property to Password. Next, add a CheckBox control, setting its ID property to RememberMe and its Text property to Remember Me. Following that, add a Button named LoginButton whose Text property is set to Login. And finally, add a Label Web control and set its ID property to InvalidCredentialsMessage, its Text property to Your username or password is invalid. Please try again., its ForeColor property to Red, and its Visible property to False.
 
 At this point your screen should look similar to the screen shot in Figure 9, and your page's declarative syntax should like the following:
 
@@ -245,7 +245,7 @@ FormsAuthentication.RedirectFromLoginPage(UserName.Text, RememberMe.Checked)
 
 When creating the forms authentication ticket we use the UserName TextBox's Text property for the forms authentication ticket *username* parameter, and the checked state of the RememberMe CheckBox for the *persistCookie* parameter.
 
-To test the login page, visit it in a browser. Start by entering invalid credentials, such as a username of Nope and a password of wrong . Upon clicking the Login button a postback will occur and the InvalidCredentialsMessage Label will be displayed.
+To test the login page, visit it in a browser. Start by entering invalid credentials, such as a username of Nope and a password of wrong. Upon clicking the Login button a postback will occur and the InvalidCredentialsMessage Label will be displayed.
 
 
 [![The InvalidCredentialsMessage Label is Displayed When Entering Invalid Credentials](an-overview-of-forms-authentication-vb/_static/image29.png)](an-overview-of-forms-authentication-vb/_static/image28.png)
@@ -271,7 +271,7 @@ Unless your website contains sensitive information, you will only need to use SS
 
 At this point we have enabled forms authentication and created a rudimentary login page, but we have yet to examine how we can determine whether a user is authenticated or anonymous. In certain scenarios we may wish to display different data or information depending on whether an authenticated or anonymous user is visiting the page. Moreover, we oftentimes need to know the identity of the authenticated user.
 
-Let's augment the existing Default.aspx page to illustrate these techniques. In Default.aspx add two Panel controls, one named AuthenticatedMessagePanel and another named AnonymousMessagePanel. Add a Label control named WelcomeBackMessage in the first Panel. In the second Panel add a HyperLink control, set its Text property to Log In and its NavigateUrl property to ~/Login.aspx . At this point the declarative markup for Default.aspx should look similar to the following:
+Let's augment the existing Default.aspx page to illustrate these techniques. In Default.aspx add two Panel controls, one named AuthenticatedMessagePanel and another named AnonymousMessagePanel. Add a Label control named WelcomeBackMessage in the first Panel. In the second Panel add a HyperLink control, set its Text property to Log In and its NavigateUrl property to ~/Login.aspx. At this point the declarative markup for Default.aspx should look similar to the following:
 
 [!code-aspx[Main](an-overview-of-forms-authentication-vb/samples/sample6.aspx)]
 
@@ -360,7 +360,7 @@ Next, add two &lt;br /&gt; elements immediately after the LoginView control, but
 
 [!code-aspx[Main](an-overview-of-forms-authentication-vb/samples/sample9.aspx)]
 
-The LoginView's templates can be defined from the Designer or the declarative markup. From Visual Studio's Designer, expand the LoginView's smart tag, which lists the configured templates in a drop-down list. Type in the text Hello, stranger into the AnonymousTemplate; next, add a HyperLink control and set its Text and NavigateUrl properties to Log In and ~/Login.aspx , respectively.
+The LoginView's templates can be defined from the Designer or the declarative markup. From Visual Studio's Designer, expand the LoginView's smart tag, which lists the configured templates in a drop-down list. Type in the text Hello, stranger into the AnonymousTemplate; next, add a HyperLink control and set its Text and NavigateUrl properties to Log In and ~/Login.aspx, respectively.
 
 After configuring the AnonymousTemplate, switch to the LoggedInTemplate and enter the text, "Welcome back, ". Then drag a LoginName control from the Toolbox into the LoggedInTemplate, placing it immediately after the "Welcome back, " text. The [LoginName control](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.loginname.aspx), as its name implies, displays the name of the currently logged in user. Internally, the LoginName control simply outputs the User.Identity.Name property
 
@@ -384,7 +384,7 @@ Because we added the LoginView to the master page, it can appear in every page o
 **Figure 16**: The Login Page Shows the Default Content for the Master Page's LoginContent ContentPlaceHolder([Click to view full-size image](an-overview-of-forms-authentication-vb/_static/image48.png))
 
 
-To override the default markup for the LoginContent ContentPlaceHolder, simply right-click on the region in the Designer and choose the Create Custom Content option from the context menu. (When using Visual Studio 2008 the ContentPlaceHolder includes a smart tag that, when selected, offers the same option.) This adds a new Content control to the page's markup and thereby allows us to define custom content for this page. You could add a custom message here, such as Please log in , but let's just leave this blank.
+To override the default markup for the LoginContent ContentPlaceHolder, simply right-click on the region in the Designer and choose the Create Custom Content option from the context menu. (When using Visual Studio 2008 the ContentPlaceHolder includes a smart tag that, when selected, offers the same option.) This adds a new Content control to the page's markup and thereby allows us to define custom content for this page. You could add a custom message here, such as Please log in, but let's just leave this blank.
 
 > [!NOTE]
 > In Visual Studio 2005, creating custom content creates an empty Content control in the ASP.NET page. In Visual Studio 2008, however, creating custom content copies the master page's default content into the newly created Content control. If you are using Visual Studio 2008, then, after creating the new Content control make sure to clear out the content copied over from the master page.

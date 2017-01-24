@@ -100,7 +100,7 @@ From the UPDATE tab, select the (None) option and click Next.
 **Figure 7**: Configure the ObjectDataSource to Use the `SuppliersBLL` Class ([Click to view full-size image](adding-a-gridview-column-of-radio-buttons-vb/_static/image10.png))
 
 
-Since the `GetSuppliersByCountry(country)` method accepts a parameter, the Configure Data Source wizard prompts us for the source of that parameter. To specify a hard coded value ( USA , in this example), leave the Parameter source drop-down list set to None and enter the default value in the textbox. Click Finish to complete the wizard.
+Since the `GetSuppliersByCountry(country)` method accepts a parameter, the Configure Data Source wizard prompts us for the source of that parameter. To specify a hard coded value ( USA, in this example), leave the Parameter source drop-down list set to None and enter the default value in the textbox. Click Finish to complete the wizard.
 
 
 [![Use USA as the Default Value for the country Parameter](adding-a-gridview-column-of-radio-buttons-vb/_static/image8.gif)](adding-a-gridview-column-of-radio-buttons-vb/_static/image11.png)
@@ -108,7 +108,7 @@ Since the `GetSuppliersByCountry(country)` method accepts a parameter, the Confi
 **Figure 8**: Use USA as the Default Value for the `country` Parameter ([Click to view full-size image](adding-a-gridview-column-of-radio-buttons-vb/_static/image12.png))
 
 
-After completing the wizard, the GridView will include a BoundField for each of the supplier data fields. Remove all but the `CompanyName`, `City`, and `Country` BoundFields, and rename the `CompanyName` BoundFields `HeaderText` property to Supplier . After doing so, the GridView and ObjectDataSource declarative syntax should look similar to the following.
+After completing the wizard, the GridView will include a BoundField for each of the supplier data fields. Remove all but the `CompanyName`, `City`, and `Country` BoundFields, and rename the `CompanyName` BoundFields `HeaderText` property to Supplier. After doing so, the GridView and ObjectDataSource declarative syntax should look similar to the following.
 
 
 [!code-aspx[Main](adding-a-gridview-column-of-radio-buttons-vb/samples/sample2.aspx)]
@@ -264,7 +264,7 @@ Visit the page in a browser and click the `SendToProducts` button before selecti
 
 In Step 4 we saw how to send the user to another web page to display the selected supplier s products. Alternatively, the selected supplier s products can be displayed on the same page. To illustrate this, we'll add another GridView to `RadioButtonField.aspx` to display the selected supplier s products.
 
-Since we only want this GridView of products to display once a supplier has been selected, add a Panel Web control beneath the `Suppliers` GridView, setting its `ID` to `ProductsBySupplierPanel` and its `Visible` property to `False`. Within the Panel, add the text Products for the Selected Supplier , followed by a GridView named `ProductsBySupplier`. From the GridView s smart tag, choose to bind it to a new ObjectDataSource named `ProductsBySupplierDataSource`.
+Since we only want this GridView of products to display once a supplier has been selected, add a Panel Web control beneath the `Suppliers` GridView, setting its `ID` to `ProductsBySupplierPanel` and its `Visible` property to `False`. Within the Panel, add the text Products for the Selected Supplier, followed by a GridView named `ProductsBySupplier`. From the GridView s smart tag, choose to bind it to a new ObjectDataSource named `ProductsBySupplierDataSource`.
 
 
 [![Bind the ProductsBySupplier GridView to a New ObjectDataSource](adding-a-gridview-column-of-radio-buttons-vb/_static/image16.gif)](adding-a-gridview-column-of-radio-buttons-vb/_static/image27.png)
@@ -297,7 +297,7 @@ Alternatively, we can use a ControlParameter and refer to the `Suppliers` GridVi
 **Figure 19**: Use a ControlParameter to Specify the GridView s SelectedValue as the Parameter Source ([Click to view full-size image](adding-a-gridview-column-of-radio-buttons-vb/_static/image34.png))
 
 
-Upon completing the wizard, Visual Studio will automatically add fields for the product s data fields. Remove all but the `ProductName`, `CategoryName`, and `UnitPrice` BoundFields, and change the `HeaderText` properties to Product , Category , and Price . Configure the `UnitPrice` BoundField so that its value is formatted as a currency. After making these changes, the Panel, GridView, and ObjectDataSource s declarative markup should look like the following:
+Upon completing the wizard, Visual Studio will automatically add fields for the product s data fields. Remove all but the `ProductName`, `CategoryName`, and `UnitPrice` BoundFields, and change the `HeaderText` properties to Product, Category, and Price. Configure the `UnitPrice` BoundField so that its value is formatted as a currency. After making these changes, the Panel, GridView, and ObjectDataSource s declarative markup should look like the following:
 
 
 [!code-aspx[Main](adding-a-gridview-column-of-radio-buttons-vb/samples/sample11.aspx)]

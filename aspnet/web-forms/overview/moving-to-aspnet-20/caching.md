@@ -122,7 +122,7 @@ The next step is to configure the SqlCacheDependency. The easiest way to accompl
 
 [!code-aspx[Main](caching/samples/sample8.aspx)]
 
-In the above @ OutputCache directive, a SQL cache dependency is configured for the *authors*table in the *pubs* database. Multiple dependencies can be configured by separating them with a semi-colon like so:
+In the above @ OutputCache directive, a SQL cache dependency is configured for the *authors* table in the *pubs* database. Multiple dependencies can be configured by separating them with a semi-colon like so:
 
 [!code-aspx[Main](caching/samples/sample9.aspx)]
 
@@ -236,7 +236,7 @@ The following attributes are available for the &lt;outputCache&gt; element.
 | **enableOutputCache** | Optional **Boolean** attribute. Enables/disables the page output cache. If disabled, no pages are cached regardless of the programmatic or declarative settings. Default value is **true**. |
 | **enableFragmentCache** | Optional **Boolean** attribute. Enables/disables the application fragment cache. If disabled, no pages are cached regardless of the [@ OutputCache](https://msdn.microsoft.com/en-us/library/hdxfb6cy.aspx) directive or caching profile used. Includes a cache-control header indicating that upstream proxy servers as well as browser clients should not attempt to cache page output. Default value is **false**. |
 | **sendCacheControlHeader** | Optional **Boolean** attribute. Gets or sets a value indicating whether the **cache-control:private** header is sent by the output cache module by default. Default value is **false**. |
-| **omitVaryStar** | Optional **Boolean** attribute. Enables/disables sending an Http "**Vary: \***" header in the response. With the default setting of false, a "**Vary: \***" header is sent for output cached pages. When the Vary header is sent, it allows for different versions to be cached based upon what is specified in the Vary header. For example, *Vary:User-Agents*will store different versions of a page based upon the user agent issuing the request. Default value is **false**. |
+| **omitVaryStar** | Optional **Boolean** attribute. Enables/disables sending an Http "**Vary: \***" header in the response. With the default setting of false, a "**Vary: \***" header is sent for output cached pages. When the Vary header is sent, it allows for different versions to be cached based upon what is specified in the Vary header. For example, *Vary:User-Agents* will store different versions of a page based upon the user agent issuing the request. Default value is **false**. |
 
 ### The &lt;outputCacheSettings&gt; Element
 

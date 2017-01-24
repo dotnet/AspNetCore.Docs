@@ -88,7 +88,7 @@ The Beta version released in February 2012 has only a few changes from the Beta 
     `<a href="~/Default.cshtml">Home</a>`
 - The `Scripts` helper for assets (resource) management has been replaced with the `Assets` helper, which has slightly different methods, such as the following:
 
-    - For `Scripts.Add` , use `Assets.AddScript`
+    - For `Scripts.Add`, use `Assets.AddScript`
     - For `Scripts.GetScriptTags`, use `Assets.GetScripts`
 
     This is a breaking change; the `Scripts` class is not available in the Beta release. The code examples in this document that use asset management have been updated with this change.

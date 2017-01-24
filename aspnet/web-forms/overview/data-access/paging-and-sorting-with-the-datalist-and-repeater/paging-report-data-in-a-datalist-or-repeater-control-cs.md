@@ -132,7 +132,7 @@ In particular, use the querystring fields pageIndex and pageSize for the `pageIn
 **Figure 7**: Use the QueryString as the Source for the `pageIndex` and `pageSize` Parameters ([Click to view full-size image](paging-report-data-in-a-datalist-or-repeater-control-cs/_static/image15.png))
 
 
-After configuring the ObjectDataSource, Visual Studio automatically creates an `ItemTemplate` for the DataList. Customize the `ItemTemplate` so that only the product s name, category, and supplier are shown. Also set the DataList s `RepeatColumns` property to 2, its `Width` to 100% , and its `ItemStyle` s `Width` to 50% . These width settings will provide equal spacing for the two columns.
+After configuring the ObjectDataSource, Visual Studio automatically creates an `ItemTemplate` for the DataList. Customize the `ItemTemplate` so that only the product s name, category, and supplier are shown. Also set the DataList s `RepeatColumns` property to 2, its `Width` to 100%, and its `ItemStyle` s `Width` to 50%. These width settings will provide equal spacing for the two columns.
 
 After making these changes, the DataList and ObjectDataSource s markup should look similar to the following:
 
@@ -170,7 +170,7 @@ There are a variety of different paging interfaces that can be implemented. The 
 
 For the DataList and Repeater, we are responsible for deciding upon a paging interface and implementing it. This involves creating the needed Web controls in the page and displaying the requested page when a particular paging interface button is clicked. Additionally, certain paging interface controls may need to be disabled. For example, when viewing the first page of data using the Next, Previous, First, Last interface, both the First and Previous buttons would be disabled.
 
-For this tutorial, let s use the Next, Previous, First, Last interface. Add four Button Web controls to the page and set their `ID` s to `FirstPage`, `PrevPage`, `NextPage`, and `LastPage`. Set the `Text` properties to &lt;&lt; First , &lt; Prev , Next &gt; , and Last &gt;&gt; .
+For this tutorial, let s use the Next, Previous, First, Last interface. Add four Button Web controls to the page and set their `ID` s to `FirstPage`, `PrevPage`, `NextPage`, and `LastPage`. Set the `Text` properties to &lt;&lt; First, &lt; Prev, Next &gt;, and Last &gt;&gt; .
 
 
 [!code-aspx[Main](paging-report-data-in-a-datalist-or-repeater-control-cs/samples/sample4.aspx)]

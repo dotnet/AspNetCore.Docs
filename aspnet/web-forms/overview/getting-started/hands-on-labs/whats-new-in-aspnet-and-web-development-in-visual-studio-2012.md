@@ -501,7 +501,7 @@ In this task, you will explore Visual Studio features for XML documentation in J
 
 How many times do your websites include more than one JavaScript or CSS file? This is a very common scenario where bundling and minification can help to reduce the file size and make the site perform faster. The new bundling feature in ASP.NET 4.5 packs a set of JS or CSS files into a single element, and reduces its size by minifying the content ( i.e. removing not required blank spaces, removing comments, reducing identifiers ).
 
-Bundling and minification in ASP.NET 4.5 is performed at runtime, so that the process can identify the user agent (for example IE, Mozilla, etc) , and thus, improve the compression by targeting the user browser (for instance, removing stuff that is Mozilla specific when the request comes from IE).
+Bundling and minification in ASP.NET 4.5 is performed at runtime, so that the process can identify the user agent (for example IE, Mozilla, etc), and thus, improve the compression by targeting the user browser (for instance, removing stuff that is Mozilla specific when the request comes from IE).
 
 In this exercise, you will learn how to enable and use the different types of bundling and minification in ASP.NET 4.5.
 
@@ -658,7 +658,7 @@ In this example, you will learn how to use the **DynamicFolderBundle** class to 
 
     These files will include the CoffeScript code to be compiled while performing the bundling with the CoffeeMinify class.
 
-    For simplicity purposes, the CoffeeScript files provided are only including CoffeeScript sample code . The comments are excluded by the JsMinify process.
+    For simplicity purposes, the CoffeeScript files provided are only including CoffeeScript sample code. The comments are excluded by the JsMinify process.
 
     ![CoffeeScript files](whats-new-in-aspnet-and-web-development-in-visual-studio-2012/_static/image57.png "CoffeeScript files")
 

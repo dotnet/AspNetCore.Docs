@@ -270,9 +270,9 @@ Open the *Departments.aspx* file and add the following attributes to the `Depart
 
 - `UpdateMethod="UpdateDepartment"`
 - `ConflictDetection="CompareAllValues"`   
- This causes old values to be stored in view state so that they can be compared with the new values in the     `Update` method.
+ This causes old values to be stored in view state so that they can be compared with the new values in the `Update` method.
 - `OldValuesParameterFormatString="orig{0}"`   
- This informs the control that the name of the original values parameter is     `origDepartment` .
+ This informs the control that the name of the original values parameter is `origDepartment` .
 
 The markup for the opening tag of the `ObjectDataSource` control now resembles the following example:
 

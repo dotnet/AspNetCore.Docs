@@ -173,7 +173,7 @@ Build the project, which saves your changes and verifies you haven't made any co
 
 ### The Key Attribute
 
-There's a one-to-zero-or-one relationship between the `Instructor` and the `OfficeAssignment` entities. An office assignment only exists in relation to the instructor it's assigned to, and therefore its primary key is also its foreign key to the `Instructor` entity. But the Entity Framework can't automatically recognize `InstructorID` as the primary key of this entity because its name doesn't follow the `ID` or *classname*`ID` naming convention. Therefore, the `Key` attribute is used to identify it as the key:
+There's a one-to-zero-or-one relationship between the `Instructor` and the `OfficeAssignment` entities. An office assignment only exists in relation to the instructor it's assigned to, and therefore its primary key is also its foreign key to the `Instructor` entity. But the Entity Framework can't automatically recognize `InstructorID` as the primary key of this entity because its name doesn't follow the `ID` or *classname* `ID` naming convention. Therefore, the `Key` attribute is used to identify it as the key:
 
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample14.cs)]
 
@@ -229,7 +229,7 @@ The foreign key properties and navigation properties in the `Course` entity refl
 
 ![Department_entity](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/_static/image9.png)
 
-Create *Models\Department.cs*with the following code:
+Create *Models\Department.cs* with the following code:
 
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample20.cs)]
 
@@ -370,7 +370,7 @@ When the `Seed` method runs, it will insert rows in the `Department` table and i
 After you have finished editing the &lt;*timestamp&gt;\_Chap4.cs* file, enter the `update-database` command in the PMC to execute the migration.
 
 > [!NOTE]
-> It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can either change the connection string in the W*eb.config* file or delete the database. The simplest approach is to rename the database in *Web.config* file. For example, change the database name to CU\_test as shown in the following:
+> It's possible to get other errors when migrating data and making schema changes. If you get migration errors you can't resolve, you can either change the connection string in the *Web.config* file or delete the database. The simplest approach is to rename the database in *Web.config* file. For example, change the database name to CU\_test as shown in the following:
 > 
 > [!code-xml[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample35.xml?highlight=1-2)]
 > 

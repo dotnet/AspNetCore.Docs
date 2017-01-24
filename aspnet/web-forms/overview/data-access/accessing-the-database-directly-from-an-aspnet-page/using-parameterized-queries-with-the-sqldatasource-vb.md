@@ -164,7 +164,7 @@ This `WHERE` clause returns *all* records if the `@MaximumPrice` parameter equal
 **Figure 8**: Now All Products are Displayed When the `MaxPrice` TextBox is Empty ([Click to view full-size image](using-parameterized-queries-with-the-sqldatasource-vb/_static/image16.png))
 
 
-There are a couple of caveats to note with this approach. First, realize that the parameter s data type is inferred by it s usage in the SQL query. If you change the `WHERE` clause from `@MaximumPrice = -1.0` to `@MaximumPrice = -1` , the runtime treats the parameter as an integer. If you then attempt to assign the `MaxPrice` TextBox to a decimal value (like 5.00 ), an error will occur because it cannot convert 5.00 to an integer. To remedy this, either make sure that you use `@MaximumPrice = -1.0` in the `WHERE` clause or, better yet, set the `ControlParameter` object s `Type` property to Decimal .
+There are a couple of caveats to note with this approach. First, realize that the parameter s data type is inferred by it s usage in the SQL query. If you change the `WHERE` clause from `@MaximumPrice = -1.0` to `@MaximumPrice = -1`, the runtime treats the parameter as an integer. If you then attempt to assign the `MaxPrice` TextBox to a decimal value (like 5.00 ), an error will occur because it cannot convert 5.00 to an integer. To remedy this, either make sure that you use `@MaximumPrice = -1.0` in the `WHERE` clause or, better yet, set the `ControlParameter` object s `Type` property to Decimal .
 
 Secondly, by adding the `OR @MaximumPrice = -1.0` to the `WHERE` clause, the query engine cannot use an index on `UnitPrice` (assuming one exists), thereby resulting in a table scan. This can impact performance if there are a sufficiently large number of records in the `Products` table. A better approach would be to move this logic to a stored procedure where an `IF` statement would either perform a `SELECT` query from the `Products` table without a `WHERE` clause when all records need to be returned or one whose `WHERE` clause contains just the `UnitPrice` criteria, so that an index can be used.
 
@@ -174,7 +174,7 @@ Stored procedures can include a set of input parameters that can then be used in
 
 To illustrate using stored procedures in the SqlDataSource, let s create a new stored procedure in the Northwind database named `GetProductsByCategory`, which accepts a parameter named `@CategoryID` and returns all of the columns of the products whose `CategoryID` column matches `@CategoryID`. To create a stored procedure, go to the Server Explorer and drill down into the `NORTHWND.MDF` database. (If you don t see the Server Explorer, bring it up by going to the View menu and selecting the Server Explorer option.)
 
-From the `NORTHWND.MDF` database, right-click on the Stored Procedures folder, choose Add New Stored Procedure , and enter the following syntax:
+From the `NORTHWND.MDF` database, right-click on the Stored Procedures folder, choose Add New Stored Procedure, and enter the following syntax:
 
 
 [!code-sql[Main](using-parameterized-queries-with-the-sqldatasource-vb/samples/sample8.sql)]
@@ -240,7 +240,7 @@ The following code illustrates how to retrieve the records from the `RandomCateg
 
 [!code-vb[Main](using-parameterized-queries-with-the-sqldatasource-vb/samples/sample11.vb)]
 
-`randomCategoryView(0)` returns the first `DataRowView` in the DataView. `randomCategoryView(0)("CategoryName")` returns the value of the `CategoryName` column in this first row. Note that the DataView is loosely-typed. To reference a particular column value we need to pass in the name of the column as a string ( CategoryName , in this case). Figure 13 shows the message displayed in the `CategoryNameLabel` when viewing the page. Of course, the actual category name displayed is randomly selected by the `RandomCategoryDataSource` SqlDataSource on each visit to the page (including postbacks).
+`randomCategoryView(0)` returns the first `DataRowView` in the DataView. `randomCategoryView(0)("CategoryName")` returns the value of the `CategoryName` column in this first row. Note that the DataView is loosely-typed. To reference a particular column value we need to pass in the name of the column as a string ( CategoryName, in this case). Figure 13 shows the message displayed in the `CategoryNameLabel` when viewing the page. Of course, the actual category name displayed is randomly selected by the `RandomCategoryDataSource` SqlDataSource on each visit to the page (including postbacks).
 
 
 [![The Randomly Selected Category s Name is Displayed](using-parameterized-queries-with-the-sqldatasource-vb/_static/image13.gif)](using-parameterized-queries-with-the-sqldatasource-vb/_static/image25.png)
@@ -264,7 +264,7 @@ With the SqlDataSource randomly selecting a category, we re ready to add the Gri
 
 All of the examples we ve seen so far in this tutorial have used either a hard-coded parameter value or one taken from one of the pre-defined parameter sources (a querystring value, a Web control on the page, and so on). However, the SqlDataSource control s parameters can also be set programmatically. To complete our current example, we need a SqlDataSource that returns all of the products belonging to a specified category. This SqlDataSource will have a `CategoryID` parameter whose value needs to be set based on the `CategoryID` column value returned by the `RandomCategoryDataSource` SqlDataSource in the `Page_Load` event handler.
 
-Start by adding a GridView to the page and bind it to a new SqlDataSource named `ProductsByCategoryDataSource`. Much like we did in Step 3, configure the SqlDataSource so that it invokes the `GetProductsByCategory` stored procedure. Leave the Parameter source drop-down list set to None , but do not enter a default value, as we will set this default value programmatically.
+Start by adding a GridView to the page and bind it to a new SqlDataSource named `ProductsByCategoryDataSource`. Much like we did in Step 3, configure the SqlDataSource so that it invokes the `GetProductsByCategory` stored procedure. Leave the Parameter source drop-down list set to None, but do not enter a default value, as we will set this default value programmatically.
 
 
 [![Do Not Specify a Parameter Source or Default Value](using-parameterized-queries-with-the-sqldatasource-vb/_static/image14.gif)](using-parameterized-queries-with-the-sqldatasource-vb/_static/image27.png)

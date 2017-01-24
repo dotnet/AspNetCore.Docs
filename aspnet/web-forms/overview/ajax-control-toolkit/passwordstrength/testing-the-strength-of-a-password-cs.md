@@ -27,7 +27,7 @@ Passwords are required almost anywhere, so that lazy users tend to choose simple
 
 ## Steps
 
-The `PasswordStrength` control extends a text box and checks whether the password in it is good enough . It offers a wealth of options via attributes; here are just some of them:
+The `PasswordStrength` control extends a text box and checks whether the password in it is good enough. It offers a wealth of options via attributes; here are just some of them:
 
 - `MinimumNumericCharacters` minimum number of numeric characters required in the password
 - `MinimumSymbolCharacters` minimum number of symbol characters (not letters and digits) required in the password

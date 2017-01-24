@@ -148,7 +148,7 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you you'll add UI to help them filter movies. If you changed the signature of the `SearchIndex` method to test how to pass the route-bound ID parameter, change it back so that your `SearchIndex` method takes a string parameter named `searchString`:
 
-Open the *Views\Movies\SearchIndex.vbhtml*file, and just after `@Html.ActionLink("Create New", "Create")`, add the following:
+Open the *Views\Movies\SearchIndex.vbhtml* file, and just after `@Html.ActionLink("Create New", "Create")`, add the following:
 
 [!code-vbhtml[Main](examining-the-edit-methods-and-edit-view/samples/sample13.vbhtml)]
 

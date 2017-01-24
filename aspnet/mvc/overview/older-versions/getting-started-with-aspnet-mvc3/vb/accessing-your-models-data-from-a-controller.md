@@ -43,7 +43,7 @@ Click **Add**. Visual Web Developer creates the following files and folders:
 
 - *A MoviesController.vb* file in the project's *Controllers* folder.
 - A *Movies* folder in the project's *Views* folder.
-- *Create.vbhtml, Delete.vbhtml, Details.vbhtml, Edit.vbhtml*, and *Index.vbhtml* in the new *Views\Movies*folder.
+- *Create.vbhtml, Delete.vbhtml, Details.vbhtml, Edit.vbhtml*, and *Index.vbhtml* in the new *Views\Movies* folder.
 
 [![5_ScaffoldMovie](accessing-your-models-data-from-a-controller/_static/image4.png)](accessing-your-models-data-from-a-controller/_static/image3.png)
 

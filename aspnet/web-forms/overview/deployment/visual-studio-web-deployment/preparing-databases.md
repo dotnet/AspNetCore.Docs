@@ -209,7 +209,7 @@ Since you haven't run the project with the production database, it isn't attache
 1. In the SSMS **Object Explorer**, right-click **Databases** and click **Attach**.
 
     ![SSMS Attach](preparing-databases/_static/image15.png)
-- In the **Attach Databases** dialog box, click **Add** and then navigate to the *aspnet-ContosoUniversity-Prod.mdf*file in the *App\_Data* folder.
+- In the **Attach Databases** dialog box, click **Add** and then navigate to the *aspnet-ContosoUniversity-Prod.mdf* file in the *App\_Data* folder.
 
     ![SSMS Add .mdf file to attach](preparing-databases/_static/image16.png)
 - Click **OK**.

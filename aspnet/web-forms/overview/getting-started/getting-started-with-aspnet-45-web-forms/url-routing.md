@@ -100,7 +100,7 @@ Next, you'll update the application to use the `ProductsByCategoryRoute` to dete
 
     [!code-aspx[Main](url-routing/samples/sample3.aspx?highlight=7-9)]
 3. In **Solution Explorer**, open the *ProductList.aspx* page.
-4. Update the `ItemTemplate` element of the *ProductList.aspx*page with the updates highlighted in yellow, so the markup appears as follows:   
+4. Update the `ItemTemplate` element of the *ProductList.aspx* page with the updates highlighted in yellow, so the markup appears as follows:   
 
     [!code-aspx[Main](url-routing/samples/sample4.aspx?highlight=6-9,14-16)]
 5. Open the code-behind of *ProductList.aspx.cs* and add the following namespace as highlighted in yellow:  
@@ -123,12 +123,12 @@ Now, update the code-behind (*ProductDetails.aspx.cs*) for the *ProductDetails.a
 You can run the application now to see the updated routes.
 
 1. Press **F5** to run the Wingtip Toys sample application.  
- The browser opens and shows the     *Default.aspx* page.
+ The browser opens and shows the *Default.aspx* page.
 2. Click the **Products** link at the top of the page.  
- All products are displayed on the     *ProductList.aspx* page. The following URL (using your port number) is displayed for the browser:  
+ All products are displayed on the *ProductList.aspx* page. The following URL (using your port number) is displayed for the browser:  
     `https://localhost:44300/ProductList`
 3. Next, click the **Cars** category link near the top of the page.  
- Only cars are displayed on the     *ProductList.aspx* page. The following URL (using your port number) is displayed for the browser:  
+ Only cars are displayed on the *ProductList.aspx* page. The following URL (using your port number) is displayed for the browser:  
     `https://localhost:44300/Category/Cars`
 4. Click the link containing the name of the first car listed on the page ("**Convertible Car**") to display the product details.  
  The following URL (using your port number) is displayed for the browser:  

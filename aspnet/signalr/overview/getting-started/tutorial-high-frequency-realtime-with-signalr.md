@@ -101,7 +101,7 @@ The following steps use Visual Studio 2013 to create an ASP.NET Empty Web Applic
     > [!NOTE]
     > You can also add SignalR to a project by clicking **Tools | Library Package Manager | Package Manager Console** and running a command:
 
-    `install-package Microsoft.AspNet.SignalR` . 
+    `install-package Microsoft.AspNet.SignalR`. 
 
     If you use the console to add SignalR, create the SignalR hub class as a separate step after you add SignalR.
 4. Click **Tools | Library Package Manager | Package Manager Console**. In the package manager window, run the following command:

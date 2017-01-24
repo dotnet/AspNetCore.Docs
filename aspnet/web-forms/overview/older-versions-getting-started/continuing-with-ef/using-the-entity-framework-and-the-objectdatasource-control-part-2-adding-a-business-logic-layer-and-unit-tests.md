@@ -135,7 +135,7 @@ Start by creating the exception class that you'll throw when a user tries to mak
 
 [!code-csharp[Main](using-the-entity-framework-and-the-objectdatasource-control-part-2-adding-a-business-logic-layer-and-unit-tests/samples/sample7.cs)]
 
-Now delete the temporary*DuplicateAdministratorException.cs* file that you created in the test project earlier in order to be able to compile.
+Now delete the temporary *DuplicateAdministratorException.cs* file that you created in the test project earlier in order to be able to compile.
 
 In the main project, open the *SchoolBL.cs* file and add the following method that contains the validation logic. (The code refers to a method that you'll create later.)
 

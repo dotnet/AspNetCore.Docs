@@ -347,7 +347,7 @@ After the ObjectDataSource wizard has completed, Visual Studio will add BoundFie
 **Figure 23**: The Page Contains a GridView with Editing and Deleting Support Enabled ([Click to view full-size image](creating-new-stored-procedures-for-the-typed-dataset-s-tableadapters-cs/_static/image55.png))
 
 
-As we ve discussed in previous tutorials, at the completion of the ObjectDataSource s wizard, Visual Studio sets the `OldValuesParameterFormatString` property to original\_{0} . This needs to be reverted to its default value of {0} in order for the data modification features to work properly given the parameters expected by the methods in our BLL. Therefore, be sure to set the `OldValuesParameterFormatString` property to {0} or remove the property altogether from the declarative syntax.
+As we ve discussed in previous tutorials, at the completion of the ObjectDataSource s wizard, Visual Studio sets the `OldValuesParameterFormatString` property to original\_{0}. This needs to be reverted to its default value of {0} in order for the data modification features to work properly given the parameters expected by the methods in our BLL. Therefore, be sure to set the `OldValuesParameterFormatString` property to {0} or remove the property altogether from the declarative syntax.
 
 After completing the Configure Data Source wizard, turning on editing and deleting support in the GridView, and returning the ObjectDataSource s `OldValuesParameterFormatString` property to its default value, your page s declarative markup should look similar to the following:
 

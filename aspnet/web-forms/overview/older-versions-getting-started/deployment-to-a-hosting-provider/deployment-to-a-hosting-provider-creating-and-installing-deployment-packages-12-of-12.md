@@ -110,7 +110,7 @@ After you deploy an application using one-click publish, when you run a page tha
 
 ### Possible Cause and Solution
 
-Open the *Web.config* file in the deployed site and check to see whether the connection string values begin with `$(ReplacableToken_` , as in the following example:
+Open the *Web.config* file in the deployed site and check to see whether the connection string values begin with `$(ReplacableToken_`, as in the following example:
 
 [!code-xml[Main](deployment-to-a-hosting-provider-creating-and-installing-deployment-packages-12-of-12/samples/sample9.xml)]
 

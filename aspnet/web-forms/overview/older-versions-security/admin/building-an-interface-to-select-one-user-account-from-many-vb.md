@@ -140,9 +140,9 @@ Next, update the `BindUserAccounts` method so that instead of calling `Membershi
 
 [!code-vb[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample9.vb)]
 
-To display just those users whose username starts with the letter A , set the `UsernameToMatch` property to A and then call `BindUserAccounts` This would result in a call to `Membership.FindUsersByName("A%")`, which will return all users whose username starts with A . Likewise, to return *all* users, assign an empty string to the `UsernameToMatch` property so that the `BindUserAccounts` method will invoke `Membership.FindUsersByName("%")`, thereby returning all user accounts.
+To display just those users whose username starts with the letter A, set the `UsernameToMatch` property to A and then call `BindUserAccounts` This would result in a call to `Membership.FindUsersByName("A%")`, which will return all users whose username starts with A. Likewise, to return *all* users, assign an empty string to the `UsernameToMatch` property so that the `BindUserAccounts` method will invoke `Membership.FindUsersByName("%")`, thereby returning all user accounts.
 
-Create an event handler for the Repeater's `ItemCommand` event. This event is raised whenever one of the filter LinkButtons is clicked; it is passed the clicked LinkButton's `CommandName` value through the `RepeaterCommandEventArgs` object. We need to assign the appropriate value to the `UsernameToMatch` property and then call the `BindUserAccounts` method. If the `CommandName` is All , assign an empty string to `UsernameToMatch` so that all user accounts are displayed. Otherwise, assign the `CommandName` value to `UsernameToMatch`
+Create an event handler for the Repeater's `ItemCommand` event. This event is raised whenever one of the filter LinkButtons is clicked; it is passed the clicked LinkButton's `CommandName` value through the `RepeaterCommandEventArgs` object. We need to assign the appropriate value to the `UsernameToMatch` property and then call the `BindUserAccounts` method. If the `CommandName` is All, assign an empty string to `UsernameToMatch` so that all user accounts are displayed. Otherwise, assign the `CommandName` value to `UsernameToMatch`
 
 [!code-vb[Main](building-an-interface-to-select-one-user-account-from-many-vb/samples/sample10.vb)]
 

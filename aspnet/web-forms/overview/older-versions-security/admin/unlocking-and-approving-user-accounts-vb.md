@@ -140,7 +140,7 @@ Next, we need to configure the CreateUserWizard control to send an email to the 
 
 ### Sending a Verification Email to New Users
 
-To send an email from the CreateUserWizard control, configure its `MailDefinition` property appropriately. As discussed in the <a id="Tutorial13"></a>[previous tutorial](recovering-and-changing-passwords-vb.md) , the ChangePassword and PasswordRecovery controls include a [`MailDefinition` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.maildefinition.aspx) that works in the same manner as the CreateUserWizard control's.
+To send an email from the CreateUserWizard control, configure its `MailDefinition` property appropriately. As discussed in the <a id="Tutorial13"></a>[previous tutorial](recovering-and-changing-passwords-vb.md), the ChangePassword and PasswordRecovery controls include a [`MailDefinition` property](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.createuserwizard.maildefinition.aspx) that works in the same manner as the CreateUserWizard control's.
 
 > [!NOTE]
 > To use the `MailDefinition` property you need to specify mail delivery options in `Web.config`. For more information, refer to [Sending Email in ASP.NET](http://aspnet.4guysfromrolla.com/articles/072606-1.aspx).

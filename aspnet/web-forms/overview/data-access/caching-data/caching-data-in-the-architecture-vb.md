@@ -107,7 +107,7 @@ The `GetCacheItem(key)` and `AddCacheItem(key, value)` methods interface with th
 
 [!code-vb[Main](caching-data-in-the-architecture-vb/samples/sample6.vb)]
 
-`GetCacheItem(key)` does not use *key* value as supplied, but instead calls the `GetCacheKey(key)` method, which returns the *key* prepended with ProductsCache- . The `MasterCacheKeyArray`, which holds the string ProductsCache , is also used by the `AddCacheItem(key, value)` method, as we'll see momentarily.
+`GetCacheItem(key)` does not use *key* value as supplied, but instead calls the `GetCacheKey(key)` method, which returns the *key* prepended with ProductsCache-. The `MasterCacheKeyArray`, which holds the string ProductsCache, is also used by the `AddCacheItem(key, value)` method, as we'll see momentarily.
 
 From an ASP.NET page s code-behind class, the data cache can be accessed using the `Page` class s [`Cache` property](https://msdn.microsoft.com/en-us/library/system.web.ui.page.cache.aspx), and allows for syntax like `Cache("key") = value`, as discussed in Step 2. From a class within the architecture, the data cache can be accessed using either `HttpRuntime.Cache` or `HttpContext.Current.Cache`. [Peter Johnson](https://weblogs.asp.net/pjohnson/default.aspx)'s blog entry [HttpRuntime.Cache vs. HttpContext.Current.Cache](https://weblogs.asp.net/pjohnson/httpruntime-cache-vs-httpcontext-current-cache) notes the slight performance advantage in using `HttpRuntime` instead of `HttpContext.Current`; consequently, `ProductsCL` uses `HttpRuntime`.
 
@@ -144,7 +144,7 @@ Let s update the `AddCacheItem(key, value)` method so that each item added to th
 
 [!code-vb[Main](caching-data-in-the-architecture-vb/samples/sample9.vb)]
 
-`MasterCacheKeyArray` is a string array that holds a single value, ProductsCache . First, a cache item is added to the cache and assigned the current date and time. If the cache item already exists, it is updated. Next, a cache dependency is created. The [`CacheDependency` class](https://msdn.microsoft.com/en-US/library/system.web.caching.cachedependency(VS.80).aspx) s constructor has a number of overloads, but the one being used in here expects two `String` array inputs. The first one specifies the set of files to be used as dependencies. Since we don t want to use any file-based dependencies, a value of `Nothing` is used for the first input parameter. The second input parameter specifies the set of cache keys to use as dependencies. Here we specify our single dependency, `MasterCacheKeyArray`. The `CacheDependency` is then passed into the `Insert` method.
+`MasterCacheKeyArray` is a string array that holds a single value, ProductsCache. First, a cache item is added to the cache and assigned the current date and time. If the cache item already exists, it is updated. Next, a cache dependency is created. The [`CacheDependency` class](https://msdn.microsoft.com/en-US/library/system.web.caching.cachedependency(VS.80).aspx) s constructor has a number of overloads, but the one being used in here expects two `String` array inputs. The first one specifies the set of files to be used as dependencies. Since we don t want to use any file-based dependencies, a value of `Nothing` is used for the first input parameter. The second input parameter specifies the set of cache keys to use as dependencies. Here we specify our single dependency, `MasterCacheKeyArray`. The `CacheDependency` is then passed into the `Insert` method.
 
 With this modification to `AddCacheItem(key, value)`, invaliding the cache is as simple as removing the dependency.
 

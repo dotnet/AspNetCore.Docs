@@ -35,7 +35,7 @@ Then add the following code to the `Movie` controller to populate the `Person` m
 
 [!code-csharp[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample3.cs)]
 
-Open the *Views\Movies\PersonDetail.cshtml*file and add the following markup for the `PersonDetail` view.
+Open the *Views\Movies\PersonDetail.cshtml* file and add the following markup for the `PersonDetail` view.
 
 [!code-cshtml[Main](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-3/samples/sample4.cshtml)]
 
