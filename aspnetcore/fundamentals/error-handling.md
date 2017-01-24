@@ -1,5 +1,5 @@
 ---
-title: Error Handling | Microsoft Docs
+title: Error Handling in ASP.NET Core | Microsoft Docs
 author: ardalis
 description: Explains how to handle errors in ASP.NET Core applications
 keywords: ASP.NET Core, error handling, exception handling, 
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/error-handling
 ---
-# Error Handling
+# Error Handling in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra/)
 

@@ -1,5 +1,5 @@
 ---
-title: Using Gulp | Microsoft Docs
+title: Using Gulp in ASP.NET Core | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/using-gulp
 ---
-# Using Gulp
+# Using Gulp in ASP.NET Core 
 
 <a name=using-gulp></a>
 

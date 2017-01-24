@@ -1,5 +1,5 @@
 ---
-title: Application Startup | Microsoft Docs
+title: Application Startup in ASP.NET Core | Microsoft Docs
 author: ardalis
 description: Explains the Startup class in ASP.NET Core.
 keywords: ASP.NET Core, Startup, Configure method, ConfigureServices method
@@ -12,7 +12,7 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/startup
 ---
-# Application Startup
+# Application Startup in ASP.NET Core
 
 By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra/)
 
@@ -20,9 +20,9 @@ The `Startup` class configures the request pipeline that handles all requests ma
 
 ## The Startup class
 
-All ASP.NET applications require at least one `Startup` class. When an application starts, ASP.NET searches the primary assembly for a class named `Startup` (in any namespace). You can specify a different assembly to search using the *Hosting:Application* configuration key. The class doesn't have to be `public`. If there are multiple `Startup` classes, ASP.NET looks for one in the project's root namespace, otherwise it chooses one in the alphabetically first namespace.
+ASP.NET Core apps require a `Startup` class. By convention, the `Startup` class is named "Startup". You specify the startup class name in the `Main` programs [WebHostBuilderExtensions](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderextensions) [`UseStartup<TStartup>`](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.hosting.webhostbuilderextensions#Microsoft_AspNetCore_Hosting_WebHostBuilderExtensions_UseStartup__1_Microsoft_AspNetCore_Hosting_IWebHostBuilder_) method.
 
-You can define separate `Startup` classes for different environments, and the appropriate one will be selected at runtime. Learn more in [Working with multiple environments](environments.md#startup-conventions).
+You can define separate `Startup` classes for different environments, and the appropriate one will be selected at runtime. If you specify `startupAssembly` in the WebHost configuration or options, hosting will load that startup assembly and search for a `Startup` or `Startup[Environment]` type. See [FindStartupType](https://github.com/aspnet/Hosting/blob/rel/1.1.0/src/Microsoft.AspNetCore.Hosting/Internal/StartupLoader.cs) in `StartupLoader` and [Working with multiple environments](environments.md#startup-conventions). `UseStartup<TStartup>` is the recommended approach.
 
 The `Startup` class constructor can accept dependencies that are provided through [dependency injection](dependency-injection.md). You can use `IHostingEnvironment` to set up [configuration](configuration.md) sources and `ILoggerFactory` to set up [logging](logging.md) providers. 
 
@@ -46,15 +46,13 @@ Additional services, like `IHostingEnvironment` and `ILoggerFactory` may also be
 
 ## The ConfigureServices method
 
-The `Startup` class can include a `ConfigureServices` method that takes an `IServiceCollection` parameter and optionally returns an `IServiceProvider`. The `ConfigureServices` method is called before `Configure`, as some features must be added before they can be wired up to the request pipeline.
+The [ConfigureServices](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.hosting.startupbase#Microsoft_AspNetCore_Hosting_StartupBase_ConfigureServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_) method is optional, but must be called before  `Configure`, as some features will be added before they can be wired up to the request pipeline. [Configuration options](configuration.md) are set in this method.
 
-For features that require substantial setup there are `Add[Something]` extension methods on `IServiceCollection`. This example from the default web site template configures the app to use services for Entity Framework, Identity, and MVC:
+For features that require substantial setup there are `Add[Service]` extension methods on [IServiceCollection](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.dependencyinjection.iservicecollection). This example from the default web site template configures the app to use services for Entity Framework, Identity, and MVC:
 
 [!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
 
 Adding services to the services container makes them available within your application via [dependency injection](dependency-injection.md).
-
-The `ConfigureServices` method is also where you should add configuration option classes. Learn more in [Configuration](configuration.md).
 
 ## Services Available in Startup
 
@@ -63,9 +61,7 @@ ASP.NET Core dependency injection provides application services during an applic
 Looking at each method in the `Startup` class in the order in which they are called, the following services may be requested as parameters:
 
 * In the constructor:  `IHostingEnvironment`, `ILoggerFactory`
-
 * In the `ConfigureServices` method:  `IServiceCollection`
-
 * In the `Configure` method:  `IApplicationBuilder`, `IHostingEnvironment`, `ILoggerFactory`
 
 ## Additional Resources
