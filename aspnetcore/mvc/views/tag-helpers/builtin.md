@@ -21,7 +21,7 @@ Microsoft has included 17 Tag Helpers that can be immediately used in .net Core 
 
 [comment]: **[FormTagTagHelper](builtin/resources/FormTagHelper.md)**
 
-[comment]: **[ImageTagHelper](builtin/resources/ImageTagHelper.md)**
+**[ImageTagHelper](builtin/resources/ImageTagHelper.md)**
 
 [comment]: **[InputTagHelper](builtin/resources/InputTagHelper.md)**
 

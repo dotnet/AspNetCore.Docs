@@ -8,23 +8,9 @@ By [Peter Kellner](http://peterkellner.net)
 
 The ```AnchorTagHelper``` enhances the html anchor (`<a ... ></a>`) tag. A new set of attributes are defined that work with the anchor tag. The link generated (on the href tag) is based on a combination of these new attributes that work together to form the final redirect URL. That URL can include an optional protocol such as https.
 
-For reference, the following ASP.NET ```startup.cs``` and ```SpeakerController.cs``` are defined as you would expect in a default Visual Studio .Net Core Web Project.
+For reference, the following ASP.NET ```SpeakerController.cs``` is defined as you would expect in a default Visual Studio .Net Core Web Project.
 
-![](../_static/ProjectControllers.png)
 
-**Startup.cs**
-```
-// This method gets called by the runtime. 
-// Use this method to configure the 
-// HTTP request pipeline.
-public void Configure(IApplicationBuilder app, 
-    IHostingEnvironment env, 
-    ILoggerFactory loggerFactory)
-{
-    app.UseMvcWithDefaultRoute();
-    //...
-}  
-```
 
 <br/>
 **SpeakerController.cs** 
