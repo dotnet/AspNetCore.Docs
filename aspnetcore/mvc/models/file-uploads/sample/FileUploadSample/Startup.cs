@@ -7,6 +7,7 @@ namespace FileUploadSample
 {
     public class Startup
     {
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             // Angular's default header name for sending the XSRF token.
@@ -14,6 +15,7 @@ namespace FileUploadSample
 
             services.AddMvc();
         }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
