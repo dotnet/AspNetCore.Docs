@@ -66,7 +66,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 - For StackOverflow, use the tag [aspnet-identity](http://stackoverflow.com/questions/tagged/asp.net-identity)
 - For the ASP.NET forums, post to the [Security forum](https://forums.asp.net/25.aspx) and add **ASP.NET Identity** to the title.
-- [CodePlex hosting site for ASP.NET Identity](http://aspnetidentity.codeplex.com/)Get nightly builds, request features, open bugs.
+- [CodePlex hosting site for ASP.NET Identity](http://aspnetidentity.codeplex.com/) Get nightly builds, request features, open bugs.
 
 <a id="blog"></a>
 ## Blog posts on Identity
@@ -91,7 +91,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
  By [K. Scott Allen](https://twitter.com/OdeToCode) on Ode to Code
 
-    - [ASP.NET Core Identity](http://odetocode.com/blogs/scott/archive/2013/11/25/asp-net-core-identity.aspx)This blog examines the core abstractions, including IUser, IUserStore and the I\*Store interfaces.
+    - [ASP.NET Core Identity](http://odetocode.com/blogs/scott/archive/2013/11/25/asp-net-core-identity.aspx) This blog examines the core abstractions, including IUser, IUserStore and the I\*Store interfaces.
     - [ASP.NET Identity with the Entity Framework](http://odetocode.com/blogs/scott/archive/2014/01/03/asp-net-identity-with-the-entity-framework.aspx) Individual User Accounts in MVC 5, Web API and SPA apps, connection strings and managing contexts
     - [Customization Options With ASP.NET Identity](http://odetocode.com/blogs/scott/archive/2014/01/09/customization-options-with-asp-net-identity.aspx)
     - [Implementing ASP.NET Identity](http://odetocode.com/blogs/scott/archive/2014/01/20/implementing-asp-net-identity.aspx)
@@ -125,7 +125,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - Channel 9 [ASP.NET Authentication using ASP.NET Identity](https://channel9.msdn.com/Shows/Web+Camps+TV/Special-Movember-Episode-ASPNET-Authentication-Provider) by Cory Fowler
 - Channel 9 [Building Modern Web Apps: ASP.NET Identity](https://channel9.msdn.com/Series/Building-Modern-Web-Apps/03) by Jeff Koch
 - Channel 9 [Securing your website with ASP.NET Identity](https://channel9.msdn.com/Events/TechDays/Techdays-2014-the-Netherlands/Securing-your-website-with-ASP-NET-Identity) by Alex Thissen
-- [Use ASP.NET Identity on an existing DB-Model](https://www.youtube.com/watch?v=elfqejow5hM)by Alexander Schmidt
+- [Use ASP.NET Identity on an existing DB-Model](https://www.youtube.com/watch?v=elfqejow5hM) by Alexander Schmidt
 - [ASP.NET One Identity](https://www.youtube.com/watch?v=w8GD-QIusKk) by Ivaylo Kenov of Telerik
 - [Czech ASP.NET Identity](https://www.youtube.com/watch?v=tVbZp5brcpY) In this lecture we will show how to deploy basic authentication, how to add support for external identity providers such as Twitter or Facebook, and how to use one-time passwords (OTP). [ASP.NET Identity je nástupce Membership a Role provider&#367; v ASP.NET, tedy knihovna pro zajišt&#283;ní autentizace uživatel&#367;. V této p&#345;ednášce si ukážeme, jak nasad]
 

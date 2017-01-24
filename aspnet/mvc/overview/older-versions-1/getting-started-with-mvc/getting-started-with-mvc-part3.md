@@ -45,7 +45,7 @@ The new Index file is also already opened and ready for editing. Add some text u
 
 [!code-html[Main](getting-started-with-mvc-part3/samples/sample3.html)]
 
-Run your application and visit [`http://localhost:xx/HelloWorld`](http://localhostxx)again in your browser. The Index method in our controller in this example didn't do any work, but did call "return View()" which indicated that we wanted to use a view template file to render a response back to the client. Because we did not explicitly specify the name of the view template file to use, ASP.NET MVC defaulted to using the Index.aspx view file within the \Views\HelloWorld folder. Now we see the string we hard-coded in our View.
+Run your application and visit [`http://localhost:xx/HelloWorld`](http://localhostxx) again in your browser. The Index method in our controller in this example didn't do any work, but did call "return View()" which indicated that we wanted to use a view template file to render a response back to the client. Because we did not explicitly specify the name of the view template file to use, ASP.NET MVC defaulted to using the Index.aspx view file within the \Views\HelloWorld folder. Now we see the string we hard-coded in our View.
 
 [![Index - Windows Internet Explorer](getting-started-with-mvc-part3/_static/image7.png)](getting-started-with-mvc-part3/_static/image6.png)
 

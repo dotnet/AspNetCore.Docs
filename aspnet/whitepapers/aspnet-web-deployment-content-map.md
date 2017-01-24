@@ -93,7 +93,7 @@ See also the following section.
 
 ## Deploying a web application using a continuous integration (CI) process
 
-- [Continuous Integration and Continuous Delivery (Building Real-World Cloud Apps with Windows Azure).](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md)E-book chapter that introduces continuous integration and continuous delivery.
+- [Continuous Integration and Continuous Delivery (Building Real-World Cloud Apps with Windows Azure).](../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/continuous-integration-and-continuous-delivery.md) E-book chapter that introduces continuous integration and continuous delivery.
 - [How to Deploy a Windows Azure Web Site](https://www.windowsazure.com/en-us/documentation/articles/web-sites-deploy/). Explains options and links to resources for deploying web projects to Windows Azure Web Sites. Includes a section about automating deployment from source control.
 - [Deploying Web Applications in Enterprise Scenarios](../web-forms/overview/deployment/deploying-web-applications-in-enterprise-scenarios/deploying-web-applications-in-enterprise-scenarios.md). 40-part tutorial series, shows how to automate deployment in a CI process using Visual Studio 2010 and Team Foundation Server 2010.
 - [Inside the Microsoft Build Engine: Using MSBuild and Team Foundation Build, by Sayed Hashimi and William Bartholomew](http://msbuildbook.com). This is a book, not a web resource, but it is an essential guide for learning how to configure MSBuild for continuous integration scenarios.

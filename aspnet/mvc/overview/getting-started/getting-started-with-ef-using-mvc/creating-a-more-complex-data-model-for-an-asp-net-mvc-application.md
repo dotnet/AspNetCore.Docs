@@ -107,7 +107,7 @@ In the *Student.cs* file, add a `using` statement for [System.ComponentModel.Dat
 
 [!code-csharp[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample5.cs?highlight=4,14)]
 
-The addition of the [Column attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.columnattribute.aspx)changes the model backing the SchoolContext, so it won't match the database. Enter the following commands in the PMC to create another migration:
+The addition of the [Column attribute](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.schema.columnattribute.aspx) changes the model backing the SchoolContext, so it won't match the database. Enter the following commands in the PMC to create another migration:
 
 [!code-console[Main](creating-a-more-complex-data-model-for-an-asp-net-mvc-application/samples/sample6.cmd)]
 

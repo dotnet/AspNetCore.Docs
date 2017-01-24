@@ -64,7 +64,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 ## New Featured Content
 
 - [Selecting Cultures for Localization in ASP.NET](http://weblog.west-wind.com/posts/2014/Mar/27/Auto-Selecting-Cultures-for-Localization-in-ASPNET)
-- [Nesting Layouts in MVC](http://astutelogic.com/nesting-layouts-in-mvc/)by Russell Waite
+- [Nesting Layouts in MVC](http://astutelogic.com/nesting-layouts-in-mvc/) by Russell Waite
 - [Create an ASP.NET MVC app with auth and SQL DB and deploy to Azure App Service](https://www.windowsazure.com/en-us/develop/net/tutorials/web-site-with-sql-database/)
 - [MVC 5 App with Facebook and Google OAuth2 Sign-on](../security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md)
 - [Understanding ASP.NET MVC Filters and Attributes](http://www.dotnet-tricks.com/Tutorial/mvc/b11a280114-Understanding-ASP.NET-MVC-Filters-and-Attributes.html)
@@ -288,7 +288,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 
 - [ASP.NET MVC 5 Internationalization](http://afana.me/post/aspnet-mvc-internationalization.aspx)
 - [Selecting Cultures for Localization in ASP.NET](http://weblog.west-wind.com/posts/2014/Mar/27/Auto-Selecting-Cultures-for-Localization-in-ASPNET)
-- [ASP.NET MVC 5 Internationalization · Date and Time](http://afana.me/post/aspnet-mvc-internationalization-date-time.aspx)by Nadeem Afana
+- [ASP.NET MVC 5 Internationalization · Date and Time](http://afana.me/post/aspnet-mvc-internationalization-date-time.aspx) by Nadeem Afana
 - [ASP.NET MVC 5 Internationalization · How to Store Strings in a Database or Xml](http://afana.me/post/aspnet-mvc-internationalization-store-strings-in-database-or-xml.aspx)
 - [Globalization, Internationalization and Localization in ASP.NET MVC 3, JavaScript and jQuery](http://www.hanselman.com/blog/GlobalizationInternationalizationAndLocalizationInASPNETMVC3JavaScriptAndJQueryPart1.aspx)
 - [Internationalization](http://afana.me/post/aspnet-mvc-internationalization.aspx)
@@ -385,7 +385,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [http://www.componentone.com/SuperProducts/StudioASPNET/](http://www.componentone.com/SuperProducts/StudioASPNET/)
 - [Rich Text Editing with Infragistics HTML Editor in both jQuery and ASP.NET MVC](http://www.infragistics.com/community/blogs/damyan_petev/archive/2012/02/24/rich-text-editing-with-infragistics-html-editor-in-both-jquery-and-asp-net-mvc.aspx)
 - [DevExpress ASP.NET MVC RichEdit Control](https://go.devexpress.com/AjaxControlToolkit_ASP_Resources_MVC_RichEdit.aspx)
-- [Nesting Layouts in MVC](http://astutelogic.com/nesting-layouts-in-mvc/)by Russell Waite
+- [Nesting Layouts in MVC](http://astutelogic.com/nesting-layouts-in-mvc/) by Russell Waite
 
 <a id="general"></a>
 
@@ -396,7 +396,7 @@ by [Rick Anderson](https://github.com/Rick-Anderson)
 - [Content Negotiation and Web API for the ASP.NET MVC Developer](https://msdn.microsoft.com/en-us/magazine/dn574797.aspx)
 - [Serving WebP images with ASP.NET MVC](http://friism.com/serving-webp-images-with-asp-net-mvc)
 - [Detailed ASP.NET MVC Pipeline](http://www.dotnet-tricks.com/Tutorial/mvc/LYHK270114-Detailed-ASP.NET-MVC-Pipeline.html)
-- [Nesting Layouts in MVC](http://astutelogic.com/nesting-layouts-in-mvc/)by Russell Waite
+- [Nesting Layouts in MVC](http://astutelogic.com/nesting-layouts-in-mvc/) by Russell Waite
 - I[mplementing RichTextEditor or WYSIWYG (TinyMCE) in ASP.NET MVC](http://www.dotnetfunda.com/articles/show/2657/implementing-richtexteditor-or-wysiwyg-tinymce-in-aspnet-mvc) by Sheo Narayan
 - [Binding views with Anonymous type collection in ASP.NET MVC](http://www.dotnetfunda.com/articles/show/2655/binding-views-with-anonymous-type-collection-in-aspnet-mvc) by Sheo Narayan
 - [Saving HTML 5 canvas as Image in ASP.NET MVC](http://www.dotnetfunda.com/articles/show/2665/saving-html-5-canvas-as-image-in-aspnet-mvc) by Sheo Narayan

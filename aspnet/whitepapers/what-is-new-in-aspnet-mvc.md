@@ -58,11 +58,11 @@ This section describes features that have been introduced in the MVC 2 release.
 
 ### <a id="_TOC3_1"></a>  Templated Helpers
 
-Templated helpers let you automatically associate HTML elements for edit and display with data types. For example, when data of type System.DateTime is displayed in a view, a date-picker UI element can be automatically rendered. This is similar to how field templates work in ASP.NET Dynamic Data. For more information, see [Using Templated Helpers to Display Data](https://go.microsoft.com/fwlink/?LinkId=159062)on the MSDN Web site.
+Templated helpers let you automatically associate HTML elements for edit and display with data types. For example, when data of type System.DateTime is displayed in a view, a date-picker UI element can be automatically rendered. This is similar to how field templates work in ASP.NET Dynamic Data. For more information, see [Using Templated Helpers to Display Data](https://go.microsoft.com/fwlink/?LinkId=159062) on the MSDN Web site.
 
 ### <a id="_TOC3_2"></a>  Areas
 
-Areas let you organize a large project into multiple smaller sections in order to manage the complexity of a large Web application. Each section ("area") typically represents a separate section of a large Web site and is used to group related sets of controllers and views. For more information, see [Walkthrough: Organizing an ASP.NET MVC Application by Areas](https://go.microsoft.com/fwlink/?LinkId=158978)on the MSDN Web site.
+Areas let you organize a large project into multiple smaller sections in order to manage the complexity of a large Web application. Each section ("area") typically represents a separate section of a large Web site and is used to group related sets of controllers and views. For more information, see [Walkthrough: Organizing an ASP.NET MVC Application by Areas](https://go.microsoft.com/fwlink/?LinkId=158978) on the MSDN Web site.
 
 To create a new area, in Solution Explorer, right-click the project, click Add, and then click Area. This displays a dialog box that prompts you for the area name. After you enter the area name, Visual Studio adds a new area to the project.
 
@@ -82,7 +82,7 @@ If you do not specify the namespace in the RegisterArea method by calling the co
 
 ### <a id="_TOC3_3"></a>  Support for Asynchronous Controllers
 
-ASP.NET MVC 2 now allows controllers to process requests asynchronously. This can lead to performance gains by allowing servers which frequently call blocking operations (like network requests) to call non-blocking counterparts instead. For more information, see the [Using an Asynchronous Controller in ASP.NET MVC](https://msdn.microsoft.com/en-us/library/ee728598(v=VS.100).aspx)topic on MSDN.
+ASP.NET MVC 2 now allows controllers to process requests asynchronously. This can lead to performance gains by allowing servers which frequently call blocking operations (like network requests) to call non-blocking counterparts instead. For more information, see the [Using an Asynchronous Controller in ASP.NET MVC](https://msdn.microsoft.com/en-us/library/ee728598(v=VS.100).aspx) topic on MSDN.
 
 ### <a id="_TOC3_4"></a>  Support for DefaultValueAttribute in Action-Method Parameters
 
@@ -136,17 +136,17 @@ The ModelMetadataProvider class provides an abstraction for obtaining metadata f
 
 The ViewDataDictionary class exposes a ModelMetadata object that contains the metadata that is extracted from the model by the ModelMetadataProvider class. This enables the templated helpers to consume this metadata and adjust their output accordingly.
 
-For more information, see the documentation for the [ModelMetadata](https://msdn.microsoft.com/en-us/library/system.web.mvc.modelmetadataprovider(VS.100).aspx)and [ModelMetadataProvider](https://msdn.microsoft.com/en-us/library/system.web.mvc.modelmetadataprovider(VS.100).aspx)classes.
+For more information, see the documentation for the [ModelMetadata](https://msdn.microsoft.com/en-us/library/system.web.mvc.modelmetadataprovider(VS.100).aspx) and [ModelMetadataProvider](https://msdn.microsoft.com/en-us/library/system.web.mvc.modelmetadataprovider(VS.100).aspx) classes.
 
 ### <a id="_TOC3_7"></a>  Support for DataAnnotations Attributes
 
 ASP.NET MVC 2 supports using the RangeAttribute, RequiredAttribute, StringLengthAttribute, and RegexAttribute validation attributes (defined in the System.ComponentModel.DataAnnotations namespace) when you bind to a model in order to provide input validation.
 
-For more information, see [How to: Validate Model Data Using DataAnnotations Attributes](https://go.microsoft.com/fwlink/?LinkId=159063)on the MSDN Web site. A sample project that illustrates the use of these attributes is available for download at [https://go.microsoft.com/fwlink/?LinkId=157753](https://go.microsoft.com/fwlink/?LinkId=157753).
+For more information, see [How to: Validate Model Data Using DataAnnotations Attributes](https://go.microsoft.com/fwlink/?LinkId=159063) on the MSDN Web site. A sample project that illustrates the use of these attributes is available for download at [https://go.microsoft.com/fwlink/?LinkId=157753](https://go.microsoft.com/fwlink/?LinkId=157753).
 
 ### <a id="_TOC3_08"></a>  Model-Validator Providers
 
-The model-validation provider class represents an abstraction that provides validation logic for the model. ASP.NET MVC includes a default provider based on validation attributes that are included in the System.ComponentModel.DataAnnotations namespace. You can also create your own validation providers that define custom validation rules and custom mappings of validation rules to the model. For more information, see the documentation for the [ModelValidatorProvider](https://msdn.microsoft.com/en-us/library/system.web.mvc.ModelValidatorProvider(VS.100).aspx)class.
+The model-validation provider class represents an abstraction that provides validation logic for the model. ASP.NET MVC includes a default provider based on validation attributes that are included in the System.ComponentModel.DataAnnotations namespace. You can also create your own validation providers that define custom validation rules and custom mappings of validation rules to the model. For more information, see the documentation for the [ModelValidatorProvider](https://msdn.microsoft.com/en-us/library/system.web.mvc.ModelValidatorProvider(VS.100).aspx) class.
 
 ### <a id="_TOC3_09"></a>  Client-Side Validation
 
@@ -229,7 +229,7 @@ This section describes changes to existing ASP.NET MVC types and members.
 
 - Added a get\_object method in the Sys.Mvc.AjaxContext class. This is a JavaScript method that is similar to the get\_data method, but if the content type of the response is application/json, get\_object returns the JSON object.
 - Added an ActionDescriptor property in the AuthorizationContext class.
-- Added a UrlParameter.Optional token that can be used to work around problems when binding to a model that contains an ID property when the property is absent in a form post. For more detail, see the entry [ASP.NET MVC 2 Optional URL Parameters](http://haacked.com/archive/2010/02/12/asp-net-mvc-2-optional-url-parameters.aspx)on Phil Haack's blog.
+- Added a UrlParameter.Optional token that can be used to work around problems when binding to a model that contains an ID property when the property is absent in a form post. For more detail, see the entry [ASP.NET MVC 2 Optional URL Parameters](http://haacked.com/archive/2010/02/12/asp-net-mvc-2-optional-url-parameters.aspx) on Phil Haack's blog.
 
 ## <a id="_TOC5"></a>  Breaking Changes
 
@@ -264,7 +264,7 @@ In order to take advantage of the new HTML-encoding expression syntax in ASP.NET
 
 #### JsonResult now responds only to HTTP POST requests
 
-In order to mitigate JSON hijacking attacks that have the potential for information disclosure, by default, the JsonResult class now responds only to HTTP POST requests. Ajax GET calls to action methods that return a JsonResult object should be changed to use POST instead. If necessary, you can override this behavior by setting the new JsonRequestBehavior property of JsonResult. For more information about the potential exploit, see the blog post [JSON Hijacking](http://haacked.com/archive/2009/06/25/json-hijacking.aspx)on Phil Haack's blog.
+In order to mitigate JSON hijacking attacks that have the potential for information disclosure, by default, the JsonResult class now responds only to HTTP POST requests. Ajax GET calls to action methods that return a JsonResult object should be changed to use POST instead. If necessary, you can override this behavior by setting the new JsonRequestBehavior property of JsonResult. For more information about the potential exploit, see the blog post [JSON Hijacking](http://haacked.com/archive/2009/06/25/json-hijacking.aspx) on Phil Haack's blog.
 
 #### Model and ModelType property setters on ModelBindingContext are obsolete
 

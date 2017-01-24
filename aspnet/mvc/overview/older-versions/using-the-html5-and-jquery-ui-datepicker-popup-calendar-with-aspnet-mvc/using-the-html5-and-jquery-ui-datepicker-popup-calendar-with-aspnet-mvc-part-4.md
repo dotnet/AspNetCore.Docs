@@ -129,7 +129,7 @@ Press CTRL+F5 to run the application. Select an edit link, then put the insertio
 
 ![](using-the-html5-and-jquery-ui-datepicker-popup-calendar-with-aspnet-mvc-part-4/_static/image7.png)
 
-Like most jQuery controls, the datepicker lets you customize it extensively. For information, see [Visual Customization: Designing a jQuery UI theme](http://learn.jquery.com/jquery-ui/getting-started/#visual-customization-designing-a-jquery-ui-theme) on the [jQuery UI](http://learn.jquery.com/jquery-ui/getting-started/)site.
+Like most jQuery controls, the datepicker lets you customize it extensively. For information, see [Visual Customization: Designing a jQuery UI theme](http://learn.jquery.com/jquery-ui/getting-started/#visual-customization-designing-a-jquery-ui-theme) on the [jQuery UI](http://learn.jquery.com/jquery-ui/getting-started/) site.
 
 ### Supporting the HTML5 Date Input Control
 

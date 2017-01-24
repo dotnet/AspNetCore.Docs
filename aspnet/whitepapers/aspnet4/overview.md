@@ -619,7 +619,7 @@ The *RouteValue* expression makes it simple to use route data in markup, and it 
 
 #### Using Route Data for Data Source Control Parameters
 
-The *RouteParameter* class lets you specify route data as a parameter value for queries in a data source control. It [works much like the](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.formparameter.aspx)class, as shown in the following example:
+The *RouteParameter* class lets you specify route data as a parameter value for queries in a data source control. It [works much like the](https://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.formparameter.aspx) class, as shown in the following example:
 
 [!code-aspx[Main](overview/samples/sample46.aspx)]
 
@@ -1256,7 +1256,7 @@ The *EnumDataTypeAttribute* class has been added to let you map fields to enumer
 
 Dynamic Data 1.0 shipped with built-in filters for Boolean columns and foreign-key columns. The filters did not allow you to specify whether they were displayed or in what order they were displayed. The new *DisplayAttribute* attribute addresses both of these issues by giving you control over whether a column is displayed as a filter and in what order it will be displayed.
 
-An additional enhancement is that filtering support has been re[written to use the new](#0.2__QueryExtender "_QueryExtender")feature of Web Forms. This lets you create filters without requiring knowledge of the data source control that the filters will be used with. Along with these extensions, filters have also been turned into template controls, which allows you to add new ones. Finally, the *DisplayAttribute* class mentioned earlier allows the default filter to be overridden, in the same way that *UIHint* allows the default field template for a column to be overridden.
+An additional enhancement is that filtering support has been re[written to use the new](#0.2__QueryExtender "_QueryExtender") feature of Web Forms. This lets you create filters without requiring knowledge of the data source control that the filters will be used with. Along with these extensions, filters have also been turned into template controls, which allows you to add new ones. Finally, the *DisplayAttribute* class mentioned earlier allows the default filter to be overridden, in the same way that *UIHint* allows the default field template for a column to be overridden.
 
 <a id="0.2__Toc224729051"></a><a id="0.2__Toc253429288"></a><a id="0.2__Toc243304659"></a>
 

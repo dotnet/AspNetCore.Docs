@@ -65,7 +65,7 @@ The [Glimpse HUD page](http://getglimpse.com/Docs/Heads-up-Display) details the 
 
 ![Glimpse panel](profile-and-debug-your-aspnet-mvc-app-with-glimpse/_static/image7.png)
 
-In the image above, the [Execution tab](http://getglimpse.com/Docs/Execution-Tab)is selected, which shows timing details of the actions and filters in the pipeline. You can see my [Stop Watch filter timer](http://www.nuget.org/packages/StopWatch/) start at stage 6 of the pipeline. While my light weight timer can provide useful profile/timing data, it misses all the time spent in authorization and rendering the view. You can read about my timer at [Profile and Time your ASP.NET MVC app all the way to Azure](https://blogs.msdn.com/b/webdev/archive/2014/07/29/profile-and-time-your-asp-net-mvc-app-all-the-way-to-azure.aspx). The [Tabs](http://getglimpse.com/Docs/Tabs) page provides links to detailed information on each tab.
+In the image above, the [Execution tab](http://getglimpse.com/Docs/Execution-Tab) is selected, which shows timing details of the actions and filters in the pipeline. You can see my [Stop Watch filter timer](http://www.nuget.org/packages/StopWatch/) start at stage 6 of the pipeline. While my light weight timer can provide useful profile/timing data, it misses all the time spent in authorization and rendering the view. You can read about my timer at [Profile and Time your ASP.NET MVC app all the way to Azure](https://blogs.msdn.com/b/webdev/archive/2014/07/29/profile-and-time-your-asp-net-mvc-app-all-the-way-to-azure.aspx). The [Tabs](http://getglimpse.com/Docs/Tabs) page provides links to detailed information on each tab.
 
 <a id="Time"></a>
 ## The Timeline tab
@@ -89,7 +89,7 @@ You can hover over a time segment to get detailed timing information:
 <a id="mb"></a>
 ## Model Binding
 
-The [model binding tab](http://getglimpse.com/Docs/Model-Binding-Tab)provides a wealth of information to help you understand how your form variables are bound and why some are not bound as would expect. The image below shows the **?** icon, which you can click on to bring up the glimpse help page for that feature.
+The [model binding tab](http://getglimpse.com/Docs/Model-Binding-Tab) provides a wealth of information to help you understand how your form variables are bound and why some are not bound as would expect. The image below shows the **?** icon, which you can click on to bring up the glimpse help page for that feature.
 
 ![glimpse model binding view](profile-and-debug-your-aspnet-mvc-app-with-glimpse/_static/image11.png)
 

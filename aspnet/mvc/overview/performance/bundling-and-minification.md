@@ -70,7 +70,7 @@ The bytes sent had a significant reduction with bundling as browsers are fairly 
 
 ## Debugging Bundled and Minified JavaScript
 
-It's easy to debug your JavaScript in a development environment (where the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx)in the *Web.config* file is set to `debug="true"` ) because the JavaScript files are not bundled or minified. You can also debug a release build where your JavaScript files are bundled and minified. Using the IE F12 developer tools, you debug a JavaScript function included in a minified bundle using the following approach:
+It's easy to debug your JavaScript in a development environment (where the [compilation Element](https://msdn.microsoft.com/en-us/library/s10awwz0.aspx) in the *Web.config* file is set to `debug="true"` ) because the JavaScript files are not bundled or minified. You can also debug a release build where your JavaScript files are bundled and minified. Using the IE F12 developer tools, you debug a JavaScript function included in a minified bundle using the following approach:
 
 1. Select the **Script** tab and then select the **Start debugging** button.
 2. Select the bundle containing the JavaScript function you want to debug using the assets button.  

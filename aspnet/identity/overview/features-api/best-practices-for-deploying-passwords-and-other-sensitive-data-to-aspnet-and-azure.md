@@ -82,7 +82,7 @@ The *app.config* file used by a console app doesn't support relative paths, but 
 <a id="da"></a>
 ## Deploying secrets to Azure
 
-When you deploy your web app to Azure, the *AppSettingsSecrets.config* file won't be deployed (that's what you want). You could go to the [Azure Management Portal](https://azure.microsoft.com/services/management-portal/)and set them manually, to do that:
+When you deploy your web app to Azure, the *AppSettingsSecrets.config* file won't be deployed (that's what you want). You could go to the [Azure Management Portal](https://azure.microsoft.com/services/management-portal/) and set them manually, to do that:
 
 1. Go to [https://portal.azure.com](https://portal.azure.com), and sign in with your Azure credentials.
 2. Click **Browse &gt; Web Apps**, then click the name of your web app.
@@ -90,7 +90,7 @@ When you deploy your web app to Azure, the *AppSettingsSecrets.config* file won'
 
 The **app settings** and **connection string** values override the same settings in the *web.config* file. In our example, we did not deploy these settings to Azure, but if these keys were in the *web.config* file, the settings shown on the portal would take precedence.
 
-A best practice is to follow a [DevOps workflow](../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything.md) and use [Azure PowerShell](https://azure.microsoft.com/en-us/documentation/articles/install-configure-powershell/) (or another framework such as [Chef](http://www.opscode.com/chef/) or [Puppet](http://puppetlabs.com/puppet/what-is-puppet)) to automate setting these values in Azure. The following PowerShell script uses [Export-CliXml](http://www.powershellcookbook.com/recipe/PukO/securely-store-credentials-on-disk)to export the encrypted secrets to disk:
+A best practice is to follow a [DevOps workflow](../../../aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything.md) and use [Azure PowerShell](https://azure.microsoft.com/en-us/documentation/articles/install-configure-powershell/) (or another framework such as [Chef](http://www.opscode.com/chef/) or [Puppet](http://puppetlabs.com/puppet/what-is-puppet)) to automate setting these values in Azure. The following PowerShell script uses [Export-CliXml](http://www.powershellcookbook.com/recipe/PukO/securely-store-credentials-on-disk) to export the encrypted secrets to disk:
 
 [!code-javascript[Main](best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure/samples/sample6.js)]
 

@@ -324,7 +324,7 @@ Add `data-role="listview"` to the `<ul>` tag, like this:
 
 The image below shows what the **Date** page looks like with the `data-role` attribute in place.
 
-[![p3_dates1](aspnet-mvc-4-mobile-features/_static/image43.png)](aspnet-mvc-4-mobile-features/_static/image42.png)Replace the contents of the *Views\Home\AllDates.Mobile.cshtml* file with the following code:
+[![p3_dates1](aspnet-mvc-4-mobile-features/_static/image43.png)](aspnet-mvc-4-mobile-features/_static/image42.png) Replace the contents of the *Views\Home\AllDates.Mobile.cshtml* file with the following code:
 
 [!code-cshtml[Main](aspnet-mvc-4-mobile-features/samples/sample23.cshtml)]
 

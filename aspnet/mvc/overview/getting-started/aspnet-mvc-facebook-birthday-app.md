@@ -39,7 +39,7 @@ You'll implement a simple but fun and useful Facebook application that lists a p
 6. Enter *SampleFacebookBirthdayApp* for the project name, and then click **OK**. 
 
     > [!NOTE]
-    > You must use `SampleFacebookBirthdayApp` for the project name so you can copy files from the [download projec](https://code.msdn.microsoft.com/ASPNET-MVC-Facebook-4b4f06d2)t without having to change the namespace   
+    > You must use `SampleFacebookBirthdayApp` for the project name so you can copy files from the [download project](https://code.msdn.microsoft.com/ASPNET-MVC-Facebook-4b4f06d2) without having to change the namespace   
     > ![](aspnet-mvc-facebook-birthday-app/_static/image3.png)
 7. Install the latest Microsoft.AspNet.Facebook Nuget package.
 
@@ -85,7 +85,7 @@ Right out of the box, the Facebook template provides boilerplate code to help yo
     [!code-xml[Main](aspnet-mvc-facebook-birthday-app/samples/sample1.xml?highlight=7-9)]
 
     > [!WARNING]
-    > Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See Jon Atten's [ASP.NET MVC: Keep Private Settings Out of Source Contro](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx)l.
+    > Security - Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. See Jon Atten's [ASP.NET MVC: Keep Private Settings Out of Source Control](http://typecastexception.com/post/2014/04/06/ASPNET-MVC-Keep-Private-Settings-Out-of-Source-Control.aspx).
 - Press CTRL+F5 to run the application. If you haven't installed the self-signed certificate for IIS Express, follow the instructions to install it. For more information see the Enable SSL for the Project section of my [Deploy a Secure ASP.NET MVC 5 app with Membership, OAuth, and SQL Database to an Azure Website](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/) tutorial.
 - After you log in, Facebook will display the following dialog boxes which asks you for permission to receive your public profile, email address and photos. Click **Okay** on both dialogs.  
     ![](aspnet-mvc-facebook-birthday-app/_static/image9.jpg)  
