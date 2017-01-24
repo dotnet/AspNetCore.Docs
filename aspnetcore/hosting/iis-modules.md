@@ -74,7 +74,7 @@ Module | .NET Core Active | ASP.NET Core Option
 **Request Monitor**<br>`RequestMonitorModule` | Yes | 
 **URL Rewriting**<br>`RewriteModule` | Yes† | [URL Rewriting Middleware](xref:fundamentals/url-rewriting)
 **Server Side Includes**<br>`ServerSideIncludeModule` | No | 
-**Static Compression**<br>`StaticCompressionModule` | No | [Response Compression Middleware](xref:fundamentals/response-compression)
+**Static Compression**<br>`StaticCompressionModule` | No | [Response Compression Middleware](xref:performance/response-compression)
 **Static Content**<br>`StaticFileModule` | No | [Static File Middleware](xref:fundamentals/static-files)
 **Token Caching**<br>`TokenCacheModule` | Yes | 
 **Custom Tracing**<br>`TracingModule` | ? | https://github.com/aspnet/IISIntegration/issues/314
